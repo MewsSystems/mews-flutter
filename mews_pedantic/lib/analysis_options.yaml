@@ -130,6 +130,9 @@ linter:
     - void_checks
 
 analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
   errors:
     always_declare_return_types: warning
     always_require_non_null_named_parameters: warning
