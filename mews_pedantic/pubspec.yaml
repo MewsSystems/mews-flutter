@@ -1,7 +1,7 @@
 name: mews_pedantic
 description: Dart static analysis rules incorporated in Mews.
 version: 0.1.0
-homepage:
+repository: https://github.com/MewsSystems/mews-flutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
