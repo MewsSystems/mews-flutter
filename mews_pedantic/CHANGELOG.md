@@ -1,3 +1,6 @@
+## 0.1.2
+- :cop: Remove flutter dependency
+
 ## 0.1.1
 
 - :cop: Add exclude option

@@ -10,7 +10,7 @@ To use the lints add a dependency in your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  mews_pedantic: ^0.1.0
+  mews_pedantic: ^0.1.2
 ```
 
 then, add an include in your `analysis_options.yaml`:
