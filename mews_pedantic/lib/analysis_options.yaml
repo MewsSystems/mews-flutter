@@ -161,25 +161,25 @@ analyzer:
     avoid_unused_constructor_parameters: warning
     avoid_void_async: warning
     await_only_futures: error
-    camel_case_types: error
+    camel_case_types: warning
     cancel_subscriptions: warning
     cascade_invocations: warning
     close_sinks: warning
-    constant_identifier_names: error
+    constant_identifier_names: warning
     curly_braces_in_flow_control_structures: warning
-    directives_ordering: error
+    directives_ordering: warning
     empty_catches: warning
     empty_constructor_bodies: warning
     empty_statements: warning
-    file_names: error
+    file_names: warning
     flutter_style_todos: warning
     hash_and_equals: warning
     implementation_imports: error
     invariant_booleans: warning
     iterable_contains_unrelated_type: error
     join_return_with_assignment: warning
-    library_names: error
-    library_prefixes: error
+    library_names: warning
+    library_prefixes: warning
     lines_longer_than_80_chars: warning
     list_remove_unrelated_type: error
     literal_only_boolean_expressions: warning
@@ -188,15 +188,15 @@ analyzer:
     no_adjacent_strings_in_list: warning
     no_duplicate_case_values: error
     no_logic_in_create_state: error
-    no_runtimeType_toString: error
-    non_constant_identifier_names: error
+    no_runtimeType_toString: warning
+    non_constant_identifier_names: warning
     null_closures: error
     one_member_abstracts: info
     only_throw_errors: error
     overridden_fields: error
     package_api_docs: info
-    package_names: error
-    package_prefixed_library_names: error
+    package_names: warning
+    package_prefixed_library_names: warning
     parameter_assignments: error
     prefer_adjacent_string_concatenation: warning
     prefer_asserts_in_initializer_lists: warning
@@ -231,13 +231,13 @@ analyzer:
     prefer_single_quotes: warning
     prefer_spread_collections: warning
     prefer_typing_uninitialized_variables: warning
-    prefer_void_to_null: error
+    prefer_void_to_null: warning
     recursive_getters: error
     sized_box_for_whitespace: warning
     slash_for_doc_comments: warning
     sort_child_properties_last: warning
     sort_constructors_first: warning
-    sort_pub_dependencies: error
+    sort_pub_dependencies: warning
     sort_unnamed_constructors_first: warning
     test_types_in_equals: error
     throw_in_finally: error
