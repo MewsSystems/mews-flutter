@@ -1,0 +1,46 @@
+name: Test Optimus
+on:
+  pull_request:
+    paths:
+      - 'optimus/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: optimus/
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+      - run: flutter pub get
+      - run: |
+          dart_files=$(git ls-tree --name-only --full-tree -r HEAD | grep '.dart$')
+          [ -z "$dart_files" ] && exit 0
+          unformatted=$(dartfmt -n $dart_files -l 120)
+          [ -z "$unformatted" ] && exit 0
+
+          # Some files are not dartfmt'd. Print message and fail.
+          echo >&2 "dart files must be formatted with dartfmt. Please run:"
+          for fn in $unformatted; do
+            echo >&2 "  dartfmt -l 120 -w $PWD/$fn"
+          done
+
+          exit 1
+        name: Ensure proper formatting
+      - run: |
+          OUTPUT="$(flutter analyze || true)"
+          echo "$OUTPUT"
+          echo
+          if grep -q "error •" <<<"$OUTPUT"; then
+            echo "flutter analyze found errors"
+            exit 1
+          elif grep -q "warning •" <<<"$OUTPUT"; then
+            echo "flutter analyze found warnings"
+            exit 1
+          else
+            echo "flutter analyze didn't find any warnings"
+            exit 0
+          fi
+        name: Check for errors and warnings
+      - run: flutter pub test
