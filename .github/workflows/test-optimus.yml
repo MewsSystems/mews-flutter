@@ -45,4 +45,4 @@ jobs:
             exit 0
           fi
         name: Check for errors and warnings
-      - run: flutter pub test
+      - run: flutter test
