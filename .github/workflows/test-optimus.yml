@@ -1,6 +1,8 @@
 name: Test Optimus
 on:
   pull_request:
+    branches:
+      - master
     paths:
       - 'optimus/**'
 
@@ -15,7 +17,7 @@ jobs:
       - uses: subosito/flutter-action@v1
       - run: flutter pub get
       - run: |
-          dart_files=$(git ls-tree --name-only --full-tree -r HEAD | grep '.dart$')
+          dart_files=$(git ls-tree --name-only -r HEAD | grep '.dart$')
           [ -z "$dart_files" ] && exit 0
           unformatted=$(dartfmt -n $dart_files -l 120)
           [ -z "$unformatted" ] && exit 0
