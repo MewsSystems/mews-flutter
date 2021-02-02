@@ -7,7 +7,7 @@ on:
       - 'optimus/**'
 
 jobs:
-  test:
+  check:
     runs-on: ubuntu-latest
     defaults:
       run:
