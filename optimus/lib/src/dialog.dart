@@ -270,11 +270,11 @@ class _Actions extends StatelessWidget {
           (i, e) => Padding(
             padding: EdgeInsets.only(bottom: _isVertical ? spacing200 : 0, left: _isVertical ? 0 : spacing200),
             child: OptimusButton(
-              child: e.title,
               onPressed: e.onPressed ?? () => Navigator.pop(context),
               minWidth: _isVertical ? double.infinity : null,
               variant: _getVariant(i),
               key: e.key,
+              child: e.title,
             ),
           ),
         )
