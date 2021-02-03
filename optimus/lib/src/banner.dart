@@ -138,9 +138,9 @@ class OptimusBanner extends StatelessWidget {
       case OptimusBannerVariant.success:
         return OptimusIcons.done_circle;
       case OptimusBannerVariant.warning:
-        return OptimusIcons.disable; // TODO(MM) add warning icon
+        return OptimusIcons.disable; // TODO(MM): add warning icon
       case OptimusBannerVariant.error:
-        return OptimusIcons.disable; // TODO(MM) update icon
+        return OptimusIcons.disable; // TODO(MM): update icon
     }
   }
 
