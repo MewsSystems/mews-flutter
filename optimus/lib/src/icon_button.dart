@@ -5,8 +5,31 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/widget_size.dart';
 
-enum OptimusIconButtonType { defaultButton, primary, text, destructive, float, bare }
+enum OptimusIconButtonType {
+  /// Used in most scenarios when there is no prior action necessary.
+  defaultButton,
 
+  /// Used for main actions with prior actions on the same page or module.
+  primary,
+
+  /// Used for non-crucial, complementary, or tertiary actions.
+  text,
+
+  /// Used to confirm destructive actions the user can’t take back, like deletion.
+  destructive,
+
+  /// Used for quick actions. The float variant is always above other content and visible in the current viewport.
+  /// Usually placed in the bottom-right corner and useful for small screens.
+  float,
+
+  /// The Bare Icon button is a stripped-down version of the Icon button.
+  /// Used in components like Inputs, Selects, and Modals,
+  /// or situations where the container, and its effects, are not required or desired.
+  bare,
+}
+
+/// When you don’t have enough space for regular buttons, or the action is clear enough,
+/// you can use an icon button without text.
 class OptimusIconButton extends StatefulWidget {
   const OptimusIconButton({
     Key key,
