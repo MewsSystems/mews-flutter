@@ -1,3 +1,6 @@
+[![Pub Version](https://img.shields.io/pub/v/optimus)](https://pub.dev/packages/optimus)
+![](https://github.com/MewsSystems/mews-flutter/workflows/Check%20Optimus/badge.svg)
+
 # Optimus
 
 Optimus is a design system used internally in [Mews](https://github.com/MewsSystems/developers).
