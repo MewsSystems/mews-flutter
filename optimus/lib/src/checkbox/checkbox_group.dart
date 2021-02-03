@@ -31,9 +31,9 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
 
   /// Called when the user changes some checkbox button.
   ///
-  /// The checkbox button passes [values] as a parameter to this callback. The checkbox
-  /// button does not actually change state until the parent widget rebuilds the
-  /// checkbox button with the new [values].
+  /// The checkbox button passes [values] as a parameter to this callback.
+  /// The checkbox button does not actually change state until the parent
+  /// widget rebuilds the checkbox button with the new [values].
   final ValueChanged<Iterable<T>> onChanged;
 
   /// Controls size of each checkbox in the group.

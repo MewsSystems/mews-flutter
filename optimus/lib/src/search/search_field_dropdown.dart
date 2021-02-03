@@ -23,10 +23,12 @@ class OptimusSearchFieldDropdown<T> extends StatefulWidget {
   final GlobalKey anchorKey;
 
   @override
-  _OptimusSearchFieldDropdownState<T> createState() => _OptimusSearchFieldDropdownState<T>();
+  _OptimusSearchFieldDropdownState<T> createState() =>
+      _OptimusSearchFieldDropdownState<T>();
 }
 
-class _OptimusSearchFieldDropdownState<T> extends State<OptimusSearchFieldDropdown<T>> {
+class _OptimusSearchFieldDropdownState<T>
+    extends State<OptimusSearchFieldDropdown<T>> {
   Rect _savedRect;
 
   void _updateRect(dynamic _) {
@@ -51,7 +53,8 @@ class _OptimusSearchFieldDropdownState<T> extends State<OptimusSearchFieldDropdo
     return Stack(
       children: <Widget>[
         // Some problem with AnimatedPosition here:
-        // 'package:flutter/src/animation/tween.dart': Failed assertion: line 258 pos 12: 'begin != null': is not true.
+        // 'package:flutter/src/animation/tween.dart':
+        // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
         Positioned(
           width: _savedRect.width,
@@ -69,7 +72,8 @@ class _OptimusSearchFieldDropdownState<T> extends State<OptimusSearchFieldDropdo
   }
 
   Rect _calculateRect() {
-    final RenderBox renderBox = widget.anchorKey.currentContext.findRenderObject() as RenderBox;
+    final RenderBox renderBox =
+        widget.anchorKey.currentContext.findRenderObject() as RenderBox;
     final size = renderBox.size;
     return renderBox.localToGlobal(Offset.zero) & size;
   }
@@ -82,7 +86,10 @@ class _OptimusSearchFieldDropdownState<T> extends State<OptimusSearchFieldDropdo
             padding: const EdgeInsets.symmetric(vertical: spacing100),
             shrinkWrap: true,
             itemCount: widget.items.length,
-            itemBuilder: (context, index) => _DropdownItem(onChanged: widget.onChanged, child: widget.items[index]),
+            itemBuilder: (context, index) => _DropdownItem(
+              onChanged: widget.onChanged,
+              child: widget.items[index],
+            ),
           ),
         ),
       );
@@ -93,7 +100,8 @@ class _OptimusSearchFieldDropdownState<T> extends State<OptimusSearchFieldDropdo
 
   double get _screenHeight => MediaQuery.of(context).size.height;
 
-  double get _paddingBottom => MediaQuery.of(context).viewInsets.bottom + _screenPadding;
+  double get _paddingBottom =>
+      MediaQuery.of(context).viewInsets.bottom + _screenPadding;
 
   double get _paddingTop => MediaQuery.of(context).padding.top + _screenPadding;
 
@@ -103,7 +111,11 @@ class _OptimusSearchFieldDropdownState<T> extends State<OptimusSearchFieldDropdo
 }
 
 class _DropdownItem<T> extends StatefulWidget {
-  const _DropdownItem({Key key, @required this.child, @required this.onChanged}) : super(key: key);
+  const _DropdownItem({
+    Key key,
+    @required this.child,
+    @required this.onChanged,
+  }) : super(key: key);
 
   final OptimusDropdownTile<T> child;
   final ValueSetter<T> onChanged;
@@ -118,13 +130,17 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> {
   @override
   Widget build(BuildContext context) => InkWell(
         highlightColor: OptimusColors.primary,
-        onHighlightChanged: (isHighlighted) => setState(() => _isHighlighted = isHighlighted),
+        onHighlightChanged: (isHighlighted) =>
+            setState(() => _isHighlighted = isHighlighted),
         onTap: () {
           widget.onChanged(widget.child.value);
           DropdownTapInterceptor.of(context).onTap();
         },
         child: _isHighlighted
-            ? DefaultTextStyle.merge(style: const TextStyle(color: OptimusColors.basic0), child: widget.child)
+            ? DefaultTextStyle.merge(
+                style: const TextStyle(color: OptimusColors.basic0),
+                child: widget.child,
+              )
             : widget.child,
       );
 }

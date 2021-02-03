@@ -28,7 +28,11 @@ class _CheckboxStoryState extends State<_CheckboxStory> {
       label: Text(k.text('Label', initial: 'Checkbox Label')),
       error: k.text('Error'),
       isEnabled: k.boolean('Enabled', initial: true),
-      size: k.options('Size', options: OptimusCheckboxSize.values.toOptions(), initial: OptimusCheckboxSize.large),
+      size: k.options(
+        'Size',
+        options: OptimusCheckboxSize.values.toOptions(),
+        initial: OptimusCheckboxSize.large,
+      ),
       isChecked: _checked,
       onChanged: (b) {
         setState(() {

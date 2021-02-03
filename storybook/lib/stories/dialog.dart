@@ -8,8 +8,10 @@ final Story dialogStory = Story(
   name: 'Dialog',
   builder: (context, k) {
     final isDismissible = k.boolean('Dismissible', initial: true);
-    final content = k.boolean('Scrollable', initial: false) ? _scrollableContent : _content;
-    final type = k.options('Type', initial: OptimusDialogType.common, options: _types);
+    final content =
+        k.boolean('Scrollable', initial: false) ? _scrollableContent : _content;
+    final type =
+        k.options('Type', initial: OptimusDialogType.common, options: _types);
 
     return Center(
       child: SingleChildScrollView(
@@ -150,7 +152,8 @@ final Story dialogStory = Story(
   },
 );
 
-Widget _padding({Widget child}) => Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: child);
+Widget _padding({Widget child}) =>
+    Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: child);
 
 Future<void> _showThreeActionDialog({
   BuildContext context,
@@ -229,7 +232,9 @@ Future<void> _showCustomContentDialog({
         title: const Text('Dialog title'),
         content: ListView.builder(
           itemCount: _iterable.length,
-          itemBuilder: (_, index) => ListTile(title: Text('List tile #${_iterable.toList()[index]}')),
+          itemBuilder: (_, index) => ListTile(
+            title: Text('List tile #${_iterable.toList()[index]}'),
+          ),
         ),
         contentWrapperBuilder: (_, child) => child,
         size: size,
@@ -246,9 +251,11 @@ Widget get _content => Container(
 
 Widget get _scrollableContent => Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: _iterable.map((i) => ListTile(title: Text('List tile #$i'))).toList(),
+      children:
+          _iterable.map((i) => ListTile(title: Text('List tile #$i'))).toList(),
     );
 
-final List<Option<OptimusDialogType>> _types = OptimusDialogType.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<OptimusDialogType>> _types =
+    OptimusDialogType.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final _iterable = Iterable<int>.generate(50);

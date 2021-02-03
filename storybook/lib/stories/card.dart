@@ -8,13 +8,21 @@ final Story cardStory = Story(
   section: 'Cards',
   name: 'Card',
   builder: (_, k) => OptimusCard(
-    padding: k.options('Padding', initial: OptimusCardSpacing.spacing200, options: _paddings),
+    padding: k.options(
+      'Padding',
+      initial: OptimusCardSpacing.spacing200,
+      options: _paddings,
+    ),
     variant: k.options(
       'Variant',
       initial: OptimusBasicCardVariant.normal,
       options: _basicCardVariants,
     ),
-    attachment: k.options('Attachment', initial: OptimusCardAttachment.none, options: _attachments),
+    attachment: k.options(
+      'Attachment',
+      initial: OptimusCardAttachment.none,
+      options: _attachments,
+    ),
     child: _content,
   ),
 );
@@ -23,13 +31,21 @@ final Story nestedCardStory = Story(
   section: 'Cards',
   name: 'Nested card',
   builder: (_, k) => OptimusNestedCard(
-    padding: k.options('Padding', initial: OptimusCardSpacing.spacing200, options: _paddings),
+    padding: k.options(
+      'Padding',
+      initial: OptimusCardSpacing.spacing200,
+      options: _paddings,
+    ),
     variant: k.options(
       'Variant',
       initial: OptimusNestedCardVariant.normal,
       options: _nestedCardVariants,
     ),
-    attachment: k.options('Attachment', initial: OptimusCardAttachment.none, options: _attachments),
+    attachment: k.options(
+      'Attachment',
+      initial: OptimusCardAttachment.none,
+      options: _attachments,
+    ),
     child: _content,
   ),
 );
@@ -44,10 +60,16 @@ final List<Option<OptimusCardSpacing>> _paddings =
     OptimusCardSpacing.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<OptimusBasicCardVariant>> _basicCardVariants =
-    OptimusBasicCardVariant.values.map((e) => Option(describeEnum(e), e)).toList();
+    OptimusBasicCardVariant.values
+        .map((e) => Option(describeEnum(e), e))
+        .toList();
 
 final List<Option<OptimusNestedCardVariant>> _nestedCardVariants =
-    OptimusNestedCardVariant.values.map((e) => Option(describeEnum(e), e)).toList();
+    OptimusNestedCardVariant.values
+        .map((e) => Option(describeEnum(e), e))
+        .toList();
 
-final List<Option<OptimusCardAttachment>> _attachments =
-    OptimusCardAttachment.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<OptimusCardAttachment>> _attachments = OptimusCardAttachment
+    .values
+    .map((e) => Option(describeEnum(e), e))
+    .toList();

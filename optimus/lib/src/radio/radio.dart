@@ -19,8 +19,8 @@ enum OptimusRadioSize {
   large,
 }
 
-/// The radio is a binary form of input used in a list of mutually exclusive options.
-/// Users can make only one selection in a list at any given time.
+/// The radio is a binary form of input used in a list of mutually exclusive
+/// options. Users can make only one selection in a list at any given time.
 class OptimusRadio<T> extends StatefulWidget {
   const OptimusRadio({
     Key key,
@@ -125,11 +125,17 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _RadioCircle(isSelected: _isSelected, isActive: _isHovering || _isTappedDown),
+                  _RadioCircle(
+                    isSelected: _isSelected,
+                    isActive: _isHovering || _isTappedDown,
+                  ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: DefaultTextStyle.merge(style: _labelStyle, child: widget.label),
+                      child: DefaultTextStyle.merge(
+                        style: _labelStyle,
+                        child: widget.label,
+                      ),
                     ),
                   ),
                 ],
@@ -150,11 +156,17 @@ class _RadioCircle extends StatelessWidget {
   final bool isSelected;
   final bool isActive;
 
-  Color get _borderColor => (isSelected || isActive) ? OptimusColors.primary500 : OptimusColors.basic100;
+  Color get _borderColor => (isSelected || isActive)
+      ? OptimusColors.primary500
+      : OptimusColors.basic100;
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: spacing100, bottom: spacing100, right: spacing200),
+        padding: const EdgeInsets.only(
+          top: spacing100,
+          bottom: spacing100,
+          right: spacing200,
+        ),
         child: Container(
           width: 16,
           height: 16,

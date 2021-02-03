@@ -83,7 +83,8 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.isUpdating
               ? const OptimusProgressSpinner()
-              : const Icon(OptimusIcons.search, size: 24, color: OptimusColors.basic900t64),
+              : const Icon(OptimusIcons.search,
+                  size: 24, color: OptimusColors.basic900t64),
           isEnabled: widget.isEnabled,
           caption: widget.caption,
           secondaryCaption: widget.secondaryCaption,
@@ -136,7 +137,8 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
                   position: box.globalToLocal(details.globalPosition),
                 );
 
-            final RenderBox inputFieldBox = _fieldBoxKey.currentContext.findRenderObject() as RenderBox;
+            final RenderBox inputFieldBox =
+                _fieldBoxKey.currentContext.findRenderObject() as RenderBox;
             final dropdownBox = context.findRenderObject() as RenderBox;
 
             if (!hitTest(inputFieldBox) && !hitTest(dropdownBox)) {

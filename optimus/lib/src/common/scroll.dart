@@ -18,5 +18,10 @@ class OptimusScrollConfiguration extends StatelessWidget {
 
 class _OptimusScrollBehaviour extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) => child;
+  Widget buildViewportChrome(
+    BuildContext context,
+    Widget child,
+    AxisDirection axisDirection,
+  ) =>
+      child;
 }
