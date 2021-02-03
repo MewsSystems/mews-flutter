@@ -21,6 +21,7 @@ class OptimusPageTitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:
@@ -52,6 +53,7 @@ class OptimusSectionTitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:
@@ -83,6 +85,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:

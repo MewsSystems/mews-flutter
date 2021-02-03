@@ -27,6 +27,7 @@ class OptimusTypography extends StatelessWidget {
     );
   }
 
+  // ignore: missing_return
   Color get _color {
     switch (color) {
       case OptimusTypographyColor.primary:

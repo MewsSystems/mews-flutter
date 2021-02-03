@@ -21,6 +21,7 @@ class OptimusSubtitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:

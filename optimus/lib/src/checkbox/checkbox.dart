@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/enabled.dart';
@@ -98,6 +98,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> {
     setState(() => _isHovering = hovered);
   }
 
+  // ignore: missing_return
   TextStyle get _labelStyle {
     switch (widget.size) {
       case OptimusCheckboxSize.large:
@@ -109,9 +110,8 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    final checkIcon = widget.isChecked
-        ? Center(child: SvgPicture.asset('assets/checkbox_tick.svg', package: 'optimus', color: Colors.white))
-        : null;
+    final checkIcon =
+        widget.isChecked ? const Center(child: Icon(OptimusIcons.done, size: 10, color: Colors.white)) : null;
 
     final label = Padding(
       padding: const EdgeInsets.fromLTRB(spacing100, spacing50, spacing0, spacing50),
