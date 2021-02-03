@@ -1,0 +1,12 @@
+name: PR Project Assigner
+on: [ pull_request ]
+
+jobs:
+  build:
+    name: Add to tech.app project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ookami-kb/gh-pr-project@v1
+        with:
+          githubToken: ${{ secrets.TECH_ACCOUNT_PERSONAL_ACCESS_TOKEN }}
+          projectId: MDc6UHJvamVjdDExMDM3NDYw
