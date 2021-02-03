@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 enum OptimusBannerVariant {
@@ -52,7 +53,7 @@ class OptimusBanner extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: _backgroundColor,
-            borderRadius: _borderRadius,
+            borderRadius: const BorderRadius.all(borderRadius50),
           ),
           child: Stack(
             children: [
@@ -64,7 +65,10 @@ class OptimusBanner extends StatelessWidget {
                     if (showIcon)
                       Padding(
                         padding: const EdgeInsets.only(right: 18),
-                        child: Icon(_icon, size: 20, color: _iconColor),
+                        child: OptimusIcon(
+                          iconData: _icon,
+                          colorOption: _iconColor,
+                        ),
                       ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,17 +92,15 @@ class OptimusBanner extends StatelessWidget {
               ),
               if (dismissible)
                 Positioned(
-                  right: 6,
-                  top: 10,
-                  child: GestureDetector(
-                    onTap: () => onDismiss,
-                    child: const Padding(
-                      padding: EdgeInsets.all(4),
-                      child: Icon(
-                        OptimusIcons.cross_close,
-                        size: 12,
-                        color: OptimusColors.basic,
-                      ),
+                  right: -4,
+                  top: -5,
+                  child: IconButton(
+                    splashRadius: 12,
+                    padding: EdgeInsets.zero,
+                    onPressed: () => onDismiss,
+                    icon: const OptimusIcon(
+                      iconData: OptimusIcons.cross_close,
+                      iconSize: OptimusIconSize.small,
                     ),
                   ),
                 ),
@@ -120,8 +122,6 @@ class OptimusBanner extends StatelessWidget {
         fontWeight: FontWeight.normal,
         height: 1,
       ));
-
-  BorderRadius get _borderRadius => const BorderRadius.all(Radius.circular(4));
 
   EdgeInsets get _padding => EdgeInsets.fromLTRB(
         showIcon ? 18.0 : spacing200,
@@ -145,16 +145,16 @@ class OptimusBanner extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Color get _iconColor {
+  OptimusColorOption get _iconColor {
     switch (variant) {
       case OptimusBannerVariant.primary:
-        return OptimusColors.primary500;
+        return OptimusColorOption.primary;
       case OptimusBannerVariant.success:
-        return OptimusColors.success500;
+        return OptimusColorOption.success;
       case OptimusBannerVariant.warning:
-        return OptimusColors.warning500;
+        return OptimusColorOption.warning;
       case OptimusBannerVariant.error:
-        return OptimusColors.danger500;
+        return OptimusColorOption.danger;
     }
   }
 
@@ -173,7 +173,16 @@ class OptimusBanner extends StatelessWidget {
   }
 }
 
-enum OptimusWideBannerVariant { informative, warning, danger }
+enum OptimusWideBannerVariant {
+  /// Used to notify users about crucial, but unproblematic, information.
+  informative,
+
+  /// Used to warn users about serious potential problems.
+  warning,
+
+  /// Used to inform users that there is a serious problem with the system.
+  danger
+}
 
 /// System-wide banners display critical notifications about the state of
 /// the entire system.
@@ -253,9 +262,9 @@ class OptimusWideBanner extends StatelessWidget {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
       case OptimusWideBannerVariant.danger:
-        return Colors.white;
+        return OptimusColors.basic0;
       case OptimusWideBannerVariant.warning:
-        return Colors.black;
+        return OptimusColors.basic1000;
     }
   }
 }
