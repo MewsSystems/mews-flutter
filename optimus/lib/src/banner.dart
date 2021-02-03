@@ -20,42 +20,53 @@ class OptimusBanner extends StatelessWidget {
   final bool showIcon;
   final String additionalDescription;
   final bool dismissible;
-  final CallbackAction onDismiss;
+  final VoidCallback onDismiss;
 
   @override
   Widget build(Object context) => Container(
         decoration: BoxDecoration(color: _backgroundColor, borderRadius: _borderRadius),
-        child: Padding(
-          padding: _padding,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (showIcon)
-                Padding(
-                  padding: const EdgeInsets.only(right: 18),
-                  child: Icon(_icon, size: 20, color: _iconColor),
-                ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
+          children: [
+            Padding(
+              padding: _padding,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
+                  if (showIcon)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 18),
+                      child: Icon(_icon, size: 20, color: _iconColor),
+                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DefaultTextStyle.merge(child: content, style: _textStyle),
-                      if (dismissible) const Icon(OptimusIcons.cross_close, size: 12, color: OptimusColors.basic)
+                      if (additionalDescription.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: spacing50),
+                          child: Text(
+                            additionalDescription,
+                            style: preset200m.merge(const TextStyle(fontWeight: FontWeight.normal)),
+                          ),
+                        ),
                     ],
                   ),
-                  if (additionalDescription.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.only(top: spacing50),
-                      child: Text(
-                        additionalDescription,
-                        style: preset200m.merge(const TextStyle(fontWeight: FontWeight.normal)),
-                      ),
-                    ),
                 ],
               ),
-            ],
-          ),
+            ),
+            if (dismissible)
+              Positioned(
+                right: 6,
+                top: 8,
+                child: GestureDetector(
+                  onTap: () => onDismiss,
+                  child: const Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Icon(OptimusIcons.cross_close, size: 12, color: OptimusColors.basic),
+                  ),
+                ),
+              ),
+          ],
         ),
       );
 
