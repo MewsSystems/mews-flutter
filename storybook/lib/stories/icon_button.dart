@@ -5,7 +5,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story iconButton = Story(
   section: 'Button',
-  name: 'IconButton',
+  name: 'Icon button',
   builder: (_, k) => SingleChildScrollView(
     child: Column(
       children: OptimusIconButtonType.values
