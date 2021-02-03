@@ -9,7 +9,11 @@ final Story radioStory = Story(
   section: 'Radio',
   name: 'Radio',
   builder: (_, k) {
-    final size = k.options('Size', initial: OptimusRadioSize.large, options: _sizes);
+    final size = k.options(
+      'Size',
+      initial: OptimusRadioSize.large,
+      options: _sizes,
+    );
     final error = k.text('Error', initial: '');
     final isEnabled = k.boolean('Enabled', initial: true);
 
@@ -62,12 +66,21 @@ final Story radioGroupStory = Story(
   section: 'Radio',
   name: 'Radio group',
   builder: (_, k) {
-    final size = k.options('Size', initial: OptimusRadioSize.large, options: _sizes);
+    final size = k.options(
+      'Size',
+      initial: OptimusRadioSize.large,
+      options: _sizes,
+    );
     final label = k.text('Label', initial: '');
     final error = k.text('Error', initial: '');
     final isEnabled = k.boolean('Enabled', initial: true);
 
-    return _RadioGroupExample(size: size, label: label, error: error, isEnabled: isEnabled);
+    return _RadioGroupExample(
+      size: size,
+      label: label,
+      error: error,
+      isEnabled: isEnabled,
+    );
   },
 );
 
@@ -100,10 +113,17 @@ class _RadioGroupExampleState extends State<_RadioGroupExample> {
         error: widget.error,
         isEnabled: widget.isEnabled,
         onChanged: (value) => setState(() => _groupValue = value),
-        items: _options.map((i) => OptimusGroupItem<String>(label: Text(i), value: i)).toList(),
+        items: _options
+            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
+            .toList(),
       );
 }
 
-const _options = ['Option A with a long text \ntaking several lines', 'Option B', 'Option C', 'Option D'];
+const _options = [
+  'Option A with a long text \ntaking several lines',
+  'Option B',
+  'Option C',
+  'Option D',
+];
 
 final _sizes = OptimusRadioSize.values.toOptions();

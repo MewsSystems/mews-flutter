@@ -10,16 +10,18 @@ import 'package:optimus/src/typography/styles.dart';
 /// The Checkbox + Label component is available in two size
 /// variants to accommodate different environments with different requirements.
 enum OptimusCheckboxSize {
-  /// A checkbox with a large label is the most generally used across all the products
-  /// and platforms and is considered the default option.
+  /// A checkbox with a large label is the most generally used across all
+  /// the products and platforms and is considered the default option.
   large,
 
-  /// A checkbox with a small label is intended for content-heavy environments and/or small mobile viewports.
+  /// A checkbox with a small label is intended for content-heavy environments
+  /// and/or small mobile viewports.
   small,
 }
 
-/// A checkbox is a binary form of input and is used to let a user select one or more options
-/// for a limited number of choices. Each selection is independent (with exceptions).
+/// A checkbox is a binary form of input and is used to let a user select one
+/// or more options for a limited number of choices. Each selection is
+/// independent (with exceptions).
 class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
     Key key,
@@ -50,9 +52,9 @@ class OptimusCheckbox extends StatefulWidget {
 
   /// Called when the user clicks on this check button.
   ///
-  /// The checkbox button passes [value] as a parameter to this callback. The checkbox
-  /// button does not actually change state until the parent widget rebuilds the
-  /// checkbox button with the new [value].
+  /// The checkbox button passes [value] as a parameter to this callback.
+  /// The checkbox button does not actually change state until the parent
+  /// widget rebuilds the checkbox button with the new [value].
   ///
   /// The callback provided to [onChanged] should update the state of the parent
   /// [StatefulWidget] using the [State.setState] method;
@@ -110,11 +112,19 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    final checkIcon =
-        widget.isChecked ? const Center(child: Icon(OptimusIcons.done, size: 10, color: Colors.white)) : null;
+    final checkIcon = widget.isChecked
+        ? const Center(
+            child: Icon(OptimusIcons.done, size: 10, color: Colors.white),
+          )
+        : null;
 
     final label = Padding(
-      padding: const EdgeInsets.fromLTRB(spacing100, spacing50, spacing0, spacing50),
+      padding: const EdgeInsets.fromLTRB(
+        spacing100,
+        spacing50,
+        spacing0,
+        spacing50,
+      ),
       child: DefaultTextStyle.merge(style: _labelStyle, child: widget.label),
     );
 

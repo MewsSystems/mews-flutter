@@ -45,8 +45,9 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
   }
 
   void _updateValue() {
-    _controller.value =
-        _controller.value.copyWith(text: widget.value == null ? '' : widget.formatDateTime(widget.value));
+    _controller.value = _controller.value.copyWith(
+      text: widget.value == null ? '' : widget.formatDateTime(widget.value),
+    );
   }
 
   void _showPickerDialog() {
