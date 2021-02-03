@@ -24,6 +24,7 @@ export 'src/form/input_form_field.dart';
 export 'src/form/select_form_field.dart';
 export 'src/group_item.dart';
 export 'src/icon.dart';
+export 'src/icon_button.dart';
 export 'src/icon_list.dart';
 export 'src/input_field.dart';
 export 'src/lists/list_tile.dart';
