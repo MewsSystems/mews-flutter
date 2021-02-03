@@ -10,16 +10,18 @@ enum TagVersion {
   /// Use the bold version to highlight important items onscreen.
   bold,
 
-  /// Use the subtle version, if you want express an item’s status in heavy, data-dense scenarios
-  /// (like in long tables with lot of tags)
+  /// Use the subtle version, if you want express an item’s status in heavy,
+  /// data-dense scenarios (like in long tables with lot of tags)
   subtle,
 }
 
-/// Tags are used to highlight an item’s status or make it easier to recognize certain items in data-dense content.
-/// Be wary of using multiple tags on one item, as it could cause visual noise.
+/// Tags are used to highlight an item’s status or make it easier to recognize
+/// certain items in data-dense content.
 ///
-/// Non-interactive tags are used to highlight an item’s status or make it easier to recognize certain items
-/// in data-dense content. You can use tags in tables, forms, and cards.
+/// Be wary of using multiple tags on one item, as it could cause visual noise.
+/// Non-interactive tags are used to highlight an item’s status or make it
+/// easier to recognize certain items in data-dense content. You can use tags
+/// in tables, forms, and cards.
 class OptimusTag extends StatelessWidget {
   const OptimusTag({
     Key key,
@@ -33,7 +35,8 @@ class OptimusTag extends StatelessWidget {
 
   /// Controls color of the tag. Use-cases:
   /// - [OptimusColorOption.basic] – highlight general status or state of item;
-  /// - [OptimusColorOption.primary] – highlight primary item, in progress, or current item;
+  /// - [OptimusColorOption.primary] – highlight primary item, in progress, or
+  ///   current item;
   /// - [OptimusColorOption.success] – highlight success state of item;
   /// - [OptimusColorOption.danger] – highlight problematic or error item;
   /// - [OptimusColorOption.warning] – highlight item that requires attention.
@@ -43,14 +46,17 @@ class OptimusTag extends StatelessWidget {
   final TagVersion version;
 
   @override
-  Widget build(BuildContext context) => _Tag(text: text, colorOption: colorOption, version: version);
+  Widget build(BuildContext context) =>
+      _Tag(text: text, colorOption: colorOption, version: version);
 }
 
-/// Tags are used to highlight an item’s status or make it easier to recognize certain items in data-dense content.
-/// Be wary of using multiple tags on one item, as it could cause visual noise.
+/// Tags are used to highlight an item’s status or make it easier to recognize
+/// certain items in data-dense content.
 ///
-/// Interactive tags are for user control over specific elements. They can be used for removing items from
-/// multiselect controls or other add-purpose components.
+/// Be wary of using multiple tags on one item, as it could cause visual noise.
+/// Interactive tags are for user control over specific elements. They can be
+/// used for removing items from multiselect controls or other add-purpose
+/// components.
 class OptimusInteractiveTag extends StatelessWidget {
   const OptimusInteractiveTag({
     Key key,
@@ -61,8 +67,8 @@ class OptimusInteractiveTag extends StatelessWidget {
   /// The text to display in the tag.
   final String text;
 
-  /// Callback that will be triggered when user clicks on cross icon. It's the responsibility of the caller
-  /// to actually remove the tag.
+  /// Callback that will be triggered when user clicks on cross icon. It's
+  /// the responsibility of the caller to actually remove the tag.
   final VoidCallback onRemoved;
 
   bool get _isEnabled => onRemoved != null;
@@ -202,6 +208,7 @@ Widget _buildIcon({VoidCallback onRemoved}) => GestureDetector(
       onTap: () => onRemoved?.call(),
       child: const Padding(
         padding: EdgeInsets.all(6),
-        child: Icon(OptimusIcons.cross_close, color: OptimusColors.basic500, size: 12),
+        child: Icon(OptimusIcons.cross_close,
+            color: OptimusColors.basic500, size: 12),
       ),
     );

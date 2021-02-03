@@ -3,10 +3,12 @@ import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/typography/typography.dart';
 
-/// Titles provide content hierarchy in any interface, they should be short and precise to deliver key information
-/// about a page, screen or modal. In Optimus, titles are available in 3 different sizes per scale, 6 in total.
+/// Titles provide content hierarchy in any interface, they should be short
+/// and precise to deliver key information about a page, screen or modal.
+/// In Optimus, titles are available in 3 different sizes per scale, 6 in total.
 ///
-/// [OptimusPageTitle] is largest of the titles. Should be used only once per page (with exceptions).
+/// [OptimusPageTitle] is largest of the titles. Should be used only once per
+/// page (with exceptions).
 class OptimusPageTitle extends StatelessWidget {
   const OptimusPageTitle({Key key, this.child}) : super(key: key);
 
@@ -21,6 +23,7 @@ class OptimusPageTitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:
@@ -34,8 +37,9 @@ class OptimusPageTitle extends StatelessWidget {
   }
 }
 
-/// Titles provide content hierarchy in any interface, they should be short and precise to deliver key information
-/// about a page, screen or modal. In Optimus, titles are available in 3 different sizes per scale, 6 in total.
+/// Titles provide content hierarchy in any interface, they should be short
+/// and precise to deliver key information about a page, screen or modal.
+/// In Optimus, titles are available in 3 different sizes per scale, 6 in total.
 ///
 /// [OptimusSectionTitle] is used to divide individual sections of the page.
 class OptimusSectionTitle extends StatelessWidget {
@@ -52,6 +56,7 @@ class OptimusSectionTitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:
@@ -65,10 +70,12 @@ class OptimusSectionTitle extends StatelessWidget {
   }
 }
 
-/// Titles provide content hierarchy in any interface, they should be short and precise to deliver key information
-/// about a page, screen or modal. In Optimus, titles are available in 3 different sizes per scale, 6 in total.
+/// Titles provide content hierarchy in any interface, they should be short
+/// and precise to deliver key information about a page, screen or modal.
+/// In Optimus, titles are available in 3 different sizes per scale, 6 in total.
 ///
-/// [OptimusSubsectionTitle] is used to further divide the specific section into subsections.
+/// [OptimusSubsectionTitle] is used to further divide the specific section
+/// into subsections.
 class OptimusSubsectionTitle extends StatelessWidget {
   const OptimusSubsectionTitle({Key key, this.child}) : super(key: key);
 
@@ -83,6 +90,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
         child: child,
       );
 
+  // ignore: missing_return
   TextStyle _resolveStyle(Breakpoint size) {
     switch (size) {
       case Breakpoint.extraSmall:

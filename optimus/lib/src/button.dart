@@ -8,11 +8,11 @@ import 'package:optimus/src/widget_size.dart';
 
 enum OptimusButtonVariant { defaultButton, primary, text, destructive, warning }
 
-/// Buttons are an element that let users trigger or perform an action. Button labels should inform users
-/// about what will happen upon interaction.
+/// Buttons are an element that let users trigger or perform an action.
+/// Button labels should inform users about what will happen upon interaction.
 ///
-/// There's a wide variety of actions a button can trigger, including saving, logging in, deleting, and resetting.
-/// Buttons are not a navigation element.
+/// There's a wide variety of actions a button can trigger, including saving,
+/// logging in, deleting, and resetting. Buttons are not a navigation element.
 class OptimusButton extends StatelessWidget {
   const OptimusButton({
     Key key,
@@ -46,19 +46,24 @@ class OptimusButton extends StatelessWidget {
 
   /// The variant of the button.
   ///
-  /// - [OptimusButtonVariant.defaultButton]: used if there is no prior action necessary.
-  /// - [OptimusButtonVariant.primary]: used to highlight the main action of the module or to grab the user's attention.
-  /// - [OptimusButtonVariant.text]: used for non crucial, complementary, or tertiary actions.
-  ///   Used for system control actions when you need multiple buttons on one screen without any clear priority.
-  /// - [OptimusButtonVariant.destructive]: used to confirm a destructive action that the user can’t take back,
-  ///   such as deletion.
-  /// - [OptimusButtonVariant.warning]: used to confirm an action that will cause significant change.
-  ///   For example, a settings option that the user can’t change later.
+  /// - [OptimusButtonVariant.defaultButton]: used if there is no prior action
+  ///   necessary.
+  /// - [OptimusButtonVariant.primary]: used to highlight the main action of
+  ///   the module or to grab the user's attention.
+  /// - [OptimusButtonVariant.text]: used for non crucial, complementary, or
+  ///   tertiary actions. Used for system control actions when you need multiple
+  ///   buttons on one screen without any clear priority.
+  /// - [OptimusButtonVariant.destructive]: used to confirm a destructive action
+  ///   that the user can’t take back, such as deletion.
+  /// - [OptimusButtonVariant.warning]: used to confirm an action that will
+  ///   cause significant change. For example, a settings option that the user can’t change later.
   final OptimusButtonVariant variant;
 
-  Widget _buildIcon(IconData icon) => Icon(icon, size: _iconSize, color: _textColor);
+  Widget _buildIcon(IconData icon) =>
+      Icon(icon, size: _iconSize, color: _textColor);
 
-  TextStyle get _textStyle => size == OptimusWidgetSize.small ? preset200s : preset300s;
+  TextStyle get _textStyle =>
+      size == OptimusWidgetSize.small ? preset200s : preset300s;
 
   Widget _buildBadgeLabel(String badgeLabel) => SizedBox(
         child: ClipRRect(
@@ -154,7 +159,8 @@ class OptimusButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Opacity(
-        opacity: onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
+        opacity:
+            onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
         child: MaterialButton(
           minWidth: minWidth,
           height: size.value,
@@ -183,7 +189,8 @@ class OptimusButton extends StatelessWidget {
                 ),
               ),
               if (rightIcon != null) _buildIcon(rightIcon),
-              if (badgeLabel != null && badgeLabel.isNotEmpty) _buildBadgeLabel(badgeLabel),
+              if (badgeLabel != null && badgeLabel.isNotEmpty)
+                _buildBadgeLabel(badgeLabel),
             ],
           ),
         ),

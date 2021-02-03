@@ -5,8 +5,8 @@ import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/typography/styles.dart';
 
-/// The icon list component serves as a static, non-interactable option and is used when you need to show
-/// an icon with a label and/or optional description.
+/// The icon list component serves as a static, non-interactable option and is
+/// used when you need to show an icon with a label and/or optional description.
 class OptimusIconList extends StatelessWidget {
   const OptimusIconList({
     Key key,
@@ -20,8 +20,10 @@ class OptimusIconList extends StatelessWidget {
   /// Controls size of list tile.
   ///
   /// - [null] – default value. Changes the tile size to match screen viewport.
-  /// - [OptimusIconListSize.large] – considered the default option, used across all products and platforms.
-  /// - [OptimusIconListSize.small] – intended for content-heavy environments and/or small viewports.
+  /// - [OptimusIconListSize.large] – considered the default option, used across
+  ///   all products and platforms.
+  /// - [OptimusIconListSize.small] – intended for content-heavy environments
+  ///   and/or small viewports.
   final OptimusIconListSize listSize;
 
   @override
@@ -36,6 +38,7 @@ class OptimusIconList extends StatelessWidget {
     );
   }
 
+  // ignore: missing_return
   OptimusIconListSize _getListSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
@@ -77,12 +80,17 @@ class OptimusIconListItem {
 
   /// Controls color of the icon.
   ///
-  /// - [null] – default value. Changes the color of the icon to match its parent font color.
+  /// - [null] – default value. Changes the color of the icon to match its
+  ///   parent font color.
   /// - [OptimusColorOption.basic] – variant with no extra emphasis.
-  /// - [OptimusColorOption.primary] – used to emphasize the item in a general way.
-  /// - [OptimusColorOption.success] – used to emphasize the item and convey a sense of success.
-  /// - [OptimusColorOption.warning] – used to emphasize the item and convey a sense of warning.
-  /// - [OptimusColorOption.danger] – used to emphasize the item and convey a sense of danger or error.
+  /// - [OptimusColorOption.primary] – used to emphasize the item in a general
+  ///   way.
+  /// - [OptimusColorOption.success] – used to emphasize the item and convey
+  ///   a sense of success.
+  /// - [OptimusColorOption.warning] – used to emphasize the item and convey
+  ///   a sense of warning.
+  /// - [OptimusColorOption.danger] – used to emphasize the item and convey
+  ///   a sense of danger or error.
   final OptimusColorOption colorOption;
 }
 
@@ -111,7 +119,9 @@ class _ListTile extends StatelessWidget {
               if (description != null && description.isNotEmpty)
                 Text(
                   description.capitalize(),
-                  style: _descriptionStyle.copyWith(color: OptimusColors.basic900t64),
+                  style: _descriptionStyle.copyWith(
+                    color: OptimusColors.basic900t64,
+                  ),
                 ),
             ],
           ),

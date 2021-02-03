@@ -28,8 +28,15 @@ Widget _buildSpacing(double spacing, String label) => Padding(
       padding: const EdgeInsets.only(left: 24, top: 12, right: 24, bottom: 12),
       child: Row(
         children: [
-          SizedBox(width: spacing, height: spacing, child: Container(color: Colors.black)),
-          Padding(padding: EdgeInsets.only(left: _getPadding(spacing)), child: Text(label, textAlign: TextAlign.left)),
+          SizedBox(
+            width: spacing,
+            height: spacing,
+            child: Container(color: Colors.black),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: _getPadding(spacing)),
+            child: Text(label, textAlign: TextAlign.left),
+          ),
         ],
       ),
     );

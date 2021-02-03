@@ -3,10 +3,11 @@ import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
 
-/// Labels are informative text that tell users the function or purpose of an element.
+/// Labels are informative text that tell users the function or purpose of
+/// an element.
 ///
-/// Labels are usually actionless and should always be visible in the interface. Simple and understandable
-/// labels contribute to more accessible UIs.
+/// Labels are usually actionless and should always be visible in the interface.
+/// Simple and understandable labels contribute to more accessible UIs.
 class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
     Key key,
@@ -21,10 +22,10 @@ class OptimusLabel extends StatelessWidget {
 
   /// The variation of the label.
   ///
-  /// - [Variation.variationDefault]: used as an accessory with another element to describe its function
-  ///   with greater emphasis.
-  /// - [Variation.variationSecondary]: used as an accessory with another element to describe its function
-  ///   with lower emphasis.
+  /// - [Variation.variationDefault]: used as an accessory with another element
+  ///   to describe its function with greater emphasis.
+  /// - [Variation.variationSecondary]: used as an accessory with another
+  ///   element to describe its function with lower emphasis.
   final Variation variation;
 
   @override
@@ -35,10 +36,11 @@ class OptimusLabel extends StatelessWidget {
       );
 }
 
-/// Labels are informative text that tell users the function or purpose of an element.
+/// Labels are informative text that tell users the function or purpose of
+/// an element.
 ///
-/// Labels are usually actionless and should always be visible in the interface. Simple and understandable
-/// labels contribute to more accessible UIs.
+/// Labels are usually actionless and should always be visible in the interface.
+/// Simple and understandable labels contribute to more accessible UIs.
 class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
     Key key,
@@ -53,10 +55,12 @@ class OptimusLabelSmall extends StatelessWidget {
 
   /// The variation of the label.
   ///
-  /// - [Variation.variationDefault]: with the same usage as its larger counterpart, the small label
-  ///   is intended for the content-heavy environment (with exceptions).
-  /// - [Variation.variationSecondary]: with the same usage as its larger counterpart, the small label
-  ///   is intended for the content-heavy environment (with exceptions).
+  /// - [Variation.variationDefault]: with the same usage as its larger
+  ///   counterpart, the small label is intended for the content-heavy
+  ///   environment (with exceptions).
+  /// - [Variation.variationSecondary]: with the same usage as its larger
+  ///   counterpart, the small label is intended for the content-heavy
+  ///   environment (with exceptions).
   final Variation variation;
 
   @override

@@ -9,17 +9,21 @@ import 'package:optimus/src/typography/styles.dart';
 
 enum OptimusDialogSize {
   /// Intended for short, to the point messages.
-  /// Not suitable for dialogs with a lot of UI elements. Mostly used for non-modal dialogs to
-  /// deliver users a message without preventing them from interacting with the application.
-  /// Footers in small dialogs use only vertical button groups.
+  ///
+  /// Not suitable for dialogs with a lot of UI elements. Mostly used for
+  /// non-modal dialogs to deliver users a message without preventing them from
+  /// interacting with the application. Footers in small dialogs use only
+  /// vertical button groups.
   small,
 
   /// The most common dialog size.
+  ///
   /// Suitable for any content except those with very complex UI.
   regular,
 
-  /// Intended for dialogs with complex UI elements
-  /// (tables, forms with multiple columns, etc.) or large components like images.
+  /// Intended for dialogs with complex UI elements (tables, forms with multiple
+  /// columns, etc.) or large components like images.
+  ///
   /// It can only be used as a modal dialog with centered position.
   large,
 }
@@ -28,7 +32,8 @@ enum OptimusDialogType {
   /// Default dialog type. Used for common action.
   common,
 
-  /// Primary button has [OptimusDialogType.destructive] variant, used for destructive actions.
+  /// Primary button has [OptimusDialogType.destructive] variant, used for
+  /// destructive actions.
   destructive,
 }
 
@@ -44,8 +49,8 @@ class OptimusDialogAction {
   final Key key;
 }
 
-/// [isDismissible] – If a dialog contains a close icon, it can also be closed by clicking on background layer.
-/// Otherwise, only by buttons.
+/// [isDismissible] – If a dialog contains a close icon, it can also be closed
+/// by clicking on background layer. Otherwise, only by buttons.
 Future<T> showOptimusDialog<T>({
   @required BuildContext context,
   @required WidgetBuilder builder,
@@ -54,7 +59,9 @@ Future<T> showOptimusDialog<T>({
     showGeneralDialog(
       context: context,
       pageBuilder: (buildContext, animation, secondaryAnimation) => SafeArea(
-        child: Builder(builder: (BuildContext context) => Builder(builder: builder)),
+        child: Builder(
+          builder: (BuildContext context) => Builder(builder: builder),
+        ),
       ),
       barrierDismissible: isDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
@@ -64,8 +71,8 @@ Future<T> showOptimusDialog<T>({
       useRootNavigator: true,
     );
 
-/// A dialog is an overlay on top of a main page which lets a user perform a short term task
-/// without losing the context of the underlying page.
+/// A dialog is an overlay on top of a main page which lets a user perform
+/// a short term task without losing the context of the underlying page.
 class OptimusDialog extends StatelessWidget {
   const OptimusDialog({
     Key key,
@@ -77,29 +84,35 @@ class OptimusDialog extends StatelessWidget {
     this.type = OptimusDialogType.common,
   }) : super(key: key);
 
-  /// Serves as an identification of the action in the dialog. Can be a sentence, question, or just a subject.
+  /// Serves as an identification of the action in the dialog. Can be
+  /// a sentence, question, or just a subject.
   final Widget title;
 
   final Widget content;
 
-  /// Builds custom content. If content padding needed wrap in [OptimusDialogContentPadding].
+  /// Builds custom content. If content padding needed wrap in
+  /// [OptimusDialogContentPadding].
   final ContentWrapperBuilder contentWrapperBuilder;
 
   /// Controls dialog actions.
   ///
-  /// First button should always contain primary action. When single button it has [OptimusButtonVariant.defaultButton]
-  /// variant, otherwise it has [OptimusButtonVariant.primary] variant for [OptimusDialogType.common] type or
-  /// [OptimusButtonVariant.destructive] variant for [OptimusDialogType.destructive] type.
+  /// First button should always contain primary action. When single button it
+  /// has [OptimusButtonVariant.defaultButton] variant, otherwise it has
+  /// [OptimusButtonVariant.primary] variant for [OptimusDialogType.common] type
+  /// or [OptimusButtonVariant.destructive] variant for
+  /// [OptimusDialogType.destructive] type.
   ///
-  /// Second button represents secondary action. It always has [OptimusButtonVariant.defaultButton] variant.
+  /// Second button represents secondary action. It always has
+  /// [OptimusButtonVariant.defaultButton] variant.
   ///
-  /// All other buttons have [OptimusButtonVariant.text] variant and represent additional actions.
+  /// All other buttons have [OptimusButtonVariant.text] variant and represent
+  /// additional actions.
   final List<OptimusDialogAction> actions;
 
   /// Controls dialog size.
   ///
-  /// If screen size is small ([Breakpoint.small] or less), this parameter is ignored
-  /// and [OptimusDialogSize.small] is always used.
+  /// If screen size is small ([Breakpoint.small] or less), this parameter is
+  /// ignored and [OptimusDialogSize.small] is always used.
   final OptimusDialogSize size;
 
   final OptimusDialogType type;
@@ -137,7 +150,10 @@ class OptimusDialog extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: spacing300, vertical: spacing300),
+        padding: const EdgeInsets.symmetric(
+          horizontal: spacing300,
+          vertical: spacing300,
+        ),
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
           child: OptimusCard(
@@ -187,7 +203,8 @@ class OptimusDialogContentPadding extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) => Padding(padding: const EdgeInsets.all(spacing200), child: child);
+  Widget build(BuildContext context) =>
+      Padding(padding: const EdgeInsets.all(spacing200), child: child);
 }
 
 class _Content extends StatelessWidget {
@@ -268,7 +285,10 @@ class _Actions extends StatelessWidget {
     final children = actions
         .mapIndexed<Widget>(
           (i, e) => Padding(
-            padding: EdgeInsets.only(bottom: _isVertical ? spacing200 : 0, left: _isVertical ? 0 : spacing200),
+            padding: EdgeInsets.only(
+              bottom: _isVertical ? spacing200 : 0,
+              left: _isVertical ? 0 : spacing200,
+            ),
             child: OptimusButton(
               onPressed: e.onPressed ?? () => Navigator.pop(context),
               minWidth: _isVertical ? double.infinity : null,
@@ -300,7 +320,9 @@ class _Actions extends StatelessWidget {
 
   OptimusButtonVariant _getVariant(int i) {
     if (actions.length == 1) return OptimusButtonVariant.defaultButton;
-    if (type == OptimusDialogType.destructive && i == 0) return OptimusButtonVariant.destructive;
+    if (type == OptimusDialogType.destructive && i == 0) {
+      return OptimusButtonVariant.destructive;
+    }
     if (i == 0) return OptimusButtonVariant.primary;
     if (i == 1) return OptimusButtonVariant.defaultButton;
     return OptimusButtonVariant.text;

@@ -45,7 +45,8 @@ class FieldWrapper extends StatefulWidget {
 class _FieldWrapper extends State<FieldWrapper> {
   FocusNode _focusNode;
 
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -68,18 +69,26 @@ class _FieldWrapper extends State<FieldWrapper> {
           children: <Widget>[
             Row(
               children: [
-                if (widget.label != null) OptimusFieldLabel(label: widget.label, isRequired: widget.isRequired),
+                if (widget.label != null)
+                  OptimusFieldLabel(
+                    label: widget.label,
+                    isRequired: widget.isRequired,
+                  ),
                 const Spacer(),
                 if (widget.secondaryCaption != null)
                   OptimusCaption(
                     variation: Variation.variationSecondary,
                     child: DefaultTextStyle.merge(
-                        style: const TextStyle(color: OptimusColors.basic900t32), child: widget.secondaryCaption),
+                      style: const TextStyle(color: OptimusColors.basic900t32),
+                      child: widget.secondaryCaption,
+                    ),
                   ),
               ],
             ),
             Opacity(
-              opacity: widget.isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
+              opacity: widget.isEnabled
+                  ? OpacityValue.enabled
+                  : OpacityValue.disabled,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,8 +100,10 @@ class _FieldWrapper extends State<FieldWrapper> {
                         decoration: widget.hasBorders
                             ? BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                                border: Border.all(color: _borderColor, width: 1),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(4)),
+                                border:
+                                    Border.all(color: _borderColor, width: 1),
                               )
                             : null,
                         child: Row(
@@ -102,10 +113,18 @@ class _FieldWrapper extends State<FieldWrapper> {
                     ),
                   ),
                   if (widget.hasError)
-                    OptimusCaption(child: Text(widget.error, style: const TextStyle(color: OptimusColors.danger))),
+                    OptimusCaption(
+                      child: Text(
+                        widget.error,
+                        style: const TextStyle(color: OptimusColors.danger),
+                      ),
+                    ),
                   if (!widget.hasError && widget.caption != null)
                     OptimusCaption(
-                      child: DefaultTextStyle.merge(style: TextStyle(color: _captionColor), child: widget.caption),
+                      child: DefaultTextStyle.merge(
+                        style: TextStyle(color: _captionColor),
+                        child: widget.caption,
+                      ),
                     ),
                 ],
               ),
@@ -120,13 +139,18 @@ class _FieldWrapper extends State<FieldWrapper> {
 
   Color get _borderColor {
     if (widget.hasError) return OptimusColors.danger;
-    return _effectiveFocusNode.hasFocus ? OptimusColors.primary : OptimusColors.basic100;
+    return _effectiveFocusNode.hasFocus
+        ? OptimusColors.primary
+        : OptimusColors.basic100;
   }
 
-  Color get _captionColor => _effectiveFocusNode.hasFocus ? OptimusColors.primary : OptimusColors.basic900t64;
+  Color get _captionColor => _effectiveFocusNode.hasFocus
+      ? OptimusColors.primary
+      : OptimusColors.basic900t64;
 
   List<Widget> _buildChildren() => <Widget>[
-        if (widget.prefix != null) _Icon(child: _PrefixPadding(child: widget.prefix)),
+        if (widget.prefix != null)
+          _Icon(child: _PrefixPadding(child: widget.prefix)),
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
