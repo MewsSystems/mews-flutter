@@ -14,8 +14,18 @@ final Story iconButton = Story(
               padding: const EdgeInsets.all(8),
               child: OptimusIconButton(
                 onPressed: k.boolean('Enabled', initial: true) ? () {} : null,
-                icon: Icon(k.options('Icon', initial: OptimusIcons.plus, options: exampleIcons)),
-                size: k.options('Size', initial: OptimusWidgetSize.large, options: sizeOptions),
+                icon: Icon(
+                  k.options(
+                    'Icon',
+                    initial: OptimusIcons.plus,
+                    options: exampleIcons,
+                  ),
+                ),
+                size: k.options(
+                  'Size',
+                  initial: OptimusWidgetSize.large,
+                  options: sizeOptions,
+                ),
                 type: t,
               ),
             ),

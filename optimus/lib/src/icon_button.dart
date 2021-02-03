@@ -15,21 +15,25 @@ enum OptimusIconButtonType {
   /// Used for non-crucial, complementary, or tertiary actions.
   text,
 
-  /// Used to confirm destructive actions the user can’t take back, like deletion.
+  /// Used to confirm destructive actions the user can’t take back,
+  /// like deletion.
   destructive,
 
-  /// Used for quick actions. The float variant is always above other content and visible in the current viewport.
+  /// Used for quick actions. The float variant is always above other content
+  /// and visible in the current viewport.
+  ///
   /// Usually placed in the bottom-right corner and useful for small screens.
   float,
 
   /// The Bare Icon button is a stripped-down version of the Icon button.
-  /// Used in components like Inputs, Selects, and Modals,
-  /// or situations where the container, and its effects, are not required or desired.
+  ///
+  /// Used in components like Inputs, Selects, and Modals, or situations
+  /// where the container, and its effects, are not required or desired.
   bare,
 }
 
-/// When you don’t have enough space for regular buttons, or the action is clear enough,
-/// you can use an icon button without text.
+/// When you don’t have enough space for regular buttons, or the action is
+/// clear enough, you can use an icon button without text.
 class OptimusIconButton extends StatefulWidget {
   const OptimusIconButton({
     Key key,
@@ -72,7 +76,10 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
               width: _containerSize,
               padding: EdgeInsets.zero,
               decoration: _decoration,
-              child: IconTheme.merge(data: IconThemeData(color: _iconColor, size: _iconSize), child: widget.icon),
+              child: IconTheme.merge(
+                data: IconThemeData(color: _iconColor, size: _iconSize),
+                child: widget.icon,
+              ),
             ),
           ),
         ),
@@ -80,7 +87,10 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
 
   Decoration get _decoration => widget.type == OptimusIconButtonType.float
       ? BoxDecoration(shape: BoxShape.circle, color: _color)
-      : BoxDecoration(color: _color, borderRadius: const BorderRadius.all(borderRadius50));
+      : BoxDecoration(
+          color: _color,
+          borderRadius: const BorderRadius.all(borderRadius50),
+        );
 
   // ignore: missing_return
   double get _containerSize {
