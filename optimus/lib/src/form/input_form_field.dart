@@ -33,7 +33,7 @@ class OptimusInputFormField extends FormField<String> {
     TextAlign textAlign = TextAlign.start,
     Widget caption,
     Widget secondaryCaption,
-  })  : assert(initialValue == null || controller == null),
+  })  : assert(initialValue == null || controller == null, 'Provide either initial value or controller'),
         super(
           key: key,
           initialValue: controller != null ? controller.text : (initialValue ?? ''),

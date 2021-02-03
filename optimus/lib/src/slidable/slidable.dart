@@ -41,6 +41,7 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
       actionExtentRatio: _extentRatio,
       secondaryActions: widget.actions,
       enabled: widget.isEnabled,
+      // ignore: deprecated_member_use_from_same_package
       child: widget.hasBorders ? TileBorders(child: widget.child) : widget.child,
     );
   }

@@ -36,6 +36,7 @@ class OptimusIconList extends StatelessWidget {
     );
   }
 
+  // ignore: missing_return
   OptimusIconListSize _getListSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
