@@ -14,7 +14,7 @@ class OptimusNumberPicker extends StatefulWidget {
     this.focusNode,
     this.isEnabled = true,
     this.error,
-  })  : assert(min != null, 'min shouldn not be null'),
+  })  : assert(min != null, 'min should not be null'),
         assert(max != null, 'max should not be null'),
         assert(onChanged != null, 'onChanged should not be null'),
         assert(isEnabled != null, 'isEnabled should not be null'),
