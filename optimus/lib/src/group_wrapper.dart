@@ -20,10 +20,16 @@ class GroupWrapper extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (label != null && label.isNotEmpty)
-            Text(label, style: preset100s.copyWith(color: OptimusColors.basic900t64)),
+            Text(
+              label,
+              style: preset100s.copyWith(color: OptimusColors.basic900t64),
+            ),
           child,
           if (error != null && error.isNotEmpty)
-            Text(error, style: preset100m.copyWith(color: OptimusColors.danger500)),
+            Text(
+              error,
+              style: preset100m.copyWith(color: OptimusColors.danger500),
+            ),
         ],
       );
 }

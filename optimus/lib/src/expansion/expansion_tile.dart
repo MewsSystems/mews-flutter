@@ -10,8 +10,9 @@ const Duration _kExpand = Duration(milliseconds: 200);
 ///
 /// Based on flutter/lib/src/material/expansion_tile.dart
 class OptimusExpansionTile extends StatefulWidget {
-  /// Creates a single-line [ListTile] with a trailing button that expands or collapses
-  /// the tile to reveal or hide the [children]. The [initiallyExpanded] property must be non-null.
+  /// Creates a single-line [ListTile] with a trailing button that expands or
+  /// collapses the tile to reveal or hide the [children]. The
+  /// [initiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
     Key key,
     this.leading,
@@ -69,9 +70,12 @@ class OptimusExpansionTile extends StatefulWidget {
   _OptimusExpansionTileState createState() => _OptimusExpansionTileState();
 }
 
-class _OptimusExpansionTileState extends State<OptimusExpansionTile> with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0, end: 0.5);
+class _OptimusExpansionTileState extends State<OptimusExpansionTile>
+    with SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0, end: 0.5);
 
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _backgroundColorTween = ColorTween();
@@ -89,7 +93,8 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile> with Single
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
 
-    _isExpanded = (PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded) as bool;
+    _isExpanded = (PageStorage.of(context)?.readState(context) ??
+        widget.initiallyExpanded) as bool;
     if (_isExpanded) _controller.value = 1.0;
   }
 
@@ -141,13 +146,18 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile> with Single
       leading: widget.leading,
       title: widget.title,
       subtitle: widget.subtitle,
-      trailing: widget.trailing ?? RotationTransition(turns: _iconTurns, child: const Icon(Icons.expand_more)),
+      trailing: widget.trailing ??
+          RotationTransition(
+            turns: _iconTurns,
+            child: const Icon(Icons.expand_more),
+          ),
     );
 
     return tile;
   }
 
-  Widget _buildSlidable(List<Widget> actions, Widget child) => OptimusSlidable(actions: actions, child: child);
+  Widget _buildSlidable(List<Widget> actions, Widget child) =>
+      OptimusSlidable(actions: actions, child: child);
 
   @override
   void didChangeDependencies() {

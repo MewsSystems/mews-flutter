@@ -30,7 +30,8 @@ class OptimusAvatar extends StatelessWidget {
   Widget _buildCircleAvatar() => ClipOval(
         child: CircleAvatar(
           radius: isSmall ? _smallRadius : _radius,
-          backgroundColor: imageUrl == null ? OptimusColors.basic200 : Colors.white,
+          backgroundColor:
+              imageUrl == null ? OptimusColors.basic200 : Colors.white,
           backgroundImage: imageUrl == null ? null : NetworkImage(imageUrl),
           child: imageUrl == null
               ? Text(
@@ -59,4 +60,5 @@ class OptimusAvatar extends StatelessWidget {
 const double _smallRadius = 20;
 const double _radius = 24;
 
-String _safeSubstring(String str, int from, int to) => str == null ? '' : str.substring(from, min(to, str.length));
+String _safeSubstring(String str, int from, int to) =>
+    str == null ? '' : str.substring(from, min(to, str.length));

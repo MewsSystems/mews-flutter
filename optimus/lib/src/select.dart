@@ -59,7 +59,8 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
     _node.addListener(_onFocusChanged);
   }
 
-  void _onFocusChanged() => _node.hasFocus ? setState(_showOverlay) : setState(_removeOverlay);
+  void _onFocusChanged() =>
+      _node.hasFocus ? setState(_showOverlay) : setState(_removeOverlay);
 
   @override
   void didUpdateWidget(OptimusSelect<T> oldWidget) {
@@ -143,7 +144,9 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
         );
 
   Icon get _icon => Icon(
-        _node.hasFocus ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
+        _node.hasFocus
+            ? OptimusIcons.chevron_up_1
+            : OptimusIcons.chevron_down_1,
         size: 24,
         color: OptimusColors.basic400,
       );

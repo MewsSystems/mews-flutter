@@ -1,11 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/typography/styles.dart';
 
-/// Highlights are used to emphasize specific parts in the content that need to stand out from the rest of the text.
-/// Highlights serve as a guide when users skim through the content searching for relevant information,
-/// such as price or dates.
+/// Highlights are used to emphasize specific parts in the content that need to
+/// stand out from the rest of the text. Highlights serve as a guide when users
+/// skim through the content searching for relevant information, such as price
+/// or dates.
 ///
-/// Intended for the highest emphasis and should be used sporadically for maximum impact.
+/// Intended for the highest emphasis and should be used sporadically for
+/// maximum impact.
 class OptimusHighlightHigh extends StatelessWidget {
   const OptimusHighlightHigh({Key key, this.child}) : super(key: key);
 
@@ -21,11 +23,13 @@ class OptimusHighlightHigh extends StatelessWidget {
       );
 }
 
-/// Highlights are used to emphasize specific parts in the content that need to stand out from the rest of the text.
-/// Highlights serve as a guide when users skim through the content searching for relevant information,
-/// such as price or dates.
+/// Highlights are used to emphasize specific parts in the content that need to
+/// stand out from the rest of the text. Highlights serve as a guide when users
+/// skim through the content searching for relevant information, such as price
+/// or dates.
 ///
-/// Intended for a medium level of emphasis and can be used without limitations across the page.
+/// Intended for a medium level of emphasis and can be used without limitations
+/// across the page.
 class OptimusHighlightMedium extends StatelessWidget {
   const OptimusHighlightMedium({Key key, this.child}) : super(key: key);
 
@@ -41,11 +45,13 @@ class OptimusHighlightMedium extends StatelessWidget {
       );
 }
 
-/// Highlights are used to emphasize specific parts in the content that need to stand out from the rest of the text.
-/// Highlights serve as a guide when users skim through the content searching for relevant information,
-/// such as price or dates.
+/// Highlights are used to emphasize specific parts in the content that need to
+/// stand out from the rest of the text. Highlights serve as a guide when users
+/// skim through the content searching for relevant information, such as price
+/// or dates.
 ///
-/// Intended for a low level of emphasis but and can be used without limitations across the page.
+/// Intended for a low level of emphasis but and can be used without limitations
+/// across the page.
 class OptimusHighlightLow extends StatelessWidget {
   const OptimusHighlightLow({Key key, this.child}) : super(key: key);
 

@@ -77,7 +77,8 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
   FocusNode _focusNode;
   bool _isShowPasswordEnabled = false;
 
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -122,7 +123,8 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
               placeholderStyle: _placeholderTextStyle,
               focusNode: _effectiveFocusNode,
               enabled: widget.isEnabled,
-              padding: widget.prefix != null ? _textWithPrefixPadding : _textPadding,
+              padding:
+                  widget.prefix != null ? _textWithPrefixPadding : _textPadding,
               style: _textStyle,
               decoration: null,
               onChanged: widget.onChanged,
@@ -139,7 +141,9 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
               }),
               child: _SuffixPadding(
                 child: Icon(
-                  _isShowPasswordEnabled ? OptimusIcons.hide : OptimusIcons.show,
+                  _isShowPasswordEnabled
+                      ? OptimusIcons.hide
+                      : OptimusIcons.show,
                   size: _iconSize,
                   color: _placeholderTextStyle.color,
                 ),
