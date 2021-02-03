@@ -7,5 +7,12 @@ environment:
   sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
   optimus:
     path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mews_pedantic: ^0.1.1
