@@ -3,9 +3,10 @@ import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/typography/typography.dart';
 
-/// Subtitles should not stand out as much as titles but they’re larger than body text. Usually short and concise,
-/// subtitles organise information into sections for users to quickly scan and understand the content of each section.
-/// Subtitles are often used in conjunction with titles.
+/// Subtitles should not stand out as much as titles but they’re larger than
+/// body text. Usually short and concise, subtitles organise information into
+/// sections for users to quickly scan and understand the content of
+/// each section. Subtitles are often used in conjunction with titles.
 class OptimusSubtitle extends StatelessWidget {
   const OptimusSubtitle({Key key, this.child}) : super(key: key);
 

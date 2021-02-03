@@ -43,7 +43,8 @@ class _SearchStoryState extends State<_SearchStory> {
     return OptimusSearch<String>(
       controller: _controller,
       items: _characters
-          .where((c) => c.toLowerCase().contains(_controller.text.toLowerCase()))
+          .where(
+              (c) => c.toLowerCase().contains(_controller.text.toLowerCase()))
           .map((c) => ListDropdownTile(value: c, title: Text(c)))
           .toList(),
       onChanged: (_) {},
@@ -53,7 +54,11 @@ class _SearchStoryState extends State<_SearchStory> {
       isRequired: k.boolean('Required'),
       caption: Text(k.text('Caption', initial: '')),
       secondaryCaption: Text(k.text('Secondary caption', initial: '')),
-      size: k.options('Size', initial: OptimusWidgetSize.large, options: sizeOptions),
+      size: k.options(
+        'Size',
+        initial: OptimusWidgetSize.large,
+        options: sizeOptions,
+      ),
       error: k.text('Error', initial: ''),
     );
   }

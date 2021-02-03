@@ -33,10 +33,14 @@ class OptimusInputFormField extends FormField<String> {
     TextAlign textAlign = TextAlign.start,
     Widget caption,
     Widget secondaryCaption,
-  })  : assert(initialValue == null || controller == null, 'Provide either initial value or controller'),
+  })  : assert(
+          initialValue == null || controller == null,
+          'Provide either initial value or controller',
+        ),
         super(
           key: key,
-          initialValue: controller != null ? controller.text : (initialValue ?? ''),
+          initialValue:
+              controller != null ? controller.text : (initialValue ?? ''),
           onSaved: onSaved,
           validator: validator,
           autovalidateMode: autovalidateMode,
@@ -84,7 +88,8 @@ class OptimusInputFormField extends FormField<String> {
 class _InputFormFieldState extends FormFieldState<String> {
   TextEditingController _controller;
 
-  TextEditingController get _effectiveController => widget.controller ?? _controller;
+  TextEditingController get _effectiveController =>
+      widget.controller ?? _controller;
 
   @override
   OptimusInputFormField get widget => super.widget as OptimusInputFormField;
@@ -107,7 +112,8 @@ class _InputFormFieldState extends FormFieldState<String> {
       widget.controller?.addListener(_handleControllerChanged);
 
       if (oldWidget.controller != null && widget.controller == null) {
-        _controller = TextEditingController.fromValue(oldWidget.controller.value);
+        _controller =
+            TextEditingController.fromValue(oldWidget.controller.value);
       }
       if (widget.controller != null) {
         setValue(widget.controller.text);
@@ -145,6 +151,8 @@ class _InputFormFieldState extends FormFieldState<String> {
     // notifications for changes originating from within this class -- for
     // example, the reset() method. In such cases, the FormField value will
     // already have been set.
-    if (_effectiveController.text != value) didChange(_effectiveController.text);
+    if (_effectiveController.text != value) {
+      didChange(_effectiveController.text);
+    }
   }
 }

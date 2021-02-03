@@ -21,5 +21,6 @@ final List<Option<OptimusWidgetSize>> sizeOptions =
     OptimusWidgetSize.values.map((e) => Option(describeEnum(e), e)).toList();
 
 extension EnumsToOptions<T> on List<T> {
-  List<Option<T>> toOptions() => map((e) => Option(describeEnum(e), e)).toList();
+  List<Option<T>> toOptions() =>
+      map((e) => Option(describeEnum(e), e)).toList();
 }

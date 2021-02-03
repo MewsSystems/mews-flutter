@@ -14,8 +14,8 @@ enum OptimusIconSize {
   large,
 }
 
-/// Icons are symbols that provide a visual representation of meaning in situations where text is not enough or
-/// we want to emphasize its impact.
+/// Icons are symbols that provide a visual representation of meaning in
+/// situations where text is not enough or we want to emphasize its impact.
 ///
 /// The default icon is used when there is no need for additional emphasis.
 class OptimusIcon extends StatelessWidget {
@@ -34,18 +34,25 @@ class OptimusIcon extends StatelessWidget {
 
   /// Controls color of the icon.
   ///
-  /// - [null] – default value. Changes the color of the icon to match its parent font color.
+  /// - [null] – default value. Changes the color of the icon to match its
+  ///   parent font color.
   /// - [OptimusColorOption.basic] – variant with no extra emphasis.
-  /// - [OptimusColorOption.primary] – used to emphasize the item in a general way.
-  /// - [OptimusColorOption.success] – used to emphasize the item and convey a sense of success.
-  /// - [OptimusColorOption.warning] – used to emphasize the item and convey a sense of warning.
-  /// - [OptimusColorOption.danger] – used to emphasize the item and convey a sense of danger or error.
+  /// - [OptimusColorOption.primary] – used to emphasize the item in a general
+  ///   way.
+  /// - [OptimusColorOption.success] – used to emphasize the item and convey
+  ///   a sense of success.
+  /// - [OptimusColorOption.warning] – used to emphasize the item and convey
+  ///   a sense of warning.
+  /// - [OptimusColorOption.danger] – used to emphasize the item and convey
+  ///   a sense of danger or error.
   final OptimusColorOption colorOption;
 
   @override
   Widget build(BuildContext context) => Icon(
         iconData,
-        color: colorOption == null ? DefaultTextStyle.of(context).style.color : colorOption.toIconColor(),
+        color: colorOption == null
+            ? DefaultTextStyle.of(context).style.color
+            : colorOption.toIconColor(),
         size: _iconSize,
       );
 
@@ -62,10 +69,11 @@ class OptimusIcon extends StatelessWidget {
   }
 }
 
-/// Icons are symbols that provide a visual representation of meaning in situations where text is not enough or
-/// we want to emphasize its impact.
+/// Icons are symbols that provide a visual representation of meaning in
+/// situations where text is not enough or we want to emphasize its impact.
 ///
-/// Supplementary icon is used when it's necessary to highlight information or provide additional emphasis.
+/// Supplementary icon is used when it's necessary to highlight information or
+/// provide additional emphasis.
 class OptimusSupplementaryIcon extends StatelessWidget {
   const OptimusSupplementaryIcon({
     Key key,
@@ -78,20 +86,32 @@ class OptimusSupplementaryIcon extends StatelessWidget {
 
   /// Controls the background color of the icon.
   ///
-  /// - [null] – default value. Changes the color of the icon to match its parent font color.
+  /// - [null] – default value. Changes the color of the icon to match its
+  ///   parent font color.
   /// - [OptimusColorOption.basic] – variant with no extra emphasis.
-  /// - [OptimusColorOption.primary] – used to emphasize the item in a general way.
-  /// - [OptimusColorOption.success] – used to emphasize the item and convey a sense of success.
-  /// - [OptimusColorOption.warning] – used to emphasize the item and convey a sense of warning.
-  /// - [OptimusColorOption.danger] – used to emphasize the item and convey a sense of danger or error.
+  /// - [OptimusColorOption.primary] – used to emphasize the item in a general
+  ///   way.
+  /// - [OptimusColorOption.success] – used to emphasize the item and convey
+  ///   a sense of success.
+  /// - [OptimusColorOption.warning] – used to emphasize the item and convey
+  ///   a sense of warning.
+  /// - [OptimusColorOption.danger] – used to emphasize the item and convey
+  ///   a sense of danger or error.
   final OptimusColorOption colorOption;
 
   @override
   Widget build(BuildContext context) => Container(
         width: _diameter,
         height: _diameter,
-        decoration: BoxDecoration(shape: BoxShape.circle, color: colorOption.toSupplementaryBackgroundColor()),
-        child: Icon(iconData, color: colorOption.toSupplementaryIconColor(), size: 32),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: colorOption.toSupplementaryBackgroundColor(),
+        ),
+        child: Icon(
+          iconData,
+          color: colorOption.toSupplementaryIconColor(),
+          size: 32,
+        ),
       );
 }
 

@@ -5,7 +5,8 @@ import 'package:optimus/src/typography/variation.dart';
 
 /// Captions give users a brief explanation of certain elements.
 ///
-/// Captions are most effective when they give new information to the user rather than describing the obvious.
+/// Captions are most effective when they give new information to the user
+/// rather than describing the obvious.
 class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
     Key key,
@@ -20,10 +21,11 @@ class OptimusCaption extends StatelessWidget {
 
   /// Caption variation:
   ///
-  /// - [Variation.variationDefault]: a brief accompanying description or explanation to relay an additional
-  ///   piece of information.
-  /// - [Variation.variationSecondary]: a brief accompanying description or explanation to relay an additional
-  ///   piece of information. When less emphasis is needed.
+  /// - [Variation.variationDefault]: a brief accompanying description or
+  ///   explanation to relay an additional piece of information.
+  /// - [Variation.variationSecondary]: a brief accompanying description or
+  ///   explanation to relay an additional piece of information. When less
+  ///   emphasis is needed.
   final Variation variation;
 
   @override

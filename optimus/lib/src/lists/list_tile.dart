@@ -36,10 +36,15 @@ class OptimusListTile extends StatelessWidget {
           hoverColor: OptimusColors.basic25,
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: spacing300, horizontal: spacing200),
+            padding: const EdgeInsets.symmetric(
+                vertical: spacing300, horizontal: spacing200),
             child: Row(
               children: <Widget>[
-                if (prefix != null) Padding(padding: const EdgeInsets.only(right: 8), child: prefix),
+                if (prefix != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: prefix,
+                  ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +57,11 @@ class OptimusListTile extends StatelessWidget {
                       ),
                       Row(
                         children: <Widget>[
-                          Expanded(child: subtitle != null ? _buildSubTitle() : Container()),
+                          Expanded(
+                            child: subtitle != null
+                                ? _buildSubTitle()
+                                : Container(),
+                          ),
                           if (infoWidget != null) infoWidget,
                         ],
                       ),
@@ -101,9 +110,11 @@ class OptimusListTile extends StatelessWidget {
     }
   }
 
-  TextStyle get _infoStyle => preset100m.copyWith(color: OptimusColors.basic900t64);
+  TextStyle get _infoStyle =>
+      preset100m.copyWith(color: OptimusColors.basic900t64);
 
-  Widget _wrapped(Widget child, TextStyle style) => DefaultTextStyle.merge(style: style, child: child);
+  Widget _wrapped(Widget child, TextStyle style) =>
+      DefaultTextStyle.merge(style: style, child: child);
 }
 
 enum FontVariant { normal, bold }
