@@ -148,8 +148,17 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
       case OptimusIconButtonType.destructive:
       case OptimusIconButtonType.float:
         return OptimusColors.basic0;
-      default:
+      case OptimusIconButtonType.defaultButton:
+      case OptimusIconButtonType.text:
         return OptimusColors.basic500;
+      default:
+        return _bareIconColor;
     }
   }
+
+  Color get _bareIconColor => _isTappedDown
+      ? OptimusColors.basic1000
+      : _isHovering
+          ? OptimusColors.basic700
+          : OptimusColors.basic500;
 }
