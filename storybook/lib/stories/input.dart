@@ -13,7 +13,11 @@ final Story inputStory = Story(
       isPasswordField: k.boolean('Password'),
       prefix: k.boolean('Prefix') ? const Icon(OptimusIcons.search) : null,
       suffix: k.boolean('Suffix') ? const Icon(OptimusIcons.lock) : null,
-      size: k.options('Size', initial: OptimusWidgetSize.large, options: sizeOptions),
+      size: k.options(
+        'Size',
+        initial: OptimusWidgetSize.large,
+        options: sizeOptions,
+      ),
       label: k.text('Label', initial: 'Optimus input field'),
       placeholder: k.text('Placeholder', initial: 'Put some hint here...'),
       caption: Text(k.text('Caption', initial: '')),
