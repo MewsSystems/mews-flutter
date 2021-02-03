@@ -1,0 +1,23 @@
+name: Check Optimus
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'optimus/**'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: optimus/
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+      - run: flutter pub get
+      - run: bash ../meta/check_formatting.sh
+        name: Ensure proper formatting
+      - run: bash ../meta/analyze.sh
+        name: Check for errors and warnings
+      - run: flutter test

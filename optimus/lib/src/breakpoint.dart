@@ -1,0 +1,20 @@
+import 'package:flutter/widgets.dart';
+
+enum Breakpoint { extraSmall, small, medium, large, extraLarge }
+
+extension MediaQueryDataScreenBreakpoint on MediaQueryData {
+  Breakpoint get screenBreakpoint {
+    final width = size.width;
+    if (width < 360) {
+      return Breakpoint.extraSmall;
+    } else if (width < 600) {
+      return Breakpoint.small;
+    } else if (width < 1024) {
+      return Breakpoint.medium;
+    } else if (width < 1400) {
+      return Breakpoint.large;
+    } else {
+      return Breakpoint.extraLarge;
+    }
+  }
+}
