@@ -43,9 +43,18 @@ class OptimusIconButton extends StatefulWidget {
     this.type = OptimusIconButtonType.defaultButton,
   }) : super(key: key);
 
+  /// Called when the button is tapped or otherwise activated.
+  ///
+  /// If this callback is null, then the button will be disabled.
   final VoidCallback onPressed;
+
+  /// Typically [Icon] widget.
   final Widget icon;
+
+  /// Button size.
   final OptimusWidgetSize size;
+
+  /// Button type.
   final OptimusIconButtonType type;
 
   @override
@@ -175,6 +184,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
     }
   }
 
+  // ignore: missing_return
   Color get _iconColor {
     switch (widget.type) {
       case OptimusIconButtonType.primary:
@@ -184,7 +194,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
       case OptimusIconButtonType.defaultButton:
       case OptimusIconButtonType.text:
         return OptimusColors.basic500;
-      default:
+      case OptimusIconButtonType.bare:
         return _bareIconColor;
     }
   }
