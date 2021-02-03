@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_slidable: ^0.5.4
-  flutter_svg: ^0.18.1
   meta: ^1.2.4
 
 dev_dependencies:
@@ -20,8 +19,6 @@ dev_dependencies:
   mews_pedantic: ^0.1.1
 
 flutter:
-  assets:
-    - assets/
   fonts:
     - family: Montserrat
       fonts:
