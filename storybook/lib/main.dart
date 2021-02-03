@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storybook/stories/banner.dart';
 import 'package:storybook/stories/card.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           numberPickerStory,
           spacingStory,
           tagStory,
+          bannerStory,
           interactiveTagStory,
           iconStory,
           supplementaryIconStory,

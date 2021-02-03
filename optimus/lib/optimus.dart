@@ -7,6 +7,7 @@ import 'package:optimus/src/typography/styles.dart';
 export 'optimus_icons.dart';
 export 'src/avatar.dart';
 export 'src/badge.dart';
+export 'src/banner.dart';
 export 'src/border_side.dart';
 export 'src/borders.dart';
 export 'src/button.dart';
