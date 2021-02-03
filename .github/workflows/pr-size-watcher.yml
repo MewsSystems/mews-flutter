@@ -1,0 +1,16 @@
+name: PR Size Watcher
+on: [ pull_request ]
+
+jobs:
+  build:
+    name: Check PR size
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ookami-kb/gh-pr-size-watcher@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          excludeTitle: '(^Release|\[ignore-size\])'
+          excludePaths: |
+            **/pubspec.lock
+            optimus/lib/mews_icons.dart
+            optimus/lib/fonts/
