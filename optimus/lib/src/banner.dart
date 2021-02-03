@@ -51,7 +51,9 @@ class OptimusBanner extends StatelessWidget {
         constraints: BoxConstraints(maxHeight: _bannerHeight),
         child: Container(
           decoration: BoxDecoration(
-              color: _backgroundColor, borderRadius: _borderRadius),
+            color: _backgroundColor,
+            borderRadius: _borderRadius,
+          ),
           child: Stack(
             children: [
               Padding(
@@ -68,8 +70,10 @@ class OptimusBanner extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DefaultTextStyle.merge(
-                            child: content, style: _textStyle),
-                        if (additionalDescription.isNotEmpty)
+                          child: content,
+                          style: _textStyle,
+                        ),
+                        if (_hasAdditionalDescription)
                           Padding(
                             padding: const EdgeInsets.only(top: spacing50),
                             child: Text(
@@ -90,8 +94,11 @@ class OptimusBanner extends StatelessWidget {
                     onTap: () => onDismiss,
                     child: const Padding(
                       padding: EdgeInsets.all(4),
-                      child: Icon(OptimusIcons.cross_close,
-                          size: 12, color: OptimusColors.basic),
+                      child: Icon(
+                        OptimusIcons.cross_close,
+                        size: 12,
+                        color: OptimusColors.basic,
+                      ),
                     ),
                   ),
                 ),
@@ -100,13 +107,13 @@ class OptimusBanner extends StatelessWidget {
         ),
       );
 
-  double get _bannerHeight =>
-      additionalDescription != null && additionalDescription.isEmpty ? 40 : 68;
+  bool get _hasAdditionalDescription =>
+      additionalDescription?.isNotEmpty ?? false;
+
+  double get _bannerHeight => _hasAdditionalDescription ? 68 : 40;
 
   TextStyle get _textStyle =>
-      additionalDescription != null && additionalDescription.isEmpty
-          ? preset200m
-          : preset300m;
+      _hasAdditionalDescription ? preset300m : preset200m;
 
   TextStyle get _additionalDescriptionTextStyle =>
       preset200m.merge(const TextStyle(
