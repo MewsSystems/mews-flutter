@@ -63,6 +63,23 @@ abstract class OptimusColors {
   static const success500t40 = Color(0x662B7964);
   static const success500t48 = Color(0x7A2B7964);
 
+  static const info50 = Color(0xFFE6EEF1);
+  static const info100 = Color(0xFFC1D5DC);
+  static const info200 = Color(0xFF98BAC4);
+  static const info300 = Color(0xFF6F9EAC);
+  static const info400 = Color(0xFF50899B);
+  static const info500 = Color(0xFF317489);
+  static const info700 = Color(0xFF256176);
+  static const info800 = Color(0xFF1F576C);
+  static const info900 = Color(0xFF134459);
+
+  static const info500t8 = Color(0x14317489);
+  static const info500t16 = Color(0x28317489);
+  static const info500t24 = Color(0x3D317489);
+  static const info500t32 = Color(0x51317489);
+  static const info500t40 = Color(0x66317489);
+  static const info500t48 = Color(0x7A317489);
+
   static const warning50 = Color(0xFFFEF0E0);
   static const warning100 = Color(0xFFFCDAB3);
   static const warning200 = Color(0xFFFBC180);
