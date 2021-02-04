@@ -7,14 +7,41 @@ import 'package:flutter/material.dart';
 /// palettes carries a different meaning and function.
 ///
 /// Its main goal is to convey a specific type of information.
+///
+/// Neutral
+///
+/// The palette is by name dedicated to the construction of elements that
+/// carry no specific semantic information. It serves as a foundation for
+/// the majority of the interface and typography.
+///
+/// Primary
+///
+/// This color serves as a primary action color across all products for
+/// elements like buttons, links, and as an indication of progress and some
+/// interactive components. Use sparingly to keep the maximum impact.
+///
+/// Success
+///
+/// One of the "alert" colors, its purpose is to communicate and convey a
+/// sense of success, safety, and confirmation to the user.
+///
+/// Info
+///
+/// One of the "alert" colors, its purpose is to communicate and convey an
+/// informative and supportive message or feedback.
+///
+/// Warning
+///
+/// One of the "alert" colors, its purpose is to communicate and convey a
+/// sense of warning, problem, or something that requires attention.
+///
+/// Danger colors
+///
+/// One of the "alert" colors, its purpose is to communicate and convey a
+/// sense of danger, error, or destructive action.
 abstract class OptimusColors {
   OptimusColors._();
 
-  /// Neutral colors
-  ///
-  /// The palette is by name dedicated to the construction of elements that
-  /// carry no specific semantic information. It serves as a foundation for
-  /// the majority of the interface and typography.
   static const neutral0 = Color(0xFFFFFFFF);
   static const neutral25 = Color(0xFFF3F3F4);
   static const neutral50 = Color(0xFFE6E6E6);
@@ -39,11 +66,6 @@ abstract class OptimusColors {
   static const neutral1000t32 = Color(0x51000000);
   static const neutral1000t64 = Color(0xA3000000);
 
-  /// Primary colors
-  ///
-  /// This color serves as a primary action color across all products for
-  /// elements like buttons, links, and as an indication of progress and some
-  /// interactive components. Use sparingly to keep the maximum impact.
   static const primary50 = Color(0xFFE9EDF8);
   static const primary100 = Color(0xFFC8D1ED);
   static const primary200 = Color(0xFFA3B3E1);
@@ -61,10 +83,6 @@ abstract class OptimusColors {
   static const primary500t40 = Color(0x664667C3);
   static const primary500t48 = Color(0x7A4667C3);
 
-  /// Success colors
-  ///
-  /// One of the "alert" colors, its purpose is to communicate and convey a
-  /// sense of success, safety, and confirmation to the user.
   static const success50 = Color(0xFFE6EFEC);
   static const success100 = Color(0xFFBFD7D1);
   static const success200 = Color(0xFF95BCB2);
@@ -82,10 +100,6 @@ abstract class OptimusColors {
   static const success500t40 = Color(0x662B7964);
   static const success500t48 = Color(0x7A2B7964);
 
-  /// Info colors
-  ///
-  /// One of the "alert" colors, its purpose is to communicate and convey an
-  /// informative and supportive message or feedback.
   static const info50 = Color(0xFFE6EEF1);
   static const info100 = Color(0xFFC1D5DC);
   static const info200 = Color(0xFF98BAC4);
@@ -103,10 +117,6 @@ abstract class OptimusColors {
   static const info500t40 = Color(0x66317489);
   static const info500t48 = Color(0x7A317489);
 
-  /// Warning colors
-  ///
-  /// One of the "alert" colors, its purpose is to communicate and convey a
-  /// sense of warning, problem, or something that requires attention.
   static const warning50 = Color(0xFFFEF3EB);
   static const warning100 = Color(0xFFFCE0CD);
   static const warning200 = Color(0xFFFACBAC);
@@ -124,10 +134,6 @@ abstract class OptimusColors {
   static const warning500t40 = Color(0x66F59759);
   static const warning500t48 = Color(0x7AF59759);
 
-  /// Danger colors
-  ///
-  /// One of the "alert" colors, its purpose is to communicate and convey a
-  /// sense of danger, error, or destructive action.
   static const danger50 = Color(0xFFFAE7E9);
   static const danger100 = Color(0xFFF3C3C8);
   static const danger200 = Color(0xFFEB9CA4);
