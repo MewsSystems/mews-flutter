@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// Brand colors
+///
+/// Separate from the semantic colors, this group contains
+/// brand-specific colors. These colors are reserved to establish a
+/// brand connection across products.
 abstract class OptimusBrandColors {
   OptimusBrandColors._();
 
