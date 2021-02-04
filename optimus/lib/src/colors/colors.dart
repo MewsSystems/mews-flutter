@@ -29,22 +29,22 @@ abstract class OptimusColors {
   static const basic900t32 = Color(0x51000000); //todo: change to 10000
   static const basic900t64 = Color(0xA3000000); //todo: change to 10000
 
-  static const primary50 = Color(0xFFE0EDFF);
-  static const primary100 = Color(0xFFB3D1FF);
-  static const primary200 = Color(0xFF80B3FF);
-  static const primary300 = Color(0xFF4D95FF);
-  static const primary400 = Color(0xFF267EFF);
-  static const primary500 = Color(0xFF0067FF);
-  static const primary700 = Color(0xFF0054FF);
-  static const primary800 = Color(0xFF004AFF);
-  static const primary900 = Color(0xFF0039FF);
+  static const primary50 = Color(0xFFE9EDF8);
+  static const primary100 = Color(0xFFC8D1ED);
+  static const primary200 = Color(0xFFA3B3E1);
+  static const primary300 = Color(0xFF7E95D5);
+  static const primary400 = Color(0xFF627ECC);
+  static const primary500 = Color(0xFF4667C3);
+  static const primary700 = Color(0xFF3754B5);
+  static const primary800 = Color(0xFF2F4AAE);
+  static const primary900 = Color(0xFF2039A1);
 
-  static const primary500t8 = Color(0x140067FF);
-  static const primary500t16 = Color(0x290067FF);
-  static const primary500t24 = Color(0x3D0067FF);
-  static const primary500t32 = Color(0x520067FF);
-  static const primary500t40 = Color(0x660067FF);
-  static const primary500t48 = Color(0x7A0067FF);
+  static const primary500t8 = Color(0x144667C3);
+  static const primary500t16 = Color(0x284667C3);
+  static const primary500t24 = Color(0x3D4667C3);
+  static const primary500t32 = Color(0x514667C3);
+  static const primary500t40 = Color(0x664667C3);
+  static const primary500t48 = Color(0x7A4667C3);
 
   static const success50 = Color(0xFFE2F1E0);
   static const success100 = Color(0xFFB6DCB3);
