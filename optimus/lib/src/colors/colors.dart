@@ -3,29 +3,31 @@ import 'package:flutter/material.dart';
 abstract class OptimusColors {
   OptimusColors._();
 
+  //todo: change to neutral
   static const basic0 = Color(0xFFFFFFFF);
-  static const basic25 = Color(0xFFF3F5F8);
-  static const basic50 = Color(0xFFE6E8EB);
-  static const basic100 = Color(0xFFC0C5CD);
-  static const basic200 = Color(0xFF969FAB);
-  static const basic300 = Color(0xFF6B7989);
-  static const basic400 = Color(0xFF4C5C70);
-  static const basic500 = Color(0xFF2C3F57);
-  static const basic700 = Color(0xFF213146);
-  static const basic800 = Color(0xFF1B293C);
-  static const basic900 = Color(0xFF101B2C);
+  static const basic25 = Color(0xFFF3F3F4);
+  static const basic50 = Color(0xFFE6E6E6);
+  static const basic100 = Color(0xFFBFBFC0);
+  static const basic200 = Color(0xFF959597);
+  static const basic300 = Color(0xFF6B6B6D);
+  static const basic400 = Color(0xFF4B4B4D);
+  static const basic500 = Color(0xFF2B2B2E);
+  static const basic700 = Color(0xFF202023);
+  static const basic800 = Color(0xFF1A1A1D);
+  static const basic900 = Color(0xFF101012);
   static const basic1000 = Color(0xFF000000);
 
+  //todo: change to neutral
   static const basic0t32 = Color(0x52FFFFFF);
   static const basic0t64 = Color(0xA3FFFFFF);
-  static const basic500t8 = Color(0x142C3F57);
-  static const basic500t16 = Color(0x292C3F57);
-  static const basic500t24 = Color(0x3D2C3F57);
-  static const basic500t32 = Color(0x522C3F57);
-  static const basic500t40 = Color(0x662C3F57);
-  static const basic500t48 = Color(0x7A2C3F57);
-  static const basic900t32 = Color(0x52101B2C);
-  static const basic900t64 = Color(0xA3101B2C);
+  static const basic500t8 = Color(0x142B2B2E);
+  static const basic500t16 = Color(0x282B2B2E);
+  static const basic500t24 = Color(0x3D2B2B2E);
+  static const basic500t32 = Color(0x512B2B2E);
+  static const basic500t40 = Color(0x662B2B2E);
+  static const basic500t48 = Color(0x7A2B2B2E);
+  static const basic900t32 = Color(0x51000000); //todo: change to 10000
+  static const basic900t64 = Color(0xA3000000); //todo: change to 10000
 
   static const primary50 = Color(0xFFE0EDFF);
   static const primary100 = Color(0xFFB3D1FF);
