@@ -22,7 +22,7 @@ class GroupWrapper extends StatelessWidget {
           if (label != null && label.isNotEmpty)
             Text(
               label,
-              style: preset100s.copyWith(color: OptimusColors.basic900t64),
+              style: preset100s.copyWith(color: OptimusColors.neutral1000t64),
             ),
           child,
           if (error != null && error.isNotEmpty)

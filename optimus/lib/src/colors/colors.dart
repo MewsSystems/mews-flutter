@@ -3,31 +3,29 @@ import 'package:flutter/material.dart';
 abstract class OptimusColors {
   OptimusColors._();
 
-  //todo: change to neutral
-  static const basic0 = Color(0xFFFFFFFF);
-  static const basic25 = Color(0xFFF3F3F4);
-  static const basic50 = Color(0xFFE6E6E6);
-  static const basic100 = Color(0xFFBFBFC0);
-  static const basic200 = Color(0xFF959597);
-  static const basic300 = Color(0xFF6B6B6D);
-  static const basic400 = Color(0xFF4B4B4D);
-  static const basic500 = Color(0xFF2B2B2E);
-  static const basic700 = Color(0xFF202023);
-  static const basic800 = Color(0xFF1A1A1D);
-  static const basic900 = Color(0xFF101012);
-  static const basic1000 = Color(0xFF000000);
+  static const neutral0 = Color(0xFFFFFFFF);
+  static const neutral25 = Color(0xFFF3F3F4);
+  static const neutral50 = Color(0xFFE6E6E6);
+  static const neutral100 = Color(0xFFBFBFC0);
+  static const neutral200 = Color(0xFF959597);
+  static const neutral300 = Color(0xFF6B6B6D);
+  static const neutral400 = Color(0xFF4B4B4D);
+  static const neutral500 = Color(0xFF2B2B2E);
+  static const neutral700 = Color(0xFF202023);
+  static const neutral800 = Color(0xFF1A1A1D);
+  static const neutral900 = Color(0xFF101012);
+  static const neutral1000 = Color(0xFF000000);
 
-  //todo: change to neutral
-  static const basic0t32 = Color(0x52FFFFFF);
-  static const basic0t64 = Color(0xA3FFFFFF);
-  static const basic500t8 = Color(0x142B2B2E);
-  static const basic500t16 = Color(0x282B2B2E);
-  static const basic500t24 = Color(0x3D2B2B2E);
-  static const basic500t32 = Color(0x512B2B2E);
-  static const basic500t40 = Color(0x662B2B2E);
-  static const basic500t48 = Color(0x7A2B2B2E);
-  static const basic900t32 = Color(0x51000000); //todo: change to 10000
-  static const basic900t64 = Color(0xA3000000); //todo: change to 10000
+  static const neutral0t32 = Color(0x52FFFFFF);
+  static const neutral0t64 = Color(0xA3FFFFFF);
+  static const neutral500t8 = Color(0x142B2B2E);
+  static const neutral500t16 = Color(0x282B2B2E);
+  static const neutral500t24 = Color(0x3D2B2B2E);
+  static const neutral500t32 = Color(0x512B2B2E);
+  static const neutral500t40 = Color(0x662B2B2E);
+  static const neutral500t48 = Color(0x7A2B2B2E);
+  static const neutral1000t32 = Color(0x51000000);
+  static const neutral1000t64 = Color(0xA3000000);
 
   static const primary50 = Color(0xFFE9EDF8);
   static const primary100 = Color(0xFFC8D1ED);
@@ -114,7 +112,7 @@ abstract class OptimusColors {
   static const danger500t40 = Color(0x66D63848);
   static const danger500t48 = Color(0x7AD63848);
 
-  static const basic = basic500;
+  static const basic = neutral500;
   static const primary = primary500;
   static const success = success500;
   static const info = info500;

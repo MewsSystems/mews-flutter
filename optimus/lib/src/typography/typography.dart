@@ -31,9 +31,9 @@ class OptimusTypography extends StatelessWidget {
   Color get _color {
     switch (color) {
       case OptimusTypographyColor.primary:
-        return OptimusColors.basic900;
+        return OptimusColors.neutral900;
       case OptimusTypographyColor.secondary:
-        return OptimusColors.basic900t64;
+        return OptimusColors.neutral1000t64;
     }
   }
 }
