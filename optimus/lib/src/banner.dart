@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
@@ -32,18 +33,18 @@ enum OptimusBannerVariant {
 class OptimusBanner extends StatelessWidget {
   const OptimusBanner({
     Key key,
-    @required this.content,
+    @required this.title,
     this.variant = OptimusBannerVariant.primary,
-    this.showIcon = false,
-    this.additionalDescription,
+    this.hasIcon = false,
+    this.description,
     this.dismissible = false,
     this.onDismiss,
   }) : super(key: key);
 
-  final Widget content;
+  final Widget title;
   final OptimusBannerVariant variant;
-  final bool showIcon;
-  final String additionalDescription;
+  final bool hasIcon;
+  final Widget description;
   final bool dismissible;
   final VoidCallback onDismiss;
 
@@ -55,64 +56,67 @@ class OptimusBanner extends StatelessWidget {
             color: _backgroundColor,
             borderRadius: const BorderRadius.all(borderRadius50),
           ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: _padding,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    if (showIcon)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 18),
-                        child: OptimusIcon(
-                          iconData: _icon,
-                          colorOption: _iconColor,
-                        ),
+          child: Padding(
+            padding: _padding,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (hasIcon)
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 18),
+                      child: OptimusIcon(
+                        iconData: _icon,
+                        colorOption: _iconColor,
                       ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        DefaultTextStyle.merge(
-                          child: content,
-                          style: _textStyle,
-                        ),
-                        if (_hasAdditionalDescription)
-                          Padding(
-                            padding: const EdgeInsets.only(top: spacing50),
-                            child: Text(
-                              additionalDescription,
-                              style: _additionalDescriptionTextStyle,
-                            ),
-                          ),
-                      ],
                     ),
-                  ],
+                  ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DefaultTextStyle.merge(
+                        child: title,
+                        style: _textStyle,
+                      ),
+                      if (_hasDescription)
+                        Padding(
+                          padding: const EdgeInsets.only(top: spacing50),
+                          child: DefaultTextStyle.merge(
+                            child: description,
+                            style: _additionalDescriptionTextStyle,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-              if (dismissible)
-                Positioned(
-                  right: 0,
-                  top: 4,
-                  child: OptimusIconButton(
+                if (dismissible)
+                  OptimusIconButton(
                     onPressed: () => onDismiss,
                     icon: const Icon(OptimusIcons.cross_close, size: 12),
                     size: OptimusWidgetSize.small,
                     type: OptimusIconButtonType.bare,
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ),
       );
 
-  bool get _hasAdditionalDescription =>
-      additionalDescription?.isNotEmpty ?? false;
+  bool get _hasDescription {
+    if (description != null) {
+      if (description is Text) {
+        return (description as Text).data.isNotEmpty;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-  double get _bannerHeight => _hasAdditionalDescription ? 68 : 40;
+  double get _bannerHeight => _hasDescription ? 68 : 40;
 
-  TextStyle get _textStyle =>
-      _hasAdditionalDescription ? preset300m : preset200m;
+  TextStyle get _textStyle => _hasDescription ? preset300m : preset200m;
 
   TextStyle get _additionalDescriptionTextStyle =>
       preset200m.merge(const TextStyle(
@@ -121,9 +125,9 @@ class OptimusBanner extends StatelessWidget {
       ));
 
   EdgeInsets get _padding => EdgeInsets.fromLTRB(
-        showIcon ? 18.0 : spacing200,
+        hasIcon ? 18.0 : spacing200,
         9,
-        onDismiss != null ? spacing100 : spacing400,
+        dismissible != null ? 0 : spacing400,
         spacing100,
       );
 
