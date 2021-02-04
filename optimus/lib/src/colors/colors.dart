@@ -46,22 +46,22 @@ abstract class OptimusColors {
   static const primary500t40 = Color(0x664667C3);
   static const primary500t48 = Color(0x7A4667C3);
 
-  static const success50 = Color(0xFFE2F1E0);
-  static const success100 = Color(0xFFB6DCB3);
-  static const success200 = Color(0xFF85C580);
-  static const success300 = Color(0xFF54AD4D);
-  static const success400 = Color(0xFF309C26);
-  static const success500 = Color(0xFF0B8A00);
-  static const success700 = Color(0xFF087700);
-  static const success800 = Color(0xFF066D00);
-  static const success900 = Color(0xFF035A00);
+  static const success50 = Color(0xFFE6EFEC);
+  static const success100 = Color(0xFFBFD7D1);
+  static const success200 = Color(0xFF95BCB2);
+  static const success300 = Color(0xFF6BA193);
+  static const success400 = Color(0xFF4B8D7B);
+  static const success500 = Color(0xFF2B7964);
+  static const success700 = Color(0xFF206652);
+  static const success800 = Color(0xFF1A5C48);
+  static const success900 = Color(0xFF104936);
 
-  static const success500t8 = Color(0x140B8A00);
-  static const success500t16 = Color(0x290B8A00);
-  static const success500t24 = Color(0x3D0B8A00);
-  static const success500t32 = Color(0x520B8A00);
-  static const success500t40 = Color(0x660B8A00);
-  static const success500t48 = Color(0x7A0B8A00);
+  static const success500t8 = Color(0x142B7964);
+  static const success500t16 = Color(0x282B7964);
+  static const success500t24 = Color(0x3D2B7964);
+  static const success500t32 = Color(0x512B7964);
+  static const success500t40 = Color(0x662B7964);
+  static const success500t48 = Color(0x7A2B7964);
 
   static const warning50 = Color(0xFFFEF0E0);
   static const warning100 = Color(0xFFFCDAB3);
