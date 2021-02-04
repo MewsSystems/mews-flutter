@@ -245,7 +245,7 @@ Future<void> _showCustomContentDialog({
 Widget get _content => Container(
       height: 200,
       width: double.infinity,
-      color: OptimusColors.basic50,
+      color: OptimusColors.neutral50,
       child: const Center(child: Text('Content')),
     );
 
