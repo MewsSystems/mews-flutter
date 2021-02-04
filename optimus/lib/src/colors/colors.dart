@@ -97,26 +97,27 @@ abstract class OptimusColors {
   static const warning500t40 = Color(0x66F59759);
   static const warning500t48 = Color(0x7AF59759);
 
-  static const danger50 = Color(0xFFFCE1E5);
-  static const danger100 = Color(0xFFF8B3BE);
-  static const danger200 = Color(0xFFF48192);
-  static const danger300 = Color(0xFFEF4F66);
-  static const danger400 = Color(0xFFEB2946);
-  static const danger500 = Color(0xFFE80325);
-  static const danger700 = Color(0xFFE2021B);
-  static const danger800 = Color(0xFFDE0216);
-  static const danger900 = Color(0xFFD8010D);
+  static const danger50 = Color(0xFFFAE7E9);
+  static const danger100 = Color(0xFFF3C3C8);
+  static const danger200 = Color(0xFFEB9CA4);
+  static const danger300 = Color(0xFFE2747F);
+  static const danger400 = Color(0xFFDC5663);
+  static const danger500 = Color(0xFFD63848);
+  static const danger700 = Color(0xFFCC2B38);
+  static const danger800 = Color(0xFFC62430);
+  static const danger900 = Color(0xFFBC1721);
 
-  static const danger500t8 = Color(0x14E80325);
-  static const danger500t16 = Color(0x29E80325);
-  static const danger500t24 = Color(0x3DE80325);
-  static const danger500t32 = Color(0x52E80325);
-  static const danger500t40 = Color(0x66E80325);
-  static const danger500t48 = Color(0x7AE80325);
+  static const danger500t8 = Color(0x14D63848);
+  static const danger500t16 = Color(0x28D63848);
+  static const danger500t24 = Color(0x3DD63848);
+  static const danger500t32 = Color(0x51D63848);
+  static const danger500t40 = Color(0x66D63848);
+  static const danger500t48 = Color(0x7AD63848);
 
   static const basic = basic500;
   static const primary = primary500;
   static const success = success500;
+  static const info = info500;
   static const warning = warning500;
   static const danger = danger500;
 }
