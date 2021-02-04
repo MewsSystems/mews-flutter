@@ -92,16 +92,13 @@ class OptimusBanner extends StatelessWidget {
               ),
               if (dismissible)
                 Positioned(
-                  right: -4,
-                  top: -5,
-                  child: IconButton(
-                    splashRadius: 12,
-                    padding: EdgeInsets.zero,
+                  right: 0,
+                  top: 4,
+                  child: OptimusIconButton(
                     onPressed: () => onDismiss,
-                    icon: const OptimusIcon(
-                      iconData: OptimusIcons.cross_close,
-                      iconSize: OptimusIconSize.small,
-                    ),
+                    icon: const Icon(OptimusIcons.cross_close, size: 12),
+                    size: OptimusWidgetSize.small,
+                    type: OptimusIconButtonType.bare,
                   ),
                 ),
             ],
