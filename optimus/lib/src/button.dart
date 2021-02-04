@@ -97,7 +97,7 @@ class OptimusButton extends StatelessWidget {
   Color get _color {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.basic50;
+        return OptimusColors.neutral50;
       case OptimusButtonVariant.primary:
         return OptimusColors.primary500;
       case OptimusButtonVariant.text:
@@ -113,11 +113,11 @@ class OptimusButton extends StatelessWidget {
   Color get _hoverColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.basic100;
+        return OptimusColors.neutral100;
       case OptimusButtonVariant.primary:
         return OptimusColors.primary700;
       case OptimusButtonVariant.text:
-        return OptimusColors.basic500t8;
+        return OptimusColors.neutral500t8;
       case OptimusButtonVariant.destructive:
         return OptimusColors.danger700;
       case OptimusButtonVariant.warning:
@@ -129,11 +129,11 @@ class OptimusButton extends StatelessWidget {
   Color get _highLightColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.basic200;
+        return OptimusColors.neutral200;
       case OptimusButtonVariant.primary:
         return OptimusColors.primary900;
       case OptimusButtonVariant.text:
-        return OptimusColors.basic500t16;
+        return OptimusColors.neutral500t16;
       case OptimusButtonVariant.destructive:
         return OptimusColors.danger900;
       case OptimusButtonVariant.warning:
@@ -145,15 +145,15 @@ class OptimusButton extends StatelessWidget {
   Color get _textColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.basic500;
+        return OptimusColors.neutral500;
       case OptimusButtonVariant.primary:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
       case OptimusButtonVariant.text:
-        return OptimusColors.basic500;
+        return OptimusColors.neutral500;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
       case OptimusButtonVariant.warning:
-        return OptimusColors.basic900;
+        return OptimusColors.neutral900;
     }
   }
 

@@ -158,7 +158,7 @@ class _RadioCircle extends StatelessWidget {
 
   Color get _borderColor => (isSelected || isActive)
       ? OptimusColors.primary500
-      : OptimusColors.basic100;
+      : OptimusColors.neutral100;
 
   @override
   Widget build(BuildContext context) => Padding(

@@ -84,7 +84,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> {
       ? OptimusColors.primary500
       : _isHovering || _isTappedDown
           ? OptimusColors.primary500
-          : OptimusColors.basic100;
+          : OptimusColors.neutral100;
 
   Color get _backgroundColor => widget.isChecked
       ? OptimusColors.primary500

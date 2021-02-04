@@ -65,7 +65,7 @@ Future<T> showOptimusDialog<T>({
       ),
       barrierDismissible: isDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: OptimusColors.basic900t64,
+      barrierColor: OptimusColors.neutral1000t64,
       transitionDuration: const Duration(milliseconds: 150),
       transitionBuilder: _buildTransitions,
       useRootNavigator: true,
@@ -117,7 +117,8 @@ class OptimusDialog extends StatelessWidget {
 
   final OptimusDialogType type;
 
-  Widget get _divider => const Divider(height: 1, color: OptimusColors.basic50);
+  Widget get _divider =>
+      const Divider(height: 1, color: OptimusColors.neutral50);
 
   // ignore: missing_return
   OptimusDialogSize _autoSize(BuildContext context) {

@@ -45,9 +45,9 @@ class OptimusTabBar extends StatelessWidget {
               child: TabBar(
                 controller: tabController,
                 indicator: _buildIndicator(),
-                unselectedLabelColor: OptimusColors.basic900t64,
-                labelColor: OptimusColors.basic900,
-                indicatorColor: OptimusColors.basic900,
+                unselectedLabelColor: OptimusColors.neutral1000t64,
+                labelColor: OptimusColors.neutral900,
+                indicatorColor: OptimusColors.neutral900,
                 tabs: tabs,
                 unselectedLabelStyle: textStyle,
                 labelStyle: textStyle,
@@ -68,7 +68,7 @@ class OptimusTabBar extends StatelessWidget {
 
   Decoration _buildIndicator() => const UnderlineTabIndicator(
         borderSide: BorderSide(
-          color: OptimusColors.basic900,
+          color: OptimusColors.neutral900,
           width: 1,
         ),
         insets: EdgeInsets.only(bottom: -1),

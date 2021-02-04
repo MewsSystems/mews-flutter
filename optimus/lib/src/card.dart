@@ -131,18 +131,18 @@ class OptimusNestedCard extends StatelessWidget {
       );
 
   Border get _border => variant == OptimusNestedCardVariant.normal
-      ? Border.all(width: 1, color: OptimusColors.basic500t16)
+      ? Border.all(width: 1, color: OptimusColors.neutral500t16)
       : null;
 
   // ignore: missing_return
   Color get _color {
     switch (variant) {
       case OptimusNestedCardVariant.emphasized:
-        return OptimusColors.basic500t8;
+        return OptimusColors.neutral500t8;
       case OptimusNestedCardVariant.highlighted:
         return OptimusColors.primary500t8;
       case OptimusNestedCardVariant.normal:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
     }
   }
 }
@@ -156,7 +156,7 @@ class _Card extends StatelessWidget {
     @required this.attachment,
     this.shadows = const [],
     this.border,
-    this.color = OptimusColors.basic0,
+    this.color = OptimusColors.neutral0,
   }) : super(key: key);
 
   final Widget child;

@@ -31,12 +31,12 @@ class OptimusAvatar extends StatelessWidget {
         child: CircleAvatar(
           radius: isSmall ? _smallRadius : _radius,
           backgroundColor:
-              imageUrl == null ? OptimusColors.basic200 : Colors.white,
+              imageUrl == null ? OptimusColors.neutral200 : Colors.white,
           backgroundImage: imageUrl == null ? null : NetworkImage(imageUrl),
           child: imageUrl == null
               ? Text(
                   _safeSubstring(title, 0, 1).toUpperCase(),
-                  style: preset300s.copyWith(color: OptimusColors.basic0t64),
+                  style: preset300s.copyWith(color: OptimusColors.neutral0t64),
                 )
               : null,
         ),
@@ -49,7 +49,7 @@ class OptimusAvatar extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: OptimusColors.primary500,
-            border: Border.all(width: 2, color: OptimusColors.basic0),
+            border: Border.all(width: 2, color: OptimusColors.neutral0),
           ),
           height: 14,
           width: 14,
