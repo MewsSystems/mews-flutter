@@ -49,87 +49,78 @@ class OptimusBanner extends StatelessWidget {
   final VoidCallback onDismiss;
 
   @override
-  Widget build(Object context) => ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: _bannerHeight),
-        child: Container(
-          decoration: BoxDecoration(
-            color: _backgroundColor,
-            borderRadius: const BorderRadius.all(borderRadius50),
-          ),
-          child: Padding(
-            padding: _padding,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (hasIcon)
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 18),
-                      child: OptimusIcon(
-                        iconData: _icon,
-                        colorOption: _iconColor,
-                      ),
-                    ),
-                  ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DefaultTextStyle.merge(
-                        child: title,
-                        style: _textStyle,
-                      ),
-                      if (_hasDescription)
-                        Padding(
-                          padding: const EdgeInsets.only(top: spacing50),
-                          child: DefaultTextStyle.merge(
-                            child: description,
-                            style: _additionalDescriptionTextStyle,
-                          ),
-                        ),
-                    ],
+  Widget build(Object context) => Container(
+        decoration: BoxDecoration(
+          color: _backgroundColor,
+          borderRadius: const BorderRadius.all(borderRadius50),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 18),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (hasIcon)
+                Padding(
+                  padding: const EdgeInsets.only(right: 18),
+                  child: OptimusIcon(
+                    iconData: _icon,
+                    colorOption: _iconColor,
                   ),
                 ),
-                if (dismissible)
-                  OptimusIconButton(
-                    onPressed: () => onDismiss,
-                    icon: const Icon(OptimusIcons.cross_close, size: 12),
-                    size: OptimusWidgetSize.small,
-                    type: OptimusIconButtonType.bare,
-                  ),
-              ],
-            ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: description != null ? spacing50 : 10,
+                              top: 9,
+                            ),
+                            child: DefaultTextStyle.merge(
+                              child: title,
+                              style: _textStyle,
+                            ),
+                          ),
+                        ),
+                        if (dismissible)
+                          OptimusIconButton(
+                            onPressed: () => onDismiss,
+                            icon:
+                                const Icon(OptimusIcons.cross_close, size: 12),
+                            size: OptimusWidgetSize.small,
+                            type: OptimusIconButtonType.bare,
+                          ),
+                      ],
+                    ),
+                    if (description != null)
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: spacing50,
+                          bottom: 10,
+                        ),
+                        child: DefaultTextStyle.merge(
+                          child: description,
+                          style: _additionalDescriptionTextStyle,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       );
 
-  bool get _hasDescription {
-    if (description != null) {
-      if (description is Text) {
-        return (description as Text).data.isNotEmpty;
-      }
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  double get _bannerHeight => _hasDescription ? 68 : 40;
-
-  TextStyle get _textStyle => _hasDescription ? preset300m : preset200m;
+  TextStyle get _textStyle => description != null ? preset300m : preset200m;
 
   TextStyle get _additionalDescriptionTextStyle =>
       preset200m.merge(const TextStyle(
         fontWeight: FontWeight.normal,
         height: 1,
       ));
-
-  EdgeInsets get _padding => EdgeInsets.fromLTRB(
-        hasIcon ? 18.0 : spacing200,
-        9,
-        dismissible != null ? 0 : spacing400,
-        spacing100,
-      );
 
   // ignore: missing_return
   IconData get _icon {
@@ -228,7 +219,7 @@ class OptimusWideBanner extends StatelessWidget {
                 GestureDetector(
                   onTap: () => onLinkTap,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 4),
+                    padding: const EdgeInsets.only(left: spacing50),
                     child: DefaultTextStyle.merge(
                       child: link,
                       style: _linkTextStyle,
@@ -263,9 +254,9 @@ class OptimusWideBanner extends StatelessWidget {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
       case OptimusWideBannerVariant.danger:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
       case OptimusWideBannerVariant.warning:
-        return OptimusColors.basic1000;
+        return OptimusColors.neutral1000;
     }
   }
 }

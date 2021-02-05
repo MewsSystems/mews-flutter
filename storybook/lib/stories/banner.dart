@@ -6,26 +6,25 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 final Story bannerStory = Story(
   name: 'Banner',
   section: 'Banner',
-  builder: (_, k) => SingleChildScrollView(
-    child: Column(
-        children: OptimusBannerVariant.values
-            .map(
-              (v) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: OptimusBanner(
-                  title: Text(k.text('Content', initial: 'Info Text')),
-                  description: Text(
-                    k.text(
-                      'Additional description',
-                      initial: '',
-                    ),
+  builder: (_, k) {
+    final description = k.text('Additional description', initial: '');
+    return SingleChildScrollView(
+      child: Column(
+          children: OptimusBannerVariant.values
+              .map(
+                (v) => Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: OptimusBanner(
+                    title: Text(k.text('Content', initial: 'Info Text')),
+                    description:
+                        description.isNotEmpty ? Text(description) : null,
+                    hasIcon: k.boolean('Show icon'),
+                    dismissible: k.boolean('Dismissible'),
+                    variant: v,
                   ),
-                  hasIcon: k.boolean('Show icon'),
-                  dismissible: k.boolean('Dismissible'),
-                  variant: v,
                 ),
-              ),
-            )
-            .toList()),
-  ),
+              )
+              .toList()),
+    );
+  },
 );
