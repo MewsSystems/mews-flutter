@@ -79,7 +79,8 @@ class _FieldWrapper extends State<FieldWrapper> {
                   OptimusCaption(
                     variation: Variation.variationSecondary,
                     child: DefaultTextStyle.merge(
-                      style: const TextStyle(color: OptimusColors.basic900t32),
+                      style:
+                          const TextStyle(color: OptimusColors.neutral1000t32),
                       child: widget.secondaryCaption,
                     ),
                   ),
@@ -141,12 +142,12 @@ class _FieldWrapper extends State<FieldWrapper> {
     if (widget.hasError) return OptimusColors.danger;
     return _effectiveFocusNode.hasFocus
         ? OptimusColors.primary
-        : OptimusColors.basic100;
+        : OptimusColors.neutral100;
   }
 
   Color get _captionColor => _effectiveFocusNode.hasFocus
       ? OptimusColors.primary
-      : OptimusColors.basic900t64;
+      : OptimusColors.neutral1000t64;
 
   List<Widget> _buildChildren() => <Widget>[
         if (widget.prefix != null)
@@ -154,7 +155,7 @@ class _FieldWrapper extends State<FieldWrapper> {
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
-            style: preset100s.copyWith(color: OptimusColors.basic900t32),
+            style: preset100s.copyWith(color: OptimusColors.neutral1000t32),
             child: _Icon(child: _SuffixPadding(child: widget.suffix)),
           )
       ];
@@ -167,7 +168,8 @@ class _Icon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconTheme(
-        data: const IconThemeData(color: OptimusColors.basic900t64, size: 24),
+        data:
+            const IconThemeData(color: OptimusColors.neutral1000t64, size: 24),
         child: child,
       );
 }

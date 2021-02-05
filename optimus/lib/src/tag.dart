@@ -100,7 +100,7 @@ class _Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: onRemoved != null ? OptimusColors.basic50 : _tagColor,
+          color: onRemoved != null ? OptimusColors.neutral50 : _tagColor,
           borderRadius: const BorderRadius.all(borderRadius25),
         ),
         padding: _tagPadding,
@@ -141,7 +141,7 @@ class _Tag extends StatelessWidget {
   Color get _tagBoldColor {
     switch (colorOption) {
       case OptimusColorOption.basic:
-        return OptimusColors.basic500;
+        return OptimusColors.neutral500;
       case OptimusColorOption.primary:
         return OptimusColors.primary500;
       case OptimusColorOption.success:
@@ -157,7 +157,7 @@ class _Tag extends StatelessWidget {
   Color get _tagSubtleColor {
     switch (colorOption) {
       case OptimusColorOption.basic:
-        return OptimusColors.basic50;
+        return OptimusColors.neutral50;
       case OptimusColorOption.primary:
         return OptimusColors.primary50;
       case OptimusColorOption.success:
@@ -182,9 +182,9 @@ class _Tag extends StatelessWidget {
   Color get _textBoldColor {
     switch (colorOption) {
       case OptimusColorOption.warning:
-        return OptimusColors.basic900;
+        return OptimusColors.neutral900;
       default:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
     }
   }
 
@@ -199,7 +199,7 @@ class _Tag extends StatelessWidget {
         return OptimusColors.danger900;
       case OptimusColorOption.basic:
       case OptimusColorOption.warning:
-        return OptimusColors.basic900;
+        return OptimusColors.neutral900;
     }
   }
 }
@@ -209,6 +209,6 @@ Widget _buildIcon({VoidCallback onRemoved}) => GestureDetector(
       child: const Padding(
         padding: EdgeInsets.all(6),
         child: Icon(OptimusIcons.cross_close,
-            color: OptimusColors.basic500, size: 12),
+            color: OptimusColors.neutral500, size: 12),
       ),
     );

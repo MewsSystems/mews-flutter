@@ -120,7 +120,7 @@ extension on OptimusColorOption {
   Color toIconColor() {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusColors.basic500;
+        return OptimusColors.neutral500;
       case OptimusColorOption.primary:
         return OptimusColors.primary500;
       case OptimusColorOption.success:
@@ -136,11 +136,11 @@ extension on OptimusColorOption {
   Color toSupplementaryIconColor() {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusColors.basic500;
+        return OptimusColors.neutral500;
       case OptimusColorOption.warning:
-        return OptimusColors.basic900;
+        return OptimusColors.neutral900;
       default:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
     }
   }
 
@@ -148,7 +148,7 @@ extension on OptimusColorOption {
   Color toSupplementaryBackgroundColor() {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusColors.basic50;
+        return OptimusColors.neutral50;
       case OptimusColorOption.primary:
         return OptimusColors.primary500;
       case OptimusColorOption.success:

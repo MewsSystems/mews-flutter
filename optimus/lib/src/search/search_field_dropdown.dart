@@ -138,7 +138,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> {
         },
         child: _isHighlighted
             ? DefaultTextStyle.merge(
-                style: const TextStyle(color: OptimusColors.basic0),
+                style: const TextStyle(color: OptimusColors.neutral0),
                 child: widget.child,
               )
             : widget.child,

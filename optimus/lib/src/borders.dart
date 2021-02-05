@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/colors/colors.dart';
 
-const Color _borderColor = OptimusColors.basic50;
+const Color _borderColor = OptimusColors.neutral50;
 
 @Deprecated('Use higher level components instead.')
 class TileBorders extends StatelessWidget {

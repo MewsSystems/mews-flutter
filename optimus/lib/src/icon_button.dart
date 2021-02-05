@@ -123,7 +123,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   Color get _normalColor {
     switch (widget.type) {
       case OptimusIconButtonType.defaultButton:
-        return OptimusColors.basic50;
+        return OptimusColors.neutral50;
       case OptimusIconButtonType.primary:
         return OptimusColors.primary500;
       case OptimusIconButtonType.text:
@@ -141,11 +141,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   Color get _hoverColor {
     switch (widget.type) {
       case OptimusIconButtonType.defaultButton:
-        return OptimusColors.basic100;
+        return OptimusColors.neutral100;
       case OptimusIconButtonType.primary:
         return OptimusColors.primary700;
       case OptimusIconButtonType.text:
-        return OptimusColors.basic500t8;
+        return OptimusColors.neutral500t8;
       case OptimusIconButtonType.destructive:
         return OptimusColors.danger700;
       case OptimusIconButtonType.float:
@@ -159,11 +159,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   Color get _highLightColor {
     switch (widget.type) {
       case OptimusIconButtonType.defaultButton:
-        return OptimusColors.basic200;
+        return OptimusColors.neutral200;
       case OptimusIconButtonType.primary:
         return OptimusColors.primary900;
       case OptimusIconButtonType.text:
-        return OptimusColors.basic500t16;
+        return OptimusColors.neutral500t16;
       case OptimusIconButtonType.destructive:
         return OptimusColors.danger900;
       case OptimusIconButtonType.float:
@@ -190,18 +190,18 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
       case OptimusIconButtonType.primary:
       case OptimusIconButtonType.destructive:
       case OptimusIconButtonType.float:
-        return OptimusColors.basic0;
+        return OptimusColors.neutral0;
       case OptimusIconButtonType.defaultButton:
       case OptimusIconButtonType.text:
-        return OptimusColors.basic500;
+        return OptimusColors.neutral500;
       case OptimusIconButtonType.bare:
         return _bareIconColor;
     }
   }
 
   Color get _bareIconColor => _isTappedDown
-      ? OptimusColors.basic1000
+      ? OptimusColors.neutral1000
       : _isHovering
-          ? OptimusColors.basic700
-          : OptimusColors.basic500;
+          ? OptimusColors.neutral700
+          : OptimusColors.neutral500;
 }
