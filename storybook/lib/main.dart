@@ -8,6 +8,7 @@ import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_button.dart';
 import 'package:storybook/stories/icon_list.dart';
 import 'package:storybook/stories/input.dart';
+import 'package:storybook/stories/nonmodal_wrapper.dart';
 import 'package:storybook/stories/number_picker.dart';
 import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Storybook(
         children: [
+          nonModalWrapper,
           button,
           iconButton,
           selectStory,
