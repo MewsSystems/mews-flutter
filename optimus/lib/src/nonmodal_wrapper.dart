@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-typedef PositionedToastBuilder = Widget Function(
-    BuildContext context, Widget child);
-
 class NonModalWrapper extends InheritedWidget {
   NonModalWrapper({
     Key key,
@@ -15,17 +12,13 @@ class NonModalWrapper extends InheritedWidget {
 
   OverlayEntry _entry;
 
-  void show({
-    @required Widget child,
-    PositionedToastBuilder positionedToastBuilder,
-  }) {
+  void show({@required Widget child}) {
+    if (_entry != null) return;
     final content = _Content(child: child);
 
     _entry = OverlayEntry(builder: (context) {
-      if (positionedToastBuilder != null) {
-        return positionedToastBuilder(context, content);
-      }
-      return Positioned(bottom: 50, left: 24, right: 24, child: content);
+      // return Positioned(top: 50, left: 24, right: 24, child: content);
+      return content;
     });
 
     Overlay.of(context).insert(_entry);
