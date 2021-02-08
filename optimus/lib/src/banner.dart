@@ -16,14 +16,15 @@ enum OptimusBannerVariant {
   warning,
 
   /// To inform a user of potential danger or that something has gone wrong.
-  error
+  error,
 }
 
 /// Contextual banners display a notification relevant to a specific
 /// part of the system.
+///
 /// They appear at the top of the page or section they apply to, but always
-/// below the page header or navigation.
-/// They don't cover content, but push it down.
+/// below the page header or navigation. They don't cover content, but push it
+/// down.
 ///
 /// At its most basic, the component is comprised of a background
 /// layer (colored according to the meaning of the message) and text;
@@ -37,15 +38,35 @@ class OptimusBanner extends StatelessWidget {
     this.variant = OptimusBannerVariant.primary,
     this.hasIcon = false,
     this.description,
-    this.dismissible = false,
+    this.isDismissible = false,
     this.onDismiss,
   }) : super(key: key);
 
+  /// The title of the banner.
+  ///
+  /// Typically a [Text] widget.
   final Widget title;
+
+  /// Variant of the banner which determines background color and icon
+  /// (if [hasIcon] == true).
   final OptimusBannerVariant variant;
+
+  /// If `true` the icon will be displayed. Which icon is used depends on
+  /// [variant].
   final bool hasIcon;
+
+  /// Banner's description rendered as a second line.
+  ///
+  /// Typically a [Text] widget.
   final Widget description;
-  final bool dismissible;
+
+  /// If `true` close button will be rendered as well.
+  ///
+  /// It's your responsibility to process the button press with
+  /// [onDismiss] callback parameter.
+  final bool isDismissible;
+
+  /// Called when close button is pressed (if [isDismissible] == true).
   final VoidCallback onDismiss;
 
   @override
@@ -85,7 +106,7 @@ class OptimusBanner extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (dismissible)
+                        if (isDismissible)
                           OptimusIconButton(
                             onPressed: () => onDismiss,
                             icon:
@@ -173,15 +194,15 @@ enum OptimusWideBannerVariant {
   warning,
 
   /// Used to inform users that there is a serious problem with the system.
-  danger
+  danger,
 }
 
 /// System-wide banners display critical notifications about the state of
 /// the entire system.
+///
 /// They are placed at the top of the screen, above all content
-/// (including navigation).
-/// Unlike contextual banners, system-wide banners remain in the same place
-/// on all pages and cannot be dismissed.
+/// (including navigation). Unlike contextual banners, system-wide banners
+/// remain in the same place on all pages and cannot be dismissed.
 ///
 /// System-wide banners display messages that are critical to the user
 /// and affect how the system or user operates.
@@ -194,14 +215,17 @@ class OptimusWideBanner extends StatelessWidget {
     Key key,
     @required this.content,
     this.variant = OptimusWideBannerVariant.informative,
-    this.link,
-    this.onLinkTap,
   }) : super(key: key);
 
+  /// Content of the banner.
+  ///
+  /// Typically a [Text] widget.
   final Widget content;
+
+  /// Variant of the banner.
+  ///
+  /// Controls background color.
   final OptimusWideBannerVariant variant;
-  final Widget link;
-  final VoidCallback onLinkTap;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -215,17 +239,6 @@ class OptimusWideBanner extends StatelessWidget {
                 child: Icon(OptimusIcons.info, color: _color),
               ),
               DefaultTextStyle.merge(child: content, style: _contentTextStyle),
-              if (link != null)
-                GestureDetector(
-                  onTap: () => onLinkTap,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: spacing50),
-                    child: DefaultTextStyle.merge(
-                      child: link,
-                      style: _linkTextStyle,
-                    ),
-                  ),
-                ),
             ],
           ),
         ),
@@ -233,9 +246,6 @@ class OptimusWideBanner extends StatelessWidget {
 
   TextStyle get _contentTextStyle =>
       preset200s.merge(TextStyle(color: _color, height: 1));
-
-  TextStyle get _linkTextStyle => preset200s.merge(TextStyle(
-      decoration: TextDecoration.underline, color: _color, height: 1));
 
   // ignore: missing_return
   Color get _backgroundColor {

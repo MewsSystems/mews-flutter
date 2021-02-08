@@ -14,7 +14,6 @@ final Story wideBannerStory = Story(
                 padding: const EdgeInsets.all(8),
                 child: OptimusWideBanner(
                   content: Text(k.text('Content', initial: 'Info Text.')),
-                  link: Text(k.text('Link', initial: 'Link')),
                   variant: v,
                 ),
               ),

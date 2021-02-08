@@ -19,7 +19,7 @@ final Story bannerStory = Story(
                     description:
                         description.isNotEmpty ? Text(description) : null,
                     hasIcon: k.boolean('Show icon'),
-                    dismissible: k.boolean('Dismissible'),
+                    isDismissible: k.boolean('Dismissible'),
                     variant: v,
                   ),
                 ),
