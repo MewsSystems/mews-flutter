@@ -7,12 +7,12 @@ final Story nonModalWrapper = Story(
   name: 'Non Modal Wrapper',
   builder: (context, k) => NonModalWrapper(
     context: context,
-    child: const _ButtonWithDialog(),
+    child: const _Content(),
   ),
 );
 
-class _ButtonWithDialog extends StatelessWidget {
-  const _ButtonWithDialog({
+class _Content extends StatelessWidget {
+  const _Content({
     Key key,
   }) : super(key: key);
 
