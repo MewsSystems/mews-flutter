@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story nonModalWrapper = Story(
-  name: 'nonModalWrapper',
+  name: 'Non Modal Wrapper',
   builder: (context, k) => NonModalWrapper(
     context: context,
     child: const _ButtonWithDialog(),
@@ -20,12 +20,14 @@ class _ButtonWithDialog extends StatelessWidget {
   Widget build(BuildContext context) => OptimusButton(
         onPressed: () => {
           NonModalWrapper.of(context).show(
-            child: OptimusButton(
-              onPressed: () => {NonModalWrapper.of(context).remove()},
-              child: const Text('HIDE'),
+            child: OptimusCard(
+              child: OptimusButton(
+                onPressed: NonModalWrapper.of(context).hide,
+                child: const Text('hide'),
+              ),
             ),
           ),
         },
-        child: const Text('SHOW'),
+        child: const Text('show'),
       );
 }

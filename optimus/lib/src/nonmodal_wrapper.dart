@@ -14,17 +14,11 @@ class NonModalWrapper extends InheritedWidget {
 
   void show({@required Widget child}) {
     if (_entry != null) return;
-    final content = _Content(child: child);
-
-    _entry = OverlayEntry(builder: (context) {
-      // return Positioned(top: 50, left: 24, right: 24, child: content);
-      return content;
-    });
-
+    _entry = OverlayEntry(builder: (context) => _Content(child: child));
     Overlay.of(context).insert(_entry);
   }
 
-  void remove() {
+  void hide() {
     if (_entry != null) _entry.remove();
     _entry = null;
   }
