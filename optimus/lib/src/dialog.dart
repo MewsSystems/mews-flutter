@@ -37,6 +37,11 @@ enum OptimusDialogType {
   destructive,
 }
 
+enum OptimusDialogPosition {
+  center,
+  corner,
+}
+
 class OptimusDialogAction {
   const OptimusDialogAction({
     @required this.title,
@@ -84,10 +89,12 @@ class OptimusDialog extends StatelessWidget {
     this.type = OptimusDialogType.common,
     this.close,
     this.isDismissible,
+    this.position = OptimusDialogPosition.center,
   }) : super(key: key);
 
   final VoidCallback close;
   final bool isDismissible;
+  final OptimusDialogPosition position;
 
   /// Serves as an identification of the action in the dialog. Can be
   /// a sentence, question, or just a subject.
@@ -150,11 +157,22 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
+  // ignore: missing_return
+  Alignment get _alignment {
+    switch (position) {
+      case OptimusDialogPosition.center:
+        return Alignment.center;
+      case OptimusDialogPosition.corner:
+        return Alignment.bottomRight;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final autoSize = _autoSize(context);
 
-    return Center(
+    return Align(
+      alignment: _alignment,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: spacing300,

@@ -2,18 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
-typedef ShowNonModal = void Function({
-  @required Widget title,
-  @required Widget content,
-  @required bool isDismissible,
-});
-
-typedef HideNonModal = void Function();
-
 abstract class NonModalController {
-  ShowNonModal get show;
+  void show({
+    @required Widget title,
+    @required Widget content,
+    bool isDismissible = true,
+    List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.regular,
+  });
 
-  HideNonModal get hide;
+  void hide();
 }
 
 class NonModalWrapper extends StatefulWidget {
@@ -21,65 +19,67 @@ class NonModalWrapper extends StatefulWidget {
 
   final Widget child;
 
-  static NonModalController of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<NonModalWrapperData>();
+  static NonModalController of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<NonModalWrapperData>()
+      .controller;
 
   @override
   _NonModalWrapperState createState() => _NonModalWrapperState();
 }
 
-class _NonModalWrapperState extends State<NonModalWrapper> {
+class _NonModalWrapperState extends State<NonModalWrapper>
+    implements NonModalController {
   OverlayEntry _entry;
 
-  void _show({
+  @override
+  void show({
     @required Widget title,
     @required Widget content,
-    @required bool isDismissible,
+    bool isDismissible = true,
+    List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.regular,
   }) {
-    _hide();
+    hide();
     _entry = OverlayEntry(
         builder: (context) => OptimusDialog(
               title: title,
               content: content,
-              close: _hide,
+              close: hide,
               isDismissible: isDismissible,
+              position: OptimusDialogPosition.corner,
+              actions: actions,
+              size: size,
             ));
     Overlay.of(context).insert(_entry);
   }
 
-  void _hide() {
+  @override
+  void hide() {
     _entry?.remove();
     _entry = null;
   }
 
   @override
   void deactivate() {
-    _hide();
+    hide();
     super.deactivate();
   }
 
   @override
   Widget build(BuildContext context) => NonModalWrapperData(
-        show: _show,
-        hide: _hide,
+        controller: this,
         child: widget.child,
       );
 }
 
-class NonModalWrapperData extends InheritedWidget
-    implements NonModalController {
+class NonModalWrapperData extends InheritedWidget {
   const NonModalWrapperData({
     Key key,
-    @required this.show,
-    @required this.hide,
+    @required this.controller,
     @required Widget child,
   }) : super(key: key, child: child);
 
-  @override
-  final ShowNonModal show;
-
-  @override
-  final HideNonModal hide;
+  final NonModalController controller;
 
   @override
   bool updateShouldNotify(NonModalWrapperData oldWidget) => false;

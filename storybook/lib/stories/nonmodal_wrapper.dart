@@ -22,6 +22,10 @@ class _Content extends StatelessWidget {
             title: const Text('Title'),
             content: const Text('Content'),
             isDismissible: true,
+            actions: [
+              const OptimusDialogAction(title: Text('OK')),
+            ],
+            size: OptimusDialogSize.small,
           ),
         },
         child: const Text('show'),
