@@ -82,7 +82,12 @@ class OptimusDialog extends StatelessWidget {
     this.actions = const [],
     this.size = OptimusDialogSize.regular,
     this.type = OptimusDialogType.common,
+    this.close,
+    this.isDismissible,
   }) : super(key: key);
+
+  final VoidCallback close;
+  final bool isDismissible;
 
   /// Serves as an identification of the action in the dialog. Can be
   /// a sentence, question, or just a subject.
@@ -168,7 +173,13 @@ class OptimusDialog extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(spacing200),
-                    child: _Title(context: context, title: title),
+                    child: _Title(
+                      context: context,
+                      title: title,
+                      close: close ?? () => Navigator.pop(context),
+                      isDismissible: isDismissible ??
+                          ModalRoute.of(context)?.barrierDismissible,
+                    ),
                   ),
                   _divider,
                   DefaultTextStyle.merge(
@@ -184,6 +195,7 @@ class OptimusDialog extends StatelessWidget {
                       actions: actions,
                       type: type,
                       dialogSize: autoSize,
+                      close: close ?? () => Navigator.pop(context),
                     )
                 ],
               ),
@@ -240,17 +252,21 @@ class _Title extends StatelessWidget {
     Key key,
     @required this.context,
     @required this.title,
+    @required this.close,
+    @required this.isDismissible,
   }) : super(key: key);
 
   final BuildContext context;
   final Widget title;
+  final VoidCallback close;
+  final bool isDismissible;
 
   @override
   Widget build(BuildContext context) => Row(
         children: [
           OptimusSubsectionTitle(child: title),
           const Spacer(),
-          if (ModalRoute.of(context)?.barrierDismissible)
+          if (isDismissible)
             // TODO(KB): Replace with OptimusIconButton when ready
             // https://mews.myjetbrains.com/youtrack/issue/RND-47422
             SizedBox(
@@ -259,7 +275,7 @@ class _Title extends StatelessWidget {
               child: IconButton(
                 splashRadius: 24,
                 padding: EdgeInsets.zero,
-                onPressed: () => Navigator.pop(context),
+                onPressed: close,
                 icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
               ),
             ),
@@ -273,11 +289,13 @@ class _Actions extends StatelessWidget {
     @required this.actions,
     @required this.dialogSize,
     @required this.type,
+    @required this.close,
   }) : super(key: key);
 
   final List<OptimusDialogAction> actions;
   final OptimusDialogSize dialogSize;
   final OptimusDialogType type;
+  final VoidCallback close;
 
   bool get _isVertical => dialogSize == OptimusDialogSize.small;
 
@@ -291,7 +309,7 @@ class _Actions extends StatelessWidget {
               left: _isVertical ? 0 : spacing200,
             ),
             child: OptimusButton(
-              onPressed: e.onPressed ?? () => Navigator.pop(context),
+              onPressed: e.onPressed ?? close,
               minWidth: _isVertical ? double.infinity : null,
               variant: _getVariant(i),
               key: e.key,

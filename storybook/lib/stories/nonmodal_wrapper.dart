@@ -5,9 +5,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story nonModalWrapper = Story(
   name: 'Non Modal Wrapper',
-  builder: (context, k) => NonModalWrapper(
-    context: context,
-    child: const _Content(),
+  builder: (context, k) => const NonModalWrapper(
+    child: _Content(),
   ),
 );
 
@@ -20,12 +19,9 @@ class _Content extends StatelessWidget {
   Widget build(BuildContext context) => OptimusButton(
         onPressed: () => {
           NonModalWrapper.of(context).show(
-            child: OptimusCard(
-              child: OptimusButton(
-                onPressed: NonModalWrapper.of(context).hide,
-                child: const Text('hide'),
-              ),
-            ),
+            title: const Text('Title'),
+            content: const Text('Content'),
+            isDismissible: true,
           ),
         },
         child: const Text('show'),

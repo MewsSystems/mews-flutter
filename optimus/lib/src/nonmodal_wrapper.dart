@@ -1,48 +1,86 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:optimus/optimus.dart';
 
-class NonModalWrapper extends InheritedWidget {
-  NonModalWrapper({
-    Key key,
-    @required this.context,
-    @required Widget child,
-  }) : super(key: key, child: child);
+typedef ShowNonModal = void Function({
+  @required Widget title,
+  @required Widget content,
+  @required bool isDismissible,
+});
 
-  final BuildContext context;
+typedef HideNonModal = void Function();
 
+abstract class NonModalController {
+  ShowNonModal get show;
+
+  HideNonModal get hide;
+}
+
+class NonModalWrapper extends StatefulWidget {
+  const NonModalWrapper({Key key, @required this.child}) : super(key: key);
+
+  final Widget child;
+
+  static NonModalController of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<NonModalWrapperData>();
+
+  @override
+  _NonModalWrapperState createState() => _NonModalWrapperState();
+}
+
+class _NonModalWrapperState extends State<NonModalWrapper> {
   OverlayEntry _entry;
 
-  void show({@required Widget child}) {
-    if (_entry != null) return;
-    _entry = OverlayEntry(builder: (context) => _Content(child: child));
+  void _show({
+    @required Widget title,
+    @required Widget content,
+    @required bool isDismissible,
+  }) {
+    _hide();
+    _entry = OverlayEntry(
+        builder: (context) => OptimusDialog(
+              title: title,
+              content: content,
+              close: _hide,
+              isDismissible: isDismissible,
+            ));
     Overlay.of(context).insert(_entry);
   }
 
-  void hide() {
-    if (_entry != null) _entry.remove();
+  void _hide() {
+    _entry?.remove();
     _entry = null;
   }
 
   @override
-  bool updateShouldNotify(NonModalWrapper oldWidget) => false;
-
-  static NonModalWrapper of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<NonModalWrapper>();
-}
-
-class _Content extends StatelessWidget {
-  const _Content({
-    this.child,
-    Key key,
-  }) : super(key: key);
-
-  final Widget child;
+  void deactivate() {
+    _hide();
+    super.deactivate();
+  }
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: Material(
-          color: Colors.transparent,
-          child: child,
-        ),
+  Widget build(BuildContext context) => NonModalWrapperData(
+        show: _show,
+        hide: _hide,
+        child: widget.child,
       );
+}
+
+class NonModalWrapperData extends InheritedWidget
+    implements NonModalController {
+  const NonModalWrapperData({
+    Key key,
+    @required this.show,
+    @required this.hide,
+    @required Widget child,
+  }) : super(key: key, child: child);
+
+  @override
+  final ShowNonModal show;
+
+  @override
+  final HideNonModal hide;
+
+  @override
+  bool updateShouldNotify(NonModalWrapperData oldWidget) => false;
 }
