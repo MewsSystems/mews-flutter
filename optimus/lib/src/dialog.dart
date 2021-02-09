@@ -119,7 +119,6 @@ class OptimusDialog extends StatelessWidget {
     ContentWrapperBuilder contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
-    OptimusDialogType type = OptimusDialogType.common,
     bool isDismissible,
     @required VoidCallback close,
   }) : this._(
@@ -128,8 +127,9 @@ class OptimusDialog extends StatelessWidget {
           content: content,
           contentWrapperBuilder: contentWrapperBuilder,
           actions: actions,
-          size: size,
-          type: type,
+          size: size == OptimusDialogSize.large
+              ? OptimusDialogSize.regular
+              : size,
           isDismissible: isDismissible,
           close: close,
           position: OptimusDialogPosition.corner,
@@ -201,7 +201,30 @@ class OptimusDialog extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Alignment get _alignment {
+  Alignment _alignment(BuildContext context) {
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.extraSmall:
+      case Breakpoint.small:
+        return _smallScreenAlignment;
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return _largeScreenAlignment;
+    }
+  }
+
+  // ignore: unused_element
+  Alignment get _smallScreenAlignment {
+    switch (position) {
+      case OptimusDialogPosition.center:
+        return Alignment.center;
+      case OptimusDialogPosition.corner:
+        return Alignment.topCenter;
+    }
+  }
+
+  // ignore: missing_return
+  Alignment get _largeScreenAlignment {
     switch (position) {
       case OptimusDialogPosition.center:
         return Alignment.center;
@@ -214,51 +237,50 @@ class OptimusDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final autoSize = _autoSize(context);
 
-    return Align(
-      alignment: _alignment,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: spacing300,
-          vertical: spacing300,
-        ),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
-          child: OptimusCard(
-            variant: OptimusBasicCardVariant.overlay,
-            padding: OptimusCardSpacing.spacing0,
-            child: Material(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(spacing200),
-                    child: _Title(
+    return SafeArea(
+      child: Align(
+        alignment: _alignment(context),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: spacing300,
+            vertical: spacing300,
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
+            child: OptimusCard(
+              variant: OptimusBasicCardVariant.overlay,
+              padding: OptimusCardSpacing.spacing0,
+              child: Material(
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    _Title(
                       context: context,
                       title: title,
                       close: close ?? () => Navigator.pop(context),
                       isDismissible: isDismissible ??
                           ModalRoute.of(context)?.barrierDismissible,
                     ),
-                  ),
-                  _divider,
-                  DefaultTextStyle.merge(
-                    style: preset300r,
-                    child: _Content(
-                      content: content,
-                      contentWrapperBuilder: contentWrapperBuilder,
+                    _divider,
+                    DefaultTextStyle.merge(
+                      style: preset300r,
+                      child: _Content(
+                        content: content,
+                        contentWrapperBuilder: contentWrapperBuilder,
+                      ),
                     ),
-                  ),
-                  if (actions.isNotEmpty) _divider,
-                  if (actions.isNotEmpty)
-                    _Actions(
-                      actions: actions,
-                      type: type,
-                      dialogSize: autoSize,
-                      close: close ?? () => Navigator.pop(context),
-                    )
-                ],
+                    if (actions.isNotEmpty) _divider,
+                    if (actions.isNotEmpty)
+                      _Actions(
+                        actions: actions,
+                        type: type,
+                        dialogSize: autoSize,
+                        close: close ?? () => Navigator.pop(context),
+                      )
+                  ],
+                ),
               ),
             ),
           ),
@@ -325,20 +347,16 @@ class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
         children: [
-          OptimusSubsectionTitle(child: title),
+          Padding(
+            padding: const EdgeInsets.all(spacing200),
+            child: OptimusSubsectionTitle(child: title),
+          ),
           const Spacer(),
           if (isDismissible)
-            // TODO(KB): Replace with OptimusIconButton when ready
-            // https://mews.myjetbrains.com/youtrack/issue/RND-47422
-            SizedBox(
-              width: 24,
-              height: 24,
-              child: IconButton(
-                splashRadius: 24,
-                padding: EdgeInsets.zero,
-                onPressed: close,
-                icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-              ),
+            OptimusIconButton(
+              icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
+              type: OptimusIconButtonType.bare,
+              onPressed: close,
             ),
         ],
       );
