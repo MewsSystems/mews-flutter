@@ -165,7 +165,7 @@ Future<void> _showThreeActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog(
+      builder: (context) => OptimusDialog.modal(
         title: const Text('Dialog title'),
         content: content,
         size: size,
@@ -188,7 +188,7 @@ Future<void> _showTwoActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog(
+      builder: (context) => OptimusDialog.modal(
         title: const Text('Dialog title'),
         content: content,
         size: size,
@@ -210,7 +210,7 @@ Future<void> _showOneActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog(
+      builder: (context) => OptimusDialog.modal(
         title: const Text('Dialog title'),
         content: content,
         size: size,
@@ -228,7 +228,7 @@ Future<void> _showCustomContentDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog(
+      builder: (context) => OptimusDialog.modal(
         title: const Text('Dialog title'),
         content: ListView.builder(
           itemCount: _iterable.length,

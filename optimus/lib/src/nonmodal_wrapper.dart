@@ -41,12 +41,11 @@ class _NonModalWrapperState extends State<NonModalWrapper>
   }) {
     hide();
     _entry = OverlayEntry(
-        builder: (context) => OptimusDialog(
+        builder: (context) => OptimusDialog.nonModal(
               title: title,
               content: content,
               close: hide,
               isDismissible: isDismissible,
-              position: OptimusDialogPosition.corner,
               actions: actions,
               size: size,
             ));

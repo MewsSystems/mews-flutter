@@ -79,7 +79,7 @@ Future<T> showOptimusDialog<T>({
 /// A dialog is an overlay on top of a main page which lets a user perform
 /// a short term task without losing the context of the underlying page.
 class OptimusDialog extends StatelessWidget {
-  const OptimusDialog({
+  const OptimusDialog._({
     Key key,
     @required this.title,
     @required this.content,
@@ -91,6 +91,49 @@ class OptimusDialog extends StatelessWidget {
     this.isDismissible,
     this.position = OptimusDialogPosition.center,
   }) : super(key: key);
+
+  const OptimusDialog.modal({
+    Key key,
+    @required Widget title,
+    @required Widget content,
+    ContentWrapperBuilder contentWrapperBuilder,
+    List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.regular,
+    OptimusDialogType type = OptimusDialogType.common,
+    bool isDismissible,
+  }) : this._(
+          key: key,
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size,
+          type: type,
+          isDismissible: isDismissible,
+        );
+
+  const OptimusDialog.nonModal({
+    Key key,
+    @required Widget title,
+    @required Widget content,
+    ContentWrapperBuilder contentWrapperBuilder,
+    List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.regular,
+    OptimusDialogType type = OptimusDialogType.common,
+    bool isDismissible,
+    @required VoidCallback close,
+  }) : this._(
+          key: key,
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size,
+          type: type,
+          isDismissible: isDismissible,
+          close: close,
+          position: OptimusDialogPosition.corner,
+        );
 
   final VoidCallback close;
   final bool isDismissible;
