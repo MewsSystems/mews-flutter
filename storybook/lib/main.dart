@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storybook/stories/banner.dart';
 import 'package:storybook/stories/button.dart';
 import 'package:storybook/stories/card.dart';
 import 'package:storybook/stories/checkbox.dart';
@@ -15,6 +16,7 @@ import 'package:storybook/stories/search_field.dart';
 import 'package:storybook/stories/select.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/tags.dart';
+import 'package:storybook/stories/wide_banner.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 void main() => runApp(const MyApp());
@@ -35,6 +37,8 @@ class MyApp extends StatelessWidget {
           numberPickerStory,
           spacingStory,
           tagStory,
+          bannerStory,
+          wideBannerStory,
           interactiveTagStory,
           iconStory,
           supplementaryIconStory,
