@@ -3,26 +3,34 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
+import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/search/search_field_dropdown.dart';
+import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
+
+enum OptimusDropdownButtonType {
+  defaultButton,
+  primary,
+  text,
+}
 
 class OptimusDropDownButton<T> extends StatefulWidget {
   const OptimusDropDownButton({
     Key key,
     this.label,
     @required this.items,
-    this.isEnabled = true,
+    this.onChanged,
     this.size = OptimusWidgetSize.large,
-    @required this.onChanged,
+    this.type = OptimusDropdownButtonType.defaultButton,
   }) : super(key: key);
 
-  // todo: wrap with Merge, change to Widget
-  final String label;
+  final Widget label;
   final List<OptimusDropdownTile<T>> items;
-  final bool isEnabled;
-  final OptimusWidgetSize size;
   final ValueSetter<T> onChanged;
+  final OptimusWidgetSize size;
+  final OptimusDropdownButtonType type;
 
   @override
   _OptimusDropDownButtonState createState() => _OptimusDropDownButtonState<T>();
@@ -30,6 +38,7 @@ class OptimusDropDownButton<T> extends StatefulWidget {
 
 class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   final _selectFieldKey = GlobalKey();
+  bool _isHovering = false;
 
   OverlayEntry _overlayEntry;
   final _node = FocusNode();
@@ -38,6 +47,10 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   void initState() {
     super.initState();
     _node.addListener(_onFocusChanged);
+  }
+
+  void _onHoverChanged(bool isHovering) {
+    setState(() => _isHovering = isHovering);
   }
 
   void _onFocusChanged() =>
@@ -54,18 +67,34 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   @override
   Widget build(BuildContext context) => WillPopScope(
         onWillPop: _handleOnBackPressed,
-        child: GestureDetector(
-          onTap: () => widget.isEnabled ? _node.requestFocus() : null,
-          child: Focus(
-            focusNode: _node,
-            child: Container(
-              key: _selectFieldKey,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(widget.label),
-                  _icon,
-                ],
+        child: Enabled(
+          isEnabled: _isEnabled,
+          child: MouseRegion(
+            onEnter: (_) => _onHoverChanged(true),
+            onExit: (_) => _onHoverChanged(false),
+            child: GestureDetector(
+              onTap: _node.requestFocus,
+              child: Focus(
+                focusNode: _node,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  height: widget.size.value,
+                  key: _selectFieldKey,
+                  decoration: BoxDecoration(
+                    color: _color,
+                    borderRadius: const BorderRadius.all(borderRadius50),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DefaultTextStyle.merge(
+                        style: _labelStyle,
+                        child: widget.label,
+                      ),
+                      _icon,
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -111,6 +140,65 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
         ),
       );
 
+  bool get _isEnabled => widget.onChanged != null;
+
+  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
+      ? preset200s.copyWith(color: _textColor, height: 1.3)
+      : preset300s.copyWith(color: _textColor, height: 1.3);
+
+  // ignore: missing_return
+  Color get _textColor {
+    switch (widget.type) {
+      case OptimusDropdownButtonType.primary:
+        return OptimusColors.neutral0;
+      default:
+        return OptimusColors.neutral500;
+    }
+  }
+
+  Color get _color => _node.hasFocus
+      ? _highLightColor
+      : _isHovering
+          ? _hoverColor
+          : _normalColor;
+
+  // ignore: missing_return
+  Color get _normalColor {
+    switch (widget.type) {
+      case OptimusDropdownButtonType.defaultButton:
+        return OptimusColors.neutral50;
+      case OptimusDropdownButtonType.primary:
+        return OptimusColors.primary500;
+      case OptimusDropdownButtonType.text:
+        return Colors.transparent;
+    }
+  }
+
+  // ignore: missing_return
+  Color get _hoverColor {
+    switch (widget.type) {
+      case OptimusDropdownButtonType.defaultButton:
+        return OptimusColors.neutral100;
+      case OptimusDropdownButtonType.primary:
+        return OptimusColors.primary700;
+      case OptimusDropdownButtonType.text:
+        return OptimusColors.neutral500t8;
+    }
+  }
+
+  // ignore: missing_return
+  Color get _highLightColor {
+    switch (widget.type) {
+      case OptimusDropdownButtonType.defaultButton:
+        return OptimusColors.neutral200;
+      case OptimusDropdownButtonType.primary:
+        return OptimusColors.primary900;
+      case OptimusDropdownButtonType.text:
+        return OptimusColors.neutral500t16;
+    }
+  }
+
+  // todo: change to Optimus Icon
   Icon get _icon => Icon(
         _node.hasFocus
             ? OptimusIcons.chevron_up_1
