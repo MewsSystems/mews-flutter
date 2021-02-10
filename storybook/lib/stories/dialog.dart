@@ -165,17 +165,15 @@ Future<void> _showThreeActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog.modal(
-        title: const Text('Dialog title'),
-        content: content,
-        size: size,
-        type: type,
-        actions: const [
-          OptimusDialogAction(title: Text('Next')),
-          OptimusDialogAction(title: Text('Back')),
-          OptimusDialogAction(title: Text('Cancel')),
-        ],
-      ),
+      title: const Text('Dialog title'),
+      content: content,
+      size: size,
+      type: type,
+      actions: const [
+        OptimusDialogAction(title: Text('Next')),
+        OptimusDialogAction(title: Text('Back')),
+        OptimusDialogAction(title: Text('Cancel')),
+      ],
     );
 
 Future<void> _showTwoActionDialog({
@@ -188,16 +186,14 @@ Future<void> _showTwoActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog.modal(
-        title: const Text('Dialog title'),
-        content: content,
-        size: size,
-        type: type,
-        actions: const [
-          OptimusDialogAction(title: Text('Submit')),
-          OptimusDialogAction(title: Text('Cancel')),
-        ],
-      ),
+      title: const Text('Dialog title'),
+      content: content,
+      size: size,
+      type: type,
+      actions: const [
+        OptimusDialogAction(title: Text('Submit')),
+        OptimusDialogAction(title: Text('Cancel')),
+      ],
     );
 
 Future<void> _showOneActionDialog({
@@ -210,13 +206,11 @@ Future<void> _showOneActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog.modal(
-        title: const Text('Dialog title'),
-        content: content,
-        size: size,
-        type: type,
-        actions: const [OptimusDialogAction(title: Text('Close'))],
-      ),
+      title: const Text('Dialog title'),
+      content: content,
+      size: size,
+      type: type,
+      actions: const [OptimusDialogAction(title: Text('Close'))],
     );
 
 Future<void> _showCustomContentDialog({
@@ -228,18 +222,16 @@ Future<void> _showCustomContentDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      builder: (context) => OptimusDialog.modal(
-        title: const Text('Dialog title'),
-        content: ListView.builder(
-          itemCount: _iterable.length,
-          itemBuilder: (_, index) => ListTile(
-            title: Text('List tile #${_iterable.toList()[index]}'),
-          ),
+      title: const Text('Dialog title'),
+      content: ListView.builder(
+        itemCount: _iterable.length,
+        itemBuilder: (_, index) => ListTile(
+          title: Text('List tile #${_iterable.toList()[index]}'),
         ),
-        contentWrapperBuilder: (_, child) => child,
-        size: size,
-        type: type,
       ),
+      contentWrapperBuilder: (_, child) => child,
+      size: size,
+      type: type,
     );
 
 Widget get _content => Container(

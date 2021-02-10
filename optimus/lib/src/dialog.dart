@@ -37,8 +37,15 @@ enum OptimusDialogType {
   destructive,
 }
 
+/// The position of a dialog is determined by functionality.
 enum OptimusDialogPosition {
+  /// Centered dialogs direct user attention to their content in order to make
+  /// users focus on a single task within them. They are used in combination
+  /// with modal behavior.
   center,
+
+  /// Corner dialogs usually deliver non-vital messages to users. These dialogs
+  /// are non-modal and keep their position when scrolling a page.
   corner,
 }
 
@@ -58,14 +65,24 @@ class OptimusDialogAction {
 /// by clicking on background layer. Otherwise, only by buttons.
 Future<T> showOptimusDialog<T>({
   @required BuildContext context,
-  @required WidgetBuilder builder,
+  @required Widget title,
+  @required Widget content,
+  ContentWrapperBuilder contentWrapperBuilder,
+  List<OptimusDialogAction> actions = const [],
+  OptimusDialogSize size = OptimusDialogSize.regular,
+  OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
 }) =>
     showGeneralDialog(
       context: context,
       pageBuilder: (buildContext, animation, secondaryAnimation) => SafeArea(
-        child: Builder(
-          builder: (BuildContext context) => Builder(builder: builder),
+        child: OptimusDialog.modal(
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size,
+          type: type,
         ),
       ),
       barrierDismissible: isDismissible,
