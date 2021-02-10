@@ -11,11 +11,19 @@ import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
 
 enum OptimusDropdownButtonType {
+  /// The default option. Use this variant for the majority of cases.
   defaultButton,
+
+  /// Use if you want to grab the user’s attention and group together main
+  /// actions that don’t have any clear priority.
   primary,
+
+  /// Use in non-crucial situations, e.g., to group “more” actions together.
   text,
 }
 
+/// Dropdown buttons trigger a dropdown menu with more actions related to the
+/// context of the button.
 class OptimusDropDownButton<T> extends StatefulWidget {
   const OptimusDropDownButton({
     Key key,
