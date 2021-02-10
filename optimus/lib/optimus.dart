@@ -20,6 +20,7 @@ export 'src/colors/colors.dart';
 export 'src/common/content.dart';
 export 'src/date_time_field.dart';
 export 'src/dialog.dart';
+export 'src/dropdown_button.dart';
 export 'src/expansion/expansion_tile.dart';
 export 'src/form/date_time_form_field.dart';
 export 'src/form/input_form_field.dart';
