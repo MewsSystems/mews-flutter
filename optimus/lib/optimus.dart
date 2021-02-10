@@ -19,6 +19,8 @@ export 'src/colors/color_options.dart';
 export 'src/colors/colors.dart';
 export 'src/common/content.dart';
 export 'src/date_time_field.dart';
+export 'src/dialogs/dialog.dart';
+export 'src/dialogs/non_modal_wrapper.dart';
 export 'src/dialog.dart';
 export 'src/dropdown_button.dart';
 export 'src/expansion/expansion_tile.dart';

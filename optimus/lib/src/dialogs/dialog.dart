@@ -37,6 +37,18 @@ enum OptimusDialogType {
   destructive,
 }
 
+/// The position of a dialog is determined by functionality.
+enum OptimusDialogPosition {
+  /// Centered dialogs direct user attention to their content in order to make
+  /// users focus on a single task within them. They are used in combination
+  /// with modal behavior.
+  center,
+
+  /// Corner dialogs usually deliver non-vital messages to users. These dialogs
+  /// are non-modal and keep their position when scrolling a page.
+  corner,
+}
+
 class OptimusDialogAction {
   const OptimusDialogAction({
     @required this.title,
@@ -53,14 +65,24 @@ class OptimusDialogAction {
 /// by clicking on background layer. Otherwise, only by buttons.
 Future<T> showOptimusDialog<T>({
   @required BuildContext context,
-  @required WidgetBuilder builder,
+  @required Widget title,
+  @required Widget content,
+  ContentWrapperBuilder contentWrapperBuilder,
+  List<OptimusDialogAction> actions = const [],
+  OptimusDialogSize size = OptimusDialogSize.regular,
+  OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
 }) =>
     showGeneralDialog(
       context: context,
       pageBuilder: (buildContext, animation, secondaryAnimation) => SafeArea(
-        child: Builder(
-          builder: (BuildContext context) => Builder(builder: builder),
+        child: OptimusDialog.modal(
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size,
+          type: type,
         ),
       ),
       barrierDismissible: isDismissible,
@@ -74,7 +96,7 @@ Future<T> showOptimusDialog<T>({
 /// A dialog is an overlay on top of a main page which lets a user perform
 /// a short term task without losing the context of the underlying page.
 class OptimusDialog extends StatelessWidget {
-  const OptimusDialog({
+  const OptimusDialog._({
     Key key,
     @required this.title,
     @required this.content,
@@ -82,7 +104,57 @@ class OptimusDialog extends StatelessWidget {
     this.actions = const [],
     this.size = OptimusDialogSize.regular,
     this.type = OptimusDialogType.common,
+    this.close,
+    this.isDismissible,
+    this.position = OptimusDialogPosition.center,
   }) : super(key: key);
+
+  const OptimusDialog.modal({
+    Key key,
+    @required Widget title,
+    @required Widget content,
+    ContentWrapperBuilder contentWrapperBuilder,
+    List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.regular,
+    OptimusDialogType type = OptimusDialogType.common,
+    bool isDismissible,
+  }) : this._(
+          key: key,
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size,
+          type: type,
+          isDismissible: isDismissible,
+        );
+
+  const OptimusDialog.nonModal({
+    Key key,
+    @required Widget title,
+    @required Widget content,
+    ContentWrapperBuilder contentWrapperBuilder,
+    List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.regular,
+    bool isDismissible,
+    @required VoidCallback close,
+  }) : this._(
+          key: key,
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size == OptimusDialogSize.large
+              ? OptimusDialogSize.regular
+              : size,
+          isDismissible: isDismissible,
+          close: close,
+          position: OptimusDialogPosition.corner,
+        );
+
+  final VoidCallback close;
+  final bool isDismissible;
+  final OptimusDialogPosition position;
 
   /// Serves as an identification of the action in the dialog. Can be
   /// a sentence, question, or just a subject.
@@ -145,47 +217,87 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
+  // ignore: missing_return
+  Alignment _alignment(BuildContext context) {
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.extraSmall:
+      case Breakpoint.small:
+        return _smallScreenAlignment;
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return _largeScreenAlignment;
+    }
+  }
+
+  // ignore: unused_element
+  Alignment get _smallScreenAlignment {
+    switch (position) {
+      case OptimusDialogPosition.center:
+        return Alignment.center;
+      case OptimusDialogPosition.corner:
+        return Alignment.topCenter;
+    }
+  }
+
+  // ignore: missing_return
+  Alignment get _largeScreenAlignment {
+    switch (position) {
+      case OptimusDialogPosition.center:
+        return Alignment.center;
+      case OptimusDialogPosition.corner:
+        return Alignment.bottomRight;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final autoSize = _autoSize(context);
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: spacing300,
-          vertical: spacing300,
-        ),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
-          child: OptimusCard(
-            variant: OptimusBasicCardVariant.overlay,
-            padding: OptimusCardSpacing.spacing0,
-            child: Material(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(spacing200),
-                    child: _Title(context: context, title: title),
-                  ),
-                  _divider,
-                  DefaultTextStyle.merge(
-                    style: preset300r,
-                    child: _Content(
-                      content: content,
-                      contentWrapperBuilder: contentWrapperBuilder,
+    return SafeArea(
+      child: Align(
+        alignment: _alignment(context),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: spacing300,
+            vertical: spacing300,
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
+            child: OptimusCard(
+              variant: OptimusBasicCardVariant.overlay,
+              padding: OptimusCardSpacing.spacing0,
+              child: Material(
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    _Title(
+                      context: context,
+                      title: title,
+                      close: close ?? () => Navigator.pop(context),
+                      isDismissible: isDismissible ??
+                          ModalRoute.of(context)?.barrierDismissible,
                     ),
-                  ),
-                  if (actions.isNotEmpty) _divider,
-                  if (actions.isNotEmpty)
-                    _Actions(
-                      actions: actions,
-                      type: type,
-                      dialogSize: autoSize,
-                    )
-                ],
+                    _divider,
+                    DefaultTextStyle.merge(
+                      style: preset300r,
+                      child: _Content(
+                        content: content,
+                        contentWrapperBuilder: contentWrapperBuilder,
+                      ),
+                    ),
+                    if (actions.isNotEmpty) _divider,
+                    if (actions.isNotEmpty)
+                      _Actions(
+                        actions: actions,
+                        type: type,
+                        dialogSize: autoSize,
+                        close: close ?? () => Navigator.pop(context),
+                      )
+                  ],
+                ),
               ),
             ),
           ),
@@ -240,28 +352,28 @@ class _Title extends StatelessWidget {
     Key key,
     @required this.context,
     @required this.title,
+    @required this.close,
+    @required this.isDismissible,
   }) : super(key: key);
 
   final BuildContext context;
   final Widget title;
+  final VoidCallback close;
+  final bool isDismissible;
 
   @override
   Widget build(BuildContext context) => Row(
         children: [
-          OptimusSubsectionTitle(child: title),
+          Padding(
+            padding: const EdgeInsets.all(spacing200),
+            child: OptimusSubsectionTitle(child: title),
+          ),
           const Spacer(),
-          if (ModalRoute.of(context)?.barrierDismissible)
-            // TODO(KB): Replace with OptimusIconButton when ready
-            // https://mews.myjetbrains.com/youtrack/issue/RND-47422
-            SizedBox(
-              width: 24,
-              height: 24,
-              child: IconButton(
-                splashRadius: 24,
-                padding: EdgeInsets.zero,
-                onPressed: () => Navigator.pop(context),
-                icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-              ),
+          if (isDismissible)
+            OptimusIconButton(
+              icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
+              type: OptimusIconButtonType.bare,
+              onPressed: close,
             ),
         ],
       );
@@ -273,11 +385,13 @@ class _Actions extends StatelessWidget {
     @required this.actions,
     @required this.dialogSize,
     @required this.type,
+    @required this.close,
   }) : super(key: key);
 
   final List<OptimusDialogAction> actions;
   final OptimusDialogSize dialogSize;
   final OptimusDialogType type;
+  final VoidCallback close;
 
   bool get _isVertical => dialogSize == OptimusDialogSize.small;
 
@@ -291,7 +405,7 @@ class _Actions extends StatelessWidget {
               left: _isVertical ? 0 : spacing200,
             ),
             child: OptimusButton(
-              onPressed: e.onPressed ?? () => Navigator.pop(context),
+              onPressed: e.onPressed ?? close,
               minWidth: _isVertical ? double.infinity : null,
               variant: _getVariant(i),
               key: e.key,
