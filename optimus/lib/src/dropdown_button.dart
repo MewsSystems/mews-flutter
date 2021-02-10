@@ -91,9 +91,12 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      DefaultTextStyle.merge(
-                        style: _labelStyle,
-                        child: widget.label,
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: DefaultTextStyle.merge(
+                          style: _labelStyle,
+                          child: widget.label,
+                        ),
                       ),
                       _icon,
                     ],
@@ -202,13 +205,12 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
     }
   }
 
-  // todo: change to Optimus Icon
   Icon get _icon => Icon(
         _node.hasFocus
             ? OptimusIcons.chevron_up_1
             : OptimusIcons.chevron_down_1,
-        size: 24,
-        color: OptimusColors.neutral400,
+        size: widget.size == OptimusWidgetSize.small ? 16 : 24,
+        color: _textColor,
       );
 
   @override
