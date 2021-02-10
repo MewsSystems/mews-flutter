@@ -39,6 +39,7 @@ class OptimusDropDownButton<T> extends StatefulWidget {
 class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   final _selectFieldKey = GlobalKey();
   bool _isHovering = false;
+  bool _isTappedDown = false;
 
   OverlayEntry _overlayEntry;
   final _node = FocusNode();
@@ -74,6 +75,9 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
             onExit: (_) => _onHoverChanged(false),
             child: GestureDetector(
               onTap: _node.requestFocus,
+              onTapDown: (_) => setState(() => _isTappedDown = true),
+              onTapUp: (_) => setState(() => _isTappedDown = false),
+              onTapCancel: () => setState(() => _isTappedDown = false),
               child: Focus(
                 focusNode: _node,
                 child: Container(
@@ -156,7 +160,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
     }
   }
 
-  Color get _color => _node.hasFocus
+  Color get _color => _node.hasFocus || _isTappedDown
       ? _highLightColor
       : _isHovering
           ? _hoverColor
