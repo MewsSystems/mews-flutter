@@ -16,11 +16,13 @@ class OptimusSearchFieldDropdown<T> extends StatefulWidget {
     @required this.items,
     @required this.anchorKey,
     @required this.onChanged,
+    this.isWidthFixed = false,
   }) : super(key: key);
 
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final GlobalKey anchorKey;
+  final bool isWidthFixed;
 
   @override
   _OptimusSearchFieldDropdownState<T> createState() =>
@@ -57,7 +59,7 @@ class _OptimusSearchFieldDropdownState<T>
         // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
         Positioned(
-          width: _savedRect.width,
+          width: widget.isWidthFixed ? _width : _savedRect.width,
           left: _savedRect.left,
           top: isOnTop ? null : (_offsetTop ?? 0),
           bottom: isOnTop ? (_offsetBottom ?? 0) : null,
@@ -100,6 +102,8 @@ class _OptimusSearchFieldDropdownState<T>
 
   double get _screenHeight => MediaQuery.of(context).size.height;
 
+  double get _screenWidth => MediaQuery.of(context).size.width;
+
   double get _paddingBottom =>
       MediaQuery.of(context).viewInsets.bottom + _screenPadding;
 
@@ -108,6 +112,13 @@ class _OptimusSearchFieldDropdownState<T>
   double get _topSpace => _savedRect.top - _paddingTop;
 
   double get _bottomSpace => _screenHeight - _paddingBottom - _savedRect.bottom;
+
+  double get availableRightSpace => _screenWidth - _savedRect.left;
+
+  double get _width =>
+      availableRightSpace < _maximumWidgetWidth + _widgetPadding
+          ? availableRightSpace - _widgetPadding
+          : _maximumWidgetWidth;
 }
 
 class _DropdownItem<T> extends StatefulWidget {
@@ -153,3 +164,4 @@ const _dropdownDecoration = BoxDecoration(
 
 const double _screenPadding = spacing200;
 const double _widgetPadding = spacing100;
+const double _maximumWidgetWidth = 300;

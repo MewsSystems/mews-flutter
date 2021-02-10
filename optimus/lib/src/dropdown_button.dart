@@ -141,6 +141,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
                 items: widget.items,
                 anchorKey: _selectFieldKey,
                 onChanged: widget.onChanged,
+                isWidthFixed: true,
               ),
             )
           ],
