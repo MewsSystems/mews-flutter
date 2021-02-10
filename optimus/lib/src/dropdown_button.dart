@@ -89,7 +89,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
               child: Focus(
                 focusNode: _node,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: spacing200),
                   height: widget.size.value,
                   key: _selectFieldKey,
                   decoration: BoxDecoration(
@@ -173,7 +173,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   }
 
   Color get _color => _node.hasFocus || _isTappedDown
-      ? _highLightColor
+      ? _highlightColor
       : _isHovering
           ? _hoverColor
           : _normalColor;
@@ -203,7 +203,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   }
 
   // ignore: missing_return
-  Color get _highLightColor {
+  Color get _highlightColor {
     switch (widget.type) {
       case OptimusDropdownButtonType.defaultButton:
         return OptimusColors.neutral200;
