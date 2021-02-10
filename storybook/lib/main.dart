@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Storybook(
         children: [
-          nonModalWrapper,
           button,
           iconButton,
           selectStory,
@@ -45,6 +44,7 @@ class MyApp extends StatelessWidget {
           radioStory,
           radioGroupStory,
           dialogStory,
+          nonModalDialogStory,
         ],
       );
 }

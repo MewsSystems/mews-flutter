@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story dialogStory = Story(
-  name: 'Dialog',
+  name: 'Modal dialog',
+  section: 'Dialogs',
   builder: (context, k) {
     final isDismissible = k.boolean('Dismissible', initial: true);
     final content =
@@ -17,133 +18,149 @@ final Story dialogStory = Story(
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
-                  content: content,
-                ),
-                child: const Text('Small 1'),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              child: OptimusSectionTitle(child: Text('Small dialog')),
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
-                  content: content,
-                  type: type,
+            Wrap(
+              spacing: spacing100,
+              children: [
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showOneActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.small,
+                    content: content,
+                  ),
+                  child: const Text('1 button'),
                 ),
-                child: const Text('Small 2'),
-              ),
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showTwoActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.small,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('2 buttons'),
+                ),
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showThreeActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.small,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('3 buttons'),
+                ),
+              ],
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showTwoActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
-                  content: content,
-                  type: type,
-                ),
-                child: const Text('Small 2'),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              child: OptimusSectionTitle(child: Text('Regular dialog')),
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
-                  content: content,
-                  type: type,
+            Wrap(
+              spacing: spacing100,
+              children: [
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showOneActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.regular,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('1 button'),
                 ),
-                child: const Text('Regular 1'),
-              ),
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showTwoActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.regular,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('2 buttons'),
+                ),
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showThreeActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.regular,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('3 buttons'),
+                ),
+              ],
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showTwoActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
-                  content: content,
-                  type: type,
-                ),
-                child: const Text('Regular 2'),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              child: OptimusSectionTitle(child: Text('Large dialog')),
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showThreeActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
-                  content: content,
-                  type: type,
+            Wrap(
+              spacing: spacing100,
+              children: [
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showOneActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.large,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('1 button'),
                 ),
-                child: const Text('Regular 3'),
-              ),
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showTwoActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.large,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('2 buttons'),
+                ),
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showThreeActionDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.large,
+                    content: content,
+                    type: type,
+                  ),
+                  child: const Text('3 buttons'),
+                ),
+              ],
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  content: content,
-                  type: type,
-                ),
-                child: const Text('Large 1'),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              child: OptimusSectionTitle(child: Text('Custom content')),
             ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showTwoActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  content: content,
-                  type: type,
+            Wrap(
+              spacing: spacing100,
+              children: [
+                OptimusButton(
+                  variant: OptimusButtonVariant.primary,
+                  onPressed: () => _showCustomContentDialog(
+                    context: context,
+                    isDismissible: isDismissible,
+                    size: OptimusDialogSize.large,
+                    type: type,
+                  ),
+                  child: const Text('Custom content'),
                 ),
-                child: const Text('Large 2'),
-              ),
-            ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showThreeActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  content: content,
-                  type: type,
-                ),
-                child: const Text('Large 3'),
-              ),
-            ),
-            _padding(
-              child: OptimusButton(
-                variant: OptimusButtonVariant.primary,
-                onPressed: () => _showCustomContentDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  type: type,
-                ),
-                child: const Text('Custom content'),
-              ),
+              ],
             ),
           ],
         ),
@@ -151,9 +168,6 @@ final Story dialogStory = Story(
     );
   },
 );
-
-Widget _padding({Widget child}) =>
-    Padding(padding: const EdgeInsets.symmetric(vertical: 8), child: child);
 
 Future<void> _showThreeActionDialog({
   BuildContext context,
@@ -223,11 +237,9 @@ Future<void> _showCustomContentDialog({
       context: context,
       isDismissible: isDismissible,
       title: const Text('Dialog title'),
-      content: ListView.builder(
-        itemCount: _iterable.length,
-        itemBuilder: (_, index) => ListTile(
-          title: Text('List tile #${_iterable.toList()[index]}'),
-        ),
+      content: Container(
+        color: OptimusColors.neutral50,
+        child: const Center(child: Text('Custom content without paddings')),
       ),
       contentWrapperBuilder: (_, child) => child,
       size: size,
@@ -248,6 +260,6 @@ Widget get _scrollableContent => Column(
     );
 
 final List<Option<OptimusDialogType>> _types =
-    OptimusDialogType.values.map((e) => Option(describeEnum(e), e)).toList();
+    OptimusDialogType.values.toOptions();
 
 final _iterable = Iterable<int>.generate(50);
