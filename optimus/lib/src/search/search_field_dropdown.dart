@@ -10,19 +10,20 @@ import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/search/dropdown_tile.dart';
 
+// TODO(VG): rename to OptimusDropdown
 class OptimusSearchFieldDropdown<T> extends StatefulWidget {
   const OptimusSearchFieldDropdown({
     Key key,
     @required this.items,
     @required this.anchorKey,
     @required this.onChanged,
-    this.isWidthFixed = false,
+    this.width,
   }) : super(key: key);
 
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final GlobalKey anchorKey;
-  final bool isWidthFixed;
+  final double width;
 
   @override
   _OptimusSearchFieldDropdownState<T> createState() =>
@@ -59,7 +60,7 @@ class _OptimusSearchFieldDropdownState<T>
         // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
         Positioned(
-          width: widget.isWidthFixed ? _width : _savedRect.width,
+          width: widget.width != null ? _width : _savedRect.width,
           left: _savedRect.left,
           top: isOnTop ? null : (_offsetTop ?? 0),
           bottom: isOnTop ? (_offsetBottom ?? 0) : null,
