@@ -53,6 +53,21 @@ class _OptimusSearchFieldDropdownState<T>
     final isOnTop = _topSpace > _bottomSpace;
     final maxHeight = max(_topSpace, _bottomSpace);
 
+    final isLeftToRight = _rightSpace >= widget.width + _widgetPadding;
+    final isRightToLeft = _leftSpace >= widget.width + _widgetPadding;
+
+    final left = isLeftToRight
+        ? _savedRect.left
+        : isRightToLeft
+            ? null
+            : (_screenWidth - widget.width) / 2;
+
+    final right = isLeftToRight
+        ? null
+        : isRightToLeft
+            ? _screenWidth - _savedRect.right
+            : null;
+
     return Stack(
       children: <Widget>[
         // Some problem with AnimatedPosition here:
@@ -60,8 +75,9 @@ class _OptimusSearchFieldDropdownState<T>
         // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
         Positioned(
-          width: widget.width != null ? _width : _savedRect.width,
-          left: _savedRect.left,
+          width: widget.width ?? _savedRect.width,
+          left: left,
+          right: right,
           top: isOnTop ? null : (_offsetTop ?? 0),
           bottom: isOnTop ? (_offsetBottom ?? 0) : null,
           child: Container(
@@ -114,11 +130,9 @@ class _OptimusSearchFieldDropdownState<T>
 
   double get _bottomSpace => _screenHeight - _paddingBottom - _savedRect.bottom;
 
-  double get availableRightSpace => _screenWidth - _savedRect.left;
+  double get _rightSpace => _screenWidth - _savedRect.left;
 
-  double get _width => availableRightSpace < widget.width + _widgetPadding
-      ? availableRightSpace - _widgetPadding
-      : widget.width;
+  double get _leftSpace => _screenWidth - _rightSpace + _savedRect.width;
 }
 
 class _DropdownItem<T> extends StatefulWidget {
