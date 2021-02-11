@@ -116,10 +116,9 @@ class _OptimusSearchFieldDropdownState<T>
 
   double get availableRightSpace => _screenWidth - _savedRect.left;
 
-  double get _width =>
-      availableRightSpace < _preferredWidgetWidth + _widgetPadding
-          ? availableRightSpace - _widgetPadding
-          : _preferredWidgetWidth;
+  double get _width => availableRightSpace < widget.width + _widgetPadding
+      ? availableRightSpace - _widgetPadding
+      : widget.width;
 }
 
 class _DropdownItem<T> extends StatefulWidget {
@@ -165,4 +164,3 @@ const _dropdownDecoration = BoxDecoration(
 
 const double _screenPadding = spacing200;
 const double _widgetPadding = spacing100;
-const double _preferredWidgetWidth = 300;
