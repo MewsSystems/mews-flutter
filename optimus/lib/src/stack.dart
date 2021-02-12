@@ -1,4 +1,3 @@
-import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/breakpoint.dart';
@@ -156,70 +155,68 @@ class OptimusStack extends StatelessWidget {
   List<Widget> _children(BuildContext context) {
     switch (distribution) {
       case OptimusStackDistribution.basic:
-        return _childrenWithSpacing(context);
+        return _childrenWithSpacing(context, children);
       case OptimusStackDistribution.spaceBetween:
         return _intersperse(const Spacer(), children).toList();
       case OptimusStackDistribution.stretch:
-        return _childrenWithSpacing(context)
-            .map((c) => Expanded(child: c))
-            .toList();
+        final wrappedChildren =
+            children.map((c) => Expanded(child: c)).toList();
+        return _childrenWithSpacing(context, wrappedChildren);
     }
   }
 
-  List<Widget> _childrenWithSpacing(BuildContext context) => children
-      .mapIndexed<Widget>(
-        (i, e) => i == children.length - 1
-            ? e
-            : Padding(
-                padding: _direction(context) == Axis.vertical
-                    ? _verticalPadding
-                    : _horizontalPadding,
-                child: e,
-              ),
-      )
-      .toList();
+  List<Widget> _childrenWithSpacing(
+    BuildContext context,
+    List<Widget> children,
+  ) {
+    final spacer = _direction(context) == Axis.vertical
+        ? _verticalSpacer
+        : _horizontalSpacer;
+
+    return _intersperse(spacer, children).toList();
+  }
 
   // ignore: missing_return
-  EdgeInsets get _verticalPadding {
+  Widget get _verticalSpacer {
     switch (spacing) {
       case OptimusStackSpacing.spacing0:
-        return const EdgeInsets.only(bottom: 0);
+        return const _VerticalSpacer(spacing: spacing0);
       case OptimusStackSpacing.spacing25:
-        return const EdgeInsets.only(bottom: spacing25);
+        return const _VerticalSpacer(spacing: spacing25);
       case OptimusStackSpacing.spacing50:
-        return const EdgeInsets.only(bottom: spacing50);
+        return const _VerticalSpacer(spacing: spacing50);
       case OptimusStackSpacing.spacing100:
-        return const EdgeInsets.only(bottom: spacing100);
+        return const _VerticalSpacer(spacing: spacing100);
       case OptimusStackSpacing.spacing200:
-        return const EdgeInsets.only(bottom: spacing200);
+        return const _VerticalSpacer(spacing: spacing200);
       case OptimusStackSpacing.spacing300:
-        return const EdgeInsets.only(bottom: spacing300);
+        return const _VerticalSpacer(spacing: spacing300);
       case OptimusStackSpacing.spacing400:
-        return const EdgeInsets.only(bottom: spacing400);
+        return const _VerticalSpacer(spacing: spacing400);
       case OptimusStackSpacing.spacing500:
-        return const EdgeInsets.only(bottom: spacing500);
+        return const _VerticalSpacer(spacing: spacing500);
     }
   }
 
   // ignore: missing_return
-  EdgeInsets get _horizontalPadding {
+  Widget get _horizontalSpacer {
     switch (spacing) {
       case OptimusStackSpacing.spacing0:
-        return const EdgeInsets.only(right: 0);
+        return const _HorizontalSpacer(spacing: spacing0);
       case OptimusStackSpacing.spacing25:
-        return const EdgeInsets.only(right: spacing25);
+        return const _HorizontalSpacer(spacing: spacing25);
       case OptimusStackSpacing.spacing50:
-        return const EdgeInsets.only(right: spacing50);
+        return const _HorizontalSpacer(spacing: spacing50);
       case OptimusStackSpacing.spacing100:
-        return const EdgeInsets.only(right: spacing100);
+        return const _HorizontalSpacer(spacing: spacing100);
       case OptimusStackSpacing.spacing200:
-        return const EdgeInsets.only(right: spacing200);
+        return const _HorizontalSpacer(spacing: spacing200);
       case OptimusStackSpacing.spacing300:
-        return const EdgeInsets.only(right: spacing300);
+        return const _HorizontalSpacer(spacing: spacing300);
       case OptimusStackSpacing.spacing400:
-        return const EdgeInsets.only(right: spacing400);
+        return const _HorizontalSpacer(spacing: spacing400);
       case OptimusStackSpacing.spacing500:
-        return const EdgeInsets.only(right: spacing500);
+        return const _HorizontalSpacer(spacing: spacing500);
     }
   }
 }
@@ -234,4 +231,28 @@ Iterable<T> _intersperse<T>(T item, Iterable<T> iterable) sync* {
       yield iterator.current;
     }
   }
+}
+
+class _VerticalSpacer extends StatelessWidget {
+  const _VerticalSpacer({
+    Key key,
+    this.spacing,
+  }) : super(key: key);
+
+  final double spacing;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(height: spacing);
+}
+
+class _HorizontalSpacer extends StatelessWidget {
+  const _HorizontalSpacer({
+    Key key,
+    this.spacing,
+  }) : super(key: key);
+
+  final double spacing;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(width: spacing);
 }
