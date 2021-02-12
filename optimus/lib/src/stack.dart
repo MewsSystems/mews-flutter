@@ -1,6 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:optimus/src/spacing.dart';
 
 enum OptimusStackDistribution {
   basic,
@@ -9,7 +10,7 @@ enum OptimusStackDistribution {
 }
 //todo: implement nullable
 enum OptimusStackBreakpoint { extraSmall, small, medium, large, extraLarge }
-//todo: implement
+
 enum OptimusStackSpacing {
   spacing0,
   spacing25,
@@ -30,7 +31,7 @@ class OptimusStack extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.distribution = OptimusStackDistribution.basic,
     this.breakpoint,
-    this.spacing, //todo: implement
+    this.spacing = OptimusStackSpacing.spacing0,
   }) : super(key: key);
 
   final List<Widget> children;
@@ -65,10 +66,57 @@ class OptimusStack extends StatelessWidget {
       .mapIndexed<Widget>(
         (i, e) => i == children.length - 1
             ? e
-            //todo: add padding according to spacing and orientation
-            : Padding(padding: EdgeInsets.zero, child: e),
+            : Padding(
+                padding: direction == Axis.vertical
+                    ? _verticalPadding
+                    : _horizontalPadding,
+                child: e),
       )
       .toList();
+
+  // ignore: missing_return
+  EdgeInsets get _verticalPadding {
+    switch (spacing) {
+      case OptimusStackSpacing.spacing0:
+        return const EdgeInsets.only(bottom: 0);
+      case OptimusStackSpacing.spacing25:
+        return const EdgeInsets.only(bottom: spacing25);
+      case OptimusStackSpacing.spacing50:
+        return const EdgeInsets.only(bottom: spacing50);
+      case OptimusStackSpacing.spacing100:
+        return const EdgeInsets.only(bottom: spacing100);
+      case OptimusStackSpacing.spacing200:
+        return const EdgeInsets.only(bottom: spacing200);
+      case OptimusStackSpacing.spacing300:
+        return const EdgeInsets.only(bottom: spacing300);
+      case OptimusStackSpacing.spacing400:
+        return const EdgeInsets.only(bottom: spacing400);
+      case OptimusStackSpacing.spacing500:
+        return const EdgeInsets.only(bottom: spacing500);
+    }
+  }
+
+  // ignore: missing_return
+  EdgeInsets get _horizontalPadding {
+    switch (spacing) {
+      case OptimusStackSpacing.spacing0:
+        return const EdgeInsets.only(right: 0);
+      case OptimusStackSpacing.spacing25:
+        return const EdgeInsets.only(right: spacing25);
+      case OptimusStackSpacing.spacing50:
+        return const EdgeInsets.only(right: spacing50);
+      case OptimusStackSpacing.spacing100:
+        return const EdgeInsets.only(right: spacing100);
+      case OptimusStackSpacing.spacing200:
+        return const EdgeInsets.only(right: spacing200);
+      case OptimusStackSpacing.spacing300:
+        return const EdgeInsets.only(right: spacing300);
+      case OptimusStackSpacing.spacing400:
+        return const EdgeInsets.only(right: spacing400);
+      case OptimusStackSpacing.spacing500:
+        return const EdgeInsets.only(right: spacing500);
+    }
+  }
 }
 
 /// Puts [item] between every item in [list].

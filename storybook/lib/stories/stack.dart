@@ -10,7 +10,8 @@ final Story verticalStackStory = Story(
   builder: (_, k) {
     return OptimusStack(
       children: _items,
-      distribution: OptimusStackDistribution.spaceBetween,
+      distribution: OptimusStackDistribution.stretch,
+      spacing: OptimusStackSpacing.spacing100,
     );
   },
 );
