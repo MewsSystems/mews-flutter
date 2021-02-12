@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -52,13 +53,32 @@ class OptimusStack extends StatelessWidget {
   List<Widget> get _children {
     switch (distribution) {
       case OptimusStackDistribution.basic:
-        return children;
+        return _childrenWithSpacing;
       case OptimusStackDistribution.spaceBetween:
-        //todo: implement
-        return [];
+        return _intersperse(const Spacer(), children).toList();
       case OptimusStackDistribution.stretch:
-        //todo: check
-        return children.map((c) => Expanded(child: c)).toList();
+        return _childrenWithSpacing.map((c) => Expanded(child: c)).toList();
+    }
+  }
+
+  List<Widget> get _childrenWithSpacing => children
+      .mapIndexed<Widget>(
+        (i, e) => i == children.length - 1
+            ? e
+            //todo: add padding according to spacing and orientation
+            : Padding(padding: EdgeInsets.zero, child: e),
+      )
+      .toList();
+}
+
+/// Puts [item] between every item in [list].
+Iterable<T> _intersperse<T>(T item, Iterable<T> iterable) sync* {
+  final iterator = iterable.iterator;
+  if (iterator.moveNext()) {
+    yield iterator.current;
+    while (iterator.moveNext()) {
+      yield item;
+      yield iterator.current;
     }
   }
 }

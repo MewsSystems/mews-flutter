@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -7,7 +8,10 @@ final Story verticalStackStory = Story(
   section: 'Stack',
   name: 'Vertical stack',
   builder: (_, k) {
-    return const Text('verticalStackStory');
+    return OptimusStack(
+      children: _items,
+      distribution: OptimusStackDistribution.spaceBetween,
+    );
   },
 );
 
@@ -18,6 +22,14 @@ final Story horizontalStackStory = Story(
     return const Text('horizontalStackStory');
   },
 );
+
+final _items = Iterable<int>.generate(3)
+    .map((e) => Container(
+          height: 40,
+          width: 40,
+          color: Colors.green,
+        ))
+    .toList();
 
 final List<Option<OptimusStackDistribution>> _distribution =
     OptimusStackDistribution.values
