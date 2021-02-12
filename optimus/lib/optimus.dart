@@ -10,6 +10,7 @@ export 'src/badge.dart';
 export 'src/banner.dart';
 export 'src/border_side.dart';
 export 'src/borders.dart';
+export 'src/breakpoint.dart';
 export 'src/button.dart';
 export 'src/card.dart';
 export 'src/checkbox/checkbox.dart';

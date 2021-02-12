@@ -37,10 +37,8 @@ final List<Option<OptimusStackDistribution>> _distribution =
         .map((e) => Option(describeEnum(e), e))
         .toList();
 
-final List<Option<OptimusStackBreakpoint>> _breakpoint = OptimusStackBreakpoint
-    .values
-    .map((e) => Option(describeEnum(e), e))
-    .toList();
+final List<Option<Breakpoint>> _breakpoint =
+    Breakpoint.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<OptimusStackSpacing>> _spacing =
     OptimusStackSpacing.values.map((e) => Option(describeEnum(e), e)).toList();

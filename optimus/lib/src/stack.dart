@@ -1,6 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/spacing.dart';
 
 enum OptimusStackDistribution {
@@ -8,8 +9,6 @@ enum OptimusStackDistribution {
   spaceBetween,
   stretch,
 }
-//todo: implement nullable
-enum OptimusStackBreakpoint { extraSmall, small, medium, large, extraLarge }
 
 enum OptimusStackSpacing {
   spacing0,
@@ -39,16 +38,88 @@ class OptimusStack extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final OptimusStackDistribution distribution;
-  final OptimusStackBreakpoint breakpoint;
+  final Breakpoint breakpoint;
   final OptimusStackSpacing spacing;
 
   @override
   Widget build(BuildContext context) => Flex(
-        direction: direction,
+        direction: _direction(context),
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         children: _children,
       );
+
+  Axis _direction(BuildContext context) {
+    if (breakpoint == null) {
+      return direction;
+    }
+
+    final screenSize = MediaQuery.of(context).screenBreakpoint;
+    switch (breakpoint) {
+      case Breakpoint.extraSmall:
+        return _extraSmallDirection(screenSize);
+      case Breakpoint.small:
+        return _smallDirection(screenSize);
+      case Breakpoint.medium:
+        return _mediumDirection(screenSize);
+      case Breakpoint.large:
+        return _largeDirection(screenSize);
+      case Breakpoint.extraLarge:
+        return Axis.vertical;
+    }
+  }
+
+  // ignore: missing_return
+  Axis _extraSmallDirection(Breakpoint screenSize) {
+    switch (screenSize) {
+      case Breakpoint.extraSmall:
+        return Axis.vertical;
+      case Breakpoint.small:
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return Axis.horizontal;
+    }
+  }
+
+  // ignore: missing_return
+  Axis _smallDirection(Breakpoint screenSize) {
+    switch (screenSize) {
+      case Breakpoint.extraSmall:
+      case Breakpoint.small:
+        return Axis.vertical;
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return Axis.horizontal;
+    }
+  }
+
+  // ignore: missing_return
+  Axis _mediumDirection(Breakpoint screenSize) {
+    switch (screenSize) {
+      case Breakpoint.extraSmall:
+      case Breakpoint.small:
+      case Breakpoint.medium:
+        return Axis.vertical;
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return Axis.horizontal;
+    }
+  }
+
+  // ignore: missing_return
+  Axis _largeDirection(Breakpoint screenSize) {
+    switch (screenSize) {
+      case Breakpoint.extraSmall:
+      case Breakpoint.small:
+      case Breakpoint.medium:
+      case Breakpoint.large:
+        return Axis.vertical;
+      case Breakpoint.extraLarge:
+        return Axis.horizontal;
+    }
+  }
 
   // ignore: missing_return
   List<Widget> get _children {
@@ -70,7 +141,8 @@ class OptimusStack extends StatelessWidget {
                 padding: direction == Axis.vertical
                     ? _verticalPadding
                     : _horizontalPadding,
-                child: e),
+                child: e,
+              ),
       )
       .toList();
 
@@ -119,7 +191,7 @@ class OptimusStack extends StatelessWidget {
   }
 }
 
-/// Puts [item] between every item in [list].
+/// Puts [item] between every item in [iterable].
 Iterable<T> _intersperse<T>(T item, Iterable<T> iterable) sync* {
   final iterator = iterable.iterator;
   if (iterator.moveNext()) {
