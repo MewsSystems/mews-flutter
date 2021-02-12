@@ -14,13 +14,13 @@ final Story verticalStackStory = Story(
     ),
     mainAxisAlignment: k.options(
       'Main axis',
-      initial: MainAxisAlignment.start,
-      options: _mainAxisAlignment,
+      initial: OptimusStackAlignment.start,
+      options: _alignment,
     ),
     crossAxisAlignment: k.options(
       'Cross axis',
-      initial: CrossAxisAlignment.center,
-      options: _crossAxisAlignment,
+      initial: OptimusStackAlignment.center,
+      options: _alignment,
     ),
     distribution: k.options(
       'Distribution',
@@ -52,11 +52,10 @@ final _items = Iterable<int>.generate(3)
 final List<Option<Axis>> _direction =
     Axis.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<MainAxisAlignment>> _mainAxisAlignment =
-    MainAxisAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
-
-final List<Option<CrossAxisAlignment>> _crossAxisAlignment =
-    CrossAxisAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<OptimusStackAlignment>> _alignment = OptimusStackAlignment
+    .values
+    .map((e) => Option(describeEnum(e), e))
+    .toList();
 
 final List<Option<OptimusStackDistribution>> _distribution =
     OptimusStackDistribution.values

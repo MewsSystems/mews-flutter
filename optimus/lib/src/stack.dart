@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/spacing.dart';
 
+enum OptimusStackAlignment {
+  start,
+  center,
+  end,
+}
+
 enum OptimusStackDistribution {
   basic,
   spaceBetween,
@@ -26,8 +32,8 @@ class OptimusStack extends StatelessWidget {
     Key key,
     this.children,
     this.direction = Axis.vertical,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisAlignment = OptimusStackAlignment.start,
+    this.crossAxisAlignment = OptimusStackAlignment.center,
     this.distribution = OptimusStackDistribution.basic,
     this.breakpoint,
     this.spacing = OptimusStackSpacing.spacing0,
@@ -35,8 +41,8 @@ class OptimusStack extends StatelessWidget {
 
   final List<Widget> children;
   final Axis direction;
-  final MainAxisAlignment mainAxisAlignment;
-  final CrossAxisAlignment crossAxisAlignment;
+  final OptimusStackAlignment mainAxisAlignment;
+  final OptimusStackAlignment crossAxisAlignment;
   final OptimusStackDistribution distribution;
   final Breakpoint breakpoint;
   final OptimusStackSpacing spacing;
@@ -44,8 +50,8 @@ class OptimusStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Flex(
         direction: _direction(context),
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
+        mainAxisAlignment: _mainAxisAlignment,
+        crossAxisAlignment: _crossAxisAlignment,
         children: _children(context),
       );
 
@@ -119,6 +125,30 @@ class OptimusStack extends StatelessWidget {
         return Axis.vertical;
       case Breakpoint.extraLarge:
         return Axis.horizontal;
+    }
+  }
+
+  // ignore: missing_return
+  MainAxisAlignment get _mainAxisAlignment {
+    switch (mainAxisAlignment) {
+      case OptimusStackAlignment.start:
+        return MainAxisAlignment.start;
+      case OptimusStackAlignment.center:
+        return MainAxisAlignment.center;
+      case OptimusStackAlignment.end:
+        return MainAxisAlignment.end;
+    }
+  }
+
+  // ignore: missing_return
+  CrossAxisAlignment get _crossAxisAlignment {
+    switch (crossAxisAlignment) {
+      case OptimusStackAlignment.start:
+        return CrossAxisAlignment.start;
+      case OptimusStackAlignment.center:
+        return CrossAxisAlignment.center;
+      case OptimusStackAlignment.end:
+        return CrossAxisAlignment.end;
     }
   }
 
