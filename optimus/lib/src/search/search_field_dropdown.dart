@@ -53,9 +53,6 @@ class _OptimusSearchFieldDropdownState<T>
     final isOnTop = _topSpace > _bottomSpace;
     final maxHeight = max(_topSpace, _bottomSpace);
 
-    final isLeftToRight = _rightSpace >= widget.width + _widgetPadding;
-    final isRightToLeft = _leftSpace >= widget.width + _widgetPadding;
-
     final left = isLeftToRight
         ? _savedRect.left
         : isRightToLeft
@@ -133,6 +130,20 @@ class _OptimusSearchFieldDropdownState<T>
   double get _rightSpace => _screenWidth - _savedRect.left;
 
   double get _leftSpace => _screenWidth - _rightSpace + _savedRect.width;
+
+  bool get isLeftToRight {
+    if (widget.width == null) {
+      return true;
+    }
+    return _rightSpace >= widget.width + _widgetPadding;
+  }
+
+  bool get isRightToLeft {
+    if (widget.width == null) {
+      return false;
+    }
+    return _leftSpace >= widget.width + _widgetPadding;
+  }
 }
 
 class _DropdownItem<T> extends StatefulWidget {
