@@ -46,9 +46,10 @@ class OptimusStack extends StatelessWidget {
         direction: _direction(context),
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
-        children: _children,
+        children: _children(context),
       );
 
+  // ignore: missing_return
   Axis _direction(BuildContext context) {
     if (breakpoint == null) {
       return direction;
@@ -122,23 +123,25 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  List<Widget> get _children {
+  List<Widget> _children(BuildContext context) {
     switch (distribution) {
       case OptimusStackDistribution.basic:
-        return _childrenWithSpacing;
+        return _childrenWithSpacing(context);
       case OptimusStackDistribution.spaceBetween:
         return _intersperse(const Spacer(), children).toList();
       case OptimusStackDistribution.stretch:
-        return _childrenWithSpacing.map((c) => Expanded(child: c)).toList();
+        return _childrenWithSpacing(context)
+            .map((c) => Expanded(child: c))
+            .toList();
     }
   }
 
-  List<Widget> get _childrenWithSpacing => children
+  List<Widget> _childrenWithSpacing(BuildContext context) => children
       .mapIndexed<Widget>(
         (i, e) => i == children.length - 1
             ? e
             : Padding(
-                padding: direction == Axis.vertical
+                padding: _direction(context) == Axis.vertical
                     ? _verticalPadding
                     : _horizontalPadding,
                 child: e,
