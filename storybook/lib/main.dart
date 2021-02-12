@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
           dialogStory,
           nonModalDialogStory,
           verticalStackStory,
-          horizontalStackStory,
         ],
       );
 }

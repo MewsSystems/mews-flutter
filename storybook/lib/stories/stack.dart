@@ -5,23 +5,40 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story verticalStackStory = Story(
-  section: 'Stack',
-  name: 'Vertical stack',
-  builder: (_, k) {
-    return OptimusStack(
-      children: _items,
-      distribution: OptimusStackDistribution.stretch,
-      spacing: OptimusStackSpacing.spacing100,
-    );
-  },
-);
-
-final Story horizontalStackStory = Story(
-  section: 'Stack',
-  name: 'Horizontal stack',
-  builder: (_, k) {
-    return const Text('horizontalStackStory');
-  },
+  name: 'Stack',
+  builder: (_, k) => OptimusStack(
+    direction: k.options(
+      'Direction',
+      initial: Axis.vertical,
+      options: _direction,
+    ),
+    mainAxisAlignment: k.options(
+      'Main axis',
+      initial: MainAxisAlignment.start,
+      options: _mainAxisAlignment,
+    ),
+    crossAxisAlignment: k.options(
+      'Cross axis',
+      initial: CrossAxisAlignment.center,
+      options: _crossAxisAlignment,
+    ),
+    distribution: k.options(
+      'Distribution',
+      initial: OptimusStackDistribution.basic,
+      options: _distribution,
+    ),
+    breakpoint: k.options(
+      'Breakpoint',
+      initial: null,
+      options: _breakpoint,
+    ),
+    spacing: k.options(
+      'Spacing',
+      initial: OptimusStackSpacing.spacing100,
+      options: _spacing,
+    ),
+    children: _items,
+  ),
 );
 
 final _items = Iterable<int>.generate(3)
@@ -31,6 +48,15 @@ final _items = Iterable<int>.generate(3)
           color: Colors.green,
         ))
     .toList();
+
+final List<Option<Axis>> _direction =
+    Axis.values.map((e) => Option(describeEnum(e), e)).toList();
+
+final List<Option<MainAxisAlignment>> _mainAxisAlignment =
+    MainAxisAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
+
+final List<Option<CrossAxisAlignment>> _crossAxisAlignment =
+    CrossAxisAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<OptimusStackDistribution>> _distribution =
     OptimusStackDistribution.values
