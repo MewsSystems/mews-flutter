@@ -4,14 +4,27 @@ import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/spacing.dart';
 
 enum OptimusStackAlignment {
+  /// Default value.	All items in a stack are aligned to the start of the
+  /// container.
   start,
+
+  /// All items in a stack are aligned to the center of the container.
   center,
+
+  /// All items in a stack are aligned to the center of the container.
   end,
 }
 
 enum OptimusStackDistribution {
+  /// Default value. The space betweeen individual items is inflexible and
+  /// defined by spacing tokens.
   basic,
+
+  /// Items are evenly distributed within the stack.
   spaceBetween,
+
+  /// Items are stretched equally to fill any available space in addition to
+  /// predefined spacing between them.
   stretch,
 }
 
@@ -26,6 +39,10 @@ enum OptimusStackSpacing {
   spacing500,
 }
 
+/// Use Stacks when you need to lay out components by choosing either a
+/// horizontal or vertical axis.
+///
+/// Stacks are flexible in order to cover a wide range of scenarios.
 class OptimusStack extends StatelessWidget {
   const OptimusStack({
     Key key,
