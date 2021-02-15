@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/spacing.dart';
+import 'package:optimus/src/utils.dart';
 
 enum OptimusStackAlignment {
   /// Default value.	All items in a stack are aligned to the start of the
@@ -16,7 +17,7 @@ enum OptimusStackAlignment {
 }
 
 enum OptimusStackDistribution {
-  /// Default value. The space betweeen individual items is inflexible and
+  /// Default value. The space between individual items is inflexible and
   /// defined by spacing tokens.
   basic,
 
@@ -55,24 +56,27 @@ class OptimusStack extends StatelessWidget {
     this.spacing = OptimusStackSpacing.spacing0,
   }) : super(key: key);
 
-  final List<Widget> children;
+  /// Establishes a horizontal or vertical direction for stack items.
   final Axis direction;
+
+  /// Sets the alignment of stack items within the main direction.
   final OptimusStackAlignment mainAxisAlignment;
+
+  /// Sets the alignment of stack items within the cross direction.
   final OptimusStackAlignment crossAxisAlignment;
+
+  /// Sets the distribution of items along main axis inside a stack.
   final OptimusStackDistribution distribution;
+
+  /// The widgets below this widget in the tree.
+  final List<Widget> children;
 
   /// Changes the value to trigger vertical item stacking on a user's
   /// selected breakpoint range.
   final Breakpoint breakpoint;
-  final OptimusStackSpacing spacing;
 
-  @override
-  Widget build(BuildContext context) => Flex(
-        direction: _direction(context),
-        mainAxisAlignment: _mainAxisAlignment,
-        crossAxisAlignment: _crossAxisAlignment,
-        children: _children(context),
-      );
+  /// Changes spacing between stack items.
+  final OptimusStackSpacing spacing;
 
   // ignore: missing_return
   Axis _direction(BuildContext context) {
@@ -81,94 +85,9 @@ class OptimusStack extends StatelessWidget {
     }
 
     final screenSize = MediaQuery.of(context).screenBreakpoint;
-    switch (breakpoint) {
-      case Breakpoint.extraSmall:
-        return _extraSmallDirection(screenSize);
-      case Breakpoint.small:
-        return _smallDirection(screenSize);
-      case Breakpoint.medium:
-        return _mediumDirection(screenSize);
-      case Breakpoint.large:
-        return _largeDirection(screenSize);
-      case Breakpoint.extraLarge:
-        return Axis.vertical;
-    }
-  }
-
-  // ignore: missing_return
-  Axis _extraSmallDirection(Breakpoint breakpoint) {
-    switch (breakpoint) {
-      case Breakpoint.extraSmall:
-        return Axis.vertical;
-      case Breakpoint.small:
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return Axis.horizontal;
-    }
-  }
-
-  // ignore: missing_return
-  Axis _smallDirection(Breakpoint breakpoint) {
-    switch (breakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-        return Axis.vertical;
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return Axis.horizontal;
-    }
-  }
-
-  // ignore: missing_return
-  Axis _mediumDirection(Breakpoint breakpoint) {
-    switch (breakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-        return Axis.vertical;
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return Axis.horizontal;
-    }
-  }
-
-  // ignore: missing_return
-  Axis _largeDirection(Breakpoint breakpoint) {
-    switch (breakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-      case Breakpoint.large:
-        return Axis.vertical;
-      case Breakpoint.extraLarge:
-        return Axis.horizontal;
-    }
-  }
-
-  // ignore: missing_return
-  MainAxisAlignment get _mainAxisAlignment {
-    switch (mainAxisAlignment) {
-      case OptimusStackAlignment.start:
-        return MainAxisAlignment.start;
-      case OptimusStackAlignment.center:
-        return MainAxisAlignment.center;
-      case OptimusStackAlignment.end:
-        return MainAxisAlignment.end;
-    }
-  }
-
-  // ignore: missing_return
-  CrossAxisAlignment get _crossAxisAlignment {
-    switch (crossAxisAlignment) {
-      case OptimusStackAlignment.start:
-        return CrossAxisAlignment.start;
-      case OptimusStackAlignment.center:
-        return CrossAxisAlignment.center;
-      case OptimusStackAlignment.end:
-        return CrossAxisAlignment.end;
-    }
+    return screenSize.index <= breakpoint.index
+        ? Axis.vertical
+        : Axis.horizontal;
   }
 
   // ignore: missing_return
@@ -177,7 +96,7 @@ class OptimusStack extends StatelessWidget {
       case OptimusStackDistribution.basic:
         return _childrenWithSpacing(context, children);
       case OptimusStackDistribution.spaceBetween:
-        return _intersperse(const Spacer(), children).toList();
+        return children.intersperse(const Spacer()).toList();
       case OptimusStackDistribution.stretch:
         final wrappedChildren =
             children.map((c) => Expanded(child: c)).toList();
@@ -189,90 +108,70 @@ class OptimusStack extends StatelessWidget {
     BuildContext context,
     List<Widget> children,
   ) {
-    final spacer = _direction(context) == Axis.vertical
-        ? _verticalSpacer
-        : _horizontalSpacer;
+    final direction = _direction(context);
+    final spacer = SizedBox(
+      width: direction == Axis.vertical ? null : spacing.size,
+      height: direction == Axis.vertical ? spacing.size : null,
+    );
 
-    return _intersperse(spacer, children).toList();
+    return children.intersperse(spacer).toList();
+  }
+
+  @override
+  Widget build(BuildContext context) => Flex(
+        direction: _direction(context),
+        mainAxisAlignment: mainAxisAlignment.mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment.crossAxisAlignment,
+        children: _children(context),
+      );
+}
+
+extension on OptimusStackSpacing {
+  // ignore: missing_return
+  double get size {
+    switch (this) {
+      case OptimusStackSpacing.spacing0:
+        return spacing0;
+      case OptimusStackSpacing.spacing25:
+        return spacing25;
+      case OptimusStackSpacing.spacing50:
+        return spacing50;
+      case OptimusStackSpacing.spacing100:
+        return spacing100;
+      case OptimusStackSpacing.spacing200:
+        return spacing200;
+      case OptimusStackSpacing.spacing300:
+        return spacing300;
+      case OptimusStackSpacing.spacing400:
+        return spacing400;
+      case OptimusStackSpacing.spacing500:
+        return spacing500;
+    }
+  }
+}
+
+extension on OptimusStackAlignment {
+  // ignore: missing_return
+  CrossAxisAlignment get crossAxisAlignment {
+    switch (this) {
+      case OptimusStackAlignment.start:
+        return CrossAxisAlignment.start;
+      case OptimusStackAlignment.center:
+        return CrossAxisAlignment.center;
+      case OptimusStackAlignment.end:
+        return CrossAxisAlignment.end;
+    }
   }
 
   // ignore: missing_return
-  Widget get _verticalSpacer {
-    switch (spacing) {
-      case OptimusStackSpacing.spacing0:
-        return const _VerticalSpacer(spacing: spacing0);
-      case OptimusStackSpacing.spacing25:
-        return const _VerticalSpacer(spacing: spacing25);
-      case OptimusStackSpacing.spacing50:
-        return const _VerticalSpacer(spacing: spacing50);
-      case OptimusStackSpacing.spacing100:
-        return const _VerticalSpacer(spacing: spacing100);
-      case OptimusStackSpacing.spacing200:
-        return const _VerticalSpacer(spacing: spacing200);
-      case OptimusStackSpacing.spacing300:
-        return const _VerticalSpacer(spacing: spacing300);
-      case OptimusStackSpacing.spacing400:
-        return const _VerticalSpacer(spacing: spacing400);
-      case OptimusStackSpacing.spacing500:
-        return const _VerticalSpacer(spacing: spacing500);
+  MainAxisAlignment get mainAxisAlignment {
+    switch (this) {
+      case OptimusStackAlignment.start:
+        return MainAxisAlignment.start;
+      case OptimusStackAlignment.center:
+        return MainAxisAlignment.center;
+      case OptimusStackAlignment.end:
+        return MainAxisAlignment.end;
     }
   }
-
-  // ignore: missing_return
-  Widget get _horizontalSpacer {
-    switch (spacing) {
-      case OptimusStackSpacing.spacing0:
-        return const _HorizontalSpacer(spacing: spacing0);
-      case OptimusStackSpacing.spacing25:
-        return const _HorizontalSpacer(spacing: spacing25);
-      case OptimusStackSpacing.spacing50:
-        return const _HorizontalSpacer(spacing: spacing50);
-      case OptimusStackSpacing.spacing100:
-        return const _HorizontalSpacer(spacing: spacing100);
-      case OptimusStackSpacing.spacing200:
-        return const _HorizontalSpacer(spacing: spacing200);
-      case OptimusStackSpacing.spacing300:
-        return const _HorizontalSpacer(spacing: spacing300);
-      case OptimusStackSpacing.spacing400:
-        return const _HorizontalSpacer(spacing: spacing400);
-      case OptimusStackSpacing.spacing500:
-        return const _HorizontalSpacer(spacing: spacing500);
-    }
-  }
-}
-
-/// Puts [item] between every item in [iterable].
-Iterable<T> _intersperse<T>(T item, Iterable<T> iterable) sync* {
-  final iterator = iterable.iterator;
-  if (iterator.moveNext()) {
-    yield iterator.current;
-    while (iterator.moveNext()) {
-      yield item;
-      yield iterator.current;
-    }
-  }
-}
-
-class _VerticalSpacer extends StatelessWidget {
-  const _VerticalSpacer({
-    Key key,
-    this.spacing,
-  }) : super(key: key);
-
-  final double spacing;
-
-  @override
-  Widget build(BuildContext context) => SizedBox(height: spacing);
-}
-
-class _HorizontalSpacer extends StatelessWidget {
-  const _HorizontalSpacer({
-    Key key,
-    this.spacing,
-  }) : super(key: key);
-
-  final double spacing;
-
-  @override
-  Widget build(BuildContext context) => SizedBox(width: spacing);
 }
