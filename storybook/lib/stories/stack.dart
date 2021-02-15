@@ -49,12 +49,12 @@ final _items = [
   ),
   Container(
     height: 10,
-    width: 40,
+    width: 10,
     color: Colors.green,
   ),
   Container(
     height: 20,
-    width: 40,
+    width: 20,
     color: Colors.green,
   ),
 ];

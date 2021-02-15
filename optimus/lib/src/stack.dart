@@ -60,6 +60,9 @@ class OptimusStack extends StatelessWidget {
   final OptimusStackAlignment mainAxisAlignment;
   final OptimusStackAlignment crossAxisAlignment;
   final OptimusStackDistribution distribution;
+
+  /// Changes the value to trigger vertical item stacking on a user's
+  /// selected breakpoint range.
   final Breakpoint breakpoint;
   final OptimusStackSpacing spacing;
 
@@ -77,22 +80,23 @@ class OptimusStack extends StatelessWidget {
       return direction;
     }
 
-    switch (MediaQuery.of(context).screenBreakpoint) {
+    final screenSize = MediaQuery.of(context).screenBreakpoint;
+    switch (breakpoint) {
       case Breakpoint.extraSmall:
-        return _extraSmallDirection;
+        return _extraSmallDirection(screenSize);
       case Breakpoint.small:
-        return _smallDirection;
+        return _smallDirection(screenSize);
       case Breakpoint.medium:
-        return _mediumDirection;
+        return _mediumDirection(screenSize);
       case Breakpoint.large:
-        return _largeDirection;
+        return _largeDirection(screenSize);
       case Breakpoint.extraLarge:
         return Axis.vertical;
     }
   }
 
   // ignore: missing_return
-  Axis get _extraSmallDirection {
+  Axis _extraSmallDirection(Breakpoint breakpoint) {
     switch (breakpoint) {
       case Breakpoint.extraSmall:
         return Axis.vertical;
@@ -105,7 +109,7 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Axis get _smallDirection {
+  Axis _smallDirection(Breakpoint breakpoint) {
     switch (breakpoint) {
       case Breakpoint.extraSmall:
       case Breakpoint.small:
@@ -118,7 +122,7 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Axis get _mediumDirection {
+  Axis _mediumDirection(Breakpoint breakpoint) {
     switch (breakpoint) {
       case Breakpoint.extraSmall:
       case Breakpoint.small:
@@ -131,7 +135,7 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Axis get _largeDirection {
+  Axis _largeDirection(Breakpoint breakpoint) {
     switch (breakpoint) {
       case Breakpoint.extraSmall:
       case Breakpoint.small:
