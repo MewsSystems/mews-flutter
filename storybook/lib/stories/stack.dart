@@ -41,13 +41,23 @@ final Story stackStory = Story(
   ),
 );
 
-final _items = Iterable<int>.generate(3)
-    .map((e) => Container(
-          height: 40,
-          width: 40,
-          color: Colors.green,
-        ))
-    .toList();
+final _items = [
+  Container(
+    height: 40,
+    width: 40,
+    color: Colors.green,
+  ),
+  Container(
+    height: 10,
+    width: 40,
+    color: Colors.green,
+  ),
+  Container(
+    height: 20,
+    width: 40,
+    color: Colors.green,
+  ),
+];
 
 final List<Option<Axis>> _direction =
     Axis.values.map((e) => Option(describeEnum(e), e)).toList();
