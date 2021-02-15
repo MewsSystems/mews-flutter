@@ -73,29 +73,28 @@ class OptimusStack extends StatelessWidget {
 
   // ignore: missing_return
   Axis _direction(BuildContext context) {
-    if (breakpoint == null) {
+    if (breakpoint == null || direction == Axis.vertical) {
       return direction;
     }
 
-    final screenSize = MediaQuery.of(context).screenBreakpoint;
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.extraSmall:
+        return _extraSmallDirection;
+      case Breakpoint.small:
+        return _smallDirection;
+      case Breakpoint.medium:
+        return _mediumDirection;
+      case Breakpoint.large:
+        return _largeDirection;
+      case Breakpoint.extraLarge:
+        return Axis.vertical;
+    }
+  }
+
+  // ignore: missing_return
+  Axis get _extraSmallDirection {
     switch (breakpoint) {
       case Breakpoint.extraSmall:
-        return _extraSmallDirection(screenSize);
-      case Breakpoint.small:
-        return _smallDirection(screenSize);
-      case Breakpoint.medium:
-        return _mediumDirection(screenSize);
-      case Breakpoint.large:
-        return _largeDirection(screenSize);
-      case Breakpoint.extraLarge:
-        return Axis.vertical;
-    }
-  }
-
-  // ignore: missing_return
-  Axis _extraSmallDirection(Breakpoint screenSize) {
-    switch (screenSize) {
-      case Breakpoint.extraSmall:
         return Axis.vertical;
       case Breakpoint.small:
       case Breakpoint.medium:
@@ -106,8 +105,8 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Axis _smallDirection(Breakpoint screenSize) {
-    switch (screenSize) {
+  Axis get _smallDirection {
+    switch (breakpoint) {
       case Breakpoint.extraSmall:
       case Breakpoint.small:
         return Axis.vertical;
@@ -119,8 +118,8 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Axis _mediumDirection(Breakpoint screenSize) {
-    switch (screenSize) {
+  Axis get _mediumDirection {
+    switch (breakpoint) {
       case Breakpoint.extraSmall:
       case Breakpoint.small:
       case Breakpoint.medium:
@@ -132,8 +131,8 @@ class OptimusStack extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Axis _largeDirection(Breakpoint screenSize) {
-    switch (screenSize) {
+  Axis get _largeDirection {
+    switch (breakpoint) {
       case Breakpoint.extraSmall:
       case Breakpoint.small:
       case Breakpoint.medium:
