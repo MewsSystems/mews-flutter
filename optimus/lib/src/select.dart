@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/field_wrapper.dart';
-import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/search/search_field_dropdown.dart';
+import 'package:optimus/src/overlay_controller.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
 
@@ -49,30 +48,17 @@ class OptimusSelect<T> extends StatefulWidget {
 
 class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
   final _selectFieldKey = GlobalKey();
-
-  OverlayEntry _overlayEntry;
   final _node = FocusNode();
+  bool _isOpened = false;
 
   @override
-  void initState() {
-    super.initState();
-    _node.addListener(_onFocusChanged);
-  }
-
-  void _onFocusChanged() =>
-      _node.hasFocus ? setState(_showOverlay) : setState(_removeOverlay);
-
-  @override
-  void didUpdateWidget(OptimusSelect<T> oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _overlayEntry?.markNeedsBuild();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
+  Widget build(BuildContext context) => OverlayController(
+        onChanged: widget.onChanged,
+        focusNode: _node,
+        anchorKey: _selectFieldKey,
+        items: widget.items,
+        onShown: () => setState(() => _isOpened = true),
+        onHidden: () => setState(() => _isOpened = false),
         child: GestureDetector(
           onTap: () => widget.isEnabled ? _node.requestFocus() : null,
           child: FieldWrapper(
@@ -97,45 +83,6 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
         ),
       );
 
-  void _showOverlay() {
-    if (_overlayEntry != null) return;
-    _overlayEntry = _createOverlayEntry();
-    Overlay.of(context).insert(_overlayEntry);
-  }
-
-  void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
-
-  Future<bool> _handleOnBackPressed() async {
-    if (_node.hasFocus) {
-      _node.unfocus();
-      return false;
-    }
-    return true;
-  }
-
-  OverlayEntry _createOverlayEntry() => OverlayEntry(
-        builder: (context) => Stack(
-          key: const Key('OptimusSelectOverlay'),
-          children: <Widget>[
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapDown: (_) => _node.unfocus(),
-            ),
-            DropdownTapInterceptor(
-              onTap: _node.unfocus,
-              child: OptimusSearchFieldDropdown<T>(
-                items: widget.items,
-                anchorKey: _selectFieldKey,
-                onChanged: widget.onChanged,
-              ),
-            )
-          ],
-        ),
-      );
-
   Widget get _fieldContent => widget.value == null
       ? Text(widget.placeholder, style: _textStyle)
       : DefaultTextStyle.merge(
@@ -144,9 +91,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
         );
 
   Icon get _icon => Icon(
-        _node.hasFocus
-            ? OptimusIcons.chevron_up_1
-            : OptimusIcons.chevron_down_1,
+        _isOpened ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
         size: 24,
         color: OptimusColors.neutral400,
       );
@@ -170,13 +115,6 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
           return preset300m.copyWith(color: OptimusColors.neutral900);
       }
     }
-  }
-
-  @override
-  void dispose() {
-    _node.removeListener(_onFocusChanged);
-    _removeOverlay();
-    super.dispose();
   }
 }
 

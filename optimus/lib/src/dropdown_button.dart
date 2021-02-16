@@ -5,8 +5,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/enabled.dart';
-import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/search/search_field_dropdown.dart';
+import 'package:optimus/src/overlay_controller.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
 
@@ -50,34 +49,22 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   final _selectFieldKey = GlobalKey();
   bool _isHovering = false;
   bool _isTappedDown = false;
-
-  OverlayEntry _overlayEntry;
+  bool _isOpened = false;
   final _node = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-    _node.addListener(_onFocusChanged);
-  }
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
   }
 
-  void _onFocusChanged() =>
-      _node.hasFocus ? setState(_showOverlay) : setState(_removeOverlay);
-
   @override
-  void didUpdateWidget(OptimusDropDownButton<T> oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _overlayEntry?.markNeedsBuild();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
+  Widget build(BuildContext context) => OverlayController(
+        items: widget.items,
+        anchorKey: _selectFieldKey,
+        onChanged: widget.onChanged,
+        focusNode: _node,
+        width: _dropdownWidth,
+        onShown: () => setState(() => _isOpened = true),
+        onHidden: () => setState(() => _isOpened = false),
         child: Enabled(
           isEnabled: _isEnabled,
           child: MouseRegion(
@@ -115,46 +102,6 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
               ),
             ),
           ),
-        ),
-      );
-
-  void _showOverlay() {
-    if (_overlayEntry != null) return;
-    _overlayEntry = _createOverlayEntry();
-    Overlay.of(context).insert(_overlayEntry);
-  }
-
-  void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
-
-  Future<bool> _handleOnBackPressed() async {
-    if (_node.hasFocus) {
-      _node.unfocus();
-      return false;
-    }
-    return true;
-  }
-
-  OverlayEntry _createOverlayEntry() => OverlayEntry(
-        builder: (context) => Stack(
-          key: const Key('OptimusSelectOverlay'),
-          children: <Widget>[
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapDown: (_) => _node.unfocus(),
-            ),
-            DropdownTapInterceptor(
-              onTap: _node.unfocus,
-              child: OptimusSearchFieldDropdown<T>(
-                items: widget.items,
-                anchorKey: _selectFieldKey,
-                onChanged: widget.onChanged,
-                width: _dropdownWidth,
-              ),
-            )
-          ],
         ),
       );
 
@@ -217,19 +164,10 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   }
 
   Icon get _icon => Icon(
-        _node.hasFocus
-            ? OptimusIcons.chevron_up_1
-            : OptimusIcons.chevron_down_1,
+        _isOpened ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
         size: widget.size == OptimusWidgetSize.small ? 16 : 24,
         color: _textColor,
       );
-
-  @override
-  void dispose() {
-    _node.removeListener(_onFocusChanged);
-    _removeOverlay();
-    super.dispose();
-  }
 }
 
 const double _dropdownWidth = 280;
