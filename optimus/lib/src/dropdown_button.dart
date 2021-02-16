@@ -27,14 +27,16 @@ enum OptimusDropdownButtonType {
 class OptimusDropDownButton<T> extends StatefulWidget {
   const OptimusDropDownButton({
     Key key,
-    this.label,
+    this.child,
     @required this.items,
     this.onChanged,
     this.size = OptimusWidgetSize.large,
     this.type = OptimusDropdownButtonType.defaultButton,
   }) : super(key: key);
 
-  final Widget label;
+  /// Typically the button's label.
+  final Widget child;
+
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final OptimusWidgetSize size;
@@ -103,7 +105,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
                         padding: const EdgeInsets.only(right: 12),
                         child: DefaultTextStyle.merge(
                           style: _labelStyle,
-                          child: widget.label,
+                          child: widget.child,
                         ),
                       ),
                       _icon,

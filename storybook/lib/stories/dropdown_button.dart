@@ -21,7 +21,6 @@ final Story dropdownButton = Story(
                     initial: OptimusWidgetSize.large,
                     options: sizeOptions,
                   ),
-                  label: Text(k.text('Label', initial: 'Dropdown button')),
                   items: Iterable<int>.generate(10)
                       .map(
                         (i) => ListDropdownTile<int>(
@@ -32,6 +31,7 @@ final Story dropdownButton = Story(
                       .toList(),
                   onChanged: isEnabled ? (_) => () {} : null,
                   type: t,
+                  child: Text(k.text('Label', initial: 'Dropdown button')),
                 ),
               ),
             )
