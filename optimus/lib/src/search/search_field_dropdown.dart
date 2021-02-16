@@ -53,26 +53,31 @@ class _OptimusSearchFieldDropdownState<T>
     final isOnTop = _topSpace > _bottomSpace;
     final maxHeight = max(_topSpace, _bottomSpace);
 
-    final left = _isLeftToRight
-        ? _savedRect.left
-        : _isRightToLeft
-            ? null
-            : (_screenWidth - widget.width) / 2;
+    final width = widget.width ?? _savedRect.width;
+    final widthWithPadding = width + _widgetPadding;
 
-    final right = _isLeftToRight
-        ? null
-        : _isRightToLeft
-            ? _screenWidth - _savedRect.right
-            : null;
+    // If we have enough space to the right, dropdown's left side will be
+    // aligned with anchor's left side. If there's not enough space to the
+    // right, but enough space to the left, dropdown's right side will be
+    // aligned with anchor's right side. If both conditions fail, left and
+    // right will both be null, so dropdown will be aligned according to
+    // Stack's alignment property.
+    double left, right;
+    if (_rightSpace >= widthWithPadding) {
+      left = _savedRect.left;
+    } else if (_leftSpace >= widthWithPadding) {
+      right = _savedRect.right;
+    }
 
     return Stack(
+      alignment: AlignmentDirectional.topCenter,
       children: <Widget>[
         // Some problem with AnimatedPosition here:
         // 'package:flutter/src/animation/tween.dart':
         // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
         Positioned(
-          width: widget.width ?? _savedRect.width,
+          width: width,
           left: left,
           right: right,
           top: isOnTop ? null : (_offsetTop ?? 0),
@@ -129,13 +134,7 @@ class _OptimusSearchFieldDropdownState<T>
 
   double get _rightSpace => _screenWidth - _savedRect.left;
 
-  double get _leftSpace => _screenWidth - _rightSpace + _savedRect.width;
-
-  bool get _isLeftToRight =>
-      widget.width == null || _rightSpace >= widget.width + _widgetPadding;
-
-  bool get _isRightToLeft =>
-      widget.width != null && _leftSpace >= widget.width + _widgetPadding;
+  double get _leftSpace => _savedRect.right;
 }
 
 class _DropdownItem<T> extends StatefulWidget {
