@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
@@ -56,7 +57,8 @@ class OptimusButton extends StatelessWidget {
   /// - [OptimusButtonVariant.destructive]: used to confirm a destructive action
   ///   that the user can’t take back, such as deletion.
   /// - [OptimusButtonVariant.warning]: used to confirm an action that will
-  ///   cause significant change. For example, a settings option that the user can’t change later.
+  ///   cause significant change. For example, a settings option that the user
+  ///   can’t change later.
   final OptimusButtonVariant variant;
 
   Widget _buildIcon(IconData icon) =>
@@ -170,8 +172,10 @@ class OptimusButton extends StatelessWidget {
           disabledColor: _color,
           disabledTextColor: _textColor,
           hoverElevation: 0,
+          splashColor: Colors.transparent,
           hoverColor: _hoverColor,
           onPressed: onPressed,
+          animationDuration: buttonAnimationDuration,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(borderRadius50),
           ),

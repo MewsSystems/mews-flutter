@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/widget_size.dart';
 
@@ -80,11 +81,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
             onTapDown: (_) => setState(() => _isTappedDown = true),
             onTapUp: (_) => setState(() => _isTappedDown = false),
             onTapCancel: () => setState(() => _isTappedDown = false),
-            child: Container(
+            child: AnimatedContainer(
               height: _containerSize,
               width: _containerSize,
               padding: EdgeInsets.zero,
               decoration: _decoration,
+              duration: buttonAnimationDuration,
               child: IconTheme.merge(
                 data: IconThemeData(color: _iconColor, size: _iconSize),
                 child: widget.icon,
