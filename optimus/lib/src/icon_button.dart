@@ -64,6 +64,7 @@ class OptimusIconButton extends StatefulWidget {
 class _OptimusIconButtonState extends State<OptimusIconButton> {
   bool _isHovering = false;
   bool _isTappedDown = false;
+  static const _animationDuration = Duration(milliseconds: 150);
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
@@ -80,11 +81,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
             onTapDown: (_) => setState(() => _isTappedDown = true),
             onTapUp: (_) => setState(() => _isTappedDown = false),
             onTapCancel: () => setState(() => _isTappedDown = false),
-            child: Container(
+            child: AnimatedContainer(
               height: _containerSize,
               width: _containerSize,
               padding: EdgeInsets.zero,
               decoration: _decoration,
+              duration: _animationDuration,
               child: IconTheme.merge(
                 data: IconThemeData(color: _iconColor, size: _iconSize),
                 child: widget.icon,

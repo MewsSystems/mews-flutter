@@ -56,7 +56,8 @@ class OptimusButton extends StatelessWidget {
   /// - [OptimusButtonVariant.destructive]: used to confirm a destructive action
   ///   that the user can’t take back, such as deletion.
   /// - [OptimusButtonVariant.warning]: used to confirm an action that will
-  ///   cause significant change. For example, a settings option that the user can’t change later.
+  ///   cause significant change. For example, a settings option that the user
+  ///   can’t change later.
   final OptimusButtonVariant variant;
 
   Widget _buildIcon(IconData icon) =>
@@ -170,6 +171,7 @@ class OptimusButton extends StatelessWidget {
           disabledColor: _color,
           disabledTextColor: _textColor,
           hoverElevation: 0,
+          splashColor: Colors.transparent,
           hoverColor: _hoverColor,
           onPressed: onPressed,
           shape: const RoundedRectangleBorder(

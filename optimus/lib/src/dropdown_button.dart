@@ -51,6 +51,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   bool _isTappedDown = false;
   bool _isOpened = false;
   final _node = FocusNode();
+  static const _animationDuration = Duration(milliseconds: 150);
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
@@ -77,7 +78,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
               onTapCancel: () => setState(() => _isTappedDown = false),
               child: Focus(
                 focusNode: _node,
-                child: Container(
+                child: AnimatedContainer(
                   padding: const EdgeInsets.symmetric(horizontal: spacing200),
                   height: widget.size.value,
                   key: _selectFieldKey,
@@ -85,6 +86,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
                     color: _color,
                     borderRadius: const BorderRadius.all(borderRadius50),
                   ),
+                  duration: _animationDuration,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
