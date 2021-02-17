@@ -114,7 +114,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   }
 
   Color get _color => _isTappedDown
-      ? _highLightColor
+      ? _highlightColor
       : _isHovering
           ? _hoverColor
           : _normalColor;
@@ -156,7 +156,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   }
 
   // ignore: missing_return
-  Color get _highLightColor {
+  Color get _highlightColor {
     switch (widget.type) {
       case OptimusIconButtonType.defaultButton:
         return OptimusColors.neutral200;
