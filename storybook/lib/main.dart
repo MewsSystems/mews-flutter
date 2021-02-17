@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:storybook/stories/banner.dart';
+import 'package:storybook/stories/button/button.dart';
 import 'package:storybook/stories/button/dropdown.dart';
 import 'package:storybook/stories/button/icon.dart';
 import 'package:storybook/stories/card.dart';
@@ -19,8 +20,6 @@ import 'package:storybook/stories/stack.dart';
 import 'package:storybook/stories/tags.dart';
 import 'package:storybook/stories/wide_banner.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
-
-import 'stories/button/button.dart';
 
 void main() => runApp(const MyApp());
 
