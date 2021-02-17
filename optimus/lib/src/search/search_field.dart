@@ -83,8 +83,11 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.isUpdating
               ? const OptimusProgressSpinner()
-              : const Icon(OptimusIcons.search,
-                  size: 24, color: OptimusColors.neutral1000t64),
+              : const Icon(
+                  OptimusIcons.search,
+                  size: 24,
+                  color: OptimusColors.neutral1000t64,
+                ),
           isEnabled: widget.isEnabled,
           caption: widget.caption,
           secondaryCaption: widget.secondaryCaption,

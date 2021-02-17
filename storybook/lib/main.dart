@@ -5,6 +5,7 @@ import 'package:storybook/stories/card.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
 import 'package:storybook/stories/dialog.dart';
+import 'package:storybook/stories/dropdown_button.dart';
 import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_button.dart';
 import 'package:storybook/stories/icon_list.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => Storybook(
         children: [
           button,
+          dropdownButton,
           iconButton,
           selectStory,
           checkbox,
