@@ -66,7 +66,7 @@ class _OptimusSearchFieldDropdownState<T>
     if (_rightSpace >= widthWithPadding) {
       left = _savedRect.left;
     } else if (_leftSpace >= widthWithPadding) {
-      right = _savedRect.right;
+      right = _screenWidth - _savedRect.right;
     }
 
     return Stack(
