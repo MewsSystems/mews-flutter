@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
@@ -174,6 +175,7 @@ class OptimusButton extends StatelessWidget {
           splashColor: Colors.transparent,
           hoverColor: _hoverColor,
           onPressed: onPressed,
+          animationDuration: buttonAnimationDuration,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(borderRadius50),
           ),

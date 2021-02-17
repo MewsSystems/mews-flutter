@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/overlay_controller.dart';
 import 'package:optimus/src/typography/styles.dart';
@@ -51,7 +52,6 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
   bool _isTappedDown = false;
   bool _isOpened = false;
   final _node = FocusNode();
-  static const _animationDuration = Duration(milliseconds: 150);
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
@@ -86,7 +86,7 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
                     color: _color,
                     borderRadius: const BorderRadius.all(borderRadius50),
                   ),
-                  duration: _animationDuration,
+                  duration: buttonAnimationDuration,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

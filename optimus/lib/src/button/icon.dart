@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/widget_size.dart';
 
@@ -64,7 +65,6 @@ class OptimusIconButton extends StatefulWidget {
 class _OptimusIconButtonState extends State<OptimusIconButton> {
   bool _isHovering = false;
   bool _isTappedDown = false;
-  static const _animationDuration = Duration(milliseconds: 150);
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
@@ -86,7 +86,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
               width: _containerSize,
               padding: EdgeInsets.zero,
               decoration: _decoration,
-              duration: _animationDuration,
+              duration: buttonAnimationDuration,
               child: IconTheme.merge(
                 data: IconThemeData(color: _iconColor, size: _iconSize),
                 child: widget.icon,
