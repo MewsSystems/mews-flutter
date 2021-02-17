@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:optimus/src/common/dropdown.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/search/dropdown_tile.dart';
-import 'package:optimus/src/search/search_field_dropdown.dart';
 
 class OverlayController<T> extends StatefulWidget {
   const OverlayController({
@@ -82,7 +82,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
             ),
             DropdownTapInterceptor(
               onTap: widget.focusNode.unfocus,
-              child: OptimusSearchFieldDropdown<T>(
+              child: OptimusDropdown<T>(
                 items: widget.items,
                 anchorKey: widget.anchorKey,
                 onChanged: widget.onChanged,

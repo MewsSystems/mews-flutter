@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/dropdown.dart';
 import 'package:optimus/src/progress_spinner.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/search/dropdown_tile.dart';
-import 'package:optimus/src/search/search_field_dropdown.dart';
 
 class OptimusSearch<T> extends StatefulWidget {
   const OptimusSearch({
@@ -151,7 +151,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           },
           child: DropdownTapInterceptor(
             onTap: _onItemSelected,
-            child: OptimusSearchFieldDropdown(
+            child: OptimusDropdown(
               items: widget.items,
               anchorKey: _fieldBoxKey,
               onChanged: widget.onChanged,

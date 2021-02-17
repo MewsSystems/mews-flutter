@@ -10,9 +10,8 @@ import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/search/dropdown_tile.dart';
 
-// TODO(VG): rename to OptimusDropdown
-class OptimusSearchFieldDropdown<T> extends StatefulWidget {
-  const OptimusSearchFieldDropdown({
+class OptimusDropdown<T> extends StatefulWidget {
+  const OptimusDropdown({
     Key key,
     @required this.items,
     @required this.anchorKey,
@@ -26,12 +25,10 @@ class OptimusSearchFieldDropdown<T> extends StatefulWidget {
   final double width;
 
   @override
-  _OptimusSearchFieldDropdownState<T> createState() =>
-      _OptimusSearchFieldDropdownState<T>();
+  _OptimusDropdownState<T> createState() => _OptimusDropdownState<T>();
 }
 
-class _OptimusSearchFieldDropdownState<T>
-    extends State<OptimusSearchFieldDropdown<T>> {
+class _OptimusDropdownState<T> extends State<OptimusDropdown<T>> {
   Rect _savedRect;
 
   void _updateRect(dynamic _) {
