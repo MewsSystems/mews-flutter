@@ -230,7 +230,7 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
-  // ignore: unused_element
+  // ignore: missing_return
   Alignment get _smallScreenAlignment {
     switch (position) {
       case OptimusDialogPosition.center:

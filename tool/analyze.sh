@@ -7,6 +7,9 @@ if grep -q "error •" <<<"$OUTPUT"; then
 elif grep -q "warning •" <<<"$OUTPUT"; then
   echo "flutter analyze found warnings"
   exit 1
+elif grep -q "info •" <<<"$OUTPUT"; then
+  echo "flutter analyze found infos"
+  exit 1
 else
   echo "flutter analyze didn't find any warnings"
   exit 0
