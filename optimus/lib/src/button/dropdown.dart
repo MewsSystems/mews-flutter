@@ -24,10 +24,10 @@ enum OptimusDropdownButtonType {
 
 /// Dropdown buttons trigger a dropdown menu with more actions related to the
 /// context of the button.
-class OptimusDropDownButton<T> extends StatefulWidget {
+class OptimusDropDownButton<T> extends StatelessWidget {
   const OptimusDropDownButton({
     Key key,
-    this.child,
+    @required this.child,
     @required this.items,
     this.onChanged,
     this.size = OptimusWidgetSize.large,
@@ -43,10 +43,40 @@ class OptimusDropDownButton<T> extends StatefulWidget {
   final OptimusDropdownButtonType type;
 
   @override
-  _OptimusDropDownButtonState createState() => _OptimusDropDownButtonState<T>();
+  Widget build(BuildContext context) => BaseDropDownButton(
+        items: items,
+        onChanged: onChanged,
+        size: size,
+        type: type,
+        child: child,
+      );
 }
 
-class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
+class BaseDropDownButton<T> extends StatefulWidget {
+  const BaseDropDownButton({
+    Key key,
+    this.child,
+    @required this.items,
+    this.onChanged,
+    this.size = OptimusWidgetSize.large,
+    this.type = OptimusDropdownButtonType.defaultButton,
+    this.borderRadius = const BorderRadius.all(borderRadius50),
+  }) : super(key: key);
+
+  /// Typically the button's label.
+  final Widget child;
+
+  final List<OptimusDropdownTile<T>> items;
+  final ValueSetter<T> onChanged;
+  final OptimusWidgetSize size;
+  final OptimusDropdownButtonType type;
+  final BorderRadius borderRadius;
+
+  @override
+  _BaseDropDownButtonState createState() => _BaseDropDownButtonState<T>();
+}
+
+class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   final _selectFieldKey = GlobalKey();
   bool _isHovering = false;
   bool _isTappedDown = false;
@@ -84,19 +114,20 @@ class _OptimusDropDownButtonState<T> extends State<OptimusDropDownButton<T>> {
                   key: _selectFieldKey,
                   decoration: BoxDecoration(
                     color: _color,
-                    borderRadius: const BorderRadius.all(borderRadius50),
+                    borderRadius: widget.borderRadius,
                   ),
                   duration: buttonAnimationDuration,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: DefaultTextStyle.merge(
-                          style: _labelStyle,
-                          child: widget.child,
+                      if (widget.child != null)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: DefaultTextStyle.merge(
+                            style: _labelStyle,
+                            child: widget.child,
+                          ),
                         ),
-                      ),
                       _icon,
                     ],
                   ),

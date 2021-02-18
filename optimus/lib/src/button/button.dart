@@ -70,9 +70,6 @@ class OptimusButton extends StatelessWidget {
         badgeLabel: badgeLabel,
         size: size,
         variant: variant,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(borderRadius50),
-        ),
         child: child,
       );
 }
@@ -88,7 +85,7 @@ class BaseButton extends StatelessWidget {
     this.badgeLabel,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.defaultButton,
-    this.shape,
+    this.borderRadius = const BorderRadius.all(borderRadius50),
   }) : super(key: key);
 
   final VoidCallback onPressed;
@@ -107,7 +104,7 @@ class BaseButton extends StatelessWidget {
 
   final OptimusButtonVariant variant;
 
-  final ShapeBorder shape;
+  final BorderRadius borderRadius;
 
   Widget _buildIcon(IconData icon) =>
       Icon(icon, size: _iconSize, color: _textColor);
@@ -224,7 +221,7 @@ class BaseButton extends StatelessWidget {
           hoverColor: _hoverColor,
           onPressed: onPressed,
           animationDuration: buttonAnimationDuration,
-          shape: shape,
+          shape: RoundedRectangleBorder(borderRadius: borderRadius),
           color: _color,
           child: Row(
             mainAxisSize: MainAxisSize.min,
