@@ -12,7 +12,7 @@ dependencies:
   optimus:
     path: ../optimus
   rxdart: ^0.24.0
-  storybook_flutter: ^0.1.5
+  storybook_flutter: ^0.2.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:

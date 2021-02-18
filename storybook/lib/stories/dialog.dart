@@ -8,11 +8,12 @@ final Story dialogStory = Story(
   name: 'Modal dialog',
   section: 'Dialogs',
   builder: (context, k) {
-    final isDismissible = k.boolean('Dismissible', initial: true);
-    final content =
-        k.boolean('Scrollable', initial: false) ? _scrollableContent : _content;
-    final type =
-        k.options('Type', initial: OptimusDialogType.common, options: _types);
+    final isDismissible = k.boolean(label: 'Dismissible', initial: true);
+    final content = k.boolean(label: 'Scrollable', initial: false)
+        ? _scrollableContent
+        : _content;
+    final type = k.options(
+        label: 'Type', initial: OptimusDialogType.common, options: _types);
 
     return Center(
       child: SingleChildScrollView(

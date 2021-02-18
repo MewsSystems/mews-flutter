@@ -7,7 +7,7 @@ final Story dropdownButton = Story(
   section: 'Button',
   name: 'Dropdown button',
   builder: (_, k) {
-    final isEnabled = k.boolean('Enabled', initial: true);
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return SingleChildScrollView(
       child: Column(
@@ -17,7 +17,7 @@ final Story dropdownButton = Story(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: OptimusDropDownButton<int>(
                   size: k.options(
-                    'Size',
+                    label: 'Size',
                     initial: OptimusWidgetSize.large,
                     options: sizeOptions,
                   ),
@@ -31,7 +31,9 @@ final Story dropdownButton = Story(
                       .toList(),
                   onChanged: isEnabled ? (_) => () {} : null,
                   type: t,
-                  child: Text(k.text('Label', initial: 'Dropdown button')),
+                  child: Text(
+                    k.text(label: 'Label', initial: 'Dropdown button'),
+                  ),
                 ),
               ),
             )

@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Storybook(
         children: [
+          buttonPreview,
           button,
           dropdownButton,
           iconButton,

@@ -5,8 +5,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 final Story numberPickerStory = Story(
   name: 'Number picker',
   builder: (_, k) => _Content(
-    isEnabled: k.boolean('Enabled', initial: true),
-    error: k.text('Error'),
+    isEnabled: k.boolean(label: 'Enabled', initial: true),
+    error: k.text(label: 'Error'),
   ),
 );
 

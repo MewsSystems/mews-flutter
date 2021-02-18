@@ -21,8 +21,8 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDismissible = k.boolean('Dismissible', initial: true);
-    final hasActions = k.boolean('Has actions', initial: false);
+    final isDismissible = k.boolean(label: 'Dismissible', initial: true);
+    final hasActions = k.boolean(label: 'Has actions', initial: false);
 
     return OptimusButton(
       onPressed: () => {

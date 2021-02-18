@@ -7,7 +7,7 @@ final Story bannerStory = Story(
   name: 'Banner',
   section: 'Banner',
   builder: (_, k) {
-    final description = k.text('Additional description', initial: '');
+    final description = k.text(label: 'Additional description', initial: '');
     return SingleChildScrollView(
       child: Column(
           children: OptimusBannerVariant.values
@@ -15,11 +15,11 @@ final Story bannerStory = Story(
                 (v) => Padding(
                   padding: const EdgeInsets.all(8),
                   child: OptimusBanner(
-                    title: Text(k.text('Content', initial: 'Info Text')),
+                    title: Text(k.text(label: 'Content', initial: 'Info Text')),
                     description:
                         description.isNotEmpty ? Text(description) : null,
-                    hasIcon: k.boolean('Show icon'),
-                    isDismissible: k.boolean('Dismissible'),
+                    hasIcon: k.boolean(label: 'Show icon'),
+                    isDismissible: k.boolean(label: 'Dismissible'),
                     variant: v,
                   ),
                 ),

@@ -12,28 +12,63 @@ final Story button = Story(
           .map((v) => Padding(
                 padding: const EdgeInsets.all(8),
                 child: OptimusButton(
-                  onPressed: k.boolean('Enabled', initial: true) ? () {} : null,
+                  onPressed: k.boolean(label: 'Enabled', initial: true) ? () {} : null,
                   size: k.options(
-                    'Size',
+                    label: 'Size',
                     initial: OptimusWidgetSize.large,
                     options: sizeOptions,
                   ),
                   variant: v,
                   leftIcon: k.options(
-                    'Left icon',
+                    label: 'Left icon',
                     initial: null,
                     options: exampleIcons,
                   ),
                   rightIcon: k.options(
-                    'Right icon',
+                    label: 'Right icon',
                     initial: null,
                     options: exampleIcons,
                   ),
-                  badgeLabel: k.text('Badge', initial: null),
-                  child: Text(k.text('Text', initial: 'Button')),
+                  badgeLabel: k.text(label: 'Badge', initial: null),
+                  child: Text(k.text(label: 'Text', initial: 'Button')),
                 ),
               ))
           .toList(),
     ),
+  ),
+);
+
+final Story buttonPreview = Story.simple(
+  name: 'Button preview',
+  section: 'Button',
+  child: OptimusStack(
+    spacing: OptimusStackSpacing.spacing100,
+    crossAxisAlignment: OptimusStackAlignment.start,
+    children: [
+      OptimusButton(
+        leftIcon: OptimusIcons.plus_simple,
+        onPressed: () {},
+        variant: OptimusButtonVariant.primary,
+        child: const Text('Add file'),
+      ),
+      OptimusButton(
+        leftIcon: OptimusIcons.edit,
+        onPressed: () {},
+        variant: OptimusButtonVariant.text,
+        child: const Text('Edit'),
+      ),
+      OptimusButton(
+        leftIcon: OptimusIcons.delete,
+        onPressed: () {},
+        variant: OptimusButtonVariant.destructive,
+        child: const Text('Delete file'),
+      ),
+      OptimusButton(
+        rightIcon: OptimusIcons.chevron_right,
+        onPressed: () {},
+        variant: OptimusButtonVariant.primary,
+        child: const Text('Next step'),
+      ),
+    ],
   ),
 );
