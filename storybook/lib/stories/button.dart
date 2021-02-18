@@ -41,9 +41,9 @@ final Story button = Story(
 final Story buttonPreview = Story.simple(
   name: 'Button preview',
   section: 'Button',
-  child: OptimusStack(
-    spacing: OptimusStackSpacing.spacing100,
-    crossAxisAlignment: OptimusStackAlignment.start,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
     children: [
       OptimusButton(
         leftIcon: OptimusIcons.plus_simple,
@@ -51,18 +51,21 @@ final Story buttonPreview = Story.simple(
         variant: OptimusButtonVariant.primary,
         child: const Text('Add file'),
       ),
+      const SizedBox(height: 10),
       OptimusButton(
         leftIcon: OptimusIcons.edit,
         onPressed: () {},
         variant: OptimusButtonVariant.text,
         child: const Text('Edit'),
       ),
+      const SizedBox(height: 10),
       OptimusButton(
         leftIcon: OptimusIcons.delete,
         onPressed: () {},
         variant: OptimusButtonVariant.destructive,
         child: const Text('Delete file'),
       ),
+      const SizedBox(height: 10),
       OptimusButton(
         rightIcon: OptimusIcons.chevron_right,
         onPressed: () {},
