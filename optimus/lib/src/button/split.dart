@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/constants.dart';
+import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/button/base_button.dart';
+import 'package:optimus/src/button/base_dropdown_button.dart';
 import 'package:optimus/src/enabled.dart';
 
 enum OptimusSplitButtonType {
@@ -48,18 +50,24 @@ class OptimusSplitButton<T> extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            OptimusButton(
+            BaseButton(
               onPressed: onPressed,
               variant: _buttonType,
+              borderRadius: const BorderRadius.only(
+                topLeft: borderRadius50,
+                bottomLeft: borderRadius50,
+              ),
               child: child,
             ),
             const SizedBox(width: 1),
-            OptimusDropDownButton(
+            BaseDropDownButton(
               items: items,
               onChanged: onDropdownItemPressed,
               type: _dropdownButtonType,
-              // TODO(VG): remove
-              child: child,
+              borderRadius: const BorderRadius.only(
+                topRight: borderRadius50,
+                bottomRight: borderRadius50,
+              ),
             ),
           ],
         ),
