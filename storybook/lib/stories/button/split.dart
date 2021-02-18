@@ -11,30 +11,31 @@ final Story splitButton = Story(
 
     return SingleChildScrollView(
       child: Column(
-        children: OptimusDropdownButtonType.values
+        children: OptimusSplitButtonType.values
             .map(
               (t) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: OptimusDropDownButton<int>(
-              size: k.options(
-                'Size',
-                initial: OptimusWidgetSize.large,
-                options: sizeOptions,
-              ),
-              items: Iterable<int>.generate(10)
-                  .map(
-                    (i) => ListDropdownTile<int>(
-                  value: i,
-                  title: Text('Dropdown tile #$i'),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: OptimusSplitButton<int>(
+                  size: k.options(
+                    'Size',
+                    initial: OptimusWidgetSize.large,
+                    options: sizeOptions,
+                  ),
+                  items: Iterable<int>.generate(10)
+                      .map(
+                        (i) => ListDropdownTile<int>(
+                          value: i,
+                          title: Text('Dropdown tile #$i'),
+                        ),
+                      )
+                      .toList(),
+                  onPressed: isEnabled ? () {} : null,
+                  onDropdownItemPressed: isEnabled ? (_) => () {} : null,
+                  type: t,
+                  child: Text(k.text('Label', initial: 'Split button')),
                 ),
-              )
-                  .toList(),
-              onChanged: isEnabled ? (_) => () {} : null,
-              type: t,
-              child: Text(k.text('Label', initial: 'Dropdown button')),
-            ),
-          ),
-        )
+              ),
+            )
             .toList(),
       ),
     );

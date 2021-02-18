@@ -38,6 +38,7 @@ class OptimusDropDownButton<T> extends StatefulWidget {
   final Widget child;
 
   final List<OptimusDropdownTile<T>> items;
+  // TODO(VG): rename to onItemPressed/ onItemSelected
   final ValueSetter<T> onChanged;
   final OptimusWidgetSize size;
   final OptimusDropdownButtonType type;
