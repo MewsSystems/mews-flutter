@@ -61,6 +61,54 @@ class OptimusButton extends StatelessWidget {
   ///   can’t change later.
   final OptimusButtonVariant variant;
 
+  @override
+  Widget build(BuildContext context) => BaseButton(
+        onPressed: onPressed,
+        minWidth: minWidth,
+        leftIcon: leftIcon,
+        rightIcon: rightIcon,
+        badgeLabel: badgeLabel,
+        size: size,
+        variant: variant,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(borderRadius50),
+        ),
+        child: child,
+      );
+}
+
+class BaseButton extends StatelessWidget {
+  const BaseButton({
+    Key key,
+    this.onPressed,
+    @required this.child,
+    this.minWidth,
+    this.leftIcon,
+    this.rightIcon,
+    this.badgeLabel,
+    this.size = OptimusWidgetSize.large,
+    this.variant = OptimusButtonVariant.defaultButton,
+    this.shape,
+  }) : super(key: key);
+
+  final VoidCallback onPressed;
+
+  final Widget child;
+
+  final double minWidth;
+
+  final IconData leftIcon;
+
+  final IconData rightIcon;
+
+  final String badgeLabel;
+
+  final OptimusWidgetSize size;
+
+  final OptimusButtonVariant variant;
+
+  final ShapeBorder shape;
+
   Widget _buildIcon(IconData icon) =>
       Icon(icon, size: _iconSize, color: _textColor);
 
@@ -176,9 +224,7 @@ class OptimusButton extends StatelessWidget {
           hoverColor: _hoverColor,
           onPressed: onPressed,
           animationDuration: buttonAnimationDuration,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(borderRadius50),
-          ),
+          shape: shape,
           color: _color,
           child: Row(
             mainAxisSize: MainAxisSize.min,
