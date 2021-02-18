@@ -14,6 +14,7 @@ export 'src/breakpoint.dart';
 export 'src/button/button.dart';
 export 'src/button/dropdown.dart';
 export 'src/button/icon.dart';
+export 'src/button/split.dart';
 export 'src/card.dart';
 export 'src/checkbox/checkbox.dart';
 export 'src/checkbox/checkbox_group.dart';
