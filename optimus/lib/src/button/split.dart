@@ -35,12 +35,17 @@ class OptimusSplitButton<T> extends StatelessWidget {
   /// If this callback is null, then the button will be disabled.
   final VoidCallback onPressed;
 
+  /// List of items in dropdown section (when pressed on the button's right
+  /// part).
   final List<OptimusDropdownTile<T>> items;
 
+  /// Called when dropdown item is selected.
   final ValueSetter<T> onItemSelected;
 
+  /// The size of the button
   final OptimusWidgetSize size;
 
+  /// The variant of the button.
   final OptimusSplitButtonVariant variant;
 
   @override
