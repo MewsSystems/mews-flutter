@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
@@ -6,10 +7,19 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 // TODO(MM): knobs
 final Story stepBarStory = Story(
   name: 'Step Bar',
-  builder: (_, k) => const SingleChildScrollView(
+  builder: (_, k) => SingleChildScrollView(
     child: OptimusStepBar(
-      type: StepBarType.icon,
-      layout: Axis.horizontal,
+      type: k.options(
+        'Type',
+        initial: StepBarType.icon,
+        options:
+            StepBarType.values.map((e) => Option(describeEnum(e), e)).toList(),
+      ),
+      layout: k.options(
+        'Layout',
+        initial: Axis.horizontal,
+        options: Axis.values.map((e) => Option(describeEnum(e), e)).toList(),
+      ),
       items: _items,
     ),
   ),
