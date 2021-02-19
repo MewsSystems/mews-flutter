@@ -5,7 +5,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 import 'package:optimus/src/widget_size.dart';
 
-enum OptimusDropdownButtonType {
+enum OptimusDropdownButtonVariant {
   /// The default option. Use this variant for the majority of cases.
   defaultButton,
 
@@ -26,7 +26,7 @@ class OptimusDropDownButton<T> extends StatelessWidget {
     @required this.items,
     this.onChanged,
     this.size = OptimusWidgetSize.large,
-    this.type = OptimusDropdownButtonType.defaultButton,
+    this.variant = OptimusDropdownButtonVariant.defaultButton,
   }) : super(key: key);
 
   /// Typically the button's label.
@@ -35,14 +35,14 @@ class OptimusDropDownButton<T> extends StatelessWidget {
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final OptimusWidgetSize size;
-  final OptimusDropdownButtonType type;
+  final OptimusDropdownButtonVariant variant;
 
   @override
   Widget build(BuildContext context) => BaseDropDownButton(
         items: items,
         onChanged: onChanged,
         size: size,
-        type: type,
+        variant: variant,
         child: child,
       );
 }

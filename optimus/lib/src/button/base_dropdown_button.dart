@@ -17,7 +17,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
     @required this.items,
     this.onChanged,
     this.size = OptimusWidgetSize.large,
-    this.type = OptimusDropdownButtonType.defaultButton,
+    this.variant = OptimusDropdownButtonVariant.defaultButton,
     this.borderRadius = const BorderRadius.all(borderRadius50),
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final OptimusWidgetSize size;
-  final OptimusDropdownButtonType type;
+  final OptimusDropdownButtonVariant variant;
   final BorderRadius borderRadius;
 
   @override
@@ -104,8 +104,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
 
   // ignore: missing_return
   Color get _textColor {
-    switch (widget.type) {
-      case OptimusDropdownButtonType.primary:
+    switch (widget.variant) {
+      case OptimusDropdownButtonVariant.primary:
         return OptimusColors.neutral0;
       default:
         return OptimusColors.neutral500;
@@ -120,36 +120,36 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
 
   // ignore: missing_return
   Color get _normalColor {
-    switch (widget.type) {
-      case OptimusDropdownButtonType.defaultButton:
+    switch (widget.variant) {
+      case OptimusDropdownButtonVariant.defaultButton:
         return OptimusColors.neutral50;
-      case OptimusDropdownButtonType.primary:
+      case OptimusDropdownButtonVariant.primary:
         return OptimusColors.primary500;
-      case OptimusDropdownButtonType.text:
+      case OptimusDropdownButtonVariant.text:
         return Colors.transparent;
     }
   }
 
   // ignore: missing_return
   Color get _hoverColor {
-    switch (widget.type) {
-      case OptimusDropdownButtonType.defaultButton:
+    switch (widget.variant) {
+      case OptimusDropdownButtonVariant.defaultButton:
         return OptimusColors.neutral100;
-      case OptimusDropdownButtonType.primary:
+      case OptimusDropdownButtonVariant.primary:
         return OptimusColors.primary700;
-      case OptimusDropdownButtonType.text:
+      case OptimusDropdownButtonVariant.text:
         return OptimusColors.neutral500t8;
     }
   }
 
   // ignore: missing_return
   Color get _highlightColor {
-    switch (widget.type) {
-      case OptimusDropdownButtonType.defaultButton:
+    switch (widget.variant) {
+      case OptimusDropdownButtonVariant.defaultButton:
         return OptimusColors.neutral200;
-      case OptimusDropdownButtonType.primary:
+      case OptimusDropdownButtonVariant.primary:
         return OptimusColors.primary900;
-      case OptimusDropdownButtonType.text:
+      case OptimusDropdownButtonVariant.text:
         return OptimusColors.neutral500t16;
     }
   }
