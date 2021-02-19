@@ -8,8 +8,8 @@ final Story iconButton = Story(
   name: 'Icon button',
   builder: (_, k) => SingleChildScrollView(
     child: Column(
-      children: OptimusIconButtonType.values
-          .map((t) => Padding(
+      children: OptimusIconButtonVariant.values
+          .map((v) => Padding(
                 padding: const EdgeInsets.all(8),
                 child: OptimusIconButton(
                   onPressed: k.boolean('Enabled', initial: true) ? () {} : null,
@@ -25,7 +25,7 @@ final Story iconButton = Story(
                     initial: OptimusWidgetSize.large,
                     options: sizeOptions,
                   ),
-                  type: t,
+                  variant: v,
                 ),
               ))
           .toList(),

@@ -112,7 +112,7 @@ class OptimusBanner extends StatelessWidget {
                             icon:
                                 const Icon(OptimusIcons.cross_close, size: 12),
                             size: OptimusWidgetSize.small,
-                            type: OptimusIconButtonType.bare,
+                            variant: OptimusIconButtonVariant.bare,
                           ),
                       ],
                     ),

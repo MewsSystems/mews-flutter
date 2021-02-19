@@ -25,7 +25,7 @@ class OptimusSelect<T> extends StatefulWidget {
     this.secondaryCaption,
     this.error,
     this.size = OptimusWidgetSize.large,
-    @required this.onChanged,
+    @required this.onItemSelected,
   }) : super(key: key);
 
   final String label;
@@ -40,7 +40,7 @@ class OptimusSelect<T> extends StatefulWidget {
   final String error;
   final OptimusWidgetSize size;
   final CurrentValueBuilder<T> builder;
-  final ValueSetter<T> onChanged;
+  final ValueSetter<T> onItemSelected;
 
   @override
   _OptimusSelectState createState() => _OptimusSelectState<T>();
@@ -53,7 +53,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
 
   @override
   Widget build(BuildContext context) => OverlayController(
-        onChanged: widget.onChanged,
+        onItemSelected: widget.onItemSelected,
         focusNode: _node,
         anchorKey: _selectFieldKey,
         items: widget.items,
