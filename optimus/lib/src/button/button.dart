@@ -4,7 +4,6 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/widget_size.dart';
 
-// TODO(VG): rename to OptimusButtonType (RND-49637)
 enum OptimusButtonVariant { defaultButton, primary, text, destructive, warning }
 
 /// Buttons are an element that let users trigger or perform an action.

@@ -5,6 +5,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 import 'package:optimus/src/widget_size.dart';
 
+// TODO(VG): rename to OptimusButtonVariant (RND-49637)
 enum OptimusDropdownButtonType {
   /// The default option. Use this variant for the majority of cases.
   defaultButton,

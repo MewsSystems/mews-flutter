@@ -6,6 +6,7 @@ import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/widget_size.dart';
 
+// TODO(VG): rename to OptimusIconButtonVariant (RND-49637)
 enum OptimusIconButtonType {
   /// Used in most scenarios when there is no prior action necessary.
   defaultButton,

@@ -4,7 +4,7 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
-enum OptimusSplitButtonType {
+enum OptimusSplitButtonVariant {
   /// The default option used in most scenarios.
   defaultButton,
 
@@ -24,7 +24,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
     @required this.items,
     this.onDropdownItemPressed,
     this.size = OptimusWidgetSize.large,
-    this.type = OptimusSplitButtonType.defaultButton,
+    this.variant = OptimusSplitButtonVariant.defaultButton,
   }) : super(key: key);
 
   /// Typically the button's label.
@@ -41,7 +41,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
 
   final OptimusWidgetSize size;
 
-  final OptimusSplitButtonType type;
+  final OptimusSplitButtonVariant variant;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -49,7 +49,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
         children: [
           BaseButton(
             onPressed: onPressed,
-            variant: _buttonType,
+            variant: _buttonVariant,
             borderRadius: const BorderRadius.only(
               topLeft: borderRadius50,
               bottomLeft: borderRadius50,
@@ -60,7 +60,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
           BaseDropDownButton(
             items: items,
             onChanged: onDropdownItemPressed,
-            type: _dropdownButtonType,
+            type: _dropdownButtonVariant,
             borderRadius: const BorderRadius.only(
               topRight: borderRadius50,
               bottomRight: borderRadius50,
@@ -70,21 +70,21 @@ class OptimusSplitButton<T> extends StatelessWidget {
       );
 
   // ignore: missing_return
-  OptimusButtonVariant get _buttonType {
-    switch (type) {
-      case OptimusSplitButtonType.defaultButton:
+  OptimusButtonVariant get _buttonVariant {
+    switch (variant) {
+      case OptimusSplitButtonVariant.defaultButton:
         return OptimusButtonVariant.defaultButton;
-      case OptimusSplitButtonType.primary:
+      case OptimusSplitButtonVariant.primary:
         return OptimusButtonVariant.primary;
     }
   }
 
   // ignore: missing_return
-  OptimusDropdownButtonType get _dropdownButtonType {
-    switch (type) {
-      case OptimusSplitButtonType.defaultButton:
+  OptimusDropdownButtonType get _dropdownButtonVariant {
+    switch (variant) {
+      case OptimusSplitButtonVariant.defaultButton:
         return OptimusDropdownButtonType.defaultButton;
-      case OptimusSplitButtonType.primary:
+      case OptimusSplitButtonVariant.primary:
         return OptimusDropdownButtonType.primary;
     }
   }
