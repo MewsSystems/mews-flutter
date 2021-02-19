@@ -45,32 +45,29 @@ class OptimusSplitButton<T> extends StatelessWidget {
   final OptimusSplitButtonType type;
 
   @override
-  Widget build(BuildContext context) => Enabled(
-        isEnabled: onPressed != null,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BaseButton(
-              onPressed: onPressed,
-              variant: _buttonType,
-              borderRadius: const BorderRadius.only(
-                topLeft: borderRadius50,
-                bottomLeft: borderRadius50,
-              ),
-              child: child,
+  Widget build(BuildContext context) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BaseButton(
+            onPressed: onPressed,
+            variant: _buttonType,
+            borderRadius: const BorderRadius.only(
+              topLeft: borderRadius50,
+              bottomLeft: borderRadius50,
             ),
-            const SizedBox(width: 1),
-            BaseDropDownButton(
-              items: items,
-              onChanged: onDropdownItemPressed,
-              type: _dropdownButtonType,
-              borderRadius: const BorderRadius.only(
-                topRight: borderRadius50,
-                bottomRight: borderRadius50,
-              ),
+            child: child,
+          ),
+          const SizedBox(width: 1),
+          BaseDropDownButton(
+            items: items,
+            onChanged: onDropdownItemPressed,
+            type: _dropdownButtonType,
+            borderRadius: const BorderRadius.only(
+              topRight: borderRadius50,
+              bottomRight: borderRadius50,
             ),
-          ],
-        ),
+          ),
+        ],
       );
 
   // ignore: missing_return
