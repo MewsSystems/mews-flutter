@@ -54,6 +54,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
               topLeft: borderRadius50,
               bottomLeft: borderRadius50,
             ),
+            size: size,
             child: child,
           ),
           const SizedBox(width: 1),
@@ -65,6 +66,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
               topRight: borderRadius50,
               bottomRight: borderRadius50,
             ),
+            size: size,
           ),
         ],
       );
