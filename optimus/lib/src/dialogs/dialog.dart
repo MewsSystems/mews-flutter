@@ -372,7 +372,7 @@ class _Title extends StatelessWidget {
           if (isDismissible)
             OptimusIconButton(
               icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-              type: OptimusIconButtonType.bare,
+              variant: OptimusIconButtonVariant.bare,
               onPressed: close,
             ),
         ],
