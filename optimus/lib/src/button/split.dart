@@ -22,7 +22,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
     @required this.child,
     this.onPressed,
     @required this.items,
-    this.onDropdownItemPressed,
+    this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusSplitButtonVariant.defaultButton,
   }) : super(key: key);
@@ -37,7 +37,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
 
   final List<OptimusDropdownTile<T>> items;
 
-  final ValueSetter<T> onDropdownItemPressed;
+  final ValueSetter<T> onItemSelected;
 
   final OptimusWidgetSize size;
 
@@ -59,8 +59,8 @@ class OptimusSplitButton<T> extends StatelessWidget {
           const SizedBox(width: 1),
           BaseDropDownButton(
             items: items,
-            onChanged: onDropdownItemPressed,
-            type: _dropdownButtonVariant,
+            onItemSelected: onItemSelected,
+            variant: _dropdownButtonVariant,
             borderRadius: const BorderRadius.only(
               topRight: borderRadius50,
               bottomRight: borderRadius50,
@@ -80,12 +80,12 @@ class OptimusSplitButton<T> extends StatelessWidget {
   }
 
   // ignore: missing_return
-  OptimusDropdownButtonType get _dropdownButtonVariant {
+  OptimusDropdownButtonVariant get _dropdownButtonVariant {
     switch (variant) {
       case OptimusSplitButtonVariant.defaultButton:
-        return OptimusDropdownButtonType.defaultButton;
+        return OptimusDropdownButtonVariant.defaultButton;
       case OptimusSplitButtonVariant.primary:
-        return OptimusDropdownButtonType.primary;
+        return OptimusDropdownButtonVariant.primary;
     }
   }
 }

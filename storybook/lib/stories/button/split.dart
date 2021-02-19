@@ -30,7 +30,7 @@ final Story splitButton = Story(
                       )
                       .toList(),
                   onPressed: isEnabled ? () {} : null,
-                  onDropdownItemPressed: isEnabled ? (_) => () {} : null,
+                  onItemSelected: isEnabled ? (_) => () {} : null,
                   variant: v,
                   child: Text(k.text('Label', initial: 'Split button')),
                 ),
