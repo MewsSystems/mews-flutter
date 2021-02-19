@@ -11,9 +11,9 @@ final Story dropdownButton = Story(
 
     return SingleChildScrollView(
       child: Column(
-        children: OptimusDropdownButtonType.values
+        children: OptimusDropdownButtonVariant.values
             .map(
-              (t) => Padding(
+              (v) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: OptimusDropDownButton<int>(
                   size: k.options(
@@ -29,8 +29,8 @@ final Story dropdownButton = Story(
                         ),
                       )
                       .toList(),
-                  onChanged: isEnabled ? (_) => () {} : null,
-                  type: t,
+                  onItemSelected: isEnabled ? (_) => () {} : null,
+                  variant: v,
                   child: Text(k.text('Label', initial: 'Dropdown button')),
                 ),
               ),
