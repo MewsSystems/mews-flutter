@@ -3,7 +3,6 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
-import 'package:optimus/src/enabled.dart';
 
 enum OptimusSplitButtonType {
   /// The default option used in most scenarios.

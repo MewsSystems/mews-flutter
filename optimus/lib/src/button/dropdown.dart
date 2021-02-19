@@ -33,7 +33,7 @@ class OptimusDropDownButton<T> extends StatelessWidget {
   final Widget child;
 
   final List<OptimusDropdownTile<T>> items;
-  // TODO(VG): rename to onItemPressed/ onItemSelected
+  // TODO(VG): rename to onItemSelected (RND-49637)
   final ValueSetter<T> onChanged;
   final OptimusWidgetSize size;
   final OptimusDropdownButtonType type;
