@@ -29,7 +29,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
             builder: builder,
             items: items,
             isEnabled: enabled,
-            onChanged: field.didChange,
+            onItemSelected: field.didChange,
           ),
         );
 }

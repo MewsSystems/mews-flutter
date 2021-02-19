@@ -15,7 +15,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
     Key key,
     this.child,
     @required this.items,
-    this.onChanged,
+    this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
     this.borderRadius = const BorderRadius.all(borderRadius50),
@@ -25,7 +25,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final Widget child;
 
   final List<OptimusDropdownTile<T>> items;
-  final ValueSetter<T> onChanged;
+  final ValueSetter<T> onItemSelected;
   final OptimusWidgetSize size;
   final OptimusDropdownButtonVariant variant;
   final BorderRadius borderRadius;
@@ -49,7 +49,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Widget build(BuildContext context) => OverlayController(
         items: widget.items,
         anchorKey: _selectFieldKey,
-        onChanged: widget.onChanged,
+        onItemSelected: widget.onItemSelected,
         focusNode: _node,
         width: _dropdownWidth,
         onShown: () => setState(() => _isOpened = true),
@@ -96,7 +96,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
         ),
       );
 
-  bool get _isEnabled => widget.onChanged != null;
+  bool get _isEnabled => widget.onItemSelected != null;
 
   TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
       ? preset200s.copyWith(color: _textColor, height: 1.3)

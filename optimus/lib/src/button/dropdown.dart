@@ -24,7 +24,7 @@ class OptimusDropDownButton<T> extends StatelessWidget {
     Key key,
     @required this.child,
     @required this.items,
-    this.onChanged,
+    this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
   }) : super(key: key);
@@ -33,14 +33,14 @@ class OptimusDropDownButton<T> extends StatelessWidget {
   final Widget child;
 
   final List<OptimusDropdownTile<T>> items;
-  final ValueSetter<T> onChanged;
+  final ValueSetter<T> onItemSelected;
   final OptimusWidgetSize size;
   final OptimusDropdownButtonVariant variant;
 
   @override
   Widget build(BuildContext context) => BaseDropDownButton(
         items: items,
-        onChanged: onChanged,
+        onItemSelected: onItemSelected,
         size: size,
         variant: variant,
         child: child,
