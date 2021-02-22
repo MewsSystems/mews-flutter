@@ -1,9 +1,18 @@
+## 0.3.0
+
+- Add Stack (#14)
+- Add dropdown button (#11)
+- Update buttons animations (#16)
+- Rename parameters (#21)
+- Implement split button (#20)
+- Fix badge text color (#22)
+
 ## 0.2.0
 
-- :zap: Add Icon Button (#5)
-- :cop: Update Optimus colors (#9)
-- :zap: Develop Banner component (#8)
-- :zap: Add non-modal wrapper (#10)
+- Add Icon Button (#5)
+- Update Optimus colors (#9)
+- Develop Banner component (#8)
+- Add non-modal wrapper (#10)
 
 ## 0.1.0+2
 
