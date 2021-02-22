@@ -55,7 +55,7 @@ class BaseButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: spacing50),
               child: Text(
                 badgeLabel,
-                style: preset100s.copyWith(color: _textColor, height: 1.3),
+                style: preset100s.copyWith(color: _color, height: 1.3),
               ),
             ),
           ),
