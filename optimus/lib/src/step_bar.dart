@@ -60,21 +60,23 @@ class OptimusStepBar extends StatelessWidget {
     }
   }
 
-  List<Widget> _buildItems(List<OptimusStepBarItem> items) =>
-      items.map(_buildItem).intersperse(_spacer).toList();
+  List<Widget> _buildItems(List<OptimusStepBarItem> items) => (items
+      .asMap()
+      .map((i, e) => MapEntry(i, _buildItem(e, i)))
+      .values)
+      .toList()
+      .intersperse(_spacer)
+      .toList();
 
   // TODO(MM): build items
-  Widget _buildItem(OptimusStepBarItem item) => Flex(
+  Widget _buildItem(OptimusStepBarItem item, int index) => Flex(
         direction: layout,
         children: [
           Row(
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: spacing200),
-                child: OptimusIcon(
-                  iconData: item.icon,
-                  colorOption: OptimusColorOption.primary,
-                ),
+                child: _buildIcon(item, type, index),
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -101,6 +103,27 @@ class OptimusStepBar extends StatelessWidget {
           ),
         ],
       );
+
+  // ignore: missing_return
+  Widget _buildIcon(
+    OptimusStepBarItem item,
+    OptimusStepBarType type,
+    int index,
+  ) {
+    switch (type) {
+      case OptimusStepBarType.icon:
+        return OptimusIcon(
+          iconData: item.icon,
+          colorOption: OptimusColorOption.primary,
+        );
+        break;
+      case OptimusStepBarType.numbered:
+        return Container(
+          child: Text((index + 1).toString())
+        );
+        break;
+    }
+  }
 }
 
 enum OptimusStepBarType { icon, numbered }
