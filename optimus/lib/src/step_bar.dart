@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus_icons.dart';
@@ -79,34 +81,33 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
     }
   }
 
-  List<Widget> _buildItems(List<OptimusStepBarItem> items) =>
-      items.map(_buildItem).intersperse(_spacer).toList();
+  List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
+      items.map((i) => _buildItem(i, maxWidth)).intersperse(_spacer).toList();
 
-  Widget _buildItem(OptimusStepBarItem item) => Flexible(
-        flex: 2,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: _itemMaxWidth,
-            minWidth: _itemMinWidth,
-          ),
-          child: Enabled(
-            isEnabled: _getState(item) != OptimusStepBarItemState.disabled,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(width: _itemLeftPadding),
-                _buildIcon(item),
-                const SizedBox(width: spacing100),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DefaultTextStyle.merge(
-                        style: preset200s,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        child: item.label,
-                      ),
+  Widget _buildItem(OptimusStepBarItem item, double maxWidth) => ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: min(_itemMaxWidth, maxWidth),
+          minWidth: _itemMinWidth,
+        ),
+        child: Enabled(
+          isEnabled: _getState(item) != OptimusStepBarItemState.disabled,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(width: _itemLeftPadding),
+              _buildIcon(item),
+              const SizedBox(width: spacing100),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DefaultTextStyle.merge(
+                      style: preset200s,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      child: item.label,
+                    ),
+                    if (item.description != null)
                       DefaultTextStyle.merge(
                         overflow: TextOverflow.ellipsis,
                         style: preset200m.copyWith(
@@ -115,12 +116,11 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
                         maxLines: 1,
                         child: item.description,
                       ),
-                    ],
-                  ),
+                  ],
                 ),
-                const SizedBox(width: spacing200),
-              ],
-            ),
+              ),
+              const SizedBox(width: spacing200),
+            ],
           ),
         ),
       );
@@ -202,15 +202,24 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
   }
 
   @override
-  Widget build(BuildContext context) => OptimusStack(
-        mainAxisSize: _effectiveLayout == Axis.vertical
-            ? MainAxisSize.min
-            : MainAxisSize.max,
-        direction: _effectiveLayout,
-        crossAxisAlignment: _effectiveLayout == Axis.vertical
-            ? OptimusStackAlignment.start
-            : OptimusStackAlignment.center,
-        children: _buildItems(widget.items),
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          final totalSpacerWidth = (widget.items.length - 1) * _spacerMinWidth;
+          final totalFreeSpace =
+              (constraints.maxWidth - totalSpacerWidth) / widget.items.length;
+          final maxItemWidth = max(totalFreeSpace, _itemMinWidth);
+
+          return OptimusStack(
+            mainAxisSize: _effectiveLayout == Axis.vertical
+                ? MainAxisSize.min
+                : MainAxisSize.max,
+            direction: _effectiveLayout,
+            crossAxisAlignment: _effectiveLayout == Axis.vertical
+                ? OptimusStackAlignment.start
+                : OptimusStackAlignment.center,
+            children: _buildItems(widget.items, maxItemWidth),
+          );
+        },
       );
 }
 

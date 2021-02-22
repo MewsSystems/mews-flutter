@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-// TODO(MM): knobs
 final Story stepBarStory = Story(
   name: 'Step Bar',
   builder: (_, k) => SingleChildScrollView(
@@ -34,23 +33,22 @@ final Story stepBarStory = Story(
 
 const List<OptimusStepBarItem> _items = [
   OptimusStepBarItem(
-    label: Text('Completed step with long name'),
-    description: Text('Description'),
+    label: Text('Step with long title'),
+    description: Text('Some description goes here'),
     icon: OptimusIcons.edit,
   ),
   OptimusStepBarItem(
-    label: Text('Active'),
-    description: Text('Description'),
-    icon: OptimusIcons.edit,
+    label: Text('Step 2'),
+    icon: OptimusIcons.connect,
   ),
   OptimusStepBarItem(
-    label: Text('Enabled'),
+    label: Text('Step 3'),
     description: Text('Description'),
-    icon: OptimusIcons.edit,
+    icon: OptimusIcons.delete,
   ),
   OptimusStepBarItem(
-    label: Text('Disabled'),
+    label: Text('Step 4'),
     description: Text('Description'),
-    icon: OptimusIcons.edit,
+    icon: OptimusIcons.magic,
   ),
 ];
