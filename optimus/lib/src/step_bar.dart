@@ -24,10 +24,11 @@ class OptimusStepBar extends StatelessWidget {
   final Axis layout;
   final List<OptimusStepBarItem> items;
 
-  final double _itemMinWidth = 112;
+  // TODO(MM): use dimensions
+  //final double _itemMinWidth = 112;
   final double _itemMaxWidth = 320;
-  final double _itemHeight = 66;
-  final double _spacerMinWidth = 16;
+  //final double _itemHeight = 66;
+  //final double _spacerMinWidth = 16;
   final double _spacerHeight = 16;
   final double _spacerThickness = 1;
 
