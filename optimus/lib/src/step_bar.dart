@@ -35,6 +35,9 @@ class OptimusStepBar extends StatelessWidget {
   Widget build(BuildContext context) => OptimusStack(
         direction: layout,
         breakpoint: Breakpoint.small,
+        crossAxisAlignment: layout == Axis.vertical
+            ? OptimusStackAlignment.start
+            : OptimusStackAlignment.center,
         children: _buildItems(items),
       );
 
@@ -51,11 +54,18 @@ class OptimusStepBar extends StatelessWidget {
           ),
         );
       case Axis.vertical:
-        return SizedBox(
-          height: _spacerHeight,
-          width: _spacerThickness,
-          child: Container(
-            color: OptimusColors.primary,
+        return Padding(
+          padding: EdgeInsets.only(
+            left: _spacerLeftPadding,
+            bottom: spacing100,
+            top: spacing100,
+          ),
+          child: SizedBox(
+            height: _spacerHeight,
+            width: _spacerThickness,
+            child: Container(
+              color: OptimusColors.primary,
+            ),
           ),
         );
     }
@@ -67,7 +77,6 @@ class OptimusStepBar extends StatelessWidget {
           .intersperse(_spacer)
           .toList();
 
-  // TODO(MM): build items
   Widget _buildItem(OptimusStepBarItem item, int index) => Flex(
         direction: layout,
         children: [
@@ -114,29 +123,31 @@ class OptimusStepBar extends StatelessWidget {
     OptimusStepBarType type,
     int index,
   ) {
-    if (item.state == OptimusStepBarItemState.completed) {
-      return const OptimusIcon(
-        iconData: OptimusIcons.done,
-        colorOption: OptimusColorOption.primary,
-      );
-    } else {
-      switch (type) {
-        case OptimusStepBarType.icon:
-          return Container(
-            width: 42,
-            height: 42,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(42),
-              color: item.state == OptimusStepBarItemState.active
-                  ? OptimusColors.primary500t8
-                  : Colors.transparent,
-            ),
-            child: OptimusIcon(
-              iconData: item.icon,
-              colorOption: _iconColor(item.state),
-            ),
+    switch (type) {
+      case OptimusStepBarType.icon:
+        return Container(
+          width: 42,
+          height: 42,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(42),
+            color: item.state == OptimusStepBarItemState.active
+                ? OptimusColors.primary500t8
+                : Colors.transparent,
+          ),
+          child: OptimusIcon(
+            iconData: item.state == OptimusStepBarItemState.completed
+                ? OptimusIcons.done
+                : item.icon,
+            colorOption: _iconColor(item.state),
+          ),
+        );
+      case OptimusStepBarType.numbered:
+        if (item.state == OptimusStepBarItemState.completed) {
+          return const OptimusIcon(
+            iconData: OptimusIcons.done,
+            colorOption: OptimusColorOption.primary,
           );
-        case OptimusStepBarType.numbered:
+        } else {
           return Container(
             width: 24,
             height: 24,
@@ -156,7 +167,17 @@ class OptimusStepBar extends StatelessWidget {
               ),
             ),
           );
-      }
+        }
+    }
+  }
+
+  // ignore: missing_return
+  double get _spacerLeftPadding {
+    switch(type) {
+      case OptimusStepBarType.icon:
+        return 36;
+      case OptimusStepBarType.numbered:
+        return 28;
     }
   }
 
