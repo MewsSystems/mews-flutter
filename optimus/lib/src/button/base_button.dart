@@ -55,7 +55,7 @@ class BaseButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: spacing50),
               child: Text(
                 badgeLabel,
-                style: preset100s.copyWith(color: _color, height: 1.3),
+                style: preset100s.copyWith(color: _badgeTextColor, height: 1.3),
               ),
             ),
           ),
@@ -82,6 +82,22 @@ class BaseButton extends StatelessWidget {
         return OptimusColors.primary500;
       case OptimusButtonVariant.text:
         return Colors.transparent;
+      case OptimusButtonVariant.destructive:
+        return OptimusColors.danger500;
+      case OptimusButtonVariant.warning:
+        return OptimusColors.warning500;
+    }
+  }
+
+  // ignore: missing_return
+  Color get _badgeTextColor {
+    switch (variant) {
+      case OptimusButtonVariant.defaultButton:
+        return OptimusColors.neutral50;
+      case OptimusButtonVariant.primary:
+        return OptimusColors.primary500;
+      case OptimusButtonVariant.text:
+        return OptimusColors.neutral0;
       case OptimusButtonVariant.destructive:
         return OptimusColors.danger500;
       case OptimusButtonVariant.warning:
