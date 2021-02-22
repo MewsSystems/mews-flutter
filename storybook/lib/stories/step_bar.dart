@@ -34,7 +34,7 @@ final Story stepBarStory = Story(
 
 const List<OptimusStepBarItem> _items = [
   OptimusStepBarItem(
-    label: Text('Completed'),
+    label: Text('Completed step with long name'),
     description: Text('Description'),
     icon: OptimusIcons.edit,
   ),
