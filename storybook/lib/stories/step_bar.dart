@@ -11,9 +11,10 @@ final Story stepBarStory = Story(
     child: OptimusStepBar(
       type: k.options(
         'Type',
-        initial: StepBarType.icon,
-        options:
-            StepBarType.values.map((e) => Option(describeEnum(e), e)).toList(),
+        initial: OptimusStepBarType.icon,
+        options: OptimusStepBarType.values
+            .map((e) => Option(describeEnum(e), e))
+            .toList(),
       ),
       layout: k.options(
         'Layout',
@@ -25,20 +26,26 @@ final Story stepBarStory = Story(
   ),
 );
 
-const List<StepBarItem> _items = [
-  StepBarItem(
-    label: Text('Label 1'),
-    description: Text('Description'),
-    icon: OptimusIcons.magic,
-  ),
-  StepBarItem(
-    label: Text('Label 2'),
-    description: Text('Description'),
-    icon: OptimusIcons.mews_logo,
-  ),
-  StepBarItem(
-    label: Text('Label 3'),
+const List<OptimusStepBarItem> _items = [
+  OptimusStepBarItem(
+    label: Text('Completed'),
     description: Text('Description'),
     icon: OptimusIcons.edit,
+    state: OptimusStepBarItemState.completed,
   ),
+  OptimusStepBarItem(
+      label: Text('Active'),
+      description: Text('Description'),
+      icon: OptimusIcons.edit,
+      state: OptimusStepBarItemState.active),
+  OptimusStepBarItem(
+      label: Text('Enabled'),
+      description: Text('Description'),
+      icon: OptimusIcons.edit,
+      state: OptimusStepBarItemState.enabled),
+  OptimusStepBarItem(
+      label: Text('Disabled'),
+      description: Text('Description'),
+      icon: OptimusIcons.edit,
+      state: OptimusStepBarItemState.disabled),
 ];

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/utils.dart';
 
@@ -17,9 +19,9 @@ class OptimusStepBar extends StatelessWidget {
     @required this.items,
   }) : super(key: key);
 
-  final StepBarType type;
+  final OptimusStepBarType type;
   final Axis layout;
-  final List<StepBarItem> items;
+  final List<OptimusStepBarItem> items;
 
   final double _itemMinWidth = 112;
   final double _itemMaxWidth = 320;
@@ -40,9 +42,9 @@ class OptimusStepBar extends StatelessWidget {
   Widget get _spacer {
     switch (layout) {
       case Axis.horizontal:
-        return ConstrainedBox(
-          constraints: BoxConstraints(minWidth: _spacerMinWidth),
+        return Expanded(
           child: Container(
+            width: 16,
             height: _spacerThickness,
             color: OptimusColors.primary,
           ),
@@ -58,62 +60,56 @@ class OptimusStepBar extends StatelessWidget {
     }
   }
 
-  List<Widget> _buildItems(List<StepBarItem> items) =>
+  List<Widget> _buildItems(List<OptimusStepBarItem> items) =>
       items.map(_buildItem).intersperse(_spacer).toList();
 
   // TODO(MM): build items
-  Widget _buildItem(StepBarItem item) => IntrinsicWidth(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: _itemMinWidth,
-            maxWidth: _itemMaxWidth,
-          ),
-          child: SizedBox(
-            height: _itemHeight,
-            child: Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: spacing200),
-                  child: OptimusIcon(
-                    iconData: OptimusIcons.magic,
-                    colorOption: OptimusColorOption.primary,
-                  ),
+  Widget _buildItem(OptimusStepBarItem item) => Flex(
+        direction: layout,
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: spacing200),
+                child: OptimusIcon(
+                  iconData: item.icon,
+                  colorOption: OptimusColorOption.primary,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: spacing200,
-                    right: spacing200,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DefaultTextStyle.merge(
-                        child: item.label,
-                        style: preset300m,
-                      ),
-                      DefaultTextStyle.merge(
-                        child: item.description,
-                        style: preset200m.copyWith(
-                          color: OptimusColors.neutral1000t64,
-                        ),
-                      ),
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: spacing200,
+                  right: spacing200,
                 ),
-              ],
-            ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DefaultTextStyle.merge(
+                      child: item.label,
+                      style: preset300m,
+                    ),
+                    DefaultTextStyle.merge(
+                      child: item.description,
+                      style: preset200m.copyWith(
+                        color: OptimusColors.neutral1000t64,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ),
+        ],
       );
 }
 
-enum StepBarType { icon, numbered }
+enum OptimusStepBarType { icon, numbered }
 
 /// Both types of step have dedicated states. State is shown through a visual
 /// change in the step indicator and in the divider between steps.
 /// All of this forms a visual distinction between the finished and unfinished
 /// part of a process.
-enum StepBarItemState {
+enum OptimusStepBarItemState {
   /// The step is finished. The icon is always changed to a check icon.
   completed,
 
@@ -127,11 +123,12 @@ enum StepBarItemState {
   disabled,
 }
 
-class StepBarItem {
-  const StepBarItem({this.label, this.description, this.icon, this.state});
+class OptimusStepBarItem {
+  const OptimusStepBarItem(
+      {this.label, this.description, this.icon, this.state});
 
   final Widget label;
   final Widget description;
   final IconData icon;
-  final StepBarItemState state;
+  final OptimusStepBarItemState state;
 }
