@@ -54,6 +54,7 @@ class OptimusStack extends StatelessWidget {
     this.distribution = OptimusStackDistribution.basic,
     this.breakpoint,
     this.spacing = OptimusStackSpacing.spacing0,
+    this.mainAxisSize = MainAxisSize.max,
   }) : super(key: key);
 
   /// Establishes a horizontal or vertical direction for stack items.
@@ -77,6 +78,9 @@ class OptimusStack extends StatelessWidget {
 
   /// Changes spacing between stack items.
   final OptimusStackSpacing spacing;
+
+  /// Defines amount of space taken by the main axis.
+  final MainAxisSize mainAxisSize;
 
   // ignore: missing_return
   Axis _direction(BuildContext context) {
@@ -122,6 +126,7 @@ class OptimusStack extends StatelessWidget {
         direction: _direction(context),
         mainAxisAlignment: mainAxisAlignment.mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment.crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
         children: _children(context),
       );
 }
