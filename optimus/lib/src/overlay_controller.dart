@@ -8,7 +8,7 @@ class OverlayController<T> extends StatefulWidget {
     Key key,
     @required this.child,
     @required this.items,
-    @required this.onChanged,
+    @required this.onItemSelected,
     @required this.focusNode,
     @required this.anchorKey,
     this.width,
@@ -19,7 +19,7 @@ class OverlayController<T> extends StatefulWidget {
   final Widget child;
 
   final List<OptimusDropdownTile<T>> items;
-  final ValueSetter<T> onChanged;
+  final ValueSetter<T> onItemSelected;
   final FocusNode focusNode;
   final double width;
   final GlobalKey anchorKey;
@@ -85,7 +85,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
               child: OptimusDropdown<T>(
                 items: widget.items,
                 anchorKey: widget.anchorKey,
-                onChanged: widget.onChanged,
+                onChanged: widget.onItemSelected,
                 width: widget.width,
               ),
             )

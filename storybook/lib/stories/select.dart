@@ -46,7 +46,7 @@ class _SelectStoryState extends State<_SelectStory> {
               ListDropdownTile<int>(value: i, title: Text('Dropdown tile #$i')))
           .toList(),
       builder: (context, option) => Text('Dropdown tile #$option'),
-      onChanged: (i) => setState(() => _selectedValue = i),
+      onItemSelected: (i) => setState(() => _selectedValue = i),
     );
   }
 }

@@ -6,7 +6,7 @@ import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/widget_size.dart';
 
-enum OptimusIconButtonType {
+enum OptimusIconButtonVariant {
   /// Used in most scenarios when there is no prior action necessary.
   defaultButton,
 
@@ -41,7 +41,7 @@ class OptimusIconButton extends StatefulWidget {
     this.onPressed,
     @required this.icon,
     this.size = OptimusWidgetSize.large,
-    this.type = OptimusIconButtonType.defaultButton,
+    this.variant = OptimusIconButtonVariant.defaultButton,
   }) : super(key: key);
 
   /// Called when the button is tapped or otherwise activated.
@@ -56,7 +56,7 @@ class OptimusIconButton extends StatefulWidget {
   final OptimusWidgetSize size;
 
   /// Button type.
-  final OptimusIconButtonType type;
+  final OptimusIconButtonVariant variant;
 
   @override
   _OptimusIconButtonState createState() => _OptimusIconButtonState();
@@ -96,7 +96,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
         ),
       );
 
-  Decoration get _decoration => widget.type == OptimusIconButtonType.float
+  Decoration get _decoration => widget.variant == OptimusIconButtonVariant.float
       ? BoxDecoration(shape: BoxShape.circle, color: _color)
       : BoxDecoration(
           color: _color,
@@ -123,54 +123,54 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
 
   // ignore: missing_return
   Color get _normalColor {
-    switch (widget.type) {
-      case OptimusIconButtonType.defaultButton:
+    switch (widget.variant) {
+      case OptimusIconButtonVariant.defaultButton:
         return OptimusColors.neutral50;
-      case OptimusIconButtonType.primary:
+      case OptimusIconButtonVariant.primary:
         return OptimusColors.primary500;
-      case OptimusIconButtonType.text:
+      case OptimusIconButtonVariant.text:
         return Colors.transparent;
-      case OptimusIconButtonType.destructive:
+      case OptimusIconButtonVariant.destructive:
         return OptimusColors.danger500;
-      case OptimusIconButtonType.float:
+      case OptimusIconButtonVariant.float:
         return OptimusColors.primary500;
-      case OptimusIconButtonType.bare:
+      case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
   }
 
   // ignore: missing_return
   Color get _hoverColor {
-    switch (widget.type) {
-      case OptimusIconButtonType.defaultButton:
+    switch (widget.variant) {
+      case OptimusIconButtonVariant.defaultButton:
         return OptimusColors.neutral100;
-      case OptimusIconButtonType.primary:
+      case OptimusIconButtonVariant.primary:
         return OptimusColors.primary700;
-      case OptimusIconButtonType.text:
+      case OptimusIconButtonVariant.text:
         return OptimusColors.neutral500t8;
-      case OptimusIconButtonType.destructive:
+      case OptimusIconButtonVariant.destructive:
         return OptimusColors.danger700;
-      case OptimusIconButtonType.float:
+      case OptimusIconButtonVariant.float:
         return OptimusColors.primary700;
-      case OptimusIconButtonType.bare:
+      case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
   }
 
   // ignore: missing_return
   Color get _highlightColor {
-    switch (widget.type) {
-      case OptimusIconButtonType.defaultButton:
+    switch (widget.variant) {
+      case OptimusIconButtonVariant.defaultButton:
         return OptimusColors.neutral200;
-      case OptimusIconButtonType.primary:
+      case OptimusIconButtonVariant.primary:
         return OptimusColors.primary900;
-      case OptimusIconButtonType.text:
+      case OptimusIconButtonVariant.text:
         return OptimusColors.neutral500t16;
-      case OptimusIconButtonType.destructive:
+      case OptimusIconButtonVariant.destructive:
         return OptimusColors.danger900;
-      case OptimusIconButtonType.float:
+      case OptimusIconButtonVariant.float:
         return OptimusColors.primary900;
-      case OptimusIconButtonType.bare:
+      case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
   }
@@ -188,15 +188,15 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
 
   // ignore: missing_return
   Color get _iconColor {
-    switch (widget.type) {
-      case OptimusIconButtonType.primary:
-      case OptimusIconButtonType.destructive:
-      case OptimusIconButtonType.float:
+    switch (widget.variant) {
+      case OptimusIconButtonVariant.primary:
+      case OptimusIconButtonVariant.destructive:
+      case OptimusIconButtonVariant.float:
         return OptimusColors.neutral0;
-      case OptimusIconButtonType.defaultButton:
-      case OptimusIconButtonType.text:
+      case OptimusIconButtonVariant.defaultButton:
+      case OptimusIconButtonVariant.text:
         return OptimusColors.neutral500;
-      case OptimusIconButtonType.bare:
+      case OptimusIconButtonVariant.bare:
         return _bareIconColor;
     }
   }

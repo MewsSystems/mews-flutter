@@ -3,6 +3,7 @@ import 'package:storybook/stories/banner.dart';
 import 'package:storybook/stories/button/button.dart';
 import 'package:storybook/stories/button/dropdown.dart';
 import 'package:storybook/stories/button/icon.dart';
+import 'package:storybook/stories/button/split.dart';
 import 'package:storybook/stories/card.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           button,
           dropdownButton,
           iconButton,
+          splitButton,
           selectStory,
           checkbox,
           checkboxGroup,
