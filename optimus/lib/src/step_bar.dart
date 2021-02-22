@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:optimus/optimus.dart';
+import 'package:optimus/optimus_icons.dart';
+import 'package:optimus/src/breakpoint.dart';
+import 'package:optimus/src/colors/color_options.dart';
+import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/enabled.dart';
+import 'package:optimus/src/icon.dart';
+import 'package:optimus/src/spacing.dart';
 import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/utils.dart';
@@ -12,7 +17,7 @@ import 'package:optimus/src/utils.dart';
 /// Every step-bar is composed of repeatable elements in individual steps
 /// linked by either horizontal or vertical lines to convey the sense
 /// of journeying through a process.
-class OptimusStepBar extends StatelessWidget {
+class OptimusStepBar extends StatefulWidget {
   const OptimusStepBar({
     Key key,
     @required this.type,
@@ -28,26 +33,30 @@ class OptimusStepBar extends StatelessWidget {
   final int currentItem;
   final int maxItem;
 
+  @override
+  _OptimusStepBarState createState() => _OptimusStepBarState();
+}
+
+class _OptimusStepBarState extends State<OptimusStepBar> {
   OptimusStepBarItemState _getState(OptimusStepBarItem item) {
-    final position = items.indexOf(item);
-    if (position == currentItem) {
+    final position = widget.items.indexOf(item);
+    if (position == widget.currentItem) {
       return OptimusStepBarItemState.active;
     }
-    if (position < currentItem) {
+    if (position < widget.currentItem) {
       return OptimusStepBarItemState.completed;
     }
-    if (maxItem == null || position <= maxItem) {
+    if (widget.maxItem == null || position <= widget.maxItem) {
       return OptimusStepBarItemState.enabled;
     }
     return OptimusStepBarItemState.disabled;
   }
 
-  // TODO(MM): line color
   // ignore: missing_return
   Widget get _spacer {
-    switch (layout) {
+    switch (_effectiveLayout) {
       case Axis.horizontal:
-        return Expanded(
+        return Flexible(
           child: Container(
             constraints: const BoxConstraints(minWidth: _spacerMinWidth),
             height: _spacerThickness,
@@ -73,42 +82,45 @@ class OptimusStepBar extends StatelessWidget {
   List<Widget> _buildItems(List<OptimusStepBarItem> items) =>
       items.map(_buildItem).intersperse(_spacer).toList();
 
-  Widget _buildItem(OptimusStepBarItem item) => ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: _itemMaxWidth,
-          minWidth: _itemMinWidth,
-        ),
-        child: Enabled(
-          isEnabled: _getState(item) != OptimusStepBarItemState.disabled,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(width: _itemLeftPadding),
-              _buildIcon(item),
-              const SizedBox(width: spacing100),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DefaultTextStyle.merge(
-                      style: preset200s,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      child: item.label,
-                    ),
-                    DefaultTextStyle.merge(
-                      overflow: TextOverflow.ellipsis,
-                      style: preset200m.copyWith(
-                        color: OptimusColors.neutral1000t64,
+  Widget _buildItem(OptimusStepBarItem item) => Flexible(
+        flex: 2,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: _itemMaxWidth,
+            minWidth: _itemMinWidth,
+          ),
+          child: Enabled(
+            isEnabled: _getState(item) != OptimusStepBarItemState.disabled,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(width: _itemLeftPadding),
+                _buildIcon(item),
+                const SizedBox(width: spacing100),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DefaultTextStyle.merge(
+                        style: preset200s,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        child: item.label,
                       ),
-                      maxLines: 1,
-                      child: item.description,
-                    ),
-                  ],
+                      DefaultTextStyle.merge(
+                        overflow: TextOverflow.ellipsis,
+                        style: preset200m.copyWith(
+                          color: OptimusColors.neutral1000t64,
+                        ),
+                        maxLines: 1,
+                        child: item.description,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(width: spacing200),
-            ],
+                const SizedBox(width: spacing200),
+              ],
+            ),
           ),
         ),
       );
@@ -116,7 +128,7 @@ class OptimusStepBar extends StatelessWidget {
   // ignore: missing_return
   Widget _buildIcon(OptimusStepBarItem item) {
     final state = _getState(item);
-    switch (type) {
+    switch (widget.type) {
       case OptimusStepBarType.icon:
         return Container(
           width: _iconWrapperSize,
@@ -167,7 +179,7 @@ class OptimusStepBar extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    (items.indexOf(item) + 1).toString(),
+                    (widget.items.indexOf(item) + 1).toString(),
                     style: preset200s.merge(
                       TextStyle(height: 1, color: state.textColor),
                     ),
@@ -180,9 +192,10 @@ class OptimusStepBar extends StatelessWidget {
     }
   }
 
-  Axis _layout(BuildContext context) {
-    if (MediaQuery.of(context).size.width > _itemMaxWidth) {
-      return layout;
+  Axis get _effectiveLayout {
+    if (MediaQuery.of(context).screenBreakpoint.index >
+        Breakpoint.small.index) {
+      return widget.layout;
     } else {
       return Axis.vertical;
     }
@@ -190,12 +203,14 @@ class OptimusStepBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-        direction: _layout(context),
-        breakpoint: Breakpoint.small,
-        crossAxisAlignment: layout == Axis.vertical
+        mainAxisSize: _effectiveLayout == Axis.vertical
+            ? MainAxisSize.min
+            : MainAxisSize.max,
+        direction: _effectiveLayout,
+        crossAxisAlignment: _effectiveLayout == Axis.vertical
             ? OptimusStackAlignment.start
             : OptimusStackAlignment.center,
-        children: _buildItems(items),
+        children: _buildItems(widget.items),
       );
 }
 
