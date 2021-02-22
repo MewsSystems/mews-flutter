@@ -5,6 +5,7 @@
 - Update buttons animations (#16)
 - Rename parameters (#21)
 - Implement split button (#20)
+- Fix badge text color (#22)
 
 ## 0.2.0
 
