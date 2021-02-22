@@ -22,6 +22,12 @@ final Story stepBarStory = Story(
         options: Axis.values.map((e) => Option(describeEnum(e), e)).toList(),
       ),
       items: _items,
+      currentItem: k
+          .slider('Current', initial: 0, max: _items.length.toDouble() - 1)
+          .toInt(),
+      maxItem: k
+          .slider('Max', initial: 2, max: _items.length.toDouble() - 1)
+          .toInt(),
     ),
   ),
 );
@@ -31,21 +37,20 @@ const List<OptimusStepBarItem> _items = [
     label: Text('Completed'),
     description: Text('Description'),
     icon: OptimusIcons.edit,
-    state: OptimusStepBarItemState.completed,
   ),
   OptimusStepBarItem(
-      label: Text('Active'),
-      description: Text('Description'),
-      icon: OptimusIcons.edit,
-      state: OptimusStepBarItemState.active),
+    label: Text('Active'),
+    description: Text('Description'),
+    icon: OptimusIcons.edit,
+  ),
   OptimusStepBarItem(
-      label: Text('Enabled'),
-      description: Text('Description'),
-      icon: OptimusIcons.edit,
-      state: OptimusStepBarItemState.enabled),
+    label: Text('Enabled'),
+    description: Text('Description'),
+    icon: OptimusIcons.edit,
+  ),
   OptimusStepBarItem(
-      label: Text('Disabled'),
-      description: Text('Description'),
-      icon: OptimusIcons.edit,
-      state: OptimusStepBarItemState.disabled),
+    label: Text('Disabled'),
+    description: Text('Description'),
+    icon: OptimusIcons.edit,
+  ),
 ];
