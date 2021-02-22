@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/utils.dart';
@@ -60,46 +61,49 @@ class OptimusStepBar extends StatelessWidget {
     }
   }
 
-  List<Widget> _buildItems(List<OptimusStepBarItem> items) => (items
-      .asMap()
-      .map((i, e) => MapEntry(i, _buildItem(e, i)))
-      .values)
-      .toList()
-      .intersperse(_spacer)
-      .toList();
+  List<Widget> _buildItems(List<OptimusStepBarItem> items) =>
+      (items.asMap().map((i, e) => MapEntry(i, _buildItem(e, i))).values)
+          .toList()
+          .intersperse(_spacer)
+          .toList();
 
   // TODO(MM): build items
   Widget _buildItem(OptimusStepBarItem item, int index) => Flex(
         direction: layout,
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: spacing200),
-                child: _buildIcon(item, type, index),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: spacing200,
-                  right: spacing200,
+          Opacity(
+            opacity: item.state == OptimusStepBarItemState.disabled
+                ? OpacityValue.disabled
+                : OpacityValue.enabled,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: spacing200),
+                  child: _buildIcon(item, type, index),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DefaultTextStyle.merge(
-                      child: item.label,
-                      style: preset300m,
-                    ),
-                    DefaultTextStyle.merge(
-                      child: item.description,
-                      style: preset200m.copyWith(
-                        color: OptimusColors.neutral1000t64,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: spacing200,
+                    right: spacing200,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DefaultTextStyle.merge(
+                        child: item.label,
+                        style: preset300m,
                       ),
-                    ),
-                  ],
+                      DefaultTextStyle.merge(
+                        child: item.description,
+                        style: preset200m.copyWith(
+                          color: OptimusColors.neutral1000t64,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       );
@@ -116,12 +120,61 @@ class OptimusStepBar extends StatelessWidget {
           iconData: item.icon,
           colorOption: OptimusColorOption.primary,
         );
-        break;
       case OptimusStepBarType.numbered:
-        return Container(
-          child: Text((index + 1).toString())
-        );
-        break;
+        if (item.state == OptimusStepBarItemState.completed) {
+          return const OptimusIcon(
+            iconData: OptimusIcons.done,
+            colorOption: OptimusColorOption.primary,
+          );
+        } else {
+          return Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: _iconBackgroundColor(item.state),
+            ),
+            child: Center(
+              child: Text(
+                (index + 1).toString(),
+                style: preset200s.merge(
+                  TextStyle(
+                    height: 1,
+                    color: _textColor(item.state),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+    }
+  }
+
+  // ignore: missing_return
+  Color _iconBackgroundColor(OptimusStepBarItemState state) {
+    switch (state) {
+      case OptimusStepBarItemState.completed:
+        return OptimusColors.primary;
+      case OptimusStepBarItemState.active:
+        return OptimusColors.primary;
+      case OptimusStepBarItemState.enabled:
+        return OptimusColors.neutral50;
+      case OptimusStepBarItemState.disabled:
+        return OptimusColors.neutral50;
+    }
+  }
+
+  // ignore: missing_return
+  Color _textColor(OptimusStepBarItemState state) {
+    switch (state) {
+      case OptimusStepBarItemState.completed:
+        return OptimusColors.primary;
+      case OptimusStepBarItemState.active:
+        return OptimusColors.neutral0;
+      case OptimusStepBarItemState.enabled:
+        return OptimusColors.neutral1000;
+      case OptimusStepBarItemState.disabled:
+        return OptimusColors.neutral1000;
     }
   }
 }
