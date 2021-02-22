@@ -75,29 +75,24 @@ class OptimusStepBar extends StatelessWidget {
         );
       case Axis.vertical:
         return Padding(
-          padding: EdgeInsets.only(
-            left: _spacerLeftPadding,
+          padding: const EdgeInsets.only(
+            left: _verticalSpacerLeftPadding,
             bottom: spacing100,
             top: spacing100,
           ),
           child: SizedBox(
             height: _spacerHeight,
             width: _spacerThickness,
-            child: Container(
-              color: OptimusColors.primary,
-            ),
+            child: Container(color: OptimusColors.primary),
           ),
         );
     }
   }
 
   List<Widget> _buildItems(List<OptimusStepBarItem> items) =>
-      (items.asMap().map((i, e) => MapEntry(i, _buildItem(e, i))).values)
-          .toList()
-          .intersperse(_spacer)
-          .toList();
+      items.map(_buildItem).intersperse(_spacer).toList();
 
-  Widget _buildItem(OptimusStepBarItem item, int index) => Flex(
+  Widget _buildItem(OptimusStepBarItem item) => Flex(
         direction: layout,
         children: [
           Enabled(
@@ -105,8 +100,8 @@ class OptimusStepBar extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: spacing100),
-                  child: _buildIcon(item, type, index),
+                  padding: const EdgeInsets.only(left: _itemLeftPadding),
+                  child: _buildIcon(item),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -136,11 +131,7 @@ class OptimusStepBar extends StatelessWidget {
       );
 
   // ignore: missing_return
-  Widget _buildIcon(
-    OptimusStepBarItem item,
-    OptimusStepBarType type,
-    int index,
-  ) {
+  Widget _buildIcon(OptimusStepBarItem item) {
     final state = getState(item);
     switch (type) {
       case OptimusStepBarType.icon:
@@ -193,7 +184,7 @@ class OptimusStepBar extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    (index + 1).toString(),
+                    (items.indexOf(item) + 1).toString(),
                     style: preset200s.merge(
                       TextStyle(height: 1, color: _textColor(state)),
                     ),
@@ -211,16 +202,6 @@ class OptimusStepBar extends StatelessWidget {
       return layout;
     } else {
       return Axis.vertical;
-    }
-  }
-
-  // ignore: missing_return
-  double get _spacerLeftPadding {
-    switch (type) {
-      case OptimusStepBarType.icon:
-        return 36;
-      case OptimusStepBarType.numbered:
-        return 28;
     }
   }
 
@@ -300,3 +281,5 @@ class OptimusStepBarItem {
 }
 
 const _iconWrapperSize = spacing500;
+const _itemLeftPadding = spacing100;
+const _verticalSpacerLeftPadding = _iconWrapperSize / 2 + _itemLeftPadding;
