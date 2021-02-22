@@ -33,7 +33,7 @@ class OptimusStepBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-        direction: layout,
+        direction: _layout(context),
         breakpoint: Breakpoint.small,
         crossAxisAlignment: layout == Axis.vertical
             ? OptimusStackAlignment.start
@@ -171,9 +171,17 @@ class OptimusStepBar extends StatelessWidget {
     }
   }
 
+  Axis _layout(BuildContext context) {
+    if (MediaQuery.of(context).size.width > _itemMaxWidth) {
+      return layout;
+    } else {
+      return Axis.vertical;
+    }
+  }
+
   // ignore: missing_return
   double get _spacerLeftPadding {
-    switch(type) {
+    switch (type) {
       case OptimusStepBarType.icon:
         return 36;
       case OptimusStepBarType.numbered:
