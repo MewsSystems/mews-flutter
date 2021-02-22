@@ -114,24 +114,34 @@ class OptimusStepBar extends StatelessWidget {
     OptimusStepBarType type,
     int index,
   ) {
-    switch (type) {
-      case OptimusStepBarType.icon:
-        return OptimusIcon(
-          iconData: item.icon,
-          colorOption: OptimusColorOption.primary,
-        );
-      case OptimusStepBarType.numbered:
-        if (item.state == OptimusStepBarItemState.completed) {
-          return const OptimusIcon(
-            iconData: OptimusIcons.done,
-            colorOption: OptimusColorOption.primary,
+    if (item.state == OptimusStepBarItemState.completed) {
+      return const OptimusIcon(
+        iconData: OptimusIcons.done,
+        colorOption: OptimusColorOption.primary,
+      );
+    } else {
+      switch (type) {
+        case OptimusStepBarType.icon:
+          return Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(42),
+              color: item.state == OptimusStepBarItemState.active
+                  ? OptimusColors.primary500t8
+                  : Colors.transparent,
+            ),
+            child: OptimusIcon(
+              iconData: item.icon,
+              colorOption: _iconColor(item.state),
+            ),
           );
-        } else {
+        case OptimusStepBarType.numbered:
           return Container(
             width: 24,
             height: 24,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(24),
               color: _iconBackgroundColor(item.state),
             ),
             child: Center(
@@ -146,7 +156,21 @@ class OptimusStepBar extends StatelessWidget {
               ),
             ),
           );
-        }
+      }
+    }
+  }
+
+  // ignore: missing_return
+  OptimusColorOption _iconColor(OptimusStepBarItemState state) {
+    switch (state) {
+      case OptimusStepBarItemState.completed:
+        return OptimusColorOption.primary;
+      case OptimusStepBarItemState.active:
+        return OptimusColorOption.primary;
+      case OptimusStepBarItemState.enabled:
+        return OptimusColorOption.basic;
+      case OptimusStepBarItemState.disabled:
+        return OptimusColorOption.basic;
     }
   }
 
