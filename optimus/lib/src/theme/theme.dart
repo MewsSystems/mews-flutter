@@ -17,23 +17,23 @@ class OptimusTheme extends StatelessWidget {
   final ThemeMode themeMode;
 
   static OptimusThemeData of(BuildContext context) {
-    final _theme = context.dependOnInheritedWidgetOfExactType<_OptimusTheme>();
-    final Brightness platformBrightness = Theme.of(context).brightness ??
+    Brightness fallbackBrightness() =>
+        Theme.of(context).brightness ??
         MediaQuery.platformBrightnessOf(context);
+    final _theme = context.dependOnInheritedWidgetOfExactType<_OptimusTheme>();
+
     return _theme?.theme ??
-        (platformBrightness == Brightness.dark
+        (fallbackBrightness() == Brightness.dark
             ? _defaultDarkTheme
             : _defaultLightTheme);
   }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode mode = themeMode ?? ThemeMode.system;
-    final Brightness platformBrightness = Theme.of(context).brightness ??
-        MediaQuery.platformBrightnessOf(context);
-    final bool useDarkTheme = mode == ThemeMode.dark ||
-        (mode == ThemeMode.system && platformBrightness == Brightness.dark);
-    final theme = useDarkTheme
+    final Brightness brightness = MediaQuery.platformBrightnessOf(context);
+    final bool isDark = themeMode == ThemeMode.dark ||
+        (themeMode == ThemeMode.system && brightness == Brightness.dark);
+    final theme = isDark
         ? darkTheme ?? _defaultDarkTheme
         : lightTheme ?? _defaultLightTheme;
 
