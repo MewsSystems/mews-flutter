@@ -57,15 +57,21 @@ class _OptimusTheme extends InheritedWidget {
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
 }
 
-const _defaultLightTheme = OptimusThemeData(
-  brightness: Brightness.light,
-  buttonTheme: OptimusButtonTheme(
-      defaultButtonColor: OptimusLightColors.neutral50,
-      primaryColor: OptimusLightColors.primary500,
-      textColor: Colors.transparent,
-      destructiveColor: OptimusLightColors.danger500,
-      warningColor: OptimusLightColors.warning500,
-  ),
-);
+final _defaultLightTheme = _createTheme(Brightness.light);
 
-const _defaultDarkTheme = _defaultLightTheme;
+final _defaultDarkTheme = _createTheme(Brightness.dark);
+
+OptimusThemeData _createTheme(Brightness brightness) {
+  final colors = OptimusColors(brightness);
+
+  return OptimusThemeData(
+    brightness: brightness,
+    buttonTheme: OptimusButtonTheme(
+      defaultButtonColor: colors.neutral50,
+      primaryColor: colors.primary500,
+      textColor: Colors.transparent,
+      destructiveColor: colors.danger500,
+      warningColor: colors.warning500,
+    ),
+  );
+}
