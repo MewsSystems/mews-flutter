@@ -18,7 +18,7 @@ class OptimusTheme extends StatelessWidget {
 
   static OptimusThemeData of(BuildContext context) {
     final _theme = context.dependOnInheritedWidgetOfExactType<_OptimusTheme>();
-    final Brightness platformBrightness =
+    final Brightness platformBrightness = Theme.of(context).brightness ??
         MediaQuery.platformBrightnessOf(context);
     return _theme?.theme ??
         (platformBrightness == Brightness.dark
@@ -29,7 +29,7 @@ class OptimusTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeMode mode = themeMode ?? ThemeMode.system;
-    final Brightness platformBrightness =
+    final Brightness platformBrightness = Theme.of(context).brightness ??
         MediaQuery.platformBrightnessOf(context);
     final bool useDarkTheme = mode == ThemeMode.dark ||
         (mode == ThemeMode.system && platformBrightness == Brightness.dark);
@@ -66,12 +66,6 @@ OptimusThemeData _createTheme(Brightness brightness) {
 
   return OptimusThemeData(
     brightness: brightness,
-    buttonTheme: OptimusButtonTheme(
-      defaultButtonColor: colors.neutral50,
-      primaryColor: colors.primary500,
-      textColor: Colors.transparent,
-      destructiveColor: colors.danger500,
-      warningColor: colors.warning500,
-    ),
+    colors: colors,
   );
 }
