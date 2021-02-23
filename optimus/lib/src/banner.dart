@@ -175,13 +175,13 @@ class OptimusBanner extends StatelessWidget {
   Color get _backgroundColor {
     switch (variant) {
       case OptimusBannerVariant.primary:
-        return OptimusColors.primary500t8;
+        return OptimusLightColors.primary500t8;
       case OptimusBannerVariant.success:
-        return OptimusColors.success500t8;
+        return OptimusLightColors.success500t8;
       case OptimusBannerVariant.warning:
-        return OptimusColors.warning500t8;
+        return OptimusLightColors.warning500t8;
       case OptimusBannerVariant.error:
-        return OptimusColors.danger500t8;
+        return OptimusLightColors.danger500t8;
     }
   }
 }
@@ -251,11 +251,11 @@ class OptimusWideBanner extends StatelessWidget {
   Color get _backgroundColor {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusWideBannerVariant.warning:
-        return OptimusColors.warning500;
+        return OptimusLightColors.warning500;
       case OptimusWideBannerVariant.danger:
-        return OptimusColors.danger500;
+        return OptimusLightColors.danger500;
     }
   }
 
@@ -264,9 +264,9 @@ class OptimusWideBanner extends StatelessWidget {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
       case OptimusWideBannerVariant.danger:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
       case OptimusWideBannerVariant.warning:
-        return OptimusColors.neutral1000;
+        return OptimusLightColors.neutral1000;
     }
   }
 }

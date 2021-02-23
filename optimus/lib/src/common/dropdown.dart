@@ -153,7 +153,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> {
 
   @override
   Widget build(BuildContext context) => InkWell(
-        highlightColor: OptimusColors.primary,
+        highlightColor: OptimusLightColors.primary,
         onHighlightChanged: (isHighlighted) =>
             setState(() => _isHighlighted = isHighlighted),
         onTap: () {
@@ -162,7 +162,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> {
         },
         child: _isHighlighted
             ? DefaultTextStyle.merge(
-                style: const TextStyle(color: OptimusColors.neutral0),
+                style: const TextStyle(color: OptimusLightColors.neutral0),
                 child: widget.child,
               )
             : widget.child,

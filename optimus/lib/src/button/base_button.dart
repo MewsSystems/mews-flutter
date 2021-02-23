@@ -77,15 +77,15 @@ class BaseButton extends StatelessWidget {
   Color get _color {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusButtonVariant.text:
         return Colors.transparent;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger500;
+        return OptimusLightColors.danger500;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning500;
+        return OptimusLightColors.warning500;
     }
   }
 
@@ -93,15 +93,15 @@ class BaseButton extends StatelessWidget {
   Color get _badgeTextColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger500;
+        return OptimusLightColors.danger500;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning500;
+        return OptimusLightColors.warning500;
     }
   }
 
@@ -109,15 +109,15 @@ class BaseButton extends StatelessWidget {
   Color get _hoverColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral100;
+        return OptimusLightColors.neutral100;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary700;
+        return OptimusLightColors.primary700;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral500t8;
+        return OptimusLightColors.neutral500t8;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger700;
+        return OptimusLightColors.danger700;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning700;
+        return OptimusLightColors.warning700;
     }
   }
 
@@ -125,15 +125,15 @@ class BaseButton extends StatelessWidget {
   Color get _highLightColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral200;
+        return OptimusLightColors.neutral200;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary900;
+        return OptimusLightColors.primary900;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral500t16;
+        return OptimusLightColors.neutral500t16;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger900;
+        return OptimusLightColors.danger900;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning900;
+        return OptimusLightColors.warning900;
     }
   }
 
@@ -141,15 +141,15 @@ class BaseButton extends StatelessWidget {
   Color get _textColor {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral500;
+        return OptimusLightColors.neutral500;
       case OptimusButtonVariant.primary:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral500;
+        return OptimusLightColors.neutral500;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
       case OptimusButtonVariant.warning:
-        return OptimusColors.neutral900;
+        return OptimusLightColors.neutral900;
     }
   }
 

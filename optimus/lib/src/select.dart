@@ -93,7 +93,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
   Icon get _icon => Icon(
         _isOpened ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
         size: 24,
-        color: OptimusColors.neutral400,
+        color: OptimusLightColors.neutral400,
       );
 
   // ignore: missing_return
@@ -101,18 +101,18 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
     if (widget.value == null) {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: OptimusColors.neutral1000t64);
+          return preset200m.copyWith(color: OptimusLightColors.neutral1000t64);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: OptimusColors.neutral1000t64);
+          return preset300m.copyWith(color: OptimusLightColors.neutral1000t64);
       }
     } else {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: OptimusColors.neutral900);
+          return preset200m.copyWith(color: OptimusLightColors.neutral900);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: OptimusColors.neutral900);
+          return preset300m.copyWith(color: OptimusLightColors.neutral900);
       }
     }
   }

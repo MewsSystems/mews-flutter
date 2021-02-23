@@ -86,7 +86,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
               : const Icon(
                   OptimusIcons.search,
                   size: 24,
-                  color: OptimusColors.neutral1000t64,
+                  color: OptimusLightColors.neutral1000t64,
                 ),
           isEnabled: widget.isEnabled,
           caption: widget.caption,

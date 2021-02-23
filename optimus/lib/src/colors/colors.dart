@@ -39,8 +39,8 @@ import 'package:flutter/material.dart';
 ///
 /// One of the "alert" colors, its purpose is to communicate and convey a
 /// sense of danger, error, or destructive action.
-abstract class OptimusColors {
-  OptimusColors._();
+abstract class OptimusLightColors {
+  OptimusLightColors._();
 
   static const neutral0 = Color(0xFFFFFFFF);
   static const neutral25 = Color(0xFFF3F3F4);

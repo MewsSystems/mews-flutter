@@ -60,11 +60,11 @@ class _OptimusTheme extends InheritedWidget {
 const _defaultLightTheme = OptimusThemeData(
   brightness: Brightness.light,
   buttonTheme: OptimusButtonTheme(
-      defaultButtonColor: OptimusColors.neutral50,
-      primaryColor: OptimusColors.primary500,
+      defaultButtonColor: OptimusLightColors.neutral50,
+      primaryColor: OptimusLightColors.primary500,
       textColor: Colors.transparent,
-      destructiveColor: OptimusColors.danger500,
-      warningColor: OptimusColors.warning500,
+      destructiveColor: OptimusLightColors.danger500,
+      warningColor: OptimusLightColors.warning500,
   ),
 );
 

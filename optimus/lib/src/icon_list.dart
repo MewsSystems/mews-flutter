@@ -120,7 +120,7 @@ class _ListTile extends StatelessWidget {
                 Text(
                   description.capitalize(),
                   style: _descriptionStyle.copyWith(
-                    color: OptimusColors.neutral1000t64,
+                    color: OptimusLightColors.neutral1000t64,
                   ),
                 ),
             ],

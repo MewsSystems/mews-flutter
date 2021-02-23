@@ -32,8 +32,8 @@ class OptimusListTile extends StatelessWidget {
         ),
         constraints: const BoxConstraints(minHeight: 94),
         child: InkWell(
-          highlightColor: OptimusColors.neutral50,
-          hoverColor: OptimusColors.neutral25,
+          highlightColor: OptimusLightColors.neutral50,
+          hoverColor: OptimusLightColors.neutral25,
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -99,19 +99,19 @@ class OptimusListTile extends StatelessWidget {
     switch (fontVariant) {
       case FontVariant.normal:
         return preset200m.copyWith(
-          color: OptimusColors.neutral1000t64,
+          color: OptimusLightColors.neutral1000t64,
         );
       case FontVariant.bold:
         return preset200m;
       default:
         return preset200m.copyWith(
-          color: OptimusColors.neutral1000t64,
+          color: OptimusLightColors.neutral1000t64,
         );
     }
   }
 
   TextStyle get _infoStyle =>
-      preset100m.copyWith(color: OptimusColors.neutral1000t64);
+      preset100m.copyWith(color: OptimusLightColors.neutral1000t64);
 
   Widget _wrapped(Widget child, TextStyle style) =>
       DefaultTextStyle.merge(style: style, child: child);

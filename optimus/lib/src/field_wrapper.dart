@@ -80,7 +80,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                     variation: Variation.variationSecondary,
                     child: DefaultTextStyle.merge(
                       style:
-                          const TextStyle(color: OptimusColors.neutral1000t32),
+                          const TextStyle(color: OptimusLightColors.neutral1000t32),
                       child: widget.secondaryCaption,
                     ),
                   ),
@@ -117,7 +117,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                     OptimusCaption(
                       child: Text(
                         widget.error,
-                        style: const TextStyle(color: OptimusColors.danger),
+                        style: const TextStyle(color: OptimusLightColors.danger),
                       ),
                     ),
                   if (!widget.hasError && widget.caption != null)
@@ -139,15 +139,15 @@ class _FieldWrapper extends State<FieldWrapper> {
   }
 
   Color get _borderColor {
-    if (widget.hasError) return OptimusColors.danger;
+    if (widget.hasError) return OptimusLightColors.danger;
     return _effectiveFocusNode.hasFocus
-        ? OptimusColors.primary
-        : OptimusColors.neutral100;
+        ? OptimusLightColors.primary
+        : OptimusLightColors.neutral100;
   }
 
   Color get _captionColor => _effectiveFocusNode.hasFocus
-      ? OptimusColors.primary
-      : OptimusColors.neutral1000t64;
+      ? OptimusLightColors.primary
+      : OptimusLightColors.neutral1000t64;
 
   List<Widget> _buildChildren() => <Widget>[
         if (widget.prefix != null)
@@ -155,7 +155,7 @@ class _FieldWrapper extends State<FieldWrapper> {
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
-            style: preset100s.copyWith(color: OptimusColors.neutral1000t32),
+            style: preset100s.copyWith(color: OptimusLightColors.neutral1000t32),
             child: _Icon(child: _SuffixPadding(child: widget.suffix)),
           )
       ];
@@ -169,7 +169,7 @@ class _Icon extends StatelessWidget {
   @override
   Widget build(BuildContext context) => IconTheme(
         data:
-            const IconThemeData(color: OptimusColors.neutral1000t64, size: 24),
+            const IconThemeData(color: OptimusLightColors.neutral1000t64, size: 24),
         child: child,
       );
 }
