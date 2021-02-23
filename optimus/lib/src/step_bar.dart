@@ -40,7 +40,7 @@ class OptimusStepBar extends StatefulWidget {
 }
 
 class _OptimusStepBarState extends State<OptimusStepBar> {
-  OptimusStepBarItemState _getState(OptimusStepBarItem item) {
+  OptimusStepBarItemState _getItemState(OptimusStepBarItem item) {
     final position = widget.items.indexOf(item);
     if (position == widget.currentItem) {
       return OptimusStepBarItemState.active;
@@ -90,7 +90,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           minWidth: _itemMinWidth,
         ),
         child: Enabled(
-          isEnabled: _getState(item) != OptimusStepBarItemState.disabled,
+          isEnabled: _getItemState(item) != OptimusStepBarItemState.disabled,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -127,7 +127,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
 
   // ignore: missing_return
   Widget _buildIcon(OptimusStepBarItem item) {
-    final state = _getState(item);
+    final state = _getItemState(item);
     switch (widget.type) {
       case OptimusStepBarType.icon:
         return Container(
