@@ -36,7 +36,9 @@ class OptimusAvatar extends StatelessWidget {
           child: imageUrl == null
               ? Text(
                   _safeSubstring(title, 0, 1).toUpperCase(),
-                  style: preset300s.copyWith(color: OptimusLightColors.neutral0t64),
+                  style: preset300s.copyWith(
+                    color: OptimusLightColors.neutral0t64,
+                  ),
                 )
               : null,
         ),

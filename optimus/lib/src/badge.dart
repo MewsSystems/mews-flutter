@@ -29,7 +29,10 @@ class OptimusBadge extends StatelessWidget {
             variation: Variation.variationSecondary,
             child: Text(
               text,
-              style: const TextStyle(color: OptimusLightColors.neutral0, height: 1),
+              style: const TextStyle(
+                color: OptimusLightColors.neutral0,
+                height: 1,
+              ),
             ),
           ),
         ),

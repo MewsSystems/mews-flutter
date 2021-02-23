@@ -79,8 +79,9 @@ class _FieldWrapper extends State<FieldWrapper> {
                   OptimusCaption(
                     variation: Variation.variationSecondary,
                     child: DefaultTextStyle.merge(
-                      style:
-                          const TextStyle(color: OptimusLightColors.neutral1000t32),
+                      style: const TextStyle(
+                        color: OptimusLightColors.neutral1000t32,
+                      ),
                       child: widget.secondaryCaption,
                     ),
                   ),
@@ -117,7 +118,8 @@ class _FieldWrapper extends State<FieldWrapper> {
                     OptimusCaption(
                       child: Text(
                         widget.error,
-                        style: const TextStyle(color: OptimusLightColors.danger),
+                        style:
+                            const TextStyle(color: OptimusLightColors.danger),
                       ),
                     ),
                   if (!widget.hasError && widget.caption != null)
@@ -155,7 +157,8 @@ class _FieldWrapper extends State<FieldWrapper> {
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
-            style: preset100s.copyWith(color: OptimusLightColors.neutral1000t32),
+            style:
+                preset100s.copyWith(color: OptimusLightColors.neutral1000t32),
             child: _Icon(child: _SuffixPadding(child: widget.suffix)),
           )
       ];
@@ -168,8 +171,8 @@ class _Icon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconTheme(
-        data:
-            const IconThemeData(color: OptimusLightColors.neutral1000t64, size: 24),
+        data: const IconThemeData(
+            color: OptimusLightColors.neutral1000t64, size: 24),
         child: child,
       );
 }
