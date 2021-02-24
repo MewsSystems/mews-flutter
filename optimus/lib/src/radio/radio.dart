@@ -157,8 +157,8 @@ class _RadioCircle extends StatelessWidget {
   final bool isActive;
 
   Color get _borderColor => (isSelected || isActive)
-      ? OptimusColors.primary500
-      : OptimusColors.neutral100;
+      ? OptimusLightColors.primary500
+      : OptimusLightColors.neutral100;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -173,7 +173,7 @@ class _RadioCircle extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(width: isSelected ? 6 : 1, color: _borderColor),
-            color: isActive ? OptimusColors.primary500t8 : null,
+            color: isActive ? OptimusLightColors.primary500t8 : null,
           ),
         ),
       );

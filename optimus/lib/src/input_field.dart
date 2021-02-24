@@ -110,7 +110,7 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
-              cursorColor: OptimusColors.basic,
+              cursorColor: OptimusLightColors.basic,
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -160,10 +160,10 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
   TextStyle get _textStyle {
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: OptimusColors.neutral900);
+        return preset200m.copyWith(color: OptimusLightColors.neutral900);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: OptimusColors.neutral900);
+        return preset300m.copyWith(color: OptimusLightColors.neutral900);
     }
   }
 
@@ -171,10 +171,10 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
   TextStyle get _placeholderTextStyle {
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: OptimusColors.neutral1000t64);
+        return preset200m.copyWith(color: OptimusLightColors.neutral1000t64);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: OptimusColors.neutral1000t64);
+        return preset300m.copyWith(color: OptimusLightColors.neutral1000t64);
     }
   }
 

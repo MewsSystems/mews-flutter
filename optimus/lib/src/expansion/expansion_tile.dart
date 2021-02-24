@@ -128,8 +128,8 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ListTileTheme.merge(
-            iconColor: OptimusColors.neutral900,
-            textColor: OptimusColors.neutral900,
+            iconColor: OptimusLightColors.neutral900,
+            textColor: OptimusLightColors.neutral900,
             child: widget.slidableActions.isEmpty
                 ? _buildListTile()
                 : _buildSlidable(widget.slidableActions, _buildListTile()),

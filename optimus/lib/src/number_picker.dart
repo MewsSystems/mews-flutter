@@ -141,7 +141,7 @@ class _IconButton extends StatelessWidget {
           onTap: onPressed,
           child: Icon(
             iconData,
-            color: OptimusColors.neutral1000t64,
+            color: OptimusLightColors.neutral1000t64,
             size: 24,
           ),
         ),

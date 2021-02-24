@@ -106,9 +106,9 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _textColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.primary:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
       default:
-        return OptimusColors.neutral500;
+        return OptimusLightColors.neutral500;
     }
   }
 
@@ -122,9 +122,9 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _normalColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
       case OptimusDropdownButtonVariant.primary:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusDropdownButtonVariant.text:
         return Colors.transparent;
     }
@@ -134,11 +134,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _hoverColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
-        return OptimusColors.neutral100;
+        return OptimusLightColors.neutral100;
       case OptimusDropdownButtonVariant.primary:
-        return OptimusColors.primary700;
+        return OptimusLightColors.primary700;
       case OptimusDropdownButtonVariant.text:
-        return OptimusColors.neutral500t8;
+        return OptimusLightColors.neutral500t8;
     }
   }
 
@@ -146,11 +146,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _highlightColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
-        return OptimusColors.neutral200;
+        return OptimusLightColors.neutral200;
       case OptimusDropdownButtonVariant.primary:
-        return OptimusColors.primary900;
+        return OptimusLightColors.primary900;
       case OptimusDropdownButtonVariant.text:
-        return OptimusColors.neutral500t16;
+        return OptimusLightColors.neutral500t16;
     }
   }
 
