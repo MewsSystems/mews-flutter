@@ -271,12 +271,16 @@ class OptimusWideBanner extends StatelessWidget {
 
   // ignore: missing_return
   Color _color(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusWideBannerVariant.informative:
-      case OptimusWideBannerVariant.danger:
-        return theme.colors.neutral0;
-      case OptimusWideBannerVariant.warning:
-        return theme.colors.neutral1000;
+    if (theme.brightness == Brightness.light) {
+      switch (variant) {
+        case OptimusWideBannerVariant.informative:
+        case OptimusWideBannerVariant.danger:
+          return theme.colors.neutral0;
+        case OptimusWideBannerVariant.warning:
+          return theme.colors.neutral1000;
+      }
+    } else {
+      return theme.colors.neutral1000;
     }
   }
 }
