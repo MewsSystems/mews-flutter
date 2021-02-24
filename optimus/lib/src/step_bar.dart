@@ -77,7 +77,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           child: Container(
             constraints: const BoxConstraints(minWidth: _spacerMinWidth),
             height: _spacerThickness,
-            color: OptimusColors.primary,
+            color: OptimusLightColors.primary,
           ),
         );
       case Axis.vertical:
@@ -90,7 +90,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           child: SizedBox(
             height: _spacerHeight,
             width: _spacerThickness,
-            child: Container(color: OptimusColors.primary),
+            child: Container(color: OptimusLightColors.primary),
           ),
         );
     }
@@ -126,7 +126,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
                       DefaultTextStyle.merge(
                         overflow: TextOverflow.ellipsis,
                         style: preset200m.copyWith(
-                          color: OptimusColors.neutral1000t64,
+                          color: OptimusLightColors.neutral1000t64,
                         ),
                         maxLines: 1,
                         child: item.description,
@@ -151,7 +151,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: state == OptimusStepBarItemState.active
-                ? OptimusColors.primary500t8
+                ? OptimusLightColors.primary500t8
                 : Colors.transparent,
           ),
           child: OptimusIcon(
@@ -181,7 +181,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
                 decoration: state == OptimusStepBarItemState.active
                     ? const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: OptimusColors.primary500t8,
+                        color: OptimusLightColors.primary500t8,
                       )
                     : null,
               ),
@@ -284,13 +284,13 @@ extension on OptimusStepBarItemState {
   Color get iconBackgroundColor {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusColors.primary;
+        return OptimusLightColors.primary;
       case OptimusStepBarItemState.active:
-        return OptimusColors.primary;
+        return OptimusLightColors.primary;
       case OptimusStepBarItemState.enabled:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
       case OptimusStepBarItemState.disabled:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
     }
   }
 
@@ -298,13 +298,13 @@ extension on OptimusStepBarItemState {
   Color get textColor {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusColors.primary;
+        return OptimusLightColors.primary;
       case OptimusStepBarItemState.active:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
       case OptimusStepBarItemState.enabled:
-        return OptimusColors.neutral1000;
+        return OptimusLightColors.neutral1000;
       case OptimusStepBarItemState.disabled:
-        return OptimusColors.neutral1000;
+        return OptimusLightColors.neutral1000;
     }
   }
 
