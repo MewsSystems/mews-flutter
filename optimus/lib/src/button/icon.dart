@@ -64,7 +64,8 @@ class OptimusIconButton extends StatefulWidget {
   _OptimusIconButtonState createState() => _OptimusIconButtonState();
 }
 
-class _OptimusIconButtonState extends State<OptimusIconButton> {
+class _OptimusIconButtonState extends State<OptimusIconButton>
+    with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
 
@@ -73,34 +74,30 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Enabled(
-      isEnabled: widget.onPressed != null,
-      child: MouseRegion(
-        onEnter: (_) => _onHoverChanged(true),
-        onExit: (_) => _onHoverChanged(false),
-        child: GestureDetector(
-          onTap: widget.onPressed,
-          onTapDown: (_) => setState(() => _isTappedDown = true),
-          onTapUp: (_) => setState(() => _isTappedDown = false),
-          onTapCancel: () => setState(() => _isTappedDown = false),
-          child: AnimatedContainer(
-            height: _containerSize,
-            width: _containerSize,
-            padding: EdgeInsets.zero,
-            decoration: _decoration(theme),
-            duration: buttonAnimationDuration,
-            child: IconTheme.merge(
-              data: IconThemeData(color: _iconColor, size: _iconSize),
-              child: widget.icon,
+  Widget build(BuildContext context) => Enabled(
+        isEnabled: widget.onPressed != null,
+        child: MouseRegion(
+          onEnter: (_) => _onHoverChanged(true),
+          onExit: (_) => _onHoverChanged(false),
+          child: GestureDetector(
+            onTap: widget.onPressed,
+            onTapDown: (_) => setState(() => _isTappedDown = true),
+            onTapUp: (_) => setState(() => _isTappedDown = false),
+            onTapCancel: () => setState(() => _isTappedDown = false),
+            child: AnimatedContainer(
+              height: _containerSize,
+              width: _containerSize,
+              padding: EdgeInsets.zero,
+              decoration: _decoration(theme),
+              duration: buttonAnimationDuration,
+              child: IconTheme.merge(
+                data: IconThemeData(color: _iconColor, size: _iconSize),
+                child: widget.icon,
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   Decoration _decoration(OptimusThemeData theme) =>
       widget.variant == OptimusIconButtonVariant.float
@@ -109,8 +106,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
               color: _color,
               borderRadius: const BorderRadius.all(borderRadius50),
             );
-
-  OptimusThemeData get _theme => OptimusTheme.of(context);
 
   // ignore: missing_return
   double get _containerSize {
@@ -134,15 +129,15 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   Color get _normalColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
-        return _theme.colors.neutral50;
+        return theme.colors.neutral50;
       case OptimusIconButtonVariant.primary:
-        return _theme.colors.primary500;
+        return theme.colors.primary500;
       case OptimusIconButtonVariant.text:
         return Colors.transparent;
       case OptimusIconButtonVariant.destructive:
-        return _theme.colors.danger500;
+        return theme.colors.danger500;
       case OptimusIconButtonVariant.float:
-        return _theme.colors.primary500;
+        return theme.colors.primary500;
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
@@ -152,15 +147,15 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   Color get _hoverColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
-        return _theme.colors.neutral100;
+        return theme.colors.neutral100;
       case OptimusIconButtonVariant.primary:
-        return _theme.colors.primary700;
+        return theme.colors.primary700;
       case OptimusIconButtonVariant.text:
-        return _theme.colors.neutral500t8;
+        return theme.colors.neutral500t8;
       case OptimusIconButtonVariant.destructive:
-        return _theme.colors.danger700;
+        return theme.colors.danger700;
       case OptimusIconButtonVariant.float:
-        return _theme.colors.primary700;
+        return theme.colors.primary700;
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
@@ -170,15 +165,15 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   Color get _highlightColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
-        return _theme.colors.neutral200;
+        return theme.colors.neutral200;
       case OptimusIconButtonVariant.primary:
-        return _theme.colors.primary900;
+        return theme.colors.primary900;
       case OptimusIconButtonVariant.text:
-        return _theme.colors.neutral500t16;
+        return theme.colors.neutral500t16;
       case OptimusIconButtonVariant.destructive:
-        return _theme.colors.danger900;
+        return theme.colors.danger900;
       case OptimusIconButtonVariant.float:
-        return _theme.colors.primary900;
+        return theme.colors.primary900;
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
@@ -201,14 +196,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
       case OptimusIconButtonVariant.primary:
       case OptimusIconButtonVariant.destructive:
       case OptimusIconButtonVariant.float:
-        return _theme.colors.neutral0;
+        return theme.colors.neutral0;
       case OptimusIconButtonVariant.defaultButton:
-        return _theme.colors.neutral500;
+        return theme.colors.neutral500;
       case OptimusIconButtonVariant.text:
         // TODO(V): can be changed when final dark theme design is ready.
-        return _theme.isDark
-            ? _theme.colors.neutral0
-            : _theme.colors.neutral500;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusIconButtonVariant.bare:
         return _bareIconColor;
     }
@@ -216,17 +209,17 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
 
   // TODO(V): can be changed when final dark theme design is ready.
   Color get _bareIconColor =>
-      _theme.isDark ? _bareIconColorDark : _bareIconColorLight;
+      theme.isDark ? _bareIconColorDark : _bareIconColorLight;
 
   Color get _bareIconColorLight => _isTappedDown
-      ? _theme.colors.neutral1000
+      ? theme.colors.neutral1000
       : _isHovering
-          ? _theme.colors.neutral700
-          : _theme.colors.neutral500;
+          ? theme.colors.neutral700
+          : theme.colors.neutral500;
 
   Color get _bareIconColorDark => _isTappedDown
-      ? _theme.colors.neutral100
+      ? theme.colors.neutral100
       : _isHovering
-          ? _theme.colors.neutral50
-          : _theme.colors.neutral0;
+          ? theme.colors.neutral50
+          : theme.colors.neutral0;
 }
