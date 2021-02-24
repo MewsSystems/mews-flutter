@@ -4,6 +4,8 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/widget_size.dart';
 
 enum OptimusIconButtonVariant {
@@ -71,37 +73,42 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   }
 
   @override
-  Widget build(BuildContext context) => Enabled(
-        isEnabled: widget.onPressed != null,
-        child: MouseRegion(
-          onEnter: (_) => _onHoverChanged(true),
-          onExit: (_) => _onHoverChanged(false),
-          child: GestureDetector(
-            onTap: widget.onPressed,
-            onTapDown: (_) => setState(() => _isTappedDown = true),
-            onTapUp: (_) => setState(() => _isTappedDown = false),
-            onTapCancel: () => setState(() => _isTappedDown = false),
-            child: AnimatedContainer(
-              height: _containerSize,
-              width: _containerSize,
-              padding: EdgeInsets.zero,
-              decoration: _decoration,
-              duration: buttonAnimationDuration,
-              child: IconTheme.merge(
-                data: IconThemeData(color: _iconColor, size: _iconSize),
-                child: widget.icon,
-              ),
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Enabled(
+      isEnabled: widget.onPressed != null,
+      child: MouseRegion(
+        onEnter: (_) => _onHoverChanged(true),
+        onExit: (_) => _onHoverChanged(false),
+        child: GestureDetector(
+          onTap: widget.onPressed,
+          onTapDown: (_) => setState(() => _isTappedDown = true),
+          onTapUp: (_) => setState(() => _isTappedDown = false),
+          onTapCancel: () => setState(() => _isTappedDown = false),
+          child: AnimatedContainer(
+            height: _containerSize,
+            width: _containerSize,
+            padding: EdgeInsets.zero,
+            decoration: _decoration(theme),
+            duration: buttonAnimationDuration,
+            child: IconTheme.merge(
+              data: IconThemeData(color: _iconColor(theme), size: _iconSize),
+              child: widget.icon,
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 
-  Decoration get _decoration => widget.variant == OptimusIconButtonVariant.float
-      ? BoxDecoration(shape: BoxShape.circle, color: _color)
-      : BoxDecoration(
-          color: _color,
-          borderRadius: const BorderRadius.all(borderRadius50),
-        );
+  Decoration _decoration(OptimusThemeData theme) =>
+      widget.variant == OptimusIconButtonVariant.float
+          ? BoxDecoration(shape: BoxShape.circle, color: _color(theme))
+          : BoxDecoration(
+              color: _color(theme),
+              borderRadius: const BorderRadius.all(borderRadius50),
+            );
 
   // ignore: missing_return
   double get _containerSize {
@@ -115,61 +122,61 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
     }
   }
 
-  Color get _color => _isTappedDown
-      ? _highlightColor
+  Color _color(OptimusThemeData theme) => _isTappedDown
+      ? _highlightColor(theme)
       : _isHovering
-          ? _hoverColor
-          : _normalColor;
+          ? _hoverColor(theme)
+          : _normalColor(theme);
 
   // ignore: missing_return
-  Color get _normalColor {
+  Color _normalColor(OptimusThemeData theme) {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
-        return OptimusLightColors.neutral50;
+        return theme.colors.neutral50;
       case OptimusIconButtonVariant.primary:
-        return OptimusLightColors.primary500;
+        return theme.colors.primary500;
       case OptimusIconButtonVariant.text:
         return Colors.transparent;
       case OptimusIconButtonVariant.destructive:
-        return OptimusLightColors.danger500;
+        return theme.colors.danger500;
       case OptimusIconButtonVariant.float:
-        return OptimusLightColors.primary500;
+        return theme.colors.primary500;
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
   }
 
   // ignore: missing_return
-  Color get _hoverColor {
+  Color _hoverColor(OptimusThemeData theme) {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
-        return OptimusLightColors.neutral100;
+        return theme.colors.neutral100;
       case OptimusIconButtonVariant.primary:
-        return OptimusLightColors.primary700;
+        return theme.colors.primary700;
       case OptimusIconButtonVariant.text:
-        return OptimusLightColors.neutral500t8;
+        return theme.colors.neutral500t8;
       case OptimusIconButtonVariant.destructive:
-        return OptimusLightColors.danger700;
+        return theme.colors.danger700;
       case OptimusIconButtonVariant.float:
-        return OptimusLightColors.primary700;
+        return theme.colors.primary700;
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
   }
 
   // ignore: missing_return
-  Color get _highlightColor {
+  Color _highlightColor(OptimusThemeData theme) {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
-        return OptimusLightColors.neutral200;
+        return theme.colors.neutral200;
       case OptimusIconButtonVariant.primary:
-        return OptimusLightColors.primary900;
+        return theme.colors.primary900;
       case OptimusIconButtonVariant.text:
-        return OptimusLightColors.neutral500t16;
+        return theme.colors.neutral500t16;
       case OptimusIconButtonVariant.destructive:
-        return OptimusLightColors.danger900;
+        return theme.colors.danger900;
       case OptimusIconButtonVariant.float:
-        return OptimusLightColors.primary900;
+        return theme.colors.primary900;
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
@@ -187,23 +194,24 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
   }
 
   // ignore: missing_return
-  Color get _iconColor {
+  Color _iconColor(OptimusThemeData theme) {
     switch (widget.variant) {
       case OptimusIconButtonVariant.primary:
       case OptimusIconButtonVariant.destructive:
       case OptimusIconButtonVariant.float:
-        return OptimusLightColors.neutral0;
+        return theme.colors.neutral0;
       case OptimusIconButtonVariant.defaultButton:
+        return theme.colors.neutral500;
       case OptimusIconButtonVariant.text:
-        return OptimusLightColors.neutral500;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusIconButtonVariant.bare:
-        return _bareIconColor;
+        return _bareIconColor(theme);
     }
   }
 
-  Color get _bareIconColor => _isTappedDown
-      ? OptimusLightColors.neutral1000
+  Color _bareIconColor(OptimusThemeData theme) => _isTappedDown
+      ? theme.colors.neutral1000
       : _isHovering
-          ? OptimusLightColors.neutral700
-          : OptimusLightColors.neutral500;
+          ? theme.colors.neutral700
+          : theme.colors.neutral500;
 }
