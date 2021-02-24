@@ -45,6 +45,7 @@ export 'src/slidable/slidable.dart';
 export 'src/slidable/slide_action.dart';
 export 'src/spacing.dart';
 export 'src/stack.dart';
+export 'src/step_bar.dart';
 export 'src/tabs.dart';
 export 'src/tag.dart';
 export 'src/typography/caption.dart';
