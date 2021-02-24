@@ -5,7 +5,6 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/widget_size.dart';
 
 enum OptimusIconButtonVariant {
@@ -88,7 +87,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
               height: _containerSize,
               width: _containerSize,
               padding: EdgeInsets.zero,
-              decoration: _decoration(theme),
+              decoration: _decoration,
               duration: buttonAnimationDuration,
               child: IconTheme.merge(
                 data: IconThemeData(color: _iconColor, size: _iconSize),
@@ -99,13 +98,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
         ),
       );
 
-  Decoration _decoration(OptimusThemeData theme) =>
-      widget.variant == OptimusIconButtonVariant.float
-          ? BoxDecoration(shape: BoxShape.circle, color: _color)
-          : BoxDecoration(
-              color: _color,
-              borderRadius: const BorderRadius.all(borderRadius50),
-            );
+  Decoration get _decoration => widget.variant == OptimusIconButtonVariant.float
+      ? BoxDecoration(shape: BoxShape.circle, color: _color)
+      : BoxDecoration(
+          color: _color,
+          borderRadius: const BorderRadius.all(borderRadius50),
+        );
 
   // ignore: missing_return
   double get _containerSize {
