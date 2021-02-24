@@ -120,15 +120,15 @@ extension on OptimusColorOption {
   Color toIconColor() {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusColors.neutral500;
+        return OptimusLightColors.neutral500;
       case OptimusColorOption.primary:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusColorOption.success:
-        return OptimusColors.success500;
+        return OptimusLightColors.success500;
       case OptimusColorOption.warning:
-        return OptimusColors.warning500;
+        return OptimusLightColors.warning500;
       case OptimusColorOption.danger:
-        return OptimusColors.danger500;
+        return OptimusLightColors.danger500;
     }
   }
 
@@ -136,11 +136,11 @@ extension on OptimusColorOption {
   Color toSupplementaryIconColor() {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusColors.neutral500;
+        return OptimusLightColors.neutral500;
       case OptimusColorOption.warning:
-        return OptimusColors.neutral900;
+        return OptimusLightColors.neutral900;
       default:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
     }
   }
 
@@ -148,15 +148,15 @@ extension on OptimusColorOption {
   Color toSupplementaryBackgroundColor() {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
       case OptimusColorOption.primary:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusColorOption.success:
-        return OptimusColors.success500;
+        return OptimusLightColors.success500;
       case OptimusColorOption.warning:
-        return OptimusColors.warning500;
+        return OptimusLightColors.warning500;
       case OptimusColorOption.danger:
-        return OptimusColors.danger500;
+        return OptimusLightColors.danger500;
     }
   }
 }

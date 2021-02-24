@@ -18,7 +18,7 @@ class OptimusBadge extends StatelessWidget {
       height: _singleDigitContainerHeight,
       width: isSingleDigit ? _singleDigitContainerWidth : null,
       decoration: BoxDecoration(
-        color: OptimusColors.primary,
+        color: OptimusLightColors.primary,
         border: Border.all(width: 2, color: Colors.white),
         borderRadius: const BorderRadius.all(Radius.circular(40)),
       ),
@@ -29,7 +29,10 @@ class OptimusBadge extends StatelessWidget {
             variation: Variation.variationSecondary,
             child: Text(
               text,
-              style: const TextStyle(color: OptimusColors.neutral0, height: 1),
+              style: const TextStyle(
+                color: OptimusLightColors.neutral0,
+                height: 1,
+              ),
             ),
           ),
         ),

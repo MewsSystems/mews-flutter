@@ -52,7 +52,7 @@ final Story nestedCardStory = Story(
 
 Widget get _content => Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      color: OptimusColors.success500t16,
+      color: OptimusLightColors.success500t16,
       child: const Text('Content'),
     );
 

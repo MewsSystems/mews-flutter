@@ -238,7 +238,7 @@ Future<void> _showCustomContentDialog({
       isDismissible: isDismissible,
       title: const Text('Dialog title'),
       content: Container(
-        color: OptimusColors.neutral50,
+        color: OptimusLightColors.neutral50,
         child: const Center(child: Text('Custom content without paddings')),
       ),
       contentWrapperBuilder: (_, child) => child,
@@ -249,7 +249,7 @@ Future<void> _showCustomContentDialog({
 Widget get _content => Container(
       height: 200,
       width: double.infinity,
-      color: OptimusColors.neutral50,
+      color: OptimusLightColors.neutral50,
       child: const Center(child: Text('Content')),
     );
 

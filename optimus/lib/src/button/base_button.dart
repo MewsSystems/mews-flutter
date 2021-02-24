@@ -4,6 +4,8 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/constants.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
 
@@ -39,23 +41,27 @@ class BaseButton extends StatelessWidget {
 
   final BorderRadius borderRadius;
 
-  Widget _buildIcon(IconData icon) =>
-      Icon(icon, size: _iconSize, color: _textColor);
+  Widget _buildIcon(IconData icon, OptimusThemeData theme) =>
+      Icon(icon, size: _iconSize, color: _textColor(theme));
 
   TextStyle get _textStyle =>
       size == OptimusWidgetSize.small ? preset200s : preset300s;
 
-  Widget _buildBadgeLabel(String badgeLabel) => SizedBox(
+  Widget _buildBadgeLabel(String badgeLabel, OptimusThemeData theme) =>
+      SizedBox(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
             height: 16,
-            color: _textColor,
+            color: _textColor(theme),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: spacing50),
               child: Text(
                 badgeLabel,
-                style: preset100s.copyWith(color: _badgeTextColor, height: 1.3),
+                style: preset100s.copyWith(
+                  color: _badgeTextColor(theme),
+                  height: 1.3,
+                ),
               ),
             ),
           ),
@@ -74,121 +80,127 @@ class BaseButton extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Color get _color {
+  Color _color(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral50;
+        return theme.colors.neutral50;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary500;
+        return theme.colors.primary500;
       case OptimusButtonVariant.text:
         return Colors.transparent;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger500;
+        return theme.colors.danger500;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning500;
+        return theme.colors.warning500;
     }
   }
 
   // ignore: missing_return
-  Color get _badgeTextColor {
+  Color _badgeTextColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral50;
+        return theme.colors.neutral0;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary500;
+        return theme.colors.primary500;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral0;
+        return theme.colors.neutral0;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger500;
+        return theme.colors.danger500;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning500;
+        return theme.colors.warning500;
     }
   }
 
   // ignore: missing_return
-  Color get _hoverColor {
+  Color _hoverColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral100;
+        return theme.colors.neutral100;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary700;
+        return theme.colors.primary700;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral500t8;
+        return theme.colors.neutral500t8;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger700;
+        return theme.colors.danger700;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning700;
+        return theme.colors.warning700;
     }
   }
 
   // ignore: missing_return
-  Color get _highLightColor {
+  Color _highLightColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral200;
+        return theme.colors.neutral200;
       case OptimusButtonVariant.primary:
-        return OptimusColors.primary900;
+        return theme.colors.primary900;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral500t16;
+        return theme.colors.neutral500t16;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.danger900;
+        return theme.colors.danger900;
       case OptimusButtonVariant.warning:
-        return OptimusColors.warning900;
+        return theme.colors.warning900;
     }
   }
 
   // ignore: missing_return
-  Color get _textColor {
+  Color _textColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return OptimusColors.neutral500;
+        return theme.colors.neutral500;
       case OptimusButtonVariant.primary:
-        return OptimusColors.neutral0;
+        return theme.colors.neutral0;
       case OptimusButtonVariant.text:
-        return OptimusColors.neutral500;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.destructive:
-        return OptimusColors.neutral0;
+        return theme.colors.neutral0;
       case OptimusButtonVariant.warning:
-        return OptimusColors.neutral900;
+        return theme.colors.neutral900;
     }
   }
 
   @override
-  Widget build(BuildContext context) => Opacity(
-        opacity:
-            onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
-        child: MaterialButton(
-          minWidth: minWidth,
-          height: size.value,
-          elevation: 0,
-          highlightElevation: 0,
-          highlightColor: _highLightColor,
-          disabledColor: _color,
-          disabledTextColor: _textColor,
-          hoverElevation: 0,
-          splashColor: Colors.transparent,
-          hoverColor: _hoverColor,
-          onPressed: onPressed,
-          animationDuration: buttonAnimationDuration,
-          shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          color: _color,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (leftIcon != null) _buildIcon(leftIcon),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: spacing100),
-                child: DefaultTextStyle.merge(
-                  child: child,
-                  style: _textStyle.copyWith(color: _textColor, height: 1),
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Opacity(
+      opacity: onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
+      child: MaterialButton(
+        minWidth: minWidth,
+        height: size.value,
+        elevation: 0,
+        highlightElevation: 0,
+        highlightColor: _highLightColor(theme),
+        disabledColor: _color(theme),
+        disabledTextColor: _textColor(theme),
+        hoverElevation: 0,
+        splashColor: Colors.transparent,
+        hoverColor: _hoverColor(theme),
+        onPressed: onPressed,
+        animationDuration: buttonAnimationDuration,
+        shape: RoundedRectangleBorder(borderRadius: borderRadius),
+        color: _color(theme),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (leftIcon != null) _buildIcon(leftIcon, theme),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: spacing100),
+              child: DefaultTextStyle.merge(
+                child: child,
+                style: _textStyle.copyWith(
+                  color: _textColor(theme),
+                  height: 1,
                 ),
               ),
-              if (rightIcon != null) _buildIcon(rightIcon),
-              if (badgeLabel != null && badgeLabel.isNotEmpty)
-                _buildBadgeLabel(badgeLabel),
-            ],
-          ),
+            ),
+            if (rightIcon != null) _buildIcon(rightIcon, theme),
+            if (badgeLabel != null && badgeLabel.isNotEmpty)
+              _buildBadgeLabel(badgeLabel, theme),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }

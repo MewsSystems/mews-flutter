@@ -100,7 +100,7 @@ class _Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: onRemoved != null ? OptimusColors.neutral50 : _tagColor,
+          color: onRemoved != null ? OptimusLightColors.neutral50 : _tagColor,
           borderRadius: const BorderRadius.all(borderRadius25),
         ),
         padding: _tagPadding,
@@ -141,15 +141,15 @@ class _Tag extends StatelessWidget {
   Color get _tagBoldColor {
     switch (colorOption) {
       case OptimusColorOption.basic:
-        return OptimusColors.neutral500;
+        return OptimusLightColors.neutral500;
       case OptimusColorOption.primary:
-        return OptimusColors.primary500;
+        return OptimusLightColors.primary500;
       case OptimusColorOption.success:
-        return OptimusColors.success500;
+        return OptimusLightColors.success500;
       case OptimusColorOption.warning:
-        return OptimusColors.warning500;
+        return OptimusLightColors.warning500;
       case OptimusColorOption.danger:
-        return OptimusColors.danger500;
+        return OptimusLightColors.danger500;
     }
   }
 
@@ -157,15 +157,15 @@ class _Tag extends StatelessWidget {
   Color get _tagSubtleColor {
     switch (colorOption) {
       case OptimusColorOption.basic:
-        return OptimusColors.neutral50;
+        return OptimusLightColors.neutral50;
       case OptimusColorOption.primary:
-        return OptimusColors.primary50;
+        return OptimusLightColors.primary50;
       case OptimusColorOption.success:
-        return OptimusColors.success50;
+        return OptimusLightColors.success50;
       case OptimusColorOption.warning:
-        return OptimusColors.warning50;
+        return OptimusLightColors.warning50;
       case OptimusColorOption.danger:
-        return OptimusColors.danger50;
+        return OptimusLightColors.danger50;
     }
   }
 
@@ -182,9 +182,9 @@ class _Tag extends StatelessWidget {
   Color get _textBoldColor {
     switch (colorOption) {
       case OptimusColorOption.warning:
-        return OptimusColors.neutral900;
+        return OptimusLightColors.neutral900;
       default:
-        return OptimusColors.neutral0;
+        return OptimusLightColors.neutral0;
     }
   }
 
@@ -192,14 +192,14 @@ class _Tag extends StatelessWidget {
   Color get _textSubtleColor {
     switch (colorOption) {
       case OptimusColorOption.primary:
-        return OptimusColors.primary900;
+        return OptimusLightColors.primary900;
       case OptimusColorOption.success:
-        return OptimusColors.success900;
+        return OptimusLightColors.success900;
       case OptimusColorOption.danger:
-        return OptimusColors.danger900;
+        return OptimusLightColors.danger900;
       case OptimusColorOption.basic:
       case OptimusColorOption.warning:
-        return OptimusColors.neutral900;
+        return OptimusLightColors.neutral900;
     }
   }
 }
@@ -209,6 +209,6 @@ Widget _buildIcon({VoidCallback onRemoved}) => GestureDetector(
       child: const Padding(
         padding: EdgeInsets.all(6),
         child: Icon(OptimusIcons.cross_close,
-            color: OptimusColors.neutral500, size: 12),
+            color: OptimusLightColors.neutral500, size: 12),
       ),
     );
