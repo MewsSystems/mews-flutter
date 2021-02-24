@@ -29,10 +29,25 @@ class OptimusStepBar extends StatefulWidget {
     this.maxItem,
   }) : super(key: key);
 
+  /// Type of the step bar.
   final OptimusStepBarType type;
+
+  /// Whether the step bar would be laid out horizontally or vertically.
+  ///
+  /// For screen size of [Breakpoint.extraSmall] and [Breakpoint.small]
+  /// this parameter is ignored and [Axis.vertical] is always used.
   final Axis layout;
+
+  /// Step bar items.
   final List<OptimusStepBarItem> items;
+
+  /// Current (active) step.
   final int currentItem;
+
+  /// The maximum enabled step.
+  ///
+  /// All the steps after [maxItem] will be disabled. If [null] all the steps
+  /// are enabled.
   final int maxItem;
 
   @override
