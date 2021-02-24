@@ -203,15 +203,26 @@ class _OptimusIconButtonState extends State<OptimusIconButton> {
       case OptimusIconButtonVariant.defaultButton:
         return theme.colors.neutral500;
       case OptimusIconButtonVariant.text:
+        // TODO(V): can be changed when final dark theme design is ready.
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusIconButtonVariant.bare:
         return _bareIconColor(theme);
     }
   }
 
-  Color _bareIconColor(OptimusThemeData theme) => _isTappedDown
+  // TODO(V): can be changed when final dark theme design is ready.
+  Color _bareIconColor(OptimusThemeData theme) =>
+      theme.isDark ? _bareIconColorDark(theme) : _bareIconColorLight(theme);
+
+  Color _bareIconColorLight(OptimusThemeData theme) => _isTappedDown
       ? theme.colors.neutral1000
       : _isHovering
           ? theme.colors.neutral700
           : theme.colors.neutral500;
+
+  Color _bareIconColorDark(OptimusThemeData theme) => _isTappedDown
+      ? theme.colors.neutral100
+      : _isHovering
+          ? theme.colors.neutral50
+          : theme.colors.neutral0;
 }
