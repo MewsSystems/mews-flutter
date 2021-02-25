@@ -152,7 +152,8 @@ class __TagState extends State<_Tag> with ThemeGetter {
   Color get _tagBoldColor {
     switch (widget.colorOption) {
       case OptimusColorOption.basic:
-        return theme.colors.neutral500;
+        // TODO(VG): can be changed when final dark theme design is ready.
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusColorOption.primary:
         return theme.colors.primary500;
       case OptimusColorOption.success:
@@ -164,19 +165,26 @@ class __TagState extends State<_Tag> with ThemeGetter {
     }
   }
 
+  // TODO(VG): can be changed when final dark theme design is ready.
   // ignore: missing_return
   Color get _tagSubtleColor {
     switch (widget.colorOption) {
       case OptimusColorOption.basic:
-        return theme.colors.neutral50;
+        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
       case OptimusColorOption.primary:
-        return theme.colors.primary50;
+        return theme.isDark
+            ? theme.colors.primary500t32
+            : theme.colors.primary50;
       case OptimusColorOption.success:
-        return theme.colors.success50;
+        return theme.isDark
+            ? theme.colors.success500t32
+            : theme.colors.success50;
       case OptimusColorOption.warning:
-        return theme.colors.warning50;
+        return theme.isDark
+            ? theme.colors.warning500t32
+            : theme.colors.warning50;
       case OptimusColorOption.danger:
-        return theme.colors.danger50;
+        return theme.isDark ? theme.colors.danger500t32 : theme.colors.danger50;
     }
   }
 
@@ -191,6 +199,9 @@ class __TagState extends State<_Tag> with ThemeGetter {
   }
 
   Color get _textBoldColor {
+    // TODO(VG): can be changed when final dark theme design is ready.
+    if (theme.isDark) return OptimusLightColors.neutral1000;
+
     switch (widget.colorOption) {
       case OptimusColorOption.warning:
         return OptimusLightColors.neutral900;
@@ -201,6 +212,9 @@ class __TagState extends State<_Tag> with ThemeGetter {
 
   // ignore: missing_return
   Color get _textSubtleColor {
+    // TODO(VG): can be changed when final dark theme design is ready.
+    if (theme.isDark) return OptimusLightColors.neutral0;
+
     switch (widget.colorOption) {
       case OptimusColorOption.primary:
         return OptimusLightColors.primary900;
