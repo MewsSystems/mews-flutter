@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
-import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/styles.dart';
@@ -103,12 +102,19 @@ class _Tag extends StatefulWidget {
 }
 
 class __TagState extends State<_Tag> with ThemeGetter {
+  Widget _buildIcon({VoidCallback onRemoved}) => GestureDetector(
+        onTap: () => onRemoved?.call(),
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Icon(OptimusIcons.cross_close,
+              color: theme.colors.neutral500, size: 12),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: widget.onRemoved != null
-              ? OptimusLightColors.neutral50
-              : _tagColor,
+          color: widget.onRemoved != null ? theme.colors.neutral50 : _tagColor,
           borderRadius: const BorderRadius.all(borderRadius25),
         ),
         padding: _tagPadding,
@@ -200,40 +206,31 @@ class __TagState extends State<_Tag> with ThemeGetter {
 
   Color get _textBoldColor {
     // TODO(VG): can be changed when final dark theme design is ready.
-    if (theme.isDark) return OptimusLightColors.neutral1000;
+    if (theme.isDark) return theme.colors.neutral1000;
 
     switch (widget.colorOption) {
       case OptimusColorOption.warning:
-        return OptimusLightColors.neutral900;
+        return theme.colors.neutral900;
       default:
-        return OptimusLightColors.neutral0;
+        return theme.colors.neutral0;
     }
   }
 
   // ignore: missing_return
   Color get _textSubtleColor {
     // TODO(VG): can be changed when final dark theme design is ready.
-    if (theme.isDark) return OptimusLightColors.neutral0;
+    if (theme.isDark) return theme.colors.neutral0;
 
     switch (widget.colorOption) {
       case OptimusColorOption.primary:
-        return OptimusLightColors.primary900;
+        return theme.colors.primary900;
       case OptimusColorOption.success:
-        return OptimusLightColors.success900;
+        return theme.colors.success900;
       case OptimusColorOption.danger:
-        return OptimusLightColors.danger900;
+        return theme.colors.danger900;
       case OptimusColorOption.basic:
       case OptimusColorOption.warning:
-        return OptimusLightColors.neutral900;
+        return theme.colors.neutral900;
     }
   }
 }
-
-Widget _buildIcon({VoidCallback onRemoved}) => GestureDetector(
-      onTap: () => onRemoved?.call(),
-      child: const Padding(
-        padding: EdgeInsets.all(6),
-        child: Icon(OptimusIcons.cross_close,
-            color: OptimusLightColors.neutral500, size: 12),
-      ),
-    );
