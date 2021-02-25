@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 enum OptimusBannerVariant {
@@ -70,70 +72,73 @@ class OptimusBanner extends StatelessWidget {
   final VoidCallback onDismiss;
 
   @override
-  Widget build(Object context) => Container(
-        decoration: BoxDecoration(
-          color: _backgroundColor,
-          borderRadius: const BorderRadius.all(borderRadius50),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 18),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (hasIcon)
-                Padding(
-                  padding: const EdgeInsets.only(right: 18),
-                  child: OptimusIcon(
-                    iconData: _icon,
-                    colorOption: _iconColor,
-                  ),
-                ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              bottom: description != null ? spacing50 : 10,
-                              top: 9,
-                            ),
-                            child: DefaultTextStyle.merge(
-                              child: title,
-                              style: _textStyle,
-                            ),
-                          ),
-                        ),
-                        if (isDismissible)
-                          OptimusIconButton(
-                            onPressed: () => onDismiss,
-                            icon:
-                                const Icon(OptimusIcons.cross_close, size: 12),
-                            size: OptimusWidgetSize.small,
-                            variant: OptimusIconButtonVariant.bare,
-                          ),
-                      ],
-                    ),
-                    if (description != null)
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: spacing50,
-                          bottom: 10,
-                        ),
-                        child: DefaultTextStyle.merge(
-                          child: description,
-                          style: _additionalDescriptionTextStyle,
-                        ),
-                      ),
-                  ],
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: _backgroundColor(theme),
+        borderRadius: const BorderRadius.all(borderRadius50),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 18),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (hasIcon)
+              Padding(
+                padding: const EdgeInsets.only(right: 18),
+                child: OptimusIcon(
+                  iconData: _icon,
+                  colorOption: _iconColor,
                 ),
               ),
-            ],
-          ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: description != null ? spacing50 : 10,
+                            top: 9,
+                          ),
+                          child: DefaultTextStyle.merge(
+                            child: title,
+                            style: _textStyle,
+                          ),
+                        ),
+                      ),
+                      if (isDismissible)
+                        OptimusIconButton(
+                          onPressed: () => onDismiss,
+                          icon: const Icon(OptimusIcons.cross_close, size: 12),
+                          size: OptimusWidgetSize.small,
+                          variant: OptimusIconButtonVariant.bare,
+                        ),
+                    ],
+                  ),
+                  if (description != null)
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: spacing50,
+                        bottom: 10,
+                      ),
+                      child: DefaultTextStyle.merge(
+                        child: description,
+                        style: _additionalDescriptionTextStyle,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   TextStyle get _textStyle => description != null ? preset300m : preset200m;
 
@@ -172,16 +177,16 @@ class OptimusBanner extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Color get _backgroundColor {
+  Color _backgroundColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusBannerVariant.primary:
-        return OptimusLightColors.primary500t8;
+        return theme.colors.primary500t8;
       case OptimusBannerVariant.success:
-        return OptimusLightColors.success500t8;
+        return theme.colors.success500t8;
       case OptimusBannerVariant.warning:
-        return OptimusLightColors.warning500t8;
+        return theme.colors.warning500t8;
       case OptimusBannerVariant.error:
-        return OptimusLightColors.danger500t8;
+        return theme.colors.danger500t8;
     }
   }
 }
@@ -228,45 +233,54 @@ class OptimusWideBanner extends StatelessWidget {
   final OptimusWideBannerVariant variant;
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(color: _backgroundColor),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 18),
-                child: Icon(OptimusIcons.info, color: _color),
-              ),
-              DefaultTextStyle.merge(child: content, style: _contentTextStyle),
-            ],
-          ),
-        ),
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
 
-  TextStyle get _contentTextStyle =>
-      preset200s.merge(TextStyle(color: _color, height: 1));
+    return Container(
+      decoration: BoxDecoration(color: _backgroundColor(theme)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 18),
+              child: Icon(OptimusIcons.info, color: _color(theme)),
+            ),
+            DefaultTextStyle.merge(
+                child: content, style: _contentTextStyle(theme)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  TextStyle _contentTextStyle(OptimusThemeData theme) =>
+      preset200s.merge(TextStyle(color: _color(theme), height: 1));
 
   // ignore: missing_return
-  Color get _backgroundColor {
+  Color _backgroundColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
-        return OptimusLightColors.primary500;
+        return theme.colors.primary500;
       case OptimusWideBannerVariant.warning:
-        return OptimusLightColors.warning500;
+        return theme.colors.warning500;
       case OptimusWideBannerVariant.danger:
-        return OptimusLightColors.danger500;
+        return theme.colors.danger500;
     }
   }
 
   // ignore: missing_return
-  Color get _color {
-    switch (variant) {
-      case OptimusWideBannerVariant.informative:
-      case OptimusWideBannerVariant.danger:
-        return OptimusLightColors.neutral0;
-      case OptimusWideBannerVariant.warning:
-        return OptimusLightColors.neutral1000;
+  Color _color(OptimusThemeData theme) {
+    if (theme.brightness == Brightness.light) {
+      switch (variant) {
+        case OptimusWideBannerVariant.informative:
+        case OptimusWideBannerVariant.danger:
+          return theme.colors.neutral0;
+        case OptimusWideBannerVariant.warning:
+          return theme.colors.neutral1000;
+      }
+    } else {
+      return theme.colors.neutral1000;
     }
   }
 }
