@@ -9,6 +9,7 @@ import 'package:optimus/src/common/scroll.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/search/dropdown_tile.dart';
+import 'package:optimus/src/theme/theme.dart';
 
 class OptimusDropdown<T> extends StatefulWidget {
   const OptimusDropdown({
@@ -28,7 +29,8 @@ class OptimusDropdown<T> extends StatefulWidget {
   _OptimusDropdownState<T> createState() => _OptimusDropdownState<T>();
 }
 
-class _OptimusDropdownState<T> extends State<OptimusDropdown<T>> {
+class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
+    with ThemeGetter {
   Rect _savedRect;
 
   void _updateRect(dynamic _) {
@@ -39,6 +41,13 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>> {
       });
     }
   }
+
+  // TODO(VG): can be changed when final dark theme design is ready.
+  BoxDecoration get _dropdownDecoration => BoxDecoration(
+        borderRadius: const BorderRadius.all(borderRadius50),
+        color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
+        boxShadow: elevation50,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -168,12 +177,6 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> {
             : widget.child,
       );
 }
-
-const _dropdownDecoration = BoxDecoration(
-  borderRadius: BorderRadius.all(borderRadius50),
-  color: Colors.white,
-  boxShadow: elevation50,
-);
 
 const double _screenPadding = spacing200;
 const double _widgetPadding = spacing100;
