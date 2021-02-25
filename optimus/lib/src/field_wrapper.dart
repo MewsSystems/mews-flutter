@@ -141,11 +141,10 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   }
 
   Color get _background =>
-      theme.isDark ? OptimusDarkColors.neutral500 : OptimusLightColors.neutral0;
+      theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
 
-  Color get _secondaryCaptionColor => theme.isDark
-      ? OptimusDarkColors.neutral0t32
-      : OptimusLightColors.neutral1000t32;
+  Color get _secondaryCaptionColor =>
+      theme.isDark ? theme.colors.neutral0t32 : theme.colors.neutral1000t32;
 
   Color get _borderColor {
     if (widget.hasError) return theme.colors.danger;
@@ -166,8 +165,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
-            style:
-                preset100s.copyWith(color: OptimusLightColors.neutral1000t32),
+            style: preset100s.copyWith(color: theme.colors.neutral1000t32),
             child: _Icon(child: _SuffixPadding(child: widget.suffix)),
           )
       ];
@@ -184,9 +182,10 @@ class _Icon extends StatelessWidget {
         child: child,
       );
 
-  Color _iconColor(BuildContext context) => OptimusTheme.of(context).isDark
-      ? OptimusDarkColors.neutral0
-      : OptimusLightColors.neutral1000t64;
+  Color _iconColor(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
+  }
 }
 
 class _FieldPadding extends StatelessWidget {

@@ -112,9 +112,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
-              cursorColor: theme.isDark
-                  ? OptimusDarkColors.neutral200
-                  : OptimusLightColors.basic,
+              cursorColor:
+                  theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -162,9 +161,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   // ignore: missing_return
   TextStyle get _textStyle {
-    final color = theme.isDark
-        ? OptimusDarkColors.neutral0
-        : OptimusLightColors.neutral900;
+    final color =
+        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
     switch (widget.size) {
       case OptimusWidgetSize.small:
         return preset200m.copyWith(color: color);
@@ -176,9 +174,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   // ignore: missing_return
   TextStyle get _placeholderTextStyle {
-    final color = theme.isDark
-        ? OptimusDarkColors.neutral0t64
-        : OptimusLightColors.neutral1000t64;
+    final color =
+        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
     switch (widget.size) {
       case OptimusWidgetSize.small:
         return preset200m.copyWith(color: color);
