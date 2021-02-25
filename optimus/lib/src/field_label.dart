@@ -22,17 +22,17 @@ class OptimusFieldLabel extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 2),
       child: OptimusLabelSmall(
         variation: Variation.variationSecondary,
-        child: Text(isRequired ? '$label *' : label,
-            style: TextStyle(color: _textColor(theme))),
+        child: Text(
+          isRequired ? '$label *' : label,
+          style: TextStyle(
+            color: _textColor(theme),
+          ),
+        ),
       ),
     );
   }
 
-  Color _textColor(OptimusThemeData theme) {
-    if (theme.isDark) {
-      return OptimusDarkColors.neutral0t64;
-    } else {
-      return OptimusLightColors.neutral1000t64;
-    }
-  }
+  Color _textColor(OptimusThemeData theme) => theme.isDark
+      ? OptimusDarkColors.neutral0t64
+      : OptimusLightColors.neutral1000t64;
 }
