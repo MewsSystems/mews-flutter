@@ -4,6 +4,8 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/elevation.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 
 enum OptimusBasicCardVariant {
   /// The system default, general purpose option used in the majority of cases.
@@ -70,13 +72,18 @@ class OptimusCard extends StatelessWidget {
   final OptimusBasicCardVariant variant;
 
   @override
-  Widget build(BuildContext context) => _Card(
-        spacing: padding,
-        attachment: attachment,
-        shadows: _shadows,
-        contentWrapperBuilder: contentWrapperBuilder,
-        child: child,
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return _Card(
+      spacing: padding,
+      attachment: attachment,
+      shadows: _shadows,
+      contentWrapperBuilder: contentWrapperBuilder,
+      color: _color(theme),
+      child: child,
+    );
+  }
 
   // ignore: missing_return
   List<BoxShadow> get _shadows {
@@ -87,6 +94,10 @@ class OptimusCard extends StatelessWidget {
         return elevation100;
     }
   }
+
+  // TODO(VG): can be changed when final dark theme design is ready.
+  Color _color(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
 }
 
 /// A card is a container that groups related pieces of information.
@@ -156,7 +167,7 @@ class _Card extends StatelessWidget {
     @required this.attachment,
     this.shadows = const [],
     this.border,
-    this.color = OptimusLightColors.neutral0,
+    this.color,
   }) : super(key: key);
 
   final Widget child;
