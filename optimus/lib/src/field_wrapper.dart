@@ -120,8 +120,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                     OptimusCaption(
                       child: Text(
                         widget.error,
-                        style:
-                            const TextStyle(color: OptimusLightColors.danger),
+                        style: TextStyle(color: _theme.colors.danger),
                       ),
                     ),
                   if (!widget.hasError && widget.caption != null)
@@ -153,7 +152,7 @@ class _FieldWrapper extends State<FieldWrapper> {
       : OptimusLightColors.neutral1000t32;
 
   Color get _borderColor {
-    if (widget.hasError) return OptimusLightColors.danger;
+    if (widget.hasError) return _theme.colors.danger;
     return _effectiveFocusNode.hasFocus
         ? _theme.colors.primary
         : _theme.colors.neutral100;
@@ -185,10 +184,16 @@ class _Icon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconTheme(
-        data: const IconThemeData(
-            color: OptimusLightColors.neutral1000t64, size: 24),
+        data: IconThemeData(color: _iconColor(context), size: 24),
         child: child,
       );
+
+  Color _iconColor(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    return theme.isDark
+        ? OptimusDarkColors.neutral0
+        : OptimusLightColors.neutral1000t64;
+  }
 }
 
 class _FieldPadding extends StatelessWidget {
