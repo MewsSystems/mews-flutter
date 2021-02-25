@@ -69,3 +69,7 @@ OptimusThemeData _createTheme(Brightness brightness) {
     colors: colors,
   );
 }
+
+mixin ThemeGetter<T extends StatefulWidget> on State<T> {
+  OptimusThemeData get theme => OptimusTheme.of(context);
+}

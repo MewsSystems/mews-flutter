@@ -151,6 +151,7 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.primary:
         return theme.colors.neutral0;
       case OptimusButtonVariant.text:
+        // TODO(V): can be changed when final dark theme design is ready.
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.destructive:
         return theme.colors.neutral0;
