@@ -140,9 +140,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     setState(() {});
   }
 
-  Color get _background => theme.isDark
-      ? OptimusDarkColors.neutral500
-      : OptimusLightColors.neutral0;
+  Color get _background =>
+      theme.isDark ? OptimusDarkColors.neutral500 : OptimusLightColors.neutral0;
 
   Color get _secondaryCaptionColor => theme.isDark
       ? OptimusDarkColors.neutral0t32
@@ -186,8 +185,8 @@ class _Icon extends StatelessWidget {
       );
 
   Color _iconColor(BuildContext context) => OptimusTheme.of(context).isDark
-        ? OptimusDarkColors.neutral0
-        : OptimusLightColors.neutral1000t64;
+      ? OptimusDarkColors.neutral0
+      : OptimusLightColors.neutral1000t64;
 }
 
 class _FieldPadding extends StatelessWidget {
