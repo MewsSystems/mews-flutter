@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storybook/stories/avatar.dart';
 import 'package:storybook/stories/banner.dart';
 import 'package:storybook/stories/button/button.dart';
 import 'package:storybook/stories/button/dropdown.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Storybook(
         children: [
+          avatarStory,
           button,
           dropdownButton,
           iconButton,
