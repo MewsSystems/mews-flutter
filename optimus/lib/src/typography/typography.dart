@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/breakpoint.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 
 typedef ResolveStyle = TextStyle Function(Breakpoint);
 enum OptimusTypographyColor { primary, secondary }
@@ -20,20 +22,23 @@ class OptimusTypography extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).screenBreakpoint;
+    final theme = OptimusTheme.of(context);
 
     return DefaultTextStyle.merge(
       child: child,
-      style: resolveStyle(screenSize).copyWith(color: _color),
+      style: resolveStyle(screenSize).copyWith(color: _color(theme)),
     );
   }
 
   // ignore: missing_return
-  Color get _color {
+  Color _color(OptimusThemeData theme) {
     switch (color) {
       case OptimusTypographyColor.primary:
-        return OptimusLightColors.neutral900;
+        return theme.isDark
+            ? theme.colors.invertedTextColor
+            : theme.colors.defaultTextColor;
       case OptimusTypographyColor.secondary:
-        return OptimusLightColors.neutral1000t64;
+        return theme.colors.secondaryTextColor;
     }
   }
 }
