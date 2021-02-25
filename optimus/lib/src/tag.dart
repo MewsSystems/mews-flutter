@@ -98,16 +98,19 @@ class _Tag extends StatefulWidget {
   final VoidCallback onRemoved;
 
   @override
-  __TagState createState() => __TagState();
+  _TagState createState() => _TagState();
 }
 
-class __TagState extends State<_Tag> with ThemeGetter {
-  Widget _buildIcon({VoidCallback onRemoved}) => GestureDetector(
-        onTap: () => onRemoved?.call(),
+class _TagState extends State<_Tag> with ThemeGetter {
+  Widget get _icon => GestureDetector(
+        onTap: () => widget.onRemoved?.call(),
         child: Padding(
           padding: const EdgeInsets.all(6),
-          child: Icon(OptimusIcons.cross_close,
-              color: theme.colors.neutral500, size: 12),
+          child: Icon(
+            OptimusIcons.cross_close,
+            color: theme.colors.neutral500,
+            size: 12,
+          ),
         ),
       );
 
@@ -139,8 +142,7 @@ class __TagState extends State<_Tag> with ThemeGetter {
                       fontSize: 12,
                     ),
             ),
-            if (widget.onRemoved != null)
-              _buildIcon(onRemoved: widget.onRemoved),
+            if (widget.onRemoved != null) _icon,
           ],
         ),
       );
