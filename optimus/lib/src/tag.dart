@@ -126,7 +126,13 @@ class __TagState extends State<_Tag> with ThemeGetter {
                   ? widget.text
                   : widget.text.toUpperCase(),
               style: widget.onRemoved != null
-                  ? preset200m.copyWith(height: 1.1)
+                  ? preset200m.copyWith(
+                      height: 1.1,
+                      // TODO(VG): can be changed when final dark theme design
+                      //  is ready.
+                      color: theme.isDark
+                          ? theme.colors.neutral1000
+                          : theme.colors.neutral900)
                   // Doesn't match any typography component
                   : baseTextStyle.copyWith(
                       color: _textColor,
