@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/field_label.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class FieldWrapper extends StatefulWidget {
@@ -79,8 +81,8 @@ class _FieldWrapper extends State<FieldWrapper> {
                   OptimusCaption(
                     variation: Variation.variationSecondary,
                     child: DefaultTextStyle.merge(
-                      style: const TextStyle(
-                        color: OptimusLightColors.neutral1000t32,
+                      style: TextStyle(
+                        color: _secondaryCaptionColor,
                       ),
                       child: widget.secondaryCaption,
                     ),
@@ -101,7 +103,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                         key: widget.fieldBoxKey,
                         decoration: widget.hasBorders
                             ? BoxDecoration(
-                                color: Colors.white,
+                                color: _background,
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(4)),
                                 border:
@@ -140,16 +142,28 @@ class _FieldWrapper extends State<FieldWrapper> {
     setState(() {});
   }
 
+  OptimusThemeData get _theme => OptimusTheme.of(context);
+
+  Color get _background => _theme.isDark
+      ? OptimusDarkColors.neutral500
+      : OptimusLightColors.neutral0;
+
+  Color get _secondaryCaptionColor => _theme.isDark
+      ? OptimusDarkColors.neutral0t32
+      : OptimusLightColors.neutral1000t32;
+
   Color get _borderColor {
     if (widget.hasError) return OptimusLightColors.danger;
     return _effectiveFocusNode.hasFocus
-        ? OptimusLightColors.primary
-        : OptimusLightColors.neutral100;
+        ? _theme.colors.primary
+        : _theme.colors.neutral100;
   }
 
   Color get _captionColor => _effectiveFocusNode.hasFocus
-      ? OptimusLightColors.primary
-      : OptimusLightColors.neutral1000t64;
+      ? _theme.colors.primary
+      : _theme.isDark
+          ? _theme.colors.neutral0t64
+          : _theme.colors.neutral1000t64;
 
   List<Widget> _buildChildren() => <Widget>[
         if (widget.prefix != null)

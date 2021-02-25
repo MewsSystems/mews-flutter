@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/field_wrapper.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class OptimusInputField extends StatefulWidget {
@@ -110,7 +112,9 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
-              cursorColor: OptimusLightColors.basic,
+              cursorColor: _theme.isDark
+                  ? OptimusDarkColors.neutral200
+                  : OptimusLightColors.basic,
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -156,25 +160,33 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
     setState(() {});
   }
 
+  OptimusThemeData get _theme => OptimusTheme.of(context);
+
   // ignore: missing_return
   TextStyle get _textStyle {
+    final color = _theme.isDark
+        ? OptimusDarkColors.neutral0
+        : OptimusLightColors.neutral900;
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: OptimusLightColors.neutral900);
+        return preset200m.copyWith(color: color);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: OptimusLightColors.neutral900);
+        return preset300m.copyWith(color: color);
     }
   }
 
   // ignore: missing_return
   TextStyle get _placeholderTextStyle {
+    final color = _theme.isDark
+        ? OptimusDarkColors.neutral0t64
+        : OptimusLightColors.neutral1000t64;
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: OptimusLightColors.neutral1000t64);
+        return preset200m.copyWith(color: color);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: OptimusLightColors.neutral1000t64);
+        return preset300m.copyWith(color: color);
     }
   }
 
