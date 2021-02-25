@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/theme/theme_data.dart';
-import 'package:optimus/src/typography/styles.dart';
 
 class GroupWrapper extends StatelessWidget {
   const GroupWrapper({
@@ -25,17 +24,19 @@ class GroupWrapper extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (label != null && label.isNotEmpty)
-          Text(
-            label,
-            style: preset100s.copyWith(
-              color: _textColor(theme),
+          OptimusLabelSmall(
+            child: Text(
+              label,
+              style: TextStyle(color: _textColor(theme)),
             ),
           ),
         child,
         if (error != null && error.isNotEmpty)
-          Text(
-            error,
-            style: preset100m.copyWith(color: OptimusLightColors.danger500),
+          OptimusCaption(
+            child: Text(
+              error,
+              style: TextStyle(color: theme.colors.danger500),
+            ),
           ),
       ],
     );

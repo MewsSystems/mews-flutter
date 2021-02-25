@@ -24,9 +24,7 @@ class OptimusFieldLabel extends StatelessWidget {
         variation: Variation.variationSecondary,
         child: Text(
           isRequired ? '$label *' : label,
-          style: TextStyle(
-            color: _textColor(theme),
-          ),
+          style: TextStyle(color: _textColor(theme)),
         ),
       ),
     );
