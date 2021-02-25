@@ -5,7 +5,6 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 enum TagVersion {
@@ -85,7 +84,7 @@ class OptimusInteractiveTag extends StatelessWidget {
       );
 }
 
-class _Tag extends StatelessWidget {
+class _Tag extends StatefulWidget {
   const _Tag({
     Key key,
     @required this.text,
@@ -100,52 +99,58 @@ class _Tag extends StatelessWidget {
   final VoidCallback onRemoved;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+  __TagState createState() => __TagState();
+}
 
-    return Container(
-      decoration: BoxDecoration(
-        color: onRemoved != null ? OptimusLightColors.neutral50 : _tagColor(theme),
-        borderRadius: const BorderRadius.all(borderRadius25),
-      ),
-      padding: _tagPadding,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            onRemoved != null ? text : text.toUpperCase(),
-            style: onRemoved != null
-                ? preset200m.copyWith(height: 1.1)
-                // Doesn't match any typography component
-                : baseTextStyle.copyWith(
-                    color: _textColor(theme),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-          ),
-          if (onRemoved != null) _buildIcon(onRemoved: onRemoved),
-        ],
-      ),
-    );
-  }
+class __TagState extends State<_Tag> with ThemeGetter {
+  @override
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          color: widget.onRemoved != null
+              ? OptimusLightColors.neutral50
+              : _tagColor,
+          borderRadius: const BorderRadius.all(borderRadius25),
+        ),
+        padding: _tagPadding,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.onRemoved != null
+                  ? widget.text
+                  : widget.text.toUpperCase(),
+              style: widget.onRemoved != null
+                  ? preset200m.copyWith(height: 1.1)
+                  // Doesn't match any typography component
+                  : baseTextStyle.copyWith(
+                      color: _textColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
+            ),
+            if (widget.onRemoved != null)
+              _buildIcon(onRemoved: widget.onRemoved),
+          ],
+        ),
+      );
 
-  EdgeInsets get _tagPadding => onRemoved != null
+  EdgeInsets get _tagPadding => widget.onRemoved != null
       ? const EdgeInsets.only(top: 1.5, bottom: 1.5, left: 8)
       : const EdgeInsets.symmetric(vertical: 1, horizontal: 8);
 
   // ignore: missing_return
-  Color _tagColor(OptimusThemeData theme) {
-    switch (version) {
+  Color get _tagColor {
+    switch (widget.version) {
       case TagVersion.bold:
-        return _tagBoldColor(theme);
+        return _tagBoldColor;
       case TagVersion.subtle:
-        return _tagSubtleColor(theme);
+        return _tagSubtleColor;
     }
   }
 
   // ignore: missing_return
-  Color _tagBoldColor(OptimusThemeData theme) {
-    switch (colorOption) {
+  Color get _tagBoldColor {
+    switch (widget.colorOption) {
       case OptimusColorOption.basic:
         return theme.colors.neutral500;
       case OptimusColorOption.primary:
@@ -160,8 +165,8 @@ class _Tag extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Color _tagSubtleColor(OptimusThemeData theme) {
-    switch (colorOption) {
+  Color get _tagSubtleColor {
+    switch (widget.colorOption) {
       case OptimusColorOption.basic:
         return theme.colors.neutral50;
       case OptimusColorOption.primary:
@@ -176,18 +181,17 @@ class _Tag extends StatelessWidget {
   }
 
   // ignore: missing_return
-  Color _textColor(OptimusThemeData theme) {
-    switch (version) {
+  Color get _textColor {
+    switch (widget.version) {
       case TagVersion.bold:
-        return _textBoldColor(theme);
+        return _textBoldColor;
       case TagVersion.subtle:
-        return _textSubtleColor(theme);
+        return _textSubtleColor;
     }
   }
 
-  // TODO(VG): can be changed when final dark theme design is ready.
-  Color _textBoldColor(OptimusThemeData theme) {
-    switch (colorOption) {
+  Color get _textBoldColor {
+    switch (widget.colorOption) {
       case OptimusColorOption.warning:
         return OptimusLightColors.neutral900;
       default:
@@ -195,10 +199,9 @@ class _Tag extends StatelessWidget {
     }
   }
 
-  // TODO(VG): can be changed when final dark theme design is ready.
   // ignore: missing_return
-  Color _textSubtleColor(OptimusThemeData theme) {
-    switch (colorOption) {
+  Color get _textSubtleColor {
+    switch (widget.colorOption) {
       case OptimusColorOption.primary:
         return OptimusLightColors.primary900;
       case OptimusColorOption.success:
