@@ -5,7 +5,6 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/field_label.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class FieldWrapper extends StatefulWidget {
@@ -44,7 +43,7 @@ class FieldWrapper extends StatefulWidget {
   _FieldWrapper createState() => _FieldWrapper();
 }
 
-class _FieldWrapper extends State<FieldWrapper> {
+class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   FocusNode _focusNode;
 
   FocusNode get _effectiveFocusNode =>
@@ -120,7 +119,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                     OptimusCaption(
                       child: Text(
                         widget.error,
-                        style: TextStyle(color: _theme.colors.danger),
+                        style: TextStyle(color: theme.colors.danger),
                       ),
                     ),
                   if (!widget.hasError && widget.caption != null)
@@ -141,28 +140,26 @@ class _FieldWrapper extends State<FieldWrapper> {
     setState(() {});
   }
 
-  OptimusThemeData get _theme => OptimusTheme.of(context);
-
-  Color get _background => _theme.isDark
+  Color get _background => theme.isDark
       ? OptimusDarkColors.neutral500
       : OptimusLightColors.neutral0;
 
-  Color get _secondaryCaptionColor => _theme.isDark
+  Color get _secondaryCaptionColor => theme.isDark
       ? OptimusDarkColors.neutral0t32
       : OptimusLightColors.neutral1000t32;
 
   Color get _borderColor {
-    if (widget.hasError) return _theme.colors.danger;
+    if (widget.hasError) return theme.colors.danger;
     return _effectiveFocusNode.hasFocus
-        ? _theme.colors.primary
-        : _theme.colors.neutral100;
+        ? theme.colors.primary
+        : theme.colors.neutral100;
   }
 
   Color get _captionColor => _effectiveFocusNode.hasFocus
-      ? _theme.colors.primary
-      : _theme.isDark
-          ? _theme.colors.neutral0t64
-          : _theme.colors.neutral1000t64;
+      ? theme.colors.primary
+      : theme.isDark
+          ? theme.colors.neutral0t64
+          : theme.colors.neutral1000t64;
 
   List<Widget> _buildChildren() => <Widget>[
         if (widget.prefix != null)
@@ -188,12 +185,9 @@ class _Icon extends StatelessWidget {
         child: child,
       );
 
-  Color _iconColor(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-    return theme.isDark
+  Color _iconColor(BuildContext context) => OptimusTheme.of(context).isDark
         ? OptimusDarkColors.neutral0
         : OptimusLightColors.neutral1000t64;
-  }
 }
 
 class _FieldPadding extends StatelessWidget {

@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/field_wrapper.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class OptimusInputField extends StatefulWidget {
@@ -75,7 +74,8 @@ class OptimusInputField extends StatefulWidget {
   _OptimusInputFieldState createState() => _OptimusInputFieldState();
 }
 
-class _OptimusInputFieldState extends State<OptimusInputField> {
+class _OptimusInputFieldState extends State<OptimusInputField>
+    with ThemeGetter {
   FocusNode _focusNode;
   bool _isShowPasswordEnabled = false;
 
@@ -112,7 +112,7 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
-              cursorColor: _theme.isDark
+              cursorColor: theme.isDark
                   ? OptimusDarkColors.neutral200
                   : OptimusLightColors.basic,
               autocorrect: widget.autocorrect,
@@ -160,11 +160,9 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
     setState(() {});
   }
 
-  OptimusThemeData get _theme => OptimusTheme.of(context);
-
   // ignore: missing_return
   TextStyle get _textStyle {
-    final color = _theme.isDark
+    final color = theme.isDark
         ? OptimusDarkColors.neutral0
         : OptimusLightColors.neutral900;
     switch (widget.size) {
@@ -178,7 +176,7 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
 
   // ignore: missing_return
   TextStyle get _placeholderTextStyle {
-    final color = _theme.isDark
+    final color = theme.isDark
         ? OptimusDarkColors.neutral0t64
         : OptimusLightColors.neutral1000t64;
     switch (widget.size) {
