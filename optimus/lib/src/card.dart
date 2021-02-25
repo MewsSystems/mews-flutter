@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
-import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/elevation.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 
 enum OptimusBasicCardVariant {
   /// The system default, general purpose option used in the majority of cases.
@@ -70,13 +71,18 @@ class OptimusCard extends StatelessWidget {
   final OptimusBasicCardVariant variant;
 
   @override
-  Widget build(BuildContext context) => _Card(
-        spacing: padding,
-        attachment: attachment,
-        shadows: _shadows,
-        contentWrapperBuilder: contentWrapperBuilder,
-        child: child,
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return _Card(
+      spacing: padding,
+      attachment: attachment,
+      shadows: _shadows,
+      contentWrapperBuilder: contentWrapperBuilder,
+      color: _color(theme),
+      child: child,
+    );
+  }
 
   // ignore: missing_return
   List<BoxShadow> get _shadows {
@@ -87,6 +93,10 @@ class OptimusCard extends StatelessWidget {
         return elevation100;
     }
   }
+
+  // TODO(VG): can be changed when final dark theme design is ready.
+  Color _color(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
 }
 
 /// A card is a container that groups related pieces of information.
@@ -121,28 +131,42 @@ class OptimusNestedCard extends StatelessWidget {
   final OptimusNestedCardVariant variant;
 
   @override
-  Widget build(BuildContext context) => _Card(
-        spacing: padding,
-        attachment: attachment,
-        border: _border,
-        color: _color,
-        contentWrapperBuilder: contentWrapperBuilder,
-        child: child,
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
 
-  Border get _border => variant == OptimusNestedCardVariant.normal
-      ? Border.all(width: 1, color: OptimusLightColors.neutral500t16)
-      : null;
+    return _Card(
+      spacing: padding,
+      attachment: attachment,
+      border: _border(theme),
+      color: _color(theme),
+      contentWrapperBuilder: contentWrapperBuilder,
+      child: child,
+    );
+  }
 
+  Border _border(OptimusThemeData theme) =>
+      variant == OptimusNestedCardVariant.normal
+          ? Border.all(
+              width: 1,
+              // TODO(VG): can be changed when final dark theme design is ready.
+              color: theme.isDark
+                  ? theme.colors.neutral0t32
+                  : theme.colors.neutral500t16,
+            )
+          : null;
+
+  // TODO(VG): can be changed when final dark theme design is ready.
   // ignore: missing_return
-  Color get _color {
+  Color _color(OptimusThemeData theme) {
     switch (variant) {
       case OptimusNestedCardVariant.emphasized:
-        return OptimusLightColors.neutral500t8;
+        return theme.isDark
+            ? theme.colors.neutral500t48
+            : theme.colors.neutral500t8;
       case OptimusNestedCardVariant.highlighted:
-        return OptimusLightColors.primary500t8;
+        return theme.colors.primary500t8;
       case OptimusNestedCardVariant.normal:
-        return OptimusLightColors.neutral0;
+        return theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
     }
   }
 }
@@ -156,7 +180,7 @@ class _Card extends StatelessWidget {
     @required this.attachment,
     this.shadows = const [],
     this.border,
-    this.color = OptimusLightColors.neutral0,
+    this.color,
   }) : super(key: key);
 
   final Widget child;

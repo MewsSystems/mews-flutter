@@ -284,6 +284,12 @@ class OptimusColors {
 
   final Brightness brightness;
 
+  Color get defaultTextColor => neutral1000;
+
+  Color get secondaryTextColor => neutral1000t64;
+
+  Color get invertedTextColor => neutral0;
+
   bool get _isLight => brightness == Brightness.light;
 
   Color get neutral0 =>
