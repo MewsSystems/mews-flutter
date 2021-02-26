@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/field_wrapper.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class OptimusInputField extends StatefulWidget {
@@ -73,7 +74,8 @@ class OptimusInputField extends StatefulWidget {
   _OptimusInputFieldState createState() => _OptimusInputFieldState();
 }
 
-class _OptimusInputFieldState extends State<OptimusInputField> {
+class _OptimusInputFieldState extends State<OptimusInputField>
+    with ThemeGetter {
   FocusNode _focusNode;
   bool _isShowPasswordEnabled = false;
 
@@ -110,7 +112,8 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
-              cursorColor: OptimusLightColors.basic,
+              cursorColor:
+                  theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -158,23 +161,28 @@ class _OptimusInputFieldState extends State<OptimusInputField> {
 
   // ignore: missing_return
   TextStyle get _textStyle {
+    final color = theme.isDark
+        ? theme.colors.invertedTextColor
+        : theme.colors.defaultTextColor;
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: OptimusLightColors.neutral900);
+        return preset200m.copyWith(color: color);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: OptimusLightColors.neutral900);
+        return preset300m.copyWith(color: color);
     }
   }
 
   // ignore: missing_return
   TextStyle get _placeholderTextStyle {
+    final color =
+        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: OptimusLightColors.neutral1000t64);
+        return preset200m.copyWith(color: color);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: OptimusLightColors.neutral1000t64);
+        return preset300m.copyWith(color: color);
     }
   }
 

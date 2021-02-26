@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/field_label.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class FieldWrapper extends StatefulWidget {
@@ -42,7 +43,7 @@ class FieldWrapper extends StatefulWidget {
   _FieldWrapper createState() => _FieldWrapper();
 }
 
-class _FieldWrapper extends State<FieldWrapper> {
+class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   FocusNode _focusNode;
 
   FocusNode get _effectiveFocusNode =>
@@ -79,8 +80,8 @@ class _FieldWrapper extends State<FieldWrapper> {
                   OptimusCaption(
                     variation: Variation.variationSecondary,
                     child: DefaultTextStyle.merge(
-                      style: const TextStyle(
-                        color: OptimusLightColors.neutral1000t32,
+                      style: TextStyle(
+                        color: _secondaryCaptionColor,
                       ),
                       child: widget.secondaryCaption,
                     ),
@@ -101,7 +102,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                         key: widget.fieldBoxKey,
                         decoration: widget.hasBorders
                             ? BoxDecoration(
-                                color: Colors.white,
+                                color: _background,
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(4)),
                                 border:
@@ -118,8 +119,7 @@ class _FieldWrapper extends State<FieldWrapper> {
                     OptimusCaption(
                       child: Text(
                         widget.error,
-                        style:
-                            const TextStyle(color: OptimusLightColors.danger),
+                        style: TextStyle(color: theme.colors.danger),
                       ),
                     ),
                   if (!widget.hasError && widget.caption != null)
@@ -140,16 +140,24 @@ class _FieldWrapper extends State<FieldWrapper> {
     setState(() {});
   }
 
+  Color get _background =>
+      theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
+
+  Color get _secondaryCaptionColor =>
+      theme.isDark ? theme.colors.neutral0t32 : theme.colors.neutral1000t32;
+
   Color get _borderColor {
-    if (widget.hasError) return OptimusLightColors.danger;
+    if (widget.hasError) return theme.colors.danger;
     return _effectiveFocusNode.hasFocus
-        ? OptimusLightColors.primary
-        : OptimusLightColors.neutral100;
+        ? theme.colors.primary
+        : theme.colors.neutral100;
   }
 
   Color get _captionColor => _effectiveFocusNode.hasFocus
-      ? OptimusLightColors.primary
-      : OptimusLightColors.neutral1000t64;
+      ? theme.colors.primary
+      : theme.isDark
+          ? theme.colors.neutral0t64
+          : theme.colors.neutral1000t64;
 
   List<Widget> _buildChildren() => <Widget>[
         if (widget.prefix != null)
@@ -157,8 +165,7 @@ class _FieldWrapper extends State<FieldWrapper> {
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
-            style:
-                preset100s.copyWith(color: OptimusLightColors.neutral1000t32),
+            style: preset100s.copyWith(color: theme.colors.neutral1000t32),
             child: _Icon(child: _SuffixPadding(child: widget.suffix)),
           )
       ];
@@ -171,10 +178,14 @@ class _Icon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconTheme(
-        data: const IconThemeData(
-            color: OptimusLightColors.neutral1000t64, size: 24),
+        data: IconThemeData(color: _iconColor(context), size: 24),
         child: child,
       );
+
+  Color _iconColor(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
+  }
 }
 
 class _FieldPadding extends StatelessWidget {
