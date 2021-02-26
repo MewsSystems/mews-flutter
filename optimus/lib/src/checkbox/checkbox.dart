@@ -114,8 +114,12 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   @override
   Widget build(BuildContext context) {
     final checkIcon = widget.isChecked
-        ? const Center(
-            child: Icon(OptimusIcons.done, size: 10, color: Colors.white),
+        ? Center(
+            child: Icon(
+              OptimusIcons.done,
+              size: 10,
+              color: theme.colors.neutral0,
+            ),
           )
         : null;
 
