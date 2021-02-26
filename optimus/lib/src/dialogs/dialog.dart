@@ -271,7 +271,9 @@ class OptimusDialog extends StatelessWidget {
               variant: OptimusBasicCardVariant.overlay,
               padding: OptimusCardSpacing.spacing0,
               child: Material(
-                color: Colors.white,
+                color: theme.isDark
+                    ? theme.colors.neutral500
+                    : theme.colors.neutral0,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
