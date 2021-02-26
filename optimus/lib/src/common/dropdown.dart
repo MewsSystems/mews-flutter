@@ -171,7 +171,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
         },
         child: _isHighlighted
             ? DefaultTextStyle.merge(
-                style: TextStyle(color: theme.colors.neutral0),
+                style: TextStyle(color: theme.colors.invertedTextColor),
                 child: widget.child,
               )
             : widget.child,
