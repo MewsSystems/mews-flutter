@@ -5,6 +5,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/group_wrapper.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 /// The Checkbox + Label component is available in two size
@@ -76,20 +77,20 @@ class OptimusCheckbox extends StatefulWidget {
   _OptimusCheckboxState createState() => _OptimusCheckboxState();
 }
 
-class _OptimusCheckboxState extends State<OptimusCheckbox> {
+class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
 
   Color get _borderColor => widget.isChecked
-      ? OptimusLightColors.primary500
+      ? theme.colors.primary500
       : _isHovering || _isTappedDown
-          ? OptimusLightColors.primary500
-          : OptimusLightColors.neutral100;
+          ? theme.colors.primary500
+          : theme.colors.neutral100;
 
   Color get _backgroundColor => widget.isChecked
-      ? OptimusLightColors.primary500
+      ? theme.colors.primary500
       : _isHovering || _isTappedDown
-          ? OptimusLightColors.primary500t8
+          ? theme.colors.primary500t8
           : Colors.transparent;
 
   void _onTap() {
