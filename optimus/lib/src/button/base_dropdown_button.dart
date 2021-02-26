@@ -7,6 +7,7 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/overlay_controller.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/styles.dart';
 import 'package:optimus/src/widget_size.dart';
 
@@ -34,7 +35,8 @@ class BaseDropDownButton<T> extends StatefulWidget {
   _BaseDropDownButtonState createState() => _BaseDropDownButtonState<T>();
 }
 
-class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
+class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
+    with ThemeGetter {
   final _selectFieldKey = GlobalKey();
   bool _isHovering = false;
   bool _isTappedDown = false;
@@ -102,13 +104,18 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
       ? preset200s.copyWith(color: _textColor, height: 1.3)
       : preset300s.copyWith(color: _textColor, height: 1.3);
 
+  // TODO(VG): can be changed when final dark theme design is ready.
   // ignore: missing_return
   Color get _textColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.primary:
-        return OptimusLightColors.neutral0;
-      default:
-        return OptimusLightColors.neutral500;
+        return theme.colors.invertedTextColor;
+      case OptimusDropdownButtonVariant.defaultButton:
+        return theme.colors.neutral500;
+      case OptimusDropdownButtonVariant.text:
+        return theme.isDark
+            ? theme.colors.invertedTextColor
+            : theme.colors.neutral500;
     }
   }
 
@@ -122,9 +129,9 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _normalColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
-        return OptimusLightColors.neutral50;
+        return theme.colors.neutral50;
       case OptimusDropdownButtonVariant.primary:
-        return OptimusLightColors.primary500;
+        return theme.colors.primary500;
       case OptimusDropdownButtonVariant.text:
         return Colors.transparent;
     }
@@ -134,11 +141,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _hoverColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
-        return OptimusLightColors.neutral100;
+        return theme.colors.neutral100;
       case OptimusDropdownButtonVariant.primary:
-        return OptimusLightColors.primary700;
+        return theme.colors.primary700;
       case OptimusDropdownButtonVariant.text:
-        return OptimusLightColors.neutral500t8;
+        return theme.colors.neutral500t8;
     }
   }
 
@@ -146,11 +153,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>> {
   Color get _highlightColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
-        return OptimusLightColors.neutral200;
+        return theme.colors.neutral200;
       case OptimusDropdownButtonVariant.primary:
-        return OptimusLightColors.primary900;
+        return theme.colors.primary900;
       case OptimusDropdownButtonVariant.text:
-        return OptimusLightColors.neutral500t16;
+        return theme.colors.neutral500t16;
     }
   }
 
