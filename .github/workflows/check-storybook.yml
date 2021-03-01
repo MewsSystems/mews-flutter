@@ -13,6 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
+      - run: flutter packages pub get
+        working-directory: optimus/
+      - run: flutter packages pub run build_runner build
+        working-directory: optimus/
       - run: flutter pub get
       - run: bash ../tool/check_formatting.sh
         name: Ensure proper formatting

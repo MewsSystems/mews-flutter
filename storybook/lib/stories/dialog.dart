@@ -9,8 +9,9 @@ final Story dialogStory = Story(
   section: 'Dialogs',
   builder: (context, k) {
     final isDismissible = k.boolean('Dismissible', initial: true);
-    final content =
-        k.boolean('Scrollable', initial: false) ? _scrollableContent : _content;
+    final content = k.boolean('Scrollable', initial: false)
+        ? _scrollableContent
+        : _content(context);
     final type =
         k.options('Type', initial: OptimusDialogType.common, options: _types);
 
@@ -232,26 +233,31 @@ Future<void> _showCustomContentDialog({
   bool isDismissible,
   OptimusDialogSize size,
   OptimusDialogType type,
-}) =>
-    showOptimusDialog(
-      context: context,
-      isDismissible: isDismissible,
-      title: const Text('Dialog title'),
-      content: Container(
-        color: OptimusLightColors.neutral50,
-        child: const Center(child: Text('Custom content without paddings')),
-      ),
-      contentWrapperBuilder: (_, child) => child,
-      size: size,
-      type: type,
-    );
+}) {
+  final theme = OptimusTheme.of(context);
+  return showOptimusDialog(
+    context: context,
+    isDismissible: isDismissible,
+    title: const Text('Dialog title'),
+    content: Container(
+      color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
+      child: const Center(child: Text('Custom content without paddings')),
+    ),
+    contentWrapperBuilder: (_, child) => child,
+    size: size,
+    type: type,
+  );
+}
 
-Widget get _content => Container(
-      height: 200,
-      width: double.infinity,
-      color: OptimusLightColors.neutral50,
-      child: const Center(child: Text('Content')),
-    );
+Widget _content(BuildContext context) {
+  final theme = OptimusTheme.of(context);
+  return Container(
+    height: 200,
+    width: double.infinity,
+    color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
+    child: const Center(child: Text('Content')),
+  );
+}
 
 Widget get _scrollableContent => Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
