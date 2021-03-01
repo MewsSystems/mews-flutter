@@ -12,55 +12,47 @@ class OptimusBadge extends StatelessWidget {
 
   final String text;
 
-  BoxDecoration _singleDigitDecoration(OptimusThemeData theme) => BoxDecoration(
-        shape: BoxShape.circle,
-        color: theme.colors.primary,
-        border: _border(theme),
-      );
-
-  BoxDecoration _multipleDigitDecoration(OptimusThemeData theme) =>
-      BoxDecoration(
+  BoxDecoration _decoration(OptimusThemeData theme) => BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(40)),
         color: theme.colors.primary,
         border: _border(theme),
       );
 
-  Border _border(OptimusThemeData theme) =>
-      Border.all(width: 2, color: theme.colors.neutral0);
+  Border _border(OptimusThemeData theme) => Border.all(
+        width: 2,
+        color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
+      );
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
     return Container(
+      constraints: const BoxConstraints(minWidth: 20),
       height: 20,
-      width: _isSingleDigit ? 20 : null,
-      decoration: _isSingleDigit
-          ? _singleDigitDecoration(theme)
-          : _multipleDigitDecoration(theme),
+      decoration: _decoration(theme),
       child: Padding(
         padding: _padding,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OptimusLabel(
+        child: IntrinsicWidth(
+          child: Center(
+            child: OptimusLabel(
               variation: Variation.variationSecondary,
               child: Text(
                 text,
-                style: TextStyle(color: theme.colors.neutral0, height: 1),
+                style: TextStyle(
+                  color: theme.isDark
+                      ? theme.colors.neutral1000
+                      : theme.colors.neutral0,
+                  height: 1,
+                ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  bool get _isSingleDigit => text.length == 1;
-
-  EdgeInsets get _padding => EdgeInsets.symmetric(
-        horizontal: _isSingleDigit ? spacing0 : spacing50,
-        vertical: spacing25,
-      );
+  EdgeInsets get _padding =>
+      const EdgeInsets.symmetric(horizontal: spacing50, vertical: spacing25);
 }
