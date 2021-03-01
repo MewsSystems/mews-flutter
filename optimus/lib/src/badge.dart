@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/theme/theme.dart';
 
 class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
@@ -13,13 +14,14 @@ class OptimusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isSingleDigit = text.length == 1;
+    final theme = OptimusTheme.of(context);
 
     return Container(
       height: _singleDigitContainerHeight,
       width: isSingleDigit ? _singleDigitContainerWidth : null,
       decoration: BoxDecoration(
-        color: OptimusLightColors.primary,
-        border: Border.all(width: 2, color: Colors.white),
+        color: theme.colors.primary,
+        border: Border.all(width: 2, color: theme.colors.neutral0),
         borderRadius: const BorderRadius.all(Radius.circular(40)),
       ),
       child: Center(
@@ -29,8 +31,8 @@ class OptimusBadge extends StatelessWidget {
             variation: Variation.variationSecondary,
             child: Text(
               text,
-              style: const TextStyle(
-                color: OptimusLightColors.neutral0,
+              style: TextStyle(
+                color: theme.colors.neutral0,
                 height: 1,
               ),
             ),
