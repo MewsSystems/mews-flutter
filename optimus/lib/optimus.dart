@@ -48,6 +48,8 @@ export 'src/stack.dart';
 export 'src/step_bar.dart';
 export 'src/tabs.dart';
 export 'src/tag.dart';
+export 'src/theme/theme.dart';
+export 'src/theme/theme_data.dart';
 export 'src/typography/caption.dart';
 export 'src/typography/highlight.dart';
 export 'src/typography/label.dart';

@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/common/scroll.dart';
+import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 enum OptimusDialogSize {
@@ -87,7 +89,7 @@ Future<T> showOptimusDialog<T>({
       ),
       barrierDismissible: isDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: OptimusLightColors.neutral1000t64,
+      barrierColor: OptimusTheme.of(context).colors.neutral1000t64,
       transitionDuration: const Duration(milliseconds: 150),
       transitionBuilder: _buildTransitions,
       useRootNavigator: true,
@@ -189,8 +191,8 @@ class OptimusDialog extends StatelessWidget {
 
   final OptimusDialogType type;
 
-  Widget get _divider =>
-      const Divider(height: 1, color: OptimusLightColors.neutral50);
+  Widget _divider(OptimusThemeData theme) =>
+      Divider(height: 1, color: theme.colors.neutral50);
 
   // ignore: missing_return
   OptimusDialogSize _autoSize(BuildContext context) {
@@ -253,6 +255,7 @@ class OptimusDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final autoSize = _autoSize(context);
+    final theme = OptimusTheme.of(context);
 
     return SafeArea(
       child: Align(
@@ -268,7 +271,9 @@ class OptimusDialog extends StatelessWidget {
               variant: OptimusBasicCardVariant.overlay,
               padding: OptimusCardSpacing.spacing0,
               child: Material(
-                color: Colors.white,
+                color: theme.isDark
+                    ? theme.colors.neutral500
+                    : theme.colors.neutral0,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -280,7 +285,7 @@ class OptimusDialog extends StatelessWidget {
                       isDismissible: isDismissible ??
                           ModalRoute.of(context)?.barrierDismissible,
                     ),
-                    _divider,
+                    _divider(theme),
                     DefaultTextStyle.merge(
                       style: preset300r,
                       child: _Content(
@@ -288,7 +293,7 @@ class OptimusDialog extends StatelessWidget {
                         contentWrapperBuilder: contentWrapperBuilder,
                       ),
                     ),
-                    if (actions.isNotEmpty) _divider,
+                    if (actions.isNotEmpty) _divider(theme),
                     if (actions.isNotEmpty)
                       _Actions(
                         actions: actions,
