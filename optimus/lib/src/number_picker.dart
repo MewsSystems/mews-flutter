@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/constants.dart';
+import 'package:optimus/src/enabled.dart';
 
 class OptimusNumberPicker extends StatefulWidget {
   const OptimusNumberPicker({
@@ -135,17 +135,22 @@ class _IconButton extends StatelessWidget {
   bool get _isEnabled => onPressed != null;
 
   @override
-  Widget build(BuildContext context) => Opacity(
-        opacity: _isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
-        child: GestureDetector(
-          onTap: onPressed,
-          child: Icon(
-            iconData,
-            color: OptimusLightColors.neutral1000t64,
-            size: 24,
-          ),
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    return Enabled(
+      isEnabled: _isEnabled,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Icon(
+          iconData,
+          color: theme.isDark
+              ? theme.colors.neutral0
+              : theme.colors.neutral1000t64,
+          size: 24,
         ),
-      );
+      ),
+    );
+  }
 }
 
 String _format(int value) => value?.toString() ?? '';
