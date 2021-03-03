@@ -72,29 +72,35 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   }
 
   @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
-        child: OptimusInputField(
-          controller: widget.controller,
-          isRequired: widget.isRequired,
-          label: widget.label,
-          placeholder: widget.placeholder,
-          focusNode: _focusNode,
-          fieldBoxKey: _fieldBoxKey,
-          suffix: widget.isUpdating
-              ? const OptimusProgressSpinner()
-              : const Icon(
-                  OptimusIcons.search,
-                  size: 24,
-                  color: OptimusLightColors.neutral1000t64,
-                ),
-          isEnabled: widget.isEnabled,
-          caption: widget.caption,
-          secondaryCaption: widget.secondaryCaption,
-          error: widget.error,
-          size: widget.size,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return WillPopScope(
+      onWillPop: _handleOnBackPressed,
+      child: OptimusInputField(
+        controller: widget.controller,
+        isRequired: widget.isRequired,
+        label: widget.label,
+        placeholder: widget.placeholder,
+        focusNode: _focusNode,
+        fieldBoxKey: _fieldBoxKey,
+        suffix: widget.isUpdating
+            ? const OptimusProgressSpinner()
+            : Icon(
+                OptimusIcons.search,
+                size: 24,
+                color: theme.isDark
+                    ? theme.colors.neutral0
+                    : theme.colors.neutral1000t64,
+              ),
+        isEnabled: widget.isEnabled,
+        caption: widget.caption,
+        secondaryCaption: widget.secondaryCaption,
+        error: widget.error,
+        size: widget.size,
+      ),
+    );
+  }
 
   void _onItemSelected() {
     _removeOverlay();
