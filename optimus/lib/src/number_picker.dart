@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/constants.dart';
+import 'package:optimus/src/enabled.dart';
 
 class OptimusNumberPicker extends StatefulWidget {
   const OptimusNumberPicker({
@@ -137,8 +137,8 @@ class _IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    return Opacity(
-      opacity: _isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
+    return Enabled(
+      isEnabled: _isEnabled,
       child: GestureDetector(
         onTap: onPressed,
         child: Icon(
