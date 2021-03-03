@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/styles.dart';
 
-class OptimusListTile extends StatelessWidget {
+class OptimusListTile extends StatefulWidget {
   const OptimusListTile({
     Key key,
     @required this.title,
@@ -26,24 +26,31 @@ class OptimusListTile extends StatelessWidget {
   final FontVariant fontVariant;
 
   @override
+  _OptimusListTileState createState() => _OptimusListTileState();
+}
+
+class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
+  @override
   Widget build(BuildContext context) => Container(
-        decoration: const BoxDecoration(
-          border: Border(bottom: borderSide),
-        ),
+        decoration: const BoxDecoration(border: Border(bottom: borderSide)),
         constraints: const BoxConstraints(minHeight: 94),
         child: InkWell(
-          highlightColor: OptimusLightColors.neutral50,
-          hoverColor: OptimusLightColors.neutral25,
-          onTap: onTap,
+          highlightColor:
+              theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,
+          hoverColor:
+              theme.isDark ? theme.colors.neutral400 : theme.colors.neutral25,
+          onTap: widget.onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(
-                vertical: spacing300, horizontal: spacing200),
+              vertical: spacing300,
+              horizontal: spacing200,
+            ),
             child: Row(
               children: <Widget>[
-                if (prefix != null)
+                if (widget.prefix != null)
                   Padding(
                     padding: const EdgeInsets.only(right: 8),
-                    child: prefix,
+                    child: widget.prefix,
                   ),
                 Expanded(
                   child: Column(
@@ -52,23 +59,23 @@ class OptimusListTile extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Expanded(child: _buildTitle()),
-                          if (info != null) _buildInfo(),
+                          if (widget.info != null) _buildInfo(),
                         ],
                       ),
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: subtitle != null
+                            child: widget.subtitle != null
                                 ? _buildSubTitle()
                                 : Container(),
                           ),
-                          if (infoWidget != null) infoWidget,
+                          if (widget.infoWidget != null) widget.infoWidget,
                         ],
                       ),
                     ],
                   ),
                 ),
-                if (suffix != null) suffix
+                if (widget.suffix != null) widget.suffix
               ],
             ),
           ),
@@ -77,15 +84,15 @@ class OptimusListTile extends StatelessWidget {
 
   Widget _buildTitle() => Padding(
         padding: const EdgeInsets.only(right: 8),
-        child: _wrapped(title, _titleStyle),
+        child: _wrapped(widget.title, _titleStyle),
       );
 
-  Widget _buildSubTitle() => _wrapped(subtitle, _subtitleStyle);
+  Widget _buildSubTitle() => _wrapped(widget.subtitle, _subtitleStyle);
 
-  Widget _buildInfo() => _wrapped(info, _infoStyle);
+  Widget _buildInfo() => _wrapped(widget.info, _infoStyle);
 
   TextStyle get _titleStyle {
-    switch (fontVariant) {
+    switch (widget.fontVariant) {
       case FontVariant.normal:
         return preset300m;
       case FontVariant.bold:
@@ -96,22 +103,24 @@ class OptimusListTile extends StatelessWidget {
   }
 
   TextStyle get _subtitleStyle {
-    switch (fontVariant) {
+    switch (widget.fontVariant) {
       case FontVariant.normal:
-        return preset200m.copyWith(
-          color: OptimusLightColors.neutral1000t64,
-        );
+        return preset200m.copyWith(color: _subtitleColor);
       case FontVariant.bold:
         return preset200m;
       default:
-        return preset200m.copyWith(
-          color: OptimusLightColors.neutral1000t64,
-        );
+        return preset200m.copyWith(color: _subtitleColor);
     }
   }
 
-  TextStyle get _infoStyle =>
-      preset100m.copyWith(color: OptimusLightColors.neutral1000t64);
+  Color get _subtitleColor =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
+
+  TextStyle get _infoStyle => preset100m.copyWith(
+        color: theme.isDark
+            ? theme.colors.neutral0t64
+            : theme.colors.neutral1000t64,
+      );
 
   Widget _wrapped(Widget child, TextStyle style) =>
       DefaultTextStyle.merge(style: style, child: child);
