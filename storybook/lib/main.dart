@@ -21,6 +21,7 @@ import 'package:storybook/stories/select.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/stack.dart';
 import 'package:storybook/stories/step_bar.dart';
+import 'package:storybook/stories/tabs.dart';
 import 'package:storybook/stories/tags.dart';
 import 'package:storybook/stories/wide_banner.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           stackStory,
           stepBarStory,
           badgeStory,
+          tabs,
         ],
       );
 }
