@@ -126,13 +126,15 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
 
   Widget _buildChildren(BuildContext context, Widget child) {
     final theme = OptimusTheme.of(context);
+    final textColor =
+        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         ListTileTheme.merge(
-          iconColor: _textColor(theme),
-          textColor: _textColor(theme),
+          iconColor: textColor,
+          textColor: textColor,
           child: widget.slidableActions.isEmpty
               ? _buildListTile()
               : _buildSlidable(widget.slidableActions, _buildListTile()),
@@ -143,9 +145,6 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
       ],
     );
   }
-
-  Color _textColor(OptimusThemeData theme) =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
   Widget _buildListTile() {
     final tile = ListTile(

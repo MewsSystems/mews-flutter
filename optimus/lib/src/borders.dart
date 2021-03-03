@@ -25,11 +25,7 @@ class TileBorders extends StatelessWidget {
               top: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: theme.isDark
-                        ? theme.colors.neutral400
-                        : theme.colors.neutral50,
-                  ),
+                  border: Border.all(color: theme.borderColor),
                 ),
               ),
             ),
