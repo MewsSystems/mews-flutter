@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/border_side.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class OptimusListTile extends StatefulWidget {
@@ -32,7 +33,7 @@ class OptimusListTile extends StatefulWidget {
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
   @override
   Widget build(BuildContext context) => Container(
-        decoration: const BoxDecoration(border: Border(bottom: borderSide)),
+        decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
         constraints: const BoxConstraints(minHeight: 94),
         child: InkWell(
           highlightColor:

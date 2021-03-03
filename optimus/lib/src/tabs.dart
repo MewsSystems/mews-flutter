@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/border_side.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class OptimusTab extends StatelessWidget {
@@ -31,23 +32,29 @@ class OptimusTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     // Think about better implementation with typography components
     final TextStyle textStyle = preset100s;
+    final theme = OptimusTheme.of(context);
 
     return DefaultTabController(
       length: tabs.length,
       child: Column(
         children: <Widget>[
           Container(
-            decoration: const BoxDecoration(
-              border: Border(bottom: borderSide),
+            decoration: BoxDecoration(
+              border: Border(bottom: borderSide(theme)),
             ),
             child: Material(
-              color: Colors.white,
+              color: theme.isDark
+                  ? theme.colors.neutral500
+                  : theme.colors.neutral0,
               child: TabBar(
                 controller: tabController,
-                indicator: _buildIndicator(),
-                unselectedLabelColor: OptimusLightColors.neutral1000t64,
-                labelColor: OptimusLightColors.neutral900,
-                indicatorColor: OptimusLightColors.neutral900,
+                indicator: _buildIndicator(theme),
+                unselectedLabelColor: theme.isDark
+                    ? theme.colors.neutral0t64
+                    : theme.colors.neutral1000t64,
+                labelColor: theme.isDark
+                    ? theme.colors.neutral0
+                    : theme.colors.neutral1000,
                 tabs: tabs,
                 unselectedLabelStyle: textStyle,
                 labelStyle: textStyle,
@@ -66,11 +73,12 @@ class OptimusTabBar extends StatelessWidget {
     );
   }
 
-  Decoration _buildIndicator() => const UnderlineTabIndicator(
+  Decoration _buildIndicator(OptimusThemeData theme) => UnderlineTabIndicator(
         borderSide: BorderSide(
-          color: OptimusLightColors.neutral900,
+          color:
+              theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
           width: 1,
         ),
-        insets: EdgeInsets.only(bottom: -1),
+        insets: const EdgeInsets.only(bottom: -1),
       );
 }
