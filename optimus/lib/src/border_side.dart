@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
-const borderSide = BorderSide(color: OptimusLightColors.neutral50);
+BorderSide borderSide(OptimusThemeData theme) =>
+    BorderSide(color: theme.borderColor);
