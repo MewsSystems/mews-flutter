@@ -15,4 +15,6 @@ abstract class OptimusThemeData implements _$OptimusThemeData {
   const OptimusThemeData._();
 
   bool get isDark => brightness == Brightness.dark;
+
+  Color get borderColor => isDark ? colors.neutral400 : colors.neutral50;
 }

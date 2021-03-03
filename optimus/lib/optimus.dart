@@ -8,7 +8,6 @@ export 'optimus_icons.dart';
 export 'src/avatar.dart';
 export 'src/badge.dart';
 export 'src/banner.dart';
-export 'src/border_side.dart';
 export 'src/borders.dart';
 export 'src/breakpoint.dart';
 export 'src/button/button.dart';
