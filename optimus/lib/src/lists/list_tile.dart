@@ -102,14 +102,13 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
+  // ignore: missing_return
   TextStyle get _subtitleStyle {
     switch (widget.fontVariant) {
       case FontVariant.normal:
         return preset200m.copyWith(color: _subtitleColor);
       case FontVariant.bold:
         return preset200m;
-      default:
-        return preset200m.copyWith(color: _subtitleColor);
     }
   }
 

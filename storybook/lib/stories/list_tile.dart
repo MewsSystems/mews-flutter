@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
@@ -18,7 +17,7 @@ final Story listTileStory = Story(
               fontVariant: k.options(
                 'Font variant',
                 initial: FontVariant.normal,
-                options: _fontVariants,
+                options: FontVariant.values.toOptions(),
               ),
               suffix: Icon(
                 k.options('Suffix', initial: null, options: exampleIcons),
@@ -36,6 +35,3 @@ final Story listTileStory = Story(
     ),
   ),
 );
-
-final List<Option<FontVariant>> _fontVariants =
-    FontVariant.values.map((e) => Option(describeEnum(e), e)).toList();
