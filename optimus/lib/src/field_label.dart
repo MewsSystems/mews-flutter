@@ -30,7 +30,6 @@ class OptimusFieldLabel extends StatelessWidget {
     );
   }
 
-  Color _textColor(OptimusThemeData theme) => theme.isDark
-      ? OptimusDarkColors.neutral0t64
-      : OptimusLightColors.neutral1000t64;
+  Color _textColor(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 }
