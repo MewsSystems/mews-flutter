@@ -9,16 +9,10 @@ final Story tabs = Story.simple(
     color: OptimusLightColors.success500t16,
     constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
     child: OptimusTabBar(
-      tabs: _tabs(),
-      pages: _pages,
+      tabs: _items.map((i) => OptimusTab(text: 'Tab ${i + 1}')).toList(),
+      pages: _items.map((i) => Center(child: Text('Page ${i + 1}'))).toList(),
     ),
   ),
 );
-
-List<Widget> _tabs() =>
-    _items.map((i) => OptimusTab(text: 'Tab ${i + 1}')).toList();
-
-List<Widget> get _pages =>
-    _items.map((i) => Center(child: Text('Page ${i + 1}'))).toList();
 
 Iterable<int> _items = Iterable<int>.generate(3);
