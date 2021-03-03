@@ -26,54 +26,57 @@ class OptimusListTile extends StatelessWidget {
   final FontVariant fontVariant;
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: const BoxDecoration(
-          border: Border(bottom: borderSide),
-        ),
-        constraints: const BoxConstraints(minHeight: 94),
-        child: InkWell(
-          highlightColor: OptimusLightColors.neutral50,
-          hoverColor: OptimusLightColors.neutral25,
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-                vertical: spacing300, horizontal: spacing200),
-            child: Row(
-              children: <Widget>[
-                if (prefix != null)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: prefix,
-                  ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(child: _buildTitle()),
-                          if (info != null) _buildInfo(),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: subtitle != null
-                                ? _buildSubTitle()
-                                : Container(),
-                          ),
-                          if (infoWidget != null) infoWidget,
-                        ],
-                      ),
-                    ],
-                  ),
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(bottom: borderSide(theme)),
+      ),
+      constraints: const BoxConstraints(minHeight: 94),
+      child: InkWell(
+        highlightColor: OptimusLightColors.neutral50,
+        hoverColor: OptimusLightColors.neutral25,
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              vertical: spacing300, horizontal: spacing200),
+          child: Row(
+            children: <Widget>[
+              if (prefix != null)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: prefix,
                 ),
-                if (suffix != null) suffix
-              ],
-            ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: _buildTitle()),
+                        if (info != null) _buildInfo(),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child:
+                              subtitle != null ? _buildSubTitle() : Container(),
+                        ),
+                        if (infoWidget != null) infoWidget,
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              if (suffix != null) suffix
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 
   Widget _buildTitle() => Padding(
         padding: const EdgeInsets.only(right: 8),
