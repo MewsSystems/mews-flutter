@@ -124,21 +124,28 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     }
   }
 
-  Widget _buildChildren(BuildContext context, Widget child) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTileTheme.merge(
-            iconColor: OptimusLightColors.neutral900,
-            textColor: OptimusLightColors.neutral900,
-            child: widget.slidableActions.isEmpty
-                ? _buildListTile()
-                : _buildSlidable(widget.slidableActions, _buildListTile()),
-          ),
-          ClipRect(
-            child: Align(heightFactor: _heightFactor.value, child: child),
-          ),
-        ],
-      );
+  Widget _buildChildren(BuildContext context, Widget child) {
+    final theme = OptimusTheme.of(context);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        ListTileTheme.merge(
+          iconColor: _textColor(theme),
+          textColor: _textColor(theme),
+          child: widget.slidableActions.isEmpty
+              ? _buildListTile()
+              : _buildSlidable(widget.slidableActions, _buildListTile()),
+        ),
+        ClipRect(
+          child: Align(heightFactor: _heightFactor.value, child: child),
+        ),
+      ],
+    );
+  }
+
+  Color _textColor(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
   Widget _buildListTile() {
     final tile = ListTile(
