@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story listTileStory = Story(
@@ -19,9 +20,15 @@ final Story listTileStory = Story(
                 initial: FontVariant.normal,
                 options: _fontVariants,
               ),
-              suffix: Text(k.text('Suffix', initial: null)),
-              prefix: Text(k.text('Prefix', initial: null)),
-              infoWidget: Text(k.text('Info Widget', initial: null)),
+              suffix: Icon(
+                k.options('Suffix', initial: null, options: exampleIcons),
+              ),
+              prefix: Icon(
+                k.options('Prefix', initial: null, options: exampleIcons),
+              ),
+              infoWidget: Icon(
+                k.options('Info widget', initial: null, options: exampleIcons),
+              ),
               onTap: () {},
             ),
           )
