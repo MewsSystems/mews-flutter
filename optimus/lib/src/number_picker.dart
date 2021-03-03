@@ -135,17 +135,22 @@ class _IconButton extends StatelessWidget {
   bool get _isEnabled => onPressed != null;
 
   @override
-  Widget build(BuildContext context) => Opacity(
-        opacity: _isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
-        child: GestureDetector(
-          onTap: onPressed,
-          child: Icon(
-            iconData,
-            color: OptimusLightColors.neutral1000t64,
-            size: 24,
-          ),
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    return Opacity(
+      opacity: _isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Icon(
+          iconData,
+          color: theme.isDark
+              ? theme.colors.neutral0
+              : theme.colors.neutral1000t64,
+          size: 24,
         ),
-      );
+      ),
+    );
+  }
 }
 
 String _format(int value) => value?.toString() ?? '';
