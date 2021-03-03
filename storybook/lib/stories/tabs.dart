@@ -6,7 +6,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 final Story tabs = Story.simple(
   name: 'Tabs',
   child: Container(
-    color: Colors.white,
+    color: OptimusLightColors.success500t16,
     constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
     child: OptimusTabBar(
       tabs: _tabs(),
