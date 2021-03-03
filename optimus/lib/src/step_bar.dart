@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/colors/color_options.dart';
-import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/icon.dart';
 import 'package:optimus/src/spacing.dart';
@@ -54,7 +54,7 @@ class OptimusStepBar extends StatefulWidget {
   _OptimusStepBarState createState() => _OptimusStepBarState();
 }
 
-class _OptimusStepBarState extends State<OptimusStepBar> {
+class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
   OptimusStepBarItemState _getItemState(OptimusStepBarItem item) {
     final position = widget.items.indexOf(item);
     if (position == widget.currentItem) {
@@ -77,7 +77,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           child: Container(
             constraints: const BoxConstraints(minWidth: _spacerMinWidth),
             height: _spacerThickness,
-            color: OptimusLightColors.primary,
+            color: theme.colors.primary,
           ),
         );
       case Axis.vertical:
@@ -90,7 +90,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           child: SizedBox(
             height: _spacerHeight,
             width: _spacerThickness,
-            child: Container(color: OptimusLightColors.primary),
+            child: Container(color: theme.colors.primary),
           ),
         );
     }
@@ -126,7 +126,9 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
                       DefaultTextStyle.merge(
                         overflow: TextOverflow.ellipsis,
                         style: preset200m.copyWith(
-                          color: OptimusLightColors.neutral1000t64,
+                          color: theme.isDark
+                              ? theme.colors.neutral0t64
+                              : theme.colors.neutral1000t64,
                         ),
                         maxLines: 1,
                         child: item.description,
@@ -151,7 +153,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: state == OptimusStepBarItemState.active
-                ? OptimusLightColors.primary500t8
+                ? theme.colors.primary500t8
                 : Colors.transparent,
           ),
           child: OptimusIcon(
@@ -179,9 +181,9 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
                 width: _iconWrapperSize,
                 height: _iconWrapperSize,
                 decoration: state == OptimusStepBarItemState.active
-                    ? const BoxDecoration(
+                    ? BoxDecoration(
                         shape: BoxShape.circle,
-                        color: OptimusLightColors.primary500t8,
+                        color: theme.colors.primary500t8,
                       )
                     : null,
               ),
@@ -190,13 +192,13 @@ class _OptimusStepBarState extends State<OptimusStepBar> {
                 height: 24,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: state.iconBackgroundColor,
+                  color: state.iconBackgroundColor(theme),
                 ),
                 child: Center(
                   child: Text(
                     (widget.items.indexOf(item) + 1).toString(),
                     style: preset200s.merge(
-                      TextStyle(height: 1, color: state.textColor),
+                      TextStyle(height: 1, color: state.textColor(theme)),
                     ),
                   ),
                 ),
@@ -281,30 +283,30 @@ const double _spacerMinWidth = 16;
 
 extension on OptimusStepBarItemState {
   // ignore: missing_return
-  Color get iconBackgroundColor {
+  Color iconBackgroundColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusLightColors.primary;
+        return theme.colors.primary;
       case OptimusStepBarItemState.active:
-        return OptimusLightColors.primary;
+        return theme.colors.primary;
       case OptimusStepBarItemState.enabled:
-        return OptimusLightColors.neutral50;
+        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
       case OptimusStepBarItemState.disabled:
-        return OptimusLightColors.neutral50;
+        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
     }
   }
 
   // ignore: missing_return
-  Color get textColor {
+  Color textColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusLightColors.primary;
+        return theme.colors.primary;
       case OptimusStepBarItemState.active:
-        return OptimusLightColors.neutral0;
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusStepBarItemState.enabled:
-        return OptimusLightColors.neutral1000;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
       case OptimusStepBarItemState.disabled:
-        return OptimusLightColors.neutral1000;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
     }
   }
 
