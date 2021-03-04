@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/colors/colors.dart';
 
 enum OptimusIconSize {
   /// A small variant is used when space is limited.
@@ -48,13 +47,17 @@ class OptimusIcon extends StatelessWidget {
   final OptimusColorOption colorOption;
 
   @override
-  Widget build(BuildContext context) => Icon(
-        iconData,
-        color: colorOption == null
-            ? DefaultTextStyle.of(context).style.color
-            : colorOption.toIconColor(),
-        size: _iconSize,
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Icon(
+      iconData,
+      color: colorOption == null
+          ? DefaultTextStyle.of(context).style.color
+          : colorOption.toIconColor(theme),
+      size: _iconSize,
+    );
+  }
 
   // ignore: missing_return
   double get _iconSize {
@@ -100,63 +103,69 @@ class OptimusSupplementaryIcon extends StatelessWidget {
   final OptimusColorOption colorOption;
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: _diameter,
-        height: _diameter,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: colorOption.toSupplementaryBackgroundColor(),
-        ),
-        child: Icon(
-          iconData,
-          color: colorOption.toSupplementaryIconColor(),
-          size: 32,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      width: _diameter,
+      height: _diameter,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: colorOption.toSupplementaryBackgroundColor(theme),
+      ),
+      child: Icon(
+        iconData,
+        color: colorOption.toSupplementaryIconColor(theme),
+        size: 32,
+      ),
+    );
+  }
 }
 
 extension on OptimusColorOption {
   // ignore: missing_return
-  Color toIconColor() {
+  Color toIconColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusLightColors.neutral500;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusColorOption.primary:
-        return OptimusLightColors.primary500;
+        return theme.colors.primary500;
       case OptimusColorOption.success:
-        return OptimusLightColors.success500;
+        return theme.colors.success500;
       case OptimusColorOption.warning:
-        return OptimusLightColors.warning500;
+        return theme.colors.warning500;
       case OptimusColorOption.danger:
-        return OptimusLightColors.danger500;
+        return theme.colors.danger500;
     }
   }
 
   // ignore: missing_return
-  Color toSupplementaryIconColor() {
+  Color toSupplementaryIconColor(OptimusThemeData theme) {
+    if (theme.isDark) return theme.colors.neutral1000;
+
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusLightColors.neutral500;
+        return theme.colors.neutral500;
       case OptimusColorOption.warning:
-        return OptimusLightColors.neutral900;
+        return theme.colors.neutral1000;
       default:
-        return OptimusLightColors.neutral0;
+        return theme.colors.neutral0;
     }
   }
 
   // ignore: missing_return
-  Color toSupplementaryBackgroundColor() {
+  Color toSupplementaryBackgroundColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusColorOption.basic:
-        return OptimusLightColors.neutral50;
+        return theme.colors.neutral50;
       case OptimusColorOption.primary:
-        return OptimusLightColors.primary500;
+        return theme.colors.primary500;
       case OptimusColorOption.success:
-        return OptimusLightColors.success500;
+        return theme.colors.success500;
       case OptimusColorOption.warning:
-        return OptimusLightColors.warning500;
+        return theme.colors.warning500;
       case OptimusColorOption.danger:
-        return OptimusLightColors.danger500;
+        return theme.colors.danger500;
     }
   }
 }

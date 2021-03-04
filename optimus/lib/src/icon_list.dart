@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 /// The icon list component serves as a static, non-interactable option and is
@@ -107,6 +106,8 @@ class _ListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final description = item.description;
+    final theme = OptimusTheme.of(context);
+
     return Row(
       children: [
         OptimusIcon(iconData: item.iconData, colorOption: item.colorOption),
@@ -120,7 +121,9 @@ class _ListTile extends StatelessWidget {
                 Text(
                   description.capitalize(),
                   style: _descriptionStyle.copyWith(
-                    color: OptimusLightColors.neutral1000t64,
+                    color: theme.isDark
+                        ? theme.colors.neutral0t64
+                        : theme.colors.neutral1000t64,
                   ),
                 ),
             ],
