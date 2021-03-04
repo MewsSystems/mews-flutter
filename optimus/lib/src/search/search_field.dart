@@ -83,11 +83,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.isUpdating
               ? const OptimusProgressSpinner()
-              : const Icon(
-                  OptimusIcons.search,
-                  size: 24,
-                  color: OptimusLightColors.neutral1000t64,
-                ),
+              : const _Icon(),
           isEnabled: widget.isEnabled,
           caption: widget.caption,
           secondaryCaption: widget.secondaryCaption,
@@ -159,4 +155,19 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           ),
         ),
       );
+}
+
+class _Icon extends StatelessWidget {
+  const _Icon({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Icon(
+      OptimusIcons.search,
+      size: 24,
+      color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64,
+    );
+  }
 }
