@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
   optimus:
     path: ../optimus
-  rxdart: ^0.24.0
   storybook_flutter: ^0.2.0-nullsafety.1
 
 dev_dependencies:
