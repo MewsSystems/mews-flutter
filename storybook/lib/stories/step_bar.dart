@@ -9,23 +9,27 @@ final Story stepBarStory = Story(
   builder: (_, k) => SingleChildScrollView(
     child: OptimusStepBar(
       type: k.options(
-        'Type',
+        label: 'Type',
         initial: OptimusStepBarType.icon,
         options: OptimusStepBarType.values
             .map((e) => Option(describeEnum(e), e))
             .toList(),
       ),
       layout: k.options(
-        'Layout',
+        label: 'Layout',
         initial: Axis.horizontal,
         options: Axis.values.map((e) => Option(describeEnum(e), e)).toList(),
       ),
       items: _items,
       currentItem: k
-          .slider('Current', initial: 0, max: _items.length.toDouble() - 1)
+          .slider(
+            label: 'Current',
+            initial: 0,
+            max: _items.length.toDouble() - 1,
+          )
           .toInt(),
       maxItem: k
-          .slider('Max', initial: 2, max: _items.length.toDouble() - 1)
+          .slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1)
           .toInt(),
     ),
   ),

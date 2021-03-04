@@ -115,7 +115,7 @@ packages:
       name: nested
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4"
+    version: "1.0.0"
   optimus:
     dependency: "direct main"
     description:
@@ -136,14 +136,14 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.5"
+    version: "5.0.0"
   recase:
     dependency: transitive
     description:
       name: recase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "4.0.0-nullsafety.0"
   rxdart:
     dependency: "direct main"
     description:
@@ -176,7 +176,7 @@ packages:
       name: storybook_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.2.0-nullsafety.1"
   stream_channel:
     dependency: transitive
     description:
@@ -220,5 +220,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
+  dart: ">=2.12.0-29.10.beta <3.0.0"
   flutter: ">=1.17.0"

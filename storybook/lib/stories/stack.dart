@@ -8,32 +8,32 @@ final Story stackStory = Story(
   name: 'Stack',
   builder: (_, k) => OptimusStack(
     direction: k.options(
-      'Direction',
+      label: 'Direction',
       initial: Axis.vertical,
       options: Axis.values.toOptions(),
     ),
     mainAxisAlignment: k.options(
-      'Main axis',
+      label: 'Main axis',
       initial: OptimusStackAlignment.center,
       options: _alignment,
     ),
     crossAxisAlignment: k.options(
-      'Cross axis',
+      label: 'Cross axis',
       initial: OptimusStackAlignment.center,
       options: _alignment,
     ),
     distribution: k.options(
-      'Distribution',
+      label: 'Distribution',
       initial: OptimusStackDistribution.basic,
       options: OptimusStackDistribution.values.toOptions(),
     ),
     breakpoint: k.options(
-      'Breakpoint',
+      label: 'Breakpoint',
       initial: null,
       options: Breakpoint.values.toOptions(hasEmpty: true),
     ),
     spacing: k.options(
-      'Spacing',
+      label: 'Spacing',
       initial: OptimusStackSpacing.spacing100,
       options: OptimusStackSpacing.values.toOptions(),
     ),

@@ -10,12 +10,12 @@ final Story radioStory = Story(
   name: 'Radio',
   builder: (_, k) {
     final size = k.options(
-      'Size',
+      label: 'Size',
       initial: OptimusRadioSize.large,
       options: _sizes,
     );
-    final error = k.text('Error', initial: '');
-    final isEnabled = k.boolean('Enabled', initial: true);
+    final error = k.text(label: 'Error', initial: '');
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return RadioExample(size: size, error: error, isEnabled: isEnabled);
   },
@@ -67,13 +67,13 @@ final Story radioGroupStory = Story(
   name: 'Radio group',
   builder: (_, k) {
     final size = k.options(
-      'Size',
+      label: 'Size',
       initial: OptimusRadioSize.large,
       options: _sizes,
     );
-    final label = k.text('Label', initial: '');
-    final error = k.text('Error', initial: '');
-    final isEnabled = k.boolean('Enabled', initial: true);
+    final label = k.text(label: 'Label', initial: '');
+    final error = k.text(label: 'Error', initial: '');
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return _RadioGroupExample(
       size: size,

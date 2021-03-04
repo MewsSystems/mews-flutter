@@ -13,7 +13,7 @@ final Story tagStory = Story(
                 (c) => _PaddedTag(
                     version: version,
                     colorOption: c,
-                    text: k.text('Text', initial: '')),
+                    text: k.text(label: 'Text', initial: '')),
               )
               .toList(),
         );
@@ -35,8 +35,8 @@ final Story interactiveTagStory = Story(
   section: 'Tags',
   name: 'Interactive tag',
   builder: (_, k) => OptimusInteractiveTag(
-    text: k.text('Text', initial: 'Removable tag'),
-    onRemoved: k.boolean('Enabled', initial: true) ? () {} : null,
+    text: k.text(label: 'Text', initial: 'Removable tag'),
+    onRemoved: k.boolean(label: 'Enabled', initial: true) ? () {} : null,
   ),
 );
 

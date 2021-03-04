@@ -9,17 +9,17 @@ final Story cardStory = Story(
   name: 'Card',
   builder: (_, k) => OptimusCard(
     padding: k.options(
-      'Padding',
+      label: 'Padding',
       initial: OptimusCardSpacing.spacing200,
       options: _paddings,
     ),
     variant: k.options(
-      'Variant',
+      label: 'Variant',
       initial: OptimusBasicCardVariant.normal,
       options: _basicCardVariants,
     ),
     attachment: k.options(
-      'Attachment',
+      label: 'Attachment',
       initial: OptimusCardAttachment.none,
       options: _attachments,
     ),
@@ -32,17 +32,17 @@ final Story nestedCardStory = Story(
   name: 'Nested card',
   builder: (_, k) => OptimusNestedCard(
     padding: k.options(
-      'Padding',
+      label: 'Padding',
       initial: OptimusCardSpacing.spacing200,
       options: _paddings,
     ),
     variant: k.options(
-      'Variant',
+      label: 'Variant',
       initial: OptimusNestedCardVariant.normal,
       options: _nestedCardVariants,
     ),
     attachment: k.options(
-      'Attachment',
+      label: 'Attachment',
       initial: OptimusCardAttachment.none,
       options: _attachments,
     ),

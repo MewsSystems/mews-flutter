@@ -48,18 +48,21 @@ class _SearchStoryState extends State<_SearchStory> {
           .map((c) => ListDropdownTile(value: c, title: Text(c)))
           .toList(),
       onChanged: (_) {},
-      label: k.text('Label', initial: 'Search field'),
-      placeholder: k.text('Placeholder', initial: 'Start typing something'),
-      isEnabled: k.boolean('Enabled', initial: true),
-      isRequired: k.boolean('Required'),
-      caption: Text(k.text('Caption', initial: '')),
-      secondaryCaption: Text(k.text('Secondary caption', initial: '')),
+      label: k.text(label: 'Label', initial: 'Search field'),
+      placeholder: k.text(
+        label: 'Placeholder',
+        initial: 'Start typing something',
+      ),
+      isEnabled: k.boolean(label: 'Enabled', initial: true),
+      isRequired: k.boolean(label: 'Required'),
+      caption: Text(k.text(label: 'Caption', initial: '')),
+      secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
       size: k.options(
-        'Size',
+        label: 'Size',
         initial: OptimusWidgetSize.large,
         options: sizeOptions,
       ),
-      error: k.text('Error', initial: ''),
+      error: k.text(label: 'Error', initial: ''),
     );
   }
 }

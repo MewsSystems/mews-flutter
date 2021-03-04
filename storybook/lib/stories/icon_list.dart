@@ -7,7 +7,7 @@ final Story iconListStory = Story(
   name: 'Icon list',
   builder: (_, k) => OptimusIconList(
     items: _items,
-    listSize: k.options('Size', initial: null, options: _sizes),
+    listSize: k.options(label: 'Size', initial: null, options: _sizes),
   ),
 );
 

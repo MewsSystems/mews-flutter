@@ -8,21 +8,23 @@ final Story inputStory = Story(
   builder: (_, k) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
     child: OptimusInputField(
-      isEnabled: k.boolean('Enabled', initial: true),
-      isRequired: k.boolean('Required'),
-      isPasswordField: k.boolean('Password'),
-      prefix: k.boolean('Prefix') ? const Icon(OptimusIcons.search) : null,
-      suffix: k.boolean('Suffix') ? const Icon(OptimusIcons.lock) : null,
+      isEnabled: k.boolean(label: 'Enabled', initial: true),
+      isRequired: k.boolean(label: 'Required'),
+      isPasswordField: k.boolean(label: 'Password'),
+      prefix:
+          k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
+      suffix: k.boolean(label: 'Suffix') ? const Icon(OptimusIcons.lock) : null,
       size: k.options(
-        'Size',
+        label: 'Size',
         initial: OptimusWidgetSize.large,
         options: sizeOptions,
       ),
-      label: k.text('Label', initial: 'Optimus input field'),
-      placeholder: k.text('Placeholder', initial: 'Put some hint here...'),
-      caption: Text(k.text('Caption', initial: '')),
-      secondaryCaption: Text(k.text('Secondary caption', initial: '')),
-      error: k.text('Error', initial: ''),
+      label: k.text(label: 'Label', initial: 'Optimus input field'),
+      placeholder:
+          k.text(label: 'Placeholder', initial: 'Put some hint here...'),
+      caption: Text(k.text(label: 'Caption', initial: '')),
+      secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
+      error: k.text(label: 'Error', initial: ''),
     ),
   ),
 );
