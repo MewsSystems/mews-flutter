@@ -46,7 +46,7 @@ class OptimusSelect<T> extends StatefulWidget {
   _OptimusSelectState createState() => _OptimusSelectState<T>();
 }
 
-class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
+class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
   bool _isOpened = false;
@@ -93,7 +93,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
   Icon get _icon => Icon(
         _isOpened ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
         size: 24,
-        color: OptimusLightColors.neutral400,
+        color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
       );
 
   // ignore: missing_return
@@ -101,21 +101,27 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> {
     if (widget.value == null) {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: OptimusLightColors.neutral1000t64);
+          return preset200m.copyWith(color: _placeholderColor);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: OptimusLightColors.neutral1000t64);
+          return preset300m.copyWith(color: _placeholderColor);
       }
     } else {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: OptimusLightColors.neutral900);
+          return preset200m.copyWith(color: _textColor);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: OptimusLightColors.neutral900);
+          return preset300m.copyWith(color: _textColor);
       }
     }
   }
+
+  Color get _placeholderColor =>
+      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
+
+  Color get _textColor =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 }
 
 class _SelectedValue extends StatelessWidget {
