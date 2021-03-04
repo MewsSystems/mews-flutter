@@ -156,25 +156,32 @@ class _RadioCircle extends StatelessWidget {
   final bool isSelected;
   final bool isActive;
 
-  Color get _borderColor => (isSelected || isActive)
-      ? OptimusLightColors.primary500
-      : OptimusLightColors.neutral100;
+  Color _borderColor(OptimusThemeData theme) => (isSelected || isActive)
+      ? theme.colors.primary500
+      : theme.colors.neutral100;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(
-          top: spacing100,
-          bottom: spacing100,
-          right: spacing200,
-        ),
-        child: Container(
-          width: 16,
-          height: 16,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(width: isSelected ? 6 : 1, color: _borderColor),
-            color: isActive ? OptimusLightColors.primary500t8 : null,
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: spacing100,
+        bottom: spacing100,
+        right: spacing200,
+      ),
+      child: Container(
+        width: 16,
+        height: 16,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            width: isSelected ? 6 : 1,
+            color: _borderColor(theme),
           ),
+          color: isActive ? theme.colors.primary500t8 : null,
         ),
-      );
+      ),
+    );
+  }
 }
