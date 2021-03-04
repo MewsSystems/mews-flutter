@@ -23,7 +23,7 @@ class OptimusAvatar extends StatelessWidget {
     final colors = OptimusTheme.of(context).colors;
 
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       children: <Widget>[
         ClipOval(
           child: CircleAvatar(
