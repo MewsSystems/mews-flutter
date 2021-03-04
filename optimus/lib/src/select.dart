@@ -101,10 +101,10 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
     if (widget.value == null) {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: _lightTextColor);
+          return preset200m.copyWith(color: _placeholderColor);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: _lightTextColor);
+          return preset300m.copyWith(color: _placeholderColor);
       }
     } else {
       switch (widget.size) {
@@ -117,7 +117,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
     }
   }
 
-  Color get _lightTextColor =>
+  Color get _placeholderColor =>
       theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 
   Color get _textColor =>
