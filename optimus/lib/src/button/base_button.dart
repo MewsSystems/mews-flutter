@@ -103,7 +103,7 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.primary:
         return theme.colors.primary500;
       case OptimusButtonVariant.text:
-        return theme.colors.neutral0;
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.destructive:
         return theme.colors.danger500;
       case OptimusButtonVariant.warning:
@@ -169,6 +169,7 @@ class BaseButton extends StatelessWidget {
       child: MaterialButton(
         minWidth: minWidth,
         height: size.value,
+        visualDensity: const VisualDensity(),
         elevation: 0,
         highlightElevation: 0,
         highlightColor: _highLightColor(theme),
