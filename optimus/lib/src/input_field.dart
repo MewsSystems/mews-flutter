@@ -68,7 +68,7 @@ class OptimusInputField extends StatefulWidget {
   final TextAlign textAlign;
   final OptimusWidgetSize size;
 
-  bool get hasError => error != null && error.isNotEmpty;
+  bool get hasError => error != null && error!.isNotEmpty;
 
   @override
   _OptimusInputFieldState createState() => _OptimusInputFieldState();
@@ -212,7 +212,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 }
 
 class _SuffixPadding extends StatelessWidget {
-  const _SuffixPadding({Key key, @required this.child}) : super(key: key);
+  const _SuffixPadding({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
