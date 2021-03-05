@@ -13,9 +13,9 @@ enum OptimusButtonVariant { defaultButton, primary, text, destructive, warning }
 /// logging in, deleting, and resetting. Buttons are not a navigation element.
 class OptimusButton extends StatelessWidget {
   const OptimusButton({
-    Key key,
+    Key? key,
     this.onPressed,
-    @required this.child,
+    required this.child,
     this.minWidth,
     this.leftIcon,
     this.rightIcon,
@@ -27,18 +27,18 @@ class OptimusButton extends StatelessWidget {
   /// Called when the button is tapped or otherwise activated.
   ///
   /// If this callback is null, then the button will be disabled.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// Typically the button's label.
   final Widget child;
 
-  final double minWidth;
+  final double? minWidth;
 
-  final IconData leftIcon;
+  final IconData? leftIcon;
 
-  final IconData rightIcon;
+  final IconData? rightIcon;
 
-  final String badgeLabel;
+  final String? badgeLabel;
 
   final OptimusWidgetSize size;
 

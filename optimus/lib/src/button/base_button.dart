@@ -11,9 +11,9 @@ import 'package:optimus/src/widget_size.dart';
 
 class BaseButton extends StatelessWidget {
   const BaseButton({
-    Key key,
+    Key? key,
     this.onPressed,
-    @required this.child,
+    required this.child,
     this.minWidth,
     this.leftIcon,
     this.rightIcon,
@@ -23,17 +23,17 @@ class BaseButton extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(borderRadius50),
   }) : super(key: key);
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   final Widget child;
 
-  final double minWidth;
+  final double? minWidth;
 
-  final IconData leftIcon;
+  final IconData? leftIcon;
 
-  final IconData rightIcon;
+  final IconData? rightIcon;
 
-  final String badgeLabel;
+  final String? badgeLabel;
 
   final OptimusWidgetSize size;
 
@@ -186,7 +186,7 @@ class BaseButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (leftIcon != null) _buildIcon(leftIcon, theme),
+            if (leftIcon != null) _buildIcon(leftIcon!, theme),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: spacing100),
               child: DefaultTextStyle.merge(
@@ -197,9 +197,9 @@ class BaseButton extends StatelessWidget {
                 ),
               ),
             ),
-            if (rightIcon != null) _buildIcon(rightIcon, theme),
-            if (badgeLabel != null && badgeLabel.isNotEmpty)
-              _buildBadgeLabel(badgeLabel, theme),
+            if (rightIcon != null) _buildIcon(rightIcon!, theme),
+            if (badgeLabel != null && badgeLabel!.isNotEmpty)
+              _buildBadgeLabel(badgeLabel!, theme),
           ],
         ),
       ),
