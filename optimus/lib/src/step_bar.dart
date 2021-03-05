@@ -21,10 +21,10 @@ import 'package:optimus/src/utils.dart';
 /// of journeying through a process.
 class OptimusStepBar extends StatefulWidget {
   const OptimusStepBar({
-    Key key,
-    @required this.type,
-    @required this.layout,
-    @required this.items,
+    Key? key,
+    required this.type,
+    required this.layout,
+    required this.items,
     this.currentItem = 0,
     this.maxItem,
   }) : super(key: key);
@@ -48,7 +48,7 @@ class OptimusStepBar extends StatefulWidget {
   ///
   /// All the steps after [maxItem] will be disabled. If [null] all the steps
   /// are enabled.
-  final int maxItem;
+  final int? maxItem;
 
   @override
   _OptimusStepBarState createState() => _OptimusStepBarState();
@@ -63,7 +63,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     if (position < widget.currentItem) {
       return OptimusStepBarItemState.completed;
     }
-    if (widget.maxItem == null || position <= widget.maxItem) {
+    if (widget.maxItem == null || position <= widget.maxItem!) {
       return OptimusStepBarItemState.enabled;
     }
     return OptimusStepBarItemState.disabled;
@@ -131,7 +131,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                               : theme.colors.neutral1000t64,
                         ),
                         maxLines: 1,
-                        child: item.description,
+                        child: item.description!,
                       ),
                   ],
                 ),
@@ -262,13 +262,13 @@ enum OptimusStepBarItemState {
 
 class OptimusStepBarItem {
   const OptimusStepBarItem({
-    @required this.label,
+    required this.label,
     this.description,
-    this.icon,
+    required this.icon,
   });
 
   final Widget label;
-  final Widget description;
+  final Widget? description;
   final IconData icon;
 }
 
