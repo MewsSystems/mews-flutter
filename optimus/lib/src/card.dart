@@ -46,8 +46,8 @@ enum OptimusCardAttachment { none, top, right, bottom, left }
 /// the best result.
 class OptimusCard extends StatelessWidget {
   const OptimusCard({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     this.contentWrapperBuilder,
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
@@ -61,7 +61,7 @@ class OptimusCard extends StatelessWidget {
 
   /// Builds custom content. If content padding needed wrap in
   /// [OptimusCardChildPadding].
-  final ContentWrapperBuilder contentWrapperBuilder;
+  final ContentWrapperBuilder? contentWrapperBuilder;
 
   /// Attaches the card to one side. For example, a card attached to the right
   /// will set the top right and bottom right border-radius to 0.
@@ -106,8 +106,8 @@ class OptimusCard extends StatelessWidget {
 /// a basic card type. It is recommended to use only one layer of nesting.
 class OptimusNestedCard extends StatelessWidget {
   const OptimusNestedCard({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     this.contentWrapperBuilder,
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
@@ -118,7 +118,7 @@ class OptimusNestedCard extends StatelessWidget {
 
   /// Builds custom content. If content padding needed wrap in
   /// [OptimusCardChildPadding].
-  final ContentWrapperBuilder contentWrapperBuilder;
+  final ContentWrapperBuilder? contentWrapperBuilder;
 
   /// Controls padding value for the card.
   final OptimusCardSpacing padding;
@@ -144,7 +144,7 @@ class OptimusNestedCard extends StatelessWidget {
     );
   }
 
-  Border _border(OptimusThemeData theme) =>
+  Border? _border(OptimusThemeData theme) =>
       variant == OptimusNestedCardVariant.normal
           ? Border.all(
               width: 1,
@@ -173,29 +173,29 @@ class OptimusNestedCard extends StatelessWidget {
 
 class _Card extends StatelessWidget {
   const _Card({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     this.contentWrapperBuilder,
-    @required this.spacing,
-    @required this.attachment,
+    required this.spacing,
+    required this.attachment,
     this.shadows = const [],
     this.border,
     this.color,
   }) : super(key: key);
 
   final Widget child;
-  final ContentWrapperBuilder contentWrapperBuilder;
+  final ContentWrapperBuilder? contentWrapperBuilder;
   final OptimusCardSpacing spacing;
   final OptimusCardAttachment attachment;
   final List<BoxShadow> shadows;
-  final Border border;
-  final Color color;
+  final Border? border;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final wrappedChild = contentWrapperBuilder == null
         ? OptimusCardChildPadding(spacing: spacing, child: child)
-        : contentWrapperBuilder(context, child);
+        : contentWrapperBuilder!(context, child);
 
     return Container(
       clipBehavior: Clip.antiAlias,
@@ -240,8 +240,8 @@ class _Card extends StatelessWidget {
 
 class OptimusCardChildPadding extends StatelessWidget {
   const OptimusCardChildPadding({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     this.spacing = OptimusCardSpacing.spacing200,
   }) : super(key: key);
 
