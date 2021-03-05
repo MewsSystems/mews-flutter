@@ -12,20 +12,20 @@ final Story numberPickerStory = Story(
 
 class _Content extends StatefulWidget {
   const _Content({
-    Key key,
-    this.isEnabled,
+    Key? key,
+    required this.isEnabled,
     this.error,
   }) : super(key: key);
 
   final bool isEnabled;
-  final String error;
+  final String? error;
 
   @override
-  __ContentState createState() => __ContentState();
+  _ContentState createState() => _ContentState();
 }
 
-class __ContentState extends State<_Content> {
-  int _value;
+class _ContentState extends State<_Content> {
+  int? _value;
 
   @override
   Widget build(BuildContext context) => OptimusNumberPicker(

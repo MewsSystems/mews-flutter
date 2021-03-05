@@ -6,7 +6,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 final List<Option<OptimusColorOption>> colorOptions =
     OptimusColorOption.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<IconData>> exampleIcons = [
+final List<Option<IconData?>> exampleIcons = [
   const Option('', null),
   const Option('Mews Logo', OptimusIcons.mews_logo_small),
   const Option('Magic', OptimusIcons.magic),
@@ -20,9 +20,11 @@ final List<Option<IconData>> exampleIcons = [
 final List<Option<OptimusWidgetSize>> sizeOptions =
     OptimusWidgetSize.values.map((e) => Option(describeEnum(e), e)).toList();
 
-extension EnumsToOptions<T> on List<T> {
-  List<Option<T>> toOptions({bool hasEmpty = false}) {
-    final values = map((e) => Option(describeEnum(e), e)).toList();
-    return hasEmpty ? [const Option('', null), ...values] : values;
-  }
+extension EnumsToOptions<T extends Object> on List<T> {
+  List<Option<T>> toOptions() =>
+      map((e) => Option(describeEnum(e), e)).toList();
+}
+
+extension OptionsWithEmpty<T> on List<Option<T>> {
+  List<Option<T?>> withEmpty() => [const Option('', null), ...this];
 }

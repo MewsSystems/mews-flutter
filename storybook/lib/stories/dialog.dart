@@ -36,6 +36,7 @@ final Story dialogStory = Story(
                     isDismissible: isDismissible,
                     size: OptimusDialogSize.small,
                     content: content,
+                    type: type,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -174,11 +175,11 @@ final Story dialogStory = Story(
 );
 
 Future<void> _showThreeActionDialog({
-  BuildContext context,
-  bool isDismissible,
-  OptimusDialogSize size,
-  Widget content,
-  OptimusDialogType type,
+  required BuildContext context,
+  required bool isDismissible,
+  required OptimusDialogSize size,
+  required Widget content,
+  required OptimusDialogType type,
 }) =>
     showOptimusDialog(
       context: context,
@@ -195,11 +196,11 @@ Future<void> _showThreeActionDialog({
     );
 
 Future<void> _showTwoActionDialog({
-  BuildContext context,
-  bool isDismissible,
-  OptimusDialogSize size,
-  Widget content,
-  OptimusDialogType type,
+  required BuildContext context,
+  required bool isDismissible,
+  required OptimusDialogSize size,
+  required Widget content,
+  required OptimusDialogType type,
 }) =>
     showOptimusDialog(
       context: context,
@@ -215,11 +216,11 @@ Future<void> _showTwoActionDialog({
     );
 
 Future<void> _showOneActionDialog({
-  BuildContext context,
-  bool isDismissible,
-  OptimusDialogSize size,
-  Widget content,
-  OptimusDialogType type,
+  required BuildContext context,
+  required bool isDismissible,
+  required OptimusDialogSize size,
+  required Widget content,
+  required OptimusDialogType type,
 }) =>
     showOptimusDialog(
       context: context,
@@ -232,10 +233,10 @@ Future<void> _showOneActionDialog({
     );
 
 Future<void> _showCustomContentDialog({
-  BuildContext context,
-  bool isDismissible,
-  OptimusDialogSize size,
-  OptimusDialogType type,
+  required BuildContext context,
+  required bool isDismissible,
+  required OptimusDialogSize size,
+  required OptimusDialogType type,
 }) {
   final theme = OptimusTheme.of(context);
   return showOptimusDialog(

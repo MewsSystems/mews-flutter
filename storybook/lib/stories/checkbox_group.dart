@@ -12,7 +12,7 @@ final Story checkboxGroup = Story(
 );
 
 class _CheckboxGroupStory extends StatefulWidget {
-  const _CheckboxGroupStory(this.knobs, {Key key}) : super(key: key);
+  const _CheckboxGroupStory(this.knobs, {Key? key}) : super(key: key);
 
   final KnobsBuilder knobs;
 

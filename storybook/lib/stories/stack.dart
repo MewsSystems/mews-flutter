@@ -30,7 +30,7 @@ final Story stackStory = Story(
     breakpoint: k.options(
       label: 'Breakpoint',
       initial: null,
-      options: Breakpoint.values.toOptions(hasEmpty: true),
+      options: Breakpoint.values.toOptions().withEmpty(),
     ),
     spacing: k.options(
       label: 'Spacing',

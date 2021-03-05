@@ -42,10 +42,10 @@ final Story interactiveTagStory = Story(
 
 class _PaddedTag extends StatelessWidget {
   const _PaddedTag({
-    Key key,
-    @required this.version,
-    @required this.colorOption,
-    @required this.text,
+    Key? key,
+    required this.version,
+    required this.colorOption,
+    required this.text,
   }) : super(key: key);
 
   final TagVersion version;

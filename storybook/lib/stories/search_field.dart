@@ -12,7 +12,7 @@ final Story searchFieldStory = Story(
 );
 
 class _SearchStory extends StatefulWidget {
-  const _SearchStory(this.knobs, {Key key}) : super(key: key);
+  const _SearchStory(this.knobs, {Key? key}) : super(key: key);
 
   final KnobsBuilder knobs;
 
