@@ -12,12 +12,12 @@ typedef CurrentValueBuilder<T> = Widget Function(BuildContext context, T value);
 
 class OptimusSelect<T> extends StatefulWidget {
   const OptimusSelect({
-    Key key,
+    Key? key,
     this.label,
     this.placeholder = '',
     this.value,
-    @required this.items,
-    @required this.builder,
+    required this.items,
+    required this.builder,
     this.isEnabled = true,
     this.isRequired = false,
     this.prefix,
@@ -25,19 +25,19 @@ class OptimusSelect<T> extends StatefulWidget {
     this.secondaryCaption,
     this.error,
     this.size = OptimusWidgetSize.large,
-    @required this.onItemSelected,
+    required this.onItemSelected,
   }) : super(key: key);
 
-  final String label;
+  final String? label;
   final String placeholder;
-  final T value;
+  final T? value;
   final List<OptimusDropdownTile<T>> items;
   final bool isEnabled;
   final bool isRequired;
-  final Widget prefix;
-  final Widget caption;
-  final Widget secondaryCaption;
-  final String error;
+  final Widget? prefix;
+  final Widget? caption;
+  final Widget? secondaryCaption;
+  final String? error;
   final OptimusWidgetSize size;
   final CurrentValueBuilder<T> builder;
   final ValueSetter<T> onItemSelected;
@@ -87,7 +87,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
       ? Text(widget.placeholder, style: _textStyle)
       : DefaultTextStyle.merge(
           style: preset300m,
-          child: widget.builder(context, widget.value),
+          child: widget.builder(context, widget.value!),
         );
 
   Icon get _icon => Icon(
@@ -126,10 +126,10 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
 
 class _SelectedValue extends StatelessWidget {
   const _SelectedValue({
-    Key key,
-    @required this.child,
-    @required this.size,
-    @required this.textStyle,
+    Key? key,
+    required this.child,
+    required this.size,
+    required this.textStyle,
   }) : super(key: key);
 
   final Widget child;

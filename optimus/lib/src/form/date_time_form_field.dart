@@ -1,18 +1,17 @@
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 import 'package:optimus/src/date_time_field.dart';
 
 class OptimusDateTimeFormField extends FormField<DateTime> {
   OptimusDateTimeFormField({
-    Key key,
-    @required DateTime initialValue,
-    @required DateTimeFormatter formatDateTime,
-    FormFieldSetter<DateTime> onSaved,
-    FormFieldValidator<DateTime> validator,
-    AutovalidateMode autovalidateMode,
-    String label,
-    DateTime minDate,
-    DateTime maxDate,
+    Key? key,
+    required DateTime initialValue,
+    required DateTimeFormatter formatDateTime,
+    required FormFieldSetter<DateTime> onSaved,
+    FormFieldValidator<DateTime>? validator,
+    AutovalidateMode? autovalidateMode,
+    String? label,
+    DateTime? minDate,
+    DateTime? maxDate,
   }) : super(
           key: key,
           initialValue: initialValue,
