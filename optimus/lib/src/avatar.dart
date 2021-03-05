@@ -6,15 +6,15 @@ import 'package:optimus/src/typography/styles.dart';
 
 class OptimusAvatar extends StatelessWidget {
   const OptimusAvatar({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.imageUrl,
     this.isSmall = true,
     this.isIndicatorVisible = false,
   }) : super(key: key);
 
   final String title;
-  final String imageUrl;
+  final String? imageUrl;
   final bool isSmall;
   final bool isIndicatorVisible;
 
@@ -30,7 +30,7 @@ class OptimusAvatar extends StatelessWidget {
             radius: isSmall ? _smallRadius : _radius,
             backgroundColor:
                 imageUrl == null ? colors.neutral200 : colors.neutral0,
-            backgroundImage: imageUrl == null ? null : NetworkImage(imageUrl),
+            backgroundImage: imageUrl?.let((url) => NetworkImage(url)),
             child: imageUrl == null
                 ? Text(
                     substring(title, 0, 1).toUpperCase(),
@@ -46,7 +46,7 @@ class OptimusAvatar extends StatelessWidget {
 }
 
 class _Indicator extends StatelessWidget {
-  const _Indicator({Key key}) : super(key: key);
+  const _Indicator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
