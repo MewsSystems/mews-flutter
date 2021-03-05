@@ -9,9 +9,9 @@ import 'package:optimus/src/typography/variation.dart';
 /// rather than describing the obvious.
 class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
-    Key key,
+    Key? key,
     this.variation = Variation.variationDefault,
-    this.child,
+    required this.child,
   }) : super(key: key);
 
   /// The content of the caption.

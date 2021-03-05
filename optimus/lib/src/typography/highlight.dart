@@ -9,7 +9,7 @@ import 'package:optimus/src/typography/styles.dart';
 /// Intended for the highest emphasis and should be used sporadically for
 /// maximum impact.
 class OptimusHighlightHigh extends StatelessWidget {
-  const OptimusHighlightHigh({Key key, this.child}) : super(key: key);
+  const OptimusHighlightHigh({Key? key, required this.child}) : super(key: key);
 
   /// The content of the highlight.
   ///
@@ -31,7 +31,8 @@ class OptimusHighlightHigh extends StatelessWidget {
 /// Intended for a medium level of emphasis and can be used without limitations
 /// across the page.
 class OptimusHighlightMedium extends StatelessWidget {
-  const OptimusHighlightMedium({Key key, this.child}) : super(key: key);
+  const OptimusHighlightMedium({Key? key, required this.child})
+      : super(key: key);
 
   /// The content of the highlight.
   ///
@@ -53,7 +54,7 @@ class OptimusHighlightMedium extends StatelessWidget {
 /// Intended for a low level of emphasis but and can be used without limitations
 /// across the page.
 class OptimusHighlightLow extends StatelessWidget {
-  const OptimusHighlightLow({Key key, this.child}) : super(key: key);
+  const OptimusHighlightLow({Key? key, required this.child}) : super(key: key);
 
   /// The content of the highlight.
   ///

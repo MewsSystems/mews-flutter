@@ -8,7 +8,7 @@ import 'package:optimus/src/typography/typography.dart';
 /// sections for users to quickly scan and understand the content of
 /// each section. Subtitles are often used in conjunction with titles.
 class OptimusSubtitle extends StatelessWidget {
-  const OptimusSubtitle({Key key, this.child}) : super(key: key);
+  const OptimusSubtitle({Key? key, required this.child}) : super(key: key);
 
   /// The content of the subtitle.
   ///
