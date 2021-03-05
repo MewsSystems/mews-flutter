@@ -46,8 +46,8 @@ enum OptimusStackSpacing {
 /// Stacks are flexible in order to cover a wide range of scenarios.
 class OptimusStack extends StatelessWidget {
   const OptimusStack({
-    Key key,
-    this.children,
+    Key? key,
+    required this.children,
     this.direction = Axis.vertical,
     this.mainAxisAlignment = OptimusStackAlignment.start,
     this.crossAxisAlignment = OptimusStackAlignment.center,
@@ -74,7 +74,7 @@ class OptimusStack extends StatelessWidget {
 
   /// Changes the value to trigger vertical item stacking on a user's
   /// selected breakpoint range.
-  final Breakpoint breakpoint;
+  final Breakpoint? breakpoint;
 
   /// Changes spacing between stack items.
   final OptimusStackSpacing spacing;
@@ -84,6 +84,8 @@ class OptimusStack extends StatelessWidget {
 
   // ignore: missing_return
   Axis _direction(BuildContext context) {
+    final breakpoint = this.breakpoint;
+
     if (breakpoint == null || direction == Axis.vertical) {
       return direction;
     }
