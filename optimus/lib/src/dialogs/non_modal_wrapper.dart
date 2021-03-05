@@ -19,9 +19,9 @@ class NonModalWrapper extends StatefulWidget {
 
   final Widget child;
 
-  static NonModalController of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<NonModalWrapperData>()!
-      .controller;
+  static NonModalController? of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<NonModalWrapperData>()
+      ?.controller;
 
   @override
   _NonModalWrapperState createState() => _NonModalWrapperState();

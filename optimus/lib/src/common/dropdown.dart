@@ -166,7 +166,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
             setState(() => _isHighlighted = isHighlighted),
         onTap: () {
           widget.onChanged(widget.child.value);
-          DropdownTapInterceptor.of(context).onTap();
+          DropdownTapInterceptor.of(context)?.onTap();
         },
         child: _isHighlighted
             ? DefaultTextStyle.merge(
