@@ -6,10 +6,10 @@ import 'package:optimus/src/radio/radio.dart';
 
 class OptimusRadioGroup<T> extends StatelessWidget {
   const OptimusRadioGroup({
-    Key key,
-    @required this.items,
-    @required this.value,
-    @required this.onChanged,
+    Key? key,
+    required this.items,
+    required this.value,
+    required this.onChanged,
     this.size = OptimusRadioSize.large,
     this.label,
     this.error,
@@ -50,10 +50,10 @@ class OptimusRadioGroup<T> extends StatelessWidget {
   final OptimusRadioSize size;
 
   /// Controls the label of the whole group.
-  final String label;
+  final String? label;
 
   /// Controls the error of the whole group.
-  final String error;
+  final String? error;
 
   /// Controls whether the whole group is enabled.
   final bool isEnabled;
