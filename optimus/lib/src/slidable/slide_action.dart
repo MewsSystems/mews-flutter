@@ -3,10 +3,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class OptimusSlideAction extends StatelessWidget {
   const OptimusSlideAction({
-    Key key,
-    @required this.child,
-    @required this.color,
-    @required this.onTap,
+    Key? key,
+    required this.child,
+    required this.color,
+    required this.onTap,
   }) : super(key: key);
 
   final Widget child;

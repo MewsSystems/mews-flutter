@@ -4,8 +4,8 @@ import 'package:optimus/src/borders.dart';
 
 class OptimusSlidable extends StatefulWidget {
   const OptimusSlidable({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.actions = const <Widget>[],
     this.isEnabled = true,
     this.hasBorders = true,
@@ -24,8 +24,9 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
   double _extentRatio = 1;
 
   void _afterLayout() {
-    if (context != null) {
-      final ratio = context.size.height / context.size.width;
+    final size = context.size;
+    if (size != null) {
+      final ratio = size.height / size.width;
       if (_extentRatio != ratio) {
         setState(() => _extentRatio = ratio);
       }
@@ -34,7 +35,7 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _afterLayout());
+    WidgetsBinding.instance?.addPostFrameCallback((_) => _afterLayout());
 
     return Slidable(
       actionPane: const SlidableDrawerActionPane(),
