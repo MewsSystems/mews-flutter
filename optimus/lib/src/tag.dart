@@ -24,8 +24,8 @@ enum TagVersion {
 /// in tables, forms, and cards.
 class OptimusTag extends StatelessWidget {
   const OptimusTag({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
     this.colorOption = OptimusColorOption.basic,
     this.version = TagVersion.bold,
   }) : super(key: key);
@@ -59,8 +59,8 @@ class OptimusTag extends StatelessWidget {
 /// components.
 class OptimusInteractiveTag extends StatelessWidget {
   const OptimusInteractiveTag({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
     this.onRemoved,
   }) : super(key: key);
 
@@ -69,7 +69,7 @@ class OptimusInteractiveTag extends StatelessWidget {
 
   /// Callback that will be triggered when user clicks on cross icon. It's
   /// the responsibility of the caller to actually remove the tag.
-  final VoidCallback onRemoved;
+  final VoidCallback? onRemoved;
 
   bool get _isEnabled => onRemoved != null;
 
@@ -85,8 +85,8 @@ class OptimusInteractiveTag extends StatelessWidget {
 
 class _Tag extends StatefulWidget {
   const _Tag({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
     this.colorOption = OptimusColorOption.basic,
     this.version = TagVersion.bold,
     this.onRemoved,
@@ -95,7 +95,7 @@ class _Tag extends StatefulWidget {
   final String text;
   final OptimusColorOption colorOption;
   final TagVersion version;
-  final VoidCallback onRemoved;
+  final VoidCallback? onRemoved;
 
   @override
   _TagState createState() => _TagState();
