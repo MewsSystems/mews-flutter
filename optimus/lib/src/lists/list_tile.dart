@@ -6,8 +6,8 @@ import 'package:optimus/src/typography/styles.dart';
 
 class OptimusListTile extends StatefulWidget {
   const OptimusListTile({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.subtitle,
     this.prefix,
     this.suffix,
@@ -18,12 +18,12 @@ class OptimusListTile extends StatefulWidget {
   }) : super(key: key);
 
   final Widget title;
-  final Widget subtitle;
-  final Widget prefix;
-  final Widget suffix;
-  final Widget info;
-  final Widget infoWidget;
-  final VoidCallback onTap;
+  final Widget? subtitle;
+  final Widget? prefix;
+  final Widget? suffix;
+  final Widget? info;
+  final Widget? infoWidget;
+  final VoidCallback? onTap;
   final FontVariant fontVariant;
 
   @override
@@ -60,23 +60,24 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
                       Row(
                         children: <Widget>[
                           Expanded(child: _buildTitle()),
-                          if (widget.info != null) _buildInfo(),
+                          if (widget.info != null)
+                            _wrapped(widget.info!, _infoStyle),
                         ],
                       ),
                       Row(
                         children: <Widget>[
                           Expanded(
                             child: widget.subtitle != null
-                                ? _buildSubTitle()
+                                ? _wrapped(widget.subtitle!, _subtitleStyle)
                                 : Container(),
                           ),
-                          if (widget.infoWidget != null) widget.infoWidget,
+                          if (widget.infoWidget != null) widget.infoWidget!,
                         ],
                       ),
                     ],
                   ),
                 ),
-                if (widget.suffix != null) widget.suffix
+                if (widget.suffix != null) widget.suffix!
               ],
             ),
           ),
@@ -87,10 +88,6 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
         padding: const EdgeInsets.only(right: 8),
         child: _wrapped(widget.title, _titleStyle),
       );
-
-  Widget _buildSubTitle() => _wrapped(widget.subtitle, _subtitleStyle);
-
-  Widget _buildInfo() => _wrapped(widget.info, _infoStyle);
 
   TextStyle get _titleStyle {
     switch (widget.fontVariant) {
