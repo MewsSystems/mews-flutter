@@ -4,8 +4,8 @@ import 'package:optimus/optimus.dart';
 
 abstract class NonModalController {
   void show({
-    @required Widget title,
-    @required Widget content,
+    required Widget title,
+    required Widget content,
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
@@ -15,12 +15,12 @@ abstract class NonModalController {
 }
 
 class NonModalWrapper extends StatefulWidget {
-  const NonModalWrapper({Key key, @required this.child}) : super(key: key);
+  const NonModalWrapper({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
   static NonModalController of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<NonModalWrapperData>()
+      .dependOnInheritedWidgetOfExactType<NonModalWrapperData>()!
       .controller;
 
   @override
@@ -29,18 +29,18 @@ class NonModalWrapper extends StatefulWidget {
 
 class _NonModalWrapperState extends State<NonModalWrapper>
     implements NonModalController {
-  OverlayEntry _entry;
+  OverlayEntry? _entry;
 
   @override
   void show({
-    @required Widget title,
-    @required Widget content,
+    required Widget title,
+    required Widget content,
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
   }) {
     hide();
-    _entry = OverlayEntry(
+    final entry = OverlayEntry(
         builder: (context) => OptimusDialog.nonModal(
               title: title,
               content: content,
@@ -49,7 +49,8 @@ class _NonModalWrapperState extends State<NonModalWrapper>
               actions: actions,
               size: size,
             ));
-    Overlay.of(context).insert(_entry);
+    _entry = entry;
+    Overlay.of(context)?.insert(entry);
   }
 
   @override
@@ -73,9 +74,9 @@ class _NonModalWrapperState extends State<NonModalWrapper>
 
 class NonModalWrapperData extends InheritedWidget {
   const NonModalWrapperData({
-    Key key,
-    @required this.controller,
-    @required Widget child,
+    Key? key,
+    required this.controller,
+    required Widget child,
   }) : super(key: key, child: child);
 
   final NonModalController controller;
