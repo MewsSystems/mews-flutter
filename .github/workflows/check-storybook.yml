@@ -18,7 +18,7 @@ jobs:
       - run: flutter packages pub run build_runner build
         working-directory: optimus/
       - run: flutter pub get
-      - run: bash ../tool/check_formatting.sh
+      - run: flutter format . --set-exit-if-changed
         name: Ensure proper formatting
       - run: bash ../tool/analyze.sh
         name: Check for errors and warnings
