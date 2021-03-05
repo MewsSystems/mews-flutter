@@ -11,22 +11,34 @@ final Story listTileStory = Story(
       children: Iterable<int>.generate(10)
           .map(
             (i) => OptimusListTile(
-              title: Text(k.text('Title', initial: 'Title')),
-              subtitle: Text(k.text('Subtitle', initial: 'Subtitle')),
-              info: Text(k.text('Info', initial: 'Info')),
+              title: Text(k.text(label: 'Title', initial: 'Title')),
+              subtitle: Text(k.text(label: 'Subtitle', initial: 'Subtitle')),
+              info: Text(k.text(label: 'Info', initial: 'Info')),
               fontVariant: k.options(
-                'Font variant',
+                label: 'Font variant',
                 initial: FontVariant.normal,
                 options: FontVariant.values.toOptions(),
               ),
               suffix: Icon(
-                k.options('Suffix', initial: null, options: exampleIcons),
+                k.options(
+                  label: 'Suffix',
+                  initial: null,
+                  options: exampleIcons,
+                ),
               ),
               prefix: Icon(
-                k.options('Prefix', initial: null, options: exampleIcons),
+                k.options(
+                  label: 'Prefix',
+                  initial: null,
+                  options: exampleIcons,
+                ),
               ),
               infoWidget: Icon(
-                k.options('Info widget', initial: null, options: exampleIcons),
+                k.options(
+                  label: 'Info widget',
+                  initial: null,
+                  options: exampleIcons,
+                ),
               ),
               onTap: () {},
             ),

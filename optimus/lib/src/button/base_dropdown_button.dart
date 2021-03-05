@@ -68,28 +68,31 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
               onTapCancel: () => setState(() => _isTappedDown = false),
               child: Focus(
                 focusNode: _node,
-                child: AnimatedContainer(
-                  padding: const EdgeInsets.symmetric(horizontal: spacing200),
+                child: SizedBox(
                   height: widget.size.value,
-                  key: _selectFieldKey,
-                  decoration: BoxDecoration(
-                    color: _color,
-                    borderRadius: widget.borderRadius,
-                  ),
-                  duration: buttonAnimationDuration,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (widget.child != null)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: DefaultTextStyle.merge(
-                            style: _labelStyle,
-                            child: widget.child,
+                  child: AnimatedContainer(
+                    padding: const EdgeInsets.symmetric(horizontal: spacing200),
+                    key: _selectFieldKey,
+                    decoration: BoxDecoration(
+                      color: _color,
+                      borderRadius: widget.borderRadius,
+                    ),
+                    duration: buttonAnimationDuration,
+                    curve: Curves.fastOutSlowIn,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (widget.child != null)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: DefaultTextStyle.merge(
+                              style: _labelStyle,
+                              child: widget.child,
+                            ),
                           ),
-                        ),
-                      _icon,
-                    ],
+                        _icon,
+                      ],
+                    ),
                   ),
                 ),
               ),

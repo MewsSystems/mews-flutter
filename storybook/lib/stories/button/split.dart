@@ -7,7 +7,7 @@ final Story splitButton = Story(
   section: 'Button',
   name: 'Split button',
   builder: (_, k) {
-    final isEnabled = k.boolean('Enabled', initial: true);
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return SingleChildScrollView(
       child: Column(
@@ -17,7 +17,7 @@ final Story splitButton = Story(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: OptimusSplitButton<int>(
                   size: k.options(
-                    'Size',
+                    label: 'Size',
                     initial: OptimusWidgetSize.large,
                     options: sizeOptions,
                   ),
@@ -32,7 +32,7 @@ final Story splitButton = Story(
                   onPressed: isEnabled ? () {} : null,
                   onItemSelected: isEnabled ? (_) => () {} : null,
                   variant: v,
-                  child: Text(k.text('Label', initial: 'Split button')),
+                  child: Text(k.text(label: 'Label', initial: 'Split button')),
                 ),
               ),
             )

@@ -7,9 +7,16 @@ final Story iconStory = Story(
   section: 'Icons',
   name: 'Icon',
   builder: (_, k) {
-    final icon = k.options('Icon', initial: OptimusIcons.plus, options: _icons);
-    final size =
-        k.options('Size', initial: OptimusIconSize.medium, options: _sizes);
+    final icon = k.options(
+      label: 'Icon',
+      initial: OptimusIcons.plus,
+      options: _icons,
+    );
+    final size = k.options(
+      label: 'Size',
+      initial: OptimusIconSize.medium,
+      options: _sizes,
+    );
 
     return ListView(
       children: OptimusColorOption.values
@@ -32,7 +39,11 @@ final Story supplementaryIconStory = Story(
   section: 'Icons',
   name: 'Supplementary icon',
   builder: (_, k) {
-    final icon = k.options('Icon', initial: OptimusIcons.edit, options: _icons);
+    final icon = k.options(
+      label: 'Icon',
+      initial: OptimusIcons.edit,
+      options: _icons,
+    );
 
     return ListView(
       children: OptimusColorOption.values
