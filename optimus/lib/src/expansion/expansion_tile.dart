@@ -19,7 +19,7 @@ class OptimusExpansionTile extends StatefulWidget {
     required this.title,
     this.subtitle,
     this.backgroundColor,
-    required this.onExpansionChanged,
+    this.onExpansionChanged,
     this.children = const <Widget>[],
     this.trailing,
     this.initiallyExpanded = false,
@@ -46,7 +46,7 @@ class OptimusExpansionTile extends StatefulWidget {
   /// When the tile starts expanding, this function is called with the value
   /// true. When the tile starts collapsing, this function is called with
   /// the value false.
-  final ValueChanged<bool> onExpansionChanged;
+  final ValueChanged<bool>? onExpansionChanged;
 
   /// The widgets that are displayed when the tile expands.
   ///
@@ -119,9 +119,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
       }
       PageStorage.of(context)?.writeState(context, _isExpanded);
     });
-    if (widget.onExpansionChanged != null) {
-      widget.onExpansionChanged(_isExpanded);
-    }
+    widget.onExpansionChanged?.call(_isExpanded);
   }
 
   Widget _buildChildren(BuildContext context, Widget? child) {
