@@ -5,8 +5,8 @@ import 'package:optimus/src/theme/theme.dart';
 
 class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
 
   final String text;

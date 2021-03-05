@@ -4,7 +4,7 @@ import 'package:optimus/src/theme/theme.dart';
 
 @Deprecated('Use higher level components instead.')
 class TileBorders extends StatelessWidget {
-  const TileBorders({Key key, this.child}) : super(key: key);
+  const TileBorders({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
