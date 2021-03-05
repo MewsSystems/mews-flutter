@@ -14,12 +14,12 @@ class OptimusExpansionTile extends StatefulWidget {
   /// collapses the tile to reveal or hide the [children]. The
   /// [initiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
-    Key key,
+    Key? key,
     this.leading,
-    @required this.title,
+    required this.title,
     this.subtitle,
     this.backgroundColor,
-    this.onExpansionChanged,
+    required this.onExpansionChanged,
     this.children = const <Widget>[],
     this.trailing,
     this.initiallyExpanded = false,
@@ -29,7 +29,7 @@ class OptimusExpansionTile extends StatefulWidget {
   /// A widget to display before the title.
   ///
   /// Typically a [CircleAvatar] widget.
-  final Widget leading;
+  final Widget? leading;
 
   /// The primary content of the list item.
   ///
@@ -39,7 +39,7 @@ class OptimusExpansionTile extends StatefulWidget {
   /// Additional content displayed below the title.
   ///
   /// Typically a [Text] widget.
-  final Widget subtitle;
+  final Widget? subtitle;
 
   /// Called when the tile expands or collapses.
   ///
@@ -54,10 +54,10 @@ class OptimusExpansionTile extends StatefulWidget {
   final List<Widget> children;
 
   /// The color to display behind the sublist when expanded.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// A widget to display instead of a rotating arrow icon.
-  final Widget trailing;
+  final Widget? trailing;
 
   /// Specifies if the list tile is initially expanded (true)
   /// or collapsed (false, the default).
@@ -80,9 +80,9 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _backgroundColorTween = ColorTween();
 
-  AnimationController _controller;
-  Animation<double> _iconTurns;
-  Animation<double> _heightFactor;
+  late AnimationController _controller;
+  late Animation<double> _iconTurns;
+  late Animation<double> _heightFactor;
 
   bool _isExpanded = false;
 
@@ -124,7 +124,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     }
   }
 
-  Widget _buildChildren(BuildContext context, Widget child) {
+  Widget _buildChildren(BuildContext context, Widget? child) {
     final theme = OptimusTheme.of(context);
     final textColor =
         theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
