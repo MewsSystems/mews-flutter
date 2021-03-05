@@ -6,8 +6,8 @@ import 'package:optimus/src/theme/theme_data.dart';
 
 class OptimusFieldLabel extends StatelessWidget {
   const OptimusFieldLabel({
-    Key key,
-    this.label,
+    Key? key,
+    required this.label,
     this.isRequired = false,
   }) : super(key: key);
 
