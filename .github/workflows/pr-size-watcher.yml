@@ -1,5 +1,11 @@
 name: PR Size Watcher
-on: [ pull_request ]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - master
 
 jobs:
   build:
