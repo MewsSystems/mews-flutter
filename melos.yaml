@@ -1,0 +1,27 @@
+name: mews-flutter
+
+packages:
+  - '**'
+
+scripts:
+  check_master:
+    run: |
+      melos run format \
+        && melos run pub_get \
+        && melos run build_runner \
+        && melos run analyze \
+        && melos run test --no-select
+
+  analyze: flutter analyze .
+
+  format: flutter format --set-exit-if-changed -n .
+
+  pub_get: melos exec -- "flutter pub get"
+
+  build_runner: melos exec --scope="optimus" --fail-fast -- "exec flutter packages pub run build_runner build"
+
+  test:
+    run: melos exec -- "flutter test --no-pub"
+    select-package:
+      dir-exists:
+        - test
