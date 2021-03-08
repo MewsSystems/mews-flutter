@@ -1,5 +1,10 @@
 name: PR Project Assigner
-on: [ pull_request ]
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - master
 
 jobs:
   build:
