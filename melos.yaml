@@ -8,7 +8,6 @@ scripts:
     run: |
       melos run format \
         && melos run pub_get \
-        && melos run build_runner \
         && melos run analyze \
         && melos run test --no-select
 
