@@ -8,7 +8,7 @@ import 'package:optimus/src/typography/styles.dart';
 /// used when you need to show an icon with a label and/or optional description.
 class OptimusIconList extends StatelessWidget {
   const OptimusIconList({
-    Key key,
+    Key? key,
     this.items = const [],
     this.listSize,
   }) : super(key: key);
@@ -23,7 +23,7 @@ class OptimusIconList extends StatelessWidget {
   ///   all products and platforms.
   /// - [OptimusIconListSize.small] – intended for content-heavy environments
   ///   and/or small viewports.
-  final OptimusIconListSize listSize;
+  final OptimusIconListSize? listSize;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +62,8 @@ enum OptimusIconListSize {
 /// Data that is provided to [OptimusIconList].
 class OptimusIconListItem {
   const OptimusIconListItem({
-    @required this.iconData,
-    @required this.label,
+    required this.iconData,
+    required this.label,
     this.description,
     this.colorOption = OptimusColorOption.basic,
   });
@@ -75,7 +75,7 @@ class OptimusIconListItem {
   final String label;
 
   /// Controls the tile description.
-  final String description;
+  final String? description;
 
   /// Controls color of the icon.
   ///
@@ -95,9 +95,9 @@ class OptimusIconListItem {
 
 class _ListTile extends StatelessWidget {
   const _ListTile({
-    Key key,
-    @required this.item,
-    @required this.size,
+    Key? key,
+    required this.item,
+    required this.size,
   }) : super(key: key);
 
   final OptimusIconListItem item;

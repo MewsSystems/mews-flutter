@@ -9,7 +9,7 @@ import 'package:optimus/src/typography/styles.dart';
 
 class FieldWrapper extends StatefulWidget {
   const FieldWrapper({
-    Key key,
+    Key? key,
     this.isEnabled = true,
     this.focusNode,
     this.label,
@@ -25,26 +25,26 @@ class FieldWrapper extends StatefulWidget {
   }) : super(key: key);
 
   final bool isEnabled;
-  final FocusNode focusNode;
-  final String label;
-  final Widget caption;
-  final Widget secondaryCaption;
-  final String error;
+  final FocusNode? focusNode;
+  final String? label;
+  final Widget? caption;
+  final Widget? secondaryCaption;
+  final String? error;
   final bool hasBorders;
   final bool isRequired;
-  final Widget suffix;
-  final Widget prefix;
+  final Widget? suffix;
+  final Widget? prefix;
   final List<Widget> children;
-  final Key fieldBoxKey;
+  final Key? fieldBoxKey;
 
-  bool get hasError => error != null && error.isNotEmpty;
+  bool get hasError => error != null && error!.isNotEmpty;
 
   @override
   _FieldWrapper createState() => _FieldWrapper();
 }
 
 class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
@@ -72,7 +72,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
               children: [
                 if (widget.label != null)
                   OptimusFieldLabel(
-                    label: widget.label,
+                    label: widget.label!,
                     isRequired: widget.isRequired,
                   ),
                 const Spacer(),
@@ -83,7 +83,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                       style: TextStyle(
                         color: _secondaryCaptionColor,
                       ),
-                      child: widget.secondaryCaption,
+                      child: widget.secondaryCaption!,
                     ),
                   ),
               ],
@@ -118,7 +118,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                   if (widget.hasError)
                     OptimusCaption(
                       child: Text(
-                        widget.error,
+                        widget.error!,
                         style: TextStyle(color: theme.colors.danger),
                       ),
                     ),
@@ -126,7 +126,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     OptimusCaption(
                       child: DefaultTextStyle.merge(
                         style: TextStyle(color: _captionColor),
-                        child: widget.caption,
+                        child: widget.caption!,
                       ),
                     ),
                 ],
@@ -161,18 +161,18 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   List<Widget> _buildChildren() => <Widget>[
         if (widget.prefix != null)
-          _Icon(child: _PrefixPadding(child: widget.prefix)),
+          _Icon(child: _PrefixPadding(child: widget.prefix!)),
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
             style: preset100s.copyWith(color: theme.colors.neutral1000t32),
-            child: _Icon(child: _SuffixPadding(child: widget.suffix)),
+            child: _Icon(child: _SuffixPadding(child: widget.suffix!)),
           )
       ];
 }
 
 class _Icon extends StatelessWidget {
-  const _Icon({Key key, @required this.child}) : super(key: key);
+  const _Icon({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
@@ -189,7 +189,7 @@ class _Icon extends StatelessWidget {
 }
 
 class _FieldPadding extends StatelessWidget {
-  const _FieldPadding({Key key, @required this.child}) : super(key: key);
+  const _FieldPadding({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
@@ -201,7 +201,7 @@ class _FieldPadding extends StatelessWidget {
 }
 
 class _SuffixPadding extends StatelessWidget {
-  const _SuffixPadding({Key key, @required this.child}) : super(key: key);
+  const _SuffixPadding({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
@@ -213,7 +213,7 @@ class _SuffixPadding extends StatelessWidget {
 }
 
 class _PrefixPadding extends StatelessWidget {
-  const _PrefixPadding({Key key, @required this.child}) : super(key: key);
+  const _PrefixPadding({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 

@@ -4,22 +4,20 @@ import 'package:optimus/src/theme/theme_data.dart';
 
 class OptimusTheme extends StatelessWidget {
   const OptimusTheme({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.lightTheme,
     this.darkTheme,
     this.themeMode = ThemeMode.system,
   }) : super(key: key);
 
   final Widget child;
-  final OptimusThemeData lightTheme;
-  final OptimusThemeData darkTheme;
+  final OptimusThemeData? lightTheme;
+  final OptimusThemeData? darkTheme;
   final ThemeMode themeMode;
 
   static OptimusThemeData of(BuildContext context) {
-    Brightness fallbackBrightness() =>
-        Theme.of(context).brightness ??
-        MediaQuery.platformBrightnessOf(context);
+    Brightness fallbackBrightness() => Theme.of(context).brightness;
     final _theme = context.dependOnInheritedWidgetOfExactType<_OptimusTheme>();
 
     return _theme?.theme ??
@@ -46,9 +44,9 @@ class OptimusTheme extends StatelessWidget {
 
 class _OptimusTheme extends InheritedWidget {
   const _OptimusTheme({
-    Key key,
-    @required this.theme,
-    @required Widget child,
+    Key? key,
+    required this.theme,
+    required Widget child,
   }) : super(key: key, child: child);
 
   final OptimusThemeData theme;

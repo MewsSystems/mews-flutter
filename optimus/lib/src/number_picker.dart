@@ -5,21 +5,16 @@ import 'package:optimus/src/enabled.dart';
 
 class OptimusNumberPicker extends StatefulWidget {
   const OptimusNumberPicker({
-    Key key,
+    Key? key,
     this.value,
-    @required this.onChanged,
+    required this.onChanged,
     this.defaultValue = 0,
     this.min = 0,
     this.max = 100,
     this.focusNode,
     this.isEnabled = true,
     this.error,
-  })  : assert(min != null, 'min should not be null'),
-        assert(max != null, 'max should not be null'),
-        assert(onChanged != null, 'onChanged should not be null'),
-        assert(isEnabled != null, 'isEnabled should not be null'),
-        assert(defaultValue != null, 'defaultValue should not be null'),
-        assert(
+  })  : assert(
           min <= defaultValue && defaultValue <= max,
           'default value should be in [min, max] range',
         ),
@@ -29,14 +24,14 @@ class OptimusNumberPicker extends StatefulWidget {
         ),
         super(key: key);
 
-  final int value;
+  final int? value;
   final int defaultValue;
-  final ValueChanged<int> onChanged;
+  final ValueChanged<int?> onChanged;
   final int min;
   final int max;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final bool isEnabled;
-  final String error;
+  final String? error;
 
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
@@ -44,7 +39,7 @@ class OptimusNumberPicker extends StatefulWidget {
 
 class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   final TextEditingController _controller = TextEditingController();
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
@@ -63,7 +58,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
     _updateInputValue(widget.value);
   }
 
-  void _updateInputValue(int value) {
+  void _updateInputValue(int? value) {
     _controller.value = _controller.value.copyWith(text: _format(value));
   }
 
@@ -81,7 +76,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
 
   bool get _canSubtract => _isInRange(_safeValue - 1);
 
-  bool _isInRange(int value) =>
+  bool _isInRange(int? value) =>
       value == null || widget.min <= value && value <= widget.max;
 
   @override
@@ -124,13 +119,13 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
 
 class _IconButton extends StatelessWidget {
   const _IconButton({
-    Key key,
-    @required this.iconData,
-    @required this.onPressed,
+    Key? key,
+    required this.iconData,
+    this.onPressed,
   }) : super(key: key);
 
   final IconData iconData;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   bool get _isEnabled => onPressed != null;
 
@@ -153,4 +148,4 @@ class _IconButton extends StatelessWidget {
   }
 }
 
-String _format(int value) => value?.toString() ?? '';
+String _format(int? value) => value?.toString() ?? '';

@@ -53,7 +53,7 @@ final List<OptimusIconListItem> _items = [
   ),
 ];
 
-final List<Option<OptimusIconListSize>> _sizes = [
+final List<Option<OptimusIconListSize?>> _sizes = [
   const Option('', null),
   ...OptimusIconListSize.values.map((e) => Option(describeEnum(e), e)).toList()
 ];

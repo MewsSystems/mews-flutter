@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
@@ -19,8 +20,8 @@ enum OptimusIconSize {
 /// The default icon is used when there is no need for additional emphasis.
 class OptimusIcon extends StatelessWidget {
   const OptimusIcon({
-    Key key,
-    @required this.iconData,
+    Key? key,
+    required this.iconData,
     this.iconSize = OptimusIconSize.medium,
     this.colorOption,
   }) : super(key: key);
@@ -44,7 +45,7 @@ class OptimusIcon extends StatelessWidget {
   ///   a sense of warning.
   /// - [OptimusColorOption.danger] – used to emphasize the item and convey
   ///   a sense of danger or error.
-  final OptimusColorOption colorOption;
+  final OptimusColorOption? colorOption;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +53,8 @@ class OptimusIcon extends StatelessWidget {
 
     return Icon(
       iconData,
-      color: colorOption == null
-          ? DefaultTextStyle.of(context).style.color
-          : colorOption.toIconColor(theme),
+      color: colorOption?.let((option) => option.toIconColor(theme)) ??
+          DefaultTextStyle.of(context).style.color,
       size: _iconSize,
     );
   }
@@ -79,8 +79,8 @@ class OptimusIcon extends StatelessWidget {
 /// provide additional emphasis.
 class OptimusSupplementaryIcon extends StatelessWidget {
   const OptimusSupplementaryIcon({
-    Key key,
-    @required this.iconData,
+    Key? key,
+    required this.iconData,
     this.colorOption = OptimusColorOption.basic,
   }) : super(key: key);
 

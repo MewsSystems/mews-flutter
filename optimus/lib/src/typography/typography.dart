@@ -9,10 +9,10 @@ enum OptimusTypographyColor { primary, secondary }
 
 class OptimusTypography extends StatelessWidget {
   const OptimusTypography({
-    Key key,
-    @required this.resolveStyle,
+    Key? key,
+    required this.resolveStyle,
     this.color = OptimusTypographyColor.primary,
-    this.child,
+    required this.child,
   }) : super(key: key);
 
   final ResolveStyle resolveStyle;

@@ -53,23 +53,23 @@ enum OptimusDialogPosition {
 
 class OptimusDialogAction {
   const OptimusDialogAction({
-    @required this.title,
+    required this.title,
     this.onPressed,
     this.key,
   });
 
   final Widget title;
-  final VoidCallback onPressed;
-  final Key key;
+  final VoidCallback? onPressed;
+  final Key? key;
 }
 
 /// [isDismissible] – If a dialog contains a close icon, it can also be closed
 /// by clicking on background layer. Otherwise, only by buttons.
-Future<T> showOptimusDialog<T>({
-  @required BuildContext context,
-  @required Widget title,
-  @required Widget content,
-  ContentWrapperBuilder contentWrapperBuilder,
+Future<T?> showOptimusDialog<T>({
+  required BuildContext context,
+  required Widget title,
+  required Widget content,
+  ContentWrapperBuilder? contentWrapperBuilder,
   List<OptimusDialogAction> actions = const [],
   OptimusDialogSize size = OptimusDialogSize.regular,
   OptimusDialogType type = OptimusDialogType.common,
@@ -99,9 +99,9 @@ Future<T> showOptimusDialog<T>({
 /// a short term task without losing the context of the underlying page.
 class OptimusDialog extends StatelessWidget {
   const OptimusDialog._({
-    Key key,
-    @required this.title,
-    @required this.content,
+    Key? key,
+    required this.title,
+    required this.content,
     this.contentWrapperBuilder,
     this.actions = const [],
     this.size = OptimusDialogSize.regular,
@@ -112,14 +112,14 @@ class OptimusDialog extends StatelessWidget {
   }) : super(key: key);
 
   const OptimusDialog.modal({
-    Key key,
-    @required Widget title,
-    @required Widget content,
-    ContentWrapperBuilder contentWrapperBuilder,
+    Key? key,
+    required Widget title,
+    required Widget content,
+    ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
     OptimusDialogType type = OptimusDialogType.common,
-    bool isDismissible,
+    bool? isDismissible,
   }) : this._(
           key: key,
           title: title,
@@ -132,14 +132,14 @@ class OptimusDialog extends StatelessWidget {
         );
 
   const OptimusDialog.nonModal({
-    Key key,
-    @required Widget title,
-    @required Widget content,
-    ContentWrapperBuilder contentWrapperBuilder,
+    Key? key,
+    required Widget title,
+    required Widget content,
+    ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
-    bool isDismissible,
-    @required VoidCallback close,
+    bool? isDismissible,
+    required VoidCallback close,
   }) : this._(
           key: key,
           title: title,
@@ -154,8 +154,8 @@ class OptimusDialog extends StatelessWidget {
           position: OptimusDialogPosition.corner,
         );
 
-  final VoidCallback close;
-  final bool isDismissible;
+  final VoidCallback? close;
+  final bool? isDismissible;
   final OptimusDialogPosition position;
 
   /// Serves as an identification of the action in the dialog. Can be
@@ -166,7 +166,7 @@ class OptimusDialog extends StatelessWidget {
 
   /// Builds custom content. If content padding needed wrap in
   /// [OptimusDialogContentPadding].
-  final ContentWrapperBuilder contentWrapperBuilder;
+  final ContentWrapperBuilder? contentWrapperBuilder;
 
   /// Controls dialog actions.
   ///
@@ -283,7 +283,8 @@ class OptimusDialog extends StatelessWidget {
                       title: title,
                       close: close ?? () => Navigator.pop(context),
                       isDismissible: isDismissible ??
-                          ModalRoute.of(context)?.barrierDismissible,
+                          ModalRoute.of(context)?.barrierDismissible ??
+                          true,
                     ),
                     _divider(theme),
                     DefaultTextStyle.merge(
@@ -314,11 +315,11 @@ class OptimusDialog extends StatelessWidget {
 
 class OptimusDialogContentPadding extends StatelessWidget {
   const OptimusDialogContentPadding({
-    Key key,
+    Key? key,
     this.child,
   }) : super(key: key);
 
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) =>
@@ -327,13 +328,13 @@ class OptimusDialogContentPadding extends StatelessWidget {
 
 class _Content extends StatelessWidget {
   const _Content({
-    Key key,
-    @required this.content,
+    Key? key,
+    required this.content,
     this.contentWrapperBuilder,
   }) : super(key: key);
 
   final Widget content;
-  final ContentWrapperBuilder contentWrapperBuilder;
+  final ContentWrapperBuilder? contentWrapperBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -343,7 +344,7 @@ class _Content extends StatelessWidget {
               child: OptimusDialogContentPadding(child: content),
             ),
           )
-        : contentWrapperBuilder(context, content);
+        : contentWrapperBuilder!(context, content);
 
     return Flexible(
       fit: FlexFit.loose,
@@ -354,11 +355,11 @@ class _Content extends StatelessWidget {
 
 class _Title extends StatelessWidget {
   const _Title({
-    Key key,
-    @required this.context,
-    @required this.title,
-    @required this.close,
-    @required this.isDismissible,
+    Key? key,
+    required this.context,
+    required this.title,
+    required this.close,
+    required this.isDismissible,
   }) : super(key: key);
 
   final BuildContext context;
@@ -386,11 +387,11 @@ class _Title extends StatelessWidget {
 
 class _Actions extends StatelessWidget {
   const _Actions({
-    Key key,
-    @required this.actions,
-    @required this.dialogSize,
-    @required this.type,
-    @required this.close,
+    Key? key,
+    required this.actions,
+    required this.dialogSize,
+    required this.type,
+    required this.close,
   }) : super(key: key);
 
   final List<OptimusDialogAction> actions;

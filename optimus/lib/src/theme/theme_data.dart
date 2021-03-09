@@ -6,10 +6,10 @@ import 'package:optimus/src/colors/colors.dart';
 part 'theme_data.freezed.dart';
 
 @freezed
-abstract class OptimusThemeData implements _$OptimusThemeData {
+class OptimusThemeData with _$OptimusThemeData {
   const factory OptimusThemeData({
-    @required Brightness brightness,
-    @required OptimusColors colors,
+    required Brightness brightness,
+    required OptimusColors colors,
   }) = _OptimusThemeData;
 
   const OptimusThemeData._();

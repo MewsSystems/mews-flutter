@@ -18,10 +18,10 @@ enum OptimusSplitButtonVariant {
 /// related to the main action.
 class OptimusSplitButton<T> extends StatelessWidget {
   const OptimusSplitButton({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.onPressed,
-    @required this.items,
+    required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusSplitButtonVariant.defaultButton,
@@ -33,14 +33,14 @@ class OptimusSplitButton<T> extends StatelessWidget {
   /// Called when the button is tapped or otherwise activated.
   ///
   /// If this callback is null, then the button will be disabled.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// List of items in dropdown section (when pressed on the button's right
   /// part).
   final List<OptimusDropdownTile<T>> items;
 
   /// Called when dropdown item is selected.
-  final ValueSetter<T> onItemSelected;
+  final ValueSetter<T>? onItemSelected;
 
   /// The size of the button
   final OptimusWidgetSize size;

@@ -10,7 +10,7 @@ final Story checkbox = Story(
 );
 
 class _CheckboxStory extends StatefulWidget {
-  const _CheckboxStory(this.knobs, {Key key}) : super(key: key);
+  const _CheckboxStory(this.knobs, {Key? key}) : super(key: key);
 
   final KnobsBuilder knobs;
 

@@ -7,23 +7,23 @@ typedef DateTimeFormatter = String Function(DateTime);
 
 class OptimusDateTimeField extends StatefulWidget {
   const OptimusDateTimeField({
-    Key key,
+    Key? key,
     this.value,
     this.label,
-    this.onChanged,
+    required this.onChanged,
     this.minDate,
     this.maxDate,
     this.error,
-    @required this.formatDateTime,
+    required this.formatDateTime,
   }) : super(key: key);
 
-  final DateTime value;
-  final String label;
+  final DateTime? value;
+  final String? label;
   final ValueChanged<DateTime> onChanged;
-  final DateTime minDate;
-  final DateTime maxDate;
+  final DateTime? minDate;
+  final DateTime? maxDate;
   final DateTimeFormatter formatDateTime;
-  final String error;
+  final String? error;
 
   @override
   _OptimusDateTimeFieldState createState() => _OptimusDateTimeFieldState();
@@ -45,8 +45,9 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
   }
 
   void _updateValue() {
+    final value = widget.value;
     _controller.value = _controller.value.copyWith(
-      text: widget.value == null ? '' : widget.formatDateTime(widget.value),
+      text: value == null ? '' : widget.formatDateTime(value),
     );
   }
 

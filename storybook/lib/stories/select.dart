@@ -12,7 +12,7 @@ final Story selectStory = Story(
 );
 
 class _SelectStory extends StatefulWidget {
-  const _SelectStory(this.knobs, {Key key}) : super(key: key);
+  const _SelectStory(this.knobs, {Key? key}) : super(key: key);
 
   final KnobsBuilder knobs;
 
@@ -21,7 +21,7 @@ class _SelectStory extends StatefulWidget {
 }
 
 class _SelectStoryState extends State<_SelectStory> {
-  int _selectedValue;
+  int? _selectedValue;
 
   @override
   Widget build(BuildContext context) {

@@ -38,9 +38,9 @@ enum OptimusIconButtonVariant {
 /// clear enough, you can use an icon button without text.
 class OptimusIconButton extends StatefulWidget {
   const OptimusIconButton({
-    Key key,
+    Key? key,
     this.onPressed,
-    @required this.icon,
+    required this.icon,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusIconButtonVariant.defaultButton,
   }) : super(key: key);
@@ -48,7 +48,7 @@ class OptimusIconButton extends StatefulWidget {
   /// Called when the button is tapped or otherwise activated.
   ///
   /// If this callback is null, then the button will be disabled.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// Typically [Icon] widget.
   final Widget icon;

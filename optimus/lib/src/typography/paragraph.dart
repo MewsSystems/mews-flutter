@@ -8,9 +8,9 @@ import 'package:optimus/src/typography/variation.dart';
 /// It should be used as a distinct section of text dealing with a single topic.
 class OptimusParagraph extends StatelessWidget {
   const OptimusParagraph({
-    Key key,
+    Key? key,
     this.variation = Variation.variationDefault,
-    this.child,
+    required this.child,
   }) : super(key: key);
 
   /// The content of the paragraph.
@@ -34,9 +34,9 @@ class OptimusParagraph extends StatelessWidget {
 /// Intended for the content-heavy environment (with exceptions).
 class OptimusParagraphSmall extends StatelessWidget {
   const OptimusParagraphSmall({
-    Key key,
+    Key? key,
     this.variation = Variation.variationDefault,
-    this.child,
+    required this.child,
   }) : super(key: key);
 
   /// The content of the paragraph.

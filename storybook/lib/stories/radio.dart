@@ -23,10 +23,10 @@ final Story radioStory = Story(
 
 class RadioExample extends StatefulWidget {
   const RadioExample({
-    Key key,
-    @required this.size,
-    @required this.error,
-    @required this.isEnabled,
+    Key? key,
+    required this.size,
+    required this.error,
+    required this.isEnabled,
   }) : super(key: key);
 
   final OptimusRadioSize size;
@@ -86,11 +86,11 @@ final Story radioGroupStory = Story(
 
 class _RadioGroupExample extends StatefulWidget {
   const _RadioGroupExample({
-    Key key,
-    @required this.size,
-    @required this.label,
-    @required this.error,
-    @required this.isEnabled,
+    Key? key,
+    required this.size,
+    required this.label,
+    required this.error,
+    required this.isEnabled,
   }) : super(key: key);
 
   final OptimusRadioSize size;

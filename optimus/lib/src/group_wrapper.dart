@@ -5,15 +5,15 @@ import 'package:optimus/src/theme/theme_data.dart';
 
 class GroupWrapper extends StatelessWidget {
   const GroupWrapper({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.label,
     this.error,
   }) : super(key: key);
 
   final Widget child;
-  final String label;
-  final String error;
+  final String? label;
+  final String? error;
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +23,18 @@ class GroupWrapper extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (label != null && label.isNotEmpty)
+        if (label != null && label!.isNotEmpty)
           OptimusLabelSmall(
             child: Text(
-              label,
+              label!,
               style: TextStyle(color: _textColor(theme)),
             ),
           ),
         child,
-        if (error != null && error.isNotEmpty)
+        if (error != null && error!.isNotEmpty)
           OptimusCaption(
             child: Text(
-              error,
+              error!,
               style: TextStyle(color: theme.colors.danger500),
             ),
           ),

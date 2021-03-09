@@ -1,3 +1,7 @@
+## 0.5.0
+
+- Migrate to null-safety
+
 ## 0.4.0
 
 - Add mainAxisSize to OptimusStack (#24)

@@ -13,17 +13,17 @@ import 'package:optimus/src/theme/theme.dart';
 
 class OptimusDropdown<T> extends StatefulWidget {
   const OptimusDropdown({
-    Key key,
-    @required this.items,
-    @required this.anchorKey,
-    @required this.onChanged,
+    Key? key,
+    required this.items,
+    required this.anchorKey,
+    required this.onChanged,
     this.width,
   }) : super(key: key);
 
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final GlobalKey anchorKey;
-  final double width;
+  final double? width;
 
   @override
   _OptimusDropdownState<T> createState() => _OptimusDropdownState<T>();
@@ -31,7 +31,7 @@ class OptimusDropdown<T> extends StatefulWidget {
 
 class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
     with ThemeGetter {
-  Rect _savedRect;
+  late Rect _savedRect = _calculateRect();
 
   void _updateRect(dynamic _) {
     final newRect = _calculateRect();
@@ -53,8 +53,7 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
   Widget build(BuildContext context) {
     if (widget.items.isEmpty) return Container();
 
-    _savedRect ??= _calculateRect();
-    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
+    WidgetsBinding.instance?.addPostFrameCallback(_updateRect);
 
     final isOnTop = _topSpace > _bottomSpace;
     final maxHeight = max(_topSpace, _bottomSpace);
@@ -68,7 +67,7 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
     // aligned with anchor's right side. If both conditions fail, left and
     // right will both be null, so dropdown will be aligned according to
     // Stack's alignment property.
-    double left, right;
+    double? left, right;
     if (_rightSpace >= widthWithPadding) {
       left = _savedRect.left;
     } else if (_leftSpace >= widthWithPadding) {
@@ -86,8 +85,8 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
           width: width,
           left: left,
           right: right,
-          top: isOnTop ? null : (_offsetTop ?? 0),
-          bottom: isOnTop ? (_offsetBottom ?? 0) : null,
+          top: isOnTop ? null : _offsetTop,
+          bottom: isOnTop ? _offsetBottom : null,
           child: Container(
             decoration: _dropdownDecoration,
             constraints: BoxConstraints(maxHeight: maxHeight),
@@ -100,7 +99,7 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
 
   Rect _calculateRect() {
     final RenderBox renderBox =
-        widget.anchorKey.currentContext.findRenderObject() as RenderBox;
+        widget.anchorKey.currentContext?.findRenderObject() as RenderBox;
     final size = renderBox.size;
     return renderBox.localToGlobal(Offset.zero) & size;
   }
@@ -145,9 +144,9 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
 
 class _DropdownItem<T> extends StatefulWidget {
   const _DropdownItem({
-    Key key,
-    @required this.child,
-    @required this.onChanged,
+    Key? key,
+    required this.child,
+    required this.onChanged,
   }) : super(key: key);
 
   final OptimusDropdownTile<T> child;
@@ -167,7 +166,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
             setState(() => _isHighlighted = isHighlighted),
         onTap: () {
           widget.onChanged(widget.child.value);
-          DropdownTapInterceptor.of(context).onTap();
+          DropdownTapInterceptor.of(context)?.onTap();
         },
         child: _isHighlighted
             ? DefaultTextStyle.merge(

@@ -25,13 +25,13 @@ enum OptimusCheckboxSize {
 /// independent (with exceptions).
 class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
-    Key key,
-    this.label,
+    Key? key,
+    required this.label,
     this.isChecked = false,
     this.error,
     this.isEnabled = true,
     this.size = OptimusCheckboxSize.large,
-    @required this.onChanged,
+    required this.onChanged,
   }) : super(key: key);
 
   /// Label displayed next to checkbox.
@@ -43,7 +43,7 @@ class OptimusCheckbox extends StatefulWidget {
   final bool isChecked;
 
   /// Controls error that appears below checkbox.
-  final String error;
+  final String? error;
 
   /// Whether this widget is enabled.
   final bool isEnabled;

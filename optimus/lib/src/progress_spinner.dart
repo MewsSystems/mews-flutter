@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 // TODO(VG): change loading indicator according to design (when ready)
 class OptimusProgressSpinner extends StatelessWidget {
-  const OptimusProgressSpinner({Key key}) : super(key: key);
+  const OptimusProgressSpinner({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => const Padding(

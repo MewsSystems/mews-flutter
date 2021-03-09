@@ -8,7 +8,7 @@ import 'package:optimus/src/typography/styles.dart';
 
 class OptimusInputField extends StatefulWidget {
   const OptimusInputField({
-    Key key,
+    Key? key,
     this.onChanged,
     this.placeholder,
     this.keyboardType,
@@ -39,36 +39,36 @@ class OptimusInputField extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
   }) : super(key: key);
 
-  final ValueChanged<String> onChanged;
-  final String placeholder;
-  final TextInputType keyboardType;
+  final ValueChanged<String>? onChanged;
+  final String? placeholder;
+  final TextInputType? keyboardType;
   final bool isPasswordField;
   final bool isEnabled;
-  final TextInputAction textInputAction;
-  final ValueChanged<String> onSubmitted;
-  final FocusNode focusNode;
-  final String label;
-  final Widget caption;
-  final Widget secondaryCaption;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onSubmitted;
+  final FocusNode? focusNode;
+  final String? label;
+  final Widget? caption;
+  final Widget? secondaryCaption;
   final int maxLines;
-  final int minLines;
-  final TextEditingController controller;
-  final String error;
+  final int? minLines;
+  final TextEditingController? controller;
+  final String? error;
   final bool enableInteractiveSelection;
   final bool autofocus;
   final bool autocorrect;
   final bool hasBorders;
   final bool isRequired;
-  final Widget suffix;
-  final Widget prefix;
-  final Key inputKey;
-  final Key fieldBoxKey;
+  final Widget? suffix;
+  final Widget? prefix;
+  final Key? inputKey;
+  final Key? fieldBoxKey;
   final bool readOnly;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final TextAlign textAlign;
   final OptimusWidgetSize size;
 
-  bool get hasError => error != null && error.isNotEmpty;
+  bool get hasError => error != null && error!.isNotEmpty;
 
   @override
   _OptimusInputFieldState createState() => _OptimusInputFieldState();
@@ -76,7 +76,7 @@ class OptimusInputField extends StatefulWidget {
 
 class _OptimusInputFieldState extends State<OptimusInputField>
     with ThemeGetter {
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
 
   FocusNode get _effectiveFocusNode =>
@@ -212,7 +212,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 }
 
 class _SuffixPadding extends StatelessWidget {
-  const _SuffixPadding({Key key, @required this.child}) : super(key: key);
+  const _SuffixPadding({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 

@@ -30,7 +30,7 @@ final Story button = Story(
                     initial: null,
                     options: exampleIcons,
                   ),
-                  badgeLabel: k.text(label: 'Badge', initial: null),
+                  badgeLabel: k.text(label: 'Badge', initial: ''),
                   child: Text(k.text(label: 'Text', initial: 'Button')),
                 ),
               ))

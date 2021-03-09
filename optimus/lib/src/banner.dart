@@ -35,8 +35,8 @@ enum OptimusBannerVariant {
 /// A banner always takes the full width of the component it is within.
 class OptimusBanner extends StatelessWidget {
   const OptimusBanner({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
     this.variant = OptimusBannerVariant.primary,
     this.hasIcon = false,
     this.description,
@@ -60,7 +60,7 @@ class OptimusBanner extends StatelessWidget {
   /// Banner's description rendered as a second line.
   ///
   /// Typically a [Text] widget.
-  final Widget description;
+  final Widget? description;
 
   /// If `true` close button will be rendered as well.
   ///
@@ -69,7 +69,7 @@ class OptimusBanner extends StatelessWidget {
   final bool isDismissible;
 
   /// Called when close button is pressed (if [isDismissible] == true).
-  final VoidCallback onDismiss;
+  final VoidCallback? onDismiss;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +127,7 @@ class OptimusBanner extends StatelessWidget {
                         bottom: 10,
                       ),
                       child: DefaultTextStyle.merge(
-                        child: description,
+                        child: description!,
                         style: _additionalDescriptionTextStyle,
                       ),
                     ),
@@ -217,8 +217,8 @@ enum OptimusWideBannerVariant {
 /// System-wide banners must be removed when no longer necessary.
 class OptimusWideBanner extends StatelessWidget {
   const OptimusWideBanner({
-    Key key,
-    @required this.content,
+    Key? key,
+    required this.content,
     this.variant = OptimusWideBannerVariant.informative,
   }) : super(key: key);
 

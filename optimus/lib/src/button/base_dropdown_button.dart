@@ -13,9 +13,9 @@ import 'package:optimus/src/widget_size.dart';
 
 class BaseDropDownButton<T> extends StatefulWidget {
   const BaseDropDownButton({
-    Key key,
+    Key? key,
     this.child,
-    @required this.items,
+    required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
@@ -23,10 +23,10 @@ class BaseDropDownButton<T> extends StatefulWidget {
   }) : super(key: key);
 
   /// Typically the button's label.
-  final Widget child;
+  final Widget? child;
 
   final List<OptimusDropdownTile<T>> items;
-  final ValueSetter<T> onItemSelected;
+  final ValueSetter<T>? onItemSelected;
   final OptimusWidgetSize size;
   final OptimusDropdownButtonVariant variant;
   final BorderRadius borderRadius;
@@ -51,7 +51,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   Widget build(BuildContext context) => OverlayController(
         items: widget.items,
         anchorKey: _selectFieldKey,
-        onItemSelected: widget.onItemSelected,
+        onItemSelected: widget.onItemSelected ?? (_) {},
         focusNode: _node,
         width: _dropdownWidth,
         onShown: () => setState(() => _isOpened = true),
@@ -87,7 +87,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                             padding: const EdgeInsets.only(right: 12),
                             child: DefaultTextStyle.merge(
                               style: _labelStyle,
-                              child: widget.child,
+                              child: widget.child!,
                             ),
                           ),
                         _icon,

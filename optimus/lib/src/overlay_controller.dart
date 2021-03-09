@@ -5,12 +5,12 @@ import 'package:optimus/src/search/dropdown_tile.dart';
 
 class OverlayController<T> extends StatefulWidget {
   const OverlayController({
-    Key key,
-    @required this.child,
-    @required this.items,
-    @required this.onItemSelected,
-    @required this.focusNode,
-    @required this.anchorKey,
+    Key? key,
+    required this.child,
+    required this.items,
+    required this.onItemSelected,
+    required this.focusNode,
+    required this.anchorKey,
     this.width,
     this.onShown,
     this.onHidden,
@@ -21,17 +21,17 @@ class OverlayController<T> extends StatefulWidget {
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onItemSelected;
   final FocusNode focusNode;
-  final double width;
+  final double? width;
   final GlobalKey anchorKey;
-  final VoidCallback onShown;
-  final VoidCallback onHidden;
+  final VoidCallback? onShown;
+  final VoidCallback? onHidden;
 
   @override
   _OverlayControllerState<T> createState() => _OverlayControllerState<T>();
 }
 
 class _OverlayControllerState<T> extends State<OverlayController<T>> {
-  OverlayEntry _overlayEntry;
+  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   @override
   void didUpdateWidget(OverlayController<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       _overlayEntry?.markNeedsBuild();
     });
   }
@@ -54,7 +54,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   void _showOverlay() {
     if (_overlayEntry != null) return;
     _overlayEntry = _createOverlayEntry();
-    Overlay.of(context).insert(_overlayEntry);
+    Overlay.of(context)?.insert(_overlayEntry!);
     widget.onShown?.call();
   }
 

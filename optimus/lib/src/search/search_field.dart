@@ -11,32 +11,32 @@ import 'package:optimus/src/search/dropdown_tile.dart';
 
 class OptimusSearch<T> extends StatefulWidget {
   const OptimusSearch({
-    Key key,
+    Key? key,
     this.label,
-    this.placeholder,
+    this.placeholder = '',
     this.controller,
-    @required this.items,
+    required this.items,
     this.isUpdating = false,
     this.isEnabled = true,
     this.isRequired = false,
-    @required this.onChanged,
+    required this.onChanged,
     this.caption,
     this.secondaryCaption,
     this.error,
     this.size = OptimusWidgetSize.large,
   }) : super(key: key);
 
-  final String label;
+  final String? label;
   final String placeholder;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final List<OptimusDropdownTile<T>> items;
   final bool isUpdating;
   final bool isEnabled;
   final bool isRequired;
   final ValueSetter<T> onChanged;
-  final Widget caption;
-  final Widget secondaryCaption;
-  final String error;
+  final Widget? caption;
+  final Widget? secondaryCaption;
+  final String? error;
   final OptimusWidgetSize size;
 
   @override
@@ -47,26 +47,26 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   final _fieldBoxKey = GlobalKey();
 
   final _focusNode = FocusNode();
-  OverlayEntry _overlayEntry;
+  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
     super.initState();
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        WidgetsBinding.instance.addPostFrameCallback(_afterLayoutWithShow);
+        WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
       } else {
         setState(_removeOverlay);
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayoutBuild);
+    WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutBuild);
   }
 
   @override
   void didUpdateWidget(OptimusSearch<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       _overlayEntry?.markNeedsBuild();
     });
   }
@@ -109,13 +109,13 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
 
   void _showOverlay() {
     if (_overlayEntry != null) {
-      Overlay.of(context).insert(_overlayEntry);
+      Overlay.of(context)?.insert(_overlayEntry!);
     }
   }
 
   void _removeOverlay() {
     if (_overlayEntry != null) {
-      _overlayEntry.remove();
+      _overlayEntry!.remove();
       _overlayEntry = null;
     }
   }
@@ -137,7 +137,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
                 );
 
             final RenderBox inputFieldBox =
-                _fieldBoxKey.currentContext.findRenderObject() as RenderBox;
+                _fieldBoxKey.currentContext?.findRenderObject() as RenderBox;
             final dropdownBox = context.findRenderObject() as RenderBox;
 
             if (!hitTest(inputFieldBox) && !hitTest(dropdownBox)) {
@@ -158,7 +158,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
 }
 
 class _Icon extends StatelessWidget {
-  const _Icon({Key key}) : super(key: key);
+  const _Icon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

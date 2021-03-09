@@ -6,8 +6,8 @@ import 'package:optimus/src/typography/styles.dart';
 
 class OptimusTab extends StatelessWidget {
   const OptimusTab({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
 
   final String text;
@@ -18,15 +18,15 @@ class OptimusTab extends StatelessWidget {
 
 class OptimusTabBar extends StatelessWidget {
   const OptimusTabBar({
-    Key key,
-    @required this.tabs,
-    @required this.pages,
+    Key? key,
+    required this.tabs,
+    required this.pages,
     this.tabController,
   }) : super(key: key);
 
   final List<Widget> tabs;
   final List<Widget> pages;
-  final TabController tabController;
+  final TabController? tabController;
 
   @override
   Widget build(BuildContext context) {

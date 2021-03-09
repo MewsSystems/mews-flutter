@@ -10,9 +10,9 @@ import 'package:optimus/src/typography/variation.dart';
 /// Simple and understandable labels contribute to more accessible UIs.
 class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
-    Key key,
+    Key? key,
     this.variation = Variation.variationDefault,
-    this.child,
+    required this.child,
   }) : super(key: key);
 
   /// The content of the label.
@@ -43,9 +43,9 @@ class OptimusLabel extends StatelessWidget {
 /// Simple and understandable labels contribute to more accessible UIs.
 class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
-    Key key,
+    Key? key,
     this.variation = Variation.variationDefault,
-    this.child,
+    required this.child,
   }) : super(key: key);
 
   /// The content of the label.

@@ -13,8 +13,8 @@ final Story nonModalDialogStory = Story(
 
 class _Content extends StatelessWidget {
   const _Content({
-    Key key,
-    @required this.k,
+    Key? key,
+    required this.k,
   }) : super(key: key);
 
   final KnobsBuilder k;
@@ -26,7 +26,7 @@ class _Content extends StatelessWidget {
 
     return OptimusButton(
       onPressed: () => {
-        NonModalWrapper.of(context).show(
+        NonModalWrapper.of(context)?.show(
           title: const Text('Title'),
           content: const Text('Content'),
           isDismissible: isDismissible,

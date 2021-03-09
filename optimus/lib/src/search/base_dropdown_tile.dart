@@ -5,13 +5,13 @@ import 'package:optimus/src/typography/subtitle.dart';
 
 class BaseDropdownTile extends StatefulWidget {
   const BaseDropdownTile({
-    Key key,
-    this.title,
+    Key? key,
+    required this.title,
     this.subtitle,
   }) : super(key: key);
 
   final Widget title;
-  final Widget subtitle;
+  final Widget? subtitle;
 
   @override
   _BaseDropdownTileState createState() => _BaseDropdownTileState();
@@ -26,7 +26,8 @@ class _BaseDropdownTileState extends State<BaseDropdownTile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             OptimusHighlightLow(child: widget.title),
-            if (widget.subtitle != null) OptimusSubtitle(child: widget.subtitle)
+            if (widget.subtitle != null)
+              OptimusSubtitle(child: widget.subtitle!)
           ],
         ),
       );

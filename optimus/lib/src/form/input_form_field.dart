@@ -4,35 +4,35 @@ import 'package:optimus/optimus.dart';
 
 class OptimusInputFormField extends FormField<String> {
   OptimusInputFormField({
-    Key key,
-    String initialValue,
+    Key? key,
+    String? initialValue,
     this.controller,
-    FormFieldSetter<String> onSaved,
-    FormFieldValidator<String> validator,
-    AutovalidateMode autovalidateMode,
-    String placeholder,
-    TextInputType keyboardType,
+    FormFieldSetter<String>? onSaved,
+    FormFieldValidator<String>? validator,
+    AutovalidateMode? autovalidateMode,
+    String? placeholder,
+    TextInputType? keyboardType,
     bool isPasswordField = false,
     bool isEnabled = true,
-    TextInputAction textInputAction,
-    ValueChanged<String> onSubmitted,
-    FocusNode focusNode,
-    String label,
+    TextInputAction? textInputAction,
+    ValueChanged<String>? onSubmitted,
+    FocusNode? focusNode,
+    String? label,
     int maxLines = 1,
-    int minLines,
+    int? minLines,
     bool enableInteractiveSelection = true,
     bool autofocus = false,
     bool autocorrect = true,
     bool hasBorders = true,
     bool isRequired = false,
-    Widget suffix,
-    Widget prefix,
-    Key inputKey,
+    Widget? suffix,
+    Widget? prefix,
+    Key? inputKey,
     bool readOnly = false,
-    VoidCallback onTap,
+    VoidCallback? onTap,
     TextAlign textAlign = TextAlign.start,
-    Widget caption,
-    Widget secondaryCaption,
+    Widget? caption,
+    Widget? secondaryCaption,
   })  : assert(
           initialValue == null || controller == null,
           'Provide either initial value or controller',
@@ -78,7 +78,7 @@ class OptimusInputFormField extends FormField<String> {
           },
         );
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   _InputFormFieldState createState() => _InputFormFieldState();
@@ -86,10 +86,10 @@ class OptimusInputFormField extends FormField<String> {
 
 // See _TextFormFieldState
 class _InputFormFieldState extends FormFieldState<String> {
-  TextEditingController _controller;
+  TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
-      widget.controller ?? _controller;
+      widget.controller ?? _controller!;
 
   @override
   OptimusInputFormField get widget => super.widget as OptimusInputFormField;
@@ -100,7 +100,7 @@ class _InputFormFieldState extends FormFieldState<String> {
     if (widget.controller == null) {
       _controller = TextEditingController(text: widget.initialValue);
     } else {
-      widget.controller.addListener(_handleControllerChanged);
+      widget.controller!.addListener(_handleControllerChanged);
     }
   }
 
@@ -113,10 +113,10 @@ class _InputFormFieldState extends FormFieldState<String> {
 
       if (oldWidget.controller != null && widget.controller == null) {
         _controller =
-            TextEditingController.fromValue(oldWidget.controller.value);
+            TextEditingController.fromValue(oldWidget.controller!.value);
       }
       if (widget.controller != null) {
-        setValue(widget.controller.text);
+        setValue(widget.controller!.text);
         if (oldWidget.controller == null) _controller = null;
       }
     }
@@ -129,17 +129,19 @@ class _InputFormFieldState extends FormFieldState<String> {
   }
 
   @override
-  void didChange(String value) {
+  void didChange(String? value) {
     super.didChange(value);
 
-    if (_effectiveController.text != value) _effectiveController.text = value;
+    if (_effectiveController.text != value) {
+      _effectiveController.text = value ?? '';
+    }
   }
 
   @override
   void reset() {
     super.reset();
     setState(() {
-      _effectiveController.text = widget.initialValue;
+      _effectiveController.text = widget.initialValue ?? '';
     });
   }
 
