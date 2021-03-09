@@ -1,3 +1,7 @@
+## 0.5.0+1
+
+ - **FIX**: Add generated files.
+
 ## 0.5.0
 
 - Migrate to null-safety
