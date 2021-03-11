@@ -1,3 +1,11 @@
+## 0.5.1
+
+ - **FIX**: Add generated files.
+ - **FIX**: Add generated files.
+ - **FEAT**: Make scroll behavior public (#55).
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.5.0+1
 
  - **FIX**: Add generated files.
