@@ -1,3 +1,7 @@
+## 0.5.1
+
+ - **FEAT**: Make scroll behavior public (#55).
+
 ## 0.5.0+1
 
  - **FIX**: Add generated files.
