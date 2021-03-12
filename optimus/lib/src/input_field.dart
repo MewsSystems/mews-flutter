@@ -37,36 +37,62 @@ class OptimusInputField extends StatefulWidget {
     this.onTap,
     this.textAlign = TextAlign.start,
     this.size = OptimusWidgetSize.large,
+    this.showCursor,
   }) : super(key: key);
 
+  /// {@macro flutter.widgets.editableText.onChanged}
   final ValueChanged<String>? onChanged;
   final String? placeholder;
+
+  /// {@macro flutter.widgets.editableText.keyboardType}
   final TextInputType? keyboardType;
   final bool isPasswordField;
   final bool isEnabled;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmitted;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
   final String? label;
   final Widget? caption;
   final Widget? secondaryCaption;
+
+  /// {@macro flutter.widgets.editableText.maxLines}
   final int maxLines;
+
+  /// {@macro flutter.widgets.editableText.minLines}
   final int? minLines;
   final TextEditingController? controller;
   final String? error;
   final bool enableInteractiveSelection;
+
+  /// {@macro flutter.widgets.editableText.autofocus}
   final bool autofocus;
+
+  /// {@macro flutter.widgets.editableText.autocorrect}
   final bool autocorrect;
   final bool hasBorders;
   final bool isRequired;
+
+  /// An optional [Widget] to display after the text.
   final Widget? suffix;
+
+  /// An optional [Widget] to display before the text.
   final Widget? prefix;
   final Key? inputKey;
   final Key? fieldBoxKey;
+
+  /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
+
   final VoidCallback? onTap;
+
   final TextAlign textAlign;
+
   final OptimusWidgetSize size;
+
+  /// {@macro flutter.widgets.editableText.showCursor}
+  final bool? showCursor;
 
   bool get hasError => error != null && error!.isNotEmpty;
 
@@ -135,6 +161,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
               onTap: widget.onTap,
               readOnly: widget.readOnly,
+              showCursor: widget.showCursor,
             ),
           ),
           if (widget.isPasswordField)
