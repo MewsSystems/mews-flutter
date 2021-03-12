@@ -14,6 +14,8 @@ class OptimusNumberPicker extends StatefulWidget {
     this.focusNode,
     this.isEnabled = true,
     this.error,
+    this.readOnly = false,
+    this.showCursor,
   })  : assert(
           min <= defaultValue && defaultValue <= max,
           'default value should be in [min, max] range',
@@ -32,6 +34,12 @@ class OptimusNumberPicker extends StatefulWidget {
   final FocusNode? focusNode;
   final bool isEnabled;
   final String? error;
+
+  /// {@macro flutter.widgets.editableText.readOnly}
+  final bool readOnly;
+
+  /// {@macro flutter.widgets.editableText.showCursor}
+  final bool? showCursor;
 
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
@@ -113,6 +121,8 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
             }
           },
           placeholder: widget.defaultValue.toString(),
+          readOnly: widget.readOnly,
+          showCursor: widget.showCursor,
         ),
       );
 }

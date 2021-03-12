@@ -24,6 +24,8 @@ class OptimusSearch<T> extends StatefulWidget {
     this.secondaryCaption,
     this.error,
     this.size = OptimusWidgetSize.large,
+    this.readOnly = false,
+    this.showCursor,
   }) : super(key: key);
 
   final String? label;
@@ -38,6 +40,12 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? secondaryCaption;
   final String? error;
   final OptimusWidgetSize size;
+
+  /// {@macro flutter.widgets.editableText.showCursor}
+  final bool? showCursor;
+
+  /// {@macro flutter.widgets.editableText.readOnly}
+  final bool readOnly;
 
   @override
   _OptimusSearchState createState() => _OptimusSearchState<T>();
@@ -89,6 +97,8 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           secondaryCaption: widget.secondaryCaption,
           error: widget.error,
           size: widget.size,
+          readOnly: widget.readOnly,
+          showCursor: widget.showCursor,
         ),
       );
 
