@@ -1,3 +1,8 @@
+## 0.5.2
+
+ - **FEAT**: Make OptimusEnabled public (#58).
+ - **FEAT**: Add showCursor parameter (#57).
+
 ## 0.5.1
 
  - **FEAT**: Make scroll behavior public (#55).
