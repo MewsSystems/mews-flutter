@@ -56,7 +56,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
         width: _dropdownWidth,
         onShown: () => setState(() => _isOpened = true),
         onHidden: () => setState(() => _isOpened = false),
-        child: Enabled(
+        child: OptimusEnabled(
           isEnabled: _isEnabled,
           child: MouseRegion(
             onEnter: (_) => _onHoverChanged(true),

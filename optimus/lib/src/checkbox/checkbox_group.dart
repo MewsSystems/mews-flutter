@@ -52,7 +52,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   Widget build(BuildContext context) => GroupWrapper(
         label: label,
         error: error,
-        child: Enabled(
+        child: OptimusEnabled(
           isEnabled: isEnabled,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

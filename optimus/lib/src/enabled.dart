@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/constants.dart';
 
-class Enabled extends StatelessWidget {
-  const Enabled({
+class OptimusEnabled extends StatelessWidget {
+  const OptimusEnabled({
     Key? key,
     required this.isEnabled,
     required this.child,

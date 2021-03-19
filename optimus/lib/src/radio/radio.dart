@@ -112,7 +112,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
   @override
   Widget build(BuildContext context) => GroupWrapper(
         error: widget.error,
-        child: Enabled(
+        child: OptimusEnabled(
           isEnabled: widget.isEnabled,
           child: MouseRegion(
             onEnter: (_) => _onHoverChanged(true),

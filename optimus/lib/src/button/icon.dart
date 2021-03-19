@@ -73,7 +73,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
   }
 
   @override
-  Widget build(BuildContext context) => Enabled(
+  Widget build(BuildContext context) => OptimusEnabled(
         isEnabled: widget.onPressed != null,
         child: MouseRegion(
           onEnter: (_) => _onHoverChanged(true),
