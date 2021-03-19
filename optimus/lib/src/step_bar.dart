@@ -104,7 +104,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
           maxWidth: min(_itemMaxWidth, maxWidth),
           minWidth: _itemMinWidth,
         ),
-        child: Enabled(
+        child: OptimusEnabled(
           isEnabled: _getItemState(item) != OptimusStepBarItemState.disabled,
           child: Row(
             mainAxisSize: MainAxisSize.min,

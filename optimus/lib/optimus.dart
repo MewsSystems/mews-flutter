@@ -25,6 +25,7 @@ export 'src/common/scroll.dart';
 export 'src/date_time_field.dart';
 export 'src/dialogs/dialog.dart';
 export 'src/dialogs/non_modal_wrapper.dart';
+export 'src/enabled.dart';
 export 'src/expansion/expansion_tile.dart';
 export 'src/form/date_time_form_field.dart';
 export 'src/form/input_form_field.dart';

@@ -133,7 +133,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
       child: DefaultTextStyle.merge(style: _labelStyle, child: widget.label),
     );
 
-    return Enabled(
+    return OptimusEnabled(
       isEnabled: widget.isEnabled,
       child: GroupWrapper(
         error: widget.error,
