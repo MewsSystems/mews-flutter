@@ -9,11 +9,13 @@ class GroupWrapper extends StatelessWidget {
     required this.child,
     this.label,
     this.error,
+    this.isRequired = false,
   }) : super(key: key);
 
   final Widget child;
   final String? label;
   final String? error;
+  final bool isRequired;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class GroupWrapper extends StatelessWidget {
         if (label != null && label!.isNotEmpty)
           OptimusLabelSmall(
             child: Text(
-              label!,
+              isRequired ? '${label!} *' : label!,
               style: TextStyle(color: _textColor(theme)),
             ),
           ),
