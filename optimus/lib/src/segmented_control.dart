@@ -19,6 +19,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
     this.label,
     this.error,
     this.isEnabled = true,
+    this.isRequired = false,
   }) : super(key: key);
 
   final OptimusWidgetSize size;
@@ -35,11 +36,13 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
 
   final bool isEnabled;
 
+  final bool isRequired;
+
   @override
-  // TODO(VG): GroupWrapper should reuse label and error fields
   Widget build(BuildContext context) => GroupWrapper(
         label: label,
         error: error,
+        isRequired: isRequired,
         child: OptimusEnabled(
           isEnabled: isEnabled,
           child: OptimusStack(

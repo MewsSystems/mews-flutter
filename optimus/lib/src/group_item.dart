@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-// TODO(VG): add description for OptimusSegmentedControl?
-/// Used with grouped items such as [OptimusRadioGroup] and [OptimusCheckboxGroup].
+/// Used with grouped items such as [OptimusRadioGroup], [OptimusCheckboxGroup]
+/// and [OptimusSegmentedControl].
 class OptimusGroupItem<T> {
   const OptimusGroupItem({
     required this.label,
