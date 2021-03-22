@@ -54,8 +54,8 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
 }
 
 const _options = [
-  'A',
-  'B',
+  'Another long option',
+  'Bbb',
   'C',
   // 'D',
 ];

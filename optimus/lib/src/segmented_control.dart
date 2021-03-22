@@ -42,8 +42,9 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
         error: error,
         child: OptimusEnabled(
           isEnabled: isEnabled,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+          child: OptimusStack(
+            direction: Axis.horizontal,
+            distribution: OptimusStackDistribution.stretch,
             children: items
                 .mapIndexed((i, v) => OptimusSegmentedControlItem<T>(
                       value: v.value,
@@ -125,13 +126,15 @@ class _OptimusSegmentedControlItemState<T>
           child: Container(
             height: widget.size.value,
             decoration: BoxDecoration(
+              color: _color,
               borderRadius: _borderRadius,
               border: Border.all(color: _borderColor),
             ),
             child: Stack(
               children: [
                 if (_isSelected)
-                  const Center(
+                  const Align(
+                    alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: EdgeInsets.only(left: spacing100),
                       child: OptimusIcon(
@@ -142,6 +145,7 @@ class _OptimusSegmentedControlItemState<T>
                   ),
                 Center(
                   child: DefaultTextStyle.merge(
+                    overflow: TextOverflow.ellipsis,
                     style: preset300s.copyWith(color: _textColor),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -183,13 +187,8 @@ class _OptimusSegmentedControlItemState<T>
   Color get _borderColor =>
       _isSelected ? theme.colors.primary500 : theme.colors.neutral100;
 
-  Color get _color => _isSelected
-      ? theme.colors.danger500
-      : _isHovering || _isTappedDown
-          ? theme.colors.primary900 // _highlightColor
-          : _isHovering
-              ? theme.colors.primary700 // _hoverColor
-              : theme.colors.primary500; // _normalColor
+  Color? get _color =>
+      _isHovering || _isTappedDown ? theme.colors.primary500t8 : null;
 }
 
 enum _ItemPosition { first, inBetween, last }
