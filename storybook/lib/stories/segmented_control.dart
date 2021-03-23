@@ -6,11 +6,17 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story segmentedControlStory = Story(
   name: 'Segmented control',
+  // builder: (_, k) => _SegmentedControlExample(
+  //   label: k.text(label: 'Label', initial: ''),
+  //   error: k.text(label: 'Error', initial: ''),
+  //   isEnabled: k.boolean(label: 'Enabled', initial: true),
+  //   isRequired: k.boolean(label: 'Required', initial: false),
+  // ),
   builder: (_, k) => _SegmentedControlExample(
-    label: k.text(label: 'Label', initial: ''),
-    error: k.text(label: 'Error', initial: ''),
-    isEnabled: k.boolean(label: 'Enabled', initial: true),
-    isRequired: k.boolean(label: 'Required', initial: false),
+    label: 'Label',
+    error:'Error',
+    isEnabled: true,
+    isRequired: true,
   ),
 );
 
@@ -52,6 +58,6 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
 
 const _options = [
   'Another long option',
-  'B',
-  'C',
+  'Bxcxc',
+  'Cxcxcxc',
 ];

@@ -9,7 +9,7 @@ import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/group_wrapper.dart';
 import 'package:optimus/src/typography/styles.dart';
 
-class OptimusSegmentedControl<T> extends StatelessWidget {
+class OptimusSegmentedControl<T> extends StatefulWidget {
   const OptimusSegmentedControl({
     Key? key,
     this.size = OptimusWidgetSize.large,
@@ -39,33 +39,76 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
   final bool isRequired;
 
   @override
-  Widget build(BuildContext context) => GroupWrapper(
-        label: label,
-        error: error,
-        isRequired: isRequired,
-        child: OptimusEnabled(
-          isEnabled: isEnabled,
-          child: OptimusStack(
-            direction: Axis.horizontal,
-            distribution: OptimusStackDistribution.stretch,
-            children: items
-                .mapIndexed((i, v) => OptimusSegmentedControlItem<T>(
-                      value: v.value,
-                      size: size,
-                      position: _position(i),
-                      groupValue: value,
-                      onChanged: onChanged,
-                      child: v.label,
-                    ))
-                .toList(),
+  _OptimusSegmentedControlState<T> createState() =>
+      _OptimusSegmentedControlState<T>();
+}
+
+class _OptimusSegmentedControlState<T>
+    extends State<OptimusSegmentedControl<T>> {
+  int _selectedItemIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    return GroupWrapper(
+      label: widget.label,
+      error: widget.error,
+      isRequired: widget.isRequired,
+      child: OptimusEnabled(
+        isEnabled: widget.isEnabled,
+        child: LayoutBuilder(
+          builder: (context, constraints) => Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(borderRadius100),
+                  border: Border.all(color: theme.colors.neutral100),
+                ),
+                child: OptimusStack(
+                  direction: Axis.horizontal,
+                  distribution: OptimusStackDistribution.stretch,
+                  children: widget.items
+                      .mapIndexed((i, v) => OptimusSegmentedControlItem<T>(
+                            value: v.value,
+                            size: widget.size,
+                            position: _position(i),
+                            groupValue: widget.value,
+                            onChanged: (value) {
+                              widget.onChanged(value);
+                              _selectedItemIndex = i;
+                            },
+                            child: v.label,
+                          ))
+                      .toList(),
+                ),
+              ),
+              Positioned(
+                left: (constraints.maxWidth / widget.items.length) *
+                    _selectedItemIndex,
+                child: IgnorePointer(
+                  ignoring: true,
+                  child: Container(
+                    width: constraints.maxWidth / widget.items.length,
+                    height: widget.size.value + 2,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: const BorderRadius.all(borderRadius100),
+                      border: Border.all(color: theme.colors.danger500),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 
   _ItemPosition _position(int index) {
     if (index == 0) {
       return _ItemPosition.first;
-    } else if (index == items.length - 1) {
+    } else if (index == widget.items.length - 1) {
       return _ItemPosition.last;
     }
     return _ItemPosition.inBetween;
@@ -128,11 +171,6 @@ class _OptimusSegmentedControlItemState<T>
           onTapCancel: () => setState(() => _isTappedDown = false),
           child: Container(
             height: widget.size.value,
-            decoration: BoxDecoration(
-              color: _color,
-              borderRadius: _borderRadius,
-              border: Border.all(color: _borderColor),
-            ),
             child: Stack(
               children: [
                 if (_isSelected)
