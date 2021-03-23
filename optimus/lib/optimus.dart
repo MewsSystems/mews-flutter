@@ -41,7 +41,7 @@ export 'src/radio/radio.dart';
 export 'src/radio/radio_group.dart';
 export 'src/search/dropdown_tile.dart';
 export 'src/search/search_field.dart';
-export 'src/segmented_control.dart';
+export 'src/segmented_control/segmented_control.dart';
 export 'src/select.dart';
 export 'src/slidable/slidable.dart';
 export 'src/slidable/slide_action.dart';
