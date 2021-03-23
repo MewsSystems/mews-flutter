@@ -43,8 +43,8 @@ class OptimusSegmentedControl<T> extends StatefulWidget {
       _OptimusSegmentedControlState<T>();
 }
 
-class _OptimusSegmentedControlState<T>
-    extends State<OptimusSegmentedControl<T>> {
+class _OptimusSegmentedControlState<T> extends State<OptimusSegmentedControl<T>>
+    with ThemeGetter {
   int _selectedItemIndex = 0;
 
   @override
@@ -61,7 +61,7 @@ class _OptimusSegmentedControlState<T>
             children: [
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(borderRadius100),
+                  borderRadius: const BorderRadius.all(borderRadius50),
                   border: Border.all(color: theme.colors.neutral100),
                 ),
                 child: OptimusStack(
@@ -82,17 +82,17 @@ class _OptimusSegmentedControlState<T>
                       .toList(),
                 ),
               ),
+              Row(children: _dividers(constraints.maxWidth)),
               Positioned(
-                left: (constraints.maxWidth / widget.items.length) *
-                    _selectedItemIndex,
+                left: _left(constraints.maxWidth),
                 child: IgnorePointer(
                   ignoring: true,
                   child: Container(
-                    width: constraints.maxWidth / widget.items.length,
-                    height: widget.size.value + 2,
+                    width: _width(constraints.maxWidth),
+                    height: _height,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: const BorderRadius.all(borderRadius100),
+                      borderRadius: _borderRadius,
                       border: Border.all(color: theme.colors.danger500),
                     ),
                   ),
@@ -105,6 +105,53 @@ class _OptimusSegmentedControlState<T>
     );
   }
 
+  double get _height => widget.size.value + 2;
+
+  List<Widget> _dividers(double maxWidth) {
+    final result = Iterable<int>.generate(widget.items.length - 1)
+        .map((e) => IgnorePointer(
+              ignoring: true,
+              child: Container(
+                height: _height,
+                width: maxWidth / widget.items.length,
+                decoration: BoxDecoration(
+                  border: Border(
+                    right: BorderSide(color: theme.colors.neutral100),
+                  ),
+                ),
+              ),
+            ))
+        .toList();
+
+    return result;
+  }
+
+  double _left(double maxWidth) {
+    final position = _position(_selectedItemIndex);
+
+    switch (position) {
+      case _ItemPosition.first:
+        return ((maxWidth / widget.items.length) * _selectedItemIndex) - 0;
+      case _ItemPosition.inBetween:
+        return ((maxWidth / widget.items.length) * _selectedItemIndex) - 1;
+      case _ItemPosition.last:
+        return ((maxWidth / widget.items.length) * _selectedItemIndex) - 1;
+    }
+  }
+
+  double _width(double maxWidth) {
+    final position = _position(_selectedItemIndex);
+
+    switch (position) {
+      case _ItemPosition.first:
+        return (maxWidth / widget.items.length) + 0;
+      case _ItemPosition.inBetween:
+        return (maxWidth / widget.items.length) + 1;
+      case _ItemPosition.last:
+        return (maxWidth / widget.items.length) + 1;
+    }
+  }
+
   _ItemPosition _position(int index) {
     if (index == 0) {
       return _ItemPosition.first;
@@ -112,6 +159,25 @@ class _OptimusSegmentedControlState<T>
       return _ItemPosition.last;
     }
     return _ItemPosition.inBetween;
+  }
+
+  BorderRadiusGeometry get _borderRadius {
+    final position = _position(_selectedItemIndex);
+
+    switch (position) {
+      case _ItemPosition.first:
+        return const BorderRadius.only(
+          topLeft: borderRadius50,
+          bottomLeft: borderRadius50,
+        );
+      case _ItemPosition.inBetween:
+        return const BorderRadius.all(borderRadius0);
+      case _ItemPosition.last:
+        return const BorderRadius.only(
+          topRight: borderRadius50,
+          bottomRight: borderRadius50,
+        );
+    }
   }
 }
 
@@ -172,6 +238,7 @@ class _OptimusSegmentedControlItemState<T>
           child: Container(
             height: widget.size.value,
             child: Stack(
+              clipBehavior: Clip.none,
               children: [
                 if (_isSelected)
                   const Align(
@@ -196,11 +263,37 @@ class _OptimusSegmentedControlItemState<T>
                     ),
                   ),
                 ),
+                // if (!_isSelected) _divider
               ],
             ),
           ),
         ),
       );
+
+  Widget get _divider {
+    switch (widget.position) {
+      case _ItemPosition.first:
+        return Positioned(
+          right: 0,
+          child: Container(
+            color: theme.colors.neutral100,
+            height: widget.size.value,
+            width: 1,
+          ),
+        );
+      case _ItemPosition.inBetween:
+        return Positioned(
+          right: 0,
+          child: Container(
+            color: theme.colors.neutral100,
+            height: widget.size.value,
+            width: 1,
+          ),
+        );
+      case _ItemPosition.last:
+        return Container();
+    }
+  }
 
   BorderRadiusGeometry get _borderRadius {
     switch (widget.position) {

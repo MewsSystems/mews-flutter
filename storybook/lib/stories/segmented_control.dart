@@ -60,4 +60,5 @@ const _options = [
   'Another long option',
   'Bxcxc',
   'Cxcxcxc',
+  'Dxcxcxc',
 ];
