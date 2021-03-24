@@ -83,7 +83,7 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
         isRequired: widget.isRequired,
         error: widget.error,
         isEnabled: widget.isEnabled,
-        onChanged: (value) => setState(() => _groupValue = value),
+        onItemSelected: (value) => setState(() => _groupValue = value),
         items: widget.options
             .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
             .toList(),

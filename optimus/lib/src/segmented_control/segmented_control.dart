@@ -15,7 +15,7 @@ class OptimusSegmentedControl<T> extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     required this.items,
     required this.value,
-    required this.onChanged,
+    required this.onItemSelected,
     this.label,
     this.error,
     this.isEnabled = true,
@@ -28,7 +28,7 @@ class OptimusSegmentedControl<T> extends StatefulWidget {
 
   final T value;
 
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T> onItemSelected;
 
   final String? label;
 
@@ -66,8 +66,8 @@ class _OptimusSegmentedControlState<T>
                         value: v.value,
                         size: widget.size,
                         groupValue: widget.value,
-                        onChanged: (value) {
-                          widget.onChanged(value);
+                        onItemSelected: (value) {
+                          widget.onItemSelected(value);
                           _selectedItemIndex = i;
                         },
                         child: v.label,
@@ -86,7 +86,7 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
     required this.size,
     required this.value,
     required this.groupValue,
-    required this.onChanged,
+    required this.onItemSelected,
   }) : super(key: key);
 
   final Widget child;
@@ -97,7 +97,7 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
 
   final T groupValue;
 
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T> onItemSelected;
 
   @override
   _OptimusSegmentedControlItemState<T> createState() =>
@@ -117,7 +117,7 @@ class _OptimusSegmentedControlItemState<T>
 
   void _onChanged() {
     if (!_isSelected) {
-      widget.onChanged(widget.value);
+      widget.onItemSelected(widget.value);
     }
   }
 
@@ -150,7 +150,7 @@ class _OptimusSegmentedControlItemState<T>
                 Center(
                   child: DefaultTextStyle.merge(
                     overflow: TextOverflow.ellipsis,
-                    style: preset300s.copyWith(color: _textColor),
+                    style: preset300s.copyWith(color: theme.colors.neutral900),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: spacing500,
@@ -164,12 +164,6 @@ class _OptimusSegmentedControlItemState<T>
           ),
         ),
       );
-
-  Color get _textColor => _isSelected
-      ? theme.isDark
-          ? theme.colors.neutral0
-          : theme.colors.neutral1000
-      : theme.colors.neutral100;
 
   Color? get _color => _isHovering || _isTappedDown
       ? theme.colors.primary500t8

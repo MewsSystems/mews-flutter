@@ -43,7 +43,6 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
             Positioned(
               left: _left(constraints.maxWidth),
               child: IgnorePointer(
-                ignoring: true,
                 child: Container(
                   width: _width(constraints.maxWidth),
                   height: widget.size.value,
@@ -62,7 +61,6 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
   List<Widget> _dividers(double maxWidth) =>
       Iterable<int>.generate(widget.listSize - 1)
           .map((e) => IgnorePointer(
-                ignoring: true,
                 child: Container(
                   height: widget.size.value,
                   width: maxWidth / widget.listSize,
