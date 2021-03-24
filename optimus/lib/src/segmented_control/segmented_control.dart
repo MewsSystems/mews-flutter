@@ -10,7 +10,7 @@ import 'package:optimus/src/segmented_control/wrapper.dart';
 import 'package:optimus/src/typography/styles.dart';
 
 class OptimusSegmentedControl<T> extends StatefulWidget {
-  const OptimusSegmentedControl({
+  OptimusSegmentedControl({
     Key? key,
     this.size = OptimusWidgetSize.large,
     required this.items,
@@ -20,7 +20,11 @@ class OptimusSegmentedControl<T> extends StatefulWidget {
     this.error,
     this.isEnabled = true,
     this.isRequired = false,
-  }) : super(key: key);
+  })  : assert(
+          items.contains(value),
+          'Segmented control should always have some existing value',
+        ),
+        super(key: key);
 
   final OptimusWidgetSize size;
 
