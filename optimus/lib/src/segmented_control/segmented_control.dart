@@ -9,7 +9,7 @@ import 'package:optimus/src/group_wrapper.dart';
 import 'package:optimus/src/segmented_control/wrapper.dart';
 import 'package:optimus/src/typography/styles.dart';
 
-class OptimusSegmentedControl<T> extends StatefulWidget {
+class OptimusSegmentedControl<T> extends StatelessWidget {
   OptimusSegmentedControl({
     Key? key,
     this.size = OptimusWidgetSize.large,
@@ -21,7 +21,7 @@ class OptimusSegmentedControl<T> extends StatefulWidget {
     this.isEnabled = true,
     this.isRequired = false,
   })  : assert(
-          items.contains(value),
+          items.map((i) => i.value).contains(value),
           'Segmented control should always have some existing value',
         ),
         super(key: key);
@@ -42,38 +42,29 @@ class OptimusSegmentedControl<T> extends StatefulWidget {
 
   final bool isRequired;
 
-  @override
-  _OptimusSegmentedControlState<T> createState() =>
-      _OptimusSegmentedControlState<T>();
-}
-
-class _OptimusSegmentedControlState<T>
-    extends State<OptimusSegmentedControl<T>> {
-  int _selectedItemIndex = 0;
+  int get _selectedItemIndex =>
+      items.map((i) => i.value).toList().indexOf(value);
 
   @override
   Widget build(BuildContext context) => GroupWrapper(
-        label: widget.label,
-        error: widget.error,
-        isRequired: widget.isRequired,
+        label: label,
+        error: error,
+        isRequired: isRequired,
         child: OptimusEnabled(
-          isEnabled: widget.isEnabled,
+          isEnabled: isEnabled,
           child: BorderWrapper(
-            size: widget.size,
+            size: size,
             selectedItemIndex: _selectedItemIndex,
-            listSize: widget.items.length,
+            listSize: items.length,
             child: OptimusStack(
               direction: Axis.horizontal,
               distribution: OptimusStackDistribution.stretch,
-              children: widget.items
+              children: items
                   .mapIndexed((i, v) => _OptimusSegmentedControlItem<T>(
                         value: v.value,
-                        size: widget.size,
-                        groupValue: widget.value,
-                        onItemSelected: (value) {
-                          widget.onItemSelected(value);
-                          _selectedItemIndex = i;
-                        },
+                        size: size,
+                        groupValue: value,
+                        onItemSelected: onItemSelected,
                         child: v.label,
                       ))
                   .toList(),
