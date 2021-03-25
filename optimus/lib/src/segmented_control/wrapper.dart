@@ -74,11 +74,10 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
           .toList();
 
   double _left(double maxWidth) {
-    final position = _position(widget.selectedItemIndex);
     final leftPosition =
         (maxWidth / widget.listSize) * widget.selectedItemIndex;
 
-    switch (position) {
+    switch (_position) {
       case _ItemPosition.first:
         return leftPosition;
       case _ItemPosition.inBetween:
@@ -88,10 +87,9 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
   }
 
   double _width(double maxWidth) {
-    final position = _position(widget.selectedItemIndex);
     final itemWidth = maxWidth / widget.listSize;
 
-    switch (position) {
+    switch (_position) {
       case _ItemPosition.first:
         return itemWidth;
       case _ItemPosition.inBetween:
@@ -101,9 +99,7 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
   }
 
   BorderRadiusGeometry get _borderRadius {
-    final position = _position(widget.selectedItemIndex);
-
-    switch (position) {
+    switch (_position) {
       case _ItemPosition.first:
         return const BorderRadius.only(
           topLeft: borderRadius50,
@@ -119,10 +115,10 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
     }
   }
 
-  _ItemPosition _position(int index) {
-    if (index == 0) {
+  _ItemPosition get _position {
+    if (widget.selectedItemIndex == 0) {
       return _ItemPosition.first;
-    } else if (index == widget.listSize - 1) {
+    } else if (widget.selectedItemIndex == widget.listSize - 1) {
       return _ItemPosition.last;
     }
     return _ItemPosition.inBetween;

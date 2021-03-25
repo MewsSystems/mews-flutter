@@ -13,7 +13,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
   OptimusSegmentedControl({
     Key? key,
     this.size = OptimusWidgetSize.large,
-    required this.items,
+    required Iterable<OptimusGroupItem<T>> items,
     required this.value,
     required this.onItemSelected,
     this.label,
@@ -24,6 +24,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
           items.map((i) => i.value).contains(value),
           'Segmented control should always have some existing value',
         ),
+        items = List.unmodifiable(items),
         super(key: key);
 
   final OptimusWidgetSize size;
@@ -42,7 +43,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
 
   final bool isRequired;
 
-  int get _selectedItemIndex =>
+  late final _selectedItemIndex =
       items.map((i) => i.value).toList().indexOf(value);
 
   @override
@@ -145,7 +146,11 @@ class _OptimusSegmentedControlItemState<T>
                 Center(
                   child: DefaultTextStyle.merge(
                     overflow: TextOverflow.ellipsis,
-                    style: preset300s.copyWith(color: theme.colors.neutral900),
+                    style: preset300s.copyWith(
+                      color: theme.isDark
+                          ? theme.colors.neutral0
+                          : theme.colors.neutral900,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: spacing500,
