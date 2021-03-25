@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/field_error.dart';
+import 'package:optimus/src/common/field_label.dart';
 import 'package:optimus/src/constants.dart';
-import 'package:optimus/src/field_label.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/styles.dart';
 
@@ -115,13 +116,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                       ),
                     ),
                   ),
-                  if (widget.hasError)
-                    OptimusCaption(
-                      child: Text(
-                        widget.error!,
-                        style: TextStyle(color: theme.colors.danger),
-                      ),
-                    ),
+                  if (widget.hasError) OptimusFieldError(error: widget.error!),
                   if (!widget.hasError && widget.caption != null)
                     OptimusCaption(
                       child: DefaultTextStyle.merge(
