@@ -19,8 +19,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^0.14.0
-  mews_pedantic: ^0.2.0
-
+  mews_pedantic: ^0.2.1
 flutter:
   fonts:
     - family: Montserrat

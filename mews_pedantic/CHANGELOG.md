@@ -1,3 +1,7 @@
+## 0.2.1
+
+ - **FEAT**: Add ignoreResult.
+
 ## 0.2.0
 
 - :cop: Update SDK constraints
