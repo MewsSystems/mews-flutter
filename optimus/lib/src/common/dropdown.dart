@@ -34,6 +34,7 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
   late Rect _savedRect = _calculateRect();
 
   void _updateRect(dynamic _) {
+    if (!mounted) return;
     final newRect = _calculateRect();
     if (newRect != _savedRect) {
       setState(() {

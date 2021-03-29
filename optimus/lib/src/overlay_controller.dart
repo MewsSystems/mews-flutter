@@ -47,6 +47,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   void didUpdateWidget(OverlayController<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (!mounted) return;
       _overlayEntry?.markNeedsBuild();
     });
   }

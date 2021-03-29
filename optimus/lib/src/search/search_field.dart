@@ -75,6 +75,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   void didUpdateWidget(OptimusSearch<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (!mounted) return;
       _overlayEntry?.markNeedsBuild();
     });
   }
@@ -130,9 +131,13 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
     }
   }
 
-  void _afterLayoutBuild(Duration d) => _createOverlay();
+  void _afterLayoutBuild(Duration d) {
+    if (!mounted) return;
+    _createOverlay();
+  }
 
   void _afterLayoutWithShow(Duration d) {
+    if (!mounted) return;
     _createOverlay();
     _showOverlay();
   }
