@@ -1,3 +1,14 @@
+## 0.5.3
+
+ - **STYLE**: Add newline.
+ - **REFACTOR**: Extract error field (#62).
+ - **FIX**: Fix layout issues with dispose (#63).
+ - **FEAT**: [RND-52584] Add segmented control  (#60).
+ - **CHORE**: Update dependencies.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.5.2
 
  - **FEAT**: Make OptimusEnabled public (#58).
