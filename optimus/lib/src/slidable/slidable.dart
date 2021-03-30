@@ -24,6 +24,7 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
   double _extentRatio = 1;
 
   void _afterLayout() {
+    if (!mounted) return;
     final size = context.size;
     if (size != null) {
       final ratio = size.height / size.width;
