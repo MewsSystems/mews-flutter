@@ -50,7 +50,7 @@ class _NonModalWrapperState extends State<NonModalWrapper>
               size: size,
             ));
     _entry = entry;
-    Overlay.of(context)?.insert(entry);
+    Overlay.of(context, rootOverlay: true)?.insert(entry);
   }
 
   @override

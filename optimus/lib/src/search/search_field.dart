@@ -120,7 +120,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
 
   void _showOverlay() {
     if (_overlayEntry != null) {
-      Overlay.of(context)?.insert(_overlayEntry!);
+      Overlay.of(context, rootOverlay: true)?.insert(_overlayEntry!);
     }
   }
 

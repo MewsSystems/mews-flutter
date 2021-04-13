@@ -7,15 +7,12 @@ final Story nonModalDialogStory = Story(
   name: 'Non-modal dialog',
   section: 'Dialogs',
   builder: (context, k) => NonModalWrapper(
-    child: _Content(k: k),
+    child: NonModalDialogStory(k),
   ),
 );
 
-class _Content extends StatelessWidget {
-  const _Content({
-    Key? key,
-    required this.k,
-  }) : super(key: key);
+class NonModalDialogStory extends StatelessWidget {
+  const NonModalDialogStory(this.k, {Key? key}) : super(key: key);
 
   final KnobsBuilder k;
 

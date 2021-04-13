@@ -7,12 +7,12 @@ final Story selectStory = Story(
   name: 'Select',
   builder: (_, k) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
-    child: _SelectStory(k),
+    child: SelectStory(k),
   ),
 );
 
-class _SelectStory extends StatefulWidget {
-  const _SelectStory(this.knobs, {Key? key}) : super(key: key);
+class SelectStory extends StatefulWidget {
+  const SelectStory(this.knobs, {Key? key}) : super(key: key);
 
   final KnobsBuilder knobs;
 
@@ -20,7 +20,7 @@ class _SelectStory extends StatefulWidget {
   _SelectStoryState createState() => _SelectStoryState();
 }
 
-class _SelectStoryState extends State<_SelectStory> {
+class _SelectStoryState extends State<SelectStory> {
   int? _selectedValue;
 
   @override
