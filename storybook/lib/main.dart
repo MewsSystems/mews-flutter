@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
           iconButton,
           splitButton,
           selectStory,
+          nestedSelectStory,
           checkbox,
           checkboxGroup,
           inputStory,
