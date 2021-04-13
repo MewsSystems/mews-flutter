@@ -14,6 +14,7 @@ import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_list.dart';
 import 'package:storybook/stories/input.dart';
 import 'package:storybook/stories/list_tile.dart';
+import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
 import 'package:storybook/stories/number_picker.dart';
 import 'package:storybook/stories/radio.dart';
@@ -43,7 +44,6 @@ class MyApp extends StatelessWidget {
           iconButton,
           splitButton,
           selectStory,
-          nestedSelectStory,
           checkbox,
           checkboxGroup,
           inputStory,
@@ -70,6 +70,9 @@ class MyApp extends StatelessWidget {
           tabs,
           segmentedControlStory,
           slidableStory,
+          nestedSelectStory,
+          nestedSearchStory,
+          nestedNonModalDialogStory,
         ],
       );
 }

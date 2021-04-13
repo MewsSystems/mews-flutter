@@ -7,12 +7,12 @@ final Story searchFieldStory = Story(
   name: 'Search field',
   builder: (_, k) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
-    child: _SearchStory(k),
+    child: SearchStory(k),
   ),
 );
 
-class _SearchStory extends StatefulWidget {
-  const _SearchStory(this.knobs, {Key? key}) : super(key: key);
+class SearchStory extends StatefulWidget {
+  const SearchStory(this.knobs, {Key? key}) : super(key: key);
 
   final KnobsBuilder knobs;
 
@@ -20,7 +20,7 @@ class _SearchStory extends StatefulWidget {
   _SearchStoryState createState() => _SearchStoryState();
 }
 
-class _SearchStoryState extends State<_SearchStory> {
+class _SearchStoryState extends State<SearchStory> {
   final _controller = TextEditingController();
 
   @override
