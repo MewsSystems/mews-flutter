@@ -29,6 +29,8 @@ class OptimusParagraph extends StatelessWidget {
       );
 }
 
+final TextStyle optimusParagraphStyle = preset300r;
+
 /// Paragraphs are blocks of text that group related content.
 ///
 /// Intended for the content-heavy environment (with exceptions).
@@ -54,3 +56,5 @@ class OptimusParagraphSmall extends StatelessWidget {
         child: child,
       );
 }
+
+final TextStyle optimusParagraphSmallStyle = preset200r;

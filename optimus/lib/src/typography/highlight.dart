@@ -23,6 +23,8 @@ class OptimusHighlightHigh extends StatelessWidget {
       );
 }
 
+final TextStyle optimusHighlightHighStyle = preset500s;
+
 /// Highlights are used to emphasize specific parts in the content that need to
 /// stand out from the rest of the text. Highlights serve as a guide when users
 /// skim through the content searching for relevant information, such as price
@@ -46,6 +48,8 @@ class OptimusHighlightMedium extends StatelessWidget {
       );
 }
 
+final TextStyle optimusHighlightMediumStyle = preset400s;
+
 /// Highlights are used to emphasize specific parts in the content that need to
 /// stand out from the rest of the text. Highlights serve as a guide when users
 /// skim through the content searching for relevant information, such as price
@@ -67,3 +71,5 @@ class OptimusHighlightLow extends StatelessWidget {
         child: child,
       );
 }
+
+final TextStyle optimusHighlightLowStyle = preset300m;

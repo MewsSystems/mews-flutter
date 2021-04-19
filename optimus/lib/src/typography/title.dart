@@ -19,23 +19,26 @@ class OptimusPageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: _resolveStyle,
+        resolveStyle: _resolvePageTitleStyle,
         child: child,
       );
+}
 
-  // ignore: missing_return
-  TextStyle _resolveStyle(Breakpoint size) {
-    switch (size) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-        return preset500s;
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return preset600s;
-    }
+// ignore: missing_return
+TextStyle _resolvePageTitleStyle(Breakpoint size) {
+  switch (size) {
+    case Breakpoint.extraSmall:
+    case Breakpoint.small:
+    case Breakpoint.medium:
+      return preset500s;
+    case Breakpoint.large:
+    case Breakpoint.extraLarge:
+      return preset600s;
   }
 }
+
+TextStyle optimusPageTitleStyle(BuildContext context) =>
+    _resolvePageTitleStyle(MediaQuery.of(context).screenBreakpoint);
 
 /// Titles provide content hierarchy in any interface, they should be short
 /// and precise to deliver key information about a page, screen or modal.
@@ -52,23 +55,26 @@ class OptimusSectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: _resolveStyle,
+        resolveStyle: _resolveSectionTitleStyle,
         child: child,
       );
+}
 
-  // ignore: missing_return
-  TextStyle _resolveStyle(Breakpoint size) {
-    switch (size) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-        return preset400s;
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return preset500s;
-    }
+// ignore: missing_return
+TextStyle _resolveSectionTitleStyle(Breakpoint size) {
+  switch (size) {
+    case Breakpoint.extraSmall:
+    case Breakpoint.small:
+    case Breakpoint.medium:
+      return preset400s;
+    case Breakpoint.large:
+    case Breakpoint.extraLarge:
+      return preset500s;
   }
 }
+
+TextStyle optimusSectionTitleStyle(BuildContext context) =>
+    _resolveSectionTitleStyle(MediaQuery.of(context).screenBreakpoint);
 
 /// Titles provide content hierarchy in any interface, they should be short
 /// and precise to deliver key information about a page, screen or modal.
@@ -87,20 +93,23 @@ class OptimusSubsectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: _resolveStyle,
+        resolveStyle: _resolveSubsectionTitleStyle,
         child: child,
       );
+}
 
-  // ignore: missing_return
-  TextStyle _resolveStyle(Breakpoint size) {
-    switch (size) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-        return preset300s;
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return preset400s;
-    }
+// ignore: missing_return
+TextStyle _resolveSubsectionTitleStyle(Breakpoint size) {
+  switch (size) {
+    case Breakpoint.extraSmall:
+    case Breakpoint.small:
+    case Breakpoint.medium:
+      return preset300s;
+    case Breakpoint.large:
+    case Breakpoint.extraLarge:
+      return preset400s;
   }
 }
+
+TextStyle optimusSubSectionTitleStyle(BuildContext context) =>
+    _resolveSubsectionTitleStyle(MediaQuery.of(context).screenBreakpoint);

@@ -35,3 +35,5 @@ class OptimusCaption extends StatelessWidget {
         child: child,
       );
 }
+
+final TextStyle optimusCaptionStyle = preset100m;

@@ -70,3 +70,5 @@ class OptimusLabelSmall extends StatelessWidget {
         child: child,
       );
 }
+
+final TextStyle optimusLabelSmallStyle = preset100s;

@@ -21,17 +21,20 @@ class OptimusSubtitle extends StatelessWidget {
         resolveStyle: _resolveStyle,
         child: child,
       );
+}
 
-  // ignore: missing_return
-  TextStyle _resolveStyle(Breakpoint size) {
-    switch (size) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-        return preset200m;
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return preset300m;
-    }
+// ignore: missing_return
+TextStyle _resolveStyle(Breakpoint size) {
+  switch (size) {
+    case Breakpoint.extraSmall:
+    case Breakpoint.small:
+    case Breakpoint.medium:
+      return preset200m;
+    case Breakpoint.large:
+    case Breakpoint.extraLarge:
+      return preset300m;
   }
 }
+
+TextStyle optimusSubtitleStyle(BuildContext context) =>
+    _resolveStyle(MediaQuery.of(context).screenBreakpoint);
