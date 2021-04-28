@@ -124,23 +124,26 @@ class _TagState extends State<_Tag> with ThemeGetter {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              widget.onRemoved != null
-                  ? widget.text
-                  : widget.text.toUpperCase(),
-              style: widget.onRemoved != null
-                  ? preset200m.copyWith(
-                      height: 1.1,
-                      // TODO(VG): can be changed when final dark theme design
-                      //  is ready.
-                      color: theme.colors.defaultTextColor,
-                    )
-                  // Doesn't match any typography component
-                  : baseTextStyle.copyWith(
-                      color: _textColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                    ),
+            Flexible(
+              child: Text(
+                widget.onRemoved != null
+                    ? widget.text
+                    : widget.text.toUpperCase(),
+                style: widget.onRemoved != null
+                    ? preset200m.copyWith(
+                        height: 1.1,
+                        // TODO(VG): can be changed when final dark theme design
+                        //  is ready.
+                        color: theme.colors.defaultTextColor,
+                      )
+                    // Doesn't match any typography component
+                    : baseTextStyle.copyWith(
+                        color: _textColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                      ),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             if (widget.onRemoved != null) _icon,
           ],
