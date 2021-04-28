@@ -26,6 +26,7 @@ final Story splitButton = Story(
                         (i) => ListDropdownTile<int>(
                           value: i,
                           title: Text('Dropdown tile #$i'),
+                          subtitle: Text('Subtitle #$i'),
                         ),
                       )
                       .toList(),

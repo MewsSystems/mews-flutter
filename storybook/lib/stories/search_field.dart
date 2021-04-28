@@ -45,7 +45,11 @@ class _SearchStoryState extends State<SearchStory> {
       items: _characters
           .where(
               (c) => c.toLowerCase().contains(_controller.text.toLowerCase()))
-          .map((c) => ListDropdownTile(value: c, title: Text(c)))
+          .map((c) => ListDropdownTile(
+                value: c,
+                title: Text(c),
+                subtitle: Text('Subtitle #$c'),
+              ))
           .toList(),
       onChanged: (_) {},
       label: k.text(label: 'Label', initial: 'Search field'),
