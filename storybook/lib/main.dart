@@ -28,6 +28,12 @@ import 'package:storybook/stories/stack.dart';
 import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tabs.dart';
 import 'package:storybook/stories/tags.dart';
+import 'package:storybook/stories/typography/caption.dart';
+import 'package:storybook/stories/typography/highlight.dart';
+import 'package:storybook/stories/typography/label.dart';
+import 'package:storybook/stories/typography/paragraph.dart';
+import 'package:storybook/stories/typography/subtitle.dart';
+import 'package:storybook/stories/typography/title.dart';
 import 'package:storybook/stories/wide_banner.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -74,6 +80,12 @@ class MyApp extends StatelessWidget {
           nestedSelectStory,
           nestedSearchStory,
           nestedNonModalDialogStory,
+          titleStory,
+          subtitleStory,
+          paragraphStory,
+          labelStory,
+          captionStory,
+          highlightStory,
           checkboxFormStory,
         ],
       );
