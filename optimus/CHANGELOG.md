@@ -1,3 +1,10 @@
+## 0.5.4
+
+ - **FIX**: [RND-55495] Fix dark theme colors (#69).
+ - **FIX**: [RND-52664] Support tags ellipsizing (#67).
+ - **FIX**: [RND-54277] Fix overlay placement (#65).
+ - **FEAT**: Add checkbox form field (#70).
+
 ## 0.5.3
 
  - **STYLE**: Add newline.
