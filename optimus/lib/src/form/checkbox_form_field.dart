@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
-class CheckBoxFormField extends StatelessWidget {
-  const CheckBoxFormField({
+class OptimusCheckBoxFormField extends StatelessWidget {
+  const OptimusCheckBoxFormField({
     Key? key,
     required this.label,
     this.onSaved,

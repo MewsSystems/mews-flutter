@@ -30,7 +30,7 @@ class _ContentState extends State<_Content> {
         mainAxisSize: MainAxisSize.min,
         spacing: OptimusStackSpacing.spacing300,
         children: [
-          CheckBoxFormField(
+          OptimusCheckBoxFormField(
             label: const Text('Checkbox form field'),
             validator: (isChecked) => isChecked != null
                 ? isChecked
