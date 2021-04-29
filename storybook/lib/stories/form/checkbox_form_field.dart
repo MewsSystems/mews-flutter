@@ -32,24 +32,14 @@ class _ContentState extends State<_Content> {
         children: [
           OptimusCheckBoxFormField(
             label: const Text('Checkbox form field'),
-            validator: (isChecked) => isChecked != null
-                ? isChecked
-                    ? null
-                    : error
-                : error,
+            validator: (isChecked) => isChecked == true ? null : error,
           ),
           OptimusButton(
-            onPressed: _submit,
+            onPressed: () => _formKey.currentState?.validate(),
             child: const Text('Validate'),
           ),
         ],
       ),
     );
-  }
-
-  void _submit() {
-    if (_formKey.currentState?.validate() == true) {
-      _formKey.currentState!.save();
-    }
   }
 }
