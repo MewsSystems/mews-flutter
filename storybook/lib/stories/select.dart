@@ -43,8 +43,11 @@ class _SelectStoryState extends State<SelectStory> {
       secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
       error: k.text(label: 'Error', initial: ''),
       items: Iterable<int>.generate(10)
-          .map((i) =>
-              ListDropdownTile<int>(value: i, title: Text('Dropdown tile #$i')))
+          .map((i) => ListDropdownTile<int>(
+                value: i,
+                title: Text('Dropdown tile #$i'),
+                subtitle: Text('Subtitle #$i'),
+              ))
           .toList(),
       builder: (context, option) => Text('Dropdown tile #$option'),
       onItemSelected: (i) => setState(() => _selectedValue = i),
