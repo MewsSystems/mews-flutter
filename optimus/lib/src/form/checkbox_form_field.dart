@@ -34,9 +34,7 @@ class CheckBoxFormField extends StatelessWidget {
           isEnabled: isEnabled,
           isChecked: state.value ?? initialValue,
           error: state.errorText,
-          onChanged: (b) {
-            state.didChange(b);
-          },
+          onChanged: state.didChange,
         ),
       );
 }
