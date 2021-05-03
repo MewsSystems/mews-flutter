@@ -25,6 +25,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
             label: label,
             placeholder: placeholder,
             value: field.value,
+            error: field.errorText,
             builder: builder,
             items: items,
             isEnabled: enabled,
