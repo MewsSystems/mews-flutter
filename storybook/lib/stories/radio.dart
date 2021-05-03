@@ -114,7 +114,7 @@ class _RadioGroupExampleState extends State<_RadioGroupExample> {
         isEnabled: widget.isEnabled,
         onChanged: (value) => setState(() => _groupValue = value),
         items: _options
-            .map((i) => OptimusGroupItem<String>(label: i, value: i))
+            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
             .toList(),
       );
 }

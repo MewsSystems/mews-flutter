@@ -25,8 +25,8 @@ class _CheckboxStoryState extends State<_CheckboxStory> {
   Widget build(BuildContext context) {
     final k = widget.knobs;
     return OptimusCheckbox(
-      label: k.text(label: 'Label', initial: 'Checkbox Label'),
-      isRequired: k.boolean(label: 'isRequired', initial: false),
+      label: Text(k.text(label: 'Label', initial: 'Checkbox Label')),
+      isRequired: k.boolean(label: 'Required', initial: true),
       error: k.text(label: 'Error'),
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       size: k.options(

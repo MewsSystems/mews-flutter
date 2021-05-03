@@ -39,7 +39,7 @@ class OptimusCheckbox extends StatefulWidget {
   /// Label displayed next to checkbox.
   ///
   /// Typically a [Text] widget.
-  final String label;
+  final Widget label;
 
   /// Whether this checkbox is required.
   ///
@@ -108,7 +108,6 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
     setState(() => _isHovering = hovered);
   }
 
-  // ignore: missing_return
   TextStyle get _labelStyle {
     switch (widget.size) {
       case OptimusCheckboxSize.large:
@@ -139,7 +138,14 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
       ),
       child: DefaultTextStyle.merge(
         style: _labelStyle,
-        child: Text(widget.label.markRequiredIf(widget.isRequired)),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            widget.label,
+            Text(''.markRequiredIf(widget.isRequired)),
+          ],
+        ),
       ),
     );
 

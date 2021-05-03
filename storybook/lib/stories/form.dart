@@ -32,7 +32,7 @@ class _ContentState extends State<_Content> {
       ],
     );
     final notEmpty = (String? v) => v?.isNotEmpty != true ? error : null;
-    final isRequired = widget.knobs.boolean(label: 'isRequired', initial: true);
+    final isRequired = widget.knobs.boolean(label: 'Required', initial: true);
 
     return Form(
       key: _formKey,
@@ -59,7 +59,7 @@ class _ContentState extends State<_Content> {
             autovalidateMode: autovalidateMode,
           ),
           OptimusCheckBoxFormField(
-            label: 'Checkbox form field',
+            label: const Text('Checkbox form field'),
             isRequired: isRequired,
             validator: (isChecked) => isChecked == true ? null : error,
             autovalidateMode: autovalidateMode,

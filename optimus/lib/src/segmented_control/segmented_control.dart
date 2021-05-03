@@ -66,7 +66,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
                         size: size,
                         groupValue: value,
                         onItemSelected: onItemSelected,
-                        child: Text(v.label),
+                        child: v.label,
                       ))
                   .toList(),
             ),

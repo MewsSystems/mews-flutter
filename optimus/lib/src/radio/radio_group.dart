@@ -67,7 +67,7 @@ class OptimusRadioGroup<T> extends StatelessWidget {
           child: Column(
             children: items
                 .map((i) => OptimusRadio<T>(
-                      label: Text(i.label),
+                      label: i.label,
                       value: i.value,
                       groupValue: value,
                       onChanged: onChanged,

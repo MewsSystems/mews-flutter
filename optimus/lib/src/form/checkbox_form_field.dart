@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 class OptimusCheckBoxFormField extends FormField<bool> {
   OptimusCheckBoxFormField({
     Key? key,
-    required String label,
+    required Widget label,
     bool isRequired = false,
     bool initialValue = false,
     ValueChanged<bool?>? onSaved,

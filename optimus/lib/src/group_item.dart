@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 /// Used with grouped items such as [OptimusRadioGroup], [OptimusCheckboxGroup]
 /// and [OptimusSegmentedControl].
 class OptimusGroupItem<T> {
@@ -6,6 +8,6 @@ class OptimusGroupItem<T> {
     required this.value,
   });
 
-  final String label;
+  final Widget label;
   final T value;
 }
