@@ -11,6 +11,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
     bool enabled = true,
     AutovalidateMode? autovalidateMode,
     String? label,
+    bool isRequired = false,
     String placeholder = '',
     required CurrentValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
@@ -23,6 +24,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
           autovalidateMode: autovalidateMode,
           builder: (FormFieldState<T> field) => OptimusSelect<T>(
             label: label,
+            isRequired: isRequired,
             placeholder: placeholder,
             value: field.value,
             error: field.errorText,

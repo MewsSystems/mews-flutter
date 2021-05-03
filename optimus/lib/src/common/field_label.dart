@@ -8,7 +8,7 @@ class OptimusFieldLabel extends StatelessWidget {
   const OptimusFieldLabel({
     Key? key,
     required this.label,
-    this.isRequired = false,
+    required this.isRequired,
   }) : super(key: key);
 
   final String label;
@@ -23,7 +23,7 @@ class OptimusFieldLabel extends StatelessWidget {
       child: OptimusLabelSmall(
         variation: Variation.variationSecondary,
         child: Text(
-          isRequired ? '$label *' : label,
+          label.markRequiredIf(isRequired),
           style: TextStyle(color: _textColor(theme)),
         ),
       ),
@@ -32,4 +32,9 @@ class OptimusFieldLabel extends StatelessWidget {
 
   Color _textColor(OptimusThemeData theme) =>
       theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
+}
+
+extension StringExt on String {
+  // ignore: avoid_positional_boolean_parameters
+  String markRequiredIf(bool isRequired) => isRequired ? '$this *' : this;
 }

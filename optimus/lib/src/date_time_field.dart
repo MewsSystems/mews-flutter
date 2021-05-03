@@ -10,6 +10,7 @@ class OptimusDateTimeField extends StatefulWidget {
     Key? key,
     this.value,
     this.label,
+    this.isRequired = false,
     required this.onChanged,
     this.minDate,
     this.maxDate,
@@ -19,6 +20,7 @@ class OptimusDateTimeField extends StatefulWidget {
 
   final DateTime? value;
   final String? label;
+  final bool isRequired;
   final ValueChanged<DateTime> onChanged;
   final DateTime? minDate;
   final DateTime? maxDate;
@@ -71,5 +73,6 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
         onTap: _showPickerDialog,
         error: widget.error,
         label: widget.label,
+        isRequired: widget.isRequired,
       );
 }

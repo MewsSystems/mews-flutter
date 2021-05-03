@@ -31,6 +31,8 @@ class _ContentState extends State<_Content> {
         const Option('onUserInteraction', AutovalidateMode.onUserInteraction),
       ],
     );
+    final notEmpty = (String? v) => v?.isNotEmpty != true ? error : null;
+    final isRequired = widget.knobs.boolean(label: 'isRequired', initial: true);
 
     return Form(
       key: _formKey,
@@ -38,13 +40,14 @@ class _ContentState extends State<_Content> {
         mainAxisSize: MainAxisSize.min,
         spacing: OptimusStackSpacing.spacing300,
         children: [
-          OptimusCheckBoxFormField(
-            label: const Text('Checkbox form field'),
-            validator: (isChecked) => isChecked == true ? null : error,
-            autovalidateMode: autovalidateMode,
+          OptimusInputFormField(
+            label: 'Input form field',
+            isRequired: isRequired,
+            validator: notEmpty,
           ),
           OptimusSelectFormField<String?>(
             label: 'Item selector',
+            isRequired: isRequired,
             placeholder: 'Please select the item',
             initialValue: null,
             builder: (context, value) =>
@@ -52,7 +55,13 @@ class _ContentState extends State<_Content> {
             items: _selectorItems
                 .map((e) => ListDropdownTile<String>(value: e, title: Text(e)))
                 .toList(),
-            validator: (String? v) => v?.isNotEmpty != true ? error : null,
+            validator: notEmpty,
+            autovalidateMode: autovalidateMode,
+          ),
+          OptimusCheckBoxFormField(
+            label: 'Checkbox form field',
+            isRequired: isRequired,
+            validator: (isChecked) => isChecked == true ? null : error,
             autovalidateMode: autovalidateMode,
           ),
           OptimusButton(

@@ -85,7 +85,7 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
         isEnabled: widget.isEnabled,
         onItemSelected: (value) => setState(() => _value = value),
         items: widget.options
-            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
+            .map((i) => OptimusGroupItem<String>(label: i, value: i))
             .toList(),
       );
 }

@@ -1,40 +1,32 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
-class OptimusCheckBoxFormField extends StatelessWidget {
-  const OptimusCheckBoxFormField({
+class OptimusCheckBoxFormField extends FormField<bool> {
+  OptimusCheckBoxFormField({
     Key? key,
-    required this.label,
-    this.onSaved,
-    this.initialValue = false,
-    this.isEnabled = true,
-    this.size = OptimusCheckboxSize.large,
-    this.validator,
-    this.autovalidateMode,
-  }) : super(key: key);
-
-  final Widget label;
-  final ValueChanged<bool?>? onSaved;
-  final bool initialValue;
-  final bool isEnabled;
-  final OptimusCheckboxSize size;
-  final FormFieldValidator<bool>? validator;
-  final AutovalidateMode? autovalidateMode;
-
-  @override
-  Widget build(BuildContext context) => FormField<bool>(
-        initialValue: initialValue,
-        onSaved: onSaved,
-        enabled: isEnabled,
-        validator: validator,
-        autovalidateMode: autovalidateMode,
-        builder: (state) => OptimusCheckbox(
-          label: label,
-          size: size,
-          isEnabled: isEnabled,
-          isChecked: state.value ?? initialValue,
-          error: state.errorText,
-          onChanged: state.didChange,
-        ),
-      );
+    required String label,
+    bool isRequired = false,
+    bool initialValue = false,
+    ValueChanged<bool?>? onSaved,
+    bool isEnabled = true,
+    OptimusCheckboxSize size = OptimusCheckboxSize.large,
+    FormFieldValidator<bool>? validator,
+    AutovalidateMode? autovalidateMode,
+  }) : super(
+          key: key,
+          initialValue: initialValue,
+          onSaved: onSaved,
+          enabled: isEnabled,
+          validator: validator,
+          autovalidateMode: autovalidateMode,
+          builder: (FormFieldState<bool> field) => OptimusCheckbox(
+            label: label,
+            isRequired: isRequired,
+            size: size,
+            isEnabled: isEnabled,
+            isChecked: field.value ?? initialValue,
+            error: field.errorText,
+            onChanged: field.didChange,
+          ),
+        );
 }

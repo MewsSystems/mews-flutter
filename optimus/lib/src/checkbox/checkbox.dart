@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/common/field_label.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/group_wrapper.dart';
 import 'package:optimus/src/theme/theme.dart';
@@ -27,6 +28,7 @@ class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
     Key? key,
     required this.label,
+    this.isRequired = false,
     this.isChecked = false,
     this.error,
     this.isEnabled = true,
@@ -37,7 +39,12 @@ class OptimusCheckbox extends StatefulWidget {
   /// Label displayed next to checkbox.
   ///
   /// Typically a [Text] widget.
-  final Widget label;
+  final String label;
+
+  /// Whether this checkbox is required.
+  ///
+  /// If `true`, an asterisk `*` will be appended to the [label].
+  final bool isRequired;
 
   /// Whether this checkbox is checked.
   final bool isChecked;
@@ -130,7 +137,10 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
         spacing0,
         spacing50,
       ),
-      child: DefaultTextStyle.merge(style: _labelStyle, child: widget.label),
+      child: DefaultTextStyle.merge(
+        style: _labelStyle,
+        child: Text(widget.label.markRequiredIf(widget.isRequired)),
+      ),
     );
 
     return OptimusEnabled(

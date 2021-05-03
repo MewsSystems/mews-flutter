@@ -28,15 +28,16 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
     final k = widget.knobs;
     return OptimusCheckboxGroup<int>(
       label: k.text(label: 'Label', initial: 'Checkbox Group Label'),
+      isRequired: k.boolean(label: 'isRequired', initial: false),
       error: k.text(label: 'Error'),
       onChanged: (values) => setState(() => _checks = values),
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       values: _checks,
       items: const [
-        OptimusGroupItem(label: Text('Checkbox 1'), value: 0),
-        OptimusGroupItem(label: Text('Checkbox 2'), value: 1),
-        OptimusGroupItem(label: Text('Checkbox 3'), value: 2),
-        OptimusGroupItem(label: Text('Checkbox with long label'), value: 3),
+        OptimusGroupItem(label: 'Checkbox 1', value: 0),
+        OptimusGroupItem(label: 'Checkbox 2', value: 1),
+        OptimusGroupItem(label: 'Checkbox 3', value: 2),
+        OptimusGroupItem(label: 'Checkbox with long label', value: 3),
       ],
     );
   }

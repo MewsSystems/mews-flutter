@@ -14,12 +14,12 @@ class OptimusSelect<T> extends StatefulWidget {
   const OptimusSelect({
     Key? key,
     this.label,
+    this.isRequired = false,
     this.placeholder = '',
     this.value,
     required this.items,
     required this.builder,
     this.isEnabled = true,
-    this.isRequired = false,
     this.prefix,
     this.caption,
     this.secondaryCaption,
@@ -29,11 +29,11 @@ class OptimusSelect<T> extends StatefulWidget {
   }) : super(key: key);
 
   final String? label;
+  final bool isRequired;
   final String placeholder;
   final T? value;
   final List<OptimusDropdownTile<T>> items;
   final bool isEnabled;
-  final bool isRequired;
   final Widget? prefix;
   final Widget? caption;
   final Widget? secondaryCaption;

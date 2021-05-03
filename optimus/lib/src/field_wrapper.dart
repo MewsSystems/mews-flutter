@@ -14,11 +14,11 @@ class FieldWrapper extends StatefulWidget {
     this.isEnabled = true,
     this.focusNode,
     this.label,
+    this.isRequired = false,
     this.caption,
     this.secondaryCaption,
     this.error,
     this.hasBorders = true,
-    this.isRequired = false,
     this.suffix,
     this.prefix,
     this.fieldBoxKey,
@@ -28,11 +28,11 @@ class FieldWrapper extends StatefulWidget {
   final bool isEnabled;
   final FocusNode? focusNode;
   final String? label;
+  final bool isRequired;
   final Widget? caption;
   final Widget? secondaryCaption;
   final String? error;
   final bool hasBorders;
-  final bool isRequired;
   final Widget? suffix;
   final Widget? prefix;
   final List<Widget> children;

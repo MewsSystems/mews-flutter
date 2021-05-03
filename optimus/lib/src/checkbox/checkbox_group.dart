@@ -14,6 +14,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
     required this.onChanged,
     this.size = OptimusCheckboxSize.large,
     this.label,
+    this.isRequired = false,
     this.error,
     this.isEnabled = true,
   })  : _values = values.toSet(),
@@ -42,6 +43,11 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   /// Controls the label of the group itself.
   final String? label;
 
+  /// Whether this checkbox group is required.
+  ///
+  /// If `true`, an asterisk `*` will be appended to the [label].
+  final bool isRequired;
+
   /// Controls the error message for the whole group.
   final String? error;
 
@@ -51,6 +57,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GroupWrapper(
         label: label,
+        isRequired: isRequired,
         error: error,
         child: OptimusEnabled(
           isEnabled: isEnabled,
