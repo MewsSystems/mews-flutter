@@ -1,3 +1,7 @@
+## 0.5.5
+
+ - **FIX**: Fix `OptimusSelectorFormField` error.
+
 ## 0.5.4
 
  - **FIX**: [RND-55495] Fix dark theme colors (#69).
