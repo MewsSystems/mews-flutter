@@ -7,3 +7,13 @@ This repository contains Flutter and Dart open-source packages maintained by [Me
 - [mews_pedantic](mews_pedantic): Dart and Flutter static analysis and lint rules.
 - [optimus](optimus): Design system for mobile platforms (and experimental web).
 - [storybook](storybook): Showcase of the Optimus library.
+
+## Releasing a new version
+
+- Create a new branch. Any name will be ok, but recommended pattern is `release-{DATE}`, e.g. `release-2021-05-05`.
+- Run `melos version` in root directory. It will create a new commit with updated changelog and version based on
+  previous commits.
+- Push this commit and create a new PR. Don't forget to push tags as well, e.g. with `git push --tags`.
+- PR should be merged, not squashed (otherwise tag will not be merged into master).
+- After PR is merged, publish a new version to `pub.dev` using `melos publish` command in master branch (it can be only
+  done locally).
