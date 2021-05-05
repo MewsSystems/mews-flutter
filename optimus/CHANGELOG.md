@@ -1,3 +1,7 @@
+## 0.5.4+1
+
+ - **FIX**: Fix OptimusSelectFormField error (#72).
+
 ## 0.5.4
 
  - **FIX**: [RND-55495] Fix dark theme colors (#69).
