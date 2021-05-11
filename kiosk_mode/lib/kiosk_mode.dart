@@ -1,14 +1,15 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-class KioskMode {
-  static const MethodChannel _channel =
-      const MethodChannel('kiosk_mode');
+const MethodChannel _channel = MethodChannel('kiosk_mode');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
+Future<void> get startKioskMode async {
+  await SystemChrome.setEnabledSystemUIOverlays([]);
+  return _channel.invokeMethod('startKioskMode');
+}
+
+Future<void> get stopKioskMode async {
+  await SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  return _channel.invokeMethod('stopKioskMode');
 }
