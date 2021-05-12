@@ -2,9 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-const MethodChannel _channel = MethodChannel('kiosk_mode');
+const MethodChannel _channel = MethodChannel('com.mews.kiosk_mode/kiosk_mode');
 
-Future<void> get startKioskMode async =>
-    _channel.invokeMethod('startKioskMode');
+/// Request to put this activity in a mode where the user is locked to a
+/// restricted set of applications.
+///
+/// It's only supported on Android currently, where it calls [startLockTask].
+/// It will throw [FlutterMethodNotImplemented] on iOS.
+Future<void> startKioskMode() => _channel.invokeMethod('startKioskMode');
 
-Future<void> get stopKioskMode async => _channel.invokeMethod('stopKioskMode');
+/// Stop the current task from being locked.
+///
+/// It's only supported on Android currently, where it calls [stopLockTask].
+/// It will throw [FlutterMethodNotImplemented] on iOS.
+Future<void> stopKioskMode() => _channel.invokeMethod('stopKioskMode');

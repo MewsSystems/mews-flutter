@@ -17,18 +17,14 @@ class App extends StatelessWidget {
           body: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 MaterialButton(
-                  onPressed: () async {
-                    await startKioskMode;
-                  },
-                  child: const Text('Start Kiosk Mode'),
+                  onPressed: startKioskMode,
+                  child: Text('Start Kiosk Mode'),
                 ),
                 MaterialButton(
-                  onPressed: () async {
-                    await stopKioskMode;
-                  },
-                  child: const Text('Stop Kiosk Mode'),
+                  onPressed: stopKioskMode,
+                  child: Text('Stop Kiosk Mode'),
                 ),
               ],
             ),
