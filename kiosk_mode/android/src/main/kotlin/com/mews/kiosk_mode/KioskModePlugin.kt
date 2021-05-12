@@ -24,8 +24,10 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "startKioskMode") {
             activity?.startLockTask()
+            result.success(null)
         } else if (call.method == "stopKioskMode") {
             activity?.stopLockTask()
+            result.success(null)
         } else {
             result.notImplemented()
         }
