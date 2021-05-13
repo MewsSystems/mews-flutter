@@ -7,6 +7,7 @@ This repository contains Flutter and Dart open-source packages maintained by [Me
 - [mews_pedantic](mews_pedantic): Dart and Flutter static analysis and lint rules.
 - [optimus](optimus): Design system for mobile platforms (and experimental web).
 - [storybook](storybook): Showcase of the Optimus library.
+- [kiosk_mode](kiosk_mode): Kiosk mode plugin.
 
 ## Releasing a new version
 
