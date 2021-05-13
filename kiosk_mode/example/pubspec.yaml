@@ -1,0 +1,22 @@
+name: kiosk_mode_example
+description: Demonstrates how to use the kiosk_mode plugin.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  kiosk_mode:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mews_pedantic: ^0.2.1
+
+flutter:
+  uses-material-design: true

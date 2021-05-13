@@ -1,0 +1,24 @@
+name: kiosk_mode
+description: Kiosk mode plugin. Currently, it works in Android only.
+version: 0.1.0
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mews_pedantic: ^0.2.1
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.mews.kiosk_mode
+        pluginClass: KioskModePlugin
+      ios:
+        pluginClass: KioskModePlugin
