@@ -24,7 +24,7 @@ class OptimusDateTimeFormField extends FormField<DateTime> {
             onChanged: (v) => field.didChange(v),
             minDate: minDate,
             maxDate: maxDate,
-            error: field.errorText,
+            error: field.hasError ? validator?.call(field.value) : null,
             formatDateTime: formatDateTime,
           ),
         );

@@ -61,7 +61,7 @@ class OptimusInputFormField extends FormField<String> {
               maxLines: maxLines,
               minLines: minLines,
               controller: state._effectiveController,
-              error: field.errorText,
+              error: field.hasError ? validator?.call(field.value) : null,
               enableInteractiveSelection: enableInteractiveSelection,
               autofocus: autofocus,
               autocorrect: autocorrect,
