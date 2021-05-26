@@ -1,3 +1,10 @@
+## 0.6.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: [RND-58015] Add kiosk_mode package (#77).
+ - **BREAKING** **CHORE**: Update dependencies.
+
 ## 0.5.4+1
 
  - **FIX**: Fix OptimusSelectFormField error (#72).
