@@ -61,9 +61,14 @@ class _$OptimusThemeDataCopyWithImpl<$Res>
     Object? colors = freezed,
   }) {
     return _then(_value.copyWith(
-      brightness:
-          brightness == freezed ? _value.brightness : brightness as Brightness,
-      colors: colors == freezed ? _value.colors : colors as OptimusColors,
+      brightness: brightness == freezed
+          ? _value.brightness
+          : brightness // ignore: cast_nullable_to_non_nullable
+              as Brightness,
+      colors: colors == freezed
+          ? _value.colors
+          : colors // ignore: cast_nullable_to_non_nullable
+              as OptimusColors,
     ));
   }
 }
@@ -95,14 +100,20 @@ class __$OptimusThemeDataCopyWithImpl<$Res>
     Object? colors = freezed,
   }) {
     return _then(_OptimusThemeData(
-      brightness:
-          brightness == freezed ? _value.brightness : brightness as Brightness,
-      colors: colors == freezed ? _value.colors : colors as OptimusColors,
+      brightness: brightness == freezed
+          ? _value.brightness
+          : brightness // ignore: cast_nullable_to_non_nullable
+              as Brightness,
+      colors: colors == freezed
+          ? _value.colors
+          : colors // ignore: cast_nullable_to_non_nullable
+              as OptimusColors,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_OptimusThemeData extends _OptimusThemeData {
   const _$_OptimusThemeData({required this.brightness, required this.colors})
       : super._();
@@ -141,10 +152,10 @@ class _$_OptimusThemeData extends _OptimusThemeData {
 }
 
 abstract class _OptimusThemeData extends OptimusThemeData {
-  const _OptimusThemeData._() : super._();
   const factory _OptimusThemeData(
       {required Brightness brightness,
       required OptimusColors colors}) = _$_OptimusThemeData;
+  const _OptimusThemeData._() : super._();
 
   @override
   Brightness get brightness => throw _privateConstructorUsedError;
