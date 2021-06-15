@@ -31,6 +31,14 @@ flutter:
           weight: 500
         - asset: packages/optimus/fonts/Montserrat-SemiBold.ttf
           weight: 600
+    - family: OpenSans
+      fonts:
+        - asset: packages/optimus/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: packages/optimus/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: packages/optimus/fonts/OpenSans-Bold.ttf
+          weight: 700
     - family: OptimusIcons
       fonts:
         - asset: packages/optimus/fonts/OptimusIcons.ttf
