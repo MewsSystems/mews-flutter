@@ -32,8 +32,7 @@ final Story dropdownButton = Story(
                       .toList(),
                   onItemSelected: isEnabled ? (_) => () {} : null,
                   variant: v,
-                  child:
-                      Text(k.text(label: 'Label', initial: 'Dropdown button')),
+                  child: Text(k.text(label: 'Label', initial: 'Dropdown button')),
                 ),
               ),
             )

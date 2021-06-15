@@ -57,7 +57,6 @@ export 'src/typography/caption.dart';
 export 'src/typography/highlight.dart';
 export 'src/typography/label.dart';
 export 'src/typography/paragraph.dart';
-export 'src/typography/subtitle.dart';
 export 'src/typography/title.dart';
 export 'src/typography/variation.dart';
 export 'src/widget_size.dart';

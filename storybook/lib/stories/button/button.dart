@@ -12,8 +12,7 @@ final Story button = Story(
           .map((v) => Padding(
                 padding: const EdgeInsets.all(8),
                 child: OptimusButton(
-                  onPressed:
-                      k.boolean(label: 'Enabled', initial: true) ? () {} : null,
+                  onPressed: k.boolean(label: 'Enabled', initial: true) ? () {} : null,
                   size: k.options(
                     label: 'Size',
                     initial: OptimusWidgetSize.large,

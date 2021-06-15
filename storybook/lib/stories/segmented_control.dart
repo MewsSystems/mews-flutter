@@ -69,8 +69,7 @@ class _SegmentedControlExample extends StatefulWidget {
   final List<String> options;
 
   @override
-  _SegmentedControlExampleState createState() =>
-      _SegmentedControlExampleState();
+  _SegmentedControlExampleState createState() => _SegmentedControlExampleState();
 }
 
 class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
@@ -84,9 +83,7 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
         error: widget.error,
         isEnabled: widget.isEnabled,
         onItemSelected: (value) => setState(() => _value = value),
-        items: widget.options
-            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
-            .toList(),
+        items: widget.options.map((i) => OptimusGroupItem<String>(label: Text(i), value: i)).toList(),
       );
 }
 

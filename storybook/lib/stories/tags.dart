@@ -10,10 +10,7 @@ final Story tagStory = Story(
     Widget buildTags(TagVersion version) => Wrap(
           children: OptimusColorOption.values
               .map(
-                (c) => _PaddedTag(
-                    version: version,
-                    colorOption: c,
-                    text: k.text(label: 'Text', initial: '')),
+                (c) => _PaddedTag(version: version, colorOption: c, text: k.text(label: 'Text', initial: '')),
               )
               .toList(),
         );

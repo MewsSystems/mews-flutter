@@ -11,9 +11,7 @@ final Story stepBarStory = Story(
       type: k.options(
         label: 'Type',
         initial: OptimusStepBarType.icon,
-        options: OptimusStepBarType.values
-            .map((e) => Option(describeEnum(e), e))
-            .toList(),
+        options: OptimusStepBarType.values.map((e) => Option(describeEnum(e), e)).toList(),
       ),
       layout: k.options(
         label: 'Layout',
@@ -28,9 +26,7 @@ final Story stepBarStory = Story(
             max: _items.length.toDouble() - 1,
           )
           .toInt(),
-      maxItem: k
-          .slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1)
-          .toInt(),
+      maxItem: k.slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1).toInt(),
     ),
   ),
 );

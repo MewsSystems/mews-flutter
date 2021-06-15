@@ -71,5 +71,4 @@ final List<Option<IconData>> _icons = [
   const Option('Chevron left', OptimusIcons.chevron_left),
 ];
 
-final List<Option<OptimusIconSize>> _sizes =
-    OptimusIconSize.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<OptimusIconSize>> _sizes = OptimusIconSize.values.map((e) => Option(describeEnum(e), e)).toList();

@@ -60,16 +60,10 @@ final List<Option<OptimusCardSpacing>> _paddings =
     OptimusCardSpacing.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<OptimusBasicCardVariant>> _basicCardVariants =
-    OptimusBasicCardVariant.values
-        .map((e) => Option(describeEnum(e), e))
-        .toList();
+    OptimusBasicCardVariant.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<OptimusNestedCardVariant>> _nestedCardVariants =
-    OptimusNestedCardVariant.values
-        .map((e) => Option(describeEnum(e), e))
-        .toList();
+    OptimusNestedCardVariant.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<OptimusCardAttachment>> _attachments = OptimusCardAttachment
-    .values
-    .map((e) => Option(describeEnum(e), e))
-    .toList();
+final List<Option<OptimusCardAttachment>> _attachments =
+    OptimusCardAttachment.values.map((e) => Option(describeEnum(e), e)).toList();
