@@ -9,7 +9,7 @@ final Story paragraphStory = Story(
   builder: (_, k) {
     final variation = k.options(
       label: 'Variation',
-      initial: Variation.variationDefault,
+      initial: Variation.variationNormal,
       options: variationOptions,
     );
 

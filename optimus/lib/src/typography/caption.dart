@@ -10,7 +10,7 @@ import 'package:optimus/src/typography/variation.dart';
 class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
     Key? key,
-    this.variation = Variation.variationDefault,
+    this.variation = Variation.variationNormal,
     required this.child,
   }) : super(key: key);
 

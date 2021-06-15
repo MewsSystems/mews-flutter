@@ -11,7 +11,7 @@ import 'package:optimus/src/typography/variation.dart';
 class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
     Key? key,
-    this.variation = Variation.variationDefault,
+    this.variation = Variation.variationNormal,
     required this.child,
   }) : super(key: key);
 
@@ -44,7 +44,7 @@ class OptimusLabel extends StatelessWidget {
 class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
     Key? key,
-    this.variation = Variation.variationDefault,
+    this.variation = Variation.variationNormal,
     required this.child,
   }) : super(key: key);
 
