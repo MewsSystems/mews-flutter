@@ -12,17 +12,17 @@ final Story highlightStory = Story(
       children: [
         OptimusHighlightMajor(
           child: Text(
-            k.text(label: 'HighlightHigh', initial: 'HighlightHigh'),
+            k.text(label: 'Major Highlight', initial: 'Major Highlight'),
           ),
         ),
         OptimusHighlightModerate(
           child: Text(
-            k.text(label: 'HighlightMedium', initial: 'HighlightMedium'),
+            k.text(label: 'Moderate Highlight', initial: 'Moderate Highlight'),
           ),
         ),
         OptimusHighlightMinor(
           child: Text(
-            k.text(label: 'HighlightLow', initial: 'HighlightLow'),
+            k.text(label: 'Minor Highlight', initial: 'Minor Highlight'),
           ),
         ),
       ],

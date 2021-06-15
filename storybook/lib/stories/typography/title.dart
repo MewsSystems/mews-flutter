@@ -12,18 +12,21 @@ final Story titleStory = Story(
       children: [
         OptimusPageTitle(
           child: Text(
-            k.text(label: 'PageTitle', initial: 'PageTitle'),
+            k.text(label: 'Page Title', initial: 'Page Title'),
           ),
         ),
         OptimusSectionTitle(
           child: Text(
-            k.text(label: 'SectionTitle', initial: 'SectionTitle'),
+            k.text(label: 'Section Title', initial: 'Section Title'),
           ),
         ),
         OptimusSubsectionTitle(
           child: Text(
-            k.text(label: 'SubsectionTitle', initial: 'SubsectionTitle'),
+            k.text(label: 'Subsection Title', initial: 'Subsection Title'),
           ),
+        ),
+        OptimusSubtitle(
+          child: Text(k.text(label: 'Subtitle', initial: 'Subtitle')),
         ),
       ],
     ),

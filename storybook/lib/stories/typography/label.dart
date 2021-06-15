@@ -24,7 +24,7 @@ final Story labelStory = Story(
           ),
           OptimusLabelSmall(
             variation: variation,
-            child: Text(k.text(label: 'LabelSmall', initial: 'LabelSmall')),
+            child: Text(k.text(label: 'Small Label', initial: 'Small Label')),
           ),
         ],
       ),
