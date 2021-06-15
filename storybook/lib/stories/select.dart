@@ -30,7 +30,8 @@ class _SelectStoryState extends State<SelectStory> {
       value: _selectedValue,
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       isRequired: k.boolean(label: 'Required'),
-      prefix: k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
+      prefix:
+          k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
       size: k.options(
         label: 'Size',
         initial: OptimusWidgetSize.large,

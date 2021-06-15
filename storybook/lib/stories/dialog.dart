@@ -9,7 +9,9 @@ final Story dialogStory = Story(
   section: 'Dialogs',
   builder: (context, k) {
     final isDismissible = k.boolean(label: 'Dismissible', initial: true);
-    final content = k.boolean(label: 'Scrollable', initial: false) ? _scrollableContent : _content(context);
+    final content = k.boolean(label: 'Scrollable', initial: false)
+        ? _scrollableContent
+        : _content(context);
     final type = k.options(
       label: 'Type',
       initial: OptimusDialogType.common,
@@ -263,9 +265,11 @@ Widget _content(BuildContext context) {
 
 Widget get _scrollableContent => Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: _iterable.map((i) => ListTile(title: Text('List tile #$i'))).toList(),
+      children:
+          _iterable.map((i) => ListTile(title: Text('List tile #$i'))).toList(),
     );
 
-final List<Option<OptimusDialogType>> _types = OptimusDialogType.values.toOptions();
+final List<Option<OptimusDialogType>> _types =
+    OptimusDialogType.values.toOptions();
 
 final _iterable = Iterable<int>.generate(50);

@@ -59,4 +59,5 @@ final _items = [
   ),
 ];
 
-final List<Option<OptimusStackAlignment>> _alignment = OptimusStackAlignment.values.toOptions();
+final List<Option<OptimusStackAlignment>> _alignment =
+    OptimusStackAlignment.values.toOptions();

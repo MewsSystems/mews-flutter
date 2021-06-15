@@ -43,7 +43,8 @@ class _SearchStoryState extends State<SearchStory> {
     return OptimusSearch<String>(
       controller: _controller,
       items: _characters
-          .where((c) => c.toLowerCase().contains(_controller.text.toLowerCase()))
+          .where(
+              (c) => c.toLowerCase().contains(_controller.text.toLowerCase()))
           .map((c) => ListDropdownTile(
                 value: c,
                 title: Text(c),

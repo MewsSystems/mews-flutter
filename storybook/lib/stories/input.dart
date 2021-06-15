@@ -11,7 +11,8 @@ final Story inputStory = Story(
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       isRequired: k.boolean(label: 'Required'),
       isPasswordField: k.boolean(label: 'Password'),
-      prefix: k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
+      prefix:
+          k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
       suffix: k.boolean(label: 'Suffix') ? const Icon(OptimusIcons.lock) : null,
       size: k.options(
         label: 'Size',
@@ -19,7 +20,8 @@ final Story inputStory = Story(
         options: sizeOptions,
       ),
       label: k.text(label: 'Label', initial: 'Optimus input field'),
-      placeholder: k.text(label: 'Placeholder', initial: 'Put some hint here...'),
+      placeholder:
+          k.text(label: 'Placeholder', initial: 'Put some hint here...'),
       caption: Text(k.text(label: 'Caption', initial: '')),
       secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
       error: k.text(label: 'Error', initial: ''),

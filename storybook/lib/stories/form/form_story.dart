@@ -47,8 +47,11 @@ class _ContentState extends State<_Content> {
             label: 'Item selector',
             placeholder: 'Please select the item',
             initialValue: null,
-            builder: (context, value) => value == null ? const Text('') : Text(value),
-            items: _selectorItems.map((e) => ListDropdownTile<String>(value: e, title: Text(e))).toList(),
+            builder: (context, value) =>
+                value == null ? const Text('') : Text(value),
+            items: _selectorItems
+                .map((e) => ListDropdownTile<String>(value: e, title: Text(e)))
+                .toList(),
             validator: (String? v) => v?.isNotEmpty != true ? error : null,
             autovalidateMode: autovalidateMode,
           ),

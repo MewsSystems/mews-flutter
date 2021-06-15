@@ -16,7 +16,8 @@ final Story bannerStory = Story(
                   padding: const EdgeInsets.all(8),
                   child: OptimusBanner(
                     title: Text(k.text(label: 'Content', initial: 'Info Text')),
-                    description: description.isNotEmpty ? Text(description) : null,
+                    description:
+                        description.isNotEmpty ? Text(description) : null,
                     hasIcon: k.boolean(label: 'Show icon'),
                     isDismissible: k.boolean(label: 'Dismissible'),
                     variant: v,

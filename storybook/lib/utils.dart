@@ -20,10 +20,12 @@ final List<Option<IconData?>> exampleIcons = [
 final List<Option<OptimusWidgetSize>> sizeOptions =
     OptimusWidgetSize.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<Variation>> variationOptions = Variation.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<Variation>> variationOptions =
+    Variation.values.map((e) => Option(describeEnum(e), e)).toList();
 
 extension EnumsToOptions<T extends Object> on List<T> {
-  List<Option<T>> toOptions() => map((e) => Option(describeEnum(e), e)).toList();
+  List<Option<T>> toOptions() =>
+      map((e) => Option(describeEnum(e), e)).toList();
 }
 
 extension OptionsWithEmpty<T> on List<Option<T>> {
