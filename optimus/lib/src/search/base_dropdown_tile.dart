@@ -24,7 +24,7 @@ class _BaseDropdownTileState extends State<BaseDropdownTile> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            OptimusHighlightLow(child: widget.title),
+            OptimusHighlightMinor(child: widget.title),
             if (widget.subtitle != null)
               OptimusSubtitle(child: widget.subtitle!)
           ],
