@@ -9,7 +9,7 @@ import 'package:optimus/src/typography/variation.dart';
 /// [OptimusParagraph] with [Variation.variationNormal] is used as a distinct
 /// section of text dealing with a single topic.
 ///
-/// /// [OptimusParagraph] with [Variation.variationSecondary] is used as a
+/// [OptimusParagraph] with [Variation.variationSecondary] is used as a
 /// distinct section of text dealing with a single topic of less emphasis.
 class OptimusParagraph extends StatelessWidget {
   const OptimusParagraph({
