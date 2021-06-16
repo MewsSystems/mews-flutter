@@ -2,7 +2,7 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class OptimusAvatar extends StatelessWidget {
   const OptimusAvatar({
@@ -34,7 +34,7 @@ class OptimusAvatar extends StatelessWidget {
             child: imageUrl == null
                 ? Text(
                     substring(title, 0, 1).toUpperCase(),
-                    style: preset300s.copyWith(color: colors.neutral0t64),
+                    style: preset300b.copyWith(color: colors.neutral0t64),
                   )
                 : null,
           ),

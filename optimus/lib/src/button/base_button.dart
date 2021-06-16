@@ -68,7 +68,6 @@ class BaseButton extends StatelessWidget {
         ),
       );
 
-  // ignore: missing_return
   double get _iconSize {
     switch (size) {
       case OptimusWidgetSize.small:
@@ -79,7 +78,6 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _color(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
@@ -95,7 +93,6 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _badgeTextColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
@@ -111,7 +108,6 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _hoverColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
