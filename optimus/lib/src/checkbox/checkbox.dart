@@ -6,7 +6,7 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/group_wrapper.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 /// The Checkbox + Label component is available in two size
 /// variants to accommodate different environments with different requirements.
@@ -105,9 +105,9 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   TextStyle get _labelStyle {
     switch (widget.size) {
       case OptimusCheckboxSize.large:
-        return preset300m;
+        return preset300s;
       case OptimusCheckboxSize.small:
-        return preset200m;
+        return preset200s;
     }
   }
 
