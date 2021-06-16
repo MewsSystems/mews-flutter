@@ -69,7 +69,6 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     return OptimusStepBarItemState.disabled;
   }
 
-  // ignore: missing_return
   Widget get _spacer {
     switch (_effectiveLayout) {
       case Axis.horizontal:
@@ -142,7 +141,6 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
         ),
       );
 
-  // ignore: missing_return
   Widget _buildIcon(OptimusStepBarItem item) {
     final state = _getItemState(item);
     switch (widget.type) {
@@ -282,7 +280,6 @@ const double _itemMaxWidth = 320;
 const double _spacerMinWidth = 16;
 
 extension on OptimusStepBarItemState {
-  // ignore: missing_return
   Color iconBackgroundColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
@@ -296,7 +293,6 @@ extension on OptimusStepBarItemState {
     }
   }
 
-  // ignore: missing_return
   Color textColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
@@ -310,7 +306,6 @@ extension on OptimusStepBarItemState {
     }
   }
 
-  // ignore: missing_return
   OptimusColorOption get iconColor {
     switch (this) {
       case OptimusStepBarItemState.completed:

@@ -105,7 +105,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           borderRadius: const BorderRadius.all(borderRadius50),
         );
 
-  // ignore: missing_return
   double get _containerSize {
     switch (widget.size) {
       case OptimusWidgetSize.small:
@@ -123,7 +122,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           ? _hoverColor
           : _normalColor;
 
-  // ignore: missing_return
   Color get _normalColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
@@ -141,7 +139,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     }
   }
 
-  // ignore: missing_return
   Color get _hoverColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
@@ -159,7 +156,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     }
   }
 
-  // ignore: missing_return
   Color get _highlightColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
@@ -177,7 +173,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     }
   }
 
-  // ignore: missing_return
   double get _iconSize {
     switch (widget.size) {
       case OptimusWidgetSize.small:
@@ -188,7 +183,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     }
   }
 
-  // ignore: missing_return
   Color get _iconColor {
     switch (widget.variant) {
       case OptimusIconButtonVariant.primary:

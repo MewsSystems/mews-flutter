@@ -89,7 +89,6 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
 
   bool get _isSelected => widget.value == widget.groupValue;
 
-  // ignore: missing_return
   TextStyle get _labelStyle =>
       widget.size == OptimusRadioSize.small ? preset200s : preset300s;
 

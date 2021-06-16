@@ -31,7 +31,6 @@ class OptimusTypography extends StatelessWidget {
   }
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  // ignore: missing_return
   Color _color(OptimusThemeData theme) {
     switch (color) {
       case OptimusTypographyColor.primary:

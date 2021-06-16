@@ -186,7 +186,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     setState(() {});
   }
 
-  // ignore: missing_return
   TextStyle get _textStyle {
     final color = theme.isDark
         ? theme.colors.invertedTextColor
@@ -200,7 +199,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     }
   }
 
-  // ignore: missing_return
   TextStyle get _placeholderTextStyle {
     final color =
         theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
@@ -213,7 +211,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     }
   }
 
-  // ignore: missing_return
   EdgeInsets get _textPadding {
     switch (widget.size) {
       case OptimusWidgetSize.small:
@@ -225,7 +222,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     }
   }
 
-  // ignore: missing_return
   EdgeInsets get _textWithPrefixPadding {
     switch (widget.size) {
       case OptimusWidgetSize.small:

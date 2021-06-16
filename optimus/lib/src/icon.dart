@@ -59,7 +59,6 @@ class OptimusIcon extends StatelessWidget {
     );
   }
 
-  // ignore: missing_return
   double get _iconSize {
     switch (iconSize) {
       case OptimusIconSize.small:
@@ -123,7 +122,6 @@ class OptimusSupplementaryIcon extends StatelessWidget {
 }
 
 extension on OptimusColorOption {
-  // ignore: missing_return
   Color toIconColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusColorOption.basic:
@@ -139,7 +137,6 @@ extension on OptimusColorOption {
     }
   }
 
-  // ignore: missing_return
   Color toSupplementaryIconColor(OptimusThemeData theme) {
     if (theme.isDark) return theme.colors.neutral1000;
 
@@ -153,7 +150,6 @@ extension on OptimusColorOption {
     }
   }
 
-  // ignore: missing_return
   Color toSupplementaryBackgroundColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusColorOption.basic:

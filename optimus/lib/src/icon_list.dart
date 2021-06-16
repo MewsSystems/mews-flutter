@@ -37,7 +37,6 @@ class OptimusIconList extends StatelessWidget {
     );
   }
 
-  // ignore: missing_return
   OptimusIconListSize _getListSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
@@ -133,7 +132,6 @@ class _ListTile extends StatelessWidget {
     );
   }
 
-  //ignore: missing_return
   TextStyle get _labelStyle {
     switch (size) {
       case OptimusIconListSize.large:
@@ -143,7 +141,6 @@ class _ListTile extends StatelessWidget {
     }
   }
 
-  //ignore: missing_return
   TextStyle get _descriptionStyle {
     switch (size) {
       case OptimusIconListSize.large:

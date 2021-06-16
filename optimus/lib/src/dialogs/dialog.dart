@@ -194,7 +194,6 @@ class OptimusDialog extends StatelessWidget {
   Widget _divider(OptimusThemeData theme) =>
       Divider(height: 1, color: theme.colors.neutral50);
 
-  // ignore: missing_return
   OptimusDialogSize _autoSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
@@ -207,7 +206,6 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   double _maxWidth(OptimusDialogSize autoSize) {
     switch (autoSize) {
       case OptimusDialogSize.small:
@@ -219,7 +217,6 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Alignment _alignment(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
@@ -232,7 +229,6 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Alignment get _smallScreenAlignment {
     switch (position) {
       case OptimusDialogPosition.center:
@@ -242,7 +238,6 @@ class OptimusDialog extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Alignment get _largeScreenAlignment {
     switch (position) {
       case OptimusDialogPosition.center:

@@ -251,7 +251,6 @@ class OptimusWideBanner extends StatelessWidget {
   TextStyle _contentTextStyle(OptimusThemeData theme) =>
       preset200s.merge(TextStyle(color: _color(theme), height: 1));
 
-  // ignore: missing_return
   Color _backgroundColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
@@ -263,7 +262,6 @@ class OptimusWideBanner extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _color(OptimusThemeData theme) {
     if (theme.brightness == Brightness.light) {
       switch (variant) {

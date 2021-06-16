@@ -123,7 +123,6 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _highLightColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
@@ -139,7 +138,6 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _textColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:

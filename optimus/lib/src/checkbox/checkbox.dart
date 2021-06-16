@@ -101,7 +101,6 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
     setState(() => _isHovering = hovered);
   }
 
-  // ignore: missing_return
   TextStyle get _labelStyle {
     switch (widget.size) {
       case OptimusCheckboxSize.large:

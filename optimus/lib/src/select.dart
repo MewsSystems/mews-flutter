@@ -96,7 +96,6 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
       );
 
-  // ignore: missing_return
   TextStyle get _textStyle {
     if (widget.value == null) {
       switch (widget.size) {

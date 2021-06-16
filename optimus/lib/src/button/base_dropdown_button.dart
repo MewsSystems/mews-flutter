@@ -108,7 +108,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       : preset300b.copyWith(color: _textColor);
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  // ignore: missing_return
   Color get _textColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.primary:
@@ -128,7 +127,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
           ? _hoverColor
           : _normalColor;
 
-  // ignore: missing_return
   Color get _normalColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
@@ -140,7 +138,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     }
   }
 
-  // ignore: missing_return
   Color get _hoverColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
@@ -152,7 +149,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     }
   }
 
-  // ignore: missing_return
   Color get _highlightColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:

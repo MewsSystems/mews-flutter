@@ -84,7 +84,6 @@ class OptimusCard extends StatelessWidget {
     );
   }
 
-  // ignore: missing_return
   List<BoxShadow> get _shadows {
     switch (variant) {
       case OptimusBasicCardVariant.normal:
@@ -156,7 +155,6 @@ class OptimusNestedCard extends StatelessWidget {
           : null;
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  // ignore: missing_return
   Color _color(OptimusThemeData theme) {
     switch (variant) {
       case OptimusNestedCardVariant.emphasized:
@@ -209,7 +207,6 @@ class _Card extends StatelessWidget {
     );
   }
 
-  // ignore: missing_return
   BorderRadius get _borderRadius {
     switch (attachment) {
       case OptimusCardAttachment.none:
@@ -252,7 +249,6 @@ class OptimusCardChildPadding extends StatelessWidget {
   Widget build(BuildContext context) =>
       Padding(padding: _padding, child: child);
 
-  // ignore: missing_return
   EdgeInsets get _padding {
     switch (spacing) {
       case OptimusCardSpacing.spacing0:

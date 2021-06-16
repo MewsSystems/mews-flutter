@@ -98,7 +98,6 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
-  // ignore: missing_return
   TextStyle get _subtitleStyle {
     switch (widget.fontVariant) {
       case FontVariant.normal:
