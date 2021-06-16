@@ -25,10 +25,10 @@ class _BaseDropdownTileState extends State<BaseDropdownTile> with ThemeGetter {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            DefaultTextStyle.merge(style: preset300s, child: widget.title),
+            DefaultTextStyle.merge(style: preset300b, child: widget.title),
             if (widget.subtitle != null)
               DefaultTextStyle.merge(
-                style: preset200s.copyWith(color: _subtitleColor),
+                style: preset200b.copyWith(color: _subtitleColor),
                 child: widget.subtitle!,
               )
           ],
