@@ -79,29 +79,50 @@ TextStyle preset400r(Breakpoint breakpoint) {
   }
 }
 
-TextStyle get preset300b =>
-    baseTextStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w700);
+TextStyle get preset300b => baseTextStyle.copyWith(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      height: 1.5,
+    );
 
-TextStyle get preset300s =>
-    baseTextStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
+TextStyle get preset300s => baseTextStyle.copyWith(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      height: 1.5,
+    );
 
-TextStyle get preset300r => baseTextStyle.copyWith(fontSize: 16);
+TextStyle get preset300r => baseTextStyle.copyWith(
+      fontSize: 16,
+      height: 1.5,
+    );
 
-TextStyle get preset200b =>
-    baseTextStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w700);
+TextStyle get preset200b => baseTextStyle.copyWith(
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      height: 1.5,
+    );
 
-TextStyle get preset200s =>
-    baseTextStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w600);
+TextStyle get preset200s => baseTextStyle.copyWith(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      height: 1.5,
+    );
 
-TextStyle get preset200r => baseTextStyle.copyWith(fontSize: 14);
+TextStyle get preset200r => baseTextStyle.copyWith(fontSize: 14, height: 1.5);
 
-TextStyle get preset100b =>
-    baseTextStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700);
+TextStyle get preset100b => baseTextStyle.copyWith(
+      fontSize: 12,
+      fontWeight: FontWeight.w700,
+      height: 1.5,
+    );
 
-TextStyle get preset100s =>
-    baseTextStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w600);
+TextStyle get preset100s => baseTextStyle.copyWith(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      height: 1.5,
+    );
 
-TextStyle get preset100r => baseTextStyle.copyWith(fontSize: 12);
+TextStyle get preset100r => baseTextStyle.copyWith(fontSize: 12, height: 1.5);
 
 extension on Breakpoint {
   _Scale get scale {

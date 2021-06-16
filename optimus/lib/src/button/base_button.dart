@@ -6,7 +6,7 @@ import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/theme/theme_data.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/widget_size.dart';
 
 class BaseButton extends StatelessWidget {
@@ -45,7 +45,7 @@ class BaseButton extends StatelessWidget {
       Icon(icon, size: _iconSize, color: _textColor(theme));
 
   TextStyle get _textStyle =>
-      size == OptimusWidgetSize.small ? preset200s : preset300s;
+      size == OptimusWidgetSize.small ? preset200b : preset300b;
 
   Widget _buildBadgeLabel(String badgeLabel, OptimusThemeData theme) =>
       SizedBox(
