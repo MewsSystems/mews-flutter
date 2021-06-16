@@ -10,7 +10,7 @@ import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/icon.dart';
 import 'package:optimus/src/spacing.dart';
 import 'package:optimus/src/stack.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/utils.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
@@ -116,7 +116,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DefaultTextStyle.merge(
-                      style: preset200s,
+                      style: preset200b,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       child: item.label,
@@ -124,7 +124,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                     if (item.description != null)
                       DefaultTextStyle.merge(
                         overflow: TextOverflow.ellipsis,
-                        style: preset200m.copyWith(
+                        style: preset200s.copyWith(
                           color: theme.isDark
                               ? theme.colors.neutral0t64
                               : theme.colors.neutral1000t64,
@@ -195,7 +195,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                 child: Center(
                   child: Text(
                     (widget.items.indexOf(item) + 1).toString(),
-                    style: preset200s.merge(
+                    style: preset200b.merge(
                       TextStyle(height: 1, color: state.textColor(theme)),
                     ),
                   ),

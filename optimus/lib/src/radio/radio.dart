@@ -89,8 +89,14 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
 
   bool get _isSelected => widget.value == widget.groupValue;
 
-  TextStyle get _labelStyle =>
-      widget.size == OptimusRadioSize.small ? preset200s : preset300s;
+  TextStyle get _labelStyle {
+    switch (widget.size) {
+      case OptimusRadioSize.small:
+        return preset200s;
+      case OptimusRadioSize.large:
+        return preset300s;
+    }
+  }
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);

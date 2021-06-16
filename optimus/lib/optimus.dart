@@ -2,7 +2,7 @@ library optimus;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 export 'optimus_icons.dart';
 export 'src/avatar.dart';
@@ -21,6 +21,7 @@ export 'src/colors/brand_colors.dart';
 export 'src/colors/color_options.dart';
 export 'src/colors/colors.dart';
 export 'src/common/content.dart';
+export 'src/common/group_item.dart';
 export 'src/common/scroll.dart';
 export 'src/date_time_field.dart';
 export 'src/dialogs/dialog.dart';
@@ -31,7 +32,6 @@ export 'src/form/checkbox_form_field.dart';
 export 'src/form/date_time_form_field.dart';
 export 'src/form/input_form_field.dart';
 export 'src/form/select_form_field.dart';
-export 'src/common/group_item.dart';
 export 'src/icon.dart';
 export 'src/icon_list.dart';
 export 'src/input_field.dart';

@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 enum TagVersion {
   /// Use the bold version to highlight important items onscreen.
@@ -130,7 +130,7 @@ class _TagState extends State<_Tag> with ThemeGetter {
                     ? widget.text
                     : widget.text.toUpperCase(),
                 style: widget.onRemoved != null
-                    ? preset200m.copyWith(
+                    ? preset200s.copyWith(
                         height: 1.1,
                         // TODO(VG): can be changed when final dark theme design
                         //  is ready.

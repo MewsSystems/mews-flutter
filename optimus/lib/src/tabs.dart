@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_side.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class OptimusTab extends StatelessWidget {
   const OptimusTab({
@@ -31,7 +31,7 @@ class OptimusTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Think about better implementation with typography components
-    final TextStyle textStyle = preset100s;
+    final TextStyle textStyle = preset100b;
     final theme = OptimusTheme.of(context);
 
     return DefaultTabController(

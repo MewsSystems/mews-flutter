@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/field_wrapper.dart';
+import 'package:optimus/src/common/field_wrapper.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class OptimusInputField extends StatefulWidget {
   const OptimusInputField({
@@ -192,10 +192,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         : theme.colors.defaultTextColor;
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: color);
+        return preset200s.copyWith(color: color);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: color);
+        return preset300s.copyWith(color: color);
     }
   }
 
@@ -204,10 +204,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
     switch (widget.size) {
       case OptimusWidgetSize.small:
-        return preset200m.copyWith(color: color);
+        return preset200s.copyWith(color: color);
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
-        return preset300m.copyWith(color: color);
+        return preset300s.copyWith(color: color);
     }
   }
 
