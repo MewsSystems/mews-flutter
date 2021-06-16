@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_side.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class OptimusListTile extends StatefulWidget {
   const OptimusListTile({
@@ -92,11 +92,9 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
   TextStyle get _titleStyle {
     switch (widget.fontVariant) {
       case FontVariant.normal:
-        return preset300m;
-      case FontVariant.bold:
         return preset300s;
-      default:
-        return preset300m;
+      case FontVariant.bold:
+        return preset300b;
     }
   }
 
@@ -104,16 +102,16 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
   TextStyle get _subtitleStyle {
     switch (widget.fontVariant) {
       case FontVariant.normal:
-        return preset200m.copyWith(color: _subtitleColor);
+        return preset200s.copyWith(color: _subtitleColor);
       case FontVariant.bold:
-        return preset200m;
+        return preset200s;
     }
   }
 
   Color get _subtitleColor =>
       theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
 
-  TextStyle get _infoStyle => preset100m.copyWith(
+  TextStyle get _infoStyle => preset100s.copyWith(
         color: theme.isDark
             ? theme.colors.neutral0t64
             : theme.colors.neutral1000t64,
