@@ -7,7 +7,7 @@ import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/common/scroll.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/theme/theme_data.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 enum OptimusDialogSize {
   /// Intended for short, to the point messages.

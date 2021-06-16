@@ -15,20 +15,16 @@ class OptimusFieldLabel extends StatelessWidget {
   final bool isRequired;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
-      child: OptimusLabelSmall(
-        variation: Variation.variationSecondary,
-        child: Text(
-          isRequired ? '$label *' : label,
-          style: TextStyle(color: _textColor(theme)),
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(bottom: 2),
+        child: OptimusLabelSmall(
+          variation: Variation.variationSecondary,
+          child: Text(
+            isRequired ? '$label *' : label,
+            style: TextStyle(color: _textColor(OptimusTheme.of(context))),
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   Color _textColor(OptimusThemeData theme) =>
       theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
