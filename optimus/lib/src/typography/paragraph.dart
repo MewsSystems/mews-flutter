@@ -1,15 +1,20 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
 
-/// Paragraphs are blocks of text that group related content.
+/// Paragraphs are blocks of text that group related content concerning one
+/// topic or idea.
 ///
-/// It should be used as a distinct section of text dealing with a single topic.
+/// [OptimusParagraph] with [Variation.variationNormal] is used as a distinct
+/// section of text dealing with a single topic.
+///
+/// [OptimusParagraph] with [Variation.variationSecondary] is used as a
+/// distinct section of text dealing with a single topic of less emphasis.
 class OptimusParagraph extends StatelessWidget {
   const OptimusParagraph({
     Key? key,
-    this.variation = Variation.variationDefault,
+    this.variation = Variation.variationNormal,
     required this.child,
   }) : super(key: key);
 
@@ -29,13 +34,18 @@ class OptimusParagraph extends StatelessWidget {
       );
 }
 
-/// Paragraphs are blocks of text that group related content.
+/// Paragraphs are blocks of text that group related content concerning one
+/// topic or idea.
 ///
-/// Intended for the content-heavy environment (with exceptions).
+/// [OptimusParagraphSmall] with [Variation.variationNormal] Used as a distinct
+/// section of text dealing with a single topic.
+///
+/// [OptimusParagraphSmall] with [Variation.variationSecondary] is used as a
+/// distinct section of text dealing with a single topic of less emphasis.
 class OptimusParagraphSmall extends StatelessWidget {
   const OptimusParagraphSmall({
     Key? key,
-    this.variation = Variation.variationDefault,
+    this.variation = Variation.variationNormal,
     required this.child,
   }) : super(key: key);
 

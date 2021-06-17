@@ -10,19 +10,19 @@ final Story highlightStory = Story(
       spacing: OptimusStackSpacing.spacing200,
       mainAxisSize: MainAxisSize.min,
       children: [
-        OptimusHighlightHigh(
+        OptimusHighlightMajor(
           child: Text(
-            k.text(label: 'HighlightHigh', initial: 'HighlightHigh'),
+            k.text(label: 'Major Highlight', initial: 'Major Highlight'),
           ),
         ),
-        OptimusHighlightMedium(
+        OptimusHighlightModerate(
           child: Text(
-            k.text(label: 'HighlightMedium', initial: 'HighlightMedium'),
+            k.text(label: 'Moderate Highlight', initial: 'Moderate Highlight'),
           ),
         ),
-        OptimusHighlightLow(
+        OptimusHighlightMinor(
           child: Text(
-            k.text(label: 'HighlightLow', initial: 'HighlightLow'),
+            k.text(label: 'Minor Highlight', initial: 'Minor Highlight'),
           ),
         ),
       ],

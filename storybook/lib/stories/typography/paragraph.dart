@@ -9,7 +9,7 @@ final Story paragraphStory = Story(
   builder: (_, k) {
     final variation = k.options(
       label: 'Variation',
-      initial: Variation.variationDefault,
+      initial: Variation.variationNormal,
       options: variationOptions,
     );
 
@@ -20,14 +20,12 @@ final Story paragraphStory = Story(
         children: [
           OptimusParagraph(
             variation: variation,
-            child: Text(
-              k.text(label: 'Paragraph', initial: 'Paragraph'),
-            ),
+            child: Text(k.text(label: 'Paragraph', initial: 'Paragraph')),
           ),
           OptimusParagraphSmall(
             variation: variation,
             child: Text(
-              k.text(label: 'ParagraphSmall', initial: 'ParagraphSmall'),
+              k.text(label: 'Small Paragraph', initial: 'Small Paragraph'),
             ),
           ),
         ],
