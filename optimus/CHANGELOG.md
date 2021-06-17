@@ -1,3 +1,11 @@
+## 0.7.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: [RND-61500] Add new typography presets p.3 (#84).
+ - **FEAT**: [RND-61500] Add new typography presets p.1 (#81).
+ - **BREAKING** **FEAT**: [RND-61500] Add new typography presets p.2 (#83).
+
 ## 0.6.0
 
 > Note: This release has breaking changes.
