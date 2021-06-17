@@ -1,3 +1,9 @@
+## 0.6.1
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [RND-61500] Add new typography presets and components (#84).
+
 ## 0.6.0
 
 > Note: This release has breaking changes.
