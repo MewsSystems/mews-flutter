@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 enum TagVersion {
   /// Use the bold version to highlight important items onscreen.
@@ -130,7 +130,7 @@ class _TagState extends State<_Tag> with ThemeGetter {
                     ? widget.text
                     : widget.text.toUpperCase(),
                 style: widget.onRemoved != null
-                    ? preset200m.copyWith(
+                    ? preset200s.copyWith(
                         height: 1.1,
                         // TODO(VG): can be changed when final dark theme design
                         //  is ready.
@@ -154,7 +154,6 @@ class _TagState extends State<_Tag> with ThemeGetter {
       ? const EdgeInsets.only(top: 1.5, bottom: 1.5, left: 8)
       : const EdgeInsets.symmetric(vertical: 1, horizontal: 8);
 
-  // ignore: missing_return
   Color get _tagColor {
     switch (widget.version) {
       case TagVersion.bold:
@@ -164,7 +163,6 @@ class _TagState extends State<_Tag> with ThemeGetter {
     }
   }
 
-  // ignore: missing_return
   Color get _tagBoldColor {
     switch (widget.colorOption) {
       case OptimusColorOption.basic:
@@ -182,7 +180,6 @@ class _TagState extends State<_Tag> with ThemeGetter {
   }
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  // ignore: missing_return
   Color get _tagSubtleColor {
     switch (widget.colorOption) {
       case OptimusColorOption.basic:
@@ -204,7 +201,6 @@ class _TagState extends State<_Tag> with ThemeGetter {
     }
   }
 
-  // ignore: missing_return
   Color get _textColor {
     switch (widget.version) {
       case TagVersion.bold:
@@ -226,7 +222,6 @@ class _TagState extends State<_Tag> with ThemeGetter {
     }
   }
 
-  // ignore: missing_return
   Color get _textSubtleColor {
     // TODO(VG): can be changed when final dark theme design is ready.
     if (theme.isDark) return theme.colors.invertedTextColor;

@@ -2,8 +2,8 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/enabled.dart';
-import 'package:optimus/src/group_item.dart';
-import 'package:optimus/src/group_wrapper.dart';
+import 'package:optimus/src/common/group_item.dart';
+import 'package:optimus/src/common/group_wrapper.dart';
 
 /// Group of checkboxes with the same label and error messages.
 class OptimusCheckboxGroup<T> extends StatelessWidget {

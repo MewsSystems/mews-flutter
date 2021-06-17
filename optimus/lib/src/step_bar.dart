@@ -10,7 +10,7 @@ import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/icon.dart';
 import 'package:optimus/src/spacing.dart';
 import 'package:optimus/src/stack.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/utils.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
@@ -69,7 +69,6 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     return OptimusStepBarItemState.disabled;
   }
 
-  // ignore: missing_return
   Widget get _spacer {
     switch (_effectiveLayout) {
       case Axis.horizontal:
@@ -117,7 +116,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DefaultTextStyle.merge(
-                      style: preset200s,
+                      style: preset200b,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       child: item.label,
@@ -125,7 +124,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                     if (item.description != null)
                       DefaultTextStyle.merge(
                         overflow: TextOverflow.ellipsis,
-                        style: preset200m.copyWith(
+                        style: preset200s.copyWith(
                           color: theme.isDark
                               ? theme.colors.neutral0t64
                               : theme.colors.neutral1000t64,
@@ -142,7 +141,6 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
         ),
       );
 
-  // ignore: missing_return
   Widget _buildIcon(OptimusStepBarItem item) {
     final state = _getItemState(item);
     switch (widget.type) {
@@ -197,7 +195,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
                 child: Center(
                   child: Text(
                     (widget.items.indexOf(item) + 1).toString(),
-                    style: preset200s.merge(
+                    style: preset200b.merge(
                       TextStyle(height: 1, color: state.textColor(theme)),
                     ),
                   ),
@@ -282,7 +280,6 @@ const double _itemMaxWidth = 320;
 const double _spacerMinWidth = 16;
 
 extension on OptimusStepBarItemState {
-  // ignore: missing_return
   Color iconBackgroundColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
@@ -296,7 +293,6 @@ extension on OptimusStepBarItemState {
     }
   }
 
-  // ignore: missing_return
   Color textColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
@@ -310,7 +306,6 @@ extension on OptimusStepBarItemState {
     }
   }
 
-  // ignore: missing_return
   OptimusColorOption get iconColor {
     switch (this) {
       case OptimusStepBarItemState.completed:

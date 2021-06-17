@@ -82,7 +82,6 @@ class OptimusStack extends StatelessWidget {
   /// Defines amount of space taken by the main axis.
   final MainAxisSize mainAxisSize;
 
-  // ignore: missing_return
   Axis _direction(BuildContext context) {
     final breakpoint = this.breakpoint;
 
@@ -96,7 +95,6 @@ class OptimusStack extends StatelessWidget {
         : Axis.horizontal;
   }
 
-  // ignore: missing_return
   List<Widget> _children(BuildContext context) {
     switch (distribution) {
       case OptimusStackDistribution.basic:
@@ -134,7 +132,6 @@ class OptimusStack extends StatelessWidget {
 }
 
 extension on OptimusStackSpacing {
-  // ignore: missing_return
   double get size {
     switch (this) {
       case OptimusStackSpacing.spacing0:
@@ -158,7 +155,6 @@ extension on OptimusStackSpacing {
 }
 
 extension on OptimusStackAlignment {
-  // ignore: missing_return
   CrossAxisAlignment get crossAxisAlignment {
     switch (this) {
       case OptimusStackAlignment.start:
@@ -170,7 +166,6 @@ extension on OptimusStackAlignment {
     }
   }
 
-  // ignore: missing_return
   MainAxisAlignment get mainAxisAlignment {
     switch (this) {
       case OptimusStackAlignment.start:

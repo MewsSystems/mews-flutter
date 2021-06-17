@@ -5,9 +5,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/enabled.dart';
-import 'package:optimus/src/group_wrapper.dart';
+import 'package:optimus/src/common/group_wrapper.dart';
 import 'package:optimus/src/segmented_control/wrapper.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class OptimusSegmentedControl<T> extends StatelessWidget {
   OptimusSegmentedControl({
@@ -146,7 +146,7 @@ class _OptimusSegmentedControlItemState<T>
                 Center(
                   child: DefaultTextStyle.merge(
                     overflow: TextOverflow.ellipsis,
-                    style: preset300s.copyWith(
+                    style: preset300b.copyWith(
                       color: theme.isDark
                           ? theme.colors.neutral0
                           : theme.colors.neutral900,

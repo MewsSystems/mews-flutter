@@ -76,7 +76,6 @@ class OptimusSplitButton<T> extends StatelessWidget {
         ],
       );
 
-  // ignore: missing_return
   OptimusButtonVariant get _buttonVariant {
     switch (variant) {
       case OptimusSplitButtonVariant.defaultButton:
@@ -86,7 +85,6 @@ class OptimusSplitButton<T> extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   OptimusDropdownButtonVariant get _dropdownButtonVariant {
     switch (variant) {
       case OptimusSplitButtonVariant.defaultButton:

@@ -12,11 +12,10 @@ class OptimusFieldError extends StatelessWidget {
   final String error;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return OptimusCaption(
-      child: Text(error, style: TextStyle(color: theme.colors.danger500)),
-    );
-  }
+  Widget build(BuildContext context) => OptimusCaption(
+        child: Text(
+          error,
+          style: TextStyle(color: OptimusTheme.of(context).colors.danger500),
+        ),
+      );
 }

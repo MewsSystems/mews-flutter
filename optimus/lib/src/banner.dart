@@ -5,7 +5,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/theme/theme_data.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 enum OptimusBannerVariant {
   /// To display an informative message.
@@ -107,7 +107,7 @@ class OptimusBanner extends StatelessWidget {
                           ),
                           child: DefaultTextStyle.merge(
                             child: title,
-                            style: _textStyle,
+                            style: preset300s,
                           ),
                         ),
                       ),
@@ -128,7 +128,9 @@ class OptimusBanner extends StatelessWidget {
                       ),
                       child: DefaultTextStyle.merge(
                         child: description!,
-                        style: _additionalDescriptionTextStyle,
+                        style: preset200r.copyWith(
+                          color: _getDescriptionColor(theme),
+                        ),
                       ),
                     ),
                 ],
@@ -140,15 +142,6 @@ class OptimusBanner extends StatelessWidget {
     );
   }
 
-  TextStyle get _textStyle => description != null ? preset300m : preset200m;
-
-  TextStyle get _additionalDescriptionTextStyle =>
-      preset200m.merge(const TextStyle(
-        fontWeight: FontWeight.normal,
-        height: 1,
-      ));
-
-  // ignore: missing_return
   IconData get _icon {
     switch (variant) {
       case OptimusBannerVariant.primary:
@@ -162,7 +155,6 @@ class OptimusBanner extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   OptimusColorOption get _iconColor {
     switch (variant) {
       case OptimusBannerVariant.primary:
@@ -176,7 +168,6 @@ class OptimusBanner extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _backgroundColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusBannerVariant.primary:
@@ -189,6 +180,9 @@ class OptimusBanner extends StatelessWidget {
         return theme.colors.danger500t8;
     }
   }
+
+  Color _getDescriptionColor(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
 }
 
 enum OptimusWideBannerVariant {
@@ -257,7 +251,6 @@ class OptimusWideBanner extends StatelessWidget {
   TextStyle _contentTextStyle(OptimusThemeData theme) =>
       preset200s.merge(TextStyle(color: _color(theme), height: 1));
 
-  // ignore: missing_return
   Color _backgroundColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusWideBannerVariant.informative:
@@ -269,7 +262,6 @@ class OptimusWideBanner extends StatelessWidget {
     }
   }
 
-  // ignore: missing_return
   Color _color(OptimusThemeData theme) {
     if (theme.brightness == Brightness.light) {
       switch (variant) {

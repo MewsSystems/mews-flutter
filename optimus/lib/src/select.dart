@@ -3,9 +3,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
-import 'package:optimus/src/field_wrapper.dart';
+import 'package:optimus/src/common/field_wrapper.dart';
 import 'package:optimus/src/overlay_controller.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/widget_size.dart';
 
 typedef CurrentValueBuilder<T> = Widget Function(BuildContext context, T value);
@@ -86,7 +86,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   Widget get _fieldContent => widget.value == null
       ? Text(widget.placeholder, style: _textStyle)
       : DefaultTextStyle.merge(
-          style: preset300m,
+          style: preset300s,
           child: widget.builder(context, widget.value!),
         );
 
@@ -96,23 +96,22 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
       );
 
-  // ignore: missing_return
   TextStyle get _textStyle {
     if (widget.value == null) {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: _placeholderColor);
+          return preset200s.copyWith(color: _placeholderColor);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: _placeholderColor);
+          return preset300s.copyWith(color: _placeholderColor);
       }
     } else {
       switch (widget.size) {
         case OptimusWidgetSize.small:
-          return preset200m.copyWith(color: _textColor);
+          return preset200s.copyWith(color: _textColor);
         case OptimusWidgetSize.medium:
         case OptimusWidgetSize.large:
-          return preset300m.copyWith(color: _textColor);
+          return preset300s.copyWith(color: _textColor);
       }
     }
   }

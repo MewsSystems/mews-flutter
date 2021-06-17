@@ -6,7 +6,7 @@ import 'package:optimus/src/common/field_error.dart';
 import 'package:optimus/src/common/field_label.dart';
 import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class FieldWrapper extends StatefulWidget {
   const FieldWrapper({
@@ -160,7 +160,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
         ...widget.children,
         if (widget.suffix != null)
           DefaultTextStyle.merge(
-            style: preset100s.copyWith(color: theme.colors.neutral1000t32),
+            style: preset100b.copyWith(color: theme.colors.neutral1000t32),
             child: _Icon(child: _SuffixPadding(child: widget.suffix!)),
           )
       ];

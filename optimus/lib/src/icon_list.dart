@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 /// The icon list component serves as a static, non-interactable option and is
 /// used when you need to show an icon with a label and/or optional description.
@@ -37,7 +37,6 @@ class OptimusIconList extends StatelessWidget {
     );
   }
 
-  // ignore: missing_return
   OptimusIconListSize _getListSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
@@ -133,23 +132,21 @@ class _ListTile extends StatelessWidget {
     );
   }
 
-  //ignore: missing_return
   TextStyle get _labelStyle {
     switch (size) {
       case OptimusIconListSize.large:
-        return preset300m;
+        return preset300s;
       case OptimusIconListSize.small:
-        return preset200m;
+        return preset200s;
     }
   }
 
-  //ignore: missing_return
   TextStyle get _descriptionStyle {
     switch (size) {
       case OptimusIconListSize.large:
-        return preset200m;
+        return preset200s;
       case OptimusIconListSize.small:
-        return preset100m;
+        return preset100s;
     }
   }
 }

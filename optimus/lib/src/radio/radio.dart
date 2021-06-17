@@ -4,8 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/enabled.dart';
-import 'package:optimus/src/group_wrapper.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/common/group_wrapper.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 /// The radio component is available in two size variants to accommodate
 /// different environments with different requirements.
@@ -89,13 +89,12 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
 
   bool get _isSelected => widget.value == widget.groupValue;
 
-  // ignore: missing_return
   TextStyle get _labelStyle {
     switch (widget.size) {
       case OptimusRadioSize.small:
-        return preset200m;
+        return preset200s;
       case OptimusRadioSize.large:
-        return preset300m;
+        return preset300s;
     }
   }
 

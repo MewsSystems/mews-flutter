@@ -8,7 +8,7 @@ import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/overlay_controller.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/styles.dart';
+import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/widget_size.dart';
 
 class BaseDropDownButton<T> extends StatefulWidget {
@@ -104,11 +104,10 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   bool get _isEnabled => widget.onItemSelected != null;
 
   TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
-      ? preset200s.copyWith(color: _textColor, height: 1.3)
-      : preset300s.copyWith(color: _textColor, height: 1.3);
+      ? preset200b.copyWith(color: _textColor)
+      : preset300b.copyWith(color: _textColor);
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  // ignore: missing_return
   Color get _textColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.primary:
@@ -128,7 +127,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
           ? _hoverColor
           : _normalColor;
 
-  // ignore: missing_return
   Color get _normalColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
@@ -140,7 +138,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     }
   }
 
-  // ignore: missing_return
   Color get _hoverColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
@@ -152,7 +149,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     }
   }
 
-  // ignore: missing_return
   Color get _highlightColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.defaultButton:
