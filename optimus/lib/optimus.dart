@@ -64,7 +64,7 @@ export 'src/widget_size.dart';
 final ThemeData mewsTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   primarySwatch: Colors.blue,
-  fontFamily: 'packages/optimus/Montserrat',
+  fontFamily: 'packages/optimus/OpenSans',
   textTheme: const TextTheme(
     headline1: baseTextStyle,
     headline2: baseTextStyle,

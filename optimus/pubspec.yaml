@@ -24,13 +24,6 @@ dev_dependencies:
 
 flutter:
   fonts:
-    - family: Montserrat
-      fonts:
-        - asset: packages/optimus/fonts/Montserrat-Regular.ttf
-        - asset: packages/optimus/fonts/Montserrat-Medium.ttf
-          weight: 500
-        - asset: packages/optimus/fonts/Montserrat-SemiBold.ttf
-          weight: 600
     - family: OpenSans
       fonts:
         - asset: packages/optimus/fonts/OpenSans-Regular.ttf
