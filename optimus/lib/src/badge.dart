@@ -31,19 +31,23 @@ class OptimusBadge extends StatelessWidget {
         horizontal: spacing50,
         vertical: spacing25,
       ),
-      child: IntrinsicWidth(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          // TODO(KB): Sync with text presets
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color:
-                theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
-            height: 1,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            // TODO(KB): Sync with text presets
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: theme.isDark
+                  ? theme.colors.neutral1000
+                  : theme.colors.neutral0,
+              height: 1,
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
