@@ -31,10 +31,9 @@ class OptimusBadge extends StatelessWidget {
         horizontal: spacing50,
         vertical: spacing25,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
+      child: IntrinsicWidth(
+        child: Center(
+          child: Text(
             text,
             textAlign: TextAlign.center,
             // TODO(KB): Sync with text presets
@@ -47,7 +46,7 @@ class OptimusBadge extends StatelessWidget {
               height: 1,
             ),
           ),
-        ],
+        ),
       ),
     );
   }
