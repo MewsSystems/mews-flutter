@@ -12,7 +12,7 @@ class FieldWrapper extends StatefulWidget {
   const FieldWrapper({
     Key? key,
     this.isEnabled = true,
-    this.focusNode,
+    required this.focusNode,
     this.label,
     this.caption,
     this.secondaryCaption,
@@ -26,7 +26,7 @@ class FieldWrapper extends StatefulWidget {
   }) : super(key: key);
 
   final bool isEnabled;
-  final FocusNode? focusNode;
+  final FocusNode focusNode;
   final String? label;
   final Widget? caption;
   final Widget? secondaryCaption;
@@ -45,90 +45,79 @@ class FieldWrapper extends StatefulWidget {
 }
 
 class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
-  FocusNode? _focusNode;
-
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
-
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_onFocusChanged);
+    widget.focusNode.addListener(_onFocusChanged);
   }
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_onFocusChanged);
-    _focusNode?.dispose();
+    widget.focusNode.removeListener(_onFocusChanged);
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => Focus(
-        focusNode: _effectiveFocusNode,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Row(
-              children: [
-                if (widget.label != null)
-                  OptimusFieldLabel(
-                    label: widget.label!,
-                    isRequired: widget.isRequired,
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Row(
+            children: [
+              if (widget.label != null)
+                OptimusFieldLabel(
+                  label: widget.label!,
+                  isRequired: widget.isRequired,
+                ),
+              const Spacer(),
+              if (widget.secondaryCaption != null)
+                OptimusCaption(
+                  variation: Variation.variationSecondary,
+                  child: DefaultTextStyle.merge(
+                    style: TextStyle(
+                      color: _secondaryCaptionColor,
+                    ),
+                    child: widget.secondaryCaption!,
                   ),
-                const Spacer(),
-                if (widget.secondaryCaption != null)
-                  OptimusCaption(
-                    variation: Variation.variationSecondary,
-                    child: DefaultTextStyle.merge(
-                      style: TextStyle(
-                        color: _secondaryCaptionColor,
+                ),
+            ],
+          ),
+          Opacity(
+            opacity:
+                widget.isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IgnorePointer(
+                  ignoring: !widget.isEnabled,
+                  child: _FieldPadding(
+                    child: Container(
+                      key: widget.fieldBoxKey,
+                      decoration: widget.hasBorders
+                          ? BoxDecoration(
+                              color: _background,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(4)),
+                              border: Border.all(color: _borderColor, width: 1),
+                            )
+                          : null,
+                      child: Row(
+                        children: _buildChildren(),
                       ),
-                      child: widget.secondaryCaption!,
+                    ),
+                  ),
+                ),
+                if (widget.hasError) OptimusFieldError(error: widget.error!),
+                if (!widget.hasError && widget.caption != null)
+                  OptimusCaption(
+                    child: DefaultTextStyle.merge(
+                      style: TextStyle(color: _captionColor),
+                      child: widget.caption!,
                     ),
                   ),
               ],
             ),
-            Opacity(
-              opacity: widget.isEnabled
-                  ? OpacityValue.enabled
-                  : OpacityValue.disabled,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IgnorePointer(
-                    ignoring: !widget.isEnabled,
-                    child: _FieldPadding(
-                      child: Container(
-                        key: widget.fieldBoxKey,
-                        decoration: widget.hasBorders
-                            ? BoxDecoration(
-                                color: _background,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(4)),
-                                border:
-                                    Border.all(color: _borderColor, width: 1),
-                              )
-                            : null,
-                        child: Row(
-                          children: _buildChildren(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  if (widget.hasError) OptimusFieldError(error: widget.error!),
-                  if (!widget.hasError && widget.caption != null)
-                    OptimusCaption(
-                      child: DefaultTextStyle.merge(
-                        style: TextStyle(color: _captionColor),
-                        child: widget.caption!,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       );
 
   void _onFocusChanged() {
@@ -143,12 +132,12 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   Color get _borderColor {
     if (widget.hasError) return theme.colors.danger;
-    return _effectiveFocusNode.hasFocus
+    return widget.focusNode.hasFocus
         ? theme.colors.primary
         : theme.colors.neutral100;
   }
 
-  Color get _captionColor => _effectiveFocusNode.hasFocus
+  Color get _captionColor => widget.focusNode.hasFocus
       ? theme.colors.primary
       : theme.isDark
           ? theme.colors.neutral0t64

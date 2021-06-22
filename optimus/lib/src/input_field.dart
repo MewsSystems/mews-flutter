@@ -123,6 +123,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   @override
   Widget build(BuildContext context) => FieldWrapper(
+        focusNode: _effectiveFocusNode,
         isEnabled: widget.isEnabled,
         label: widget.label,
         caption: widget.caption,
