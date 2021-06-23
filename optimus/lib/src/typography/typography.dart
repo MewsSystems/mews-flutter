@@ -12,12 +12,14 @@ class OptimusTypography extends StatelessWidget {
     Key? key,
     required this.resolveStyle,
     this.color = OptimusTypographyColor.primary,
+    this.isHighlighted = false,
     required this.child,
   }) : super(key: key);
 
   final ResolveStyle resolveStyle;
   final Widget child;
   final OptimusTypographyColor color;
+  final bool isHighlighted;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,12 @@ class OptimusTypography extends StatelessWidget {
   Color _color(OptimusThemeData theme) {
     switch (color) {
       case OptimusTypographyColor.primary:
+        if (isHighlighted) return theme.colors.neutral0;
         return theme.isDark
             ? theme.colors.invertedTextColor
             : theme.colors.defaultTextColor;
       case OptimusTypographyColor.secondary:
+        if (isHighlighted) return theme.colors.neutral0t64;
         return theme.isDark
             ? theme.colors.invertedSecondaryTextColor
             : theme.colors.secondaryTextColor;

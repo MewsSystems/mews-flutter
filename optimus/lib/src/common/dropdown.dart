@@ -169,13 +169,28 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
           widget.onChanged(widget.child.value);
           DropdownTapInterceptor.of(context)?.onTap();
         },
-        child: _isHighlighted
-            ? DefaultTextStyle.merge(
-                style: TextStyle(color: theme.colors.invertedTextColor),
-                child: widget.child,
-              )
-            : widget.child,
+        child: DropDownHighlight(
+          highlighted: _isHighlighted,
+          child: widget.child,
+        ),
       );
+}
+
+class DropDownHighlight extends InheritedWidget {
+  const DropDownHighlight({
+    Key? key,
+    required this.highlighted,
+    required Widget child,
+  }) : super(key: key, child: child);
+
+  final bool highlighted;
+
+  static DropDownHighlight of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<DropDownHighlight>()!;
+
+  @override
+  bool updateShouldNotify(DropDownHighlight oldWidget) =>
+      oldWidget.highlighted != highlighted;
 }
 
 const double _screenPadding = spacing200;
