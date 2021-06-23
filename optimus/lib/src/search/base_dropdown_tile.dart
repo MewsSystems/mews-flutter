@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/common/dropdown.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -28,14 +27,12 @@ class _BaseDropdownTileState extends State<BaseDropdownTile> {
           children: <Widget>[
             OptimusTypography(
               resolveStyle: (_) => preset300b,
-              isHighlighted: DropDownHighlight.of(context).highlighted,
               child: widget.title,
             ),
             if (widget.subtitle != null)
               OptimusTypography(
                 resolveStyle: (_) => preset200b,
                 color: OptimusTypographyColor.secondary,
-                isHighlighted: DropDownHighlight.of(context).highlighted,
                 child: widget.subtitle!,
               ),
           ],
