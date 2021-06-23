@@ -170,8 +170,11 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
           DropdownTapInterceptor.of(context)?.onTap();
         },
         child: _isHighlighted
-            ? DefaultTextStyle.merge(
-                style: TextStyle(color: theme.colors.invertedTextColor),
+            ? OptimusTheme(
+                themeMode: ThemeMode.dark,
+                darkTheme: OptimusTheme.of(context).copyWith(
+                  brightness: Brightness.dark,
+                ),
                 child: widget.child,
               )
             : widget.child,
