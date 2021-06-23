@@ -7,6 +7,7 @@ import 'package:storybook/stories/button/dropdown.dart';
 import 'package:storybook/stories/button/icon.dart';
 import 'package:storybook/stories/button/split.dart';
 import 'package:storybook/stories/card.dart';
+import 'package:storybook/stories/chat/bubble.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
 import 'package:storybook/stories/dialog.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
           labelStory,
           captionStory,
           highlightStory,
+          chatBubbleStory,
         ],
       );
 }
