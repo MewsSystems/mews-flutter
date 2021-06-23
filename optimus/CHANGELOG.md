@@ -1,3 +1,11 @@
+## 0.7.0+1
+
+ - **FIX**: Fix dropdown text color (#89).
+ - **FIX**: Make `FieldWrapper` not a focus node (#90).
+ - **FIX**: [RND-52878] Center text on badge (#88).
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.7.0
 
 > Note: This release has breaking changes.
