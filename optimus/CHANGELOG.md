@@ -1,3 +1,7 @@
+## 0.7.0+2
+
+ - **FIX**: Fix OptimusSelect focus (#93).
+
 ## 0.7.0+1
 
  - **FIX**: Fix dropdown text color (#89).
