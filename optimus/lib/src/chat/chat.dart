@@ -28,25 +28,43 @@ class Chat extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               itemCount: messages.length,
+              reverse: true,
               itemBuilder: (context, index) => ChatBubble(
-                  userName: messages[index].userName,
-                  message: Text(messages[index].message),
-                  type: messages[index].type,
-                  time: messages[index].time,
-                  status: messages[index].status,
-                  showAvatar: true,
-                  showStatus: true,
-                  showUserName: true,
-                  formatTime: formatTime,
-                  sending: sending,
-                  sent: sent,
-                  notSend: notSend,
-                  tryAgain: tryAgain,
-                  onTryAgainClicked: onTryAgainClicked,
-                ),
+                userName: _messages[index].userName,
+                message: Text(_messages[index].message),
+                type: _messages[index].type,
+                time: _messages[index].time,
+                status: _messages[index].status,
+                showAvatar: _showAvatar(index),
+                showStatus: _showStatus(index),
+                showUserName: _showUserName(index),
+                formatTime: formatTime,
+                sending: sending,
+                sent: sent,
+                notSend: notSend,
+                tryAgain: tryAgain,
+                onTryAgainClicked: onTryAgainClicked,
+              ),
             ),
           ),
           const ChatInput(),
         ],
       );
+
+  List<Message> get _messages => messages.reversed.toList();
+
+  bool _showAvatar(int index) =>
+      index == 0 ||
+      _messages[index == 0 ? 0 : index - 1].userName !=
+          _messages[index].userName;
+
+  bool _showStatus(int index) =>
+      _messages[index].status != MessageStatus.sent ||
+      _messages[index == 0 ? 0 : index - 1].userName !=
+          _messages[index].userName;
+
+  bool _showUserName(int index) =>
+      index + 1 == messages.length ||
+      _messages[index < messages.length ? index + 1 : index].userName !=
+          _messages[index].userName;
 }

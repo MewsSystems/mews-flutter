@@ -70,14 +70,17 @@ class ChatBubble extends StatelessWidget {
     );
   }
 
-  Widget _messageBubble(OptimusThemeData theme) => Container(
-        constraints: const BoxConstraints(maxWidth: 480),
-        decoration: _messageBackground(theme),
-        padding: const EdgeInsets.all(spacing100),
-        child: DefaultTextStyle.merge(
-          style: TextStyle.lerp(
-              preset200s, TextStyle(color: _messageTextColor(theme)), 1),
-          child: message,
+  Widget _messageBubble(OptimusThemeData theme) => Padding(
+        padding: EdgeInsets.only(top: showUserName ? spacing0 : spacing100),
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 480),
+          decoration: _messageBackground(theme),
+          padding: const EdgeInsets.all(spacing100),
+          child: DefaultTextStyle.merge(
+            style: TextStyle.lerp(
+                preset200s, TextStyle(color: _messageTextColor(theme)), 1),
+            child: message,
+          ),
         ),
       );
 
@@ -130,8 +133,8 @@ class ChatBubble extends StatelessWidget {
       case MessageStatus.sent:
         children = [
           Text(formatTime(time) as String),
-          sent,
-          const OptimusIcon(
+          if(type == MessageType.outbound) sent,
+          if(type == MessageType.outbound) const OptimusIcon(
             iconData: OptimusIcons.done_circle,
             iconSize: OptimusIconSize.small,
           )

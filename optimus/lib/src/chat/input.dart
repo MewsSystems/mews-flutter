@@ -27,6 +27,7 @@ class _ChatInputState extends State<ChatInput> {
             : OpacityValue.disabled,
         child: const OptimusIcon(
           iconData: OptimusIcons.send_message,
+          colorOption: OptimusColorOption.basic,
         ),
       ),
     );
