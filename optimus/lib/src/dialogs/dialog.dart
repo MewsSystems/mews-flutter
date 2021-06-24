@@ -363,18 +363,28 @@ class _Title extends StatelessWidget {
   final bool isDismissible;
 
   @override
-  Widget build(BuildContext context) => Row(
+  Widget build(BuildContext context) => Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(spacing200),
+            padding: const EdgeInsets.only(
+              left: spacing200,
+              top: spacing200,
+              bottom: spacing200,
+              right: spacing700,
+            ),
             child: OptimusSubsectionTitle(child: title),
           ),
-          const Spacer(),
           if (isDismissible)
-            OptimusIconButton(
-              icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-              variant: OptimusIconButtonVariant.bare,
-              onPressed: close,
+            Padding(
+              padding: const EdgeInsets.only(top: spacing50),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: OptimusIconButton(
+                  icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
+                  variant: OptimusIconButtonVariant.bare,
+                  onPressed: close,
+                ),
+              ),
             ),
         ],
       );
