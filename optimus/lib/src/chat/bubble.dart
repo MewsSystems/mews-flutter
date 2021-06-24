@@ -1,8 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/typography/presets.dart';
+
+part 'bubble.freezed.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
@@ -222,4 +225,15 @@ enum MessageStatus {
 
   /// An error occurred. The message has not been sent.
   notSent,
+}
+
+@freezed
+class Message with _$Message {
+  const factory Message({
+    required String userName,
+    required String message,
+    required MessageType type,
+    required DateTime time,
+    required MessageStatus status,
+  }) = _Message;
 }

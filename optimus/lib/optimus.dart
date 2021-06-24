@@ -16,6 +16,7 @@ export 'src/button/icon.dart';
 export 'src/button/split.dart';
 export 'src/card.dart';
 export 'src/chat/bubble.dart';
+export 'src/chat/chat.dart';
 export 'src/checkbox/checkbox.dart';
 export 'src/checkbox/checkbox_group.dart';
 export 'src/colors/brand_colors.dart';
