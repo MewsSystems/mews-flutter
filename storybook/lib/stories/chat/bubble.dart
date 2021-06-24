@@ -12,11 +12,11 @@ final chatBubbleStory = Story(
   builder: (_, k) => Center(
     child: ChatBubble(
       userName: k.text(label: 'User name', initial: 'Doggo'),
-      message: k.text(
+      message: Text(k.text(
         label: 'Message',
         initial:
             'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.',
-      ),
+      )),
       type: k.options(
         label: 'Type',
         initial: MessageType.inbound,
@@ -37,6 +37,11 @@ final chatBubbleStory = Story(
       showUserName: k.boolean(label: 'Show user name', initial: true),
       showStatus: k.boolean(label: 'Show status', initial: true),
       formatTime: (DateTime input) => '${input.hour}:${input.minute}',
+      notSend: const Text('Not Sent'),
+      sent: const Text('Sent'),
+      sending: const Text('Sending...'),
+      tryAgain: const Text('Try Again'),
+      onTryAgainClicked: () {},
     ),
   ),
 );

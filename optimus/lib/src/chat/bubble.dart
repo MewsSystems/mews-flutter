@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/stack.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
@@ -15,11 +16,16 @@ class ChatBubble extends StatelessWidget {
     required this.showStatus,
     required this.showUserName,
     required this.formatTime,
+    required this.sending,
+    required this.sent,
+    required this.notSend,
+    required this.tryAgain,
+    required this.onTryAgainClicked,
     this.avatarUrl,
   }) : super(key: key);
 
   final String userName;
-  final String message;
+  final Widget message;
   final MessageType type;
   final DateTime time;
   final MessageStatus status;
@@ -28,6 +34,11 @@ class ChatBubble extends StatelessWidget {
   final bool showStatus;
   final String? avatarUrl;
   final Function formatTime;
+  final Widget sending;
+  final Widget notSend;
+  final Widget sent;
+  final Widget tryAgain;
+  final VoidCallback onTryAgainClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -38,67 +49,126 @@ class ChatBubble extends StatelessWidget {
         spacing: OptimusStackSpacing.spacing50,
         crossAxisAlignment: _bubbleAlignment,
         children: [
-          if (showUserName) OptimusLabel(child: Text(userName)),
+          if (showUserName) _userName,
           OptimusStack(
             direction: Axis.horizontal,
             mainAxisAlignment: _bubbleAlignment,
             crossAxisAlignment: OptimusStackAlignment.end,
             spacing: OptimusStackSpacing.spacing100,
             children: [
-              if (type == MessageType.inbound)
-                _buildAvatar
-              else
-                _emptyAvatar,
-              Container(
-                constraints: const BoxConstraints(maxWidth: 480),
-                decoration: _messageBackground(theme),
-                padding: const EdgeInsets.all(spacing100),
-                child: Text(
-                  message,
-                  style: TextStyle(color: _messageTextColor(theme)),
-                ),
-              ),
-              if (type != MessageType.inbound)
-                _buildAvatar
-              else
-                _emptyAvatar,
+              if (type == MessageType.inbound) _avatar,
+              _messageBubble(theme),
+              if (type != MessageType.inbound) _avatar,
             ],
           ),
-          OptimusStack(
-            mainAxisAlignment: _bubbleAlignment,
-            direction: Axis.horizontal,
-            children: [
-              OptimusLabel(child: Text(_statusText)),
-              OptimusIcon(iconData: _statusIcon),
-            ],
-          ),
+          if (showStatus) _status(theme),
         ],
       ),
     );
   }
 
-  IconData get _statusIcon {
+  Widget _messageBubble(OptimusThemeData theme) => Container(
+        constraints: const BoxConstraints(maxWidth: 480),
+        decoration: _messageBackground(theme),
+        padding: const EdgeInsets.all(spacing100),
+        child: DefaultTextStyle.merge(
+          style: TextStyle.lerp(
+              preset200s, TextStyle(color: _messageTextColor(theme)), 1),
+          child: message,
+        ),
+      );
+
+  Padding get _userName => Padding(
+        padding: _statusPadding,
+        child: DefaultTextStyle.merge(
+          style: preset100s,
+          child: Text(userName),
+        ),
+      );
+
+  Padding _status(OptimusThemeData theme) => Padding(
+        padding: _statusPadding,
+        child: DefaultTextStyle.merge(
+          style: TextStyle.lerp(
+            preset100s,
+            TextStyle(color: theme.colors.neutral1000t64),
+            1,
+          ),
+          child: _statusText(theme),
+        ),
+      );
+
+  EdgeInsets get _statusPadding => EdgeInsets.only(
+        left: type == MessageType.inbound ? 48 : 0,
+        right: type != MessageType.inbound ? 48 : 0,
+      );
+
+  Widget _statusText(OptimusThemeData theme) {
+    late final List<Widget> children;
+
     switch (status) {
       case MessageStatus.sending:
-        return OptimusIcons.done_circle;
+        children = [
+          Text(formatTime(time) as String),
+          sending,
+          Container(
+            width: 13,
+            height: 13,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              border: Border.all(
+                width: 1,
+                color: theme.colors.neutral1000t64,
+              ),
+            ),
+          ),
+        ];
+        break;
       case MessageStatus.sent:
-        return OptimusIcons.done_circle;
+        children = [
+          Text(formatTime(time) as String),
+          sent,
+          const OptimusIcon(
+            iconData: OptimusIcons.done_circle,
+            iconSize: OptimusIconSize.small,
+          )
+        ];
+        break;
       case MessageStatus.notSent:
-        return OptimusIcons.delete;
+        children = [
+          notSend,
+          DefaultTextStyle.merge(
+            style: const TextStyle(
+              decoration: TextDecoration.underline,
+            ),
+            child: tryAgain,
+          ),
+          const OptimusIcon(
+            iconData: OptimusIcons.disable,
+            iconSize: OptimusIconSize.small,
+            colorOption: OptimusColorOption.danger,
+          ),
+        ];
+        break;
     }
-  }
 
-  String get _statusText => formatTime(time) as String;
+    return OptimusStack(
+      mainAxisAlignment: _bubbleAlignment,
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing50,
+      children: children,
+    );
+  }
 
   OptimusStackAlignment get _bubbleAlignment => type == MessageType.inbound
       ? OptimusStackAlignment.start
       : OptimusStackAlignment.end;
 
-  Widget get _buildAvatar => showAvatar
+  Widget get _avatar => showAvatar
       ? OptimusAvatar(title: userName, imageUrl: avatarUrl)
-      : _emptyAvatar;
+      : _emptyAvatarSpace;
 
-  Widget get _emptyAvatar => const SizedBox(width: spacing200);
+  Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
   BoxDecoration _messageBackground(OptimusThemeData theme) => BoxDecoration(
         borderRadius: const BorderRadius.all(borderRadius100),
