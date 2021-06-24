@@ -61,24 +61,27 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         onHidden: () => setState(() => _isOpened = false),
         child: GestureDetector(
           onTap: () => widget.isEnabled ? _node.requestFocus() : null,
-          child: FieldWrapper(
-            fieldBoxKey: _selectFieldKey,
+          child: Focus(
             focusNode: _node,
-            label: widget.label,
-            error: widget.error,
-            isEnabled: widget.isEnabled,
-            isRequired: widget.isRequired,
-            prefix: widget.prefix,
-            suffix: _icon,
-            caption: widget.caption,
-            secondaryCaption: widget.secondaryCaption,
-            children: [
-              _SelectedValue(
-                size: widget.size,
-                textStyle: _textStyle,
-                child: _fieldContent,
-              ),
-            ],
+            child: FieldWrapper(
+              fieldBoxKey: _selectFieldKey,
+              focusNode: _node,
+              label: widget.label,
+              error: widget.error,
+              isEnabled: widget.isEnabled,
+              isRequired: widget.isRequired,
+              prefix: widget.prefix,
+              suffix: _icon,
+              caption: widget.caption,
+              secondaryCaption: widget.secondaryCaption,
+              children: [
+                _SelectedValue(
+                  size: widget.size,
+                  textStyle: _textStyle,
+                  child: _fieldContent,
+                ),
+              ],
+            ),
           ),
         ),
       );
