@@ -20,7 +20,7 @@ class Chat extends StatelessWidget {
   final Widget notSend;
   final Widget sent;
   final Widget tryAgain;
-  final VoidCallback onTryAgainClicked;
+  final TrySendAgain onTryAgainClicked;
 
   @override
   Widget build(BuildContext context) => OptimusStack(
@@ -30,13 +30,8 @@ class Chat extends StatelessWidget {
               itemCount: messages.length,
               reverse: true,
               itemBuilder: (context, index) => ChatBubble(
-                userName: _messages[index].userName,
-                message: Text(_messages[index].message),
-                type: _messages[index].type,
-                time: _messages[index].time,
-                status: _messages[index].status,
-                avatarUrl: _messages[index].avatarUrl,
-                organisationAvatarUrl: _messages[index].organisationAvatarUrl,
+                index: index,
+                message: _messages[index],
                 showAvatar: _showAvatar(index),
                 showStatus: _showStatus(index),
                 showUserName: _showUserName(index),
