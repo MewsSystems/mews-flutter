@@ -35,6 +35,8 @@ class Chat extends StatelessWidget {
                 type: _messages[index].type,
                 time: _messages[index].time,
                 status: _messages[index].status,
+                avatarUrl: _messages[index].avatarUrl,
+                organisationAvatarUrl: _messages[index].organisationAvatarUrl,
                 showAvatar: _showAvatar(index),
                 showStatus: _showStatus(index),
                 showUserName: _showUserName(index),
