@@ -26,7 +26,6 @@ class ChatBubble extends StatelessWidget {
 
   final int index;
   final Message message;
-  final MessageStatus status;
   final bool showAvatar;
   final bool showUserName;
   final bool showStatus;
@@ -110,7 +109,7 @@ class ChatBubble extends StatelessWidget {
   Widget _statusText(int index, Message message, OptimusThemeData theme) {
     late final List<Widget> children;
 
-    switch (status) {
+    switch (message.status) {
       case MessageStatus.sending:
         children = [
           Text(formatTime(message.time) as String),
