@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:optimus/optimus.dart';
@@ -25,6 +26,7 @@ class ChatBubble extends StatelessWidget {
     required this.tryAgain,
     required this.onTryAgainClicked,
     this.avatarUrl,
+    this.organisationAvatarUrl,
   }) : super(key: key);
 
   final String userName;
@@ -35,13 +37,14 @@ class ChatBubble extends StatelessWidget {
   final bool showAvatar;
   final bool showUserName;
   final bool showStatus;
-  final String? avatarUrl;
   final Function formatTime;
   final Widget sending;
   final Widget notSend;
   final Widget sent;
   final Widget tryAgain;
   final VoidCallback onTryAgainClicked;
+  final String? avatarUrl;
+  final String? organisationAvatarUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -133,11 +136,12 @@ class ChatBubble extends StatelessWidget {
       case MessageStatus.sent:
         children = [
           Text(formatTime(time) as String),
-          if(type == MessageType.outbound) sent,
-          if(type == MessageType.outbound) const OptimusIcon(
-            iconData: OptimusIcons.done_circle,
-            iconSize: OptimusIconSize.small,
-          )
+          if (type == MessageType.outbound) sent,
+          if (type == MessageType.outbound)
+            const OptimusIcon(
+              iconData: OptimusIcons.done_circle,
+              iconSize: OptimusIconSize.small,
+            )
         ];
         break;
       case MessageStatus.notSent:
@@ -170,9 +174,35 @@ class ChatBubble extends StatelessWidget {
       ? OptimusStackAlignment.start
       : OptimusStackAlignment.end;
 
-  Widget get _avatar => showAvatar
-      ? OptimusAvatar(title: userName, imageUrl: avatarUrl)
-      : _emptyAvatarSpace;
+  Widget get _avatar {
+    if (showAvatar) {
+      if (type == MessageType.outboundOrganisation &&
+          organisationAvatarUrl?.isNotEmpty == true) {
+        return Stack(children: [
+          OptimusAvatar(title: userName, imageUrl: avatarUrl),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              width: 16,
+              height: 16,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: NetworkImage(organisationAvatarUrl!),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+        ]);
+      } else {
+        return OptimusAvatar(title: userName, imageUrl: avatarUrl);
+      }
+    } else {
+      return _emptyAvatarSpace;
+    }
+  }
 
   Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
@@ -238,5 +268,7 @@ class Message with _$Message {
     required MessageType type,
     required DateTime time,
     required MessageStatus status,
+    String? avatarUrl,
+    String? organisationAvatarUrl,
   }) = _Message;
 }

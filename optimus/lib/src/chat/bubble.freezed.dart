@@ -21,13 +21,17 @@ class _$MessageTearOff {
       required String message,
       required MessageType type,
       required DateTime time,
-      required MessageStatus status}) {
+      required MessageStatus status,
+      String? avatarUrl,
+      String? organisationAvatarUrl}) {
     return _Message(
       userName: userName,
       message: message,
       type: type,
       time: time,
       status: status,
+      avatarUrl: avatarUrl,
+      organisationAvatarUrl: organisationAvatarUrl,
     );
   }
 }
@@ -42,6 +46,8 @@ mixin _$Message {
   MessageType get type => throw _privateConstructorUsedError;
   DateTime get time => throw _privateConstructorUsedError;
   MessageStatus get status => throw _privateConstructorUsedError;
+  String? get avatarUrl => throw _privateConstructorUsedError;
+  String? get organisationAvatarUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
@@ -56,7 +62,9 @@ abstract class $MessageCopyWith<$Res> {
       String message,
       MessageType type,
       DateTime time,
-      MessageStatus status});
+      MessageStatus status,
+      String? avatarUrl,
+      String? organisationAvatarUrl});
 }
 
 /// @nodoc
@@ -74,6 +82,8 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
     Object? type = freezed,
     Object? time = freezed,
     Object? status = freezed,
+    Object? avatarUrl = freezed,
+    Object? organisationAvatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
       userName: userName == freezed
@@ -96,6 +106,14 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MessageStatus,
+      avatarUrl: avatarUrl == freezed
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      organisationAvatarUrl: organisationAvatarUrl == freezed
+          ? _value.organisationAvatarUrl
+          : organisationAvatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -110,7 +128,9 @@ abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
       String message,
       MessageType type,
       DateTime time,
-      MessageStatus status});
+      MessageStatus status,
+      String? avatarUrl,
+      String? organisationAvatarUrl});
 }
 
 /// @nodoc
@@ -129,6 +149,8 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
     Object? type = freezed,
     Object? time = freezed,
     Object? status = freezed,
+    Object? avatarUrl = freezed,
+    Object? organisationAvatarUrl = freezed,
   }) {
     return _then(_Message(
       userName: userName == freezed
@@ -151,6 +173,14 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MessageStatus,
+      avatarUrl: avatarUrl == freezed
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      organisationAvatarUrl: organisationAvatarUrl == freezed
+          ? _value.organisationAvatarUrl
+          : organisationAvatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -163,7 +193,9 @@ class _$_Message implements _Message {
       required this.message,
       required this.type,
       required this.time,
-      required this.status});
+      required this.status,
+      this.avatarUrl,
+      this.organisationAvatarUrl});
 
   @override
   final String userName;
@@ -175,10 +207,14 @@ class _$_Message implements _Message {
   final DateTime time;
   @override
   final MessageStatus status;
+  @override
+  final String? avatarUrl;
+  @override
+  final String? organisationAvatarUrl;
 
   @override
   String toString() {
-    return 'Message(userName: $userName, message: $message, type: $type, time: $time, status: $status)';
+    return 'Message(userName: $userName, message: $message, type: $type, time: $time, status: $status, avatarUrl: $avatarUrl, organisationAvatarUrl: $organisationAvatarUrl)';
   }
 
   @override
@@ -196,7 +232,13 @@ class _$_Message implements _Message {
             (identical(other.time, time) ||
                 const DeepCollectionEquality().equals(other.time, time)) &&
             (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.avatarUrl, avatarUrl)) &&
+            (identical(other.organisationAvatarUrl, organisationAvatarUrl) ||
+                const DeepCollectionEquality().equals(
+                    other.organisationAvatarUrl, organisationAvatarUrl)));
   }
 
   @override
@@ -206,7 +248,9 @@ class _$_Message implements _Message {
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(time) ^
-      const DeepCollectionEquality().hash(status);
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(avatarUrl) ^
+      const DeepCollectionEquality().hash(organisationAvatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -220,7 +264,9 @@ abstract class _Message implements Message {
       required String message,
       required MessageType type,
       required DateTime time,
-      required MessageStatus status}) = _$_Message;
+      required MessageStatus status,
+      String? avatarUrl,
+      String? organisationAvatarUrl}) = _$_Message;
 
   @override
   String get userName => throw _privateConstructorUsedError;
@@ -232,6 +278,10 @@ abstract class _Message implements Message {
   DateTime get time => throw _privateConstructorUsedError;
   @override
   MessageStatus get status => throw _privateConstructorUsedError;
+  @override
+  String? get avatarUrl => throw _privateConstructorUsedError;
+  @override
+  String? get organisationAvatarUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MessageCopyWith<_Message> get copyWith =>
