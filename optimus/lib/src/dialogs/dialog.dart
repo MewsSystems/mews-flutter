@@ -364,17 +364,22 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(spacing200),
-            child: OptimusSubsectionTitle(child: title),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(spacing200),
+              child: OptimusSubsectionTitle(child: title),
+            ),
           ),
-          const Spacer(),
           if (isDismissible)
-            OptimusIconButton(
-              icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-              variant: OptimusIconButtonVariant.bare,
-              onPressed: close,
+            Padding(
+              padding: const EdgeInsets.only(top: spacing50),
+              child: OptimusIconButton(
+                icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
+                variant: OptimusIconButtonVariant.bare,
+                onPressed: close,
+              ),
             ),
         ],
       );

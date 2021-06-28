@@ -20,11 +20,12 @@ class NonModalDialogStory extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDismissible = k.boolean(label: 'Dismissible', initial: true);
     final hasActions = k.boolean(label: 'Has actions', initial: false);
+    final title = k.text(label: 'Title', initial: 'Dialog title');
 
     return OptimusButton(
       onPressed: () => {
         NonModalWrapper.of(context)?.show(
-          title: const Text('Title'),
+          title: Text(title),
           content: const Text('Content'),
           isDismissible: isDismissible,
           actions:
