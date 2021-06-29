@@ -17,6 +17,7 @@ final Story dialogStory = Story(
       initial: OptimusDialogType.common,
       options: _types,
     );
+    final title = k.text(label: 'Title', initial: 'Dialog title');
 
     return Center(
       child: SingleChildScrollView(
@@ -37,6 +38,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.small,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -48,6 +50,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.small,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('2 buttons'),
                 ),
@@ -59,6 +62,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.small,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('3 buttons'),
                 ),
@@ -79,6 +83,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.regular,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -90,6 +95,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.regular,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('2 buttons'),
                 ),
@@ -101,6 +107,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.regular,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('3 buttons'),
                 ),
@@ -121,6 +128,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.large,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -132,6 +140,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.large,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('2 buttons'),
                 ),
@@ -143,6 +152,7 @@ final Story dialogStory = Story(
                     size: OptimusDialogSize.large,
                     content: content,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('3 buttons'),
                 ),
@@ -162,6 +172,7 @@ final Story dialogStory = Story(
                     isDismissible: isDismissible,
                     size: OptimusDialogSize.large,
                     type: type,
+                    title: title,
                   ),
                   child: const Text('Custom content'),
                 ),
@@ -180,11 +191,12 @@ Future<void> _showThreeActionDialog({
   required OptimusDialogSize size,
   required Widget content,
   required OptimusDialogType type,
+  required String title,
 }) =>
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      title: const Text('Dialog title'),
+      title: Text(title),
       content: content,
       size: size,
       type: type,
@@ -201,11 +213,12 @@ Future<void> _showTwoActionDialog({
   required OptimusDialogSize size,
   required Widget content,
   required OptimusDialogType type,
+  required String title,
 }) =>
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      title: const Text('Dialog title'),
+      title: Text(title),
       content: content,
       size: size,
       type: type,
@@ -221,11 +234,12 @@ Future<void> _showOneActionDialog({
   required OptimusDialogSize size,
   required Widget content,
   required OptimusDialogType type,
+  required String title,
 }) =>
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
-      title: const Text('Dialog title'),
+      title: Text(title),
       content: content,
       size: size,
       type: type,
@@ -237,12 +251,13 @@ Future<void> _showCustomContentDialog({
   required bool isDismissible,
   required OptimusDialogSize size,
   required OptimusDialogType type,
+  required String title,
 }) {
   final theme = OptimusTheme.of(context);
   return showOptimusDialog(
     context: context,
     isDismissible: isDismissible,
-    title: const Text('Dialog title'),
+    title: Text(title),
     content: Container(
       color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
       child: const Center(child: Text('Custom content without paddings')),
