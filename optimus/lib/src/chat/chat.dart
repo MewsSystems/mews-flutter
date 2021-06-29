@@ -31,7 +31,7 @@ class Chat extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: messages.length,
+              itemCount: _messages.length,
               reverse: true,
               itemBuilder: (context, index) => ChatBubble(
                 index: index,
@@ -57,31 +57,41 @@ class Chat extends StatelessWidget {
   List<Message> get _messages => messages.reversed.toList();
 
   bool _showAvatar(int index) =>
-      _showDate(index) ||
-      index == 0 ||
-      _messages[index == 0 ? 0 : index - 1].userName !=
-          _messages[index].userName;
+      _lastMessageOfDay(index) ||
+      _latestMessage(index) ||
+      _messages[index - 1].userName != _messages[index].userName;
 
   bool _showStatus(int index) =>
-      _showDate(index) ||
+      _lastMessageOfDay(index) ||
       _messages[index].status != MessageStatus.sent ||
-      _messages[index == 0 ? 0 : index - 1].userName !=
-          _messages[index].userName;
+      _messages[index - 1].userName != _messages[index].userName;
 
   bool _showUserName(int index) =>
-      _showDate(index) ||
-      index + 1 == messages.length ||
+      _oldestMessage(index) ||
       _messages[index < messages.length ? index + 1 : index].userName !=
           _messages[index].userName;
 
-  bool _showDate(int index) {
-    final currentMessageTime = _messages[index].time;
-    final previousMessageTime =
-        index + 1 < _messages.length ? _messages[index + 1].time : null;
-    if (previousMessageTime == null) {
-      return true;
-    } else {
-      return currentMessageTime.difference(previousMessageTime).inDays >= 1;
-    }
-  }
+  bool _showDate(int index) =>
+      _previousMessageTime(index) == null ||
+      _currentMessageTime(index)
+              .difference(_previousMessageTime(index)!)
+              .inDays >=
+          1;
+
+  DateTime _currentMessageTime(int index) => _messages[index].time;
+
+  DateTime? _previousMessageTime(int index) =>
+      index + 1 < _messages.length ? _messages[index + 1].time : null;
+
+  DateTime? _nextMessageTime(int index) =>
+      index - 1 > 0 ? _messages[index - 1].time : null;
+
+  bool _lastMessageOfDay(int index) =>
+      index - 1 > 0 &&
+      _nextMessageTime(index)!.difference(_currentMessageTime(index)).inDays >
+          1;
+
+  bool _latestMessage(int index) => index == 0;
+
+  bool _oldestMessage(int index) => index + 1 == messages.length;
 }
