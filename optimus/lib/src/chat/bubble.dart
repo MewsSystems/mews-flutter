@@ -88,15 +88,29 @@ class ChatBubble extends StatelessWidget {
         ),
       );
 
-  OptimusStack _date(OptimusThemeData theme) => OptimusStack(
-    direction: Axis.horizontal,
-    spacing: OptimusStackSpacing.spacing100,
-    children: [
-      Expanded(child: Container(height: 1, color: theme.colors.basic)),
-      Text(formatDate(message.time) as String),
-      Expanded(child: Container(height: 1, color: theme.colors.basic)),
-    ],
-  );
+  Widget _date(OptimusThemeData theme) {
+    final separator = Expanded(
+      child: Container(
+        height: 1,
+        color: theme.isDark
+            ? theme.colors.neutral0t32
+            : theme.colors.neutral1000t32,
+      ),
+    );
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: spacing200),
+      child: OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        children: [
+          separator,
+          Text(formatDate(message.time) as String, style: preset100s),
+          separator,
+        ],
+      ),
+    );
+  }
 
   Padding get _userName => Padding(
         padding: _statusPadding,
@@ -111,7 +125,9 @@ class ChatBubble extends StatelessWidget {
         child: DefaultTextStyle.merge(
           style: TextStyle.lerp(
             preset100s,
-            TextStyle(color: theme.colors.neutral1000t64),
+            TextStyle(color: theme.isDark
+                ? theme.colors.neutral0t64
+                : theme.colors.neutral1000t64),
             1,
           ),
           child: _statusText(index, message, theme),
@@ -138,7 +154,9 @@ class ChatBubble extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(8)),
               border: Border.all(
                 width: 1,
-                color: theme.colors.neutral1000t64,
+                color: theme.isDark
+                    ? theme.colors.neutral0t64
+                    : theme.colors.neutral1000t64,
               ),
             ),
           ),
