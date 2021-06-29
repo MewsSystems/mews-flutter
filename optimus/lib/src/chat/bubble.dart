@@ -125,9 +125,10 @@ class ChatBubble extends StatelessWidget {
         child: DefaultTextStyle.merge(
           style: TextStyle.lerp(
             preset100s,
-            TextStyle(color: theme.isDark
-                ? theme.colors.neutral0t64
-                : theme.colors.neutral1000t64),
+            TextStyle(
+                color: theme.isDark
+                    ? theme.colors.neutral0t64
+                    : theme.colors.neutral1000t64),
             1,
           ),
           child: _statusText(index, message, theme),
