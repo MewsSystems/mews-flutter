@@ -1,7 +1,3 @@
-*.g.dart
-*.freezed.dart
-*.mocks.dart
-
 # Miscellaneous
 *.class
 *.log
