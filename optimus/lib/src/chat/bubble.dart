@@ -16,7 +16,9 @@ class ChatBubble extends StatelessWidget {
     required this.showAvatar,
     required this.showStatus,
     required this.showUserName,
+    required this.showDate,
     required this.formatTime,
+    required this.formatDate,
     required this.sending,
     required this.sent,
     required this.notSend,
@@ -27,9 +29,11 @@ class ChatBubble extends StatelessWidget {
   final int index;
   final Message message;
   final bool showAvatar;
-  final bool showUserName;
   final bool showStatus;
+  final bool showUserName;
+  final bool showDate;
   final Function formatTime;
+  final Function formatDate;
   final Widget sending;
   final Widget notSend;
   final Widget sent;
@@ -45,6 +49,7 @@ class ChatBubble extends StatelessWidget {
         spacing: OptimusStackSpacing.spacing50,
         crossAxisAlignment: _bubbleAlignment,
         children: [
+          if (showDate) _date(theme),
           if (showUserName) _userName,
           OptimusStack(
             direction: Axis.horizontal,
@@ -68,7 +73,7 @@ class ChatBubble extends StatelessWidget {
           padding: EdgeInsets.only(
             top: showUserName ? spacing0 : spacing100,
             left: message.type != MessageType.inbound ? 64 : 0,
-            right: message.type == MessageType.inbound ? 64: 0,
+            right: message.type == MessageType.inbound ? 64 : 0,
           ),
           child: Container(
             constraints: const BoxConstraints(maxWidth: 480),
@@ -82,6 +87,16 @@ class ChatBubble extends StatelessWidget {
           ),
         ),
       );
+
+  OptimusStack _date(OptimusThemeData theme) => OptimusStack(
+    direction: Axis.horizontal,
+    spacing: OptimusStackSpacing.spacing100,
+    children: [
+      Expanded(child: Container(height: 1, color: theme.colors.basic)),
+      Text(formatDate(message.time) as String),
+      Expanded(child: Container(height: 1, color: theme.colors.basic)),
+    ],
+  );
 
   Padding get _userName => Padding(
         padding: _statusPadding,

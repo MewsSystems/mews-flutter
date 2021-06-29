@@ -8,6 +8,8 @@ final chatStory = Story(
   builder: (_, k) => Chat(
     messages: messages,
     formatTime: (DateTime input) => '${input.hour}:${input.minute}',
+    formatDate: (DateTime input) =>
+        '${input.day}. ${input.month}. ${input.year}',
     sending: const Text('Sending...'),
     sent: const Text('Sent'),
     notSend: const Text('Not send'),
@@ -27,6 +29,28 @@ const organisationAvatarUrl =
     'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80';
 
 final messages = <Message>[
+  Message(
+    userName: 'You',
+    message: 'Old message',
+    type: MessageType.outbound,
+    time: DateTime.now().subtract(const Duration(days: 7)),
+    status: MessageStatus.sent,
+  ),
+  Message(
+    userName: 'You',
+    message: 'Hey you!',
+    type: MessageType.outbound,
+    time: DateTime.now().subtract(const Duration(days: 5)),
+    status: MessageStatus.sent,
+  ),
+  Message(
+    userName: 'User 1',
+    message: 'Hello',
+    type: MessageType.inbound,
+    avatarUrl: avatar2Url,
+    time: DateTime.now().subtract(const Duration(days: 5)),
+    status: MessageStatus.sent,
+  ),
   Message(
     userName: 'User 1',
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',

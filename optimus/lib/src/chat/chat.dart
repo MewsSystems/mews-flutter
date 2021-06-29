@@ -7,6 +7,7 @@ class Chat extends StatelessWidget {
     Key? key,
     required this.messages,
     required this.formatTime,
+    required this.formatDate,
     required this.sending,
     required this.sent,
     required this.notSend,
@@ -17,6 +18,7 @@ class Chat extends StatelessWidget {
 
   final List<Message> messages;
   final Function formatTime;
+  final Function formatDate;
   final Widget sending;
   final Widget notSend;
   final Widget sent;
@@ -37,7 +39,9 @@ class Chat extends StatelessWidget {
                 showAvatar: _showAvatar(index),
                 showStatus: _showStatus(index),
                 showUserName: _showUserName(index),
+                showDate: _showDate(index),
                 formatTime: formatTime,
+                formatDate: formatDate,
                 sending: sending,
                 sent: sent,
                 notSend: notSend,
@@ -53,17 +57,31 @@ class Chat extends StatelessWidget {
   List<Message> get _messages => messages.reversed.toList();
 
   bool _showAvatar(int index) =>
+      _showDate(index) ||
       index == 0 ||
       _messages[index == 0 ? 0 : index - 1].userName !=
           _messages[index].userName;
 
   bool _showStatus(int index) =>
+      _showDate(index) ||
       _messages[index].status != MessageStatus.sent ||
       _messages[index == 0 ? 0 : index - 1].userName !=
           _messages[index].userName;
 
   bool _showUserName(int index) =>
+      _showDate(index) ||
       index + 1 == messages.length ||
       _messages[index < messages.length ? index + 1 : index].userName !=
           _messages[index].userName;
+
+  bool _showDate(int index) {
+    final currentMessageTime = _messages[index].time;
+    final previousMessageTime =
+        index + 1 < _messages.length ? _messages[index + 1].time : null;
+    if (previousMessageTime == null) {
+      return true;
+    } else {
+      return currentMessageTime.difference(previousMessageTime).inDays >= 1;
+    }
+  }
 }

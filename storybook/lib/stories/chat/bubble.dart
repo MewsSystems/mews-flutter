@@ -44,7 +44,10 @@ final chatBubbleStory = Story(
           showAvatar: k.boolean(label: 'Show avatar', initial: true),
           showUserName: k.boolean(label: 'Show user name', initial: true),
           showStatus: k.boolean(label: 'Show status', initial: true),
+          showDate: k.boolean(label: 'Show date', initial: true),
           formatTime: (DateTime input) => '${input.hour}:${input.minute}',
+          formatDate: (DateTime input) =>
+              '${input.day}. ${input.month}. ${input.year}',
           notSend: const Text('Not Sent'),
           sent: const Text('Sent'),
           sending: const Text('Sending...'),

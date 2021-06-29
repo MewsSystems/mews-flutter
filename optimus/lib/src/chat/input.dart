@@ -15,7 +15,6 @@ class ChatInput extends StatefulWidget {
 class _ChatInputState extends State<ChatInput> {
   final _controller = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     _controller.addListener(() => setState(() {}));
