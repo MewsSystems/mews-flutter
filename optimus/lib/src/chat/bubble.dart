@@ -63,23 +63,27 @@ class ChatBubble extends StatelessWidget {
     );
   }
 
-  Widget _messageBubble(OptimusThemeData theme) =>
-      Padding(
-        padding: EdgeInsets.only(top: showUserName ? spacing0 : spacing100),
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 480),
-          decoration: _messageBackground(theme),
-          padding: const EdgeInsets.all(spacing100),
-          child: DefaultTextStyle.merge(
-            style: TextStyle.lerp(
-                preset200s, TextStyle(color: _messageTextColor(theme)), 1),
-            child: Text(message.message),
+  Widget _messageBubble(OptimusThemeData theme) => Flexible(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: showUserName ? spacing0 : spacing100,
+            left: message.type != MessageType.inbound ? 64 : 0,
+            right: message.type == MessageType.inbound ? 64: 0,
+          ),
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 480),
+            decoration: _messageBackground(theme),
+            padding: const EdgeInsets.all(spacing100),
+            child: DefaultTextStyle.merge(
+              style: TextStyle.lerp(
+                  preset200s, TextStyle(color: _messageTextColor(theme)), 1),
+              child: Text(message.message),
+            ),
           ),
         ),
       );
 
-  Padding get _userName =>
-      Padding(
+  Padding get _userName => Padding(
         padding: _statusPadding,
         child: DefaultTextStyle.merge(
           style: preset100s,
@@ -87,8 +91,7 @@ class ChatBubble extends StatelessWidget {
         ),
       );
 
-  Padding _status(OptimusThemeData theme) =>
-      Padding(
+  Padding _status(OptimusThemeData theme) => Padding(
         padding: _statusPadding,
         child: DefaultTextStyle.merge(
           style: TextStyle.lerp(
@@ -100,8 +103,7 @@ class ChatBubble extends StatelessWidget {
         ),
       );
 
-  EdgeInsets get _statusPadding =>
-      EdgeInsets.only(
+  EdgeInsets get _statusPadding => EdgeInsets.only(
         left: message.type == MessageType.inbound ? 48 : 0,
         right: message.type != MessageType.inbound ? 48 : 0,
       );
@@ -204,8 +206,7 @@ class ChatBubble extends StatelessWidget {
 
   Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
-  BoxDecoration _messageBackground(OptimusThemeData theme) =>
-      BoxDecoration(
+  BoxDecoration _messageBackground(OptimusThemeData theme) => BoxDecoration(
         borderRadius: const BorderRadius.all(borderRadius100),
         color: _messageBackgroundColor(theme),
       );
