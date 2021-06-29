@@ -12,6 +12,7 @@ class Chat extends StatelessWidget {
     required this.notSend,
     required this.tryAgain,
     required this.onTryAgainClicked,
+    required this.onSendClicked,
   }) : super(key: key);
 
   final List<Message> messages;
@@ -21,6 +22,7 @@ class Chat extends StatelessWidget {
   final Widget sent;
   final Widget tryAgain;
   final TrySendAgain onTryAgainClicked;
+  final OnSend onSendClicked;
 
   @override
   Widget build(BuildContext context) => OptimusStack(
@@ -44,7 +46,7 @@ class Chat extends StatelessWidget {
               ),
             ),
           ),
-          const ChatInput(),
+          ChatInput(onSendClicked: onSendClicked),
         ],
       );
 

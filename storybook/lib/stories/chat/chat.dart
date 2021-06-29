@@ -12,7 +12,8 @@ final chatStory = Story(
     sent: const Text('Sent'),
     notSend: const Text('Not send'),
     tryAgain: const Text('Try again'),
-    onTryAgainClicked: () {},
+    onTryAgainClicked: (index, message) async => MessageStatus.sent,
+    onSendClicked: (message) {},
   ),
 );
 
