@@ -284,6 +284,12 @@ class OptimusColors {
 
   final Brightness brightness;
 
+  Color get themeSensitiveDefaultTextColor =>
+      _isLight ? defaultTextColor : invertedTextColor;
+
+  Color get themeSensitiveSecondaryTextColor =>
+      _isLight ? secondaryTextColor : invertedSecondaryTextColor;
+
   Color get defaultTextColor => neutral1000;
 
   Color get secondaryTextColor => neutral1000t64;

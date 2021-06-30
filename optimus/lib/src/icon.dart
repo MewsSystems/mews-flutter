@@ -54,14 +54,10 @@ class OptimusIcon extends StatelessWidget {
     return Icon(
       iconData,
       color: colorOption?.let((option) => option.toIconColor(theme)) ??
-          _defaultTextColor(theme),
+          theme.colors.themeSensitiveDefaultTextColor,
       size: _iconSize,
     );
   }
-
-  Color _defaultTextColor(OptimusThemeData theme) => theme.isDark
-      ? theme.colors.invertedTextColor
-      : theme.colors.defaultTextColor;
 
   double get _iconSize {
     switch (iconSize) {

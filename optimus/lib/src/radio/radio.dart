@@ -90,17 +90,14 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   bool get _isSelected => widget.value == widget.groupValue;
 
   TextStyle get _labelStyle {
+    final color = theme.colors.themeSensitiveDefaultTextColor;
     switch (widget.size) {
       case OptimusRadioSize.small:
-        return preset200s.copyWith(color: _defaultTextColor);
+        return preset200s.copyWith(color: color);
       case OptimusRadioSize.large:
-        return preset300s.copyWith(color: _defaultTextColor);
+        return preset300s.copyWith(color: color);
     }
   }
-
-  Color get _defaultTextColor => theme.isDark
-      ? theme.colors.invertedTextColor
-      : theme.colors.defaultTextColor;
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);

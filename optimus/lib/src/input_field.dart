@@ -188,9 +188,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 
   TextStyle get _textStyle {
-    final color = theme.isDark
-        ? theme.colors.invertedTextColor
-        : theme.colors.defaultTextColor;
+    final color = theme.colors.themeSensitiveDefaultTextColor;
     switch (widget.size) {
       case OptimusWidgetSize.small:
         return preset200s.copyWith(color: color);
