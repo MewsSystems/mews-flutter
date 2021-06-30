@@ -13,8 +13,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$MessageTearOff {
-  const _$MessageTearOff();
+class _$OptimusMessageTearOff {
+  const _$OptimusMessageTearOff();
 
   _Message call(
       {required String userName,
@@ -37,10 +37,10 @@ class _$MessageTearOff {
 }
 
 /// @nodoc
-const $Message = _$MessageTearOff();
+const $OptimusMessage = _$OptimusMessageTearOff();
 
 /// @nodoc
-mixin _$Message {
+mixin _$OptimusMessage {
   String get userName => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   MessageAlignment get alignment => throw _privateConstructorUsedError;
@@ -50,13 +50,15 @@ mixin _$Message {
   Widget get avatar => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
+  $OptimusMessageCopyWith<OptimusMessage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageCopyWith<$Res> {
-  factory $MessageCopyWith(Message value, $Res Function(Message) then) =
-      _$MessageCopyWithImpl<$Res>;
+abstract class $OptimusMessageCopyWith<$Res> {
+  factory $OptimusMessageCopyWith(
+          OptimusMessage value, $Res Function(OptimusMessage) then) =
+      _$OptimusMessageCopyWithImpl<$Res>;
   $Res call(
       {String userName,
       String message,
@@ -68,12 +70,13 @@ abstract class $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
-  _$MessageCopyWithImpl(this._value, this._then);
+class _$OptimusMessageCopyWithImpl<$Res>
+    implements $OptimusMessageCopyWith<$Res> {
+  _$OptimusMessageCopyWithImpl(this._value, this._then);
 
-  final Message _value;
+  final OptimusMessage _value;
   // ignore: unused_field
-  final $Res Function(Message) _then;
+  final $Res Function(OptimusMessage) _then;
 
   @override
   $Res call({
@@ -119,7 +122,8 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
+abstract class _$MessageCopyWith<$Res>
+    implements $OptimusMessageCopyWith<$Res> {
   factory _$MessageCopyWith(_Message value, $Res Function(_Message) then) =
       __$MessageCopyWithImpl<$Res>;
   @override
@@ -134,7 +138,7 @@ abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
+class __$MessageCopyWithImpl<$Res> extends _$OptimusMessageCopyWithImpl<$Res>
     implements _$MessageCopyWith<$Res> {
   __$MessageCopyWithImpl(_Message _value, $Res Function(_Message) _then)
       : super(_value, (v) => _then(v as _Message));
@@ -214,7 +218,7 @@ class _$_Message implements _Message {
 
   @override
   String toString() {
-    return 'Message(userName: $userName, message: $message, alignment: $alignment, color: $color, time: $time, status: $status, avatar: $avatar)';
+    return 'OptimusMessage(userName: $userName, message: $message, alignment: $alignment, color: $color, time: $time, status: $status, avatar: $avatar)';
   }
 
   @override
@@ -257,7 +261,7 @@ class _$_Message implements _Message {
       __$MessageCopyWithImpl<_Message>(this, _$identity);
 }
 
-abstract class _Message implements Message {
+abstract class _Message implements OptimusMessage {
   const factory _Message(
       {required String userName,
       required String message,

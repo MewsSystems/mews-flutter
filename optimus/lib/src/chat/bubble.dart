@@ -8,8 +8,8 @@ import 'package:optimus/src/typography/presets.dart';
 
 part 'bubble.freezed.dart';
 
-class ChatBubble extends StatelessWidget {
-  const ChatBubble({
+class OptimusChatBubble extends StatelessWidget {
+  const OptimusChatBubble({
     Key? key,
     required this.index,
     required this.message,
@@ -27,7 +27,7 @@ class ChatBubble extends StatelessWidget {
   }) : super(key: key);
 
   final int index;
-  final Message message;
+  final OptimusMessage message;
   final bool showAvatar;
   final bool showStatus;
   final bool showUserName;
@@ -136,7 +136,7 @@ class ChatBubble extends StatelessWidget {
         right: message.alignment != MessageAlignment.left ? 48 : 0,
       );
 
-  Widget _statusText(int index, Message message, OptimusThemeData theme) {
+  Widget _statusText(int index, OptimusMessage message, OptimusThemeData theme) {
     late final List<Widget> children;
 
     switch (message.status) {
@@ -257,11 +257,11 @@ enum MessageStatus {
 }
 
 typedef TrySendAgain = Future<MessageStatus> Function(
-    int index, Message message);
+    int index, OptimusMessage message);
 
 @freezed
-class Message with _$Message {
-  const factory Message({
+class OptimusMessage with _$OptimusMessage {
+  const factory OptimusMessage({
     required String userName,
     required String message,
     required MessageAlignment alignment,

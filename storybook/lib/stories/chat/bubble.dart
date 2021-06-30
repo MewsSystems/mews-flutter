@@ -8,7 +8,7 @@ final chatBubbleStory = Story(
     section: 'Chat',
     name: 'Chat Bubble',
     builder: (_, k) {
-      final message = Message(
+      final message = OptimusMessage(
         userName: k.text(label: 'User name', initial: 'Doggo'),
         message: k.text(
           label: 'Message',
@@ -39,7 +39,7 @@ final chatBubbleStory = Story(
       );
 
       return Center(
-        child: ChatBubble(
+        child: OptimusChatBubble(
           index: 0,
           message: message,
           showAvatar: k.boolean(label: 'Show avatar', initial: true),

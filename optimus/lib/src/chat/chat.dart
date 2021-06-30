@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/input.dart';
 
-class Chat extends StatelessWidget {
-  const Chat({
+class OptimusChat extends StatelessWidget {
+  const OptimusChat({
     Key? key,
     required this.messages,
     required this.formatTime,
@@ -16,7 +16,7 @@ class Chat extends StatelessWidget {
     required this.onSendClicked,
   }) : super(key: key);
 
-  final List<Message> messages;
+  final List<OptimusMessage> messages;
   final Function formatTime;
   final Function formatDate;
   final Widget sending;
@@ -33,7 +33,7 @@ class Chat extends StatelessWidget {
             child: ListView.builder(
               itemCount: _messages.length,
               reverse: true,
-              itemBuilder: (context, index) => ChatBubble(
+              itemBuilder: (context, index) => OptimusChatBubble(
                 index: index,
                 message: _messages[index],
                 showAvatar: _showAvatar(index),
@@ -50,11 +50,11 @@ class Chat extends StatelessWidget {
               ),
             ),
           ),
-          ChatInput(onSendClicked: onSendClicked),
+          OptimusChatInput(onSendClicked: onSendClicked),
         ],
       );
 
-  List<Message> get _messages => messages.reversed.toList();
+  List<OptimusMessage> get _messages => messages.reversed.toList();
 
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||

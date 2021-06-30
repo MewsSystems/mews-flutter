@@ -5,7 +5,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 final chatStory = Story(
   section: 'Chat',
   name: 'Chat',
-  builder: (_, k) => Chat(
+  builder: (_, k) => OptimusChat(
     messages: messages,
     formatTime: (DateTime input) => '${input.hour}:${input.minute}',
     formatDate: (DateTime input) =>
@@ -61,8 +61,8 @@ final organisationAvatar = Stack(children: [
   ),
 ]);
 
-final messages = <Message>[
-  Message(
+final messages = <OptimusMessage>[
+  OptimusMessage(
     userName: 'You',
     message: 'Old message',
     alignment: MessageAlignment.right,
@@ -71,7 +71,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: 'Hey you!',
     alignment: MessageAlignment.right,
@@ -80,7 +80,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.right,
@@ -89,7 +89,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'Hello',
     alignment: MessageAlignment.left,
@@ -98,7 +98,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'consectetur adipiscing elit',
     alignment: MessageAlignment.left,
@@ -107,7 +107,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'Suspendisse diam ante, condimentum ut interdum sit amets',
     alignment: MessageAlignment.left,
@@ -116,7 +116,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.left,
@@ -125,7 +125,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message:
         'Donec eget elit et massa rhoncus ullamcorper a non ex. Nulla vulputate condimentum libero, non congue ligula auctor ac. Pellentesque vel dui a turpis ultricies accumsan non sed nulla. Aenean interdum tempus scelerisque.',
@@ -135,7 +135,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'Quisque arcu turpis',
     alignment: MessageAlignment.left,
@@ -144,7 +144,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'euismod quis maximus sit amet',
     alignment: MessageAlignment.left,
@@ -153,7 +153,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'convallis eleifend ante.',
     alignment: MessageAlignment.left,
@@ -162,7 +162,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 3',
     message: '😁',
     alignment: MessageAlignment.right,
@@ -171,7 +171,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: organisationAvatar,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message:
         'Suspendisse diam ante, condimentum ut interdum sit amet, suscipit non massa.',
@@ -181,7 +181,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: 'sdf sfsdfdsfsh fdf sdf',
     alignment: MessageAlignment.right,
@@ -190,7 +190,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: 'Maecenas pellentesque',
     alignment: MessageAlignment.right,
@@ -199,7 +199,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: 'quam sed viverra ornare',
     alignment: MessageAlignment.right,
@@ -208,7 +208,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 1',
     message: 'tellus orci placerat purus',
     alignment: MessageAlignment.left,
@@ -217,7 +217,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: avatar1,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 3',
     message:
         'ut consectetur orci metus sed nibh. Praesent in tellus facilisis, sagittis odio eget, maximus turpis',
@@ -227,7 +227,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: organisationAvatar,
   ),
-  Message(
+  OptimusMessage(
     userName: 'User 3',
     message: 'Aliquam porttitor quis eros pharetra blandit.',
     alignment: MessageAlignment.right,
@@ -236,7 +236,7 @@ final messages = <Message>[
     status: MessageStatus.sent,
     avatar: organisationAvatar,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: '🤔',
     alignment: MessageAlignment.right,
@@ -245,7 +245,7 @@ final messages = <Message>[
     status: MessageStatus.sending,
     avatar: avatar2,
   ),
-  Message(
+  OptimusMessage(
     userName: 'You',
     message: '😫',
     alignment: MessageAlignment.right,

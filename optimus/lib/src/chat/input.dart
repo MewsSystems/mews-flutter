@@ -3,16 +3,16 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/constants.dart';
 
-class ChatInput extends StatefulWidget {
-  const ChatInput({Key? key, required this.onSendClicked}) : super(key: key);
+class OptimusChatInput extends StatefulWidget {
+  const OptimusChatInput({Key? key, required this.onSendClicked}) : super(key: key);
 
   final OnSend onSendClicked;
 
   @override
-  _ChatInputState createState() => _ChatInputState();
+  _OptimusChatInputState createState() => _OptimusChatInputState();
 }
 
-class _ChatInputState extends State<ChatInput> {
+class _OptimusChatInputState extends State<OptimusChatInput> {
   final _controller = TextEditingController();
 
   @override
