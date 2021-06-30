@@ -4,7 +4,8 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/constants.dart';
 
 class OptimusChatInput extends StatefulWidget {
-  const OptimusChatInput({Key? key, required this.onSendClicked}) : super(key: key);
+  const OptimusChatInput({Key? key, required this.onSendClicked})
+      : super(key: key);
 
   final OnSend onSendClicked;
 

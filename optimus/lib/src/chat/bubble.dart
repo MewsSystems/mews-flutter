@@ -136,7 +136,8 @@ class OptimusChatBubble extends StatelessWidget {
         right: message.alignment != MessageAlignment.left ? 48 : 0,
       );
 
-  Widget _statusText(int index, OptimusMessage message, OptimusThemeData theme) {
+  Widget _statusText(
+      int index, OptimusMessage message, OptimusThemeData theme) {
     late final List<Widget> children;
 
     switch (message.status) {
