@@ -66,11 +66,12 @@ class ChatBubble extends StatelessWidget {
   }
 
   Widget _messageBubble(OptimusThemeData theme) => Flexible(
-    child: Container(
+        child: Container(
           margin: EdgeInsets.only(
             top: showUserName ? spacing0 : spacing100,
             left: message.alignment == MessageAlignment.left ? spacing100 : 64,
-            right: message.alignment == MessageAlignment.right ? spacing100 : 64,
+            right:
+                message.alignment == MessageAlignment.right ? spacing100 : 64,
           ),
           constraints: const BoxConstraints(maxWidth: 480),
           decoration: _messageBackground(theme),
@@ -81,7 +82,7 @@ class ChatBubble extends StatelessWidget {
             child: Text(message.message),
           ),
         ),
-  );
+      );
 
   Widget _date(OptimusThemeData theme) {
     final separator = Expanded(
