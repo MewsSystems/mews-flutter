@@ -55,7 +55,6 @@ class ChatBubble extends StatelessWidget {
             direction: Axis.horizontal,
             mainAxisAlignment: _bubbleAlignment,
             crossAxisAlignment: OptimusStackAlignment.end,
-            spacing: OptimusStackSpacing.spacing100,
             children: [
               if (message.type == MessageType.inbound) _avatar,
               _messageBubble(theme),
@@ -68,23 +67,19 @@ class ChatBubble extends StatelessWidget {
     );
   }
 
-  Widget _messageBubble(OptimusThemeData theme) => Flexible(
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: showUserName ? spacing0 : spacing100,
-            left: message.type != MessageType.inbound ? 64 : 0,
-            right: message.type == MessageType.inbound ? 64 : 0,
-          ),
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 480),
-            decoration: _messageBackground(theme),
-            padding: const EdgeInsets.all(spacing100),
-            child: DefaultTextStyle.merge(
-              style: TextStyle.lerp(
-                  preset200s, TextStyle(color: _messageTextColor(theme)), 1),
-              child: Text(message.message),
-            ),
-          ),
+  Widget _messageBubble(OptimusThemeData theme) => Container(
+        margin: EdgeInsets.only(
+          top: showUserName ? spacing0 : spacing100,
+          left: message.type != MessageType.inbound ? 64 : spacing100,
+          right: message.type == MessageType.inbound ? 64 : spacing100,
+        ),
+        constraints: const BoxConstraints(maxWidth: 480),
+        decoration: _messageBackground(theme),
+        padding: const EdgeInsets.all(spacing100),
+        child: DefaultTextStyle.merge(
+          style: TextStyle.lerp(
+              preset200s, TextStyle(color: _messageTextColor(theme)), 1),
+          child: Text(message.message),
         ),
       );
 
@@ -208,11 +203,16 @@ class ChatBubble extends StatelessWidget {
           : OptimusStackAlignment.end;
 
   Widget get _avatar {
+    final avatar = OptimusAvatar(
+      title: message.userName,
+      imageUrl: message.avatarUrl,
+    );
+
     if (showAvatar) {
       if (message.type == MessageType.outboundOrganisation &&
           message.organisationAvatarUrl?.isNotEmpty == true) {
         return Stack(children: [
-          OptimusAvatar(title: message.userName, imageUrl: message.avatarUrl),
+          avatar,
           Positioned(
             bottom: 0,
             right: 0,
@@ -230,8 +230,7 @@ class ChatBubble extends StatelessWidget {
           ),
         ]);
       } else {
-        return OptimusAvatar(
-            title: message.userName, imageUrl: message.avatarUrl);
+        return avatar;
       }
     } else {
       return _emptyAvatarSpace;
