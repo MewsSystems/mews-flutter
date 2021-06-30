@@ -44,44 +44,44 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return IntrinsicHeight(
-      child: OptimusStack(
-        spacing: OptimusStackSpacing.spacing50,
-        crossAxisAlignment: _bubbleAlignment,
-        children: [
-          if (showDate) _date(theme),
-          if (showUserName) _userName,
-          OptimusStack(
-            direction: Axis.horizontal,
-            mainAxisAlignment: _bubbleAlignment,
-            crossAxisAlignment: OptimusStackAlignment.end,
-            children: [
-              if (message.type == MessageType.inbound) _avatar,
-              _messageBubble(theme),
-              if (message.type != MessageType.inbound) _avatar,
-            ],
-          ),
-          if (showStatus) _status(theme),
-        ],
-      ),
+    return OptimusStack(
+      spacing: OptimusStackSpacing.spacing50,
+      crossAxisAlignment: _bubbleAlignment,
+      children: [
+        if (showDate) _date(theme),
+        if (showUserName) _userName,
+        OptimusStack(
+          direction: Axis.horizontal,
+          mainAxisAlignment: _bubbleAlignment,
+          crossAxisAlignment: OptimusStackAlignment.end,
+          children: [
+            if (message.type == MessageType.inbound) _avatar,
+            _messageBubble(theme),
+            if (message.type != MessageType.inbound) _avatar,
+          ],
+        ),
+        if (showStatus) _status(theme),
+      ],
     );
   }
 
-  Widget _messageBubble(OptimusThemeData theme) => Container(
-        margin: EdgeInsets.only(
-          top: showUserName ? spacing0 : spacing100,
-          left: message.type != MessageType.inbound ? 64 : spacing100,
-          right: message.type == MessageType.inbound ? 64 : spacing100,
+  Widget _messageBubble(OptimusThemeData theme) => Flexible(
+    child: Container(
+          margin: EdgeInsets.only(
+            top: showUserName ? spacing0 : spacing100,
+            left: message.type != MessageType.inbound ? 64 : spacing100,
+            right: message.type == MessageType.inbound ? 64 : spacing100,
+          ),
+          constraints: const BoxConstraints(maxWidth: 480),
+          decoration: _messageBackground(theme),
+          padding: const EdgeInsets.all(spacing100),
+          child: DefaultTextStyle.merge(
+            style: TextStyle.lerp(
+                preset200s, TextStyle(color: _messageTextColor(theme)), 1),
+            child: Text(message.message),
+          ),
         ),
-        constraints: const BoxConstraints(maxWidth: 480),
-        decoration: _messageBackground(theme),
-        padding: const EdgeInsets.all(spacing100),
-        child: DefaultTextStyle.merge(
-          style: TextStyle.lerp(
-              preset200s, TextStyle(color: _messageTextColor(theme)), 1),
-          child: Text(message.message),
-        ),
-      );
+  );
 
   Widget _date(OptimusThemeData theme) {
     final separator = Expanded(
