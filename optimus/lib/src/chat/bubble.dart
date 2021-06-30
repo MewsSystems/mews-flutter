@@ -55,9 +55,9 @@ class ChatBubble extends StatelessWidget {
           mainAxisAlignment: _bubbleAlignment,
           crossAxisAlignment: OptimusStackAlignment.end,
           children: [
-            if (message.type == MessageType.inbound) _avatar,
+            if (message.alignment == MessageAlignment.left) _avatar,
             _messageBubble(theme),
-            if (message.type != MessageType.inbound) _avatar,
+            if (message.alignment == MessageAlignment.right) _avatar,
           ],
         ),
         if (showStatus) _status(theme),
@@ -69,8 +69,8 @@ class ChatBubble extends StatelessWidget {
     child: Container(
           margin: EdgeInsets.only(
             top: showUserName ? spacing0 : spacing100,
-            left: message.type != MessageType.inbound ? 64 : spacing100,
-            right: message.type == MessageType.inbound ? 64 : spacing100,
+            left: message.alignment == MessageAlignment.left ? spacing100 : 64,
+            right: message.alignment == MessageAlignment.right ? spacing100 : 64,
           ),
           constraints: const BoxConstraints(maxWidth: 480),
           decoration: _messageBackground(theme),
@@ -131,8 +131,8 @@ class ChatBubble extends StatelessWidget {
       );
 
   EdgeInsets get _statusPadding => EdgeInsets.only(
-        left: message.type == MessageType.inbound ? 48 : 0,
-        right: message.type != MessageType.inbound ? 48 : 0,
+        left: message.alignment == MessageAlignment.left ? 48 : 0,
+        right: message.alignment != MessageAlignment.left ? 48 : 0,
       );
 
   Widget _statusText(int index, Message message, OptimusThemeData theme) {
@@ -161,8 +161,8 @@ class ChatBubble extends StatelessWidget {
       case MessageStatus.sent:
         children = [
           Text(formatTime(message.time) as String),
-          if (message.type == MessageType.outbound) sent,
-          if (message.type == MessageType.outbound)
+          if (message.alignment == MessageAlignment.right) sent,
+          if (message.alignment == MessageAlignment.right)
             const OptimusIcon(
               iconData: OptimusIcons.done_circle,
               iconSize: OptimusIconSize.small,
@@ -198,44 +198,11 @@ class ChatBubble extends StatelessWidget {
   }
 
   OptimusStackAlignment get _bubbleAlignment =>
-      message.type == MessageType.inbound
+      message.alignment == MessageAlignment.left
           ? OptimusStackAlignment.start
           : OptimusStackAlignment.end;
 
-  Widget get _avatar {
-    final avatar = OptimusAvatar(
-      title: message.userName,
-      imageUrl: message.avatarUrl,
-    );
-
-    if (showAvatar) {
-      if (message.type == MessageType.outboundOrganisation &&
-          message.organisationAvatarUrl?.isNotEmpty == true) {
-        return Stack(children: [
-          avatar,
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Container(
-              width: 16,
-              height: 16,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: NetworkImage(message.organisationAvatarUrl!),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-        ]);
-      } else {
-        return avatar;
-      }
-    } else {
-      return _emptyAvatarSpace;
-    }
-  }
+  Widget get _avatar => showAvatar ? message.avatar : _emptyAvatarSpace;
 
   Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
@@ -245,41 +212,36 @@ class ChatBubble extends StatelessWidget {
       );
 
   Color _messageBackgroundColor(OptimusThemeData theme) {
-    switch (message.type) {
-      case MessageType.inbound:
+    switch (message.color) {
+      case MessageColor.neutral:
         return theme.colors.neutral25;
-      case MessageType.outbound:
+      case MessageColor.dark:
         return theme.colors.primary;
-      case MessageType.outboundOrganisation:
+      case MessageColor.light:
         return theme.colors.primary500t16;
     }
   }
 
   Color _messageTextColor(OptimusThemeData theme) {
-    switch (message.type) {
-      case MessageType.inbound:
-      case MessageType.outboundOrganisation:
+    switch (message.color) {
+      case MessageColor.neutral:
+      case MessageColor.light:
         return theme.colors.neutral1000;
-      case MessageType.outbound:
+      case MessageColor.dark:
         return theme.colors.neutral0;
     }
   }
 }
 
-enum MessageType {
-  /// Incoming messages from the user's (your) perspective.
-  /// Available only in single appearance for all scenarios and included parties.
-  inbound,
+enum MessageAlignment {
+  left,
+  right,
+}
 
-  /// Message sent by the user (you), this from your perspective with multiple
-  /// variants including organization and customer side.
-  /// Available in various delivery states.
-  outbound,
-
-  /// An alternative to a standard user message.
-  /// Only used by another organization member
-  /// in the same conversation with the customer.
-  outboundOrganisation,
+enum MessageColor {
+  neutral,
+  light,
+  dark,
 }
 
 enum MessageStatus {
@@ -301,10 +263,10 @@ class Message with _$Message {
   const factory Message({
     required String userName,
     required String message,
-    required MessageType type,
+    required MessageAlignment alignment,
+    required MessageColor color,
     required DateTime time,
     required MessageStatus status,
-    String? avatarUrl,
-    String? organisationAvatarUrl,
+    required Widget avatar,
   }) = _Message;
 }

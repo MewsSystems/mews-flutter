@@ -19,19 +19,19 @@ class _$MessageTearOff {
   _Message call(
       {required String userName,
       required String message,
-      required MessageType type,
+      required MessageAlignment alignment,
+      required MessageColor color,
       required DateTime time,
       required MessageStatus status,
-      String? avatarUrl,
-      String? organisationAvatarUrl}) {
+      required Widget avatar}) {
     return _Message(
       userName: userName,
       message: message,
-      type: type,
+      alignment: alignment,
+      color: color,
       time: time,
       status: status,
-      avatarUrl: avatarUrl,
-      organisationAvatarUrl: organisationAvatarUrl,
+      avatar: avatar,
     );
   }
 }
@@ -43,11 +43,11 @@ const $Message = _$MessageTearOff();
 mixin _$Message {
   String get userName => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  MessageType get type => throw _privateConstructorUsedError;
+  MessageAlignment get alignment => throw _privateConstructorUsedError;
+  MessageColor get color => throw _privateConstructorUsedError;
   DateTime get time => throw _privateConstructorUsedError;
   MessageStatus get status => throw _privateConstructorUsedError;
-  String? get avatarUrl => throw _privateConstructorUsedError;
-  String? get organisationAvatarUrl => throw _privateConstructorUsedError;
+  Widget get avatar => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
@@ -60,11 +60,11 @@ abstract class $MessageCopyWith<$Res> {
   $Res call(
       {String userName,
       String message,
-      MessageType type,
+      MessageAlignment alignment,
+      MessageColor color,
       DateTime time,
       MessageStatus status,
-      String? avatarUrl,
-      String? organisationAvatarUrl});
+      Widget avatar});
 }
 
 /// @nodoc
@@ -79,11 +79,11 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
   $Res call({
     Object? userName = freezed,
     Object? message = freezed,
-    Object? type = freezed,
+    Object? alignment = freezed,
+    Object? color = freezed,
     Object? time = freezed,
     Object? status = freezed,
-    Object? avatarUrl = freezed,
-    Object? organisationAvatarUrl = freezed,
+    Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
       userName: userName == freezed
@@ -94,10 +94,14 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageType,
+      alignment: alignment == freezed
+          ? _value.alignment
+          : alignment // ignore: cast_nullable_to_non_nullable
+              as MessageAlignment,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as MessageColor,
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -106,14 +110,10 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MessageStatus,
-      avatarUrl: avatarUrl == freezed
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      organisationAvatarUrl: organisationAvatarUrl == freezed
-          ? _value.organisationAvatarUrl
-          : organisationAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      avatar: avatar == freezed
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as Widget,
     ));
   }
 }
@@ -126,11 +126,11 @@ abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   $Res call(
       {String userName,
       String message,
-      MessageType type,
+      MessageAlignment alignment,
+      MessageColor color,
       DateTime time,
       MessageStatus status,
-      String? avatarUrl,
-      String? organisationAvatarUrl});
+      Widget avatar});
 }
 
 /// @nodoc
@@ -146,11 +146,11 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
   $Res call({
     Object? userName = freezed,
     Object? message = freezed,
-    Object? type = freezed,
+    Object? alignment = freezed,
+    Object? color = freezed,
     Object? time = freezed,
     Object? status = freezed,
-    Object? avatarUrl = freezed,
-    Object? organisationAvatarUrl = freezed,
+    Object? avatar = freezed,
   }) {
     return _then(_Message(
       userName: userName == freezed
@@ -161,10 +161,14 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageType,
+      alignment: alignment == freezed
+          ? _value.alignment
+          : alignment // ignore: cast_nullable_to_non_nullable
+              as MessageAlignment,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as MessageColor,
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -173,14 +177,10 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MessageStatus,
-      avatarUrl: avatarUrl == freezed
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      organisationAvatarUrl: organisationAvatarUrl == freezed
-          ? _value.organisationAvatarUrl
-          : organisationAvatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      avatar: avatar == freezed
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as Widget,
     ));
   }
 }
@@ -191,30 +191,30 @@ class _$_Message implements _Message {
   const _$_Message(
       {required this.userName,
       required this.message,
-      required this.type,
+      required this.alignment,
+      required this.color,
       required this.time,
       required this.status,
-      this.avatarUrl,
-      this.organisationAvatarUrl});
+      required this.avatar});
 
   @override
   final String userName;
   @override
   final String message;
   @override
-  final MessageType type;
+  final MessageAlignment alignment;
+  @override
+  final MessageColor color;
   @override
   final DateTime time;
   @override
   final MessageStatus status;
   @override
-  final String? avatarUrl;
-  @override
-  final String? organisationAvatarUrl;
+  final Widget avatar;
 
   @override
   String toString() {
-    return 'Message(userName: $userName, message: $message, type: $type, time: $time, status: $status, avatarUrl: $avatarUrl, organisationAvatarUrl: $organisationAvatarUrl)';
+    return 'Message(userName: $userName, message: $message, alignment: $alignment, color: $color, time: $time, status: $status, avatar: $avatar)';
   }
 
   @override
@@ -227,18 +227,17 @@ class _$_Message implements _Message {
             (identical(other.message, message) ||
                 const DeepCollectionEquality()
                     .equals(other.message, message)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.alignment, alignment) ||
+                const DeepCollectionEquality()
+                    .equals(other.alignment, alignment)) &&
+            (identical(other.color, color) ||
+                const DeepCollectionEquality().equals(other.color, color)) &&
             (identical(other.time, time) ||
                 const DeepCollectionEquality().equals(other.time, time)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.avatarUrl, avatarUrl)) &&
-            (identical(other.organisationAvatarUrl, organisationAvatarUrl) ||
-                const DeepCollectionEquality().equals(
-                    other.organisationAvatarUrl, organisationAvatarUrl)));
+            (identical(other.avatar, avatar) ||
+                const DeepCollectionEquality().equals(other.avatar, avatar)));
   }
 
   @override
@@ -246,11 +245,11 @@ class _$_Message implements _Message {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(alignment) ^
+      const DeepCollectionEquality().hash(color) ^
       const DeepCollectionEquality().hash(time) ^
       const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(avatarUrl) ^
-      const DeepCollectionEquality().hash(organisationAvatarUrl);
+      const DeepCollectionEquality().hash(avatar);
 
   @JsonKey(ignore: true)
   @override
@@ -262,26 +261,26 @@ abstract class _Message implements Message {
   const factory _Message(
       {required String userName,
       required String message,
-      required MessageType type,
+      required MessageAlignment alignment,
+      required MessageColor color,
       required DateTime time,
       required MessageStatus status,
-      String? avatarUrl,
-      String? organisationAvatarUrl}) = _$_Message;
+      required Widget avatar}) = _$_Message;
 
   @override
   String get userName => throw _privateConstructorUsedError;
   @override
   String get message => throw _privateConstructorUsedError;
   @override
-  MessageType get type => throw _privateConstructorUsedError;
+  MessageAlignment get alignment => throw _privateConstructorUsedError;
+  @override
+  MessageColor get color => throw _privateConstructorUsedError;
   @override
   DateTime get time => throw _privateConstructorUsedError;
   @override
   MessageStatus get status => throw _privateConstructorUsedError;
   @override
-  String? get avatarUrl => throw _privateConstructorUsedError;
-  @override
-  String? get organisationAvatarUrl => throw _privateConstructorUsedError;
+  Widget get avatar => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MessageCopyWith<_Message> get copyWith =>

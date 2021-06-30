@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/stories/chat/chat.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final chatBubbleStory = Story(
@@ -15,9 +16,9 @@ final chatBubbleStory = Story(
               'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.',
         ),
         time: DateTime.now().subtract(const Duration(seconds: 30)),
-        type: k.options(
-          label: 'Type',
-          initial: MessageType.inbound,
+        alignment: k.options(
+          label: 'Alignment',
+          initial: MessageAlignment.left,
           options: _type,
         ),
         status: k.options(
@@ -25,15 +26,15 @@ final chatBubbleStory = Story(
           initial: MessageStatus.sent,
           options: _status,
         ),
-        avatarUrl: k.options(
-          label: 'Avatar url',
-          initial: avatarUrl,
-          options: _avatarUrls,
+        avatar: k.options(
+          label: 'Avatar',
+          initial: avatar2,
+          options: _avatar,
         ),
-        organisationAvatarUrl: k.options(
-          label: 'Organisation avatar url',
-          initial: organisationAvatarUrl,
-          options: _organisationAvatarUrls,
+        color: k.options(
+          label: 'Color',
+          initial: MessageColor.dark,
+          options: _color,
         ),
       );
 
@@ -66,15 +67,14 @@ const organisationAvatarUrl =
 final List<Option<MessageStatus>> _status =
     MessageStatus.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<MessageType>> _type =
-    MessageType.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<MessageAlignment>> _type =
+    MessageAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<String?>> _avatarUrls = {'Empty': null, 'Present': avatarUrl}
-    .entries
-    .map((e) => Option(e.key, e.value))
-    .toList();
+final List<Option<MessageColor>> _color =
+    MessageColor.values.map((e) => Option(describeEnum(e), e)).toList();
 
-final List<Option<String?>> _organisationAvatarUrls = {
-  'Empty': null,
-  'Present': organisationAvatarUrl
-}.entries.map((e) => Option(e.key, e.value)).toList();
+final List<Option<Widget>> _avatar = [
+  const Option('No image', avatar2),
+  const Option('With image', avatar1),
+  Option('Organisation avatar', organisationAvatar),
+];
