@@ -83,7 +83,7 @@ class OptimusRadio<T> extends StatefulWidget {
   _OptimusRadioState<T> createState() => _OptimusRadioState<T>();
 }
 
-class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
+class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
 
@@ -92,11 +92,15 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> {
   TextStyle get _labelStyle {
     switch (widget.size) {
       case OptimusRadioSize.small:
-        return preset200s;
+        return preset200s.copyWith(color: _defaultTextColor);
       case OptimusRadioSize.large:
-        return preset300s;
+        return preset300s.copyWith(color: _defaultTextColor);
     }
   }
+
+  Color get _defaultTextColor => theme.isDark
+      ? theme.colors.invertedTextColor
+      : theme.colors.defaultTextColor;
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
