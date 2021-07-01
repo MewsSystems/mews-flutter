@@ -134,7 +134,7 @@ class _TagState extends State<_Tag> with ThemeGetter {
                         height: 1.1,
                         // TODO(VG): can be changed when final dark theme design
                         //  is ready.
-                        color: theme.colors.defaultTextColor,
+                        color: theme.colors.neutral1000,
                       )
                     // Doesn't match any typography component
                     : baseTextStyle.copyWith(
@@ -212,19 +212,19 @@ class _TagState extends State<_Tag> with ThemeGetter {
 
   Color get _textBoldColor {
     // TODO(VG): can be changed when final dark theme design is ready.
-    if (theme.isDark) return theme.colors.defaultTextColor;
+    if (theme.isDark) return theme.colors.neutral1000;
 
     switch (widget.colorOption) {
       case OptimusColorOption.warning:
-        return theme.colors.defaultTextColor;
+        return theme.colors.neutral1000;
       default:
-        return theme.colors.invertedTextColor;
+        return theme.colors.neutral0;
     }
   }
 
   Color get _textSubtleColor {
     // TODO(VG): can be changed when final dark theme design is ready.
-    if (theme.isDark) return theme.colors.invertedTextColor;
+    if (theme.isDark) return theme.colors.neutral0;
 
     switch (widget.colorOption) {
       case OptimusColorOption.primary:
@@ -235,7 +235,7 @@ class _TagState extends State<_Tag> with ThemeGetter {
         return theme.colors.danger900;
       case OptimusColorOption.basic:
       case OptimusColorOption.warning:
-        return theme.colors.defaultTextColor;
+        return theme.colors.neutral1000;
     }
   }
 }

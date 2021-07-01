@@ -111,13 +111,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   Color get _textColor {
     switch (widget.variant) {
       case OptimusDropdownButtonVariant.primary:
-        return theme.colors.invertedTextColor;
+        return theme.colors.neutral0;
       case OptimusDropdownButtonVariant.defaultButton:
         return theme.colors.neutral500;
       case OptimusDropdownButtonVariant.text:
-        return theme.isDark
-            ? theme.colors.invertedTextColor
-            : theme.colors.neutral500;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
     }
   }
 

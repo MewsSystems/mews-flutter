@@ -102,11 +102,12 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   }
 
   TextStyle get _labelStyle {
+    final color = theme.colors.defaultTextColor;
     switch (widget.size) {
       case OptimusCheckboxSize.large:
-        return preset300s;
+        return preset300s.copyWith(color: color);
       case OptimusCheckboxSize.small:
-        return preset200s;
+        return preset200s.copyWith(color: color);
     }
   }
 

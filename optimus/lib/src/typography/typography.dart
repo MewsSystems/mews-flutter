@@ -34,13 +34,9 @@ class OptimusTypography extends StatelessWidget {
   Color _color(OptimusThemeData theme) {
     switch (color) {
       case OptimusTypographyColor.primary:
-        return theme.isDark
-            ? theme.colors.invertedTextColor
-            : theme.colors.defaultTextColor;
+        return theme.colors.defaultTextColor;
       case OptimusTypographyColor.secondary:
-        return theme.isDark
-            ? theme.colors.invertedSecondaryTextColor
-            : theme.colors.secondaryTextColor;
+        return theme.colors.secondaryTextColor;
     }
   }
 }
