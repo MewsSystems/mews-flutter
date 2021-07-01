@@ -48,7 +48,7 @@ class OptimusChatBubble extends StatelessWidget {
       spacing: OptimusStackSpacing.spacing50,
       crossAxisAlignment: _bubbleAlignment,
       children: [
-        if (showDate) _date(theme),
+        if (showDate) _buildDate(theme),
         if (showUserName) _userName,
         OptimusStack(
           direction: Axis.horizontal,
@@ -56,16 +56,16 @@ class OptimusChatBubble extends StatelessWidget {
           crossAxisAlignment: OptimusStackAlignment.end,
           children: [
             if (message.alignment == MessageAlignment.left) _avatar,
-            _messageBubble(theme),
+            _buildMessageBubble(theme),
             if (message.alignment == MessageAlignment.right) _avatar,
           ],
         ),
-        if (showStatus) _status(theme),
+        if (showStatus) _buildStatus(theme),
       ],
     );
   }
 
-  Widget _messageBubble(OptimusThemeData theme) => Flexible(
+  Widget _buildMessageBubble(OptimusThemeData theme) => Flexible(
         child: Container(
           margin: EdgeInsets.only(
             top: showUserName ? spacing0 : spacing100,
@@ -74,17 +74,17 @@ class OptimusChatBubble extends StatelessWidget {
                 message.alignment == MessageAlignment.right ? spacing100 : 64,
           ),
           constraints: const BoxConstraints(maxWidth: 480),
-          decoration: _messageBackground(theme),
+          decoration: _buildMessageBackground(theme),
           padding: const EdgeInsets.all(spacing100),
           child: DefaultTextStyle.merge(
             style: TextStyle.lerp(
-                preset200s, TextStyle(color: _messageTextColor(theme)), 1),
+                preset200s, TextStyle(color: _createMessageTextColor(theme)), 1),
             child: Text(message.message),
           ),
         ),
       );
 
-  Widget _date(OptimusThemeData theme) {
+  Widget _buildDate(OptimusThemeData theme) {
     final separator = Expanded(
       child: Container(
         height: 1,
@@ -116,18 +116,19 @@ class OptimusChatBubble extends StatelessWidget {
         ),
       );
 
-  Padding _status(OptimusThemeData theme) => Padding(
+  Padding _buildStatus(OptimusThemeData theme) => Padding(
         padding: _statusPadding,
         child: DefaultTextStyle.merge(
           style: TextStyle.lerp(
             preset100s,
             TextStyle(
-                color: theme.isDark
-                    ? theme.colors.neutral0t64
-                    : theme.colors.neutral1000t64),
+              color: theme.isDark
+                  ? theme.colors.neutral0t64
+                  : theme.colors.neutral1000t64,
+            ),
             1,
           ),
-          child: _statusText(index, message, theme),
+          child: _buildStatusText(index, message, theme),
         ),
       );
 
@@ -136,7 +137,7 @@ class OptimusChatBubble extends StatelessWidget {
         right: message.alignment != MessageAlignment.left ? 48 : 0,
       );
 
-  Widget _statusText(
+  Widget _buildStatusText(
       int index, OptimusMessage message, OptimusThemeData theme) {
     late final List<Widget> children;
 
@@ -208,12 +209,12 @@ class OptimusChatBubble extends StatelessWidget {
 
   Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
-  BoxDecoration _messageBackground(OptimusThemeData theme) => BoxDecoration(
+  BoxDecoration _buildMessageBackground(OptimusThemeData theme) => BoxDecoration(
         borderRadius: const BorderRadius.all(borderRadius100),
-        color: _messageBackgroundColor(theme),
+        color: _createMessageBackgroundColor(theme),
       );
 
-  Color _messageBackgroundColor(OptimusThemeData theme) {
+  Color _createMessageBackgroundColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
         return theme.colors.neutral25;
@@ -224,7 +225,7 @@ class OptimusChatBubble extends StatelessWidget {
     }
   }
 
-  Color _messageTextColor(OptimusThemeData theme) {
+  Color _createMessageTextColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
       case MessageColor.light:
