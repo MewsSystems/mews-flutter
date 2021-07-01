@@ -90,7 +90,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   bool get _isSelected => widget.value == widget.groupValue;
 
   TextStyle get _labelStyle {
-    final color = theme.colors.themeSensitiveDefaultTextColor;
+    final color = theme.colors.defaultTextColor;
     switch (widget.size) {
       case OptimusRadioSize.small:
         return preset200s.copyWith(color: color);
