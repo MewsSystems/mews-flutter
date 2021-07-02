@@ -75,7 +75,12 @@ class OptimusChatBubble extends StatelessWidget {
           ),
           constraints: const BoxConstraints(maxWidth: 480),
           decoration: _buildMessageBackground(theme),
-          padding: const EdgeInsets.all(spacing100),
+          padding: const EdgeInsets.only(
+            left: spacing100,
+            right: spacing100,
+            top: spacing50,
+            bottom: spacing100,
+          ),
           child: DefaultTextStyle.merge(
             style: TextStyle.lerp(preset200s,
                 TextStyle(color: _createMessageTextColor(theme)), 1),
