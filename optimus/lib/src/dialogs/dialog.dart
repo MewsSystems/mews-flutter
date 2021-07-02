@@ -7,7 +7,6 @@ import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/common/scroll.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/theme/theme_data.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 enum OptimusDialogSize {
   /// Intended for short, to the point messages.
@@ -282,8 +281,7 @@ class OptimusDialog extends StatelessWidget {
                           true,
                     ),
                     _divider(theme),
-                    DefaultTextStyle.merge(
-                      style: preset300r,
+                    OptimusParagraph(
                       child: _Content(
                         content: content,
                         contentWrapperBuilder: contentWrapperBuilder,
