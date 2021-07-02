@@ -77,8 +77,8 @@ class OptimusChatBubble extends StatelessWidget {
           decoration: _buildMessageBackground(theme),
           padding: const EdgeInsets.all(spacing100),
           child: DefaultTextStyle.merge(
-            style: TextStyle.lerp(
-                preset200s, TextStyle(color: _createMessageTextColor(theme)), 1),
+            style: TextStyle.lerp(preset200s,
+                TextStyle(color: _createMessageTextColor(theme)), 1),
             child: Text(message.message),
           ),
         ),
@@ -180,8 +180,9 @@ class OptimusChatBubble extends StatelessWidget {
               decoration: TextDecoration.underline,
             ),
             child: GestureDetector(
-                onTap: () => onTryAgainClicked(index, message),
-                child: tryAgain),
+              onTap: () => onTryAgainClicked(index, message),
+              child: tryAgain,
+            ),
           ),
           const OptimusIcon(
             iconData: OptimusIcons.disable,
@@ -209,7 +210,8 @@ class OptimusChatBubble extends StatelessWidget {
 
   Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
-  BoxDecoration _buildMessageBackground(OptimusThemeData theme) => BoxDecoration(
+  BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
+      BoxDecoration(
         borderRadius: const BorderRadius.all(borderRadius100),
         color: _createMessageBackgroundColor(theme),
       );

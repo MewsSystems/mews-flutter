@@ -2,6 +2,11 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/input.dart';
 
+/// The chat components offer instant real-time communication between
+/// two (or multiple) parties. It also serves as a log or transcript
+/// of past conversations. Individual chat components assemble into
+/// a chat window layout.
+
 class OptimusChat extends StatelessWidget {
   const OptimusChat({
     Key? key,
@@ -63,6 +68,11 @@ class OptimusChat extends StatelessWidget {
 
   bool _showStatus(int index) =>
       _lastMessageOfDay(index) ||
+      (_previousMessageTime(index) != null &&
+          _currentMessageTime(index)
+                  .difference(_previousMessageTime(index)!)
+                  .inMinutes >=
+              1) ||
       _messages[index].status != MessageStatus.sent ||
       _messages[index - 1].userName != _messages[index].userName;
 
