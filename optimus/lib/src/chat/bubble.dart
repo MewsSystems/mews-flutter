@@ -171,9 +171,12 @@ class OptimusChatBubble extends StatelessWidget {
           Text(formatTime(message.time) as String),
           if (message.alignment == MessageAlignment.right) sent,
           if (message.alignment == MessageAlignment.right)
-            const OptimusIcon(
-              iconData: OptimusIcons.done_circle,
-              iconSize: OptimusIconSize.small,
+            const Opacity(
+              opacity: 0.6,
+              child: OptimusIcon(
+                iconData: OptimusIcons.done_circle,
+                iconSize: OptimusIconSize.small,
+              ),
             )
         ];
         break;
