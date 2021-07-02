@@ -238,8 +238,9 @@ class OptimusChatBubble extends StatelessWidget {
   Color _createMessageTextColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
-      case MessageColor.light:
         return theme.colors.neutral1000;
+      case MessageColor.light:
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
       case MessageColor.dark:
         return theme.colors.neutral0;
     }
