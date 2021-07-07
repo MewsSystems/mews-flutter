@@ -8,6 +8,9 @@ import 'package:optimus/src/typography/presets.dart';
 
 part 'bubble.freezed.dart';
 
+/// Chat bubble component offers single configurable bubble. The main use of
+/// this widget is in OptimusChat widget but it can be used also stand-alone.
+
 class OptimusChatBubble extends StatelessWidget {
   const OptimusChatBubble({
     Key? key,
