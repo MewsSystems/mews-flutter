@@ -136,7 +136,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
       DefaultTextStyle.merge(
-        style: TextStyle(
+        style: baseTextStyle.copyWith(
           color: theme.isDark
               ? theme.colors.neutral0t64
               : theme.colors.neutral1000t64,
