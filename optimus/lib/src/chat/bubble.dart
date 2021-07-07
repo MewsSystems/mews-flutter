@@ -123,18 +123,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   Padding _buildStatus(OptimusThemeData theme) => Padding(
         padding: _statusPadding,
-        child: DefaultTextStyle.merge(
-          style: TextStyle.lerp(
-            preset100s,
-            TextStyle(
-              color: theme.isDark
-                  ? theme.colors.neutral0t64
-                  : theme.colors.neutral1000t64,
-            ),
-            1,
-          ),
-          child: _buildStatusText(index, message, theme),
-        ),
+        child: _buildStatusText(index, message, theme),
       );
 
   EdgeInsets get _statusPadding => EdgeInsets.only(
@@ -142,25 +131,43 @@ class OptimusChatBubble extends StatelessWidget {
         right: message.alignment != MessageAlignment.left ? 48 : 0,
       );
 
+  Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
+      DefaultTextStyle.merge(
+        style: TextStyle(
+          color: theme.isDark
+              ? theme.colors.neutral0t64
+              : theme.colors.neutral1000t64,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        child: child,
+      );
+
   Widget _buildStatusText(
-      int index, OptimusMessage message, OptimusThemeData theme) {
+    int index,
+    OptimusMessage message,
+    OptimusThemeData theme,
+  ) {
     late final List<Widget> children;
+    final color =
+        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 
     switch (message.status) {
       case MessageStatus.sending:
         children = [
-          Text(formatTime(message.time) as String),
-          sending,
+          _buildStatusTextStyle(
+            theme,
+            Text(formatTime(message.time) as String),
+          ),
+          _buildStatusTextStyle(theme, sending),
           Container(
             width: 13,
             height: 13,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
               border: Border.all(
-                width: 1,
-                color: theme.isDark
-                    ? theme.colors.neutral0t64
-                    : theme.colors.neutral1000t64,
+                width: 1.2,
+                color: color,
               ),
             ),
           ),
@@ -168,8 +175,12 @@ class OptimusChatBubble extends StatelessWidget {
         break;
       case MessageStatus.sent:
         children = [
-          Text(formatTime(message.time) as String),
-          if (message.alignment == MessageAlignment.right) sent,
+          _buildStatusTextStyle(
+            theme,
+            Text(formatTime(message.time) as String),
+          ),
+          if (message.alignment == MessageAlignment.right)
+            _buildStatusTextStyle(theme, sent),
           if (message.alignment == MessageAlignment.right)
             const Opacity(
               opacity: 0.6,
@@ -182,14 +193,14 @@ class OptimusChatBubble extends StatelessWidget {
         break;
       case MessageStatus.notSent:
         children = [
-          notSend,
+          _buildStatusTextStyle(theme, notSend),
           DefaultTextStyle.merge(
             style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
             child: GestureDetector(
               onTap: () => onTryAgainClicked(index, message),
-              child: tryAgain,
+              child: _buildStatusTextStyle(theme, tryAgain),
             ),
           ),
           const OptimusIcon(
