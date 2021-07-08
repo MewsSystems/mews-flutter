@@ -14,7 +14,9 @@ class OptimusSearch<T> extends StatefulWidget {
     Key? key,
     this.label,
     this.placeholder = '',
+    this.placeholderStyle,
     this.controller,
+    this.onTextChanged,
     required this.items,
     this.isUpdating = false,
     this.isEnabled = true,
@@ -26,11 +28,16 @@ class OptimusSearch<T> extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.readOnly = false,
     this.showCursor,
+    this.prefix,
+    this.suffix,
+    this.focusNode,
   }) : super(key: key);
 
   final String? label;
   final String placeholder;
+  final TextStyle? placeholderStyle;
   final TextEditingController? controller;
+  final ValueSetter<String>? onTextChanged;
   final List<OptimusDropdownTile<T>> items;
   final bool isUpdating;
   final bool isEnabled;
@@ -40,6 +47,9 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? secondaryCaption;
   final String? error;
   final OptimusWidgetSize size;
+  final Widget? prefix;
+  final Widget? suffix;
+  final FocusNode? focusNode;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -54,21 +64,29 @@ class OptimusSearch<T> extends StatefulWidget {
 class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   final _fieldBoxKey = GlobalKey();
 
-  final _focusNode = FocusNode();
+  late final FocusNode _focusNode = widget.focusNode ?? FocusNode();
   OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
-      } else {
-        setState(_removeOverlay);
-      }
-    });
+    _focusNode.addListener(_onFocusChanged);
 
     WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutBuild);
+  }
+
+  void _onFocusChanged() {
+    if (_focusNode.hasFocus) {
+      WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
+    } else {
+      setState(_removeOverlay);
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChanged);
+    super.dispose();
   }
 
   @override
@@ -80,28 +98,8 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
-        child: OptimusInputField(
-          controller: widget.controller,
-          isRequired: widget.isRequired,
-          label: widget.label,
-          placeholder: widget.placeholder,
-          focusNode: _focusNode,
-          fieldBoxKey: _fieldBoxKey,
-          suffix: widget.isUpdating
-              ? const OptimusProgressSpinner()
-              : const _Icon(),
-          isEnabled: widget.isEnabled,
-          caption: widget.caption,
-          secondaryCaption: widget.secondaryCaption,
-          error: widget.error,
-          size: widget.size,
-          readOnly: widget.readOnly,
-          showCursor: widget.showCursor,
-        ),
-      );
+  bool get _isSearchable =>
+      widget.controller != null || widget.onTextChanged != null;
 
   void _onItemSelected() {
     _removeOverlay();
@@ -155,7 +153,10 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
                 _fieldBoxKey.currentContext?.findRenderObject() as RenderBox;
             final dropdownBox = context.findRenderObject() as RenderBox;
 
-            if (!hitTest(inputFieldBox) && !hitTest(dropdownBox)) {
+            final shouldCountInputFieldHit =
+                hitTest(inputFieldBox) && _isSearchable;
+
+            if (!shouldCountInputFieldHit && !hitTest(dropdownBox)) {
               _removeOverlay();
               _focusNode.unfocus();
             }
@@ -168,6 +169,32 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
               onChanged: widget.onChanged,
             ),
           ),
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) => WillPopScope(
+        onWillPop: _handleOnBackPressed,
+        child: OptimusInputField(
+          prefix: widget.prefix,
+          controller: widget.controller,
+          onChanged: widget.onTextChanged,
+          isRequired: widget.isRequired,
+          label: widget.label,
+          placeholder: widget.placeholder,
+          placeholderStyle: widget.placeholderStyle,
+          focusNode: _focusNode,
+          fieldBoxKey: _fieldBoxKey,
+          suffix: widget.isUpdating
+              ? const OptimusProgressSpinner()
+              : widget.suffix ?? const _Icon(),
+          isEnabled: widget.isEnabled,
+          caption: widget.caption,
+          secondaryCaption: widget.secondaryCaption,
+          error: widget.error,
+          size: widget.size,
+          readOnly: widget.readOnly,
+          showCursor: widget.showCursor,
         ),
       );
 }
