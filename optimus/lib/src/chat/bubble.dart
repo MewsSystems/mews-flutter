@@ -270,8 +270,7 @@ enum MessageColor {
 
 @freezed
 class MessageState with _$MessageState {
-  const factory MessageState.sending() =
-      MessageStateSending;
+  const factory MessageState.sending() = MessageStateSending;
 
   const factory MessageState.sent() = MessageStateSent;
 
