@@ -21,9 +21,9 @@ final chatBubbleStory = Story(
           initial: MessageAlignment.left,
           options: _type,
         ),
-        status: k.options(
+        state: k.options(
           label: 'Status',
-          initial: MessageStatus.sent,
+          initial: MessageState.sent(),
           options: _status,
         ),
         avatar: k.options(
@@ -40,12 +40,11 @@ final chatBubbleStory = Story(
 
       return Center(
         child: OptimusChatBubble(
-          index: 0,
           message: message,
-          showAvatar: k.boolean(label: 'Show avatar', initial: true),
-          showUserName: k.boolean(label: 'Show user name', initial: true),
-          showStatus: k.boolean(label: 'Show status', initial: true),
-          showDate: k.boolean(label: 'Show date', initial: true),
+          isAvatarVisible: k.boolean(label: 'Show avatar', initial: true),
+          isUserNameVisible: k.boolean(label: 'Show user name', initial: true),
+          isStatusVisible: k.boolean(label: 'Show status', initial: true),
+          isDateVisible: k.boolean(label: 'Show date', initial: true),
           formatTime: (DateTime input) =>
               '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
           formatDate: (DateTime input) =>
@@ -54,7 +53,7 @@ final chatBubbleStory = Story(
           sent: const Text('Sent'),
           sending: const Text('Sending...'),
           tryAgain: const Text('Try Again'),
-          onTryAgainClicked: (index, message) async => MessageStatus.sent,
+          onTryAgainClicked: (message) async => MessageState.sent(),
         ),
       );
     });
@@ -62,11 +61,11 @@ final chatBubbleStory = Story(
 const avatarUrl =
     'https://images.unsplash.com/photo-1560525821-d5615ef80c69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=512&q=80';
 
-const organisationAvatarUrl =
-    'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80';
-
-final List<Option<MessageStatus>> _status =
-    MessageStatus.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<MessageState>> _status = [
+  const Option('Sent', MessageState.sent()),
+  const Option('Sending', MessageState.sending()),
+  Option('Error', MessageState.error(onTryAgain: () {})),
+];
 
 final List<Option<MessageAlignment>> _type =
     MessageAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
@@ -77,5 +76,4 @@ final List<Option<MessageColor>> _color =
 final List<Option<Widget>> _avatar = [
   const Option('No image', avatar2),
   const Option('With image', avatar1),
-  Option('Organisation avatar', organisationAvatar),
 ];

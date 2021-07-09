@@ -39,12 +39,11 @@ class OptimusChat extends StatelessWidget {
               itemCount: _messages.length,
               reverse: true,
               itemBuilder: (context, index) => OptimusChatBubble(
-                index: index,
                 message: _messages[index],
-                showAvatar: _showAvatar(index),
-                showStatus: _showStatus(index),
-                showUserName: _showUserName(index),
-                showDate: _showDate(index),
+                isAvatarVisible: _showAvatar(index),
+                isStatusVisible: _showStatus(index),
+                isUserNameVisible: _showUserName(index),
+                isDateVisible: _showDate(index),
                 formatTime: formatTime,
                 formatDate: formatDate,
                 sending: sending,
@@ -73,7 +72,7 @@ class OptimusChat extends StatelessWidget {
                   .difference(_previousMessageTime(index)!)
                   .inMinutes >=
               1) ||
-      _messages[index].status != MessageStatus.sent ||
+      _messages[index].state != MessageState.sent() ||
       _messages[index - 1].userName != _messages[index].userName;
 
   bool _showUserName(int index) =>

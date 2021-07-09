@@ -10,16 +10,14 @@ part 'bubble.freezed.dart';
 
 /// Chat bubble component offers single configurable bubble. The main use of
 /// this widget is in OptimusChat widget but it can be used also stand-alone.
-
 class OptimusChatBubble extends StatelessWidget {
   const OptimusChatBubble({
     Key? key,
-    required this.index,
     required this.message,
-    required this.showAvatar,
-    required this.showStatus,
-    required this.showUserName,
-    required this.showDate,
+    required this.isAvatarVisible,
+    required this.isStatusVisible,
+    required this.isUserNameVisible,
+    required this.isDateVisible,
     required this.formatTime,
     required this.formatDate,
     required this.sending,
@@ -29,12 +27,11 @@ class OptimusChatBubble extends StatelessWidget {
     required this.onTryAgainClicked,
   }) : super(key: key);
 
-  final int index;
   final OptimusMessage message;
-  final bool showAvatar;
-  final bool showStatus;
-  final bool showUserName;
-  final bool showDate;
+  final bool isAvatarVisible;
+  final bool isStatusVisible;
+  final bool isUserNameVisible;
+  final bool isDateVisible;
   final Function formatTime;
   final Function formatDate;
   final Widget sending;
@@ -43,35 +40,10 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget tryAgain;
   final TrySendAgain onTryAgainClicked;
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return OptimusStack(
-      spacing: OptimusStackSpacing.spacing50,
-      crossAxisAlignment: _bubbleAlignment,
-      children: [
-        if (showDate) _buildDate(theme),
-        if (showUserName) _userName,
-        OptimusStack(
-          direction: Axis.horizontal,
-          mainAxisAlignment: _bubbleAlignment,
-          crossAxisAlignment: OptimusStackAlignment.end,
-          children: [
-            if (message.alignment == MessageAlignment.left) _avatar,
-            _buildMessageBubble(theme),
-            if (message.alignment == MessageAlignment.right) _avatar,
-          ],
-        ),
-        if (showStatus) _buildStatus(theme),
-      ],
-    );
-  }
-
   Widget _buildMessageBubble(OptimusThemeData theme) => Flexible(
         child: Container(
           margin: EdgeInsets.only(
-            top: showUserName ? spacing0 : spacing100,
+            top: isUserNameVisible ? spacing0 : spacing100,
             left: message.alignment == MessageAlignment.left ? spacing100 : 64,
             right:
                 message.alignment == MessageAlignment.right ? spacing100 : 64,
@@ -126,7 +98,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   Padding _buildStatus(OptimusThemeData theme) => Padding(
         padding: _statusPadding,
-        child: _buildStatusText(index, message, theme),
+        child: _buildStatusText(message, theme),
       );
 
   EdgeInsets get _statusPadding => EdgeInsets.only(
@@ -147,7 +119,6 @@ class OptimusChatBubble extends StatelessWidget {
       );
 
   Widget _buildStatusText(
-    int index,
     OptimusMessage message,
     OptimusThemeData theme,
   ) {
@@ -155,8 +126,8 @@ class OptimusChatBubble extends StatelessWidget {
     final color =
         theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 
-    switch (message.status) {
-      case MessageStatus.sending:
+    message.state.map(
+      sending: (_) {
         children = [
           _buildStatusTextStyle(
             theme,
@@ -175,8 +146,8 @@ class OptimusChatBubble extends StatelessWidget {
             ),
           ),
         ];
-        break;
-      case MessageStatus.sent:
+      },
+      sent: (_) {
         children = [
           _buildStatusTextStyle(
             theme,
@@ -193,8 +164,8 @@ class OptimusChatBubble extends StatelessWidget {
               ),
             )
         ];
-        break;
-      case MessageStatus.notSent:
+      },
+      error: (value) {
         children = [
           _buildStatusTextStyle(theme, notSend),
           DefaultTextStyle.merge(
@@ -202,7 +173,7 @@ class OptimusChatBubble extends StatelessWidget {
               decoration: TextDecoration.underline,
             ),
             child: GestureDetector(
-              onTap: () => onTryAgainClicked(index, message),
+              onTap: () => value.onTryAgain(),
               child: _buildStatusTextStyle(theme, tryAgain),
             ),
           ),
@@ -212,8 +183,8 @@ class OptimusChatBubble extends StatelessWidget {
             colorOption: OptimusColorOption.danger,
           ),
         ];
-        break;
-    }
+      },
+    );
 
     return OptimusStack(
       mainAxisAlignment: _bubbleAlignment,
@@ -228,7 +199,7 @@ class OptimusChatBubble extends StatelessWidget {
           ? OptimusStackAlignment.start
           : OptimusStackAlignment.end;
 
-  Widget get _avatar => showAvatar ? message.avatar : _emptyAvatarSpace;
+  Widget get _avatar => isAvatarVisible ? message.avatar : _emptyAvatarSpace;
 
   Widget get _emptyAvatarSpace => const SizedBox(width: 40);
 
@@ -259,6 +230,31 @@ class OptimusChatBubble extends StatelessWidget {
         return theme.colors.neutral0;
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return OptimusStack(
+      spacing: OptimusStackSpacing.spacing50,
+      crossAxisAlignment: _bubbleAlignment,
+      children: [
+        if (isDateVisible) _buildDate(theme),
+        if (isUserNameVisible) _userName,
+        OptimusStack(
+          direction: Axis.horizontal,
+          mainAxisAlignment: _bubbleAlignment,
+          crossAxisAlignment: OptimusStackAlignment.end,
+          children: [
+            if (message.alignment == MessageAlignment.left) _avatar,
+            _buildMessageBubble(theme),
+            if (message.alignment == MessageAlignment.right) _avatar,
+          ],
+        ),
+        if (isStatusVisible) _buildStatus(theme),
+      ],
+    );
+  }
 }
 
 enum MessageAlignment {
@@ -272,19 +268,19 @@ enum MessageColor {
   dark,
 }
 
-enum MessageStatus {
-  /// The message is currently in the process of being sent.
-  sending,
+@freezed
+class MessageState with _$MessageState {
+  const factory MessageState.sending() =
+      MessageStateSending;
 
-  /// The message has been successfully sent.
-  sent,
+  const factory MessageState.sent() = MessageStateSent;
 
-  /// An error occurred. The message has not been sent.
-  notSent,
+  const factory MessageState.error({
+    required void Function() onTryAgain,
+  }) = MessageStateError;
 }
 
-typedef TrySendAgain = Future<MessageStatus> Function(
-    int index, OptimusMessage message);
+typedef TrySendAgain = Future<MessageState> Function(OptimusMessage message);
 
 @freezed
 class OptimusMessage with _$OptimusMessage {
@@ -294,7 +290,7 @@ class OptimusMessage with _$OptimusMessage {
     required MessageAlignment alignment,
     required MessageColor color,
     required DateTime time,
-    required MessageStatus status,
+    required MessageState state,
     required Widget avatar,
   }) = _Message;
 }
