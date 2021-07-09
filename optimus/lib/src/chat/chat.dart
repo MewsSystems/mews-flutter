@@ -72,7 +72,7 @@ class OptimusChat extends StatelessWidget {
                   .difference(_previousMessageTime(index)!)
                   .inMinutes >=
               1) ||
-      _messages[index].state != MessageState.sent() ||
+      _messages[index].state != const MessageState.sent() ||
       _messages[index - 1].userName != _messages[index].userName;
 
   bool _showUserName(int index) =>

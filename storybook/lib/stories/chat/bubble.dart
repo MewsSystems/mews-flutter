@@ -23,7 +23,7 @@ final chatBubbleStory = Story(
         ),
         state: k.options(
           label: 'Status',
-          initial: MessageState.sent(),
+          initial: const MessageState.sent(),
           options: _status,
         ),
         avatar: k.options(
@@ -53,7 +53,7 @@ final chatBubbleStory = Story(
           sent: const Text('Sent'),
           sending: const Text('Sending...'),
           tryAgain: const Text('Try Again'),
-          onTryAgainClicked: (message) async => MessageState.sent(),
+          onTryAgainClicked: (message) async => const MessageState.sent(),
         ),
       );
     });
