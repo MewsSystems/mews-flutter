@@ -3,13 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
 import 'package:storybook/stories/search_field.dart';
-import 'package:storybook/stories/select.dart';
+import 'package:storybook/stories/select_input.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story nestedSelectStory = Story(
   section: 'Nested overlays',
   name: 'Nested Select',
-  builder: (_, k) => _Content(SelectStory(k)),
+  builder: (_, k) => _Content(SelectInputStory(k)),
 );
 
 final Story nestedSearchStory = Story(

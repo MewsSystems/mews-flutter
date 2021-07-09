@@ -21,7 +21,7 @@ import 'package:storybook/stories/number_picker.dart';
 import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
 import 'package:storybook/stories/segmented_control.dart';
-import 'package:storybook/stories/select.dart';
+import 'package:storybook/stories/select_input.dart';
 import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/stack.dart';
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           dropdownButton,
           iconButton,
           splitButton,
-          selectStory,
+          selectInputStory,
           checkbox,
           checkboxGroup,
           inputStory,

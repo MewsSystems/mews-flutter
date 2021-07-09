@@ -31,6 +31,7 @@ class OptimusSearch<T> extends StatefulWidget {
     this.prefix,
     this.suffix,
     this.focusNode,
+    this.shouldCloseOnInputTap = false,
   }) : super(key: key);
 
   final String? label;
@@ -50,6 +51,7 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? prefix;
   final Widget? suffix;
   final FocusNode? focusNode;
+  final bool shouldCloseOnInputTap;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -64,19 +66,22 @@ class OptimusSearch<T> extends StatefulWidget {
 class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   final _fieldBoxKey = GlobalKey();
 
-  late final FocusNode _focusNode = widget.focusNode ?? FocusNode();
+  FocusNode? _focusNode;
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
+
   OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(_onFocusChanged);
+    _effectiveFocusNode.addListener(_onFocusChanged);
 
     WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutBuild);
   }
 
   void _onFocusChanged() {
-    if (_focusNode.hasFocus) {
+    if (_effectiveFocusNode.hasFocus) {
       WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
     } else {
       setState(_removeOverlay);
@@ -85,30 +90,30 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
 
   @override
   void dispose() {
-    _focusNode.removeListener(_onFocusChanged);
+    _effectiveFocusNode.removeListener(_onFocusChanged);
+    _focusNode?.dispose();
     super.dispose();
   }
 
   @override
   void didUpdateWidget(OptimusSearch<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.focusNode != widget.focusNode) {
+      _effectiveFocusNode
+        ..removeListener(_onFocusChanged)
+        ..addListener(_onFocusChanged);
+    }
+
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       if (!mounted) return;
       _overlayEntry?.markNeedsBuild();
     });
   }
 
-  bool get _isSearchable =>
-      widget.controller != null || widget.onTextChanged != null;
-
-  void _onItemSelected() {
-    _removeOverlay();
-    _focusNode.unfocus();
-  }
-
   Future<bool> _handleOnBackPressed() async {
-    if (_focusNode.hasFocus) {
-      _focusNode.unfocus();
+    if (_effectiveFocusNode.hasFocus) {
+      _effectiveFocusNode.unfocus();
       return false;
     }
     return true;
@@ -127,6 +132,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
       _overlayEntry!.remove();
       _overlayEntry = null;
     }
+    _effectiveFocusNode.unfocus();
   }
 
   void _afterLayoutBuild(Duration d) {
@@ -153,16 +159,16 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
                 _fieldBoxKey.currentContext?.findRenderObject() as RenderBox;
             final dropdownBox = context.findRenderObject() as RenderBox;
 
-            final shouldCountInputFieldHit =
-                hitTest(inputFieldBox) && _isSearchable;
-
-            if (!shouldCountInputFieldHit && !hitTest(dropdownBox)) {
+            if (hitTest(dropdownBox)) {
+              // Touch on dropdown shouldn't close overlay
+            } else if (hitTest(inputFieldBox)) {
+              if (widget.shouldCloseOnInputTap) _removeOverlay();
+            } else {
               _removeOverlay();
-              _focusNode.unfocus();
             }
           },
           child: DropdownTapInterceptor(
-            onTap: _onItemSelected,
+            onTap: _removeOverlay,
             child: OptimusDropdown(
               items: widget.items,
               anchorKey: _fieldBoxKey,
@@ -183,7 +189,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           label: widget.label,
           placeholder: widget.placeholder,
           placeholderStyle: widget.placeholderStyle,
-          focusNode: _focusNode,
+          focusNode: _effectiveFocusNode,
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.isUpdating
               ? const OptimusProgressSpinner()

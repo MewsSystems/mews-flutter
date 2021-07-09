@@ -10,6 +10,7 @@ import 'package:optimus/src/widget_size.dart';
 
 typedef CurrentValueBuilder<T> = Widget Function(BuildContext context, T value);
 
+@Deprecated('Use `OptimusSelectInput` instead')
 class OptimusSelect<T> extends StatefulWidget {
   const OptimusSelect({
     Key? key,

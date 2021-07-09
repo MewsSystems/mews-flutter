@@ -7,8 +7,13 @@ import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/widget_size.dart';
 
-typedef CurrentValueBuilder<T> = String Function(T value);
+typedef ValueBuilder<T> = String Function(T value);
 
+/// Select allows users to enter or select one or multiple options from
+/// the list of available options.
+///
+/// The list opens as a dropdown menu, and it is available in many variations.
+/// This select component is most commonly found in form patterns.
 class OptimusSelectInput<T> extends StatefulWidget {
   const OptimusSelectInput({
     Key? key,
@@ -29,6 +34,9 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.onTextChanged,
   }) : super(key: key);
 
+  /// Describes the purpose of the select field.
+  ///
+  /// The input should always include this description (with exceptions).
   final String? label;
   final String placeholder;
   final T? value;
@@ -36,11 +44,13 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final bool isEnabled;
   final bool isRequired;
   final Widget? prefix;
+
+  /// Serves as a helper text for informative or descriptive purposes.
   final Widget? caption;
   final Widget? secondaryCaption;
   final String? error;
   final OptimusWidgetSize size;
-  final CurrentValueBuilder<T> builder;
+  final ValueBuilder<T> builder;
   final ValueSetter<T> onChanged;
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
@@ -53,22 +63,47 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     with ThemeGetter {
   final _node = FocusNode();
   bool _isOpened = false;
+  TextEditingController? _controller;
+
+  TextEditingController get _effectiveController =>
+      widget.controller ?? (_controller ??= TextEditingController());
 
   void _onFocusChanged() {
     setState(() {
       _isOpened = _node.hasFocus;
+
+      if (!_node.hasFocus) {
+        _effectiveController.text = '';
+      }
     });
+  }
+
+  void _onTextUpdated() {
+    widget.onTextChanged?.call(_effectiveController.text);
+  }
+
+  @override
+  void didUpdateWidget(OptimusSelectInput<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      _effectiveController
+        ..removeListener(_onTextUpdated)
+        ..addListener(_onTextUpdated);
+    }
   }
 
   @override
   void initState() {
     super.initState();
     _node.addListener(_onFocusChanged);
+    _effectiveController.addListener(_onTextUpdated);
   }
 
   @override
   void dispose() {
-    _node.removeListener(_onFocusChanged);
+    _node.dispose();
+    _effectiveController.removeListener(_onTextUpdated);
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -125,9 +160,9 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         suffix: _icon,
         focusNode: _node,
         placeholderStyle: _textStyle,
-        controller: widget.controller,
-        onTextChanged: widget.onTextChanged,
-        readOnly: _isSearchable,
+        controller: _effectiveController,
+        readOnly: !_isSearchable,
         showCursor: _isSearchable,
+        shouldCloseOnInputTap: !_isSearchable,
       );
 }
