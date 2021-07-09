@@ -32,6 +32,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
     required this.onChanged,
     this.controller,
     this.onTextChanged,
+    this.focusNode,
   }) : super(key: key);
 
   /// Describes the purpose of the select field.
@@ -44,6 +45,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final bool isEnabled;
   final bool isRequired;
   final Widget? prefix;
+  final FocusNode? focusNode;
 
   /// Serves as a helper text for informative or descriptive purposes.
   final Widget? caption;
@@ -61,18 +63,22 @@ class OptimusSelectInput<T> extends StatefulWidget {
 
 class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     with ThemeGetter {
-  final _node = FocusNode();
   bool _isOpened = false;
   TextEditingController? _controller;
+
+  FocusNode? _focusNode;
+
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
 
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
 
   void _onFocusChanged() {
     setState(() {
-      _isOpened = _node.hasFocus;
+      _isOpened = _effectiveFocusNode.hasFocus;
 
-      if (!_node.hasFocus) {
+      if (!_effectiveFocusNode.hasFocus) {
         _effectiveController.text = '';
       }
     });
@@ -95,13 +101,14 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
   @override
   void initState() {
     super.initState();
-    _node.addListener(_onFocusChanged);
+    _effectiveFocusNode.addListener(_onFocusChanged);
     _effectiveController.addListener(_onTextUpdated);
   }
 
   @override
   void dispose() {
-    _node.dispose();
+    _effectiveFocusNode.removeListener(_onFocusChanged);
+    _focusNode?.dispose();
     _effectiveController.removeListener(_onTextUpdated);
     _controller?.dispose();
     super.dispose();
@@ -158,7 +165,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         onChanged: widget.onChanged,
         prefix: widget.prefix,
         suffix: _icon,
-        focusNode: _node,
+        focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
         readOnly: !_isSearchable,
