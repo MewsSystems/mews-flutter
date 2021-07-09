@@ -47,6 +47,7 @@ class OptimusSelect<T> extends StatefulWidget {
   _OptimusSelectState createState() => _OptimusSelectState<T>();
 }
 
+// ignore: deprecated_member_use_from_same_package
 class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
