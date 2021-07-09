@@ -1,3 +1,8 @@
+## 0.7.0+3
+
+ - **FIX**: [RND-63908] Fix text colors (#96).
+ - **FIX**: [RND-63238] Fix long dialog title (#92).
+
 ## 0.7.0+2
 
  - **FIX**: Fix OptimusSelect focus (#93).
