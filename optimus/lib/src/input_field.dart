@@ -11,6 +11,7 @@ class OptimusInputField extends StatefulWidget {
     Key? key,
     this.onChanged,
     this.placeholder,
+    this.placeholderStyle,
     this.keyboardType,
     this.isPasswordField = false,
     this.isEnabled = true,
@@ -43,6 +44,7 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.onChanged}
   final ValueChanged<String>? onChanged;
   final String? placeholder;
+  final TextStyle? placeholderStyle;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
   final TextInputType? keyboardType;
@@ -150,7 +152,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               onSubmitted: widget.onSubmitted,
               textInputAction: widget.textInputAction,
               placeholder: widget.placeholder,
-              placeholderStyle: _placeholderTextStyle,
+              placeholderStyle:
+                  widget.placeholderStyle ?? _placeholderTextStyle,
               focusNode: _effectiveFocusNode,
               enabled: widget.isEnabled,
               padding:

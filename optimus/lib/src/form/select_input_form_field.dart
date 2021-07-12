@@ -1,10 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:optimus/optimus.dart';
 import 'package:optimus/src/search/dropdown_tile.dart';
-import 'package:optimus/src/select.dart';
 
-@Deprecated('Use `OptimusSelectInputFormField` instead.')
-class OptimusSelectFormField<T> extends FormField<T> {
-  OptimusSelectFormField({
+class OptimusSelectInputFormField<T> extends FormField<T> {
+  OptimusSelectInputFormField({
     Key? key,
     required T initialValue,
     FormFieldSetter<T>? onSaved,
@@ -13,7 +12,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
     AutovalidateMode? autovalidateMode,
     String? label,
     String placeholder = '',
-    required CurrentValueBuilder<T> builder,
+    required ValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
   }) : super(
           key: key,
@@ -22,7 +21,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
           validator: validator,
           enabled: enabled,
           autovalidateMode: autovalidateMode,
-          builder: (FormFieldState<T> field) => OptimusSelect<T>(
+          builder: (FormFieldState<T> field) => OptimusSelectInput<T>(
             label: label,
             placeholder: placeholder,
             value: field.value,
@@ -30,7 +29,7 @@ class OptimusSelectFormField<T> extends FormField<T> {
             builder: builder,
             items: items,
             isEnabled: enabled,
-            onItemSelected: field.didChange,
+            onChanged: field.didChange,
           ),
         );
 }

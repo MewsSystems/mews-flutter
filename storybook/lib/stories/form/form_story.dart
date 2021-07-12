@@ -43,12 +43,11 @@ class _ContentState extends State<_Content> {
             validator: (isChecked) => isChecked == true ? null : error,
             autovalidateMode: autovalidateMode,
           ),
-          OptimusSelectFormField<String?>(
+          OptimusSelectInputFormField<String?>(
             label: 'Item selector',
             placeholder: 'Please select the item',
             initialValue: null,
-            builder: (context, value) =>
-                value == null ? const Text('') : Text(value),
+            builder: (value) => value ?? '',
             items: _selectorItems
                 .map((e) => ListDropdownTile<String>(value: e, title: Text(e)))
                 .toList(),
