@@ -1,3 +1,7 @@
+## 0.7.1
+
+ - **FEAT**: Add OptimusSelectInput (#98).
+
 ## 0.7.0+3
 
  - **FIX**: [RND-63908] Fix text colors (#96).
