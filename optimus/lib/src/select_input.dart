@@ -33,6 +33,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.controller,
     this.onTextChanged,
     this.focusNode,
+    this.readOnly,
   }) : super(key: key);
 
   /// Describes the purpose of the select field.
@@ -56,6 +57,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final ValueSetter<T> onChanged;
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
+  final bool? readOnly;
 
   @override
   _OptimusSelectInput createState() => _OptimusSelectInput<T>();
@@ -168,7 +170,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
-        readOnly: !_isSearchable,
+        readOnly: widget.readOnly ?? !_isSearchable,
         showCursor: _isSearchable,
         shouldCloseOnInputTap: !_isSearchable,
       );
