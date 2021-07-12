@@ -1,3 +1,7 @@
+## 0.7.3
+
+ - **FEAT**: Export FieldWrapper (#102).
+
 ## 0.7.2
 
  - **FEAT**: Add OptimusSelectInput::readOnly (#100).
