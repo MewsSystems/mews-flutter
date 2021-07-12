@@ -20,9 +20,6 @@ class OptimusChatBubble extends StatelessWidget {
     required this.isDateVisible,
     required this.formatTime,
     required this.formatDate,
-    required this.sending,
-    required this.sent,
-    required this.notSend,
     required this.tryAgain,
     required this.onTryAgainClicked,
   }) : super(key: key);
@@ -34,9 +31,6 @@ class OptimusChatBubble extends StatelessWidget {
   final bool isDateVisible;
   final Function formatTime;
   final Function formatDate;
-  final Widget sending;
-  final Widget notSend;
-  final Widget sent;
   final Widget tryAgain;
   final TrySendAgain onTryAgainClicked;
 
@@ -127,13 +121,13 @@ class OptimusChatBubble extends StatelessWidget {
         theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 
     message.state.map(
-      sending: (_) {
+      sending: (s) {
         children = [
           _buildStatusTextStyle(
             theme,
             Text(formatTime(message.time) as String),
           ),
-          _buildStatusTextStyle(theme, sending),
+          _buildStatusTextStyle(theme, Text(message.state.text)),
           Container(
             width: 13,
             height: 13,
@@ -147,14 +141,14 @@ class OptimusChatBubble extends StatelessWidget {
           ),
         ];
       },
-      sent: (_) {
+      sent: (s) {
         children = [
           _buildStatusTextStyle(
             theme,
             Text(formatTime(message.time) as String),
           ),
           if (message.alignment == MessageAlignment.right)
-            _buildStatusTextStyle(theme, sent),
+            _buildStatusTextStyle(theme, Text(message.state.text)),
           if (message.alignment == MessageAlignment.right)
             const Opacity(
               opacity: 0.6,
@@ -165,15 +159,15 @@ class OptimusChatBubble extends StatelessWidget {
             )
         ];
       },
-      error: (value) {
+      error: (s) {
         children = [
-          _buildStatusTextStyle(theme, notSend),
+          _buildStatusTextStyle(theme, Text(message.state.text)),
           DefaultTextStyle.merge(
             style: const TextStyle(
               decoration: TextDecoration.underline,
             ),
             child: GestureDetector(
-              onTap: () => value.onTryAgain(),
+              onTap: () => s.onTryAgain(),
               child: _buildStatusTextStyle(theme, tryAgain),
             ),
           ),
@@ -270,11 +264,16 @@ enum MessageColor {
 
 @freezed
 class MessageState with _$MessageState {
-  const factory MessageState.sending() = MessageStateSending;
+  const factory MessageState.sending({
+    required String text,
+  }) = MessageStateSending;
 
-  const factory MessageState.sent() = MessageStateSent;
+  const factory MessageState.sent({
+    required String text,
+  }) = MessageStateSent;
 
   const factory MessageState.error({
+    required String text,
     required void Function() onTryAgain,
   }) = MessageStateError;
 }

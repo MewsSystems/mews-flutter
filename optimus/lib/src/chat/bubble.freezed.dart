@@ -16,16 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MessageStateTearOff {
   const _$MessageStateTearOff();
 
-  MessageStateSending sending() {
-    return const MessageStateSending();
+  MessageStateSending sending({required String text}) {
+    return MessageStateSending(
+      text: text,
+    );
   }
 
-  MessageStateSent sent() {
-    return const MessageStateSent();
+  MessageStateSent sent({required String text}) {
+    return MessageStateSent(
+      text: text,
+    );
   }
 
-  MessageStateError error({required void Function() onTryAgain}) {
+  MessageStateError error(
+      {required String text, required void Function() onTryAgain}) {
     return MessageStateError(
+      text: text,
       onTryAgain: onTryAgain,
     );
   }
@@ -36,18 +42,20 @@ const $MessageState = _$MessageStateTearOff();
 
 /// @nodoc
 mixin _$MessageState {
+  String get text => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() sending,
-    required TResult Function() sent,
-    required TResult Function(void Function() onTryAgain) error,
+    required TResult Function(String text) sending,
+    required TResult Function(String text) sent,
+    required TResult Function(String text, void Function() onTryAgain) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? sending,
-    TResult Function()? sent,
-    TResult Function(void Function() onTryAgain)? error,
+    TResult Function(String text)? sending,
+    TResult Function(String text)? sent,
+    TResult Function(String text, void Function() onTryAgain)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,6 +74,10 @@ mixin _$MessageState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MessageStateCopyWith<MessageState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -73,6 +85,7 @@ abstract class $MessageStateCopyWith<$Res> {
   factory $MessageStateCopyWith(
           MessageState value, $Res Function(MessageState) then) =
       _$MessageStateCopyWithImpl<$Res>;
+  $Res call({String text});
 }
 
 /// @nodoc
@@ -82,13 +95,28 @@ class _$MessageStateCopyWithImpl<$Res> implements $MessageStateCopyWith<$Res> {
   final MessageState _value;
   // ignore: unused_field
   final $Res Function(MessageState) _then;
+
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(_value.copyWith(
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $MessageStateSendingCopyWith<$Res> {
+abstract class $MessageStateSendingCopyWith<$Res>
+    implements $MessageStateCopyWith<$Res> {
   factory $MessageStateSendingCopyWith(
           MessageStateSending value, $Res Function(MessageStateSending) then) =
       _$MessageStateSendingCopyWithImpl<$Res>;
+  @override
+  $Res call({String text});
 }
 
 /// @nodoc
@@ -101,46 +129,70 @@ class _$MessageStateSendingCopyWithImpl<$Res>
 
   @override
   MessageStateSending get _value => super._value as MessageStateSending;
+
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(MessageStateSending(
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$MessageStateSending implements MessageStateSending {
-  const _$MessageStateSending();
+  const _$MessageStateSending({required this.text});
+
+  @override
+  final String text;
 
   @override
   String toString() {
-    return 'MessageState.sending()';
+    return 'MessageState.sending(text: $text)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MessageStateSending);
+    return identical(this, other) ||
+        (other is MessageStateSending &&
+            (identical(other.text, text) ||
+                const DeepCollectionEquality().equals(other.text, text)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(text);
+
+  @JsonKey(ignore: true)
+  @override
+  $MessageStateSendingCopyWith<MessageStateSending> get copyWith =>
+      _$MessageStateSendingCopyWithImpl<MessageStateSending>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() sending,
-    required TResult Function() sent,
-    required TResult Function(void Function() onTryAgain) error,
+    required TResult Function(String text) sending,
+    required TResult Function(String text) sent,
+    required TResult Function(String text, void Function() onTryAgain) error,
   }) {
-    return sending();
+    return sending(text);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? sending,
-    TResult Function()? sent,
-    TResult Function(void Function() onTryAgain)? error,
+    TResult Function(String text)? sending,
+    TResult Function(String text)? sent,
+    TResult Function(String text, void Function() onTryAgain)? error,
     required TResult orElse(),
   }) {
     if (sending != null) {
-      return sending();
+      return sending(text);
     }
     return orElse();
   }
@@ -171,14 +223,25 @@ class _$MessageStateSending implements MessageStateSending {
 }
 
 abstract class MessageStateSending implements MessageState {
-  const factory MessageStateSending() = _$MessageStateSending;
+  const factory MessageStateSending({required String text}) =
+      _$MessageStateSending;
+
+  @override
+  String get text => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $MessageStateSendingCopyWith<MessageStateSending> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageStateSentCopyWith<$Res> {
+abstract class $MessageStateSentCopyWith<$Res>
+    implements $MessageStateCopyWith<$Res> {
   factory $MessageStateSentCopyWith(
           MessageStateSent value, $Res Function(MessageStateSent) then) =
       _$MessageStateSentCopyWithImpl<$Res>;
+  @override
+  $Res call({String text});
 }
 
 /// @nodoc
@@ -191,46 +254,70 @@ class _$MessageStateSentCopyWithImpl<$Res>
 
   @override
   MessageStateSent get _value => super._value as MessageStateSent;
+
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(MessageStateSent(
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$MessageStateSent implements MessageStateSent {
-  const _$MessageStateSent();
+  const _$MessageStateSent({required this.text});
+
+  @override
+  final String text;
 
   @override
   String toString() {
-    return 'MessageState.sent()';
+    return 'MessageState.sent(text: $text)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MessageStateSent);
+    return identical(this, other) ||
+        (other is MessageStateSent &&
+            (identical(other.text, text) ||
+                const DeepCollectionEquality().equals(other.text, text)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(text);
+
+  @JsonKey(ignore: true)
+  @override
+  $MessageStateSentCopyWith<MessageStateSent> get copyWith =>
+      _$MessageStateSentCopyWithImpl<MessageStateSent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() sending,
-    required TResult Function() sent,
-    required TResult Function(void Function() onTryAgain) error,
+    required TResult Function(String text) sending,
+    required TResult Function(String text) sent,
+    required TResult Function(String text, void Function() onTryAgain) error,
   }) {
-    return sent();
+    return sent(text);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? sending,
-    TResult Function()? sent,
-    TResult Function(void Function() onTryAgain)? error,
+    TResult Function(String text)? sending,
+    TResult Function(String text)? sent,
+    TResult Function(String text, void Function() onTryAgain)? error,
     required TResult orElse(),
   }) {
     if (sent != null) {
-      return sent();
+      return sent(text);
     }
     return orElse();
   }
@@ -261,15 +348,24 @@ class _$MessageStateSent implements MessageStateSent {
 }
 
 abstract class MessageStateSent implements MessageState {
-  const factory MessageStateSent() = _$MessageStateSent;
+  const factory MessageStateSent({required String text}) = _$MessageStateSent;
+
+  @override
+  String get text => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $MessageStateSentCopyWith<MessageStateSent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageStateErrorCopyWith<$Res> {
+abstract class $MessageStateErrorCopyWith<$Res>
+    implements $MessageStateCopyWith<$Res> {
   factory $MessageStateErrorCopyWith(
           MessageStateError value, $Res Function(MessageStateError) then) =
       _$MessageStateErrorCopyWithImpl<$Res>;
-  $Res call({void Function() onTryAgain});
+  @override
+  $Res call({String text, void Function() onTryAgain});
 }
 
 /// @nodoc
@@ -285,9 +381,14 @@ class _$MessageStateErrorCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? text = freezed,
     Object? onTryAgain = freezed,
   }) {
     return _then(MessageStateError(
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
       onTryAgain: onTryAgain == freezed
           ? _value.onTryAgain
           : onTryAgain // ignore: cast_nullable_to_non_nullable
@@ -299,20 +400,24 @@ class _$MessageStateErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MessageStateError implements MessageStateError {
-  const _$MessageStateError({required this.onTryAgain});
+  const _$MessageStateError({required this.text, required this.onTryAgain});
 
+  @override
+  final String text;
   @override
   final void Function() onTryAgain;
 
   @override
   String toString() {
-    return 'MessageState.error(onTryAgain: $onTryAgain)';
+    return 'MessageState.error(text: $text, onTryAgain: $onTryAgain)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is MessageStateError &&
+            (identical(other.text, text) ||
+                const DeepCollectionEquality().equals(other.text, text)) &&
             (identical(other.onTryAgain, onTryAgain) ||
                 const DeepCollectionEquality()
                     .equals(other.onTryAgain, onTryAgain)));
@@ -320,7 +425,9 @@ class _$MessageStateError implements MessageStateError {
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(onTryAgain);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(text) ^
+      const DeepCollectionEquality().hash(onTryAgain);
 
   @JsonKey(ignore: true)
   @override
@@ -330,23 +437,23 @@ class _$MessageStateError implements MessageStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() sending,
-    required TResult Function() sent,
-    required TResult Function(void Function() onTryAgain) error,
+    required TResult Function(String text) sending,
+    required TResult Function(String text) sent,
+    required TResult Function(String text, void Function() onTryAgain) error,
   }) {
-    return error(onTryAgain);
+    return error(text, onTryAgain);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? sending,
-    TResult Function()? sent,
-    TResult Function(void Function() onTryAgain)? error,
+    TResult Function(String text)? sending,
+    TResult Function(String text)? sent,
+    TResult Function(String text, void Function() onTryAgain)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(onTryAgain);
+      return error(text, onTryAgain);
     }
     return orElse();
   }
@@ -377,10 +484,14 @@ class _$MessageStateError implements MessageStateError {
 }
 
 abstract class MessageStateError implements MessageState {
-  const factory MessageStateError({required void Function() onTryAgain}) =
-      _$MessageStateError;
+  const factory MessageStateError(
+      {required String text,
+      required void Function() onTryAgain}) = _$MessageStateError;
 
+  @override
+  String get text => throw _privateConstructorUsedError;
   void Function() get onTryAgain => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   $MessageStateErrorCopyWith<MessageStateError> get copyWith =>
       throw _privateConstructorUsedError;

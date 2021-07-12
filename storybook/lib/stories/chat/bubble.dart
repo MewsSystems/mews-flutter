@@ -23,7 +23,7 @@ final chatBubbleStory = Story(
         ),
         state: k.options(
           label: 'Status',
-          initial: const MessageState.sent(),
+          initial: sentMessageStatus,
           options: _status,
         ),
         avatar: k.options(
@@ -49,22 +49,18 @@ final chatBubbleStory = Story(
               '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
           formatDate: (DateTime input) =>
               '${input.day}. ${input.month}. ${input.year}',
-          notSend: const Text('Not Sent'),
-          sent: const Text('Sent'),
-          sending: const Text('Sending...'),
           tryAgain: const Text('Try Again'),
-          onTryAgainClicked: (message) async => const MessageState.sent(),
+          onTryAgainClicked: (message) async => sentMessageStatus,
         ),
       );
     });
 
-const avatarUrl =
-    'https://images.unsplash.com/photo-1560525821-d5615ef80c69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=512&q=80';
+const sentMessageStatus = MessageState.sent(text: 'Sent');
 
 final List<Option<MessageState>> _status = [
-  const Option('Sent', MessageState.sent()),
-  const Option('Sending', MessageState.sending()),
-  Option('Error', MessageState.error(onTryAgain: () {})),
+  const Option('Sent', sentMessageStatus),
+  const Option('Sending', MessageState.sending(text: 'Sending...')),
+  Option('Error', MessageState.error(text: 'Error', onTryAgain: () {})),
 ];
 
 final List<Option<MessageAlignment>> _type =

@@ -13,9 +13,6 @@ class OptimusChat extends StatelessWidget {
     required this.messages,
     required this.formatTime,
     required this.formatDate,
-    required this.sending,
-    required this.sent,
-    required this.notSend,
     required this.tryAgain,
     required this.onTryAgainClicked,
     required this.onSendClicked,
@@ -24,9 +21,6 @@ class OptimusChat extends StatelessWidget {
   final List<OptimusMessage> messages;
   final Function formatTime;
   final Function formatDate;
-  final Widget sending;
-  final Widget notSend;
-  final Widget sent;
   final Widget tryAgain;
   final TrySendAgain onTryAgainClicked;
   final OnSend onSendClicked;
@@ -46,9 +40,6 @@ class OptimusChat extends StatelessWidget {
                 isDateVisible: _showDate(index),
                 formatTime: formatTime,
                 formatDate: formatDate,
-                sending: sending,
-                sent: sent,
-                notSend: notSend,
                 tryAgain: tryAgain,
                 onTryAgainClicked: onTryAgainClicked,
               ),
@@ -72,7 +63,7 @@ class OptimusChat extends StatelessWidget {
                   .difference(_previousMessageTime(index)!)
                   .inMinutes >=
               1) ||
-      _messages[index].state != const MessageState.sent() ||
+      _messages[index].state != const MessageState.sent(text: 'Sent') ||
       _messages[index - 1].userName != _messages[index].userName;
 
   bool _showUserName(int index) =>
