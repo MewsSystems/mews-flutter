@@ -21,6 +21,7 @@ export 'src/colors/brand_colors.dart';
 export 'src/colors/color_options.dart';
 export 'src/colors/colors.dart';
 export 'src/common/content.dart';
+export 'src/common/field_wrapper.dart';
 export 'src/common/group_item.dart';
 export 'src/common/scroll.dart';
 export 'src/date_time_field.dart';
