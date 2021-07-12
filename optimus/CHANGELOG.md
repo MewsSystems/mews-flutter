@@ -1,3 +1,7 @@
+## 0.7.2
+
+ - **FEAT**: Add OptimusSelectInput::readOnly (#100).
+
 ## 0.7.1
 
  - **FEAT**: Add OptimusSelectInput (#98).
