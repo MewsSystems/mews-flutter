@@ -19,6 +19,8 @@ final Story dialogStory = Story(
       options: _types,
     );
     final title = k.text(label: 'Title', initial: 'Dialog title');
+    final isSingleActionPrimary =
+        k.boolean(label: 'Single action primary', initial: true);
 
     return Center(
       child: SingleChildScrollView(
@@ -41,6 +43,7 @@ final Story dialogStory = Story(
                     content: content,
                     type: type,
                     title: title,
+                    isSingleActionPrimary: isSingleActionPrimary,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -89,6 +92,7 @@ final Story dialogStory = Story(
                     content: content,
                     type: type,
                     title: title,
+                    isSingleActionPrimary: isSingleActionPrimary,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -137,6 +141,7 @@ final Story dialogStory = Story(
                     content: content,
                     type: type,
                     title: title,
+                    isSingleActionPrimary: isSingleActionPrimary,
                   ),
                   child: const Text('1 button'),
                 ),
@@ -251,6 +256,7 @@ Future<void> _showOneActionDialog({
   required Widget content,
   required OptimusDialogType type,
   required String title,
+  required bool isSingleActionPrimary,
 }) =>
     showOptimusDialog(
       context: context,
@@ -260,7 +266,12 @@ Future<void> _showOneActionDialog({
       content: content,
       size: size,
       type: type,
-      actions: const [OptimusDialogAction(title: Text('Close'))],
+      actions: [
+        OptimusDialogAction(
+          title: const Text('Close'),
+          isPrimary: isSingleActionPrimary,
+        ),
+      ],
     );
 
 Future<void> _showCustomContentDialog({

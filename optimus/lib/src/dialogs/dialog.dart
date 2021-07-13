@@ -54,11 +54,13 @@ class OptimusDialogAction {
   const OptimusDialogAction({
     required this.title,
     this.onPressed,
+    this.isPrimary = false,
     this.key,
   });
 
   final Widget title;
   final VoidCallback? onPressed;
+  final bool isPrimary;
   final Key? key;
 }
 
@@ -416,7 +418,7 @@ class _Actions extends StatelessWidget {
             child: OptimusButton(
               onPressed: e.onPressed ?? close,
               minWidth: _isVertical ? double.infinity : null,
-              variant: _getVariant(i),
+              variant: _getVariant(i, e.isPrimary),
               key: e.key,
               child: e.title,
             ),
@@ -442,8 +444,12 @@ class _Actions extends StatelessWidget {
     );
   }
 
-  OptimusButtonVariant _getVariant(int i) {
-    if (actions.length == 1) return OptimusButtonVariant.defaultButton;
+  OptimusButtonVariant _getVariant(int i, bool isPrimary) {
+    if (actions.length == 1) {
+      return isPrimary
+          ? OptimusButtonVariant.primary
+          : OptimusButtonVariant.defaultButton;
+    }
     if (type == OptimusDialogType.destructive && i == 0) {
       return OptimusButtonVariant.destructive;
     }
