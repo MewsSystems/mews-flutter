@@ -37,6 +37,7 @@ export 'src/form/select_input_form_field.dart';
 export 'src/icon.dart';
 export 'src/icon_list.dart';
 export 'src/input_field.dart';
+export 'src/link.dart';
 export 'src/lists/list_tile.dart';
 export 'src/number_picker.dart';
 export 'src/progress_spinner.dart';
