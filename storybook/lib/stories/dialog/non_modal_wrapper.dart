@@ -28,8 +28,9 @@ class NonModalDialogStory extends StatelessWidget {
           title: Text(title),
           content: const Text('Content'),
           isDismissible: isDismissible,
-          actions:
-              hasActions ? [const OptimusDialogAction(title: Text('OK'))] : [],
+          actions: hasActions || !isDismissible
+              ? [const OptimusDialogAction(title: Text('OK'))]
+              : [],
           size: OptimusDialogSize.small,
         ),
       },

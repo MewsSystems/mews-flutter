@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:storybook/stories/nonmodal_wrapper.dart';
+import 'package:storybook/stories/dialog/non_modal_wrapper.dart';
 import 'package:storybook/stories/search_field.dart';
 import 'package:storybook/stories/select_input.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
