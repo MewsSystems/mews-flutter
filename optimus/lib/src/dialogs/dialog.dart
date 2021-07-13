@@ -73,6 +73,7 @@ Future<T?> showOptimusDialog<T>({
   OptimusDialogSize size = OptimusDialogSize.regular,
   OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
+  bool hasCrossButton = true,
 }) =>
     showGeneralDialog(
       context: context,
@@ -84,6 +85,7 @@ Future<T?> showOptimusDialog<T>({
           actions: actions,
           size: size,
           type: type,
+          hasCrossButton: hasCrossButton,
         ),
       ),
       barrierDismissible: isDismissible,
@@ -108,6 +110,7 @@ class OptimusDialog extends StatelessWidget {
     this.close,
     this.isDismissible,
     this.position = OptimusDialogPosition.center,
+    required this.hasCrossButton,
   }) : super(key: key);
 
   const OptimusDialog.modal({
@@ -119,6 +122,7 @@ class OptimusDialog extends StatelessWidget {
     OptimusDialogSize size = OptimusDialogSize.regular,
     OptimusDialogType type = OptimusDialogType.common,
     bool? isDismissible,
+    required bool hasCrossButton,
   }) : this._(
           key: key,
           title: title,
@@ -128,6 +132,7 @@ class OptimusDialog extends StatelessWidget {
           size: size,
           type: type,
           isDismissible: isDismissible,
+          hasCrossButton: hasCrossButton,
         );
 
   const OptimusDialog.nonModal({
@@ -137,7 +142,7 @@ class OptimusDialog extends StatelessWidget {
     ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
-    bool? isDismissible,
+    required bool hasCrossButton,
     required VoidCallback close,
   }) : this._(
           key: key,
@@ -148,13 +153,15 @@ class OptimusDialog extends StatelessWidget {
           size: size == OptimusDialogSize.large
               ? OptimusDialogSize.regular
               : size,
-          isDismissible: isDismissible,
+          isDismissible: false,
+          hasCrossButton: hasCrossButton,
           close: close,
           position: OptimusDialogPosition.corner,
         );
 
   final VoidCallback? close;
   final bool? isDismissible;
+  final bool hasCrossButton;
   final OptimusDialogPosition position;
 
   /// Serves as an identification of the action in the dialog. Can be
@@ -276,9 +283,7 @@ class OptimusDialog extends StatelessWidget {
                       context: context,
                       title: title,
                       close: close ?? () => Navigator.pop(context),
-                      isDismissible: isDismissible ??
-                          ModalRoute.of(context)?.barrierDismissible ??
-                          true,
+                      hasCrossButton: hasCrossButton,
                     ),
                     _divider(theme),
                     OptimusParagraph(
@@ -352,13 +357,13 @@ class _Title extends StatelessWidget {
     required this.context,
     required this.title,
     required this.close,
-    required this.isDismissible,
+    required this.hasCrossButton,
   }) : super(key: key);
 
   final BuildContext context;
   final Widget title;
   final VoidCallback close;
-  final bool isDismissible;
+  final bool hasCrossButton;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -370,7 +375,7 @@ class _Title extends StatelessWidget {
               child: OptimusSubsectionTitle(child: title),
             ),
           ),
-          if (isDismissible)
+          if (hasCrossButton)
             Padding(
               padding: const EdgeInsets.only(top: spacing50),
               child: OptimusIconButton(

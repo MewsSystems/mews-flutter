@@ -18,7 +18,7 @@ class NonModalDialogStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDismissible = k.boolean(label: 'Dismissible', initial: true);
+    final hasCrossButton = k.boolean(label: 'Has cross button', initial: true);
     final hasActions = k.boolean(label: 'Has actions', initial: false);
     final title = k.text(label: 'Title', initial: 'Dialog title');
 
@@ -27,8 +27,8 @@ class NonModalDialogStory extends StatelessWidget {
         NonModalWrapper.of(context)?.show(
           title: Text(title),
           content: const Text('Content'),
-          isDismissible: isDismissible,
-          actions: hasActions || !isDismissible
+          hasCrossButton: hasCrossButton,
+          actions: hasActions || !hasCrossButton
               ? [const OptimusDialogAction(title: Text('OK'))]
               : [],
           size: OptimusDialogSize.small,
