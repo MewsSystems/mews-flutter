@@ -14,7 +14,9 @@ class OptimusSearch<T> extends StatefulWidget {
     Key? key,
     this.label,
     this.placeholder = '',
+    this.placeholderStyle,
     this.controller,
+    this.onTextChanged,
     required this.items,
     this.isUpdating = false,
     this.isEnabled = true,
@@ -26,11 +28,17 @@ class OptimusSearch<T> extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.readOnly = false,
     this.showCursor,
+    this.prefix,
+    this.suffix,
+    this.focusNode,
+    this.shouldCloseOnInputTap = false,
   }) : super(key: key);
 
   final String? label;
   final String placeholder;
+  final TextStyle? placeholderStyle;
   final TextEditingController? controller;
+  final ValueSetter<String>? onTextChanged;
   final List<OptimusDropdownTile<T>> items;
   final bool isUpdating;
   final bool isEnabled;
@@ -40,6 +48,10 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? secondaryCaption;
   final String? error;
   final OptimusWidgetSize size;
+  final Widget? prefix;
+  final Widget? suffix;
+  final FocusNode? focusNode;
+  final bool shouldCloseOnInputTap;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -54,63 +66,54 @@ class OptimusSearch<T> extends StatefulWidget {
 class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   final _fieldBoxKey = GlobalKey();
 
-  final _focusNode = FocusNode();
+  FocusNode? _focusNode;
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
+
   OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
-      } else {
-        setState(_removeOverlay);
-      }
-    });
+    _effectiveFocusNode.addListener(_onFocusChanged);
 
     WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutBuild);
+  }
+
+  void _onFocusChanged() {
+    if (_effectiveFocusNode.hasFocus) {
+      WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
+    } else {
+      setState(_removeOverlay);
+    }
+  }
+
+  @override
+  void dispose() {
+    _effectiveFocusNode.removeListener(_onFocusChanged);
+    _focusNode?.dispose();
+    super.dispose();
   }
 
   @override
   void didUpdateWidget(OptimusSearch<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.focusNode != widget.focusNode) {
+      _effectiveFocusNode
+        ..removeListener(_onFocusChanged)
+        ..addListener(_onFocusChanged);
+    }
+
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       if (!mounted) return;
       _overlayEntry?.markNeedsBuild();
     });
   }
 
-  @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
-        child: OptimusInputField(
-          controller: widget.controller,
-          isRequired: widget.isRequired,
-          label: widget.label,
-          placeholder: widget.placeholder,
-          focusNode: _focusNode,
-          fieldBoxKey: _fieldBoxKey,
-          suffix: widget.isUpdating
-              ? const OptimusProgressSpinner()
-              : const _Icon(),
-          isEnabled: widget.isEnabled,
-          caption: widget.caption,
-          secondaryCaption: widget.secondaryCaption,
-          error: widget.error,
-          size: widget.size,
-          readOnly: widget.readOnly,
-          showCursor: widget.showCursor,
-        ),
-      );
-
-  void _onItemSelected() {
-    _removeOverlay();
-    _focusNode.unfocus();
-  }
-
   Future<bool> _handleOnBackPressed() async {
-    if (_focusNode.hasFocus) {
-      _focusNode.unfocus();
+    if (_effectiveFocusNode.hasFocus) {
+      _effectiveFocusNode.unfocus();
       return false;
     }
     return true;
@@ -129,6 +132,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
       _overlayEntry!.remove();
       _overlayEntry = null;
     }
+    _effectiveFocusNode.unfocus();
   }
 
   void _afterLayoutBuild(Duration d) {
@@ -155,19 +159,48 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
                 _fieldBoxKey.currentContext?.findRenderObject() as RenderBox;
             final dropdownBox = context.findRenderObject() as RenderBox;
 
-            if (!hitTest(inputFieldBox) && !hitTest(dropdownBox)) {
+            if (hitTest(dropdownBox)) {
+              // Touch on dropdown shouldn't close overlay
+            } else if (hitTest(inputFieldBox)) {
+              if (widget.shouldCloseOnInputTap) _removeOverlay();
+            } else {
               _removeOverlay();
-              _focusNode.unfocus();
             }
           },
           child: DropdownTapInterceptor(
-            onTap: _onItemSelected,
+            onTap: _removeOverlay,
             child: OptimusDropdown(
               items: widget.items,
               anchorKey: _fieldBoxKey,
               onChanged: widget.onChanged,
             ),
           ),
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) => WillPopScope(
+        onWillPop: _handleOnBackPressed,
+        child: OptimusInputField(
+          prefix: widget.prefix,
+          controller: widget.controller,
+          onChanged: widget.onTextChanged,
+          isRequired: widget.isRequired,
+          label: widget.label,
+          placeholder: widget.placeholder,
+          placeholderStyle: widget.placeholderStyle,
+          focusNode: _effectiveFocusNode,
+          fieldBoxKey: _fieldBoxKey,
+          suffix: widget.isUpdating
+              ? const OptimusProgressSpinner()
+              : widget.suffix ?? const _Icon(),
+          isEnabled: widget.isEnabled,
+          caption: widget.caption,
+          secondaryCaption: widget.secondaryCaption,
+          error: widget.error,
+          size: widget.size,
+          readOnly: widget.readOnly,
+          showCursor: widget.showCursor,
         ),
       );
 }

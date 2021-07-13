@@ -1,3 +1,15 @@
+## 0.7.3
+
+ - **FEAT**: Export FieldWrapper (#102).
+
+## 0.7.2
+
+ - **FEAT**: Add OptimusSelectInput::readOnly (#100).
+
+## 0.7.1
+
+ - **FEAT**: Add OptimusSelectInput (#98).
+
 ## 0.7.0+3
 
  - **FIX**: [RND-63908] Fix text colors (#96).
