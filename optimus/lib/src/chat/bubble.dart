@@ -73,7 +73,7 @@ class OptimusChatBubble extends StatelessWidget {
         spacing: OptimusStackSpacing.spacing100,
         children: [
           separator,
-          Text(formatDate(message.time) as String, style: preset100s),
+          Text(formatDate(message.time), style: preset100s),
           separator,
         ],
       ),
@@ -123,7 +123,7 @@ class OptimusChatBubble extends StatelessWidget {
         children = [
           _buildStatusTextStyle(
             theme,
-            Text(formatTime(message.time) as String),
+            Text(formatTime(message.time)),
           ),
           _buildStatusTextStyle(theme, Text(message.state.text)),
           Container(
@@ -143,7 +143,7 @@ class OptimusChatBubble extends StatelessWidget {
         children = [
           _buildStatusTextStyle(
             theme,
-            Text(formatTime(message.time) as String),
+            Text(formatTime(message.time)),
           ),
           if (message.alignment == MessageAlignment.right)
             _buildStatusTextStyle(theme, Text(message.state.text)),
