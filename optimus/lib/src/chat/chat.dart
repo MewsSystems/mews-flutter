@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/input.dart';
+import 'package:optimus/src/chat/message.dart';
 
 /// The chat components offer instant real-time communication between
 /// two (or multiple) parties. It also serves as a log or transcript
 /// of past conversations. Individual chat components assemble into
 /// a chat window layout.
-
 class OptimusChat extends StatelessWidget {
   const OptimusChat({
     Key? key,
@@ -19,11 +19,11 @@ class OptimusChat extends StatelessWidget {
   }) : super(key: key);
 
   final List<OptimusMessage> messages;
-  final Function formatTime;
-  final Function formatDate;
+  final FormatTime formatTime;
+  final FormatDate formatDate;
   final Widget tryAgain;
-  final TrySendAgain onTryAgainClicked;
-  final OnSend onSendClicked;
+  final TryAgainCallback onTryAgainClicked;
+  final SendCallback onSendClicked;
 
   @override
   Widget build(BuildContext context) => OptimusStack(
@@ -45,7 +45,7 @@ class OptimusChat extends StatelessWidget {
               ),
             ),
           ),
-          OptimusChatInput(onSendClicked: onSendClicked),
+          OptimusChatInput(onSendPressed: onSendClicked),
         ],
       );
 
@@ -95,3 +95,6 @@ class OptimusChat extends StatelessWidget {
 
   bool _oldestMessage(int index) => index + 1 == messages.length;
 }
+
+typedef FormatDate = String Function(DateTime);
+typedef FormatTime = String Function(DateTime);

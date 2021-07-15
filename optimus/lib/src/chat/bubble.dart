@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/chat/message.dart';
 import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/typography/presets.dart';
-
-part 'bubble.freezed.dart';
 
 /// Chat bubble component offers single configurable bubble. The main use of
 /// this widget is in OptimusChat widget but it can be used also stand-alone.
@@ -29,10 +27,10 @@ class OptimusChatBubble extends StatelessWidget {
   final bool isStatusVisible;
   final bool isUserNameVisible;
   final bool isDateVisible;
-  final Function formatTime;
-  final Function formatDate;
+  final FormatTime formatTime;
+  final FormatDate formatDate;
   final Widget tryAgain;
-  final TrySendAgain onTryAgainClicked;
+  final TryAgainCallback onTryAgainClicked;
 
   Widget _buildMessageBubble(OptimusThemeData theme) => Flexible(
         child: Container(
@@ -249,46 +247,4 @@ class OptimusChatBubble extends StatelessWidget {
       ],
     );
   }
-}
-
-enum MessageAlignment {
-  left,
-  right,
-}
-
-enum MessageColor {
-  neutral,
-  light,
-  dark,
-}
-
-@freezed
-class MessageState with _$MessageState {
-  const factory MessageState.sending({
-    required String text,
-  }) = MessageStateSending;
-
-  const factory MessageState.sent({
-    required String text,
-  }) = MessageStateSent;
-
-  const factory MessageState.error({
-    required String text,
-    required void Function() onTryAgain,
-  }) = MessageStateError;
-}
-
-typedef TrySendAgain = Future<MessageState> Function(OptimusMessage message);
-
-@freezed
-class OptimusMessage with _$OptimusMessage {
-  const factory OptimusMessage({
-    required String userName,
-    required String message,
-    required MessageAlignment alignment,
-    required MessageColor color,
-    required DateTime time,
-    required MessageState state,
-    required Widget avatar,
-  }) = _Message;
 }

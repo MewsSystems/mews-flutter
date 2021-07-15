@@ -4,10 +4,10 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/constants.dart';
 
 class OptimusChatInput extends StatefulWidget {
-  const OptimusChatInput({Key? key, required this.onSendClicked})
+  const OptimusChatInput({Key? key, required this.onSendPressed})
       : super(key: key);
 
-  final OnSend onSendClicked;
+  final SendCallback onSendPressed;
 
   @override
   _OptimusChatInputState createState() => _OptimusChatInputState();
@@ -30,7 +30,7 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
             : OpacityValue.disabled,
         child: GestureDetector(
           onTap: () {
-            widget.onSendClicked(_controller.text);
+            widget.onSendPressed(_controller.text);
             _controller.clear();
           },
           child: const OptimusIcon(
@@ -49,4 +49,4 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
   }
 }
 
-typedef OnSend = Function(String message);
+typedef SendCallback = void Function(String message);
