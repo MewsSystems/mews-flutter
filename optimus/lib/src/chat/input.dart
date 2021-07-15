@@ -33,10 +33,12 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
           onTapDown: (_) => setState(() => _isTappedDown = true),
           onTapUp: (_) => setState(() => _isTappedDown = false),
           onTapCancel: () => setState(() => _isTappedDown = false),
-          onTap: _isSendEnabled ? () {
-            widget.onSendPressed(_controller.text);
-            _controller.clear();
-          } : null,
+          onTap: _isSendEnabled
+              ? () {
+                  widget.onSendPressed(_controller.text);
+                  _controller.clear();
+                }
+              : null,
           child: Transform.scale(
             scale: _isTappedDown ? 0.7 : 1,
             child: const OptimusIcon(
