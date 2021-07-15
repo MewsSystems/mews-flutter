@@ -61,19 +61,15 @@ class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
             onTapCancel: () => setState(() => _isTappedDown = false),
             child: Text.rich(
               TextSpan(
-                children: [
-                  TextSpan(
-                    text: widget.text,
-                    style: _linkStyle.copyWith(
-                      decoration: _isHovering ? null : TextDecoration.underline,
-                      color: _linkColor,
-                    ),
-                    recognizer: _gestureRecognizer
-                      ..onTap = () {
-                        widget.onPressed!();
-                      },
-                  ),
-                ],
+                text: widget.text,
+                style: _linkStyle.copyWith(
+                  decoration: _isHovering ? null : TextDecoration.underline,
+                  color: _linkColor,
+                ),
+                recognizer: _gestureRecognizer
+                  ..onTap = () {
+                    widget.onPressed!();
+                  },
               ),
             ),
           ),
