@@ -13,8 +13,8 @@ final chatStory = Story(
     formatDate: (DateTime input) =>
         '${input.day}. ${input.month}. ${input.year}',
     tryAgain: const Text('Try again'),
-    onTryAgainClicked: onTryAgainClicked,
-    onSendClicked: (message) {},
+    onTryAgainPressed: onTryAgainClicked,
+    onSendPressed: (message) {},
   ),
 );
 

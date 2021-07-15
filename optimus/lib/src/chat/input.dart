@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/constants.dart';
 
 class OptimusChatInput extends StatefulWidget {
   const OptimusChatInput({Key? key, required this.onSendPressed})
@@ -16,6 +15,10 @@ class OptimusChatInput extends StatefulWidget {
 class _OptimusChatInputState extends State<OptimusChatInput> {
   final _controller = TextEditingController();
 
+  bool get _isSendEnabled => _controller.value.text.isNotEmpty;
+
+  bool _isTappedDown = false;
+
   @override
   Widget build(BuildContext context) {
     _controller.addListener(() => setState(() {}));
@@ -24,18 +27,22 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
       controller: _controller,
       maxLines: 4,
       minLines: 1,
-      suffix: Opacity(
-        opacity: _controller.value.text.isNotEmpty
-            ? OpacityValue.enabled
-            : OpacityValue.disabled,
+      suffix: OptimusEnabled(
+        isEnabled: _isSendEnabled,
         child: GestureDetector(
-          onTap: () {
+          onTapDown: (_) => setState(() => _isTappedDown = true),
+          onTapUp: (_) => setState(() => _isTappedDown = false),
+          onTapCancel: () => setState(() => _isTappedDown = false),
+          onTap: _isSendEnabled ? () {
             widget.onSendPressed(_controller.text);
             _controller.clear();
-          },
-          child: const OptimusIcon(
-            iconData: OptimusIcons.send_message,
-            colorOption: OptimusColorOption.basic,
+          } : null,
+          child: Transform.scale(
+            scale: _isTappedDown ? 0.7 : 1,
+            child: const OptimusIcon(
+              iconData: OptimusIcons.send_message,
+              colorOption: OptimusColorOption.basic,
+            ),
           ),
         ),
       ),

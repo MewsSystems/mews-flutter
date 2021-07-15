@@ -19,7 +19,7 @@ class OptimusChatBubble extends StatelessWidget {
     required this.formatTime,
     required this.formatDate,
     required this.tryAgain,
-    required this.onTryAgainClicked,
+    required this.onTryAgainPressed,
   }) : super(key: key);
 
   final OptimusMessage message;
@@ -30,7 +30,7 @@ class OptimusChatBubble extends StatelessWidget {
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget tryAgain;
-  final TryAgainCallback onTryAgainClicked;
+  final TryAgainCallback onTryAgainPressed;
 
   Widget _buildMessageBubble(OptimusThemeData theme) => Flexible(
         child: Container(

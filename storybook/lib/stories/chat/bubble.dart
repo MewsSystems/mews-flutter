@@ -50,7 +50,7 @@ final chatBubbleStory = Story(
           formatDate: (DateTime input) =>
               '${input.day}. ${input.month}. ${input.year}',
           tryAgain: const Text('Try Again'),
-          onTryAgainClicked: (message) async => sentMessageStatus,
+          onTryAgainPressed: (message) async => sentMessageStatus,
         ),
       );
     });

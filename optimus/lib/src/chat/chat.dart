@@ -14,16 +14,16 @@ class OptimusChat extends StatelessWidget {
     required this.formatTime,
     required this.formatDate,
     required this.tryAgain,
-    required this.onTryAgainClicked,
-    required this.onSendClicked,
+    required this.onTryAgainPressed,
+    required this.onSendPressed,
   }) : super(key: key);
 
   final List<OptimusMessage> messages;
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget tryAgain;
-  final TryAgainCallback onTryAgainClicked;
-  final SendCallback onSendClicked;
+  final TryAgainCallback onTryAgainPressed;
+  final SendCallback onSendPressed;
 
   @override
   Widget build(BuildContext context) => OptimusStack(
@@ -41,11 +41,11 @@ class OptimusChat extends StatelessWidget {
                 formatTime: formatTime,
                 formatDate: formatDate,
                 tryAgain: tryAgain,
-                onTryAgainClicked: onTryAgainClicked,
+                onTryAgainPressed: onTryAgainPressed,
               ),
             ),
           ),
-          OptimusChatInput(onSendPressed: onSendClicked),
+          OptimusChatInput(onSendPressed: onSendPressed),
         ],
       );
 
