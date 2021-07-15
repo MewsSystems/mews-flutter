@@ -438,7 +438,7 @@ class _Actions extends StatelessWidget {
   }
 
   OptimusButtonVariant _getVariant(int i) {
-    if (actions.length == 1) return OptimusButtonVariant.defaultButton;
+    if (actions.length == 1) return OptimusButtonVariant.primary;
     if (type == OptimusDialogType.destructive && i == 0) {
       return OptimusButtonVariant.destructive;
     }
