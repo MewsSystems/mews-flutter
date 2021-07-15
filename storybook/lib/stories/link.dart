@@ -10,7 +10,7 @@ final Story link = Story(
       children: OptimusLinkSize.values
           .map((size) => Padding(
                 padding: const EdgeInsets.all(8),
-                child: OptimusLink(
+                child: OptimusStandaloneLink(
                   onPressed:
                       k.boolean(label: 'Enabled', initial: true) ? () {} : null,
                   text: k.text(label: 'Text', initial: 'Link'),

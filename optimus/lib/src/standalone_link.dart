@@ -6,7 +6,8 @@ import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/presets.dart';
 
-/// Standalone links are available in two size options to accommodate various environments with different requirements.
+/// Standalone links are available in two size options to accommodate various
+/// environments with different requirements.
 enum OptimusLinkSize {
   /// Used when space is limited or to match with smaller text sizes on a page.
   small,
@@ -16,21 +17,13 @@ enum OptimusLinkSize {
   normal,
 }
 
-enum OptimusLinkColor {
-  ///
-  primary,
-
-  ///
-  inherit,
-}
-
 /// Links are navigational elements that can be used separately as standalone
 /// elements or inline as part of larger bodies of text. Links as interactive
 /// elements should always be used sparingly and with consideration. Too many
 /// can easily clutter a page and make it difficult for the user to understand
 /// the hierarchy and structure.
-class OptimusLink extends StatefulWidget {
-  const OptimusLink({
+class OptimusStandaloneLink extends StatefulWidget {
+  const OptimusStandaloneLink({
     Key? key,
     this.onPressed,
     required this.text,
@@ -42,10 +35,11 @@ class OptimusLink extends StatefulWidget {
   final OptimusLinkSize size;
 
   @override
-  _OptimusLinkState createState() => _OptimusLinkState();
+  _OptimusStandaloneLinkState createState() => _OptimusStandaloneLinkState();
 }
 
-class _OptimusLinkState extends State<OptimusLink> with ThemeGetter {
+class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
+    with ThemeGetter {
   final _gestureRecognizer = TapGestureRecognizer();
   bool _isHovering = false;
   bool _isTappedDown = false;
