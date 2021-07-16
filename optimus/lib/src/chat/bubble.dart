@@ -191,9 +191,8 @@ class OptimusChatBubble extends StatelessWidget {
           ? OptimusStackAlignment.start
           : OptimusStackAlignment.end;
 
-  Widget get _avatar => isAvatarVisible ? message.avatar : _emptyAvatarSpace;
-
-  Widget get _emptyAvatarSpace => const SizedBox(width: 40);
+  Widget get _avatar =>
+      Opacity(opacity: isAvatarVisible ? 1 : 0, child: message.avatar);
 
   BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
       BoxDecoration(
