@@ -28,11 +28,13 @@ class OptimusStandaloneLink extends StatefulWidget {
     this.onPressed,
     required this.text,
     this.size = OptimusLinkSize.normal,
+    this.isInherit = false,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
   final String text;
   final OptimusLinkSize size;
+  final bool isInherit;
 
   @override
   _OptimusStandaloneLinkState createState() => _OptimusStandaloneLinkState();
@@ -79,6 +81,9 @@ class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
   TextStyle get _linkStyle =>
       widget.size == OptimusLinkSize.normal ? preset300b : preset200b;
 
-  Color get _linkColor =>
-      _isTappedDown ? theme.colors.primary700 : theme.colors.primary500;
+  Color get _linkColor => widget.isInherit
+      ? theme.colors.neutral1000
+      : _isTappedDown
+          ? theme.colors.primary700
+          : theme.colors.primary500;
 }

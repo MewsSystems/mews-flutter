@@ -4,7 +4,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story link = Story(
   section: 'Link',
-  name: 'Link',
+  name: 'Standalone link',
   builder: (_, k) => SingleChildScrollView(
     child: Column(
       children: OptimusLinkSize.values
@@ -15,6 +15,7 @@ final Story link = Story(
                       k.boolean(label: 'Enabled', initial: true) ? () {} : null,
                   text: k.text(label: 'Text', initial: 'Link'),
                   size: size,
+                  isInherit: k.boolean(label: 'Is inherit', initial: false),
                 ),
               ))
           .toList(),
