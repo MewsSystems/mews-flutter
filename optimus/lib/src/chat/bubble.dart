@@ -49,8 +49,7 @@ class OptimusChatBubble extends StatelessWidget {
             bottom: spacing100,
           ),
           child: DefaultTextStyle.merge(
-            style: TextStyle.lerp(preset200s,
-                TextStyle(color: _createMessageTextColor(theme)), 1),
+            style: preset200s.copyWith(color: _createMessageTextColor(theme)),
             child: Text(message.message),
           ),
         ),

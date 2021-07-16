@@ -17,7 +17,7 @@ class OptimusChat extends StatelessWidget {
     required this.onTryAgainPressed,
     required this.onSendPressed,
   }) : super(key: key) {
-    _messages.addAll(messages);
+    _messages.addAll(messages.reversed);
   }
 
   final List<OptimusMessage> _messages = [];
@@ -32,10 +32,10 @@ class OptimusChat extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: _messagesReversed.length,
+              itemCount: _messages.length,
               reverse: true,
               itemBuilder: (context, index) => OptimusChatBubble(
-                message: _messagesReversed[index],
+                message: _messages[index],
                 isAvatarVisible: _showAvatar(index),
                 isStatusVisible: _showStatus(index),
                 isUserNameVisible: _showUserName(index),
@@ -51,13 +51,11 @@ class OptimusChat extends StatelessWidget {
         ],
       );
 
-  List<OptimusMessage> get _messagesReversed => _messages.reversed.toList();
-
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
       _latestMessage(index) ||
-      _messagesReversed[index - 1].userName !=
-          _messagesReversed[index].userName;
+      _messages[index - 1].userName !=
+          _messages[index].userName;
 
   bool _showStatus(int index) =>
       _lastMessageOfDay(index) ||
@@ -66,15 +64,15 @@ class OptimusChat extends StatelessWidget {
                   .difference(_previousMessageTime(index)!)
                   .inMinutes >=
               1) ||
-      _messagesReversed[index].state != const MessageState.sent(text: 'Sent') ||
-      _messagesReversed[index - 1].userName !=
-          _messagesReversed[index].userName;
+      _messages[index].state != const MessageState.sent(text: 'Sent') ||
+      _messages[index - 1].userName !=
+          _messages[index].userName;
 
   bool _showUserName(int index) =>
       _oldestMessage(index) ||
-      _messagesReversed[index < _messagesReversed.length ? index + 1 : index]
+      _messages[index < _messages.length ? index + 1 : index]
               .userName !=
-          _messagesReversed[index].userName;
+          _messages[index].userName;
 
   bool _showDate(int index) =>
       _previousMessageTime(index) == null ||
@@ -83,15 +81,15 @@ class OptimusChat extends StatelessWidget {
               .inDays >=
           1;
 
-  DateTime _currentMessageTime(int index) => _messagesReversed[index].time;
+  DateTime _currentMessageTime(int index) => _messages[index].time;
 
   DateTime? _previousMessageTime(int index) =>
-      index + 1 < _messagesReversed.length
-          ? _messagesReversed[index + 1].time
+      index + 1 < _messages.length
+          ? _messages[index + 1].time
           : null;
 
   DateTime? _nextMessageTime(int index) =>
-      index - 1 > 0 ? _messagesReversed[index - 1].time : null;
+      index - 1 > 0 ? _messages[index - 1].time : null;
 
   bool _lastMessageOfDay(int index) =>
       index - 1 > 0 &&
@@ -100,7 +98,7 @@ class OptimusChat extends StatelessWidget {
 
   bool _latestMessage(int index) => index == 0;
 
-  bool _oldestMessage(int index) => index + 1 == _messagesReversed.length;
+  bool _oldestMessage(int index) => index + 1 == _messages.length;
 }
 
 typedef FormatDate = String Function(DateTime);
