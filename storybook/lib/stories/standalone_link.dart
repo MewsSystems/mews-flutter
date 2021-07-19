@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -15,10 +16,20 @@ final Story link = Story(
                       k.boolean(label: 'Enabled', initial: true) ? () {} : null,
                   text: k.text(label: 'Text', initial: 'Link'),
                   size: size,
-                  isInherit: k.boolean(label: 'Is inherit', initial: false),
+                  color: k.options(
+                    label: 'Is inherit',
+                    initial: null,
+                    options: _colors,
+                  ),
                 ),
               ))
           .toList(),
     ),
   ),
 );
+
+const _colors = [
+  Option('black', OptimusLightColors.neutral1000),
+  Option('green', OptimusLightColors.success),
+  Option('red', OptimusLightColors.danger),
+];

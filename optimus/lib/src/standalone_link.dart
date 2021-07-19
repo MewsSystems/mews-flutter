@@ -28,13 +28,23 @@ class OptimusStandaloneLink extends StatefulWidget {
     this.onPressed,
     required this.text,
     this.size = OptimusLinkSize.normal,
-    this.isInherit = false,
+    this.color,
   }) : super(key: key);
 
+  /// Called when link is tapped.
+  ///
+  /// If this callback is null, then the button will be disabled.
   final VoidCallback? onPressed;
+
+  /// Controls the link's text
   final String text;
+
+  /// Controls the link's size
   final OptimusLinkSize size;
-  final bool isInherit;
+
+  /// Controls the link's color
+  // TODO(VG): should be changed when design changes are finalized
+  final Color? color;
 
   @override
   _OptimusStandaloneLinkState createState() => _OptimusStandaloneLinkState();
@@ -81,8 +91,8 @@ class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
   TextStyle get _linkStyle =>
       widget.size == OptimusLinkSize.normal ? preset300b : preset200b;
 
-  Color get _linkColor => widget.isInherit
-      ? theme.colors.neutral1000
+  Color get _linkColor => widget.color != null
+      ? widget.color!
       : _isTappedDown
           ? theme.colors.primary700
           : theme.colors.primary500;
