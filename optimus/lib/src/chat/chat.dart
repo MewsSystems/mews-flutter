@@ -54,8 +54,7 @@ class OptimusChat extends StatelessWidget {
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
       _latestMessage(index) ||
-      _messages[index - 1].userName !=
-          _messages[index].userName;
+      _messages[index - 1].userName != _messages[index].userName;
 
   bool _showStatus(int index) =>
       _lastMessageOfDay(index) ||
@@ -65,13 +64,11 @@ class OptimusChat extends StatelessWidget {
                   .inMinutes >=
               1) ||
       _messages[index].state != const MessageState.sent(text: 'Sent') ||
-      _messages[index - 1].userName !=
-          _messages[index].userName;
+      _messages[index - 1].userName != _messages[index].userName;
 
   bool _showUserName(int index) =>
       _oldestMessage(index) ||
-      _messages[index < _messages.length ? index + 1 : index]
-              .userName !=
+      _messages[index < _messages.length ? index + 1 : index].userName !=
           _messages[index].userName;
 
   bool _showDate(int index) =>
@@ -84,9 +81,7 @@ class OptimusChat extends StatelessWidget {
   DateTime _currentMessageTime(int index) => _messages[index].time;
 
   DateTime? _previousMessageTime(int index) =>
-      index + 1 < _messages.length
-          ? _messages[index + 1].time
-          : null;
+      index + 1 < _messages.length ? _messages[index + 1].time : null;
 
   DateTime? _nextMessageTime(int index) =>
       index - 1 > 0 ? _messages[index - 1].time : null;
