@@ -27,6 +27,7 @@ import 'package:storybook/stories/select_input.dart';
 import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/stack.dart';
+import 'package:storybook/stories/standalone_link.dart';
 import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tabs.dart';
 import 'package:storybook/stories/tags.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
           highlightStory,
           chatStory,
           chatBubbleStory,
+          link,
         ],
       );
 }
