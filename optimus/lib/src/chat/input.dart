@@ -17,8 +17,6 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
 
   bool get _isSendEnabled => _controller.value.text.isNotEmpty;
 
-  bool _isTappedDown = false;
-
   @override
   Widget build(BuildContext context) {
     _controller.addListener(() => setState(() {}));
@@ -30,19 +28,13 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
       suffix: OptimusEnabled(
         isEnabled: _isSendEnabled,
         child: GestureDetector(
-          onTapDown: (_) => setState(() => _isTappedDown = true),
-          onTapUp: (_) => setState(() => _isTappedDown = false),
-          onTapCancel: () => setState(() => _isTappedDown = false),
           onTap: () {
             widget.onSendPressed(_controller.text);
             _controller.clear();
           },
-          child: Transform.scale(
-            scale: _isTappedDown ? 0.7 : 1,
-            child: const OptimusIcon(
-              iconData: OptimusIcons.send_message,
-              colorOption: OptimusColorOption.basic,
-            ),
+          child: const OptimusIcon(
+            iconData: OptimusIcons.send_message,
+            colorOption: OptimusColorOption.basic,
           ),
         ),
       ),
