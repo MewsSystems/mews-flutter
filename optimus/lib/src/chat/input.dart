@@ -25,23 +25,23 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
 
   @override
   Widget build(BuildContext context) => OptimusInputField(
-      controller: _controller,
-      maxLines: 4,
-      minLines: 1,
-      suffix: OptimusEnabled(
-        isEnabled: _isSendEnabled,
-        child: GestureDetector(
-          onTap: () {
-            widget.onSendPressed(_controller.text);
-            _controller.clear();
-          },
-          child: const OptimusIcon(
-            iconData: OptimusIcons.send_message,
-            colorOption: OptimusColorOption.basic,
+        controller: _controller,
+        maxLines: 4,
+        minLines: 1,
+        suffix: OptimusEnabled(
+          isEnabled: _isSendEnabled,
+          child: GestureDetector(
+            onTap: () {
+              widget.onSendPressed(_controller.text);
+              _controller.clear();
+            },
+            child: const OptimusIcon(
+              iconData: OptimusIcons.send_message,
+              colorOption: OptimusColorOption.basic,
+            ),
           ),
         ),
-      ),
-    );
+      );
 
   @override
   void dispose() {
