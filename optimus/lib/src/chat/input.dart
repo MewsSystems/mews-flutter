@@ -18,10 +18,13 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
   bool get _isSendEnabled => _controller.value.text.isNotEmpty;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     _controller.addListener(() => setState(() {}));
+  }
 
-    return OptimusInputField(
+  @override
+  Widget build(BuildContext context) => OptimusInputField(
       controller: _controller,
       maxLines: 4,
       minLines: 1,
@@ -39,7 +42,6 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
         ),
       ),
     );
-  }
 
   @override
   void dispose() {

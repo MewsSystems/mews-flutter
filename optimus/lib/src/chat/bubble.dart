@@ -48,9 +48,9 @@ class OptimusChatBubble extends StatelessWidget {
             top: spacing50,
             bottom: spacing100,
           ),
-          child: DefaultTextStyle.merge(
+          child: Text(
+            message.message,
             style: preset200s.copyWith(color: _createMessageTextColor(theme)),
-            child: Text(message.message),
           ),
         ),
       );
@@ -81,10 +81,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   Padding get _userName => Padding(
         padding: _statusPadding,
-        child: DefaultTextStyle.merge(
-          style: preset100s,
-          child: Text(message.userName),
-        ),
+        child: Text(message.userName, style: preset100s),
       );
 
   Padding _buildStatus(OptimusThemeData theme) => Padding(
