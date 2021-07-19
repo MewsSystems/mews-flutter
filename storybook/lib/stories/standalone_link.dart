@@ -17,7 +17,7 @@ final Story link = Story(
                   text: k.text(label: 'Text', initial: 'Link'),
                   size: size,
                   color: k.options(
-                    label: 'Is inherit',
+                    label: 'Color',
                     initial: null,
                     options: _colors,
                   ),
