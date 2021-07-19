@@ -1,3 +1,9 @@
+## 0.7.4
+
+ - **FEAT**: [RND-65933] Add standalone link (#105).
+ - **FEAT**: [RND-63261] Add chat component (#95).
+ - **FEAT**: [RND-65864] Change dialog button color (#106).
+
 ## 0.7.3
 
  - **FEAT**: Export FieldWrapper (#102).
