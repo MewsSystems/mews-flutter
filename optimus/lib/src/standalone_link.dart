@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
@@ -52,7 +51,6 @@ class OptimusStandaloneLink extends StatefulWidget {
 
 class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
     with ThemeGetter {
-  final _gestureRecognizer = TapGestureRecognizer();
   bool _isHovering = false;
   bool _isTappedDown = false;
 
@@ -78,10 +76,6 @@ class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
                   decoration: _isHovering ? null : TextDecoration.underline,
                   color: _linkColor,
                 ),
-                recognizer: _gestureRecognizer
-                  ..onTap = () {
-                    widget.onPressed!();
-                  },
               ),
             ),
           ),
