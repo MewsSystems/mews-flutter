@@ -7,9 +7,12 @@ const MethodChannel _channel = MethodChannel('com.mews.kiosk_mode/kiosk_mode');
 /// Request to put this activity in a mode where the user is locked to a
 /// restricted set of applications.
 ///
+/// Returns true, if platform satisfied the request successfully,
+/// false - otherwise.
+///
 /// It's only supported on Android currently, where it calls [startLockTask].
 /// It will throw [FlutterMethodNotImplemented] on iOS.
-Future<void> startKioskMode() => _channel.invokeMethod('startKioskMode');
+Future<bool?> startKioskMode() => _channel.invokeMethod<bool>('startKioskMode');
 
 /// Stop the current task from being locked.
 ///
