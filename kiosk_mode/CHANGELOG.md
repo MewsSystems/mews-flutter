@@ -1,3 +1,7 @@
+## 0.1.1+2
+
+ - **FIX**: Fix startKioskMode signature (#115).
+
 ## 0.1.1+1
 
  - **FIX**: Fix startLockTask throwing (#112).
