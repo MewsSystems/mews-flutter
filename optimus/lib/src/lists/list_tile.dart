@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_side.dart';
 import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/typography/typography.dart';
 
 class OptimusListTile extends StatefulWidget {
   const OptimusListTile({
@@ -31,6 +33,49 @@ class OptimusListTile extends StatefulWidget {
 }
 
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
+  Widget get _prefix => Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: OptimusTypography(
+          color: OptimusTypographyColor.secondary,
+          resolveStyle: (_) => preset200s,
+          child: widget.prefix!,
+        ),
+      );
+
+  Widget get _info => OptimusTypography(
+        resolveStyle: (_) => preset100r,
+        color: OptimusTypographyColor.secondary,
+        child: widget.info!,
+      );
+
+  Widget get _title => Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: OptimusTypography(
+          resolveStyle: (_) {
+            switch (widget.fontVariant) {
+              case FontVariant.normal:
+                return preset300s;
+              case FontVariant.bold:
+                return preset300b;
+            }
+          },
+          child: widget.title,
+        ),
+      );
+
+  Widget get _subtitle => widget.subtitle != null
+      ? OptimusTypography(
+          resolveStyle: (_) => preset200s,
+          color: OptimusTypographyColor.secondary,
+          child: widget.subtitle!,
+        )
+      : Container();
+
+  Widget get _suffix => OptimusTypography(
+        resolveStyle: (_) => preset200s,
+        child: widget.suffix!,
+      );
+
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
@@ -48,76 +93,32 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
             ),
             child: Row(
               children: <Widget>[
-                if (widget.prefix != null)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: widget.prefix,
-                  ),
+                if (widget.prefix != null) _prefix,
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Expanded(child: _buildTitle()),
-                          if (widget.info != null)
-                            _wrapped(widget.info!, _infoStyle),
+                          Expanded(child: _title),
+                          if (widget.info != null) _info,
                         ],
                       ),
                       Row(
                         children: <Widget>[
-                          Expanded(
-                            child: widget.subtitle != null
-                                ? _wrapped(widget.subtitle!, _subtitleStyle)
-                                : Container(),
-                          ),
+                          Expanded(child: _subtitle),
                           if (widget.infoWidget != null) widget.infoWidget!,
                         ],
                       ),
                     ],
                   ),
                 ),
-                if (widget.suffix != null) widget.suffix!
+                if (widget.suffix != null) _suffix,
               ],
             ),
           ),
         ),
       );
-
-  Widget _buildTitle() => Padding(
-        padding: const EdgeInsets.only(right: 8),
-        child: _wrapped(widget.title, _titleStyle),
-      );
-
-  TextStyle get _titleStyle {
-    switch (widget.fontVariant) {
-      case FontVariant.normal:
-        return preset300s;
-      case FontVariant.bold:
-        return preset300b;
-    }
-  }
-
-  TextStyle get _subtitleStyle {
-    switch (widget.fontVariant) {
-      case FontVariant.normal:
-        return preset200s.copyWith(color: _subtitleColor);
-      case FontVariant.bold:
-        return preset200s;
-    }
-  }
-
-  Color get _subtitleColor =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
-
-  TextStyle get _infoStyle => preset100s.copyWith(
-        color: theme.isDark
-            ? theme.colors.neutral0t64
-            : theme.colors.neutral1000t64,
-      );
-
-  Widget _wrapped(Widget child, TextStyle style) =>
-      DefaultTextStyle.merge(style: style, child: child);
 }
 
 enum FontVariant { normal, bold }
