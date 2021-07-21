@@ -2,6 +2,7 @@ package com.mews.kiosk_mode
 
 import androidx.annotation.NonNull
 import android.app.Activity
+import android.view.ViewGroup
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -23,7 +24,13 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "startKioskMode") {
-            activity?.startLockTask()
+            activity?.let { a ->
+                // ensures that startLockTask() will not throw
+                // see https://stackoverflow.com/questions/27826431/activity-startlocktask-occasionally-throws-illegalargumentexception
+                a.findViewById<ViewGroup>(android.R.id.content).getChildAt(0).post {
+                    a.startLockTask()
+                }
+            }
             result.success(null)
         } else if (call.method == "stopKioskMode") {
             activity?.stopLockTask()
