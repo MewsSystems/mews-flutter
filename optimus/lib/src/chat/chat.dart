@@ -14,21 +14,20 @@ class OptimusChat extends StatelessWidget {
     required this.formatTime,
     required this.formatDate,
     required this.tryAgain,
-    required this.onTryAgainPressed,
     required this.onSendPressed,
   }) : super(key: key) {
-    _messages.addAll(messages.reversed);
+    _messages.addAll(messages);
   }
 
   final List<OptimusMessage> _messages = [];
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget tryAgain;
-  final TryAgainCallback onTryAgainPressed;
   final SendCallback onSendPressed;
 
   @override
   Widget build(BuildContext context) => OptimusStack(
+        spacing: OptimusStackSpacing.spacing50,
         children: [
           Expanded(
             child: ListView.builder(
@@ -43,7 +42,6 @@ class OptimusChat extends StatelessWidget {
                 formatTime: formatTime,
                 formatDate: formatDate,
                 tryAgain: tryAgain,
-                onTryAgainPressed: onTryAgainPressed,
               ),
             ),
           ),
@@ -51,10 +49,14 @@ class OptimusChat extends StatelessWidget {
         ],
       );
 
+  bool _previousMessageIsFromSameUser(int index) =>
+      index - 1 >= 0 &&
+      _messages[index - 1].userName != _messages[index].userName;
+
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
       _latestMessage(index) ||
-      _messages[index - 1].userName != _messages[index].userName;
+      _previousMessageIsFromSameUser(index);
 
   bool _showStatus(int index) =>
       _lastMessageOfDay(index) ||
@@ -64,7 +66,8 @@ class OptimusChat extends StatelessWidget {
                   .inMinutes >=
               1) ||
       _messages[index].state != const MessageState.sent(text: 'Sent') ||
-      _messages[index - 1].userName != _messages[index].userName;
+      _latestMessage(index) ||
+      _previousMessageIsFromSameUser(index);
 
   bool _showUserName(int index) =>
       _oldestMessage(index) ||
