@@ -12,7 +12,9 @@ const MethodChannel _channel = MethodChannel('com.mews.kiosk_mode/kiosk_mode');
 ///
 /// It's only supported on Android currently, where it calls [startLockTask].
 /// It will throw [FlutterMethodNotImplemented] on iOS.
-Future<bool?> startKioskMode() => _channel.invokeMethod<bool>('startKioskMode');
+Future<bool> startKioskMode() => _channel
+    .invokeMethod<bool>('startKioskMode')
+    .then((value) => value ?? false);
 
 /// Stop the current task from being locked.
 ///
