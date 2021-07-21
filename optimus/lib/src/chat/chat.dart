@@ -13,22 +13,27 @@ class OptimusChat extends StatelessWidget {
     required List<OptimusMessage> messages,
     required this.formatTime,
     required this.formatDate,
-    required this.tryAgain,
-    required this.onTryAgainPressed,
+    required this.sending,
+    required this.sent,
+    required this.error,
     required this.onSendPressed,
   }) : super(key: key) {
-    _messages.addAll(messages.reversed);
+    _messages
+      ..addAll(messages)
+      ..sort(_byTime);
   }
 
   final List<OptimusMessage> _messages = [];
   final FormatTime formatTime;
   final FormatDate formatDate;
-  final Widget tryAgain;
-  final TryAgainCallback onTryAgainPressed;
+  final Widget sending;
+  final Widget sent;
+  final Widget error;
   final SendCallback onSendPressed;
 
   @override
   Widget build(BuildContext context) => OptimusStack(
+        spacing: OptimusStackSpacing.spacing50,
         children: [
           Expanded(
             child: ListView.builder(
@@ -42,8 +47,9 @@ class OptimusChat extends StatelessWidget {
                 isDateVisible: _showDate(index),
                 formatTime: formatTime,
                 formatDate: formatDate,
-                tryAgain: tryAgain,
-                onTryAgainPressed: onTryAgainPressed,
+                sending: sending,
+                sent: sent,
+                error: error,
               ),
             ),
           ),
@@ -51,10 +57,14 @@ class OptimusChat extends StatelessWidget {
         ],
       );
 
+  bool _previousMessageIsFromSameUser(int index) =>
+      index - 1 >= 0 &&
+      _messages[index - 1].userName != _messages[index].userName;
+
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
       _latestMessage(index) ||
-      _messages[index - 1].userName != _messages[index].userName;
+      _previousMessageIsFromSameUser(index);
 
   bool _showStatus(int index) =>
       _lastMessageOfDay(index) ||
@@ -63,8 +73,9 @@ class OptimusChat extends StatelessWidget {
                   .difference(_previousMessageTime(index)!)
                   .inMinutes >=
               1) ||
-      _messages[index].state != const MessageState.sent(text: 'Sent') ||
-      _messages[index - 1].userName != _messages[index].userName;
+      _messages[index].state != MessageState.sent ||
+      _latestMessage(index) ||
+      _previousMessageIsFromSameUser(index);
 
   bool _showUserName(int index) =>
       _oldestMessage(index) ||
@@ -94,6 +105,9 @@ class OptimusChat extends StatelessWidget {
   bool _latestMessage(int index) => index == 0;
 
   bool _oldestMessage(int index) => index + 1 == _messages.length;
+
+  int _byTime(OptimusMessage m1, OptimusMessage m2) =>
+      m2.time.compareTo(m1.time);
 }
 
 typedef FormatDate = String Function(DateTime);

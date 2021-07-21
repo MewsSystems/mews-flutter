@@ -23,8 +23,8 @@ final chatBubbleStory = Story(
         ),
         state: k.options(
           label: 'Status',
-          initial: sentMessageStatus,
-          options: _status,
+          initial: MessageState.sent,
+          options: _state,
         ),
         avatar: k.options(
           label: 'Avatar',
@@ -49,19 +49,15 @@ final chatBubbleStory = Story(
               '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
           formatDate: (DateTime input) =>
               '${input.day}. ${input.month}. ${input.year}',
-          tryAgain: const Text('Try Again'),
-          onTryAgainPressed: (message) async => sentMessageStatus,
+          sending: const Text('Sending...'),
+          sent: const Text('Sent'),
+          error: const Text('Error, try sending again'),
         ),
       );
     });
 
-const sentMessageStatus = MessageState.sent(text: 'Sent');
-
-final List<Option<MessageState>> _status = [
-  const Option('Sent', sentMessageStatus),
-  const Option('Sending', MessageState.sending(text: 'Sending...')),
-  Option('Error', MessageState.error(text: 'Error', onTryAgain: () {})),
-];
+final List<Option<MessageState>> _state =
+    MessageState.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<MessageAlignment>> _type =
     MessageAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
