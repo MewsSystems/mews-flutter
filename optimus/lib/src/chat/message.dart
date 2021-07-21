@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,20 +14,10 @@ enum MessageColor {
   dark,
 }
 
-@freezed
-class MessageState with _$MessageState {
-  const factory MessageState.sending({
-    required String text,
-  }) = MessageStateSending;
-
-  const factory MessageState.sent({
-    required String text,
-  }) = MessageStateSent;
-
-  const factory MessageState.error({
-    required String text,
-    required VoidCallback onTryAgain,
-  }) = MessageStateError;
+enum MessageState {
+  sending,
+  sent,
+  error,
 }
 
 typedef TryAgainCallback = Future<MessageState> Function(

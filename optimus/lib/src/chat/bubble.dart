@@ -18,7 +18,9 @@ class OptimusChatBubble extends StatelessWidget {
     required this.isDateVisible,
     required this.formatTime,
     required this.formatDate,
-    required this.tryAgain,
+    required this.sending,
+    required this.sent,
+    required this.error,
   }) : super(key: key);
 
   final OptimusMessage message;
@@ -28,7 +30,9 @@ class OptimusChatBubble extends StatelessWidget {
   final bool isDateVisible;
   final FormatTime formatTime;
   final FormatDate formatDate;
-  final Widget tryAgain;
+  final Widget sending;
+  final Widget sent;
+  final Widget error;
 
   Widget _buildMessageBubble(OptimusThemeData theme) => Flexible(
         child: Container(
@@ -104,22 +108,19 @@ class OptimusChatBubble extends StatelessWidget {
         child: child,
       );
 
-  Widget _buildStatusText(
-    OptimusMessage message,
-    OptimusThemeData theme,
-  ) {
+  Widget _buildStatusText(OptimusMessage message, OptimusThemeData theme) {
     late final List<Widget> children;
     final color =
         theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 
-    message.state.map(
-      sending: (s) {
+    switch (message.state) {
+      case MessageState.sending:
         children = [
           _buildStatusTextStyle(
             theme,
             Text(formatTime(message.time)),
           ),
-          _buildStatusTextStyle(theme, Text(message.state.text)),
+          _buildStatusTextStyle(theme, sending),
           Container(
             width: 13,
             height: 13,
@@ -132,15 +133,15 @@ class OptimusChatBubble extends StatelessWidget {
             ),
           ),
         ];
-      },
-      sent: (s) {
+        break;
+      case MessageState.sent:
         children = [
           _buildStatusTextStyle(
             theme,
             Text(formatTime(message.time)),
           ),
           if (message.alignment == MessageAlignment.right)
-            _buildStatusTextStyle(theme, Text(message.state.text)),
+            _buildStatusTextStyle(theme, sent),
           if (message.alignment == MessageAlignment.right)
             const Opacity(
               opacity: 0.6,
@@ -150,27 +151,18 @@ class OptimusChatBubble extends StatelessWidget {
               ),
             )
         ];
-      },
-      error: (s) {
+        break;
+      case MessageState.error:
         children = [
-          _buildStatusTextStyle(theme, Text(message.state.text)),
-          DefaultTextStyle.merge(
-            style: const TextStyle(
-              decoration: TextDecoration.underline,
-            ),
-            child: GestureDetector(
-              onTap: () => s.onTryAgain(),
-              child: _buildStatusTextStyle(theme, tryAgain),
-            ),
-          ),
+          _buildStatusTextStyle(theme, error),
           const OptimusIcon(
             iconData: OptimusIcons.disable,
             iconSize: OptimusIconSize.small,
             colorOption: OptimusColorOption.danger,
           ),
         ];
-      },
-    );
+        break;
+    }
 
     return OptimusStack(
       mainAxisAlignment: _bubbleAlignment,

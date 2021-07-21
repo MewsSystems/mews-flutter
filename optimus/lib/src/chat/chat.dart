@@ -13,7 +13,9 @@ class OptimusChat extends StatelessWidget {
     required List<OptimusMessage> messages,
     required this.formatTime,
     required this.formatDate,
-    required this.tryAgain,
+    required this.sending,
+    required this.sent,
+    required this.error,
     required this.onSendPressed,
   }) : super(key: key) {
     _messages
@@ -24,7 +26,9 @@ class OptimusChat extends StatelessWidget {
   final List<OptimusMessage> _messages = [];
   final FormatTime formatTime;
   final FormatDate formatDate;
-  final Widget tryAgain;
+  final Widget sending;
+  final Widget sent;
+  final Widget error;
   final SendCallback onSendPressed;
 
   @override
@@ -43,7 +47,9 @@ class OptimusChat extends StatelessWidget {
                 isDateVisible: _showDate(index),
                 formatTime: formatTime,
                 formatDate: formatDate,
-                tryAgain: tryAgain,
+                sending: sending,
+                sent: sent,
+                error: error,
               ),
             ),
           ),
@@ -67,7 +73,7 @@ class OptimusChat extends StatelessWidget {
                   .difference(_previousMessageTime(index)!)
                   .inMinutes >=
               1) ||
-      _messages[index].state != const MessageState.sent(text: 'Sent') ||
+      _messages[index].state != MessageState.sent ||
       _latestMessage(index) ||
       _previousMessageIsFromSameUser(index);
 

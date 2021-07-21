@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:storybook/stories/chat/bubble.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final chatStory = Story(
@@ -12,13 +11,20 @@ final chatStory = Story(
         '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
     formatDate: (DateTime input) =>
         '${input.day}. ${input.month}. ${input.year}',
-    tryAgain: const Text('Try again'),
+    sending: const Text('Sending...'),
+    sent: const Text('Sent'),
+    error: DefaultTextStyle.merge(
+      style: const TextStyle(
+        decoration: TextDecoration.underline,
+      ),
+      child: const Text('Error, try sending again'),
+    ),
     onSendPressed: (message) {},
   ),
 );
 
 Future<MessageState> Function(OptimusMessage message) onTryAgainClicked =
-    (OptimusMessage message) async => sentMessageStatus;
+    (OptimusMessage message) async => MessageState.sent;
 
 const _avatarUrl =
     'https://images.unsplash.com/photo-1560525821-d5615ef80c69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=512&q=80';
@@ -69,7 +75,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(days: 365)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -78,7 +84,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(days: 6, minutes: 2)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -87,7 +93,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(days: 6)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -96,7 +102,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(days: 5, minutes: 15)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -105,7 +111,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(days: 5)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -114,7 +120,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(days: 5)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -123,7 +129,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(hours: 2)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -133,7 +139,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 45)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -142,7 +148,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 30)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -151,7 +157,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 27)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -160,7 +166,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 26)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -169,7 +175,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 25)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: organisationAvatar,
   ),
   OptimusMessage(
@@ -179,7 +185,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 20)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -188,7 +194,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 19)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -197,7 +203,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 18)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -206,7 +212,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 10)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -215,7 +221,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(seconds: 17)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
@@ -225,7 +231,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(seconds: 17)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: organisationAvatar,
   ),
   OptimusMessage(
@@ -234,7 +240,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(seconds: 16)),
-    state: sentMessageStatus,
+    state: MessageState.sent,
     avatar: organisationAvatar,
   ),
   OptimusMessage(
@@ -243,7 +249,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(seconds: 14)),
-    state: const MessageState.sending(text: 'Sending...'),
+    state: MessageState.sending,
     avatar: avatar2,
   ),
   OptimusMessage(
@@ -252,8 +258,7 @@ final messages = <OptimusMessage>[
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(seconds: 12)),
-    state:
-        MessageState.error(text: 'Error', onTryAgain: () => onTryAgainClicked),
+    state: MessageState.error,
     avatar: avatar2,
   ),
 ];
