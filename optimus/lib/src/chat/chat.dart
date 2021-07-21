@@ -16,7 +16,9 @@ class OptimusChat extends StatelessWidget {
     required this.tryAgain,
     required this.onSendPressed,
   }) : super(key: key) {
-    _messages.addAll(messages);
+    _messages
+      ..addAll(messages)
+      ..sort(_byTime);
   }
 
   final List<OptimusMessage> _messages = [];
@@ -97,6 +99,9 @@ class OptimusChat extends StatelessWidget {
   bool _latestMessage(int index) => index == 0;
 
   bool _oldestMessage(int index) => index + 1 == _messages.length;
+
+  int _byTime(OptimusMessage m1, OptimusMessage m2) =>
+      m2.time.compareTo(m1.time);
 }
 
 typedef FormatDate = String Function(DateTime);
