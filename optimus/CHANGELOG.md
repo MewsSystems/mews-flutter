@@ -1,3 +1,7 @@
+## 0.7.5+1
+
+ - **FIX**: Fix chat rendering (#111).
+
 ## 0.7.5
 
  - **FIX**: Fix `ListTile` style (#109).
