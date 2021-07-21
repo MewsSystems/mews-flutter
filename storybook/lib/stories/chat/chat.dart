@@ -7,7 +7,7 @@ final chatStory = Story(
   section: 'Chat',
   name: 'Chat',
   builder: (_, k) => OptimusChat(
-    messages: messages,
+    messages: messages.reversed.toList(),
     formatTime: (DateTime input) =>
         '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
     formatDate: (DateTime input) =>
