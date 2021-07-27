@@ -1,3 +1,7 @@
+## 0.7.5+2
+
+ - **FIX**: Fix shadow colors (#117).
+
 ## 0.7.5+1
 
  - **FIX**: Fix chat rendering (#111).
