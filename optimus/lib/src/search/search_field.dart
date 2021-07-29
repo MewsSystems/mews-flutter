@@ -148,6 +148,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) => GestureDetector(
+          key: const Key('OptimusSearchOverlay'),
           behavior: HitTestBehavior.translucent,
           onTapDown: (details) {
             bool hitTest(RenderBox box) => box.hitTest(
