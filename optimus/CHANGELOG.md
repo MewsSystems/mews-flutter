@@ -1,3 +1,7 @@
+## 0.7.5+3
+
+ - **FIX**: Add key to search field overlay (#119).
+
 ## 0.7.5+2
 
  - **FIX**: Fix shadow colors (#117).
