@@ -293,6 +293,8 @@ class OptimusColors {
   Color get invertedSecondaryTextColor =>
       _isLight ? neutral0t64 : neutral1000t64;
 
+  Color get imageOverlayColor => _isLight ? neutral0t64 : neutral1000t64;
+
   bool get _isLight => brightness == Brightness.light;
 
   Color get neutral0 =>
