@@ -31,7 +31,7 @@ class OptimusTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Think about better implementation with typography components
-    final TextStyle textStyle = preset100b;
+    final TextStyle textStyle = preset300b;
     final theme = OptimusTheme.of(context);
 
     return DefaultTabController(
