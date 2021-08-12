@@ -34,7 +34,7 @@ class OptimusListTile extends StatefulWidget {
 
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
   Widget get _prefix => Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.only(right: spacing100),
         child: OptimusTypography(
           color: OptimusTypographyColor.secondary,
           resolveStyle: (_) => preset200s,
@@ -43,13 +43,13 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
       );
 
   Widget get _info => OptimusTypography(
-        resolveStyle: (_) => preset100r,
+        resolveStyle: (_) => preset100s,
         color: OptimusTypographyColor.secondary,
         child: widget.info!,
       );
 
   Widget get _title => Padding(
-        padding: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.only(right: spacing100),
         child: OptimusTypography(
           resolveStyle: (_) {
             switch (widget.fontVariant) {
@@ -66,10 +66,19 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
   Widget get _subtitle => widget.subtitle != null
       ? OptimusTypography(
           resolveStyle: (_) => preset200s,
-          color: OptimusTypographyColor.secondary,
+          color: _subtitleColor,
           child: widget.subtitle!,
         )
       : Container();
+
+  OptimusTypographyColor get _subtitleColor {
+    switch (widget.fontVariant) {
+      case FontVariant.normal:
+        return OptimusTypographyColor.secondary;
+      case FontVariant.bold:
+        return OptimusTypographyColor.primary;
+    }
+  }
 
   Widget get _suffix => OptimusTypography(
         resolveStyle: (_) => preset200s,
