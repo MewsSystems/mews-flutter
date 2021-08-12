@@ -18,6 +18,7 @@ class OptimusExpansionTile extends StatefulWidget {
     this.leading,
     required this.title,
     this.subtitle,
+    this.contentPadding,
     this.backgroundColor,
     this.onExpansionChanged,
     this.children = const <Widget>[],
@@ -40,6 +41,9 @@ class OptimusExpansionTile extends StatefulWidget {
   ///
   /// Typically a [Text] widget.
   final Widget? subtitle;
+
+  /// The tile's internal padding.
+  final EdgeInsetsGeometry? contentPadding;
 
   /// Called when the tile expands or collapses.
   ///
@@ -147,6 +151,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
   Widget _buildListTile() {
     final tile = ListTile(
       onTap: _handleTap,
+      contentPadding: widget.contentPadding,
       leading: widget.leading,
       title: widget.title,
       subtitle: widget.subtitle,
