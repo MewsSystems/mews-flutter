@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/loader/determined_painter.dart';
+import 'package:optimus/src/loader/indeterminate_painter.dart';
 
 enum OptimusCircleLoaderSize {
   /// Small loader is intended to be used inside of the components like inputs
@@ -44,10 +48,25 @@ enum OptimusCircleLoaderAppearance {
 class OptimusCircleLoader extends StatelessWidget {
   const OptimusCircleLoader({
     Key? key,
+    this.progress,
     this.size = OptimusCircleLoaderSize.medium,
     this.variant = OptimusCircleLoaderVariant.indeterminate,
     this.appearance = OptimusCircleLoaderAppearance.normal,
-  }) : super(key: key);
+  })  : assert(
+          (progress == null &&
+                  variant == OptimusCircleLoaderVariant.indeterminate) ||
+              (progress != null &&
+                  variant == OptimusCircleLoaderVariant.determinate),
+          'indeterminate circle loader should not have defined progress',
+        ),
+        assert(
+          progress == null || progress >= 0 && progress <= 100,
+          'progress should either be null or in [0, 100] range',
+        ),
+        super(key: key);
+
+  /// Controls progress of the loader.
+  final double? progress;
 
   /// Controls size of the loader.
   final OptimusCircleLoaderSize size;
@@ -62,7 +81,16 @@ class OptimusCircleLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Container();
+    return Container(
+      height: _loaderSize,
+      width: _loaderSize,
+      child: CustomPaint(
+        foregroundPainter: variant == OptimusCircleLoaderVariant.determinate
+            ? DeterminedPainter(progress: progress!)
+            : IndeterminatePainter(),
+        // child: CircularProgressIndicator,
+      ),
+    );
   }
 
   double get _loaderSize {
@@ -76,7 +104,6 @@ class OptimusCircleLoader extends StatelessWidget {
     }
   }
 }
-
 
 extension on OptimusColorOption {
   Color toIconColor(OptimusThemeData theme) {
