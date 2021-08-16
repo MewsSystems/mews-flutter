@@ -42,6 +42,7 @@ final chatBubbleStory = Story(
         child: OptimusChatBubble(
           message: message,
           isAvatarVisible: k.boolean(label: 'Show avatar', initial: true),
+          isAvatarEnabled: k.boolean(label: 'Enable avatar', initial: true),
           isUserNameVisible: k.boolean(label: 'Show user name', initial: true),
           isStatusVisible: k.boolean(label: 'Show status', initial: true),
           isDateVisible: k.boolean(label: 'Show date', initial: true),

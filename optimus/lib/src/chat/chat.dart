@@ -11,6 +11,7 @@ class OptimusChat extends StatelessWidget {
   OptimusChat({
     Key? key,
     required List<OptimusMessage> messages,
+    required this.isAvatarEnabled,
     required this.formatTime,
     required this.formatDate,
     required this.sending,
@@ -24,6 +25,7 @@ class OptimusChat extends StatelessWidget {
   }
 
   final List<OptimusMessage> _messages = [];
+  final bool isAvatarEnabled;
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget sending;
@@ -41,6 +43,7 @@ class OptimusChat extends StatelessWidget {
               reverse: true,
               itemBuilder: (context, index) => OptimusChatBubble(
                 message: _messages[index],
+                isAvatarEnabled: isAvatarEnabled,
                 isAvatarVisible: _showAvatar(index),
                 isStatusVisible: _showStatus(index),
                 isUserNameVisible: _showUserName(index),

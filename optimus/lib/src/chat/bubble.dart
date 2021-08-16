@@ -13,6 +13,7 @@ class OptimusChatBubble extends StatelessWidget {
     Key? key,
     required this.message,
     required this.isAvatarVisible,
+    required this.isAvatarEnabled,
     required this.isStatusVisible,
     required this.isUserNameVisible,
     required this.isDateVisible,
@@ -25,6 +26,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   final OptimusMessage message;
   final bool isAvatarVisible;
+  final bool isAvatarEnabled;
   final bool isStatusVisible;
   final bool isUserNameVisible;
   final bool isDateVisible;
@@ -92,8 +94,16 @@ class OptimusChatBubble extends StatelessWidget {
       );
 
   EdgeInsets get _statusPadding => EdgeInsets.only(
-        left: message.alignment == MessageAlignment.left ? 48 : 0,
-        right: message.alignment != MessageAlignment.left ? 48 : 0,
+        left: message.alignment == MessageAlignment.left
+            ? isAvatarEnabled
+                ? 48
+                : spacing100
+            : 0,
+        right: message.alignment != MessageAlignment.left
+            ? isAvatarEnabled
+                ? 48
+                : spacing100
+            : 0,
       );
 
   Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
@@ -177,10 +187,12 @@ class OptimusChatBubble extends StatelessWidget {
           ? OptimusStackAlignment.start
           : OptimusStackAlignment.end;
 
-  Widget get _avatar => SizedBox(
-        width: 40,
-        child: isAvatarVisible ? message.avatar : null,
-      );
+  Widget get _avatar => isAvatarEnabled
+      ? SizedBox(
+          width: 40,
+          child: isAvatarVisible ? message.avatar : null,
+        )
+      : Container();
 
   BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
       BoxDecoration(
