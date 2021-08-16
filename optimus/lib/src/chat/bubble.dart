@@ -187,12 +187,10 @@ class OptimusChatBubble extends StatelessWidget {
           ? OptimusStackAlignment.start
           : OptimusStackAlignment.end;
 
-  Widget get _avatar => isAvatarEnabled
-      ? SizedBox(
-          width: 40,
-          child: isAvatarVisible ? message.avatar : null,
-        )
-      : Container();
+  Widget get _avatar => SizedBox(
+        width: 40,
+        child: isAvatarVisible ? message.avatar : null,
+      );
 
   BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
       BoxDecoration(
@@ -237,9 +235,11 @@ class OptimusChatBubble extends StatelessWidget {
           mainAxisAlignment: _bubbleAlignment,
           crossAxisAlignment: OptimusStackAlignment.end,
           children: [
-            if (message.alignment == MessageAlignment.left) _avatar,
+            if (message.alignment == MessageAlignment.left && isAvatarEnabled)
+              _avatar,
             _buildMessageBubble(theme),
-            if (message.alignment == MessageAlignment.right) _avatar,
+            if (message.alignment == MessageAlignment.right && isAvatarEnabled)
+              _avatar,
           ],
         ),
         if (isStatusVisible) _buildStatus(theme),
