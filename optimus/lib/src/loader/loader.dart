@@ -77,22 +77,6 @@ class OptimusCircleLoader extends StatelessWidget {
   /// Controls appearance of the loader.
   final OptimusCircleLoaderAppearance appearance;
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Container(
-      height: _loaderSize,
-      width: _loaderSize,
-      child: CustomPaint(
-        foregroundPainter: variant == OptimusCircleLoaderVariant.determinate
-            ? DeterminedPainter(progress: progress!)
-            : IndeterminatePainter(),
-        // child: CircularProgressIndicator,
-      ),
-    );
-  }
-
   double get _loaderSize {
     switch (size) {
       case OptimusCircleLoaderSize.small:
@@ -103,49 +87,61 @@ class OptimusCircleLoader extends StatelessWidget {
         return 56;
     }
   }
-}
 
-extension on OptimusColorOption {
-  Color toIconColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusColorOption.basic:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-      case OptimusColorOption.primary:
+  Color _getIndicatorColor(OptimusThemeData theme) {
+    switch (appearance) {
+      case OptimusCircleLoaderAppearance.normal:
         return theme.colors.primary500;
-      case OptimusColorOption.success:
-        return theme.colors.success500;
-      case OptimusColorOption.warning:
-        return theme.colors.warning500;
-      case OptimusColorOption.danger:
-        return theme.colors.danger500;
-    }
-  }
-
-  Color toSupplementaryIconColor(OptimusThemeData theme) {
-    if (theme.isDark) return theme.colors.neutral1000;
-
-    switch (this) {
-      case OptimusColorOption.basic:
-        return theme.colors.neutral500;
-      case OptimusColorOption.warning:
-        return theme.colors.neutral1000;
-      default:
+      case OptimusCircleLoaderAppearance.contrast:
         return theme.colors.neutral0;
     }
   }
 
-  Color toSupplementaryBackgroundColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusColorOption.basic:
+  Color _getTrackColor(OptimusThemeData theme) {
+    switch (appearance) {
+      case OptimusCircleLoaderAppearance.normal:
         return theme.colors.neutral50;
-      case OptimusColorOption.primary:
+      case OptimusCircleLoaderAppearance.contrast:
+        return theme.colors.neutral1000t32;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      height: _loaderSize,
+      width: _loaderSize,
+      child: CustomPaint(
+        foregroundPainter: variant == OptimusCircleLoaderVariant.determinate
+            ? DeterminedPainter(
+                trackColor: _getTrackColor(theme),
+                indicatorColor: _getIndicatorColor(theme),
+                progress: progress!,
+              )
+            : IndeterminatePainter(),
+      ),
+    );
+  }
+}
+
+extension on OptimusCircleLoaderAppearance {
+  Color getIndicatorColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusCircleLoaderAppearance.normal:
         return theme.colors.primary500;
-      case OptimusColorOption.success:
-        return theme.colors.success500;
-      case OptimusColorOption.warning:
-        return theme.colors.warning500;
-      case OptimusColorOption.danger:
-        return theme.colors.danger500;
+      case OptimusCircleLoaderAppearance.contrast:
+        return theme.colors.neutral0;
+    }
+  }
+
+  Color toTrackColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusCircleLoaderAppearance.normal:
+        return theme.colors.neutral50;
+      case OptimusCircleLoaderAppearance.contrast:
+        return theme.colors.neutral1000t32;
     }
   }
 }

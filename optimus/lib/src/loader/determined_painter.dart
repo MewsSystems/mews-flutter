@@ -6,43 +6,42 @@ import 'package:flutter/widgets.dart';
 
 class DeterminedPainter extends CustomPainter {
   DeterminedPainter({
+    required this.trackColor,
+    required this.indicatorColor,
     required this.progress,
   });
 
+  final Color trackColor;
+  final Color indicatorColor;
   double progress;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final width = size.width / 2;
-    final height = size.height / 2;
-    final radius = width;
-
+    final radius = size.width / 2;
     final double strokeWidth = size.width / 10;
-    final center = Offset(width, height);
+    final center = Offset(radius, radius);
 
-    /// Background timer progress circle
-    final timerCircle = Paint()
+    /// Track circle
+    final trackCircle = Paint()
       ..strokeWidth = strokeWidth
       ..color = Colors.amber
       ..style = PaintingStyle.stroke;
 
-    final timerCircleRadius = width;
-    canvas.drawCircle(center, timerCircleRadius, timerCircle);
+    canvas.drawCircle(center, radius, trackCircle);
 
-    /// Progress timer circle
-    final timerAnimationArc = Paint()
+    /// Indicator circle
+    final indicatorArc = Paint()
       ..strokeWidth = strokeWidth
       ..color = Colors.red
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.square;
 
-    final angle = 2 * pi * (progress / 100);
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
       3 * pi / 2,
-      angle,
+      2 * pi * (progress / 100),
       false,
-      timerAnimationArc,
+      indicatorArc,
     );
   }
 
