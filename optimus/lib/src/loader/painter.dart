@@ -39,7 +39,7 @@ class CirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final radius = size.width / 2;
-    final double strokeWidth = size.width / 10;
+    final strokeWidth = size.width / 10;
     final center = Offset(radius, radius);
 
     /// Track circle
