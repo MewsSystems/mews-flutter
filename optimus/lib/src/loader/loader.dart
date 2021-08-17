@@ -1,11 +1,8 @@
-import 'dart:math';
-
-import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/loader/determined_painter.dart';
-import 'package:optimus/src/loader/indeterminate_painter.dart';
+import 'package:optimus/src/loader/painter.dart';
+import 'package:optimus/src/loader/spinning_container.dart';
 
 enum OptimusCircleLoaderSize {
   /// Small loader is intended to be used inside of the components like inputs
@@ -106,42 +103,25 @@ class OptimusCircleLoader extends StatelessWidget {
     }
   }
 
+  Widget _getCirclePainter(OptimusThemeData theme) => CustomPaint(
+        foregroundPainter: CirclePainter(
+          trackColor: _getTrackColor(theme),
+          indicatorColor: _getIndicatorColor(theme),
+          progress: progress,
+          variant: variant,
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Container(
+    return SizedBox(
       height: _loaderSize,
       width: _loaderSize,
-      child: CustomPaint(
-        foregroundPainter: variant == OptimusCircleLoaderVariant.determinate
-            ? DeterminedPainter(
-                trackColor: _getTrackColor(theme),
-                indicatorColor: _getIndicatorColor(theme),
-                progress: progress!,
-              )
-            : IndeterminatePainter(),
-      ),
+      child: variant == OptimusCircleLoaderVariant.determinate
+          ? _getCirclePainter(theme)
+          : SpinningContainer(child: _getCirclePainter(theme)),
     );
-  }
-}
-
-extension on OptimusCircleLoaderAppearance {
-  Color getIndicatorColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusCircleLoaderAppearance.normal:
-        return theme.colors.primary500;
-      case OptimusCircleLoaderAppearance.contrast:
-        return theme.colors.neutral0;
-    }
-  }
-
-  Color toTrackColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusCircleLoaderAppearance.normal:
-        return theme.colors.neutral50;
-      case OptimusCircleLoaderAppearance.contrast:
-        return theme.colors.neutral1000t32;
-    }
   }
 }
