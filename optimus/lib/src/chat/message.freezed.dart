@@ -23,7 +23,7 @@ class _$OptimusMessageTearOff {
       required MessageColor color,
       required DateTime time,
       required MessageState state,
-      required Widget avatar}) {
+      required Widget? avatar}) {
     return _Message(
       userName: userName,
       message: message,
@@ -47,7 +47,7 @@ mixin _$OptimusMessage {
   MessageColor get color => throw _privateConstructorUsedError;
   DateTime get time => throw _privateConstructorUsedError;
   MessageState get state => throw _privateConstructorUsedError;
-  Widget get avatar => throw _privateConstructorUsedError;
+  Widget? get avatar => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OptimusMessageCopyWith<OptimusMessage> get copyWith =>
@@ -66,7 +66,7 @@ abstract class $OptimusMessageCopyWith<$Res> {
       MessageColor color,
       DateTime time,
       MessageState state,
-      Widget avatar});
+      Widget? avatar});
 }
 
 /// @nodoc
@@ -116,7 +116,7 @@ class _$OptimusMessageCopyWithImpl<$Res>
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as Widget,
+              as Widget?,
     ));
   }
 }
@@ -134,7 +134,7 @@ abstract class _$MessageCopyWith<$Res>
       MessageColor color,
       DateTime time,
       MessageState state,
-      Widget avatar});
+      Widget? avatar});
 }
 
 /// @nodoc
@@ -184,7 +184,7 @@ class __$MessageCopyWithImpl<$Res> extends _$OptimusMessageCopyWithImpl<$Res>
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as Widget,
+              as Widget?,
     ));
   }
 }
@@ -214,7 +214,7 @@ class _$_Message implements _Message {
   @override
   final MessageState state;
   @override
-  final Widget avatar;
+  final Widget? avatar;
 
   @override
   String toString() {
@@ -269,7 +269,7 @@ abstract class _Message implements OptimusMessage {
       required MessageColor color,
       required DateTime time,
       required MessageState state,
-      required Widget avatar}) = _$_Message;
+      required Widget? avatar}) = _$_Message;
 
   @override
   String get userName => throw _privateConstructorUsedError;
@@ -284,7 +284,7 @@ abstract class _Message implements OptimusMessage {
   @override
   MessageState get state => throw _privateConstructorUsedError;
   @override
-  Widget get avatar => throw _privateConstructorUsedError;
+  Widget? get avatar => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MessageCopyWith<_Message> get copyWith =>

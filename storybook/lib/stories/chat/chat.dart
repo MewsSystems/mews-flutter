@@ -7,6 +7,7 @@ final chatStory = Story(
   name: 'Chat',
   builder: (_, k) => OptimusChat(
     messages: messages,
+    hasAvatars: k.boolean(label: 'Enable avatar', initial: true),
     formatTime: (DateTime input) =>
         '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
     formatDate: (DateTime input) =>

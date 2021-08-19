@@ -12,7 +12,6 @@ class OptimusChatBubble extends StatelessWidget {
   const OptimusChatBubble({
     Key? key,
     required this.message,
-    required this.isAvatarVisible,
     required this.isStatusVisible,
     required this.isUserNameVisible,
     required this.isDateVisible,
@@ -24,7 +23,6 @@ class OptimusChatBubble extends StatelessWidget {
   }) : super(key: key);
 
   final OptimusMessage message;
-  final bool isAvatarVisible;
   final bool isStatusVisible;
   final bool isUserNameVisible;
   final bool isDateVisible;
@@ -34,26 +32,23 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget sent;
   final Widget error;
 
-  Widget _buildMessageBubble(OptimusThemeData theme) => Flexible(
-        child: Container(
-          margin: EdgeInsets.only(
-            top: isUserNameVisible ? spacing0 : spacing100,
-            left: message.alignment == MessageAlignment.left ? spacing100 : 64,
-            right:
-                message.alignment == MessageAlignment.right ? spacing100 : 64,
-          ),
-          constraints: const BoxConstraints(maxWidth: 480),
-          decoration: _buildMessageBackground(theme),
-          padding: const EdgeInsets.only(
-            left: spacing100,
-            right: spacing100,
-            top: spacing50,
-            bottom: spacing100,
-          ),
-          child: Text(
-            message.message,
-            style: preset200s.copyWith(color: _createMessageTextColor(theme)),
-          ),
+  Widget _buildMessageBubble(OptimusThemeData theme) => Container(
+        margin: EdgeInsets.only(
+          top: isUserNameVisible ? spacing0 : spacing100,
+          left: message.alignment == MessageAlignment.left ? spacing100 : 64,
+          right: message.alignment == MessageAlignment.right ? spacing100 : 64,
+        ),
+        constraints: const BoxConstraints(maxWidth: 480),
+        decoration: _buildMessageBackground(theme),
+        padding: const EdgeInsets.only(
+          left: spacing100,
+          right: spacing100,
+          top: spacing50,
+          bottom: spacing100,
+        ),
+        child: Text(
+          message.message,
+          style: preset200s.copyWith(color: _createMessageTextColor(theme)),
         ),
       );
 
@@ -92,8 +87,8 @@ class OptimusChatBubble extends StatelessWidget {
       );
 
   EdgeInsets get _statusPadding => EdgeInsets.only(
-        left: message.alignment == MessageAlignment.left ? 48 : 0,
-        right: message.alignment != MessageAlignment.left ? 48 : 0,
+        left: message.alignment == MessageAlignment.left ? spacing100 : 0,
+        right: message.alignment != MessageAlignment.left ? spacing100 : 0,
       );
 
   Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
@@ -177,11 +172,6 @@ class OptimusChatBubble extends StatelessWidget {
           ? OptimusStackAlignment.start
           : OptimusStackAlignment.end;
 
-  Widget get _avatar => SizedBox(
-        width: 40,
-        child: isAvatarVisible ? message.avatar : null,
-      );
-
   BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
       BoxDecoration(
         borderRadius: const BorderRadius.all(borderRadius100),
@@ -220,16 +210,7 @@ class OptimusChatBubble extends StatelessWidget {
       children: [
         if (isDateVisible) _buildDate(theme),
         if (isUserNameVisible) _userName,
-        OptimusStack(
-          direction: Axis.horizontal,
-          mainAxisAlignment: _bubbleAlignment,
-          crossAxisAlignment: OptimusStackAlignment.end,
-          children: [
-            if (message.alignment == MessageAlignment.left) _avatar,
-            _buildMessageBubble(theme),
-            if (message.alignment == MessageAlignment.right) _avatar,
-          ],
-        ),
+        _buildMessageBubble(theme),
         if (isStatusVisible) _buildStatus(theme),
       ],
     );
