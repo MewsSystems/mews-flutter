@@ -46,9 +46,9 @@ class OptimusChat extends StatelessWidget {
                 crossAxisAlignment: OptimusStackAlignment.end,
                 mainAxisAlignment: _bubbleAlignment(index),
                 children: [
-                  if (_messages[index].alignment == MessageAlignment.left &&
-                      hasAvatars)
-                    _avatar(index),
+                  if (hasAvatars &&
+                      _messages[index].alignment == MessageAlignment.left)
+                    _buildAvatar(index),
                   Flexible(
                     child: OptimusChatBubble(
                       message: _messages[index],
@@ -62,9 +62,9 @@ class OptimusChat extends StatelessWidget {
                       error: error,
                     ),
                   ),
-                  if (_messages[index].alignment == MessageAlignment.right &&
-                      hasAvatars)
-                    _avatar(index),
+                  if (hasAvatars &&
+                      _messages[index].alignment == MessageAlignment.right)
+                    _buildAvatar(index),
                 ],
               ),
             ),
@@ -73,7 +73,7 @@ class OptimusChat extends StatelessWidget {
         ],
       );
 
-  Widget _avatar(int index) => Padding(
+  Widget _buildAvatar(int index) => Padding(
         padding: EdgeInsets.only(bottom: _showAvatar(index) ? 18 : 0),
         child: SizedBox(
           width: 40,
