@@ -1,3 +1,10 @@
+## 0.8.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: Update list tile design (#122).
+ - **BREAKING** **FEAT**: Update chat avatars support (#125).
+
 ## 0.7.5+3
 
  - **FIX**: Add key to search field overlay (#119).
