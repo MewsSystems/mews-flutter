@@ -80,9 +80,9 @@ class OptimusChatBubble extends StatelessWidget {
       );
 
   EdgeInsets _userNamePadding(MessageAlignment alignment) => EdgeInsets.only(
-    left: alignment == MessageAlignment.left ? spacing100 : 0,
-    right: alignment == MessageAlignment.right ? spacing100 : 0,
-  );
+        left: alignment == MessageAlignment.left ? spacing100 : 0,
+        right: alignment == MessageAlignment.right ? spacing100 : 0,
+      );
 
   OptimusStackAlignment get _bubbleAlignment =>
       message.alignment == MessageAlignment.left
