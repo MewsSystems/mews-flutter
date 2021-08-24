@@ -74,7 +74,7 @@ class OptimusChat extends StatelessWidget {
       );
 
   Widget _buildAvatar(int index) => Padding(
-        padding: EdgeInsets.only(bottom: _showAvatar(index) ? 18 : 0),
+        padding: EdgeInsets.only(bottom: _showAvatar(index) ? 34 : 0),
         child: SizedBox(
           width: 40,
           child: _showAvatar(index) ? _messages[index].avatar : null,
