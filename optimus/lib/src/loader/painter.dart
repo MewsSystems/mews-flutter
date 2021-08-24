@@ -11,7 +11,7 @@ class CirclePainter extends CustomPainter {
     required this.progress,
   }) : assert(
           progress >= 0 && progress <= 100,
-          'progress should either be null or in [0, 100] range',
+          'progress should be in [0, 100] range',
         );
 
   final Color trackColor;
@@ -24,7 +24,6 @@ class CirclePainter extends CustomPainter {
     final strokeWidth = size.width / 10;
     final center = Offset(radius, radius);
 
-    /// Track circle
     final trackCircle = Paint()
       ..strokeWidth = strokeWidth
       ..color = trackColor
@@ -32,7 +31,6 @@ class CirclePainter extends CustomPainter {
 
     canvas.drawCircle(center, radius, trackCircle);
 
-    /// Indicator circle
     final indicatorArc = Paint()
       ..strokeWidth = strokeWidth
       ..color = indicatorColor
