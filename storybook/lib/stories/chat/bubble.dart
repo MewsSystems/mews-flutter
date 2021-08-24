@@ -42,7 +42,6 @@ final chatBubbleStory = Story(
         child: OptimusChatBubble(
           message: message,
           isUserNameVisible: k.boolean(label: 'Show user name', initial: true),
-          isStatusVisible: k.boolean(label: 'Show status', initial: true),
           isDateVisible: k.boolean(label: 'Show date', initial: true),
           formatTime: (DateTime input) =>
               '${input.hour}:${input.minute.toString().padLeft(2, '0')}',

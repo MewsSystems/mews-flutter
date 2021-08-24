@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/input.dart';
 import 'package:optimus/src/chat/message.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 /// The chat components offer instant real-time communication between
 /// two (or multiple) parties. It also serves as a log or transcript
@@ -33,53 +34,155 @@ class OptimusChat extends StatelessWidget {
   final Widget error;
   final SendCallback onSendPressed;
 
+  static const double _avatarWidth = 40;
+
   @override
-  Widget build(BuildContext context) => OptimusStack(
-        spacing: OptimusStackSpacing.spacing50,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: _messages.length,
-              reverse: true,
-              itemBuilder: (context, index) => OptimusStack(
-                direction: Axis.horizontal,
-                crossAxisAlignment: OptimusStackAlignment.end,
-                mainAxisAlignment: _bubbleAlignment(index),
-                children: [
-                  if (hasAvatars &&
-                      _messages[index].alignment == MessageAlignment.left)
-                    _buildAvatar(index),
-                  Flexible(
-                    child: OptimusChatBubble(
-                      message: _messages[index],
-                      isStatusVisible: _showStatus(index),
-                      isUserNameVisible: _showUserName(index),
-                      isDateVisible: _showDate(index),
-                      formatTime: formatTime,
-                      formatDate: formatDate,
-                      sending: sending,
-                      sent: sent,
-                      error: error,
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return OptimusStack(
+      spacing: OptimusStackSpacing.spacing50,
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: _messages.length,
+            reverse: true,
+            itemBuilder: (context, index) => OptimusStack(
+              direction: Axis.vertical,
+              children: [
+                OptimusStack(
+                  direction: Axis.horizontal,
+                  crossAxisAlignment: OptimusStackAlignment.end,
+                  mainAxisAlignment: _bubbleAlignment(index),
+                  children: [
+                    if (hasAvatars &&
+                        _messages[index].alignment == MessageAlignment.left)
+                      _buildAvatar(index),
+                    Flexible(
+                      child: OptimusChatBubble(
+                        message: _messages[index],
+                        isUserNameVisible: _showUserName(index),
+                        isDateVisible: _showDate(index),
+                        formatTime: formatTime,
+                        formatDate: formatDate,
+                        sending: sending,
+                        sent: sent,
+                        error: error,
+                      ),
                     ),
-                  ),
-                  if (hasAvatars &&
-                      _messages[index].alignment == MessageAlignment.right)
-                    _buildAvatar(index),
-                ],
+                    if (hasAvatars &&
+                        _messages[index].alignment == MessageAlignment.right)
+                      _buildAvatar(index),
+                  ],
+                ),
+                if (_showStatus(index))
+                  _buildStatus(index, _messages[index], theme),
+              ],
+            ),
+          ),
+        ),
+        OptimusChatInput(onSendPressed: onSendPressed),
+      ],
+    );
+  }
+
+  Widget _buildAvatar(int index) => SizedBox(
+        width: _avatarWidth,
+        child: _showAvatar(index) ? _messages[index].avatar : null,
+      );
+
+  Padding _buildStatus(
+    int index,
+    OptimusMessage message,
+    OptimusThemeData theme,
+  ) =>
+      Padding(
+        padding: _statusPadding(message.alignment),
+        child: _buildStatusText(index, message, theme),
+      );
+
+  EdgeInsets _statusPadding(MessageAlignment alignment) => EdgeInsets.only(
+        top: spacing100,
+        left:
+            alignment == MessageAlignment.left ? spacing100 + _avatarWidth : 0,
+        right:
+            alignment == MessageAlignment.right ? spacing100 + _avatarWidth : 0,
+        bottom: spacing200,
+      );
+
+  Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
+      DefaultTextStyle.merge(
+        style: baseTextStyle.copyWith(
+          color: theme.isDark
+              ? theme.colors.neutral0t64
+              : theme.colors.neutral1000t64,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        child: child,
+      );
+
+  Widget _buildStatusText(
+    int index,
+    OptimusMessage message,
+    OptimusThemeData theme,
+  ) {
+    late final List<Widget> children;
+    final color =
+        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
+
+    switch (message.state) {
+      case MessageState.sending:
+        children = [
+          _buildStatusTextStyle(theme, Text(formatTime(message.time))),
+          _buildStatusTextStyle(theme, sending),
+          Container(
+            width: 13,
+            height: 13,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              border: Border.all(
+                width: 1.2,
+                color: color,
               ),
             ),
           ),
-          OptimusChatInput(onSendPressed: onSendPressed),
-        ],
-      );
+        ];
+        break;
+      case MessageState.sent:
+        children = [
+          _buildStatusTextStyle(theme, Text(formatTime(message.time))),
+          if (message.alignment == MessageAlignment.right)
+            _buildStatusTextStyle(theme, sent),
+          if (message.alignment == MessageAlignment.right)
+            const Opacity(
+              opacity: 0.6,
+              child: OptimusIcon(
+                iconData: OptimusIcons.done_circle,
+                iconSize: OptimusIconSize.small,
+              ),
+            )
+        ];
+        break;
+      case MessageState.error:
+        children = [
+          _buildStatusTextStyle(theme, error),
+          const OptimusIcon(
+            iconData: OptimusIcons.disable,
+            iconSize: OptimusIconSize.small,
+            colorOption: OptimusColorOption.danger,
+          ),
+        ];
+        break;
+    }
 
-  Widget _buildAvatar(int index) => Padding(
-        padding: EdgeInsets.only(bottom: _showAvatar(index) ? 34 : 0),
-        child: SizedBox(
-          width: 40,
-          child: _showAvatar(index) ? _messages[index].avatar : null,
-        ),
-      );
+    return OptimusStack(
+      mainAxisAlignment: _bubbleAlignment(index),
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing50,
+      children: children,
+    );
+  }
 
   OptimusStackAlignment _bubbleAlignment(int index) =>
       _messages[index].alignment == MessageAlignment.left

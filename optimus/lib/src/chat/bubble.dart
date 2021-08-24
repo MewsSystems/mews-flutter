@@ -12,7 +12,6 @@ class OptimusChatBubble extends StatelessWidget {
   const OptimusChatBubble({
     Key? key,
     required this.message,
-    required this.isStatusVisible,
     required this.isUserNameVisible,
     required this.isDateVisible,
     required this.formatTime,
@@ -23,7 +22,6 @@ class OptimusChatBubble extends StatelessWidget {
   }) : super(key: key);
 
   final OptimusMessage message;
-  final bool isStatusVisible;
   final bool isUserNameVisible;
   final bool isDateVisible;
   final FormatTime formatTime;
@@ -77,96 +75,14 @@ class OptimusChatBubble extends StatelessWidget {
   }
 
   Padding get _userName => Padding(
-        padding: _statusPadding,
+        padding: _userNamePadding(message.alignment),
         child: Text(message.userName, style: preset100s),
       );
 
-  Padding _buildStatus(OptimusThemeData theme) => Padding(
-        padding: _statusPadding,
-        child: _buildStatusText(message, theme),
-      );
-
-  EdgeInsets get _statusPadding => EdgeInsets.only(
-        left: message.alignment == MessageAlignment.left ? spacing100 : 0,
-        right: message.alignment == MessageAlignment.right ? spacing100 : 0,
-        bottom: spacing200,
-      );
-
-  Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
-      DefaultTextStyle.merge(
-        style: baseTextStyle.copyWith(
-          color: theme.isDark
-              ? theme.colors.neutral0t64
-              : theme.colors.neutral1000t64,
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-        child: child,
-      );
-
-  Widget _buildStatusText(OptimusMessage message, OptimusThemeData theme) {
-    late final List<Widget> children;
-    final color =
-        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
-
-    switch (message.state) {
-      case MessageState.sending:
-        children = [
-          _buildStatusTextStyle(
-            theme,
-            Text(formatTime(message.time)),
-          ),
-          _buildStatusTextStyle(theme, sending),
-          Container(
-            width: 13,
-            height: 13,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              border: Border.all(
-                width: 1.2,
-                color: color,
-              ),
-            ),
-          ),
-        ];
-        break;
-      case MessageState.sent:
-        children = [
-          _buildStatusTextStyle(
-            theme,
-            Text(formatTime(message.time)),
-          ),
-          if (message.alignment == MessageAlignment.right)
-            _buildStatusTextStyle(theme, sent),
-          if (message.alignment == MessageAlignment.right)
-            const Opacity(
-              opacity: 0.6,
-              child: OptimusIcon(
-                iconData: OptimusIcons.done_circle,
-                iconSize: OptimusIconSize.small,
-              ),
-            )
-        ];
-        break;
-      case MessageState.error:
-        children = [
-          _buildStatusTextStyle(theme, error),
-          const OptimusIcon(
-            iconData: OptimusIcons.disable,
-            iconSize: OptimusIconSize.small,
-            colorOption: OptimusColorOption.danger,
-          ),
-        ];
-        break;
-    }
-
-    return OptimusStack(
-      mainAxisAlignment: _bubbleAlignment,
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing50,
-      children: children,
-    );
-  }
+  EdgeInsets _userNamePadding(MessageAlignment alignment) => EdgeInsets.only(
+    left: alignment == MessageAlignment.left ? spacing100 : 0,
+    right: alignment == MessageAlignment.right ? spacing100 : 0,
+  );
 
   OptimusStackAlignment get _bubbleAlignment =>
       message.alignment == MessageAlignment.left
@@ -212,7 +128,6 @@ class OptimusChatBubble extends StatelessWidget {
         if (isDateVisible) _buildDate(theme),
         if (isUserNameVisible) _userName,
         _buildMessageBubble(theme),
-        if (isStatusVisible) _buildStatus(theme),
       ],
     );
   }
