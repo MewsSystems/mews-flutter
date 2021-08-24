@@ -103,12 +103,12 @@ class OptimusCircleLoader extends StatelessWidget {
     }
   }
 
-  Widget _getCirclePainter(OptimusThemeData theme) => CustomPaint(
+  Widget _getCirclePainter(OptimusThemeData theme, double progress) =>
+      CustomPaint(
         foregroundPainter: CirclePainter(
           trackColor: _getTrackColor(theme),
           indicatorColor: _getIndicatorColor(theme),
           progress: progress,
-          variant: variant,
         ),
       );
 
@@ -120,8 +120,8 @@ class OptimusCircleLoader extends StatelessWidget {
       height: _loaderSize,
       width: _loaderSize,
       child: variant == OptimusCircleLoaderVariant.determinate
-          ? _getCirclePainter(theme)
-          : SpinningContainer(child: _getCirclePainter(theme)),
+          ? _getCirclePainter(theme, progress!)
+          : SpinningContainer(child: _getCirclePainter(theme, 25)),
     );
   }
 }

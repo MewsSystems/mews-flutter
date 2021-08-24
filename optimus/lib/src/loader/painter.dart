@@ -3,38 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/loader/loader.dart';
 
 class CirclePainter extends CustomPainter {
   CirclePainter({
     required this.trackColor,
     required this.indicatorColor,
     required this.progress,
-    required this.variant,
   });
 
   final Color trackColor;
   final Color indicatorColor;
-  double? progress;
-  final OptimusCircleLoaderVariant variant;
-
-  double get _startAngle {
-    switch (variant) {
-      case OptimusCircleLoaderVariant.determinate:
-        return 3 * pi / 2;
-      case OptimusCircleLoaderVariant.indeterminate:
-        return 3 * pi / 4;
-    }
-  }
-
-  double get _sweepAngle {
-    switch (variant) {
-      case OptimusCircleLoaderVariant.determinate:
-        return 2 * pi * (progress! / 100);
-      case OptimusCircleLoaderVariant.indeterminate:
-        return 2 * pi * (25 / 100);
-    }
-  }
+  final double progress;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -59,8 +38,8 @@ class CirclePainter extends CustomPainter {
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      _startAngle,
-      _sweepAngle,
+      3 * pi / 2,
+      2 * pi * (progress / 100),
       false,
       indicatorArc,
     );
