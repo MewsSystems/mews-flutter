@@ -39,8 +39,8 @@ enum OptimusCircleLoaderAppearance {
   /// used over light backgrounds.
   normal,
 
-  /// The contrast option uses the neural white color, and it is designed to be
-  /// used over the colored backgrounds.
+  /// The contrast option uses the neutral white color, and it is designed to
+  /// be used over the colored backgrounds.
   contrast,
 }
 
