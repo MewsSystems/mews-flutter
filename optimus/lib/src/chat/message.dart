@@ -32,6 +32,6 @@ class OptimusMessage with _$OptimusMessage {
     required MessageColor color,
     required DateTime time,
     required MessageState state,
-    required Widget avatar,
+    required Widget? avatar,
   }) = _Message;
 }
