@@ -30,8 +30,6 @@ class OptimusCircleLoaderVariant with _$OptimusCircleLoaderVariant {
   /// Use this option if the progress can be precisely measured, calculated, or
   /// otherwise determined against the specific action. The value shows the
   /// progress of the operation ranging from 0 to 100 until it is finished.
-  ///
-  /// Progress should either be null or in [0, 100] range.
   const factory OptimusCircleLoaderVariant.determinate(double progress) =
       Determinate;
 }
