@@ -88,7 +88,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   EdgeInsets get _statusPadding => EdgeInsets.only(
         left: message.alignment == MessageAlignment.left ? spacing100 : 0,
-        right: message.alignment != MessageAlignment.left ? spacing100 : 0,
+        right: message.alignment == MessageAlignment.right ? spacing100 : 0,
         bottom: spacing200,
       );
 
