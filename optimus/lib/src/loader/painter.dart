@@ -9,7 +9,10 @@ class CirclePainter extends CustomPainter {
     required this.trackColor,
     required this.indicatorColor,
     required this.progress,
-  });
+  }) : assert(
+          progress >= 0 && progress <= 100,
+          'progress should either be null or in [0, 100] range',
+        );
 
   final Color trackColor;
   final Color indicatorColor;

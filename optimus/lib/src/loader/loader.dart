@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/loader/painter.dart';
 import 'package:optimus/src/loader/spinning_container.dart';
+
+part 'loader.freezed.dart';
 
 enum OptimusCircleLoaderSize {
   /// Small loader is intended to be used inside of the components like inputs
@@ -18,15 +21,19 @@ enum OptimusCircleLoaderSize {
   large,
 }
 
-enum OptimusCircleLoaderVariant {
+@freezed
+class OptimusCircleLoaderVariant with _$OptimusCircleLoaderVariant {
   /// The default option represents the progress that cannot be precisely
   /// calculated or otherwise determined.
-  indeterminate,
+  const factory OptimusCircleLoaderVariant.indeterminate() = Indeterminate;
 
   /// Use this option if the progress can be precisely measured, calculated, or
   /// otherwise determined against the specific action. The value shows the
   /// progress of the operation ranging from 0 to 100 until it is finished.
-  determinate,
+  ///
+  /// Progress should either be null or in [0, 100] range.
+  const factory OptimusCircleLoaderVariant.determinate(double progress) =
+      Determinate;
 }
 
 enum OptimusCircleLoaderAppearance {
@@ -45,31 +52,16 @@ enum OptimusCircleLoaderAppearance {
 class OptimusCircleLoader extends StatelessWidget {
   const OptimusCircleLoader({
     Key? key,
-    this.progress,
+    required this.variant,
     this.size = OptimusCircleLoaderSize.medium,
-    this.variant = OptimusCircleLoaderVariant.indeterminate,
     this.appearance = OptimusCircleLoaderAppearance.normal,
-  })  : assert(
-          (progress == null &&
-                  variant == OptimusCircleLoaderVariant.indeterminate) ||
-              (progress != null &&
-                  variant == OptimusCircleLoaderVariant.determinate),
-          'indeterminate circle loader should not have defined progress',
-        ),
-        assert(
-          progress == null || progress >= 0 && progress <= 100,
-          'progress should either be null or in [0, 100] range',
-        ),
-        super(key: key);
-
-  /// Controls progress of the loader.
-  final double? progress;
-
-  /// Controls size of the loader.
-  final OptimusCircleLoaderSize size;
+  }) : super(key: key);
 
   /// Controls variant of the loader.
   final OptimusCircleLoaderVariant variant;
+
+  /// Controls size of the loader.
+  final OptimusCircleLoaderSize size;
 
   /// Controls appearance of the loader.
   final OptimusCircleLoaderAppearance appearance;
@@ -119,9 +111,11 @@ class OptimusCircleLoader extends StatelessWidget {
     return SizedBox(
       height: _loaderSize,
       width: _loaderSize,
-      child: variant == OptimusCircleLoaderVariant.determinate
-          ? _getCirclePainter(theme, progress!)
-          : SpinningContainer(child: _getCirclePainter(theme, 25)),
+      child: variant.map(
+        indeterminate: (_) =>
+            SpinningContainer(child: _getCirclePainter(theme, 25)),
+        determinate: (v) => _getCirclePainter(theme, v.progress),
+      ),
     );
   }
 }

@@ -19,21 +19,22 @@ final Story loaderStory = Story(
       options: OptimusCircleLoaderAppearance.values.toOptions(),
     );
 
+    final progress = k.slider(label: 'Progress', initial: 25, max: 100);
+
     return OptimusStack(
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
       children: [
         const OptimusSectionTitle(child: Text('Determinate')),
         OptimusCircleLoader(
-          variant: OptimusCircleLoaderVariant.determinate,
-          progress: k.slider(label: 'Progress', initial: 25, max: 100),
+          variant: OptimusCircleLoaderVariant.determinate(progress),
           size: size,
           appearance: appearance,
         ),
         const SizedBox(height: 24),
         const OptimusSectionTitle(child: Text('Indeterminate')),
         OptimusCircleLoader(
-          variant: OptimusCircleLoaderVariant.indeterminate,
+          variant: const OptimusCircleLoaderVariant.indeterminate(),
           size: size,
           appearance: appearance,
         ),
