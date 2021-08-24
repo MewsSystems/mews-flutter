@@ -34,8 +34,6 @@ class OptimusChat extends StatelessWidget {
   final Widget error;
   final SendCallback onSendPressed;
 
-  static const double _avatarWidth = 40;
-
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -85,6 +83,8 @@ class OptimusChat extends StatelessWidget {
       ],
     );
   }
+
+  double get _avatarWidth => hasAvatars ? 40 : 0;
 
   Widget _buildAvatar(int index) => SizedBox(
         width: _avatarWidth,
