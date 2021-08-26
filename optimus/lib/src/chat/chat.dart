@@ -107,7 +107,7 @@ class OptimusChat extends StatelessWidget {
             alignment == MessageAlignment.left ? spacing100 + _avatarWidth : 0,
         right:
             alignment == MessageAlignment.right ? spacing100 + _avatarWidth : 0,
-        bottom: spacing200,
+        bottom: spacing100,
       );
 
   Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
