@@ -9,7 +9,10 @@ final chatBubbleStory = Story(
     name: 'Chat Bubble',
     builder: (_, k) {
       final message = OptimusMessage(
-        userName: k.text(label: 'User name', initial: 'Doggo'),
+        sender: OptimusMessageSender(
+          id: 'id',
+          userName: k.text(label: 'User name', initial: 'Doggo'),
+        ),
         message: k.text(
           label: 'Message',
           initial:

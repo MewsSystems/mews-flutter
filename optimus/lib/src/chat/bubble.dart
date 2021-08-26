@@ -74,7 +74,7 @@ class OptimusChatBubble extends StatelessWidget {
 
   Padding get _userName => Padding(
         padding: _userNamePadding(message.alignment),
-        child: Text(message.userName, style: preset100s),
+        child: Text(message.sender.userName, style: preset100s),
       );
 
   EdgeInsets _userNamePadding(MessageAlignment alignment) => EdgeInsets.only(

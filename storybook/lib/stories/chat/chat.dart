@@ -8,7 +8,7 @@ final chatStory = Story(
   name: 'Chat',
   builder: (_, k) => OptimusChat(
     messages: messages,
-    currentUserName: 'You',
+    isFromCurrentUser: (m) => m.sender.id == 'you',
     hasAvatars: k.boolean(label: 'Enable avatar', initial: true),
     formatTime: (DateTime input) =>
         '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
@@ -71,9 +71,13 @@ final organisationAvatar = Stack(children: [
   ),
 ]);
 
+const _you = OptimusMessageSender(id: 'you', userName: 'You');
+const _user1 = OptimusMessageSender(id: 'user1', userName: 'User 1');
+const _user3 = OptimusMessageSender(id: 'user3', userName: 'User 3');
+
 final messages = <OptimusMessage>[
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: 'Old message',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -82,7 +86,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: 'Hey you!',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -91,7 +95,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -100,7 +104,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'Hello',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -109,7 +113,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'consectetur adipiscing elit',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -118,7 +122,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'Suspendisse diam ante, condimentum ut interdum sit amets',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -127,7 +131,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -136,7 +140,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message:
         'Donec eget elit et massa rhoncus ullamcorper a non ex. Nulla vulputate condimentum libero, non congue ligula auctor ac. Pellentesque vel dui a turpis ultricies accumsan non sed nulla. Aenean interdum tempus scelerisque.',
     alignment: MessageAlignment.right,
@@ -146,7 +150,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'Quisque arcu turpis',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -155,7 +159,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'euismod quis maximus sit amet',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -164,7 +168,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'convallis eleifend ante.',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -173,7 +177,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    sender: _user3,
     message: '😁',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
@@ -182,7 +186,7 @@ final messages = <OptimusMessage>[
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message:
         'Suspendisse diam ante, condimentum ut interdum sit amet, suscipit non massa.',
     alignment: MessageAlignment.right,
@@ -192,7 +196,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: 'sdf sfsdfdsfsh fdf sdf',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -201,7 +205,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: 'Maecenas pellentesque',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -210,7 +214,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: 'quam sed viverra ornare',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -219,7 +223,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    sender: _user1,
     message: 'tellus orci placerat purus',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -228,7 +232,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    sender: _user3,
     message:
         'ut consectetur orci metus sed nibh. Praesent in tellus facilisis, sagittis odio eget, maximus turpis',
     alignment: MessageAlignment.right,
@@ -238,7 +242,7 @@ final messages = <OptimusMessage>[
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    sender: _user3,
     message: 'orci metus sed nibh. Praesent in tellus facilisis,',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
@@ -247,7 +251,7 @@ final messages = <OptimusMessage>[
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    sender: _user3,
     message: 'Aliquam porttitor quis eros pharetra blandit.',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
@@ -256,7 +260,7 @@ final messages = <OptimusMessage>[
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    sender: _user3,
     message: 'Test',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
@@ -265,7 +269,7 @@ final messages = <OptimusMessage>[
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: '🤔',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -274,7 +278,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    sender: _you,
     message: '😫',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,

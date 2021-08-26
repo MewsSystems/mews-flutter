@@ -13,13 +13,13 @@ class OptimusChat extends StatelessWidget {
     Key? key,
     required List<OptimusMessage> messages,
     required this.hasAvatars,
-    required this.currentUserName,
     required this.formatTime,
     required this.formatDate,
     required this.sending,
     required this.sent,
     required this.error,
     required this.onSendPressed,
+    required this.isFromCurrentUser,
   }) : super(key: key) {
     _messages
       ..addAll(messages)
@@ -28,13 +28,13 @@ class OptimusChat extends StatelessWidget {
 
   final List<OptimusMessage> _messages = [];
   final bool hasAvatars;
-  final String currentUserName;
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget sending;
   final Widget sent;
   final Widget error;
   final SendCallback onSendPressed;
+  final bool Function(OptimusMessage) isFromCurrentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -50,48 +50,50 @@ class OptimusChat extends StatelessWidget {
         spacing: OptimusStackSpacing.spacing200,
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: _messages.length,
-              reverse: true,
-              itemBuilder: (context, index) => OptimusStack(
-                direction: Axis.vertical,
-                children: [
-                  OptimusStack(
-                    direction: Axis.horizontal,
-                    crossAxisAlignment: OptimusStackAlignment.end,
-                    mainAxisAlignment: _bubbleAlignment(index),
-                    children: [
-                      if (hasAvatars &&
-                          _messages[index].alignment == MessageAlignment.left)
-                        _buildAvatar(index),
-                      Flexible(
-                        child: OptimusChatBubble(
-                          message: _messages[index],
-                          isUserNameVisible: _showUserName(index),
-                          isDateVisible: _showDate(index),
-                          formatTime: formatTime,
-                          formatDate: formatDate,
-                          sending: sending,
-                          sent: sent,
-                          error: error,
-                        ),
-                      ),
-                      if (hasAvatars &&
-                          _messages[index].alignment == MessageAlignment.right)
-                        _buildAvatar(index),
-                    ],
-                  ),
-                  if (_showStatus(index))
-                    _buildStatus(index, _messages[index], theme),
-                ],
-              ),
-            ),
+            child: _buildMessagesList(theme),
           ),
           OptimusChatInput(onSendPressed: onSendPressed),
         ],
       ),
     );
   }
+
+  Widget _buildMessagesList(OptimusThemeData theme) => ListView.builder(
+    itemCount: _messages.length,
+    reverse: true,
+    itemBuilder: (context, index) => OptimusStack(
+      direction: Axis.vertical,
+      children: [
+        OptimusStack(
+          direction: Axis.horizontal,
+          crossAxisAlignment: OptimusStackAlignment.end,
+          mainAxisAlignment: _bubbleAlignment(index),
+          children: [
+            if (hasAvatars &&
+                _messages[index].alignment == MessageAlignment.left)
+              _buildAvatar(index),
+            Flexible(
+              child: OptimusChatBubble(
+                message: _messages[index],
+                isUserNameVisible: _showUserName(index),
+                isDateVisible: _showDate(index),
+                formatTime: formatTime,
+                formatDate: formatDate,
+                sending: sending,
+                sent: sent,
+                error: error,
+              ),
+            ),
+            if (hasAvatars &&
+                _messages[index].alignment == MessageAlignment.right)
+              _buildAvatar(index),
+          ],
+        ),
+        if (_showStatus(index))
+          _buildStatus(index, _messages[index], theme),
+      ],
+    ),
+  );
 
   double get _avatarWidth => hasAvatars ? 40 : 0;
 
@@ -166,10 +168,10 @@ class OptimusChat extends StatelessWidget {
         children = [
           _buildStatusTextStyle(theme, Text(formatTime(message.time))),
           if (message.alignment == MessageAlignment.right &&
-              message.userName == currentUserName)
+              isFromCurrentUser(message))
             _buildStatusTextStyle(theme, sent),
           if (message.alignment == MessageAlignment.right &&
-              message.userName == currentUserName)
+              isFromCurrentUser(message))
             const Opacity(
               opacity: 0.6,
               child: OptimusIcon(
@@ -206,7 +208,7 @@ class OptimusChat extends StatelessWidget {
 
   bool _previousMessageIsFromSameUser(int index) =>
       index - 1 >= 0 &&
-      _messages[index - 1].userName == _messages[index].userName;
+      _messages[index - 1].sender.id == _messages[index].sender.id;
 
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
@@ -222,11 +224,11 @@ class OptimusChat extends StatelessWidget {
       !_previousMessageIsFromSameUser(index);
 
   bool _showUserName(int index) =>
-      _messages[index].userName != currentUserName &&
+      !isFromCurrentUser(_messages[index]) &&
       (_moreThanOneMinuteDifferenceBack(index) ||
           _oldestMessage(index) ||
-          _messages[index < _messages.length ? index + 1 : index].userName !=
-              _messages[index].userName);
+          _messages[index < _messages.length ? index + 1 : index].sender.id !=
+              _messages[index].sender.id);
 
   bool _showDate(int index) =>
       _previousMessageTime(index) == null ||
