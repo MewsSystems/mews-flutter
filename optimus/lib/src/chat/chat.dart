@@ -13,6 +13,7 @@ class OptimusChat extends StatelessWidget {
     Key? key,
     required List<OptimusMessage> messages,
     required this.hasAvatars,
+    required this.currentUserName,
     required this.formatTime,
     required this.formatDate,
     required this.sending,
@@ -27,6 +28,7 @@ class OptimusChat extends StatelessWidget {
 
   final List<OptimusMessage> _messages = [];
   final bool hasAvatars;
+  final String currentUserName;
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget sending;
@@ -152,7 +154,8 @@ class OptimusChat extends StatelessWidget {
       case MessageState.sent:
         children = [
           _buildStatusTextStyle(theme, Text(formatTime(message.time))),
-          if (message.alignment == MessageAlignment.right)
+          if (message.alignment == MessageAlignment.right &&
+              message.userName == currentUserName)
             _buildStatusTextStyle(theme, sent),
           if (message.alignment == MessageAlignment.right)
             const Opacity(
@@ -210,9 +213,10 @@ class OptimusChat extends StatelessWidget {
       _previousMessageIsFromSameUser(index);
 
   bool _showUserName(int index) =>
-      _oldestMessage(index) ||
-      _messages[index < _messages.length ? index + 1 : index].userName !=
-          _messages[index].userName;
+      _messages[index].userName != currentUserName &&
+      (_oldestMessage(index) ||
+          _messages[index < _messages.length ? index + 1 : index].userName !=
+              _messages[index].userName);
 
   bool _showDate(int index) =>
       _previousMessageTime(index) == null ||

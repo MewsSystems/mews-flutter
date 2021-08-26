@@ -7,6 +7,7 @@ final chatStory = Story(
   name: 'Chat',
   builder: (_, k) => OptimusChat(
     messages: messages,
+    currentUserName: 'You',
     hasAvatars: k.boolean(label: 'Enable avatar', initial: true),
     formatTime: (DateTime input) =>
         '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
@@ -229,6 +230,15 @@ final messages = <OptimusMessage>[
     userName: 'User 3',
     message:
         'ut consectetur orci metus sed nibh. Praesent in tellus facilisis, sagittis odio eget, maximus turpis',
+    alignment: MessageAlignment.right,
+    color: MessageColor.light,
+    time: DateTime.now().subtract(const Duration(seconds: 17)),
+    state: MessageState.sent,
+    avatar: organisationAvatar,
+  ),
+  OptimusMessage(
+    userName: 'User 3',
+    message: 'orci metus sed nibh. Praesent in tellus facilisis,',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(seconds: 17)),

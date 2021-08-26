@@ -54,9 +54,7 @@ class OptimusChatBubble extends StatelessWidget {
     final separator = Expanded(
       child: Container(
         height: 1,
-        color: theme.isDark
-            ? theme.colors.neutral0t32
-            : theme.colors.neutral1000t32,
+        color: theme.colors.neutral50,
       ),
     );
 
