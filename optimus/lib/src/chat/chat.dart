@@ -210,6 +210,7 @@ class OptimusChat extends StatelessWidget {
 
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
+      _moreThanOneMinuteDifferenceForward(index) ||
       _latestMessage(index) ||
       !_previousMessageIsFromSameUser(index);
 
