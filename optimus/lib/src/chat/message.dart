@@ -41,5 +41,5 @@ class OptimusMessageSender with _$OptimusMessageSender {
   const factory OptimusMessageSender({
     required String id,
     required String userName,
-}) = _OptimusMessageSender;
+  }) = _OptimusMessageSender;
 }

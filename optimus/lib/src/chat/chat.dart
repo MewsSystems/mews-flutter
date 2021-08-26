@@ -59,41 +59,41 @@ class OptimusChat extends StatelessWidget {
   }
 
   Widget _buildMessagesList(OptimusThemeData theme) => ListView.builder(
-    itemCount: _messages.length,
-    reverse: true,
-    itemBuilder: (context, index) => OptimusStack(
-      direction: Axis.vertical,
-      children: [
-        OptimusStack(
-          direction: Axis.horizontal,
-          crossAxisAlignment: OptimusStackAlignment.end,
-          mainAxisAlignment: _bubbleAlignment(index),
+        itemCount: _messages.length,
+        reverse: true,
+        itemBuilder: (context, index) => OptimusStack(
+          direction: Axis.vertical,
           children: [
-            if (hasAvatars &&
-                _messages[index].alignment == MessageAlignment.left)
-              _buildAvatar(index),
-            Flexible(
-              child: OptimusChatBubble(
-                message: _messages[index],
-                isUserNameVisible: _showUserName(index),
-                isDateVisible: _showDate(index),
-                formatTime: formatTime,
-                formatDate: formatDate,
-                sending: sending,
-                sent: sent,
-                error: error,
-              ),
+            OptimusStack(
+              direction: Axis.horizontal,
+              crossAxisAlignment: OptimusStackAlignment.end,
+              mainAxisAlignment: _bubbleAlignment(index),
+              children: [
+                if (hasAvatars &&
+                    _messages[index].alignment == MessageAlignment.left)
+                  _buildAvatar(index),
+                Flexible(
+                  child: OptimusChatBubble(
+                    message: _messages[index],
+                    isUserNameVisible: _showUserName(index),
+                    isDateVisible: _showDate(index),
+                    formatTime: formatTime,
+                    formatDate: formatDate,
+                    sending: sending,
+                    sent: sent,
+                    error: error,
+                  ),
+                ),
+                if (hasAvatars &&
+                    _messages[index].alignment == MessageAlignment.right)
+                  _buildAvatar(index),
+              ],
             ),
-            if (hasAvatars &&
-                _messages[index].alignment == MessageAlignment.right)
-              _buildAvatar(index),
+            if (_showStatus(index))
+              _buildStatus(index, _messages[index], theme),
           ],
         ),
-        if (_showStatus(index))
-          _buildStatus(index, _messages[index], theme),
-      ],
-    ),
-  );
+      );
 
   double get _avatarWidth => hasAvatars ? 40 : 0;
 
