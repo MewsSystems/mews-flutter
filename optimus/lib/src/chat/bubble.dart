@@ -31,11 +31,7 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget error;
 
   Widget _buildMessageBubble(OptimusThemeData theme) => Container(
-        margin: EdgeInsets.only(
-          top: isUserNameVisible ? spacing0 : spacing100,
-          left: message.alignment == MessageAlignment.left ? spacing100 : 64,
-          right: message.alignment == MessageAlignment.right ? spacing100 : 64,
-        ),
+        margin: _messageBubbleMargins(message.alignment),
         constraints: const BoxConstraints(maxWidth: 480),
         decoration: _buildMessageBackground(theme),
         padding: const EdgeInsets.only(
@@ -49,6 +45,23 @@ class OptimusChatBubble extends StatelessWidget {
           style: preset200s.copyWith(color: _createMessageTextColor(theme)),
         ),
       );
+
+  EdgeInsets _messageBubbleMargins(MessageAlignment alignment) {
+    switch (alignment) {
+      case MessageAlignment.left:
+        return EdgeInsets.only(
+          top: isUserNameVisible ? spacing0 : spacing100,
+          left: spacing100,
+          right: 64,
+        );
+      case MessageAlignment.right:
+        return EdgeInsets.only(
+          top: isUserNameVisible ? spacing0 : spacing100,
+          left: 64,
+          right: spacing100,
+        );
+    }
+  }
 
   Widget _buildDate(OptimusThemeData theme) {
     final separator = Expanded(
@@ -77,10 +90,14 @@ class OptimusChatBubble extends StatelessWidget {
         child: Text(message.author.username, style: preset100s),
       );
 
-  OptimusStackAlignment get _bubbleAlignment =>
-      message.alignment == MessageAlignment.left
-          ? OptimusStackAlignment.start
-          : OptimusStackAlignment.end;
+  OptimusStackAlignment get _bubbleAlignment {
+    switch (message.alignment) {
+      case MessageAlignment.left:
+        return OptimusStackAlignment.start;
+      case MessageAlignment.right:
+        return OptimusStackAlignment.end;
+    }
+  }
 
   BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
       BoxDecoration(
