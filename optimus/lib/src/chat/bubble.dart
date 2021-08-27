@@ -73,13 +73,8 @@ class OptimusChatBubble extends StatelessWidget {
   }
 
   Padding get _userName => Padding(
-        padding: _userNamePadding(message.alignment),
-        child: Text(message.sender.userName, style: preset100s),
-      );
-
-  EdgeInsets _userNamePadding(MessageAlignment alignment) => EdgeInsets.only(
-        left: alignment == MessageAlignment.left ? spacing100 : 0,
-        right: alignment == MessageAlignment.right ? spacing100 : 0,
+        padding: message.alignment.edgeInsetsGeometry,
+        child: Text(message.author.username, style: preset100s),
       );
 
   OptimusStackAlignment get _bubbleAlignment =>
@@ -128,5 +123,16 @@ class OptimusChatBubble extends StatelessWidget {
         _buildMessageBubble(theme),
       ],
     );
+  }
+}
+
+extension on MessageAlignment {
+  EdgeInsetsGeometry get edgeInsetsGeometry {
+    switch (this) {
+      case MessageAlignment.left:
+        return const EdgeInsets.only(left: spacing100, right: 0);
+      case MessageAlignment.right:
+        return const EdgeInsets.only(left: 0, right: spacing100);
+    }
   }
 }
