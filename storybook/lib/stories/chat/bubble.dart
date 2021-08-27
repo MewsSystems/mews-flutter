@@ -9,9 +9,9 @@ final chatBubbleStory = Story(
     name: 'Chat Bubble',
     builder: (_, k) {
       final message = OptimusMessage(
-        sender: OptimusMessageSender(
+        author: MessageAuthor(
           id: 'id',
-          userName: k.text(label: 'User name', initial: 'Doggo'),
+          username: k.text(label: 'User name', initial: 'Doggo'),
         ),
         message: k.text(
           label: 'Message',
@@ -24,16 +24,8 @@ final chatBubbleStory = Story(
           initial: MessageAlignment.left,
           options: _type,
         ),
-        state: k.options(
-          label: 'Status',
-          initial: MessageState.sent,
-          options: _state,
-        ),
-        avatar: k.options(
-          label: 'Avatar',
-          initial: avatar2,
-          options: _avatar,
-        ),
+        state: MessageState.sent,
+        avatar: avatar2,
         color: k.options(
           label: 'Color',
           initial: MessageColor.dark,
@@ -57,16 +49,8 @@ final chatBubbleStory = Story(
       );
     });
 
-final List<Option<MessageState>> _state =
-    MessageState.values.map((e) => Option(describeEnum(e), e)).toList();
-
 final List<Option<MessageAlignment>> _type =
     MessageAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<MessageColor>> _color =
     MessageColor.values.map((e) => Option(describeEnum(e), e)).toList();
-
-final List<Option<Widget>> _avatar = [
-  const Option('No image', avatar2),
-  const Option('With image', avatar1),
-];

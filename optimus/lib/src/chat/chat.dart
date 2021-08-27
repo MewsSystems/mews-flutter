@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/chat/input.dart';
 import 'package:optimus/src/chat/message.dart';
+import 'package:optimus/src/chat/optimus_chat_input.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 typedef FormatDate = String Function(DateTime);
@@ -153,6 +153,7 @@ class OptimusChat extends StatelessWidget {
   Widget _buildStatusEnd(int index) => Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               _buildStatusText(index),
               SizedBox(width: spacing100 + _avatarWidth),
@@ -211,7 +212,7 @@ class OptimusChat extends StatelessWidget {
 
   bool _previousMessageIsFromSameUser(int index) =>
       index - 1 >= 0 &&
-      _messages[index - 1].sender.id == _messages[index].sender.id;
+      _messages[index - 1].author.id == _messages[index].author.id;
 
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
@@ -230,8 +231,8 @@ class OptimusChat extends StatelessWidget {
       !isFromCurrentUser(_messages[index]) &&
       (_moreThanOneMinuteDifferenceBack(index) ||
           _oldestMessage(index) ||
-          _messages[index < _messages.length ? index + 1 : index].sender.id !=
-              _messages[index].sender.id);
+          _messages[index < _messages.length ? index + 1 : index].author.id !=
+              _messages[index].author.id);
 
   bool _showDate(int index) =>
       _previousMessageTime(index) == null ||

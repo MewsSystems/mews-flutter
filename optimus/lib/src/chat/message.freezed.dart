@@ -17,7 +17,7 @@ class _$OptimusMessageTearOff {
   const _$OptimusMessageTearOff();
 
   _Message call(
-      {required OptimusMessageSender sender,
+      {required MessageAuthor author,
       required String message,
       required MessageAlignment alignment,
       required MessageColor color,
@@ -25,7 +25,7 @@ class _$OptimusMessageTearOff {
       required MessageState state,
       required Widget? avatar}) {
     return _Message(
-      sender: sender,
+      author: author,
       message: message,
       alignment: alignment,
       color: color,
@@ -41,7 +41,7 @@ const $OptimusMessage = _$OptimusMessageTearOff();
 
 /// @nodoc
 mixin _$OptimusMessage {
-  OptimusMessageSender get sender => throw _privateConstructorUsedError;
+  MessageAuthor get author => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   MessageAlignment get alignment => throw _privateConstructorUsedError;
   MessageColor get color => throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $OptimusMessageCopyWith<$Res> {
           OptimusMessage value, $Res Function(OptimusMessage) then) =
       _$OptimusMessageCopyWithImpl<$Res>;
   $Res call(
-      {OptimusMessageSender sender,
+      {MessageAuthor author,
       String message,
       MessageAlignment alignment,
       MessageColor color,
@@ -68,7 +68,7 @@ abstract class $OptimusMessageCopyWith<$Res> {
       MessageState state,
       Widget? avatar});
 
-  $OptimusMessageSenderCopyWith<$Res> get sender;
+  $MessageAuthorCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class _$OptimusMessageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? sender = freezed,
+    Object? author = freezed,
     Object? message = freezed,
     Object? alignment = freezed,
     Object? color = freezed,
@@ -91,10 +91,10 @@ class _$OptimusMessageCopyWithImpl<$Res>
     Object? avatar = freezed,
   }) {
     return _then(_value.copyWith(
-      sender: sender == freezed
-          ? _value.sender
-          : sender // ignore: cast_nullable_to_non_nullable
-              as OptimusMessageSender,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as MessageAuthor,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -123,9 +123,9 @@ class _$OptimusMessageCopyWithImpl<$Res>
   }
 
   @override
-  $OptimusMessageSenderCopyWith<$Res> get sender {
-    return $OptimusMessageSenderCopyWith<$Res>(_value.sender, (value) {
-      return _then(_value.copyWith(sender: value));
+  $MessageAuthorCopyWith<$Res> get author {
+    return $MessageAuthorCopyWith<$Res>(_value.author, (value) {
+      return _then(_value.copyWith(author: value));
     });
   }
 }
@@ -137,7 +137,7 @@ abstract class _$MessageCopyWith<$Res>
       __$MessageCopyWithImpl<$Res>;
   @override
   $Res call(
-      {OptimusMessageSender sender,
+      {MessageAuthor author,
       String message,
       MessageAlignment alignment,
       MessageColor color,
@@ -146,7 +146,7 @@ abstract class _$MessageCopyWith<$Res>
       Widget? avatar});
 
   @override
-  $OptimusMessageSenderCopyWith<$Res> get sender;
+  $MessageAuthorCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -160,7 +160,7 @@ class __$MessageCopyWithImpl<$Res> extends _$OptimusMessageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? sender = freezed,
+    Object? author = freezed,
     Object? message = freezed,
     Object? alignment = freezed,
     Object? color = freezed,
@@ -169,10 +169,10 @@ class __$MessageCopyWithImpl<$Res> extends _$OptimusMessageCopyWithImpl<$Res>
     Object? avatar = freezed,
   }) {
     return _then(_Message(
-      sender: sender == freezed
-          ? _value.sender
-          : sender // ignore: cast_nullable_to_non_nullable
-              as OptimusMessageSender,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as MessageAuthor,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -205,7 +205,7 @@ class __$MessageCopyWithImpl<$Res> extends _$OptimusMessageCopyWithImpl<$Res>
 
 class _$_Message implements _Message {
   const _$_Message(
-      {required this.sender,
+      {required this.author,
       required this.message,
       required this.alignment,
       required this.color,
@@ -214,7 +214,7 @@ class _$_Message implements _Message {
       required this.avatar});
 
   @override
-  final OptimusMessageSender sender;
+  final MessageAuthor author;
   @override
   final String message;
   @override
@@ -230,15 +230,15 @@ class _$_Message implements _Message {
 
   @override
   String toString() {
-    return 'OptimusMessage(sender: $sender, message: $message, alignment: $alignment, color: $color, time: $time, state: $state, avatar: $avatar)';
+    return 'OptimusMessage(author: $author, message: $message, alignment: $alignment, color: $color, time: $time, state: $state, avatar: $avatar)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Message &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
+            (identical(other.author, author) ||
+                const DeepCollectionEquality().equals(other.author, author)) &&
             (identical(other.message, message) ||
                 const DeepCollectionEquality()
                     .equals(other.message, message)) &&
@@ -258,7 +258,7 @@ class _$_Message implements _Message {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(sender) ^
+      const DeepCollectionEquality().hash(author) ^
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(alignment) ^
       const DeepCollectionEquality().hash(color) ^
@@ -274,7 +274,7 @@ class _$_Message implements _Message {
 
 abstract class _Message implements OptimusMessage {
   const factory _Message(
-      {required OptimusMessageSender sender,
+      {required MessageAuthor author,
       required String message,
       required MessageAlignment alignment,
       required MessageColor color,
@@ -283,7 +283,7 @@ abstract class _Message implements OptimusMessage {
       required Widget? avatar}) = _$_Message;
 
   @override
-  OptimusMessageSender get sender => throw _privateConstructorUsedError;
+  MessageAuthor get author => throw _privateConstructorUsedError;
   @override
   String get message => throw _privateConstructorUsedError;
   @override
@@ -303,99 +303,99 @@ abstract class _Message implements OptimusMessage {
 }
 
 /// @nodoc
-class _$OptimusMessageSenderTearOff {
-  const _$OptimusMessageSenderTearOff();
+class _$MessageAuthorTearOff {
+  const _$MessageAuthorTearOff();
 
-  _OptimusMessageSender call({required String id, required String userName}) {
-    return _OptimusMessageSender(
+  _MessageAuthor call({required String id, required String username}) {
+    return _MessageAuthor(
       id: id,
-      userName: userName,
+      username: username,
     );
   }
 }
 
 /// @nodoc
-const $OptimusMessageSender = _$OptimusMessageSenderTearOff();
+const $MessageAuthor = _$MessageAuthorTearOff();
 
 /// @nodoc
-mixin _$OptimusMessageSender {
+mixin _$MessageAuthor {
   String get id => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OptimusMessageSenderCopyWith<OptimusMessageSender> get copyWith =>
+  $MessageAuthorCopyWith<MessageAuthor> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OptimusMessageSenderCopyWith<$Res> {
-  factory $OptimusMessageSenderCopyWith(OptimusMessageSender value,
-          $Res Function(OptimusMessageSender) then) =
-      _$OptimusMessageSenderCopyWithImpl<$Res>;
-  $Res call({String id, String userName});
+abstract class $MessageAuthorCopyWith<$Res> {
+  factory $MessageAuthorCopyWith(
+          MessageAuthor value, $Res Function(MessageAuthor) then) =
+      _$MessageAuthorCopyWithImpl<$Res>;
+  $Res call({String id, String username});
 }
 
 /// @nodoc
-class _$OptimusMessageSenderCopyWithImpl<$Res>
-    implements $OptimusMessageSenderCopyWith<$Res> {
-  _$OptimusMessageSenderCopyWithImpl(this._value, this._then);
+class _$MessageAuthorCopyWithImpl<$Res>
+    implements $MessageAuthorCopyWith<$Res> {
+  _$MessageAuthorCopyWithImpl(this._value, this._then);
 
-  final OptimusMessageSender _value;
+  final MessageAuthor _value;
   // ignore: unused_field
-  final $Res Function(OptimusMessageSender) _then;
+  final $Res Function(MessageAuthor) _then;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? userName = freezed,
+    Object? username = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$OptimusMessageSenderCopyWith<$Res>
-    implements $OptimusMessageSenderCopyWith<$Res> {
-  factory _$OptimusMessageSenderCopyWith(_OptimusMessageSender value,
-          $Res Function(_OptimusMessageSender) then) =
-      __$OptimusMessageSenderCopyWithImpl<$Res>;
+abstract class _$MessageAuthorCopyWith<$Res>
+    implements $MessageAuthorCopyWith<$Res> {
+  factory _$MessageAuthorCopyWith(
+          _MessageAuthor value, $Res Function(_MessageAuthor) then) =
+      __$MessageAuthorCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String userName});
+  $Res call({String id, String username});
 }
 
 /// @nodoc
-class __$OptimusMessageSenderCopyWithImpl<$Res>
-    extends _$OptimusMessageSenderCopyWithImpl<$Res>
-    implements _$OptimusMessageSenderCopyWith<$Res> {
-  __$OptimusMessageSenderCopyWithImpl(
-      _OptimusMessageSender _value, $Res Function(_OptimusMessageSender) _then)
-      : super(_value, (v) => _then(v as _OptimusMessageSender));
+class __$MessageAuthorCopyWithImpl<$Res>
+    extends _$MessageAuthorCopyWithImpl<$Res>
+    implements _$MessageAuthorCopyWith<$Res> {
+  __$MessageAuthorCopyWithImpl(
+      _MessageAuthor _value, $Res Function(_MessageAuthor) _then)
+      : super(_value, (v) => _then(v as _MessageAuthor));
 
   @override
-  _OptimusMessageSender get _value => super._value as _OptimusMessageSender;
+  _MessageAuthor get _value => super._value as _MessageAuthor;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? userName = freezed,
+    Object? username = freezed,
   }) {
-    return _then(_OptimusMessageSender(
+    return _then(_MessageAuthor(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -403,53 +403,52 @@ class __$OptimusMessageSenderCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OptimusMessageSender implements _OptimusMessageSender {
-  const _$_OptimusMessageSender({required this.id, required this.userName});
+class _$_MessageAuthor implements _MessageAuthor {
+  const _$_MessageAuthor({required this.id, required this.username});
 
   @override
   final String id;
   @override
-  final String userName;
+  final String username;
 
   @override
   String toString() {
-    return 'OptimusMessageSender(id: $id, userName: $userName)';
+    return 'MessageAuthor(id: $id, username: $username)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OptimusMessageSender &&
+        (other is _MessageAuthor &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.userName, userName) ||
+            (identical(other.username, username) ||
                 const DeepCollectionEquality()
-                    .equals(other.userName, userName)));
+                    .equals(other.username, username)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(userName);
+      const DeepCollectionEquality().hash(username);
 
   @JsonKey(ignore: true)
   @override
-  _$OptimusMessageSenderCopyWith<_OptimusMessageSender> get copyWith =>
-      __$OptimusMessageSenderCopyWithImpl<_OptimusMessageSender>(
-          this, _$identity);
+  _$MessageAuthorCopyWith<_MessageAuthor> get copyWith =>
+      __$MessageAuthorCopyWithImpl<_MessageAuthor>(this, _$identity);
 }
 
-abstract class _OptimusMessageSender implements OptimusMessageSender {
-  const factory _OptimusMessageSender(
-      {required String id, required String userName}) = _$_OptimusMessageSender;
+abstract class _MessageAuthor implements MessageAuthor {
+  const factory _MessageAuthor({required String id, required String username}) =
+      _$_MessageAuthor;
 
   @override
   String get id => throw _privateConstructorUsedError;
   @override
-  String get userName => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OptimusMessageSenderCopyWith<_OptimusMessageSender> get copyWith =>
+  _$MessageAuthorCopyWith<_MessageAuthor> get copyWith =>
       throw _privateConstructorUsedError;
 }
