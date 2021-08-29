@@ -30,66 +30,83 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget sent;
   final Widget error;
 
-  Widget _buildMessageBubble(OptimusThemeData theme) => Container(
-        margin: message.alignment
-            .messageBubbleMargins(isUserNameVisible: isUserNameVisible),
-        constraints: const BoxConstraints(maxWidth: 480),
-        decoration: _buildMessageBackground(theme),
-        padding: const EdgeInsets.only(
-          left: spacing100,
-          right: spacing100,
-          top: spacing50,
-          bottom: spacing100,
-        ),
-        child: Text(
-          message.message,
-          style: preset200s.copyWith(color: _createMessageTextColor(theme)),
-        ),
-      );
-
-  Widget _buildDate(OptimusThemeData theme) {
-    final separator = Expanded(
-      child: Container(
-        height: 1,
-        color: theme.colors.neutral50,
-      ),
-    );
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: spacing200),
-      child: OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: message.alignment.crossAxisAlignment,
         children: [
-          separator,
-          Text(formatDate(message.time), style: preset100s),
-          separator,
+          if (isDateVisible) ...[
+            const SizedBox(height: spacing200),
+            _Date(date: formatDate(message.time)),
+            const SizedBox(height: spacing200),
+          ],
+          if (isUserNameVisible) ...[
+            Padding(
+              padding: message.alignment.horizontalPadding,
+              child: Text(message.author.username, style: preset100s),
+            ),
+            const SizedBox(height: spacing50),
+          ],
+          Padding(
+            padding: message.alignment.horizontalPadding,
+            child: _Bubble(message: message),
+          ),
         ],
+      );
+}
+
+class _Date extends StatelessWidget {
+  const _Date({Key? key, required this.date}) : super(key: key);
+
+  final String date;
+
+  @override
+  Widget build(BuildContext context) {
+    final horizontalLine = Container(
+      height: 1,
+      color: OptimusTheme.of(context).colors.neutral50,
+    );
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      children: [
+        Expanded(child: horizontalLine),
+        Text(date, style: preset100s),
+        Expanded(child: horizontalLine),
+      ],
+    );
+  }
+}
+
+class _Bubble extends StatelessWidget {
+  const _Bubble({Key? key, required this.message}) : super(key: key);
+
+  final OptimusMessage message;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 480),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(borderRadius100),
+        color: _getBackgroundColor(theme),
+      ),
+      padding: const EdgeInsets.only(
+        left: spacing100,
+        right: spacing100,
+        top: spacing50,
+        bottom: spacing100,
+      ),
+      child: Text(
+        message.message,
+        style: preset200s.copyWith(color: _getTextColor(theme)),
       ),
     );
   }
 
-  Padding get _userName => Padding(
-        padding: message.alignment.edgeInsetsGeometry,
-        child: Text(message.author.username, style: preset100s),
-      );
-
-  OptimusStackAlignment get _bubbleAlignment {
-    switch (message.alignment) {
-      case MessageAlignment.left:
-        return OptimusStackAlignment.start;
-      case MessageAlignment.right:
-        return OptimusStackAlignment.end;
-    }
-  }
-
-  BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
-      BoxDecoration(
-        borderRadius: const BorderRadius.all(borderRadius100),
-        color: _createMessageBackgroundColor(theme),
-      );
-
-  Color _createMessageBackgroundColor(OptimusThemeData theme) {
+  Color _getBackgroundColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
         return theme.colors.neutral25;
@@ -100,7 +117,7 @@ class OptimusChatBubble extends StatelessWidget {
     }
   }
 
-  Color _createMessageTextColor(OptimusThemeData theme) {
+  Color _getTextColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
         return theme.colors.neutral1000;
@@ -110,25 +127,10 @@ class OptimusChatBubble extends StatelessWidget {
         return theme.colors.neutral0;
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return OptimusStack(
-      spacing: OptimusStackSpacing.spacing50,
-      crossAxisAlignment: _bubbleAlignment,
-      children: [
-        if (isDateVisible) _buildDate(theme),
-        if (isUserNameVisible) _userName,
-        _buildMessageBubble(theme),
-      ],
-    );
-  }
 }
 
 extension on MessageAlignment {
-  EdgeInsetsGeometry get edgeInsetsGeometry {
+  EdgeInsetsGeometry get horizontalPadding {
     switch (this) {
       case MessageAlignment.left:
         return const EdgeInsets.only(left: spacing100, right: 0);
@@ -137,20 +139,12 @@ extension on MessageAlignment {
     }
   }
 
-  EdgeInsets messageBubbleMargins({required bool isUserNameVisible}) {
+  CrossAxisAlignment get crossAxisAlignment {
     switch (this) {
       case MessageAlignment.left:
-        return EdgeInsets.only(
-          top: isUserNameVisible ? spacing0 : spacing100,
-          left: spacing100,
-          right: 64,
-        );
+        return CrossAxisAlignment.start;
       case MessageAlignment.right:
-        return EdgeInsets.only(
-          top: isUserNameVisible ? spacing0 : spacing100,
-          left: 64,
-          right: spacing100,
-        );
+        return CrossAxisAlignment.end;
     }
   }
 }
