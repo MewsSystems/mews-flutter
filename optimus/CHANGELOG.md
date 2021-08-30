@@ -1,3 +1,9 @@
+## 0.9.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Update chat functionality and design (#128).
+
 ## 0.8.1
 
  - **FEAT**: Add loader (#126).
