@@ -9,9 +9,10 @@ final chatBubbleStory = Story(
     name: 'Chat Bubble',
     builder: (_, k) {
       final message = OptimusMessage(
-        author: MessageAuthor(
+        author: OptimusMessageAuthor(
           id: 'id',
           username: k.text(label: 'User name', initial: 'Doggo'),
+          avatar: avatar2,
         ),
         message: k.text(
           label: 'Message',
@@ -25,7 +26,6 @@ final chatBubbleStory = Story(
           options: _type,
         ),
         state: MessageState.sent,
-        avatar: avatar2,
         color: k.options(
           label: 'Color',
           initial: MessageColor.dark,

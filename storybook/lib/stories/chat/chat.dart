@@ -71,9 +71,17 @@ final organisationAvatar = Stack(children: [
   ),
 ]);
 
-const _you = MessageAuthor(id: 'you', username: 'You');
-const _user1 = MessageAuthor(id: 'user1', username: 'User 1');
-const _user3 = MessageAuthor(id: 'user3', username: 'User 3');
+const _you = OptimusMessageAuthor(id: 'you', username: 'You', avatar: avatar2);
+const _user1 = OptimusMessageAuthor(
+  id: 'user1',
+  username: 'User 1',
+  avatar: avatar1,
+);
+final _user3 = OptimusMessageAuthor(
+  id: 'user3',
+  username: 'User 3',
+  avatar: organisationAvatar,
+);
 
 final messages = <OptimusMessage>[
   OptimusMessage(
@@ -83,7 +91,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(days: 365)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _you,
@@ -92,7 +99,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(days: 6, minutes: 2)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _you,
@@ -101,7 +107,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(days: 6)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _user1,
@@ -110,7 +115,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(days: 5, minutes: 15)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user1,
@@ -119,7 +123,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(days: 5)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user1,
@@ -128,7 +131,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(days: 5)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user1,
@@ -137,7 +139,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(hours: 2)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _you,
@@ -147,7 +148,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 45)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _user1,
@@ -156,7 +156,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 30)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user1,
@@ -165,7 +164,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 27)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user1,
@@ -174,7 +172,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 26)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user3,
@@ -183,7 +180,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 25)),
     state: MessageState.sent,
-    avatar: organisationAvatar,
   ),
   OptimusMessage(
     author: _you,
@@ -193,7 +189,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 20)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _you,
@@ -202,7 +197,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 3, seconds: 19)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _you,
@@ -211,7 +205,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 55)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _you,
@@ -220,7 +213,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 35)),
     state: MessageState.sent,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _user1,
@@ -229,7 +221,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.neutral,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 28)),
     state: MessageState.sent,
-    avatar: avatar1,
   ),
   OptimusMessage(
     author: _user3,
@@ -239,7 +230,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 27)),
     state: MessageState.sent,
-    avatar: organisationAvatar,
   ),
   OptimusMessage(
     author: _user3,
@@ -248,7 +238,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 25)),
     state: MessageState.sent,
-    avatar: organisationAvatar,
   ),
   OptimusMessage(
     author: _user3,
@@ -257,7 +246,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 20)),
     state: MessageState.sent,
-    avatar: organisationAvatar,
   ),
   OptimusMessage(
     author: _user3,
@@ -266,7 +254,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.light,
     time: DateTime.now().subtract(const Duration(seconds: 15)),
     state: MessageState.sent,
-    avatar: organisationAvatar,
   ),
   OptimusMessage(
     author: _you,
@@ -275,7 +262,6 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(seconds: 14)),
     state: MessageState.sending,
-    avatar: avatar2,
   ),
   OptimusMessage(
     author: _you,
@@ -284,6 +270,5 @@ final messages = <OptimusMessage>[
     color: MessageColor.dark,
     time: DateTime.now().subtract(const Duration(seconds: 12)),
     state: MessageState.error,
-    avatar: avatar2,
   ),
 ];
