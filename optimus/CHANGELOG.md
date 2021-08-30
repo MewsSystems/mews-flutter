@@ -1,3 +1,7 @@
+## 0.8.1
+
+ - **FEAT**: Add loader (#126).
+
 ## 0.8.0
 
 > Note: This release has breaking changes.

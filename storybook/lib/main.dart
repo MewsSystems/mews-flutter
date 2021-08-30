@@ -17,6 +17,7 @@ import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_list.dart';
 import 'package:storybook/stories/input.dart';
 import 'package:storybook/stories/list_tile.dart';
+import 'package:storybook/stories/loader.dart';
 import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
 import 'package:storybook/stories/number_picker.dart';
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
           chatStory,
           chatBubbleStory,
           link,
+          loaderStory,
         ],
       );
 }
