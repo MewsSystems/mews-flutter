@@ -1,3 +1,9 @@
+## 0.10.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**: [RND-73527] Rename MessageAuthor (#131).
+
 ## 0.9.0
 
 > Note: This release has breaking changes.
