@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/message.dart';
@@ -37,7 +38,7 @@ class OptimusChat extends StatelessWidget {
   final Widget sent;
   final Widget error;
   final SendCallback onSendPressed;
-  final bool Function(OptimusMessage) isFromCurrentUser;
+  final Predicate<OptimusMessage> isFromCurrentUser;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -64,10 +65,7 @@ class OptimusChat extends StatelessWidget {
   Widget _buildMessageItem(int index) => Column(
         children: [
           _buildBubble(index),
-          if (_showStatus(index)) ...[
-            const SizedBox(height: spacing100),
-            _buildStatus(index)
-          ],
+          if (_showStatus(index)) _buildStatus(index)
         ],
       );
 
@@ -140,6 +138,7 @@ class OptimusChat extends StatelessWidget {
 
   Widget _buildStatusStart(int index) => Column(
         children: [
+          const SizedBox(height: spacing50),
           Row(
             children: [
               SizedBox(width: spacing100 + _avatarWidth),
@@ -152,6 +151,7 @@ class OptimusChat extends StatelessWidget {
 
   Widget _buildStatusEnd(int index) => Column(
         children: [
+          const SizedBox(height: spacing50),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

@@ -39,6 +39,7 @@ class OptimusChatBubble extends StatelessWidget {
             _Date(date: formatDate(message.time)),
             const SizedBox(height: spacing200),
           ],
+          const SizedBox(height: spacing100),
           if (isUserNameVisible) ...[
             Padding(
               padding: message.alignment.horizontalPadding,
