@@ -122,7 +122,7 @@ class OptimusChat extends StatelessWidget {
 
   Widget _buildAvatar(int index) => SizedBox(
         width: _avatarWidth,
-        child: _showAvatar(index) ? _messages[index].avatar : null,
+        child: _showAvatar(index) ? _messages[index].author.avatar : null,
       );
 
   double get _avatarWidth => hasAvatars ? spacing500 : 0;
