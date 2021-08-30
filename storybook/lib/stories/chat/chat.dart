@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -7,6 +8,7 @@ final chatStory = Story(
   name: 'Chat',
   builder: (_, k) => OptimusChat(
     messages: messages,
+    isFromCurrentUser: (m) => m.author.id == 'you',
     hasAvatars: k.boolean(label: 'Enable avatar', initial: true),
     formatTime: (DateTime input) =>
         '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
@@ -69,9 +71,13 @@ final organisationAvatar = Stack(children: [
   ),
 ]);
 
+const _you = MessageAuthor(id: 'you', username: 'You');
+const _user1 = MessageAuthor(id: 'user1', username: 'User 1');
+const _user3 = MessageAuthor(id: 'user3', username: 'User 3');
+
 final messages = <OptimusMessage>[
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: 'Old message',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -80,7 +86,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: 'Hey you!',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -89,7 +95,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -98,7 +104,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'Hello',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -107,7 +113,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'consectetur adipiscing elit',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -116,7 +122,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'Suspendisse diam ante, condimentum ut interdum sit amets',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -125,7 +131,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -134,7 +140,7 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message:
         'Donec eget elit et massa rhoncus ullamcorper a non ex. Nulla vulputate condimentum libero, non congue ligula auctor ac. Pellentesque vel dui a turpis ultricies accumsan non sed nulla. Aenean interdum tempus scelerisque.',
     alignment: MessageAlignment.right,
@@ -144,7 +150,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'Quisque arcu turpis',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
@@ -153,99 +159,117 @@ final messages = <OptimusMessage>[
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'euismod quis maximus sit amet',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 27)),
+    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 27)),
     state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'convallis eleifend ante.',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 26)),
+    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 26)),
     state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    author: _user3,
     message: '😁',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 25)),
+    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 25)),
     state: MessageState.sent,
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message:
         'Suspendisse diam ante, condimentum ut interdum sit amet, suscipit non massa.',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 20)),
+    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 20)),
     state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: 'sdf sfsdfdsfsh fdf sdf',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 19)),
+    time: DateTime.now().subtract(const Duration(minutes: 3, seconds: 19)),
     state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: 'Maecenas pellentesque',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 18)),
+    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 55)),
     state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: 'quam sed viverra ornare',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 10)),
+    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 35)),
     state: MessageState.sent,
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'User 1',
+    author: _user1,
     message: 'tellus orci placerat purus',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(seconds: 17)),
+    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 28)),
     state: MessageState.sent,
     avatar: avatar1,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    author: _user3,
     message:
         'ut consectetur orci metus sed nibh. Praesent in tellus facilisis, sagittis odio eget, maximus turpis',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(seconds: 17)),
+    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 27)),
     state: MessageState.sent,
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'User 3',
+    author: _user3,
+    message: 'orci metus sed nibh. Praesent in tellus facilisis,',
+    alignment: MessageAlignment.right,
+    color: MessageColor.light,
+    time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 25)),
+    state: MessageState.sent,
+    avatar: organisationAvatar,
+  ),
+  OptimusMessage(
+    author: _user3,
     message: 'Aliquam porttitor quis eros pharetra blandit.',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(seconds: 16)),
+    time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 20)),
     state: MessageState.sent,
     avatar: organisationAvatar,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _user3,
+    message: 'Test',
+    alignment: MessageAlignment.right,
+    color: MessageColor.light,
+    time: DateTime.now().subtract(const Duration(seconds: 15)),
+    state: MessageState.sent,
+    avatar: organisationAvatar,
+  ),
+  OptimusMessage(
+    author: _you,
     message: '🤔',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
@@ -254,7 +278,7 @@ final messages = <OptimusMessage>[
     avatar: avatar2,
   ),
   OptimusMessage(
-    userName: 'You',
+    author: _you,
     message: '😫',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,

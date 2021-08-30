@@ -1,7 +1,12 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/chat/input.dart';
 import 'package:optimus/src/chat/message.dart';
+import 'package:optimus/src/chat/optimus_chat_input.dart';
+import 'package:optimus/src/typography/presets.dart';
+
+typedef FormatDate = String Function(DateTime);
+typedef FormatTime = String Function(DateTime);
 
 /// The chat components offer instant real-time communication between
 /// two (or multiple) parties. It also serves as a log or transcript
@@ -18,6 +23,7 @@ class OptimusChat extends StatelessWidget {
     required this.sent,
     required this.error,
     required this.onSendPressed,
+    required this.isFromCurrentUser,
   }) : super(key: key) {
     _messages
       ..addAll(messages)
@@ -32,90 +38,223 @@ class OptimusChat extends StatelessWidget {
   final Widget sent;
   final Widget error;
   final SendCallback onSendPressed;
+  final Predicate<OptimusMessage> isFromCurrentUser;
 
   @override
-  Widget build(BuildContext context) => OptimusStack(
-        spacing: OptimusStackSpacing.spacing50,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: _messages.length,
-              reverse: true,
-              itemBuilder: (context, index) => OptimusStack(
-                direction: Axis.horizontal,
-                crossAxisAlignment: OptimusStackAlignment.end,
-                mainAxisAlignment: _bubbleAlignment(index),
-                children: [
-                  if (hasAvatars &&
-                      _messages[index].alignment == MessageAlignment.left)
-                    _buildAvatar(index),
-                  Flexible(
-                    child: OptimusChatBubble(
-                      message: _messages[index],
-                      isStatusVisible: _showStatus(index),
-                      isUserNameVisible: _showUserName(index),
-                      isDateVisible: _showDate(index),
-                      formatTime: formatTime,
-                      formatDate: formatDate,
-                      sending: sending,
-                      sent: sent,
-                      error: error,
-                    ),
-                  ),
-                  if (hasAvatars &&
-                      _messages[index].alignment == MessageAlignment.right)
-                    _buildAvatar(index),
-                ],
-              ),
-            ),
-          ),
-          OptimusChatInput(onSendPressed: onSendPressed),
-        ],
-      );
-
-  Widget _buildAvatar(int index) => Padding(
-        padding: EdgeInsets.only(bottom: _showAvatar(index) ? 18 : 0),
-        child: SizedBox(
-          width: 40,
-          child: _showAvatar(index) ? _messages[index].avatar : null,
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(
+          left: spacing200,
+          right: spacing200,
+          bottom: spacing200,
+        ),
+        child: OptimusStack(
+          spacing: OptimusStackSpacing.spacing200,
+          children: [
+            Expanded(child: _buildMessagesList()),
+            OptimusChatInput(onSendPressed: onSendPressed),
+          ],
         ),
       );
 
-  OptimusStackAlignment _bubbleAlignment(int index) =>
-      _messages[index].alignment == MessageAlignment.left
-          ? OptimusStackAlignment.start
-          : OptimusStackAlignment.end;
+  Widget _buildMessagesList() => ListView.builder(
+        itemCount: _messages.length,
+        reverse: true,
+        itemBuilder: (_, index) => _buildMessageItem(index),
+      );
+
+  Widget _buildMessageItem(int index) => Column(
+        children: [
+          _buildBubble(index),
+          if (_showStatus(index)) _buildStatus(index)
+        ],
+      );
+
+  Widget _buildBubble(int index) {
+    switch (_messages[index].alignment) {
+      case MessageAlignment.left:
+        return _buildBubbleStart(index);
+      case MessageAlignment.right:
+        return _buildBubbleEnd(index);
+    }
+  }
+
+  Widget _buildBubbleStart(int index) => OptimusStack(
+        direction: Axis.horizontal,
+        crossAxisAlignment: OptimusStackAlignment.end,
+        mainAxisAlignment: OptimusStackAlignment.start,
+        children: [
+          if (hasAvatars) _buildAvatar(index),
+          Flexible(
+            child: OptimusChatBubble(
+              message: _messages[index],
+              isUserNameVisible: _showUserName(index),
+              isDateVisible: _showDate(index),
+              formatTime: formatTime,
+              formatDate: formatDate,
+              sending: sending,
+              sent: sent,
+              error: error,
+            ),
+          ),
+        ],
+      );
+
+  Widget _buildBubbleEnd(int index) => OptimusStack(
+        direction: Axis.horizontal,
+        crossAxisAlignment: OptimusStackAlignment.end,
+        mainAxisAlignment: OptimusStackAlignment.end,
+        children: [
+          Flexible(
+            child: OptimusChatBubble(
+              message: _messages[index],
+              isUserNameVisible: _showUserName(index),
+              isDateVisible: _showDate(index),
+              formatTime: formatTime,
+              formatDate: formatDate,
+              sending: sending,
+              sent: sent,
+              error: error,
+            ),
+          ),
+          if (hasAvatars) _buildAvatar(index),
+        ],
+      );
+
+  Widget _buildAvatar(int index) => SizedBox(
+        width: _avatarWidth,
+        child: _showAvatar(index) ? _messages[index].avatar : null,
+      );
+
+  double get _avatarWidth => hasAvatars ? spacing500 : 0;
+
+  Widget _buildStatus(int index) {
+    switch (_messages[index].alignment) {
+      case MessageAlignment.left:
+        return _buildStatusStart(index);
+      case MessageAlignment.right:
+        return _buildStatusEnd(index);
+    }
+  }
+
+  Widget _buildStatusStart(int index) => Column(
+        children: [
+          const SizedBox(height: spacing50),
+          Row(
+            children: [
+              SizedBox(width: spacing100 + _avatarWidth),
+              _buildStatusText(index),
+            ],
+          ),
+          SizedBox(height: !_latestMessage(index) ? spacing100 : 0),
+        ],
+      );
+
+  Widget _buildStatusEnd(int index) => Column(
+        children: [
+          const SizedBox(height: spacing50),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              _buildStatusText(index),
+              SizedBox(width: spacing100 + _avatarWidth),
+            ],
+          ),
+          SizedBox(height: !_latestMessage(index) ? spacing100 : 0),
+        ],
+      );
+
+  Widget _buildStatusText(int index) {
+    final message = _messages[index];
+    late final List<Widget> children;
+
+    switch (message.state) {
+      case MessageState.sending:
+        children = [
+          _Status(child: Text(formatTime(message.time))),
+          _Status(child: sending),
+          const _StatusCircle(),
+        ];
+        break;
+      case MessageState.sent:
+        children = [
+          _Status(child: Text(formatTime(message.time))),
+          if (isFromCurrentUser(message)) ...[
+            _Status(child: sent),
+            const Opacity(
+              opacity: 0.6,
+              child: OptimusIcon(
+                iconData: OptimusIcons.done_circle,
+                iconSize: OptimusIconSize.small,
+              ),
+            ),
+          ],
+        ];
+        break;
+      case MessageState.error:
+        children = [
+          _Status(child: error),
+          const OptimusIcon(
+            iconData: OptimusIcons.disable,
+            iconSize: OptimusIconSize.small,
+            colorOption: OptimusColorOption.danger,
+          ),
+        ];
+        break;
+    }
+
+    return OptimusStack(
+      mainAxisAlignment: message.alignment.stackAlignment,
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing50,
+      children: children,
+    );
+  }
 
   bool _previousMessageIsFromSameUser(int index) =>
       index - 1 >= 0 &&
-      _messages[index - 1].userName != _messages[index].userName;
+      _messages[index - 1].author.id == _messages[index].author.id;
 
   bool _showAvatar(int index) =>
       _lastMessageOfDay(index) ||
+      _moreThanOneMinuteDifferenceForward(index) ||
       _latestMessage(index) ||
-      _previousMessageIsFromSameUser(index);
+      !_previousMessageIsFromSameUser(index);
 
   bool _showStatus(int index) =>
       _lastMessageOfDay(index) ||
-      (_previousMessageTime(index) != null &&
-          _currentMessageTime(index)
-                  .difference(_previousMessageTime(index)!)
-                  .inMinutes >=
-              1) ||
+      _moreThanOneMinuteDifferenceForward(index) ||
       _messages[index].state != MessageState.sent ||
       _latestMessage(index) ||
-      _previousMessageIsFromSameUser(index);
+      !_previousMessageIsFromSameUser(index);
 
   bool _showUserName(int index) =>
-      _oldestMessage(index) ||
-      _messages[index < _messages.length ? index + 1 : index].userName !=
-          _messages[index].userName;
+      !isFromCurrentUser(_messages[index]) &&
+      (_moreThanOneMinuteDifferenceBack(index) ||
+          _oldestMessage(index) ||
+          _messages[index < _messages.length ? index + 1 : index].author.id !=
+              _messages[index].author.id);
 
   bool _showDate(int index) =>
       _previousMessageTime(index) == null ||
       _currentMessageTime(index)
               .difference(_previousMessageTime(index)!)
               .inDays >=
+          1;
+
+  bool _moreThanOneMinuteDifferenceBack(int index) =>
+      _previousMessageTime(index) != null &&
+      _currentMessageTime(index)
+              .difference(_previousMessageTime(index)!)
+              .abs()
+              .inMinutes >=
+          1;
+
+  bool _moreThanOneMinuteDifferenceForward(int index) =>
+      _nextMessageTime(index) != null &&
+      _currentMessageTime(index)
+              .difference(_nextMessageTime(index)!)
+              .abs()
+              .inMinutes >=
           1;
 
   DateTime _currentMessageTime(int index) => _messages[index].time;
@@ -139,5 +278,58 @@ class OptimusChat extends StatelessWidget {
       m2.time.compareTo(m1.time);
 }
 
-typedef FormatDate = String Function(DateTime);
-typedef FormatTime = String Function(DateTime);
+class _Status extends StatelessWidget {
+  const _Status({Key? key, required this.child}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return DefaultTextStyle.merge(
+      style: baseTextStyle.copyWith(
+        color: theme.isDark
+            ? theme.colors.neutral0t64
+            : theme.colors.neutral1000t64,
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+      ),
+      child: child,
+    );
+  }
+}
+
+class _StatusCircle extends StatelessWidget {
+  const _StatusCircle({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      width: 13,
+      height: 13,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        border: Border.all(
+          width: 1.2,
+          color: theme.isDark
+              ? theme.colors.neutral0t64
+              : theme.colors.neutral1000t64,
+        ),
+      ),
+    );
+  }
+}
+
+extension on MessageAlignment {
+  OptimusStackAlignment get stackAlignment {
+    switch (this) {
+      case MessageAlignment.left:
+        return OptimusStackAlignment.start;
+      case MessageAlignment.right:
+        return OptimusStackAlignment.end;
+    }
+  }
+}

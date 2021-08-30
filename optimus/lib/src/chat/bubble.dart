@@ -12,7 +12,6 @@ class OptimusChatBubble extends StatelessWidget {
   const OptimusChatBubble({
     Key? key,
     required this.message,
-    required this.isStatusVisible,
     required this.isUserNameVisible,
     required this.isDateVisible,
     required this.formatTime,
@@ -23,7 +22,6 @@ class OptimusChatBubble extends StatelessWidget {
   }) : super(key: key);
 
   final OptimusMessage message;
-  final bool isStatusVisible;
   final bool isUserNameVisible;
   final bool isDateVisible;
   final FormatTime formatTime;
@@ -32,153 +30,84 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget sent;
   final Widget error;
 
-  Widget _buildMessageBubble(OptimusThemeData theme) => Container(
-        margin: EdgeInsets.only(
-          top: isUserNameVisible ? spacing0 : spacing100,
-          left: message.alignment == MessageAlignment.left ? spacing100 : 64,
-          right: message.alignment == MessageAlignment.right ? spacing100 : 64,
-        ),
-        constraints: const BoxConstraints(maxWidth: 480),
-        decoration: _buildMessageBackground(theme),
-        padding: const EdgeInsets.only(
-          left: spacing100,
-          right: spacing100,
-          top: spacing50,
-          bottom: spacing100,
-        ),
-        child: Text(
-          message.message,
-          style: preset200s.copyWith(color: _createMessageTextColor(theme)),
-        ),
-      );
-
-  Widget _buildDate(OptimusThemeData theme) {
-    final separator = Expanded(
-      child: Container(
-        height: 1,
-        color: theme.isDark
-            ? theme.colors.neutral0t32
-            : theme.colors.neutral1000t32,
-      ),
-    );
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: spacing200),
-      child: OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: message.alignment.crossAxisAlignment,
         children: [
-          separator,
-          Text(formatDate(message.time), style: preset100s),
-          separator,
-        ],
-      ),
-    );
-  }
-
-  Padding get _userName => Padding(
-        padding: _statusPadding,
-        child: Text(message.userName, style: preset100s),
-      );
-
-  Padding _buildStatus(OptimusThemeData theme) => Padding(
-        padding: _statusPadding,
-        child: _buildStatusText(message, theme),
-      );
-
-  EdgeInsets get _statusPadding => EdgeInsets.only(
-        left: message.alignment == MessageAlignment.left ? spacing100 : 0,
-        right: message.alignment != MessageAlignment.left ? spacing100 : 0,
-      );
-
-  Widget _buildStatusTextStyle(OptimusThemeData theme, Widget child) =>
-      DefaultTextStyle.merge(
-        style: baseTextStyle.copyWith(
-          color: theme.isDark
-              ? theme.colors.neutral0t64
-              : theme.colors.neutral1000t64,
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-        ),
-        child: child,
-      );
-
-  Widget _buildStatusText(OptimusMessage message, OptimusThemeData theme) {
-    late final List<Widget> children;
-    final color =
-        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
-
-    switch (message.state) {
-      case MessageState.sending:
-        children = [
-          _buildStatusTextStyle(
-            theme,
-            Text(formatTime(message.time)),
-          ),
-          _buildStatusTextStyle(theme, sending),
-          Container(
-            width: 13,
-            height: 13,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              border: Border.all(
-                width: 1.2,
-                color: color,
-              ),
+          if (isDateVisible) ...[
+            const SizedBox(height: spacing200),
+            _Date(date: formatDate(message.time)),
+            const SizedBox(height: spacing200),
+          ],
+          const SizedBox(height: spacing100),
+          if (isUserNameVisible) ...[
+            Padding(
+              padding: message.alignment.horizontalPadding,
+              child: Text(message.author.username, style: preset100s),
             ),
+            const SizedBox(height: spacing50),
+          ],
+          Padding(
+            padding: message.alignment.horizontalPadding,
+            child: _Bubble(message: message),
           ),
-        ];
-        break;
-      case MessageState.sent:
-        children = [
-          _buildStatusTextStyle(
-            theme,
-            Text(formatTime(message.time)),
-          ),
-          if (message.alignment == MessageAlignment.right)
-            _buildStatusTextStyle(theme, sent),
-          if (message.alignment == MessageAlignment.right)
-            const Opacity(
-              opacity: 0.6,
-              child: OptimusIcon(
-                iconData: OptimusIcons.done_circle,
-                iconSize: OptimusIconSize.small,
-              ),
-            )
-        ];
-        break;
-      case MessageState.error:
-        children = [
-          _buildStatusTextStyle(theme, error),
-          const OptimusIcon(
-            iconData: OptimusIcons.disable,
-            iconSize: OptimusIconSize.small,
-            colorOption: OptimusColorOption.danger,
-          ),
-        ];
-        break;
-    }
+        ],
+      );
+}
+
+class _Date extends StatelessWidget {
+  const _Date({Key? key, required this.date}) : super(key: key);
+
+  final String date;
+
+  @override
+  Widget build(BuildContext context) {
+    final horizontalLine = Container(
+      height: 1,
+      color: OptimusTheme.of(context).colors.neutral50,
+    );
 
     return OptimusStack(
-      mainAxisAlignment: _bubbleAlignment,
       direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing50,
-      children: children,
+      spacing: OptimusStackSpacing.spacing100,
+      children: [
+        Expanded(child: horizontalLine),
+        Text(date, style: preset100s),
+        Expanded(child: horizontalLine),
+      ],
+    );
+  }
+}
+
+class _Bubble extends StatelessWidget {
+  const _Bubble({Key? key, required this.message}) : super(key: key);
+
+  final OptimusMessage message;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 480),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(borderRadius100),
+        color: _getBackgroundColor(theme),
+      ),
+      padding: const EdgeInsets.only(
+        left: spacing100,
+        right: spacing100,
+        top: spacing50,
+        bottom: spacing100,
+      ),
+      child: Text(
+        message.message,
+        style: preset200s.copyWith(color: _getTextColor(theme)),
+      ),
     );
   }
 
-  OptimusStackAlignment get _bubbleAlignment =>
-      message.alignment == MessageAlignment.left
-          ? OptimusStackAlignment.start
-          : OptimusStackAlignment.end;
-
-  BoxDecoration _buildMessageBackground(OptimusThemeData theme) =>
-      BoxDecoration(
-        borderRadius: const BorderRadius.all(borderRadius100),
-        color: _createMessageBackgroundColor(theme),
-      );
-
-  Color _createMessageBackgroundColor(OptimusThemeData theme) {
+  Color _getBackgroundColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
         return theme.colors.neutral25;
@@ -189,7 +118,7 @@ class OptimusChatBubble extends StatelessWidget {
     }
   }
 
-  Color _createMessageTextColor(OptimusThemeData theme) {
+  Color _getTextColor(OptimusThemeData theme) {
     switch (message.color) {
       case MessageColor.neutral:
         return theme.colors.neutral1000;
@@ -199,20 +128,24 @@ class OptimusChatBubble extends StatelessWidget {
         return theme.colors.neutral0;
     }
   }
+}
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+extension on MessageAlignment {
+  EdgeInsetsGeometry get horizontalPadding {
+    switch (this) {
+      case MessageAlignment.left:
+        return const EdgeInsets.only(left: spacing100, right: 0);
+      case MessageAlignment.right:
+        return const EdgeInsets.only(left: 0, right: spacing100);
+    }
+  }
 
-    return OptimusStack(
-      spacing: OptimusStackSpacing.spacing50,
-      crossAxisAlignment: _bubbleAlignment,
-      children: [
-        if (isDateVisible) _buildDate(theme),
-        if (isUserNameVisible) _userName,
-        _buildMessageBubble(theme),
-        if (isStatusVisible) _buildStatus(theme),
-      ],
-    );
+  CrossAxisAlignment get crossAxisAlignment {
+    switch (this) {
+      case MessageAlignment.left:
+        return CrossAxisAlignment.start;
+      case MessageAlignment.right:
+        return CrossAxisAlignment.end;
+    }
   }
 }
