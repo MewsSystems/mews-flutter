@@ -6,17 +6,18 @@ import 'package:optimus/optimus.dart';
 typedef DateTimeFormatter = String Function(DateTime);
 
 class OptimusDateTimeField extends StatefulWidget {
-  const OptimusDateTimeField({
-    Key? key,
-    this.value,
-    this.label,
-    required this.onChanged,
-    this.minDate,
-    this.maxDate,
-    this.error,
-    required this.formatDateTime,
-    this.isClearAllEnabled = false,
-  }) : super(key: key);
+  const OptimusDateTimeField(
+      {Key? key,
+      this.value,
+      this.label,
+      required this.onChanged,
+      this.minDate,
+      this.maxDate,
+      this.error,
+      required this.formatDateTime,
+      this.isClearAllEnabled = false,
+      this.placeholder})
+      : super(key: key);
 
   final DateTime? value;
   final String? label;
@@ -26,6 +27,7 @@ class OptimusDateTimeField extends StatefulWidget {
   final DateTimeFormatter formatDateTime;
   final String? error;
   final bool isClearAllEnabled;
+  final String? placeholder;
 
   @override
   _OptimusDateTimeFieldState createState() => _OptimusDateTimeFieldState();
@@ -74,6 +76,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
         error: widget.error,
         label: widget.label,
         isClearAllEnabled: widget.isClearAllEnabled,
+        placeholder: widget.placeholder,
         onChanged: (v) {
           if (v.isEmpty) {
             widget.onChanged(null);
