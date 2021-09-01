@@ -135,7 +135,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           spacing: OptimusStackSpacing.spacing100,
           mainAxisSize: MainAxisSize.min,
           children: [
-            _ClearAllButton(controller: _controller),
+            _ClearAllButton(onTap: () {
+              _controller?.clear();
+              if (widget.onChanged != null) widget.onChanged!('');
+            }),
             if (widget.suffix != null) widget.suffix!,
           ],
         )
@@ -267,18 +270,16 @@ class _SuffixPadding extends StatelessWidget {
 }
 
 class _ClearAllButton extends StatelessWidget {
-  const _ClearAllButton({Key? key, this.controller}) : super(key: key);
+  const _ClearAllButton({Key? key, required this.onTap}) : super(key: key);
 
-  final TextEditingController? controller;
+  final GestureTapCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
     return GestureDetector(
-      onTap: () {
-        controller?.clear();
-      },
+      onTap: onTap,
       child: Icon(
         OptimusIcons.clear_selection,
         size: _iconSize,
@@ -288,4 +289,4 @@ class _ClearAllButton extends StatelessWidget {
   }
 }
 
-const double _iconSize = 24;
+const double _iconSize = 20;

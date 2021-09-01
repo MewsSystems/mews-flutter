@@ -11,6 +11,7 @@ import 'package:storybook/stories/chat/bubble.dart';
 import 'package:storybook/stories/chat/chat.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
+import 'package:storybook/stories/date_time_field.dart';
 import 'package:storybook/stories/dialog.dart';
 import 'package:storybook/stories/form/form_story.dart';
 import 'package:storybook/stories/icon.dart';
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
           chatBubbleStory,
           link,
           loaderStory,
+          dateTimeFieldStory,
         ],
       );
 }
