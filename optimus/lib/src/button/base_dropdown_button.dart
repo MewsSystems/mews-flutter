@@ -159,7 +159,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   }
 
   Icon get _icon => Icon(
-        _isOpened ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
+        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
         size: widget.size == OptimusWidgetSize.small ? 16 : 24,
         color: _textColor,
       );
