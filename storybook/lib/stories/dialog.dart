@@ -260,7 +260,15 @@ Future<void> _showCustomContentDialog({
     title: Text(title),
     content: Container(
       color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
-      child: const Center(child: Text('Custom content without paddings')),
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: const [
+          Center(child: Text('Custom content without paddings')),
+          OptimusInputField(
+            placeholder: 'Input field to test offsets on keyboard',
+          ),
+        ],
+      ),
     ),
     contentWrapperBuilder: (_, child) => child,
     size: size,
