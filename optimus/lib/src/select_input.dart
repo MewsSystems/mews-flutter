@@ -121,7 +121,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
 
   Widget get _icon => IgnorePointer(
         child: Icon(
-          _isOpened ? OptimusIcons.chevron_up_1 : OptimusIcons.chevron_down_1,
+          _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
           size: 24,
           color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
         ),
