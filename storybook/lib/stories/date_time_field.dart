@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -34,7 +33,7 @@ class _ContentState extends State<_Content> {
           label: widget.k.text(label: 'Label', initial: 'Optimus input field'),
           error: widget.k.text(label: 'Error', initial: ''),
           placeholder: widget.k.text(label: 'Placeholder', initial: ''),
-          formatDateTime: DateFormat().format,
+          formatDateTime: (d) => '${d.day}.${d.month}.${d.year}',
           onChanged: (v) => setState(() {
             _dateTime = v;
           }),
