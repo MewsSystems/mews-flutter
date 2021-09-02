@@ -26,12 +26,20 @@ typedef TryAgainCallback = Future<MessageState> Function(
 @freezed
 class OptimusMessage with _$OptimusMessage {
   const factory OptimusMessage({
-    required String userName,
+    required OptimusMessageAuthor author,
     required String message,
     required MessageAlignment alignment,
     required MessageColor color,
     required DateTime time,
     required MessageState state,
-    required Widget? avatar,
   }) = _Message;
+}
+
+@freezed
+class OptimusMessageAuthor with _$OptimusMessageAuthor {
+  const factory OptimusMessageAuthor({
+    required String id,
+    required String username,
+    Widget? avatar,
+  }) = _OptimusMessageAuthor;
 }

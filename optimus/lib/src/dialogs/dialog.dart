@@ -76,15 +76,14 @@ Future<T?> showOptimusDialog<T>({
 }) =>
     showGeneralDialog(
       context: context,
-      pageBuilder: (buildContext, animation, secondaryAnimation) => SafeArea(
-        child: OptimusDialog.modal(
-          title: title,
-          content: content,
-          contentWrapperBuilder: contentWrapperBuilder,
-          actions: actions,
-          size: size,
-          type: type,
-        ),
+      pageBuilder: (buildContext, animation, secondaryAnimation) =>
+          OptimusDialog.modal(
+        title: title,
+        content: content,
+        contentWrapperBuilder: contentWrapperBuilder,
+        actions: actions,
+        size: size,
+        type: type,
       ),
       barrierDismissible: isDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
@@ -252,50 +251,53 @@ class OptimusDialog extends StatelessWidget {
     final theme = OptimusTheme.of(context);
 
     return SafeArea(
-      child: Align(
-        alignment: _alignment(context),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: spacing300,
-            vertical: spacing300,
-          ),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
-            child: OptimusCard(
-              variant: OptimusBasicCardVariant.overlay,
-              padding: OptimusCardSpacing.spacing0,
-              child: Material(
-                color: theme.isDark
-                    ? theme.colors.neutral500
-                    : theme.colors.neutral0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    _Title(
-                      context: context,
-                      title: title,
-                      close: close ?? () => Navigator.pop(context),
-                      isDismissible: isDismissible ??
-                          ModalRoute.of(context)?.barrierDismissible ??
-                          true,
-                    ),
-                    _divider(theme),
-                    OptimusParagraph(
-                      child: _Content(
-                        content: content,
-                        contentWrapperBuilder: contentWrapperBuilder,
-                      ),
-                    ),
-                    if (actions.isNotEmpty) _divider(theme),
-                    if (actions.isNotEmpty)
-                      _Actions(
-                        actions: actions,
-                        type: type,
-                        dialogSize: autoSize,
+      child: Container(
+        margin: MediaQuery.of(context).viewInsets,
+        child: Align(
+          alignment: _alignment(context),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: spacing300,
+              vertical: spacing300,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
+              child: OptimusCard(
+                variant: OptimusBasicCardVariant.overlay,
+                padding: OptimusCardSpacing.spacing0,
+                child: Material(
+                  color: theme.isDark
+                      ? theme.colors.neutral500
+                      : theme.colors.neutral0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      _Title(
+                        context: context,
+                        title: title,
                         close: close ?? () => Navigator.pop(context),
-                      )
-                  ],
+                        isDismissible: isDismissible ??
+                            ModalRoute.of(context)?.barrierDismissible ??
+                            true,
+                      ),
+                      _divider(theme),
+                      OptimusParagraph(
+                        child: _Content(
+                          content: content,
+                          contentWrapperBuilder: contentWrapperBuilder,
+                        ),
+                      ),
+                      if (actions.isNotEmpty) _divider(theme),
+                      if (actions.isNotEmpty)
+                        _Actions(
+                          actions: actions,
+                          type: type,
+                          dialogSize: autoSize,
+                          close: close ?? () => Navigator.pop(context),
+                        )
+                    ],
+                  ),
                 ),
               ),
             ),

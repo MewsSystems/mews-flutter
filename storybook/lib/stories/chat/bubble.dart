@@ -9,7 +9,11 @@ final chatBubbleStory = Story(
     name: 'Chat Bubble',
     builder: (_, k) {
       final message = OptimusMessage(
-        userName: k.text(label: 'User name', initial: 'Doggo'),
+        author: OptimusMessageAuthor(
+          id: 'id',
+          username: k.text(label: 'User name', initial: 'Doggo'),
+          avatar: avatar2,
+        ),
         message: k.text(
           label: 'Message',
           initial:
@@ -21,16 +25,7 @@ final chatBubbleStory = Story(
           initial: MessageAlignment.left,
           options: _type,
         ),
-        state: k.options(
-          label: 'Status',
-          initial: MessageState.sent,
-          options: _state,
-        ),
-        avatar: k.options(
-          label: 'Avatar',
-          initial: avatar2,
-          options: _avatar,
-        ),
+        state: MessageState.sent,
         color: k.options(
           label: 'Color',
           initial: MessageColor.dark,
@@ -42,7 +37,6 @@ final chatBubbleStory = Story(
         child: OptimusChatBubble(
           message: message,
           isUserNameVisible: k.boolean(label: 'Show user name', initial: true),
-          isStatusVisible: k.boolean(label: 'Show status', initial: true),
           isDateVisible: k.boolean(label: 'Show date', initial: true),
           formatTime: (DateTime input) =>
               '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
@@ -55,16 +49,8 @@ final chatBubbleStory = Story(
       );
     });
 
-final List<Option<MessageState>> _state =
-    MessageState.values.map((e) => Option(describeEnum(e), e)).toList();
-
 final List<Option<MessageAlignment>> _type =
     MessageAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
 
 final List<Option<MessageColor>> _color =
     MessageColor.values.map((e) => Option(describeEnum(e), e)).toList();
-
-final List<Option<Widget>> _avatar = [
-  const Option('No image', avatar2),
-  const Option('With image', avatar1),
-];
