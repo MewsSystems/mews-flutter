@@ -129,20 +129,21 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     super.dispose();
   }
 
-  Widget? get _suffix => widget.isClearEnabled
-      ? OptimusStack(
-          direction: Axis.horizontal,
-          spacing: OptimusStackSpacing.spacing100,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _ClearAllButton(onTap: () {
-              _controller?.clear();
-              if (widget.onChanged != null) widget.onChanged!('');
-            }),
-            if (widget.suffix != null) widget.suffix!,
-          ],
-        )
-      : widget.suffix;
+  Widget get _suffix => OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (widget.isClearEnabled)
+            _ClearAllButton(
+              onTap: () {
+                _controller?.clear();
+                widget.onChanged?.call('');
+              },
+            ),
+          if (widget.suffix != null) widget.suffix!,
+        ],
+      );
 
   @override
   Widget build(BuildContext context) => FieldWrapper(
