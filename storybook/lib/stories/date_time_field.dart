@@ -28,7 +28,7 @@ class _ContentState extends State<_Content> {
         constraints: const BoxConstraints(maxWidth: 400),
         child: OptimusDateTimeField(
           value: _dateTime,
-          isClearAllEnabled:
+          isClearEnabled:
               widget.k.boolean(label: 'Clear all', initial: false),
           label: widget.k.text(label: 'Label', initial: 'Optimus input field'),
           error: widget.k.text(label: 'Error', initial: ''),

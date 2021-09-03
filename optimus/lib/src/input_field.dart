@@ -30,7 +30,7 @@ class OptimusInputField extends StatefulWidget {
     this.autocorrect = true,
     this.hasBorders = true,
     this.isRequired = false,
-    this.isClearAllEnabled = false,
+    this.isClearEnabled = false,
     this.suffix,
     this.prefix,
     this.inputKey,
@@ -78,7 +78,7 @@ class OptimusInputField extends StatefulWidget {
   final bool isRequired;
 
   /// If true, clear all button is enabled.
-  final bool isClearAllEnabled;
+  final bool isClearEnabled;
 
   /// An optional [Widget] to display after the text.
   final Widget? suffix;
@@ -129,7 +129,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     super.dispose();
   }
 
-  Widget? get _suffix => widget.isClearAllEnabled
+  Widget? get _suffix => widget.isClearEnabled
       ? OptimusStack(
           direction: Axis.horizontal,
           spacing: OptimusStackSpacing.spacing100,
