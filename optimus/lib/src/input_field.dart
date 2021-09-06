@@ -112,6 +112,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool _isShowPasswordEnabled = false;
   TextEditingController? _controller;
 
+  TextEditingController get _effectiveController =>
+      widget.controller ?? _controller!;
+
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
@@ -119,13 +122,16 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   void initState() {
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
-    _controller = widget.controller ?? TextEditingController();
+    if (widget.controller == null) {
+      _controller = TextEditingController();
+    }
   }
 
   @override
   void dispose() {
     _effectiveFocusNode.removeListener(_onFocusChanged);
     _focusNode?.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -137,7 +143,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           if (widget.isClearEnabled)
             _ClearAllButton(
               onTap: () {
-                _controller?.clear();
+                _effectiveController.clear();
                 widget.onChanged?.call('');
               },
             ),
@@ -168,7 +174,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
-              controller: _controller,
+              controller: _effectiveController,
               maxLines: widget.maxLines,
               minLines: widget.minLines,
               onSubmitted: widget.onSubmitted,

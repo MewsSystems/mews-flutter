@@ -48,6 +48,12 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
     _updateValue();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _updateValue() {
     final value = widget.value;
     _controller.value = _controller.value.copyWith(
