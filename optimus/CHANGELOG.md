@@ -1,3 +1,10 @@
+## 0.11.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: Fix keyboard in dialog (#134).
+ - **BREAKING** **FEAT**: Update icons (#133).
+
 ## 0.10.0
 
 > Note: This release has breaking changes.
