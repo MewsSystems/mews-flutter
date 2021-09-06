@@ -1,3 +1,7 @@
+## 0.11.1
+
+ - **FEAT**: Add clear button to date time field (#135).
+
 ## 0.11.0
 
 > Note: This release has breaking changes.
