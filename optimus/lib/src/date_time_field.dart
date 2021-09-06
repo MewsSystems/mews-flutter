@@ -15,15 +15,19 @@ class OptimusDateTimeField extends StatefulWidget {
     this.maxDate,
     this.error,
     required this.formatDateTime,
+    this.isClearEnabled = false,
+    this.placeholder,
   }) : super(key: key);
 
   final DateTime? value;
   final String? label;
-  final ValueChanged<DateTime> onChanged;
+  final ValueChanged<DateTime?> onChanged;
   final DateTime? minDate;
   final DateTime? maxDate;
   final DateTimeFormatter formatDateTime;
   final String? error;
+  final bool isClearEnabled;
+  final String? placeholder;
 
   @override
   _OptimusDateTimeFieldState createState() => _OptimusDateTimeFieldState();
@@ -42,6 +46,12 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
   void didUpdateWidget(OptimusDateTimeField oldWidget) {
     super.didUpdateWidget(oldWidget);
     _updateValue();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   void _updateValue() {
@@ -71,5 +81,12 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
         onTap: _showPickerDialog,
         error: widget.error,
         label: widget.label,
+        isClearEnabled: widget.isClearEnabled,
+        placeholder: widget.placeholder,
+        onChanged: (v) {
+          if (v.isEmpty) {
+            widget.onChanged(null);
+          }
+        },
       );
 }

@@ -30,6 +30,7 @@ class OptimusInputField extends StatefulWidget {
     this.autocorrect = true,
     this.hasBorders = true,
     this.isRequired = false,
+    this.isClearEnabled = false,
     this.suffix,
     this.prefix,
     this.inputKey,
@@ -76,6 +77,9 @@ class OptimusInputField extends StatefulWidget {
   final bool hasBorders;
   final bool isRequired;
 
+  /// If true, clear all button is enabled.
+  final bool isClearEnabled;
+
   /// An optional [Widget] to display after the text.
   final Widget? suffix;
 
@@ -106,6 +110,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     with ThemeGetter {
   FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
+  TextEditingController? _controller;
+
+  TextEditingController get _effectiveController =>
+      widget.controller ?? (_controller ??= TextEditingController());
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
@@ -120,8 +128,25 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   void dispose() {
     _effectiveFocusNode.removeListener(_onFocusChanged);
     _focusNode?.dispose();
+    _controller?.dispose();
     super.dispose();
   }
+
+  Widget get _suffix => OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (widget.isClearEnabled)
+            _ClearAllButton(
+              onTap: () {
+                _effectiveController.clear();
+                widget.onChanged?.call('');
+              },
+            ),
+          if (widget.suffix != null) widget.suffix!,
+        ],
+      );
 
   @override
   Widget build(BuildContext context) => FieldWrapper(
@@ -133,7 +158,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         error: widget.error,
         hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
-        suffix: widget.suffix,
+        suffix: _suffix,
         prefix: widget.prefix,
         fieldBoxKey: widget.fieldBoxKey,
         children: <Widget>[
@@ -146,7 +171,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
-              controller: widget.controller,
+              controller: _effectiveController,
               maxLines: widget.maxLines,
               minLines: widget.minLines,
               onSubmitted: widget.onSubmitted,
@@ -248,4 +273,24 @@ class _SuffixPadding extends StatelessWidget {
       );
 }
 
-const double _iconSize = 24;
+class _ClearAllButton extends StatelessWidget {
+  const _ClearAllButton({Key? key, required this.onTap}) : super(key: key);
+
+  final GestureTapCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Icon(
+        OptimusIcons.clear_selection,
+        size: _iconSize,
+        color: theme.colors.neutral100,
+      ),
+    );
+  }
+}
+
+const double _iconSize = 20;
