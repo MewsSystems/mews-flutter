@@ -113,7 +113,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
-      widget.controller ?? _controller!;
+      widget.controller ?? (_controller ??= TextEditingController());
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
@@ -122,9 +122,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   void initState() {
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
-    if (widget.controller == null) {
-      _controller = TextEditingController();
-    }
   }
 
   @override
