@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
+import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/widget_size.dart';
@@ -99,7 +100,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
       );
 
   Decoration get _decoration => widget.variant == OptimusIconButtonVariant.float
-      ? BoxDecoration(shape: BoxShape.circle, color: _color)
+      ? BoxDecoration(
+          shape: BoxShape.circle,
+          color: _color,
+          boxShadow: elevation50,
+        )
       : BoxDecoration(
           color: _color,
           borderRadius: const BorderRadius.all(borderRadius50),
