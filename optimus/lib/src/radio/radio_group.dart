@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/common/group_item.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
+import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/radio/radio.dart';
 
 class OptimusRadioGroup<T> extends StatelessWidget {

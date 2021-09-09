@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:storybook/utils.dart';
+import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story loaderStory = Story(
   name: 'Circle loader',
