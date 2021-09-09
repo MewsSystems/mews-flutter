@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
+import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 /// The radio component is available in two size variants to accommodate
