@@ -1,3 +1,9 @@
+## 0.3.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Base mews_pedantic on flutter_lints (#140).
+
 ## 0.2.1
 
  - **FEAT**: Add ignoreResult.

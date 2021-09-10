@@ -1,3 +1,8 @@
+## 0.11.2
+
+ - **REFACTOR**: Updates for Flutter 2.5 (#141).
+ - **FEAT**: [RND-74787] Add shadow to floating variant of IconButton (#138).
+
 ## 0.11.1
 
  - **FEAT**: Add clear button to date time field (#135).
