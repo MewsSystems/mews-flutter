@@ -47,18 +47,21 @@ class _RadioExampleState extends State<RadioExample> {
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: _options
-                .map((i) => OptimusRadio<String>(
-                      isEnabled: widget.isEnabled,
-                      label: Text(i),
-                      size: widget.size,
-                      value: i,
-                      groupValue: _groupValue,
-                      onChanged: _onChanged,
-                      error: widget.error,
-                    ))
-                .toList()),
+          mainAxisSize: MainAxisSize.min,
+          children: _options
+              .map(
+                (i) => OptimusRadio<String>(
+                  isEnabled: widget.isEnabled,
+                  label: Text(i),
+                  size: widget.size,
+                  value: i,
+                  groupValue: _groupValue,
+                  onChanged: _onChanged,
+                  error: widget.error,
+                ),
+              )
+              .toList(),
+        ),
       );
 }
 

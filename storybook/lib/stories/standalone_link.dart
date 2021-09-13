@@ -9,20 +9,22 @@ final Story link = Story(
   builder: (_, k) => SingleChildScrollView(
     child: Column(
       children: OptimusLinkSize.values
-          .map((size) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: OptimusStandaloneLink(
-                  onPressed:
-                      k.boolean(label: 'Enabled', initial: true) ? () {} : null,
-                  text: k.text(label: 'Text', initial: 'Link'),
-                  size: size,
-                  color: k.options(
-                    label: 'Color',
-                    initial: null,
-                    options: _colors,
-                  ),
+          .map(
+            (size) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: OptimusStandaloneLink(
+                onPressed:
+                    k.boolean(label: 'Enabled', initial: true) ? () {} : null,
+                text: k.text(label: 'Text', initial: 'Link'),
+                size: size,
+                color: k.options(
+                  label: 'Color',
+                  initial: null,
+                  options: _colors,
                 ),
-              ))
+              ),
+            ),
+          )
           .toList(),
     ),
   ),

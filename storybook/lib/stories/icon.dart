@@ -20,16 +20,18 @@ final Story iconStory = Story(
 
     return ListView(
       children: OptimusColorOption.values
-          .map((c) => OptimusListTile(
-                title: OptimusSubsectionTitle(
-                  child: Text(describeEnum(c).toUpperCase()),
-                ),
-                prefix: OptimusIcon(
-                  iconData: icon,
-                  colorOption: c,
-                  iconSize: size,
-                ),
-              ))
+          .map(
+            (c) => OptimusListTile(
+              title: OptimusSubsectionTitle(
+                child: Text(describeEnum(c).toUpperCase()),
+              ),
+              prefix: OptimusIcon(
+                iconData: icon,
+                colorOption: c,
+                iconSize: size,
+              ),
+            ),
+          )
           .toList(),
     );
   },
@@ -47,15 +49,17 @@ final Story supplementaryIconStory = Story(
 
     return ListView(
       children: OptimusColorOption.values
-          .map((c) => OptimusListTile(
-                title: OptimusSubsectionTitle(
-                  child: Text(describeEnum(c).toUpperCase()),
-                ),
-                prefix: OptimusSupplementaryIcon(
-                  iconData: icon,
-                  colorOption: c,
-                ),
-              ))
+          .map(
+            (c) => OptimusListTile(
+              title: OptimusSubsectionTitle(
+                child: Text(describeEnum(c).toUpperCase()),
+              ),
+              prefix: OptimusSupplementaryIcon(
+                iconData: icon,
+                colorOption: c,
+              ),
+            ),
+          )
           .toList(),
     );
   },

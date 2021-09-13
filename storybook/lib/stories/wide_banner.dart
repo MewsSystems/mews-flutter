@@ -8,19 +8,22 @@ final Story wideBannerStory = Story(
   section: 'Banner',
   builder: (_, k) => SingleChildScrollView(
     child: Column(
-        children: OptimusWideBannerVariant.values
-            .map(
-              (v) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: OptimusWideBanner(
-                  content: Text(k.text(
+      children: OptimusWideBannerVariant.values
+          .map(
+            (v) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: OptimusWideBanner(
+                content: Text(
+                  k.text(
                     label: 'Content',
                     initial: 'Info Text.',
-                  )),
-                  variant: v,
+                  ),
                 ),
+                variant: v,
               ),
-            )
-            .toList()),
+            ),
+          )
+          .toList(),
+    ),
   ),
 );

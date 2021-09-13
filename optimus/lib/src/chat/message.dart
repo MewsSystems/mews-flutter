@@ -21,7 +21,8 @@ enum MessageState {
 }
 
 typedef TryAgainCallback = Future<MessageState> Function(
-    OptimusMessage message);
+  OptimusMessage message,
+);
 
 @freezed
 class OptimusMessage with _$OptimusMessage {

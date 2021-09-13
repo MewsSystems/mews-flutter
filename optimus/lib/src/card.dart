@@ -252,7 +252,7 @@ class OptimusCardChildPadding extends StatelessWidget {
   EdgeInsets get _padding {
     switch (spacing) {
       case OptimusCardSpacing.spacing0:
-        return const EdgeInsets.all(spacing0);
+        return EdgeInsets.zero;
       case OptimusCardSpacing.spacing100:
         return const EdgeInsets.all(spacing100);
       case OptimusCardSpacing.spacing200:

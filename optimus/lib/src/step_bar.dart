@@ -46,7 +46,7 @@ class OptimusStepBar extends StatefulWidget {
 
   /// The maximum enabled step.
   ///
-  /// All the steps after [maxItem] will be disabled. If [null] all the steps
+  /// All the steps after [maxItem] will be disabled. If `null` all the steps
   /// are enabled.
   final int? maxItem;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-/// Used with grouped items such as [OptimusRadioGroup], [OptimusCheckboxGroup]
-/// and [OptimusSegmentedControl].
+/// Used with grouped items such as `OptimusRadioGroup`, `OptimusCheckboxGroup`
+/// and `OptimusSegmentedControl`.
 class OptimusGroupItem<T> {
   const OptimusGroupItem({
     required this.label,

@@ -60,17 +60,19 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
 
   List<Widget> _dividers(double maxWidth) =>
       Iterable<int>.generate(widget.listSize - 1)
-          .map((e) => IgnorePointer(
-                child: Container(
-                  height: widget.size.value,
-                  width: maxWidth / widget.listSize,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      right: BorderSide(color: theme.colors.neutral100),
-                    ),
+          .map(
+            (e) => IgnorePointer(
+              child: Container(
+                height: widget.size.value,
+                width: maxWidth / widget.listSize,
+                decoration: BoxDecoration(
+                  border: Border(
+                    right: BorderSide(color: theme.colors.neutral100),
                   ),
                 ),
-              ))
+              ),
+            ),
+          )
           .toList();
 
   double _left(double maxWidth) {
@@ -106,7 +108,7 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
           bottomLeft: borderRadius50,
         );
       case _ItemPosition.inBetween:
-        return const BorderRadius.all(borderRadius0);
+        return BorderRadius.zero;
       case _ItemPosition.last:
         return const BorderRadius.only(
           topRight: borderRadius50,

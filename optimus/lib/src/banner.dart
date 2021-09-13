@@ -241,7 +241,9 @@ class OptimusWideBanner extends StatelessWidget {
               child: Icon(OptimusIcons.info, color: _color(theme)),
             ),
             DefaultTextStyle.merge(
-                child: content, style: _contentTextStyle(theme)),
+              child: content,
+              style: _contentTextStyle(theme),
+            ),
           ],
         ),
       ),
