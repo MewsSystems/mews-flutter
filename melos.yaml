@@ -7,7 +7,6 @@ scripts:
   check_master:
     run: |
       melos run format \
-        && melos run pub_get \
         && melos run analyze \
         && melos run test --no-select
 
