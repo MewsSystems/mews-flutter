@@ -74,6 +74,12 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
     );
   }
 
+  void _onInputChanged(String v) {
+    if (v.isEmpty) {
+      widget.onChanged(null);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => OptimusInputField(
         controller: _controller,
@@ -83,10 +89,6 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {
         label: widget.label,
         isClearEnabled: widget.isClearEnabled,
         placeholder: widget.placeholder,
-        onChanged: (v) {
-          if (v.isEmpty) {
-            widget.onChanged(null);
-          }
-        },
+        onChanged: _onInputChanged,
       );
 }

@@ -26,6 +26,7 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
   @override
   Widget build(BuildContext context) {
     final k = widget.knobs;
+
     return OptimusCheckboxGroup<int>(
       label: k.text(label: 'Label', initial: 'Checkbox Group Label'),
       error: k.text(label: 'Error'),

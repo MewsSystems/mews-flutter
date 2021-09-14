@@ -254,6 +254,7 @@ Future<void> _showCustomContentDialog({
   required String title,
 }) {
   final theme = OptimusTheme.of(context);
+
   return showOptimusDialog(
     context: context,
     isDismissible: isDismissible,
@@ -278,6 +279,7 @@ Future<void> _showCustomContentDialog({
 
 Widget _content(BuildContext context) {
   final theme = OptimusTheme.of(context);
+
   return Container(
     height: 200,
     width: double.infinity,

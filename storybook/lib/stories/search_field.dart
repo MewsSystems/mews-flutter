@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
@@ -40,6 +41,7 @@ class _SearchStoryState extends State<SearchStory> {
   @override
   Widget build(BuildContext context) {
     final k = widget.knobs;
+
     return OptimusSearch<String>(
       controller: _controller,
       items: _characters
@@ -54,6 +56,7 @@ class _SearchStoryState extends State<SearchStory> {
             ),
           )
           .toList(),
+      // ignore: prefer-extracting-callbacks
       onChanged: (_) {},
       label: k.text(label: 'Label', initial: 'Search field'),
       placeholder: k.text(

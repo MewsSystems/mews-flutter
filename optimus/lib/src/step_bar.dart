@@ -66,6 +66,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     if (widget.maxItem == null || position <= widget.maxItem!) {
       return OptimusStepBarItemState.enabled;
     }
+
     return OptimusStepBarItemState.disabled;
   }
 

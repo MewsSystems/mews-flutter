@@ -9,6 +9,7 @@ final Story bannerStory = Story(
   builder: (_, k) {
     final title = k.text(label: 'Title', initial: 'Title');
     final description = k.text(label: 'Additional description', initial: '');
+
     return SingleChildScrollView(
       child: Column(
         children: OptimusBannerVariant.values

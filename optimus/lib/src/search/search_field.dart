@@ -114,8 +114,10 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   Future<bool> _handleOnBackPressed() async {
     if (_effectiveFocusNode.hasFocus) {
       _effectiveFocusNode.unfocus();
+
       return false;
     }
+
     return true;
   }
 
@@ -135,12 +137,12 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
     _effectiveFocusNode.unfocus();
   }
 
-  void _afterLayoutBuild(Duration d) {
+  void _afterLayoutBuild(dynamic _) {
     if (!mounted) return;
     _createOverlay();
   }
 
-  void _afterLayoutWithShow(Duration d) {
+  void _afterLayoutWithShow(dynamic _) {
     if (!mounted) return;
     _createOverlay();
     _showOverlay();

@@ -24,6 +24,7 @@ class _CheckboxStoryState extends State<_CheckboxStory> {
   @override
   Widget build(BuildContext context) {
     final k = widget.knobs;
+
     return OptimusCheckbox(
       label: Text(k.text(label: 'Label', initial: 'Checkbox Label')),
       error: k.text(label: 'Error'),
@@ -34,11 +35,9 @@ class _CheckboxStoryState extends State<_CheckboxStory> {
         initial: OptimusCheckboxSize.large,
       ),
       isChecked: _checked,
-      onChanged: (b) {
-        setState(() {
-          _checked = b;
-        });
-      },
+      onChanged: (b) => setState(() {
+        _checked = b;
+      }),
     );
   }
 }

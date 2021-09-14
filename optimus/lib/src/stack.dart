@@ -90,6 +90,7 @@ class OptimusStack extends StatelessWidget {
     }
 
     final screenSize = MediaQuery.of(context).screenBreakpoint;
+
     return screenSize.index <= breakpoint.index
         ? Axis.vertical
         : Axis.horizontal;
