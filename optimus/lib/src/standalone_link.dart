@@ -28,6 +28,7 @@ class OptimusStandaloneLink extends StatefulWidget {
     required this.text,
     this.size = OptimusLinkSize.normal,
     this.color,
+    this.overflow,
   }) : super(key: key);
 
   /// Called when link is tapped.
@@ -44,6 +45,9 @@ class OptimusStandaloneLink extends StatefulWidget {
   /// Controls the link's color
   // TODO(VG): should be changed when design changes are finalized
   final Color? color;
+
+  /// Controls the link's text overflowing
+  final TextOverflow? overflow;
 
   @override
   _OptimusStandaloneLinkState createState() => _OptimusStandaloneLinkState();
@@ -71,6 +75,7 @@ class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>
             onTapCancel: () => setState(() => _isTappedDown = false),
             child: Text(
               widget.text,
+              overflow: widget.overflow,
               style: _linkStyle.copyWith(
                 decoration: _isHovering ? null : TextDecoration.underline,
                 color: _linkColor,
