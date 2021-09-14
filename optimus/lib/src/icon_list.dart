@@ -18,7 +18,7 @@ class OptimusIconList extends StatelessWidget {
 
   /// Controls size of list tile.
   ///
-  /// - [null] – default value. Changes the tile size to match screen viewport.
+  /// - `null` – default value. Changes the tile size to match screen viewport.
   /// - [OptimusIconListSize.large] – considered the default option, used across
   ///   all products and platforms.
   /// - [OptimusIconListSize.small] – intended for content-heavy environments
@@ -78,7 +78,7 @@ class OptimusIconListItem {
 
   /// Controls color of the icon.
   ///
-  /// - [null] – default value. Changes the color of the icon to match its
+  /// - `null` – default value. Changes the color of the icon to match its
   ///   parent font color.
   /// - [OptimusColorOption.basic] – variant with no extra emphasis.
   /// - [OptimusColorOption.primary] – used to emphasize the item in a general

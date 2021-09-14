@@ -57,19 +57,21 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: _items
-                .mapIndexed((i, v) => OptimusCheckbox(
-                      isChecked: _values.contains(v.value),
-                      size: size,
-                      label: v.label,
-                      onChanged: (checked) {
-                        if (checked) {
-                          _values.add(v.value);
-                        } else {
-                          _values.remove(v.value);
-                        }
-                        onChanged(_values);
-                      },
-                    ))
+                .mapIndexed(
+                  (i, v) => OptimusCheckbox(
+                    isChecked: _values.contains(v.value),
+                    size: size,
+                    label: v.label,
+                    onChanged: (checked) {
+                      if (checked) {
+                        _values.add(v.value);
+                      } else {
+                        _values.remove(v.value);
+                      }
+                      onChanged(_values);
+                    },
+                  ),
+                )
                 .toList(),
           ),
         ),

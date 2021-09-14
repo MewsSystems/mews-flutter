@@ -34,7 +34,7 @@ class OptimusIcon extends StatelessWidget {
 
   /// Controls color of the icon.
   ///
-  /// - [null] – default value. Changes the color of the icon to match its
+  /// - `null` – default value. Changes the color of the icon to match its
   ///   parent font color.
   /// - [OptimusColorOption.basic] – variant with no extra emphasis.
   /// - [OptimusColorOption.primary] – used to emphasize the item in a general
@@ -88,7 +88,7 @@ class OptimusSupplementaryIcon extends StatelessWidget {
 
   /// Controls the background color of the icon.
   ///
-  /// - [null] – default value. Changes the color of the icon to match its
+  /// - `null` – default value. Changes the color of the icon to match its
   ///   parent font color.
   /// - [OptimusColorOption.basic] – variant with no extra emphasis.
   /// - [OptimusColorOption.primary] – used to emphasize the item in a general

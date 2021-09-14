@@ -9,26 +9,28 @@ final Story iconButton = Story(
   builder: (_, k) => SingleChildScrollView(
     child: Column(
       children: OptimusIconButtonVariant.values
-          .map((v) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: OptimusIconButton(
-                  onPressed:
-                      k.boolean(label: 'Enabled', initial: true) ? () {} : null,
-                  icon: Icon(
-                    k.options(
-                      label: 'Icon',
-                      initial: OptimusIcons.plus,
-                      options: exampleIcons,
-                    ),
+          .map(
+            (v) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: OptimusIconButton(
+                onPressed:
+                    k.boolean(label: 'Enabled', initial: true) ? () {} : null,
+                icon: Icon(
+                  k.options(
+                    label: 'Icon',
+                    initial: OptimusIcons.plus,
+                    options: exampleIcons,
                   ),
-                  size: k.options(
-                    label: 'Size',
-                    initial: OptimusWidgetSize.large,
-                    options: sizeOptions,
-                  ),
-                  variant: v,
                 ),
-              ))
+                size: k.options(
+                  label: 'Size',
+                  initial: OptimusWidgetSize.large,
+                  options: sizeOptions,
+                ),
+                variant: v,
+              ),
+            ),
+          )
           .toList(),
     ),
   ),

@@ -4,12 +4,14 @@ linter:
   rules:
     - avoid_catches_without_on_clauses
     - avoid_catching_errors
+    - avoid_dynamic_calls
     - avoid_implementing_value_types
     - avoid_unused_constructor_parameters
     - avoid_void_async
     - cancel_subscriptions
     - cascade_invocations
     - close_sinks
+    - comment_references
     - directives_ordering
     - flutter_style_todos
     - invariant_booleans
@@ -27,6 +29,7 @@ linter:
     - prefer_interpolation_to_compose_strings
     - prefer_mixin
     - prefer_single_quotes
+    - require_trailing_commas
     - sort_child_properties_last
     - sort_constructors_first
     - sort_pub_dependencies
@@ -41,23 +44,44 @@ linter:
     - unnecessary_null_aware_assignments
     - unnecessary_parenthesis
     - unnecessary_statements
+    - use_named_constants
+    - use_raw_strings
     - use_setters_to_change_properties
+    - use_string_buffers
     - use_to_and_as_if_applicable
 
 analyzer:
+  plugins:
+    - dart_code_metrics
+  
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
 
   errors:
-    unused_element: warning
-    override_on_non_overriding_member: error
+    annotate_overrides: error
+    avoid_dynamic_calls: error
+    avoid_shadowing_type_parameters: warning
+    exhaustive_cases: warning
     literal_only_boolean_expressions: warning
+    no_duplicate_case_values: error
     only_throw_errors: error
+    override_on_non_overriding_member: error
     parameter_assignments: error
     unawaited_futures: error
     unnecessary_overrides: error
+    unused_element: warning
 
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
+
+dart_code_metrics:
+  rules:
+    - avoid-unused-parameters
+    - newline-before-return
+    - no-equal-then-else
+    - avoid-unnecessary-setstate
+    - avoid-wrapping-in-padding
+    - prefer-extracting-callbacks
+    - prefer-single-widget-per-file

@@ -12,4 +12,5 @@ jobs:
       - uses: subosito/flutter-action@v1
       - run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
       - run: dart pub global activate melos
+      - run: melos bs
       - run: melos run check_master

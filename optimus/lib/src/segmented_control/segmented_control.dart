@@ -61,13 +61,15 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
               direction: Axis.horizontal,
               distribution: OptimusStackDistribution.stretch,
               children: items
-                  .mapIndexed((i, v) => _OptimusSegmentedControlItem<T>(
-                        value: v.value,
-                        size: size,
-                        groupValue: value,
-                        onItemSelected: onItemSelected,
-                        child: v.label,
-                      ))
+                  .mapIndexed(
+                    (i, v) => _OptimusSegmentedControlItem<T>(
+                      value: v.value,
+                      size: size,
+                      groupValue: value,
+                      onItemSelected: onItemSelected,
+                      child: v.label,
+                    ),
+                  )
                   .toList(),
             ),
           ),

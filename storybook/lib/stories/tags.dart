@@ -11,9 +11,10 @@ final Story tagStory = Story(
           children: OptimusColorOption.values
               .map(
                 (c) => _PaddedTag(
-                    version: version,
-                    colorOption: c,
-                    text: k.text(label: 'Text', initial: '')),
+                  version: version,
+                  colorOption: c,
+                  text: k.text(label: 'Text', initial: ''),
+                ),
               )
               .toList(),
         );

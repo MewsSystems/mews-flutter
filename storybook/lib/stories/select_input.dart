@@ -54,11 +54,13 @@ class _SelectInputStoryState extends State<SelectInputStory> {
       error: k.text(label: 'Error', initial: ''),
       items: _characters
           .where((e) => e.toLowerCase().contains(_searchToken))
-          .map((e) => ListDropdownTile<String>(
-                value: e,
-                title: Text(e),
-                subtitle: Text(e.toUpperCase()),
-              ))
+          .map(
+            (e) => ListDropdownTile<String>(
+              value: e,
+              title: Text(e),
+              subtitle: Text(e.toUpperCase()),
+            ),
+          )
           .toList(),
       builder: (option) => option,
     );

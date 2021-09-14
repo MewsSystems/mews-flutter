@@ -163,7 +163,7 @@ class BaseButton extends StatelessWidget {
       child: MaterialButton(
         minWidth: minWidth,
         height: size.value,
-        visualDensity: const VisualDensity(),
+        visualDensity: VisualDensity.standard,
         elevation: 0,
         highlightElevation: 0,
         highlightColor: _highLightColor(theme),

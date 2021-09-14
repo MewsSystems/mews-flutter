@@ -41,14 +41,15 @@ class _NonModalWrapperState extends State<NonModalWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-        builder: (context) => OptimusDialog.nonModal(
-              title: title,
-              content: content,
-              close: hide,
-              isDismissible: isDismissible,
-              actions: actions,
-              size: size,
-            ));
+      builder: (context) => OptimusDialog.nonModal(
+        title: title,
+        content: content,
+        close: hide,
+        isDismissible: isDismissible,
+        actions: actions,
+        size: size,
+      ),
+    );
     _entry = entry;
     Overlay.of(context, rootOverlay: true)?.insert(entry);
   }

@@ -52,24 +52,26 @@ const avatar3 = OptimusAvatar(
   imageUrl: _avatar2Url,
 );
 
-final organisationAvatar = Stack(children: [
-  avatar3,
-  Positioned(
-    bottom: 0,
-    right: 0,
-    child: Container(
-      width: 16,
-      height: 16,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        image: const DecorationImage(
-          image: NetworkImage(_organisationAvatarUrl),
-          fit: BoxFit.cover,
+final organisationAvatar = Stack(
+  children: [
+    avatar3,
+    Positioned(
+      bottom: 0,
+      right: 0,
+      child: Container(
+        width: 16,
+        height: 16,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          image: const DecorationImage(
+            image: NetworkImage(_organisationAvatarUrl),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     ),
-  ),
-]);
+  ],
+);
 
 const _you = OptimusMessageAuthor(id: 'you', username: 'You', avatar: avatar2);
 const _user1 = OptimusMessageAuthor(

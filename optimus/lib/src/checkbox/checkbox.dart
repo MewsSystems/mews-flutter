@@ -53,9 +53,9 @@ class OptimusCheckbox extends StatefulWidget {
 
   /// Called when the user clicks on this check button.
   ///
-  /// The checkbox button passes [value] as a parameter to this callback.
+  /// The checkbox button passes `value` as a parameter to this callback.
   /// The checkbox button does not actually change state until the parent
-  /// widget rebuilds the checkbox button with the new [value].
+  /// widget rebuilds the checkbox button with the new `value`.
   ///
   /// The callback provided to [onChanged] should update the state of the parent
   /// [StatefulWidget] using the [State.setState] method;
