@@ -1,3 +1,9 @@
+## 0.11.3
+
+ - **STYLE**: Migrate to mews_pedantic 0.4.0-dev.0.
+ - **FEAT**: Update analysis options.
+ - **CHORE**: publish packages.
+
 ## 0.11.2
 
  - **REFACTOR**: Updates for Flutter 2.5 (#141).
