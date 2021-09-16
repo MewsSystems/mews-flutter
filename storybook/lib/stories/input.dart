@@ -15,6 +15,7 @@ final Story inputStory = Story(
           k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
       suffix: k.boolean(label: 'Suffix') ? const Icon(OptimusIcons.lock) : null,
       isClearEnabled: k.boolean(label: 'Clear all', initial: false),
+      showLoader: k.boolean(label: 'Show loader', initial: false),
       size: k.options(
         label: 'Size',
         initial: OptimusWidgetSize.large,
