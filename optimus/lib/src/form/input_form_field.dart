@@ -48,6 +48,7 @@ class OptimusInputFormField extends FormField<String> {
           enabled: isEnabled,
           builder: (FormFieldState<String> field) {
             final _InputFormFieldState state = field as _InputFormFieldState;
+
             return OptimusInputField(
               onChanged: field.didChange,
               placeholder: placeholder,

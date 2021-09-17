@@ -7,14 +7,17 @@ scripts:
   check_master:
     run: |
       melos run format \
+        && melos run pub_get \
         && melos run analyze \
         && melos run test --no-select
 
-  analyze: flutter analyze .
+  analyze: |
+    flutter analyze . \
+      && melos exec -c 1 --ignore="*example*" -- "exec flutter pub run mews_pedantic:metrics analyze lib"
 
   format: flutter format --set-exit-if-changed -n .
 
-  pub_get: melos exec -- "flutter pub get"
+  pub_get: melos exec -c 1 --fail-fast -- "flutter pub get"
 
   build_runner: melos exec --scope="optimus" --fail-fast -- "exec flutter packages pub run build_runner build"
 

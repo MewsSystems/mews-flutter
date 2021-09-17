@@ -69,8 +69,10 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   Future<bool> _handleOnBackPressed() async {
     if (widget.focusNode.hasFocus) {
       widget.focusNode.unfocus();
+
       return false;
     }
+
     return true;
   }
 

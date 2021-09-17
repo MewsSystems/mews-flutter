@@ -28,6 +28,7 @@ class OptimusIconList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = listSize ?? _getListSize(context);
+
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

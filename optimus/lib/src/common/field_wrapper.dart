@@ -132,6 +132,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   Color get _borderColor {
     if (widget.hasError) return theme.colors.danger;
+
     return widget.focusNode.hasFocus
         ? theme.colors.primary
         : theme.colors.neutral100;
@@ -168,6 +169,7 @@ class _Icon extends StatelessWidget {
 
   Color _iconColor(BuildContext context) {
     final theme = OptimusTheme.of(context);
+
     return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
   }
 }
