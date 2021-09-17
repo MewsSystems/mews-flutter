@@ -1,3 +1,7 @@
+## 0.11.5
+
+ - **FEAT**: Add loader to input field (#146).
+
 ## 0.11.4
 
  - **FEAT**: Update analysis options.

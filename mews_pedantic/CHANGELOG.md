@@ -1,3 +1,8 @@
+## 0.4.0-dev.2
+
+ - **FEAT**: Update analysis options.
+ - **CHORE**: publish packages.
+
 ## 0.4.0-dev.1
 
  - **FEAT**: Update analysis options.
