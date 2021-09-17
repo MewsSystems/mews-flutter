@@ -40,7 +40,7 @@ class OptimusInputField extends StatefulWidget {
     this.textAlign = TextAlign.start,
     this.size = OptimusWidgetSize.large,
     this.showCursor,
-    this.showLoader,
+    this.showLoader = false,
   }) : super(key: key);
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -101,8 +101,8 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
 
-  /// If true, displays [OptimusCircleLoader] after the suffix
-  final bool? showLoader;
+  /// If true, displays [OptimusCircleLoader] instead of suffix
+  final bool showLoader;
 
   bool get hasError => error != null && error!.isNotEmpty;
 
@@ -148,8 +148,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
                 widget.onChanged?.call('');
               },
             ),
-          if (widget.suffix != null) widget.suffix!,
-          if (widget.showLoader == true) _loader,
+          if (widget.showLoader) _loader,
+          if (!widget.showLoader && widget.suffix != null) widget.suffix!,
         ],
       );
 
