@@ -148,8 +148,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
                 widget.onChanged?.call('');
               },
             ),
-          if (widget.showLoader) _loader,
-          if (!widget.showLoader && widget.suffix != null) widget.suffix!,
+          if (widget.showLoader)
+            _loader
+          else if (widget.suffix != null)
+            widget.suffix!,
         ],
       );
 
