@@ -1,3 +1,7 @@
+## 0.11.4
+
+ - **FEAT**: Update analysis options.
+
 ## 0.11.3
 
  - **STYLE**: Migrate to mews_pedantic 0.4.0-dev.0.

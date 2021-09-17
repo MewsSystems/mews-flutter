@@ -102,6 +102,7 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
     final RenderBox renderBox =
         widget.anchorKey.currentContext?.findRenderObject() as RenderBox;
     final size = renderBox.size;
+
     return renderBox.localToGlobal(Offset.zero) & size;
   }
 
@@ -160,15 +161,17 @@ class _DropdownItem<T> extends StatefulWidget {
 class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   bool _isHighlighted = false;
 
+  void _onItemTap() {
+    widget.onChanged(widget.child.value);
+    DropdownTapInterceptor.of(context)?.onTap();
+  }
+
   @override
   Widget build(BuildContext context) => InkWell(
         highlightColor: theme.colors.primary,
         onHighlightChanged: (isHighlighted) =>
             setState(() => _isHighlighted = isHighlighted),
-        onTap: () {
-          widget.onChanged(widget.child.value);
-          DropdownTapInterceptor.of(context)?.onTap();
-        },
+        onTap: _onItemTap,
         child: _isHighlighted
             ? OptimusTheme(
                 themeMode: ThemeMode.dark,

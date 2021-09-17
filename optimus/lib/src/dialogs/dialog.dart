@@ -89,7 +89,10 @@ Future<T?> showOptimusDialog<T>({
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
       barrierColor: OptimusTheme.of(context).colors.neutral1000t64,
       transitionDuration: const Duration(milliseconds: 150),
-      transitionBuilder: _buildTransitions,
+      transitionBuilder: (_, animation, __, child) => FadeTransition(
+        opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+        child: child,
+      ),
       useRootNavigator: true,
     );
 
@@ -445,17 +448,7 @@ class _Actions extends StatelessWidget {
     }
     if (i == 0) return OptimusButtonVariant.primary;
     if (i == 1) return OptimusButtonVariant.defaultButton;
+
     return OptimusButtonVariant.text;
   }
 }
-
-Widget _buildTransitions(
-  BuildContext context,
-  Animation<double> animation,
-  Animation<double> secondaryAnimation,
-  Widget child,
-) =>
-    FadeTransition(
-      opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
-      child: child,
-    );

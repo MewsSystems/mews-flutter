@@ -123,6 +123,7 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
     } else if (widget.selectedItemIndex == widget.listSize - 1) {
       return _ItemPosition.last;
     }
+
     return _ItemPosition.inBetween;
   }
 }

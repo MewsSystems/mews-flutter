@@ -142,6 +142,7 @@ class _IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+
     return OptimusEnabled(
       isEnabled: _isEnabled,
       child: GestureDetector(

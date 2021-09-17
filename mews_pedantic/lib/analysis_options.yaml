@@ -82,6 +82,8 @@ dart_code_metrics:
     - newline-before-return
     - no-equal-then-else
     - avoid-unnecessary-setstate
-    - avoid-wrapping-in-padding
     - prefer-extracting-callbacks
-    - prefer-single-widget-per-file
+  
+  metrics-exclude:
+    - lib/**
+    - test/**
