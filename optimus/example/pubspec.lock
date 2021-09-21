@@ -112,7 +112,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.0"
+    version: "4.3.2"
   dart_style:
     dependency: transitive
     description:
@@ -220,14 +220,14 @@ packages:
       name: mews_pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0-dev.0"
+    version: "0.4.0-dev.1"
   optimus:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.11.2"
+    version: "0.11.5"
   package_config:
     dependency: transitive
     description:

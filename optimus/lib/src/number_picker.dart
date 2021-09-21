@@ -67,7 +67,13 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   }
 
   void _updateInputValue(int? value) {
-    _controller.value = _controller.value.copyWith(text: _format(value));
+    final formattedValue = _format(value);
+    _controller.value = _controller.value.copyWith(
+      text: formattedValue,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: formattedValue.length),
+      ),
+    );
   }
 
   void _onMinusTap() {
