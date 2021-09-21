@@ -56,23 +56,26 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   void didUpdateWidget(OptimusNumberPicker oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.value != widget.value) {
-      _updateInputValue(widget.value);
+      _updateInputValue(value: widget.value);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    _updateInputValue(widget.value);
+    _updateInputValue(value: widget.value);
   }
 
-  void _updateInputValue(int? value) {
-    final formattedValue = _format(value);
+  void _updateInputValue({int? value, bool isInRange = true}) {
+    final _selection = _controller.value.selection;
+
     _controller.value = _controller.value.copyWith(
-      text: formattedValue,
-      selection: TextSelection.fromPosition(
-        TextPosition(offset: formattedValue.length),
-      ),
+      text: _format(value),
+      selection: isInRange
+          ? _selection
+          : TextSelection.fromPosition(
+              TextPosition(offset: _selection.baseOffset - 1),
+            ),
     );
   }
 
@@ -123,7 +126,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
             if (_isInRange(newValue)) {
               widget.onChanged(newValue);
             } else {
-              _updateInputValue(widget.value);
+              _updateInputValue(value: widget.value, isInRange: false);
             }
           },
           placeholder: widget.defaultValue.toString(),
