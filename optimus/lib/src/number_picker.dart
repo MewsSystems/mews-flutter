@@ -70,17 +70,14 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
     final formattedValue = _format(value);
     final length = formattedValue.length;
     final selection = _controller.value.selection;
-    final baseOffset = selection.baseOffset;
 
     _controller.value = _controller.value.copyWith(
       text: formattedValue,
-      selection: length >= baseOffset && isInRange
+      selection: isInRange &&
+              length >= selection.baseOffset &&
+              length >= selection.extentOffset
           ? selection
-          : TextSelection.fromPosition(
-              TextPosition(
-                offset: length >= baseOffset - 1 ? baseOffset - 1 : length,
-              ),
-            ),
+          : TextSelection.fromPosition(TextPosition(offset: length)),
     );
   }
 
