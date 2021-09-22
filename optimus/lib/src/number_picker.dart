@@ -123,6 +123,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
             onPressed: _canAdd ? _onPlusTap : null,
           ),
           focusNode: _effectiveFocusNode,
+          inputFormatters: [FilteringTextInputFormatter.allow(_integers)],
           onChanged: (v) {
             final newValue = int.tryParse(v);
             if (_isInRange(newValue)) {
@@ -171,3 +172,5 @@ class _IconButton extends StatelessWidget {
 }
 
 String _format(int? value) => value?.toString() ?? '';
+
+final _integers = RegExp(r'^[-]?\d+|^[-]');
