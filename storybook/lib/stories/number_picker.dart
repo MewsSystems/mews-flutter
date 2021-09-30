@@ -10,7 +10,7 @@ final Story numberPickerStory = Story(
   ),
 );
 
-class _Content extends StatefulWidget {
+class _Content extends StatelessWidget {
   const _Content({
     Key? key,
     required this.isEnabled,
@@ -21,45 +21,11 @@ class _Content extends StatefulWidget {
   final String? error;
 
   @override
-  _ContentState createState() => _ContentState();
-}
-
-class _ContentState extends State<_Content> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) => Form(
-        key: _formKey,
-        child: OptimusStack(
-          spacing: OptimusStackSpacing.spacing200,
-          children: [
-            OptimusNumberPickerFormField(
-              enabled: widget.isEnabled,
-              initialValue: 5,
-              min: 5,
-              max: 15,
-              onSaved: (v) {
-                print('onSaved $v');
-                // _onSubmitted();
-                // setState(() => _value = v);
-              },
-              onChanged: (v) {
-                print('onChanged $v');
-              },
-              error: widget.error,
-            ),
-            OptimusButton(
-              variant: OptimusButtonVariant.primary,
-              onPressed: _onSubmitted,
-              child: const Text('Validate'),
-            ),
-          ],
-        ),
+  Widget build(BuildContext context) => OptimusNumberPickerFormField(
+        enabled: isEnabled,
+        initialValue: 5,
+        min: 5,
+        max: 15,
+        error: error,
       );
-
-  void _onSubmitted() {
-    if (_formKey.currentState?.validate() == true) {
-      _formKey.currentState!.save();
-    }
-  }
 }

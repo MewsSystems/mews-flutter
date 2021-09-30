@@ -1,4 +1,3 @@
-import 'package:dfunc/src/scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
@@ -33,6 +32,7 @@ class OptimusNumberPickerFormField extends FormField<int?> {
             initialValue: initialValue,
             min: min,
             max: max,
+            // ignore: prefer-extracting-callbacks
             onChanged: (value) {
               field.didChange(value);
               if (onChanged != null &&
@@ -93,14 +93,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-    if (_controller == null) {
-      _controller = TextEditingController(text: widget.initialValue.toString());
-    }
-
-    /// Maybe remove
-    else {
-      _controller!.addListener(() {});
-    }
+    _controller = TextEditingController(text: widget.initialValue.toString());
   }
 
   @override
@@ -119,37 +112,33 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
     } else {
       newValue = widget.value! - 1;
     }
-
-    widget.onChanged(newValue);
-    _controller?.text = '$newValue';
-    _controller?.selection =
-        TextSelection.fromPosition(TextPosition(offset: '$newValue'.length));
+    _updateValue(newValue);
   }
 
   void _onPlusTap() {
     final int? newValue;
-    if (widget.value == null) {
+    if (widget.value == null || widget.value! < widget.min) {
       newValue = widget.min;
     } else if (widget.value! > widget.max - 1) {
       newValue = widget.max;
     } else {
       newValue = widget.value! + 1;
     }
-
-    widget.onChanged(newValue);
-    _controller?.text = '$newValue';
-    _controller?.selection =
-        TextSelection.fromPosition(TextPosition(offset: '$newValue'.length));
+    _updateValue(newValue);
   }
 
-  int get _safeValue => widget.value ?? widget.initialValue;
+  void _updateValue(int? newValue) {
+    widget.onChanged(newValue);
+    _controller?.text = _format(newValue);
+    _controller?.selection = TextSelection.fromPosition(
+      TextPosition(offset: _format(newValue).length),
+    );
+  }
 
-  bool get _canAdd => _isInRange(_safeValue + 1);
+  bool get _canSubtract =>
+      widget.value == null ? true : widget.value! > widget.min;
 
-  bool get _canSubtract => _isInRange(_safeValue - 1);
-
-  bool _isInRange(int? value) =>
-      value == null || widget.min <= value && value <= widget.max;
+  bool get _canAdd => widget.value == null ? true : widget.value! < widget.max;
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
@@ -162,16 +151,16 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
           controller: _controller,
           prefix: NumberPickerButton(
             iconData: OptimusIcons.minus_simple,
-            onPressed: _onMinusTap,
-            // onPressed: _canSubtract ? _onMinusTap : null,
+            onPressed: _canSubtract ? _onMinusTap : null,
           ),
           suffix: NumberPickerButton(
             iconData: OptimusIcons.plus_simple,
-            onPressed: _onPlusTap,
-            // onPressed: _canAdd ? _onPlusTap : null,
+            onPressed: _canAdd ? _onPlusTap : null,
           ),
           focusNode: _effectiveFocusNode,
-          inputFormatters: [FilteringTextInputFormatter.allow(_integers)],
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(_integersOrEmptyString),
+          ],
           onChanged: (v) => widget.onChanged(int.tryParse(v)),
           readOnly: widget.readOnly,
           showCursor: widget.showCursor,
@@ -181,4 +170,4 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
 
 String _format(int? value) => value?.toString() ?? '';
 
-final _integers = RegExp(r'^$|^[-]?\d+|^[-]');
+final _integersOrEmptyString = RegExp(r'^$|^[-]?\d+|^[-]');
