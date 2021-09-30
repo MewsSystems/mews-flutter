@@ -6,10 +6,12 @@ import 'package:optimus/src/theme/theme.dart';
 class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
     Key? key,
-    required this.text,
+    this.text,
   }) : super(key: key);
 
-  final String text;
+  final String? text;
+
+  bool get hasText => text != null && text!.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +26,11 @@ class OptimusBadge extends StatelessWidget {
     );
 
     return Container(
-      constraints: const BoxConstraints(minWidth: 20),
-      height: 20,
+      constraints: BoxConstraints(
+        minWidth: hasText ? 20 : 10,
+        maxWidth: hasText ? double.infinity : 10,
+      ),
+      height: hasText ? 20 : 10,
       decoration: decoration,
       padding: const EdgeInsets.symmetric(
         horizontal: spacing50,
@@ -33,19 +38,21 @@ class OptimusBadge extends StatelessWidget {
       ),
       child: IntrinsicWidth(
         child: Center(
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            // TODO(KB): Sync with text presets
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: theme.isDark
-                  ? theme.colors.neutral1000
-                  : theme.colors.neutral0,
-              height: 1,
-            ),
-          ),
+          child: hasText
+              ? Text(
+                  text!,
+                  textAlign: TextAlign.center,
+                  // TODO(KB): Sync with text presets
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: theme.isDark
+                        ? theme.colors.neutral1000
+                        : theme.colors.neutral0,
+                    height: 1,
+                  ),
+                )
+              : const SizedBox(),
         ),
       ),
     );
