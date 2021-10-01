@@ -22,7 +22,7 @@ scripts:
   build_runner: melos exec --scope="optimus" --fail-fast -- "exec flutter packages pub run build_runner build"
 
   test:
-    run: melos exec -- "flutter test --no-pub"
+    run: melos exec -c 1 -- "flutter test --no-pub"
     select-package:
       dir-exists:
         - test
