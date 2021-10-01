@@ -82,7 +82,7 @@ dart_code_metrics:
     - newline-before-return
     - no-equal-then-else
     - avoid-unnecessary-setstate
-    - prefer-extracting-callbacks
+    # - prefer-extracting-callbacks <- Enable after a new release of dart_code_metrics
   
   metrics-exclude:
     - lib/**
