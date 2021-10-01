@@ -1,3 +1,9 @@
+## 0.4.0-dev.2
+
+ - **FEAT**: Temporarily disable prefer-extracting-callbacks.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.4.0-dev.1
 
  - **FEAT**: Update analysis options.
