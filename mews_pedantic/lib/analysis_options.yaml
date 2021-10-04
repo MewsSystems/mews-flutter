@@ -78,11 +78,12 @@ analyzer:
 
 dart_code_metrics:
   rules:
+    - avoid-unnecessary-setstate
     - avoid-unused-parameters
     - newline-before-return
     - no-equal-then-else
-    - avoid-unnecessary-setstate
-    # - prefer-extracting-callbacks <- Enable after a new release of dart_code_metrics
+    - prefer-const-border-radius
+    - prefer-extracting-callbacks
   
   metrics-exclude:
     - lib/**

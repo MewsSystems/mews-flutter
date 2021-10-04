@@ -13,7 +13,7 @@ scripts:
 
   analyze: |
     flutter analyze . \
-      && melos exec -c 1 --ignore="*example*" -- "exec flutter pub run mews_pedantic:metrics analyze lib"
+      && melos exec -c 1 --ignore="*example*" -- "exec flutter pub run mews_pedantic:metrics --fatal-style --fatal-performance --fatal-warnings analyze lib"
 
   format: flutter format --set-exit-if-changed -n .
 
