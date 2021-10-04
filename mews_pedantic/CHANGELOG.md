@@ -1,3 +1,8 @@
+## 0.4.0-dev.4
+
+ - **REFACTOR**: Update static analyzer rules.
+ - **CHORE**: publish packages.
+
 ## 0.4.0-dev.3
 
  - **FEAT**: Temporarily disable prefer-extracting-callbacks.

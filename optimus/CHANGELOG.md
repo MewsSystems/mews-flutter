@@ -1,3 +1,9 @@
+## 0.11.6+1
+
+ - **REFACTOR**: Update static analyzer rules.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.11.6
 
  - **FEAT**: Make badge text optional (#152).
