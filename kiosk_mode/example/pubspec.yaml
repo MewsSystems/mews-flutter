@@ -16,6 +16,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mews_pedantic: ^0.4.0-dev.2
+  mews_pedantic: ^0.4.0-dev.3
 flutter:
   uses-material-design: true
