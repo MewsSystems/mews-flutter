@@ -11,10 +11,9 @@ class OptimusBadge extends StatelessWidget {
 
   final String text;
 
-  bool get _hasText => text.isNotEmpty;
-
   @override
   Widget build(BuildContext context) {
+    final bool _hasText = text.isNotEmpty;
     final theme = OptimusTheme.of(context);
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
