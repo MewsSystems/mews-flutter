@@ -9,17 +9,14 @@ class OptimusNumberPickerFormField extends FormField<int?> {
     int initialValue = 0,
     int min = 0,
     int max = 100,
+    int defaultValue = 0,
     FormFieldSetter<int>? onSaved,
     ValueChanged<int?>? onChanged,
     AutovalidateMode autovalidateMode = AutovalidateMode.always,
     String? error,
     final bool enabled = true,
     FocusNode? focusNode,
-  })  : assert(
-          min <= initialValue && initialValue <= max,
-          'initial value should be in [min, max] range',
-        ),
-        super(
+  }) : super(
           key: key,
           initialValue: initialValue,
           onSaved: onSaved,
@@ -30,6 +27,7 @@ class OptimusNumberPickerFormField extends FormField<int?> {
           builder: (FormFieldState<int?> field) => OptimusNumberPicker(
             value: field.value,
             initialValue: initialValue,
+            defaultValue: defaultValue,
             min: min,
             max: max,
             // ignore: prefer-extracting-callbacks
@@ -55,6 +53,7 @@ class OptimusNumberPicker extends StatefulWidget {
     this.value,
     required this.onChanged,
     this.initialValue = 0,
+    this.defaultValue = 0,
     this.min = 0,
     this.max = 100,
     this.focusNode,
@@ -62,13 +61,22 @@ class OptimusNumberPicker extends StatefulWidget {
     this.error,
     this.readOnly = false,
     this.showCursor,
-  }) : super(key: key);
+  })  : assert(
+          min <= initialValue && initialValue <= max,
+          'initial value should be in [min, max] range',
+        ),
+        assert(
+          min <= defaultValue && defaultValue <= max,
+          'defaultValue value should be in [min, max] range',
+        ),
+        super(key: key);
 
   final int? value;
   final int initialValue;
   final ValueChanged<int?> onChanged;
   final int min;
   final int max;
+  final int defaultValue;
   final FocusNode? focusNode;
   final bool enabled;
   final String? error;
@@ -161,7 +169,10 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
           inputFormatters: [
             FilteringTextInputFormatter.allow(_integersOrEmptyString),
           ],
-          onChanged: (v) => widget.onChanged(int.tryParse(v)),
+          placeholder: widget.defaultValue.toString(),
+          onChanged: (v) => v.isEmpty
+              ? widget.onChanged(widget.defaultValue)
+              : widget.onChanged(int.tryParse(v)),
           readOnly: widget.readOnly,
           showCursor: widget.showCursor,
         ),
