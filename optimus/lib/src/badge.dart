@@ -13,7 +13,7 @@ class OptimusBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _hasText = text.isNotEmpty;
+    final hasText = text.isNotEmpty;
     final theme = OptimusTheme.of(context);
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -26,10 +26,10 @@ class OptimusBadge extends StatelessWidget {
 
     return Container(
       constraints: BoxConstraints(
-        minWidth: _hasText ? 20 : 10,
-        maxWidth: _hasText ? double.infinity : 10,
+        minWidth: hasText ? 20 : 10,
+        maxWidth: hasText ? double.infinity : 10,
       ),
-      height: _hasText ? 20 : 10,
+      height: hasText ? 20 : 10,
       decoration: decoration,
       padding: const EdgeInsets.symmetric(
         horizontal: spacing50,
@@ -37,7 +37,7 @@ class OptimusBadge extends StatelessWidget {
       ),
       child: IntrinsicWidth(
         child: Center(
-          child: _hasText
+          child: hasText
               ? Text(
                   text,
                   textAlign: TextAlign.center,
