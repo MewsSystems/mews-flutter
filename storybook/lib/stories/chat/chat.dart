@@ -60,9 +60,9 @@ final organisationAvatar = Stack(
       child: Container(
         width: 16,
         height: 16,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          image: const DecorationImage(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          image: DecorationImage(
             image: NetworkImage(_organisationAvatarUrl),
             fit: BoxFit.cover,
           ),

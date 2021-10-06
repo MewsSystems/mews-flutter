@@ -50,7 +50,7 @@ class BaseButton extends StatelessWidget {
   Widget _buildBadgeLabel(String badgeLabel, OptimusThemeData theme) =>
       SizedBox(
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
           child: Container(
             height: 16,
             color: _textColor(theme),

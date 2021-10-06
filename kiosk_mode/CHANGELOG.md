@@ -1,3 +1,10 @@
+## 0.1.2+1
+
+ - **REFACTOR**: Update static analyzer rules.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+ - **CHORE**: publish packages.
+
 ## 0.1.2
 
  - **STYLE**: Migrate to mews_pedantic 0.4.0-dev.0.
