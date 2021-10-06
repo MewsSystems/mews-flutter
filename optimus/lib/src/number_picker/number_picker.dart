@@ -77,19 +77,13 @@ class _OptimusNumberPicker extends StatefulWidget {
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late final TextEditingController _controller;
+  late final TextEditingController _controller =
+      TextEditingController(text: widget.initialValue.toString());
   FocusNode? _focusNode;
-  late int _value;
+  late int _value = widget.initialValue;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: widget.initialValue.toString());
-    _value = widget.initialValue;
-  }
 
   @override
   void dispose() {
@@ -125,10 +119,11 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _updateController(int value) {
     final newValue = value.toString();
-    _controller.text = newValue;
-    _controller.selection = TextSelection.fromPosition(
-      TextPosition(offset: newValue.length),
-    );
+    _controller
+      ..text = newValue
+      ..selection = TextSelection.fromPosition(
+        TextPosition(offset: newValue.length),
+      );
   }
 
   @override
