@@ -37,7 +37,6 @@ class OptimusNumberPickerFormField extends FormField<int> {
             defaultValue: defaultValue,
             min: min,
             max: max,
-            // ignore: prefer-extracting-callbacks
             onChanged: (value) {
               field.didChange(value);
               if (onChanged != null && value >= min && value <= max) {
@@ -62,8 +61,6 @@ class _OptimusNumberPicker extends StatefulWidget {
     this.focusNode,
     this.enabled = true,
     this.error,
-    this.readOnly = false,
-    this.showCursor,
   }) : super(key: key);
 
   final int initialValue;
@@ -75,18 +72,12 @@ class _OptimusNumberPicker extends StatefulWidget {
   final bool enabled;
   final String? error;
 
-  /// {@macro flutter.widgets.editableText.readOnly}
-  final bool readOnly;
-
-  /// {@macro flutter.widgets.editableText.showCursor}
-  final bool? showCursor;
-
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  TextEditingController? _controller;
+  late final TextEditingController _controller;
   FocusNode? _focusNode;
   late int _value;
 
@@ -102,7 +93,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   @override
   void dispose() {
-    _controller?.dispose();
+    _controller.dispose();
     _focusNode?.dispose();
     super.dispose();
   }
@@ -134,8 +125,8 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _updateController(int value) {
     final newValue = value.toString();
-    _controller?.text = newValue;
-    _controller?.selection = TextSelection.fromPosition(
+    _controller.text = newValue;
+    _controller.selection = TextSelection.fromPosition(
       TextPosition(offset: newValue.length),
     );
   }
@@ -165,8 +156,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           onChanged: (v) => v.isEmpty
               ? _updateValue(widget.defaultValue)
               : _updateValue(int.tryParse(v) ?? widget.defaultValue),
-          readOnly: widget.readOnly,
-          showCursor: widget.showCursor,
         ),
       );
 }
