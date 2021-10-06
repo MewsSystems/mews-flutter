@@ -2,6 +2,8 @@ package com.mews.kiosk_mode
 
 import androidx.annotation.NonNull
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.view.ViewGroup
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -39,6 +41,14 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         } else if (call.method == "stopKioskMode") {
             activity?.stopLockTask()
             result.success(null)
+        } else if (call.method == "isInKioskMode") {
+            val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+            if (service == null) {
+                result.success(false)
+                return
+            }
+
+            result.success(service.isInLockTaskMode)
         } else {
             result.notImplemented()
         }
