@@ -25,7 +25,12 @@ class KioskModeStreamHandler: NSObject, FlutterStreamHandler {
     
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         sink = events
-        NotificationCenter.default.addObserver(self, selector: #selector(KioskModeStreamHandler.handleNotification(notification:)), name: UIAccessibility.guidedAccessStatusDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNotification(notification:)),
+            name: UIAccessibility.guidedAccessStatusDidChangeNotification,
+            object: nil
+        )
         return nil
     }
     
