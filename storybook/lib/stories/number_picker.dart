@@ -27,6 +27,5 @@ class _Content extends StatelessWidget {
         min: 5,
         max: 15,
         error: error,
-        onChanged: (v) => print('onChanged $v'),
       );
 }
