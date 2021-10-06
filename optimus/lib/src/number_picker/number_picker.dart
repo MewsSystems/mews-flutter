@@ -13,7 +13,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     FormFieldSetter<int>? onSaved,
     ValueChanged<int>? onChanged,
     AutovalidateMode autovalidateMode = AutovalidateMode.always,
-    String? error,
+    String? validationError,
     final bool enabled = true,
     FocusNode? focusNode,
   })  : assert(
@@ -28,8 +28,9 @@ class OptimusNumberPickerFormField extends FormField<int> {
           key: key,
           initialValue: initialValue ?? defaultValue,
           onSaved: onSaved,
-          validator: (value) =>
-              value != null && value >= min && value <= max ? null : error,
+          validator: (value) => value != null && value >= min && value <= max
+              ? null
+              : validationError,
           enabled: enabled,
           autovalidateMode: autovalidateMode,
           builder: (FormFieldState<int> field) {

@@ -26,6 +26,6 @@ class _Content extends StatelessWidget {
         defaultValue: 5,
         min: 5,
         max: 15,
-        error: error,
+        validationError: error,
       );
 }
