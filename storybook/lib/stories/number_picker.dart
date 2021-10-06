@@ -24,6 +24,7 @@ class _Content extends StatelessWidget {
   Widget build(BuildContext context) => OptimusNumberPickerFormField(
         enabled: isEnabled,
         initialValue: 5,
+        defaultValue: 5,
         min: 5,
         max: 15,
         error: error,
