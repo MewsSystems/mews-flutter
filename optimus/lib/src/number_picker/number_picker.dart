@@ -32,36 +32,26 @@ class OptimusNumberPickerFormField extends FormField<int> {
               value != null && value >= min && value <= max ? null : error,
           enabled: enabled,
           autovalidateMode: autovalidateMode,
-          builder: (FormFieldState<int> field) => _OptimusNumberPicker(
-            initialValue: initialValue,
-            defaultValue: defaultValue,
-            min: min,
-            max: max,
-            onChanged: (value) => _onChanged(
-              didChange: field.didChange,
-              onChanged: onChanged,
-              value: value,
+          builder: (FormFieldState<int> field) {
+            void _onChanged(int value) {
+              field.didChange(value);
+              if (onChanged != null && value >= min && value <= max) {
+                onChanged(value);
+              }
+            }
+
+            return _OptimusNumberPicker(
+              initialValue: initialValue,
+              defaultValue: defaultValue,
               min: min,
               max: max,
-            ),
-            enabled: enabled,
-            error: field.errorText,
-            focusNode: focusNode,
-          ),
+              onChanged: _onChanged,
+              enabled: enabled,
+              error: field.errorText,
+              focusNode: focusNode,
+            );
+          },
         );
-}
-
-void _onChanged({
-  required Function(int) didChange,
-  ValueChanged<int>? onChanged,
-  required int value,
-  required int min,
-  required int max,
-}) {
-  didChange(value);
-  if (onChanged != null && value >= min && value <= max) {
-    onChanged(value);
-  }
 }
 
 class _OptimusNumberPicker extends StatefulWidget {
@@ -92,10 +82,11 @@ class _OptimusNumberPicker extends StatefulWidget {
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   late final TextEditingController _controller = TextEditingController(
-    text: widget.initialValue == null ? '' : widget.initialValue.toString(),
+    text: widget.initialValue?.toString() ?? '',
   );
-  FocusNode? _focusNode;
   late int _value = widget.initialValue ?? widget.defaultValue;
+
+  FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
