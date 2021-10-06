@@ -6,7 +6,7 @@ import 'package:optimus/src/number_picker/button.dart';
 class OptimusNumberPickerFormField extends FormField<int> {
   OptimusNumberPickerFormField({
     Key? key,
-    int initialValue = 0,
+    int? initialValue,
     int defaultValue = 0,
     int min = 0,
     int max = 100,
@@ -17,16 +17,16 @@ class OptimusNumberPickerFormField extends FormField<int> {
     final bool enabled = true,
     FocusNode? focusNode,
   })  : assert(
-          min <= initialValue && initialValue <= max,
-          'initial value should be in [min, max] range',
+          initialValue == null || initialValue >= min && initialValue <= max,
+          'initial value should be null or in [min, max] range',
         ),
         assert(
-          min <= defaultValue && defaultValue <= max,
+          defaultValue >= min && defaultValue <= max,
           'defaultValue value should be in [min, max] range',
         ),
         super(
           key: key,
-          initialValue: initialValue,
+          initialValue: initialValue ?? defaultValue,
           onSaved: onSaved,
           validator: (value) =>
               value != null && value >= min && value <= max ? null : error,
@@ -37,12 +37,13 @@ class OptimusNumberPickerFormField extends FormField<int> {
             defaultValue: defaultValue,
             min: min,
             max: max,
-            onChanged: (value) {
-              field.didChange(value);
-              if (onChanged != null && value >= min && value <= max) {
-                onChanged(value);
-              }
-            },
+            onChanged: (value) => _onChanged(
+              didChange: field.didChange,
+              onChanged: onChanged,
+              value: value,
+              min: min,
+              max: max,
+            ),
             enabled: enabled,
             error: field.errorText,
             focusNode: focusNode,
@@ -50,11 +51,24 @@ class OptimusNumberPickerFormField extends FormField<int> {
         );
 }
 
+void _onChanged({
+  required Function(int) didChange,
+  ValueChanged<int>? onChanged,
+  required int value,
+  required int min,
+  required int max,
+}) {
+  didChange(value);
+  if (onChanged != null && value >= min && value <= max) {
+    onChanged(value);
+  }
+}
+
 class _OptimusNumberPicker extends StatefulWidget {
   const _OptimusNumberPicker({
     Key? key,
     required this.onChanged,
-    this.initialValue = 0,
+    this.initialValue,
     this.defaultValue = 0,
     this.min = 0,
     this.max = 100,
@@ -63,7 +77,7 @@ class _OptimusNumberPicker extends StatefulWidget {
     this.error,
   }) : super(key: key);
 
-  final int initialValue;
+  final int? initialValue;
   final ValueChanged<int> onChanged;
   final int min;
   final int max;
@@ -77,10 +91,11 @@ class _OptimusNumberPicker extends StatefulWidget {
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late final TextEditingController _controller =
-      TextEditingController(text: widget.initialValue.toString());
+  late final TextEditingController _controller = TextEditingController(
+    text: widget.initialValue == null ? '' : widget.initialValue.toString(),
+  );
   FocusNode? _focusNode;
-  late int _value = widget.initialValue;
+  late int _value = widget.initialValue ?? widget.defaultValue;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
@@ -148,9 +163,11 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
             FilteringTextInputFormatter.allow(_integersOrEmptyString),
           ],
           placeholder: widget.defaultValue.toString(),
-          onChanged: (v) => v.isEmpty
-              ? _updateValue(widget.defaultValue)
-              : _updateValue(int.tryParse(v) ?? widget.defaultValue),
+          onChanged: (v) {
+            v.isEmpty
+                ? _updateValue(widget.defaultValue)
+                : _updateValue(int.tryParse(v) ?? widget.defaultValue);
+          },
         ),
       );
 }
