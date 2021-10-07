@@ -1,3 +1,9 @@
+## 0.12.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FIX**: Fix number picker (#151).
+
 ## 0.11.6+1
 
  - **REFACTOR**: Update static analyzer rules.

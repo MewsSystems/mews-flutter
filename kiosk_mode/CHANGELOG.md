@@ -1,3 +1,7 @@
+## 0.1.3
+
+ - **FEAT**: Add method to check current mode (#157).
+
 ## 0.1.2+1
 
  - **REFACTOR**: Update static analyzer rules.
