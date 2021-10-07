@@ -26,4 +26,9 @@ void main() {
     await stopKioskMode();
     expect(calls, ['stopKioskMode']);
   });
+
+  test('getKioskMode', () async {
+    await getKioskMode();
+    expect(calls, ['isInKioskMode']);
+  });
 }
