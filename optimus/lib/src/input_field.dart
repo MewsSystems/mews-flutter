@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/field_wrapper.dart';
@@ -41,6 +42,7 @@ class OptimusInputField extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.showCursor,
     this.showLoader = false,
+    this.inputFormatters,
   }) : super(key: key);
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -103,6 +105,9 @@ class OptimusInputField extends StatefulWidget {
 
   /// If true, displays [OptimusCircleLoader] instead of suffix
   final bool showLoader;
+
+  /// {@macro flutter.widgets.editableText.inputFormatters}
+  final List<TextInputFormatter>? inputFormatters;
 
   bool get hasError => error != null && error!.isNotEmpty;
 
@@ -203,6 +208,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               onTap: widget.onTap,
               readOnly: widget.readOnly,
               showCursor: widget.showCursor,
+              inputFormatters: widget.inputFormatters,
             ),
           ),
           if (widget.isPasswordField)

@@ -6,11 +6,11 @@ final Story numberPickerStory = Story(
   name: 'Number picker',
   builder: (_, k) => _Content(
     isEnabled: k.boolean(label: 'Enabled', initial: true),
-    error: k.text(label: 'Error'),
+    error: k.text(label: 'Validation error', initial: 'Validation error'),
   ),
 );
 
-class _Content extends StatefulWidget {
+class _Content extends StatelessWidget {
   const _Content({
     Key? key,
     required this.isEnabled,
@@ -21,20 +21,11 @@ class _Content extends StatefulWidget {
   final String? error;
 
   @override
-  _ContentState createState() => _ContentState();
-}
-
-class _ContentState extends State<_Content> {
-  int? _value;
-
-  @override
-  Widget build(BuildContext context) => OptimusNumberPicker(
-        isEnabled: widget.isEnabled,
-        value: _value,
-        min: -5,
-        max: 5,
-        defaultValue: 0,
-        onChanged: (v) => setState(() => _value = v),
-        error: widget.error,
+  Widget build(BuildContext context) => OptimusNumberPickerFormField(
+        enabled: isEnabled,
+        defaultValue: 5,
+        min: 5,
+        max: 15,
+        validationError: error,
       );
 }
