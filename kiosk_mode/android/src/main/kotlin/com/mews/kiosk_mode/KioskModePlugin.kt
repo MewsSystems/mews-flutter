@@ -44,7 +44,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         } else if (call.method == "isInKioskMode") {
             val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
             if (service == null) {
-                result.success(false)
+                result.success(null)
                 return
             }
 
