@@ -44,7 +44,7 @@ class OptimusSelect<T> extends StatefulWidget {
   final ValueSetter<T> onItemSelected;
 
   @override
-  _OptimusSelectState createState() => _OptimusSelectState<T>();
+  _OptimusSelectState<T> createState() => _OptimusSelectState<T>();
 }
 
 // ignore: deprecated_member_use_from_same_package
