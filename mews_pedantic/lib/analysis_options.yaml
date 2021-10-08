@@ -51,6 +51,9 @@ linter:
     - use_to_and_as_if_applicable
 
 analyzer:
+  language:
+    strict-raw-types: true
+  
   plugins:
     - dart_code_metrics
   
