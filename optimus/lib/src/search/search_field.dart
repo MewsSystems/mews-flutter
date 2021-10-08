@@ -60,7 +60,7 @@ class OptimusSearch<T> extends StatefulWidget {
   final bool readOnly;
 
   @override
-  _OptimusSearchState createState() => _OptimusSearchState<T>();
+  _OptimusSearchState<T> createState() => _OptimusSearchState<T>();
 }
 
 class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
