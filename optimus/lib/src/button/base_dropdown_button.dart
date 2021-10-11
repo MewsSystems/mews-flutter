@@ -32,7 +32,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final BorderRadius borderRadius;
 
   @override
-  _BaseDropDownButtonState createState() => _BaseDropDownButtonState<T>();
+  _BaseDropDownButtonState<T> createState() => _BaseDropDownButtonState<T>();
 }
 
 class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>

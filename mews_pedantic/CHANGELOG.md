@@ -1,3 +1,7 @@
+## 0.4.0-dev.5
+
+ - **FEAT**: Enable strict-raw-types.
+
 ## 0.4.0-dev.4
 
  - **REFACTOR**: Update static analyzer rules.
