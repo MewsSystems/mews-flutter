@@ -1,6 +1,6 @@
 name: kiosk_mode
-description: Kiosk mode plugin. Currently, it works in Android only.
-version: 0.1.3
+description: Plugin for working with Lock Task / Guided Access modes.
+version: 0.1.3+1
 repository: https://github.com/MewsSystems/mews-flutter
 
 environment:

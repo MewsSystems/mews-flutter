@@ -1,3 +1,8 @@
+## 0.1.3+1
+
+ - **DOCS**: Update readme.
+ - **CHORE**: publish packages.
+
 ## 0.1.3
 
  - **FEAT**: Add method to check current mode (#157).
