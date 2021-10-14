@@ -9,6 +9,7 @@ final Story dialogStory = Story(
   section: 'Dialogs',
   builder: (context, k) {
     final isDismissible = k.boolean(label: 'Dismissible', initial: true);
+    final hasCloseButton = k.boolean(label: 'Close button', initial: false);
     final content = k.boolean(label: 'Scrollable', initial: false)
         ? _scrollableContent
         : _content(context);
@@ -35,6 +36,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showOneActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.small,
                     content: content,
                     type: type,
@@ -47,6 +49,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showTwoActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.small,
                     content: content,
                     type: type,
@@ -59,6 +62,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showThreeActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.small,
                     content: content,
                     type: type,
@@ -80,6 +84,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showOneActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.regular,
                     content: content,
                     type: type,
@@ -92,6 +97,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showTwoActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.regular,
                     content: content,
                     type: type,
@@ -104,6 +110,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showThreeActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.regular,
                     content: content,
                     type: type,
@@ -125,6 +132,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showOneActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.large,
                     content: content,
                     type: type,
@@ -137,6 +145,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showTwoActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.large,
                     content: content,
                     type: type,
@@ -149,6 +158,7 @@ final Story dialogStory = Story(
                   onPressed: () => _showThreeActionDialog(
                     context: context,
                     isDismissible: isDismissible,
+                    hasCloseButton: hasCloseButton,
                     size: OptimusDialogSize.large,
                     content: content,
                     type: type,
@@ -188,6 +198,7 @@ final Story dialogStory = Story(
 Future<void> _showThreeActionDialog({
   required BuildContext context,
   required bool isDismissible,
+  required bool hasCloseButton,
   required OptimusDialogSize size,
   required Widget content,
   required OptimusDialogType type,
@@ -196,6 +207,7 @@ Future<void> _showThreeActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
+      hasCloseButton: hasCloseButton,
       title: Text(title),
       content: content,
       size: size,
@@ -210,6 +222,7 @@ Future<void> _showThreeActionDialog({
 Future<void> _showTwoActionDialog({
   required BuildContext context,
   required bool isDismissible,
+  required bool hasCloseButton,
   required OptimusDialogSize size,
   required Widget content,
   required OptimusDialogType type,
@@ -218,6 +231,7 @@ Future<void> _showTwoActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
+      hasCloseButton: hasCloseButton,
       title: Text(title),
       content: content,
       size: size,
@@ -231,6 +245,7 @@ Future<void> _showTwoActionDialog({
 Future<void> _showOneActionDialog({
   required BuildContext context,
   required bool isDismissible,
+  required bool hasCloseButton,
   required OptimusDialogSize size,
   required Widget content,
   required OptimusDialogType type,
@@ -239,6 +254,7 @@ Future<void> _showOneActionDialog({
     showOptimusDialog(
       context: context,
       isDismissible: isDismissible,
+      hasCloseButton: hasCloseButton,
       title: Text(title),
       content: content,
       size: size,

@@ -6,7 +6,7 @@ abstract class NonModalController {
   void show({
     required Widget title,
     required Widget content,
-    bool isDismissible = true,
+    bool hasCloseButton = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
   });
@@ -35,7 +35,7 @@ class _NonModalWrapperState extends State<NonModalWrapper>
   void show({
     required Widget title,
     required Widget content,
-    bool isDismissible = true,
+    bool hasCloseButton = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
   }) {
@@ -45,7 +45,7 @@ class _NonModalWrapperState extends State<NonModalWrapper>
         title: title,
         content: content,
         close: hide,
-        isDismissible: isDismissible,
+        hasCloseButton: hasCloseButton,
         actions: actions,
         size: size,
       ),

@@ -73,6 +73,7 @@ Future<T?> showOptimusDialog<T>({
   OptimusDialogSize size = OptimusDialogSize.regular,
   OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
+  bool hasCloseButton = false,
 }) =>
     showGeneralDialog(
       context: context,
@@ -84,6 +85,7 @@ Future<T?> showOptimusDialog<T>({
         actions: actions,
         size: size,
         type: type,
+        hasCloseButton: hasCloseButton,
       ),
       barrierDismissible: isDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
@@ -108,7 +110,7 @@ class OptimusDialog extends StatelessWidget {
     this.size = OptimusDialogSize.regular,
     this.type = OptimusDialogType.common,
     this.close,
-    this.isDismissible,
+    this.hasCloseButton = false,
     this.position = OptimusDialogPosition.center,
   }) : super(key: key);
 
@@ -120,7 +122,7 @@ class OptimusDialog extends StatelessWidget {
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
     OptimusDialogType type = OptimusDialogType.common,
-    bool? isDismissible,
+    bool hasCloseButton = false,
   }) : this._(
           key: key,
           title: title,
@@ -129,7 +131,7 @@ class OptimusDialog extends StatelessWidget {
           actions: actions,
           size: size,
           type: type,
-          isDismissible: isDismissible,
+          hasCloseButton: hasCloseButton,
         );
 
   const OptimusDialog.nonModal({
@@ -139,8 +141,8 @@ class OptimusDialog extends StatelessWidget {
     ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
-    bool? isDismissible,
     required VoidCallback close,
+    bool hasCloseButton = true,
   }) : this._(
           key: key,
           title: title,
@@ -150,13 +152,13 @@ class OptimusDialog extends StatelessWidget {
           size: size == OptimusDialogSize.large
               ? OptimusDialogSize.regular
               : size,
-          isDismissible: isDismissible,
+          hasCloseButton: hasCloseButton,
           close: close,
           position: OptimusDialogPosition.corner,
         );
 
   final VoidCallback? close;
-  final bool? isDismissible;
+  final bool hasCloseButton;
   final OptimusDialogPosition position;
 
   /// Serves as an identification of the action in the dialog. Can be
@@ -280,9 +282,7 @@ class OptimusDialog extends StatelessWidget {
                         context: context,
                         title: title,
                         close: close ?? () => Navigator.pop(context),
-                        isDismissible: isDismissible ??
-                            ModalRoute.of(context)?.barrierDismissible ??
-                            true,
+                        hasCloseButton: hasCloseButton,
                       ),
                       _divider(theme),
                       OptimusParagraph(
@@ -357,13 +357,13 @@ class _Title extends StatelessWidget {
     required this.context,
     required this.title,
     required this.close,
-    required this.isDismissible,
+    required this.hasCloseButton,
   }) : super(key: key);
 
   final BuildContext context;
   final Widget title;
   final VoidCallback close;
-  final bool isDismissible;
+  final bool hasCloseButton;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -375,7 +375,7 @@ class _Title extends StatelessWidget {
               child: OptimusSubsectionTitle(child: title),
             ),
           ),
-          if (isDismissible)
+          if (hasCloseButton)
             Padding(
               padding: const EdgeInsets.only(top: spacing50),
               child: OptimusIconButton(
