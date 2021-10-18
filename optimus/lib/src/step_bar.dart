@@ -169,7 +169,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
             height: _iconWrapperSize,
             child: OptimusIcon(
               iconData: OptimusIcons.done,
-              colorOption: OptimusColorOption.primary,
+              colorOption: OptimusIconColorOption.primary,
             ),
           );
         } else {
@@ -307,16 +307,16 @@ extension on OptimusStepBarItemState {
     }
   }
 
-  OptimusColorOption get iconColor {
+  OptimusIconColorOption get iconColor {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusColorOption.primary;
+        return OptimusIconColorOption.primary;
       case OptimusStepBarItemState.active:
-        return OptimusColorOption.primary;
+        return OptimusIconColorOption.primary;
       case OptimusStepBarItemState.enabled:
-        return OptimusColorOption.basic;
+        return OptimusIconColorOption.basic;
       case OptimusStepBarItemState.disabled:
-        return OptimusColorOption.basic;
+        return OptimusIconColorOption.basic;
     }
   }
 }

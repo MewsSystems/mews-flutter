@@ -65,7 +65,7 @@ class OptimusIconListItem {
     required this.iconData,
     required this.label,
     this.description,
-    this.colorOption = OptimusColorOption.basic,
+    this.colorOption = OptimusIconColorOption.basic,
   });
 
   /// Controls the icon.
@@ -81,16 +81,16 @@ class OptimusIconListItem {
   ///
   /// - `null` – default value. Changes the color of the icon to match its
   ///   parent font color.
-  /// - [OptimusColorOption.basic] – variant with no extra emphasis.
-  /// - [OptimusColorOption.primary] – used to emphasize the item in a general
-  ///   way.
-  /// - [OptimusColorOption.success] – used to emphasize the item and convey
+  /// - [OptimusIconColorOption.basic] – variant with no extra emphasis.
+  /// - [OptimusIconColorOption.primary] – used to emphasize the item in a
+  ///   general way.
+  /// - [OptimusIconColorOption.success] – used to emphasize the item and convey
   ///   a sense of success.
-  /// - [OptimusColorOption.warning] – used to emphasize the item and convey
+  /// - [OptimusIconColorOption.warning] – used to emphasize the item and convey
   ///   a sense of warning.
-  /// - [OptimusColorOption.danger] – used to emphasize the item and convey
+  /// - [OptimusIconColorOption.danger] – used to emphasize the item and convey
   ///   a sense of danger or error.
-  final OptimusColorOption colorOption;
+  final OptimusIconColorOption colorOption;
 }
 
 class _ListTile extends StatelessWidget {

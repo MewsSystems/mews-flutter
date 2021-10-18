@@ -19,7 +19,7 @@ final Story iconStory = Story(
     );
 
     return ListView(
-      children: OptimusColorOption.values
+      children: OptimusIconColorOption.values
           .map(
             (c) => OptimusListTile(
               title: OptimusSubsectionTitle(
@@ -48,7 +48,7 @@ final Story supplementaryIconStory = Story(
     );
 
     return ListView(
-      children: OptimusColorOption.values
+      children: OptimusIconColorOption.values
           .map(
             (c) => OptimusListTile(
               title: OptimusSubsectionTitle(
