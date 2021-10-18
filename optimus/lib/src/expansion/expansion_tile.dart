@@ -166,8 +166,8 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
 
   Widget _buildSlidable(List<Widget> actions, Widget child) => OptimusSlidable(
         actions: actions,
-        child: child,
         hasBorders: widget.hasBorders,
+        child: child,
       );
 
   @override
