@@ -8,10 +8,10 @@ final Story slidableStory = Story(
   builder: (_, k) {
     final double actionsWidth = k
         .sliderInt(
-      label: 'Actions Width',
-      initial: 0,
-      max: 500,
-    )
+          label: 'Actions Width',
+          initial: 0,
+          max: 500,
+        )
         .toDouble();
 
     return _Content(actionsWidth: actionsWidth);
@@ -25,21 +25,21 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.builder(
-    itemBuilder: (context, i) => OptimusSlidable(
-      actionsWidth: actionsWidth,
-      actions: [
-        OptimusSlideAction(
-          color: Colors.red,
-          onTap: () {},
-          child: const Icon(Icons.delete, color: Colors.white),
+        itemBuilder: (context, i) => OptimusSlidable(
+          actionsWidth: actionsWidth,
+          actions: [
+            OptimusSlideAction(
+              color: Colors.red,
+              onTap: () {},
+              child: const Icon(Icons.delete, color: Colors.white),
+            ),
+          ],
+          child: ListTile(
+            title: Text('Slidable element #$i'),
+            subtitle: Text('Subtitle #$i'),
+            isThreeLine: i % 3 == 0,
+          ),
         ),
-      ],
-      child: ListTile(
-        title: Text('Slidable element #$i'),
-        subtitle: Text('Subtitle #$i'),
-        isThreeLine: i % 3 == 0,
-      ),
-    ),
-    itemCount: 1000,
-  );
+        itemCount: 1000,
+      );
 }
