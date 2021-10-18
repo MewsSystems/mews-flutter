@@ -9,12 +9,14 @@ class OptimusSlidable extends StatefulWidget {
     this.actions = const <Widget>[],
     this.isEnabled = true,
     this.hasBorders = true,
+    this.actionsWidth = 0,
   }) : super(key: key);
 
   final Widget child;
   final List<Widget> actions;
   final bool isEnabled;
   final bool hasBorders;
+  final double actionsWidth;
 
   @override
   _OptimusSlidableState createState() => _OptimusSlidableState();
@@ -27,7 +29,12 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
     if (!mounted) return;
     final size = context.size;
     if (size != null) {
-      final ratio = size.height / size.width;
+      late double ratio;
+      if (widget.actionsWidth > 0) {
+        ratio = widget.actionsWidth / size.width;
+      } else {
+        ratio = size.height / size.width;
+      }
       if (_extentRatio != ratio) {
         setState(() => _extentRatio = ratio);
       }
@@ -44,8 +51,8 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
       secondaryActions: widget.actions,
       enabled: widget.isEnabled,
       child:
-          // ignore: deprecated_member_use_from_same_package
-          widget.hasBorders ? TileBorders(child: widget.child) : widget.child,
+      // ignore: deprecated_member_use_from_same_package
+      widget.hasBorders ? TileBorders(child: widget.child) : widget.child,
     );
   }
 }
