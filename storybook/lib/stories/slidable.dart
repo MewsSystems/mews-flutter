@@ -9,19 +9,20 @@ final Story slidableStory = Story(
     final double actionsWidth = k
         .sliderInt(
           label: 'Actions Width',
-          initial: 0,
+          initial: 30,
+          min: 0,
           max: 500,
         )
         .toDouble();
 
-    return _Content(actionsWidth: actionsWidth);
+    return _Content(actionsWidth: actionsWidth > 0 ? actionsWidth : null);
   },
 );
 
 class _Content extends StatelessWidget {
-  const _Content({Key? key, required this.actionsWidth}) : super(key: key);
+  const _Content({Key? key, this.actionsWidth}) : super(key: key);
 
-  final double actionsWidth;
+  final double? actionsWidth;
 
   @override
   Widget build(BuildContext context) => ListView.builder(
