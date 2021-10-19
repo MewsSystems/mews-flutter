@@ -155,16 +155,16 @@ class OptimusBanner extends StatelessWidget {
     }
   }
 
-  OptimusColorOption get _iconColor {
+  OptimusIconColorOption get _iconColor {
     switch (variant) {
       case OptimusBannerVariant.primary:
-        return OptimusColorOption.primary;
+        return OptimusIconColorOption.primary;
       case OptimusBannerVariant.success:
-        return OptimusColorOption.success;
+        return OptimusIconColorOption.success;
       case OptimusBannerVariant.warning:
-        return OptimusColorOption.warning;
+        return OptimusIconColorOption.warning;
       case OptimusBannerVariant.error:
-        return OptimusColorOption.danger;
+        return OptimusIconColorOption.danger;
     }
   }
 

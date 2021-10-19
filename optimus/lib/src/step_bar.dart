@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/colors/color_options.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/icon.dart';
 import 'package:optimus/src/spacing.dart';
@@ -169,7 +168,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
             height: _iconWrapperSize,
             child: OptimusIcon(
               iconData: OptimusIcons.done,
-              colorOption: OptimusColorOption.primary,
+              colorOption: OptimusIconColorOption.primary,
             ),
           );
         } else {
@@ -307,16 +306,16 @@ extension on OptimusStepBarItemState {
     }
   }
 
-  OptimusColorOption get iconColor {
+  OptimusIconColorOption get iconColor {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusColorOption.primary;
+        return OptimusIconColorOption.primary;
       case OptimusStepBarItemState.active:
-        return OptimusColorOption.primary;
+        return OptimusIconColorOption.primary;
       case OptimusStepBarItemState.enabled:
-        return OptimusColorOption.basic;
+        return OptimusIconColorOption.basic;
       case OptimusStepBarItemState.disabled:
-        return OptimusColorOption.basic;
+        return OptimusIconColorOption.basic;
     }
   }
 }
