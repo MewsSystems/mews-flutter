@@ -141,7 +141,7 @@ class _OptimusSegmentedControlItemState<T>
                       padding: EdgeInsets.only(left: spacing100),
                       child: OptimusIcon(
                         iconData: OptimusIcons.done,
-                        colorOption: OptimusColorOption.primary,
+                        colorOption: OptimusIconColorOption.primary,
                       ),
                     ),
                   ),

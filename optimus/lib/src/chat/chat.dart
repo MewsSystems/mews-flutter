@@ -196,7 +196,7 @@ class OptimusChat extends StatelessWidget {
           const OptimusIcon(
             iconData: OptimusIcons.disable,
             iconSize: OptimusIconSize.small,
-            colorOption: OptimusColorOption.danger,
+            colorOption: OptimusIconColorOption.danger,
           ),
         ];
         break;

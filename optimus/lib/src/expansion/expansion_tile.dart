@@ -23,6 +23,7 @@ class OptimusExpansionTile extends StatefulWidget {
     this.children = const <Widget>[],
     this.trailing,
     this.initiallyExpanded = false,
+    this.hasBorders = true,
     this.slidableActions = const <Widget>[],
   }) : super(key: key);
 
@@ -62,6 +63,9 @@ class OptimusExpansionTile extends StatefulWidget {
   /// Specifies if the list tile is initially expanded (true)
   /// or collapsed (false, the default).
   final bool initiallyExpanded;
+
+  /// Borders of the inner [OptimusSlidable] widget
+  final bool hasBorders;
 
   /// List of actions on list tile left swipe.
   final List<Widget> slidableActions;
@@ -160,8 +164,11 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     return tile;
   }
 
-  Widget _buildSlidable(List<Widget> actions, Widget child) =>
-      OptimusSlidable(actions: actions, child: child);
+  Widget _buildSlidable(List<Widget> actions, Widget child) => OptimusSlidable(
+        actions: actions,
+        hasBorders: widget.hasBorders,
+        child: child,
+      );
 
   @override
   void didChangeDependencies() {
