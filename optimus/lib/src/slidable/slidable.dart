@@ -29,12 +29,9 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
     if (!mounted) return;
     final size = context.size;
     if (size != null) {
-      late double ratio;
-      if (widget.actionsWidth > 0) {
-        ratio = widget.actionsWidth / size.width;
-      } else {
-        ratio = size.height / size.width;
-      }
+      final ratio = widget.actionsWidth > 0
+          ? widget.actionsWidth / size.width
+          : size.height / size.width;
       if (_extentRatio != ratio) {
         setState(() => _extentRatio = ratio);
       }
