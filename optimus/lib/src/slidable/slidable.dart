@@ -9,18 +9,14 @@ class OptimusSlidable extends StatefulWidget {
     this.actions = const <Widget>[],
     this.isEnabled = true,
     this.hasBorders = true,
-    this.actionsWidth,
-  })  : assert(
-          actionsWidth == null || actionsWidth > 0,
-          'actionsWidth needs to be null or greater than 0',
-        ),
-        super(key: key);
+    this.actionsWidth = 0,
+  }) : super(key: key);
 
   final Widget child;
   final List<Widget> actions;
   final bool isEnabled;
   final bool hasBorders;
-  final double? actionsWidth;
+  final double actionsWidth;
 
   @override
   _OptimusSlidableState createState() => _OptimusSlidableState();
@@ -34,8 +30,8 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
     final size = context.size;
     if (size != null) {
       late double ratio;
-      if (widget.actionsWidth != null) {
-        ratio = widget.actionsWidth! / size.width;
+      if (widget.actionsWidth > 0) {
+        ratio = widget.actionsWidth / size.width;
       } else {
         ratio = size.height / size.width;
       }
