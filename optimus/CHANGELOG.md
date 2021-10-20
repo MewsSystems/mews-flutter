@@ -1,3 +1,14 @@
+## 0.13.0
+
+> Note: This release has breaking changes.
+
+ - **STYLE**: Fix more analyzer warnings.
+ - **STYLE**: Fix generic types.
+ - **FEAT**: [RND-79231] Customize actions width in OptimusSlidable (#164).
+ - **FEAT**: Add hasBorders to OptimusExpansionTile (#162).
+ - **CHORE**: publish packages.
+ - **BREAKING** **FEAT**: Update icon colors (#165).
+
 ## 0.12.0
 
 > Note: This release has breaking changes.
