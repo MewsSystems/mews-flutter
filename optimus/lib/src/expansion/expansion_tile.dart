@@ -25,7 +25,6 @@ class OptimusExpansionTile extends StatefulWidget {
     this.initiallyExpanded = false,
     this.hasBorders = true,
     this.actionsWidth = 0,
-    this.isSlidableEnabled = true,
     this.slidableActions = const <Widget>[],
   }) : super(key: key);
 
@@ -71,9 +70,6 @@ class OptimusExpansionTile extends StatefulWidget {
 
   /// Width of the inner slidable actions in [OptimusSlidable] widget
   final double actionsWidth;
-
-  /// Param of inner [OptimusSlidable.isEnabled] widget.
-  final bool isSlidableEnabled;
 
   /// List of actions on list tile left swipe.
   final List<Widget> slidableActions;
@@ -176,7 +172,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
         actions: actions,
         hasBorders: widget.hasBorders,
         actionsWidth: widget.actionsWidth,
-        isEnabled: widget.isSlidableEnabled,
+        isEnabled: widget.slidableActions.isNotEmpty,
         child: child,
       );
 
