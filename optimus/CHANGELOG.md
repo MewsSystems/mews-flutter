@@ -1,3 +1,7 @@
+## 0.13.1
+
+ - **FEAT**: Add params of OptimusSlidable inside OptimusExpansionTile (#167).
+
 ## 0.13.0
 
 > Note: This release has breaking changes.
