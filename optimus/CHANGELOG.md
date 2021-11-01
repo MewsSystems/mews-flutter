@@ -1,3 +1,9 @@
+## 0.14.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **BUILD**: Bump freezed to 0.15.0.
+
 ## 0.13.1
 
  - **FEAT**: Add params of OptimusSlidable inside OptimusExpansionTile (#167).
