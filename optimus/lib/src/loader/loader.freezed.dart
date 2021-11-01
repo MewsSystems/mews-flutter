@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'loader.dart';
 
@@ -39,6 +40,12 @@ mixin _$OptimusCircleLoaderVariant {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? indeterminate,
+    TResult Function(double progress)? determinate,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? indeterminate,
     TResult Function(double progress)? determinate,
@@ -49,6 +56,12 @@ mixin _$OptimusCircleLoaderVariant {
   TResult map<TResult extends Object?>({
     required TResult Function(Indeterminate value) indeterminate,
     required TResult Function(Determinate value) determinate,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Indeterminate value)? indeterminate,
+    TResult Function(Determinate value)? determinate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -108,7 +121,8 @@ class _$Indeterminate implements Indeterminate {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Indeterminate);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Indeterminate);
   }
 
   @override
@@ -121,6 +135,15 @@ class _$Indeterminate implements Indeterminate {
     required TResult Function(double progress) determinate,
   }) {
     return indeterminate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? indeterminate,
+    TResult Function(double progress)? determinate,
+  }) {
+    return indeterminate?.call();
   }
 
   @override
@@ -143,6 +166,15 @@ class _$Indeterminate implements Indeterminate {
     required TResult Function(Determinate value) determinate,
   }) {
     return indeterminate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Indeterminate value)? indeterminate,
+    TResult Function(Determinate value)? determinate,
+  }) {
+    return indeterminate?.call(this);
   }
 
   @override
@@ -211,15 +243,14 @@ class _$Determinate implements Determinate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Determinate &&
+        (other.runtimeType == runtimeType &&
+            other is Determinate &&
             (identical(other.progress, progress) ||
-                const DeepCollectionEquality()
-                    .equals(other.progress, progress)));
+                other.progress == progress));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(progress);
+  int get hashCode => Object.hash(runtimeType, progress);
 
   @JsonKey(ignore: true)
   @override
@@ -233,6 +264,15 @@ class _$Determinate implements Determinate {
     required TResult Function(double progress) determinate,
   }) {
     return determinate(progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? indeterminate,
+    TResult Function(double progress)? determinate,
+  }) {
+    return determinate?.call(progress);
   }
 
   @override
@@ -259,6 +299,15 @@ class _$Determinate implements Determinate {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Indeterminate value)? indeterminate,
+    TResult Function(Determinate value)? determinate,
+  }) {
+    return determinate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Indeterminate value)? indeterminate,
     TResult Function(Determinate value)? determinate,
@@ -274,7 +323,7 @@ class _$Determinate implements Determinate {
 abstract class Determinate implements OptimusCircleLoaderVariant {
   const factory Determinate(double progress) = _$Determinate;
 
-  double get progress => throw _privateConstructorUsedError;
+  double get progress;
   @JsonKey(ignore: true)
   $DeterminateCopyWith<Determinate> get copyWith =>
       throw _privateConstructorUsedError;

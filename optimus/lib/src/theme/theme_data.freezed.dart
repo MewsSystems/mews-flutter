@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'theme_data.dart';
 
@@ -131,19 +132,15 @@ class _$_OptimusThemeData extends _OptimusThemeData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OptimusThemeData &&
+        (other.runtimeType == runtimeType &&
+            other is _OptimusThemeData &&
             (identical(other.brightness, brightness) ||
-                const DeepCollectionEquality()
-                    .equals(other.brightness, brightness)) &&
-            (identical(other.colors, colors) ||
-                const DeepCollectionEquality().equals(other.colors, colors)));
+                other.brightness == brightness) &&
+            (identical(other.colors, colors) || other.colors == colors));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(brightness) ^
-      const DeepCollectionEquality().hash(colors);
+  int get hashCode => Object.hash(runtimeType, brightness, colors);
 
   @JsonKey(ignore: true)
   @override
@@ -158,9 +155,9 @@ abstract class _OptimusThemeData extends OptimusThemeData {
   const _OptimusThemeData._() : super._();
 
   @override
-  Brightness get brightness => throw _privateConstructorUsedError;
+  Brightness get brightness;
   @override
-  OptimusColors get colors => throw _privateConstructorUsedError;
+  OptimusColors get colors;
   @override
   @JsonKey(ignore: true)
   _$OptimusThemeDataCopyWith<_OptimusThemeData> get copyWith =>
