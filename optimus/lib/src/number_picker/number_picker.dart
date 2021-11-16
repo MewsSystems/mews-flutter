@@ -96,7 +96,6 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
-
   @override
   void initState() {
     super.initState();
