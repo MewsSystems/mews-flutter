@@ -88,9 +88,11 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
     text: widget.initialValue?.toString() ?? '',
   );
   late int _value = widget.initialValue ?? widget.defaultValue;
-  late final _numberPickerController = NumberPickerController(
-    setValue: _update,
-  );
+  late final _numberPickerController = widget.onInit != null
+      ? NumberPickerController(
+          setValue: _update,
+        )
+      : null;
 
   FocusNode? _focusNode;
 
@@ -100,7 +102,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-    widget.onInit?.call(_numberPickerController);
+    widget.onInit?.call(_numberPickerController!);
   }
 
   @override
