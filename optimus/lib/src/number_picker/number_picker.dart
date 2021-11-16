@@ -66,7 +66,7 @@ class OptimusNumberPicker extends StatefulWidget {
     this.focusNode,
     this.enabled = true,
     this.error,
-    this.onInit,
+    this.controller,
   }) : super(key: key);
 
   final int? initialValue;
@@ -77,7 +77,7 @@ class OptimusNumberPicker extends StatefulWidget {
   final FocusNode? focusNode;
   final bool enabled;
   final String? error;
-  final Function(NumberPickerController controller)? onInit;
+  final NumberPickerController? controller;
 
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
@@ -88,21 +88,19 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
     text: widget.initialValue?.toString() ?? '',
   );
   late int _value = widget.initialValue ?? widget.defaultValue;
-  late final _numberPickerController = widget.onInit != null
-      ? NumberPickerController(
-          setValue: _update,
-        )
-      : null;
+  late final NumberPickerController? _numberPickerController =
+      widget.controller;
 
   FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
+
   @override
   void initState() {
     super.initState();
-    widget.onInit?.call(_numberPickerController!);
+    _numberPickerController?.onSetValue = _update;
   }
 
   @override
@@ -185,10 +183,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
 final _integersOrEmptyString = RegExp(r'^$|^[-]?\d+|^[-]');
 
 class NumberPickerController {
-  NumberPickerController({required Function(int value) setValue})
-      : _setValue = setValue;
+  late final Function(int value) onSetValue;
 
-  final Function(int value) _setValue;
-
-  void setValue(int value) => _setValue(value);
+  void setValue(int value) => onSetValue.call(value);
 }
