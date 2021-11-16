@@ -41,7 +41,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
               }
             }
 
-            return _OptimusNumberPicker(
+            return OptimusNumberPicker(
               initialValue: initialValue,
               defaultValue: defaultValue,
               min: min,
@@ -55,8 +55,8 @@ class OptimusNumberPickerFormField extends FormField<int> {
         );
 }
 
-class _OptimusNumberPicker extends StatefulWidget {
-  const _OptimusNumberPicker({
+class OptimusNumberPicker extends StatefulWidget {
+  const OptimusNumberPicker({
     Key? key,
     required this.onChanged,
     this.initialValue,
@@ -81,7 +81,7 @@ class _OptimusNumberPicker extends StatefulWidget {
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
 }
 
-class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
+class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   late final TextEditingController _controller = TextEditingController(
     text: widget.initialValue?.toString() ?? '',
   );
