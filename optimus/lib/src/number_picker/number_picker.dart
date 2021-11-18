@@ -89,7 +89,7 @@ class _OptimusNumberPicker extends StatefulWidget {
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late final _textEditingController = TextEditingController(
+  late final _controller = TextEditingController(
     text: widget.initialValue?.toString() ?? '',
   );
   late int _value = widget.initialValue ?? widget.defaultValue;
@@ -107,7 +107,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _controller.dispose();
     _focusNode?.dispose();
     super.dispose();
   }
@@ -144,7 +144,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _updateController(int value) {
     final newValue = value.toString();
-    _textEditingController
+    _controller
       ..text = newValue
       ..selection = TextSelection.fromPosition(
         TextPosition(offset: newValue.length),
@@ -159,7 +159,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           error: widget.error,
           isEnabled: widget.enabled,
           keyboardType: TextInputType.number,
-          controller: _textEditingController,
+          controller: _controller,
           prefix: NumberPickerButton(
             iconData: OptimusIcons.minus_simple,
             onPressed: _value > widget.min ? _onMinusTap : null,
