@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/number_picker/button.dart';
 
+typedef OnSetPickerValueReady = void Function(SetPickerValue);
+typedef SetPickerValue = void Function(int);
+
 class OptimusNumberPickerFormField extends FormField<int> {
   OptimusNumberPickerFormField({
     Key? key,
@@ -16,7 +19,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     String? validationError,
     final bool enabled = true,
     FocusNode? focusNode,
-    NumberPickerController? controller,
+    OnSetPickerValueReady? onSetPickerValueReady,
   })  : assert(
           initialValue == null || initialValue >= min && initialValue <= max,
           'initial value should be null or in [min, max] range',
@@ -51,7 +54,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
               enabled: enabled,
               error: field.errorText,
               focusNode: focusNode,
-              controller: controller,
+              onSetPickerValueReady: onSetPickerValueReady,
             );
           },
         );
@@ -68,7 +71,7 @@ class _OptimusNumberPicker extends StatefulWidget {
     this.focusNode,
     this.enabled = true,
     this.error,
-    this.controller,
+    this.onSetPickerValueReady,
   }) : super(key: key);
 
   final int? initialValue;
@@ -79,7 +82,7 @@ class _OptimusNumberPicker extends StatefulWidget {
   final FocusNode? focusNode;
   final bool enabled;
   final String? error;
-  final NumberPickerController? controller;
+  final OnSetPickerValueReady? onSetPickerValueReady;
 
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
@@ -90,7 +93,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
     text: widget.initialValue?.toString() ?? '',
   );
   late int _value = widget.initialValue ?? widget.defaultValue;
-  NumberPickerController? _numberPickerController;
 
   FocusNode? _focusNode;
 
@@ -100,8 +102,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-    _numberPickerController = widget.controller;
-    _numberPickerController?.onValueSet = _update;
+    widget.onSetPickerValueReady?.call(_update);
   }
 
   @override
@@ -182,9 +183,3 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 }
 
 final _integersOrEmptyString = RegExp(r'^$|^[-]?\d+|^[-]');
-
-class NumberPickerController {
-  late final Function(int value) onValueSet;
-
-  void setValue(int value) => onValueSet.call(value);
-}
