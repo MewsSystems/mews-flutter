@@ -16,6 +16,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     String? validationError,
     final bool enabled = true,
     FocusNode? focusNode,
+    NumberPickerController? controller,
   })  : assert(
           initialValue == null || initialValue >= min && initialValue <= max,
           'initial value should be null or in [min, max] range',
@@ -41,7 +42,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
               }
             }
 
-            return OptimusNumberPicker(
+            return _OptimusNumberPicker(
               initialValue: initialValue,
               defaultValue: defaultValue,
               min: min,
@@ -50,13 +51,14 @@ class OptimusNumberPickerFormField extends FormField<int> {
               enabled: enabled,
               error: field.errorText,
               focusNode: focusNode,
+              controller: controller,
             );
           },
         );
 }
 
-class OptimusNumberPicker extends StatefulWidget {
-  const OptimusNumberPicker({
+class _OptimusNumberPicker extends StatefulWidget {
+  const _OptimusNumberPicker({
     Key? key,
     required this.onChanged,
     this.initialValue,
@@ -83,7 +85,7 @@ class OptimusNumberPicker extends StatefulWidget {
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
 }
 
-class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
+class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   late final _textEditingController = TextEditingController(
     text: widget.initialValue?.toString() ?? '',
   );
