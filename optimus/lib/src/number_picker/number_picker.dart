@@ -88,8 +88,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
     text: widget.initialValue?.toString() ?? '',
   );
   late int _value = widget.initialValue ?? widget.defaultValue;
-  late final NumberPickerController? _numberPickerController =
-      widget.controller;
+  NumberPickerController? _numberPickerController;
 
   FocusNode? _focusNode;
 
@@ -99,7 +98,8 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-    _numberPickerController?.onSetValue = _update;
+    _numberPickerController = widget.controller;
+    _numberPickerController?.onValueSet = _update;
   }
 
   @override
@@ -182,7 +182,7 @@ class _OptimusNumberPickerState extends State<OptimusNumberPicker> {
 final _integersOrEmptyString = RegExp(r'^$|^[-]?\d+|^[-]');
 
 class NumberPickerController {
-  late final Function(int value) onSetValue;
+  late final Function(int value) onValueSet;
 
-  void setValue(int value) => onSetValue.call(value);
+  void setValue(int value) => onValueSet.call(value);
 }
