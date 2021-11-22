@@ -126,11 +126,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
     _updateController(value);
   }
 
-  void _update(int value) {
-    _updateValue(value);
-    _updateController(value);
-  }
-
   void _updateValue(int value) {
     _value = value;
     widget.onChanged(value);
