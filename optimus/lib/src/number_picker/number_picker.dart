@@ -16,7 +16,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     String? validationError,
     final bool enabled = true,
     FocusNode? focusNode,
-    NumberPickerController? controller,
+    TextEditingController? controller,
   })  : assert(
           initialValue == null || initialValue >= min && initialValue <= max,
           'initial value should be null or in [min, max] range',
@@ -79,30 +79,25 @@ class _OptimusNumberPicker extends StatefulWidget {
   final FocusNode? focusNode;
   final bool enabled;
   final String? error;
-  final NumberPickerController? controller;
+  final TextEditingController? controller;
 
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late final _textEditingController = TextEditingController(
-    text: widget.initialValue?.toString() ?? '',
-  );
+  late final TextEditingController _textEditingController =
+      widget.controller != null
+          ? widget.controller!
+          : TextEditingController(
+              text: widget.initialValue?.toString() ?? '',
+            );
   late int _value = widget.initialValue ?? widget.defaultValue;
-  NumberPickerController? _numberPickerController;
 
   FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
-
-  @override
-  void initState() {
-    super.initState();
-    _numberPickerController = widget.controller;
-    _numberPickerController?.onValueSet = _update;
-  }
 
   @override
   void dispose() {
@@ -182,9 +177,3 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 }
 
 final _integersOrEmptyString = RegExp(r'^$|^[-]?\d+|^[-]');
-
-class NumberPickerController {
-  late final Function(int value) onValueSet;
-
-  void setValue(int value) => onValueSet.call(value);
-}
