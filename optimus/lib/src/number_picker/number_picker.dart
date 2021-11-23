@@ -86,14 +86,15 @@ class _OptimusNumberPicker extends StatefulWidget {
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late final TextEditingController _textEditingController = widget.controller !=
-          null
-      ? widget.controller!
-      : TextEditingController(
-          text: widget.initialValue?.toString() ?? '',
-        )
-    ..addListener(() => _updateValue(int.parse(_textEditingController.text)));
   late int _value = widget.initialValue ?? widget.defaultValue;
+
+  TextEditingController? _controller;
+
+  TextEditingController get _effectiveController =>
+      widget.controller ??
+      (_controller ??= TextEditingController(
+        text: widget.initialValue?.toString() ?? '',
+      ));
 
   FocusNode? _focusNode;
 
@@ -101,8 +102,20 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
+  void initState() {
+    super.initState();
+    _effectiveController.addListener(() {
+      final int? value = int.tryParse(_effectiveController.text);
+      if (value != null) {
+        _updateValue(value);
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _focusNode?.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -133,7 +146,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _updateController(int value) {
     final newValue = value.toString();
-    _textEditingController
+    _effectiveController
       ..text = newValue
       ..selection = TextSelection.fromPosition(
         TextPosition(offset: newValue.length),
@@ -148,7 +161,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           error: widget.error,
           isEnabled: widget.enabled,
           keyboardType: TextInputType.number,
-          controller: _textEditingController,
+          controller: _effectiveController,
           prefix: NumberPickerButton(
             iconData: OptimusIcons.minus_simple,
             onPressed: _value > widget.min ? _onMinusTap : null,
