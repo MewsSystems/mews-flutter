@@ -104,17 +104,20 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-    _effectiveController.addListener(() {
-      final int? value = int.tryParse(_effectiveController.text);
-      if (value != null) {
-        _updateValue(value);
-      }
-    });
+    _effectiveController.addListener(_controllerListener);
+  }
+
+  void _controllerListener() {
+    final int? value = int.tryParse(_effectiveController.text);
+    if (value != null) {
+      _updateValue(value);
+    }
   }
 
   @override
   void dispose() {
     _focusNode?.dispose();
+    _controller?.removeListener(_controllerListener);
     _controller?.dispose();
     super.dispose();
   }
