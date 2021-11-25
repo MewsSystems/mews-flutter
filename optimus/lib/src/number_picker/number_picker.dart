@@ -125,7 +125,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         : _value > widget.max
             ? widget.max
             : _value - 1;
-    _updateValue(value);
     _updateController(value);
   }
 
@@ -135,7 +134,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         : _value > widget.max - 1
             ? widget.max
             : _value + 1;
-    _updateValue(value);
     _updateController(value);
   }
 
