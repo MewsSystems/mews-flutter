@@ -104,6 +104,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
+    widget.controller?.text = widget.initialValue?.toString() ?? '';
     _effectiveController.addListener(_controllerListener);
   }
 
