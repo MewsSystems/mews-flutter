@@ -7,7 +7,6 @@ class OptimusNumberPickerFormField extends FormField<int> {
   OptimusNumberPickerFormField({
     Key? key,
     int? initialValue,
-    int defaultValue = 0,
     int min = 0,
     int max = 100,
     FormFieldSetter<int>? onSaved,
@@ -21,13 +20,9 @@ class OptimusNumberPickerFormField extends FormField<int> {
           initialValue == null || initialValue >= min && initialValue <= max,
           'initial value should be null or in [min, max] range',
         ),
-        assert(
-          defaultValue >= min && defaultValue <= max,
-          'defaultValue value should be in [min, max] range',
-        ),
         super(
           key: key,
-          initialValue: initialValue ?? defaultValue,
+          initialValue: initialValue,
           onSaved: onSaved,
           validator: (value) => value != null && value >= min && value <= max
               ? null
@@ -44,7 +39,6 @@ class OptimusNumberPickerFormField extends FormField<int> {
 
             return _OptimusNumberPicker(
               initialValue: initialValue,
-              defaultValue: defaultValue,
               min: min,
               max: max,
               onChanged: _onChanged,
@@ -62,7 +56,6 @@ class _OptimusNumberPicker extends StatefulWidget {
     Key? key,
     required this.onChanged,
     this.initialValue,
-    this.defaultValue = 0,
     this.min = 0,
     this.max = 100,
     this.focusNode,
@@ -75,7 +68,6 @@ class _OptimusNumberPicker extends StatefulWidget {
   final ValueChanged<int> onChanged;
   final int min;
   final int max;
-  final int defaultValue;
   final FocusNode? focusNode;
   final bool enabled;
   final String? error;
@@ -86,7 +78,7 @@ class _OptimusNumberPicker extends StatefulWidget {
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late int _value = widget.initialValue ?? widget.defaultValue;
+  int? _value;
 
   TextEditingController? _controller;
 
@@ -104,7 +96,8 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-    widget.controller?.text = widget.initialValue?.toString() ?? '';
+    _value = widget.initialValue ?? widget.min;
+    _updateController(_value!);
     _effectiveController.addListener(_controllerListener);
   }
 
@@ -124,21 +117,25 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   }
 
   void _onMinusTap() {
-    final value = _value < widget.min + 1
-        ? widget.min
-        : _value > widget.max
-            ? widget.max
-            : _value - 1;
-    _updateController(value);
+    if (_value != null) {
+      final value = _value! < widget.min + 1
+          ? widget.min
+          : _value! > widget.max
+              ? widget.max
+              : _value! - 1;
+      _updateController(value);
+    }
   }
 
   void _onPlusTap() {
-    final value = _value < widget.min
-        ? widget.min
-        : _value > widget.max - 1
-            ? widget.max
-            : _value + 1;
-    _updateController(value);
+    if (_value != null) {
+      final value = _value! < widget.min
+          ? widget.min
+          : _value! > widget.max - 1
+              ? widget.max
+              : _value! + 1;
+      _updateController(value);
+    }
   }
 
   void _updateValue(int value) {
@@ -166,21 +163,22 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           controller: _effectiveController,
           prefix: NumberPickerButton(
             iconData: OptimusIcons.minus_simple,
-            onPressed: _value > widget.min ? _onMinusTap : null,
+            onPressed:
+                _value != null && _value! > widget.min ? _onMinusTap : null,
           ),
           suffix: NumberPickerButton(
             iconData: OptimusIcons.plus_simple,
-            onPressed: _value < widget.max ? _onPlusTap : null,
+            onPressed:
+                _value != null && _value! < widget.max ? _onPlusTap : null,
           ),
           focusNode: _effectiveFocusNode,
           inputFormatters: [
             FilteringTextInputFormatter.allow(_integersOrEmptyString),
           ],
-          placeholder: widget.defaultValue.toString(),
           onChanged: (v) {
             v.isEmpty
-                ? _updateValue(widget.defaultValue)
-                : _updateValue(int.tryParse(v) ?? widget.defaultValue);
+                ? _updateValue(widget.min)
+                : _updateValue(int.tryParse(v) ?? widget.min);
           },
         ),
       );

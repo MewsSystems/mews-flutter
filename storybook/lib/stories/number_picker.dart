@@ -23,7 +23,6 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusNumberPickerFormField(
         enabled: isEnabled,
-        defaultValue: 5,
         min: 5,
         max: 15,
         validationError: error,
