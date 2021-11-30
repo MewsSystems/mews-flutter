@@ -24,7 +24,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
           key: key,
           initialValue: initialValue,
           onSaved: onSaved,
-          validator: (value) => value == null || (value >= min && value <= max)
+          validator: (value) => value != null && (value >= min && value <= max)
               ? null
               : validationError,
           enabled: enabled,
@@ -106,9 +106,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _controllerListener() {
     final int? value = int.tryParse(_effectiveController.text);
-    if (value != null) {
-      _updateValue(value);
-    }
+    _updateValue(value);
   }
 
   @override
@@ -172,11 +170,13 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           controller: _effectiveController,
           prefix: NumberPickerButton(
             iconData: OptimusIcons.minus_simple,
-            onPressed: (_value ?? widget.max) > widget.min ? _onMinusTap : null,
+            onPressed:
+                _value == null || _value! > widget.min ? _onMinusTap : null,
           ),
           suffix: NumberPickerButton(
             iconData: OptimusIcons.plus_simple,
-            onPressed: (_value ?? widget.min) < widget.max ? _onPlusTap : null,
+            onPressed:
+                _value == null || _value! < widget.max ? _onPlusTap : null,
           ),
           focusNode: _effectiveFocusNode,
           inputFormatters: [
