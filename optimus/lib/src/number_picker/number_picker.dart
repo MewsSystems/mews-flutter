@@ -102,7 +102,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
-  VoidCallback get _controllerListener =>
+  VoidCallback _controllerListener() =>
       () => _onChanged(_effectiveController.text);
 
   void _initValue() {
@@ -126,14 +126,14 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void dispose() {
     _focusNode?.dispose();
-    _controller?.removeListener(_controllerListener);
+    _effectiveController.removeListener(_controllerListener);
     _controller?.dispose();
     super.dispose();
   }
 
   void _onMinusTap() {
     final value = _value;
-    late int newValue;
+    late final int newValue;
     if (value != null) {
       newValue = value < widget.min + 1
           ? widget.min
@@ -148,7 +148,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _onPlusTap() {
     final value = _value;
-    late int newValue;
+    late final int newValue;
     if (value != null) {
       newValue = value < widget.min
           ? widget.min
@@ -162,9 +162,8 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   }
 
   void _onChanged(String v) {
-    final value = int.tryParse(v);
-    _value = value;
-    widget.onChanged(value);
+    _value = int.tryParse(v);
+    widget.onChanged(_value);
   }
 
   void _updateController(int? value) {
