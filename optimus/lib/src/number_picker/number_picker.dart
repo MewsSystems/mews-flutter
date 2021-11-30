@@ -4,6 +4,10 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/number_picker/button.dart';
 
 class OptimusNumberPickerFormField extends FormField<int> {
+  /// When a [controller] is specified, [initialValue] must be null (the
+  /// default). If [controller] is null, then a [TextEditingController]
+  /// will be constructed automatically and its `text` will be initialized
+  /// to [initialValue] or null integer.
   OptimusNumberPickerFormField({
     Key? key,
     int? initialValue,
@@ -17,6 +21,10 @@ class OptimusNumberPickerFormField extends FormField<int> {
     FocusNode? focusNode,
     TextEditingController? controller,
   })  : assert(
+          initialValue == null || controller == null,
+          'initialValue or controller has to be null',
+        ),
+        assert(
           initialValue == null || initialValue >= min && initialValue <= max,
           'initial value should be null or in [min, max] range',
         ),
@@ -82,7 +90,7 @@ class _OptimusNumberPicker extends StatefulWidget {
 }
 
 class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
-  late int? _value = widget.initialValue;
+  int? _value;
 
   TextEditingController? _controller;
 
@@ -100,6 +108,11 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
+    if (widget.controller != null) {
+      _value = int.tryParse(widget.controller!.text);
+    } else {
+      _value = widget.initialValue;
+    }
     _updateController(_value);
     _effectiveController.addListener(_controllerListener);
   }
@@ -126,7 +139,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
               ? widget.max
               : _value! - 1;
     } else {
-      value = widget.max;
+      value = widget.min;
     }
     _updateController(value);
   }
