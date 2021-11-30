@@ -7,7 +7,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
   /// When a [controller] is specified, [initialValue] must be null (the
   /// default). If [controller] is null, then a [TextEditingController]
   /// will be constructed automatically and its `text` will be initialized
-  /// to [initialValue] or null integer.
+  /// to [initialValue].
   OptimusNumberPickerFormField({
     Key? key,
     int? initialValue,
@@ -22,7 +22,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     TextEditingController? controller,
   })  : assert(
           initialValue == null || controller == null,
-          'initialValue or controller has to be null',
+          'initialValue or controller must be null',
         ),
         assert(
           initialValue == null || initialValue >= min && initialValue <= max,
@@ -40,12 +40,9 @@ class OptimusNumberPickerFormField extends FormField<int> {
           builder: (FormFieldState<int> field) {
             void _onChanged(int? value) {
               field.didChange(value);
-              if (onChanged != null) {
-                if (value == null) {
-                  onChanged(value);
-                } else if (value >= min && value <= max) {
-                  onChanged(value);
-                }
+              if (onChanged != null &&
+                  (value == null || value >= min && value <= max)) {
+                onChanged(value);
               }
             }
 
@@ -105,21 +102,25 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.controller != null) {
-      _value = int.tryParse(widget.controller!.text);
+  VoidCallback get _controllerListener =>
+      () => _onChanged(_effectiveController.text);
+
+  void _initValue() {
+    final controller = widget.controller;
+    if (controller != null) {
+      _value = int.tryParse(controller.text);
     } else {
       _value = widget.initialValue;
     }
-    _updateController(_value);
-    _effectiveController.addListener(_controllerListener);
   }
 
-  void _controllerListener() {
-    final int? value = int.tryParse(_effectiveController.text);
-    _updateValue(value);
+  @override
+  void initState() {
+    super.initState();
+
+    _initValue();
+    _updateController(_value);
+    _effectiveController.addListener(_controllerListener);
   }
 
   @override
@@ -131,34 +132,37 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   }
 
   void _onMinusTap() {
-    late int value;
-    if (_value != null) {
-      value = _value! < widget.min + 1
+    final value = _value;
+    late int newValue;
+    if (value != null) {
+      newValue = value < widget.min + 1
           ? widget.min
-          : _value! > widget.max
+          : value > widget.max
               ? widget.max
-              : _value! - 1;
+              : value - 1;
     } else {
-      value = widget.min;
+      newValue = widget.min;
     }
-    _updateController(value);
+    _updateController(newValue);
   }
 
   void _onPlusTap() {
-    late int value;
-    if (_value != null) {
-      value = _value! < widget.min
+    final value = _value;
+    late int newValue;
+    if (value != null) {
+      newValue = value < widget.min
           ? widget.min
-          : _value! > widget.max - 1
+          : value > widget.max - 1
               ? widget.max
-              : _value! + 1;
+              : value + 1;
     } else {
-      value = widget.min;
+      newValue = widget.min;
     }
-    _updateController(value);
+    _updateController(newValue);
   }
 
-  void _updateValue(int? value) {
+  void _onChanged(String v) {
+    final value = int.tryParse(v);
     _value = value;
     widget.onChanged(value);
   }
@@ -195,7 +199,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           inputFormatters: [
             FilteringTextInputFormatter.allow(_integersOrEmptyString),
           ],
-          onChanged: (v) => _updateValue(int.tryParse(v)),
+          onChanged: _onChanged,
         ),
       );
 }
