@@ -102,8 +102,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
-  VoidCallback _controllerListener() =>
-      () => _onChanged(_effectiveController.text);
+  void _controllerListener() => _onChanged(_effectiveController.text);
 
   void _initValue() {
     final controller = widget.controller;
