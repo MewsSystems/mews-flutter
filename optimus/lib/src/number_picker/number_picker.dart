@@ -108,7 +108,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   void initState() {
     super.initState();
     _value = widget.initialValue ?? int.tryParse(widget.controller?.text ?? '');
-    print(_value);
     _effectiveController.addListener(_controllerListener);
   }
 
