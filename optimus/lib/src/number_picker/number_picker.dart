@@ -116,9 +116,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   @override
   void initState() {
     super.initState();
-
     _initValue();
-    _updateController(_value);
     _effectiveController.addListener(_controllerListener);
   }
 
@@ -132,7 +130,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _onMinusTap() {
     final value = _value;
-    late final int newValue;
+    final int newValue;
     if (value != null) {
       newValue = value < widget.min + 1
           ? widget.min
@@ -147,7 +145,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _onPlusTap() {
     final value = _value;
-    late final int newValue;
+    final int newValue;
     if (value != null) {
       newValue = value < widget.min
           ? widget.min
