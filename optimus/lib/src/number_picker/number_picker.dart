@@ -30,7 +30,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
         ),
         super(
           key: key,
-          initialValue: initialValue,
+          initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
           onSaved: onSaved,
           validator: (value) => value != null && (value >= min && value <= max)
               ? null
@@ -104,19 +104,11 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
 
   void _controllerListener() => _onChanged(_effectiveController.text);
 
-  void _initValue() {
-    final controller = widget.controller;
-    if (controller != null) {
-      _value = int.tryParse(controller.text);
-    } else {
-      _value = widget.initialValue;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    _initValue();
+    _value = widget.initialValue ?? int.tryParse(widget.controller?.text ?? '');
+    print(_value);
     _effectiveController.addListener(_controllerListener);
   }
 
