@@ -40,10 +40,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
           builder: (FormFieldState<int> field) {
             void _onChanged(int? value) {
               field.didChange(value);
-              if (onChanged != null &&
-                  (value == null || value >= min && value <= max)) {
-                onChanged(value);
-              }
+              onChanged?.call(value);
             }
 
             return _OptimusNumberPicker(
@@ -186,7 +183,6 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
           inputFormatters: [
             FilteringTextInputFormatter.allow(_integersOrEmptyString),
           ],
-          onChanged: _onChanged,
         ),
       );
 }
