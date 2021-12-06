@@ -21,17 +21,12 @@ class _Content extends StatelessWidget {
   final String? error;
 
   @override
-  Widget build(BuildContext context) {
-    //final controller = TextEditingController()..text = '8';
-
-    return OptimusNumberPickerFormField(
+  Widget build(BuildContext context) => OptimusNumberPickerFormField(
         enabled: isEnabled,
         initialValue: 8,
         onChanged: print,
-        //controller: controller,
         min: 5,
         max: 15,
         validationError: error,
       );
-  }
 }
