@@ -147,8 +147,13 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   }
 
   void _onChanged(String v) {
-    _value = int.tryParse(v);
-    widget.onChanged(_value);
+    final value = int.tryParse(v);
+    if (value != null && value >= widget.min && value <= widget.max) {
+      widget.onChanged(value);
+    } else {
+      widget.onChanged(null);
+    }
+    _value = value;
   }
 
   void _updateController(int? value) {
@@ -161,30 +166,32 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
   }
 
   @override
-  Widget build(BuildContext context) => ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 134),
-        child: OptimusInputField(
-          textAlign: TextAlign.center,
-          error: widget.error,
-          isEnabled: widget.enabled,
-          keyboardType: TextInputType.number,
-          controller: _effectiveController,
-          prefix: NumberPickerButton(
-            iconData: OptimusIcons.minus_simple,
-            onPressed:
-                _value == null || _value! > widget.min ? _onMinusTap : null,
-          ),
-          suffix: NumberPickerButton(
-            iconData: OptimusIcons.plus_simple,
-            onPressed:
-                _value == null || _value! < widget.max ? _onPlusTap : null,
-          ),
-          focusNode: _effectiveFocusNode,
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(_integersOrEmptyString),
-          ],
+  Widget build(BuildContext context) {
+    final value = _value;
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 134),
+      child: OptimusInputField(
+        textAlign: TextAlign.center,
+        error: widget.error,
+        isEnabled: widget.enabled,
+        keyboardType: TextInputType.number,
+        controller: _effectiveController,
+        prefix: NumberPickerButton(
+          iconData: OptimusIcons.minus_simple,
+          onPressed: value == null || value > widget.min ? _onMinusTap : null,
         ),
-      );
+        suffix: NumberPickerButton(
+          iconData: OptimusIcons.plus_simple,
+          onPressed: value == null || value < widget.max ? _onPlusTap : null,
+        ),
+        focusNode: _effectiveFocusNode,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(_integersOrEmptyString),
+        ],
+      ),
+    );
+  }
 }
 
 final _integersOrEmptyString = RegExp(r'^$|^[-]?\d+|^[-]');
