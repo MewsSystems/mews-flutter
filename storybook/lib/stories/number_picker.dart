@@ -10,7 +10,7 @@ final Story numberPickerStory = Story(
   ),
 );
 
-class _Content extends StatelessWidget {
+class _Content extends StatefulWidget {
   const _Content({
     Key? key,
     required this.isEnabled,
@@ -21,11 +21,26 @@ class _Content extends StatelessWidget {
   final String? error;
 
   @override
-  Widget build(BuildContext context) => OptimusNumberPickerFormField(
-        enabled: isEnabled,
-        defaultValue: 5,
-        min: 5,
-        max: 15,
-        validationError: error,
+  State<_Content> createState() => _ContentState();
+}
+
+class _ContentState extends State<_Content> {
+  int? _value = 8;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Current value: $_value'),
+          const SizedBox(height: 16),
+          OptimusNumberPickerFormField(
+            enabled: widget.isEnabled,
+            onChanged: (v) => setState(() => _value = v),
+            initialValue: 8,
+            min: 5,
+            max: 15,
+            validationError: widget.error,
+          ),
+        ],
       );
 }
