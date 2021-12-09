@@ -27,14 +27,20 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
 
   void _afterLayout() {
     if (!mounted) return;
-    final size = context.size;
-    if (size != null) {
-      final ratio = widget.actionsWidth > 0
-          ? widget.actionsWidth / size.width
-          : size.height / size.width;
-      if (_extentRatio != ratio) {
-        setState(() => _extentRatio = ratio);
-      }
+
+    // context.size returns nullable size, but we can't use it here,
+    // because RenderBox overrides size and force unwraps it.
+    // We need to check first if the size is not null using
+    // RenderBox.hasSize property.
+    final renderObject = context.findRenderObject();
+    if (renderObject is! RenderBox || !renderObject.hasSize) return;
+
+    final size = renderObject.size;
+    final ratio = widget.actionsWidth > 0
+        ? widget.actionsWidth / size.width
+        : size.height / size.width;
+    if (_extentRatio != ratio) {
+      setState(() => _extentRatio = ratio);
     }
   }
 
