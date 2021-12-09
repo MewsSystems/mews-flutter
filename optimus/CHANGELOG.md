@@ -1,3 +1,8 @@
+## 0.14.0+1
+
+ - **REFACTOR**: Update imports (#173).
+ - **FIX**: Fix error in slidable size (#172).
+
 ## 0.14.0
 
 > Note: This release has breaking changes.
