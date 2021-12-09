@@ -1,8 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 
 typedef ResolveStyle = TextStyle Function(Breakpoint);
 enum OptimusTypographyColor { primary, secondary }

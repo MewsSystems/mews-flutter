@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/constants.dart';
-import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/typography/presets.dart';
-import 'package:optimus/src/widget_size.dart';
 
 class BaseButton extends StatelessWidget {
   const BaseButton({

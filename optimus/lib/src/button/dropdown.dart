@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
-import 'package:optimus/src/widget_size.dart';
 
 enum OptimusDropdownButtonVariant {
   /// The default option. Use this variant for the majority of cases.

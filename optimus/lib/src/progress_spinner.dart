@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // TODO(VG): change loading indicator according to design (when ready)
 class OptimusProgressSpinner extends StatelessWidget {

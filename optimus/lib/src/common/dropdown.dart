@@ -1,15 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
-import 'package:optimus/src/common/scroll.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/search/dropdown_tile.dart';
-import 'package:optimus/src/theme/theme.dart';
 
 class OptimusDropdown<T> extends StatefulWidget {
   const OptimusDropdown({

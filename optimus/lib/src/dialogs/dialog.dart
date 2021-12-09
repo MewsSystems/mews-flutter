@@ -1,12 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/common/scroll.dart';
-import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 
 enum OptimusDialogSize {
   /// Intended for short, to the point messages.

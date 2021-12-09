@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/common/field_wrapper.dart';
-import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 class OptimusInputField extends StatefulWidget {
