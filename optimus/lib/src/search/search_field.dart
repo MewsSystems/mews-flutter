@@ -5,9 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/dropdown.dart';
-import 'package:optimus/src/progress_spinner.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/search/dropdown_tile.dart';
 
 class OptimusSearch<T> extends StatefulWidget {
   const OptimusSearch({

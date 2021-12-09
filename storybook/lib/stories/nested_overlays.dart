@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
 import 'package:storybook/stories/search_field.dart';

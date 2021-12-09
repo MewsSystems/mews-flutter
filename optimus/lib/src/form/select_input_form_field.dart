@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/search/dropdown_tile.dart';
 
 class OptimusSelectInputFormField<T> extends FormField<T> {
   OptimusSelectInputFormField({

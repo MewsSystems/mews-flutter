@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/slidable/slidable.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 

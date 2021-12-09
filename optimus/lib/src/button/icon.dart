@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/elevation.dart';
-import 'package:optimus/src/enabled.dart';
-import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/widget_size.dart';
 
 enum OptimusIconButtonVariant {
   /// Used in most scenarios when there is no prior action necessary.

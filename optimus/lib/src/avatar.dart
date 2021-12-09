@@ -1,5 +1,4 @@
 import 'package:dfunc/dfunc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/presets.dart';

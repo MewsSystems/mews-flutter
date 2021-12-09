@@ -3,8 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/elevation.dart';
-import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 
 enum OptimusBasicCardVariant {
   /// The system default, general purpose option used in the majority of cases.

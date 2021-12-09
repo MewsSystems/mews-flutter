@@ -1,11 +1,7 @@
 import 'package:dfunc/dfunc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
-import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/segmented_control/wrapper.dart';
 import 'package:optimus/src/typography/presets.dart';
 
