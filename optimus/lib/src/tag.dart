@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/constants.dart';
-import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 enum TagVersion {

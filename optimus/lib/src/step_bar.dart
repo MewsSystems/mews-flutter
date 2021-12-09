@@ -1,14 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/optimus_icons.dart';
-import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/enabled.dart';
-import 'package:optimus/src/icon.dart';
-import 'package:optimus/src/spacing.dart';
-import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/utils.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 /// The icon list component serves as a static, non-interactable option and is

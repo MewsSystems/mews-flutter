@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/theme/theme.dart';
 
 class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
