@@ -4,9 +4,9 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story bannerStory = Story(
-  name: 'Banner',
-  section: 'Banner',
-  builder: (_, k) {
+  name: 'Banner/Banner',
+  builder: (context) {
+    final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');
     final description = k.text(label: 'Additional description', initial: '');
 

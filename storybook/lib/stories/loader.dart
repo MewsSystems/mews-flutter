@@ -6,7 +6,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story loaderStory = Story(
   name: 'Circle loader',
-  builder: (_, k) {
+  builder: (context) {
+    final k = context.knobs;
     final size = k.options(
       label: 'Size',
       initial: OptimusCircleLoaderSize.medium,

@@ -4,9 +4,10 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story tagStory = Story(
-  section: 'Tags',
-  name: 'Tag',
-  builder: (_, k) {
+  name: 'Tags/Tag',
+  builder: (context) {
+    final k = context.knobs;
+
     Widget buildTags(TagVersion version) => Wrap(
           children: OptimusColorOption.values
               .map(
@@ -33,12 +34,15 @@ final Story tagStory = Story(
 );
 
 final Story interactiveTagStory = Story(
-  section: 'Tags',
-  name: 'Interactive tag',
-  builder: (_, k) => OptimusInteractiveTag(
-    text: k.text(label: 'Text', initial: 'Removable tag'),
-    onRemoved: k.boolean(label: 'Enabled', initial: true) ? () {} : null,
-  ),
+  name: 'Tags/Interactive tag',
+  builder: (context) {
+    final k = context.knobs;
+
+    return OptimusInteractiveTag(
+      text: k.text(label: 'Text', initial: 'Removable tag'),
+      onRemoved: k.boolean(label: 'Enabled', initial: true) ? () {} : null,
+    );
+  },
 );
 
 class _PaddedTag extends StatelessWidget {

@@ -2,8 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story dateTimeFieldStory =
-    Story(name: 'Date time field', builder: (_, k) => _Content(k: k));
+final Story dateTimeFieldStory = Story(
+  name: 'Date time field',
+  builder: (context) => _Content(k: context.knobs),
+);
 
 class _Content extends StatefulWidget {
   const _Content({Key? key, required this.k}) : super(key: key);

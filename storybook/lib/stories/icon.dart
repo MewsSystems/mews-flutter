@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story iconStory = Story(
-  section: 'Icons',
-  name: 'Icon',
-  builder: (_, k) {
+  name: 'Icons/Icon',
+  builder: (context) {
+    final k = context.knobs;
     final icon = k.options(
       label: 'Icon',
       initial: OptimusIcons.plus,
@@ -38,9 +39,9 @@ final Story iconStory = Story(
 );
 
 final Story supplementaryIconStory = Story(
-  section: 'Icons',
-  name: 'Supplementary icon',
-  builder: (_, k) {
+  name: 'Icons/Supplementary icon',
+  builder: (context) {
+    final k = context.knobs;
     final icon = k.options(
       label: 'Icon',
       initial: OptimusIcons.edit,
@@ -66,14 +67,13 @@ final Story supplementaryIconStory = Story(
 );
 
 final List<Option<IconData>> _icons = [
-  const Option('Mews Logo', OptimusIcons.mews_logo_small),
-  const Option('Magic', OptimusIcons.magic),
-  const Option('Plus', OptimusIcons.plus),
-  const Option('Delete', OptimusIcons.delete),
-  const Option('Edit', OptimusIcons.edit),
-  const Option('Chevron right', OptimusIcons.chevron_right),
-  const Option('Chevron left', OptimusIcons.chevron_left),
+  const Option(label: 'Mews Logo', value: OptimusIcons.mews_logo_small),
+  const Option(label: 'Magic', value: OptimusIcons.magic),
+  const Option(label: 'Plus', value: OptimusIcons.plus),
+  const Option(label: 'Delete', value: OptimusIcons.delete),
+  const Option(label: 'Edit', value: OptimusIcons.edit),
+  const Option(label: 'Chevron right', value: OptimusIcons.chevron_right),
+  const Option(label: 'Chevron left', value: OptimusIcons.chevron_left),
 ];
 
-final List<Option<OptimusIconSize>> _sizes =
-    OptimusIconSize.values.map((e) => Option(describeEnum(e), e)).toList();
+final _sizes = OptimusIconSize.values.toOptions();

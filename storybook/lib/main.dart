@@ -48,7 +48,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Storybook(
-        children: [
+        plugins: initializePlugins(
+          contentsSidePanel: true,
+          knobsSidePanel: true,
+        ),
+        stories: [
           formStory,
           avatarStory,
           button,

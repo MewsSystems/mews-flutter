@@ -5,7 +5,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story segmentedControlStory = Story(
   name: 'Segmented control',
-  builder: (_, k) {
+  builder: (context) {
+    final k = context.knobs;
     final label = k.text(label: 'Label', initial: '');
     final error = k.text(label: 'Error', initial: '');
     final isEnabled = k.boolean(label: 'Enabled', initial: true);

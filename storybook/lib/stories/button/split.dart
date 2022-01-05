@@ -4,9 +4,9 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story splitButton = Story(
-  section: 'Button',
-  name: 'Split button',
-  builder: (_, k) {
+  name: 'Button/Split button',
+  builder: (context) {
+    final k = context.knobs;
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return SingleChildScrollView(

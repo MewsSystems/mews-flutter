@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story tabs = Story.simple(
+final Story tabs = Story(
   name: 'Tabs',
-  child: Container(
+  builder: (_) => Container(
     color: OptimusLightColors.success500t16,
     constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
     child: OptimusTabBar(

@@ -4,10 +4,14 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story numberPickerStory = Story(
   name: 'Number picker',
-  builder: (_, k) => _Content(
-    isEnabled: k.boolean(label: 'Enabled', initial: true),
-    error: k.text(label: 'Validation error', initial: 'Validation error'),
-  ),
+  builder: (context) {
+    final k = context.knobs;
+
+    return _Content(
+      isEnabled: k.boolean(label: 'Enabled', initial: true),
+      error: k.text(label: 'Validation error', initial: 'Validation error'),
+    );
+  },
 );
 
 class _Content extends StatefulWidget {

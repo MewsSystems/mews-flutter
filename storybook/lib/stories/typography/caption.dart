@@ -4,9 +4,9 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story captionStory = Story(
-  section: 'Typography',
-  name: 'Caption',
-  builder: (_, k) {
+  name: 'Typography/Caption',
+  builder: (context) {
+    final k = context.knobs;
     final variation = k.options(
       label: 'Variation',
       initial: Variation.variationNormal,

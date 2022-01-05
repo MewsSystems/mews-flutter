@@ -1,13 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story iconListStory = Story(
-  section: 'Icons',
-  name: 'Icon list',
-  builder: (_, k) => OptimusIconList(
+  name: 'Icons/Icon list',
+  builder: (context) => OptimusIconList(
     items: _items,
-    listSize: k.options(label: 'Size', initial: null, options: _sizes),
+    listSize: context.knobs.options(
+      label: 'Size',
+      initial: null,
+      options: _sizes,
+    ),
   ),
 );
 
@@ -60,6 +63,6 @@ final List<OptimusIconListItem> _items = [
 ];
 
 final List<Option<OptimusIconListSize?>> _sizes = [
-  const Option('', null),
-  ...OptimusIconListSize.values.map((e) => Option(describeEnum(e), e)).toList()
+  const Option(label: '', value: null),
+  ...OptimusIconListSize.values.toOptions(),
 ];

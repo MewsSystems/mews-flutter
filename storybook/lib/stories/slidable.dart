@@ -3,10 +3,9 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story slidableStory = Story(
-  padding: EdgeInsets.zero,
   name: 'Slidable',
-  builder: (_, k) {
-    final double actionsWidth = k
+  builder: (context) {
+    final double actionsWidth = context.knobs
         .sliderInt(
           label: 'Actions Width',
           initial: 0,

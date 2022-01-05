@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story spacingStory = Story.simple(
+final Story spacingStory = Story(
   name: 'Spacing',
-  child: SingleChildScrollView(
+  builder: (_) => SingleChildScrollView(
     child: Column(
       children: [
         _buildSpacing(spacing0, 'Spacing 0'),
