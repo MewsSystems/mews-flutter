@@ -18,6 +18,3 @@ dev_dependencies:
   mews_pedantic: ^0.4.0-dev.5
   mockito: ^5.0.16
   test: ^1.18.0
-
-dependency_overrides:
-  test_api: 0.4.3 # https://github.com/dart-lang/test/issues/1591
