@@ -4,9 +4,8 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story checkbox = Story(
-  name: 'Checkbox',
-  section: 'Checkbox',
-  builder: (_, k) => _CheckboxStory(k),
+  name: 'Checkbox/Checkbox',
+  builder: (context) => _CheckboxStory(context.knobs),
 );
 
 class _CheckboxStory extends StatefulWidget {

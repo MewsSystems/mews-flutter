@@ -1,13 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/stories/chat/chat.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final chatBubbleStory = Story(
-  section: 'Chat',
-  name: 'Chat Bubble',
-  builder: (_, k) {
+  name: 'Chat/Chat Bubble',
+  builder: (context) {
+    final k = context.knobs;
     final message = OptimusMessage(
       author: OptimusMessageAuthor(
         id: 'id',
@@ -23,13 +23,13 @@ final chatBubbleStory = Story(
       alignment: k.options(
         label: 'Alignment',
         initial: MessageAlignment.left,
-        options: _type,
+        options: MessageAlignment.values.toOptions(),
       ),
       state: MessageState.sent,
       color: k.options(
         label: 'Color',
         initial: MessageColor.dark,
-        options: _color,
+        options: MessageColor.values.toOptions(),
       ),
     );
 
@@ -49,9 +49,3 @@ final chatBubbleStory = Story(
     );
   },
 );
-
-final List<Option<MessageAlignment>> _type =
-    MessageAlignment.values.map((e) => Option(describeEnum(e), e)).toList();
-
-final List<Option<MessageColor>> _color =
-    MessageColor.values.map((e) => Option(describeEnum(e), e)).toList();

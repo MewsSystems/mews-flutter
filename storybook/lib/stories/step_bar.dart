@@ -1,38 +1,40 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story stepBarStory = Story(
   name: 'Step Bar',
-  builder: (_, k) => SingleChildScrollView(
-    child: OptimusStepBar(
-      type: k.options(
-        label: 'Type',
-        initial: OptimusStepBarType.icon,
-        options: OptimusStepBarType.values
-            .map((e) => Option(describeEnum(e), e))
-            .toList(),
+  builder: (context) {
+    final k = context.knobs;
+
+    return SingleChildScrollView(
+      child: OptimusStepBar(
+        type: k.options(
+          label: 'Type',
+          initial: OptimusStepBarType.icon,
+          options: OptimusStepBarType.values.toOptions(),
+        ),
+        layout: k.options(
+          label: 'Layout',
+          initial: Axis.horizontal,
+          options: Axis.values.toOptions(),
+        ),
+        items: _items,
+        currentItem: k
+            .slider(
+              label: 'Current',
+              initial: 0,
+              max: _items.length.toDouble() - 1,
+            )
+            .toInt(),
+        maxItem: k
+            .slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1)
+            .toInt(),
       ),
-      layout: k.options(
-        label: 'Layout',
-        initial: Axis.horizontal,
-        options: Axis.values.map((e) => Option(describeEnum(e), e)).toList(),
-      ),
-      items: _items,
-      currentItem: k
-          .slider(
-            label: 'Current',
-            initial: 0,
-            max: _items.length.toDouble() - 1,
-          )
-          .toInt(),
-      maxItem: k
-          .slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1)
-          .toInt(),
-    ),
-  ),
+    );
+  },
 );
 
 const List<OptimusStepBarItem> _items = [

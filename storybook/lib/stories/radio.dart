@@ -5,9 +5,9 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story radioStory = Story(
-  section: 'Radio',
-  name: 'Radio',
-  builder: (_, k) {
+  name: 'Radio/Radio',
+  builder: (context) {
+    final k = context.knobs;
     final size = k.options(
       label: 'Size',
       initial: OptimusRadioSize.large,
@@ -65,9 +65,9 @@ class _RadioExampleState extends State<RadioExample> {
 }
 
 final Story radioGroupStory = Story(
-  section: 'Radio',
-  name: 'Radio group',
-  builder: (_, k) {
+  name: 'Radio/Radio group',
+  builder: (context) {
+    final k = context.knobs;
     final size = k.options(
       label: 'Size',
       initial: OptimusRadioSize.large,

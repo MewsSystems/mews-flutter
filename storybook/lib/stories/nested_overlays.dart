@@ -6,22 +6,21 @@ import 'package:storybook/stories/select_input.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story nestedSelectStory = Story(
-  section: 'Nested overlays',
-  name: 'Nested Select',
-  builder: (_, k) => _Content((_) => SelectInputStory(k)),
+  name: 'Nested overlays/Nested Select',
+  builder: (context) => _Content((_) => SelectInputStory(context.knobs)),
 );
 
 final Story nestedSearchStory = Story(
-  section: 'Nested overlays',
-  name: 'Nested Search',
-  builder: (_, k) => _Content((_) => SearchStory(k)),
+  name: 'Nested overlays/Nested Search',
+  builder: (context) => _Content((_) => SearchStory(context.knobs)),
 );
 
 final Story nestedNonModalDialogStory = Story(
-  section: 'Nested overlays',
-  name: 'Nested Non-modal dialog',
-  builder: (_, k) => _Content(
-    (_) => Center(child: NonModalWrapper(child: NonModalDialogStory(k))),
+  name: 'Nested overlays/Nested Non-modal dialog',
+  builder: (context) => _Content(
+    (_) => Center(
+      child: NonModalWrapper(child: NonModalDialogStory(context.knobs)),
+    ),
   ),
 );
 

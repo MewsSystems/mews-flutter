@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'message.dart';
 
@@ -218,32 +219,25 @@ class _$_Message implements _Message {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Message &&
-            (identical(other.author, author) ||
-                const DeepCollectionEquality().equals(other.author, author)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
-            (identical(other.alignment, alignment) ||
-                const DeepCollectionEquality()
-                    .equals(other.alignment, alignment)) &&
-            (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)) &&
-            (identical(other.time, time) ||
-                const DeepCollectionEquality().equals(other.time, time)) &&
-            (identical(other.state, state) ||
-                const DeepCollectionEquality().equals(other.state, state)));
+        (other.runtimeType == runtimeType &&
+            other is _Message &&
+            const DeepCollectionEquality().equals(other.author, author) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.alignment, alignment) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality().equals(other.state, state));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(author) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(alignment) ^
-      const DeepCollectionEquality().hash(color) ^
-      const DeepCollectionEquality().hash(time) ^
-      const DeepCollectionEquality().hash(state);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(author),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(alignment),
+      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(state));
 
   @JsonKey(ignore: true)
   @override
@@ -261,17 +255,17 @@ abstract class _Message implements OptimusMessage {
       required MessageState state}) = _$_Message;
 
   @override
-  OptimusMessageAuthor get author => throw _privateConstructorUsedError;
+  OptimusMessageAuthor get author;
   @override
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @override
-  MessageAlignment get alignment => throw _privateConstructorUsedError;
+  MessageAlignment get alignment;
   @override
-  MessageColor get color => throw _privateConstructorUsedError;
+  MessageColor get color;
   @override
-  DateTime get time => throw _privateConstructorUsedError;
+  DateTime get time;
   @override
-  MessageState get state => throw _privateConstructorUsedError;
+  MessageState get state;
   @override
   @JsonKey(ignore: true)
   _$MessageCopyWith<_Message> get copyWith =>
@@ -411,22 +405,19 @@ class _$_OptimusMessageAuthor implements _OptimusMessageAuthor {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _OptimusMessageAuthor &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.avatar, avatar) ||
-                const DeepCollectionEquality().equals(other.avatar, avatar)));
+        (other.runtimeType == runtimeType &&
+            other is _OptimusMessageAuthor &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.avatar, avatar));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(avatar);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(avatar));
 
   @JsonKey(ignore: true)
   @override
@@ -442,11 +433,11 @@ abstract class _OptimusMessageAuthor implements OptimusMessageAuthor {
       Widget? avatar}) = _$_OptimusMessageAuthor;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
-  Widget? get avatar => throw _privateConstructorUsedError;
+  Widget? get avatar;
   @override
   @JsonKey(ignore: true)
   _$OptimusMessageAuthorCopyWith<_OptimusMessageAuthor> get copyWith =>

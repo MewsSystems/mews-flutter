@@ -1,33 +1,37 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final List<Option<OptimusColorOption>> colorOptions =
-    OptimusColorOption.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<OptimusColorOption>> colorOptions = OptimusColorOption.values
+    .map((e) => Option(label: e.name, value: e))
+    .toList();
 
 final List<Option<IconData?>> exampleIcons = [
-  const Option('', null),
-  const Option('Mews Logo', OptimusIcons.mews_logo_small),
-  const Option('Magic', OptimusIcons.magic),
-  const Option('Plus', OptimusIcons.plus),
-  const Option('Delete', OptimusIcons.delete),
-  const Option('Edit', OptimusIcons.edit),
-  const Option('Chevron right', OptimusIcons.chevron_right),
-  const Option('Chevron left', OptimusIcons.chevron_left),
+  const Option(label: '', value: null),
+  const Option(label: 'Mews Logo', value: OptimusIcons.mews_logo_small),
+  const Option(label: 'Magic', value: OptimusIcons.magic),
+  const Option(label: 'Plus', value: OptimusIcons.plus),
+  const Option(label: 'Delete', value: OptimusIcons.delete),
+  const Option(label: 'Edit', value: OptimusIcons.edit),
+  const Option(label: 'Chevron right', value: OptimusIcons.chevron_right),
+  const Option(label: 'Chevron left', value: OptimusIcons.chevron_left),
 ];
 
-final List<Option<OptimusWidgetSize>> sizeOptions =
-    OptimusWidgetSize.values.map((e) => Option(describeEnum(e), e)).toList();
+final List<Option<OptimusWidgetSize>> sizeOptions = OptimusWidgetSize.values
+    .map((e) => Option(label: e.name, value: e))
+    .toList();
 
 final List<Option<Variation>> variationOptions =
-    Variation.values.map((e) => Option(describeEnum(e), e)).toList();
+    Variation.values.map((e) => Option(label: e.name, value: e)).toList();
 
-extension EnumsToOptions<T extends Object> on List<T> {
+extension EnumsToOptions<T extends Enum> on List<T> {
   List<Option<T>> toOptions() =>
-      map((e) => Option(describeEnum(e), e)).toList();
+      map((e) => Option(label: e.name, value: e)).toList();
 }
 
 extension OptionsWithEmpty<T> on List<Option<T>> {
-  List<Option<T?>> withEmpty() => [const Option('', null), ...this];
+  List<Option<T?>> withEmpty() => [
+        const Option(label: '', value: null),
+        ...this,
+      ];
 }

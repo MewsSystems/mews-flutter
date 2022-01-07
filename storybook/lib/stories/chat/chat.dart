@@ -4,26 +4,29 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final chatStory = Story(
-  section: 'Chat',
-  name: 'Chat',
-  builder: (_, k) => OptimusChat(
-    messages: messages,
-    isFromCurrentUser: (m) => m.author.id == 'you',
-    hasAvatars: k.boolean(label: 'Enable avatar', initial: true),
-    formatTime: (DateTime input) =>
-        '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
-    formatDate: (DateTime input) =>
-        '${input.day}. ${input.month}. ${input.year}',
-    sending: const Text('Sending...'),
-    sent: const Text('Sent'),
-    error: DefaultTextStyle.merge(
-      style: const TextStyle(
-        decoration: TextDecoration.underline,
+  name: 'Chat/Chat',
+  builder: (context) {
+    final k = context.knobs;
+
+    return OptimusChat(
+      messages: messages,
+      isFromCurrentUser: (m) => m.author.id == 'you',
+      hasAvatars: k.boolean(label: 'Enable avatar', initial: true),
+      formatTime: (DateTime input) =>
+          '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
+      formatDate: (DateTime input) =>
+          '${input.day}. ${input.month}. ${input.year}',
+      sending: const Text('Sending...'),
+      sent: const Text('Sent'),
+      error: DefaultTextStyle.merge(
+        style: const TextStyle(
+          decoration: TextDecoration.underline,
+        ),
+        child: const Text('Error, try sending again'),
       ),
-      child: const Text('Error, try sending again'),
-    ),
-    onSendPressed: (message) {},
-  ),
+      onSendPressed: (message) {},
+    );
+  },
 );
 
 Future<MessageState> onTryAgainClicked(dynamic _) async => MessageState.sent;

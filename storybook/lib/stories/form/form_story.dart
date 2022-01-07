@@ -4,7 +4,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story formStory = Story(
   name: 'Form',
-  builder: (_, k) => _Content(k),
+  builder: (context) => _Content(context.knobs),
 );
 
 class _Content extends StatefulWidget {
@@ -26,9 +26,12 @@ class _ContentState extends State<_Content> {
       label: 'autovalidateMode',
       initial: AutovalidateMode.onUserInteraction,
       options: [
-        const Option('disabled', AutovalidateMode.disabled),
-        const Option('always', AutovalidateMode.always),
-        const Option('onUserInteraction', AutovalidateMode.onUserInteraction),
+        const Option(label: 'disabled', value: AutovalidateMode.disabled),
+        const Option(label: 'always', value: AutovalidateMode.always),
+        const Option(
+          label: 'onUserInteraction',
+          value: AutovalidateMode.onUserInteraction,
+        ),
       ],
     );
 

@@ -49,9 +49,11 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
     WidgetsBinding.instance?.addPostFrameCallback((_) => _afterLayout());
 
     return Slidable(
-      actionPane: const SlidableDrawerActionPane(),
-      actionExtentRatio: _extentRatio,
-      secondaryActions: widget.actions,
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: _extentRatio,
+        children: widget.actions,
+      ),
       enabled: widget.isEnabled,
       child:
           // ignore: deprecated_member_use_from_same_package

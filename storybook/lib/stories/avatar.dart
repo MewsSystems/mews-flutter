@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final avatarStory = Story.simple(
+final avatarStory = Story(
   name: 'Avatar',
-  child: const OptimusStack(
+  builder: (_) => const OptimusStack(
     direction: Axis.horizontal,
     mainAxisSize: MainAxisSize.min,
     spacing: OptimusStackSpacing.spacing100,

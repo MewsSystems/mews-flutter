@@ -6,9 +6,9 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story searchFieldStory = Story(
   name: 'Search field',
-  builder: (_, k) => ConstrainedBox(
+  builder: (context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
-    child: SearchStory(k),
+    child: SearchStory(context.knobs),
   ),
 );
 

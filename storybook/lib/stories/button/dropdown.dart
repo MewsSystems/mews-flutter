@@ -4,9 +4,9 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story dropdownButton = Story(
-  section: 'Button',
-  name: 'Dropdown button',
-  builder: (_, k) {
+  name: 'Button/Dropdown button',
+  builder: (context) {
+    final k = context.knobs;
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return SingleChildScrollView(

@@ -4,9 +4,9 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story dialogStory = Story(
-  name: 'Modal dialog',
-  section: 'Dialogs',
-  builder: (context, k) {
+  name: 'Dialogs/Modal dialog',
+  builder: (context) {
+    final k = context.knobs;
     final isDismissible = k.boolean(label: 'Dismissible', initial: true);
     final content = k.boolean(label: 'Scrollable', initial: false)
         ? _scrollableContent

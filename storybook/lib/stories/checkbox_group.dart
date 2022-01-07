@@ -3,11 +3,10 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story checkboxGroup = Story(
-  name: 'Checkbox Group',
-  section: 'Checkbox',
-  builder: (_, k) => ConstrainedBox(
+  name: 'Checkbox/Checkbox Group',
+  builder: (context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
-    child: _CheckboxGroupStory(k),
+    child: _CheckboxGroupStory(context.knobs),
   ),
 );
 
