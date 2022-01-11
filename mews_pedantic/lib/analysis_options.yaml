@@ -81,12 +81,20 @@ analyzer:
 
 dart_code_metrics:
   rules:
+    - avoid-global-state
     - avoid-unnecessary-setstate
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions:
+        severity: error
     - avoid-unused-parameters
     - newline-before-return
+    - no-boolean-literal-compare
     - no-equal-then-else
     - prefer-const-border-radius
     - prefer-extracting-callbacks
+    - prefer-first
+    - prefer-last
   
   metrics-exclude:
     - lib/**

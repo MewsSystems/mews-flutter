@@ -15,4 +15,4 @@ final Story tabs = Story(
   ),
 );
 
-Iterable<int> _items = Iterable<int>.generate(3);
+final Iterable<int> _items = Iterable<int>.generate(3);
