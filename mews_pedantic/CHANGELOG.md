@@ -1,3 +1,7 @@
+## 0.4.0-dev.6
+
+ - **FEAT**: Update rules.
+
 ## 0.4.0-dev.5
 
  - **FEAT**: Enable strict-raw-types.
