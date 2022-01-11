@@ -1,3 +1,11 @@
+## 0.4.0
+
+ - Graduate package to a stable release. See pre-releases prior to this version for changelog entries.
+
+## 0.4.0-dev.6
+
+ - **FEAT**: Update rules.
+
 ## 0.4.0-dev.5
 
  - **FEAT**: Enable strict-raw-types.
