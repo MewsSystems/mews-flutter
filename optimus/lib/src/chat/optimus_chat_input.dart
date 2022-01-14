@@ -23,6 +23,11 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
     _controller.addListener(() => setState(() {}));
   }
 
+  void _onTap() {
+    widget.onSendPressed(_controller.text);
+    _controller.clear();
+  }
+
   @override
   Widget build(BuildContext context) => OptimusInputField(
         controller: _controller,
@@ -31,10 +36,7 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
         suffix: OptimusEnabled(
           isEnabled: _isSendEnabled,
           child: GestureDetector(
-            onTap: () {
-              widget.onSendPressed(_controller.text);
-              _controller.clear();
-            },
+            onTap: _onTap,
             child: const OptimusIcon(
               iconData: OptimusIcons.send_message,
               colorOption: OptimusIconColorOption.basic,

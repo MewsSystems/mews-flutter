@@ -29,6 +29,24 @@ class _Content extends StatelessWidget {
 
   final WidgetBuilder contentBuilder;
 
+  Route<dynamic> _onGenerateRoute(RouteSettings settings) {
+    late WidgetBuilder builder;
+    switch (settings.name) {
+      case 'initialRoute':
+        builder = (context) => ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: contentBuilder(context),
+            );
+        break;
+    }
+
+    return MaterialPageRoute<dynamic>(
+      builder: builder,
+      settings: settings,
+      fullscreenDialog: true,
+    );
+  }
+
   @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -37,23 +55,7 @@ class _Content extends StatelessWidget {
           Expanded(
             child: Navigator(
               initialRoute: 'initialRoute',
-              onGenerateRoute: (settings) {
-                late WidgetBuilder builder;
-                switch (settings.name) {
-                  case 'initialRoute':
-                    builder = (context) => ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 400),
-                          child: contentBuilder(context),
-                        );
-                    break;
-                }
-
-                return MaterialPageRoute<dynamic>(
-                  builder: builder,
-                  settings: settings,
-                  fullscreenDialog: true,
-                );
-              },
+              onGenerateRoute: _onGenerateRoute,
             ),
           ),
           const _Bar(),

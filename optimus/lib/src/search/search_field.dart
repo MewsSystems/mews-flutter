@@ -147,10 +147,8 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-        builder: (context) => GestureDetector(
-          key: const Key('OptimusSearchOverlay'),
-          behavior: HitTestBehavior.translucent,
-          onTapDown: (details) {
+        builder: (context) {
+          void onTapDown(TapDownDetails details) {
             bool hitTest(RenderBox box) => box.hitTest(
                   BoxHitTestResult(),
                   position: box.globalToLocal(details.globalPosition),
@@ -167,16 +165,22 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
             } else {
               _removeOverlay();
             }
-          },
-          child: DropdownTapInterceptor(
-            onTap: _removeOverlay,
-            child: OptimusDropdown(
-              items: widget.items,
-              anchorKey: _fieldBoxKey,
-              onChanged: widget.onChanged,
+          }
+
+          return GestureDetector(
+            key: const Key('OptimusSearchOverlay'),
+            behavior: HitTestBehavior.translucent,
+            onTapDown: onTapDown,
+            child: DropdownTapInterceptor(
+              onTap: _removeOverlay,
+              child: OptimusDropdown(
+                items: widget.items,
+                anchorKey: _fieldBoxKey,
+                onChanged: widget.onChanged,
+              ),
             ),
-          ),
-        ),
+          );
+        },
       );
 
   @override

@@ -46,17 +46,19 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
         child: widget.info!,
       );
 
+  TextStyle get _titleStyle {
+    switch (widget.fontVariant) {
+      case FontVariant.normal:
+        return preset300s;
+      case FontVariant.bold:
+        return preset300b;
+    }
+  }
+
   Widget get _title => Padding(
         padding: const EdgeInsets.only(right: spacing100),
         child: OptimusTypography(
-          resolveStyle: (_) {
-            switch (widget.fontVariant) {
-              case FontVariant.normal:
-                return preset300s;
-              case FontVariant.bold:
-                return preset300b;
-            }
-          },
+          resolveStyle: (_) => _titleStyle,
           child: widget.title,
         ),
       );

@@ -137,18 +137,17 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     super.dispose();
   }
 
+  void _onSuffixTap() {
+    _effectiveController.clear();
+    widget.onChanged?.call('');
+  }
+
   Widget get _suffix => OptimusStack(
         direction: Axis.horizontal,
         spacing: OptimusStackSpacing.spacing100,
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (widget.isClearEnabled)
-            _ClearAllButton(
-              onTap: () {
-                _effectiveController.clear();
-                widget.onChanged?.call('');
-              },
-            ),
+          if (widget.isClearEnabled) _ClearAllButton(onTap: _onSuffixTap),
           if (widget.showLoader)
             _loader
           else if (widget.suffix != null)
