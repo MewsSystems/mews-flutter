@@ -1,3 +1,7 @@
+## 0.4.0+1
+
+ - **DOCS**: Update readme.
+
 ## 0.4.0
 
  - Graduate package to a stable release. See pre-releases prior to this version for changelog entries.
