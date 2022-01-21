@@ -54,8 +54,8 @@ analyzer:
   language:
     strict-raw-types: true
   
-  plugins:
-    - dart_code_metrics
+  # plugins:
+  #   - dart_code_metrics
   
   exclude:
     - "**/*.g.dart"
