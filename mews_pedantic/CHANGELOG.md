@@ -1,3 +1,11 @@
+## 0.4.1-dev.1
+
+ - **FEAT**: Update rules.
+
+## 0.4.1-dev.0
+
+ - **FEAT**: Bump dart_code_metrics.
+
 ## 0.4.0+1
 
  - **DOCS**: Update readme.

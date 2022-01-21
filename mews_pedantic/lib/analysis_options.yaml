@@ -54,8 +54,8 @@ analyzer:
   language:
     strict-raw-types: true
   
-  plugins:
-    - dart_code_metrics
+  # plugins:
+  #   - dart_code_metrics
   
   exclude:
     - "**/*.g.dart"
@@ -92,7 +92,6 @@ dart_code_metrics:
     - no-boolean-literal-compare
     - no-equal-then-else
     - prefer-const-border-radius
-    - prefer-extracting-callbacks
     - prefer-first
     - prefer-last
   
