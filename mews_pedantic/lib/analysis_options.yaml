@@ -92,7 +92,6 @@ dart_code_metrics:
     - no-boolean-literal-compare
     - no-equal-then-else
     - prefer-const-border-radius
-    - prefer-extracting-callbacks
     - prefer-first
     - prefer-last
   
