@@ -1,3 +1,7 @@
+## 0.14.0+2
+
+ - **REFACTOR**: Fix lint errors.
+
 ## 0.14.0+1
 
  - **REFACTOR**: Update imports (#173).

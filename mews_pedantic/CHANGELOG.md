@@ -1,3 +1,10 @@
+## 0.4.1-dev.2
+
+ - **FEAT**: Enable always_use_package_imports.
+ - **FEAT**: Update to dart_code_metrics 4.10 (#180).
+ - **FEAT**: Update rules.
+ - **FEAT**: Bump dart_code_metrics.
+
 ## 0.4.1-dev.1
 
  - **FEAT**: Update rules.
