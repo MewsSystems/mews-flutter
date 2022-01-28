@@ -2,6 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
+    - always_use_package_imports
     - avoid_catches_without_on_clauses
     - avoid_catching_errors
     - avoid_dynamic_calls
