@@ -65,6 +65,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   final _fieldBoxKey = GlobalKey();
 
   FocusNode? _focusNode;
+
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
@@ -154,13 +155,16 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
                   position: box.globalToLocal(details.globalPosition),
                 );
 
-            final RenderBox inputFieldBox =
-                _fieldBoxKey.currentContext?.findRenderObject() as RenderBox;
-            final dropdownBox = context.findRenderObject() as RenderBox;
+            final RenderObject? inputFieldRenderObject =
+                _fieldBoxKey.currentContext?.findRenderObject();
+            final RenderObject? dropdownRenderObject =
+                context.findRenderObject();
 
-            if (hitTest(dropdownBox)) {
+            if (dropdownRenderObject is RenderBox &&
+                hitTest(dropdownRenderObject)) {
               // Touch on dropdown shouldn't close overlay
-            } else if (hitTest(inputFieldBox)) {
+            } else if (inputFieldRenderObject is RenderBox &&
+                hitTest(inputFieldRenderObject)) {
               if (widget.shouldCloseOnInputTap) _removeOverlay();
             } else {
               _removeOverlay();
