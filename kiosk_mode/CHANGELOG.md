@@ -1,3 +1,7 @@
+## 0.1.3+2
+
+ - **REFACTOR**: Fix new lint issues.
+
 ## 0.1.3+1
 
  - **DOCS**: Update readme.
