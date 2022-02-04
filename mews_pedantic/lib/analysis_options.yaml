@@ -6,6 +6,7 @@ linter:
     - avoid_catches_without_on_clauses
     - avoid_catching_errors
     - avoid_dynamic_calls
+    - avoid_final_parameters
     - avoid_implementing_value_types
     - avoid_unused_constructor_parameters
     - avoid_void_async
@@ -19,6 +20,8 @@ linter:
     - join_return_with_assignment
     - literal_only_boolean_expressions
     - no_adjacent_strings_in_list
+    - no_leading_underscores_for_library_prefixes
+    - no_leading_underscores_for_local_identifiers
     - only_throw_errors
     - package_api_docs
     - prefer_asserts_in_initializer_lists
@@ -31,6 +34,7 @@ linter:
     - prefer_mixin
     - prefer_single_quotes
     - require_trailing_commas
+    - sized_box_shrink_expand
     - sort_child_properties_last
     - sort_constructors_first
     - sort_pub_dependencies
@@ -42,9 +46,11 @@ linter:
     - unawaited_futures
     - unnecessary_await_in_return
     - unnecessary_lambdas
+    - unnecessary_late
     - unnecessary_null_aware_assignments
     - unnecessary_parenthesis
     - unnecessary_statements
+    - use_decorated_box
     - use_named_constants
     - use_raw_strings
     - use_setters_to_change_properties
@@ -55,8 +61,8 @@ analyzer:
   language:
     strict-raw-types: true
   
-  # plugins:
-  #   - dart_code_metrics
+  plugins:
+    - dart_code_metrics
   
   exclude:
     - "**/*.g.dart"
@@ -66,6 +72,7 @@ analyzer:
     annotate_overrides: error
     avoid_dynamic_calls: error
     avoid_shadowing_type_parameters: warning
+    body_might_complete_normally_nullable: ignore
     exhaustive_cases: warning
     literal_only_boolean_expressions: warning
     no_duplicate_case_values: error
