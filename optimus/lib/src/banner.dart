@@ -71,7 +71,7 @@ class OptimusBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: _backgroundColor(theme),
         borderRadius: const BorderRadius.all(borderRadius50),
@@ -226,7 +226,7 @@ class OptimusWideBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(color: _backgroundColor(theme)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),

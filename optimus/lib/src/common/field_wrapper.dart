@@ -89,6 +89,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                 IgnorePointer(
                   ignoring: !widget.isEnabled,
                   child: _FieldPadding(
+                    // Decoration is nullable, cannot use DecoratedBox
+                    // ignore: use_decorated_box
                     child: Container(
                       key: widget.fieldBoxKey,
                       decoration: widget.hasBorders

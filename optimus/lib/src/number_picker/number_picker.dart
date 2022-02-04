@@ -17,7 +17,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     ValueChanged<int?>? onChanged,
     AutovalidateMode autovalidateMode = AutovalidateMode.always,
     String? validationError,
-    final bool enabled = true,
+    bool enabled = true,
     FocusNode? focusNode,
     TextEditingController? controller,
   })  : assert(
