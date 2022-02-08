@@ -1,3 +1,9 @@
+## 0.14.1
+
+ - **FIX**: [RND-92036] RenderBox null in SearchField (#182).
+ - **FEAT**: Add onChanged to OptimusSelectInputFormField (#184).
+ - **CHORE**: publish packages.
+
 ## 0.14.0+3
 
  - **REFACTOR**: Fix new lint issues.
