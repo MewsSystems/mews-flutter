@@ -1,3 +1,7 @@
+## 0.14.0+3
+
+ - **REFACTOR**: Fix new lint issues.
+
 ## 0.14.0+2
 
  - **REFACTOR**: Fix lint errors.

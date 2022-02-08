@@ -1,3 +1,7 @@
+## 0.4.1-dev.3
+
+ - **FEAT**: Update rules.
+
 ## 0.4.1-dev.2
 
  - **FEAT**: Enable always_use_package_imports.

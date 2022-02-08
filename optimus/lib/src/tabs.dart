@@ -37,7 +37,7 @@ class OptimusTabBar extends StatelessWidget {
       length: tabs.length,
       child: Column(
         children: <Widget>[
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               border: Border(bottom: borderSide(theme)),
             ),

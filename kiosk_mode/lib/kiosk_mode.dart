@@ -50,7 +50,7 @@ Future<KioskMode> getKioskMode() => _channel
 Stream<KioskMode> watchKioskMode() =>
     Stream.fromFuture(getKioskMode()).merge(_kioskModeStream);
 
-late final Stream<KioskMode> _kioskModeStream =
+final Stream<KioskMode> _kioskModeStream =
     _eventChannel.receiveBroadcastStream().map(
           (dynamic value) =>
               value == true ? KioskMode.enabled : KioskMode.disabled,

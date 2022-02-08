@@ -18,9 +18,9 @@ class OptimusTheme extends StatelessWidget {
 
   static OptimusThemeData of(BuildContext context) {
     Brightness fallbackBrightness() => Theme.of(context).brightness;
-    final _theme = context.dependOnInheritedWidgetOfExactType<_OptimusTheme>();
+    final theme = context.dependOnInheritedWidgetOfExactType<_OptimusTheme>();
 
-    return _theme?.theme ??
+    return theme?.theme ??
         (fallbackBrightness() == Brightness.dark
             ? _defaultDarkTheme
             : _defaultLightTheme);
