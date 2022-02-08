@@ -1,3 +1,7 @@
+## 0.4.1
+
+ - Graduate package to a stable release. See pre-releases prior to this version for changelog entries.
+
 ## 0.4.1-dev.3
 
  - **FEAT**: Update rules.
