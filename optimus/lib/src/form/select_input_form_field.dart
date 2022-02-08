@@ -13,7 +13,7 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
     String placeholder = '',
     required ValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
-    Function(T value)? onChange,
+    Function(T value)? onChanged,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -31,7 +31,7 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
             isEnabled: enabled,
             onChanged: (v) {
               field.didChange(v);
-              onChange?.call(v);
+              onChanged?.call(v);
             },
           ),
         );
