@@ -13,7 +13,7 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
     String placeholder = '',
     required ValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
-    Function(T value)? onChanged,
+    ValueChanged<T>? onChanged,
   }) : super(
           key: key,
           initialValue: initialValue,
