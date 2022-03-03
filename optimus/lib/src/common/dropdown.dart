@@ -94,11 +94,12 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
   }
 
   Rect _calculateRect() {
-    final RenderBox renderBox =
-        widget.anchorKey.currentContext?.findRenderObject() as RenderBox;
-    final size = renderBox.size;
+    final renderObject = widget.anchorKey.currentContext?.findRenderObject();
+    if (renderObject is! RenderBox || !renderObject.hasSize) return _savedRect;
 
-    return renderBox.localToGlobal(Offset.zero) & size;
+    final size = renderObject.size;
+
+    return renderObject.localToGlobal(Offset.zero) & size;
   }
 
   Widget _buildListView(bool isReversed) => Material(
