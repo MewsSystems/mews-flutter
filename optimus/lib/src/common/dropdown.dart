@@ -27,12 +27,12 @@ class OptimusDropdown<T> extends StatefulWidget {
 class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
     with ThemeGetter {
   // shouldn't be null since its called right after widget creation
-  late Rect _savedRect = _calculateRect()!;
+  late Rect _savedRect = _calculateRect();
 
   void _updateRect(dynamic _) {
     if (!mounted) return;
     final newRect = _calculateRect();
-    if (newRect != null && newRect != _savedRect) {
+    if (newRect != _savedRect) {
       setState(() {
         _savedRect = newRect;
       });
@@ -94,9 +94,9 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
     );
   }
 
-  Rect? _calculateRect() {
+  Rect _calculateRect() {
     final renderObject = widget.anchorKey.currentContext?.findRenderObject();
-    if (renderObject is! RenderBox || !renderObject.hasSize) return null;
+    if (renderObject is! RenderBox || !renderObject.hasSize) return Rect.zero;
 
     final size = renderObject.size;
 
