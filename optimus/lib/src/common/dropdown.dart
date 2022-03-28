@@ -26,7 +26,6 @@ class OptimusDropdown<T> extends StatefulWidget {
 
 class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
     with ThemeGetter {
-  // shouldn't be null since its called right after widget creation
   late Rect _savedRect = _calculateRect();
 
   void _updateRect(dynamic _) {
