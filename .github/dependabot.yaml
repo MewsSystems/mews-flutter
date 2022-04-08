@@ -1,0 +1,22 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: "pub"
+    directory: "/kiosk_mode/"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pub"
+    directory: "/mews_pedantic/"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pub"
+    directory: "/optimus/"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pub"
+    directory: "/remote_logger/"
+    schedule:
+      interval: "monthly"
