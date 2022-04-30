@@ -56,7 +56,6 @@ class _SearchStoryState extends State<SearchStory> {
             ),
           )
           .toList(),
-      // ignore: prefer-extracting-callbacks
       onChanged: (_) {},
       label: k.text(label: 'Label', initial: 'Search field'),
       placeholder: k.text(
