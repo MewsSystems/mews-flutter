@@ -42,58 +42,62 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   }
 
   @override
-  Widget build(BuildContext context) => OverlayController(
-        items: widget.items,
-        anchorKey: _selectFieldKey,
-        onItemSelected: widget.onItemSelected ?? (_) {},
-        focusNode: _node,
-        width: _dropdownWidth,
-        onShown: () => setState(() => _isOpened = true),
-        onHidden: () => setState(() => _isOpened = false),
-        child: OptimusEnabled(
-          isEnabled: _isEnabled,
-          child: MouseRegion(
-            onEnter: (_) => _onHoverChanged(true),
-            onExit: (_) => _onHoverChanged(false),
-            child: GestureDetector(
-              onTap: _node.requestFocus,
-              onTapDown: (_) => setState(() => _isTappedDown = true),
-              onTapUp: (_) => setState(() => _isTappedDown = false),
-              onTapCancel: () => setState(() => _isTappedDown = false),
-              child: Focus(
-                focusNode: _node,
-                child: SizedBox(
-                  height: widget.size.value,
-                  child: AnimatedContainer(
-                    padding: const EdgeInsets.symmetric(horizontal: spacing200),
-                    key: _selectFieldKey,
-                    decoration: BoxDecoration(
-                      color: _color,
-                      borderRadius: widget.borderRadius,
-                    ),
-                    duration: buttonAnimationDuration,
-                    curve: Curves.fastOutSlowIn,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (widget.child != null)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: DefaultTextStyle.merge(
-                              style: _labelStyle,
-                              child: widget.child!,
-                            ),
+  Widget build(BuildContext context) {
+    final child = widget.child;
+
+    return OverlayController(
+      items: widget.items,
+      anchorKey: _selectFieldKey,
+      onItemSelected: widget.onItemSelected ?? (_) {},
+      focusNode: _node,
+      width: _dropdownWidth,
+      onShown: () => setState(() => _isOpened = true),
+      onHidden: () => setState(() => _isOpened = false),
+      child: OptimusEnabled(
+        isEnabled: _isEnabled,
+        child: MouseRegion(
+          onEnter: (_) => _onHoverChanged(true),
+          onExit: (_) => _onHoverChanged(false),
+          child: GestureDetector(
+            onTap: _node.requestFocus,
+            onTapDown: (_) => setState(() => _isTappedDown = true),
+            onTapUp: (_) => setState(() => _isTappedDown = false),
+            onTapCancel: () => setState(() => _isTappedDown = false),
+            child: Focus(
+              focusNode: _node,
+              child: SizedBox(
+                height: widget.size.value,
+                child: AnimatedContainer(
+                  padding: const EdgeInsets.symmetric(horizontal: spacing200),
+                  key: _selectFieldKey,
+                  decoration: BoxDecoration(
+                    color: _color,
+                    borderRadius: widget.borderRadius,
+                  ),
+                  duration: buttonAnimationDuration,
+                  curve: Curves.fastOutSlowIn,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (child != null)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: DefaultTextStyle.merge(
+                            style: _labelStyle,
+                            child: child,
                           ),
-                        _icon,
-                      ],
-                    ),
+                        ),
+                      _icon,
+                    ],
                   ),
                 ),
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 
   bool get _isEnabled => widget.onItemSelected != null;
 

@@ -105,7 +105,11 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
-  bool get hasError => error != null && error!.isNotEmpty;
+  bool get hasError {
+    final error = this.error;
+
+    return error != null && error.isNotEmpty;
+  }
 
   @override
   _OptimusInputFieldState createState() => _OptimusInputFieldState();
@@ -142,18 +146,19 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     widget.onChanged?.call('');
   }
 
-  Widget get _suffix => OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (widget.isClearEnabled) _ClearAllButton(onTap: _onSuffixTap),
-          if (widget.showLoader)
-            _loader
-          else if (widget.suffix != null)
-            widget.suffix!,
-        ],
-      );
+  Widget get _suffix {
+    final suffix = widget.suffix;
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (widget.isClearEnabled) _ClearAllButton(onTap: _onSuffixTap),
+        if (widget.showLoader) _loader else if (suffix != null) suffix,
+      ],
+    );
+  }
 
   OptimusCircleLoader get _loader => const OptimusCircleLoader(
         size: OptimusCircleLoaderSize.small,

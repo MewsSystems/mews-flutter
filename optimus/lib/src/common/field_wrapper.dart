@@ -37,7 +37,11 @@ class FieldWrapper extends StatefulWidget {
   final List<Widget> children;
   final Key? fieldBoxKey;
 
-  bool get hasError => error != null && error!.isNotEmpty;
+  bool get hasError {
+    final error = this.error;
+
+    return error != null && error.isNotEmpty;
+  }
 
   @override
   _FieldWrapper createState() => _FieldWrapper();
@@ -56,70 +60,80 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     super.dispose();
   }
 
+  String get _normalizedError {
+    final error = widget.error;
+
+    if (error == null || error.isEmpty) return '';
+
+    return error;
+  }
+
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Row(
-            children: [
-              if (widget.label != null)
-                OptimusFieldLabel(
-                  label: widget.label!,
-                  isRequired: widget.isRequired,
+  Widget build(BuildContext context) {
+    final label = widget.label;
+    final secondaryCaption = widget.secondaryCaption;
+    final caption = widget.caption;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Row(
+          children: [
+            if (label != null)
+              OptimusFieldLabel(label: label, isRequired: widget.isRequired),
+            const Spacer(),
+            if (secondaryCaption != null)
+              OptimusCaption(
+                variation: Variation.variationSecondary,
+                child: DefaultTextStyle.merge(
+                  style: TextStyle(color: _secondaryCaptionColor),
+                  child: secondaryCaption,
                 ),
-              const Spacer(),
-              if (widget.secondaryCaption != null)
-                OptimusCaption(
-                  variation: Variation.variationSecondary,
-                  child: DefaultTextStyle.merge(
-                    style: TextStyle(
-                      color: _secondaryCaptionColor,
+              ),
+          ],
+        ),
+        Opacity(
+          opacity:
+              widget.isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IgnorePointer(
+                ignoring: !widget.isEnabled,
+                child: _FieldPadding(
+                  // Decoration is nullable, cannot use DecoratedBox
+                  // ignore: use_decorated_box
+                  child: Container(
+                    key: widget.fieldBoxKey,
+                    decoration: widget.hasBorders
+                        ? BoxDecoration(
+                            color: _background,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(4)),
+                            border: Border.all(color: _borderColor, width: 1),
+                          )
+                        : null,
+                    child: Row(
+                      children: _buildChildren(),
                     ),
-                    child: widget.secondaryCaption!,
+                  ),
+                ),
+              ),
+              if (_normalizedError.isNotEmpty)
+                OptimusFieldError(error: _normalizedError),
+              if (!widget.hasError && caption != null)
+                OptimusCaption(
+                  child: DefaultTextStyle.merge(
+                    style: TextStyle(color: _captionColor),
+                    child: caption,
                   ),
                 ),
             ],
           ),
-          Opacity(
-            opacity:
-                widget.isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IgnorePointer(
-                  ignoring: !widget.isEnabled,
-                  child: _FieldPadding(
-                    // Decoration is nullable, cannot use DecoratedBox
-                    // ignore: use_decorated_box
-                    child: Container(
-                      key: widget.fieldBoxKey,
-                      decoration: widget.hasBorders
-                          ? BoxDecoration(
-                              color: _background,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(4)),
-                              border: Border.all(color: _borderColor, width: 1),
-                            )
-                          : null,
-                      child: Row(
-                        children: _buildChildren(),
-                      ),
-                    ),
-                  ),
-                ),
-                if (widget.hasError) OptimusFieldError(error: widget.error!),
-                if (!widget.hasError && widget.caption != null)
-                  OptimusCaption(
-                    child: DefaultTextStyle.merge(
-                      style: TextStyle(color: _captionColor),
-                      child: widget.caption!,
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 
   void _onFocusChanged() {
     setState(() {});
@@ -145,16 +159,20 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
           ? theme.colors.neutral0t64
           : theme.colors.neutral1000t64;
 
-  List<Widget> _buildChildren() => <Widget>[
-        if (widget.prefix != null)
-          _Icon(child: _PrefixPadding(child: widget.prefix!)),
-        ...widget.children,
-        if (widget.suffix != null)
-          DefaultTextStyle.merge(
-            style: preset100b.copyWith(color: theme.colors.neutral1000t32),
-            child: _Icon(child: _SuffixPadding(child: widget.suffix!)),
-          )
-      ];
+  List<Widget> _buildChildren() {
+    final prefix = widget.prefix;
+    final suffix = widget.suffix;
+
+    return <Widget>[
+      if (prefix != null) _Icon(child: _PrefixPadding(child: prefix)),
+      ...widget.children,
+      if (suffix != null)
+        DefaultTextStyle.merge(
+          style: preset100b.copyWith(color: theme.colors.neutral1000t32),
+          child: _Icon(child: _SuffixPadding(child: suffix)),
+        )
+    ];
+  }
 }
 
 class _Icon extends StatelessWidget {

@@ -330,13 +330,14 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final contentWrapperBuilder = this.contentWrapperBuilder;
     final wrappedContent = contentWrapperBuilder == null
         ? OptimusScrollConfiguration(
             child: SingleChildScrollView(
               child: OptimusDialogContentPadding(child: content),
             ),
           )
-        : contentWrapperBuilder!(context, content);
+        : contentWrapperBuilder(context, content);
 
     return Flexible(
       fit: FlexFit.loose,

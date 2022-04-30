@@ -189,9 +189,10 @@ class _Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final contentWrapperBuilder = this.contentWrapperBuilder;
     final wrappedChild = contentWrapperBuilder == null
         ? OptimusCardChildPadding(spacing: spacing, child: child)
-        : contentWrapperBuilder!(context, child);
+        : contentWrapperBuilder(context, child);
 
     return Container(
       clipBehavior: Clip.antiAlias,

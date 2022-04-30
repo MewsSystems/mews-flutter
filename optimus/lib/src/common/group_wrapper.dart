@@ -17,18 +17,19 @@ class GroupWrapper extends StatelessWidget {
   final bool isRequired;
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (label != null && label!.isNotEmpty)
-            OptimusFieldLabel(
-              label: label!,
-              isRequired: isRequired,
-            ),
-          child,
-          if (error != null && error!.isNotEmpty)
-            OptimusFieldError(error: error!),
-        ],
-      );
+  Widget build(BuildContext context) {
+    final label = this.label;
+    final error = this.error;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (label != null && label.isNotEmpty)
+          OptimusFieldLabel(label: label, isRequired: isRequired),
+        child,
+        if (error != null && error.isNotEmpty) OptimusFieldError(error: error),
+      ],
+    );
+  }
 }

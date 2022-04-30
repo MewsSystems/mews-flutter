@@ -56,7 +56,6 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
       ),
       enabled: widget.isEnabled,
       child:
-          // ignore: deprecated_member_use_from_same_package
           widget.hasBorders ? TileBorders(child: widget.child) : widget.child,
     );
   }
