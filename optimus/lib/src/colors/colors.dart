@@ -295,6 +295,12 @@ class OptimusColors {
 
   bool get _isLight => brightness == Brightness.light;
 
+  Color get background =>
+      _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral1000;
+
+  Color get horizontalBorder =>
+      _isLight ? OptimusLightColors.neutral50 : OptimusDarkColors.neutral400;
+
   Color get neutral0 =>
       _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral0;
 
