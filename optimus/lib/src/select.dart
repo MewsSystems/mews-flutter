@@ -43,7 +43,6 @@ class OptimusSelect<T> extends StatefulWidget {
   _OptimusSelectState<T> createState() => _OptimusSelectState<T>();
 }
 
-// ignore: deprecated_member_use_from_same_package
 class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
@@ -84,12 +83,16 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         ),
       );
 
-  Widget get _fieldContent => widget.value == null
-      ? Text(widget.placeholder, style: _textStyle)
-      : DefaultTextStyle.merge(
-          style: preset300s,
-          child: widget.builder(context, widget.value!),
-        );
+  Widget get _fieldContent {
+    final value = widget.value;
+
+    return value == null
+        ? Text(widget.placeholder, style: _textStyle)
+        : DefaultTextStyle.merge(
+            style: preset300s,
+            child: widget.builder(context, value),
+          );
+  }
 
   Icon get _icon => Icon(
         _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,

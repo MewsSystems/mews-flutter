@@ -87,12 +87,12 @@ class OptimusInputFormField extends FormField<String> {
   _InputFormFieldState createState() => _InputFormFieldState();
 }
 
-// See _TextFormFieldState
 class _InputFormFieldState extends FormFieldState<String> {
   TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
-      widget.controller ?? _controller!;
+      widget.controller ??
+      _controller!; // ignore: avoid-non-null-assertion, _controller would be initialized at this point
 
   @override
   OptimusInputFormField get widget => super.widget as OptimusInputFormField;
@@ -100,10 +100,11 @@ class _InputFormFieldState extends FormFieldState<String> {
   @override
   void initState() {
     super.initState();
-    if (widget.controller == null) {
+    final controller = widget.controller;
+    if (controller == null) {
       _controller = TextEditingController(text: widget.initialValue);
     } else {
-      widget.controller!.addListener(_handleControllerChanged);
+      controller.addListener(_handleControllerChanged);
     }
   }
 
@@ -114,12 +115,15 @@ class _InputFormFieldState extends FormFieldState<String> {
       oldWidget.controller?.removeListener(_handleControllerChanged);
       widget.controller?.addListener(_handleControllerChanged);
 
-      if (oldWidget.controller != null && widget.controller == null) {
+      final oldWidgetController = oldWidget.controller;
+      final widgetController = widget.controller;
+
+      if (oldWidgetController != null && widget.controller == null) {
         _controller =
-            TextEditingController.fromValue(oldWidget.controller!.value);
+            TextEditingController.fromValue(oldWidgetController.value);
       }
-      if (widget.controller != null) {
-        setValue(widget.controller!.text);
+      if (widgetController != null) {
+        setValue(widgetController.text);
         if (oldWidget.controller == null) _controller = null;
       }
     }

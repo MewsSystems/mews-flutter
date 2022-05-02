@@ -70,6 +70,7 @@ class OptimusBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final description = this.description;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -123,7 +124,7 @@ class OptimusBanner extends StatelessWidget {
                         bottom: 10,
                       ),
                       child: DefaultTextStyle.merge(
-                        child: description!,
+                        child: description,
                         style: preset200r.copyWith(
                           color: _getDescriptionColor(theme),
                         ),

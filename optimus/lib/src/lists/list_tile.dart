@@ -31,19 +31,19 @@ class OptimusListTile extends StatefulWidget {
 }
 
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
-  Widget get _prefix => Padding(
+  Widget _buildPrefix(Widget prefix) => Padding(
         padding: const EdgeInsets.only(right: spacing100),
         child: OptimusTypography(
           color: OptimusTypographyColor.secondary,
           resolveStyle: (_) => preset200s,
-          child: widget.prefix!,
+          child: prefix,
         ),
       );
 
-  Widget get _info => OptimusTypography(
+  Widget _buildInfo(Widget info) => OptimusTypography(
         resolveStyle: (_) => preset100s,
         color: OptimusTypographyColor.secondary,
-        child: widget.info!,
+        child: info,
       );
 
   TextStyle get _titleStyle {
@@ -63,13 +63,17 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
         ),
       );
 
-  Widget get _subtitle => widget.subtitle != null
-      ? OptimusTypography(
-          resolveStyle: (_) => preset200s,
-          color: _subtitleColor,
-          child: widget.subtitle!,
-        )
-      : Container();
+  Widget get _subtitle {
+    final subtitle = widget.subtitle;
+
+    return subtitle != null
+        ? OptimusTypography(
+            resolveStyle: (_) => preset200s,
+            color: _subtitleColor,
+            child: subtitle,
+          )
+        : const SizedBox.shrink();
+  }
 
   OptimusTypographyColor get _subtitleColor {
     switch (widget.fontVariant) {
@@ -80,54 +84,61 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
-  Widget get _suffix => OptimusTypography(
+  Widget _buildSuffix(Widget suffix) => OptimusTypography(
         resolveStyle: (_) => preset200s,
-        child: widget.suffix!,
+        child: suffix,
       );
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
-        constraints: const BoxConstraints(minHeight: 94),
-        child: InkWell(
-          highlightColor:
-              theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,
-          hoverColor:
-              theme.isDark ? theme.colors.neutral400 : theme.colors.neutral25,
-          onTap: widget.onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: spacing300,
-              horizontal: spacing200,
-            ),
-            child: Row(
-              children: <Widget>[
-                if (widget.prefix != null) _prefix,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(child: _title),
-                          if (widget.info != null) _info,
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(child: _subtitle),
-                          if (widget.infoWidget != null) widget.infoWidget!,
-                        ],
-                      ),
-                    ],
-                  ),
+  Widget build(BuildContext context) {
+    final prefix = widget.prefix;
+    final info = widget.info;
+    final suffix = widget.suffix;
+    final infoWidget = widget.infoWidget;
+
+    return Container(
+      decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
+      constraints: const BoxConstraints(minHeight: 94),
+      child: InkWell(
+        highlightColor:
+            theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,
+        hoverColor:
+            theme.isDark ? theme.colors.neutral400 : theme.colors.neutral25,
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: spacing300,
+            horizontal: spacing200,
+          ),
+          child: Row(
+            children: <Widget>[
+              if (prefix != null) _buildPrefix(prefix),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: _title),
+                        if (info != null) _buildInfo(info),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: _subtitle),
+                        if (infoWidget != null) infoWidget,
+                      ],
+                    ),
+                  ],
                 ),
-                if (widget.suffix != null) _suffix,
-              ],
-            ),
+              ),
+              if (suffix != null) _buildSuffix(suffix),
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 enum FontVariant { normal, bold }

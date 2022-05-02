@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/common/dropdown.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
@@ -54,9 +55,10 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
 
   void _showOverlay() {
     if (_overlayEntry != null) return;
-    _overlayEntry = _createOverlayEntry();
+    _overlayEntry = _createOverlayEntry().also((it) {
+      Overlay.of(context, rootOverlay: true)?.insert(it);
+    });
 
-    Overlay.of(context, rootOverlay: true)?.insert(_overlayEntry!);
     widget.onShown?.call();
   }
 

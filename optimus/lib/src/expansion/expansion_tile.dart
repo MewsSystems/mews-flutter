@@ -150,21 +150,17 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     );
   }
 
-  Widget _buildListTile() {
-    final tile = ListTile(
-      onTap: _handleTap,
-      leading: widget.leading,
-      title: widget.title,
-      subtitle: widget.subtitle,
-      trailing: widget.trailing ??
-          RotationTransition(
-            turns: _iconTurns,
-            child: const Icon(Icons.expand_more),
-          ),
-    );
-
-    return tile;
-  }
+  Widget _buildListTile() => ListTile(
+        onTap: _handleTap,
+        leading: widget.leading,
+        title: widget.title,
+        subtitle: widget.subtitle,
+        trailing: widget.trailing ??
+            RotationTransition(
+              turns: _iconTurns,
+              child: const Icon(Icons.expand_more),
+            ),
+      );
 
   Widget _buildSlidable(List<Widget> actions, Widget child) => OptimusSlidable(
         actions: actions,

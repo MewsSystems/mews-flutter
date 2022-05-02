@@ -19,23 +19,27 @@ class BaseDropdownTile extends StatefulWidget {
 
 class _BaseDropdownTileState extends State<BaseDropdownTile> {
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+  Widget build(BuildContext context) {
+    final subtitle = widget.subtitle;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          OptimusTypography(
+            resolveStyle: (_) => preset300b,
+            child: widget.title,
+          ),
+          if (subtitle != null)
             OptimusTypography(
-              resolveStyle: (_) => preset300b,
-              child: widget.title,
+              resolveStyle: (_) => preset200b,
+              color: OptimusTypographyColor.secondary,
+              child: subtitle,
             ),
-            if (widget.subtitle != null)
-              OptimusTypography(
-                resolveStyle: (_) => preset200b,
-                color: OptimusTypographyColor.secondary,
-                child: widget.subtitle!,
-              ),
-          ],
-        ),
-      );
+        ],
+      ),
+    );
+  }
 }
