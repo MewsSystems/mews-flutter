@@ -1,3 +1,7 @@
+## 0.14.2
+
+ - **FEAT**: [RND-91913] Dark theme colors (#191).
+
 ## 0.14.1+2
 
  - **REFACTOR**: Follow new mews_pedantic rules.
