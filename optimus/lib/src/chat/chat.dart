@@ -233,28 +233,34 @@ class OptimusChat extends StatelessWidget {
           _messages[index < _messages.length ? index + 1 : index].author.id !=
               _messages[index].author.id);
 
-  bool _showDate(int index) =>
-      _previousMessageTime(index) == null ||
-      _currentMessageTime(index)
-              .difference(_previousMessageTime(index)!)
-              .inDays >=
-          1;
+  bool _showDate(int index) {
+    final previousMessageTime = _previousMessageTime(index);
 
-  bool _moreThanOneMinuteDifferenceBack(int index) =>
-      _previousMessageTime(index) != null &&
-      _currentMessageTime(index)
-              .difference(_previousMessageTime(index)!)
-              .abs()
-              .inMinutes >=
-          1;
+    return previousMessageTime == null ||
+        _currentMessageTime(index).difference(previousMessageTime).inDays >= 1;
+  }
 
-  bool _moreThanOneMinuteDifferenceForward(int index) =>
-      _nextMessageTime(index) != null &&
-      _currentMessageTime(index)
-              .difference(_nextMessageTime(index)!)
-              .abs()
-              .inMinutes >=
-          1;
+  bool _moreThanOneMinuteDifferenceBack(int index) {
+    final previousMessageTime = _previousMessageTime(index);
+
+    return previousMessageTime != null &&
+        _currentMessageTime(index)
+                .difference(previousMessageTime)
+                .abs()
+                .inMinutes >=
+            1;
+  }
+
+  bool _moreThanOneMinuteDifferenceForward(int index) {
+    final nextMessageTime = _nextMessageTime(index);
+
+    return nextMessageTime != null &&
+        _currentMessageTime(index)
+                .difference(nextMessageTime)
+                .abs()
+                .inMinutes >=
+            1;
+  }
 
   DateTime _currentMessageTime(int index) => _messages[index].time;
 
@@ -264,10 +270,12 @@ class OptimusChat extends StatelessWidget {
   DateTime? _nextMessageTime(int index) =>
       index - 1 > 0 ? _messages[index - 1].time : null;
 
-  bool _lastMessageOfDay(int index) =>
-      index - 1 > 0 &&
-      _nextMessageTime(index)!.difference(_currentMessageTime(index)).inDays >
-          1;
+  bool _lastMessageOfDay(int index) {
+    final nextMessageTime = _nextMessageTime(index);
+
+    return nextMessageTime == null ||
+        nextMessageTime.difference(_currentMessageTime(index)).inDays > 1;
+  }
 
   bool _latestMessage(int index) => index == 0;
 

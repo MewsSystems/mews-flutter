@@ -109,7 +109,7 @@ class RemoteLogger {
     } on ClientException {
       return false;
 
-      // ignore: avoid_catches_without_on_clauses
+      // ignore: avoid_catches_without_on_clauses, we don't care about any other record
     } catch (_) {
       // Some other error, don't retry.
       return true;

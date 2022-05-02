@@ -1,3 +1,7 @@
+## 0.14.1+2
+
+ - **REFACTOR**: Follow new mews_pedantic rules.
+
 ## 0.14.1+1
 
  - **FIX**: RenderBox.size: Null check operator used on a null value (#187).

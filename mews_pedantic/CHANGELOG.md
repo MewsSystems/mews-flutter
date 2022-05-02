@@ -1,3 +1,7 @@
+## 0.4.2
+
+ - **FEAT**: Bump dart_code_metrics to 4.14.0.
+
 ## 0.4.1
 
  - Graduate package to a stable release. See pre-releases prior to this version for changelog entries.

@@ -60,10 +60,10 @@ linter:
 analyzer:
   language:
     strict-raw-types: true
-  
+
   plugins:
     - dart_code_metrics
-  
+
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
@@ -73,6 +73,7 @@ analyzer:
     avoid_dynamic_calls: error
     avoid_shadowing_type_parameters: warning
     body_might_complete_normally_nullable: ignore
+    deprecated_member_use_from_same_package: ignore
     exhaustive_cases: warning
     literal_only_boolean_expressions: warning
     no_duplicate_case_values: error
@@ -89,7 +90,9 @@ analyzer:
 
 dart_code_metrics:
   rules:
+    - avoid-collection-methods-with-unrelated-types
     - avoid-global-state
+    - avoid-non-null-assertion
     - avoid-unnecessary-setstate
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
@@ -99,10 +102,12 @@ dart_code_metrics:
     - newline-before-return
     - no-boolean-literal-compare
     - no-equal-then-else
+    - prefer-commenting-analyzer-ignores
     - prefer-const-border-radius
     - prefer-first
+    - prefer-immediate-return
     - prefer-last
-  
+
   metrics-exclude:
     - lib/**
     - test/**

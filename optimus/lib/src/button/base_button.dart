@@ -153,6 +153,9 @@ class BaseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final leftIcon = this.leftIcon;
+    final rightIcon = this.rightIcon;
+    final badgeLabel = this.badgeLabel;
 
     return Opacity(
       opacity: onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
@@ -176,7 +179,7 @@ class BaseButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (leftIcon != null) _buildIcon(leftIcon!, theme),
+            if (leftIcon != null) _buildIcon(leftIcon, theme),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: spacing100),
               child: DefaultTextStyle.merge(
@@ -187,9 +190,9 @@ class BaseButton extends StatelessWidget {
                 ),
               ),
             ),
-            if (rightIcon != null) _buildIcon(rightIcon!, theme),
-            if (badgeLabel != null && badgeLabel!.isNotEmpty)
-              _buildBadgeLabel(badgeLabel!, theme),
+            if (rightIcon != null) _buildIcon(rightIcon, theme),
+            if (badgeLabel != null && badgeLabel.isNotEmpty)
+              _buildBadgeLabel(badgeLabel, theme),
           ],
         ),
       ),

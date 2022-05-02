@@ -55,7 +55,9 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     if (position < widget.currentItem) {
       return OptimusStepBarItemState.completed;
     }
-    if (widget.maxItem == null || position <= widget.maxItem!) {
+
+    final maxItem = widget.maxItem;
+    if (maxItem == null || position <= maxItem) {
       return OptimusStepBarItemState.enabled;
     }
 
@@ -91,48 +93,52 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
   List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
       items.map((i) => _buildItem(i, maxWidth)).intersperse(_spacer).toList();
 
-  Widget _buildItem(OptimusStepBarItem item, double maxWidth) => ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: min(_itemMaxWidth, maxWidth),
-          minWidth: _itemMinWidth,
-        ),
-        child: OptimusEnabled(
-          isEnabled: _getItemState(item) != OptimusStepBarItemState.disabled,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(width: _itemLeftPadding),
-              _buildIcon(item),
-              const SizedBox(width: spacing100),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+  Widget _buildItem(OptimusStepBarItem item, double maxWidth) {
+    final description = item.description;
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: min(_itemMaxWidth, maxWidth),
+        minWidth: _itemMinWidth,
+      ),
+      child: OptimusEnabled(
+        isEnabled: _getItemState(item) != OptimusStepBarItemState.disabled,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(width: _itemLeftPadding),
+            _buildIcon(item),
+            const SizedBox(width: spacing100),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DefaultTextStyle.merge(
+                    style: preset200b,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    child: item.label,
+                  ),
+                  if (description != null)
                     DefaultTextStyle.merge(
-                      style: preset200b,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      child: item.label,
-                    ),
-                    if (item.description != null)
-                      DefaultTextStyle.merge(
-                        overflow: TextOverflow.ellipsis,
-                        style: preset200s.copyWith(
-                          color: theme.isDark
-                              ? theme.colors.neutral0t64
-                              : theme.colors.neutral1000t64,
-                        ),
-                        maxLines: 1,
-                        child: item.description!,
+                      style: preset200s.copyWith(
+                        color: theme.isDark
+                            ? theme.colors.neutral0t64
+                            : theme.colors.neutral1000t64,
                       ),
-                  ],
-                ),
+                      maxLines: 1,
+                      child: description,
+                    ),
+                ],
               ),
-              const SizedBox(width: spacing200),
-            ],
-          ),
+            ),
+            const SizedBox(width: spacing200),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   Widget _buildIcon(OptimusStepBarItem item) {
     final state = _getItemState(item);

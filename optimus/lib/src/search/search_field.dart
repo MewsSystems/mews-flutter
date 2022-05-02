@@ -123,14 +123,15 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   void _createOverlay() => _overlayEntry = _createOverlayEntry();
 
   void _showOverlay() {
-    if (_overlayEntry != null) {
-      Overlay.of(context, rootOverlay: true)?.insert(_overlayEntry!);
+    final overlayEntry = _overlayEntry;
+    if (overlayEntry != null) {
+      Overlay.of(context, rootOverlay: true)?.insert(overlayEntry);
     }
   }
 
   void _removeOverlay() {
     if (_overlayEntry != null) {
-      _overlayEntry!.remove();
+      _overlayEntry?.remove();
       _overlayEntry = null;
     }
     _effectiveFocusNode.unfocus();

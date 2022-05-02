@@ -1,3 +1,7 @@
+## 0.1.0+2
+
+ - **REFACTOR**: Follow new mews_pedantic rules.
+
 ## 0.1.0+1
 
  - **REFACTOR**: Update static analyzer rules.
