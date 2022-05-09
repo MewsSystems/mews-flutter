@@ -202,16 +202,16 @@ class _TagState extends State<_Tag> with ThemeGetter {
   }
 }
 
-enum CategoricalColorOption { denim, lavender, lime, mustard, ruby, tangerine }
+enum OptimusCategoricalColorOption { denim, lavender, lime, mustard, ruby, tangerine }
 
 /// Color options are designed so they won't carry any semantic meaning. Could be used in any cause when
 /// displaying categorical data.
-/// [CategoricalColorOption.denim] - Denim Blue
-/// [CategoricalColorOption.lavender] - Lavender Purple
-/// [CategoricalColorOption.lime] - Lime Green
-/// [CategoricalColorOption.mustard] - Mustard Yellow
-/// [CategoricalColorOption.ruby] - Ruby Red
-/// [CategoricalColorOption.tangerine] - Tangerine Orange
+/// [OptimusCategoricalColorOption.denim] - Denim Blue
+/// [OptimusCategoricalColorOption.lavender] - Lavender Purple
+/// [OptimusCategoricalColorOption.lime] - Lime Green
+/// [OptimusCategoricalColorOption.mustard] - Mustard Yellow
+/// [OptimusCategoricalColorOption.ruby] - Ruby Red
+/// [OptimusCategoricalColorOption.tangerine] - Tangerine Orange
 ///
 class OptimusCategoricalTag extends StatelessWidget {
   const OptimusCategoricalTag({
@@ -221,7 +221,7 @@ class OptimusCategoricalTag extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  final CategoricalColorOption colorOption;
+  final OptimusCategoricalColorOption colorOption;
 
   @override
   Widget build(BuildContext context) {
@@ -248,51 +248,51 @@ class OptimusCategoricalTag extends StatelessWidget {
 
   Color get _borderColor {
     switch (colorOption) {
-      case CategoricalColorOption.denim:
+      case OptimusCategoricalColorOption.denim:
         return OptimusDataColors.denim200;
-      case CategoricalColorOption.lavender:
+      case OptimusCategoricalColorOption.lavender:
         return OptimusDataColors.lavender200;
-      case CategoricalColorOption.lime:
+      case OptimusCategoricalColorOption.lime:
         return OptimusDataColors.lime200;
-      case CategoricalColorOption.mustard:
+      case OptimusCategoricalColorOption.mustard:
         return OptimusDataColors.mustard200;
-      case CategoricalColorOption.ruby:
+      case OptimusCategoricalColorOption.ruby:
         return OptimusDataColors.ruby200;
-      case CategoricalColorOption.tangerine:
+      case OptimusCategoricalColorOption.tangerine:
         return OptimusDataColors.tangerine200;
     }
   }
 
   Color get _tagColor {
     switch (colorOption) {
-      case CategoricalColorOption.denim:
+      case OptimusCategoricalColorOption.denim:
         return OptimusDataColors.denim50;
-      case CategoricalColorOption.lavender:
+      case OptimusCategoricalColorOption.lavender:
         return OptimusDataColors.lavender50;
-      case CategoricalColorOption.lime:
+      case OptimusCategoricalColorOption.lime:
         return OptimusDataColors.lime50;
-      case CategoricalColorOption.mustard:
+      case OptimusCategoricalColorOption.mustard:
         return OptimusDataColors.mustard50;
-      case CategoricalColorOption.ruby:
+      case OptimusCategoricalColorOption.ruby:
         return OptimusDataColors.ruby50;
-      case CategoricalColorOption.tangerine:
+      case OptimusCategoricalColorOption.tangerine:
         return OptimusDataColors.tangerine50;
     }
   }
 
   Color _textColor(OptimusThemeData theme) {
     switch (colorOption) {
-      case CategoricalColorOption.denim:
+      case OptimusCategoricalColorOption.denim:
         return OptimusDataColors.denim900;
-      case CategoricalColorOption.lavender:
+      case OptimusCategoricalColorOption.lavender:
         return OptimusDataColors.lavender900;
-      case CategoricalColorOption.lime:
+      case OptimusCategoricalColorOption.lime:
         return OptimusDataColors.lime900;
-      case CategoricalColorOption.mustard:
+      case OptimusCategoricalColorOption.mustard:
         return theme.colors.neutral1000;
-      case CategoricalColorOption.ruby:
+      case OptimusCategoricalColorOption.ruby:
         return OptimusDataColors.ruby900;
-      case CategoricalColorOption.tangerine:
+      case OptimusCategoricalColorOption.tangerine:
         return theme.colors.neutral1000;
     }
   }
