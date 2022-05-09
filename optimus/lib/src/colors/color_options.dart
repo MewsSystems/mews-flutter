@@ -1,1 +1,1 @@
-enum OptimusColorOption { primary, success, danger, warning, basic }
+enum OptimusColorOption { basic, plain, primary, success, info, warning, danger }
