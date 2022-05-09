@@ -38,7 +38,8 @@ class OptimusTag extends StatelessWidget {
   final OptimusColorOption colorOption;
 
   @override
-  Widget build(BuildContext context) => _Tag(text: text, colorOption: colorOption);
+  Widget build(BuildContext context) =>
+      _Tag(text: text, colorOption: colorOption);
 }
 
 /// Tags are used to highlight an item’s status or make it easier to recognize
@@ -116,7 +117,9 @@ class _TagState extends State<_Tag> with ThemeGetter {
           children: [
             Flexible(
               child: Text(
-                widget.onRemoved != null ? widget.text : widget.text.toUpperCase(),
+                widget.onRemoved != null
+                    ? widget.text
+                    : widget.text.toUpperCase(),
                 style: widget.onRemoved != null
                     ? preset200s.copyWith(
                         height: 1.1,
@@ -202,7 +205,14 @@ class _TagState extends State<_Tag> with ThemeGetter {
   }
 }
 
-enum OptimusCategoricalColorOption { denim, lavender, lime, mustard, ruby, tangerine }
+enum OptimusCategoricalColorOption {
+  denim,
+  lavender,
+  lime,
+  mustard,
+  ruby,
+  tangerine
+}
 
 /// Color options are designed so they won't carry any semantic meaning. Could be used in any cause when
 /// displaying categorical data.
