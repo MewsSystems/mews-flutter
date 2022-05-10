@@ -295,6 +295,16 @@ class OptimusColors {
 
   bool get _isLight => brightness == Brightness.light;
 
+  Color get selectedTabItemColor =>
+      _isLight ? OptimusLightColors.neutral1000 : OptimusDarkColors.neutral0;
+
+  Color get unselectedTabItemColor => _isLight
+      ? OptimusLightColors.neutral1000t64
+      : OptimusDarkColors.neutral0t64;
+
+  Color get bottomTabBarBackground =>
+      _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral800;
+
   Color get background =>
       _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral1000;
 
