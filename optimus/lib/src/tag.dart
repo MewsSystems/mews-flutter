@@ -9,8 +9,8 @@ import 'package:optimus/src/typography/presets.dart';
 /// Tags are used to highlight an item’s status or make it easier to recognize
 /// certain items in data-dense content.
 /// For system-specific feedback with semantic significance use OptimusTag.
-/// For data-dense content, where representation isn't carrying semantic significance
-/// use OptimusCategoricalTag.
+/// For data-dense content, where representation isn't carrying semantic
+/// significance use OptimusCategoricalTag.
 ///
 /// Be wary of using multiple tags on one item, as it could cause visual noise.
 /// Non-interactive tags are used to highlight an item’s status or make it
@@ -214,15 +214,68 @@ enum OptimusCategoricalColorOption {
   tangerine
 }
 
-/// Color options are designed so they won't carry any semantic meaning. Could be used in any cause when
-/// displaying categorical data.
+extension on OptimusCategoricalColorOption {
+  Color borderColor() {
+    switch (this) {
+      case OptimusCategoricalColorOption.denim:
+        return OptimusDataColors.denim200;
+      case OptimusCategoricalColorOption.lavender:
+        return OptimusDataColors.lavender200;
+      case OptimusCategoricalColorOption.lime:
+        return OptimusDataColors.lime200;
+      case OptimusCategoricalColorOption.mustard:
+        return OptimusDataColors.mustard200;
+      case OptimusCategoricalColorOption.ruby:
+        return OptimusDataColors.ruby200;
+      case OptimusCategoricalColorOption.tangerine:
+        return OptimusDataColors.tangerine200;
+    }
+  }
+
+  Color tagColor() {
+    switch (this) {
+      case OptimusCategoricalColorOption.denim:
+        return OptimusDataColors.denim50;
+      case OptimusCategoricalColorOption.lavender:
+        return OptimusDataColors.lavender50;
+      case OptimusCategoricalColorOption.lime:
+        return OptimusDataColors.lime50;
+      case OptimusCategoricalColorOption.mustard:
+        return OptimusDataColors.mustard50;
+      case OptimusCategoricalColorOption.ruby:
+        return OptimusDataColors.ruby50;
+      case OptimusCategoricalColorOption.tangerine:
+        return OptimusDataColors.tangerine50;
+    }
+  }
+
+  Color textColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusCategoricalColorOption.denim:
+        return OptimusDataColors.denim900;
+      case OptimusCategoricalColorOption.lavender:
+        return OptimusDataColors.lavender900;
+      case OptimusCategoricalColorOption.lime:
+        return OptimusDataColors.lime900;
+      case OptimusCategoricalColorOption.mustard:
+        return theme.colors.neutral1000;
+      case OptimusCategoricalColorOption.ruby:
+        return OptimusDataColors.ruby900;
+      case OptimusCategoricalColorOption.tangerine:
+        return theme.colors.neutral1000;
+    }
+  }
+}
+
+/// Color options are designed so they won't carry any semantic meaning. Could
+/// be used in any case when displaying categorical data.
+///
 /// [OptimusCategoricalColorOption.denim] - Denim Blue
 /// [OptimusCategoricalColorOption.lavender] - Lavender Purple
 /// [OptimusCategoricalColorOption.lime] - Lime Green
 /// [OptimusCategoricalColorOption.mustard] - Mustard Yellow
 /// [OptimusCategoricalColorOption.ruby] - Ruby Red
 /// [OptimusCategoricalColorOption.tangerine] - Tangerine Orange
-///
 class OptimusCategoricalTag extends StatelessWidget {
   const OptimusCategoricalTag({
     Key? key,
@@ -239,71 +292,20 @@ class OptimusCategoricalTag extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: _tagColor,
-        border: Border.all(color: _borderColor),
+        color: colorOption.tagColor(),
+        border: Border.all(color: colorOption.borderColor()),
         borderRadius: const BorderRadius.all(borderRadius25),
       ),
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       child: Text(
         text.toUpperCase(),
         style: baseTextStyle.copyWith(
-          color: _textColor(theme),
+          color: colorOption.textColor(theme),
           fontWeight: FontWeight.w600,
           fontSize: 12,
         ),
         overflow: TextOverflow.ellipsis,
       ),
     );
-  }
-
-  Color get _borderColor {
-    switch (colorOption) {
-      case OptimusCategoricalColorOption.denim:
-        return OptimusDataColors.denim200;
-      case OptimusCategoricalColorOption.lavender:
-        return OptimusDataColors.lavender200;
-      case OptimusCategoricalColorOption.lime:
-        return OptimusDataColors.lime200;
-      case OptimusCategoricalColorOption.mustard:
-        return OptimusDataColors.mustard200;
-      case OptimusCategoricalColorOption.ruby:
-        return OptimusDataColors.ruby200;
-      case OptimusCategoricalColorOption.tangerine:
-        return OptimusDataColors.tangerine200;
-    }
-  }
-
-  Color get _tagColor {
-    switch (colorOption) {
-      case OptimusCategoricalColorOption.denim:
-        return OptimusDataColors.denim50;
-      case OptimusCategoricalColorOption.lavender:
-        return OptimusDataColors.lavender50;
-      case OptimusCategoricalColorOption.lime:
-        return OptimusDataColors.lime50;
-      case OptimusCategoricalColorOption.mustard:
-        return OptimusDataColors.mustard50;
-      case OptimusCategoricalColorOption.ruby:
-        return OptimusDataColors.ruby50;
-      case OptimusCategoricalColorOption.tangerine:
-        return OptimusDataColors.tangerine50;
-    }
-  }
-
-  Color _textColor(OptimusThemeData theme) {
-    switch (colorOption) {
-      case OptimusCategoricalColorOption.denim:
-        return OptimusDataColors.denim900;
-      case OptimusCategoricalColorOption.lavender:
-        return OptimusDataColors.lavender900;
-      case OptimusCategoricalColorOption.lime:
-        return OptimusDataColors.lime900;
-      case OptimusCategoricalColorOption.mustard:
-        return theme.colors.neutral1000;
-      case OptimusCategoricalColorOption.ruby:
-        return OptimusDataColors.ruby900;
-      case OptimusCategoricalColorOption.tangerine:
-        return theme.colors.neutral1000;
-    }
   }
 }
