@@ -1,3 +1,9 @@
+## 0.5.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade to dart 2.17.
+
 ## 0.4.2
 
  - **FEAT**: Bump dart_code_metrics to 4.14.0.
