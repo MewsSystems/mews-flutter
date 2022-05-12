@@ -18,7 +18,7 @@ class SearchStory extends StatefulWidget {
   final KnobsBuilder knobs;
 
   @override
-  _SearchStoryState createState() => _SearchStoryState();
+  State<SearchStory> createState() => _SearchStoryState();
 }
 
 class _SearchStoryState extends State<SearchStory> {

@@ -48,7 +48,7 @@ class OptimusStandaloneLink extends StatefulWidget {
   final TextOverflow? overflow;
 
   @override
-  _OptimusStandaloneLinkState createState() => _OptimusStandaloneLinkState();
+  State<OptimusStandaloneLink> createState() => _OptimusStandaloneLinkState();
 }
 
 class _OptimusStandaloneLinkState extends State<OptimusStandaloneLink>

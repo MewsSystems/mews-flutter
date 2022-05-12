@@ -43,7 +43,7 @@ class OptimusStepBar extends StatefulWidget {
   final int? maxItem;
 
   @override
-  _OptimusStepBarState createState() => _OptimusStepBarState();
+  State<OptimusStepBar> createState() => _OptimusStepBarState();
 }
 
 class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {

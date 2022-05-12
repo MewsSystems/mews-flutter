@@ -57,7 +57,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final bool? readOnly;
 
   @override
-  _OptimusSelectInput<T> createState() => _OptimusSelectInput<T>();
+  State<OptimusSelectInput<T>> createState() => _OptimusSelectInput<T>();
 }
 
 class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>

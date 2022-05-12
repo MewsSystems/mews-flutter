@@ -28,7 +28,7 @@ class OverlayController<T> extends StatefulWidget {
   final VoidCallback? onHidden;
 
   @override
-  _OverlayControllerState<T> createState() => _OverlayControllerState<T>();
+  State<OverlayController<T>> createState() => _OverlayControllerState<T>();
 }
 
 class _OverlayControllerState<T> extends State<OverlayController<T>> {
@@ -47,7 +47,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   @override
   void didUpdateWidget(OverlayController<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _overlayEntry?.markNeedsBuild();
     });

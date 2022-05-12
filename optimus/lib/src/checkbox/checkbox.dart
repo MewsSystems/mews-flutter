@@ -70,7 +70,7 @@ class OptimusCheckbox extends StatefulWidget {
   final ValueChanged<bool> onChanged;
 
   @override
-  _OptimusCheckboxState createState() => _OptimusCheckboxState();
+  State<OptimusCheckbox> createState() => _OptimusCheckboxState();
 }
 
 class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {

@@ -17,7 +17,7 @@ class SelectInputStory extends StatefulWidget {
   final KnobsBuilder knobs;
 
   @override
-  _SelectInputStoryState createState() => _SelectInputStoryState();
+  State<SelectInputStory> createState() => _SelectInputStoryState();
 }
 
 class _SelectInputStoryState extends State<SelectInputStory> {

@@ -44,7 +44,7 @@ class FieldWrapper extends StatefulWidget {
   }
 
   @override
-  _FieldWrapper createState() => _FieldWrapper();
+  State<FieldWrapper> createState() => _FieldWrapper();
 }
 
 class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {

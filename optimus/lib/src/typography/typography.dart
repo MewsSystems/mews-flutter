@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
 typedef ResolveStyle = TextStyle Function(Breakpoint);
+
 enum OptimusTypographyColor { primary, secondary }
 
 class OptimusTypography extends StatelessWidget {
