@@ -40,7 +40,7 @@ class OptimusSelect<T> extends StatefulWidget {
   final ValueSetter<T> onItemSelected;
 
   @override
-  _OptimusSelectState<T> createState() => _OptimusSelectState<T>();
+  State<OptimusSelect<T>> createState() => _OptimusSelectState<T>();
 }
 
 class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {

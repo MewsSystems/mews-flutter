@@ -58,7 +58,7 @@ class OptimusSearch<T> extends StatefulWidget {
   final bool readOnly;
 
   @override
-  _OptimusSearchState<T> createState() => _OptimusSearchState<T>();
+  State<OptimusSearch<T>> createState() => _OptimusSearchState<T>();
 }
 
 class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
@@ -76,12 +76,12 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
 
-    WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutBuild);
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayoutBuild);
   }
 
   void _onFocusChanged() {
     if (_effectiveFocusNode.hasFocus) {
-      WidgetsBinding.instance?.addPostFrameCallback(_afterLayoutWithShow);
+      WidgetsBinding.instance.addPostFrameCallback(_afterLayoutWithShow);
     } else {
       setState(_removeOverlay);
     }
@@ -104,7 +104,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
         ..addListener(_onFocusChanged);
     }
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _overlayEntry?.markNeedsBuild();
     });

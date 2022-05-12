@@ -84,7 +84,7 @@ class OptimusInputFormField extends FormField<String> {
   final TextEditingController? controller;
 
   @override
-  _InputFormFieldState createState() => _InputFormFieldState();
+  FormFieldState<String> createState() => _InputFormFieldState();
 }
 
 class _InputFormFieldState extends FormFieldState<String> {

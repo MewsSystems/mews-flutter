@@ -9,7 +9,7 @@ class OptimusChatInput extends StatefulWidget {
   final SendCallback onSendPressed;
 
   @override
-  _OptimusChatInputState createState() => _OptimusChatInputState();
+  State<OptimusChatInput> createState() => _OptimusChatInputState();
 }
 
 class _OptimusChatInputState extends State<OptimusChatInput> {

@@ -73,7 +73,7 @@ class OptimusExpansionTile extends StatefulWidget {
   final List<Widget> slidableActions;
 
   @override
-  _OptimusExpansionTileState createState() => _OptimusExpansionTileState();
+  State<OptimusExpansionTile> createState() => _OptimusExpansionTileState();
 }
 
 class _OptimusExpansionTileState extends State<OptimusExpansionTile>

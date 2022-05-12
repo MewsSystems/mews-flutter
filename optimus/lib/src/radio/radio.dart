@@ -77,7 +77,7 @@ class OptimusRadio<T> extends StatefulWidget {
   final bool isEnabled;
 
   @override
-  _OptimusRadioState<T> createState() => _OptimusRadioState<T>();
+  State<OptimusRadio<T>> createState() => _OptimusRadioState<T>();
 }
 
 class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {

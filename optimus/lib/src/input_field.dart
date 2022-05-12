@@ -112,7 +112,7 @@ class OptimusInputField extends StatefulWidget {
   }
 
   @override
-  _OptimusInputFieldState createState() => _OptimusInputFieldState();
+  State<OptimusInputField> createState() => _OptimusInputFieldState();
 }
 
 class _OptimusInputFieldState extends State<OptimusInputField>

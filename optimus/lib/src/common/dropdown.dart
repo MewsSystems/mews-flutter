@@ -21,7 +21,7 @@ class OptimusDropdown<T> extends StatefulWidget {
   final double? width;
 
   @override
-  _OptimusDropdownState<T> createState() => _OptimusDropdownState<T>();
+  State<OptimusDropdown<T>> createState() => _OptimusDropdownState<T>();
 }
 
 class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
@@ -49,7 +49,7 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
   Widget build(BuildContext context) {
     if (widget.items.isEmpty) return Container();
 
-    WidgetsBinding.instance?.addPostFrameCallback(_updateRect);
+    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
 
     final isOnTop = _topSpace > _bottomSpace;
     final maxHeight = max(_topSpace, _bottomSpace);

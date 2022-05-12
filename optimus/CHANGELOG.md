@@ -1,3 +1,7 @@
+## 0.14.3
+
+ - **FEAT**: More dark theme colors (#196).
+
 ## 0.14.2
 
  - **FEAT**: [RND-91913] Dark theme colors (#191).
