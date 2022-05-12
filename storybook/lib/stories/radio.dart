@@ -33,7 +33,7 @@ class RadioExample extends StatefulWidget {
   final bool isEnabled;
 
   @override
-  _RadioExampleState createState() => _RadioExampleState();
+  State<RadioExample> createState() => _RadioExampleState();
 }
 
 class _RadioExampleState extends State<RadioExample> {

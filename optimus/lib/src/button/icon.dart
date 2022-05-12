@@ -57,7 +57,7 @@ class OptimusIconButton extends StatefulWidget {
   final OptimusIconButtonVariant variant;
 
   @override
-  _OptimusIconButtonState createState() => _OptimusIconButtonState();
+  State<OptimusIconButton> createState() => _OptimusIconButtonState();
 }
 
 class _OptimusIconButtonState extends State<OptimusIconButton>

@@ -20,7 +20,7 @@ class BorderWrapper extends StatefulWidget {
   final int listSize;
 
   @override
-  _BorderWrapperState createState() => _BorderWrapperState();
+  State<BorderWrapper> createState() => _BorderWrapperState();
 }
 
 class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {

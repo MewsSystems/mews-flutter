@@ -9,7 +9,7 @@ class SpinningContainer extends StatefulWidget {
   final Widget child;
 
   @override
-  _SpinningContainerState createState() => _SpinningContainerState();
+  State<SpinningContainer> createState() => _SpinningContainerState();
 }
 
 class _SpinningContainerState extends State<SpinningContainer>

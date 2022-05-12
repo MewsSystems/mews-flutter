@@ -23,7 +23,7 @@ class NonModalWrapper extends StatefulWidget {
       ?.controller;
 
   @override
-  _NonModalWrapperState createState() => _NonModalWrapperState();
+  State<NonModalWrapper> createState() => _NonModalWrapperState();
 }
 
 class _NonModalWrapperState extends State<NonModalWrapper>

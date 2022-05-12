@@ -27,7 +27,7 @@ class OptimusListTile extends StatefulWidget {
   final FontVariant fontVariant;
 
   @override
-  _OptimusListTileState createState() => _OptimusListTileState();
+  State<OptimusListTile> createState() => _OptimusListTileState();
 }
 
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {

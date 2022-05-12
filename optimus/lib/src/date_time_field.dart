@@ -29,7 +29,7 @@ class OptimusDateTimeField extends StatefulWidget {
   final String? placeholder;
 
   @override
-  _OptimusDateTimeFieldState createState() => _OptimusDateTimeFieldState();
+  State<OptimusDateTimeField> createState() => _OptimusDateTimeFieldState();
 }
 
 class _OptimusDateTimeFieldState extends State<OptimusDateTimeField> {

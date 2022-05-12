@@ -14,7 +14,7 @@ class BaseDropdownTile extends StatefulWidget {
   final Widget? subtitle;
 
   @override
-  _BaseDropdownTileState createState() => _BaseDropdownTileState();
+  State<BaseDropdownTile> createState() => _BaseDropdownTileState();
 }
 
 class _BaseDropdownTileState extends State<BaseDropdownTile> {

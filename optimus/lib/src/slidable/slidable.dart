@@ -19,7 +19,7 @@ class OptimusSlidable extends StatefulWidget {
   final double actionsWidth;
 
   @override
-  _OptimusSlidableState createState() => _OptimusSlidableState();
+  State<OptimusSlidable> createState() => _OptimusSlidableState();
 }
 
 class _OptimusSlidableState extends State<OptimusSlidable> {
@@ -46,7 +46,7 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _afterLayout());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _afterLayout());
 
     return Slidable(
       endActionPane: ActionPane(
