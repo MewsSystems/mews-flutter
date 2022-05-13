@@ -1,3 +1,10 @@
+## 0.15.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Migrate to mews_pedantic 0.5.0.
+ - **BREAKING** **FEAT**: [RND-103442] Added new variants for Tags (#195).
+
 ## 0.14.3
 
  - **FEAT**: More dark theme colors (#196).
