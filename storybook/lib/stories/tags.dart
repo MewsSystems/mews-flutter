@@ -8,11 +8,21 @@ final Story tagStory = Story(
   builder: (context) {
     final k = context.knobs;
 
-    Widget buildTags(TagVersion version) => Wrap(
+    Widget buildSystemTags() => Wrap(
           children: OptimusColorOption.values
               .map(
-                (c) => _PaddedTag(
-                  version: version,
+                (c) => _PaddedSystemTag(
+                  colorOption: c,
+                  text: k.text(label: 'Text', initial: ''),
+                ),
+              )
+              .toList(),
+        );
+
+    Widget buildCategoricalTags() => Wrap(
+          children: OptimusCategoricalColorOption.values
+              .map(
+                (c) => _PaddedCategoricalTag(
                   colorOption: c,
                   text: k.text(label: 'Text', initial: ''),
                 ),
@@ -23,11 +33,11 @@ final Story tagStory = Story(
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const OptimusSectionTitle(child: Text('Bold')),
-        buildTags(TagVersion.bold),
+        const OptimusSectionTitle(child: Text('System')),
+        buildSystemTags(),
         const SizedBox(height: 20),
-        const OptimusSectionTitle(child: Text('Subtle')),
-        buildTags(TagVersion.subtle),
+        const OptimusSectionTitle(child: Text('Categorical')),
+        buildCategoricalTags(),
       ],
     );
   },
@@ -45,15 +55,13 @@ final Story interactiveTagStory = Story(
   },
 );
 
-class _PaddedTag extends StatelessWidget {
-  const _PaddedTag({
+class _PaddedSystemTag extends StatelessWidget {
+  const _PaddedSystemTag({
     Key? key,
-    required this.version,
     required this.colorOption,
     required this.text,
   }) : super(key: key);
 
-  final TagVersion version;
   final OptimusColorOption colorOption;
   final String text;
 
@@ -63,7 +71,26 @@ class _PaddedTag extends StatelessWidget {
         child: OptimusTag(
           text: text.isEmpty ? describeEnum(colorOption) : text,
           colorOption: colorOption,
-          version: version,
+        ),
+      );
+}
+
+class _PaddedCategoricalTag extends StatelessWidget {
+  const _PaddedCategoricalTag({
+    Key? key,
+    required this.colorOption,
+    required this.text,
+  }) : super(key: key);
+
+  final OptimusCategoricalColorOption colorOption;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: OptimusCategoricalTag(
+          text: text.isEmpty ? describeEnum(colorOption) : text,
+          colorOption: colorOption,
         ),
       );
 }
