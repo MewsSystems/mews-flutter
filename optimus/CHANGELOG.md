@@ -1,3 +1,9 @@
+## 0.16.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Add background color variants (#201).
+
 ## 0.15.0
 
 > Note: This release has breaking changes.
