@@ -70,7 +70,7 @@ export 'src/typography/title.dart';
 export 'src/typography/variation.dart';
 export 'src/widget_size.dart';
 
-ThemeData mewsTheme(Brightness brightness) => ThemeData(
+ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
       scaffoldBackgroundColor: OptimusColors(brightness).background,
       primarySwatch: Colors.blue,
       fontFamily: 'packages/optimus/OpenSans',
