@@ -48,6 +48,17 @@ extension on OptimusNotificationVariant {
         return OptimusIcons.blacklist;
     }
   }
+
+  Color getBannerIconColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusNotificationVariant.info:
+      case OptimusNotificationVariant.success:
+      case OptimusNotificationVariant.danger:
+        return theme.colors.neutral0;
+      case OptimusNotificationVariant.warning:
+        return theme.colors.neutral1000;
+    }
+  }
 }
 
 /// Notification are used for showing brief and concise message that
@@ -113,7 +124,7 @@ class _OptimusNotificationState extends State<OptimusNotification>
                 padding: const EdgeInsets.symmetric(horizontal: spacing100),
                 child: Icon(
                   widget.icon ?? widget.variant.getBannerIcon(),
-                  color: theme.colors.neutral0,
+                  color: widget.variant.getBannerIconColor(theme),
                   size: 24,
                 ),
               ),
