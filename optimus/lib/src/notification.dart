@@ -88,7 +88,7 @@ class _OptimusNotificationState extends State<OptimusNotification>
           child: Icon(
             OptimusIcons.cross_close,
             color: theme.colors.neutral500,
-            size: 12,
+            size: 16,
           ),
         ),
       );
