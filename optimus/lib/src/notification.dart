@@ -5,6 +5,16 @@ import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/typography/presets.dart';
 
+/// Describes certain type of notification with it's semantical meaning.
+/// Use-cases:
+///  - [OptimusNotificationVariant.info] -  Used for notifying about
+/// informational, supportive, educative matter.
+///  - [OptimusNotificationVariant.success] - Used for notifying about
+/// successful, confirming, positive matter.
+///  - [OptimusNotificationVariant.warning] - Used for notifying about
+/// warning, problematic or matter that require user's attention.
+///  - [OptimusNotificationVariant.danger] - Used for notifying about dangerous
+/// matter. Could be error, destructive action or negative feedback.
 enum OptimusNotificationVariant {
   info,
   success,
@@ -40,6 +50,9 @@ extension on OptimusNotificationVariant {
   }
 }
 
+/// Notification are used for showing brief and concise message that
+/// communicates immediate feedback with optional action included. Notifications
+/// are noticeable but not intrusive to the use and can be temporary.
 class OptimusNotification extends StatefulWidget {
   const OptimusNotification({
     Key? key,
