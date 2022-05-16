@@ -2,6 +2,7 @@ library optimus;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 export 'optimus_icons.dart';
@@ -69,8 +70,8 @@ export 'src/typography/title.dart';
 export 'src/typography/variation.dart';
 export 'src/widget_size.dart';
 
-final ThemeData mewsTheme = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
+ThemeData mewsTheme(Brightness brightness) => ThemeData(
+  scaffoldBackgroundColor: OptimusColors(brightness).background,
   primarySwatch: Colors.blue,
   fontFamily: 'packages/optimus/OpenSans',
   textTheme: const TextTheme(
