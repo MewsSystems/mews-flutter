@@ -103,7 +103,7 @@ class _OptimusNotificationState extends State<OptimusNotification>
       decoration: BoxDecoration(
         color: widget.variant.getBannerColor(theme),
         borderRadius: const BorderRadius.all(borderRadius50),
-        boxShadow: elevation25,
+        boxShadow: elevation50,
       ),
       child: Stack(
         children: [
@@ -132,8 +132,8 @@ class _OptimusNotificationState extends State<OptimusNotification>
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
-                          bottom: 10,
-                          top: 10,
+                          top: spacing100,
+                          bottom: spacing50,
                         ),
                         child: Text(
                           widget.title,
@@ -145,21 +145,30 @@ class _OptimusNotificationState extends State<OptimusNotification>
                         ),
                       ),
                       if (widget.description != null)
-                        Text(
-                          widget.description!,
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
-                          style: preset200r.copyWith(
-                            color: theme.colors.neutral1000t64,
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(vertical: spacing50),
+                          child: Text(
+                            widget.description!,
+                            maxLines: 5,
+                            overflow: TextOverflow.ellipsis,
+                            style: preset200r.copyWith(
+                              color: theme.colors.neutral1000t64,
+                            ),
                           ),
                         ),
                       if (widget.link != null)
-                        Text(
-                          widget.link!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: preset200b.copyWith(
-                            decoration: TextDecoration.underline,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: spacing50,
+                          ),
+                          child: Text(
+                            widget.link!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: preset200b.copyWith(
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         )
                     ],
