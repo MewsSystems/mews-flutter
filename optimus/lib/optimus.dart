@@ -42,6 +42,7 @@ export 'src/icon_list.dart';
 export 'src/input_field.dart';
 export 'src/lists/list_tile.dart';
 export 'src/loader/loader.dart';
+export 'src/notification.dart';
 export 'src/number_picker/number_picker.dart';
 export 'src/progress_spinner.dart';
 export 'src/radio/radio.dart';
