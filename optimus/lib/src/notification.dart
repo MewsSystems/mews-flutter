@@ -132,7 +132,8 @@ class OptimusNotification extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: _kIconHorizontalPadding),
+                    horizontal: _kIconHorizontalPadding,
+                  ),
                   child: Icon(
                     icon ?? variant.getBannerIcon(),
                     color: variant.getBannerIconColor(theme),
