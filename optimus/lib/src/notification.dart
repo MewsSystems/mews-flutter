@@ -115,6 +115,8 @@ class OptimusNotification extends StatelessWidget {
       MediaQuery.of(context).size.width - padding * 2,
       _kMaxWidth,
     );
+    final description = this.description;
+    final link = this.link;
 
     return Positioned(
       top: padding,
@@ -167,7 +169,7 @@ class OptimusNotification extends StatelessWidget {
                               top: spacing50,
                             ),
                             child: Text(
-                              description!,
+                              description,
                               maxLines: _kMaxLinesDescription,
                               overflow: TextOverflow.ellipsis,
                               style: preset200r.copyWith(
@@ -183,7 +185,7 @@ class OptimusNotification extends StatelessWidget {
                                 top: spacing50,
                               ),
                               child: Text(
-                                link!,
+                                link,
                                 maxLines: _kMaxLinesLink,
                                 overflow: TextOverflow.ellipsis,
                                 style: preset200b.copyWith(
