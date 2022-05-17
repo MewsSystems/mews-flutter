@@ -2,6 +2,7 @@ library optimus;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 export 'optimus_icons.dart';
@@ -70,31 +71,31 @@ export 'src/typography/title.dart';
 export 'src/typography/variation.dart';
 export 'src/widget_size.dart';
 
-final ThemeData mewsTheme = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
-  primarySwatch: Colors.blue,
-  fontFamily: 'packages/optimus/OpenSans',
-  textTheme: const TextTheme(
-    headline1: baseTextStyle,
-    headline2: baseTextStyle,
-    headline3: baseTextStyle,
-    headline4: baseTextStyle,
-    headline5: baseTextStyle,
-    headline6: baseTextStyle,
-    bodyText1: baseTextStyle,
-    bodyText2: baseTextStyle,
-    subtitle1: baseTextStyle,
-    subtitle2: baseTextStyle,
-    caption: baseTextStyle,
-    button: baseTextStyle,
-    overline: baseTextStyle,
-  ),
-  cupertinoOverrideTheme: const CupertinoThemeData.raw(
-    Brightness.light,
-    Colors.blue,
-    Colors.blue,
-    CupertinoTextThemeData(),
-    Colors.white,
-    Colors.white,
-  ),
-);
+ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
+      scaffoldBackgroundColor: OptimusColors(brightness).background,
+      primarySwatch: Colors.blue,
+      fontFamily: 'packages/optimus/OpenSans',
+      textTheme: const TextTheme(
+        headline1: baseTextStyle,
+        headline2: baseTextStyle,
+        headline3: baseTextStyle,
+        headline4: baseTextStyle,
+        headline5: baseTextStyle,
+        headline6: baseTextStyle,
+        bodyText1: baseTextStyle,
+        bodyText2: baseTextStyle,
+        subtitle1: baseTextStyle,
+        subtitle2: baseTextStyle,
+        caption: baseTextStyle,
+        button: baseTextStyle,
+        overline: baseTextStyle,
+      ),
+      cupertinoOverrideTheme: const CupertinoThemeData.raw(
+        Brightness.light,
+        Colors.blue,
+        Colors.blue,
+        CupertinoTextThemeData(),
+        Colors.white,
+        Colors.white,
+      ),
+    );
