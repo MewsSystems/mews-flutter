@@ -7,7 +7,7 @@ final Story notificationStory = Story(
   builder: (context) {
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');
-    final description = k.text(label: 'Additional description', initial: '');
+    final body = k.text(label: 'Notification body', initial: '');
     final link = k.text(label: 'Link text', initial: '');
     final dismissible = k.boolean(label: 'Is Dismissible');
     final variant = k.options(
@@ -19,7 +19,7 @@ final Story notificationStory = Story(
 
     return OptimusNotification(
       title: title,
-      description: description.isNotEmpty ? description : null,
+      body: body.isNotEmpty ? body : null,
       variant: variant,
       link: link.isNotEmpty ? link : null,
       isDismissible: dismissible,
