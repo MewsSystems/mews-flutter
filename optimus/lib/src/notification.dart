@@ -77,7 +77,8 @@ class OptimusNotification extends StatelessWidget {
               link: link,
               onLinkPressed: onLinkPressed,
             ),
-            if (isDismissible) _NotificationCloseButton(onDismiss: onDismissed)
+            if (isDismissible)
+              _NotificationCloseButton(onDismissed: onDismissed)
           ],
         ),
       ),
@@ -259,10 +260,10 @@ class _NotificationLink extends StatelessWidget {
 class _NotificationCloseButton extends StatelessWidget {
   const _NotificationCloseButton({
     Key? key,
-    required this.onDismiss,
+    required this.onDismissed,
   }) : super(key: key);
 
-  final VoidCallback? onDismiss;
+  final VoidCallback? onDismissed;
 
   @override
   Widget build(BuildContext context) {
@@ -272,7 +273,7 @@ class _NotificationCloseButton extends StatelessWidget {
       top: spacing100,
       right: spacing100,
       child: GestureDetector(
-        onTap: () => onDismiss?.call(),
+        onTap: () => onDismissed?.call(),
         child: Padding(
           padding: const EdgeInsets.all(spacing100),
           child: Icon(
