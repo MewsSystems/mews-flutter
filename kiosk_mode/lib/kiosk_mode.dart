@@ -43,6 +43,19 @@ Future<KioskMode> getKioskMode() => _channel
     .invokeMethod<bool>('isInKioskMode')
     .then((value) => value == true ? KioskMode.enabled : KioskMode.disabled);
 
+/// Returns `true`, if app is in a proper managed kiosk mode.
+///
+/// On Android, it checks for `LOCK_TASK_MODE_LOCKED` and may return `false`,
+/// while [getKioskMode] returns [KioskMode.enabled]. In that case it would mean
+/// that the app is only pinned by user and doesn't represent a proper kiosk,
+/// i.e. it isn't managed by Device Policy Controller on Android.
+///
+/// On iOS, it always returns `false`, as this package doesn't support
+/// detection of Apple Business Manager yet.
+Future<bool> isManagedKiosk() => _channel
+    .invokeMethod<bool>('isManagedKiosk')
+    .then((value) => value == true);
+
 /// Returns the stream with [KioskMode].
 ///
 /// It works on iOS only, as Android doesn't allow subscribing to lock task

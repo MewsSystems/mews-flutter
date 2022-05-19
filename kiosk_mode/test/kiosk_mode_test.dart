@@ -31,4 +31,9 @@ void main() {
     await getKioskMode();
     expect(calls, ['isInKioskMode']);
   });
+
+  test('isManagedKiosk', () async {
+    await getKioskMode();
+    expect(calls, ['isManagedKiosk']);
+  });
 }
