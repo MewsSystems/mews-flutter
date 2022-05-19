@@ -6,6 +6,7 @@ import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 /// Describes a certain type of notification with its semantical meaning.
+///
 /// Use-cases:
 ///  - [OptimusNotificationVariant.info] -  Used for notifying about
 /// informational, supportive, educative matter.
@@ -22,9 +23,9 @@ enum OptimusNotificationVariant {
   danger,
 }
 
-///Notification is used for showing a brief and concise message that
-///communicates immediate feedback with optional action included. Notifications
-///are noticeable but not intrusive to the use and can be temporary.
+/// Notification is used for showing a brief and concise message that
+/// communicates immediate feedback with optional action included. Notifications
+/// are noticeable but not intrusive to the use and can be temporary.
 class OptimusNotification extends StatelessWidget {
   const OptimusNotification({
     Key? key,
@@ -33,7 +34,6 @@ class OptimusNotification extends StatelessWidget {
     this.icon,
     this.link,
     this.onLinkPressed,
-    this.isDismissible = false,
     this.onDismissed,
     this.variant = OptimusNotificationVariant.info,
   }) : super(key: key);
@@ -43,15 +43,25 @@ class OptimusNotification extends StatelessWidget {
   final IconData? icon;
   final String? link;
   final VoidCallback? onLinkPressed;
-  final bool isDismissible;
   final VoidCallback? onDismissed;
   final OptimusNotificationVariant variant;
+
+  double _padding(BuildContext context) {
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return spacing200;
+      case Breakpoint.small:
+      case Breakpoint.extraSmall:
+        return spacing100;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final screenBreakpoint = MediaQuery.of(context).screenBreakpoint;
-    final padding = screenBreakpoint.getPadding();
+    final padding = _padding(context);
     final double notificationWidth = min(
       MediaQuery.of(context).size.width - padding * 2,
       _maxWidth,
@@ -77,7 +87,7 @@ class OptimusNotification extends StatelessWidget {
               link: link,
               onLinkPressed: onLinkPressed,
             ),
-            if (isDismissible)
+            if (onDismissed != null)
               _NotificationCloseButton(onDismissed: onDismissed)
           ],
         ),
@@ -155,6 +165,19 @@ class _LeadingIcon extends StatelessWidget {
   final IconData? icon;
   final OptimusNotificationVariant variant;
 
+  IconData get _bannerIcon {
+    switch (variant) {
+      case OptimusNotificationVariant.info:
+        return OptimusIcons.info;
+      case OptimusNotificationVariant.success:
+        return OptimusIcons.done_circle;
+      case OptimusNotificationVariant.warning:
+        return OptimusIcons.problematic;
+      case OptimusNotificationVariant.danger:
+        return OptimusIcons.blacklist;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -164,7 +187,7 @@ class _LeadingIcon extends StatelessWidget {
         horizontal: _iconHorizontalPadding,
       ),
       child: Icon(
-        icon ?? variant.getBannerIcon(),
+        icon ?? _bannerIcon,
         color: variant.getBannerIconColor(theme),
         size: _iconSize,
       ),
@@ -287,20 +310,6 @@ class _NotificationCloseButton extends StatelessWidget {
   }
 }
 
-extension on Breakpoint {
-  double getPadding() {
-    switch (this) {
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return spacing200;
-      case Breakpoint.small:
-      case Breakpoint.extraSmall:
-        return spacing100;
-    }
-  }
-}
-
 extension on OptimusNotificationVariant {
   Color getBannerColor(OptimusThemeData theme) {
     switch (this) {
@@ -312,19 +321,6 @@ extension on OptimusNotificationVariant {
         return theme.colors.warning500;
       case OptimusNotificationVariant.danger:
         return theme.colors.danger500;
-    }
-  }
-
-  IconData getBannerIcon() {
-    switch (this) {
-      case OptimusNotificationVariant.info:
-        return OptimusIcons.info;
-      case OptimusNotificationVariant.success:
-        return OptimusIcons.done_circle;
-      case OptimusNotificationVariant.warning:
-        return OptimusIcons.problematic;
-      case OptimusNotificationVariant.danger:
-        return OptimusIcons.blacklist;
     }
   }
 

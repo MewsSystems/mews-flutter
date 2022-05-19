@@ -22,7 +22,7 @@ final Story notificationStory = Story(
       body: body.isNotEmpty ? body : null,
       variant: variant,
       link: link.isNotEmpty ? link : null,
-      isDismissible: dismissible,
+      onDismissed: dismissible ? () {} : null,
     );
   },
 );
