@@ -33,7 +33,7 @@ void main() {
   });
 
   test('isManagedKiosk', () async {
-    await getKioskMode();
+    await isManagedKiosk();
     expect(calls, ['isManagedKiosk']);
   });
 }
