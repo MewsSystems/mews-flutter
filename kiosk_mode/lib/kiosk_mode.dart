@@ -1,9 +1,15 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 const _channel = MethodChannel('com.mews.kiosk_mode/kiosk_mode');
+
+/// Channel used to send "kiosk mode" updates from platform.
+///
+/// Implementing it on Android platform is useless, as this plugin already
+/// does it. See [watchKioskMode] for explanation.
 const _eventChannel = EventChannel('com.mews.kiosk_mode/kiosk_mode_stream');
 
 /// Corresponds to lock task / screen pinning mode on Android, and
@@ -58,13 +64,23 @@ Future<bool> isManagedKiosk() => _channel
 
 /// Returns the stream with [KioskMode].
 ///
-/// It works on iOS only, as Android doesn't allow subscribing to lock task
-/// mode changes.
-Stream<KioskMode> watchKioskMode() =>
-    Stream.fromFuture(getKioskMode()).merge(_kioskModeStream);
+/// Since as Android doesn't allow subscribing to lock task mode changes,
+/// a mode is queried every time with a period of [androidQueryPeriod].
+Stream<KioskMode> watchKioskMode({
+  Duration androidQueryPeriod = const Duration(seconds: 5),
+}) =>
+    Stream.fromFuture(getKioskMode())
+        .merge(_getKioskModeStream(androidQueryPeriod));
 
-final Stream<KioskMode> _kioskModeStream =
-    _eventChannel.receiveBroadcastStream().map(
-          (dynamic value) =>
-              value == true ? KioskMode.enabled : KioskMode.disabled,
-        );
+Stream<KioskMode> _getKioskModeStream(Duration androidQueryPeriod) {
+  switch (defaultTargetPlatform) {
+    case TargetPlatform.android:
+      return Stream<void>.periodic(androidQueryPeriod)
+          .asyncMap((_) => getKioskMode());
+    default:
+      return _eventChannel.receiveBroadcastStream().map(
+            (dynamic value) =>
+                value == true ? KioskMode.enabled : KioskMode.disabled,
+          );
+  }
+}
