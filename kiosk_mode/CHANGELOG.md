@@ -1,3 +1,11 @@
+## 0.2.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: Add `isManagedKiosk` method (#206).
+ - **FEAT**: Track Kiosk mode changes on Android (#205).
+ - **BREAKING** **FEAT**: Update readme.
+
 ## 0.1.3+2
 
  - **REFACTOR**: Fix new lint issues.
