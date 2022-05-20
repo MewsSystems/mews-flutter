@@ -1,3 +1,9 @@
+## 0.6.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Enable new strict-* rules.
+
 ## 0.5.0+1
 
  - **FIX**: Bump dart_code_metrics.
