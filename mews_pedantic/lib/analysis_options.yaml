@@ -145,6 +145,8 @@ linter:
 
 analyzer:
   language:
+    strict-casts: true
+    strict-inference: true
     strict-raw-types: true
 
   plugins:
@@ -169,10 +171,6 @@ analyzer:
     unawaited_futures: error
     unnecessary_overrides: error
     unused_element: warning
-
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
 
 dart_code_metrics:
   rules:
