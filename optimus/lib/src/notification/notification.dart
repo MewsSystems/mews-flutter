@@ -60,7 +60,6 @@ class OptimusNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final padding = _padding(context);
     final double notificationWidth = min(
       MediaQuery.of(context).size.width - padding * 2,
@@ -69,13 +68,8 @@ class OptimusNotification extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(spacing100),
-      child: Container(
+      child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: notificationWidth),
-        decoration: BoxDecoration(
-          color: variant.getBannerColor(theme),
-          borderRadius: const BorderRadius.all(borderRadius50),
-          // boxShadow: elevation50,
-        ),
         child: Stack(
           children: [
             _NotificationContent(
@@ -119,37 +113,57 @@ class _NotificationContent extends StatelessWidget {
     final body = this.body;
     final link = this.link;
 
-    return Row(
-      children: [
-        _LeadingIcon(icon: icon, variant: variant),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(spacing200),
-            decoration: BoxDecoration(
-              color: theme.colors.neutral0,
-              borderRadius: const BorderRadius.horizontal(
-                right: borderRadius50,
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(borderRadius50),
+        boxShadow: elevation50,
+      ),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: variant.getBannerColor(theme),
+                borderRadius:
+                    const BorderRadius.horizontal(left: borderRadius50),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _LeadingIcon(icon: icon, variant: variant),
+                ],
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _NotificationTitle(title: title),
-                if (body != null)
-                  _NotificationBody(
-                    body: body,
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(spacing200),
+                decoration: BoxDecoration(
+                  color: theme.colors.neutral0,
+                  borderRadius: const BorderRadius.horizontal(
+                    right: borderRadius50,
                   ),
-                if (link != null)
-                  _NotificationLink(
-                    onLinkPressed: onLinkPressed,
-                    link: link,
-                  )
-              ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _NotificationTitle(title: title),
+                    if (body != null)
+                      _NotificationBody(
+                        body: body,
+                      ),
+                    if (link != null)
+                      _NotificationLink(
+                        onLinkPressed: onLinkPressed,
+                        link: link,
+                      )
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
