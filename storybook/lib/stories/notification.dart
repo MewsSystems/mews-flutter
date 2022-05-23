@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -17,12 +19,18 @@ final Story notificationStory = Story(
       options: _variants,
     );
 
-    return OptimusNotification(
-      title: title,
-      body: body.isNotEmpty ? body : null,
-      variant: variant,
-      link: link.isNotEmpty ? link : null,
-      onDismissed: dismissible ? () {} : null,
+    return ElevatedButton(
+      onPressed: () {
+        OptimusNotificationManager().showNotification(
+          context: context,
+          title: title,
+          body: body.isNotEmpty ? body : null,
+          variant: variant,
+          link: link.isNotEmpty ? link : null,
+          onDismissed: dismissible ? () {} : null,
+        );
+      },
+      child: const Text('Show notification'),
     );
   },
 );

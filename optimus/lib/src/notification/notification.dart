@@ -67,15 +67,14 @@ class OptimusNotification extends StatelessWidget {
       _maxWidth,
     );
 
-    return Positioned(
-      top: padding,
-      right: padding,
+    return Padding(
+      padding: const EdgeInsets.all(spacing100),
       child: Container(
         constraints: BoxConstraints(maxWidth: notificationWidth),
         decoration: BoxDecoration(
           color: variant.getBannerColor(theme),
           borderRadius: const BorderRadius.all(borderRadius50),
-          boxShadow: elevation50,
+          // boxShadow: elevation50,
         ),
         child: Stack(
           children: [
