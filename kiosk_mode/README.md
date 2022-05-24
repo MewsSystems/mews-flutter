@@ -5,7 +5,7 @@ Access mode on iOS.
 
 ## iOS and Android
 
-Getting current `KioskMode`.
+### Getting current `KioskMode`
 
 On Android, it calls `isInLockTaskMode`.
 
@@ -15,12 +15,14 @@ On iOS, it returns result of `UIAccessibility.isGuidedAccessEnabled`.
 final mode = await getKioskMode(); // KioskMode.enabled or KioskMode.disabled
 ```
 
-## iOS only
+### Subscribing to `KioskMode`
 
-Subscribing to `KioskMode`. The first event will always be the current value.
+The first event will always be the current value.
 
-It works on iOS only, as Android doesn't allow subscribing to lock task mode
-changes.
+On iOS it subscribes to
+`UIAccessibility.guidedAccessStatusDidChangeNotification`. Android doesn't
+provide such a subscription, so `watchKioskMethod` checks the current state with
+a configurable interval.
 
 ```dart
 watchKioskMode().listen((mode) => print(mode));

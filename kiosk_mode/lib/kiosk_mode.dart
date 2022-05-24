@@ -1,9 +1,15 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 const _channel = MethodChannel('com.mews.kiosk_mode/kiosk_mode');
+
+/// Channel used to send "kiosk mode" updates from platform.
+///
+/// Implementing it on Android platform is useless, as this plugin already
+/// does it. See [watchKioskMode] for explanation.
 const _eventChannel = EventChannel('com.mews.kiosk_mode/kiosk_mode_stream');
 
 /// Corresponds to lock task / screen pinning mode on Android, and
@@ -43,15 +49,38 @@ Future<KioskMode> getKioskMode() => _channel
     .invokeMethod<bool>('isInKioskMode')
     .then((value) => value == true ? KioskMode.enabled : KioskMode.disabled);
 
+/// Returns `true`, if app is in a proper managed kiosk mode.
+///
+/// On Android, it checks for `LOCK_TASK_MODE_LOCKED` and may return `false`,
+/// while [getKioskMode] returns [KioskMode.enabled]. In that case it would mean
+/// that the app is only pinned by user and doesn't represent a proper kiosk,
+/// i.e. it isn't managed by Device Policy Controller on Android.
+///
+/// On iOS, it always returns `false`, as this package doesn't support
+/// detection of Apple Business Manager yet.
+Future<bool> isManagedKiosk() => _channel
+    .invokeMethod<bool>('isManagedKiosk')
+    .then((value) => value == true);
+
 /// Returns the stream with [KioskMode].
 ///
-/// It works on iOS only, as Android doesn't allow subscribing to lock task
-/// mode changes.
-Stream<KioskMode> watchKioskMode() =>
-    Stream.fromFuture(getKioskMode()).merge(_kioskModeStream);
+/// Since as Android doesn't allow subscribing to lock task mode changes,
+/// a mode is queried every time with a period of [androidQueryPeriod].
+Stream<KioskMode> watchKioskMode({
+  Duration androidQueryPeriod = const Duration(seconds: 5),
+}) =>
+    Stream.fromFuture(getKioskMode())
+        .merge(_getKioskModeStream(androidQueryPeriod));
 
-final Stream<KioskMode> _kioskModeStream =
-    _eventChannel.receiveBroadcastStream().map(
-          (dynamic value) =>
-              value == true ? KioskMode.enabled : KioskMode.disabled,
-        );
+Stream<KioskMode> _getKioskModeStream(Duration androidQueryPeriod) {
+  switch (defaultTargetPlatform) {
+    case TargetPlatform.android:
+      return Stream<void>.periodic(androidQueryPeriod)
+          .asyncMap((_) => getKioskMode());
+    default:
+      return _eventChannel.receiveBroadcastStream().map(
+            (dynamic value) =>
+                value == true ? KioskMode.enabled : KioskMode.disabled,
+          );
+  }
+}

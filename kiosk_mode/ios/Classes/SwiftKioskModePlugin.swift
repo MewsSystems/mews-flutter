@@ -14,6 +14,8 @@ public class SwiftKioskModePlugin: NSObject, FlutterPlugin {
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         if (call.method == "isInKioskMode") {
             result(UIAccessibility.isGuidedAccessEnabled)
+        } else if (call.method == "isManagedKiosk") {
+            result(false)
         } else {
             result(FlutterMethodNotImplemented)
         }

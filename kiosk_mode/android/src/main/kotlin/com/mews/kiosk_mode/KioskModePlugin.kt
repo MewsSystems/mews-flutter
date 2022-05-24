@@ -1,11 +1,10 @@
 package com.mews.kiosk_mode
 
-import androidx.annotation.NonNull
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.view.ViewGroup
-
+import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -13,7 +12,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var channel: MethodChannel
@@ -48,7 +46,22 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 return
             }
 
-            result.success(service.isInLockTaskMode)
+            val isInKioskMode = when (service.lockTaskModeState) {
+                ActivityManager.LOCK_TASK_MODE_NONE -> false
+                ActivityManager.LOCK_TASK_MODE_PINNED,
+                ActivityManager.LOCK_TASK_MODE_LOCKED -> true
+                else -> false
+            }
+
+            result.success(isInKioskMode)
+        } else if (call.method == "isManagedKiosk") {
+            val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+            if (service == null) {
+                result.success(null)
+                return
+            }
+
+            result.success(service.lockTaskModeState == ActivityManager.LOCK_TASK_MODE_LOCKED)
         } else {
             result.notImplemented()
         }

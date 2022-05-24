@@ -55,13 +55,12 @@ class _HomeState extends State<_Home> {
             ),
             child: const Text('Check mode'),
           ),
-          if (Platform.isIOS)
-            StreamBuilder<KioskMode>(
-              stream: _currentMode,
-              builder: (context, snapshot) => Text(
-                'Current mode: ${snapshot.data}',
-              ),
+          StreamBuilder<KioskMode>(
+            stream: _currentMode,
+            builder: (context, snapshot) => Text(
+              'Current mode: ${snapshot.data}',
             ),
+          ),
         ],
       );
 }
