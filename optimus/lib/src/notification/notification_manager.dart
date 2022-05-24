@@ -26,64 +26,67 @@ class OptimusNotificationManager {
     VoidCallback? onDismissed,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
   }) {
+    final notification = _NotificationModel(
+      title: title,
+      body: body,
+      icon: icon,
+      link: link,
+      variant: variant,
+      onLinkPressed: onLinkPressed,
+      onDismissed: () {
+        onDismissed?.call();
+        if (_notifications.isEmpty) {
+          _removeOverlayEntry();
+        }
+      },
+    );
     if (_notifications.isEmpty) {
       _overlayEntry = _buildOverlayEntry(
         context: context,
-        initialEntry: _NotificationModel(
-          title: title,
-          body: body,
-          icon: icon,
-          link: link,
-          variant: variant,
-          onLinkPressed: onLinkPressed,
-        ),
+        initialEntry: notification,
       );
       Overlay.of(context)?.insert(_overlayEntry);
     } else {
       _notifications.insert(
         0,
-        _NotificationModel(
-          title: title,
-          body: body,
-          icon: icon,
-          link: link,
-          variant: variant,
-          onLinkPressed: onLinkPressed,
-        ),
+        notification,
       );
-      _listStateKey.currentState
-          ?.insertItem(0, duration: const Duration(milliseconds: 500));
+      _listStateKey.currentState?.insertItem(0, duration: _animationDuration);
     }
   }
 
   OverlayEntry _buildOverlayEntry({
     required BuildContext context,
     required _NotificationModel initialEntry,
-  }) {
-    late OverlayEntry overlayEntry;
-
-    // ignore: join_return_with_assignment
-    overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        top: spacing100,
-        right: spacing200,
-        child: SafeArea(
-          child: Material(
-            child: Container(
-              constraints: const BoxConstraints(maxWidth: 360),
-              child: _NotificationList(
-                listStateKey: _listStateKey,
-                notifications: _notifications,
-                overlayEntry: overlayEntry,
-                initialEntry: initialEntry,
+  }) =>
+      OverlayEntry(
+        builder: (context) => Positioned(
+          top: spacing100,
+          right: spacing200,
+          child: SafeArea(
+            child: Material(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 360),
+                child: _NotificationList(
+                  listStateKey: _listStateKey,
+                  notifications: _notifications,
+                  initialEntry: initialEntry,
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
 
-    return overlayEntry;
+  void _removeOverlayEntry() {
+    Future<void>.delayed(
+      _animationDuration,
+      () {
+        if (_notifications.isEmpty) {
+          _overlayEntry.remove();
+        }
+      },
+    );
   }
 }
 
@@ -92,17 +95,14 @@ class _NotificationList extends StatefulWidget {
     Key? key,
     required GlobalKey<AnimatedListState> listStateKey,
     required List<_NotificationModel> notifications,
-    required OverlayEntry overlayEntry,
     required _NotificationModel initialEntry,
   })  : _listStateKey = listStateKey,
         _notifications = notifications,
-        _overlayEntry = overlayEntry,
         _initialEntry = initialEntry,
         super(key: key);
 
   final GlobalKey<AnimatedListState> _listStateKey;
   final List<_NotificationModel> _notifications;
-  final OverlayEntry _overlayEntry;
   final _NotificationModel _initialEntry;
 
   @override
@@ -116,7 +116,7 @@ class _NotificationListState extends State<_NotificationList> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget._notifications.insert(0, widget._initialEntry);
       widget._listStateKey.currentState
-          ?.insertItem(0, duration: const Duration(milliseconds: 500));
+          ?.insertItem(0, duration: _animationDuration);
     });
   }
 
@@ -124,32 +124,45 @@ class _NotificationListState extends State<_NotificationList> {
   Widget build(BuildContext context) => AnimatedList(
         key: widget._listStateKey,
         shrinkWrap: true,
-        itemBuilder: (context, index, animation) {
-          final model = widget._notifications[index];
-          return SizeTransition(
-            sizeFactor: animation,
-            child: OptimusNotification(
-              key: UniqueKey(),
-              title: model.title,
-              body: model.body,
-              icon: model.icon,
-              link: model.link,
-              onLinkPressed: model.onLinkPressed,
-              onDismissed: () {
-                _removeNotification(index);
-              },
-              variant: model.variant,
-            ),
-          );
-        },
+        itemBuilder: (context, index, animation) =>
+            _buildNotification(index, animation),
       );
 
   void _removeNotification(int index) {
-    final removedItem = widget._notifications[index];
+    final _NotificationModel removedItem = widget._notifications[index];
     widget._notifications.removeAt(index);
     widget._listStateKey.currentState?.removeItem(
       index,
-      (context, animation) => SizeTransition(
+      (context, animation) => _buildRemovedNotification(removedItem, animation),
+      duration: _animationDuration,
+    );
+  }
+
+  Widget _buildNotification(int index, Animation<double> animation) {
+    final model = widget._notifications[index];
+    return SizeTransition(
+      sizeFactor: animation,
+      child: OptimusNotification(
+        key: UniqueKey(),
+        title: model.title,
+        body: model.body,
+        icon: model.icon,
+        link: model.link,
+        onLinkPressed: model.onLinkPressed,
+        onDismissed: () {
+          _removeNotification(index);
+          model.onDismissed?.call();
+        },
+        variant: model.variant,
+      ),
+    );
+  }
+
+  Widget _buildRemovedNotification(
+    _NotificationModel removedItem,
+    Animation<double> animation,
+  ) =>
+      SizeTransition(
         sizeFactor: animation,
         child: OptimusNotification(
           title: removedItem.title,
@@ -160,9 +173,7 @@ class _NotificationListState extends State<_NotificationList> {
           onDismissed: () {},
           variant: removedItem.variant,
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _NotificationModel {
@@ -183,3 +194,5 @@ class _NotificationModel {
   final VoidCallback? onLinkPressed;
   final VoidCallback? onDismissed;
 }
+
+const Duration _animationDuration = Duration(milliseconds: 500);
