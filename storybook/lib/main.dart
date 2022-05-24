@@ -21,6 +21,7 @@ import 'package:storybook/stories/list_tile.dart';
 import 'package:storybook/stories/loader.dart';
 import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
+import 'package:storybook/stories/notification.dart';
 import 'package:storybook/stories/number_picker.dart';
 import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
@@ -99,6 +100,7 @@ class MyApp extends StatelessWidget {
           link,
           loaderStory,
           dateTimeFieldStory,
+          notificationStory,
         ],
       );
 }
