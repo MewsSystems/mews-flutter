@@ -46,7 +46,7 @@ class OptimusNotification extends StatelessWidget {
   final VoidCallback? onDismissed;
   final OptimusNotificationVariant variant;
 
-  double _padding(BuildContext context) {
+  double _getPadding(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.medium:
       case Breakpoint.large:
@@ -60,11 +60,13 @@ class OptimusNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final padding = _padding(context);
+    final padding = _getPadding(context);
     final double notificationWidth = min(
       MediaQuery.of(context).size.width - padding * 2,
       _maxWidth,
     );
+    final dismiss = onDismissed;
+    final bool isDismissible = dismiss != null;
 
     return Padding(
       padding: const EdgeInsets.all(spacing100),
@@ -79,9 +81,9 @@ class OptimusNotification extends StatelessWidget {
               body: body,
               link: link,
               onLinkPressed: onLinkPressed,
+              dismissible: isDismissible,
             ),
-            if (onDismissed != null)
-              _NotificationCloseButton(onDismissed: onDismissed)
+            if (isDismissible) _NotificationCloseButton(onDismissed: dismiss)
           ],
         ),
       ),
@@ -98,6 +100,7 @@ class _NotificationContent extends StatelessWidget {
     required this.body,
     required this.link,
     required this.onLinkPressed,
+    required this.dismissible,
   }) : super(key: key);
 
   final IconData? icon;
@@ -106,6 +109,16 @@ class _NotificationContent extends StatelessWidget {
   final String? body;
   final String? link;
   final VoidCallback? onLinkPressed;
+  final bool dismissible;
+
+  EdgeInsets get _contentPadding => dismissible
+      ? const EdgeInsets.fromLTRB(
+          spacing200,
+          spacing200,
+          spacing400,
+          spacing200,
+        )
+      : const EdgeInsets.all(spacing200);
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +149,7 @@ class _NotificationContent extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.all(spacing200),
+                padding: _contentPadding,
                 decoration: BoxDecoration(
                   color: theme.colors.neutral0,
                   borderRadius: const BorderRadius.horizontal(
@@ -244,9 +257,7 @@ class _NotificationBody extends StatelessWidget {
     final theme = OptimusTheme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.only(
-        top: spacing50,
-      ),
+      padding: const EdgeInsets.only(top: spacing50),
       child: Text(
         body,
         maxLines: _maxLinesBody,
@@ -276,9 +287,7 @@ class _NotificationLink extends StatelessWidget {
     return GestureDetector(
       onTap: () => onLinkPressed?.call(),
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: spacing50,
-        ),
+        padding: const EdgeInsets.only(top: spacing50),
         child: Text(
           link,
           maxLines: _maxLinesLink,
@@ -299,7 +308,7 @@ class _NotificationCloseButton extends StatelessWidget {
     required this.onDismissed,
   }) : super(key: key);
 
-  final VoidCallback? onDismissed;
+  final VoidCallback onDismissed;
 
   @override
   Widget build(BuildContext context) {
@@ -309,7 +318,7 @@ class _NotificationCloseButton extends StatelessWidget {
       top: spacing100,
       right: spacing100,
       child: GestureDetector(
-        onTap: () => onDismissed?.call(),
+        onTap: onDismissed.call,
         child: Padding(
           padding: const EdgeInsets.all(spacing100),
           child: Icon(
