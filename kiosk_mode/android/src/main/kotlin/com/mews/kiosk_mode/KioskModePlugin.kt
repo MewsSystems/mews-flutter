@@ -15,7 +15,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
 private const val methodChannelName = "com.mews.kiosk_mode/kiosk_mode"
-private const val kioskModeEventChannel = "com.mews.kiosk_mode/kiosk_mode_stream"
+private const val kioskModeEventChannelName = "com.mews.kiosk_mode/kiosk_mode_stream"
 
 class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var channel: MethodChannel
@@ -25,7 +25,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, methodChannelName)
         channel.setMethodCallHandler(this)
 
-        EventChannel(flutterPluginBinding.binaryMessenger, kioskModeEventChannel)
+        EventChannel(flutterPluginBinding.binaryMessenger, kioskModeEventChannelName)
             .setStreamHandler(KioskModeStreamHandler { isInKioskMode() })
     }
 

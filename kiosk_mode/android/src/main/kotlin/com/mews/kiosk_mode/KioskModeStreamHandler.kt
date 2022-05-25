@@ -16,7 +16,7 @@ class KioskModeStreamHandler(val isKioskMode: KioskModeHandler) : EventChannel.S
 
     override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
         val period: Int = (arguments as Map<*, *>)["androidQueryPeriod"] as Int
-        
+
         eventSink = events
         timer = fixedRateTimer(period = period.toLong(), daemon = true) {
             val newIsKioskModeState = isKioskMode()
