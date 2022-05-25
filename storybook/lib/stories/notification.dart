@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story notificationStory = Story(
@@ -10,21 +10,22 @@ final Story notificationStory = Story(
     final body = k.text(label: 'Notification body', initial: '');
     final link = k.text(label: 'Link text', initial: '');
     final dismissible = k.boolean(label: 'Is Dismissible');
-    final variant = k.options(
-      label: 'Variant',
-      description: 'Notification variant',
-      initial: OptimusNotificationVariant.info,
-      options: _variants,
-    );
 
-    return OptimusNotification(
-      title: title,
-      body: body.isNotEmpty ? body : null,
-      variant: variant,
-      link: link.isNotEmpty ? link : null,
-      onDismissed: dismissible ? () {} : null,
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: OptimusNotificationVariant.values
+            .map(
+              (variant) => OptimusNotification(
+                title: title,
+                body: body.isNotEmpty ? body : null,
+                variant: variant,
+                link: link.isNotEmpty ? link : null,
+                onDismissed: dismissible ? () {} : null,
+              ),
+            )
+            .toList(),
+      ),
     );
   },
 );
-
-final _variants = OptimusNotificationVariant.values.toOptions();
