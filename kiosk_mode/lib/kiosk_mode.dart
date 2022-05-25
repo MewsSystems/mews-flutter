@@ -26,7 +26,9 @@ enum KioskMode {
 ///
 /// It's only supported on Android currently, where it calls `startLockTask`.
 /// It will throw `FlutterMethodNotImplemented` on iOS.
-Future<bool> startKioskMode() => _channel.invokeMethod<bool>('startKioskMode').then((value) => value ?? false);
+Future<bool> startKioskMode() => _channel
+    .invokeMethod<bool>('startKioskMode')
+    .then((value) => value ?? false);
 
 /// Stop the current task from being locked.
 ///
@@ -52,7 +54,9 @@ Future<KioskMode> getKioskMode() => _channel
 ///
 /// On iOS, it always returns `false`, as this package doesn't support
 /// detection of Apple Business Manager yet.
-Future<bool> isManagedKiosk() => _channel.invokeMethod<bool>('isManagedKiosk').then((value) => value == true);
+Future<bool> isManagedKiosk() => _channel
+    .invokeMethod<bool>('isManagedKiosk')
+    .then((value) => value == true);
 
 /// Returns the stream with [KioskMode].
 ///
@@ -63,9 +67,12 @@ Future<bool> isManagedKiosk() => _channel.invokeMethod<bool>('isManagedKiosk').t
 Stream<KioskMode> watchKioskMode({
   Duration androidQueryPeriod = const Duration(seconds: 5),
 }) =>
-    Stream.fromFuture(getKioskMode()).merge(_getKioskModeStream(androidQueryPeriod));
+    Stream.fromFuture(getKioskMode())
+        .merge(_getKioskModeStream(androidQueryPeriod));
 
 Stream<KioskMode> _getKioskModeStream(Duration androidQueryPeriod) =>
-    _eventChannel.receiveBroadcastStream({'androidQueryPeriod': androidQueryPeriod.inMilliseconds}).map(
+    _eventChannel.receiveBroadcastStream(
+      {'androidQueryPeriod': androidQueryPeriod.inMilliseconds},
+    ).map(
       (dynamic value) => value == true ? KioskMode.enabled : KioskMode.disabled,
     );
