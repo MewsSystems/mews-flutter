@@ -8,64 +8,87 @@ import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
+private const val methodChannelName = "com.mews.kiosk_mode/kiosk_mode"
+private const val kioskModeEventChannel = "com.mews.kiosk_mode/kiosk_mode_stream"
+
 class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var channel: MethodChannel
     private var activity: Activity? = null
 
+
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.mews.kiosk_mode/kiosk_mode")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, methodChannelName)
         channel.setMethodCallHandler(this)
+
+        EventChannel(flutterPluginBinding.binaryMessenger, kioskModeEventChannel)
+            .setStreamHandler(KioskModeStreamHandler { isInKioskMode() })
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-        if (call.method == "startKioskMode") {
-            activity?.let { a ->
-                // ensures that startLockTask() will not throw
-                // see https://stackoverflow.com/questions/27826431/activity-startlocktask-occasionally-throws-illegalargumentexception
-                a.findViewById<ViewGroup>(android.R.id.content).getChildAt(0).post {
-                    try {
-                        a.startLockTask()
-                        result.success(true)
-                    } catch (e: IllegalArgumentException) {
-                        result.success(false)
-                    }
-                }
-            } ?: result.success(false)
-        } else if (call.method == "stopKioskMode") {
-            activity?.stopLockTask()
-            result.success(null)
-        } else if (call.method == "isInKioskMode") {
-            val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
-            if (service == null) {
-                result.success(null)
-                return
-            }
-
-            val isInKioskMode = when (service.lockTaskModeState) {
-                ActivityManager.LOCK_TASK_MODE_NONE -> false
-                ActivityManager.LOCK_TASK_MODE_PINNED,
-                ActivityManager.LOCK_TASK_MODE_LOCKED -> true
-                else -> false
-            }
-
-            result.success(isInKioskMode)
-        } else if (call.method == "isManagedKiosk") {
-            val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
-            if (service == null) {
-                result.success(null)
-                return
-            }
-
-            result.success(service.lockTaskModeState == ActivityManager.LOCK_TASK_MODE_LOCKED)
-        } else {
-            result.notImplemented()
+        when (call.method) {
+            "startKioskMode" -> startKioskMode(result)
+            "stopKioskMode" -> stopKioskMode(result)
+            "isInKioskMode" -> isInKioskMode(result)
+            "isManagedKiosk" -> isManagedKiosk(result)
+            else -> result.notImplemented()
         }
     }
+
+    private fun startKioskMode(@NonNull result: Result) {
+        activity?.let { a ->
+            // ensures that startLockTask() will not throw
+            // see https://stackoverflow.com/questions/27826431/activity-startlocktask-occasionally-throws-illegalargumentexception
+            a.findViewById<ViewGroup>(android.R.id.content).getChildAt(0).post {
+                try {
+                    a.startLockTask()
+                    result.success(true)
+                } catch (e: IllegalArgumentException) {
+                    result.success(false)
+                }
+            }
+        } ?: result.success(false)
+    }
+
+    private fun stopKioskMode(@NonNull result: Result) {
+        activity?.stopLockTask()
+        result.success(null)
+    }
+
+
+    private fun isManagedKiosk(@NonNull result: Result) {
+        val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+        if (service == null) {
+            result.success(null)
+            return
+        }
+
+        result.success(service.lockTaskModeState == ActivityManager.LOCK_TASK_MODE_LOCKED)
+    }
+
+    private fun isInKioskMode(@NonNull result: Result) {
+        result.success(isInKioskMode())
+    }
+
+    private fun isInKioskMode(): Boolean? {
+        val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+            ?: return null
+
+        val isInKioskMode = when (service.lockTaskModeState) {
+            ActivityManager.LOCK_TASK_MODE_NONE -> false
+            ActivityManager.LOCK_TASK_MODE_PINNED,
+            ActivityManager.LOCK_TASK_MODE_LOCKED -> true
+            else -> false
+        }
+
+        return isInKioskMode
+    }
+
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
