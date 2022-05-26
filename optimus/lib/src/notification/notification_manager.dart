@@ -39,7 +39,8 @@ class OptimusNotificationManager {
       link: link,
       variant: variant,
       onLinkPressed: onLinkPressed,
-      onDismissed: () {
+      onDismissed: onDismissed,
+      onNotificationDismissed: () {
         _onNotificationDismissed(onDismissed);
       },
     );
@@ -175,6 +176,12 @@ class _NotificationListState extends State<_NotificationList> {
     final model = widget._notifications[index];
     late Widget notification;
 
+    final onDismissed = model.onDismissed != null
+        ? () {
+            _removeNotification(model);
+          }
+        : null;
+
     notification = SizeTransition(
       sizeFactor: animation,
       axisAlignment: 1,
@@ -185,9 +192,7 @@ class _NotificationListState extends State<_NotificationList> {
         icon: model.icon,
         link: model.link,
         onLinkPressed: model.onLinkPressed,
-        onDismissed: () {
-          _removeNotification(model);
-        },
+        onDismissed: onDismissed,
         variant: model.variant,
       ),
     );
@@ -207,7 +212,7 @@ class _NotificationListState extends State<_NotificationList> {
     animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.dismissed) {
-          removedItem.onDismissed?.call();
+          removedItem.onNotificationDismissed.call();
         }
       },
     );
@@ -221,7 +226,7 @@ class _NotificationListState extends State<_NotificationList> {
         icon: removedItem.icon,
         link: removedItem.link,
         onLinkPressed: () {},
-        onDismissed: () {},
+        onDismissed: removedItem.onDismissed == null ? null : () {},
         variant: removedItem.variant,
       ),
     );
@@ -254,6 +259,7 @@ class _NotificationModel {
     this.link,
     required this.variant,
     this.onLinkPressed,
+    required this.onNotificationDismissed,
     this.onDismissed,
   });
   final String title;
@@ -262,6 +268,7 @@ class _NotificationModel {
   final String? link;
   final OptimusNotificationVariant variant;
   final VoidCallback? onLinkPressed;
+  final VoidCallback onNotificationDismissed;
   final VoidCallback? onDismissed;
 }
 

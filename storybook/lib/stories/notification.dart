@@ -37,6 +37,8 @@ final Story notificationStory = Story(
               OptimusNotificationManager().showNotification(
                 context: context,
                 title: title,
+                body: body.isNotEmpty ? body : null,
+                onDismissed: dismissible ? () {} : null,
               );
             },
             child: const Text('Show notification'),
