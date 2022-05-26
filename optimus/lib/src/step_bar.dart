@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
-import 'package:optimus/src/utils.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
 /// a sequence of either numbered or logical steps.
@@ -64,14 +63,15 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     return OptimusStepBarItemState.disabled;
   }
 
-  Widget get _spacer {
+  Widget _spacer(bool enabled) {
+    final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
     switch (_effectiveLayout) {
       case Axis.horizontal:
         return Flexible(
           child: Container(
             constraints: const BoxConstraints(minWidth: _spacerMinWidth),
             height: _spacerThickness,
-            color: theme.colors.primary,
+            color: color,
           ),
         );
       case Axis.vertical:
@@ -84,14 +84,32 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
           child: SizedBox(
             height: _spacerHeight,
             width: _spacerThickness,
-            child: Container(color: theme.colors.primary),
+            child: Container(color: color),
           ),
         );
     }
   }
 
-  List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
-      items.map((i) => _buildItem(i, maxWidth)).intersperse(_spacer).toList();
+  List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) {
+    final List<Widget> widgets = [];
+    final iterator = items.iterator;
+    if (iterator.moveNext()) {
+      widgets.add(_buildItem(iterator.current, maxWidth));
+      while (iterator.moveNext()) {
+        final itemState = _getItemState(iterator.current);
+        widgets
+          ..add(
+            _spacer(
+              itemState == OptimusStepBarItemState.completed ||
+                  itemState == OptimusStepBarItemState.active,
+            ),
+          )
+          ..add(_buildItem(iterator.current, maxWidth));
+      }
+    }
+
+    return widgets;
+  }
 
   Widget _buildItem(OptimusStepBarItem item, double maxWidth) {
     final description = item.description;
