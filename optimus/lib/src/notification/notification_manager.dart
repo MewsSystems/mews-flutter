@@ -26,6 +26,12 @@ class OptimusNotificationManager {
     VoidCallback? onDismissed,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
   }) {
+    assert(
+      link == null && onLinkPressed == null ||
+          link != null && onLinkPressed != null,
+      'Can\'t provide link and have null onLinkPressed and vice versa',
+    );
+
     final _NotificationModel notification = _NotificationModel(
       title: title,
       body: body,
@@ -56,36 +62,32 @@ class OptimusNotificationManager {
 
   void _addOverlay(BuildContext context, _NotificationModel notification) {
     final OverlayEntry overlayEntry =
-        _buildOverlayEntry(context: context, initialEntry: notification);
+        _buildOverlayEntry(initialEntry: notification);
     _overlayEntry = overlayEntry;
     Overlay.of(context)?.insert(overlayEntry);
   }
 
   OverlayEntry _buildOverlayEntry({
-    required BuildContext context,
     required _NotificationModel initialEntry,
-  }) {
-    final padding = _padding(context);
-
-    return OverlayEntry(
-      builder: (context) => Positioned(
-        top: padding,
-        right: padding,
-        child: SafeArea(
-          child: Material(
-            child: Container(
-              constraints: const BoxConstraints(maxWidth: _maxWidth),
-              child: _NotificationList(
-                listStateKey: _listStateKey,
-                notifications: _visibleNotifications,
-                initialEntry: initialEntry,
+  }) =>
+      OverlayEntry(
+        builder: (context) => Positioned(
+          left: _getLeftPadding(context),
+          right: _getRightPadding(context),
+          child: SafeArea(
+            child: Material(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: _maxWidth),
+                child: _NotificationList(
+                  listStateKey: _listStateKey,
+                  notifications: _visibleNotifications,
+                  initialEntry: initialEntry,
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   void _onNotificationDismissed(VoidCallback? onDismissed) {
     if (_canShowQueued) {
@@ -96,7 +98,24 @@ class OptimusNotificationManager {
     onDismissed?.call();
   }
 
-  double _padding(BuildContext context) {
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  double? _getLeftPadding(BuildContext context) {
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return null;
+      case Breakpoint.small:
+      case Breakpoint.extraSmall:
+        return spacing100;
+    }
+  }
+
+  double _getRightPadding(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.medium:
       case Breakpoint.large:
@@ -106,11 +125,6 @@ class OptimusNotificationManager {
       case Breakpoint.extraSmall:
         return spacing100;
     }
-  }
-
-  void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
   }
 
   bool get _canRemoveOverlay =>

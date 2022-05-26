@@ -11,21 +11,38 @@ final Story notificationStory = Story(
     final link = k.text(label: 'Link text', initial: '');
     final dismissible = k.boolean(label: 'Is Dismissible');
 
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: OptimusNotificationVariant.values
-            .map(
-              (variant) => OptimusNotification(
+    return Stack(
+      children: [
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: OptimusNotificationVariant.values
+                .map(
+                  (variant) => OptimusNotification(
+                    title: title,
+                    body: body.isNotEmpty ? body : null,
+                    variant: variant,
+                    link: link.isNotEmpty ? link : null,
+                    onDismissed: dismissible ? () {} : null,
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+        Positioned(
+          left: spacing200,
+          bottom: spacing200,
+          child: OptimusButton(
+            onPressed: () {
+              OptimusNotificationManager().showNotification(
+                context: context,
                 title: title,
-                body: body.isNotEmpty ? body : null,
-                variant: variant,
-                link: link.isNotEmpty ? link : null,
-                onDismissed: dismissible ? () {} : null,
-              ),
-            )
-            .toList(),
-      ),
+              );
+            },
+            child: const Text('Show notification'),
+          ),
+        )
+      ],
     );
   },
 );
