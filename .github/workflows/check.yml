@@ -9,10 +9,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: "3.0.0"
+          flutter-version: "3.0.1"
           cache: true
-      - run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
-      - run: dart pub global activate melos
-      - run: melos run check_master
+
+      - name: Set up environment paths
+        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+
+      - name: Activate melos
+        run: dart pub global activate melos
+
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed -n .
+
+      - name: Fetch dependencies
+        run: melos exec -c 1 --fail-fast -- flutter pub get
+
+      - name: Built-in analyzer
+        run: flutter analyze .
+
+      - name: Dart Code Metrics (lib)
+        run: melos exec -c 1 --ignore="*example*" -- flutter pub run mews_pedantic:metrics analyze --fatal-style --fatal-performance --fatal-warnings lib
+
+      - name: Dart Code Metrics (test)
+        run: melos exec -c 1 --ignore="*example*" --dir-exists="test" -- flutter pub run mews_pedantic:metrics analyze --fatal-style --fatal-performance --fatal-warnings test
+
+      - name: Test
+        run: melos exec -c 1 --dir-exists="test" -- flutter test --no-pub
