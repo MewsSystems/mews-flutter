@@ -41,19 +41,55 @@ class OptimusNotificationManager {
       'Can\'t provide link and have null onLinkPressed and vice versa',
     );
     assert(title.isNotEmpty, 'Can\'t create notification with empty title');
+    final _NotificationModel notification = _createNotificationModel(
+      title: title,
+      body: body,
+      link: link,
+      icon: icon,
+      onLinkPressed: onLinkPressed,
+      onDismissed: onDismissed,
+      variant: variant,
+    );
+    _processNotification(context, notification);
+  }
 
-    final _NotificationModel notification = _NotificationModel(
+  _NotificationModel _createNotificationModel({
+    required String title,
+    String? body,
+    String? link,
+    IconData? icon,
+    VoidCallback? onLinkPressed,
+    VoidCallback? onDismissed,
+    required OptimusNotificationVariant variant,
+  }) {
+    late _NotificationModel notification;
+
+    /// need to point to itself during the initialization
+    // ignore: join_return_with_assignment
+    notification = _NotificationModel(
       title: title,
       body: body,
       icon: icon,
       link: link,
       variant: variant,
       onLinkPressed: onLinkPressed,
-      onDismissed: onDismissed,
+      onDismissPressed: onDismissed == null
+          ? null
+          : () {
+              _removeNotification(notification);
+            },
       onNotificationDismissed: () {
         _onNotificationDismissed(onDismissed);
       },
     );
+
+    return notification;
+  }
+
+  void _processNotification(
+    BuildContext context,
+    _NotificationModel notification,
+  ) {
     if (_visibleNotifications.isEmpty) {
       _addOverlay(context, notification);
     } else if (!_canShowRightNow) {
@@ -156,7 +192,7 @@ class OptimusNotificationManager {
         icon: removedItem.icon,
         link: removedItem.link,
         onLinkPressed: () {},
-        onDismissed: removedItem.onDismissed == null ? null : () {},
+        onDismissed: removedItem.onDismissPressed == null ? null : () {},
         variant: removedItem.variant,
       ),
     );
@@ -248,7 +284,7 @@ class _NotificationListState extends State<_NotificationList> {
         icon: model.icon,
         link: model.link,
         onLinkPressed: model.onLinkPressed,
-        onDismissed: model.onDismissed,
+        onDismissed: model.onDismissPressed,
         variant: model.variant,
       ),
     );
@@ -272,7 +308,7 @@ class _NotificationModel {
     required this.variant,
     this.onLinkPressed,
     required this.onNotificationDismissed,
-    this.onDismissed,
+    this.onDismissPressed,
   });
   final String title;
   final String? body;
@@ -281,7 +317,7 @@ class _NotificationModel {
   final OptimusNotificationVariant variant;
   final VoidCallback? onLinkPressed;
   final VoidCallback onNotificationDismissed;
-  final VoidCallback? onDismissed;
+  final VoidCallback? onDismissPressed;
 }
 
 const Duration _animationDuration = Duration(milliseconds: 500);
