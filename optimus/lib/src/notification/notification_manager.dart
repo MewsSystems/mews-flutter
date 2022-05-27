@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
+/// The OptimusNotificationManager serves for handling OptimusNotifications.
+///
+/// By default maximum visible notifications is set to [_defaultMaxVisibleCount].
+/// You can change that by changing [customMaxVisibleCount].
 class OptimusNotificationManager {
   factory OptimusNotificationManager() => _instance;
 
@@ -11,11 +15,16 @@ class OptimusNotificationManager {
   final List<_NotificationModel> _visibleNotifications = [];
   final List<_NotificationModel> _queuedNotifications = [];
 
+  int? _customMaxVisibleCount;
+
   final GlobalKey<AnimatedListState> _listStateKey =
       GlobalKey<AnimatedListState>();
 
   OverlayEntry? _overlayEntry;
 
+  /// Notifications are served in the order they were created (First in, First out).
+  /// Each notification has self dismiss timer set to [_autoDismissDuration] and
+  /// is limited to a maximum width of [_maxWidth].
   void showNotification({
     required BuildContext context,
     required String title,
@@ -31,6 +40,7 @@ class OptimusNotificationManager {
           link != null && onLinkPressed != null,
       'Can\'t provide link and have null onLinkPressed and vice versa',
     );
+    assert(title.isNotEmpty, 'Can\'t create notification with empty title');
 
     final _NotificationModel notification = _NotificationModel(
       title: title,
@@ -59,6 +69,21 @@ class OptimusNotificationManager {
       notification,
     );
     _listStateKey.currentState?.insertItem(0, duration: _animationDuration);
+    Future<void>.delayed(_autoDismissDuration, () {
+      if (_visibleNotifications.contains(notification)) {
+        _removeNotification(notification);
+      }
+    });
+  }
+
+  void _removeNotification(_NotificationModel model) {
+    final index = _visibleNotifications.indexOf(model);
+    _visibleNotifications.removeAt(index);
+    _listStateKey.currentState?.removeItem(
+      index,
+      (context, animation) => _buildRemovedNotification(model, animation),
+      duration: _animationDuration,
+    );
   }
 
   void _addOverlay(BuildContext context, _NotificationModel notification) {
@@ -82,7 +107,9 @@ class OptimusNotificationManager {
                 child: _NotificationList(
                   listStateKey: _listStateKey,
                   notifications: _visibleNotifications,
-                  initialEntry: initialEntry,
+                  onVisible: () {
+                    _addNotification(initialEntry);
+                  },
                 ),
               ),
             ),
@@ -100,109 +127,12 @@ class OptimusNotificationManager {
   }
 
   void _removeOverlay() {
-    _overlayEntry?.remove();
-    _overlayEntry = null;
-  }
-
-  double? _getLeftPadding(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return null;
-      case Breakpoint.small:
-      case Breakpoint.extraSmall:
-        return spacing100;
-    }
-  }
-
-  double _getRightPadding(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return spacing200;
-      case Breakpoint.small:
-      case Breakpoint.extraSmall:
-        return spacing100;
-    }
-  }
-
-  bool get _canRemoveOverlay =>
-      _queuedNotifications.isEmpty && _visibleNotifications.isEmpty;
-
-  bool get _canShowQueued =>
-      _queuedNotifications.isNotEmpty &&
-      _visibleNotifications.length < _maxVisibleCount;
-
-  bool get _canShowRightNow =>
-      _queuedNotifications.isEmpty &&
-      _visibleNotifications.length < _maxVisibleCount;
-}
-
-class _NotificationList extends StatefulWidget {
-  const _NotificationList({
-    Key? key,
-    required GlobalKey<AnimatedListState> listStateKey,
-    required List<_NotificationModel> notifications,
-    required _NotificationModel initialEntry,
-  })  : _listStateKey = listStateKey,
-        _notifications = notifications,
-        _initialEntry = initialEntry,
-        super(key: key);
-  final GlobalKey<AnimatedListState> _listStateKey;
-
-  final List<_NotificationModel> _notifications;
-  final _NotificationModel _initialEntry;
-
-  @override
-  State<_NotificationList> createState() => _NotificationListState();
-}
-
-class _NotificationListState extends State<_NotificationList> {
-  /// Adding initial notification after the list is visible in the tree,
-  /// otherwise first notification would be displayed without animation.
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._notifications.insert(0, widget._initialEntry);
-      widget._listStateKey.currentState
-          ?.insertItem(0, duration: _animationDuration);
-    });
-  }
-
-  Widget _buildNotification(int index, Animation<double> animation) {
-    final model = widget._notifications[index];
-    late Widget notification;
-
-    final onDismissed = model.onDismissed != null
-        ? () {
-            _removeNotification(model);
-          }
-        : null;
-
-    notification = SizeTransition(
-      sizeFactor: animation,
-      axisAlignment: 1,
-      child: OptimusNotification(
-        key: UniqueKey(),
-        title: model.title,
-        body: model.body,
-        icon: model.icon,
-        link: model.link,
-        onLinkPressed: model.onLinkPressed,
-        onDismissed: onDismissed,
-        variant: model.variant,
-      ),
-    );
-    Future<void>.delayed(_autoDismissDuration, () {
-      if (widget._notifications.contains(model)) {
-        _removeNotification(model);
+    Future.delayed(_animationDuration, () {
+      if (_canRemoveOverlay) {
+        _overlayEntry?.remove();
+        _overlayEntry = null;
       }
     });
-
-    return notification;
   }
 
   Widget _buildRemovedNotification(
@@ -232,13 +162,95 @@ class _NotificationListState extends State<_NotificationList> {
     );
   }
 
-  void _removeNotification(_NotificationModel model) {
-    final index = widget._notifications.indexOf(model);
-    widget._notifications.removeAt(index);
-    widget._listStateKey.currentState?.removeItem(
-      index,
-      (context, animation) => _buildRemovedNotification(model, animation),
-      duration: _animationDuration,
+  double? _getLeftPadding(BuildContext context) {
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return null;
+      case Breakpoint.small:
+      case Breakpoint.extraSmall:
+        return spacing100;
+    }
+  }
+
+  double _getRightPadding(BuildContext context) {
+    switch (MediaQuery.of(context).screenBreakpoint) {
+      case Breakpoint.medium:
+      case Breakpoint.large:
+      case Breakpoint.extraLarge:
+        return spacing200;
+      case Breakpoint.small:
+      case Breakpoint.extraSmall:
+        return spacing100;
+    }
+  }
+
+  set customMaxVisibleCount(int value) {
+    assert(value > 0, 'Can\'t have negative value of maximum displayed');
+    _customMaxVisibleCount = value;
+  }
+
+  int get _maxVisibleCount => _customMaxVisibleCount ?? _defaultMaxVisibleCount;
+
+  bool get _canRemoveOverlay =>
+      _queuedNotifications.isEmpty && _visibleNotifications.isEmpty;
+
+  bool get _canShowQueued =>
+      _queuedNotifications.isNotEmpty &&
+      _visibleNotifications.length < _maxVisibleCount;
+
+  bool get _canShowRightNow =>
+      _queuedNotifications.isEmpty &&
+      _visibleNotifications.length < _maxVisibleCount;
+}
+
+class _NotificationList extends StatefulWidget {
+  const _NotificationList({
+    Key? key,
+    required GlobalKey<AnimatedListState> listStateKey,
+    required List<_NotificationModel> notifications,
+    required VoidCallback onVisible,
+  })  : _listStateKey = listStateKey,
+        _notifications = notifications,
+        _onVisible = onVisible,
+        super(key: key);
+  final GlobalKey<AnimatedListState> _listStateKey;
+
+  final List<_NotificationModel> _notifications;
+  final VoidCallback _onVisible;
+
+  @override
+  State<_NotificationList> createState() => _NotificationListState();
+}
+
+class _NotificationListState extends State<_NotificationList> {
+  /// Adding initial notification after the list is visible in the tree,
+  /// otherwise first notification would be displayed without animation.
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget._onVisible.call();
+    });
+  }
+
+  Widget _buildNotification(int index, Animation<double> animation) {
+    final model = widget._notifications[index];
+
+    return SizeTransition(
+      sizeFactor: animation,
+      axisAlignment: 1,
+      child: OptimusNotification(
+        key: UniqueKey(),
+        title: model.title,
+        body: model.body,
+        icon: model.icon,
+        link: model.link,
+        onLinkPressed: model.onLinkPressed,
+        onDismissed: model.onDismissed,
+        variant: model.variant,
+      ),
     );
   }
 
@@ -274,5 +286,5 @@ class _NotificationModel {
 
 const Duration _animationDuration = Duration(milliseconds: 500);
 const Duration _autoDismissDuration = Duration(seconds: 8);
-const int _maxVisibleCount = 3;
+const int _defaultMaxVisibleCount = 1;
 const double _maxWidth = 360;
