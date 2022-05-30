@@ -64,9 +64,7 @@ class OptimusNotificationManager {
   }) {
     late _NotificationModel notification;
 
-    /// need to point to itself during the initialization
-    // ignore: join_return_with_assignment
-    notification = _NotificationModel(
+    return notification = _NotificationModel(
       title: title,
       body: body,
       icon: icon,
@@ -82,8 +80,6 @@ class OptimusNotificationManager {
         _onNotificationDismissed(onDismissed);
       },
     );
-
-    return notification;
   }
 
   void _processNotification(
