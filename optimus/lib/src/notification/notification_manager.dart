@@ -63,6 +63,17 @@ class OptimusNotificationManager {
     required OptimusNotificationVariant variant,
   }) {
     late _NotificationModel notification;
+    final onDismissPressed = onDismissed == null
+        ? null
+        : () {
+            _removeNotification(notification);
+          };
+    final onLinkPress = onLinkPressed == null
+        ? null
+        : () {
+            onLinkPressed.call();
+            _removeNotification(notification);
+          };
 
     return notification = _NotificationModel(
       title: title,
@@ -70,12 +81,8 @@ class OptimusNotificationManager {
       icon: icon,
       link: link,
       variant: variant,
-      onLinkPressed: onLinkPressed,
-      onDismissPressed: onDismissed == null
-          ? null
-          : () {
-              _removeNotification(notification);
-            },
+      onLinkPressed: onLinkPress,
+      onDismissPressed: onDismissPressed,
       onNotificationDismissed: () {
         _onNotificationDismissed(onDismissed);
       },
