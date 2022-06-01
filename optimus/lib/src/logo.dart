@@ -7,6 +7,8 @@ enum OptimusMewsLogoSizeVariant { large, medium, small }
 
 enum OptimusMewsLogoColorVariant { black, white }
 
+enum OptimusMewsLogoAlignVariant { topLeft, topCenter, center }
+
 class OptimusMewsLogo extends StatelessWidget {
   const OptimusMewsLogo({
     Key? key,
@@ -14,14 +16,18 @@ class OptimusMewsLogo extends StatelessWidget {
     OptimusMewsLogoSizeVariant sizeVariant = OptimusMewsLogoSizeVariant.medium,
     OptimusMewsLogoColorVariant colorVariant =
         OptimusMewsLogoColorVariant.black,
+    OptimusMewsLogoAlignVariant alignVariant =
+        OptimusMewsLogoAlignVariant.topCenter,
   })  : _logoVariant = logoVariant,
         _sizeVariant = sizeVariant,
         _colorVariant = colorVariant,
+        _alignVariant = alignVariant,
         super(key: key);
 
   final OptimusMewsLogoVariant _logoVariant;
   final OptimusMewsLogoSizeVariant _sizeVariant;
   final OptimusMewsLogoColorVariant _colorVariant;
+  final OptimusMewsLogoAlignVariant _alignVariant;
 
   Widget get _icon {
     switch (_logoVariant) {
@@ -60,9 +66,20 @@ class OptimusMewsLogo extends StatelessWidget {
     }
   }
 
+  EdgeInsets get _margin {
+    switch (_alignVariant) {
+      case OptimusMewsLogoAlignVariant.topLeft:
+        return EdgeInsets.only(bottom: _size, right: _size);
+      case OptimusMewsLogoAlignVariant.topCenter:
+        return EdgeInsets.fromLTRB(_size, 0, _size, _size);
+      case OptimusMewsLogoAlignVariant.center:
+        return EdgeInsets.all(_size);
+    }
+  }
+
   @override
   Widget build(BuildContext context) =>
-      Container(margin: EdgeInsets.all(_size), child: _icon);
+      Container(margin: _margin, child: _icon);
 }
 
 /// Copy of Flutter Icon, but it does not limit icon shape to square.

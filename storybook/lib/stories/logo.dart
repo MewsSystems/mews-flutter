@@ -22,14 +22,19 @@ final Story logoStory = Story(
       initial: OptimusMewsLogoColorVariant.black,
       options: OptimusMewsLogoColorVariant.values.toOptions(),
     );
+    final align = knobs.options(
+      label: 'Align',
+      initial: OptimusMewsLogoAlignVariant.topCenter,
+      options: OptimusMewsLogoAlignVariant.values.toOptions(),
+    );
 
     return Container(
-      alignment: Alignment.center,
       color: color == OptimusMewsLogoColorVariant.white ? Colors.black : null,
       child: OptimusMewsLogo(
         logoVariant: variant,
         sizeVariant: size,
         colorVariant: color,
+        alignVariant: align,
       ),
     );
   },
