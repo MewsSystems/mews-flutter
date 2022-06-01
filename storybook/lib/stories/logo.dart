@@ -29,6 +29,7 @@ final Story logoStory = Story(
     );
 
     return Container(
+      alignment: Alignment.center,
       color: color == OptimusMewsLogoColorVariant.white ? Colors.black : null,
       child: OptimusMewsLogo(
         logoVariant: variant,
