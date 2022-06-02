@@ -1,14 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
+/// Design system has two versions of the logo:
+/// [OptimusMewsLogoVariant.wordmark] - The normal length version of the logo.
+/// It is recommended to use it as the default whenever possible.
+/// [OptimusMewsLogoVariant.logomark] - The compact, shortened version of the
+/// logo, used whenever available space is limited.
 enum OptimusMewsLogoVariant { wordmark, logomark }
 
+/// The logo is defined in 3 sizes:
+/// [OptimusMewsLogoSizeVariant.large] - Should be used with caution. For
+/// example, in cases when highlighting the brand is required.
+/// [OptimusMewsLogoSizeVariant.medium] - This is the system default variant,
+/// recommended for use whenever possible.
+/// [OptimusMewsLogoSizeVariant.small] - This size variant should be used when
+/// there is limited space available.
 enum OptimusMewsLogoSizeVariant { large, medium, small }
 
+/// For strong and consistent brand experience, the logo is available only in
+/// two color options. Always check contrast ratios to ensure the logo is
+/// legible and recognizable.
+/// [OptimusMewsLogoColorVariant.black] - Use on white or light gray surfaces.
+/// [OptimusMewsLogoColorVariant.white] - Use on dark or colored surfaces.
 enum OptimusMewsLogoColorVariant { black, white }
 
+/// The preferred placement of the logo in any product is either in the top left
+/// or top center. You should avoid aligning or placing the logo on the right
+/// side of the screen unless absolutely necessary.
 enum OptimusMewsLogoAlignVariant { topLeft, topCenter, center }
 
+/// OptimusMewsLogo is Mews Logo component with clearly defined margins, size
+/// and color options.
+/// It is provided for better consistency across all products. No text or visual
+/// elements may be placed within 1x(x = logo heigh) of the space around it.
 class OptimusMewsLogo extends StatelessWidget {
   const OptimusMewsLogo({
     Key? key,
@@ -29,20 +53,18 @@ class OptimusMewsLogo extends StatelessWidget {
   final OptimusMewsLogoColorVariant _colorVariant;
   final OptimusMewsLogoAlignVariant _alignVariant;
 
-  Widget get _icon {
+  Widget get _iconWidget => _NonSquaredIcon(
+        _logoIcon,
+        size: _size,
+        color: _color,
+      );
+
+  IconData get _logoIcon {
     switch (_logoVariant) {
       case OptimusMewsLogoVariant.wordmark:
-        return _NonSquaredIcon(
-          OptimusIcons.mews_logo,
-          size: _size,
-          color: _color,
-        );
+        return OptimusIcons.mews_logo;
       case OptimusMewsLogoVariant.logomark:
-        return _NonSquaredIcon(
-          OptimusIcons.mews_logo_small,
-          size: _size,
-          color: _color,
-        );
+        return OptimusIcons.mews_logo_small;
     }
   }
 
@@ -78,8 +100,10 @@ class OptimusMewsLogo extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Container(margin: _margin, child: _icon);
+  Widget build(BuildContext context) => Container(
+        margin: _margin,
+        child: _iconWidget,
+      );
 }
 
 /// Copy of Flutter Icon, but it does not limit icon shape to square.
