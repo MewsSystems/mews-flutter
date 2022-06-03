@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
@@ -63,7 +64,8 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     return OptimusStepBarItemState.disabled;
   }
 
-  Widget _spacer(bool enabled) {
+  Widget _spacer(OptimusStepBarItem item) {
+    final enabled = _getItemState(item).isAccessible;
     final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
     switch (_effectiveLayout) {
       case Axis.horizontal:
@@ -90,26 +92,13 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     }
   }
 
-  List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) {
-    final List<Widget> widgets = [];
-    final iterator = items.iterator;
-    if (iterator.moveNext()) {
-      widgets.add(_buildItem(iterator.current, maxWidth));
-      while (iterator.moveNext()) {
-        final itemState = _getItemState(iterator.current);
-        widgets
-          ..add(
-            _spacer(
-              itemState == OptimusStepBarItemState.completed ||
-                  itemState == OptimusStepBarItemState.active,
-            ),
+  List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
+      items
+          .intersperseWith(
+            itemBuilder: (item) => _buildItem(item, maxWidth),
+            separatorBuilder: (_, nextItem) => _spacer(nextItem),
           )
-          ..add(_buildItem(iterator.current, maxWidth));
-      }
-    }
-
-    return widgets;
-  }
+          .toList();
 
   Widget _buildItem(OptimusStepBarItem item, double maxWidth) {
     final description = item.description;
@@ -335,4 +324,8 @@ extension on OptimusStepBarItemState {
         return OptimusIconColorOption.basic;
     }
   }
+
+  bool get isAccessible =>
+      this == OptimusStepBarItemState.completed ||
+      this == OptimusStepBarItemState.active;
 }
