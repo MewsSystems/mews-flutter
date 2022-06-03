@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  dfunc: ^0.7.0
+  dfunc: ^0.8.0
   flutter:
     sdk: flutter
   flutter_slidable: ^1.2.0
