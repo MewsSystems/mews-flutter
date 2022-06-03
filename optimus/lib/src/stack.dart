@@ -1,8 +1,8 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/breakpoint.dart';
 import 'package:optimus/src/spacing.dart';
-import 'package:optimus/src/utils.dart';
 
 enum OptimusStackAlignment {
   /// Default value.	All items in a stack are aligned to the start of the
