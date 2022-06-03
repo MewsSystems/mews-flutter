@@ -47,22 +47,16 @@ enum OptimusMewsLogoAlignVariant { topLeft, topCenter, center }
 class OptimusMewsLogo extends StatelessWidget {
   const OptimusMewsLogo({
     Key? key,
-    OptimusMewsLogoVariant logoVariant = OptimusMewsLogoVariant.logomark,
-    OptimusMewsLogoSizeVariant sizeVariant = OptimusMewsLogoSizeVariant.medium,
-    OptimusMewsLogoColorVariant colorVariant =
-        OptimusMewsLogoColorVariant.black,
-    OptimusMewsLogoAlignVariant alignVariant =
-        OptimusMewsLogoAlignVariant.topCenter,
-  })  : _logoVariant = logoVariant,
-        _sizeVariant = sizeVariant,
-        _colorVariant = colorVariant,
-        _alignVariant = alignVariant,
-        super(key: key);
+    this.logoVariant = OptimusMewsLogoVariant.logomark,
+    this.sizeVariant = OptimusMewsLogoSizeVariant.medium,
+    this.colorVariant = OptimusMewsLogoColorVariant.black,
+    this.alignVariant = OptimusMewsLogoAlignVariant.topCenter,
+  }) : super(key: key);
 
-  final OptimusMewsLogoVariant _logoVariant;
-  final OptimusMewsLogoSizeVariant _sizeVariant;
-  final OptimusMewsLogoColorVariant _colorVariant;
-  final OptimusMewsLogoAlignVariant _alignVariant;
+  final OptimusMewsLogoVariant logoVariant;
+  final OptimusMewsLogoSizeVariant sizeVariant;
+  final OptimusMewsLogoColorVariant colorVariant;
+  final OptimusMewsLogoAlignVariant alignVariant;
 
   Widget get _iconWidget => _NonSquaredIcon(
         _logoIcon,
@@ -71,7 +65,7 @@ class OptimusMewsLogo extends StatelessWidget {
       );
 
   IconData get _logoIcon {
-    switch (_logoVariant) {
+    switch (logoVariant) {
       case OptimusMewsLogoVariant.wordmark:
         return OptimusIcons.mews_logo;
       case OptimusMewsLogoVariant.logomark:
@@ -80,7 +74,7 @@ class OptimusMewsLogo extends StatelessWidget {
   }
 
   double get _size {
-    switch (_sizeVariant) {
+    switch (sizeVariant) {
       case OptimusMewsLogoSizeVariant.large:
         return 24;
       case OptimusMewsLogoSizeVariant.medium:
@@ -91,7 +85,7 @@ class OptimusMewsLogo extends StatelessWidget {
   }
 
   Color get _color {
-    switch (_colorVariant) {
+    switch (colorVariant) {
       case OptimusMewsLogoColorVariant.black:
         return Colors.black;
       case OptimusMewsLogoColorVariant.white:
@@ -100,7 +94,7 @@ class OptimusMewsLogo extends StatelessWidget {
   }
 
   EdgeInsets get _margin {
-    switch (_alignVariant) {
+    switch (alignVariant) {
       case OptimusMewsLogoAlignVariant.topLeft:
         return EdgeInsets.only(bottom: _size, right: _size);
       case OptimusMewsLogoAlignVariant.topCenter:
