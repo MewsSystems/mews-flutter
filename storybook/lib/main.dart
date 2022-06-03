@@ -17,7 +17,8 @@ import 'package:storybook/stories/form/form_story.dart';
 import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_list.dart';
 import 'package:storybook/stories/input.dart';
-import 'package:storybook/stories/list_tile.dart';
+import 'package:storybook/stories/list/expanded_list.dart';
+import 'package:storybook/stories/list/list_tile.dart';
 import 'package:storybook/stories/loader.dart';
 import 'package:storybook/stories/logo.dart';
 import 'package:storybook/stories/nested_overlays.dart';
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
           stepBarStory,
           badgeStory,
           listTileStory,
+          expandedListTileStory,
           tabs,
           segmentedControlStory,
           slidableStory,
