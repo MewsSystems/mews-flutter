@@ -1,9 +1,9 @@
 import 'dart:math';
 
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
-import 'package:optimus/src/utils.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
 /// a sequence of either numbered or logical steps.
@@ -64,34 +64,13 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     return OptimusStepBarItemState.disabled;
   }
 
-  Widget get _spacer {
-    switch (_effectiveLayout) {
-      case Axis.horizontal:
-        return Flexible(
-          child: Container(
-            constraints: const BoxConstraints(minWidth: _spacerMinWidth),
-            height: _spacerThickness,
-            color: theme.colors.primary,
-          ),
-        );
-      case Axis.vertical:
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: _verticalSpacerLeftPadding,
-            bottom: spacing100,
-            top: spacing100,
-          ),
-          child: SizedBox(
-            height: _spacerHeight,
-            width: _spacerThickness,
-            child: Container(color: theme.colors.primary),
-          ),
-        );
-    }
-  }
-
   List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
-      items.map((i) => _buildItem(i, maxWidth)).intersperse(_spacer).toList();
+      items
+          .intersperseWith(
+            itemBuilder: (item) => _buildItem(item, maxWidth),
+            separatorBuilder: (_, nextItem) => _buildSpacer(nextItem),
+          )
+          .toList();
 
   Widget _buildItem(OptimusStepBarItem item, double maxWidth) {
     final description = item.description;
@@ -206,6 +185,34 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     }
   }
 
+  Widget _buildSpacer(OptimusStepBarItem item) {
+    final enabled = _getItemState(item).isAccessible;
+    final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
+    switch (_effectiveLayout) {
+      case Axis.horizontal:
+        return Flexible(
+          child: Container(
+            constraints: const BoxConstraints(minWidth: _spacerMinWidth),
+            height: _spacerThickness,
+            color: color,
+          ),
+        );
+      case Axis.vertical:
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: _verticalSpacerLeftPadding,
+            bottom: spacing100,
+            top: spacing100,
+          ),
+          child: SizedBox(
+            height: _spacerHeight,
+            width: _spacerThickness,
+            child: Container(color: color),
+          ),
+        );
+    }
+  }
+
   Axis get _effectiveLayout {
     if (MediaQuery.of(context).screenBreakpoint.index >
         Breakpoint.small.index) {
@@ -317,4 +324,8 @@ extension on OptimusStepBarItemState {
         return OptimusIconColorOption.basic;
     }
   }
+
+  bool get isAccessible =>
+      this == OptimusStepBarItemState.completed ||
+      this == OptimusStepBarItemState.active;
 }

@@ -43,6 +43,7 @@ export 'src/icon_list.dart';
 export 'src/input_field.dart';
 export 'src/lists/list_tile.dart';
 export 'src/loader/loader.dart';
+export 'src/logo.dart';
 export 'src/notification/notification.dart';
 export 'src/notification/notification_manager.dart';
 export 'src/number_picker/number_picker.dart';
