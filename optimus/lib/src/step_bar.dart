@@ -64,39 +64,11 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     return OptimusStepBarItemState.disabled;
   }
 
-  Widget _spacer(OptimusStepBarItem item) {
-    final enabled = _getItemState(item).isAccessible;
-    final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
-    switch (_effectiveLayout) {
-      case Axis.horizontal:
-        return Flexible(
-          child: Container(
-            constraints: const BoxConstraints(minWidth: _spacerMinWidth),
-            height: _spacerThickness,
-            color: color,
-          ),
-        );
-      case Axis.vertical:
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: _verticalSpacerLeftPadding,
-            bottom: spacing100,
-            top: spacing100,
-          ),
-          child: SizedBox(
-            height: _spacerHeight,
-            width: _spacerThickness,
-            child: Container(color: color),
-          ),
-        );
-    }
-  }
-
   List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
       items
           .intersperseWith(
             itemBuilder: (item) => _buildItem(item, maxWidth),
-            separatorBuilder: (_, nextItem) => _spacer(nextItem),
+            separatorBuilder: (_, nextItem) => _buildSpacer(nextItem),
           )
           .toList();
 
@@ -210,6 +182,34 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
             ],
           );
         }
+    }
+  }
+
+  Widget _buildSpacer(OptimusStepBarItem item) {
+    final enabled = _getItemState(item).isAccessible;
+    final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
+    switch (_effectiveLayout) {
+      case Axis.horizontal:
+        return Flexible(
+          child: Container(
+            constraints: const BoxConstraints(minWidth: _spacerMinWidth),
+            height: _spacerThickness,
+            color: color,
+          ),
+        );
+      case Axis.vertical:
+        return Padding(
+          padding: const EdgeInsets.only(
+            left: _verticalSpacerLeftPadding,
+            bottom: spacing100,
+            top: spacing100,
+          ),
+          child: SizedBox(
+            height: _spacerHeight,
+            width: _spacerThickness,
+            child: Container(color: color),
+          ),
+        );
     }
   }
 
