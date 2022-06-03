@@ -22,31 +22,24 @@ class OptimusNotificationManager {
 
   OverlayEntry? _overlayEntry;
 
-  /// Notifications are served in the order they were created (First in, First out).
-  /// Each notification has self dismiss timer set to [_autoDismissDuration] and
-  /// is limited to a maximum width of [_maxWidth].
+  /// Notifications are served in the order they were created (First in, First
+  /// out). Each notification has self dismiss timer set to
+  /// [_autoDismissDuration] and is limited to a maximum width of [_maxWidth].
   void showNotification({
     required BuildContext context,
     required String title,
     String? body,
-    String? link,
     IconData? icon,
-    VoidCallback? onLinkPressed,
     VoidCallback? onDismissed,
+    NotificationLink? link,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
   }) {
-    assert(
-      link == null && onLinkPressed == null ||
-          link != null && onLinkPressed != null,
-      'Can\'t provide link and have null onLinkPressed and vice versa',
-    );
     assert(title.isNotEmpty, 'Can\'t create notification with empty title');
     final _NotificationModel notification = _createNotificationModel(
       title: title,
       body: body,
       link: link,
       icon: icon,
-      onLinkPressed: onLinkPressed,
       onDismissed: onDismissed,
       variant: variant,
     );
@@ -56,10 +49,9 @@ class OptimusNotificationManager {
   _NotificationModel _createNotificationModel({
     required String title,
     String? body,
-    String? link,
     IconData? icon,
-    VoidCallback? onLinkPressed,
     VoidCallback? onDismissed,
+    NotificationLink? link,
     required OptimusNotificationVariant variant,
   }) {
     late _NotificationModel notification;
@@ -68,10 +60,10 @@ class OptimusNotificationManager {
         : () {
             _removeNotification(notification);
           };
-    final onLinkPress = onLinkPressed == null
+    final onLinkPress = link == null
         ? null
         : () {
-            onLinkPressed();
+            link.onLinkPressed();
             _removeNotification(notification);
           };
 
@@ -79,7 +71,7 @@ class OptimusNotificationManager {
       title: title,
       body: body,
       icon: icon,
-      link: link,
+      link: link?.linkText,
       variant: variant,
       onLinkPressed: onLinkPress,
       onDismissPressed: onDismissPressed,
@@ -242,6 +234,17 @@ class OptimusNotificationManager {
   bool get _canShowRightNow =>
       _queuedNotifications.isEmpty &&
       _visibleNotifications.length < _maxVisibleCount;
+}
+
+/// The notification link with custom call-to-action.
+///
+/// This link is defined by the text of the button and the function that needs
+/// to be executed after a click.
+class NotificationLink {
+  NotificationLink({required this.linkText, required this.onLinkPressed});
+
+  final String linkText;
+  final VoidCallback onLinkPressed;
 }
 
 class _NotificationList extends StatefulWidget {

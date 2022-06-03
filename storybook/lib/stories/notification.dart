@@ -39,8 +39,9 @@ final Story notificationStory = Story(
                 title: title,
                 body: body.isNotEmpty ? body : null,
                 onDismissed: dismissible ? () {} : null,
-                link: link.isNotEmpty ? link : null,
-                onLinkPressed: link.isNotEmpty ? () {} : null,
+                link: link.isNotEmpty
+                    ? NotificationLink(linkText: link, onLinkPressed: () {})
+                    : null,
               );
             },
             child: const Text('Show notification'),
