@@ -325,5 +325,5 @@ class _NotificationModel {
 
 const Duration _animationDuration = Duration(milliseconds: 500);
 const Duration _autoDismissDuration = Duration(seconds: 8);
-const int _defaultMaxVisibleCount = 1;
+const int _defaultMaxVisibleCount = 3;
 const double _maxWidth = 360;
