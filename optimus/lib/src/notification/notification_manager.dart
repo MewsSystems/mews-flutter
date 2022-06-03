@@ -71,7 +71,7 @@ class OptimusNotificationManager {
     final onLinkPress = onLinkPressed == null
         ? null
         : () {
-            onLinkPressed.call();
+            onLinkPressed();
             _removeNotification(notification);
           };
 
@@ -247,17 +247,14 @@ class OptimusNotificationManager {
 class _NotificationList extends StatefulWidget {
   const _NotificationList({
     Key? key,
-    required GlobalKey<AnimatedListState> listStateKey,
-    required List<_NotificationModel> notifications,
-    required VoidCallback onVisible,
-  })  : _listStateKey = listStateKey,
-        _notifications = notifications,
-        _onVisible = onVisible,
-        super(key: key);
-  final GlobalKey<AnimatedListState> _listStateKey;
+    required this.listStateKey,
+    required this.notifications,
+    required this.onVisible,
+  }) : super(key: key);
+  final GlobalKey<AnimatedListState> listStateKey;
 
-  final List<_NotificationModel> _notifications;
-  final VoidCallback _onVisible;
+  final List<_NotificationModel> notifications;
+  final VoidCallback onVisible;
 
   @override
   State<_NotificationList> createState() => _NotificationListState();
@@ -270,35 +267,35 @@ class _NotificationListState extends State<_NotificationList> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._onVisible.call();
+      widget.onVisible.call();
     });
   }
 
-  Widget _buildNotification(int index, Animation<double> animation) {
-    final model = widget._notifications[index];
-
-    return SizeTransition(
-      sizeFactor: animation,
-      axisAlignment: 1,
-      child: OptimusNotification(
-        key: UniqueKey(),
-        title: model.title,
-        body: model.body,
-        icon: model.icon,
-        link: model.link,
-        onLinkPressed: model.onLinkPressed,
-        onDismissed: model.onDismissPressed,
-        variant: model.variant,
-      ),
-    );
-  }
+  Widget _buildNotification(
+    _NotificationModel model,
+    Animation<double> animation,
+  ) =>
+      SizeTransition(
+        sizeFactor: animation,
+        axisAlignment: 1,
+        child: OptimusNotification(
+          key: UniqueKey(),
+          title: model.title,
+          body: model.body,
+          icon: model.icon,
+          link: model.link,
+          onLinkPressed: model.onLinkPressed,
+          onDismissed: model.onDismissPressed,
+          variant: model.variant,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) => AnimatedList(
-        key: widget._listStateKey,
+        key: widget.listStateKey,
         shrinkWrap: true,
         itemBuilder: (context, index, animation) =>
-            _buildNotification(index, animation),
+            _buildNotification(widget.notifications[index], animation),
       );
 }
 
