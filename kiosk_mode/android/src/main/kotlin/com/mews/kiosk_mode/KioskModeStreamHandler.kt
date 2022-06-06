@@ -6,12 +6,11 @@ import io.flutter.plugin.common.EventChannel
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 
-typealias KioskModeHandler = () -> Boolean?
 
-class KioskModeStreamHandler(val isKioskMode: KioskModeHandler) : EventChannel.StreamHandler {
+class KioskModeStreamHandler(val isKioskMode: () -> Boolean) : EventChannel.StreamHandler {
     private var eventSink: EventChannel.EventSink? = null
     private var timer: Timer? = null
-    private var previousIsKioskModeState: Boolean? = null
+    private var previousState: Boolean = false
     private val uiThreadHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
@@ -19,17 +18,18 @@ class KioskModeStreamHandler(val isKioskMode: KioskModeHandler) : EventChannel.S
 
         eventSink = events
         timer = fixedRateTimer(period = period.toLong(), daemon = true) {
-            val newIsKioskModeState = isKioskMode()
-            if (newIsKioskModeState != previousIsKioskModeState) {
-                previousIsKioskModeState = newIsKioskModeState
+            val currentState = isKioskMode()
+            if (currentState != previousState) {
+                previousState = currentState
                 uiThreadHandler.post() {
-                    eventSink?.success(newIsKioskModeState)
+                    eventSink?.success(currentState)
                 }
             }
         }
     }
 
     override fun onCancel(arguments: Any?) {
+        eventSink?.endOfStream()
         eventSink = null
         timer?.cancel()
         timer = null
