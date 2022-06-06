@@ -3,7 +3,7 @@ package com.mews.kiosk_mode
 import android.os.Handler
 import android.os.Looper
 import io.flutter.plugin.common.EventChannel
-import java.util.*
+import java.util.Timer
 import kotlin.concurrent.fixedRateTimer
 
 
