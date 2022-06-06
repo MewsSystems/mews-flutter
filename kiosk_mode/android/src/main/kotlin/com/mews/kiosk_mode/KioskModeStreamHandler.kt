@@ -7,7 +7,7 @@ import java.util.Timer
 import kotlin.concurrent.fixedRateTimer
 
 
-class KioskModeStreamHandler(val isKioskMode: () -> Boolean) : EventChannel.StreamHandler {
+class KioskModeStreamHandler(val getKioskModeState: () -> Boolean) : EventChannel.StreamHandler {
     private var eventSink: EventChannel.EventSink? = null
     private var timer: Timer? = null
     private var previousState: Boolean = false
@@ -18,7 +18,7 @@ class KioskModeStreamHandler(val isKioskMode: () -> Boolean) : EventChannel.Stre
 
         eventSink = events
         timer = fixedRateTimer(period = period.toLong(), daemon = true) {
-            val currentState = isKioskMode()
+            val currentState = getKioskModeState()
             if (currentState != previousState) {
                 previousState = currentState
                 uiThreadHandler.post() {
