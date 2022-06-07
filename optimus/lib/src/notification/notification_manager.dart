@@ -131,17 +131,15 @@ class OptimusNotificationManager {
         builder: (context) => Positioned(
           left: _getLeftPadding(context),
           right: _getRightPadding(context),
-          child: SafeArea(
-            child: Material(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: _maxWidth),
-                child: _NotificationList(
-                  listStateKey: _listStateKey,
-                  notifications: _visibleNotifications,
-                  onVisible: () {
-                    _addNotification(initialEntry);
-                  },
-                ),
+          child: Material(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: _maxWidth),
+              child: _NotificationList(
+                listStateKey: _listStateKey,
+                notifications: _visibleNotifications,
+                onVisible: () {
+                  _addNotification(initialEntry);
+                },
               ),
             ),
           ),
