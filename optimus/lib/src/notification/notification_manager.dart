@@ -176,18 +176,10 @@ class OptimusNotificationManager {
       },
     );
 
-    return SizeTransition(
-      sizeFactor: animation,
-      axisAlignment: 1,
-      child: OptimusNotification(
-        title: removedItem.title,
-        body: removedItem.body,
-        icon: removedItem.icon,
-        link: removedItem.link,
-        onLinkPressed: () {},
-        onDismissed: removedItem.onDismissPressed == null ? null : () {},
-        variant: removedItem.variant,
-      ),
+    return _AnimatedOptimusNotification(
+      model: removedItem,
+      animation: animation,
+      outgoing: true,
     );
   }
 
@@ -272,31 +264,57 @@ class _NotificationListState extends State<_NotificationList> {
     });
   }
 
-  Widget _buildNotification(
-    _NotificationModel model,
-    Animation<double> animation,
-  ) =>
-      SizeTransition(
-        sizeFactor: animation,
-        axisAlignment: 1,
-        child: OptimusNotification(
-          key: UniqueKey(),
-          title: model.title,
-          body: model.body,
-          icon: model.icon,
-          link: model.link,
-          onLinkPressed: model.onLinkPressed,
-          onDismissed: model.onDismissPressed,
-          variant: model.variant,
-        ),
-      );
-
   @override
   Widget build(BuildContext context) => AnimatedList(
         key: widget.listStateKey,
         shrinkWrap: true,
         itemBuilder: (context, index, animation) =>
-            _buildNotification(widget.notifications[index], animation),
+            _AnimatedOptimusNotification(
+          model: widget.notifications[index],
+          animation: animation,
+        ),
+      );
+}
+
+class _AnimatedOptimusNotification extends StatelessWidget {
+  const _AnimatedOptimusNotification({
+    Key? key,
+    required this.model,
+    required this.animation,
+    this.outgoing = false,
+  }) : super(key: key);
+
+  final _NotificationModel model;
+  final Animation<double> animation;
+  final bool outgoing;
+
+  VoidCallback? get _onDismissed {
+    if (!outgoing) {
+      return model.onDismissPressed;
+    }
+
+    return model.onDismissPressed == null ? null : () {};
+  }
+
+  @override
+  Widget build(BuildContext context) => SlideTransition(
+        position: animation.drive(
+          Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
+        ),
+        child: SizeTransition(
+          sizeFactor: animation,
+          axisAlignment: 1,
+          child: OptimusNotification(
+            key: UniqueKey(),
+            title: model.title,
+            body: model.body,
+            icon: model.icon,
+            link: model.link,
+            onLinkPressed: outgoing ? () {} : model.onLinkPressed,
+            onDismissed: _onDismissed,
+            variant: model.variant,
+          ),
+        ),
       );
 }
 
