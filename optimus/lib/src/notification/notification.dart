@@ -69,7 +69,7 @@ class OptimusNotification extends StatelessWidget {
     final bool isDismissible = dismiss != null;
 
     return Padding(
-      padding: const EdgeInsets.all(spacing100),
+      padding: EdgeInsets.all(padding),
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: notificationWidth),
         child: Stack(

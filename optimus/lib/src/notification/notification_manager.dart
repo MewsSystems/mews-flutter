@@ -136,6 +136,7 @@ class OptimusNotificationManager {
           left: _getLeftPadding(context),
           right: _getRightPadding(context),
           child: Material(
+            type: MaterialType.transparency,
             child: Container(
               constraints: const BoxConstraints(maxWidth: _maxWidth),
               child: _NotificationList(
@@ -311,7 +312,8 @@ class _AnimatedOptimusNotification extends StatelessWidget {
         child: SizeTransition(
           sizeFactor: animation,
           axisAlignment: 1,
-          child: Padding(
+          child: Container(
+            alignment: Alignment.center,
             padding: EdgeInsets.only(
               top: isLeading ? MediaQuery.of(context).padding.top : 0,
             ),
