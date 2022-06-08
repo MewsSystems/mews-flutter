@@ -309,16 +309,14 @@ class _AnimatedOptimusNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FadeTransition(
         opacity: animation,
-        child: SizeTransition(
-          sizeFactor: animation,
-          axisAlignment: 1,
+        child: SlideTransition(
+          position: animation.drive(
+            Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
+          ),
           child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.fromLTRB(
-              spacing100,
-              isLeading ? MediaQuery.of(context).padding.top : spacing100,
-              spacing100,
-              spacing200,
+            padding: EdgeInsets.only(
+              top: isLeading ? MediaQuery.of(context).padding.top : spacing100,
             ),
             child: OptimusNotification(
               key: UniqueKey(),
