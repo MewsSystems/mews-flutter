@@ -2,7 +2,7 @@
 
 > Note: This release has breaking changes.
 
-- **BREAKING** **REFACTOR**: Migrate to dfunc: ^0.8.0
+ - **BREAKING** **REFACTOR**: Migrate to dfunc: ^0.8.0
  - **FIX**: Fix visual issues in `StepBar` components
  - **FEAT**: Add `OptimusMewsLogo` widget
  - **FEAT**: Add `OptimusNotification` widget for notifications
