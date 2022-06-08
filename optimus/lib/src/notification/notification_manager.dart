@@ -112,7 +112,11 @@ class OptimusNotificationManager {
     _visibleNotifications.removeAt(index);
     _listStateKey.currentState?.removeItem(
       index,
-      (context, animation) => _buildRemovedNotification(model, animation),
+      (context, animation) => _buildRemovedNotification(
+        removedItem: model,
+        animation: animation,
+        isLeading: index == 0,
+      ),
       duration: _animationDuration,
     );
   }
@@ -164,10 +168,11 @@ class OptimusNotificationManager {
     });
   }
 
-  Widget _buildRemovedNotification(
-    _NotificationModel removedItem,
-    Animation<double> animation,
-  ) {
+  Widget _buildRemovedNotification({
+    required _NotificationModel removedItem,
+    required Animation<double> animation,
+    required bool isLeading,
+  }) {
     animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.dismissed) {
@@ -179,7 +184,8 @@ class OptimusNotificationManager {
     return _AnimatedOptimusNotification(
       model: removedItem,
       animation: animation,
-      outgoing: true,
+      isLeading: isLeading,
+      isOutgoing: true,
     );
   }
 
@@ -272,6 +278,7 @@ class _NotificationListState extends State<_NotificationList> {
             _AnimatedOptimusNotification(
           model: widget.notifications[index],
           animation: animation,
+          isLeading: index == 0,
         ),
       );
 }
@@ -281,15 +288,17 @@ class _AnimatedOptimusNotification extends StatelessWidget {
     Key? key,
     required this.model,
     required this.animation,
-    this.outgoing = false,
+    required this.isLeading,
+    this.isOutgoing = false,
   }) : super(key: key);
 
   final _NotificationModel model;
   final Animation<double> animation;
-  final bool outgoing;
+  final bool isLeading;
+  final bool isOutgoing;
 
   VoidCallback? get _onDismissed {
-    if (!outgoing) {
+    if (!isOutgoing) {
       return model.onDismissPressed;
     }
 
@@ -297,22 +306,25 @@ class _AnimatedOptimusNotification extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => SlideTransition(
-        position: animation.drive(
-          Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
-        ),
+  Widget build(BuildContext context) => FadeTransition(
+        opacity: animation,
         child: SizeTransition(
           sizeFactor: animation,
           axisAlignment: 1,
-          child: OptimusNotification(
-            key: UniqueKey(),
-            title: model.title,
-            body: model.body,
-            icon: model.icon,
-            link: model.link,
-            onLinkPressed: outgoing ? () {} : model.onLinkPressed,
-            onDismissed: _onDismissed,
-            variant: model.variant,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: isLeading ? MediaQuery.of(context).padding.top : 0,
+            ),
+            child: OptimusNotification(
+              key: UniqueKey(),
+              title: model.title,
+              body: model.body,
+              icon: model.icon,
+              link: model.link,
+              onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
+              onDismissed: _onDismissed,
+              variant: model.variant,
+            ),
           ),
         ),
       );
@@ -341,5 +353,5 @@ class _NotificationModel {
 
 const Duration _animationDuration = Duration(milliseconds: 500);
 const Duration _autoDismissDuration = Duration(seconds: 8);
-const int _defaultMaxVisibleCount = 3;
+const int _defaultMaxVisibleCount = 1;
 const double _maxWidth = 360;
