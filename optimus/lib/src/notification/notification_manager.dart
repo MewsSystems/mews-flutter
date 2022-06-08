@@ -4,7 +4,6 @@ import 'package:optimus/optimus.dart';
 /// The OptimusNotificationManager serves for handling OptimusNotifications.
 ///
 /// By default maximum visible notifications is set to [_defaultMaxVisibleCount].
-/// You can change that by changing [customMaxVisibleCount].
 class OptimusNotificationManager {
   factory OptimusNotificationManager() => _instance;
 
@@ -14,8 +13,6 @@ class OptimusNotificationManager {
 
   final List<_NotificationModel> _visibleNotifications = [];
   final List<_NotificationModel> _queuedNotifications = [];
-
-  int? _customMaxVisibleCount;
 
   final GlobalKey<AnimatedListState> _listStateKey =
       GlobalKey<AnimatedListState>();
@@ -214,23 +211,16 @@ class OptimusNotificationManager {
     }
   }
 
-  set customMaxVisibleCount(int value) {
-    assert(value > 0, 'Can\'t have negative value of maximum displayed');
-    _customMaxVisibleCount = value;
-  }
-
-  int get _maxVisibleCount => _customMaxVisibleCount ?? _defaultMaxVisibleCount;
-
   bool get _canRemoveOverlay =>
       _queuedNotifications.isEmpty && _visibleNotifications.isEmpty;
 
   bool get _canShowQueued =>
       _queuedNotifications.isNotEmpty &&
-      _visibleNotifications.length < _maxVisibleCount;
+      _visibleNotifications.length < _defaultMaxVisibleCount;
 
   bool get _canShowRightNow =>
       _queuedNotifications.isEmpty &&
-      _visibleNotifications.length < _maxVisibleCount;
+      _visibleNotifications.length < _defaultMaxVisibleCount;
 }
 
 /// The notification link with custom call-to-action.
