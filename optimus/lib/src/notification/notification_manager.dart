@@ -314,8 +314,11 @@ class _AnimatedOptimusNotification extends StatelessWidget {
           axisAlignment: 1,
           child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.only(
-              top: isLeading ? MediaQuery.of(context).padding.top : 0,
+            padding: EdgeInsets.fromLTRB(
+              spacing100,
+              isLeading ? MediaQuery.of(context).padding.top : spacing100,
+              spacing100,
+              spacing200,
             ),
             child: OptimusNotification(
               key: UniqueKey(),
