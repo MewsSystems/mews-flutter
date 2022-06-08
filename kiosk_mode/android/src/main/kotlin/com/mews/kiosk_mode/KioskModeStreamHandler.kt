@@ -10,8 +10,8 @@ import kotlin.concurrent.fixedRateTimer
 class KioskModeStreamHandler(val getKioskModeState: () -> Boolean) : EventChannel.StreamHandler {
     private var eventSink: EventChannel.EventSink? = null
     private var timer: Timer? = null
-    private var previousState: Boolean = false
-    private val uiThreadHandler: Handler = Handler(Looper.getMainLooper())
+    private var previousState: Boolean = getKioskModeState()
+    private val mainHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
         val period: Int = (arguments as Map<*, *>)["androidQueryPeriod"] as Int
@@ -21,7 +21,7 @@ class KioskModeStreamHandler(val getKioskModeState: () -> Boolean) : EventChanne
             val currentState = getKioskModeState()
             if (currentState != previousState) {
                 previousState = currentState
-                uiThreadHandler.post() {
+                mainHandler.post() {
                     eventSink?.success(currentState)
                 }
             }
