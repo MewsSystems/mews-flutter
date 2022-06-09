@@ -73,6 +73,7 @@ export 'src/typography/variation.dart';
 export 'src/widget_size.dart';
 
 ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
+      brightness: brightness,
       scaffoldBackgroundColor: OptimusColors(brightness).background,
       primarySwatch: Colors.blue,
       fontFamily: 'packages/optimus/OpenSans',
@@ -91,11 +92,11 @@ ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
         button: baseTextStyle,
         overline: baseTextStyle,
       ),
-      cupertinoOverrideTheme: const CupertinoThemeData.raw(
-        Brightness.light,
+      cupertinoOverrideTheme: CupertinoThemeData.raw(
+        brightness,
         Colors.blue,
         Colors.blue,
-        CupertinoTextThemeData(),
+        const CupertinoTextThemeData(),
         Colors.white,
         Colors.white,
       ),
