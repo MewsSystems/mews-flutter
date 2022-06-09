@@ -14,19 +14,21 @@ final Story notificationStory = Story(
     return Stack(
       children: [
         Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: OptimusNotificationVariant.values
-                .map(
-                  (variant) => OptimusNotification(
-                    title: title,
-                    body: body.isNotEmpty ? body : null,
-                    variant: variant,
-                    link: link.isNotEmpty ? link : null,
-                    onDismissed: dismissible ? () {} : null,
-                  ),
-                )
-                .toList(),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: OptimusNotificationVariant.values
+                  .map(
+                    (variant) => OptimusNotification(
+                  title: Text(title),
+                  body: body.isNotEmpty ? Text(body) : null,
+                  variant: variant,
+                  link: link.isNotEmpty ? Text(link) : null,
+                  onDismissed: dismissible ? () {} : null,
+                ),
+              )
+                  .toList(),
+            ),
           ),
         ),
         Positioned(
@@ -36,11 +38,11 @@ final Story notificationStory = Story(
             onPressed: () {
               OptimusNotificationManager().showNotification(
                 context: context,
-                title: title,
-                body: body.isNotEmpty ? body : null,
+                title: Text(title),
+                body: body.isNotEmpty ? Text(body) : null,
                 onDismissed: dismissible ? () {} : null,
                 link: link.isNotEmpty
-                    ? NotificationLink(linkText: link, onLinkPressed: () {})
+                    ? NotificationLink(linkText: Text(link), onLinkPressed: () {})
                     : null,
               );
             },

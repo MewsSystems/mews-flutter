@@ -24,14 +24,13 @@ class OptimusNotificationManager {
   /// [_autoDismissDuration] and is limited to a maximum width of [_maxWidth].
   void showNotification({
     required BuildContext context,
-    required String title,
-    String? body,
+    required Widget title,
+    Widget? body,
     IconData? icon,
     VoidCallback? onDismissed,
     NotificationLink? link,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
   }) {
-    assert(title.isNotEmpty, 'Can\'t create notification with empty title');
     final _NotificationModel notification = _createNotificationModel(
       title: title,
       body: body,
@@ -44,8 +43,8 @@ class OptimusNotificationManager {
   }
 
   _NotificationModel _createNotificationModel({
-    required String title,
-    String? body,
+    required Widget title,
+    Widget? body,
     IconData? icon,
     VoidCallback? onDismissed,
     NotificationLink? link,
@@ -230,7 +229,7 @@ class OptimusNotificationManager {
 class NotificationLink {
   NotificationLink({required this.linkText, required this.onLinkPressed});
 
-  final String linkText;
+  final Widget linkText;
   final VoidCallback onLinkPressed;
 }
 
@@ -298,29 +297,32 @@ class _AnimatedOptimusNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeTransition(
-        opacity: animation,
-        child: SlideTransition(
-          position: animation.drive(
-            Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
+      opacity: animation,
+      child: SlideTransition(
+        position: animation.drive(
+          Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
+        ),
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(
+            top: isLeading ? MediaQuery
+                .of(context)
+                .padding
+                .top : spacing100,
           ),
-          child: Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(
-              top: isLeading ? MediaQuery.of(context).padding.top : spacing100,
-            ),
-            child: OptimusNotification(
-              key: UniqueKey(),
-              title: model.title,
-              body: model.body,
-              icon: model.icon,
-              link: model.link,
-              onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
-              onDismissed: _onDismissed,
-              variant: model.variant,
-            ),
+          child: OptimusNotification(
+            key: UniqueKey(),
+            title: model.title,
+            body: model.body,
+            icon: model.icon,
+            link: model.link,
+            onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
+            onDismissed: _onDismissed,
+            variant: model.variant,
           ),
         ),
-      );
+      ),
+    );
 }
 
 class _NotificationModel {
@@ -334,10 +336,10 @@ class _NotificationModel {
     required this.onNotificationDismissed,
     this.onDismissPressed,
   });
-  final String title;
-  final String? body;
+  final Widget title;
+  final Widget? body;
   final IconData? icon;
-  final String? link;
+  final Widget? link;
   final OptimusNotificationVariant variant;
   final VoidCallback? onLinkPressed;
   final VoidCallback onNotificationDismissed;
