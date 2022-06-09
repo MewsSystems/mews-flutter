@@ -17,11 +17,15 @@ final Story notificationStory = Story(
           mainAxisSize: MainAxisSize.min,
           children: OptimusNotificationVariant.values
               .map(
-                (variant) => OptimusNotification.styled(
-                  title: Text(title),
-                  body: body.isNotEmpty ? Text(body) : null,
+                (variant) => OptimusNotification(
+                  title: OptimusNotificationTitle(Text(title)),
+                  body: body.isNotEmpty
+                      ? OptimusNotificationBody(Text(body))
+                      : null,
                   variant: variant,
-                  link: link.isNotEmpty ? Text(link) : null,
+                  link: link.isNotEmpty
+                      ? OptimusNotificationLink(Text(link))
+                      : null,
                   onDismissed: dismissible ? () {} : null,
                 ),
               )

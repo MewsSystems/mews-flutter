@@ -25,7 +25,10 @@ enum OptimusNotificationVariant {
 
 /// Notification is used for showing a brief and concise message that
 /// communicates immediate feedback with optional action included. Notifications
-/// are noticeable but not intrusive to the use and can be temporary.
+/// are noticeable but not intrusive to the use and can be temporary. For
+/// constructing notification according to Optimus design we recommend you to
+/// use [OptimusNotificationTitle], [OptimusNotificationBody] and
+/// [OptimusNotificationLink] components.
 class OptimusNotification extends StatelessWidget {
   const OptimusNotification({
     Key? key,
@@ -37,25 +40,6 @@ class OptimusNotification extends StatelessWidget {
     this.onDismissed,
     this.variant = OptimusNotificationVariant.info,
   }) : super(key: key);
-
-  /// Notification built using predefined optimus design components.
-  OptimusNotification.styled({
-    Key? key,
-    required Widget title,
-    Widget? body,
-    Widget? link,
-    VoidCallback? onLinkPressed,
-    VoidCallback? onDismissed,
-    OptimusNotificationVariant variant = OptimusNotificationVariant.info,
-  }) : this(
-          key: key,
-          title: OptimusNotificationTitle(title),
-          body: body != null ? OptimusNotificationBody(body) : null,
-          link: link != null ? OptimusNotificationLink(link) : null,
-          onLinkPressed: onLinkPressed,
-          onDismissed: onDismissed,
-          variant: variant,
-        );
 
   final Widget title;
   final Widget? body;
@@ -269,7 +253,7 @@ class _NotificationContent extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: spacing50),
                         child: GestureDetector(
-                          onTap: () => onLinkPressed?.call(),
+                          onTap: onLinkPressed,
                           child: link,
                         ),
                       )
@@ -340,7 +324,7 @@ class _NotificationCloseButton extends StatelessWidget {
       top: spacing100,
       right: spacing100,
       child: GestureDetector(
-        onTap: onDismissed.call,
+        onTap: onDismissed,
         child: Padding(
           padding: const EdgeInsets.all(spacing100),
           child: Icon(
