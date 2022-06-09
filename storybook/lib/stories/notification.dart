@@ -18,14 +18,10 @@ final Story notificationStory = Story(
           children: OptimusNotificationVariant.values
               .map(
                 (variant) => OptimusNotification(
-                  title: OptimusNotificationTitle(Text(title)),
-                  body: body.isNotEmpty
-                      ? OptimusNotificationBody(Text(body))
-                      : null,
+                  title: Text(title),
+                  body: body.isNotEmpty ? Text(body) : null,
                   variant: variant,
-                  link: link.isNotEmpty
-                      ? OptimusNotificationLink(Text(link))
-                      : null,
+                  link: link.isNotEmpty ? Text(link) : null,
                   onDismissed: dismissible ? () {} : null,
                 ),
               )

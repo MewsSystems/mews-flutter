@@ -25,10 +25,7 @@ enum OptimusNotificationVariant {
 
 /// Notification is used for showing a brief and concise message that
 /// communicates immediate feedback with optional action included. Notifications
-/// are noticeable but not intrusive to the use and can be temporary. For
-/// constructing notification according to Optimus design we recommend you to
-/// use [OptimusNotificationTitle], [OptimusNotificationBody] and
-/// [OptimusNotificationLink] components.
+/// are noticeable but not intrusive to the use and can be temporary.
 class OptimusNotification extends StatelessWidget {
   const OptimusNotification({
     Key? key,
@@ -97,8 +94,8 @@ class OptimusNotification extends StatelessWidget {
 /// Optimus styled notification title.
 ///
 /// Title should be straight and easy-to-understand.
-class OptimusNotificationTitle extends StatelessWidget {
-  const OptimusNotificationTitle(
+class _OptimusNotificationTitle extends StatelessWidget {
+  const _OptimusNotificationTitle(
     this.title, {
     Key? key,
   }) : super(key: key);
@@ -123,8 +120,8 @@ class OptimusNotificationTitle extends StatelessWidget {
 /// The main content or description should be as brief and straight to the point
 /// as possible. Number or lines is limited to [_maxLinesBody] and is truncated
 /// with ellipsis.
-class OptimusNotificationBody extends StatelessWidget {
-  const OptimusNotificationBody(
+class _OptimusNotificationBody extends StatelessWidget {
+  const _OptimusNotificationBody(
     this.body, {
     Key? key,
   }) : super(key: key);
@@ -150,8 +147,8 @@ class OptimusNotificationBody extends StatelessWidget {
 ///
 /// Link should be short and precise. Number of lines is limited
 /// to [_maxLinesLink]
-class OptimusNotificationLink extends StatelessWidget {
-  const OptimusNotificationLink(
+class _OptimusNotificationLink extends StatelessWidget {
+  const _OptimusNotificationLink(
     this.link, {
     Key? key,
   }) : super(key: key);
@@ -243,18 +240,18 @@ class _NotificationContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    title,
+                    _OptimusNotificationTitle(title),
                     if (body != null)
                       Padding(
                         padding: const EdgeInsets.only(top: spacing50),
-                        child: body,
+                        child: _OptimusNotificationBody(body),
                       ),
                     if (link != null)
                       Padding(
                         padding: const EdgeInsets.only(top: spacing50),
                         child: GestureDetector(
                           onTap: onLinkPressed,
-                          child: link,
+                          child: _OptimusNotificationLink(link),
                         ),
                       )
                   ],
