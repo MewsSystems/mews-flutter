@@ -1,3 +1,9 @@
+## 0.16.1
+
+ - **FIX**: [RND-103444] Fix visual issues in StepBar components (#212).
+ - **FEAT**: [RND-103050] Add Logo component to mobile implementation (#215).
+ - **FEAT**: [RND-103047] Add Notification component  (#209).
+
 ## 0.16.0
 
 > Note: This release has breaking changes.
