@@ -297,32 +297,29 @@ class _AnimatedOptimusNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeTransition(
-      opacity: animation,
-      child: SlideTransition(
-        position: animation.drive(
-          Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
-        ),
-        child: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.only(
-            top: isLeading ? MediaQuery
-                .of(context)
-                .padding
-                .top : spacing100,
+        opacity: animation,
+        child: SlideTransition(
+          position: animation.drive(
+            Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
           ),
-          child: OptimusNotification(
-            key: UniqueKey(),
-            title: model.title,
-            body: model.body,
-            icon: model.icon,
-            link: model.link,
-            onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
-            onDismissed: _onDismissed,
-            variant: model.variant,
+          child: Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.only(
+              top: isLeading ? MediaQuery.of(context).padding.top : spacing100,
+            ),
+            child: OptimusNotification(
+              key: UniqueKey(),
+              title: model.title,
+              body: model.body,
+              icon: model.icon,
+              link: model.link,
+              onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
+              onDismissed: _onDismissed,
+              variant: model.variant,
+            ),
           ),
         ),
-      ),
-    );
+      );
 }
 
 class _NotificationModel {
