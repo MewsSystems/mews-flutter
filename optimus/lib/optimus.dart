@@ -92,11 +92,11 @@ ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
         button: baseTextStyle,
         overline: baseTextStyle,
       ),
-      cupertinoOverrideTheme: const CupertinoThemeData.raw(
+      cupertinoOverrideTheme: CupertinoThemeData.raw(
         brightness,
         Colors.blue,
         Colors.blue,
-        CupertinoTextThemeData(),
+        const CupertinoTextThemeData(),
         Colors.white,
         Colors.white,
       ),
