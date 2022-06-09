@@ -94,8 +94,8 @@ class OptimusNotification extends StatelessWidget {
 /// Optimus styled notification title.
 ///
 /// Title should be straight and easy-to-understand.
-class _OptimusNotificationTitle extends StatelessWidget {
-  const _OptimusNotificationTitle(
+class _NotificationTitle extends StatelessWidget {
+  const _NotificationTitle(
     this.title, {
     Key? key,
   }) : super(key: key);
@@ -120,8 +120,8 @@ class _OptimusNotificationTitle extends StatelessWidget {
 /// The main content or description should be as brief and straight to the point
 /// as possible. Number or lines is limited to [_maxLinesBody] and is truncated
 /// with ellipsis.
-class _OptimusNotificationBody extends StatelessWidget {
-  const _OptimusNotificationBody(
+class _NotificationBody extends StatelessWidget {
+  const _NotificationBody(
     this.body, {
     Key? key,
   }) : super(key: key);
@@ -147,8 +147,8 @@ class _OptimusNotificationBody extends StatelessWidget {
 ///
 /// Link should be short and precise. Number of lines is limited
 /// to [_maxLinesLink]
-class _OptimusNotificationLink extends StatelessWidget {
-  const _OptimusNotificationLink(
+class _NotificationLink extends StatelessWidget {
+  const _NotificationLink(
     this.link, {
     Key? key,
   }) : super(key: key);
@@ -240,18 +240,18 @@ class _NotificationContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _OptimusNotificationTitle(title),
+                    _NotificationTitle(title),
                     if (body != null)
                       Padding(
                         padding: const EdgeInsets.only(top: spacing50),
-                        child: _OptimusNotificationBody(body),
+                        child: _NotificationBody(body),
                       ),
                     if (link != null)
                       Padding(
                         padding: const EdgeInsets.only(top: spacing50),
                         child: GestureDetector(
                           onTap: onLinkPressed,
-                          child: _OptimusNotificationLink(link),
+                          child: _NotificationLink(link),
                         ),
                       )
                   ],
