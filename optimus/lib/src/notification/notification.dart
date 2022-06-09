@@ -41,9 +41,9 @@ class OptimusNotification extends StatelessWidget {
   /// Notification built using predefined optimus design components.
   OptimusNotification.styled({
     Key? key,
-    required String title,
-    String? body,
-    String? link,
+    required Widget title,
+    Widget? body,
+    Widget? link,
     VoidCallback? onLinkPressed,
     VoidCallback? onDismissed,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
@@ -119,17 +119,17 @@ class OptimusNotificationTitle extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final String title;
+  final Widget title;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Text(
-      title,
+    return DefaultTextStyle(
       style: preset300b.copyWith(
         color: theme.colors.neutral1000,
       ),
+      child: title,
     );
   }
 }
@@ -145,19 +145,19 @@ class OptimusNotificationBody extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final String body;
+  final Widget body;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Text(
-      body,
+    return DefaultTextStyle(
       maxLines: _maxLinesBody,
       overflow: TextOverflow.ellipsis,
       style: preset200r.copyWith(
         color: theme.colors.neutral1000t64,
       ),
+      child: body,
     );
   }
 }
@@ -172,20 +172,20 @@ class OptimusNotificationLink extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final String link;
+  final Widget link;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Text(
-      link,
+    return DefaultTextStyle(
       maxLines: _maxLinesLink,
       overflow: TextOverflow.ellipsis,
       style: preset200b.copyWith(
         color: theme.colors.neutral1000,
         decoration: TextDecoration.underline,
       ),
+      child: link,
     );
   }
 }
