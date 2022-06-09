@@ -12,19 +12,21 @@ final Story notificationStory = Story(
     final dismissible = k.boolean(label: 'Is Dismissible');
 
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: OptimusNotificationVariant.values
-            .map(
-              (variant) => OptimusNotification(
-                title: title,
-                body: body.isNotEmpty ? body : null,
-                variant: variant,
-                link: link.isNotEmpty ? link : null,
-                onDismissed: dismissible ? () {} : null,
-              ),
-            )
-            .toList(),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: OptimusNotificationVariant.values
+              .map(
+                (variant) => OptimusNotification.styled(
+                  title: title,
+                  body: body.isNotEmpty ? body : null,
+                  variant: variant,
+                  link: link.isNotEmpty ? link : null,
+                  onDismissed: dismissible ? () {} : null,
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   },

@@ -38,10 +38,29 @@ class OptimusNotification extends StatelessWidget {
     this.variant = OptimusNotificationVariant.info,
   }) : super(key: key);
 
-  final String title;
-  final String? body;
+  /// Notification built using predefined optimus design components.
+  OptimusNotification.styled({
+    Key? key,
+    required String title,
+    String? body,
+    String? link,
+    VoidCallback? onLinkPressed,
+    VoidCallback? onDismissed,
+    OptimusNotificationVariant variant = OptimusNotificationVariant.info,
+  }) : this(
+          key: key,
+          title: OptimusNotificationTitle(title),
+          body: body != null ? OptimusNotificationBody(body) : null,
+          link: link != null ? OptimusNotificationLink(link) : null,
+          onLinkPressed: onLinkPressed,
+          onDismissed: onDismissed,
+          variant: variant,
+        );
+
+  final Widget title;
+  final Widget? body;
   final IconData? icon;
-  final String? link;
+  final Widget? link;
   final VoidCallback? onLinkPressed;
   final VoidCallback? onDismissed;
   final OptimusNotificationVariant variant;
@@ -91,6 +110,86 @@ class OptimusNotification extends StatelessWidget {
   }
 }
 
+/// Optimus styled notification title.
+///
+/// Title should be straight and easy-to-understand.
+class OptimusNotificationTitle extends StatelessWidget {
+  const OptimusNotificationTitle(
+    this.title, {
+    Key? key,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Text(
+      title,
+      style: preset300b.copyWith(
+        color: theme.colors.neutral1000,
+      ),
+    );
+  }
+}
+
+/// Optimus styled notification body.
+///
+/// The main content or description should be as brief and straight to the point
+/// as possible. Number or lines is limited to [_maxLinesBody] and is truncated
+/// with ellipsis.
+class OptimusNotificationBody extends StatelessWidget {
+  const OptimusNotificationBody(
+    this.body, {
+    Key? key,
+  }) : super(key: key);
+
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Text(
+      body,
+      maxLines: _maxLinesBody,
+      overflow: TextOverflow.ellipsis,
+      style: preset200r.copyWith(
+        color: theme.colors.neutral1000t64,
+      ),
+    );
+  }
+}
+
+/// Optimus styled notification link.
+///
+/// Link should be short and precise. Number of lines is limited
+/// to [_maxLinesLink]
+class OptimusNotificationLink extends StatelessWidget {
+  const OptimusNotificationLink(
+    this.link, {
+    Key? key,
+  }) : super(key: key);
+
+  final String link;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return Text(
+      link,
+      maxLines: _maxLinesLink,
+      overflow: TextOverflow.ellipsis,
+      style: preset200b.copyWith(
+        color: theme.colors.neutral1000,
+        decoration: TextDecoration.underline,
+      ),
+    );
+  }
+}
+
 class _NotificationContent extends StatelessWidget {
   const _NotificationContent({
     Key? key,
@@ -105,9 +204,9 @@ class _NotificationContent extends StatelessWidget {
 
   final IconData? icon;
   final OptimusNotificationVariant variant;
-  final String title;
-  final String? body;
-  final String? link;
+  final Widget title;
+  final Widget? body;
+  final Widget? link;
   final VoidCallback? onLinkPressed;
   final bool dismissible;
 
@@ -160,15 +259,19 @@ class _NotificationContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _NotificationTitle(title: title),
+                    title,
                     if (body != null)
-                      _NotificationBody(
-                        body: body,
+                      Padding(
+                        padding: const EdgeInsets.only(top: spacing50),
+                        child: body,
                       ),
                     if (link != null)
-                      _NotificationLink(
-                        onLinkPressed: onLinkPressed,
-                        link: link,
+                      Padding(
+                        padding: const EdgeInsets.only(top: spacing50),
+                        child: GestureDetector(
+                          onTap: () => onLinkPressed?.call(),
+                          child: link,
+                        ),
                       )
                   ],
                 ),
@@ -216,87 +319,6 @@ class _LeadingIcon extends StatelessWidget {
         icon ?? _bannerIcon,
         color: variant.getBannerIconColor(theme),
         size: _iconSize,
-      ),
-    );
-  }
-}
-
-class _NotificationTitle extends StatelessWidget {
-  const _NotificationTitle({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Text(
-      title,
-      maxLines: _maxLinesTitle,
-      overflow: TextOverflow.ellipsis,
-      style: preset300b.copyWith(
-        color: theme.colors.neutral1000,
-      ),
-    );
-  }
-}
-
-class _NotificationBody extends StatelessWidget {
-  const _NotificationBody({
-    Key? key,
-    required this.body,
-  }) : super(key: key);
-
-  final String body;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.only(top: spacing50),
-      child: Text(
-        body,
-        maxLines: _maxLinesBody,
-        overflow: TextOverflow.ellipsis,
-        style: preset200r.copyWith(
-          color: theme.colors.neutral1000t64,
-        ),
-      ),
-    );
-  }
-}
-
-class _NotificationLink extends StatelessWidget {
-  const _NotificationLink({
-    Key? key,
-    required this.onLinkPressed,
-    required this.link,
-  }) : super(key: key);
-
-  final VoidCallback? onLinkPressed;
-  final String link;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return GestureDetector(
-      onTap: () => onLinkPressed?.call(),
-      child: Padding(
-        padding: const EdgeInsets.only(top: spacing50),
-        child: Text(
-          link,
-          maxLines: _maxLinesLink,
-          overflow: TextOverflow.ellipsis,
-          style: preset200b.copyWith(
-            color: theme.colors.neutral1000,
-            decoration: TextDecoration.underline,
-          ),
-        ),
       ),
     );
   }
@@ -362,6 +384,5 @@ const double _maxWidth = 360;
 const double _closeIconSize = 16;
 const double _iconSize = 20;
 const double _iconHorizontalPadding = 10;
-const int _maxLinesTitle = 1;
 const int _maxLinesBody = 5;
 const int _maxLinesLink = 1;
