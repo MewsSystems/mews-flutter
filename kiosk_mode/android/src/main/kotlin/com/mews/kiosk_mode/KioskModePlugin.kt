@@ -77,14 +77,12 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
             ?: return null
 
-        val isInKioskMode = when (service.lockTaskModeState) {
+        return when (service.lockTaskModeState) {
             ActivityManager.LOCK_TASK_MODE_NONE -> false
             ActivityManager.LOCK_TASK_MODE_PINNED,
             ActivityManager.LOCK_TASK_MODE_LOCKED -> true
             else -> false
         }
-
-        return isInKioskMode
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {

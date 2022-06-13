@@ -3,7 +3,7 @@ package com.mews.kiosk_mode
 import android.os.Handler
 import android.os.Looper
 import io.flutter.plugin.common.EventChannel
-import java.util.Timer
+import java.util.*
 import kotlin.concurrent.fixedRateTimer
 
 
@@ -15,14 +15,13 @@ class KioskModeStreamHandler(val getKioskModeState: () -> Boolean) : EventChanne
 
     override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
         val period: Int = (arguments as Map<*, *>)["androidQueryPeriod"] as Int
-
         eventSink = events
         timer = fixedRateTimer(period = period.toLong(), daemon = true) {
             val currentState = getKioskModeState()
             if (currentState != previousState) {
                 previousState = currentState
-                mainHandler.post() {
-                    eventSink?.success(currentState)
+                eventSink?.let {
+                    mainHandler.post() {it.success(currentState)}
                 }
             }
         }
