@@ -31,7 +31,7 @@ class _ContentState extends State<_Content> {
         child: OptimusDateTimeField(
           value: _dateTime,
           isClearEnabled: widget.k.boolean(label: 'Clear all', initial: false),
-          label: widget.k.text(label: 'Label', initial: 'Optimus input field'),
+          label: widget.k.text(label: 'Label', initial: 'Date'),
           error: widget.k.text(label: 'Error', initial: ''),
           placeholder: widget.k.text(label: 'Placeholder', initial: ''),
           formatDateTime: (d) {

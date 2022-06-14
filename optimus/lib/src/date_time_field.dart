@@ -35,7 +35,7 @@ class OptimusDateTimeField extends StatefulWidget {
 class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     with ThemeGetter {
   final TextEditingController _controller = TextEditingController();
-  late bool isClearEnabled;
+  late bool isClearVisible;
 
   @override
   void initState() {
@@ -60,7 +60,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     _controller.value = _controller.value.copyWith(
       text: value == null ? '' : widget.formatDateTime(value),
     );
-    isClearEnabled = value != null;
+    isClearVisible = value != null && widget.isClearEnabled;
   }
 
   void _showPickerDialog() {
@@ -88,7 +88,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
         readOnly: true,
         error: widget.error,
         label: widget.label,
-        isClearEnabled: isClearEnabled,
+        isClearEnabled: isClearVisible,
         suffix: GestureDetector(
           onTap: _showPickerDialog,
           child: Icon(
