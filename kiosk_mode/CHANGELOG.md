@@ -1,3 +1,8 @@
+## 0.2.0+1
+
+ - **FIX**: revert version bump.
+ - **FIX**: formatting.
+
 ## 0.2.0
 
 > Note: This release has breaking changes.
