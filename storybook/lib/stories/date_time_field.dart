@@ -36,8 +36,9 @@ class _ContentState extends State<_Content> {
           placeholder: widget.k.text(label: 'Placeholder', initial: ''),
           formatDateTime: (d) {
             final am = d.hour < 12 ? 'AM' : 'PM';
+            final hours = d.hour % 12;
 
-            return '${d.day}/${d.month}/${d.year} ${d.hour.format()}:${d.minute.format()} $am';
+            return '${d.day}/${d.month}/${d.year} ${hours.format()}:${d.minute.format()} $am';
           },
           onChanged: (v) => setState(() {
             _dateTime = v;
