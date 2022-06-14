@@ -34,10 +34,18 @@ class _ContentState extends State<_Content> {
           label: widget.k.text(label: 'Label', initial: 'Optimus input field'),
           error: widget.k.text(label: 'Error', initial: ''),
           placeholder: widget.k.text(label: 'Placeholder', initial: ''),
-          formatDateTime: (d) => '${d.day}.${d.month}.${d.year}',
+          formatDateTime: (d) {
+            final am = d.hour < 12 ? 'AM' : 'PM';
+
+            return '${d.day}/${d.month}/${d.year} ${d.hour.format()}:${d.minute.format()} $am';
+          },
           onChanged: (v) => setState(() {
             _dateTime = v;
           }),
         ),
       );
+}
+
+extension on int {
+  String format() => this > 10 ? toString() : toString().padLeft(2, '0');
 }
