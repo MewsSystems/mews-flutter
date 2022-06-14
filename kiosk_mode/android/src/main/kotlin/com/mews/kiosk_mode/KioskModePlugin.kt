@@ -25,7 +25,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         channel.setMethodCallHandler(this)
 
         eventChannel = EventChannel(flutterPluginBinding.binaryMessenger, eventChannelName)
-        eventChannel.setStreamHandler(KioskModeStreamHandler { isInKioskMode() ?: false})
+        eventChannel.setStreamHandler(KioskModeStreamHandler(this::isInKioskMode))
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
@@ -78,7 +78,6 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             ?: return null
 
         return when (service.lockTaskModeState) {
-            ActivityManager.LOCK_TASK_MODE_NONE -> false
             ActivityManager.LOCK_TASK_MODE_PINNED,
             ActivityManager.LOCK_TASK_MODE_LOCKED -> true
             else -> false
