@@ -38,7 +38,7 @@ class _ContentState extends State<_Content> {
             final am = d.hour < 12 ? 'AM' : 'PM';
             final hours = d.hour % 12;
 
-            return '${d.day}/${d.month}/${d.year} ${hours.format()}:${d.minute.format()} $am';
+            return '${d.day}/${d.month}/${d.year} ${hours.padded()}:${d.minute.padded()} $am';
           },
           onChanged: (v) => setState(() {
             _dateTime = v;
@@ -48,5 +48,5 @@ class _ContentState extends State<_Content> {
 }
 
 extension on int {
-  String format() => this > 10 ? toString() : toString().padLeft(2, '0');
+  String padded() => toString().padLeft(2, '0');
 }
