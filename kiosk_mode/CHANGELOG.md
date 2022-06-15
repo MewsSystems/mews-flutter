@@ -1,3 +1,7 @@
+## 0.2.1
+
+ - **FEAT**: [RND-106334] move watchKioskMode implementation on platform side (android) (#210).
+
 ## 0.2.0
 
 > Note: This release has breaking changes.
