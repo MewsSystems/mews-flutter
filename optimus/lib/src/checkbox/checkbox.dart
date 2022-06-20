@@ -84,7 +84,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   Color get _borderColor {
     final isChecked = widget.isChecked;
 
-    return isChecked == null || isChecked
+    return isChecked ?? widget.tristate
         ? theme.colors.primary500
         : _isHovering || _isTappedDown
             ? theme.colors.primary500
@@ -94,7 +94,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   Color get _backgroundColor {
     final isChecked = widget.isChecked;
 
-    return isChecked == null || isChecked
+    return isChecked ?? widget.tristate
         ? theme.colors.primary500
         : _isHovering || _isTappedDown
             ? theme.colors.primary500t8
@@ -123,13 +123,15 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   Widget? _buildIcon() {
     final isChecked = widget.isChecked;
     if (isChecked == null) {
-      return Center(
-        child: Icon(
-          OptimusIcons.minus_simple,
-          size: 10,
-          color: theme.colors.neutral0,
-        ),
-      );
+      if (widget.tristate) {
+        return Center(
+          child: Icon(
+            OptimusIcons.minus_simple,
+            size: 10,
+            color: theme.colors.neutral0,
+          ),
+        );
+      }
     } else {
       return isChecked
           ? Center(

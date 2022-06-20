@@ -102,6 +102,7 @@ class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
                 label: parent,
                 onChanged: _onParentChanged,
                 isChecked: _isParentChecked,
+                tristate: true,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: spacing200),
