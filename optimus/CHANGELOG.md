@@ -1,3 +1,10 @@
+## 0.17.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: Dark theme text color (#218).
+ - **BREAKING** **REFACTOR**: [RND-108306] Allow multi-line title in OptimusNotification (#219).
+
 ## 0.16.1
 
  - **FIX**: [RND-103444] Fix visual issues in StepBar components (#212).
