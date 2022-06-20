@@ -28,8 +28,9 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
     final k = widget.knobs;
 
     return OptimusNestedCheckboxGroup<int>(
-      parent: const Text('I\'m the boss'),
+      parent: const Text('Checkbox Group 1'),
       isParentChecked: _isParentChecked,
+      label: k.text(label: 'Label', initial: 'Checkbox Group Label'),
       error: k.text(label: 'Error'),
       onChildrenChanged: (values) => setState(() => _checks = values),
       onParentChanged: (value) => setState(() => _isParentChecked = value),

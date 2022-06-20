@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 
 /// Group of checkboxes with the same label and error messages.
-class OptimusNestedCheckboxGroup<T> extends StatefulWidget {
+class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
   OptimusNestedCheckboxGroup({
     Key? key,
     required this.parent,
@@ -56,28 +56,21 @@ class OptimusNestedCheckboxGroup<T> extends StatefulWidget {
 
   Iterable<OptimusGroupItem<T>> get items => _items.toList(growable: false);
 
-  @override
-  State<OptimusNestedCheckboxGroup<T>> createState() =>
-      _OptimusNestedCheckboxGroupState<T>();
-}
-
-class _OptimusNestedCheckboxGroupState<T>
-    extends State<OptimusNestedCheckboxGroup<T>> {
   void _onChanged(OptimusGroupItem<T> v, bool checked) {
     if (checked) {
-      widget._values.add(v.value);
+      _values.add(v.value);
     } else {
-      widget._values.remove(v.value);
+      _values.remove(v.value);
     }
     _updateParent();
-    widget.onChildrenChanged(widget._values);
+    onChildrenChanged(_values);
   }
 
   void _updateParent() {
-    widget.onParentChanged(
-      widget.values.isEmpty
+    onParentChanged(
+      values.isEmpty
           ? false
-          : widget.values.length == widget.items.length
+          : values.length == items.length
               ? true
               : null,
     );
@@ -85,38 +78,38 @@ class _OptimusNestedCheckboxGroupState<T>
 
   void _onParentChanged(bool checked) {
     if (checked) {
-      widget._values.addAll(widget.items.map((e) => e.value));
+      _values.addAll(items.map((e) => e.value));
     } else {
-      widget._values.clear();
+      _values.clear();
     }
-    widget.onParentChanged(checked);
-    widget.onChildrenChanged(widget._values);
+    onParentChanged(checked);
+    onChildrenChanged(_values);
   }
 
   @override
   Widget build(BuildContext context) => GroupWrapper(
-        label: widget.label,
-        error: widget.error,
+        label: label,
+        error: error,
         child: OptimusEnabled(
-          isEnabled: widget.isEnabled,
+          isEnabled: isEnabled,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               OptimusCheckbox(
-                label: widget.parent,
+                label: parent,
                 onChanged: _onParentChanged,
-                isChecked: widget._isParentChecked,
+                isChecked: _isParentChecked,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: spacing200),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: widget._items
+                  children: _items
                       .mapIndexed(
                         (i, v) => OptimusCheckbox(
-                          isChecked: widget._values.contains(v.value),
-                          size: widget.size,
+                          isChecked: _values.contains(v.value),
+                          size: size,
                           label: v.label,
                           onChanged: (checked) => _onChanged(v, checked),
                         ),
