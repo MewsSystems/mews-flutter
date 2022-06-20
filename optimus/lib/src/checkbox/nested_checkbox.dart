@@ -22,12 +22,16 @@ class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
         _isParentChecked = isParentChecked,
         super(key: key);
 
+  /// Label displayed next to the parent checkbox.
   final Widget parent;
 
+  /// Set of children of this nested checkbox group.
   final Set<OptimusGroupItem<T>> _items;
 
+  /// Set of children that are currently selected.
   final Set<T> _values;
 
+  /// Whether the parent checkbox is selected.
   final bool? _isParentChecked;
 
   /// Called when the user changes some checkbox button.
@@ -37,6 +41,8 @@ class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
   /// widget rebuilds the checkbox button with the new [values].
   final ValueChanged<Iterable<T>> onChildrenChanged;
 
+  /// Called when there is a change in the group that requires parent change as
+  /// well.
   final ValueChanged<bool?> onParentChanged;
 
   /// Controls size of each checkbox in the group.
@@ -62,11 +68,6 @@ class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
     } else {
       _values.remove(v.value);
     }
-    _updateParent();
-    onChildrenChanged(_values);
-  }
-
-  void _updateParent() {
     onParentChanged(
       values.isEmpty
           ? false
@@ -74,6 +75,7 @@ class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
               ? true
               : null,
     );
+    onChildrenChanged(_values);
   }
 
   void _onParentChanged(bool checked) {
@@ -105,6 +107,7 @@ class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
                 padding: const EdgeInsets.only(left: spacing200),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: _items
                       .mapIndexed(
                         (i, v) => OptimusCheckbox(
