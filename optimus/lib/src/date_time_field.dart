@@ -86,6 +86,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
   Widget build(BuildContext context) => OptimusInputField(
         controller: _controller,
         readOnly: true,
+        onTap: _showPickerDialog,
         error: widget.error,
         label: widget.label,
         isClearEnabled: isClearVisible,
