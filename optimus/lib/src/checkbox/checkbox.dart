@@ -27,6 +27,7 @@ class OptimusCheckbox extends StatefulWidget {
     this.error,
     this.isEnabled = true,
     this.size = OptimusCheckboxSize.large,
+    this.tristate = false,
     required this.onChanged,
   }) : super(key: key);
 
@@ -36,7 +37,10 @@ class OptimusCheckbox extends StatefulWidget {
   final Widget label;
 
   /// Whether this checkbox is checked.
-  final bool isChecked;
+  final bool? isChecked;
+
+  /// Whether this checkbox has 3 states.
+  final bool tristate;
 
   /// Controls error that appears below checkbox.
   final String? error;
@@ -77,20 +81,29 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
 
-  Color get _borderColor => widget.isChecked
-      ? theme.colors.primary500
-      : _isHovering || _isTappedDown
-          ? theme.colors.primary500
-          : theme.colors.neutral100;
+  Color get _borderColor {
+    final isChecked = widget.isChecked;
 
-  Color get _backgroundColor => widget.isChecked
-      ? theme.colors.primary500
-      : _isHovering || _isTappedDown
-          ? theme.colors.primary500t8
-          : Colors.transparent;
+    return isChecked == null || isChecked
+        ? theme.colors.primary500
+        : _isHovering || _isTappedDown
+            ? theme.colors.primary500
+            : theme.colors.neutral100;
+  }
+
+  Color get _backgroundColor {
+    final isChecked = widget.isChecked;
+
+    return isChecked == null || isChecked
+        ? theme.colors.primary500
+        : _isHovering || _isTappedDown
+            ? theme.colors.primary500t8
+            : Colors.transparent;
+  }
 
   void _onTap() {
-    widget.onChanged.call(!widget.isChecked);
+    final isChecked = widget.isChecked ?? false;
+    widget.onChanged.call(!isChecked);
   }
 
   void _onHoverChanged(bool hovered) {
@@ -107,18 +120,31 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
     }
   }
 
+  Widget? _buildIcon() {
+    final isChecked = widget.isChecked;
+    if (isChecked == null) {
+      return Center(
+        child: Icon(
+          OptimusIcons.minus_simple,
+          size: 10,
+          color: theme.colors.neutral0,
+        ),
+      );
+    } else {
+      return isChecked
+          ? Center(
+              child: Icon(
+                OptimusIcons.done,
+                size: 10,
+                color: theme.colors.neutral0,
+              ),
+            )
+          : null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final checkIcon = widget.isChecked
-        ? Center(
-            child: Icon(
-              OptimusIcons.done,
-              size: 10,
-              color: theme.colors.neutral0,
-            ),
-          )
-        : null;
-
     final label = Padding(
       padding: const EdgeInsets.fromLTRB(
         spacing100,
@@ -154,7 +180,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
                     ),
                     width: 16,
                     height: 16,
-                    child: checkIcon,
+                    child: _buildIcon(),
                   ),
                 ),
                 Expanded(child: label),
