@@ -4,9 +4,10 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story notificationStory = Story(
   name: 'Notification',
-  builder: (context) => OptimusNotificationLayer(
-    top: spacing100,
-    right: spacing200,
+  builder: (context) => OptimusNotificationsOverlay(
+    bottom: spacing100,
+    right: spacing100,
+    direction: OptimusNotificationDirection.fromBottom,
     child: NotificationStory(
       knobsBuilder: context.knobs,
     ),
@@ -51,7 +52,7 @@ class NotificationStory extends StatelessWidget {
           bottom: spacing200,
           child: OptimusButton(
             onPressed: () {
-              OptimusNotificationLayer.of(context)?.show(
+              OptimusNotificationsOverlay.of(context)?.show(
                 title: Text(title),
                 body: body.isNotEmpty ? Text(body) : null,
                 link: link.isNotEmpty
