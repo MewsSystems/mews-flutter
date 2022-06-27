@@ -179,16 +179,13 @@ class _OptimusNotificationsOverlayState
               child: AnimatedList(
                 key: _listKey,
                 shrinkWrap: true,
-                itemBuilder: (context, index, animation) {
-                  final notification = _notifications[index];
-
-                  return _AnimatedOptimusWidget(
-                    animation: animation,
-                    model: notification,
-                    isLeading: _isLeading(index),
-                    direction: widget.direction,
-                  );
-                },
+                itemBuilder: (context, index, animation) =>
+                    _AnimatedOptimusWidget(
+                  animation: animation,
+                  model: _notifications[index],
+                  isLeading: _isLeading(index),
+                  direction: widget.direction,
+                ),
               ),
             ),
           ),
