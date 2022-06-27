@@ -45,7 +45,7 @@ export 'src/lists/list_tile.dart';
 export 'src/loader/loader.dart';
 export 'src/logo.dart';
 export 'src/notification/notification.dart';
-export 'src/notification/notification_manager.dart';
+export 'src/notification/notification_layer.dart';
 export 'src/number_picker/number_picker.dart';
 export 'src/progress_spinner.dart';
 export 'src/radio/radio.dart';
