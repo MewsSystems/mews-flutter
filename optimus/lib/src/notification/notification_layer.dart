@@ -78,7 +78,7 @@ class _OptimusNotificationsOverlayState
       onLinkPressed: onLinkPress,
       variant: variant,
       onNotificationDismissed: () {
-        _handleNotificationDismiss(notification);
+        _handleNotificationDismiss(onDismissed: onDismissed);
       },
       onDismissPressed: onDismissPress,
     );
@@ -122,14 +122,14 @@ class _OptimusNotificationsOverlayState
     }
   }
 
-  void _handleNotificationDismiss(NotificationModel notification) {
+  void _handleNotificationDismiss({VoidCallback? onDismissed}) {
     if (_queue.isNotEmpty && _notifications.length < widget.maxVisible) {
       _addNotification(
         notification: _queue.removeAt(0),
         index: _getNextIndex(),
       );
     }
-    notification.onDismissPressed?.call();
+    onDismissed?.call();
   }
 
   _AnimatedOptimusWidget _buildRemovedNotification(
@@ -140,7 +140,7 @@ class _OptimusNotificationsOverlayState
     animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.dismissed) {
-          _handleNotificationDismiss(notification);
+          notification.onNotificationDismissed.call();
         }
       },
     );
