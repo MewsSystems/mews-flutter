@@ -119,23 +119,28 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
               onTapDown: (_) => setState(() => _isTappedDown = true),
               onTapUp: (_) => setState(() => _isTappedDown = false),
               onTapCancel: () => setState(() => _isTappedDown = false),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _RadioCircle(
-                    isSelected: _isSelected,
-                    isActive: _isHovering || _isTappedDown,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: DefaultTextStyle.merge(
-                        style: _labelStyle,
-                        child: widget.label,
+              child: IntrinsicHeight(
+                child: Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: _RadioCircle(
+                        isSelected: _isSelected,
+                        isActive: _isHovering || _isTappedDown,
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.symmetric(vertical: spacing25),
+                        child: DefaultTextStyle.merge(
+                          style: _labelStyle,
+                          child: widget.label,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
