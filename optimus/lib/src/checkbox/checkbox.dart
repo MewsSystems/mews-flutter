@@ -18,7 +18,8 @@ enum OptimusCheckboxSize {
 
 /// A checkbox is a binary form of input and is used to let a user select one
 /// or more options for a limited number of choices. Each selection is
-/// independent (with exceptions).
+/// independent (with exceptions). If [tristate] is enabled, checkbox can be in
+/// three states: checked, unchecked and indeterminate.
 class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
     Key? key,

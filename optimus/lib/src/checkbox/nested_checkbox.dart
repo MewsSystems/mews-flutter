@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 
-/// Group of checkboxes with the same label and error messages.
+/// Group of checkboxes with a parent checkbox, which displays the current state
+/// of its children. Clicking on the parent checkbox will change the state of
+/// all its children.
 class OptimusNestedCheckboxGroup<T> extends StatelessWidget {
   OptimusNestedCheckboxGroup({
     Key? key,
