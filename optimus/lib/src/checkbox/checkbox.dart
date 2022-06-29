@@ -102,13 +102,13 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
             : Colors.transparent;
   }
 
-  void _onTap() {
-    final isChecked = widget.isChecked ?? false;
-    widget.onChanged.call(!isChecked);
-  }
+  _CheckboxState get _checkboxState {
+    final isChecked = widget.isChecked;
+    if (isChecked == null) {
+      return _CheckboxState.undetermined;
+    }
 
-  void _onHoverChanged(bool hovered) {
-    setState(() => _isHovering = hovered);
+    return isChecked ? _CheckboxState.checked : _CheckboxState.unchecked;
   }
 
   TextStyle get _labelStyle {
@@ -122,28 +122,26 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   }
 
   Widget? _buildIcon() {
-    final isChecked = widget.isChecked;
-    if (isChecked == null) {
-      if (widget.tristate) {
-        return Center(
-          child: Icon(
-            OptimusIcons.minus_simple,
-            size: 10,
-            color: theme.colors.neutral0,
-          ),
-        );
-      }
-    } else {
-      return isChecked
-          ? Center(
-              child: Icon(
-                OptimusIcons.done,
-                size: 10,
-                color: theme.colors.neutral0,
-              ),
-            )
-          : null;
-    }
+    final icon = _checkboxState.icon;
+
+    return icon != null
+        ? Center(
+            child: Icon(
+              _checkboxState.icon,
+              size: 10,
+              color: theme.colors.neutral0,
+            ),
+          )
+        : null;
+  }
+
+  void _onTap() {
+    final isChecked = widget.isChecked ?? false;
+    widget.onChanged.call(!isChecked);
+  }
+
+  void _onHoverChanged(bool hovered) {
+    setState(() => _isHovering = hovered);
   }
 
   @override
@@ -193,5 +191,20 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
         ),
       ),
     );
+  }
+}
+
+enum _CheckboxState { checked, unchecked, undetermined }
+
+extension on _CheckboxState {
+  IconData? get icon {
+    switch (this) {
+      case _CheckboxState.checked:
+        return OptimusIcons.done;
+      case _CheckboxState.unchecked:
+        return null;
+      case _CheckboxState.undetermined:
+        return OptimusIcons.minus_simple;
+    }
   }
 }
