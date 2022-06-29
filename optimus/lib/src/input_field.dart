@@ -131,11 +131,13 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   void initState() {
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
+    _effectiveController.addListener(_onTextChanged);
   }
 
   @override
   void dispose() {
     _effectiveFocusNode.removeListener(_onFocusChanged);
+    _effectiveController.removeListener(_onTextChanged);
     _focusNode?.dispose();
     _controller?.dispose();
     super.dispose();
@@ -154,7 +156,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (widget.isClearEnabled) _ClearAllButton(onTap: _onSuffixTap),
+        if (widget.isClearEnabled && _effectiveController.text.isNotEmpty)
+          _ClearAllButton(onTap: _onSuffixTap),
         if (widget.showLoader) _loader else if (suffix != null) suffix,
       ],
     );
@@ -230,6 +233,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       );
 
   void _onFocusChanged() {
+    setState(() {});
+  }
+
+  void _onTextChanged() {
     setState(() {});
   }
 
