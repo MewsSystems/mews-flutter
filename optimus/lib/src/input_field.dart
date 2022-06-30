@@ -30,6 +30,9 @@ class OptimusInputField extends StatefulWidget {
     this.isClearEnabled = false,
     this.suffix,
     this.prefix,
+    this.indicativeIcon,
+    this.interactiveIcon,
+    this.interactiveIconAction,
     this.inputKey,
     this.fieldBoxKey,
     this.readOnly = false,
@@ -79,13 +82,22 @@ class OptimusInputField extends StatefulWidget {
   /// If true, clear all button is enabled.
   final bool isClearEnabled;
 
-  /// An optional [Widget] to display after the text.
-  final Widget? suffix;
-
-  /// An optional [Widget] to display before the text.
+  /// An optional text to display before the text.
   final Widget? prefix;
+
+  /// An optional icon to display before the text.
+  final IconData? indicativeIcon;
   final Key? inputKey;
   final Key? fieldBoxKey;
+
+  /// An optional text to display after the text.
+  final Widget? suffix;
+
+  /// An optional icon with an attached action [interactiveIconAction].
+  final IconData? interactiveIcon;
+
+  /// The action that should be called, when the [interactiveIcon] is called.
+  final VoidCallback? interactiveIconAction;
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
@@ -143,22 +155,55 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     super.dispose();
   }
 
-  void _onSuffixTap() {
+  void _onClearAllTap() {
     _effectiveController.clear();
     widget.onChanged?.call('');
   }
 
-  Widget get _suffix {
-    final suffix = widget.suffix;
+  bool get _isShowClearAll =>
+      widget.isClearEnabled && _effectiveController.text.isNotEmpty;
+
+  Widget? get _prefix {
+    final prefix = widget.prefix;
+    final indicativeIcon = widget.indicativeIcon;
+
+    if (prefix == null && indicativeIcon == null) {
+      return null;
+    }
 
     return OptimusStack(
       direction: Axis.horizontal,
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (widget.isClearEnabled && _effectiveController.text.isNotEmpty)
-          _ClearAllButton(onTap: _onSuffixTap),
-        if (widget.showLoader) _loader else if (suffix != null) suffix,
+        if (indicativeIcon != null) Icon(indicativeIcon),
+        if (prefix != null) prefix,
+      ],
+    );
+  }
+
+  Widget? get _suffix {
+    final suffix = widget.suffix;
+    final interactiveIcon = widget.interactiveIcon;
+
+    if (suffix == null && interactiveIcon == null && !widget.showLoader) {
+      return null;
+    }
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (suffix != null) suffix,
+        if (_isShowClearAll) _ClearAllButton(onTap: _onClearAllTap),
+        if (widget.showLoader)
+          _loader
+        else if (interactiveIcon != null)
+          GestureDetector(
+            onTap: widget.interactiveIconAction,
+            child: Icon(interactiveIcon),
+          )
       ],
     );
   }
@@ -179,7 +224,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
         suffix: _suffix,
-        prefix: widget.prefix,
+        prefix: _prefix,
         fieldBoxKey: widget.fieldBoxKey,
         children: <Widget>[
           Expanded(
@@ -318,4 +363,4 @@ class _ClearAllButton extends StatelessWidget {
   }
 }
 
-const double _iconSize = 20;
+const double _iconSize = 24;

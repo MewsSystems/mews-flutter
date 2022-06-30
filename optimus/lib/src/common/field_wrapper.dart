@@ -159,18 +159,19 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
           ? theme.colors.neutral0t64
           : theme.colors.neutral1000t64;
 
+  Widget _getStyled(Widget widget) => DefaultTextStyle.merge(
+        style: preset100b.copyWith(color: theme.colors.neutral1000t32),
+        child: _Icon(child: widget),
+      );
+
   List<Widget> _buildChildren() {
     final prefix = widget.prefix;
     final suffix = widget.suffix;
 
     return <Widget>[
-      if (prefix != null) _Icon(child: _PrefixPadding(child: prefix)),
+      if (prefix != null) _getStyled(_PrefixPadding(child: prefix)),
       ...widget.children,
-      if (suffix != null)
-        DefaultTextStyle.merge(
-          style: preset100b.copyWith(color: theme.colors.neutral1000t32),
-          child: _Icon(child: _SuffixPadding(child: suffix)),
-        )
+      if (suffix != null) _getStyled(_SuffixPadding(child: suffix))
     ];
   }
 }
