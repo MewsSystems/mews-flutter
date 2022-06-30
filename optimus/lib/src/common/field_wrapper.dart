@@ -160,7 +160,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
           : theme.colors.neutral1000t64;
 
   Widget _getStyled(Widget widget) => DefaultTextStyle.merge(
-        style: preset100b.copyWith(color: theme.colors.neutral1000t32),
+        style: preset100s.copyWith(color: theme.colors.neutral1000t32),
         child: _Icon(child: widget),
       );
 
