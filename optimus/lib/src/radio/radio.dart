@@ -121,10 +121,13 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
               onTapCancel: () => setState(() => _isTappedDown = false),
               child: Stack(
                 children: [
-                  Positioned.fill(
-                    child: Container(
+                  Positioned(
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: _leadingSize,
+                    child: Align(
                       alignment: Alignment.topLeft,
-                      width: _leadingSize,
                       child: _RadioCircle(
                         isSelected: _isSelected,
                         isActive: _isHovering || _isTappedDown,
