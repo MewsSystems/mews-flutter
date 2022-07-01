@@ -146,11 +146,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
       theme.isDark ? theme.colors.neutral0t32 : theme.colors.neutral1000t32;
 
   Color get _borderColor {
-    if (widget.hasError) return theme.colors.danger;
+    if (widget.focusNode.hasFocus) return theme.colors.primary;
 
-    return widget.focusNode.hasFocus
-        ? theme.colors.primary
-        : theme.colors.neutral100;
+    return widget.hasError ? theme.colors.danger : theme.colors.neutral100;
   }
 
   Color get _captionColor => widget.focusNode.hasFocus
