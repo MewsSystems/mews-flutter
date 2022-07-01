@@ -326,18 +326,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 }
 
-class _SuffixPadding extends StatelessWidget {
-  const _SuffixPadding({Key? key, required this.child}) : super(key: key);
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: child,
-      );
-}
-
 class _ClearAllButton extends StatelessWidget {
   const _ClearAllButton({Key? key, required this.onTap}) : super(key: key);
 
