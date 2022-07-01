@@ -1,3 +1,7 @@
+## 0.17.1
+
+ - **FEAT**: [RND-103474] Update Date picker component (#222).
+
 ## 0.17.0
 
 > Note: This release has breaking changes.
