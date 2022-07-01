@@ -163,6 +163,15 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _isShowClearAll =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
+  Widget get _passwordAction => GestureDetector(
+        onTap: () => setState(() {
+          _isShowPasswordEnabled = !_isShowPasswordEnabled;
+        }),
+        child: Icon(
+          _isShowPasswordEnabled ? OptimusIcons.hide : OptimusIcons.show,
+        ),
+      );
+
   Widget? get _prefix {
     final prefix = widget.prefix;
     final indicativeIcon = widget.indicativeIcon;
@@ -198,7 +207,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         if (suffix != null) suffix,
         if (_isShowClearAll) _ClearAllButton(onTap: _onClearAllTap),
         if (widget.showLoader) _loader,
-        if (interactiveIcon != null)
+        if (widget.isPasswordField)
+          _passwordAction
+        else if (interactiveIcon != null)
           GestureDetector(
             onTap: widget.interactiveIconAction,
             child: Icon(interactiveIcon),
@@ -258,21 +269,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               inputFormatters: widget.inputFormatters,
             ),
           ),
-          if (widget.isPasswordField)
-            GestureDetector(
-              onTap: () => setState(() {
-                _isShowPasswordEnabled = !_isShowPasswordEnabled;
-              }),
-              child: _SuffixPadding(
-                child: Icon(
-                  _isShowPasswordEnabled
-                      ? OptimusIcons.hide
-                      : OptimusIcons.show,
-                  size: _iconSize,
-                  color: _placeholderTextStyle.color,
-                ),
-              ),
-            ),
         ],
       );
 
