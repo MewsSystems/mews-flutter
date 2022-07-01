@@ -28,8 +28,8 @@ final Story inputStory = Story(
         isPasswordField: k.boolean(label: 'Password'),
         prefix: prefix.isNotEmpty ? Text(prefix) : null,
         suffix: suffix.isNotEmpty ? Text(suffix) : null,
-        indicativeIcon: indicativeIcon,
-        interactiveIcon: interactiveIcon,
+        leadingWidget: Icon(indicativeIcon),
+        tailingWidget: Icon(interactiveIcon),
         isClearEnabled: k.boolean(label: 'Clear all', initial: false),
         showLoader: k.boolean(label: 'Show loader', initial: false),
         size: k.options(

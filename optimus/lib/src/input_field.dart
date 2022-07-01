@@ -3,6 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
 
+/// General input, used to allow users to enter data into the interface.
+///
+/// Most commonly found in form layouts as one of the most important form
+/// elements. Has a strict order of widgets:
+/// [leadingWidget] - leading icon or image. Should be non-interactive.
+/// [prefix] - styled text, displayed before the user input.
+/// <input> - field with the user input.
+/// [suffix] - styled text, displayed after the user input.
+/// <clearAllButton> - if [isClearEnabled] is true there will be a button for
+/// clearing the input.
+/// <passwordButton> or [tailingWidget] - tailing image or icon that has some
+/// interactive functionality. If [isPasswordField] is true, passwordButton will
+/// be used instead of the [tailingWidget].
 class OptimusInputField extends StatefulWidget {
   const OptimusInputField({
     Key? key,
@@ -30,9 +43,9 @@ class OptimusInputField extends StatefulWidget {
     this.isClearEnabled = false,
     this.suffix,
     this.prefix,
-    this.indicativeIcon,
-    this.interactiveIcon,
-    this.interactiveIconAction,
+    this.leadingWidget,
+    this.tailingWidget,
+    this.tailingWidgetOnTap,
     this.inputKey,
     this.fieldBoxKey,
     this.readOnly = false,
@@ -82,22 +95,21 @@ class OptimusInputField extends StatefulWidget {
   /// If true, clear all button is enabled.
   final bool isClearEnabled;
 
+  /// An optional icon/image to display before the text.
+  final Widget? leadingWidget;
+
   /// An optional text to display before the text.
   final Widget? prefix;
 
-  /// An optional icon to display before the text.
-  final IconData? indicativeIcon;
   final Key? inputKey;
   final Key? fieldBoxKey;
 
   /// An optional text to display after the text.
   final Widget? suffix;
 
-  /// An optional icon with an attached action [interactiveIconAction].
-  final IconData? interactiveIcon;
-
-  /// The action that should be called, when the [interactiveIcon] is called.
-  final VoidCallback? interactiveIconAction;
+  /// An optional icon/image with an attached action [tailingWidgetOnTap].
+  final Widget? tailingWidget;
+  final VoidCallback? tailingWidgetOnTap;
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
@@ -163,7 +175,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _isShowClearAll =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
-  Widget get _passwordAction => GestureDetector(
+  Widget get _passwordButton => GestureDetector(
         onTap: () => setState(() {
           _isShowPasswordEnabled = !_isShowPasswordEnabled;
         }),
@@ -174,9 +186,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   Widget? get _prefix {
     final prefix = widget.prefix;
-    final indicativeIcon = widget.indicativeIcon;
+    final leadingWidget = widget.leadingWidget;
 
-    if (prefix == null && indicativeIcon == null) {
+    if (prefix == null && leadingWidget == null) {
       return null;
     }
 
@@ -185,7 +197,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (indicativeIcon != null) Icon(indicativeIcon),
+        if (leadingWidget != null) leadingWidget,
         if (prefix != null) prefix,
       ],
     );
@@ -193,9 +205,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   Widget? get _suffix {
     final suffix = widget.suffix;
-    final interactiveIcon = widget.interactiveIcon;
+    final tailingWidget = widget.tailingWidget;
 
-    if (suffix == null && interactiveIcon == null && !widget.showLoader) {
+    if (suffix == null && tailingWidget == null && !widget.showLoader) {
       return null;
     }
 
@@ -208,11 +220,11 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         if (_isShowClearAll) _ClearAllButton(onTap: _onClearAllTap),
         if (widget.showLoader) _loader,
         if (widget.isPasswordField)
-          _passwordAction
-        else if (interactiveIcon != null)
+          _passwordButton
+        else if (tailingWidget != null)
           GestureDetector(
-            onTap: widget.interactiveIconAction,
-            child: Icon(interactiveIcon),
+            onTap: widget.tailingWidgetOnTap,
+            child: tailingWidget,
           )
       ],
     );
