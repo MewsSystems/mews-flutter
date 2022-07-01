@@ -121,20 +121,6 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
     }
   }
 
-  Widget? _buildIcon() {
-    final icon = _checkboxState.icon;
-
-    return icon != null
-        ? Center(
-            child: Icon(
-              _checkboxState.icon,
-              size: 10,
-              color: theme.colors.neutral0,
-            ),
-          )
-        : null;
-  }
-
   void _onTap() {
     final isChecked = widget.isChecked ?? false;
     widget.onChanged.call(!isChecked);
@@ -181,7 +167,9 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
                     ),
                     width: 16,
                     height: 16,
-                    child: _buildIcon(),
+                    child: _CheckboxIcon(
+                      icon: _checkboxState.icon,
+                    ),
                   ),
                 ),
                 Expanded(child: label),
@@ -191,6 +179,30 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
         ),
       ),
     );
+  }
+}
+
+class _CheckboxIcon extends StatelessWidget {
+  const _CheckboxIcon({
+    Key? key,
+    this.icon,
+  }) : super(key: key);
+
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return icon == null
+        ? const SizedBox.shrink()
+        : Center(
+            child: Icon(
+              icon,
+              size: 10,
+              color: theme.colors.neutral0,
+            ),
+          );
   }
 }
 
