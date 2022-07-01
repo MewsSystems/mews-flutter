@@ -197,9 +197,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       children: [
         if (suffix != null) suffix,
         if (_isShowClearAll) _ClearAllButton(onTap: _onClearAllTap),
-        if (widget.showLoader)
-          _loader
-        else if (interactiveIcon != null)
+        if (widget.showLoader) _loader,
+        if (interactiveIcon != null)
           GestureDetector(
             onTap: widget.interactiveIconAction,
             child: Icon(interactiveIcon),
