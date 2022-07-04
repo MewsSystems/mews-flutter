@@ -8,14 +8,16 @@ final Story inputStory = Story(
   builder: (context) {
     final k = context.knobs;
     final indicativeIcon = k.options(
-      label: 'Indicative Icon',
+      label: 'Leading Icon',
+      description: 'Visual hint about this field',
       initial: null,
       options: exampleIcons,
     );
     final prefix = k.text(label: 'Prefix');
     final suffix = k.text(label: 'Suffix');
     final interactiveIcon = k.options(
-      label: 'Interactive Icon',
+      label: 'Tailing Icon',
+      description: 'Widget with some action for this particular field',
       initial: null,
       options: exampleIcons,
     );
