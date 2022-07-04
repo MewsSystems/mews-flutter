@@ -7,7 +7,7 @@ final Story inputStory = Story(
   name: 'Input',
   builder: (context) {
     final k = context.knobs;
-    final indicativeIcon = k.options(
+    final leadingIcon = k.options(
       label: 'Leading Icon',
       description: 'Visual hint about this field',
       initial: null,
@@ -15,7 +15,7 @@ final Story inputStory = Story(
     );
     final prefix = k.text(label: 'Prefix');
     final suffix = k.text(label: 'Suffix');
-    final interactiveIcon = k.options(
+    final tailingIcon = k.options(
       label: 'Tailing Icon',
       description: 'Widget with some action for this particular field',
       initial: null,
@@ -30,8 +30,8 @@ final Story inputStory = Story(
         isPasswordField: k.boolean(label: 'Password'),
         prefix: prefix.isNotEmpty ? Text(prefix) : null,
         suffix: suffix.isNotEmpty ? Text(suffix) : null,
-        leadingWidget: Icon(indicativeIcon),
-        tailingWidget: Icon(interactiveIcon),
+        leadingWidget: leadingIcon == null ? null : Icon(leadingIcon),
+        tailingWidget: tailingIcon == null ? null : Icon(tailingIcon),
         isClearEnabled: k.boolean(label: 'Clear all', initial: false),
         showLoader: k.boolean(label: 'Show loader', initial: false),
         size: k.options(
