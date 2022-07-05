@@ -45,7 +45,6 @@ class OptimusInputField extends StatefulWidget {
     this.prefix,
     this.leadingWidget,
     this.tailingWidget,
-    this.tailingWidgetOnTap,
     this.inputKey,
     this.fieldBoxKey,
     this.readOnly = false,
@@ -107,9 +106,8 @@ class OptimusInputField extends StatefulWidget {
   /// An optional text to display after the text.
   final Widget? suffix;
 
-  /// An optional icon/image with an attached action [tailingWidgetOnTap].
+  /// An optional tailing interactive icon/image.
   final Widget? tailingWidget;
-  final VoidCallback? tailingWidgetOnTap;
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
@@ -222,10 +220,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         if (widget.isPasswordField)
           _passwordButton
         else if (tailingWidget != null)
-          GestureDetector(
-            onTap: widget.tailingWidgetOnTap,
-            child: tailingWidget,
-          )
+          tailingWidget
       ],
     );
   }

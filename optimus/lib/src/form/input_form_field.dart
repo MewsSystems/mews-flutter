@@ -75,7 +75,6 @@ class OptimusInputFormField extends FormField<String> {
               prefix: prefix,
               suffix: suffix,
               tailingWidget: tailingWidget,
-              tailingWidgetOnTap: tailingWidgetOnTap,
               inputKey: inputKey,
               readOnly: readOnly,
               showCursor: showCursor,
