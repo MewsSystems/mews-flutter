@@ -29,7 +29,6 @@ class OptimusInputFormField extends FormField<String> {
     Widget? suffix,
     Widget? prefix,
     Widget? tailingWidget,
-    VoidCallback? tailingWidgetOnTap,
     Key? inputKey,
     bool readOnly = false,
     bool? showCursor,
