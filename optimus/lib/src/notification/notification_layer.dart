@@ -3,9 +3,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
-/// [OptimusNotificationsOverlay] is an overlay that wraps [child] inside a stack
-/// and will provide a method to show an in-app notification. The
-/// position of notifications is determined by parameters, similar to
+/// [OptimusNotificationsOverlay] is an overlay that wraps [child] inside a
+/// stack and provides a method to show an in-app notification.
+///
+/// The position of notifications is determined by parameters, similar to
 /// [Positioned], i.e. [left, top, right, bottom]. There are two possibilities
 /// for notification to slide in: [OptimusNotificationDirection.fromTop] and
 /// [OptimusNotificationDirection.fromBottom]. You can change the maximum
@@ -56,14 +57,14 @@ class _OptimusNotificationsOverlayState
     NotificationLink? link,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
   }) {
-    late NotificationModel notification;
+    late final NotificationModel notification;
 
-    final onDismissPress = onDismissed == null
+    final onDismissPressed = onDismissed == null
         ? null
         : () {
             _removeNotification(notification);
           };
-    final onLinkPress = link == null
+    final onLinkPressed = link == null
         ? null
         : () {
             link.onLinkPressed();
@@ -75,19 +76,16 @@ class _OptimusNotificationsOverlayState
       body: body,
       icon: icon,
       link: link?.linkText,
-      onLinkPressed: onLinkPress,
+      onLinkPressed: onLinkPressed,
       variant: variant,
       onNotificationDismissed: () {
         _handleNotificationDismiss(onDismissed: onDismissed);
       },
-      onDismissPressed: onDismissPress,
+      onDismissPressed: onDismissPressed,
     );
 
     if (_notifications.length < widget.maxVisible) {
-      _addNotification(
-        notification: notification,
-        index: _getNextIndex(),
-      );
+      _addNotification(notification: notification, index: _getNextIndex());
     } else {
       _queue.add(notification);
     }
@@ -97,10 +95,7 @@ class _OptimusNotificationsOverlayState
     required NotificationModel notification,
     int index = 0,
   }) {
-    _notifications.insert(
-      index,
-      notification,
-    );
+    _notifications.insert(index, notification);
     _listKey.currentState?.insertItem(index, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
       if (_notifications.contains(notification)) {
