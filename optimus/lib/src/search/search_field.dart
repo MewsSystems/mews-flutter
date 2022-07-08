@@ -20,8 +20,8 @@ class OptimusSearch<T> extends StatefulWidget {
     this.isEnabled = true,
     this.isRequired = false,
     required this.onChanged,
-    this.leadingWidget,
-    this.tailingWidget,
+    this.leading,
+    this.trailing,
     this.caption,
     this.secondaryCaption,
     this.error,
@@ -48,10 +48,10 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? secondaryCaption;
   final String? error;
   final OptimusWidgetSize size;
-  final Widget? leadingWidget;
+  final Widget? leading;
   final Widget? prefix;
   final Widget? suffix;
-  final Widget? tailingWidget;
+  final Widget? trailing;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
 
@@ -196,7 +196,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   Widget build(BuildContext context) => WillPopScope(
         onWillPop: _handleOnBackPressed,
         child: OptimusInputField(
-          leading: widget.leadingWidget,
+          leading: widget.leading,
           prefix: widget.prefix,
           controller: widget.controller,
           onChanged: widget.onTextChanged,
@@ -209,7 +209,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           suffix: widget.suffix,
           trailing: widget.isUpdating
               ? const OptimusProgressSpinner()
-              : widget.tailingWidget ?? const _Icon(),
+              : widget.trailing ?? const _Icon(),
           isEnabled: widget.isEnabled,
           caption: widget.caption,
           secondaryCaption: widget.secondaryCaption,
