@@ -177,11 +177,11 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         isEnabled: widget.enabled,
         keyboardType: TextInputType.number,
         controller: _effectiveController,
-        leadingWidget: NumberPickerButton(
+        leading: NumberPickerButton(
           iconData: OptimusIcons.minus_simple,
           onPressed: value == null || value > widget.min ? _onMinusTap : null,
         ),
-        tailingWidget: NumberPickerButton(
+        trailing: NumberPickerButton(
           iconData: OptimusIcons.plus_simple,
           onPressed: value == null || value < widget.max ? _onPlusTap : null,
         ),

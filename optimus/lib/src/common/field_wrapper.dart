@@ -157,19 +157,14 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
           ? theme.colors.neutral0t64
           : theme.colors.neutral1000t64;
 
-  Widget _getStyled(Widget widget) => DefaultTextStyle.merge(
-        style: preset100s.copyWith(color: theme.colors.neutral1000t32),
-        child: _Icon(child: widget),
-      );
-
   List<Widget> _buildChildren() {
     final prefix = widget.prefix;
     final suffix = widget.suffix;
 
     return <Widget>[
-      if (prefix != null) _getStyled(_PrefixPadding(child: prefix)),
+      if (prefix != null) _Styled(child: _PrefixPadding(child: prefix)),
       ...widget.children,
-      if (suffix != null) _getStyled(_SuffixPadding(child: suffix))
+      if (suffix != null) _Styled(child: _SuffixPadding(child: suffix))
     ];
   }
 }
@@ -226,4 +221,20 @@ class _PrefixPadding extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10),
         child: child,
       );
+}
+
+class _Styled extends StatelessWidget {
+  const _Styled({Key? key, required this.child}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return DefaultTextStyle.merge(
+      style: preset100s.copyWith(color: theme.colors.neutral1000t32),
+      child: _Icon(child: child),
+    );
+  }
 }

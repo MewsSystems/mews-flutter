@@ -15,8 +15,8 @@ final Story inputStory = Story(
     );
     final prefix = k.text(label: 'Prefix');
     final suffix = k.text(label: 'Suffix');
-    final tailingIcon = k.options(
-      label: 'Tailing Icon',
+    final trailingIcon = k.options(
+      label: 'Trailing Icon',
       description: 'Widget with some action for this particular field',
       initial: null,
       options: exampleIcons,
@@ -30,8 +30,8 @@ final Story inputStory = Story(
         isPasswordField: k.boolean(label: 'Password'),
         prefix: prefix.isNotEmpty ? Text(prefix) : null,
         suffix: suffix.isNotEmpty ? Text(suffix) : null,
-        leadingWidget: leadingIcon == null ? null : Icon(leadingIcon),
-        tailingWidget: tailingIcon == null ? null : Icon(tailingIcon),
+        leading: leadingIcon == null ? null : Icon(leadingIcon),
+        trailing: trailingIcon == null ? null : Icon(trailingIcon),
         isClearEnabled: k.boolean(label: 'Clear all', initial: false),
         showLoader: k.boolean(label: 'Show loader', initial: false),
         size: k.options(

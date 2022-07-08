@@ -90,7 +90,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
         error: widget.error,
         label: widget.label,
         isClearEnabled: _isClearVisible,
-        tailingWidget: GestureDetector(
+        trailing: GestureDetector(
           onTap: _showPickerDialog,
           child: Icon(
             OptimusIcons.calendar,

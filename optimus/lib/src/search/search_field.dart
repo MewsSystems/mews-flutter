@@ -196,7 +196,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
   Widget build(BuildContext context) => WillPopScope(
         onWillPop: _handleOnBackPressed,
         child: OptimusInputField(
-          leadingWidget: widget.leadingWidget,
+          leading: widget.leadingWidget,
           prefix: widget.prefix,
           controller: widget.controller,
           onChanged: widget.onTextChanged,
@@ -207,7 +207,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           focusNode: _effectiveFocusNode,
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.suffix,
-          tailingWidget: widget.isUpdating
+          trailing: widget.isUpdating
               ? const OptimusProgressSpinner()
               : widget.tailingWidget ?? const _Icon(),
           isEnabled: widget.isEnabled,
