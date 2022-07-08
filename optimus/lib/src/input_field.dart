@@ -85,7 +85,7 @@ class OptimusInputField extends StatefulWidget {
   /// An optional icon/image to display before the text.
   final Widget? leading;
 
-  /// An optional text to display before the text.
+  /// An optional text to display before the input.
   final Widget? prefix;
 
   final Key? inputKey;
