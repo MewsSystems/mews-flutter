@@ -4,18 +4,6 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 /// General input, used to allow users to enter data into the interface.
-///
-/// Most commonly found in form layouts as one of the most important form
-/// elements. Has a strict order of widgets:
-/// [leading] - leading icon or image. Should be non-interactive.
-/// [prefix] - styled text, displayed before the user input.
-/// <input> - field with the user input.
-/// [suffix] - styled text, displayed after the user input.
-/// <clearAllButton> - if [isClearEnabled] is true there will be a button for
-/// clearing the input.
-/// <passwordButton> or [trailing] - tailing image or icon that has some
-/// interactive functionality. If [isPasswordField] is true, passwordButton will
-/// be used instead of the [trailing].
 class OptimusInputField extends StatefulWidget {
   const OptimusInputField({
     Key? key,
@@ -106,7 +94,8 @@ class OptimusInputField extends StatefulWidget {
   /// An optional text to display after the text.
   final Widget? suffix;
 
-  /// An optional tailing interactive icon/image.
+  /// An optional tailing interactive icon/image. If [isPasswordField] is true,
+  /// [trailing] will be replaced with a [_PasswordButton].
   final Widget? trailing;
 
   /// {@macro flutter.widgets.editableText.readOnly}
@@ -165,24 +154,21 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     super.dispose();
   }
 
-  Widget? get _passwordButton => widget.isPasswordField
-      ? _PasswordButton(
-          onTap: () => setState(() {
-            _isShowPasswordEnabled = !_isShowPasswordEnabled;
-          }),
-          isShowPasswordEnabled: _isShowPasswordEnabled,
-        )
-      : null;
+  Widget? get _passwordButton {
+    if (widget.isPasswordField) {
+      return _PasswordButton(
+        onTap: () => setState(() {
+          _isShowPasswordEnabled = !_isShowPasswordEnabled;
+        }),
+        isShowPasswordEnabled: _isShowPasswordEnabled,
+      );
+    }
+  }
 
   Widget? get _clearAllButton {
     if (_shouldShowClearAllButton) {
       return _ClearAllButton(onTap: _onClearAllTap);
     }
-  }
-
-  void _onClearAllTap() {
-    _effectiveController.clear();
-    widget.onChanged?.call('');
   }
 
   Widget? get _prefix {
@@ -204,6 +190,11 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         clearAllButton: _clearAllButton,
       );
     }
+  }
+
+  void _onClearAllTap() {
+    _effectiveController.clear();
+    widget.onChanged?.call('');
   }
 
   bool get _shouldShowClearAllButton =>
