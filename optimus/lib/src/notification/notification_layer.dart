@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
@@ -219,21 +221,49 @@ class _AnimatedOptimusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FadeTransition(
         opacity: animation,
-        child: SlideTransition(
-          position: animation.drive(
-            direction.animation,
+        child: _NoClipSizeTransition(
+          sizeFactor: CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInQuart,
+            reverseCurve: Curves.easeOutQuart,
           ),
-          child: Center(
-            child: OptimusNotification(
-              title: model.title,
-              body: model.body,
-              link: model.link,
-              onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
-              variant: model.variant,
-              onDismissed: _onDismissed,
+          child: SlideTransition(
+            position: CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOutCubic,
+            ).drive(direction.animation),
+            child: Center(
+              child: OptimusNotification(
+                title: model.title,
+                body: model.body,
+                link: model.link,
+                onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
+                variant: model.variant,
+                onDismissed: _onDismissed,
+              ),
             ),
           ),
         ),
+      );
+}
+
+/// Similar to [ScaleTransition], but without clipping.
+class _NoClipSizeTransition extends AnimatedWidget {
+  const _NoClipSizeTransition({
+    Key? key,
+    required Animation<double> sizeFactor,
+    this.child,
+  }) : super(key: key, listenable: sizeFactor);
+
+  final Widget? child;
+
+  Animation<double> get sizeFactor => listenable as Animation<double>;
+
+  @override
+  Widget build(BuildContext context) => Align(
+        alignment: AlignmentDirectional.centerStart,
+        heightFactor: math.max(sizeFactor.value, 0.0),
+        child: child,
       );
 }
 
