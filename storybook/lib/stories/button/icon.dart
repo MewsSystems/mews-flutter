@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story iconButton = Story(
-  name: 'Button/Icon button',
+  name: 'General/Buttons/Icon button',
   builder: (context) {
     final k = context.knobs;
 

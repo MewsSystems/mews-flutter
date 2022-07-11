@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story stepBarStory = Story(
-  name: 'Step Bar',
+  name: 'Navigation/Step Bar',
   builder: (context) {
     final k = context.knobs;
 

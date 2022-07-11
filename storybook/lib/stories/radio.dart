@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story radioStory = Story(
-  name: 'Radio/Radio',
+  name: 'Forms/Radio/Radio',
   builder: (context) {
     final k = context.knobs;
     final size = k.options(
@@ -65,7 +65,7 @@ class _RadioExampleState extends State<RadioExample> {
 }
 
 final Story radioGroupStory = Story(
-  name: 'Radio/Radio group',
+  name: 'Forms/Radio/Radio group',
   builder: (context) {
     final k = context.knobs;
     final size = k.options(

@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final chatBubbleStory = Story(
-  name: 'Chat/Chat Bubble',
+  name: 'General/Chat/Chat Bubble',
   builder: (context) {
     final k = context.knobs;
     final message = OptimusMessage(

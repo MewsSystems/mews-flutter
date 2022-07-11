@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story selectInputStory = Story(
-  name: 'Select Input',
+  name: 'Forms/Select Input',
   builder: (context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
     child: SelectInputStory(context.knobs),
