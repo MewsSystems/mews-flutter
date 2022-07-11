@@ -20,22 +20,16 @@ class _CheckboxGroupStory extends StatefulWidget {
 }
 
 class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
-  Iterable<int> _checks = [1, 3];
-  bool? _isParentChecked;
-
   @override
   Widget build(BuildContext context) {
     final k = widget.knobs;
 
     return OptimusNestedCheckboxGroup<int>(
       parent: const Text('Checkbox Group 1'),
-      isParentChecked: _isParentChecked,
       label: k.text(label: 'Label', initial: 'Checkbox Group Label'),
       error: k.text(label: 'Error'),
-      onChildrenChanged: (values) => setState(() => _checks = values),
-      onParentChanged: (value) => setState(() => _isParentChecked = value),
       isEnabled: k.boolean(label: 'Enabled', initial: true),
-      values: _checks,
+      values: const [1, 3],
       items: const [
         OptimusGroupItem(label: Text('Checkbox 1'), value: 0),
         OptimusGroupItem(label: Text('Checkbox 2'), value: 1),
