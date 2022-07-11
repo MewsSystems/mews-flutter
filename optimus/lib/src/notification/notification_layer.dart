@@ -108,8 +108,7 @@ class _OptimusNotificationsOverlayState
       _notifications.removeAt(index);
       _listKey.currentState?.removeItem(
         index,
-        (context, animation) =>
-            _buildRemovedNotification(animation, model, index),
+        (context, animation) => _buildRemovedNotification(animation, model),
         duration: _leavingAnimationDuration,
       );
     }
@@ -127,7 +126,6 @@ class _OptimusNotificationsOverlayState
   _AnimatedOptimusWidget _buildRemovedNotification(
     Animation<double> animation,
     NotificationModel notification,
-    int index,
   ) {
     animation.addStatusListener(
       (status) {
@@ -141,7 +139,6 @@ class _OptimusNotificationsOverlayState
       animation: animation,
       model: notification,
       isOutgoing: true,
-      isLeading: index == 0,
       direction: widget.inDirection,
     );
   }
@@ -165,7 +162,6 @@ class _OptimusNotificationsOverlayState
                       _AnimatedOptimusWidget(
                     animation: animation,
                     model: _notifications[index],
-                    isLeading: index == 0,
                     direction: widget.inDirection,
                   ),
                 ),
@@ -205,14 +201,12 @@ class _AnimatedOptimusWidget extends StatelessWidget {
     Key? key,
     required this.animation,
     required this.model,
-    required this.isLeading,
     required this.direction,
     this.isOutgoing = false,
   }) : super(key: key);
 
   final Animation<double> animation;
   final NotificationModel model;
-  final bool isLeading;
   final OptimusIncomingDirection direction;
   final bool isOutgoing;
 
