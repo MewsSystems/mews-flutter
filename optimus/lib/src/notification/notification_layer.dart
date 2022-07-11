@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
@@ -8,8 +6,8 @@ import 'package:optimus/optimus.dart';
 ///
 /// The position of notifications is determined by parameters, similar to
 /// [Positioned], i.e. [left, top, right, bottom]. There are two possibilities
-/// for notification to slide in: [OptimusNotificationDirection.fromTop] and
-/// [OptimusNotificationDirection.fromBottom]. You can change the maximum
+/// for notification to slide in: [OptimusIncomingDirection.fromLeft] and
+/// [OptimusIncomingDirection.fromRight]. You can change the maximum
 /// visible count [maxVisible] when declaring the overlay. Notifications that
 /// could not be shown because of the [maxVisible] limit will be put into a
 /// queue and will be dispatched in the order they were added.
@@ -22,7 +20,7 @@ class OptimusNotificationsOverlay extends StatefulWidget {
     this.bottom,
     required this.child,
     this.maxVisible = _defaultMaxVisibleCount,
-    this.direction = OptimusNotificationDirection.fromTop,
+    this.inDirection = OptimusIncomingDirection.fromRight,
   }) : super(key: key);
 
   final double? left;
@@ -31,7 +29,7 @@ class OptimusNotificationsOverlay extends StatefulWidget {
   final double? bottom;
   final Widget child;
   final int maxVisible;
-  final OptimusNotificationDirection direction;
+  final OptimusIncomingDirection inDirection;
 
   static OptimusNotificationManager? of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<_OptimusNotificationData>()
@@ -85,7 +83,7 @@ class _OptimusNotificationsOverlayState
     );
 
     if (_notifications.length < widget.maxVisible) {
-      _addNotification(notification: notification, index: _getNextIndex());
+      _addNotification(notification: notification);
     } else {
       _queue.add(notification);
     }
@@ -121,7 +119,6 @@ class _OptimusNotificationsOverlayState
     if (_queue.isNotEmpty && _notifications.length < widget.maxVisible) {
       _addNotification(
         notification: _queue.removeAt(0),
-        index: _getNextIndex(),
       );
     }
     onDismissed?.call();
@@ -144,47 +141,38 @@ class _OptimusNotificationsOverlayState
       animation: animation,
       model: notification,
       isOutgoing: true,
-      isLeading: _isLeading(index),
-      direction: widget.direction,
+      isLeading: index == 0,
+      direction: widget.inDirection,
     );
   }
 
-  int _getNextIndex() =>
-      widget.direction == OptimusNotificationDirection.fromTop
-          ? 0
-          : _notifications.length;
-
-  bool _isLeading(int index) =>
-      (index == 0 &&
-          widget.direction == OptimusNotificationDirection.fromTop) ||
-      (index == _notifications.length - 1 &&
-          widget.direction == OptimusNotificationDirection.fromBottom);
-
   @override
-  Widget build(BuildContext context) => Stack(
-        children: [
-          _OptimusNotificationData(this, child: widget.child),
-          Positioned(
-            left: widget.left,
-            top: widget.top,
-            right: widget.right,
-            bottom: widget.bottom,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: _maxWidth),
-              child: AnimatedList(
-                key: _listKey,
-                shrinkWrap: true,
-                itemBuilder: (context, index, animation) =>
-                    _AnimatedOptimusWidget(
-                  animation: animation,
-                  model: _notifications[index],
-                  isLeading: _isLeading(index),
-                  direction: widget.direction,
+  Widget build(BuildContext context) => SafeArea(
+        child: Stack(
+          children: [
+            _OptimusNotificationData(this, child: widget.child),
+            Positioned(
+              left: widget.left,
+              top: widget.top,
+              right: widget.right,
+              bottom: widget.bottom,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: _maxWidth),
+                child: AnimatedList(
+                  key: _listKey,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index, animation) =>
+                      _AnimatedOptimusWidget(
+                    animation: animation,
+                    model: _notifications[index],
+                    isLeading: index == 0,
+                    direction: widget.inDirection,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }
 
@@ -225,7 +213,7 @@ class _AnimatedOptimusWidget extends StatelessWidget {
   final Animation<double> animation;
   final NotificationModel model;
   final bool isLeading;
-  final OptimusNotificationDirection direction;
+  final OptimusIncomingDirection direction;
   final bool isOutgoing;
 
   VoidCallback? get _onDismissed => !isOutgoing
@@ -234,20 +222,12 @@ class _AnimatedOptimusWidget extends StatelessWidget {
           ? null
           : () {};
 
-  Tween<Offset> get _animationTween {
-    switch (direction) {
-      case OptimusNotificationDirection.fromTop:
-        return Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero);
-      case OptimusNotificationDirection.fromBottom:
-        return Tween<Offset>(begin: const Offset(0.0, 1.0), end: Offset.zero);
-    }
-  }
-
-  Widget _buildNotificationWidget() => _NoClipSizeTransition(
-        sizeFactor: animation,
+  @override
+  Widget build(BuildContext context) => FadeTransition(
+        opacity: animation,
         child: SlideTransition(
           position: animation.drive(
-            _animationTween,
+            direction.animation,
           ),
           child: Center(
             child: OptimusNotification(
@@ -261,77 +241,21 @@ class _AnimatedOptimusWidget extends StatelessWidget {
           ),
         ),
       );
-
-  @override
-  Widget build(BuildContext context) => isLeading
-      ? _SafeAreaTransition(
-          padding: animation,
-          direction: direction,
-          child: _buildNotificationWidget(),
-        )
-      : _buildNotificationWidget();
-}
-
-/// Similar to [ScaleTransition], but without clipping.
-class _NoClipSizeTransition extends AnimatedWidget {
-  const _NoClipSizeTransition({
-    Key? key,
-    required Animation<double> sizeFactor,
-    this.child,
-  }) : super(key: key, listenable: sizeFactor);
-
-  final Widget? child;
-
-  Animation<double> get sizeFactor => listenable as Animation<double>;
-
-  @override
-  Widget build(BuildContext context) => Align(
-        alignment: AlignmentDirectional.centerStart,
-        heightFactor: math.max(sizeFactor.value, 0.0),
-        child: child,
-      );
-}
-
-/// Transition for a leading notification, so it will animate through the safe
-/// zone and will end up inside it. This transition is directing the padding
-/// from the opposite side as well, to make the whole animation smother.
-class _SafeAreaTransition extends AnimatedWidget {
-  const _SafeAreaTransition({
-    Key? key,
-    required Animation<double> padding,
-    required this.direction,
-    this.child,
-  }) : super(key: key, listenable: padding);
-
-  final Widget? child;
-  final OptimusNotificationDirection direction;
-
-  Animation<double> get padding => listenable as Animation<double>;
-
-  @override
-  Widget build(BuildContext context) {
-    final paddingFromSafeArea =
-        direction == OptimusNotificationDirection.fromTop
-            ? MediaQuery.of(context).padding.top
-            : MediaQuery.of(context).padding.bottom;
-    final paddingToNext = paddingFromSafeArea / 5 * (1 - padding.value);
-
-    return Padding(
-      padding: EdgeInsets.only(
-        top: direction == OptimusNotificationDirection.fromTop
-            ? paddingFromSafeArea
-            : paddingToNext,
-        bottom: direction == OptimusNotificationDirection.fromTop
-            ? paddingToNext
-            : paddingFromSafeArea,
-      ),
-      child: child,
-    );
-  }
 }
 
 /// The direction of the notification incoming animation.
-enum OptimusNotificationDirection { fromTop, fromBottom }
+enum OptimusIncomingDirection { fromLeft, fromRight }
+
+extension on OptimusIncomingDirection {
+  Tween<Offset> get animation {
+    switch (this) {
+      case OptimusIncomingDirection.fromLeft:
+        return Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero);
+      case OptimusIncomingDirection.fromRight:
+        return Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero);
+    }
+  }
+}
 
 /// The notification link with custom call-to-action.
 ///
