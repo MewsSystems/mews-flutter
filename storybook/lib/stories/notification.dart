@@ -32,6 +32,11 @@ class NotificationStory extends StatelessWidget {
       initial: OptimusIncomingDirection.fromRight,
       options: OptimusIncomingDirection.values.toOptions(),
     );
+    final stackOn = knobsBuilder.options(
+      label: 'Stack on:',
+      initial: OptimusStackingDirection.top,
+      options: OptimusStackingDirection.values.toOptions(),
+    );
 
     return OptimusNotificationsOverlay(
       left: position.left,
@@ -39,6 +44,7 @@ class NotificationStory extends StatelessWidget {
       right: position.right,
       bottom: position.bottom,
       inDirection: slideIn,
+      stackingDirection: stackOn,
       child: _NotificationStoryContent(
         title: title,
         body: body,

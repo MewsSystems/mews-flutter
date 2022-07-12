@@ -9,10 +9,14 @@ import 'package:optimus/optimus.dart';
 /// The position of notifications is determined by parameters, similar to
 /// [Positioned], i.e. [left, top, right, bottom]. There are two possibilities
 /// for notification to slide in: [OptimusIncomingDirection.fromLeft] and
-/// [OptimusIncomingDirection.fromRight]. You can change the maximum
-/// visible count [maxVisible] when declaring the overlay. Notifications that
-/// could not be shown because of the [maxVisible] limit will be put into a
-/// queue and will be dispatched in the order they were added.
+/// [OptimusIncomingDirection.fromRight]. You can change the order for stacking
+/// of new notifications by changing the initial [stackingDirection] to
+/// [OptimusStackingDirection.top] or [OptimusStackingDirection.bottom]. New
+/// notifications will be added to the top of the list by default.
+/// You can change the maximum visible count [maxVisible] when declaring the
+/// overlay. Notifications that could not be shown because of the [maxVisible]
+/// limit will be put into a queue and will be dispatched in the order they were
+/// added.
 class OptimusNotificationsOverlay extends StatefulWidget {
   const OptimusNotificationsOverlay({
     Key? key,
@@ -23,6 +27,7 @@ class OptimusNotificationsOverlay extends StatefulWidget {
     required this.child,
     this.maxVisible = _defaultMaxVisibleCount,
     this.inDirection = OptimusIncomingDirection.fromRight,
+    this.stackingDirection = OptimusStackingDirection.top,
   }) : super(key: key);
 
   final double? left;
@@ -32,6 +37,7 @@ class OptimusNotificationsOverlay extends StatefulWidget {
   final Widget child;
   final int maxVisible;
   final OptimusIncomingDirection inDirection;
+  final OptimusStackingDirection stackingDirection;
 
   static OptimusNotificationManager? of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<_OptimusNotificationData>()
@@ -160,6 +166,7 @@ class _OptimusNotificationsOverlayState
                 child: AnimatedList(
                   key: _listKey,
                   shrinkWrap: true,
+                  reverse: widget.stackingDirection.reverse,
                   itemBuilder: (context, index, animation) =>
                       _AnimatedOptimusWidget(
                     animation: animation,
@@ -224,8 +231,7 @@ class _AnimatedOptimusWidget extends StatelessWidget {
         child: _NoClipSizeTransition(
           sizeFactor: CurvedAnimation(
             parent: animation,
-            curve: Curves.easeInQuart,
-            reverseCurve: Curves.easeOutQuart,
+            curve: Curves.easeOutQuart,
           ),
           child: SlideTransition(
             position: CurvedAnimation(
@@ -270,6 +276,9 @@ class _NoClipSizeTransition extends AnimatedWidget {
 /// The direction of the notification incoming animation.
 enum OptimusIncomingDirection { fromLeft, fromRight }
 
+/// The direction where should we place new notification.
+enum OptimusStackingDirection { top, bottom }
+
 extension on OptimusIncomingDirection {
   Tween<Offset> get animation {
     switch (this) {
@@ -277,6 +286,17 @@ extension on OptimusIncomingDirection {
         return Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero);
       case OptimusIncomingDirection.fromRight:
         return Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero);
+    }
+  }
+}
+
+extension on OptimusStackingDirection {
+  bool get reverse {
+    switch (this) {
+      case OptimusStackingDirection.top:
+        return false;
+      case OptimusStackingDirection.bottom:
+        return true;
     }
   }
 }
