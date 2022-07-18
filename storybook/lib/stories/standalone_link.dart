@@ -10,15 +10,17 @@ final Story link = Story(
 
     return SingleChildScrollView(
       child: Column(
-        children: OptimusLinkSize.values
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: OptimusStandaloneLinkSize.values
             .map(
               (size) => Padding(
                 padding: const EdgeInsets.all(8),
                 child: OptimusStandaloneLink(
                   onPressed:
                       k.boolean(label: 'Enabled', initial: true) ? () {} : null,
-                  text: k.text(label: 'Text', initial: 'Link'),
+                  text: Text(k.text(label: 'Text', initial: 'Link')),
                   size: size,
+                  external: k.boolean(label: 'External', initial: false),
                   color: k.options(
                     label: 'Color',
                     initial: null,
@@ -34,6 +36,7 @@ final Story link = Story(
 );
 
 const _colors = [
+  Option(label: 'none', value: null),
   Option(label: 'black', value: OptimusLightColors.neutral1000),
   Option(label: 'green', value: OptimusLightColors.success),
   Option(label: 'red', value: OptimusLightColors.danger),
