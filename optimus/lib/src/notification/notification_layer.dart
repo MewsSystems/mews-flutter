@@ -116,34 +116,6 @@ class _OptimusNotificationsOverlayState
     onDismissed?.call();
   }
 
-  _IncomingDirection get _direction => widget.position.incomingDirection;
-
-  bool get _reverse => widget.position.stackingDirection.reverse;
-
-  double? _left(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-        return widget.position.leftCompact;
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return widget.position.left;
-    }
-  }
-
-  double? _right(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-        return widget.position.rightCompact;
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return widget.position.right;
-    }
-  }
-
   _AnimatedNotification _buildRemovedNotification(
     Animation<double> animation,
     _NotificationModel notification,
@@ -160,38 +132,43 @@ class _OptimusNotificationsOverlayState
       animation: animation,
       model: notification,
       isOutgoing: true,
-      direction: _direction,
+      slideTween: widget.position.slideTween,
     );
   }
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Stack(
-          children: [
-            _OptimusNotificationData(this, child: widget.child),
-            Positioned(
-              left: _left(context),
-              top: widget.position.top,
-              right: _right(context),
-              bottom: widget.position.bottom,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: _maxWidth),
-                child: AnimatedList(
-                  key: _listKey,
-                  shrinkWrap: true,
-                  reverse: _reverse,
-                  itemBuilder: (context, index, animation) =>
-                      _AnimatedNotification(
-                    animation: animation,
-                    model: _notifications[index],
-                    direction: _direction,
-                  ),
+  Widget build(BuildContext context) {
+    final isCompact = MediaQuery.of(context).screenBreakpoint.index <=
+        Breakpoint.medium.index;
+
+    return SafeArea(
+      child: Stack(
+        children: [
+          _OptimusNotificationData(this, child: widget.child),
+          Positioned(
+            left: widget.position.left(isCompact),
+            top: widget.position.top(isCompact),
+            right: widget.position.right(isCompact),
+            bottom: widget.position.bottom(isCompact),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: _maxWidth),
+              child: AnimatedList(
+                key: _listKey,
+                shrinkWrap: true,
+                reverse: widget.position.reverse,
+                itemBuilder: (context, index, animation) =>
+                    _AnimatedNotification(
+                  animation: animation,
+                  model: _notifications[index],
+                  slideTween: widget.position.slideTween,
                 ),
               ),
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 abstract class OptimusNotificationManager {
@@ -223,13 +200,13 @@ class _AnimatedNotification extends StatelessWidget {
     Key? key,
     required this.animation,
     required this.model,
-    required this.direction,
+    required this.slideTween,
     this.isOutgoing = false,
   }) : super(key: key);
 
   final Animation<double> animation;
   final _NotificationModel model;
-  final _IncomingDirection direction;
+  final Tween<Offset> slideTween;
   final bool isOutgoing;
 
   VoidCallback? get _onDismissed => !isOutgoing
@@ -250,7 +227,7 @@ class _AnimatedNotification extends StatelessWidget {
             position: CurvedAnimation(
               parent: animation,
               curve: Curves.easeInOutCubic,
-            ).drive(direction.animation),
+            ).drive(slideTween),
             child: Center(
               child: OptimusNotification(
                 title: model.title,
@@ -289,119 +266,69 @@ class _NoClipSizeTransition extends AnimatedWidget {
 /// The position of the notifications.
 enum OptimusNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
 
-/// The direction of the notification incoming animation.
-enum _IncomingDirection { fromLeft, fromRight }
-
-/// The direction where should we place new notification.
-enum _StackingDirection { top, bottom }
-
 extension on OptimusNotificationPosition {
-  double? get left {
+  double? left(bool isCompact) {
     switch (this) {
       case OptimusNotificationPosition.bottomLeft:
       case OptimusNotificationPosition.topLeft:
-        return spacing200;
+        return isCompact ? spacing100 : spacing200;
       case OptimusNotificationPosition.topRight:
       case OptimusNotificationPosition.bottomRight:
-        return null;
+        return isCompact ? spacing100 : null;
     }
   }
 
-  double? get leftCompact {
-    switch (this) {
-      case OptimusNotificationPosition.bottomLeft:
-      case OptimusNotificationPosition.topLeft:
-        return spacing100;
-      case OptimusNotificationPosition.topRight:
-      case OptimusNotificationPosition.bottomRight:
-        return spacing100;
-    }
-  }
-
-  double? get top {
+  double? top(bool isCompact) {
     switch (this) {
       case OptimusNotificationPosition.topLeft:
       case OptimusNotificationPosition.topRight:
-        return spacing100;
+        return isCompact ? spacing100 : spacing200;
       case OptimusNotificationPosition.bottomRight:
       case OptimusNotificationPosition.bottomLeft:
         return null;
     }
   }
 
-  double? get right {
+  double? right(bool isCompact) {
     switch (this) {
       case OptimusNotificationPosition.bottomRight:
       case OptimusNotificationPosition.topRight:
-        return spacing200;
+        return isCompact ? spacing100 : spacing200;
       case OptimusNotificationPosition.topLeft:
       case OptimusNotificationPosition.bottomLeft:
-        return null;
+        return isCompact ? spacing100 : null;
     }
   }
 
-  double? get rightCompact {
+  double? bottom(bool isCompact) {
     switch (this) {
-      case OptimusNotificationPosition.bottomRight:
-      case OptimusNotificationPosition.topRight:
-        return spacing100;
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.bottomLeft:
-        return spacing100;
-    }
-  }
-
-  double? get bottom {
-    switch (this) {
-      case OptimusNotificationPosition.bottomRight:
-      case OptimusNotificationPosition.bottomLeft:
-        return spacing100;
       case OptimusNotificationPosition.topLeft:
       case OptimusNotificationPosition.topRight:
         return null;
+      case OptimusNotificationPosition.bottomRight:
+      case OptimusNotificationPosition.bottomLeft:
+        return isCompact ? spacing100 : spacing200;
     }
   }
 
-  _IncomingDirection get incomingDirection {
+  Tween<Offset> get slideTween {
     switch (this) {
       case OptimusNotificationPosition.topLeft:
       case OptimusNotificationPosition.bottomLeft:
-        return _IncomingDirection.fromLeft;
-      case OptimusNotificationPosition.topRight:
-      case OptimusNotificationPosition.bottomRight:
-        return _IncomingDirection.fromRight;
-    }
-  }
-
-  _StackingDirection get stackingDirection {
-    switch (this) {
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.topRight:
-        return _StackingDirection.top;
-      case OptimusNotificationPosition.bottomLeft:
-      case OptimusNotificationPosition.bottomRight:
-        return _StackingDirection.bottom;
-    }
-  }
-}
-
-extension on _IncomingDirection {
-  Tween<Offset> get animation {
-    switch (this) {
-      case _IncomingDirection.fromLeft:
         return Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero);
-      case _IncomingDirection.fromRight:
+      case OptimusNotificationPosition.topRight:
+      case OptimusNotificationPosition.bottomRight:
         return Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero);
     }
   }
-}
 
-extension on _StackingDirection {
   bool get reverse {
     switch (this) {
-      case _StackingDirection.top:
+      case OptimusNotificationPosition.topLeft:
+      case OptimusNotificationPosition.topRight:
         return false;
-      case _StackingDirection.bottom:
+      case OptimusNotificationPosition.bottomLeft:
+      case OptimusNotificationPosition.bottomRight:
         return true;
     }
   }
