@@ -50,8 +50,8 @@ class OptimusNotificationsOverlay extends StatefulWidget {
 class _OptimusNotificationsOverlayState
     extends State<OptimusNotificationsOverlay>
     implements OptimusNotificationManager {
-  final List<NotificationModel> _notifications = [];
-  final List<NotificationModel> _queue = [];
+  final List<_NotificationModel> _notifications = [];
+  final List<_NotificationModel> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
@@ -63,7 +63,7 @@ class _OptimusNotificationsOverlayState
     NotificationLink? link,
     OptimusNotificationVariant variant = OptimusNotificationVariant.info,
   }) {
-    late final NotificationModel notification;
+    late final _NotificationModel notification;
 
     final onDismissPressed = onDismissed == null
         ? null
@@ -77,7 +77,7 @@ class _OptimusNotificationsOverlayState
             _removeNotification(notification);
           };
 
-    notification = NotificationModel(
+    notification = _NotificationModel(
       title: title,
       body: body,
       icon: icon,
@@ -98,7 +98,7 @@ class _OptimusNotificationsOverlayState
   }
 
   void _addNotification({
-    required NotificationModel notification,
+    required _NotificationModel notification,
     int index = 0,
   }) {
     _notifications.insert(index, notification);
@@ -110,7 +110,7 @@ class _OptimusNotificationsOverlayState
     });
   }
 
-  void _removeNotification(NotificationModel model) {
+  void _removeNotification(_NotificationModel model) {
     final index = _notifications.indexOf(model);
     if (index != -1) {
       _notifications.removeAt(index);
@@ -133,7 +133,7 @@ class _OptimusNotificationsOverlayState
 
   _AnimatedOptimusWidget _buildRemovedNotification(
     Animation<double> animation,
-    NotificationModel notification,
+    _NotificationModel notification,
   ) {
     animation.addStatusListener(
       (status) {
@@ -215,7 +215,7 @@ class _AnimatedOptimusWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Animation<double> animation;
-  final NotificationModel model;
+  final _NotificationModel model;
   final OptimusIncomingDirection direction;
   final bool isOutgoing;
 
@@ -313,8 +313,8 @@ class NotificationLink {
 }
 
 /// Data representation for a particular notification.
-class NotificationModel {
-  NotificationModel({
+class _NotificationModel {
+  _NotificationModel({
     required this.title,
     this.body,
     this.icon,
