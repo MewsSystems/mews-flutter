@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final avatarStory = Story(
-  name: 'Avatar',
+  name: 'Media And Icons/Avatar',
   builder: (_) => const OptimusStack(
     direction: Axis.horizontal,
     mainAxisSize: MainAxisSize.min,

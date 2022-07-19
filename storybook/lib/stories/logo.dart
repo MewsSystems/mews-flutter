@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story logoStory = Story(
-  name: 'Logo',
+  name: 'General/Logo',
   builder: (context) {
     final knobs = context.knobs;
     final variant = knobs.options(

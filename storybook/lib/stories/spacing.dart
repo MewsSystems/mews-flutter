@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story spacingStory = Story(
-  name: 'Spacing',
+  name: 'Structure/Spacing',
   builder: (_) => SingleChildScrollView(
     child: Column(
       children: [
