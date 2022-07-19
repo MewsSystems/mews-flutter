@@ -332,8 +332,8 @@ class _Suffix extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (suffixWidget != null) suffixWidget,
-        if (clearAllButtonWidget != null) clearAllButtonWidget,
         if (showLoader) _loader,
+        if (clearAllButtonWidget != null) clearAllButtonWidget,
         if (passwordButtonWidget != null)
           passwordButtonWidget
         else if (trailingWidget != null)
