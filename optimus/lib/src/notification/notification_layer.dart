@@ -6,13 +6,11 @@ import 'package:optimus/optimus.dart';
 /// [OptimusNotificationsOverlay] is an overlay that wraps [child] inside a
 /// stack and provides a method to show an in-app notification.
 ///
-/// The position of notifications is determined by parameters, similar to
-/// [Positioned], i.e. [left, top, right, bottom]. There are two possibilities
-/// for notification to slide in: [OptimusIncomingDirection.fromLeft] and
-/// [OptimusIncomingDirection.fromRight]. You can change the order for stacking
-/// of new notifications by changing the initial [stackingDirection] to
-/// [OptimusStackingDirection.top] or [OptimusStackingDirection.bottom]. New
-/// notifications will be added to the top of the list by default.
+/// The position of notifications is determined by [OptimusNotificationPosition]
+/// and by default is set to [OptimusNotificationPosition.topRight]. Each
+/// [OptimusNotificationPosition] has a predefined [OptimusIncomingDirection]
+/// and [OptimusStackingDirection] suitable for that position. You can override
+/// them by setting a custom [incomingDirection] and [stackingDirection].
 /// You can change the maximum visible count [maxVisible] when declaring the
 /// overlay. Notifications that could not be shown because of the [maxVisible]
 /// limit will be put into a queue and will be dispatched in the order they were
@@ -20,24 +18,18 @@ import 'package:optimus/optimus.dart';
 class OptimusNotificationsOverlay extends StatefulWidget {
   const OptimusNotificationsOverlay({
     Key? key,
-    this.left,
-    this.top,
-    this.right,
-    this.bottom,
     required this.child,
+    this.incomingDirection,
+    this.stackingDirection,
     this.maxVisible = _defaultMaxVisibleCount,
-    this.inDirection = OptimusIncomingDirection.fromRight,
-    this.stackingDirection = OptimusStackingDirection.top,
+    this.position = OptimusNotificationPosition.topRight,
   }) : super(key: key);
 
-  final double? left;
-  final double? top;
-  final double? right;
-  final double? bottom;
+  final OptimusNotificationPosition position;
   final Widget child;
   final int maxVisible;
-  final OptimusIncomingDirection inDirection;
-  final OptimusStackingDirection stackingDirection;
+  final OptimusIncomingDirection? incomingDirection;
+  final OptimusStackingDirection? stackingDirection;
 
   static OptimusNotificationManager? of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<_OptimusNotificationData>()
@@ -131,7 +123,14 @@ class _OptimusNotificationsOverlayState
     onDismissed?.call();
   }
 
-  _AnimatedOptimusWidget _buildRemovedNotification(
+  OptimusIncomingDirection get _direction =>
+      widget.incomingDirection ?? widget.position.incomingDirection;
+
+  bool get _reverse =>
+      widget.stackingDirection?.reverse ??
+      widget.position.stackingDirection.reverse;
+
+  _AnimatedNotification _buildRemovedNotification(
     Animation<double> animation,
     _NotificationModel notification,
   ) {
@@ -143,11 +142,11 @@ class _OptimusNotificationsOverlayState
       },
     );
 
-    return _AnimatedOptimusWidget(
+    return _AnimatedNotification(
       animation: animation,
       model: notification,
       isOutgoing: true,
-      direction: widget.inDirection,
+      direction: _direction,
     );
   }
 
@@ -157,21 +156,21 @@ class _OptimusNotificationsOverlayState
           children: [
             _OptimusNotificationData(this, child: widget.child),
             Positioned(
-              left: widget.left,
-              top: widget.top,
-              right: widget.right,
-              bottom: widget.bottom,
+              left: widget.position.left,
+              top: widget.position.top,
+              right: widget.position.right,
+              bottom: widget.position.bottom,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: _maxWidth),
                 child: AnimatedList(
                   key: _listKey,
                   shrinkWrap: true,
-                  reverse: widget.stackingDirection.reverse,
+                  reverse: _reverse,
                   itemBuilder: (context, index, animation) =>
-                      _AnimatedOptimusWidget(
+                      _AnimatedNotification(
                     animation: animation,
                     model: _notifications[index],
-                    direction: widget.inDirection,
+                    direction: _direction,
                   ),
                 ),
               ),
@@ -205,8 +204,8 @@ class _OptimusNotificationData extends InheritedWidget {
   bool updateShouldNotify(_OptimusNotificationData oldWidget) => false;
 }
 
-class _AnimatedOptimusWidget extends StatelessWidget {
-  const _AnimatedOptimusWidget({
+class _AnimatedNotification extends StatelessWidget {
+  const _AnimatedNotification({
     Key? key,
     required this.animation,
     required this.model,
@@ -273,11 +272,82 @@ class _NoClipSizeTransition extends AnimatedWidget {
       );
 }
 
+/// The position of the notifications.
+enum OptimusNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
+
 /// The direction of the notification incoming animation.
 enum OptimusIncomingDirection { fromLeft, fromRight }
 
 /// The direction where should we place new notification.
 enum OptimusStackingDirection { top, bottom }
+
+extension on OptimusNotificationPosition {
+  double? get left {
+    switch (this) {
+      case OptimusNotificationPosition.bottomLeft:
+      case OptimusNotificationPosition.topLeft:
+        return spacing100;
+      case OptimusNotificationPosition.topRight:
+      case OptimusNotificationPosition.bottomRight:
+        return null;
+    }
+  }
+
+  double? get top {
+    switch (this) {
+      case OptimusNotificationPosition.topLeft:
+      case OptimusNotificationPosition.topRight:
+        return spacing100;
+      case OptimusNotificationPosition.bottomRight:
+      case OptimusNotificationPosition.bottomLeft:
+        return null;
+    }
+  }
+
+  double? get right {
+    switch (this) {
+      case OptimusNotificationPosition.bottomRight:
+      case OptimusNotificationPosition.topRight:
+        return spacing100;
+      case OptimusNotificationPosition.topLeft:
+      case OptimusNotificationPosition.bottomLeft:
+        return null;
+    }
+  }
+
+  double? get bottom {
+    switch (this) {
+      case OptimusNotificationPosition.bottomRight:
+      case OptimusNotificationPosition.bottomLeft:
+        return spacing100;
+      case OptimusNotificationPosition.topLeft:
+      case OptimusNotificationPosition.topRight:
+        return null;
+    }
+  }
+
+  OptimusIncomingDirection get incomingDirection {
+    switch (this) {
+      case OptimusNotificationPosition.topLeft:
+      case OptimusNotificationPosition.bottomLeft:
+        return OptimusIncomingDirection.fromLeft;
+      case OptimusNotificationPosition.topRight:
+      case OptimusNotificationPosition.bottomRight:
+        return OptimusIncomingDirection.fromRight;
+    }
+  }
+
+  OptimusStackingDirection get stackingDirection {
+    switch (this) {
+      case OptimusNotificationPosition.topLeft:
+      case OptimusNotificationPosition.topRight:
+        return OptimusStackingDirection.top;
+      case OptimusNotificationPosition.bottomLeft:
+      case OptimusNotificationPosition.bottomRight:
+        return OptimusStackingDirection.bottom;
+    }
+  }
+}
 
 extension on OptimusIncomingDirection {
   Tween<Offset> get animation {

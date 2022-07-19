@@ -24,26 +24,23 @@ class NotificationStory extends StatelessWidget {
     final dismissible = knobsBuilder.boolean(label: 'Is Dismissible');
     final position = knobsBuilder.options(
       label: 'Position',
-      initial: _NotificationPosition.topRight,
-      options: _NotificationPosition.values.toOptions(),
+      initial: OptimusNotificationPosition.topRight,
+      options: OptimusNotificationPosition.values.toOptions(),
     );
     final slideIn = knobsBuilder.options(
       label: 'Slide-in from:',
-      initial: OptimusIncomingDirection.fromRight,
-      options: OptimusIncomingDirection.values.toOptions(),
+      initial: null,
+      options: _incomingOptions,
     );
     final stackOn = knobsBuilder.options(
       label: 'Stack on:',
-      initial: OptimusStackingDirection.top,
-      options: OptimusStackingDirection.values.toOptions(),
+      initial: null,
+      options: _stackOptions,
     );
 
     return OptimusNotificationsOverlay(
-      left: position.left,
-      top: position.top,
-      right: position.right,
-      bottom: position.bottom,
-      inDirection: slideIn,
+      position: position,
+      incomingDirection: slideIn,
       stackingDirection: stackOn,
       child: _NotificationStoryContent(
         title: title,
@@ -108,50 +105,12 @@ class _NotificationStoryContent extends StatelessWidget {
       );
 }
 
-enum _NotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
+final List<Option<OptimusStackingDirection?>> _stackOptions = [
+  const Option(label: 'default', value: null),
+  ...OptimusStackingDirection.values.toOptions(),
+];
 
-extension on _NotificationPosition {
-  double? get left {
-    switch (this) {
-      case _NotificationPosition.bottomLeft:
-      case _NotificationPosition.topLeft:
-        return spacing100;
-      case _NotificationPosition.topRight:
-      case _NotificationPosition.bottomRight:
-        return null;
-    }
-  }
-
-  double? get top {
-    switch (this) {
-      case _NotificationPosition.topLeft:
-      case _NotificationPosition.topRight:
-        return spacing100;
-      case _NotificationPosition.bottomRight:
-      case _NotificationPosition.bottomLeft:
-        return null;
-    }
-  }
-
-  double? get right {
-    switch (this) {
-      case _NotificationPosition.bottomRight:
-      case _NotificationPosition.topRight:
-        return spacing100;
-      case _NotificationPosition.topLeft:
-      case _NotificationPosition.bottomLeft:
-        return null;
-    }
-  }
-
-  double? get bottom {
-    switch (this) {
-      case _NotificationPosition.bottomRight:
-      case _NotificationPosition.bottomLeft:
-        return spacing100;
-      case _NotificationPosition.topLeft:
-      case _NotificationPosition.topRight:
-        return null;
-    }
-  }
-}
+final List<Option<OptimusIncomingDirection?>> _incomingOptions = [
+  const Option(label: 'default', value: null),
+  ...OptimusIncomingDirection.values.toOptions(),
+];
