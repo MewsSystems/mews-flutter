@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story notificationStory = Story(
-  name: 'Notification',
+  name: 'Feedback/Notification',
   builder: (context) => NotificationStory(
     knobsBuilder: context.knobs,
   ),

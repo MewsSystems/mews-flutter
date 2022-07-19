@@ -211,55 +211,59 @@ class _NotificationContent extends StatelessWidget {
         borderRadius: BorderRadius.all(borderRadius50),
         boxShadow: elevation50,
       ),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            DecoratedBox(
+      child: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            bottom: 0,
+            top: 0,
+            width: _leadingSectionWidth,
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 color: variant.getBannerColor(theme),
                 borderRadius:
                     const BorderRadius.horizontal(left: borderRadius50),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _LeadingIcon(icon: icon, variant: variant),
-                ],
-              ),
+              child: _LeadingIcon(icon: icon, variant: variant),
             ),
-            Expanded(
-              child: Container(
-                padding: _contentPadding,
-                decoration: BoxDecoration(
-                  color: theme.colors.neutral0,
-                  borderRadius: const BorderRadius.horizontal(
-                    right: borderRadius50,
+          ),
+          Row(
+            children: [
+              const SizedBox(width: _leadingSectionWidth),
+              Expanded(
+                child: Container(
+                  padding: _contentPadding,
+                  decoration: BoxDecoration(
+                    color: theme.colors.neutral0,
+                    borderRadius: const BorderRadius.horizontal(
+                      right: borderRadius50,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _NotificationTitle(title),
+                      if (body != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: spacing50),
+                          child: _NotificationBody(body),
+                        ),
+                      if (link != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: spacing50),
+                          child: GestureDetector(
+                            onTap: onLinkPressed,
+                            child: _NotificationLink(link),
+                          ),
+                        )
+                    ],
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _NotificationTitle(title),
-                    if (body != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: spacing50),
-                        child: _NotificationBody(body),
-                      ),
-                    if (link != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: spacing50),
-                        child: GestureDetector(
-                          onTap: onLinkPressed,
-                          child: _NotificationLink(link),
-                        ),
-                      )
-                  ],
-                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          )
+        ],
       ),
     );
   }
@@ -367,3 +371,4 @@ const double _iconSize = 20;
 const double _iconHorizontalPadding = 10;
 const int _maxLinesBody = 5;
 const int _maxLinesLink = 1;
+const double _leadingSectionWidth = _iconSize + _iconHorizontalPadding * 2;
