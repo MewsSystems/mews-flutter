@@ -27,21 +27,9 @@ class NotificationStory extends StatelessWidget {
       initial: OptimusNotificationPosition.topRight,
       options: OptimusNotificationPosition.values.toOptions(),
     );
-    final slideIn = knobsBuilder.options(
-      label: 'Slide-in from:',
-      initial: null,
-      options: _incomingOptions,
-    );
-    final stackOn = knobsBuilder.options(
-      label: 'Stack on:',
-      initial: null,
-      options: _stackOptions,
-    );
 
     return OptimusNotificationsOverlay(
       position: position,
-      incomingDirection: slideIn,
-      stackingDirection: stackOn,
       child: _NotificationStoryContent(
         title: title,
         body: body,
@@ -104,13 +92,3 @@ class _NotificationStoryContent extends StatelessWidget {
         ),
       );
 }
-
-final List<Option<OptimusStackingDirection?>> _stackOptions = [
-  const Option(label: 'default', value: null),
-  ...OptimusStackingDirection.values.toOptions(),
-];
-
-final List<Option<OptimusIncomingDirection?>> _incomingOptions = [
-  const Option(label: 'default', value: null),
-  ...OptimusIncomingDirection.values.toOptions(),
-];
