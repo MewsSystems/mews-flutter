@@ -3,7 +3,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story iconListStory = Story(
-  name: 'Icons/Icon list',
+  name: 'Media And Icons/Icons/Icon list',
   builder: (context) => OptimusIconList(
     items: _items,
     listSize: context.knobs.options(

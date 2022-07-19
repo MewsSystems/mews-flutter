@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story checkboxGroup = Story(
-  name: 'Checkbox/Checkbox Group',
+  name: 'Forms/Checkbox/Checkbox Group',
   builder: (context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
     child: _CheckboxGroupStory(context.knobs),

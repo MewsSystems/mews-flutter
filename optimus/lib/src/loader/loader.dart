@@ -89,7 +89,7 @@ class OptimusCircleLoader extends StatelessWidget {
       case OptimusCircleLoaderAppearance.normal:
         return theme.colors.neutral50;
       case OptimusCircleLoaderAppearance.contrast:
-        return theme.colors.neutral1000t32;
+        return theme.colors.neutral0t32;
     }
   }
 
