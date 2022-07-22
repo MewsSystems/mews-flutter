@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story notificationStory = Story(
-  name: 'Notification',
+  name: 'Feedback/Notification',
   builder: (context) {
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');

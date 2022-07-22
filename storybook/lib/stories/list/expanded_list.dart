@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story expandedListTileStory = Story(
-  name: 'List/Expanded list tile',
+  name: 'General/List/Expanded list tile',
   builder: (context) {
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');

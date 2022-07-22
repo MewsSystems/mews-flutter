@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story checkbox = Story(
-  name: 'Checkbox/Checkbox',
+  name: 'Forms/Checkbox/Checkbox',
   builder: (context) => _CheckboxStory(context.knobs),
 );
 
