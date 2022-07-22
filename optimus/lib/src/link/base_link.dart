@@ -49,10 +49,13 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
   Color get _color =>
       widget.color ??
       (widget.inherit
-          ? theme.colors.neutral1000
+          ? _inheritedColor
           : _isTappedDown
               ? theme.colors.primary700
               : theme.colors.primary500);
+
+  Color get _inheritedColor =>
+      widget.textStyle.color ?? theme.colors.neutral1000;
 
   @override
   Widget build(BuildContext context) {

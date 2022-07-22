@@ -23,7 +23,7 @@ class OptimusInlineLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BaseLink(
         text: text,
-        textStyle: textStyle,
+        textStyle: textStyle.copyWith(fontWeight: FontWeight.w600),
         color: color,
         inherit: inherit,
         onPressed: onPressed,
