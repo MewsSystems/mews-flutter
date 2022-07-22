@@ -14,6 +14,12 @@ enum OptimusStandaloneLinkSize {
   normal,
 }
 
+/// A link widget that is used to display a link on its own, not a part of the
+/// body of the text. Can be paired with an icon if it links somewhere external.
+///
+/// Links as interactive elements should always be used sparingly and with
+/// consideration. Too many can easily clutter a page and make it difficult for
+/// the user to understand the hierarchy and structure.
 class OptimusStandaloneLink extends StatelessWidget {
   const OptimusStandaloneLink({
     Key? key,
@@ -26,12 +32,27 @@ class OptimusStandaloneLink extends StatelessWidget {
     this.external = false,
   }) : super(key: key);
 
+  /// Called when link is tapped.
+  ///
+  /// If this callback is null, then the button will be disabled.
   final VoidCallback? onPressed;
+
+  /// Controls the link's text
   final Widget text;
+
+  /// Controls the link's size
   final OptimusStandaloneLinkSize size;
+
+  /// Controls the link's color
   final Color? color;
+
+  /// Controls if link should inherit parent style
   final bool inherit;
+
+  /// Controls if link is external and icon should be displayed
   final bool external;
+
+  /// Controls the link's text overflowing
   final TextOverflow? overflow;
 
   Widget? get _icon => external

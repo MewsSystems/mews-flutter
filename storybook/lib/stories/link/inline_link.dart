@@ -35,7 +35,7 @@ final Story inlineLink = Story(
               textStyle: style,
             ),
             Text(
-              ' can be inserted in text. ',
+              ' could be used inside text.',
               style: style,
             )
           ],
