@@ -14,7 +14,7 @@ class OptimusInlineLink extends StatelessWidget {
   const OptimusInlineLink({
     Key? key,
     required this.text,
-    required this.textStyle,
+    this.textStyle,
     this.onPressed,
     this.overflow,
     this.inherit = false,
@@ -35,12 +35,15 @@ class OptimusInlineLink extends StatelessWidget {
   final TextOverflow? overflow;
 
   /// Custom text style for the link.
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
+
+  TextStyle _textStyle(BuildContext context) =>
+      textStyle ?? DefaultTextStyle.of(context).style;
 
   @override
   Widget build(BuildContext context) => BaseLink(
         text: text,
-        textStyle: textStyle.copyWith(fontWeight: FontWeight.w600),
+        textStyle: _textStyle(context).copyWith(fontWeight: FontWeight.w600),
         inherit: inherit,
         onPressed: onPressed,
         overflow: overflow,

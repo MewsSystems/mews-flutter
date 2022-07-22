@@ -32,7 +32,7 @@ final Story inlineLink = Story(
               text: const Text('Link'),
               inherit: inherit,
               onPressed: onPressed,
-              textStyle: style,
+              textStyle: inherit ? style : null,
             ),
             Text(
               ' could be used inside text.',
