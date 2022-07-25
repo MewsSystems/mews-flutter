@@ -80,10 +80,19 @@ class OptimusNotification extends StatelessWidget {
               title: title,
               body: body,
               link: link,
-              onLinkPressed: onLinkPressed,
+              onLinkPressed: () {
+                onLinkPressed?.call();
+                OptimusNotificationsOverlay.of(context)?.remove(this);
+              },
               dismissible: isDismissible,
             ),
-            if (isDismissible) _NotificationCloseButton(onDismissed: dismiss)
+            if (isDismissible)
+              _NotificationCloseButton(
+                onDismissed: () {
+                  dismiss.call();
+                  OptimusNotificationsOverlay.of(context)?.remove(this);
+                },
+              )
           ],
         ),
       ),

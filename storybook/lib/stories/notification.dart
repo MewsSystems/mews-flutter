@@ -74,15 +74,13 @@ class _NotificationStoryContent extends StatelessWidget {
               OptimusButton(
                 onPressed: () {
                   OptimusNotificationsOverlay.of(context)?.show(
-                    title: Text(title),
-                    body: body.isNotEmpty ? Text(body) : null,
-                    link: link.isNotEmpty
-                        ? NotificationLink(
-                            linkText: Text(link),
-                            onLinkPressed: () {},
-                          )
-                        : null,
-                    onDismissed: dismissible ? () {} : null,
+                    OptimusNotification(
+                      title: Text(title),
+                      body: body.isNotEmpty ? Text(body) : null,
+                      link: link.isNotEmpty ? Text(link) : null,
+                      onLinkPressed: link.isNotEmpty ? (() {}) : null,
+                      onDismissed: dismissible ? () {} : null,
+                    ),
                   );
                 },
                 child: const Text('Show notification'),

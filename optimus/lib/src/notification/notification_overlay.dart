@@ -40,46 +40,33 @@ class _OptimusNotificationsOverlayState
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
-  void show({
-    required Widget title,
-    Widget? body,
-    IconData? icon,
-    VoidCallback? onDismissed,
-    NotificationLink? link,
-    OptimusNotificationVariant variant = OptimusNotificationVariant.info,
-  }) {
-    late final _NotificationModel notification;
-
-    final onDismissPressed = onDismissed == null
-        ? null
-        : () {
-            _removeNotification(notification);
-          };
-    final onLinkPressed = link == null
-        ? null
-        : () {
-            link.onLinkPressed();
-            _removeNotification(notification);
-          };
-
-    notification = _NotificationModel(
-      title: title,
-      body: body,
-      icon: icon,
-      link: link?.linkText,
-      onLinkPressed: onLinkPressed,
-      variant: variant,
-      onNotificationDismissed: () {
-        _handleNotificationDismiss(onDismissed: onDismissed);
-      },
-      onDismissPressed: onDismissPressed,
+  void show(OptimusNotification notification) {
+    final notificationModel = _NotificationModel(
+      notification: notification,
+      onDismiss: _handleNotificationDismiss,
     );
 
     if (_notifications.length < widget.maxVisible) {
-      _addNotification(notification: notification);
+      _addNotification(notification: notificationModel);
     } else {
-      _queue.add(notification);
+      _queue.add(notificationModel);
     }
+  }
+
+  @override
+  void remove(OptimusNotification notification) {
+    final _NotificationModel? model = _findNotification(notification);
+    if (model != null) {
+      _removeNotification(model);
+    }
+  }
+
+  _NotificationModel? _findNotification(OptimusNotification notification) {
+    for (final _NotificationModel model in _notifications) {
+      if (model.notification == notification) return model;
+    }
+
+    return null;
   }
 
   void _addNotification({
@@ -107,13 +94,12 @@ class _OptimusNotificationsOverlayState
     }
   }
 
-  void _handleNotificationDismiss({VoidCallback? onDismissed}) {
+  void _handleNotificationDismiss() {
     if (_queue.isNotEmpty && _notifications.length < widget.maxVisible) {
       _addNotification(
         notification: _queue.removeAt(0),
       );
     }
-    onDismissed?.call();
   }
 
   _AnimatedNotification _buildRemovedNotification(
@@ -123,7 +109,7 @@ class _OptimusNotificationsOverlayState
     animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.dismissed) {
-          notification.onNotificationDismissed.call();
+          notification.onDismiss.call();
         }
       },
     );
@@ -141,45 +127,44 @@ class _OptimusNotificationsOverlayState
     final isCompact = MediaQuery.of(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 
-    return SafeArea(
-      child: Stack(
-        children: [
-          _OptimusNotificationData(this, child: widget.child),
-          Positioned(
-            left: widget.position.left(isCompact),
-            top: widget.position.top(isCompact),
-            right: widget.position.right(isCompact),
-            bottom: widget.position.bottom(isCompact),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: _maxWidth),
-              child: AnimatedList(
-                key: _listKey,
-                shrinkWrap: true,
-                reverse: widget.position.reverse,
-                itemBuilder: (context, index, animation) =>
-                    _AnimatedNotification(
-                  animation: animation,
-                  model: _notifications[index],
-                  slideTween: widget.position.slideTween,
+    return Builder(
+      builder: (context) => _OptimusNotificationData(
+        this,
+        child: Stack(
+          children: [
+            widget.child,
+            Positioned(
+              left: widget.position.left(isCompact),
+              top: widget.position.top(isCompact),
+              right: widget.position.right(isCompact),
+              bottom: widget.position.bottom(isCompact),
+              child: SafeArea(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: _maxWidth),
+                  child: AnimatedList(
+                    key: _listKey,
+                    shrinkWrap: true,
+                    reverse: widget.position.reverse,
+                    itemBuilder: (context, index, animation) =>
+                        _AnimatedNotification(
+                      animation: animation,
+                      model: _notifications[index],
+                      slideTween: widget.position.slideTween,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 abstract class OptimusNotificationManager {
-  void show({
-    required Widget title,
-    Widget? body,
-    IconData? icon,
-    VoidCallback? onDismissed,
-    NotificationLink? link,
-    OptimusNotificationVariant variant,
-  });
+  void show(OptimusNotification notification);
+  void remove(OptimusNotification notification);
 }
 
 class _OptimusNotificationData extends InheritedWidget {
@@ -209,33 +194,23 @@ class _AnimatedNotification extends StatelessWidget {
   final Tween<Offset> slideTween;
   final bool isOutgoing;
 
-  VoidCallback? get _onDismissed => !isOutgoing
-      ? model.onDismissPressed
-      : model.onDismissPressed == null
-          ? null
-          : () {};
-
   @override
-  Widget build(BuildContext context) => FadeTransition(
-        opacity: animation,
-        child: _NoClipSizeTransition(
-          sizeFactor: CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeOutQuart,
-          ),
-          child: SlideTransition(
-            position: CurvedAnimation(
+  Widget build(BuildContext context) => IgnorePointer(
+        ignoring: isOutgoing,
+        child: FadeTransition(
+          opacity: animation,
+          child: _NoClipSizeTransition(
+            sizeFactor: CurvedAnimation(
               parent: animation,
-              curve: Curves.easeInOutCubic,
-            ).drive(slideTween),
-            child: Center(
-              child: OptimusNotification(
-                title: model.title,
-                body: model.body,
-                link: model.link,
-                onLinkPressed: isOutgoing ? () {} : model.onLinkPressed,
-                variant: model.variant,
-                onDismissed: _onDismissed,
+              curve: Curves.easeOutQuart,
+            ),
+            child: SlideTransition(
+              position: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOutCubic,
+              ).drive(slideTween),
+              child: Center(
+                child: model.notification,
               ),
             ),
           ),
@@ -334,37 +309,13 @@ extension on OptimusNotificationPosition {
   }
 }
 
-/// The notification link with custom call-to-action.
-///
-/// This link is defined by the text of the button and the function that needs
-/// to be executed after a click.
-class NotificationLink {
-  NotificationLink({required this.linkText, required this.onLinkPressed});
-
-  final Widget linkText;
-  final VoidCallback onLinkPressed;
-}
-
-/// Data representation for a particular notification.
 class _NotificationModel {
   _NotificationModel({
-    required this.title,
-    this.body,
-    this.icon,
-    this.link,
-    required this.variant,
-    this.onLinkPressed,
-    required this.onNotificationDismissed,
-    this.onDismissPressed,
+    required this.notification,
+    required this.onDismiss,
   });
-  final Widget title;
-  final Widget? body;
-  final IconData? icon;
-  final Widget? link;
-  final OptimusNotificationVariant variant;
-  final VoidCallback? onLinkPressed;
-  final VoidCallback onNotificationDismissed;
-  final VoidCallback? onDismissPressed;
+  final OptimusNotification notification;
+  final VoidCallback onDismiss;
 }
 
 const Duration _animationDuration = Duration(milliseconds: 300);
