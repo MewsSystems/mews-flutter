@@ -54,8 +54,8 @@ class _NotificationStoryContent extends StatelessWidget {
   final String link;
   final bool dismissible;
 
-  NotificationLink? get _link => link.isNotEmpty
-      ? NotificationLink(
+  OptimusNotificationLink? get _link => link.isNotEmpty
+      ? OptimusNotificationLink(
           text: Text(link),
           onPressed: () {},
         )

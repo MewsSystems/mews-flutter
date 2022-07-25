@@ -40,8 +40,8 @@ class OptimusNotification extends StatelessWidget {
   final Widget title;
   final Widget? body;
   final IconData? icon;
-  final NotificationLink? link;
   final VoidCallback? onDismissed;
+  final OptimusNotificationLink? link;
   final OptimusNotificationVariant variant;
 
   double _getPadding(BuildContext context) {
@@ -103,8 +103,8 @@ class OptimusNotification extends StatelessWidget {
 /// This link is defined by the [text] widget, usually [Text] and the
 /// function that will be executed after a click. After clicking on the link,
 /// notification will be dismissed.
-class NotificationLink {
-  NotificationLink({
+class OptimusNotificationLink {
+  OptimusNotificationLink({
     required this.text,
     required this.onPressed,
   });
