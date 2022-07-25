@@ -55,13 +55,13 @@ class _OptimusNotificationsOverlayState
 
   @override
   void remove(OptimusNotification notification) {
-    final _NotificationModel? model = _findNotification(notification);
+    final _NotificationModel? model = _findModel(notification);
     if (model != null) {
       _removeNotification(model);
     }
   }
 
-  _NotificationModel? _findNotification(OptimusNotification notification) {
+  _NotificationModel? _findModel(OptimusNotification notification) {
     for (final _NotificationModel model in _notifications) {
       if (model.notification == notification) return model;
     }
