@@ -54,6 +54,13 @@ class _NotificationStoryContent extends StatelessWidget {
   final String link;
   final bool dismissible;
 
+  NotificationLink? get _link => link.isNotEmpty
+      ? NotificationLink(
+          text: Text(link),
+          onPressed: () {},
+        )
+      : null;
+
   @override
   Widget build(BuildContext context) => Center(
         child: SingleChildScrollView(
@@ -66,7 +73,7 @@ class _NotificationStoryContent extends StatelessWidget {
                       title: Text(title),
                       body: body.isNotEmpty ? Text(body) : null,
                       variant: variant,
-                      link: link.isNotEmpty ? Text(link) : null,
+                      link: _link,
                       onDismissed: dismissible ? () {} : null,
                     ),
                   )
@@ -77,8 +84,7 @@ class _NotificationStoryContent extends StatelessWidget {
                     OptimusNotification(
                       title: Text(title),
                       body: body.isNotEmpty ? Text(body) : null,
-                      link: link.isNotEmpty ? Text(link) : null,
-                      onLinkPressed: link.isNotEmpty ? (() {}) : null,
+                      link: _link,
                       onDismissed: dismissible ? () {} : null,
                     ),
                   );

@@ -33,7 +33,6 @@ class OptimusNotification extends StatelessWidget {
     this.body,
     this.icon,
     this.link,
-    this.onLinkPressed,
     this.onDismissed,
     this.variant = OptimusNotificationVariant.info,
   }) : super(key: key);
@@ -41,8 +40,7 @@ class OptimusNotification extends StatelessWidget {
   final Widget title;
   final Widget? body;
   final IconData? icon;
-  final Widget? link;
-  final VoidCallback? onLinkPressed;
+  final NotificationLink? link;
   final VoidCallback? onDismissed;
   final OptimusNotificationVariant variant;
 
@@ -79,9 +77,9 @@ class OptimusNotification extends StatelessWidget {
               variant: variant,
               title: title,
               body: body,
-              link: link,
+              link: link?.text,
               onLinkPressed: () {
-                onLinkPressed?.call();
+                link?.onPressed.call();
                 OptimusNotificationsOverlay.of(context)?.remove(this);
               },
               dismissible: isDismissible,
@@ -98,6 +96,21 @@ class OptimusNotification extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The notification link with custom action.
+///
+/// This link is defined by the [text] widget, usually [Text] and the
+/// function that will be executed after a click. After clicking on the link,
+/// notification will be dismissed.
+class NotificationLink {
+  NotificationLink({
+    required this.text,
+    required this.onPressed,
+  });
+
+  final Widget text;
+  final VoidCallback onPressed;
 }
 
 /// Optimus styled notification title.
