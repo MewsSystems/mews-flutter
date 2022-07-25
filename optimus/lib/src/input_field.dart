@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
 
+/// General input, used to allow users to enter data into the interface.
 class OptimusInputField extends StatefulWidget {
   const OptimusInputField({
     Key? key,
@@ -30,6 +31,8 @@ class OptimusInputField extends StatefulWidget {
     this.isClearEnabled = false,
     this.suffix,
     this.prefix,
+    this.leading,
+    this.trailing,
     this.inputKey,
     this.fieldBoxKey,
     this.readOnly = false,
@@ -79,13 +82,21 @@ class OptimusInputField extends StatefulWidget {
   /// If true, clear all button is enabled.
   final bool isClearEnabled;
 
-  /// An optional [Widget] to display after the text.
-  final Widget? suffix;
+  /// An optional icon/image to display before the text.
+  final Widget? leading;
 
-  /// An optional [Widget] to display before the text.
+  /// An optional text to display before the input.
   final Widget? prefix;
+
   final Key? inputKey;
   final Key? fieldBoxKey;
+
+  /// An optional text to display after the text.
+  final Widget? suffix;
+
+  /// An optional tailing interactive icon/image. If [isPasswordField] is true,
+  /// [trailing] will be replaced with a [_PasswordButton].
+  final Widget? trailing;
 
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
@@ -99,7 +110,7 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
 
-  /// If true, displays [OptimusCircleLoader] instead of suffix
+  /// If true, displays [OptimusCircleLoader].
   final bool showLoader;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
@@ -130,40 +141,64 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_onFocusChanged);
+    _effectiveFocusNode.addListener(_onStateUpdate);
+    _effectiveController.addListener(_onStateUpdate);
   }
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_onFocusChanged);
+    _effectiveFocusNode.removeListener(_onStateUpdate);
+    _effectiveController.removeListener(_onStateUpdate);
     _focusNode?.dispose();
     _controller?.dispose();
     super.dispose();
   }
 
-  void _onSuffixTap() {
+  Widget? get _passwordButton {
+    if (widget.isPasswordField) {
+      return _PasswordButton(
+        onTap: () => setState(() {
+          _isShowPasswordEnabled = !_isShowPasswordEnabled;
+        }),
+        isShowPasswordEnabled: _isShowPasswordEnabled,
+      );
+    }
+  }
+
+  Widget? get _clearAllButton {
+    if (_shouldShowClearAllButton) {
+      return _ClearAllButton(onTap: _onClearAllTap);
+    }
+  }
+
+  Widget? get _prefix {
+    if (widget.leading != null || widget.prefix != null) {
+      return _Prefix(prefix: widget.prefix, leading: widget.leading);
+    }
+  }
+
+  Widget? get _suffix {
+    if (widget.suffix != null ||
+        widget.trailing != null ||
+        widget.showLoader ||
+        _shouldShowClearAllButton) {
+      return _Suffix(
+        suffix: widget.suffix,
+        trailing: widget.trailing,
+        passwordButton: _passwordButton,
+        showLoader: widget.showLoader,
+        clearAllButton: _clearAllButton,
+      );
+    }
+  }
+
+  void _onClearAllTap() {
     _effectiveController.clear();
     widget.onChanged?.call('');
   }
 
-  Widget get _suffix {
-    final suffix = widget.suffix;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (widget.isClearEnabled) _ClearAllButton(onTap: _onSuffixTap),
-        if (widget.showLoader) _loader else if (suffix != null) suffix,
-      ],
-    );
-  }
-
-  OptimusCircleLoader get _loader => const OptimusCircleLoader(
-        size: OptimusCircleLoaderSize.small,
-        variant: OptimusCircleLoaderVariant.indeterminate(),
-      );
+  bool get _shouldShowClearAllButton =>
+      widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
   @override
   Widget build(BuildContext context) => FieldWrapper(
@@ -175,8 +210,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         error: widget.error,
         hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
+        prefix: _prefix,
         suffix: _suffix,
-        prefix: widget.prefix,
         fieldBoxKey: widget.fieldBoxKey,
         children: <Widget>[
           Expanded(
@@ -198,8 +233,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
                   widget.placeholderStyle ?? _placeholderTextStyle,
               focusNode: _effectiveFocusNode,
               enabled: widget.isEnabled,
-              padding:
-                  widget.prefix != null ? _textWithPrefixPadding : _textPadding,
+              padding: _prefix != null ? _textWithPrefixPadding : _textPadding,
               style: _textStyle,
               decoration: null,
               onChanged: widget.onChanged,
@@ -211,25 +245,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               inputFormatters: widget.inputFormatters,
             ),
           ),
-          if (widget.isPasswordField)
-            GestureDetector(
-              onTap: () => setState(() {
-                _isShowPasswordEnabled = !_isShowPasswordEnabled;
-              }),
-              child: _SuffixPadding(
-                child: Icon(
-                  _isShowPasswordEnabled
-                      ? OptimusIcons.hide
-                      : OptimusIcons.show,
-                  size: _iconSize,
-                  color: _placeholderTextStyle.color,
-                ),
-              ),
-            ),
         ],
       );
 
-  void _onFocusChanged() {
+  void _onStateUpdate() {
     setState(() {});
   }
 
@@ -279,15 +298,85 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 }
 
-class _SuffixPadding extends StatelessWidget {
-  const _SuffixPadding({Key? key, required this.child}) : super(key: key);
+class _Suffix extends StatelessWidget {
+  const _Suffix({
+    Key? key,
+    this.suffix,
+    this.passwordButton,
+    this.trailing,
+    required this.clearAllButton,
+    required this.showLoader,
+  }) : super(key: key);
 
-  final Widget child;
+  final Widget? suffix;
+  final Widget? passwordButton;
+  final Widget? trailing;
+  final Widget? clearAllButton;
+  final bool showLoader;
+
+  OptimusCircleLoader get _loader => const OptimusCircleLoader(
+        size: OptimusCircleLoaderSize.small,
+        variant: OptimusCircleLoaderVariant.indeterminate(),
+      );
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: child,
+  Widget build(BuildContext context) {
+    final suffixWidget = suffix;
+    final clearAllButtonWidget = clearAllButton;
+    final passwordButtonWidget = passwordButton;
+    final trailingWidget = trailing;
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (suffixWidget != null) suffixWidget,
+        if (showLoader) _loader,
+        if (clearAllButtonWidget != null) clearAllButtonWidget,
+        if (passwordButtonWidget != null)
+          passwordButtonWidget
+        else if (trailingWidget != null)
+          trailingWidget
+      ],
+    );
+  }
+}
+
+class _Prefix extends StatelessWidget {
+  const _Prefix({Key? key, this.prefix, this.leading}) : super(key: key);
+
+  final Widget? prefix;
+  final Widget? leading;
+
+  @override
+  Widget build(BuildContext context) => OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          leading ?? const SizedBox.shrink(),
+          prefix ?? const SizedBox.shrink(),
+        ],
+      );
+}
+
+class _PasswordButton extends StatelessWidget {
+  const _PasswordButton({
+    Key? key,
+    required this.onTap,
+    required this.isShowPasswordEnabled,
+  }) : super(key: key);
+
+  final VoidCallback onTap;
+  final bool isShowPasswordEnabled;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: Icon(
+          isShowPasswordEnabled ? OptimusIcons.hide : OptimusIcons.show,
+        ),
       );
 }
 
@@ -311,4 +400,4 @@ class _ClearAllButton extends StatelessWidget {
   }
 }
 
-const double _iconSize = 20;
+const double _iconSize = 24;
