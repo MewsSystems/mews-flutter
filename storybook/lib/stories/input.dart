@@ -4,9 +4,23 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story inputStory = Story(
-  name: 'Input',
+  name: 'Forms/Input',
   builder: (context) {
     final k = context.knobs;
+    final leadingIcon = k.options(
+      label: 'Leading Icon',
+      description: 'Visual hint about this field',
+      initial: null,
+      options: exampleIcons,
+    );
+    final prefix = k.text(label: 'Prefix');
+    final suffix = k.text(label: 'Suffix');
+    final trailingIcon = k.options(
+      label: 'Trailing Icon',
+      description: 'Widget with some action for this particular field',
+      initial: null,
+      options: exampleIcons,
+    );
 
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
@@ -14,10 +28,10 @@ final Story inputStory = Story(
         isEnabled: k.boolean(label: 'Enabled', initial: true),
         isRequired: k.boolean(label: 'Required'),
         isPasswordField: k.boolean(label: 'Password'),
-        prefix:
-            k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
-        suffix:
-            k.boolean(label: 'Suffix') ? const Icon(OptimusIcons.lock) : null,
+        prefix: prefix.isNotEmpty ? Text(prefix) : null,
+        suffix: suffix.isNotEmpty ? Text(suffix) : null,
+        leading: leadingIcon == null ? null : Icon(leadingIcon),
+        trailing: trailingIcon == null ? null : Icon(trailingIcon),
         isClearEnabled: k.boolean(label: 'Clear all', initial: false),
         showLoader: k.boolean(label: 'Show loader', initial: false),
         size: k.options(

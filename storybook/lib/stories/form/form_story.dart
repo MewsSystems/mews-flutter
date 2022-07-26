@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story formStory = Story(
-  name: 'Form',
+  name: 'Forms/Form',
   builder: (context) => _Content(context.knobs),
 );
 

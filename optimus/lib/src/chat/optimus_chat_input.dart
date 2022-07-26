@@ -33,7 +33,7 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
         controller: _controller,
         maxLines: 4,
         minLines: 1,
-        suffix: OptimusEnabled(
+        trailing: OptimusEnabled(
           isEnabled: _isSendEnabled,
           child: GestureDetector(
             onTap: _onTap,

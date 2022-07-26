@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story highlightStory = Story(
-  name: 'Typography/Highlight',
+  name: 'General/Typography/Highlight',
   builder: (context) {
     final k = context.knobs;
 

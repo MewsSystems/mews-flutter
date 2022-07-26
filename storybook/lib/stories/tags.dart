@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story tagStory = Story(
-  name: 'Tags/Tag',
+  name: 'Feedback/Tags/Tag',
   builder: (context) {
     final k = context.knobs;
 
@@ -44,7 +44,7 @@ final Story tagStory = Story(
 );
 
 final Story interactiveTagStory = Story(
-  name: 'Tags/Interactive tag',
+  name: 'Feedback/Tags/Interactive tag',
   builder: (context) {
     final k = context.knobs;
 

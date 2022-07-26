@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story cardStory = Story(
-  name: 'Cards/Card',
+  name: 'Structure/Cards/Card',
   builder: (context) {
     final k = context.knobs;
 
@@ -31,7 +31,7 @@ final Story cardStory = Story(
 );
 
 final Story nestedCardStory = Story(
-  name: 'Cards/Nested card',
+  name: 'Structure/Cards/Nested card',
   builder: (context) {
     final k = context.knobs;
 
