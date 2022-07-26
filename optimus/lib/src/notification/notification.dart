@@ -33,7 +33,6 @@ class OptimusNotification extends StatelessWidget {
     this.body,
     this.icon,
     this.link,
-    this.onLinkPressed,
     this.onDismissed,
     this.variant = OptimusNotificationVariant.info,
   }) : super(key: key);
@@ -41,9 +40,8 @@ class OptimusNotification extends StatelessWidget {
   final Widget title;
   final Widget? body;
   final IconData? icon;
-  final Widget? link;
-  final VoidCallback? onLinkPressed;
   final VoidCallback? onDismissed;
+  final OptimusNotificationLink? link;
   final OptimusNotificationVariant variant;
 
   double _getPadding(BuildContext context) {
@@ -69,7 +67,7 @@ class OptimusNotification extends StatelessWidget {
     final bool isDismissible = dismiss != null;
 
     return Padding(
-      padding: const EdgeInsets.all(spacing100),
+      padding: EdgeInsets.all(padding),
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: notificationWidth),
         child: Stack(
@@ -79,16 +77,40 @@ class OptimusNotification extends StatelessWidget {
               variant: variant,
               title: title,
               body: body,
-              link: link,
-              onLinkPressed: onLinkPressed,
+              link: link?.text,
+              onLinkPressed: () {
+                link?.onPressed.call();
+                OptimusNotificationsOverlay.of(context)?.remove(this);
+              },
               dismissible: isDismissible,
             ),
-            if (isDismissible) _NotificationCloseButton(onDismissed: dismiss)
+            if (isDismissible)
+              _NotificationCloseButton(
+                onDismissed: () {
+                  dismiss.call();
+                  OptimusNotificationsOverlay.of(context)?.remove(this);
+                },
+              )
           ],
         ),
       ),
     );
   }
+}
+
+/// The notification link with custom action.
+///
+/// This link is defined by the [text] widget, usually [Text] and the
+/// function that will be executed after a click. After clicking on the link,
+/// notification will be dismissed.
+class OptimusNotificationLink {
+  OptimusNotificationLink({
+    required this.text,
+    required this.onPressed,
+  });
+
+  final Widget text;
+  final VoidCallback onPressed;
 }
 
 /// Optimus styled notification title.
