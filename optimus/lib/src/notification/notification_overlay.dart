@@ -35,88 +35,67 @@ class OptimusNotificationsOverlay extends StatefulWidget {
 class _OptimusNotificationsOverlayState
     extends State<OptimusNotificationsOverlay>
     implements OptimusNotificationManager {
-  final List<_NotificationModel> _notifications = [];
-  final List<_NotificationModel> _queue = [];
+  final List<OptimusNotification> _notifications = [];
+  final List<OptimusNotification> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
   void show(OptimusNotification notification) {
-    final notificationModel = _NotificationModel(
-      notification: notification,
-      onDismiss: _handleNotificationDismiss,
-    );
-
     if (_notifications.length < widget.maxVisible) {
-      _addNotification(notification: notificationModel);
+      _addNotification(notification);
     } else {
-      _queue.add(notificationModel);
+      _queue.add(notification);
     }
   }
 
   @override
   void remove(OptimusNotification notification) {
-    final _NotificationModel? model = _findModel(notification);
-    if (model != null) {
-      _removeNotification(model);
+    final index = _notifications.indexOf(notification);
+    if (index != -1) {
+      _notifications.removeAt(index);
+      _listKey.currentState?.removeItem(
+        index,
+        (context, animation) =>
+            _buildRemovedNotification(animation, notification),
+        duration: _leavingAnimationDuration,
+      );
     }
   }
 
-  _NotificationModel? _findModel(OptimusNotification notification) {
-    for (final _NotificationModel model in _notifications) {
-      if (model.notification == notification) return model;
-    }
-
-    return null;
-  }
-
-  void _addNotification({
-    required _NotificationModel notification,
+  void _addNotification(
+    OptimusNotification notification, {
     int index = 0,
   }) {
     _notifications.insert(index, notification);
     _listKey.currentState?.insertItem(index, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
       if (_notifications.contains(notification)) {
-        _removeNotification(notification);
+        remove(notification);
       }
     });
   }
 
-  void _removeNotification(_NotificationModel model) {
-    final index = _notifications.indexOf(model);
-    if (index != -1) {
-      _notifications.removeAt(index);
-      _listKey.currentState?.removeItem(
-        index,
-        (context, animation) => _buildRemovedNotification(animation, model),
-        duration: _leavingAnimationDuration,
-      );
-    }
-  }
-
   void _handleNotificationDismiss() {
     if (_queue.isNotEmpty && _notifications.length < widget.maxVisible) {
-      _addNotification(
-        notification: _queue.removeAt(0),
-      );
+      _addNotification(_queue.removeAt(0));
     }
   }
 
   _AnimatedNotification _buildRemovedNotification(
     Animation<double> animation,
-    _NotificationModel notification,
+    OptimusNotification notification,
   ) {
     animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.dismissed) {
-          notification.onDismiss.call();
+          _handleNotificationDismiss();
         }
       },
     );
 
     return _AnimatedNotification(
       animation: animation,
-      model: notification,
+      notification: notification,
       isOutgoing: true,
       slideTween: widget.position.slideTween,
     );
@@ -148,7 +127,7 @@ class _OptimusNotificationsOverlayState
                     itemBuilder: (context, index, animation) =>
                         _AnimatedNotification(
                       animation: animation,
-                      model: _notifications[index],
+                      notification: _notifications[index],
                       slideTween: widget.position.slideTween,
                     ),
                   ),
@@ -184,13 +163,13 @@ class _AnimatedNotification extends StatelessWidget {
   const _AnimatedNotification({
     Key? key,
     required this.animation,
-    required this.model,
+    required this.notification,
     required this.slideTween,
     this.isOutgoing = false,
   }) : super(key: key);
 
   final Animation<double> animation;
-  final _NotificationModel model;
+  final OptimusNotification notification;
   final Tween<Offset> slideTween;
   final bool isOutgoing;
 
@@ -210,7 +189,7 @@ class _AnimatedNotification extends StatelessWidget {
                 curve: Curves.easeInOutCubic,
               ).drive(slideTween),
               child: Center(
-                child: model.notification,
+                child: notification,
               ),
             ),
           ),
@@ -307,15 +286,6 @@ extension on OptimusNotificationPosition {
         return true;
     }
   }
-}
-
-class _NotificationModel {
-  _NotificationModel({
-    required this.notification,
-    required this.onDismiss,
-  });
-  final OptimusNotification notification;
-  final VoidCallback onDismiss;
 }
 
 const Duration _animationDuration = Duration(milliseconds: 300);
