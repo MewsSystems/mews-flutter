@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story checkboxNestedGroup = Story(
-  name: 'Checkbox/Checkbox Nested',
+  name: 'Forms/Checkbox/Checkbox Nested',
   builder: (context) => ConstrainedBox(
     constraints: const BoxConstraints(maxWidth: 400),
     child: _CheckboxGroupStory(context.knobs),
@@ -24,17 +24,36 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
   Widget build(BuildContext context) {
     final k = widget.knobs;
 
-    return OptimusNestedCheckboxGroup<int>(
-      parent: const Text('Checkbox Group 1'),
-      label: k.text(label: 'Label', initial: 'Checkbox Group Label'),
+    return OptimusNestedCheckboxGroup(
+      parent: OptimusCheckbox(
+        label: const Text('Parent'),
+        onChanged: (bool value) {},
+      ),
+      label: k.text(label: 'Label:'),
       error: k.text(label: 'Error'),
       isEnabled: k.boolean(label: 'Enabled', initial: true),
-      values: const [1, 3],
-      items: const [
-        OptimusGroupItem(label: Text('Checkbox 1'), value: 0),
-        OptimusGroupItem(label: Text('Checkbox 2'), value: 1),
-        OptimusGroupItem(label: Text('Checkbox 3'), value: 2),
-        OptimusGroupItem(label: Text('Checkbox with long label'), value: 3),
+      children: [
+        OptimusCheckbox(
+          label: const Text('Checkbox 1'),
+          isChecked: true,
+          onChanged: (bool value) {},
+        ),
+        OptimusCheckbox(
+          label: const Text('Checkbox 2'),
+          onChanged: (bool value) {},
+        ),
+        OptimusCheckbox(
+          label: const Text('Checkbox 3'),
+          onChanged: (bool value) {},
+        ),
+        OptimusCheckbox(
+          label: const Text('Checkbox 4'),
+          onChanged: (bool value) {},
+        ),
+        OptimusCheckbox(
+          label: const Text('Checkbox 5'),
+          onChanged: (bool value) {},
+        ),
       ],
     );
   }

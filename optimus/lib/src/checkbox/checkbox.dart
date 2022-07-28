@@ -19,7 +19,9 @@ enum OptimusCheckboxSize {
 /// A checkbox is a binary form of input and is used to let a user select one
 /// or more options for a limited number of choices. Each selection is
 /// independent (with exceptions). If [tristate] is enabled, checkbox can be in
-/// three states: checked, unchecked and indeterminate.
+/// three states: checked, unchecked and indeterminate. If the checkbox is a
+/// part of a [OptimusNestedCheckboxGroup], its state will be managed inside
+/// this group, and it will overwrite the [isChecked] property.
 class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
     Key? key,
@@ -30,7 +32,11 @@ class OptimusCheckbox extends StatefulWidget {
     this.size = OptimusCheckboxSize.large,
     this.tristate = false,
     required this.onChanged,
-  }) : super(key: key);
+  })  : assert(
+          tristate || isChecked != null,
+          'isChecked must be set if tristate is false',
+        ),
+        super(key: key);
 
   /// Label displayed next to checkbox.
   ///
@@ -81,34 +87,49 @@ class OptimusCheckbox extends StatefulWidget {
 class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
+  late _CheckboxState _state;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _state = _updateState();
+  }
+
+  @override
+  void didUpdateWidget(covariant OptimusCheckbox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _state = _updateState();
+  }
 
   Color get _borderColor {
-    final isChecked = widget.isChecked;
-
-    return isChecked ?? widget.tristate
-        ? theme.colors.primary500
-        : _isHovering || _isTappedDown
+    switch (_state) {
+      case _CheckboxState.checked:
+      case _CheckboxState.undetermined:
+        return theme.colors.primary500;
+      case _CheckboxState.unchecked:
+        return _isHovering || _isTappedDown
             ? theme.colors.primary500
             : theme.colors.neutral100;
+    }
   }
 
   Color get _backgroundColor {
-    final isChecked = widget.isChecked;
-
-    return isChecked ?? widget.tristate
-        ? theme.colors.primary500
-        : _isHovering || _isTappedDown
+    switch (_state) {
+      case _CheckboxState.undetermined:
+      case _CheckboxState.checked:
+        return theme.colors.primary500;
+      case _CheckboxState.unchecked:
+        return _isHovering || _isTappedDown
             ? theme.colors.primary500t8
             : Colors.transparent;
+    }
   }
 
-  _CheckboxState get _checkboxState {
-    final isChecked = widget.isChecked;
-    if (isChecked == null) {
-      return _CheckboxState.undetermined;
-    }
+  _CheckboxState _updateState() {
+    final group = OptimusNestedCheckboxGroup.of(context);
+    if (group != null) return group.isChecked(widget).toState;
 
-    return isChecked ? _CheckboxState.checked : _CheckboxState.unchecked;
+    return widget.isChecked.toState;
   }
 
   TextStyle get _labelStyle {
@@ -122,8 +143,15 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   }
 
   void _onTap() {
-    final isChecked = widget.isChecked ?? false;
-    widget.onChanged.call(!isChecked);
+    final bool newValue;
+    final group = OptimusNestedCheckboxGroup.of(context);
+    if (group != null) {
+      newValue = _state.toMaybeBool ?? false;
+      group.onUpdate(widget, !newValue);
+    } else {
+      newValue = widget.isChecked ?? false;
+    }
+    widget.onChanged.call(!newValue);
   }
 
   void _onHoverChanged(bool hovered) {
@@ -168,7 +196,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
                     width: 16,
                     height: 16,
                     child: _CheckboxIcon(
-                      icon: _checkboxState.icon,
+                      icon: _state.icon,
                     ),
                   ),
                 ),
@@ -217,6 +245,30 @@ extension on _CheckboxState {
         return null;
       case _CheckboxState.undetermined:
         return OptimusIcons.minus_simple;
+    }
+  }
+
+  bool? get toMaybeBool {
+    switch (this) {
+      case _CheckboxState.checked:
+        return true;
+      case _CheckboxState.unchecked:
+        return false;
+      case _CheckboxState.undetermined:
+        return null;
+    }
+  }
+}
+
+extension on bool? {
+  _CheckboxState get toState {
+    switch (this) {
+      case true:
+        return _CheckboxState.checked;
+      case false:
+        return _CheckboxState.unchecked;
+      default:
+        return _CheckboxState.undetermined;
     }
   }
 }
