@@ -1,3 +1,9 @@
+## 0.7.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: upgrade to dart_code_metrics 4.17.0.
+
 ## 0.6.0
 
 > Note: This release has breaking changes.
