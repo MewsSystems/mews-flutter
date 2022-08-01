@@ -173,7 +173,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         prefix: widget.prefix,
         leading: widget.leading,
         suffix: widget.suffix,
-        trailing: _icon,
+        trailing: _TrailingSelect(trailing: widget.trailing, icon: _icon),
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
@@ -182,4 +182,28 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         showLoader: widget.showLoader,
         shouldCloseOnInputTap: !_isSearchable,
       );
+}
+
+class _TrailingSelect extends StatelessWidget {
+  const _TrailingSelect({
+    Key? key,
+    required this.trailing,
+    required Widget icon,
+  })  : _icon = icon,
+        super(key: key);
+
+  final Widget? trailing;
+  final Widget _icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final trailingWidget = trailing;
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [if (trailingWidget != null) trailingWidget, _icon],
+    );
+  }
 }
