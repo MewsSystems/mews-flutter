@@ -94,7 +94,7 @@ class OptimusInputField extends StatefulWidget {
   /// An optional text to display after the text.
   final Widget? suffix;
 
-  /// An optional tailing interactive icon/image. If [isPasswordField] is true,
+  /// An optional trailing interactive icon/image. If [isPasswordField] is true,
   /// [trailing] will be replaced with a [_PasswordButton].
   final Widget? trailing;
 
