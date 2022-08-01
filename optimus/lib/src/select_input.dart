@@ -203,7 +203,10 @@ class _TrailingSelect extends StatelessWidget {
       direction: Axis.horizontal,
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
-      children: [if (trailingWidget != null) trailingWidget, _icon],
+      children: [
+        if (trailingWidget != null) trailingWidget,
+        _icon,
+      ],
     );
   }
 }
