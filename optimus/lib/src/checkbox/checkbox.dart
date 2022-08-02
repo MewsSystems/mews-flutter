@@ -19,9 +19,7 @@ enum OptimusCheckboxSize {
 /// A checkbox is a binary form of input and is used to let a user select one
 /// or more options for a limited number of choices. Each selection is
 /// independent (with exceptions). If [tristate] is enabled, checkbox can be in
-/// three states: checked, unchecked and indeterminate. If the checkbox is a
-/// part of a [OptimusNestedCheckboxGroup], its state will be managed inside
-/// this group, and it will overwrite the [isChecked] property.
+/// three states: checked, unchecked and indeterminate.
 class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
     Key? key,
@@ -87,19 +85,6 @@ class OptimusCheckbox extends StatefulWidget {
 class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
-  late _CheckboxState _state;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _state = _updateState();
-  }
-
-  @override
-  void didUpdateWidget(covariant OptimusCheckbox oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _state = _updateState();
-  }
 
   Color get _borderColor {
     switch (_state) {
@@ -125,12 +110,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
     }
   }
 
-  _CheckboxState _updateState() {
-    final group = OptimusNestedCheckboxGroup.of(context);
-    if (group != null) return group.isChecked(widget).toState;
-
-    return widget.isChecked.toState;
-  }
+  _CheckboxState get _state => widget.isChecked.toState;
 
   TextStyle get _labelStyle {
     final color = theme.colors.defaultTextColor;
@@ -143,14 +123,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   }
 
   void _onTap() {
-    final bool newValue;
-    final group = OptimusNestedCheckboxGroup.of(context);
-    if (group != null) {
-      newValue = _state.toMaybeBool ?? false;
-      group.onUpdate(widget, !newValue);
-    } else {
-      newValue = widget.isChecked ?? false;
-    }
+    final newValue = widget.isChecked ?? false;
     widget.onChanged.call(!newValue);
   }
 
@@ -245,17 +218,6 @@ extension on _CheckboxState {
         return null;
       case _CheckboxState.undetermined:
         return OptimusIcons.minus_simple;
-    }
-  }
-
-  bool? get toMaybeBool {
-    switch (this) {
-      case _CheckboxState.checked:
-        return true;
-      case _CheckboxState.unchecked:
-        return false;
-      case _CheckboxState.undetermined:
-        return null;
     }
   }
 }
