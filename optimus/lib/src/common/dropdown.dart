@@ -99,7 +99,10 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
 
     final size = renderObject.size;
 
-    return renderObject.localToGlobal(Offset.zero) & size;
+    final overlay =
+        Overlay.of(context)?.context.findRenderObject() as RenderBox?;
+
+    return renderObject.localToGlobal(Offset.zero, ancestor: overlay) & size;
   }
 
   Widget _buildListView(bool isReversed) => Material(
