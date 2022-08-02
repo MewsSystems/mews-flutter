@@ -13,9 +13,18 @@ final Story captionStory = Story(
       options: variationOptions,
     );
 
+    final align = k.options(
+      label: 'Align',
+      options: OptimusTypographyAlignment.values.toOptions(),
+      initial: OptimusTypographyAlignment.left,
+    );
+
     return OptimusCaption(
       variation: variation,
-      child: Text(k.text(label: 'Caption', initial: 'Caption')),
+      align: align,
+      child: Text(
+        k.text(label: 'Caption', initial: 'Caption'),
+      ),
     );
   },
 );

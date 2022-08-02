@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:optimus/src/typography/alignment.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
@@ -16,6 +17,7 @@ class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
     Key? key,
     this.variation = Variation.variationNormal,
+    this.align = OptimusTypographyAlignment.left,
     required this.child,
   }) : super(key: key);
 
@@ -27,10 +29,16 @@ class OptimusLabel extends StatelessWidget {
   /// The variation of the label.
   final Variation variation;
 
+  /// The alignment of the label.
+  ///
+  /// Defaults to [OptimusTypographyAlignment.left].
+  final OptimusTypographyAlignment align;
+
   @override
   Widget build(BuildContext context) => OptimusTypography(
         resolveStyle: (_) => preset200s,
         color: variation.color,
+        align: align,
         child: child,
       );
 }
@@ -48,6 +56,7 @@ class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
     Key? key,
     this.variation = Variation.variationNormal,
+    this.align = OptimusTypographyAlignment.left,
     required this.child,
   }) : super(key: key);
 
@@ -56,6 +65,11 @@ class OptimusLabelSmall extends StatelessWidget {
   /// Typically a [Text] widget.
   final Widget child;
 
+  /// The alignment of the label.
+  ///
+  /// Defaults to [OptimusTypographyAlignment.left].
+  final OptimusTypographyAlignment align;
+
   /// The variation of the label.
   final Variation variation;
 
@@ -63,6 +77,7 @@ class OptimusLabelSmall extends StatelessWidget {
   Widget build(BuildContext context) => OptimusTypography(
         resolveStyle: (_) => preset100s,
         color: variation.color,
+        align: align,
         child: child,
       );
 }
