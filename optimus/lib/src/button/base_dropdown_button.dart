@@ -30,12 +30,35 @@ class BaseDropDownButton<T> extends StatefulWidget {
 }
 
 class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
-    with ThemeGetter {
+    with ThemeGetter, SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.fastOutSlowIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0, end: 0.5);
+
   final _selectFieldKey = GlobalKey();
   bool _isHovering = false;
   bool _isTappedDown = false;
-  bool _isOpened = false;
+
   final _node = FocusNode();
+  late AnimationController _controller;
+  late Animation<double> _iconTurns;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 350),
+      vsync: this,
+    );
+    _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
@@ -51,8 +74,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       onItemSelected: widget.onItemSelected ?? (_) {},
       focusNode: _node,
       width: _dropdownWidth,
-      onShown: () => setState(() => _isOpened = true),
-      onHidden: () => setState(() => _isOpened = false),
+      onShown: () => setState(() => _controller.forward()),
+      onHidden: () => setState(() => _controller.reverse()),
       child: OptimusEnabled(
         isEnabled: _isEnabled,
         child: MouseRegion(
@@ -87,7 +110,10 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                             child: child,
                           ),
                         ),
-                      _icon,
+                      RotationTransition(
+                        turns: _iconTurns,
+                        child: _icon,
+                      ),
                     ],
                   ),
                 ),
@@ -157,10 +183,22 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   }
 
   Icon get _icon => Icon(
-        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
-        size: widget.size == OptimusWidgetSize.small ? 16 : 24,
+        OptimusIcons.chevron_down,
+        size: widget.size.iconSize,
         color: _textColor,
       );
 }
 
 const double _dropdownWidth = 280;
+
+extension on OptimusWidgetSize {
+  double get iconSize {
+    switch (this) {
+      case OptimusWidgetSize.small:
+        return 16;
+      case OptimusWidgetSize.medium:
+      case OptimusWidgetSize.large:
+        return 24;
+    }
+  }
+}
