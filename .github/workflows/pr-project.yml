@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: ookami-kb/gh-pr-project@v1
         with:
-          githubToken: ${{ secrets.TECH_ACCOUNT_PERSONAL_ACCESS_TOKEN }}
+          githubToken: ${{ secrets.TECH_ACCOUNT_TOKEN }}
           projectId: MDc6UHJvamVjdDExMDM3NDYw
