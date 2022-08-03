@@ -68,7 +68,7 @@ class _OptimusNestedCheckboxGroupState
                 label: widget.parent,
                 onChanged: (bool value) {
                   for (final child in widget.children) {
-                    child.onChanged.call(value);
+                    child.onChanged(value);
                   }
                 },
               ),
