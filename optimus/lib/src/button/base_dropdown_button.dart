@@ -41,8 +41,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   bool _isTappedDown = false;
 
   final _node = FocusNode();
-  late AnimationController _controller;
-  late Animation<double> _iconTurns;
+  late final AnimationController _controller;
+  late final Animation<double> _iconTurns;
 
   @override
   void initState() {
