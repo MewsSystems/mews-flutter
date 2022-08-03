@@ -63,7 +63,6 @@ class _OptimusNestedCheckboxGroupState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               OptimusCheckbox(
-                isEnabled: widget.isEnabled,
                 tristate: true,
                 isChecked: _isParentChecked,
                 label: widget.parent,
