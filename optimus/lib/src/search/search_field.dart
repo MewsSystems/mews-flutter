@@ -32,6 +32,7 @@ class OptimusSearch<T> extends StatefulWidget {
     this.suffix,
     this.focusNode,
     this.shouldCloseOnInputTap = false,
+    this.showLoader = false,
   }) : super(key: key);
 
   final String? label;
@@ -52,6 +53,7 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? prefix;
   final Widget? suffix;
   final Widget? trailing;
+  final bool showLoader;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
 
@@ -217,6 +219,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           size: widget.size,
           readOnly: widget.readOnly,
           showCursor: widget.showCursor,
+          showLoader: widget.showLoader,
         ),
       );
 }

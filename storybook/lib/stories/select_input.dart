@@ -34,13 +34,24 @@ class _SelectInputStoryState extends State<SelectInputStory> {
   Widget build(BuildContext context) {
     final k = widget.knobs;
 
+    final prefix = k.text(label: 'Prefix');
+    final suffix = k.text(label: 'Suffix');
+    final trailing =
+        k.options(label: 'Trailing Icon', options: exampleIcons, initial: null);
+    final showLoader = k.boolean(label: 'Show loader', initial: false);
+
     return OptimusSelectInput<String>(
       value: _selectedValue,
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       isRequired: k.boolean(label: 'Required'),
-      prefix:
-          k.boolean(label: 'Prefix') ? const Icon(OptimusIcons.search) : null,
+      leading: k.boolean(label: 'Leading Icon')
+          ? const Icon(OptimusIcons.search)
+          : null,
       onTextChanged: k.boolean(label: 'Searchable') ? _onTextChanged : null,
+      prefix: prefix.isNotEmpty ? Text(prefix) : null,
+      suffix: suffix.isNotEmpty ? Text(suffix) : null,
+      trailing: trailing != null ? Icon(trailing) : null,
+      showLoader: showLoader,
       onChanged: (i) => setState(() => _selectedValue = i),
       size: k.options(
         label: 'Size',

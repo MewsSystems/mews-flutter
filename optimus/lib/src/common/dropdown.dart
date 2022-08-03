@@ -86,7 +86,11 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
           child: Container(
             decoration: _dropdownDecoration,
             constraints: BoxConstraints(maxHeight: maxHeight),
-            child: _buildListView(isOnTop),
+            child: _DropdownListView(
+              items: widget.items,
+              onChanged: widget.onChanged,
+              isReversed: isOnTop,
+            ),
           ),
         ),
       ],
@@ -104,22 +108,6 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
 
     return renderObject.localToGlobal(Offset.zero, ancestor: overlay) & size;
   }
-
-  Widget _buildListView(bool isReversed) => Material(
-        type: MaterialType.transparency,
-        child: OptimusScrollConfiguration(
-          child: ListView.builder(
-            reverse: isReversed,
-            padding: const EdgeInsets.symmetric(vertical: spacing100),
-            shrinkWrap: true,
-            itemCount: widget.items.length,
-            itemBuilder: (context, index) => _DropdownItem(
-              onChanged: widget.onChanged,
-              child: widget.items[index],
-            ),
-          ),
-        ),
-      );
 
   double get _offsetBottom => _screenHeight - _savedRect.top + _widgetPadding;
 
@@ -141,6 +129,36 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
   double get _rightSpace => _screenWidth - _savedRect.left;
 
   double get _leftSpace => _savedRect.right;
+}
+
+class _DropdownListView<T> extends StatelessWidget {
+  const _DropdownListView({
+    Key? key,
+    required this.onChanged,
+    required this.items,
+    required this.isReversed,
+  }) : super(key: key);
+
+  final ValueSetter<T> onChanged;
+  final List<OptimusDropdownTile<T>> items;
+  final bool isReversed;
+
+  @override
+  Widget build(BuildContext context) => Material(
+        type: MaterialType.transparency,
+        child: OptimusScrollConfiguration(
+          child: ListView.builder(
+            reverse: isReversed,
+            padding: const EdgeInsets.symmetric(vertical: spacing100),
+            shrinkWrap: true,
+            itemCount: items.length,
+            itemBuilder: (context, index) => _DropdownItem(
+              onChanged: onChanged,
+              child: items[index],
+            ),
+          ),
+        ),
+      );
 }
 
 class _DropdownItem<T> extends StatefulWidget {

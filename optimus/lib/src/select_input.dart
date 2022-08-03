@@ -21,7 +21,10 @@ class OptimusSelectInput<T> extends StatefulWidget {
     required this.builder,
     this.isEnabled = true,
     this.isRequired = false,
+    this.leading,
     this.prefix,
+    this.trailing,
+    this.suffix,
     this.caption,
     this.secondaryCaption,
     this.error,
@@ -31,6 +34,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.onTextChanged,
     this.focusNode,
     this.readOnly,
+    this.showLoader = false,
   }) : super(key: key);
 
   /// Describes the purpose of the select field.
@@ -42,7 +46,11 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final List<OptimusDropdownTile<T>> items;
   final bool isEnabled;
   final bool isRequired;
+  final Widget? leading;
   final Widget? prefix;
+  final Widget? trailing;
+  final Widget? suffix;
+  final bool showLoader;
   final FocusNode? focusNode;
 
   /// Serves as a helper text for informative or descriptive purposes.
@@ -163,12 +171,42 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         size: widget.size,
         onChanged: widget.onChanged,
         prefix: widget.prefix,
-        suffix: _icon,
+        leading: widget.leading,
+        suffix: widget.suffix,
+        trailing: _TrailingSelect(trailing: widget.trailing, icon: _icon),
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
         readOnly: widget.readOnly ?? !_isSearchable,
         showCursor: _isSearchable,
+        showLoader: widget.showLoader,
         shouldCloseOnInputTap: !_isSearchable,
       );
+}
+
+class _TrailingSelect extends StatelessWidget {
+  const _TrailingSelect({
+    Key? key,
+    required this.trailing,
+    required Widget icon,
+  })  : _icon = icon,
+        super(key: key);
+
+  final Widget? trailing;
+  final Widget _icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final trailingWidget = trailing;
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (trailingWidget != null) trailingWidget,
+        _icon,
+      ],
+    );
+  }
 }
