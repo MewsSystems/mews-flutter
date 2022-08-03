@@ -74,8 +74,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       onItemSelected: widget.onItemSelected ?? (_) {},
       focusNode: _node,
       width: _dropdownWidth,
-      onShown: () => setState(() => _controller.forward()),
-      onHidden: () => setState(() => _controller.reverse()),
+      onShown: () => setState(_controller.forward),
+      onHidden: () => setState(_controller.reverse),
       child: OptimusEnabled(
         isEnabled: _isEnabled,
         child: MouseRegion(
