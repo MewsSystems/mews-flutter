@@ -21,6 +21,7 @@ export 'src/chat/chat.dart';
 export 'src/chat/message.dart';
 export 'src/checkbox/checkbox.dart';
 export 'src/checkbox/checkbox_group.dart';
+export 'src/checkbox/nested_checkbox.dart';
 export 'src/colors/brand_colors.dart';
 export 'src/colors/color_options.dart';
 export 'src/colors/colors.dart';
