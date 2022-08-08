@@ -2,10 +2,12 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
+/// {@template optimus.typography.highlight}
 /// Highlights are used to emphasize specific parts of the content that need to
 /// stand out from the rest. Highlights serve as a guide when users skim
 /// through the content, searching for relevant information,
 /// such as price or dates.
+/// {@endtemplate}
 ///
 /// [OptimusHighlightMajor] - The highest form of emphasis. Use sporadically
 /// for maximum impact.
@@ -16,14 +18,18 @@ class OptimusHighlightMajor extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
+  /// {@template optimus.typography.highlight.child}
   /// The content of the highlight.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget child;
 
+  /// {@template optimus.typography.highlight.align}
   /// The alignment of the highlight.
   ///
   /// Defaults to [TextAlign.left].
+  /// {@endtemplate}
   final TextAlign align;
 
   @override
@@ -34,10 +40,7 @@ class OptimusHighlightMajor extends StatelessWidget {
       );
 }
 
-/// Highlights are used to emphasize specific parts of the content that need to
-/// stand out from the rest. Highlights serve as a guide when users skim
-/// through the content, searching for relevant information,
-/// such as price or dates.
+/// {@macro optimus.typography.highlight}
 ///
 /// [OptimusHighlightModerate] - Medium level of emphasis. Used without
 /// limitations across the page.
@@ -48,14 +51,10 @@ class OptimusHighlightModerate extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the highlight.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.highlight.child}
   final Widget child;
 
-  /// The alignment of the highlight.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.highlight.align}
   final TextAlign align;
 
   @override
@@ -66,10 +65,7 @@ class OptimusHighlightModerate extends StatelessWidget {
       );
 }
 
-/// Highlights are used to emphasize specific parts of the content that need to
-/// stand out from the rest. Highlights serve as a guide when users skim
-/// through the content, searching for relevant information,
-/// such as price or dates.
+/// {@macro optimus.typography.highlight}
 ///
 /// [OptimusHighlightMinor] - Low level of emphasis. Used without limitations
 /// across the page.
@@ -80,14 +76,10 @@ class OptimusHighlightMinor extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the highlight.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.highlight.child}
   final Widget child;
 
-  /// The alignment of the highlight.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.highlight.align}
   final TextAlign align;
 
   @override

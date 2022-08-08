@@ -3,9 +3,11 @@ import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
 
+/// {@template optimus.typography.label}
 /// Labels are informative text that describes the function or purpose of an
 /// element. Labels are usually actionless and should always be visible in the
 /// interface. Precise labels contribute to a more convenient experience.
+/// {@endtemplate}
 ///
 /// [OptimusLabel] with [Variation.variationNormal] is coupled with another
 /// element to describe its function.
@@ -20,17 +22,23 @@ class OptimusLabel extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
+  /// {@template optimus.typography.label.child}
   /// The content of the label.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget child;
 
+  /// {@template optimus.typography.label.variation}
   /// The variation of the label.
+  /// {@endtemplate}
   final Variation variation;
 
+  /// {@template optimus.typography.label.align}
   /// The alignment of the label.
   ///
   /// Defaults to [TextAlign.left].
+  /// {@endtemplate}
   final TextAlign align;
 
   @override
@@ -42,9 +50,7 @@ class OptimusLabel extends StatelessWidget {
       );
 }
 
-/// Labels are informative text that describes the function or purpose of an
-/// element. Labels are usually actionless and should always be visible in the
-/// interface. Precise labels contribute to a more convenient experience.
+/// {@macro optimus.typography.label}
 ///
 /// [OptimusLabelSmall] with [Variation.variationNormal] is coupled with
 /// another element to describe its function.
@@ -59,17 +65,13 @@ class OptimusLabelSmall extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the label.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.label.child}
   final Widget child;
 
-  /// The alignment of the label.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.label.align}
   final TextAlign align;
 
-  /// The variation of the label.
+  /// {@macro optimus.typography.label.variation}
   final Variation variation;
 
   @override

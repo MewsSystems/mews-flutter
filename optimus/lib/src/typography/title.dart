@@ -2,9 +2,11 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
+/// {@template optimus.typography.title}
 /// Titles provide a content hierarchy in any interface.
 /// These should be concise, precise, and easily scannable to deliver
 /// essential information quickly.
+/// {@endtemplate}
 ///
 /// [OptimusPageTitle] - is used only once per page (with exceptions).
 class OptimusPageTitle extends StatelessWidget {
@@ -14,14 +16,18 @@ class OptimusPageTitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
+  /// {@template optimus.typography.title.child}
   /// The content of the title.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget child;
 
+  /// {@template optimus.typography.title.align}
   /// The alignment of the title.
   ///
   /// Defaults to [TextAlign.left].
+  /// {@endtemplate}
   final TextAlign align;
 
   @override
@@ -32,9 +38,7 @@ class OptimusPageTitle extends StatelessWidget {
       );
 }
 
-/// Titles provide a content hierarchy in any interface.
-/// These should be concise, precise, and easily scannable to deliver
-/// essential information quickly.
+/// {@macro optimus.typography.title}
 ///
 /// [OptimusSectionTitle] - is used to divide individual sections of the page.
 class OptimusSectionTitle extends StatelessWidget {
@@ -44,14 +48,10 @@ class OptimusSectionTitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the title.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.title.child}
   final Widget child;
 
-  /// The alignment of the title.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.title.align}
   final TextAlign align;
 
   @override
@@ -62,9 +62,7 @@ class OptimusSectionTitle extends StatelessWidget {
       );
 }
 
-/// Titles provide a content hierarchy in any interface.
-/// These should be concise, precise, and easily scannable to deliver
-/// essential information quickly.
+/// {@macro optimus.typography.title}
 ///
 /// [OptimusSubsectionTitle] is used to further divide a specific section
 /// into subsections.
@@ -75,14 +73,10 @@ class OptimusSubsectionTitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the title.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.title.child}
   final Widget child;
 
-  /// The alignment of the title.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.title.align}
   final TextAlign align;
 
   @override
@@ -93,9 +87,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
       );
 }
 
-/// Titles provide a content hierarchy in any interface.
-/// These should be concise, precise, and easily scannable to deliver
-/// essential information quickly.
+/// {@macro optimus.typography.title}
 ///
 /// [OptimusSubtitle] is used in combination with one of the titles.
 class OptimusSubtitle extends StatelessWidget {
@@ -105,14 +97,10 @@ class OptimusSubtitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the subtitle.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.title.child}
   final Widget child;
 
-  /// The alignment of the title.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.title.align}
   final TextAlign align;
 
   @override

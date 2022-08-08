@@ -3,8 +3,10 @@ import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
 
+/// {@template optimus.typography.paragraph}
 /// Paragraphs are blocks of text that group related content concerning one
 /// topic or idea.
+/// {@endtemplate}
 ///
 /// [OptimusParagraph] with [Variation.variationNormal] is used as a distinct
 /// section of text dealing with a single topic.
@@ -19,17 +21,23 @@ class OptimusParagraph extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
+  /// {@template optimus.typography.paragraph.child}
   /// The content of the paragraph.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget child;
 
+  /// {@template optimus.typography.paragraph.align}
   /// The alignment of the paragraph.
   ///
   /// Defaults to [TextAlign.left].
+  /// {@endtemplate}
   final TextAlign align;
 
+  /// {@template optimus.typography.paragraph.variation}
   /// The variation of the paragraph.
+  /// {@endtemplate}
   final Variation variation;
 
   @override
@@ -41,8 +49,7 @@ class OptimusParagraph extends StatelessWidget {
       );
 }
 
-/// Paragraphs are blocks of text that group related content concerning one
-/// topic or idea.
+/// {@macro optimus.typography.paragraph}
 ///
 /// [OptimusParagraphSmall] with [Variation.variationNormal] Used as a distinct
 /// section of text dealing with a single topic.
@@ -57,17 +64,13 @@ class OptimusParagraphSmall extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the paragraph.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.paragraph.child}
   final Widget child;
 
-  /// The alignment of the paragraph.
-  ///
-  /// Defaults to [TextAlign.left].
+  /// {@macro optimus.typography.paragraph.align}
   final TextAlign align;
 
-  /// The variation of the paragraph.
+  /// {@macro optimus.typography.paragraph.variation}
   final Variation variation;
 
   @override
