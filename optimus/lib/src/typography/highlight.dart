@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/alignment.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -13,7 +12,7 @@ import 'package:optimus/src/typography/typography.dart';
 class OptimusHighlightMajor extends StatelessWidget {
   const OptimusHighlightMajor({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -24,8 +23,8 @@ class OptimusHighlightMajor extends StatelessWidget {
 
   /// The alignment of the highlight.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -45,7 +44,7 @@ class OptimusHighlightMajor extends StatelessWidget {
 class OptimusHighlightModerate extends StatelessWidget {
   const OptimusHighlightModerate({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -56,8 +55,8 @@ class OptimusHighlightModerate extends StatelessWidget {
 
   /// The alignment of the highlight.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -77,7 +76,7 @@ class OptimusHighlightModerate extends StatelessWidget {
 class OptimusHighlightMinor extends StatelessWidget {
   const OptimusHighlightMinor({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -88,8 +87,8 @@ class OptimusHighlightMinor extends StatelessWidget {
 
   /// The alignment of the highlight.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(

@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/alignment.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
@@ -16,7 +15,7 @@ class OptimusParagraph extends StatelessWidget {
   const OptimusParagraph({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -27,8 +26,8 @@ class OptimusParagraph extends StatelessWidget {
 
   /// The alignment of the paragraph.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   /// The variation of the paragraph.
   final Variation variation;
@@ -54,7 +53,7 @@ class OptimusParagraphSmall extends StatelessWidget {
   const OptimusParagraphSmall({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -65,8 +64,8 @@ class OptimusParagraphSmall extends StatelessWidget {
 
   /// The alignment of the paragraph.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   /// The variation of the paragraph.
   final Variation variation;

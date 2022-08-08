@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/alignment.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
@@ -17,7 +16,7 @@ class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -31,8 +30,8 @@ class OptimusCaption extends StatelessWidget {
 
   /// The alignment of the caption.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(

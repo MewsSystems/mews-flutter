@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/alignment.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -11,7 +10,7 @@ import 'package:optimus/src/typography/typography.dart';
 class OptimusPageTitle extends StatelessWidget {
   const OptimusPageTitle({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -22,8 +21,8 @@ class OptimusPageTitle extends StatelessWidget {
 
   /// The alignment of the title.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -41,7 +40,7 @@ class OptimusPageTitle extends StatelessWidget {
 class OptimusSectionTitle extends StatelessWidget {
   const OptimusSectionTitle({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -52,8 +51,8 @@ class OptimusSectionTitle extends StatelessWidget {
 
   /// The alignment of the title.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -72,7 +71,7 @@ class OptimusSectionTitle extends StatelessWidget {
 class OptimusSubsectionTitle extends StatelessWidget {
   const OptimusSubsectionTitle({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -83,8 +82,8 @@ class OptimusSubsectionTitle extends StatelessWidget {
 
   /// The alignment of the title.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -102,7 +101,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
 class OptimusSubtitle extends StatelessWidget {
   const OptimusSubtitle({
     Key? key,
-    this.align = OptimusTypographyAlignment.left,
+    this.align = TextAlign.left,
     required this.child,
   }) : super(key: key);
 
@@ -113,8 +112,8 @@ class OptimusSubtitle extends StatelessWidget {
 
   /// The alignment of the title.
   ///
-  /// Defaults to [OptimusTypographyAlignment.left].
-  final OptimusTypographyAlignment align;
+  /// Defaults to [TextAlign.left].
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
