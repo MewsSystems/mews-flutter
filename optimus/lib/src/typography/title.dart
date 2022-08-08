@@ -16,18 +16,10 @@ class OptimusPageTitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// {@template optimus.typography.title.child}
-  /// The content of the title.
-  ///
-  /// Typically a [Text] widget.
-  /// {@endtemplate}
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// {@template optimus.typography.title.align}
-  /// The alignment of the title.
-  ///
-  /// Defaults to [TextAlign.left].
-  /// {@endtemplate}
+  /// {@macro optimus.typography.align}
   final TextAlign align;
 
   @override
@@ -48,10 +40,10 @@ class OptimusSectionTitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// {@macro optimus.typography.title.child}
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// {@macro optimus.typography.title.align}
+  /// {@macro optimus.typography.align}
   final TextAlign align;
 
   @override
@@ -73,10 +65,10 @@ class OptimusSubsectionTitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// {@macro optimus.typography.title.child}
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// {@macro optimus.typography.title.align}
+  /// {@macro optimus.typography.align}
   final TextAlign align;
 
   @override
@@ -97,10 +89,10 @@ class OptimusSubtitle extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// {@macro optimus.typography.title.child}
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// {@macro optimus.typography.title.align}
+  /// {@macro optimus.typography.align}
   final TextAlign align;
 
   @override

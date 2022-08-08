@@ -21,23 +21,13 @@ class OptimusParagraph extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// {@template optimus.typography.paragraph.child}
-  /// The content of the paragraph.
-  ///
-  /// Typically a [Text] widget.
-  /// {@endtemplate}
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// {@template optimus.typography.paragraph.align}
-  /// The alignment of the paragraph.
-  ///
-  /// Defaults to [TextAlign.left].
-  /// {@endtemplate}
+  /// {@macro optimus.typography.align}
   final TextAlign align;
 
-  /// {@template optimus.typography.paragraph.variation}
-  /// The variation of the paragraph.
-  /// {@endtemplate}
+  /// {@macro optimus.typography.variation}
   final Variation variation;
 
   @override
@@ -64,13 +54,13 @@ class OptimusParagraphSmall extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// {@macro optimus.typography.paragraph.child}
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// {@macro optimus.typography.paragraph.align}
+  /// {@macro optimus.typography.align}
   final TextAlign align;
 
-  /// {@macro optimus.typography.paragraph.variation}
+  /// {@macro optimus.typography.variation}
   final Variation variation;
 
   @override

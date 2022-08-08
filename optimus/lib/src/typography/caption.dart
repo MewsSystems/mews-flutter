@@ -20,17 +20,23 @@ class OptimusCaption extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
-  /// The content of the caption.
+  /// {@template optimus.typography.child}
+  /// The content of this widget.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget child;
 
-  /// The variation of the caption.
+  /// {@template optimus.typography.variation}
+  /// The variation of this widget.
+  /// {@endtemplate}
   final Variation variation;
 
-  /// The alignment of the caption.
+  /// {@template optimus.typography.align}
+  /// The alignment of the content within this widget.
   ///
   /// Defaults to [TextAlign.left].
+  /// {@endtemplate}
   final TextAlign align;
 
   @override
