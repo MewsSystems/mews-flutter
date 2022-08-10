@@ -18,7 +18,7 @@ class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -29,7 +29,7 @@ class OptimusLabel extends StatelessWidget {
   final Variation variation;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -51,7 +51,7 @@ class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -59,7 +59,7 @@ class OptimusLabelSmall extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   /// {@macro optimus.typography.variation}
   final Variation variation;

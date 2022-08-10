@@ -16,7 +16,7 @@ class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -37,7 +37,7 @@ class OptimusCaption extends StatelessWidget {
   ///
   /// Defaults to [TextAlign.left].
   /// {@endtemplate}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(

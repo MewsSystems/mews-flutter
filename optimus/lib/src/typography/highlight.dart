@@ -14,7 +14,7 @@ import 'package:optimus/src/typography/typography.dart';
 class OptimusHighlightMajor extends StatelessWidget {
   const OptimusHighlightMajor({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class OptimusHighlightMajor extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -39,7 +39,7 @@ class OptimusHighlightMajor extends StatelessWidget {
 class OptimusHighlightModerate extends StatelessWidget {
   const OptimusHighlightModerate({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -47,7 +47,7 @@ class OptimusHighlightModerate extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -64,7 +64,7 @@ class OptimusHighlightModerate extends StatelessWidget {
 class OptimusHighlightMinor extends StatelessWidget {
   const OptimusHighlightMinor({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -72,7 +72,7 @@ class OptimusHighlightMinor extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(

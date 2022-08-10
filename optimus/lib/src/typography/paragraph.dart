@@ -17,7 +17,7 @@ class OptimusParagraph extends StatelessWidget {
   const OptimusParagraph({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class OptimusParagraph extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   /// {@macro optimus.typography.variation}
   final Variation variation;
@@ -50,7 +50,7 @@ class OptimusParagraphSmall extends StatelessWidget {
   const OptimusParagraphSmall({
     Key? key,
     this.variation = Variation.variationNormal,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -58,7 +58,7 @@ class OptimusParagraphSmall extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   /// {@macro optimus.typography.variation}
   final Variation variation;

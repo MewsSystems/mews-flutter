@@ -12,7 +12,7 @@ import 'package:optimus/src/typography/typography.dart';
 class OptimusPageTitle extends StatelessWidget {
   const OptimusPageTitle({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class OptimusPageTitle extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -36,7 +36,7 @@ class OptimusPageTitle extends StatelessWidget {
 class OptimusSectionTitle extends StatelessWidget {
   const OptimusSectionTitle({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -44,7 +44,7 @@ class OptimusSectionTitle extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -61,7 +61,7 @@ class OptimusSectionTitle extends StatelessWidget {
 class OptimusSubsectionTitle extends StatelessWidget {
   const OptimusSubsectionTitle({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -69,7 +69,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
@@ -85,7 +85,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
 class OptimusSubtitle extends StatelessWidget {
   const OptimusSubtitle({
     Key? key,
-    this.align = TextAlign.left,
+    this.align,
     required this.child,
   }) : super(key: key);
 
@@ -93,7 +93,7 @@ class OptimusSubtitle extends StatelessWidget {
   final Widget child;
 
   /// {@macro optimus.typography.align}
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(

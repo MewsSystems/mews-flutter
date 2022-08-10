@@ -11,13 +11,13 @@ class OptimusTypography extends StatelessWidget {
     required this.resolveStyle,
     this.color = OptimusTypographyColor.primary,
     required this.child,
-    this.align = TextAlign.left,
+    this.align,
   }) : super(key: key);
 
   final ResolveStyle resolveStyle;
   final Widget child;
   final OptimusTypographyColor color;
-  final TextAlign align;
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class OptimusTypography extends StatelessWidget {
 
     return DefaultTextStyle.merge(
       child: child,
-      textAlign: align,
+      textAlign: align ?? TextAlign.left,
       style: resolveStyle(screenSize).copyWith(color: _color(theme)),
     );
   }

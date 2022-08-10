@@ -16,7 +16,7 @@ final Story labelStory = Story(
     final align = k.options(
       label: 'Align',
       options: TextAlign.values.toOptions(),
-      initial: TextAlign.left,
+      initial: null,
     );
 
     return Center(
