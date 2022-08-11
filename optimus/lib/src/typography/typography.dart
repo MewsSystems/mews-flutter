@@ -26,7 +26,7 @@ class OptimusTypography extends StatelessWidget {
 
     return DefaultTextStyle.merge(
       child: child,
-      textAlign: align ?? TextAlign.left,
+      textAlign: align,
       style: resolveStyle(screenSize).copyWith(color: _color(theme)),
     );
   }

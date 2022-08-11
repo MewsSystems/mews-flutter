@@ -35,7 +35,7 @@ class OptimusCaption extends StatelessWidget {
   /// {@template optimus.typography.align}
   /// The alignment of the content within this widget.
   ///
-  /// Defaults to [TextAlign.left].
+  /// Defaults to [TextAlign.start].
   /// {@endtemplate}
   final TextAlign? align;
 
