@@ -16,21 +16,34 @@ class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
     Key? key,
     this.variation = Variation.variationNormal,
+    this.align,
     required this.child,
   }) : super(key: key);
 
-  /// The content of the caption.
+  /// {@template optimus.typography.child}
+  /// The content of this widget.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget child;
 
-  /// The variation of the caption.
+  /// {@template optimus.typography.variation}
+  /// The variation of this widget.
+  /// {@endtemplate}
   final Variation variation;
+
+  /// {@template optimus.typography.align}
+  /// The alignment of the content within this widget.
+  ///
+  /// Defaults to [TextAlign.start].
+  /// {@endtemplate}
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
         resolveStyle: (_) => preset100s,
         color: variation.color,
+        align: align,
         child: child,
       );
 }

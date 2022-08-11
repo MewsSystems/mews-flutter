@@ -13,6 +13,12 @@ final Story labelStory = Story(
       options: variationOptions,
     );
 
+    final align = k.options(
+      label: 'Align',
+      options: TextAlign.values.toOptions(),
+      initial: null,
+    );
+
     return Center(
       child: OptimusStack(
         spacing: OptimusStackSpacing.spacing200,
@@ -20,10 +26,12 @@ final Story labelStory = Story(
         children: [
           OptimusLabel(
             variation: variation,
+            align: align,
             child: Text(k.text(label: 'Label', initial: 'Label')),
           ),
           OptimusLabelSmall(
             variation: variation,
+            align: align,
             child: Text(k.text(label: 'Small Label', initial: 'Small Label')),
           ),
         ],

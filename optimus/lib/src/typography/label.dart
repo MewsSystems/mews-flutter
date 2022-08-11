@@ -3,9 +3,11 @@ import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
 
+/// {@template optimus.typography.label}
 /// Labels are informative text that describes the function or purpose of an
 /// element. Labels are usually actionless and should always be visible in the
 /// interface. Precise labels contribute to a more convenient experience.
+/// {@endtemplate}
 ///
 /// [OptimusLabel] with [Variation.variationNormal] is coupled with another
 /// element to describe its function.
@@ -16,28 +18,29 @@ class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
     Key? key,
     this.variation = Variation.variationNormal,
+    this.align,
     required this.child,
   }) : super(key: key);
 
-  /// The content of the label.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// The variation of the label.
+  /// {@macro optimus.typography.variation}
   final Variation variation;
+
+  /// {@macro optimus.typography.align}
+  final TextAlign? align;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
         resolveStyle: (_) => preset200s,
         color: variation.color,
+        align: align,
         child: child,
       );
 }
 
-/// Labels are informative text that describes the function or purpose of an
-/// element. Labels are usually actionless and should always be visible in the
-/// interface. Precise labels contribute to a more convenient experience.
+/// {@macro optimus.typography.label}
 ///
 /// [OptimusLabelSmall] with [Variation.variationNormal] is coupled with
 /// another element to describe its function.
@@ -48,21 +51,24 @@ class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
     Key? key,
     this.variation = Variation.variationNormal,
+    this.align,
     required this.child,
   }) : super(key: key);
 
-  /// The content of the label.
-  ///
-  /// Typically a [Text] widget.
+  /// {@macro optimus.typography.child}
   final Widget child;
 
-  /// The variation of the label.
+  /// {@macro optimus.typography.align}
+  final TextAlign? align;
+
+  /// {@macro optimus.typography.variation}
   final Variation variation;
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
         resolveStyle: (_) => preset100s,
         color: variation.color,
+        align: align,
         child: child,
       );
 }
