@@ -168,7 +168,9 @@ class _DateFormatter extends TextInputFormatter {
   String _replaceCharAt(String value, int index, String replacement) =>
       value.substring(0, index) +
       replacement +
-      (index == value.length - 1 ? '' : value.substring(index + 1));
+      (index == value.length - replacement.length
+          ? ''
+          : value.substring(index + replacement.length));
 
   @override
   TextEditingValue formatEditUpdate(
@@ -213,11 +215,21 @@ class _DateFormatter extends TextInputFormatter {
       );
     } else if (newClean.length < oldClean.length) {
       if (_isValidInput(oldValue.text[newValue.selection.start])) {
+        final start = oldValue.selection.start == oldValue.selection.end
+            ? newValue.selection.start
+            : oldValue.selection.start;
+        final end = oldValue.selection.start == oldValue.selection.end
+            ? newValue.selection.start + 1
+            : oldValue.selection.end;
+
         return TextEditingValue(
           text: _replaceCharAt(
             oldValue.text,
             newValue.selection.start,
-            placeholder[newValue.selection.start],
+            placeholder.substring(
+              start,
+              end,
+            ),
           ),
           selection: TextSelection.collapsed(offset: newValue.selection.start),
         );
