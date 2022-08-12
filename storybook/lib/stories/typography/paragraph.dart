@@ -13,6 +13,12 @@ final Story paragraphStory = Story(
       options: variationOptions,
     );
 
+    final align = k.options(
+      label: 'Align',
+      options: TextAlign.values.toOptions(),
+      initial: null,
+    );
+
     return Center(
       child: OptimusStack(
         spacing: OptimusStackSpacing.spacing200,
@@ -20,10 +26,12 @@ final Story paragraphStory = Story(
         children: [
           OptimusParagraph(
             variation: variation,
+            align: align,
             child: Text(k.text(label: 'Paragraph', initial: 'Paragraph')),
           ),
           OptimusParagraphSmall(
             variation: variation,
+            align: align,
             child: Text(
               k.text(label: 'Small Paragraph', initial: 'Small Paragraph'),
             ),
