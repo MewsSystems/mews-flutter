@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/form/form_style.dart';
 
 /// General input, used to allow users to enter data into the interface.
 class OptimusInputField extends StatefulWidget {
@@ -229,12 +229,12 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               onSubmitted: widget.onSubmitted,
               textInputAction: widget.textInputAction,
               placeholder: widget.placeholder,
-              placeholderStyle:
-                  widget.placeholderStyle ?? _placeholderTextStyle,
+              placeholderStyle: widget.placeholderStyle ??
+                  getPlaceholderTextStyle(theme, widget.size),
               focusNode: _effectiveFocusNode,
               enabled: widget.isEnabled,
               padding: _prefix != null ? _textWithPrefixPadding : _textPadding,
-              style: _textStyle,
+              style: getTextStyle(theme, widget.size),
               decoration: null,
               onChanged: widget.onChanged,
               keyboardType: widget.keyboardType,
@@ -250,29 +250,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   void _onStateUpdate() {
     setState(() {});
-  }
-
-  TextStyle get _textStyle {
-    final color = theme.colors.defaultTextColor;
-    switch (widget.size) {
-      case OptimusWidgetSize.small:
-        return preset200s.copyWith(color: color);
-      case OptimusWidgetSize.medium:
-      case OptimusWidgetSize.large:
-        return preset300s.copyWith(color: color);
-    }
-  }
-
-  TextStyle get _placeholderTextStyle {
-    final color =
-        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
-    switch (widget.size) {
-      case OptimusWidgetSize.small:
-        return preset200s.copyWith(color: color);
-      case OptimusWidgetSize.medium:
-      case OptimusWidgetSize.large:
-        return preset300s.copyWith(color: color);
-    }
   }
 
   EdgeInsets get _textPadding {
