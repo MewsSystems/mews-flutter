@@ -252,14 +252,7 @@ extension on OptimusDateInputFormat {
     }
   }
 
-  String get separator {
-    switch (this) {
-      case OptimusDateInputFormat.ddmmyyyy:
-        return '/';
-      case OptimusDateInputFormat.mmddyyyy:
-        return '/';
-    }
-  }
+  String get separator => '/';
 
   int get monthPosition {
     switch (this) {
@@ -279,32 +272,11 @@ extension on OptimusDateInputFormat {
     }
   }
 
-  int get yearPosition {
-    switch (this) {
-      case OptimusDateInputFormat.ddmmyyyy:
-        return 2;
-      case OptimusDateInputFormat.mmddyyyy:
-        return 2;
-    }
-  }
+  int get yearPosition => 2;
 
-  RegExp get allowed {
-    switch (this) {
-      case OptimusDateInputFormat.ddmmyyyy:
-        return RegExp('[0-9]');
-      case OptimusDateInputFormat.mmddyyyy:
-        return RegExp('[0-9]');
-    }
-  }
+  RegExp get allowed => RegExp('[0-9]');
 
-  RegExp get restricted {
-    switch (this) {
-      case OptimusDateInputFormat.ddmmyyyy:
-        return RegExp('[^0-9]');
-      case OptimusDateInputFormat.mmddyyyy:
-        return RegExp('[^0-9]');
-    }
-  }
+  RegExp get restricted => RegExp('[^0-9]');
 
   int getMonth(String value) => int.parse(value.split('/')[monthPosition]);
 
