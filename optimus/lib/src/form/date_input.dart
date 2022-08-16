@@ -285,9 +285,7 @@ extension on OptimusDateInputFormat {
 
   int getYear(String value) => int.parse(value.split(separator)[yearPosition]);
 
-  DateTime? toDateTime(String value) {
-    if (value.isEmpty) return null;
-
-    return DateTime(getYear(value), getMonth(value), getDay(value));
-  }
+  DateTime? toDateTime(String value) => value.isEmpty
+      ? null
+      : DateTime(getYear(value), getMonth(value), getDay(value));
 }
