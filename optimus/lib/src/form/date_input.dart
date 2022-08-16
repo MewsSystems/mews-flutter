@@ -278,11 +278,12 @@ extension on OptimusDateInputFormat {
 
   RegExp get restricted => RegExp('[^0-9]');
 
-  int getMonth(String value) => int.parse(value.split('/')[monthPosition]);
+  int getMonth(String value) =>
+      int.parse(value.split(separator)[monthPosition]);
 
-  int getDay(String value) => int.parse(value.split('/')[dayPosition]);
+  int getDay(String value) => int.parse(value.split(separator)[dayPosition]);
 
-  int getYear(String value) => int.parse(value.split('/')[yearPosition]);
+  int getYear(String value) => int.parse(value.split(separator)[yearPosition]);
 
   DateTime? toDateTime(String value) {
     if (value.isEmpty) return null;
