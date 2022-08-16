@@ -6,44 +6,34 @@ import 'package:optimus/src/form/form_style.dart';
 /// A [FormField] meant to be used for the user to enter a date.
 ///
 /// The date format is determined by the placeholder parameter and will default
-/// to DD/MM/YYYY and '/' as a separator.
+/// to [OptimusDateInputFormat.ddmmyyyy]. The input is limited to digits only.
+/// If [keyboardType] value is not provided, the keyboard will be set to
+/// [TextInputType.number].
 class OptimusDateInputFormField extends StatefulWidget {
   const OptimusDateInputFormField({
     Key? key,
-    required this.onSaved,
-    required this.validator,
-    this.onSubmitted,
+    required this.onSubmitted,
     this.label,
     this.error,
     this.caption,
     this.secondaryCaption,
     this.keyboardType,
-    this.autovalidateMode,
     this.size = OptimusWidgetSize.large,
     this.isEnabled = true,
-    this.placeholder = 'DD/MM/YYYY',
-    this.separator = '/',
+    this.format = OptimusDateInputFormat.ddmmyyyy,
     this.isClearEnabled = false,
   }) : super(key: key);
 
-  /// Placeholder text for the date input.
-  ///
-  /// It will be displayed as a hint, until the whole date is entered.
-  final String placeholder;
+  /// Format of the date. It will define the placeholder and the separator.
+  final OptimusDateInputFormat format;
 
-  /// Separator between the date parts.
-  final String separator;
-
-  final FormFieldSetter<String> onSaved;
-  final FormFieldValidator<String> validator;
-  final ValueChanged<String>? onSubmitted;
+  final ValueChanged<DateTime?> onSubmitted;
 
   final String? label;
   final String? error;
   final Widget? caption;
   final Widget? secondaryCaption;
   final TextInputType? keyboardType;
-  final AutovalidateMode? autovalidateMode;
   final bool isEnabled;
   final bool isClearEnabled;
   final OptimusWidgetSize size;
@@ -63,32 +53,30 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
     _controller = _StyledPatternController(
       defaultStyle: getPlaceholderTextStyle(theme, widget.size),
       matchStyle: getTextStyle(theme, widget.size),
-      pattern: RegExp('[0-9]'),
+      pattern: widget.format.allowed,
     );
+  }
+
+  DateTime? _getDateTime(String value) {
+    widget.onSubmitted.call(widget.format.toDateTime(value));
   }
 
   @override
   Widget build(BuildContext context) => FormField(
-        onSaved: widget.onSaved,
-        validator: widget.validator,
-        autovalidateMode: widget.autovalidateMode,
         enabled: widget.isEnabled,
-        builder: (FormFieldState<String> field) => OptimusInputField(
+        builder: (FormFieldState<DateTime?> field) => OptimusInputField(
           label: widget.label,
           caption: widget.caption,
           isEnabled: widget.isEnabled,
           isClearEnabled: widget.isClearEnabled,
           secondaryCaption: widget.secondaryCaption,
-          placeholder: widget.placeholder,
+          placeholder: widget.format.placeholder,
           controller: _controller,
           error: widget.error,
-          onSubmitted: widget.onSubmitted,
+          onSubmitted: _getDateTime,
           keyboardType: widget.keyboardType ?? TextInputType.number,
           inputFormatters: [
-            _DateFormatter(
-              placeholder: widget.placeholder,
-              separator: widget.separator,
-            ),
+            _DateFormatter(format: widget.format),
           ],
         ),
       );
@@ -99,6 +87,8 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
     super.dispose();
   }
 }
+
+enum OptimusDateInputFormat { ddmmyyyy, mmddyyyy }
 
 class _StyledPatternController extends TextEditingController {
   _StyledPatternController({
@@ -149,13 +139,13 @@ class _StyledPatternController extends TextEditingController {
 }
 
 class _DateFormatter extends TextInputFormatter {
-  _DateFormatter({
-    required this.placeholder,
-    required this.separator,
-  });
+  _DateFormatter({required this.format});
 
-  final String placeholder;
-  final String separator;
+  final OptimusDateInputFormat format;
+
+  String get placeholder => format.placeholder;
+
+  String get separator => format.separator;
 
   bool _isValidInput(String value) => value.isDigit;
 
@@ -163,7 +153,8 @@ class _DateFormatter extends TextInputFormatter {
       _getCleanInput(value).length ==
       placeholder.replaceAll(separator, '').length;
 
-  String _getCleanInput(String value) => value.replaceAll(RegExp('[^0-9]'), '');
+  String _getCleanInput(String value) =>
+      value.replaceAll(format.restricted, '');
 
   String _replaceCharAt(String value, int index, String replacement) =>
       value.substring(0, index) +
@@ -249,4 +240,81 @@ class _DateFormatter extends TextInputFormatter {
 
 extension on String {
   bool get isDigit => int.tryParse(this) != null;
+}
+
+extension on OptimusDateInputFormat {
+  String get placeholder {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return 'DD/MM/YYYY';
+      case OptimusDateInputFormat.mmddyyyy:
+        return 'MM/DD/YYYY';
+    }
+  }
+
+  String get separator {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return '/';
+      case OptimusDateInputFormat.mmddyyyy:
+        return '/';
+    }
+  }
+
+  int get monthPosition {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return 1;
+      case OptimusDateInputFormat.mmddyyyy:
+        return 0;
+    }
+  }
+
+  int get dayPosition {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return 0;
+      case OptimusDateInputFormat.mmddyyyy:
+        return 1;
+    }
+  }
+
+  int get yearPosition {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return 2;
+      case OptimusDateInputFormat.mmddyyyy:
+        return 2;
+    }
+  }
+
+  RegExp get allowed {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return RegExp('[0-9]');
+      case OptimusDateInputFormat.mmddyyyy:
+        return RegExp('[0-9]');
+    }
+  }
+
+  RegExp get restricted {
+    switch (this) {
+      case OptimusDateInputFormat.ddmmyyyy:
+        return RegExp('[^0-9]');
+      case OptimusDateInputFormat.mmddyyyy:
+        return RegExp('[^0-9]');
+    }
+  }
+
+  int getMonth(String value) => int.parse(value.split('/')[monthPosition]);
+
+  int getDay(String value) => int.parse(value.split('/')[dayPosition]);
+
+  int getYear(String value) => int.parse(value.split('/')[yearPosition]);
+
+  DateTime? toDateTime(String value) {
+    if (value.isEmpty) return null;
+
+    return DateTime(getYear(value), getMonth(value), getDay(value));
+  }
 }
