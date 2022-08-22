@@ -35,7 +35,7 @@ export 'src/dialogs/non_modal_wrapper.dart';
 export 'src/enabled.dart';
 export 'src/expansion/expansion_tile.dart';
 export 'src/form/checkbox_form_field.dart';
-export 'src/form/date_input.dart';
+export 'src/form/date_input_form_field.dart';
 export 'src/form/date_time_form_field.dart';
 export 'src/form/input_field.dart';
 export 'src/form/input_form_field.dart';
