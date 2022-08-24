@@ -44,6 +44,8 @@ class OptimusInputField extends StatefulWidget {
     this.showLoader = false,
     this.inputFormatters,
     this.keyboardAppearance,
+    this.enableIMEPersonalizedLearning = true,
+    this.enableSuggestions = true,
   }) : super(key: key);
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -127,6 +129,12 @@ class OptimusInputField extends StatefulWidget {
   ///
   /// If null, defaults to the brightness provided by [OptimusTheme].
   final Brightness? keyboardAppearance;
+
+  /// {@macro flutter.services.TextInputConfiguration.enableIMEPersonalizedLearning}
+  final bool enableIMEPersonalizedLearning;
+
+  /// {@macro flutter.services.TextInputConfiguration.enableSuggestions}
+  final bool enableSuggestions;
 
   bool get hasError {
     final error = this.error;
@@ -223,6 +231,8 @@ class _OptimusInputFieldState extends State<OptimusInputField> with ThemeGetter 
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
+              enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+              enableSuggestions: widget.enableSuggestions,
               textCapitalization: widget.textCapitalization,
               cursorColor: theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
               autocorrect: widget.autocorrect,

@@ -38,6 +38,8 @@ class OptimusInputFormField extends FormField<String> {
     Widget? caption,
     Widget? secondaryCaption,
     Brightness? keyboardAppearance,
+    bool enableIMEPersonalizedLearning = false,
+    bool enableSuggestions = true,
   })  : assert(
           initialValue == null || controller == null,
           'Provide either initial value or controller',
@@ -84,6 +86,8 @@ class OptimusInputFormField extends FormField<String> {
               caption: caption,
               secondaryCaption: secondaryCaption,
               keyboardAppearance: keyboardAppearance,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              enableSuggestions: enableSuggestions,
             );
           },
         );
