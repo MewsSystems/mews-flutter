@@ -43,6 +43,7 @@ class OptimusInputField extends StatefulWidget {
     this.showCursor,
     this.showLoader = false,
     this.inputFormatters,
+    this.keyboardAppearance,
   }) : super(key: key);
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -119,6 +120,13 @@ class OptimusInputField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
+
+  /// The appearance of the keyboard.
+  ///
+  /// This setting is only honored on iOS devices.
+  ///
+  /// If null, defaults to the brightness provided by [OptimusTheme].
+  final Brightness? keyboardAppearance;
 
   bool get hasError {
     final error = this.error;
@@ -239,6 +247,7 @@ class _OptimusInputFieldState extends State<OptimusInputField> with ThemeGetter 
               readOnly: widget.readOnly,
               showCursor: widget.showCursor,
               inputFormatters: widget.inputFormatters,
+              keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,
             ),
           ),
         ],

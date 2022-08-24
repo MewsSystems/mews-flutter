@@ -37,6 +37,7 @@ class OptimusInputFormField extends FormField<String> {
     TextCapitalization textCapitalization = TextCapitalization.none,
     Widget? caption,
     Widget? secondaryCaption,
+    Brightness? keyboardAppearance,
   })  : assert(
           initialValue == null || controller == null,
           'Provide either initial value or controller',
@@ -82,6 +83,7 @@ class OptimusInputFormField extends FormField<String> {
               textCapitalization: textCapitalization,
               caption: caption,
               secondaryCaption: secondaryCaption,
+              keyboardAppearance: keyboardAppearance,
             );
           },
         );
