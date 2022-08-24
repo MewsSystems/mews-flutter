@@ -38,6 +38,7 @@ class OptimusInputField extends StatefulWidget {
     this.readOnly = false,
     this.onTap,
     this.textAlign = TextAlign.start,
+    this.textCapitalization = TextCapitalization.none,
     this.size = OptimusWidgetSize.large,
     this.showCursor,
     this.showLoader = false,
@@ -105,6 +106,9 @@ class OptimusInputField extends StatefulWidget {
 
   final TextAlign textAlign;
 
+  /// {@macro flutter.widgets.editableText.textCapitalization}
+  final TextCapitalization textCapitalization;
+
   final OptimusWidgetSize size;
 
   /// {@macro flutter.widgets.editableText.showCursor}
@@ -126,17 +130,14 @@ class OptimusInputField extends StatefulWidget {
   State<OptimusInputField> createState() => _OptimusInputFieldState();
 }
 
-class _OptimusInputFieldState extends State<OptimusInputField>
-    with ThemeGetter {
+class _OptimusInputFieldState extends State<OptimusInputField> with ThemeGetter {
   FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
   TextEditingController? _controller;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? (_controller ??= TextEditingController());
+  TextEditingController get _effectiveController => widget.controller ?? (_controller ??= TextEditingController());
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -178,10 +179,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 
   Widget? get _suffix {
-    if (widget.suffix != null ||
-        widget.trailing != null ||
-        widget.showLoader ||
-        _shouldShowClearAllButton) {
+    if (widget.suffix != null || widget.trailing != null || widget.showLoader || _shouldShowClearAllButton) {
       return _Suffix(
         suffix: widget.suffix,
         trailing: widget.trailing,
@@ -197,8 +195,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     widget.onChanged?.call('');
   }
 
-  bool get _shouldShowClearAllButton =>
-      widget.isClearEnabled && _effectiveController.text.isNotEmpty;
+  bool get _shouldShowClearAllButton => widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
   @override
   Widget build(BuildContext context) => FieldWrapper(
@@ -218,8 +215,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
-              cursorColor:
-                  theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
+              textCapitalization: widget.textCapitalization,
+              cursorColor: theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
               autocorrect: widget.autocorrect,
               autofocus: widget.autofocus,
               enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -229,8 +226,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               onSubmitted: widget.onSubmitted,
               textInputAction: widget.textInputAction,
               placeholder: widget.placeholder,
-              placeholderStyle:
-                  widget.placeholderStyle ?? _placeholderTextStyle,
+              placeholderStyle: widget.placeholderStyle ?? _placeholderTextStyle,
               focusNode: _effectiveFocusNode,
               enabled: widget.isEnabled,
               padding: _prefix != null ? _textWithPrefixPadding : _textPadding,
@@ -264,8 +260,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 
   TextStyle get _placeholderTextStyle {
-    final color =
-        theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
+    final color = theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
     switch (widget.size) {
       case OptimusWidgetSize.small:
         return preset200s.copyWith(color: color);
@@ -334,10 +329,7 @@ class _Suffix extends StatelessWidget {
         if (suffixWidget != null) suffixWidget,
         if (showLoader) _loader,
         if (clearAllButtonWidget != null) clearAllButtonWidget,
-        if (passwordButtonWidget != null)
-          passwordButtonWidget
-        else if (trailingWidget != null)
-          trailingWidget
+        if (passwordButtonWidget != null) passwordButtonWidget else if (trailingWidget != null) trailingWidget
       ],
     );
   }

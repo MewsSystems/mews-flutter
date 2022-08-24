@@ -34,6 +34,7 @@ class OptimusInputFormField extends FormField<String> {
     bool? showCursor,
     VoidCallback? onTap,
     TextAlign textAlign = TextAlign.start,
+    TextCapitalization textCapitalization = TextCapitalization.none,
     Widget? caption,
     Widget? secondaryCaption,
   })  : assert(
@@ -42,8 +43,7 @@ class OptimusInputFormField extends FormField<String> {
         ),
         super(
           key: key,
-          initialValue:
-              controller != null ? controller.text : (initialValue ?? ''),
+          initialValue: controller != null ? controller.text : (initialValue ?? ''),
           onSaved: onSaved,
           validator: validator,
           autovalidateMode: autovalidateMode,
@@ -79,6 +79,7 @@ class OptimusInputFormField extends FormField<String> {
               showCursor: showCursor,
               onTap: onTap,
               textAlign: textAlign,
+              textCapitalization: textCapitalization,
               caption: caption,
               secondaryCaption: secondaryCaption,
             );
@@ -123,8 +124,7 @@ class _InputFormFieldState extends FormFieldState<String> {
       final widgetController = widget.controller;
 
       if (oldWidgetController != null && widget.controller == null) {
-        _controller =
-            TextEditingController.fromValue(oldWidgetController.value);
+        _controller = TextEditingController.fromValue(oldWidgetController.value);
       }
       if (widgetController != null) {
         setValue(widgetController.text);
