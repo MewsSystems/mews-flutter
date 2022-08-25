@@ -38,10 +38,14 @@ class OptimusInputField extends StatefulWidget {
     this.readOnly = false,
     this.onTap,
     this.textAlign = TextAlign.start,
+    this.textCapitalization = TextCapitalization.none,
     this.size = OptimusWidgetSize.large,
     this.showCursor,
     this.showLoader = false,
     this.inputFormatters,
+    this.keyboardAppearance,
+    this.enableIMEPersonalizedLearning = true,
+    this.enableSuggestions = true,
   }) : super(key: key);
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -105,6 +109,9 @@ class OptimusInputField extends StatefulWidget {
 
   final TextAlign textAlign;
 
+  /// {@macro flutter.widgets.editableText.textCapitalization}
+  final TextCapitalization textCapitalization;
+
   final OptimusWidgetSize size;
 
   /// {@macro flutter.widgets.editableText.showCursor}
@@ -115,6 +122,19 @@ class OptimusInputField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
+
+  /// The appearance of the keyboard.
+  ///
+  /// This setting is only honored on iOS devices.
+  ///
+  /// If null, defaults to the brightness provided by [OptimusTheme].
+  final Brightness? keyboardAppearance;
+
+  /// {@macro flutter.services.TextInputConfiguration.enableIMEPersonalizedLearning}
+  final bool enableIMEPersonalizedLearning;
+
+  /// {@macro flutter.services.TextInputConfiguration.enableSuggestions}
+  final bool enableSuggestions;
 
   bool get hasError {
     final error = this.error;
@@ -218,6 +238,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             child: CupertinoTextField(
               key: widget.inputKey,
               textAlign: widget.textAlign,
+              enableIMEPersonalizedLearning:
+                  widget.enableIMEPersonalizedLearning,
+              enableSuggestions: widget.enableSuggestions,
+              textCapitalization: widget.textCapitalization,
               cursorColor:
                   theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
               autocorrect: widget.autocorrect,
@@ -243,6 +267,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               readOnly: widget.readOnly,
               showCursor: widget.showCursor,
               inputFormatters: widget.inputFormatters,
+              keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,
             ),
           ),
         ],

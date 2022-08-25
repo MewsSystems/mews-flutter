@@ -69,6 +69,7 @@ export 'src/tag.dart';
 export 'src/theme/theme.dart';
 export 'src/theme/theme_data.dart';
 export 'src/typography/caption.dart';
+export 'src/typography/fonts.dart';
 export 'src/typography/highlight.dart';
 export 'src/typography/label.dart';
 export 'src/typography/paragraph.dart';

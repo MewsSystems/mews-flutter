@@ -34,8 +34,12 @@ class OptimusInputFormField extends FormField<String> {
     bool? showCursor,
     VoidCallback? onTap,
     TextAlign textAlign = TextAlign.start,
+    TextCapitalization textCapitalization = TextCapitalization.none,
     Widget? caption,
     Widget? secondaryCaption,
+    Brightness? keyboardAppearance,
+    bool enableIMEPersonalizedLearning = false,
+    bool enableSuggestions = true,
   })  : assert(
           initialValue == null || controller == null,
           'Provide either initial value or controller',
@@ -79,8 +83,12 @@ class OptimusInputFormField extends FormField<String> {
               showCursor: showCursor,
               onTap: onTap,
               textAlign: textAlign,
+              textCapitalization: textCapitalization,
               caption: caption,
               secondaryCaption: secondaryCaption,
+              keyboardAppearance: keyboardAppearance,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              enableSuggestions: enableSuggestions,
             );
           },
         );
@@ -96,7 +104,8 @@ class _InputFormFieldState extends FormFieldState<String> {
 
   TextEditingController get _effectiveController =>
       widget.controller ??
-      _controller!; // ignore: avoid-non-null-assertion, _controller would be initialized at this point
+      _controller!; // ignore: avoid-non-null-assertion, _controller would be
+  // initialized at this point
 
   @override
   OptimusInputFormField get widget => super.widget as OptimusInputFormField;
