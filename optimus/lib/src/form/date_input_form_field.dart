@@ -84,8 +84,9 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
     super.didChangeDependencies();
 
     if (widget.initialValue != null) {
-      for (int i = 0; i < _mask.length; i++) {
-        if (_mask[i] == '#' || _mask[i] == 'A') _userInput.add(i);
+      _userInput.clear();
+      for (int i = 0; i < _placeholder.length; i++) {
+        _userInput.add(i);
       }
     }
 
@@ -97,12 +98,31 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
     );
   }
 
-  DateTime? _getDateTime(String value) {
+  @override
+  void didUpdateWidget(covariant OptimusDateInputFormField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.format.pattern != widget.format.pattern ||
+        oldWidget.format.locale != widget.format.locale) {
+      final inputDate = _getDateTime(oldWidget.format, _styleController.text);
+      _userInput.clear();
+      if (inputDate != null) {
+        final placeholderValue = _formatOutput(inputDate);
+        for (int i = 0; i < placeholderValue.length; i++) {
+          _userInput.add(i);
+        }
+        _styleController.text = placeholderValue;
+      } else {
+        _styleController.text = '';
+      }
+    }
+  }
+
+  DateTime? _getDateTime(DateFormat format, String value) {
     if (value.isEmpty) return null;
 
     DateTime? result;
     try {
-      result = widget.format.parse(value);
+      result = format.parse(value);
     } on FormatException catch (_) {
       result = null;
     }
@@ -113,14 +133,18 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
   String? get _initialText {
     final value = widget.initialValue;
     if (value != null) {
-      final formatted = _placeholderFormat.format(value).toString();
-      final customFormat = widget.customFormat;
-      final limit = customFormat != null
-          ? math.min(customFormat.placeholder.length, formatted.length)
-          : formatted.length;
-
-      return formatted.substring(0, limit);
+      return _formatOutput(value);
     }
+  }
+
+  String _formatOutput(DateTime value) {
+    final formatted = _placeholderFormat.format(value).toString();
+    final customFormat = widget.customFormat;
+    final limit = customFormat != null
+        ? math.min(customFormat.placeholder.length, formatted.length)
+        : formatted.length;
+
+    return formatted.substring(0, limit);
   }
 
   String _replaceSupported(
@@ -192,7 +216,8 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
           placeholder: _placeholder,
           controller: _styleController,
           error: widget.error,
-          onSubmitted: (value) => widget.onSubmitted(_getDateTime(value)),
+          onSubmitted: (value) =>
+              widget.onSubmitted(_getDateTime(widget.format, value)),
           keyboardType: widget.keyboardType ?? TextInputType.number,
           inputFormatters: [
             DateFormatter(

@@ -67,7 +67,10 @@ class DateFormatter extends TextInputFormatter {
 
   int get _maxLength => mask.length;
 
-  bool get _isComplete => _userInput.length == _getCleanMask.length;
+  bool get _isComplete => _validInputLength == _getCleanMask.length;
+
+  int get _validInputLength =>
+      _userInput.where((i) => !_isDesignatedSpace(i)).length;
 
   String get _getCleanMask {
     String result = placeholder;
@@ -135,12 +138,31 @@ class DateFormatter extends TextInputFormatter {
     return index;
   }
 
+  void _updateMaskBefore(int index, void Function(int) operation) {
+    final int prevValue = _getPreviousInputIndex(index);
+    final int start = prevValue + 1;
+    final int length = _mask[start]?.length ?? -1;
+    if (length == -1) return;
+
+    for (int i = start; i < start + length; i++) {
+      operation(i);
+    }
+  }
+
+  void _addMaskBefore(int index) {
+    _updateMaskBefore(index, (i) => _userInput.add(i));
+  }
+
+  void _removeMaskBefore(int index) {
+    _updateMaskBefore(index, (i) => _userInput.remove(i));
+  }
+
   String _replaceCharAt(String value, int index, String replacement) =>
       value.substring(0, index) +
       replacement +
       (index == value.length - replacement.length
           ? ''
-          : value.substring(index + replacement.length)); // fix out of bounds
+          : value.substring(index + replacement.length));
 
   @override
   TextEditingValue formatEditUpdate(
@@ -176,18 +198,41 @@ class DateFormatter extends TextInputFormatter {
     if (newText.length > oldText.length) {
       if (_isComplete ||
           _userInput.contains(oldSelectionStart) ||
-          !_isValidInput(newText[newSelectionStart - 1]) ||
-          !_isValidForPosition(
-            newText[newSelectionStart - 1],
-            newSelectionStart - 1,
-          )) {
+          (!_isDesignatedSpace(oldSelectionStart) &&
+              !_isValidForPosition(
+                newText[newSelectionStart - 1],
+                newSelectionStart - 1,
+              ))) {
         return oldValue;
       }
 
       if (_isDesignatedSpace(oldSelectionStart)) {
-        resultSelection = newSelection;
+        final nextInputSpace =
+            _getNextInputIndex(oldSelectionStart, mask.length);
+        if (_isValidForPosition(
+              newText[newSelectionStart - 1],
+              nextInputSpace,
+            ) &&
+            !_userInput.contains(nextInputSpace)) {
+          _userInput.add(nextInputSpace);
+          _addMaskBefore(nextInputSpace - 1);
+          resultText = _replaceCharAt(
+            oldText,
+            nextInputSpace,
+            newText[newSelectionStart - 1],
+          );
+          resultSelection = TextSelection.collapsed(
+            offset: _getNextInputIndex(nextInputSpace + 1, mask.length),
+          );
+        } else {
+          resultSelection =
+              TextSelection.fromPosition(TextPosition(offset: nextInputSpace));
+        }
       } else {
         _userInput.add(oldSelectionStart);
+        if (_isDesignatedSpace(oldSelectionStart - 1)) {
+          _addMaskBefore(oldSelectionStart - 1);
+        }
 
         resultText = _replaceCharAt(
           oldText,
@@ -195,7 +240,7 @@ class DateFormatter extends TextInputFormatter {
           newText[oldSelectionStart],
         );
         resultSelection = TextSelection.collapsed(
-          offset: _getNextInputIndex(newSelectionStart, resultText.length),
+          offset: _getNextInputIndex(newSelectionStart, mask.length),
         );
       }
     } else if (newText.length < oldText.length) {
@@ -208,6 +253,9 @@ class DateFormatter extends TextInputFormatter {
             : oldSelection.end;
 
         _userInput.removeWhere((value) => value >= start && value < end);
+        if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {
+          _removeMaskBefore(start - 1);
+        }
         if (_userInput.isEmpty) return TextEditingValue.empty;
 
         resultText = _replaceCharAt(
@@ -221,6 +269,8 @@ class DateFormatter extends TextInputFormatter {
         resultSelection = TextSelection.collapsed(
           offset: _getPreviousInputIndex(newSelectionStart) + 1,
         );
+      } else if (!_userInput.contains(newSelectionStart)) {
+        resultSelection = newSelection;
       }
     } else {
       resultSelection = newSelection;
