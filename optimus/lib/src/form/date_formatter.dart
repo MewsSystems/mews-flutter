@@ -253,21 +253,36 @@ class DateFormatter extends TextInputFormatter {
             : oldSelection.end;
 
         _userInput.removeWhere((value) => value >= start && value < end);
-        if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {
-          _removeMaskBefore(start - 1);
-        }
         if (_userInput.isEmpty) return TextEditingValue.empty;
 
+        int selectionPosition = _getPreviousInputIndex(start);
+
+        if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {
+          _removeMaskBefore(start - 1);
+          selectionPosition = _getPreviousInputIndex(start - 1) + 1;
+        }
+
         resultText = _replaceCharAt(
-          oldValue.text,
+          oldText,
           newSelectionStart,
           placeholder.substring(start, end),
         );
 
-        resultSelection = TextSelection.collapsed(offset: newSelectionStart);
-      } else if (_isDesignatedSpace(newSelectionStart)) {
         resultSelection = TextSelection.collapsed(
-          offset: _getPreviousInputIndex(newSelectionStart) + 1,
+          offset: selectionPosition,
+        );
+      } else if (_isDesignatedSpace(newSelectionStart)) {
+        final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
+        if (_userInput.contains(prevInputSpace)) {
+          _userInput.remove(prevInputSpace);
+          resultText = _replaceCharAt(
+            oldText,
+            prevInputSpace,
+            placeholder[prevInputSpace],
+          );
+        }
+        resultSelection = TextSelection.collapsed(
+          offset: _getPreviousInputIndex(newSelectionStart),
         );
       } else if (!_userInput.contains(newSelectionStart)) {
         resultSelection = newSelection;
