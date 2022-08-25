@@ -46,7 +46,8 @@ class OptimusInputFormField extends FormField<String> {
         ),
         super(
           key: key,
-          initialValue: controller != null ? controller.text : (initialValue ?? ''),
+          initialValue:
+              controller != null ? controller.text : (initialValue ?? ''),
           onSaved: onSaved,
           validator: validator,
           autovalidateMode: autovalidateMode,
@@ -103,7 +104,8 @@ class _InputFormFieldState extends FormFieldState<String> {
 
   TextEditingController get _effectiveController =>
       widget.controller ??
-      _controller!; // ignore: avoid-non-null-assertion, _controller would be initialized at this point
+      _controller!; // ignore: avoid-non-null-assertion, _controller would be
+  // initialized at this point
 
   @override
   OptimusInputFormField get widget => super.widget as OptimusInputFormField;
@@ -130,7 +132,8 @@ class _InputFormFieldState extends FormFieldState<String> {
       final widgetController = widget.controller;
 
       if (oldWidgetController != null && widget.controller == null) {
-        _controller = TextEditingController.fromValue(oldWidgetController.value);
+        _controller =
+            TextEditingController.fromValue(oldWidgetController.value);
       }
       if (widgetController != null) {
         setValue(widgetController.text);
