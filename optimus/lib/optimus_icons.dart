@@ -539,4 +539,6 @@ class OptimusIcons {
       IconData(0xea01, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData free =
       IconData(0xea02, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData door_hanger =
+      IconData(0xea03, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
