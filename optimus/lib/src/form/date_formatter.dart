@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// TextInputFormatter that will format the input according to the given mask.
@@ -15,6 +16,7 @@ class DateFormatter extends TextInputFormatter {
     required this.mask,
     required this.placeholder,
     required List<int> userInput,
+    required this.onUserInputChanged,
     this.initValue,
     this.allowedDigits,
     this.allowedLetters,
@@ -30,6 +32,9 @@ class DateFormatter extends TextInputFormatter {
   final RegExp? allowedDigits;
   final RegExp? allowedLetters;
   final Map<int, String> _mask = {};
+
+  // Callback for updating the "clear all" button state.
+  final VoidCallback onUserInputChanged;
 
   late List<int> _userInput;
   late _InputType _inputType;
@@ -183,6 +188,7 @@ class DateFormatter extends TextInputFormatter {
       final selectPosition = _getNextInputIndex(0, mask.length);
       if (_isValidForPosition(newText[0], selectPosition)) {
         _userInput.add(selectPosition);
+        onUserInputChanged.call();
 
         return TextEditingValue(
           text: _replaceCharAt(placeholder, selectPosition, newText[0]),
@@ -253,8 +259,7 @@ class DateFormatter extends TextInputFormatter {
             : oldSelection.end;
 
         _userInput.removeWhere((value) => value >= start && value < end);
-        if (_userInput.isEmpty) return TextEditingValue.empty;
-
+        if (_userInput.isEmpty) onUserInputChanged.call();
         int selectionPosition = _getPreviousInputIndex(start);
 
         if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {

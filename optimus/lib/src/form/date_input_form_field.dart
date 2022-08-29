@@ -83,8 +83,8 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    _userInput.clear();
     if (widget.initialValue != null) {
-      _userInput.clear();
       for (int i = 0; i < _placeholder.length; i++) {
         _userInput.add(i);
       }
@@ -105,6 +105,7 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
         oldWidget.format.locale != widget.format.locale) {
       final inputDate = _getDateTime(oldWidget.format, _styleController.text);
       _userInput.clear();
+
       if (inputDate != null) {
         final placeholderValue = _formatOutput(inputDate);
         for (int i = 0; i < placeholderValue.length; i++) {
@@ -204,6 +205,8 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
 
   String get _mask => widget.customFormat?.mask ?? _formattedMask;
 
+  bool get _showClearAll => widget.isClearEnabled && _userInput.isNotEmpty;
+
   @override
   Widget build(BuildContext context) => FormField<String>(
         enabled: widget.isEnabled,
@@ -211,7 +214,7 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
           label: widget.label,
           caption: widget.caption,
           isEnabled: widget.isEnabled,
-          isClearEnabled: widget.isClearEnabled,
+          isClearEnabled: _showClearAll,
           secondaryCaption: widget.secondaryCaption,
           placeholder: _placeholder,
           controller: _styleController,
@@ -225,6 +228,7 @@ class _OptimusDateInputFormFieldState extends State<OptimusDateInputFormField>
               placeholder: _placeholder,
               initValue: _initialText,
               userInput: _userInput,
+              onUserInputChanged: () => setState(() {}),
             )
           ],
         ),
