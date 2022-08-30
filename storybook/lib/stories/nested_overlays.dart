@@ -19,7 +19,7 @@ final Story nestedNonModalDialogStory = Story(
   name: 'Nested overlays/Nested Non-modal dialog',
   builder: (context) => _Content(
     (_) => Center(
-      child: NonModalWrapper(child: NonModalDialogStory(context.knobs)),
+      child: DialogWrapper(child: NonModalDialogStory(context.knobs)),
     ),
   ),
 );

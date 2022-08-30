@@ -186,9 +186,6 @@ class OptimusDialog extends StatelessWidget {
 
   final OptimusDialogType type;
 
-  Widget _divider(OptimusThemeData theme) =>
-      Divider(height: 1, color: theme.colors.neutral50);
-
   OptimusDialogSize _autoSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
       case Breakpoint.extraSmall:
@@ -198,17 +195,6 @@ class OptimusDialog extends StatelessWidget {
       case Breakpoint.large:
       case Breakpoint.extraLarge:
         return size;
-    }
-  }
-
-  double _maxWidth(OptimusDialogSize autoSize) {
-    switch (autoSize) {
-      case OptimusDialogSize.small:
-        return 320;
-      case OptimusDialogSize.regular:
-        return 576;
-      case OptimusDialogSize.large:
-        return 896;
     }
   }
 
@@ -244,58 +230,139 @@ class OptimusDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final autoSize = _autoSize(context);
-    final theme = OptimusTheme.of(context);
+    final size = _autoSize(context);
 
-    return SafeArea(
-      child: Container(
+    return Align(
+      alignment: _alignment(context),
+      child: _DialogContent(
+        title: title,
+        content: content,
+        actions: actions,
+        type: type,
+        size: size,
+        maxWidth: size.width,
+        spacing: spacing300,
         margin: MediaQuery.of(context).viewInsets,
-        child: Align(
-          alignment: _alignment(context),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: spacing300,
-              vertical: spacing300,
-            ),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: _maxWidth(autoSize)),
-              child: OptimusCard(
-                variant: OptimusBasicCardVariant.overlay,
-                padding: OptimusCardSpacing.spacing0,
-                child: Material(
-                  color: theme.isDark
-                      ? theme.colors.neutral500
-                      : theme.colors.neutral0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      _Title(
-                        context: context,
-                        title: title,
-                        close: close ?? () => Navigator.pop(context),
-                        isDismissible: isDismissible ??
-                            ModalRoute.of(context)?.barrierDismissible ??
-                            true,
-                      ),
-                      _divider(theme),
-                      OptimusParagraph(
-                        child: _Content(
-                          content: content,
-                          contentWrapperBuilder: contentWrapperBuilder,
-                        ),
-                      ),
-                      if (actions.isNotEmpty) _divider(theme),
-                      if (actions.isNotEmpty)
-                        _Actions(
-                          actions: actions,
-                          type: type,
-                          dialogSize: autoSize,
-                          close: close ?? () => Navigator.pop(context),
-                        )
-                    ],
+        contentWrapperBuilder: contentWrapperBuilder,
+        isDismissible: isDismissible,
+        close: close,
+      ),
+    );
+  }
+}
+
+class OptimusInlineDialog extends StatelessWidget {
+  const OptimusInlineDialog({
+    Key? key,
+    required this.content,
+    this.contentWrapperBuilder,
+    this.actions = const [],
+    this.close,
+    required this.anchorKey,
+  }) : super(key: key);
+
+  final VoidCallback? close;
+  final GlobalKey anchorKey;
+  final Widget content;
+  final ContentWrapperBuilder? contentWrapperBuilder;
+  final List<OptimusDialogAction> actions;
+
+  @override
+  Widget build(BuildContext context) => AnchoredOverlay(
+        anchorKey: anchorKey,
+        width: OptimusDialogSize.small.width,
+        child: _DialogContent(
+          content: content,
+          actions: actions,
+          type: OptimusDialogType.common,
+          size: OptimusDialogSize.small,
+          maxWidth: OptimusDialogSize.small.width,
+          contentWrapperBuilder: contentWrapperBuilder,
+          isDismissible: true,
+          close: close,
+        ),
+      );
+}
+
+class _DialogContent extends StatelessWidget {
+  const _DialogContent({
+    Key? key,
+    required this.actions,
+    this.title,
+    required this.content,
+    this.close,
+    required this.size,
+    this.isDismissible,
+    this.contentWrapperBuilder,
+    required this.type,
+    this.spacing,
+    required this.maxWidth,
+    this.margin,
+  }) : super(key: key);
+
+  final List<OptimusDialogAction> actions;
+  final Widget? title;
+  final double? spacing;
+  final double maxWidth;
+  final EdgeInsetsGeometry? margin;
+
+  final Widget content;
+  final VoidCallback? close;
+  final OptimusDialogSize size;
+  final bool? isDismissible;
+  final OptimusDialogType type;
+
+  final ContentWrapperBuilder? contentWrapperBuilder;
+
+  Widget _divider(OptimusThemeData theme) =>
+      Divider(height: 1, color: theme.colors.neutral50);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    final titleValue = title;
+
+    return Container(
+      margin: margin,
+      child: Padding(
+        padding: EdgeInsets.all(spacing ?? 0),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: OptimusCard(
+            variant: OptimusBasicCardVariant.overlay,
+            padding: OptimusCardSpacing.spacing0,
+            child: Material(
+              color: theme.isDark
+                  ? theme.colors.neutral500
+                  : theme.colors.neutral0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  if (titleValue != null)
+                    _Title(
+                      title: titleValue,
+                      close: close ?? () => Navigator.pop(context),
+                      isDismissible: isDismissible ??
+                          ModalRoute.of(context)?.barrierDismissible ??
+                          true,
+                    ),
+                  if (titleValue != null) _divider(theme),
+                  OptimusParagraph(
+                    child: _Content(
+                      content: content,
+                      contentWrapperBuilder: contentWrapperBuilder,
+                    ),
                   ),
-                ),
+                  if (actions.isNotEmpty) _divider(theme),
+                  if (actions.isNotEmpty)
+                    _Actions(
+                      actions: actions,
+                      type: type,
+                      dialogSize: size,
+                      close: close ?? () => Navigator.pop(context),
+                    )
+                ],
               ),
             ),
           ),
@@ -349,13 +416,11 @@ class _Content extends StatelessWidget {
 class _Title extends StatelessWidget {
   const _Title({
     Key? key,
-    required this.context,
     required this.title,
     required this.close,
     required this.isDismissible,
   }) : super(key: key);
 
-  final BuildContext context;
   final Widget title;
   final VoidCallback close;
   final bool isDismissible;
@@ -445,5 +510,18 @@ class _Actions extends StatelessWidget {
     if (i == 1) return OptimusButtonVariant.defaultButton;
 
     return OptimusButtonVariant.text;
+  }
+}
+
+extension on OptimusDialogSize {
+  double get width {
+    switch (this) {
+      case OptimusDialogSize.small:
+        return 320;
+      case OptimusDialogSize.regular:
+        return 576;
+      case OptimusDialogSize.large:
+        return 896;
+    }
   }
 }
