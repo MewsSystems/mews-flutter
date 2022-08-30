@@ -1,3 +1,23 @@
+## 0.18.0
+
+> Note: This release has breaking changes.
+
+ - **PERF**: [RND-110784] Update OptimusNotification component. (#226).
+ - **FIX**: [RND-98858] Incorrect rendering of dropdown button in storybook (#244).
+ - **FIX**: [RND-73262] Misalignment of the text with radio button in Switch property option in both Andriod and iOS (#225).
+ - **FEAT**: [RND-118674] Add "door hanger" icon to mobile Optimus (#250).
+ - **FEAT**: add missing properties (#249).
+ - **FEAT**: use constant font paths (#248).
+ - **FEAT**: [RND-103479] Add alignment prop to typography components (#242).
+ - **FEAT**: [RND-103475] Added Checkbox nested variant (#223).
+ - **FEAT**: [RND-104008] Fix visual issues in dropdown button (#243).
+ - **FEAT**: [RND-103046] Fix color of Circle loader for contrast variant (#231).
+ - **FEAT**: [RND-103474] Update Date picker component (#222).
+ - **BREAKING** **FEAT**: [RND-103470] Update Select component (#241).
+ - **BREAKING** **FEAT**: [RND-103446] Finalize implementation of Link component (#233).
+ - **BREAKING** **FEAT**: [RND-103047] Add Notification showing and stacking (#211).
+ - **BREAKING** **FEAT**: [RND-103473] Update Input component (#228).
+
 ## 0.17.0
 
 > Note: This release has breaking changes.
