@@ -2,13 +2,12 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story dateInputStory = Story(
-  name: 'Forms/Date Input Field',
+final Story dateInputFormFieldStory = Story(
+  name: 'Forms/Date Input Form Field',
   builder: (context) {
     final k = context.knobs;
 
     final enabled = k.boolean(label: 'Enabled', initial: true);
-    final error = k.text(label: 'Error');
     final isClearEnabled = k.boolean(label: 'Clear all', initial: false);
     final String format = k.options(
       label: 'Format',
@@ -18,14 +17,12 @@ final Story dateInputStory = Story(
 
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
-      child: OptimusDateInputField(
+      child: OptimusDateInputFormField(
         label: 'Date',
         initialValue: DateTime.now(),
-        error: error.isNotEmpty ? error : null,
         isEnabled: enabled,
         format: DateFormat(format),
         isClearAllEnabled: isClearEnabled,
-        onSubmitted: (_) => {},
       ),
     );
   },

@@ -123,11 +123,13 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
 
+  /// {@template optimus.input.keyboardAppearance}
   /// The appearance of the keyboard.
   ///
   /// This setting is only honored on iOS devices.
   ///
   /// If null, defaults to the brightness provided by [OptimusTheme].
+  /// {@endtemplate}
   final Brightness? keyboardAppearance;
 
   /// {@macro flutter.services.TextInputConfiguration.enableIMEPersonalizedLearning}
@@ -254,11 +256,11 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               textInputAction: widget.textInputAction,
               placeholder: widget.placeholder,
               placeholderStyle: widget.placeholderStyle ??
-                  getPlaceholderTextStyle(theme, widget.size),
+                  theme.getPlaceholderStyle(widget.size),
               focusNode: _effectiveFocusNode,
               enabled: widget.isEnabled,
               padding: _prefix != null ? _textWithPrefixPadding : _textPadding,
-              style: getTextStyle(theme, widget.size),
+              style: theme.getTextInputStyle(widget.size),
               decoration: null,
               onChanged: widget.onChanged,
               keyboardType: widget.keyboardType,

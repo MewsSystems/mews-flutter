@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.17.0
   optimus:
     path: ../optimus
   storybook_flutter: ^0.11.0
