@@ -19,22 +19,14 @@ class OptimusDateInputField extends StatefulWidget {
     this.error,
     this.caption,
     this.secondaryCaption,
-    this.keyboardType,
     this.size = OptimusWidgetSize.large,
     this.isEnabled = true,
     this.initialValue,
     this.isClearAllEnabled = false,
     this.onChanged,
-    this.keyboardAppearance,
-    this.enableIMEPersonalizedLearning = false,
-    this.enableSuggestions = false,
     this.showCursor = false,
-    this.hasBorders = true,
     this.isRequired = false,
-    this.textCapitalization = TextCapitalization.none,
-    this.textAlign = TextAlign.start,
     this.focusNode,
-    this.inputKey,
     this.onTap,
   }) : super(key: key);
 
@@ -43,10 +35,6 @@ class OptimusDateInputField extends StatefulWidget {
 
   /// Function to be called when the user submits the form.
   final ValueChanged<DateTime?>? onSubmitted;
-
-  /// The keyboard type for the input. If not provided, the keyboard will be set
-  /// to [TextInputType.number].
-  final TextInputType? keyboardType;
 
   /// The initial value of the input.
   final DateTime? initialValue;
@@ -60,20 +48,9 @@ class OptimusDateInputField extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
-  final Key? inputKey;
   final VoidCallback? onTap;
 
-  /// {@macro optimus.input.keyboardAppearance}
-  final Brightness? keyboardAppearance;
-
-  /// {@macro flutter.widgets.editableText.textCapitalization}
-  final TextCapitalization textCapitalization;
-
-  final TextAlign textAlign;
-  final bool enableIMEPersonalizedLearning;
-  final bool enableSuggestions;
   final bool? showCursor;
-  final bool hasBorders;
   final bool isRequired;
   final String? label;
   final String? error;
@@ -231,18 +208,11 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         controller: _styleController,
         error: widget.error,
         onSubmitted: _handleSubmitted,
-        keyboardType: widget.keyboardType ?? TextInputType.number,
+        keyboardType: TextInputType.number,
         showCursor: widget.showCursor,
-        hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
         onTap: widget.onTap,
         focusNode: widget.focusNode,
-        inputKey: widget.inputKey,
-        textCapitalization: widget.textCapitalization,
-        textAlign: widget.textAlign,
-        keyboardAppearance: widget.keyboardAppearance,
-        enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
-        enableInteractiveSelection: widget.enableSuggestions,
         inputFormatters: [
           DateFormatter(
             mask: _mask,
