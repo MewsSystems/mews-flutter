@@ -8,10 +8,9 @@ import 'package:flutter/services.dart';
 /// - `#`: Digit
 ///
 /// Example: `###-###-###`
-/// You can change the definition of letter and digit by passing the
-/// the [allowedDigits] parameter. [_userInput] is used
-/// for tracking the user input and distinct it from the placeholder, which is
-/// used to fill empty places.
+///
+/// The [_userInput] is used for tracking the user input and distinct it from
+/// the placeholder, which is used to fill empty places.
 class DateFormatter extends TextInputFormatter {
   DateFormatter({
     required this.mask,
