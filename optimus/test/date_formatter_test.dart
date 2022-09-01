@@ -34,7 +34,7 @@ class TestFormatter extends DateFormatter {
           placeholder: placeholder ?? 'DD-MM-YYYY',
           userInput: userInput ?? [],
           onUserInputChanged: onUserInputChanged ?? () {},
-          allowedDigits: allowedDigits ?? RegExp(r'[0-9]'),
+          allowedDigits: allowedDigits,
         );
 
   FormatEditUpdateCallback onFormatEditUpdate;
