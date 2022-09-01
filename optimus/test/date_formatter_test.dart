@@ -31,7 +31,7 @@ class TestFormatter extends DateFormatter {
     required this.onFormatEditUpdate,
   }) : super(
           mask: mask ?? '##-##-####',
-          placeholder: placeholder ?? 'MM-DD-YYYY',
+          placeholder: placeholder ?? 'DD-MM-YYYY',
           userInput: userInput ?? [],
           onUserInputChanged: onUserInputChanged ?? () {},
           allowedDigits: allowedDigits ?? RegExp(r'[0-9]'),
@@ -94,7 +94,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: '1M-DD-YYYY',
+          text: '1D-MM-YYYY',
           selection: TextSelection.collapsed(offset: 1),
         ),
       );
@@ -153,7 +153,7 @@ void main() {
       final userInput = <int>[0, 1];
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: '01-DD-YYYY',
+          text: '01-MM-YYYY',
           selection: TextSelection.collapsed(offset: 3),
         ),
       );
@@ -176,7 +176,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: '01-1DD-YYYY',
+          text: '01-1MM-YYYY',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
@@ -184,7 +184,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: '01-DD-YYYY',
+          text: '01-MM-YYYY',
           selection: TextSelection.collapsed(offset: 3),
         ),
       );
@@ -192,7 +192,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: '01-1D-YYYY',
+          text: '01-1M-YYYY',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
@@ -205,7 +205,7 @@ void main() {
       final userInput = <int>[0, 1];
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: '01-DD--/@YYYY',
+          text: '01-MM--/@YYYY',
           selection: TextSelection.collapsed(offset: 5),
         ),
       );
@@ -217,7 +217,7 @@ void main() {
             inputFormatters: [
               TestFormatter(
                 mask: '##-##--/@####',
-                placeholder: 'MM-DD-#/@YYYY',
+                placeholder: 'DD-MM-#/@YYYY',
                 userInput: userInput,
                 onFormatEditUpdate: callBack,
               )
@@ -230,7 +230,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: '01-DD2--/@YYYY',
+          text: '01-MM2--/@YYYY',
           selection: TextSelection.collapsed(offset: 6),
         ),
       );
@@ -238,7 +238,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: '01-DD--/@YYYY',
+          text: '01-MM--/@YYYY',
           selection: TextSelection.collapsed(offset: 5),
         ),
       );
@@ -246,7 +246,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: '01-DD--/@2YYY',
+          text: '01-MM--/@2YYY',
           selection: TextSelection.collapsed(offset: 10),
         ),
       );
@@ -259,7 +259,7 @@ void main() {
       final userInput = <int>[0, 1];
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: '01-DD-YYYY',
+          text: '01-MM-YYYY',
           selection: TextSelection.collapsed(offset: 6),
         ),
       );
@@ -282,7 +282,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: '01-DD-2YYYY',
+          text: '01-MM-2YYYY',
           selection: TextSelection.collapsed(offset: 7),
         ),
       );
@@ -290,7 +290,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: '01-DD-YYYY',
+          text: '01-MM-YYYY',
           selection: TextSelection.collapsed(offset: 6),
         ),
       );
@@ -298,7 +298,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: '01-DD-2YYY',
+          text: '01-MM-2YYY',
           selection: TextSelection.collapsed(offset: 7),
         ),
       );
@@ -410,7 +410,7 @@ void main() {
 
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: 'MM-DD-1YYY',
+          text: 'DD-MM-1YYY',
           selection: TextSelection.collapsed(offset: 7),
         ),
       );
@@ -435,7 +435,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: 'MM-DD-12YYY',
+          text: 'DD-MM-12YYY',
           selection: TextSelection.collapsed(offset: 8),
         ),
       );
@@ -443,7 +443,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: 'MM-DD-1YYY',
+          text: 'DD-MM-1YYY',
           selection: TextSelection.collapsed(offset: 7),
         ),
       );
@@ -451,7 +451,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: 'MM-DD-12YY',
+          text: 'DD-MM-12YY',
           selection: TextSelection.collapsed(offset: 8),
         ),
       );
@@ -463,7 +463,7 @@ void main() {
         (tester) async {
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 1),
         ),
       );
@@ -490,7 +490,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: 'M2M-DD-YYYY',
+          text: 'D2D-MM-YYYY',
           selection: TextSelection.collapsed(offset: 2),
         ),
       );
@@ -498,7 +498,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 1),
         ),
       );
@@ -506,7 +506,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: 'M2-DD-YYYY',
+          text: 'D2-MM-YYYY',
           selection: TextSelection.collapsed(offset: 3),
         ),
       );
@@ -517,7 +517,7 @@ void main() {
     testWidgets('Typing outside the pattern', (tester) async {
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 10),
         ),
       );
@@ -542,7 +542,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: 'MM-DD-YYYY6',
+          text: 'DD-MM-YYYY6',
           selection: TextSelection.collapsed(offset: 11),
         ),
       );
@@ -550,7 +550,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 10),
         ),
       );
@@ -558,7 +558,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 10),
         ),
       );
@@ -567,7 +567,7 @@ void main() {
         (tester) async {
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 2),
         ),
       );
@@ -592,7 +592,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: 'MM2-DD-YYYY',
+          text: 'DD2-MM-YYYY',
           selection: TextSelection.collapsed(offset: 3),
         ),
       );
@@ -600,7 +600,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: 'MM-DD-YYYY',
+          text: 'DD-MM-YYYY',
           selection: TextSelection.collapsed(offset: 2),
         ),
       );
@@ -608,7 +608,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: 'MM-2D-YYYY',
+          text: 'DD-2M-YYYY',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
@@ -775,7 +775,7 @@ void main() {
 
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: 'MM-DD-2017',
+          text: 'DD-MM-2017',
           selection: TextSelection.collapsed(offset: 5),
         ),
       );
@@ -800,7 +800,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: 'MM-D-2017',
+          text: 'DD-M-2017',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
@@ -808,7 +808,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: 'MM-DD-2017',
+          text: 'DD-MM-2017',
           selection: TextSelection.collapsed(offset: 5),
         ),
       );
@@ -816,7 +816,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: 'MM-DD-2017',
+          text: 'DD-MM-2017',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
@@ -869,7 +869,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: '17-0D-2017',
+          text: '17-0M-2017',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
@@ -882,7 +882,7 @@ void main() {
 
       final TextEditingController controller = TextEditingController.fromValue(
         const TextEditingValue(
-          text: '17-0D-2017',
+          text: '17-0M-2017',
           selection: TextSelection.collapsed(offset: 6),
         ),
       );
@@ -907,7 +907,7 @@ void main() {
 
       tester.testTextInput.updateEditingValue(
         const TextEditingValue(
-          text: '17-0D2017',
+          text: '17-0M2017',
           selection: TextSelection.collapsed(offset: 5),
         ),
       );
@@ -915,7 +915,7 @@ void main() {
       expect(
         actualOldValue,
         const TextEditingValue(
-          text: '17-0D-2017',
+          text: '17-0M-2017',
           selection: TextSelection.collapsed(offset: 6),
         ),
       );
@@ -923,7 +923,7 @@ void main() {
       expect(
         actualNewValue,
         const TextEditingValue(
-          text: '17-0D-2017',
+          text: '17-0M-2017',
           selection: TextSelection.collapsed(offset: 4),
         ),
       );
