@@ -36,7 +36,7 @@ class DateFormatter extends TextInputFormatter {
   /// Map of indexes and the corresponding mask characters.
   final Map<int, String> _mask = {};
 
-  // Callback, when the user input changes.
+  /// Callback, when the user input changes.
   final VoidCallback? onUserInputChanged;
 
   /// List of indexes of the user input.
