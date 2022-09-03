@@ -1,12 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 
-class OptimusDropdown<T> extends StatefulWidget {
+class OptimusDropdown<T> extends StatelessWidget {
   const OptimusDropdown({
     Key? key,
     required this.items,
@@ -21,54 +20,8 @@ class OptimusDropdown<T> extends StatefulWidget {
   final double? width;
 
   @override
-  State<OptimusDropdown<T>> createState() => _OptimusDropdownState<T>();
-}
-
-class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
-    with ThemeGetter {
-  late Rect _savedRect = _calculateRect();
-
-  void _updateRect(dynamic _) {
-    if (!mounted) return;
-    final newRect = _calculateRect();
-    if (newRect != _savedRect) {
-      setState(() {
-        _savedRect = newRect;
-      });
-    }
-  }
-
-  // TODO(VG): can be changed when final dark theme design is ready.
-  BoxDecoration get _dropdownDecoration => BoxDecoration(
-        borderRadius: const BorderRadius.all(borderRadius50),
-        color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
-        boxShadow: elevation50,
-      );
-
-  @override
   Widget build(BuildContext context) {
-    if (widget.items.isEmpty) return Container();
-
-    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
-
-    final isOnTop = _topSpace > _bottomSpace;
-    final maxHeight = max(_topSpace, _bottomSpace);
-
-    final width = widget.width ?? _savedRect.width;
-    final widthWithPadding = width + _widgetPadding;
-
-    // If we have enough space to the right, dropdown's left side will be
-    // aligned with anchor's left side. If there's not enough space to the
-    // right, but enough space to the left, dropdown's right side will be
-    // aligned with anchor's right side. If both conditions fail, left and
-    // right will both be null, so dropdown will be aligned according to
-    // Stack's alignment property.
-    double? left, right;
-    if (_rightSpace >= widthWithPadding) {
-      left = _savedRect.left;
-    } else if (_leftSpace >= widthWithPadding) {
-      right = _screenWidth - _savedRect.right;
-    }
+    if (items.isEmpty) return Container();
 
     return Stack(
       alignment: AlignmentDirectional.topCenter,
@@ -77,58 +30,61 @@ class _OptimusDropdownState<T> extends State<OptimusDropdown<T>>
         // 'package:flutter/src/animation/tween.dart':
         // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
-        Positioned(
+        AnchoredOverlay(
+          anchorKey: anchorKey,
           width: width,
-          left: left,
-          right: right,
-          top: isOnTop ? null : _offsetTop,
-          bottom: isOnTop ? _offsetBottom : null,
-          child: Container(
-            decoration: _dropdownDecoration,
-            constraints: BoxConstraints(maxHeight: maxHeight),
-            child: _DropdownListView(
-              items: widget.items,
-              onChanged: widget.onChanged,
-              isReversed: isOnTop,
-            ),
+          child: _DropdownContent(
+            items: items,
+            onChanged: onChanged,
           ),
         ),
       ],
     );
   }
+}
 
-  Rect _calculateRect() {
-    final renderObject = widget.anchorKey.currentContext?.findRenderObject();
-    if (renderObject is! RenderBox || !renderObject.hasSize) return Rect.zero;
+class _DropdownContent<T> extends StatelessWidget {
+  const _DropdownContent({
+    Key? key,
+    required this.onChanged,
+    required this.items,
+  }) : super(key: key);
 
-    final size = renderObject.size;
+  final ValueSetter<T> onChanged;
+  final List<OptimusDropdownTile<T>> items;
 
-    final overlay =
-        Overlay.of(context)?.context.findRenderObject() as RenderBox?;
+  // TODO(VG): can be changed when final dark theme design is ready.
+  BoxDecoration _dropdownDecoration(BuildContext context) {
+    final theme = OptimusTheme.of(context);
 
-    return renderObject.localToGlobal(Offset.zero, ancestor: overlay) & size;
+    return BoxDecoration(
+      borderRadius: const BorderRadius.all(borderRadius50),
+      color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
+      boxShadow: elevation50,
+    );
   }
 
-  double get _offsetBottom => _screenHeight - _savedRect.top + _widgetPadding;
+  @override
+  Widget build(BuildContext context) {
+    final controller = AnchoredOverlay.of(context);
+    if (controller != null) {
+      final isOnTop = controller.topSpace > controller.bottomSpace;
 
-  double get _offsetTop => _savedRect.top + _savedRect.height + _widgetPadding;
-
-  double get _screenHeight => MediaQuery.of(context).size.height;
-
-  double get _screenWidth => MediaQuery.of(context).size.width;
-
-  double get _paddingBottom =>
-      MediaQuery.of(context).viewInsets.bottom + _screenPadding;
-
-  double get _paddingTop => MediaQuery.of(context).padding.top + _screenPadding;
-
-  double get _topSpace => _savedRect.top - _paddingTop;
-
-  double get _bottomSpace => _screenHeight - _paddingBottom - _savedRect.bottom;
-
-  double get _rightSpace => _screenWidth - _savedRect.left;
-
-  double get _leftSpace => _savedRect.right;
+      return Container(
+        decoration: _dropdownDecoration(context),
+        constraints: BoxConstraints(
+          maxHeight: controller.maxHeight,
+        ),
+        child: _DropdownListView(
+          items: items,
+          onChanged: onChanged,
+          isReversed: isOnTop,
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
 }
 
 class _DropdownListView<T> extends StatelessWidget {
@@ -200,6 +156,3 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
             : widget.child,
       );
 }
-
-const double _screenPadding = spacing200;
-const double _widgetPadding = spacing100;
