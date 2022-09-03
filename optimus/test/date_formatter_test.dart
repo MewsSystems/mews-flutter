@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:optimus/src/form/date_formatter.dart';
 
-typedef FormatEditUpdateCallback = void Function(
-  TextEditingValue,
-  TextEditingValue,
-);
 Widget boilerplate({required Widget child}) => MaterialApp(
       home: Directionality(
         textDirection: TextDirection.ltr,
