@@ -14,7 +14,8 @@ class DateFormatter extends TextInputFormatter {
   /// Example: 'DD-MM-YYYY'
   final String placeholder;
 
-  late final String _mask = placeholder.replaceAll(RegExp('[a-zA-z]'), '#');
+  late final String _mask =
+      placeholder.replaceAll(RegExp('[a-zA-z]'), _digitSymbol);
 
   late final String _cleanMask =
       _mask.replaceAll(RegExp('[^$_digitSymbol]'), '');
