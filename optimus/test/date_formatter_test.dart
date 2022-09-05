@@ -6,6 +6,7 @@ import 'package:optimus/src/form/date_formatter.dart';
 @isTest
 void testFormat({
   String format = 'DD-MM-YYYY',
+  String? description,
   TextEditingValue oldValue = const TextEditingValue(
     text: '',
     selection: TextSelection.collapsed(offset: 0),
@@ -13,7 +14,7 @@ void testFormat({
   required TextEditingValue newValue,
   required TextEditingValue expected,
 }) {
-  test('formats ${newValue.text} according to $format', () {
+  test(description ?? 'formats ${newValue.text} according to $format', () {
     final formatter = DateFormatter(placeholder: format);
 
     expect(formatter.formatEditUpdate(oldValue, newValue), expected);
@@ -23,6 +24,7 @@ void testFormat({
 void main() {
   group('Valid input', () {
     testFormat(
+      description: 'Initial valid input is accepted',
       newValue: const TextEditingValue(
         text: '1',
         selection: TextSelection.collapsed(offset: 1),
@@ -34,6 +36,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Initial valid input skipped the mask',
       format: '--MM-YY',
       newValue: const TextEditingValue(
         text: '1',
@@ -61,6 +64,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Valid input inside skipped the mask',
       format: 'DD-MM--/@YYYY',
       oldValue: const TextEditingValue(
         text: '01-MM--/@YYYY',
@@ -93,36 +97,6 @@ void main() {
 
     testFormat(
       oldValue: const TextEditingValue(
-        text: '01-01-2021',
-        selection: TextSelection.collapsed(offset: 10),
-      ),
-      newValue: const TextEditingValue(
-        text: '01-01-20211',
-        selection: TextSelection.collapsed(offset: 11),
-      ),
-      expected: const TextEditingValue(
-        text: '01-01-2021',
-        selection: TextSelection.collapsed(offset: 10),
-      ),
-    );
-
-    testFormat(
-      oldValue: const TextEditingValue(
-        text: '01-01-2020',
-        selection: TextSelection.collapsed(offset: 10),
-      ),
-      newValue: const TextEditingValue(
-        text: '01-061-2020',
-        selection: TextSelection.collapsed(offset: 4),
-      ),
-      expected: const TextEditingValue(
-        text: '01-01-2020',
-        selection: TextSelection.collapsed(offset: 10),
-      ),
-    );
-
-    testFormat(
-      oldValue: const TextEditingValue(
         text: 'DD-MM-1YYY',
         selection: TextSelection.collapsed(offset: 7),
       ),
@@ -137,6 +111,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Selection position skipped to next valid',
       oldValue: const TextEditingValue(
         text: 'DD-MM-YYYY',
         selection: TextSelection.collapsed(offset: 1),
@@ -152,6 +127,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Valid input before the mask is transferred over the mask',
       oldValue: const TextEditingValue(
         text: 'DD-MM-YYYY',
         selection: TextSelection.collapsed(offset: 2),
@@ -169,6 +145,7 @@ void main() {
 
   group('Invalid input', () {
     testFormat(
+      description: 'Valid input is ignored if position if out of range',
       oldValue: const TextEditingValue(
         text: 'DD-MM-YYYY',
         selection: TextSelection.collapsed(offset: 10),
@@ -184,6 +161,39 @@ void main() {
     );
 
     testFormat(
+      description: 'Valid input is ignored if field is full',
+      oldValue: const TextEditingValue(
+        text: '01-01-2021',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: '01-01-20211',
+        selection: TextSelection.collapsed(offset: 11),
+      ),
+      expected: const TextEditingValue(
+        text: '01-01-2021',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      description: 'Valid input is ignored if field is full',
+      oldValue: const TextEditingValue(
+        text: '01-01-2020',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: '01-061-2020',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+      expected: const TextEditingValue(
+        text: '01-01-2020',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      description: 'Initial invalid input is ignored',
       newValue: const TextEditingValue(
         text: 'A',
         selection: TextSelection.collapsed(offset: 1),
@@ -195,6 +205,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Invalid input outside the mask is ignored',
       oldValue: const TextEditingValue(
         text: '01-01-2020',
         selection: TextSelection.collapsed(offset: 10),
@@ -210,6 +221,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Invalid input inside the field is ignored',
       oldValue: const TextEditingValue(
         text: '01-MM-YYYY',
         selection: TextSelection.collapsed(offset: 3),
@@ -257,6 +269,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Removing the mask symbol removed the previous input',
       oldValue: const TextEditingValue(
         text: '17-06-2017',
         selection: TextSelection.collapsed(offset: 6),
@@ -272,6 +285,7 @@ void main() {
     );
 
     testFormat(
+      description: 'Removing the mask symbol jumped to next valid if possible',
       oldValue: const TextEditingValue(
         text: '17-0M-2017',
         selection: TextSelection.collapsed(offset: 6),
