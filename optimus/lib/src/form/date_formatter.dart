@@ -7,82 +7,31 @@ import 'package:flutter/services.dart';
 class DateFormatter extends TextInputFormatter {
   DateFormatter({
     required this.placeholder,
-  }) {
-    _buildMaskMap();
-  }
+  });
 
   /// The placeholder to fill the empty spaces in the mask.
   ///
   /// Example: 'DD-MM-YYYY'
   final String placeholder;
 
-  /// Map of indexes and the corresponding mask characters.
-  final Map<int, String> _maskMap = {};
+  late final String _mask = placeholder.replaceAll(RegExp('[a-zA-z]'), '#');
 
-  String get _mask => placeholder.replaceAll(RegExp('[a-zA-z]'), '#');
+  late final String _cleanMask =
+      _mask.replaceAll(RegExp('[^$_digitSymbol]'), '');
 
-  bool _isValidDigit(String value) => _allowedDigits.hasMatch(value);
+  late final int _maxLength = placeholder.length;
 
   bool _isValidPosition(int position) => position <= _maxLength;
 
-  int get _maxLength => placeholder.length;
+  bool _isComplete(String value) => _inputLength(value) == _cleanMask.length;
 
-  bool _isComplete(String value) => _inputLength(value) == _getCleanMask.length;
-
-  int _inputLength(String value) => _allowedDigits.allMatches(value).length;
-
-  RegExp get _allowedDigits => RegExp('[0-9]');
-
-  String get _getCleanMask {
-    String result = placeholder;
-    for (final char in _maskMap.values) {
-      result = result.replaceAll(char, '');
-    }
-
-    return result;
-  }
-
-  void _buildMaskMap() {
-    final StringBuffer buffer = StringBuffer();
-    int sectionStart = 0;
-
-    for (int i = 0; i < _maxLength;) {
-      final symbol = _mask[i];
-      if (symbol != _digitSymbol) {
-        buffer
-          ..clear()
-          ..write(symbol);
-        sectionStart = i;
-        String sequential = '';
-        while (sequential != _digitSymbol && i < _maxLength) {
-          buffer.write(sequential);
-          i++;
-          if (i < _maxLength) {
-            sequential = _mask[i];
-          }
-        }
-        _maskMap[sectionStart] = buffer.toString();
-      } else {
-        i++;
-      }
-    }
-  }
-
-  bool _isDesignatedSpace(int index) {
-    for (final key in _maskMap.keys) {
-      final length = _maskMap[key]?.length ?? 0;
-      if (key <= index && index < key + length) {
-        return true;
-      }
-    }
-
-    return false;
-  }
+  bool _isDesignatedSpace(int index) =>
+      index >= _mask.length ? false : _mask[index] != _digitSymbol;
 
   /// Returns the next index that should be filled by the user.
-  int _getNextInputIndex(int index, int max) {
+  int _getNextInputIndex(int index) {
     while (_isDesignatedSpace(index)) {
-      if (index == max) return max;
+      if (index == _maxLength) return _maxLength;
       index++;
     }
 
@@ -133,7 +82,7 @@ class DateFormatter extends TextInputFormatter {
     TextSelection resultSelection = oldSelection;
 
     if (oldValue.text.isEmpty) {
-      final selectPosition = _getNextInputIndex(0, placeholder.length);
+      final selectPosition = _getNextInputIndex(0);
       if (_isValidDigit(newText[0])) {
         resultText = _replaceCharAt(placeholder, selectPosition, newText[0]);
         resultSelection = TextSelection.collapsed(
@@ -153,11 +102,8 @@ class DateFormatter extends TextInputFormatter {
         }
 
         if (_isDesignatedSpace(oldSelectionStart)) {
-          final nextInputSpace =
-              _getNextInputIndex(oldSelectionStart, placeholder.length);
-          if (_isValidDigit(
-                newText[newSelectionStart - 1],
-              ) &&
+          final nextInputSpace = _getNextInputIndex(oldSelectionStart);
+          if (_isValidDigit(newText[newSelectionStart - 1]) &&
               !_isValidDigit(oldText[nextInputSpace])) {
             resultText = _replaceCharAt(
               oldText,
@@ -165,8 +111,7 @@ class DateFormatter extends TextInputFormatter {
               newText[newSelectionStart - 1],
             );
             resultSelection = TextSelection.collapsed(
-              offset:
-                  _getNextInputIndex(nextInputSpace + 1, placeholder.length),
+              offset: _getNextInputIndex(nextInputSpace + 1),
             );
           } else {
             resultSelection = TextSelection.fromPosition(
@@ -180,7 +125,7 @@ class DateFormatter extends TextInputFormatter {
             newText[oldSelectionStart],
           );
           resultSelection = TextSelection.collapsed(
-            offset: _getNextInputIndex(newSelectionStart, placeholder.length),
+            offset: _getNextInputIndex(newSelectionStart),
           );
         }
       } else if (newText.length < oldText.length) {
@@ -235,3 +180,8 @@ class DateFormatter extends TextInputFormatter {
 }
 
 const _digitSymbol = '#';
+final RegExp _allowedDigits = RegExp('[0-9]');
+
+int _inputLength(String value) => _allowedDigits.allMatches(value).length;
+
+bool _isValidDigit(String value) => _allowedDigits.hasMatch(value);
