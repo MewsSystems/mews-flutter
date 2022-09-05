@@ -14,11 +14,9 @@ class DateFormatter extends TextInputFormatter {
   /// Example: 'DD-MM-YYYY'
   final String placeholder;
 
-  late final String _mask =
-      placeholder.replaceAll(RegExp('[a-zA-z]'), _digitSymbol);
+  late final String _mask = placeholder.replaceAll(_maskRegExp, _digitSymbol);
 
-  late final String _cleanMask =
-      _mask.replaceAll(RegExp('[^$_digitSymbol]'), '');
+  late final String _cleanMask = _mask.replaceAll(_nonDigitSymbols, '');
 
   late final int _maxLength = placeholder.length;
 
@@ -182,6 +180,8 @@ class DateFormatter extends TextInputFormatter {
 
 const _digitSymbol = '#';
 final RegExp _allowedDigits = RegExp('[0-9]');
+final RegExp _maskRegExp = RegExp('[a-zA-z]');
+final RegExp _nonDigitSymbols = RegExp('[^$_digitSymbol]');
 
 int _inputLength(String value) => _allowedDigits.allMatches(value).length;
 
