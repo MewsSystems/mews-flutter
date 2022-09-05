@@ -2,20 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:optimus/src/form/date_formatter.dart';
 
-Widget boilerplate({required Widget child}) => MaterialApp(
-      home: Directionality(
-        textDirection: TextDirection.ltr,
-        child: MediaQuery(
-          data: const MediaQueryData(size: Size(800.0, 600.0)),
-          child: Center(
-            child: Material(
-              child: child,
-            ),
-          ),
-        ),
-      ),
-    );
-
 void main() {
   group('Adding first valid value', () {
     test('Adding valid input', () {
@@ -343,22 +329,6 @@ void main() {
         ),
       );
     });
-  });
-
-  testWidgets('Starting with initial value', (tester) async {
-    final TextEditingController controller =
-        TextEditingController(text: '01-01-2020');
-
-    await tester.pumpWidget(
-      boilerplate(
-        child: TextField(
-          controller: controller,
-          inputFormatters: [DateFormatter(placeholder: 'DD-MM-YYYY')],
-        ),
-      ),
-    );
-
-    expect(find.text('01-01-2020'), findsOneWidget);
   });
 
   group('Removing', () {
