@@ -84,9 +84,7 @@ class DateFormatter extends TextInputFormatter {
       final selectPosition = _getNextInputIndex(0);
       if (_isValidDigit(newText[0])) {
         resultText = _replaceCharAt(placeholder, selectPosition, newText[0]);
-        resultSelection = TextSelection.collapsed(
-          offset: selectPosition + 1,
-        );
+        resultSelection = TextSelection.collapsed(offset: selectPosition + 1);
       } else {
         return oldValue;
       }
@@ -94,9 +92,7 @@ class DateFormatter extends TextInputFormatter {
       if (newText.length > oldText.length) {
         if (_isComplete(oldText) ||
             !_isValidPosition(newSelectionStart) ||
-            !_isValidDigit(
-              newText[newSelectionStart - 1],
-            )) {
+            !_isValidDigit(newText[newSelectionStart - 1])) {
           return oldValue;
         }
 
@@ -113,9 +109,7 @@ class DateFormatter extends TextInputFormatter {
               offset: _getNextInputIndex(nextInputSpace + 1),
             );
           } else {
-            resultSelection = TextSelection.fromPosition(
-              TextPosition(offset: nextInputSpace),
-            );
+            resultSelection = TextSelection.collapsed(offset: nextInputSpace);
           }
         } else {
           resultText = _replaceCharAt(
@@ -148,9 +142,7 @@ class DateFormatter extends TextInputFormatter {
             placeholder.substring(start, end),
           );
 
-          resultSelection = TextSelection.collapsed(
-            offset: selectionPosition,
-          );
+          resultSelection = TextSelection.collapsed(offset: selectionPosition);
         } else if (_isDesignatedSpace(newSelectionStart)) {
           final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
           if (_isValidDigit(oldText[prevInputSpace])) {
@@ -171,10 +163,7 @@ class DateFormatter extends TextInputFormatter {
       }
     }
 
-    return TextEditingValue(
-      text: resultText,
-      selection: resultSelection,
-    );
+    return TextEditingValue(text: resultText, selection: resultSelection);
   }
 }
 
