@@ -146,10 +146,9 @@ class DateFormatter extends TextInputFormatter {
       if (newText.length > oldText.length) {
         if (_isComplete(oldText) ||
             !_isValidPosition(newSelectionStart) ||
-            (!_isDesignatedSpace(oldSelectionStart) &&
-                !_isValidDigit(
-                  newText[newSelectionStart - 1],
-                ))) {
+            !_isValidDigit(
+              newText[newSelectionStart - 1],
+            )) {
           return oldValue;
         }
 

@@ -1,430 +1,289 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:optimus/src/form/date_formatter.dart';
 
+@isTest
+void testFormat({
+  String format = 'DD-MM-YYYY',
+  TextEditingValue oldValue = const TextEditingValue(
+    text: '',
+    selection: TextSelection.collapsed(offset: 0),
+  ),
+  required TextEditingValue newValue,
+  required TextEditingValue expected,
+}) {
+  test('formats ${newValue.text} according to $format', () {
+    final formatter = DateFormatter(placeholder: format);
+
+    expect(formatter.formatEditUpdate(oldValue, newValue), expected);
+  });
+}
+
 void main() {
-  group('Adding first valid value', () {
-    test('Adding valid input', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
-        text: '',
-        selection: TextSelection.collapsed(offset: 0),
-      );
-
-      const newValue = TextEditingValue(
+  group('Valid input', () {
+    testFormat(
+      newValue: const TextEditingValue(
         text: '1',
         selection: TextSelection.collapsed(offset: 1),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '1D-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 1),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '1D-MM-YYYY',
-          selection: TextSelection.collapsed(offset: 1),
-        ),
-      );
-    });
-
-    test('Adding value, when mask starts with placeholder', () {
-      final formatter = DateFormatter(
-        placeholder: '--MM-YY',
-      );
-
-      const oldValue = TextEditingValue(
-        text: '',
-        selection: TextSelection.collapsed(offset: 0),
-      );
-
-      const newValue = TextEditingValue(
+    testFormat(
+      format: '--MM-YY',
+      newValue: const TextEditingValue(
         text: '1',
         selection: TextSelection.collapsed(offset: 1),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '--1M-YY',
+        selection: TextSelection.collapsed(offset: 3),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '--1M-YY',
-          selection: TextSelection.collapsed(offset: 3),
-        ),
-      );
-    });
-
-    test('Adding valid input will add mask before it', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '01-MM-YYYY',
         selection: TextSelection.collapsed(offset: 3),
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '01-1MM-YYYY',
         selection: TextSelection.collapsed(offset: 4),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '01-1M-YYYY',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '01-1M-YYYY',
-          selection: TextSelection.collapsed(offset: 4),
-        ),
-      );
-    });
-
-    test('Adding valid input will add whole mask before it', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM--/@YYYY',
-      );
-
-      const oldValue = TextEditingValue(
+    testFormat(
+      format: 'DD-MM--/@YYYY',
+      oldValue: const TextEditingValue(
         text: '01-MM--/@YYYY',
         selection: TextSelection.collapsed(offset: 5),
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '01-MM2--/@YYYY',
         selection: TextSelection.collapsed(offset: 6),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '01-MM--/@2YYY',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '01-MM--/@2YYY',
-          selection: TextSelection.collapsed(offset: 10),
-        ),
-      );
-    });
-
-    test('Adding valid input will add only mask before it', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '01-MM-YYYY',
         selection: TextSelection.collapsed(offset: 6),
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '01-MM-2YYYY',
         selection: TextSelection.collapsed(offset: 7),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '01-MM-2YYY',
+        selection: TextSelection.collapsed(offset: 7),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '01-MM-2YYY',
-          selection: TextSelection.collapsed(offset: 7),
-        ),
-      );
-    });
-
-    test('Adding valid input when the value is complete', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '01-01-2021',
         selection: TextSelection.collapsed(offset: 10),
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '01-01-20211',
         selection: TextSelection.collapsed(offset: 11),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '01-01-2021',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '01-01-2021',
-          selection: TextSelection.collapsed(offset: 10),
-        ),
-      );
-    });
-
-    test('Adding valid input inside the field when the value is complete', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '01-01-2020',
         selection: TextSelection.collapsed(offset: 10),
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '01-061-2020',
         selection: TextSelection.collapsed(offset: 4),
-      );
-
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '01-01-2020',
-          selection: TextSelection.collapsed(offset: 10),
-        ),
-      );
-    });
-
-    test('Adding valid input inside the field ', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
-        text: 'DD-MM-1YYY',
-        selection: TextSelection.collapsed(offset: 7),
-      );
-
-      const newValue = TextEditingValue(
-        text: 'DD-MM-12YYY',
-        selection: TextSelection.collapsed(offset: 8),
-      );
-
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: 'DD-MM-12YY',
-          selection: TextSelection.collapsed(offset: 8),
-        ),
-      );
-    });
-
-    test('Jumping over mask symbols, after the valid input', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue(
-        text: 'DD-MM-YYYY',
-        selection: TextSelection.collapsed(offset: 1),
-      );
-
-      const newValue = TextEditingValue(
-        text: 'D2D-MM-YYYY',
-        selection: TextSelection.collapsed(offset: 2),
-      );
-
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: 'D2-MM-YYYY',
-          selection: TextSelection.collapsed(offset: 3),
-        ),
-      );
-    });
-
-    test('Typing outside the pattern', () {
-      const oldValue = TextEditingValue(
-        text: 'DD-MM-YYYY',
-        selection: TextSelection.collapsed(offset: 10),
-      );
-
-      final formatter = DateFormatter(placeholder: 'DD-MM-YYYY');
-
-      const newValue = TextEditingValue(
-        text: 'DD-MM-YYYY6',
-        selection: TextSelection.collapsed(offset: 11),
-      );
-
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: 'DD-MM-YYYY',
-          selection: TextSelection.collapsed(offset: 10),
-        ),
-      );
-    });
-    test('Entering valid value before at the mask place', () {
-      const oldValue = TextEditingValue(
-        text: 'DD-MM-YYYY',
-        selection: TextSelection.collapsed(offset: 2),
-      );
-
-      final formatter = DateFormatter(placeholder: 'DD-MM-YYYY');
-
-      const newValue = TextEditingValue(
-        text: 'DD2-MM-YYYY',
-        selection: TextSelection.collapsed(offset: 3),
-      );
-
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: 'DD-2M-YYYY',
-          selection: TextSelection.collapsed(offset: 4),
-        ),
-      );
-    });
-  });
-
-  group('Adding invalid value', () {
-    test('Adding invalid input', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const oldValue = TextEditingValue.empty;
-
-      const newValue = TextEditingValue(
-        text: 'A',
-        selection: TextSelection.collapsed(offset: 1),
-      );
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        TextEditingValue.empty,
-      );
-    });
-
-    test('Adding invalid input when the value is complete', () {
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-      const oldValue = TextEditingValue(
+      ),
+      expected: const TextEditingValue(
         text: '01-01-2020',
         selection: TextSelection.collapsed(offset: 10),
-      );
+      ),
+    );
 
-      const newValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
+        text: 'DD-MM-1YYY',
+        selection: TextSelection.collapsed(offset: 7),
+      ),
+      newValue: const TextEditingValue(
+        text: 'DD-MM-12YYY',
+        selection: TextSelection.collapsed(offset: 8),
+      ),
+      expected: const TextEditingValue(
+        text: 'DD-MM-12YY',
+        selection: TextSelection.collapsed(offset: 8),
+      ),
+    );
+
+    testFormat(
+      oldValue: const TextEditingValue(
+        text: 'DD-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 1),
+      ),
+      newValue: const TextEditingValue(
+        text: 'D2D-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 2),
+      ),
+      expected: const TextEditingValue(
+        text: 'D2-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 3),
+      ),
+    );
+
+    testFormat(
+      oldValue: const TextEditingValue(
+        text: 'DD-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 2),
+      ),
+      newValue: const TextEditingValue(
+        text: 'DD2-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 3),
+      ),
+      expected: const TextEditingValue(
+        text: 'DD-2M-YYYY',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+    );
+  });
+
+  group('Invalid input', () {
+    testFormat(
+      oldValue: const TextEditingValue(
+        text: 'DD-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: 'DD-MM-YYYY6',
+        selection: TextSelection.collapsed(offset: 11),
+      ),
+      expected: const TextEditingValue(
+        text: 'DD-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      newValue: const TextEditingValue(
+        text: 'A',
+        selection: TextSelection.collapsed(offset: 1),
+      ),
+      expected: const TextEditingValue(
+        text: '',
+        selection: TextSelection.collapsed(offset: 0),
+      ),
+    );
+
+    testFormat(
+      oldValue: const TextEditingValue(
+        text: '01-01-2020',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      newValue: const TextEditingValue(
         text: '01-01-2020A',
         selection: TextSelection.collapsed(offset: 11),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '01-01-2020',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '01-01-2020',
-          selection: TextSelection.collapsed(offset: 10),
-        ),
-      );
-    });
+    testFormat(
+      oldValue: const TextEditingValue(
+        text: '01-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 3),
+      ),
+      newValue: const TextEditingValue(
+        text: '01-JMM-YYYY',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+      expected: const TextEditingValue(
+        text: '01-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 3),
+      ),
+    );
   });
 
   group('Removing', () {
-    test('Removing user inputted value', () {
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '17-06-2017',
         selection: TextSelection.collapsed(offset: 10),
-      );
-      final formatter = DateFormatter(placeholder: 'DD-MM-YYYY');
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '17-06-201',
         selection: TextSelection.collapsed(offset: 9),
-      );
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
+      ),
+      expected: const TextEditingValue(
+        text: '17-06-201Y',
+        selection: TextSelection.collapsed(offset: 9),
+      ),
+    );
 
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '17-06-201Y',
-          selection: TextSelection.collapsed(offset: 9),
-        ),
-      );
-    });
-
-    test('Removing placeholder value', () {
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: 'DD-MM-2017',
         selection: TextSelection.collapsed(offset: 5),
-      );
-
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: 'DD-M-2017',
         selection: TextSelection.collapsed(offset: 4),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: 'DD-MM-2017',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-      expect(
-        actual,
-        const TextEditingValue(
-          text: 'DD-MM-2017',
-          selection: TextSelection.collapsed(offset: 4),
-        ),
-      );
-    });
-    test('Removing; next char is valid', () {
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '17-06-2017',
         selection: TextSelection.collapsed(offset: 6),
-      );
-      final formatter = DateFormatter(placeholder: 'DD-MM-YYYY');
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '17-062017',
         selection: TextSelection.collapsed(offset: 5),
-      );
+      ),
+      expected: const TextEditingValue(
+        text: '17-0M-2017',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+    );
 
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '17-0M-2017',
-          selection: TextSelection.collapsed(offset: 4),
-        ),
-      );
-    });
-
-    test('Removing; next char is placeholder', () {
-      const oldValue = TextEditingValue(
+    testFormat(
+      oldValue: const TextEditingValue(
         text: '17-0M-2017',
         selection: TextSelection.collapsed(offset: 6),
-      );
-
-      final formatter = DateFormatter(
-        placeholder: 'DD-MM-YYYY',
-      );
-
-      const newValue = TextEditingValue(
+      ),
+      newValue: const TextEditingValue(
         text: '17-0M2017',
         selection: TextSelection.collapsed(offset: 5),
-      );
-
-      final actual = formatter.formatEditUpdate(oldValue, newValue);
-
-      expect(
-        actual,
-        const TextEditingValue(
-          text: '17-0M-2017',
-          selection: TextSelection.collapsed(offset: 4),
-        ),
-      );
-    });
+      ),
+      expected: const TextEditingValue(
+        text: '17-0M-2017',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+    );
   });
 }
