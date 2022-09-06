@@ -24,7 +24,6 @@ class OptimusDateInputField extends StatefulWidget {
     this.initialValue,
     this.isClearAllEnabled = false,
     this.onChanged,
-    this.showCursor = false,
     this.isRequired = false,
     this.focusNode,
     this.onTap,
@@ -50,7 +49,6 @@ class OptimusDateInputField extends StatefulWidget {
 
   final VoidCallback? onTap;
 
-  final bool? showCursor;
   final bool isRequired;
   final String? label;
   final String? error;
@@ -66,24 +64,15 @@ class OptimusDateInputField extends StatefulWidget {
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
   late _StyledInputController _styleController;
-  final List<int> _userInput = <int>[];
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _userInput.clear();
-    if (widget.initialValue != null) {
-      for (int i = 0; i < _placeholder.length; i++) {
-        _userInput.add(i);
-      }
-    }
-
     _styleController = _StyledInputController(
       text: _initialText,
       placeholderStyle: theme.getPlaceholderStyle(widget.size),
       inputStyle: theme.getTextInputStyle(widget.size),
-      userInput: _userInput,
     );
   }
 
@@ -93,13 +82,9 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     if (oldWidget.format.pattern != widget.format.pattern ||
         oldWidget.format.locale != widget.format.locale) {
       final inputDate = _getDateTime(oldWidget.format, _styleController.text);
-      _userInput.clear();
 
       if (inputDate != null) {
         final placeholderValue = _formatOutput(inputDate);
-        for (int i = 0; i < placeholderValue.length; i++) {
-          _userInput.add(i);
-        }
         _styleController.text = placeholderValue;
       } else {
         _styleController.text = '';
@@ -180,17 +165,6 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         ),
       );
 
-  /// Create the mask from the pattern.
-  ///
-  /// For example "dd/MM/yyyy" will be transformed to "##/##/####".
-  String get _mask => _replaceSupported(
-        widget.format.pattern,
-        (symbol) => symbol.pattern,
-        (symbol) => symbol.mask,
-      );
-
-  bool get _showClearAll => widget.isClearAllEnabled && _userInput.isNotEmpty;
-
   @override
   void dispose() {
     _styleController.dispose();
@@ -202,27 +176,17 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         label: widget.label,
         caption: widget.caption,
         isEnabled: widget.isEnabled,
-        isClearEnabled: _showClearAll,
+        isClearEnabled: widget.isClearAllEnabled,
         secondaryCaption: widget.secondaryCaption,
         placeholder: _placeholder,
         controller: _styleController,
         error: widget.error,
         onSubmitted: _handleSubmitted,
         keyboardType: TextInputType.number,
-        showCursor: widget.showCursor,
         isRequired: widget.isRequired,
         onTap: widget.onTap,
         focusNode: widget.focusNode,
-        inputFormatters: [
-          DateFormatter(
-            mask: _mask,
-            placeholder: _placeholder,
-            initValue: _initialText,
-            userInput: _userInput,
-            allowedDigits: widget.format.digitMatcher,
-            onUserInputChanged: () => setState(() {}),
-          )
-        ],
+        inputFormatters: [DateFormatter(placeholder: _placeholder)],
       );
 }
 
@@ -233,7 +197,6 @@ class _StyledInputController extends TextEditingController {
     String? text,
     required this.inputStyle,
     required this.placeholderStyle,
-    required this.userInput,
   }) : super(text: text);
 
   /// The style to use for the user entered part.
@@ -242,9 +205,6 @@ class _StyledInputController extends TextEditingController {
   /// The style to use for the rest.
   final TextStyle placeholderStyle;
 
-  /// List with positions, that were filled-in by the user.
-  final List<int> userInput;
-
   @override
   TextSpan buildTextSpan({
     required BuildContext context,
@@ -252,33 +212,27 @@ class _StyledInputController extends TextEditingController {
     required bool withComposing,
   }) {
     final List<TextSpan> children = [];
-    for (int i = 0; i < text.length; i++) {
-      children.add(
-        TextSpan(
-          style: userInput.contains(i) ? inputStyle : placeholderStyle,
-          text: text[i],
-        ),
-      );
+    final textParts = text.split('');
+
+    for (int i = textParts.length - 1; i >= 0; i--) {
+      if (_allowedDigits.hasMatch(textParts[i])) {
+        children.add(TextSpan(style: inputStyle, text: textParts[i]));
+      } else if (_maskRegExp.hasMatch(textParts[i])) {
+        children.add(TextSpan(style: placeholderStyle, text: textParts[i]));
+      } else {
+        final style = children.isEmpty ? placeholderStyle : children.last.style;
+        children.add(TextSpan(style: style, text: textParts[i]));
+      }
     }
 
-    return TextSpan(children: children, style: style);
+    return TextSpan(children: children.reversed.toList(), style: style);
   }
 
-  @override
-  void clear() {
-    userInput.clear();
-    super.clear();
-  }
+  final RegExp _maskRegExp = RegExp('[a-zA-z]');
+  final RegExp _allowedDigits = RegExp('[0-9]');
 }
 
-enum _SupportedSymbol {
-  day,
-  month,
-  year,
-  hour,
-  minute,
-  second,
-}
+enum _SupportedSymbol { day, month, year, hour, minute, second }
 
 extension on _SupportedSymbol {
   String get pattern {
@@ -329,19 +283,6 @@ extension on _SupportedSymbol {
         return 'mm';
       case _SupportedSymbol.second:
         return 'ss';
-    }
-  }
-
-  String get mask {
-    switch (this) {
-      case _SupportedSymbol.year:
-        return '####';
-      case _SupportedSymbol.hour:
-      case _SupportedSymbol.minute:
-      case _SupportedSymbol.second:
-      case _SupportedSymbol.day:
-      case _SupportedSymbol.month:
-        return '##';
     }
   }
 }
