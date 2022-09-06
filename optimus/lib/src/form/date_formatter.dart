@@ -1,140 +1,50 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// TextInputFormatter that will format the input according to the given mask.
 ///
-/// Mask could consist of the following characters:
-///
-/// - `#`: Digit
-///
-/// Example: `###-###-###`
-///
-/// The [_userInput] is used for tracking the user input and distinct it from
-/// the placeholder, which is used to fill empty places.
+/// DateFormatter will force the input to follow the mask and will fill the
+/// empty spaces with the placeholder.
 class DateFormatter extends TextInputFormatter {
   DateFormatter({
-    required this.mask,
     required this.placeholder,
-    required List<int> userInput,
-    required this.onUserInputChanged,
-    this.initValue,
-    required this.allowedDigits,
-  }) {
-    _userInput = userInput;
-    _buildMaskMap();
-  }
+  });
 
-  final String mask;
+  /// The placeholder to fill the empty spaces in the mask.
+  ///
+  /// Example: 'DD-MM-YYYY'
   final String placeholder;
-  final String? initValue;
-  final RegExp allowedDigits;
-  final Map<int, String> _mask = {};
 
-  // Callback for updating the "clear all" button state.
-  final VoidCallback onUserInputChanged;
+  late final String _mask = placeholder.replaceAll(_maskRegExp, _digitSymbol);
 
-  late List<int> _userInput;
+  late final String _cleanMask = _mask.replaceAll(_nonDigitSymbols, '');
 
-  bool _isValidForPosition(String value, int position) {
-    if (position >= mask.length) return false;
+  late final int _maxLength = placeholder.length;
 
-    if (mask[position] == _digitSymbol) {
-      return _isValidDigit(value);
-    } else {
-      return false;
-    }
-  }
+  bool _isValidPosition(int position) => position <= _maxLength;
 
-  bool _isValidDigit(String value) => allowedDigits.hasMatch(value);
+  bool _isComplete(String value) => _inputLength(value) == _cleanMask.length;
 
-  int get _maxLength => mask.length;
+  bool _isDesignatedSpace(int index) =>
+      index >= _mask.length ? false : _mask[index] != _digitSymbol;
 
-  bool get _isComplete => _validInputLength == _getCleanMask.length;
-
-  int get _validInputLength =>
-      _userInput.where((i) => !_isDesignatedSpace(i)).length;
-
-  String get _getCleanMask {
-    String result = placeholder;
-    for (final char in _mask.values) {
-      result = result.replaceAll(char, '');
-    }
-
-    return result;
-  }
-
-  void _buildMaskMap() {
-    final StringBuffer buffer = StringBuffer();
-    int sectionStart = 0;
-
-    for (int i = 0; i < _maxLength;) {
-      final symbol = mask[i];
-      if (symbol != _digitSymbol) {
-        buffer
-          ..clear()
-          ..write(symbol);
-        sectionStart = i;
-        String sequential = '';
-        while (sequential != _digitSymbol && i < _maxLength) {
-          buffer.write(sequential);
-          i++;
-          if (i < _maxLength) {
-            sequential = mask[i];
-          }
-        }
-        _mask[sectionStart] = buffer.toString();
-      } else {
-        i++;
-      }
-    }
-  }
-
-  bool _isDesignatedSpace(int index) {
-    for (final key in _mask.keys) {
-      final length = _mask[key]?.length ?? 0;
-      if (key <= index && index < key + length) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  int _getNextInputIndex(int index, int max) {
+  /// Returns the next index that should be filled by the user.
+  int _getNextInputIndex(int index) {
     while (_isDesignatedSpace(index)) {
-      if (index == max) return max;
+      if (index == _maxLength) return _maxLength;
       index++;
     }
 
     return index;
   }
 
+  /// Returns the previous index that should be filled by the user.
   int _getPreviousInputIndex(int index) {
     while (_isDesignatedSpace(index)) {
-      if (index == 0) return index;
+      if (index == 0) return -1;
       index--;
     }
 
     return index;
-  }
-
-  void _updateMaskBefore(int index, void Function(int) operation) {
-    final int prevValue = _getPreviousInputIndex(index);
-    final int start = prevValue + 1;
-    final int length = _mask[start]?.length ?? -1;
-    if (length == -1) return;
-
-    for (int i = start; i < start + length; i++) {
-      operation(i);
-    }
-  }
-
-  void _addMaskBefore(int index) {
-    _updateMaskBefore(index, (i) => _userInput.add(i));
-  }
-
-  void _removeMaskBefore(int index) {
-    _updateMaskBefore(index, (i) => _userInput.remove(i));
   }
 
   String _replaceCharAt(String value, int index, String replacement) =>
@@ -144,6 +54,17 @@ class DateFormatter extends TextInputFormatter {
           ? ''
           : value.substring(index + replacement.length));
 
+  /// Because the input is filled with the placeholder, the whole process is
+  /// going to be something like this:
+  /// oldValue = 'DD-MM-YYYY'
+  /// newValue = '2DD-MM-YYYY'
+  ///              ^ - will be removed
+  /// result = '2D-MM-YYYY'
+  /// or:
+  /// oldValue = '23-05-2019'
+  /// newValue = '23-05-201' <- we removed the last digit
+  /// empty space will be filled with the placeholder
+  /// result = '23-05-201Y'
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
@@ -155,70 +76,49 @@ class DateFormatter extends TextInputFormatter {
     final newText = newValue.text;
     final oldSelectionStart = oldValue.selection.start;
     final newSelectionStart = newValue.selection.start;
-    final oldInputLength = _userInput.length;
 
     String resultText = oldText;
     TextSelection resultSelection = oldSelection;
 
     if (oldValue.text.isEmpty) {
-      final selectPosition = _getNextInputIndex(0, mask.length);
-      if (_isValidForPosition(newText[0], selectPosition)) {
-        _userInput.add(selectPosition);
+      final selectPosition = _getNextInputIndex(0);
+      if (_isValidDigit(newText[0])) {
         resultText = _replaceCharAt(placeholder, selectPosition, newText[0]);
-        resultSelection = TextSelection.collapsed(
-          offset: selectPosition + 1,
-        );
+        resultSelection = TextSelection.collapsed(offset: selectPosition + 1);
       } else {
         return oldValue;
       }
     } else {
       if (newText.length > oldText.length) {
-        if (_isComplete ||
-            _userInput.contains(oldSelectionStart) ||
-            (!_isDesignatedSpace(oldSelectionStart) &&
-                !_isValidForPosition(
-                  newText[newSelectionStart - 1],
-                  newSelectionStart - 1,
-                ))) {
+        if (_isComplete(oldText) ||
+            !_isValidPosition(newSelectionStart) ||
+            !_isValidDigit(newText[newSelectionStart - 1])) {
           return oldValue;
         }
 
         if (_isDesignatedSpace(oldSelectionStart)) {
-          final nextInputSpace =
-              _getNextInputIndex(oldSelectionStart, mask.length);
-          if (_isValidForPosition(
-                newText[newSelectionStart - 1],
-                nextInputSpace,
-              ) &&
-              !_userInput.contains(nextInputSpace)) {
-            if (_userInput.isNotEmpty) onUserInputChanged.call();
-            _addMaskBefore(nextInputSpace - 1);
+          final nextInputSpace = _getNextInputIndex(oldSelectionStart);
+          if (_isValidDigit(newText[newSelectionStart - 1]) &&
+              !_isValidDigit(oldText[nextInputSpace])) {
             resultText = _replaceCharAt(
               oldText,
               nextInputSpace,
               newText[newSelectionStart - 1],
             );
             resultSelection = TextSelection.collapsed(
-              offset: _getNextInputIndex(nextInputSpace + 1, mask.length),
+              offset: _getNextInputIndex(nextInputSpace + 1),
             );
           } else {
-            resultSelection = TextSelection.fromPosition(
-              TextPosition(offset: nextInputSpace),
-            );
+            resultSelection = TextSelection.collapsed(offset: nextInputSpace);
           }
         } else {
-          _userInput.add(oldSelectionStart);
-          if (_isDesignatedSpace(oldSelectionStart - 1)) {
-            _addMaskBefore(oldSelectionStart - 1);
-          }
-
           resultText = _replaceCharAt(
             oldText,
             oldSelectionStart,
             newText[oldSelectionStart],
           );
           resultSelection = TextSelection.collapsed(
-            offset: _getNextInputIndex(newSelectionStart, mask.length),
+            offset: _getNextInputIndex(newSelectionStart),
           );
         }
       } else if (newText.length < oldText.length) {
@@ -230,12 +130,9 @@ class DateFormatter extends TextInputFormatter {
               ? newSelectionStart + 1
               : oldSelection.end;
 
-          _userInput.removeWhere((value) => value >= start && value < end);
-          if (_userInput.isEmpty) onUserInputChanged.call();
           int selectionPosition = _getPreviousInputIndex(start);
 
           if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {
-            _removeMaskBefore(start - 1);
             selectionPosition = _getPreviousInputIndex(start - 1) + 1;
           }
 
@@ -245,13 +142,10 @@ class DateFormatter extends TextInputFormatter {
             placeholder.substring(start, end),
           );
 
-          resultSelection = TextSelection.collapsed(
-            offset: selectionPosition,
-          );
+          resultSelection = TextSelection.collapsed(offset: selectionPosition);
         } else if (_isDesignatedSpace(newSelectionStart)) {
           final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
-          if (_userInput.contains(prevInputSpace)) {
-            _userInput.remove(prevInputSpace);
+          if (_isValidDigit(oldText[prevInputSpace])) {
             resultText = _replaceCharAt(
               oldText,
               prevInputSpace,
@@ -261,20 +155,23 @@ class DateFormatter extends TextInputFormatter {
           resultSelection = TextSelection.collapsed(
             offset: _getPreviousInputIndex(newSelectionStart),
           );
-        } else if (!_userInput.contains(newSelectionStart)) {
+        } else if (!_isValidDigit(oldText[newSelectionStart])) {
           resultSelection = newSelection;
         }
       } else {
         resultSelection = newSelection;
       }
     }
-    if (oldInputLength != _userInput.length) onUserInputChanged.call();
 
-    return TextEditingValue(
-      text: resultText,
-      selection: resultSelection,
-    );
+    return TextEditingValue(text: resultText, selection: resultSelection);
   }
 }
 
 const _digitSymbol = '#';
+final RegExp _allowedDigits = RegExp('[0-9]');
+final RegExp _maskRegExp = RegExp('[a-zA-z]');
+final RegExp _nonDigitSymbols = RegExp('[^$_digitSymbol]');
+
+int _inputLength(String value) => _allowedDigits.allMatches(value).length;
+
+bool _isValidDigit(String value) => _allowedDigits.hasMatch(value);
