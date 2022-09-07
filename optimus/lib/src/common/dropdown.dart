@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 
@@ -67,6 +68,8 @@ class _DropdownContent<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
+      final isOnTop = controller.topSpace > controller.bottomSpace;
+
       return Container(
         decoration: _dropdownDecoration(context),
         constraints: BoxConstraints(
@@ -75,7 +78,7 @@ class _DropdownContent<T> extends StatelessWidget {
         child: _DropdownListView(
           items: items,
           onChanged: onChanged,
-          isReversed: controller.isOnTop,
+          isReversed: isOnTop,
         ),
       );
     } else {
