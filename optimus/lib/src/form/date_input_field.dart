@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/form/date_formatter.dart';
 import 'package:optimus/src/form/form_style.dart';
+import 'package:optimus/src/form/styled_input_controller.dart';
 
 typedef _SymbolConverter = String Function(_SupportedSymbol symbol);
 
@@ -63,13 +64,13 @@ class OptimusDateInputField extends StatefulWidget {
 
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
-  late _StyledInputController _styleController;
+  late StyledInputController _styleController;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _styleController = _StyledInputController(
+    _styleController = StyledInputController(
       text: _initialText,
       placeholderStyle: theme.getPlaceholderStyle(widget.size),
       inputStyle: theme.getTextInputStyle(widget.size),
@@ -188,48 +189,6 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         focusNode: widget.focusNode,
         inputFormatters: [DateFormatter(placeholder: _placeholder)],
       );
-}
-
-/// Controller for highlighting the user input inside the
-/// text input field.
-class _StyledInputController extends TextEditingController {
-  _StyledInputController({
-    String? text,
-    required this.inputStyle,
-    required this.placeholderStyle,
-  }) : super(text: text);
-
-  /// The style to use for the user entered part.
-  final TextStyle inputStyle;
-
-  /// The style to use for the rest.
-  final TextStyle placeholderStyle;
-
-  @override
-  TextSpan buildTextSpan({
-    required BuildContext context,
-    TextStyle? style,
-    required bool withComposing,
-  }) {
-    final List<TextSpan> children = [];
-    final textParts = text.split('');
-
-    for (int i = textParts.length - 1; i >= 0; i--) {
-      if (_allowedDigits.hasMatch(textParts[i])) {
-        children.add(TextSpan(style: inputStyle, text: textParts[i]));
-      } else if (_maskRegExp.hasMatch(textParts[i])) {
-        children.add(TextSpan(style: placeholderStyle, text: textParts[i]));
-      } else {
-        final style = children.isEmpty ? placeholderStyle : children.last.style;
-        children.add(TextSpan(style: style, text: textParts[i]));
-      }
-    }
-
-    return TextSpan(children: children.reversed.toList(), style: style);
-  }
-
-  final RegExp _maskRegExp = RegExp('[a-zA-z]');
-  final RegExp _allowedDigits = RegExp('[0-9]');
 }
 
 enum _SupportedSymbol { day, month, year, hour, minute, second }
