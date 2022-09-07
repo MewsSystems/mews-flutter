@@ -142,6 +142,8 @@ class DateFormatter extends TextInputFormatter {
             placeholder.substring(start, end),
           );
 
+          if (_inputLength(resultText) == 0) resultText = '';
+
           resultSelection = TextSelection.collapsed(offset: selectionPosition);
         } else if (_isDesignatedSpace(newSelectionStart)) {
           final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
