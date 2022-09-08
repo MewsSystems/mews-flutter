@@ -5,9 +5,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story inlineDialogStory = Story(
   name: 'General/Dialogs/Inline dialog',
-  builder: (context) => DialogWrapper(
-    child: InlineDialogStory(context.knobs),
-  ),
+  builder: (context) => DialogWrapper(child: InlineDialogStory(context.knobs)),
 );
 
 class InlineDialogStory extends StatelessWidget {
@@ -21,7 +19,6 @@ class InlineDialogStory extends StatelessWidget {
     final hasActions = k.boolean(label: 'Has actions', initial: false);
 
     return Align(
-      alignment: Alignment.bottomRight,
       child: OptimusButton(
         key: _anchor,
         onPressed: () => {
@@ -52,37 +49,29 @@ class _InlineContentExample extends StatefulWidget {
 class _InlineContentExampleState extends State<_InlineContentExample> {
   @override
   Widget build(BuildContext context) => Column(
-        children: [
+        children: const [
           _NumberRow(
             title: 'Adults',
             description: 'From 13 to 100',
-            onChanged: (value) => {},
           ),
           _NumberRow(
             title: 'Children',
             description: 'From 3 to 12',
-            onChanged: (value) => {},
           ),
           _NumberRow(
             title: 'Toddlers',
             description: 'From 0 to 3',
-            onChanged: (value) => {},
           )
         ],
       );
 }
 
 class _NumberRow extends StatelessWidget {
-  const _NumberRow({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.onChanged,
-  }) : super(key: key);
+  const _NumberRow({Key? key, required this.title, required this.description})
+      : super(key: key);
 
   final String title;
   final String description;
-  final ValueChanged<int?> onChanged;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -93,26 +82,18 @@ class _NumberRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _Title(title: title),
-                _Description(description: description)
+                _Description(description: description),
               ],
             ),
             const Spacer(),
-            OptimusNumberPickerFormField(
-              onChanged: onChanged,
-              initialValue: 8,
-              min: 5,
-              max: 15,
-            )
+            OptimusNumberPickerFormField(initialValue: 8)
           ],
         ),
       );
 }
 
 class _Description extends StatelessWidget {
-  const _Description({
-    Key? key,
-    required this.description,
-  }) : super(key: key);
+  const _Description({Key? key, required this.description}) : super(key: key);
 
   final String description;
 
@@ -122,10 +103,7 @@ class _Description extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-  const _Title({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
+  const _Title({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

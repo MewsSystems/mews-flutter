@@ -288,15 +288,15 @@ class _DialogContent extends StatelessWidget {
   const _DialogContent({
     Key? key,
     required this.actions,
-    this.title,
     required this.content,
-    this.close,
+    required this.type,
     required this.size,
+    required this.maxWidth,
+    this.title,
+    this.close,
     this.isDismissible,
     this.contentWrapperBuilder,
-    required this.type,
     this.spacing,
-    required this.maxWidth,
     this.margin,
   }) : super(key: key);
 
@@ -373,10 +373,7 @@ class _DialogContent extends StatelessWidget {
 }
 
 class OptimusDialogContentPadding extends StatelessWidget {
-  const OptimusDialogContentPadding({
-    Key? key,
-    this.child,
-  }) : super(key: key);
+  const OptimusDialogContentPadding({Key? key, this.child}) : super(key: key);
 
   final Widget? child;
 
@@ -406,10 +403,7 @@ class _Content extends StatelessWidget {
           )
         : contentWrapperBuilder(context, content);
 
-    return Flexible(
-      fit: FlexFit.loose,
-      child: wrappedContent,
-    );
+    return Flexible(fit: FlexFit.loose, child: wrappedContent);
   }
 }
 

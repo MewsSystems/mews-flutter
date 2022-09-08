@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/border_radius.dart';
-import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
 
@@ -26,17 +25,10 @@ class OptimusDropdown<T> extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.topCenter,
       children: <Widget>[
-        // Some problem with AnimatedPosition here:
-        // 'package:flutter/src/animation/tween.dart':
-        // Failed assertion: line 258 pos 12: 'begin != null': is not true.
-        // Switching to Positioned.
         AnchoredOverlay(
           anchorKey: anchorKey,
           width: width,
-          child: _DropdownContent(
-            items: items,
-            onChanged: onChanged,
-          ),
+          child: _DropdownContent(items: items, onChanged: onChanged),
         ),
       ],
     );
@@ -68,13 +60,11 @@ class _DropdownContent<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
-      final isOnTop = controller.topSpace > controller.bottomSpace;
+      final isOnTop = controller.top > controller.bottom;
 
       return Container(
         decoration: _dropdownDecoration(context),
-        constraints: BoxConstraints(
-          maxHeight: controller.maxHeight,
-        ),
+        constraints: BoxConstraints(maxHeight: controller.maxHeight),
         child: _DropdownListView(
           items: items,
           onChanged: onChanged,
@@ -108,10 +98,8 @@ class _DropdownListView<T> extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: spacing100),
             shrinkWrap: true,
             itemCount: items.length,
-            itemBuilder: (context, index) => _DropdownItem(
-              onChanged: onChanged,
-              child: items[index],
-            ),
+            itemBuilder: (context, index) =>
+                _DropdownItem(onChanged: onChanged, child: items[index]),
           ),
         ),
       );

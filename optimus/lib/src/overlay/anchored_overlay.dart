@@ -6,7 +6,8 @@ import 'package:optimus/optimus.dart';
 abstract class AnchoredOverlayController {
   double get maxHeight;
   double get width;
-  bool get isOnTop;
+  double get top;
+  double get bottom;
 }
 
 class AnchoredOverlayData extends InheritedWidget {
@@ -46,6 +47,12 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     implements AnchoredOverlayController {
   late Rect _savedRect = _calculateRect();
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
+  }
+
   void _updateRect(dynamic _) {
     if (!mounted) return;
     final newRect = _calculateRect();
@@ -56,10 +63,16 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
+  Rect _calculateRect() {
+    final renderObject = widget.anchorKey.currentContext?.findRenderObject();
+    if (renderObject is! RenderBox || !renderObject.hasSize) return Rect.zero;
+
+    final size = renderObject.size;
+
+    final overlay =
+        Overlay.of(context)?.context.findRenderObject() as RenderBox?;
+
+    return renderObject.localToGlobal(Offset.zero, ancestor: overlay) & size;
   }
 
   double get _screenHeight => MediaQuery.of(context).size.height;
@@ -75,27 +88,25 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   double get _paddingTop => MediaQuery.of(context).padding.top + _screenPadding;
 
-  double get _topSpace => _savedRect.top - _paddingTop;
-
-  double get _bottomSpace => _screenHeight - _paddingBottom - _savedRect.bottom;
-
   double get _rightSpace => _screenWidth - _savedRect.left;
 
   double get _leftSpace => _savedRect.right;
 
   double get _width => widget.width ?? _savedRect.width;
 
-  Rect _calculateRect() {
-    final renderObject = widget.anchorKey.currentContext?.findRenderObject();
-    if (renderObject is! RenderBox || !renderObject.hasSize) return Rect.zero;
+  bool get isOnTop => top > bottom;
 
-    final size = renderObject.size;
+  @override
+  double get top => _savedRect.top - _paddingTop;
 
-    final overlay =
-        Overlay.of(context)?.context.findRenderObject() as RenderBox?;
+  @override
+  double get bottom => _screenHeight - _paddingBottom - _savedRect.bottom;
 
-    return renderObject.localToGlobal(Offset.zero, ancestor: overlay) & size;
-  }
+  @override
+  double get maxHeight => max(top, bottom);
+
+  @override
+  double get width => widget.width ?? _savedRect.width;
 
   @override
   Widget build(BuildContext context) {
@@ -122,15 +133,6 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
       ),
     );
   }
-
-  @override
-  bool get isOnTop => _topSpace > _bottomSpace;
-
-  @override
-  double get maxHeight => max(_topSpace, _bottomSpace);
-
-  @override
-  double get width => widget.width ?? _savedRect.width;
 }
 
 const double _screenPadding = spacing200;
