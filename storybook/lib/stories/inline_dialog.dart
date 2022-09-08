@@ -9,7 +9,10 @@ final Story inlineDialogStory = Story(
 );
 
 class InlineDialogStory extends StatelessWidget {
-  InlineDialogStory(this.k, {Key? key}) : super(key: key);
+  InlineDialogStory(
+    this.k, {
+    Key? key,
+  }) : super(key: key);
 
   final KnobsBuilder k;
   final GlobalKey _anchor = GlobalKey();

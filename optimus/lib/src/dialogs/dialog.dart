@@ -1,6 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/anchored_overlay.dart';
 
 enum OptimusDialogSize {
   /// Intended for short, to the point messages.
@@ -373,7 +374,10 @@ class _DialogContent extends StatelessWidget {
 }
 
 class OptimusDialogContentPadding extends StatelessWidget {
-  const OptimusDialogContentPadding({Key? key, this.child}) : super(key: key);
+  const OptimusDialogContentPadding({
+    Key? key,
+    this.child,
+  }) : super(key: key);
 
   final Widget? child;
 

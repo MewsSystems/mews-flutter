@@ -20,7 +20,10 @@ abstract class DialogController {
 }
 
 class DialogWrapper extends StatefulWidget {
-  const DialogWrapper({Key? key, required this.child}) : super(key: key);
+  const DialogWrapper({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   final Widget child;
 
@@ -100,10 +103,8 @@ class _DialogWrapperState extends State<DialogWrapper>
   }
 
   @override
-  Widget build(BuildContext context) => DialogWrapperData(
-        controller: this,
-        child: widget.child,
-      );
+  Widget build(BuildContext context) =>
+      DialogWrapperData(controller: this, child: widget.child);
 }
 
 class DialogWrapperData extends InheritedWidget {
