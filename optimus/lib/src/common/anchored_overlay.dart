@@ -122,6 +122,10 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     return AnchoredOverlayData(
       controller: this,
       child: Builder(
+        // Some problem with AnimatedPosition here:
+        // 'package:flutter/src/animation/tween.dart':
+        // Failed assertion: line 258 pos 12: 'begin != null': is not true.
+        // Switching to Positioned.
         builder: (context) => Positioned(
           width: _width,
           left: left,
