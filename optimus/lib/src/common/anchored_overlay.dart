@@ -112,6 +112,12 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   Widget build(BuildContext context) {
     final widthWithPadding = _width + _widgetPadding;
 
+    // If we have enough space to the right, dropdown's left side will be
+    // aligned with anchor's left side. If there's not enough space to the
+    // right, but enough space to the left, dropdown's right side will be
+    // aligned with anchor's right side. If both conditions fail, left and
+    // right will both be null, so dropdown will be aligned according to
+    // Stack's alignment property.
     double? left, right;
     if (_rightSpace >= widthWithPadding) {
       left = _savedRect.left;
