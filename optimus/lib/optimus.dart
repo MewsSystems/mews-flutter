@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/typography/presets.dart';
 
+export 'package:intl/intl.dart' show DateFormat;
+
 export 'optimus_icons.dart';
 export 'src/avatar.dart';
 export 'src/badge.dart';
@@ -35,13 +37,15 @@ export 'src/dialogs/non_modal_wrapper.dart';
 export 'src/enabled.dart';
 export 'src/expansion/expansion_tile.dart';
 export 'src/form/checkbox_form_field.dart';
+export 'src/form/date_input_field.dart';
+export 'src/form/date_input_form_field.dart';
 export 'src/form/date_time_form_field.dart';
+export 'src/form/input_field.dart';
 export 'src/form/input_form_field.dart';
 export 'src/form/select_form_field.dart';
 export 'src/form/select_input_form_field.dart';
 export 'src/icon.dart';
 export 'src/icon_list.dart';
-export 'src/input_field.dart';
 export 'src/link/inline_link.dart';
 export 'src/link/standalone_link.dart';
 export 'src/lists/list_tile.dart';
