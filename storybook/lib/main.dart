@@ -12,6 +12,8 @@ import 'package:storybook/stories/chat/chat.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
 import 'package:storybook/stories/checkbox_nested.dart';
+import 'package:storybook/stories/date_input_field.dart';
+import 'package:storybook/stories/date_input_form_field.dart';
 import 'package:storybook/stories/date_time_field.dart';
 import 'package:storybook/stories/dialog.dart';
 import 'package:storybook/stories/form/form_story.dart';
@@ -71,6 +73,8 @@ class MyApp extends StatelessWidget {
           checkboxNestedGroup,
           inputStory,
           searchFieldStory,
+          dateInputStory,
+          dateInputFormFieldStory,
           numberPickerStory,
           spacingStory,
           tagStory,
