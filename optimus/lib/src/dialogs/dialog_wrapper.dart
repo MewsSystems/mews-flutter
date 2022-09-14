@@ -40,6 +40,14 @@ class _DialogWrapperState extends State<DialogWrapper>
   OverlayEntry? _entry;
 
   @override
+  void didUpdateWidget(DialogWrapper oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.child != oldWidget.child) {
+      hide();
+    }
+  }
+
+  @override
   void show({
     required Widget title,
     required Widget content,
