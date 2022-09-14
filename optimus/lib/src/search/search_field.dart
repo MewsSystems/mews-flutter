@@ -22,6 +22,7 @@ class OptimusSearch<T> extends StatefulWidget {
     required this.onChanged,
     this.leading,
     this.trailing,
+    this.trailingImplicit,
     this.caption,
     this.secondaryCaption,
     this.error,
@@ -53,6 +54,7 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? prefix;
   final Widget? suffix;
   final Widget? trailing;
+  final Widget? trailingImplicit;
   final bool showLoader;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
@@ -154,6 +156,13 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
     _showOverlay();
   }
 
+  Widget get _trailing => widget.isUpdating
+      ? const OptimusProgressSpinner()
+      : _TrailingStack(
+          trailing: widget.trailing,
+          icon: widget.trailingImplicit ?? const _Icon(),
+        );
+
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
           void onTapDown(TapDownDetails details) {
@@ -209,9 +218,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           focusNode: _effectiveFocusNode,
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.suffix,
-          trailing: widget.isUpdating
-              ? const OptimusProgressSpinner()
-              : widget.trailing ?? const _Icon(),
+          trailing: _trailing,
           isEnabled: widget.isEnabled,
           caption: widget.caption,
           secondaryCaption: widget.secondaryCaption,
@@ -235,6 +242,33 @@ class _Icon extends StatelessWidget {
       OptimusIcons.search,
       size: 24,
       color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64,
+    );
+  }
+}
+
+class _TrailingStack extends StatelessWidget {
+  const _TrailingStack({
+    Key? key,
+    required this.trailing,
+    required Widget icon,
+  })  : _icon = icon,
+        super(key: key);
+
+  final Widget? trailing;
+  final Widget _icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final trailingWidget = trailing;
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (trailingWidget != null) trailingWidget,
+        _icon,
+      ],
     );
   }
 }
