@@ -124,12 +124,10 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
   bool get _isSearchable =>
       widget.controller != null || widget.onTextChanged != null;
 
-  Widget get _icon => IgnorePointer(
-        child: Icon(
-          _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
-          size: 24,
-          color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
-        ),
+  Widget get _icon => Icon(
+        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
+        size: 24,
+        color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
       );
 
   TextStyle get _textStyle {
