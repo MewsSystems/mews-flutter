@@ -5,7 +5,7 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story nonModalDialogStory = Story(
   name: 'General/Dialogs/Non-modal dialog',
-  builder: (context) => NonModalWrapper(
+  builder: (context) => DialogWrapper(
     child: NonModalDialogStory(context.knobs),
   ),
 );
@@ -23,7 +23,7 @@ class NonModalDialogStory extends StatelessWidget {
 
     return OptimusButton(
       onPressed: () => {
-        NonModalWrapper.of(context)?.show(
+        DialogWrapper.of(context)?.show(
           title: Text(title),
           content: const Text('Content'),
           isDismissible: isDismissible,

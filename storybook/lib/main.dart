@@ -19,6 +19,7 @@ import 'package:storybook/stories/dialog.dart';
 import 'package:storybook/stories/form/form_story.dart';
 import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_list.dart';
+import 'package:storybook/stories/inline_dialog.dart';
 import 'package:storybook/stories/input.dart';
 import 'package:storybook/stories/link/inline_link.dart';
 import 'package:storybook/stories/link/standalone_link.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
           radioGroupStory,
           dialogStory,
           nonModalDialogStory,
+          inlineDialogStory,
           stackStory,
           stepBarStory,
           badgeStory,

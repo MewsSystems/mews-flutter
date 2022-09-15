@@ -6,8 +6,8 @@ import 'package:optimus/optimus.dart';
 abstract class AnchoredOverlayController {
   double get maxHeight;
   double get width;
-  double get topSpace;
-  double get bottomSpace;
+  double get top;
+  double get bottom;
 }
 
 class AnchoredOverlayData extends InheritedWidget {
@@ -46,16 +46,7 @@ class AnchoredOverlay extends StatefulWidget {
 class AnchoredOverlayState extends State<AnchoredOverlay>
     implements AnchoredOverlayController {
   late Rect _savedRect = _calculateRect();
-
-  void _updateRect(dynamic _) {
-    if (!mounted) return;
-    final newRect = _calculateRect();
-    if (newRect != _savedRect) {
-      setState(() {
-        _savedRect = newRect;
-      });
-    }
-  }
+  late Size? _overlaySize = _getOverlaySize();
 
   @override
   void initState() {
@@ -63,11 +54,11 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     WidgetsBinding.instance.addPostFrameCallback(_updateRect);
   }
 
-  double get _screenHeight => MediaQuery.of(context).size.height;
+  double get _overlayHeight => _overlaySize?.height ?? 0;
 
-  double get _screenWidth => MediaQuery.of(context).size.width;
+  double get _overlayWidth => _overlaySize?.width ?? 0;
 
-  double get _offsetBottom => _screenHeight - _savedRect.top + _widgetPadding;
+  double get _offsetBottom => _overlayHeight - _savedRect.top + _widgetPadding;
 
   double get _offsetTop => _savedRect.top + _savedRect.height + _widgetPadding;
 
@@ -76,11 +67,37 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   double get _paddingTop => MediaQuery.of(context).padding.top + _screenPadding;
 
-  double get _rightSpace => _screenWidth - _savedRect.left;
+  double get _rightSpace => _overlayWidth - _savedRect.left;
 
   double get _leftSpace => _savedRect.right;
 
   double get _width => widget.width ?? _savedRect.width;
+
+  bool get isOnTop => top > bottom;
+
+  @override
+  double get maxHeight => max(top, bottom);
+
+  @override
+  double get width => widget.width ?? _savedRect.width;
+
+  @override
+  double get bottom => _overlayHeight - _paddingBottom - _savedRect.bottom;
+
+  @override
+  double get top => _savedRect.top - _paddingTop;
+
+  void _updateRect(dynamic _) {
+    if (!mounted) return;
+    final newRect = _calculateRect();
+    if (newRect != _savedRect) {
+      final newSize = _getOverlaySize();
+      setState(() {
+        _savedRect = newRect;
+        _overlaySize = newSize;
+      });
+    }
+  }
 
   Rect _calculateRect() {
     final renderObject = widget.anchorKey.currentContext?.findRenderObject();
@@ -88,11 +105,14 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
     final size = renderObject.size;
 
-    final overlay =
-        Overlay.of(context)?.context.findRenderObject() as RenderBox?;
-
-    return renderObject.localToGlobal(Offset.zero, ancestor: overlay) & size;
+    return renderObject.localToGlobal(Offset.zero, ancestor: _getOverlay()) &
+        size;
   }
+
+  RenderBox? _getOverlay() =>
+      Overlay.of(context)?.context.findRenderObject() as RenderBox;
+
+  Size? _getOverlaySize() => _getOverlay()?.size;
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +128,16 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     if (_rightSpace >= widthWithPadding) {
       left = _savedRect.left;
     } else if (_leftSpace >= widthWithPadding) {
-      right = _screenWidth - _savedRect.right;
+      right = _overlayWidth - _savedRect.right;
     }
 
     return AnchoredOverlayData(
       controller: this,
       child: Builder(
+        // Some problem with AnimatedPosition here:
+        // 'package:flutter/src/animation/tween.dart':
+        // Failed assertion: line 258 pos 12: 'begin != null': is not true.
+        // Switching to Positioned.
         builder: (context) => Positioned(
           width: _width,
           left: left,
@@ -125,20 +149,6 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
       ),
     );
   }
-
-  bool get isOnTop => topSpace > bottomSpace;
-
-  @override
-  double get maxHeight => max(topSpace, bottomSpace);
-
-  @override
-  double get width => widget.width ?? _savedRect.width;
-
-  @override
-  double get bottomSpace => _screenHeight - _paddingBottom - _savedRect.bottom;
-
-  @override
-  double get topSpace => _savedRect.top - _paddingTop;
 }
 
 const double _screenPadding = spacing200;
