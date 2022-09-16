@@ -1,3 +1,14 @@
+## 0.19.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix lint error.
+ - **FEAT**: expose `useRootNavigator` in showOptimusDialog (#259).
+ - **FEAT**: [RND-114990] Create DateInput component [ignore-size] (#255).
+ - **FEAT**: Added anchored_overlay. Updated dropdown to use anchored_overlay. (#254).
+ - **FEAT**: Add DateFormatter (#253).
+ - **BREAKING** **FEAT**: [RND-103480] Add inline dialog (#256).
+
 ## 0.18.0
 
 > Note: This release has breaking changes.
