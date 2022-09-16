@@ -37,6 +37,7 @@ Future<T?> showOptimusDialog<T>({
   OptimusDialogSize size = OptimusDialogSize.regular,
   OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
+  bool useRootNavigator = true,
 }) =>
     showGeneralDialog(
       context: context,
@@ -57,7 +58,7 @@ Future<T?> showOptimusDialog<T>({
         opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
         child: child,
       ),
-      useRootNavigator: true,
+      useRootNavigator: useRootNavigator,
     );
 
 /// A dialog is an overlay on top of a main page which lets a user perform
