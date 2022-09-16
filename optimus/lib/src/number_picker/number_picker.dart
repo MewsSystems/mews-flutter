@@ -38,7 +38,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
           enabled: enabled,
           autovalidateMode: autovalidateMode,
           builder: (FormFieldState<int> field) {
-            void _onChanged(int? value) {
+            void handleChanged(int? value) {
               field.didChange(value);
               onChanged?.call(value);
             }
@@ -47,7 +47,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
               initialValue: initialValue,
               min: min,
               max: max,
-              onChanged: _onChanged,
+              onChanged: handleChanged,
               enabled: enabled,
               error: field.errorText,
               focusNode: focusNode,
