@@ -1,3 +1,9 @@
+## 0.9.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrage dart_code_metrics to 4.18.3.
+
 ## 0.8.0
 
 > Note: This release has breaking changes.
