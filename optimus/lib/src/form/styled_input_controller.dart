@@ -37,6 +37,8 @@ class StyledInputController extends TextEditingController {
 
     return TextSpan(children: children.reversed.toList(), style: style);
   }
+
+  bool get isInputComplete => !_maskRegExp.hasMatch(text);
 }
 
 final RegExp _maskRegExp = RegExp('[a-zA-z]');
