@@ -37,10 +37,9 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       Tween<double>(begin: 0, end: 0.5);
 
   final _selectFieldKey = GlobalKey();
+  final _node = FocusNode();
   bool _isHovering = false;
   bool _isTappedDown = false;
-
-  final _node = FocusNode();
   late final AnimationController _controller;
   late final Animation<double> _iconTurns;
 
@@ -64,6 +63,26 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     setState(() => _isHovering = isHovering);
   }
 
+  bool get _isEnabled => widget.onItemSelected != null;
+
+  Color get _textColor => widget.variant.textColor(theme);
+
+  Color get _highlightColor => widget.variant.highlightColor(theme);
+
+  Color get _hoverColor => widget.variant.hoverColor(theme);
+
+  Color get _normalColor => widget.variant.normalColor(theme);
+
+  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
+      ? preset200b.copyWith(color: _textColor)
+      : preset300b.copyWith(color: _textColor);
+
+  Color get _color => _node.hasFocus || _isTappedDown
+      ? _highlightColor
+      : _isHovering
+          ? _hoverColor
+          : _normalColor;
+
   @override
   Widget build(BuildContext context) {
     final child = widget.child;
@@ -74,8 +93,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       onItemSelected: widget.onItemSelected ?? (_) {},
       focusNode: _node,
       width: _dropdownWidth,
-      onShown: () => setState(_controller.forward),
-      onHidden: () => setState(_controller.reverse),
+      onShown: _controller.forward,
+      onHidden: _controller.reverse,
       child: OptimusEnabled(
         isEnabled: _isEnabled,
         child: MouseRegion(
@@ -112,7 +131,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                         ),
                       RotationTransition(
                         turns: _iconTurns,
-                        child: _icon,
+                        child: Icon(
+                          OptimusIcons.chevron_down,
+                          size: widget.size.iconSize,
+                          color: _textColor,
+                        ),
                       ),
                     ],
                   ),
@@ -124,69 +147,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       ),
     );
   }
-
-  bool get _isEnabled => widget.onItemSelected != null;
-
-  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
-      ? preset200b.copyWith(color: _textColor)
-      : preset300b.copyWith(color: _textColor);
-
-  // TODO(VG): can be changed when final dark theme design is ready.
-  Color get _textColor {
-    switch (widget.variant) {
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.neutral0;
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral500;
-      case OptimusDropdownButtonVariant.text:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-    }
-  }
-
-  Color get _color => _node.hasFocus || _isTappedDown
-      ? _highlightColor
-      : _isHovering
-          ? _hoverColor
-          : _normalColor;
-
-  Color get _normalColor {
-    switch (widget.variant) {
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral50;
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.primary500;
-      case OptimusDropdownButtonVariant.text:
-        return Colors.transparent;
-    }
-  }
-
-  Color get _hoverColor {
-    switch (widget.variant) {
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral100;
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.primary700;
-      case OptimusDropdownButtonVariant.text:
-        return theme.colors.neutral500t8;
-    }
-  }
-
-  Color get _highlightColor {
-    switch (widget.variant) {
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral200;
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.primary900;
-      case OptimusDropdownButtonVariant.text:
-        return theme.colors.neutral500t16;
-    }
-  }
-
-  Icon get _icon => Icon(
-        OptimusIcons.chevron_down,
-        size: widget.size.iconSize,
-        color: _textColor,
-      );
 }
 
 const double _dropdownWidth = 280;
@@ -199,6 +159,53 @@ extension on OptimusWidgetSize {
       case OptimusWidgetSize.medium:
       case OptimusWidgetSize.large:
         return 24;
+    }
+  }
+}
+
+extension on OptimusDropdownButtonVariant {
+  Color normalColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusDropdownButtonVariant.defaultButton:
+        return theme.colors.neutral50;
+      case OptimusDropdownButtonVariant.primary:
+        return theme.colors.primary500;
+      case OptimusDropdownButtonVariant.text:
+        return Colors.transparent;
+    }
+  }
+
+  Color hoverColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusDropdownButtonVariant.defaultButton:
+        return theme.colors.neutral100;
+      case OptimusDropdownButtonVariant.primary:
+        return theme.colors.primary700;
+      case OptimusDropdownButtonVariant.text:
+        return theme.colors.neutral500t8;
+    }
+  }
+
+  Color highlightColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusDropdownButtonVariant.defaultButton:
+        return theme.colors.neutral200;
+      case OptimusDropdownButtonVariant.primary:
+        return theme.colors.primary900;
+      case OptimusDropdownButtonVariant.text:
+        return theme.colors.neutral500t16;
+    }
+  }
+
+  // TODO(VG): can be changed when final dark theme design is ready.
+  Color textColor(OptimusThemeData theme) {
+    switch (this) {
+      case OptimusDropdownButtonVariant.primary:
+        return theme.colors.neutral0;
+      case OptimusDropdownButtonVariant.defaultButton:
+        return theme.colors.neutral500;
+      case OptimusDropdownButtonVariant.text:
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
     }
   }
 }
