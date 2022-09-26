@@ -65,6 +65,7 @@ class OptimusDateInputField extends StatefulWidget {
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
   late StyledInputController _styleController;
+  String _previousValue = '';
 
   @override
   void didChangeDependencies() {
@@ -111,6 +112,18 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     if (value != null) {
       return _formatOutput(value);
     }
+  }
+
+  String _onChanged(String value) {
+    if (_previousValue != value) {
+      final result = _styleController.isInputComplete
+          ? _getDateTime(widget.format, value)
+          : null;
+      widget.onChanged?.call(result);
+      _previousValue = value;
+    }
+
+    return value;
   }
 
   String _formatOutput(DateTime value) =>
@@ -183,6 +196,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         controller: _styleController,
         error: widget.error,
         onSubmitted: _handleSubmitted,
+        onChanged: widget.onChanged != null ? _onChanged : null,
         keyboardType: TextInputType.number,
         isRequired: widget.isRequired,
         onTap: widget.onTap,
