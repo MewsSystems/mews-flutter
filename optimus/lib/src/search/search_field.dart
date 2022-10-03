@@ -66,7 +66,7 @@ class OptimusSearch<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return DropdownSelect(
+    return DropdownSelect<T>(
       label: label,
       placeholder: placeholder,
       placeholderStyle: placeholderStyle,
@@ -84,7 +84,6 @@ class OptimusSearch<T> extends StatelessWidget {
         size: 24,
         color: _iconColor(theme),
       ),
-      animateTrailing: false,
       caption: caption,
       secondaryCaption: secondaryCaption,
       error: error,

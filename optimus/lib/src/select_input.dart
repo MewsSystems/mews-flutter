@@ -70,8 +70,15 @@ class OptimusSelectInput<T> extends StatefulWidget {
 }
 
 class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
-    with ThemeGetter {
-  bool _isOpened = false;
+    with ThemeGetter, SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.fastOutSlowIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0, end: 0.5);
+
+  late final AnimationController _animationController;
+  late final Animation<double> _iconTurns;
+
   TextEditingController? _controller;
 
   FocusNode? _focusNode;
@@ -84,12 +91,15 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
 
   void _onFocusChanged() {
     setState(() {
-      _isOpened = _effectiveFocusNode.hasFocus;
-
       if (!_effectiveFocusNode.hasFocus) {
         _effectiveController.text = '';
       }
     });
+    if (_effectiveFocusNode.hasFocus) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
   }
 
   void _onTextUpdated() {
@@ -111,6 +121,11 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
     _effectiveController.addListener(_onTextUpdated);
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 350),
+      vsync: this,
+    );
+    _iconTurns = _animationController.drive(_halfTween.chain(_easeInTween));
   }
 
   @override
@@ -119,16 +134,20 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     _focusNode?.dispose();
     _effectiveController.removeListener(_onTextUpdated);
     _controller?.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
   bool get _isSearchable =>
       widget.controller != null || widget.onTextChanged != null;
 
-  Widget get _icon => Icon(
-        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
-        size: 24,
-        color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
+  Widget get _icon => RotationTransition(
+        turns: _iconTurns,
+        child: Icon(
+          OptimusIcons.chevron_down,
+          size: 24,
+          color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
+        ),
       );
 
   TextStyle get _textStyle {

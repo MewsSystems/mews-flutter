@@ -22,7 +22,6 @@ class DropdownSelect<T> extends StatefulWidget {
     this.leading,
     this.trailing,
     this.trailingImplicit,
-    this.animateTrailing = true,
     this.caption,
     this.secondaryCaption,
     this.error,
@@ -55,7 +54,6 @@ class DropdownSelect<T> extends StatefulWidget {
   final Widget? suffix;
   final Widget? trailing;
   final Widget? trailingImplicit;
-  final bool animateTrailing;
   final bool showLoader;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
@@ -157,15 +155,17 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     _showOverlay();
   }
 
-  Widget get _trailing => widget.isUpdating
+  Widget? get _trailing => widget.isUpdating
       ? const OptimusProgressSpinner()
-      : _TrailingStack(
-          trailingIcon: widget.trailing,
-          actionIcon: GestureDetector(
-            onTapDown: (_) => _effectiveFocusNode.requestFocus(),
-            child: widget.trailingImplicit ?? const _Icon(),
-          ),
-        );
+      : widget.trailingImplicit != null
+          ? _TrailingStack(
+              trailing: widget.trailing,
+              trailingImplicit: GestureDetector(
+                onTapDown: (_) => _effectiveFocusNode.requestFocus(),
+                child: widget.trailingImplicit,
+              ),
+            )
+          : widget.trailing;
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
@@ -235,34 +235,19 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
       );
 }
 
-class _Icon extends StatelessWidget {
-  const _Icon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Icon(
-      OptimusIcons.search,
-      size: 24,
-      color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64,
-    );
-  }
-}
-
 class _TrailingStack extends StatelessWidget {
   const _TrailingStack({
     Key? key,
-    required this.trailingIcon,
-    required this.actionIcon,
+    required this.trailing,
+    required this.trailingImplicit,
   }) : super(key: key);
 
-  final Widget? trailingIcon;
-  final Widget actionIcon;
+  final Widget? trailing;
+  final Widget trailingImplicit;
 
   @override
   Widget build(BuildContext context) {
-    final trailingWidget = trailingIcon;
+    final trailingWidget = trailing;
 
     return OptimusStack(
       direction: Axis.horizontal,
@@ -270,7 +255,7 @@ class _TrailingStack extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (trailingWidget != null) trailingWidget,
-        actionIcon,
+        trailingImplicit,
       ],
     );
   }
