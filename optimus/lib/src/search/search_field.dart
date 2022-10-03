@@ -158,9 +158,12 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
 
   Widget get _trailing => widget.isUpdating
       ? const OptimusProgressSpinner()
-      : _TrailingStack(
-          trailing: widget.trailing,
-          icon: widget.trailingImplicit ?? const _Icon(),
+      : GestureDetector(
+          onTapDown: (_) => _effectiveFocusNode.requestFocus(),
+          child: _TrailingStack(
+            trailing: widget.trailing,
+            icon: widget.trailingImplicit ?? const _Icon(),
+          ),
         );
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
@@ -190,7 +193,7 @@ class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
           return GestureDetector(
             key: const Key('OptimusSearchOverlay'),
             behavior: HitTestBehavior.translucent,
-            onTapDown: onTapDown,
+            onDoubleTapDown: onTapDown,
             child: DropdownTapInterceptor(
               onTap: _removeOverlay,
               child: OptimusDropdown(
