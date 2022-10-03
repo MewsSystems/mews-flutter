@@ -2,6 +2,7 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/dropdown/dropdown_select.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 typedef ValueBuilder<T> = String Function(T value);
@@ -157,7 +158,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
       theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
   @override
-  Widget build(BuildContext context) => OptimusSearch<T>(
+  Widget build(BuildContext context) => DropdownSelect<T>(
         label: widget.label,
         placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
         items: widget.items,

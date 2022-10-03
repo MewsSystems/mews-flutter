@@ -1,13 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/common/dropdown.dart';
-import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
+import 'package:optimus/src/dropdown/dropdown_select.dart';
 
-class OptimusSearch<T> extends StatefulWidget {
+class OptimusSearch<T> extends StatelessWidget {
   const OptimusSearch({
     Key? key,
     this.label,
@@ -22,7 +18,6 @@ class OptimusSearch<T> extends StatefulWidget {
     required this.onChanged,
     this.leading,
     this.trailing,
-    this.trailingImplicit,
     this.caption,
     this.secondaryCaption,
     this.error,
@@ -54,7 +49,6 @@ class OptimusSearch<T> extends StatefulWidget {
   final Widget? prefix;
   final Widget? suffix;
   final Widget? trailing;
-  final Widget? trailingImplicit;
   final bool showLoader;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
@@ -65,213 +59,43 @@ class OptimusSearch<T> extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
 
-  @override
-  State<OptimusSearch<T>> createState() => _OptimusSearchState<T>();
-}
-
-class _OptimusSearchState<T> extends State<OptimusSearch<T>> {
-  final _fieldBoxKey = GlobalKey();
-
-  FocusNode? _focusNode;
-
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
-
-  OverlayEntry? _overlayEntry;
-
-  @override
-  void initState() {
-    super.initState();
-    _effectiveFocusNode.addListener(_onFocusChanged);
-
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayoutBuild);
-  }
-
-  void _onFocusChanged() {
-    if (_effectiveFocusNode.hasFocus) {
-      WidgetsBinding.instance.addPostFrameCallback(_afterLayoutWithShow);
-    } else {
-      setState(_removeOverlay);
-    }
-  }
-
-  @override
-  void dispose() {
-    _effectiveFocusNode.removeListener(_onFocusChanged);
-    _focusNode?.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(OptimusSearch<T> oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.focusNode != widget.focusNode) {
-      _effectiveFocusNode
-        ..removeListener(_onFocusChanged)
-        ..addListener(_onFocusChanged);
-    }
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      _overlayEntry?.markNeedsBuild();
-    });
-  }
-
-  Future<bool> _handleOnBackPressed() async {
-    if (_effectiveFocusNode.hasFocus) {
-      _effectiveFocusNode.unfocus();
-
-      return false;
-    }
-
-    return true;
-  }
-
-  void _createOverlay() => _overlayEntry = _createOverlayEntry();
-
-  void _showOverlay() {
-    final overlayEntry = _overlayEntry;
-    if (overlayEntry != null) {
-      Overlay.of(context, rootOverlay: true)?.insert(overlayEntry);
-    }
-  }
-
-  void _removeOverlay() {
-    if (_overlayEntry != null) {
-      _overlayEntry?.remove();
-      _overlayEntry = null;
-    }
-    _effectiveFocusNode.unfocus();
-  }
-
-  void _afterLayoutBuild(dynamic _) {
-    if (!mounted) return;
-    _createOverlay();
-  }
-
-  void _afterLayoutWithShow(dynamic _) {
-    if (!mounted) return;
-    _createOverlay();
-    _showOverlay();
-  }
-
-  Widget get _trailing => widget.isUpdating
-      ? const OptimusProgressSpinner()
-      : GestureDetector(
-          onTapDown: (_) => _effectiveFocusNode.requestFocus(),
-          child: _TrailingStack(
-            trailing: widget.trailing,
-            icon: widget.trailingImplicit ?? const _Icon(),
-          ),
-        );
-
-  OverlayEntry _createOverlayEntry() => OverlayEntry(
-        builder: (context) {
-          void onTapDown(TapDownDetails details) {
-            bool hitTest(RenderBox box) => box.hitTest(
-                  BoxHitTestResult(),
-                  position: box.globalToLocal(details.globalPosition),
-                );
-
-            final RenderObject? inputFieldRenderObject =
-                _fieldBoxKey.currentContext?.findRenderObject();
-            final RenderObject? dropdownRenderObject =
-                context.findRenderObject();
-
-            if (dropdownRenderObject is RenderBox &&
-                hitTest(dropdownRenderObject)) {
-              // Touch on dropdown shouldn't close overlay
-            } else if (inputFieldRenderObject is RenderBox &&
-                hitTest(inputFieldRenderObject)) {
-              if (widget.shouldCloseOnInputTap) _removeOverlay();
-            } else {
-              _removeOverlay();
-            }
-          }
-
-          return GestureDetector(
-            key: const Key('OptimusSearchOverlay'),
-            behavior: HitTestBehavior.translucent,
-            onDoubleTapDown: onTapDown,
-            child: DropdownTapInterceptor(
-              onTap: _removeOverlay,
-              child: OptimusDropdown(
-                items: widget.items,
-                anchorKey: _fieldBoxKey,
-                onChanged: widget.onChanged,
-              ),
-            ),
-          );
-        },
-      );
-
-  @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
-        child: OptimusInputField(
-          leading: widget.leading,
-          prefix: widget.prefix,
-          controller: widget.controller,
-          onChanged: widget.onTextChanged,
-          isRequired: widget.isRequired,
-          label: widget.label,
-          placeholder: widget.placeholder,
-          placeholderStyle: widget.placeholderStyle,
-          focusNode: _effectiveFocusNode,
-          fieldBoxKey: _fieldBoxKey,
-          suffix: widget.suffix,
-          trailing: _trailing,
-          isEnabled: widget.isEnabled,
-          caption: widget.caption,
-          secondaryCaption: widget.secondaryCaption,
-          error: widget.error,
-          size: widget.size,
-          readOnly: widget.readOnly,
-          showCursor: widget.showCursor,
-          showLoader: widget.showLoader,
-        ),
-      );
-}
-
-class _Icon extends StatelessWidget {
-  const _Icon({Key? key}) : super(key: key);
+  Color _iconColor(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Icon(
-      OptimusIcons.search,
-      size: 24,
-      color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64,
-    );
-  }
-}
-
-class _TrailingStack extends StatelessWidget {
-  const _TrailingStack({
-    Key? key,
-    required this.trailing,
-    required Widget icon,
-  })  : _icon = icon,
-        super(key: key);
-
-  final Widget? trailing;
-  final Widget _icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final trailingWidget = trailing;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (trailingWidget != null) trailingWidget,
-        _icon,
-      ],
+    return DropdownSelect(
+      label: label,
+      placeholder: placeholder,
+      placeholderStyle: placeholderStyle,
+      controller: controller,
+      onTextChanged: onTextChanged,
+      items: items,
+      isUpdating: isUpdating,
+      isEnabled: isEnabled,
+      isRequired: isRequired,
+      onChanged: onChanged,
+      leading: leading,
+      trailing: trailing,
+      trailingImplicit: Icon(
+        OptimusIcons.search,
+        size: 24,
+        color: _iconColor(theme),
+      ),
+      animateTrailing: false,
+      caption: caption,
+      secondaryCaption: secondaryCaption,
+      error: error,
+      size: size,
+      readOnly: readOnly,
+      showCursor: showCursor,
+      prefix: prefix,
+      suffix: suffix,
+      focusNode: focusNode,
+      shouldCloseOnInputTap: shouldCloseOnInputTap,
+      showLoader: showLoader,
     );
   }
 }
