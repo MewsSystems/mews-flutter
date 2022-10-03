@@ -1,3 +1,8 @@
+## 0.19.0+1
+
+ - **FIX**: [RND-118867] Fix Exception in OptimusDropdownButton (#263).
+ - **FIX**: [RND-122387] Fix onChange behaviour for the DateInput component. (#262).
+
 ## 0.19.0
 
 > Note: This release has breaking changes.
