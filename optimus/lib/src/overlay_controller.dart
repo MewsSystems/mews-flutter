@@ -1,8 +1,8 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
-import 'package:optimus/src/common/dropdown.dart';
-import 'package:optimus/src/search/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/search/dropdown_tile.dart';
+import 'package:optimus/src/dropdown/dropdown.dart';
+import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
+import 'package:optimus/src/dropdown/dropdown_tile.dart';
 
 class OverlayController<T> extends StatefulWidget {
   const OverlayController({

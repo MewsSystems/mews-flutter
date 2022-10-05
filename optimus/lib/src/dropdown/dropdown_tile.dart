@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/search/base_dropdown_tile.dart';
+import 'package:optimus/src/dropdown/base_dropdown_tile.dart';
 
 abstract class OptimusDropdownTile<T> extends StatelessWidget {
   const OptimusDropdownTile({Key? key, required this.value}) : super(key: key);
