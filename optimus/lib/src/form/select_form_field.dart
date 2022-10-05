@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/search/dropdown_tile.dart';
+import 'package:optimus/src/dropdown/dropdown_tile.dart';
 import 'package:optimus/src/select.dart';
 
 @Deprecated('Use `OptimusSelectInputFormField` instead.')

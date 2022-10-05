@@ -2,6 +2,7 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/dropdown/dropdown_select.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 typedef ValueBuilder<T> = String Function(T value);
@@ -69,8 +70,15 @@ class OptimusSelectInput<T> extends StatefulWidget {
 }
 
 class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
-    with ThemeGetter {
-  bool _isOpened = false;
+    with ThemeGetter, SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.fastOutSlowIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0, end: 0.5);
+
+  late final AnimationController _animationController;
+  late final Animation<double> _iconTurns;
+
   TextEditingController? _controller;
 
   FocusNode? _focusNode;
@@ -83,12 +91,15 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
 
   void _onFocusChanged() {
     setState(() {
-      _isOpened = _effectiveFocusNode.hasFocus;
-
       if (!_effectiveFocusNode.hasFocus) {
         _effectiveController.text = '';
       }
     });
+    if (_effectiveFocusNode.hasFocus) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
   }
 
   void _onTextUpdated() {
@@ -110,6 +121,11 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
     _effectiveController.addListener(_onTextUpdated);
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 350),
+      vsync: this,
+    );
+    _iconTurns = _animationController.drive(_halfTween.chain(_easeInTween));
   }
 
   @override
@@ -118,15 +134,17 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     _focusNode?.dispose();
     _effectiveController.removeListener(_onTextUpdated);
     _controller?.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
   bool get _isSearchable =>
       widget.controller != null || widget.onTextChanged != null;
 
-  Widget get _icon => IgnorePointer(
+  Widget get _icon => RotationTransition(
+        turns: _iconTurns,
         child: Icon(
-          _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
+          OptimusIcons.chevron_down,
           size: 24,
           color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
         ),
@@ -159,7 +177,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
       theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
   @override
-  Widget build(BuildContext context) => OptimusSearch<T>(
+  Widget build(BuildContext context) => DropdownSelect<T>(
         label: widget.label,
         placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
         items: widget.items,
@@ -173,7 +191,8 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         prefix: widget.prefix,
         leading: widget.leading,
         suffix: widget.suffix,
-        trailing: _TrailingSelect(trailing: widget.trailing, icon: _icon),
+        trailing: widget.trailing,
+        trailingImplicit: _icon,
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
@@ -182,31 +201,4 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         showLoader: widget.showLoader,
         shouldCloseOnInputTap: !_isSearchable,
       );
-}
-
-class _TrailingSelect extends StatelessWidget {
-  const _TrailingSelect({
-    Key? key,
-    required this.trailing,
-    required Widget icon,
-  })  : _icon = icon,
-        super(key: key);
-
-  final Widget? trailing;
-  final Widget _icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final trailingWidget = trailing;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (trailingWidget != null) trailingWidget,
-        _icon,
-      ],
-    );
-  }
 }
