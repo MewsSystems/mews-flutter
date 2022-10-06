@@ -190,9 +190,9 @@ class BaseButton extends StatelessWidget {
                 ),
               ),
             ),
-            if (rightIcon != null) _buildIcon(rightIcon, theme),
             if (badgeLabel != null && badgeLabel.isNotEmpty)
               _buildBadgeLabel(badgeLabel, theme),
+            if (rightIcon != null) _buildIcon(rightIcon, theme),
           ],
         ),
       ),

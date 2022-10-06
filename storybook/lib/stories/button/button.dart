@@ -8,6 +8,21 @@ final Story button = Story(
   builder: (context) {
     final k = context.knobs;
 
+    final icon = k.options(
+      label: 'Icon',
+      initial: null,
+      options: exampleIcons,
+    );
+
+    final iconPosition = k.options(
+      label: 'Icon position',
+      initial: OptimusButtonIconPosition.left,
+      options: const [
+        Option(label: 'Left', value: OptimusButtonIconPosition.left),
+        Option(label: 'Right', value: OptimusButtonIconPosition.right),
+      ],
+    );
+
     return SingleChildScrollView(
       child: Column(
         children: OptimusButtonVariant.values
@@ -23,16 +38,8 @@ final Story button = Story(
                     options: sizeOptions,
                   ),
                   variant: v,
-                  leftIcon: k.options(
-                    label: 'Left icon',
-                    initial: null,
-                    options: exampleIcons,
-                  ),
-                  rightIcon: k.options(
-                    label: 'Right icon',
-                    initial: null,
-                    options: exampleIcons,
-                  ),
+                  icon: icon,
+                  iconPosition: iconPosition,
                   badgeLabel: k.text(label: 'Badge', initial: ''),
                   child: Text(k.text(label: 'Text', initial: 'Button')),
                 ),

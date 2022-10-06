@@ -6,20 +6,25 @@ import 'package:optimus/src/widget_size.dart';
 
 enum OptimusButtonVariant { defaultButton, primary, text, destructive, warning }
 
+enum OptimusButtonIconPosition { left, right }
+
 /// Buttons are an element that let users trigger or perform an action.
 /// Button labels should inform users about what will happen upon interaction.
 ///
 /// There's a wide variety of actions a button can trigger, including saving,
 /// logging in, deleting, and resetting. Buttons are not a navigation element.
+/// Icon can be added to the left or right side of the button. By default the
+/// icon is on the left side. It's recommended to avoid using right icon and the
+/// badge at the same time.
 class OptimusButton extends StatelessWidget {
   const OptimusButton({
     Key? key,
     this.onPressed,
     required this.child,
     this.minWidth,
-    this.leftIcon,
-    this.rightIcon,
     this.badgeLabel,
+    this.icon,
+    this.iconPosition = OptimusButtonIconPosition.left,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.defaultButton,
   }) : super(key: key);
@@ -34,9 +39,9 @@ class OptimusButton extends StatelessWidget {
 
   final double? minWidth;
 
-  final IconData? leftIcon;
+  final IconData? icon;
 
-  final IconData? rightIcon;
+  final OptimusButtonIconPosition iconPosition;
 
   final String? badgeLabel;
 
@@ -58,12 +63,18 @@ class OptimusButton extends StatelessWidget {
   ///   can’t change later.
   final OptimusButtonVariant variant;
 
+  IconData? get _leftIcon =>
+      iconPosition == OptimusButtonIconPosition.left ? icon : null;
+
+  IconData? get _rightIcon =>
+      iconPosition == OptimusButtonIconPosition.right ? icon : null;
+
   @override
   Widget build(BuildContext context) => BaseButton(
         onPressed: onPressed,
         minWidth: minWidth,
-        leftIcon: leftIcon,
-        rightIcon: rightIcon,
+        leftIcon: _leftIcon,
+        rightIcon: _rightIcon,
         badgeLabel: badgeLabel,
         size: size,
         variant: variant,
