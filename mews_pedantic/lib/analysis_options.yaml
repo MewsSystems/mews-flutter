@@ -188,8 +188,10 @@ dart_code_metrics:
     - no-equal-then-else
     - prefer-commenting-analyzer-ignores
     - prefer-const-border-radius
+    - prefer-correct-test-file-name
     - prefer-first
     - prefer-immediate-return
+    - prefer-iterable-of
     - prefer-last
 
   metrics-exclude:
