@@ -1,3 +1,7 @@
+## 0.9.0+2
+
+ - **FIX**: Update analyzer settings.
+
 ## 0.9.0+1
 
  - **FIX**: Update analyzer settings.
