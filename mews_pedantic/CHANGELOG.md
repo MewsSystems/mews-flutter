@@ -1,3 +1,17 @@
+## 0.9.0+2
+
+ - **FIX**: Update analyzer settings.
+
+## 0.9.0+1
+
+ - **FIX**: Update analyzer settings.
+
+## 0.9.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade dart-code-metrics to 4.19.1.
+
 ## 0.8.0
 
 > Note: This release has breaking changes.
