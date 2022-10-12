@@ -33,6 +33,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.focusNode,
     this.shouldCloseOnInputTap = false,
     this.showLoader = false,
+    this.rootOverlay = false,
   }) : super(key: key);
 
   final String? label;
@@ -57,6 +58,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final bool showLoader;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
+  final bool rootOverlay;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -132,7 +134,8 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   void _showOverlay() {
     final overlayEntry = _overlayEntry;
     if (overlayEntry != null) {
-      Overlay.of(context, rootOverlay: true)?.insert(overlayEntry);
+      Overlay.of(context, rootOverlay: widget.rootOverlay)
+          ?.insert(overlayEntry);
     }
   }
 
@@ -194,7 +197,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           return GestureDetector(
             key: const Key('OptimusSearchOverlay'),
             behavior: HitTestBehavior.translucent,
-            onDoubleTapDown: onTapDown,
+            onTapDown: onTapDown,
             child: DropdownTapInterceptor(
               onTap: _removeOverlay,
               child: OptimusDropdown(
