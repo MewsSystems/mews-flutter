@@ -15,6 +15,7 @@ class OverlayController<T> extends StatefulWidget {
     this.width,
     this.onShown,
     this.onHidden,
+    this.rootOverlay = false,
   }) : super(key: key);
 
   final Widget child;
@@ -26,6 +27,7 @@ class OverlayController<T> extends StatefulWidget {
   final GlobalKey anchorKey;
   final VoidCallback? onShown;
   final VoidCallback? onHidden;
+  final bool rootOverlay;
 
   @override
   State<OverlayController<T>> createState() => _OverlayControllerState<T>();
@@ -56,7 +58,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   void _showOverlay() {
     if (_overlayEntry != null) return;
     _overlayEntry = _createOverlayEntry().also((it) {
-      Overlay.of(context, rootOverlay: true)?.insert(it);
+      Overlay.of(context, rootOverlay: widget.rootOverlay)?.insert(it);
     });
 
     widget.onShown?.call();

@@ -20,7 +20,7 @@ class AnchoredOverlayData extends InheritedWidget {
   final AnchoredOverlayController controller;
 
   @override
-  bool updateShouldNotify(AnchoredOverlayData oldWidget) => false;
+  bool updateShouldNotify(AnchoredOverlayData oldWidget) => true;
 }
 
 class AnchoredOverlay extends StatefulWidget {
@@ -29,11 +29,13 @@ class AnchoredOverlay extends StatefulWidget {
     required this.anchorKey,
     required this.child,
     required this.width,
+    this.rootOverlay = false,
   }) : super(key: key);
 
   final GlobalKey anchorKey;
   final double? width;
   final Widget child;
+  final bool rootOverlay;
 
   static AnchoredOverlayController? of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<AnchoredOverlayData>()
@@ -51,6 +53,12 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
+  }
+
+  @override
+  void didUpdateWidget(AnchoredOverlay oldWidget) {
+    super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback(_updateRect);
   }
 
@@ -110,7 +118,9 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   }
 
   RenderBox? _getOverlay() =>
-      Overlay.of(context)?.context.findRenderObject() as RenderBox;
+      Overlay.of(context, rootOverlay: widget.rootOverlay)
+          ?.context
+          .findRenderObject() as RenderBox;
 
   Size? _getOverlaySize() => _getOverlay()?.size;
 

@@ -8,12 +8,14 @@ abstract class DialogController {
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
+    bool rootOverlay = false,
   });
 
   void showInline({
     required GlobalKey anchorKey,
     required Widget content,
     List<OptimusDialogAction> actions = const [],
+    bool rootOverlay = false,
   });
 
   void hide();
@@ -54,6 +56,7 @@ class _DialogWrapperState extends State<DialogWrapper>
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
+    bool rootOverlay = false,
   }) {
     hide();
     final entry = OverlayEntry(
@@ -67,7 +70,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       ),
     );
     _entry = entry;
-    Overlay.of(context, rootOverlay: true)?.insert(entry);
+    Overlay.of(context, rootOverlay: rootOverlay)?.insert(entry);
   }
 
   @override
@@ -75,6 +78,7 @@ class _DialogWrapperState extends State<DialogWrapper>
     required GlobalKey anchorKey,
     required Widget content,
     List<OptimusDialogAction> actions = const [],
+    bool rootOverlay = false,
   }) {
     hide();
     final entry = OverlayEntry(
@@ -95,7 +99,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       ),
     );
     _entry = entry;
-    Overlay.of(context, rootOverlay: true)?.insert(entry);
+    Overlay.of(context, rootOverlay: rootOverlay)?.insert(entry);
   }
 
   @override
