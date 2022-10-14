@@ -7,7 +7,12 @@ class StyledInputController extends TextEditingController {
     String? text,
     required this.inputStyle,
     required this.placeholderStyle,
-  }) : super(text: text);
+  }) : super.fromValue(
+          TextEditingValue(
+            text: text ?? '',
+            selection: TextSelection.collapsed(offset: text?.length ?? 0),
+          ),
+        );
 
   /// The style to use for the user entered part.
   final TextStyle inputStyle;
