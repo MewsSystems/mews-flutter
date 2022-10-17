@@ -8,6 +8,7 @@ class StyledInputController extends TextEditingController {
     required this.inputStyle,
     required this.placeholderStyle,
   }) : super.fromValue(
+          // workaround for the issue with the cursor position on Android
           TextEditingValue(
             text: text ?? '',
             selection: TextSelection.collapsed(offset: text?.length ?? 0),

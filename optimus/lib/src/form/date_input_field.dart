@@ -64,32 +64,32 @@ class OptimusDateInputField extends StatefulWidget {
 
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
-  late StyledInputController _styleController;
+  StyledInputController? _styleController;
   String _previousValue = '';
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  StyledInputController get _controller =>
+      _styleController ??= StyledInputController(
+        text: _initialText,
+        inputStyle: _inputStyle,
+        placeholderStyle: _placeholderStyle,
+      );
 
-    _styleController = StyledInputController(
-      text: _initialText,
-      placeholderStyle: theme.getPlaceholderStyle(widget.size),
-      inputStyle: theme.getTextInputStyle(widget.size),
-    );
-  }
+  TextStyle get _placeholderStyle => theme.getPlaceholderStyle(widget.size);
+
+  TextStyle get _inputStyle => theme.getTextInputStyle(widget.size);
 
   @override
   void didUpdateWidget(covariant OptimusDateInputField oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.format.pattern != widget.format.pattern ||
         oldWidget.format.locale != widget.format.locale) {
-      final inputDate = _getDateTime(oldWidget.format, _styleController.text);
+      final inputDate = _getDateTime(oldWidget.format, _controller.text);
 
       if (inputDate != null) {
         final placeholderValue = _formatOutput(inputDate);
-        _styleController.text = placeholderValue;
+        _controller.text = placeholderValue;
       } else {
-        _styleController.text = '';
+        _controller.text = '';
       }
     }
   }
@@ -116,7 +116,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   String _onChanged(String value) {
     if (_previousValue != value) {
-      final result = _styleController.isInputComplete
+      final result = _controller.isInputComplete
           ? _getDateTime(widget.format, value)
           : null;
       widget.onChanged?.call(result);
@@ -181,7 +181,8 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   @override
   void dispose() {
-    _styleController.dispose();
+    _controller.dispose();
+    _styleController?.dispose();
     super.dispose();
   }
 
@@ -193,7 +194,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         isClearEnabled: widget.isClearAllEnabled,
         secondaryCaption: widget.secondaryCaption,
         placeholder: _placeholder,
-        controller: _styleController,
+        controller: _controller,
         error: widget.error,
         onSubmitted: _handleSubmitted,
         onChanged: widget.onChanged != null ? _onChanged : null,
