@@ -181,7 +181,6 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   @override
   void dispose() {
-    _controller.dispose();
     _styleController?.dispose();
     super.dispose();
   }
