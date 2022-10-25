@@ -2,3 +2,4 @@
 *.iml
 
 pubspec.lock
+pubspec_overrides.yaml

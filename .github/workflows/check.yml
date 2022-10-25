@@ -21,6 +21,9 @@ jobs:
       - name: Activate melos
         run: dart pub global activate melos
 
+      - name: Bootstrap
+        run: melos bs
+
       - name: Check formatting
         run: flutter format --set-exit-if-changed -n .
 
