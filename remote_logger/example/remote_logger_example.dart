@@ -1,3 +1,5 @@
+// ignore_for_file: prefer-correct-test-file-name
+
 import 'package:logging/logging.dart';
 import 'package:remote_logger/remote_logger.dart';
 
