@@ -20,7 +20,7 @@ final Story dateInputStory = Story(
       constraints: const BoxConstraints(maxWidth: 400),
       child: OptimusDateInputField(
         label: 'Date',
-        initialValue: DateTime.now(),
+        value: DateTime.now(),
         error: error.isNotEmpty ? error : null,
         isEnabled: enabled,
         format: DateFormat(format),

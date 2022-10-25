@@ -29,7 +29,7 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
             isEnabled: isEnabled,
             isClearAllEnabled: isClearAllEnabled,
             onSubmitted: onSubmitted,
-            initialValue: initialValue,
+            value: initialValue,
             format: format,
             focusNode: focusNode,
             label: label,
