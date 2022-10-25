@@ -27,9 +27,6 @@ jobs:
       - name: Check formatting
         run: flutter format --set-exit-if-changed -n .
 
-      - name: Fetch dependencies
-        run: melos exec -c 1 --fail-fast -- flutter pub get
-
       - name: Built-in analyzer
         run: flutter analyze .
 
