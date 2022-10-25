@@ -1,3 +1,9 @@
+## 0.10.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: dart_code_metrics 4.21.2.
+
 ## 0.9.0+2
 
  - **FIX**: Update analyzer settings.
