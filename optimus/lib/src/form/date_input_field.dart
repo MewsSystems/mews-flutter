@@ -25,6 +25,7 @@ class OptimusDateInputField extends StatefulWidget {
     this.value,
     this.isClearAllEnabled = false,
     this.onChanged,
+    this.onEditCompleted,
     this.isRequired = false,
     this.focusNode,
     this.onTap,
@@ -44,6 +45,9 @@ class OptimusDateInputField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.onChanged}
   final ValueChanged<DateTime?>? onChanged;
+
+  /// Function to be called when the input focus was lost or keyboard is hid.
+  final ValueChanged<DateTime?>? onEditCompleted;
 
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
@@ -65,6 +69,7 @@ class OptimusDateInputField extends StatefulWidget {
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
   StyledInputController? _styleController;
+  FocusNode? _focusNode;
   String _previousValue = '';
 
   StyledInputController get _controller =>
@@ -74,9 +79,18 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         placeholderStyle: _placeholderStyle,
       );
 
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
+
   TextStyle get _placeholderStyle => theme.getPlaceholderStyle(widget.size);
 
   TextStyle get _inputStyle => theme.getTextInputStyle(widget.size);
+
+  @override
+  void initState() {
+    super.initState();
+    _effectiveFocusNode.addListener(_onFocusChanged);
+  }
 
   @override
   void didUpdateWidget(covariant OptimusDateInputField oldWidget) {
@@ -87,6 +101,22 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         oldWidget.format.locale != widget.format.locale) {
       final oldDate = _getDateTime(oldWidget.format, _controller.text);
       _updateControllerValue(oldDate);
+    }
+  }
+
+  void _onFocusChanged() {
+    if (!_effectiveFocusNode.hasFocus) {
+      widget.onEditCompleted?.call(
+        _controller.isInputComplete
+            ? _getDateTime(widget.format, _controller.text)
+            : null,
+      );
+    }
+  }
+
+  void _onKeyboardVisibilityChanged(bool isVisible) {
+    if (!isVisible) {
+      _effectiveFocusNode.unfocus();
     }
   }
 
@@ -182,6 +212,9 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   @override
   void dispose() {
     _styleController?.dispose();
+    _effectiveFocusNode
+      ..removeListener(_onFocusChanged)
+      ..dispose();
     super.dispose();
   }
 
@@ -200,7 +233,8 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         keyboardType: TextInputType.number,
         isRequired: widget.isRequired,
         onTap: widget.onTap,
-        focusNode: widget.focusNode,
+        focusNode: _effectiveFocusNode,
+        onKeyboardVisibilityChanged: _onKeyboardVisibilityChanged,
         inputFormatters: [DateFormatter(placeholder: _placeholder)],
       );
 }
