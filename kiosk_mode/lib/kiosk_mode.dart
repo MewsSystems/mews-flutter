@@ -18,23 +18,26 @@ enum KioskMode {
   disabled,
 }
 
-/// Request to put this activity in a mode where the user is locked to a
-/// restricted set of applications.
+/// Requests the platform to restrict the current user to the app.
 ///
-/// Returns true, if platform satisfied the request successfully,
-/// false - otherwise.
+/// Returns `true`, if platform satisfied the request successfully, `false` - otherwise.
 ///
-/// It's only supported on Android currently, where it calls `startLockTask`.
-/// It will throw `FlutterMethodNotImplemented` on iOS.
+/// On Android, [Activity.startLockTask()](https://developer.android.com/reference/android/app/Activity#startLockTask())
+/// is used.
+///
+/// For iOS, [
+/// UIAccessibility.requestGuidedAccessSession](https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession) is used.
+/// Entering Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM), and
+/// the app itself must be enabled for this mode by MDM. Otherwise the result will always be `false`.
 Future<bool> startKioskMode() => _channel
     .invokeMethod<bool>('startKioskMode')
     .then((value) => value ?? false);
 
-/// Stop the current task from being locked.
+/// On Android, stops the current task from being locked. For iOS, exits the Single App mode.
 ///
-/// It's only supported on Android currently, where it calls `stopLockTask`.
-/// It will throw `FlutterMethodNotImplemented` on iOS.
-Future<void> stopKioskMode() => _channel.invokeMethod('stopKioskMode');
+Future<bool> stopKioskMode() => _channel
+    .invokeMethod<bool>('stopKioskMode')
+    .then((value) => value ?? false);
 
 /// Returns the current [KioskMode].
 ///
@@ -44,19 +47,6 @@ Future<void> stopKioskMode() => _channel.invokeMethod('stopKioskMode');
 Future<KioskMode> getKioskMode() => _channel
     .invokeMethod<bool>('isInKioskMode')
     .then((value) => value == true ? KioskMode.enabled : KioskMode.disabled);
-
-/// Returns `true`, if app is in a proper managed kiosk mode.
-///
-/// On Android, it checks for `LOCK_TASK_MODE_LOCKED` and may return `false`,
-/// while [getKioskMode] returns [KioskMode.enabled]. In that case it would mean
-/// that the app is only pinned by user and doesn't represent a proper kiosk,
-/// i.e. it isn't managed by Device Policy Controller on Android.
-///
-/// On iOS, it always returns `false`, as this package doesn't support
-/// detection of Apple Business Manager yet.
-Future<bool> isManagedKiosk() => _channel
-    .invokeMethod<bool>('isManagedKiosk')
-    .then((value) => value == true);
 
 /// Returns the stream with [KioskMode].
 ///

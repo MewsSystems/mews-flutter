@@ -12,13 +12,32 @@ public class SwiftKioskModePlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if (call.method == "isInKioskMode") {
-            result(UIAccessibility.isGuidedAccessEnabled)
-        } else if (call.method == "isManagedKiosk") {
-            result(false)
-        } else {
+        switch call.method {
+        case "isInKioskMode":
+            isInKioskMode(result)
+        case "startKioskMode":
+            startKioskMode(result)
+        case "stopKioskMode":
+            stopKioskMode(result)
+        default:
             result(FlutterMethodNotImplemented)
         }
+    }
+    
+    private func isInKioskMode(_ result: @escaping FlutterResult) {
+        result(UIAccessibility.isGuidedAccessEnabled)
+    }
+
+    private func startKioskMode(_ result: @escaping FlutterResult) {
+        requestGuidedAccessSession(enabled: true, completionHandler: { result($0) })
+    }
+    
+    private func stopKioskMode(_ result: @escaping FlutterResult) {
+        requestGuidedAccessSession(enabled: false, completionHandler: { result($0) })
+    }
+    
+    private func requestGuidedAccessSession(enabled: Bool, completionHandler: @escaping (Bool) -> Void) {
+        UIAccessibility.requestGuidedAccessSession(enabled: enabled, completionHandler: completionHandler)
     }
 }
 
