@@ -25,8 +25,8 @@ enum KioskMode {
 /// On Android, [Activity.startLockTask()](https://developer.android.com/reference/android/app/Activity#startLockTask())
 /// is used.
 ///
-/// For iOS, [
-/// UIAccessibility.requestGuidedAccessSession](https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession) is used.
+/// For iOS,
+/// [UIAccessibility.requestGuidedAccessSession](https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession) is used.
 /// Entering Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM), and
 /// the app itself must be enabled for this mode by MDM. Otherwise the result will always be `false`.
 Future<bool> startKioskMode() => _channel
