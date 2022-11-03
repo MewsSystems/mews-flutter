@@ -33,6 +33,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             "startKioskMode" -> startKioskMode(result)
             "stopKioskMode" -> stopKioskMode(result)
             "isInKioskMode" -> isInKioskMode(result)
+            "isManagedKiosk" -> isManagedKiosk(result)
             else -> result.notImplemented()
         }
     }
@@ -55,6 +56,17 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private fun stopKioskMode(result: MethodChannel.Result) {
         activity?.stopLockTask()
         result.success(true)
+    }
+
+
+    private fun isManagedKiosk(result: MethodChannel.Result) {
+        val service = activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
+        if (service == null) {
+            result.success(null)
+            return
+        }
+
+        result.success(service.lockTaskModeState == ActivityManager.LOCK_TASK_MODE_LOCKED)
     }
 
     private fun isInKioskMode(result: MethodChannel.Result) {
