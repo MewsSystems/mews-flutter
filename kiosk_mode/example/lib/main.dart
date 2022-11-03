@@ -37,16 +37,42 @@ class _HomeState extends State<_Home> {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (Platform.isAndroid) ...[
-            const MaterialButton(
-              onPressed: startKioskMode,
-              child: Text('Start Kiosk Mode'),
+          MaterialButton(
+            onPressed: () => startKioskMode().then(
+              (value) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    value
+                        ? 'Kiosk mode started'
+                        : Platform.isIOS
+                            ? 'Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM) and the app itself must be enabled for this mode by MDM.'
+                            : 'Kiosk mode could not be started.',
+                  ),
+                ),
+              ),
             ),
-            const MaterialButton(
-              onPressed: stopKioskMode,
-              child: Text('Stop Kiosk Mode'),
+            child: const Text('Start Kiosk Mode'),
+          ),
+          MaterialButton(
+            onPressed: () => stopKioskMode().then(
+              (value) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    value ? 'Kiosk mode stopped.' : 'Kiosk mode could not be stopped or wasn\'t active to begin with.',
+                  ),
+                ),
+              ),
             ),
-          ],
+            child: const Text('Stop Kiosk Mode'),
+          ),
+          MaterialButton(
+            onPressed: () => isManagedKiosk().then(
+              (value) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Kiosk is managed: $value')),
+              ),
+            ),
+            child: const Text('Is Managed Kiosk'),
+          ),
           MaterialButton(
             onPressed: () => getKioskMode().then(
               (value) => ScaffoldMessenger.of(context).showSnackBar(

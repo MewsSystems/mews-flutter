@@ -34,6 +34,10 @@ Future<bool> startKioskMode() => _channel
     .then((value) => value ?? false);
 
 /// On Android, stops the current task from being locked. On iOS, exits the Single App mode.
+///
+/// On Android, the result will always be `true`.
+///
+/// On iOS, the result will be `true` if the app was in Single App mode, `false` - otherwise.
 Future<bool> stopKioskMode() => _channel
     .invokeMethod<bool>('stopKioskMode')
     .then((value) => value ?? false);
