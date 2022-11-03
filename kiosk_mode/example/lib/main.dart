@@ -58,7 +58,9 @@ class _HomeState extends State<_Home> {
               (value) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    value ? 'Kiosk mode stopped.' : 'Kiosk mode could not be stopped or wasn\'t active to begin with.',
+                    value
+                        ? 'Kiosk mode stopped.'
+                        : 'Kiosk mode could not be stopped or wasn\'t active to begin with.',
                   ),
                 ),
               ),
