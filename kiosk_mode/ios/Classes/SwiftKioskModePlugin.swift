@@ -15,6 +15,8 @@ public class SwiftKioskModePlugin: NSObject, FlutterPlugin {
         switch call.method {
         case "isInKioskMode":
             isInKioskMode(result)
+        case "isManagedKiosk":
+            isManagedKiosk(result)
         case "startKioskMode":
             startKioskMode(result)
         case "stopKioskMode":
@@ -26,6 +28,10 @@ public class SwiftKioskModePlugin: NSObject, FlutterPlugin {
     
     private func isInKioskMode(_ result: @escaping FlutterResult) {
         result(UIAccessibility.isGuidedAccessEnabled)
+    }
+    
+    private func isManagedKiosk(_ result: @escaping FlutterResult) {
+        result(false)
     }
 
     private func startKioskMode(_ result: @escaping FlutterResult) {
