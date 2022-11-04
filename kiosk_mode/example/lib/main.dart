@@ -33,62 +33,63 @@ class _Home extends StatefulWidget {
 class _HomeState extends State<_Home> {
   late final Stream<KioskMode> _currentMode = watchKioskMode();
 
+  Future<void> _showSnackBar(String message) async {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MaterialButton(
-            onPressed: () => startKioskMode().then(
-              (value) => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    value
-                        ? 'Kiosk mode started'
-                        : Platform.isIOS
-                            ? 'Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM) and the app itself must be enabled for this mode by MDM.'
-                            : 'Kiosk mode could not be started.',
-                  ),
-                ),
+  Widget build(BuildContext context) => StreamBuilder(
+        stream: _currentMode,
+        builder: (context, snapshot) {
+          final mode = snapshot.data;
+
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MaterialButton(
+                onPressed: mode == KioskMode.enabled
+                    ? null
+                    : () => startKioskMode()
+                        .then(
+                          (didStart) => didStart
+                              ? 'Kiosk mode started'
+                              : Platform.isIOS
+                                  ? 'Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM) and the app itself must be enabled for this mode by MDM.'
+                                  : 'Kiosk mode could not be started.',
+                        )
+                        .then(_showSnackBar),
+                child: const Text('Start Kiosk Mode'),
               ),
-            ),
-            child: const Text('Start Kiosk Mode'),
-          ),
-          MaterialButton(
-            onPressed: () => stopKioskMode().then(
-              (value) => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    value
-                        ? 'Kiosk mode stopped.'
-                        : 'Kiosk mode could not be stopped or wasn\'t active to begin with.',
-                  ),
-                ),
+              MaterialButton(
+                onPressed: mode == KioskMode.disabled
+                    ? null
+                    : () => stopKioskMode()
+                        .then(
+                          (didStop) => didStop
+                              ? 'Kiosk mode stopped.'
+                              : 'Kiosk mode could not be stopped or wasn\'t active to begin with.',
+                        )
+                        .then(_showSnackBar),
+                child: const Text('Stop Kiosk Mode'),
               ),
-            ),
-            child: const Text('Stop Kiosk Mode'),
-          ),
-          MaterialButton(
-            onPressed: () => isManagedKiosk().then(
-              (value) => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Kiosk is managed: $value')),
+              MaterialButton(
+                onPressed: () => isManagedKiosk()
+                    .then((isManaged) => 'Kiosk is managed: $isManaged')
+                    .then(_showSnackBar),
+                child: const Text('Is Managed Kiosk'),
               ),
-            ),
-            child: const Text('Is Managed Kiosk'),
-          ),
-          MaterialButton(
-            onPressed: () => getKioskMode().then(
-              (value) => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Kiosk mode: $value')),
+              MaterialButton(
+                onPressed: () => getKioskMode()
+                    .then((mode) => 'Kiosk mode: $mode')
+                    .then(_showSnackBar),
+                child: const Text('Check mode'),
               ),
-            ),
-            child: const Text('Check mode'),
-          ),
-          StreamBuilder<KioskMode>(
-            stream: _currentMode,
-            builder: (context, snapshot) => Text(
-              'Current mode: ${snapshot.data}',
-            ),
-          ),
-        ],
+              Text(
+                'Current mode: ${snapshot.data}',
+              ),
+            ],
+          );
+        },
       );
 }
