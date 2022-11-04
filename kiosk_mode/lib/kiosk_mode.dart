@@ -22,22 +22,27 @@ enum KioskMode {
 ///
 /// Returns `true`, if platform satisfied the request successfully, `false` - otherwise.
 ///
-/// On Android, [Activity.startLockTask()](https://developer.android.com/reference/android/app/Activity#startLockTask())
-/// is used.
+/// On Android, [Activity.startLockTask][1] is used.
 ///
-/// On iOS,
-/// [UIAccessibility.requestGuidedAccessSession](https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession) is used.
+/// On iOS, [UIAccessibility.requestGuidedAccessSession][2] is used.
 /// Entering Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM), and
 /// the app itself must be enabled for this mode by MDM. Otherwise the result will always be `false`.
+///
+/// [1]: https://developer.android.com/reference/android/app/Activity#startLockTask()
+/// [2]: https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession/
 Future<bool> startKioskMode() => _channel
     .invokeMethod<bool>('startKioskMode')
     .then((value) => value ?? false);
 
 /// On Android, stops the current task from being locked. On iOS, exits the Single App mode.
 ///
-/// On Android, the result will always be `true`.
+/// On Android, the result will be `true` if the previous mode was [KioskMode.enabled] and [Activity.stopLockTask][1]
+/// was called. Otherwise, the result will be `false`. Note: [Activity.stopLockTask][1] does not guaranteed LockTask
+/// or screen pinning mode will be stopped.
 ///
 /// On iOS, the result will be `true` if the app was in Single App mode, `false` - otherwise.
+///
+/// [1]: https://developer.android.com/reference/android/app/Activity#stopLockTask()
 Future<bool> stopKioskMode() => _channel
     .invokeMethod<bool>('stopKioskMode')
     .then((value) => value ?? false);
