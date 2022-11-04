@@ -37,7 +37,7 @@ Future<bool> startKioskMode() => _channel
 /// On Android, stops the current task from being locked. On iOS, exits the Single App mode.
 ///
 /// On Android, the result will be `true` if the previous mode was [KioskMode.enabled] and [Activity.stopLockTask][1]
-/// was called. Otherwise, the result will be `false`. Note: [Activity.stopLockTask][1] does not guaranteed LockTask
+/// will be called. Otherwise, the result will be `false`. Note: [Activity.stopLockTask][1] does not guaranteed LockTask
 /// or screen pinning mode will be stopped.
 ///
 /// On iOS, the result will be `true` if the app was in Single App mode, `false` - otherwise.
