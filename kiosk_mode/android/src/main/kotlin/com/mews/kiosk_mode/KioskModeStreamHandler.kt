@@ -37,5 +37,5 @@ class KioskModeStreamHandler(val getKioskModeState: () -> Boolean?) : EventChann
         timer = null
     }
 
-    fun sendUpdate(currentState: Boolean?) =  postEvent(currentState)
+    fun setKioskModeState(isInKioskMode: Boolean?) =  postEvent(isInKioskMode)
 }

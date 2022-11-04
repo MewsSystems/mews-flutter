@@ -48,7 +48,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 try {
                     a.startLockTask()
                     result.success(true)
-                    kioskModeHandler.sendUpdate(true)
+                    kioskModeHandler.setKioskModeState(true)
                 } catch (e: IllegalArgumentException) {
                     result.success(false)
                 }
@@ -61,7 +61,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         fun stopLockTask() {
             activity?.stopLockTask()
             result.success(true)
-            kioskModeHandler.sendUpdate(false)
+            kioskModeHandler.setKioskModeState(false)
         }
 
         when(isInKioskMode()) {
