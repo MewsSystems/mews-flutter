@@ -56,7 +56,7 @@ class _HomeState extends State<_Home> {
                               ? 'Kiosk mode started'
                               : Platform.isIOS
                                   ? 'Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM) and the app itself must be enabled for this mode by MDM.'
-                                  : 'Kiosk mode could not be started.',
+                                  : 'Kiosk mode could not be started. Please try again.',
                         )
                         .then(_showSnackBar),
                 child: const Text('Start Kiosk Mode'),
