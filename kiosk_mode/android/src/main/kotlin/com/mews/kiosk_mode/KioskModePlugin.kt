@@ -54,15 +54,17 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     private fun stopKioskMode(result: MethodChannel.Result) {
-        // it may happen that isInKioskMode returns null when the service could not be found
-        // in this case, it's better to allow calling stopLockTask() than being stuck in kiosk mode
-        val isInKioskMode = isInKioskMode() ?: true
-
-        if(isInKioskMode) {
+        fun stopLockTask() {
             activity?.stopLockTask()
             result.success(true)
-        } else {
-            result.success(false)
+        }
+
+        when(isInKioskMode()) {
+            // it may happen that isInKioskMode returns null when the service could not be found
+            // in this case, it's better to allow calling stopLockTask() than being stuck in kiosk mode
+            null -> stopLockTask()
+            true -> stopLockTask()
+            false -> result.success(false)
         }
     }
 
