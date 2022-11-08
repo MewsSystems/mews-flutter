@@ -22,9 +22,9 @@ enum KioskMode {
 ///
 /// Returns `true`, if platform satisfied the request successfully, `false` - otherwise.
 ///
-/// On Android, [Activity.startLockTask][1] is used.
+/// On Android, [Activity.startLockTask][1] is called.
 ///
-/// On iOS, [UIAccessibility.requestGuidedAccessSession][2] is used.
+/// On iOS, [UIAccessibility.requestGuidedAccessSession][2] is called.
 /// Entering Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM), and
 /// the app itself must be enabled for this mode by MDM. Otherwise the result will always be `false`.
 ///
@@ -36,8 +36,9 @@ Future<bool> startKioskMode() => _channel
 
 /// On Android, stops the current task from being locked. On iOS, exits the Single App mode.
 ///
-/// On Android, the result will be `true` if the previous mode was [KioskMode.enabled] and [Activity.stopLockTask][1]
-/// will be called. Otherwise, the result will be `false`. Note: [Activity.stopLockTask][1] does not guaranteed LockTask
+/// On Android, the result will be `true` if the activity is locked or screen pinning is enabled
+/// and [Activity.stopLockTask][1] will be called.
+///  Otherwise, the result will be `false`. Note: [Activity.stopLockTask][1] does not guaranteed LockTask
 /// or screen pinning mode will be stopped.
 ///
 /// On iOS, the result will be `true` if the app was in Single App mode, `false` - otherwise.

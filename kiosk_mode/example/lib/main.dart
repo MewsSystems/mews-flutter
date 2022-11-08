@@ -33,10 +33,8 @@ class _Home extends StatefulWidget {
 class _HomeState extends State<_Home> {
   late final Stream<KioskMode> _currentMode = watchKioskMode();
 
-  Future<void> _showSnackBar(String message) async {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
+  void _showSnackBar(String message) => ScaffoldMessenger.of(context)
+      .showSnackBar(SnackBar(content: Text(message)));
 
   @override
   Widget build(BuildContext context) => StreamBuilder(
@@ -53,9 +51,11 @@ class _HomeState extends State<_Home> {
                     : () => startKioskMode()
                         .then(
                           (didStart) => didStart
-                              ? 'Kiosk mode started'
+                              ? 'Kiosk mode started.'
                               : Platform.isIOS
-                                  ? 'Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM) and the app itself must be enabled for this mode by MDM.'
+                                  ? 'Single App mode is supported only for devices that are supervised using '
+                                      'Mobile Device Management (MDM) and the app itself must be enabled '
+                                      'for this mode by MDM.'
                                   : 'Kiosk mode could not be started. Please try again.',
                         )
                         .then(_showSnackBar),
@@ -77,7 +77,7 @@ class _HomeState extends State<_Home> {
                 onPressed: () => isManagedKiosk()
                     .then((isManaged) => 'Kiosk is managed: $isManaged')
                     .then(_showSnackBar),
-                child: const Text('Is Managed Kiosk'),
+                child: const Text('Check if managed'),
               ),
               MaterialButton(
                 onPressed: () => getKioskMode()
@@ -85,9 +85,7 @@ class _HomeState extends State<_Home> {
                     .then(_showSnackBar),
                 child: const Text('Check mode'),
               ),
-              Text(
-                'Current mode: ${snapshot.data}',
-              ),
+              Text('Current mode: ${snapshot.data}'),
             ],
           );
         },
