@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/common/field_error.dart';
 import 'package:optimus/src/common/field_label.dart';
 import 'package:optimus/src/constants.dart';
@@ -109,7 +110,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                         ? BoxDecoration(
                             color: _background,
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(4)),
+                                const BorderRadius.all(borderRadius100),
                             border: Border.all(color: _borderColor, width: 1),
                           )
                         : null,

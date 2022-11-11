@@ -16,7 +16,7 @@ class BaseButton extends StatelessWidget {
     this.badgeLabel,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.defaultButton,
-    this.borderRadius = const BorderRadius.all(borderRadius50),
+    this.borderRadius = const BorderRadius.all(borderRadius100),
   }) : super(key: key);
 
   final VoidCallback? onPressed;
@@ -46,7 +46,7 @@ class BaseButton extends StatelessWidget {
   Widget _buildBadgeLabel(String badgeLabel, OptimusThemeData theme) =>
       SizedBox(
         child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          borderRadius: const BorderRadius.all(borderRadius200),
           child: Container(
             height: 16,
             color: _textColor(theme),

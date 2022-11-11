@@ -1,6 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/chat/optimus_chat_input.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -318,7 +319,7 @@ class _StatusCircle extends StatelessWidget {
       width: 13,
       height: 13,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(borderRadius100),
         border: Border.all(
           width: 1.2,
           color: theme.isDark

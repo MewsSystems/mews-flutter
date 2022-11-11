@@ -109,7 +109,7 @@ class _TagState extends State<_Tag> with ThemeGetter {
         decoration: BoxDecoration(
           color: widget.onRemoved != null ? theme.colors.neutral50 : _tagColor,
           border: Border.all(color: _borderColor),
-          borderRadius: const BorderRadius.all(borderRadius25),
+          borderRadius: const BorderRadius.all(borderRadius100),
         ),
         padding: _tagPadding,
         child: Row(
@@ -328,7 +328,7 @@ class OptimusCategoricalTag extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorOption.tagColor(theme),
         border: Border.all(color: colorOption.borderColor(theme)),
-        borderRadius: const BorderRadius.all(borderRadius25),
+        borderRadius: const BorderRadius.all(borderRadius100),
       ),
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       child: Text(

@@ -75,7 +75,7 @@ class OptimusBanner extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: _backgroundColor(theme),
-        borderRadius: const BorderRadius.all(borderRadius50),
+        borderRadius: const BorderRadius.all(borderRadius100),
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 18),
