@@ -73,18 +73,21 @@ class OptimusDateInputField extends StatefulWidget {
   State<OptimusDateInputField> createState() => _OptimusDateInputFieldState();
 }
 
-class _OptimusDateInputFieldState extends State<OptimusDateInputField> with ThemeGetter {
+class _OptimusDateInputFieldState extends State<OptimusDateInputField>
+    with ThemeGetter {
   StyledInputController? _styleController;
   FocusNode? _focusNode;
   String _previousValue = '';
 
-  StyledInputController get _controller => _styleController ??= StyledInputController(
+  StyledInputController get _controller =>
+      _styleController ??= StyledInputController(
         text: _formatValue(widget.value),
         inputStyle: _inputStyle,
         placeholderStyle: _placeholderStyle,
       );
 
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
 
   TextStyle get _placeholderStyle => theme.getPlaceholderStyle(widget.size);
 
@@ -101,7 +104,8 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField> with Them
     super.didUpdateWidget(oldWidget);
     if (oldWidget.value != widget.value) {
       _updateControllerValue(widget.value);
-    } else if (oldWidget.format.pattern != widget.format.pattern || oldWidget.format.locale != widget.format.locale) {
+    } else if (oldWidget.format.pattern != widget.format.pattern ||
+        oldWidget.format.locale != widget.format.locale) {
       final oldDate = _getDateTime(oldWidget.format, _controller.text);
       _updateControllerValue(oldDate);
     }
@@ -110,7 +114,9 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField> with Them
   void _onFocusChanged() {
     if (!_effectiveFocusNode.hasFocus) {
       widget.onEditCompleted?.call(
-        _controller.isInputComplete ? _getDateTime(widget.format, _controller.text) : null,
+        _controller.isInputComplete
+            ? _getDateTime(widget.format, _controller.text)
+            : null,
       );
     }
   }
@@ -136,11 +142,14 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField> with Them
     return result;
   }
 
-  String _formatValue(DateTime? value) => value != null ? _formatOutput(value) : '';
+  String _formatValue(DateTime? value) =>
+      value != null ? _formatOutput(value) : '';
 
   String _onChanged(String value) {
     if (_previousValue != value || value.isEmpty) {
-      final result = _controller.isInputComplete ? _getDateTime(widget.format, value) : null;
+      final result = _controller.isInputComplete
+          ? _getDateTime(widget.format, value)
+          : null;
       widget.onChanged?.call(result);
       _previousValue = value;
     }
@@ -148,7 +157,8 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField> with Them
     return value;
   }
 
-  String _formatOutput(DateTime value) => _placeholderFormat.format(value).toString();
+  String _formatOutput(DateTime value) =>
+      _placeholderFormat.format(value).toString();
 
   void _handleSubmitted(String value) {
     final onSubmitted = widget.onSubmitted;
