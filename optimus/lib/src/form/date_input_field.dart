@@ -25,6 +25,9 @@ class OptimusDateInputField extends StatefulWidget {
     this.value,
     this.isClearAllEnabled = false,
     this.onChanged,
+    this.onClear,
+    this.textInputAction,
+    this.readOnly = false,
     this.onEditCompleted,
     this.isRequired = false,
     this.focusNode,
@@ -46,13 +49,20 @@ class OptimusDateInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.onChanged}
   final ValueChanged<DateTime?>? onChanged;
 
-  /// Function to be called when the input focus was lost or keyboard is hid.
+  /// Function to be called when the input focus was lost.
   final ValueChanged<DateTime?>? onEditCompleted;
+
+  /// Function to be called when the input focus was lost or keyboard is hid.
+  final VoidCallback? onClear;
+
+  final TextInputAction? textInputAction;
 
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
   final VoidCallback? onTap;
+
+  final bool readOnly;
 
   final bool isRequired;
   final String? label;
@@ -111,12 +121,6 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
             ? _getDateTime(widget.format, _controller.text)
             : null,
       );
-    }
-  }
-
-  void _onKeyboardVisibilityChanged(bool isVisible) {
-    if (!isVisible) {
-      _effectiveFocusNode.unfocus();
     }
   }
 
@@ -224,6 +228,9 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         caption: widget.caption,
         isEnabled: widget.isEnabled,
         isClearEnabled: widget.isClearAllEnabled,
+        onClear: widget.onClear,
+        readOnly: widget.readOnly,
+        textInputAction: widget.textInputAction,
         secondaryCaption: widget.secondaryCaption,
         placeholder: _placeholder,
         controller: _controller,
@@ -233,8 +240,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         keyboardType: TextInputType.number,
         isRequired: widget.isRequired,
         onTap: widget.onTap,
-        focusNode: _effectiveFocusNode,
-        onKeyboardVisibilityChanged: _onKeyboardVisibilityChanged,
+        focusNode: widget.focusNode,
         inputFormatters: [DateFormatter(placeholder: _placeholder)],
       );
 }

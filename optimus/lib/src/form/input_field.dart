@@ -17,6 +17,7 @@ class OptimusInputField extends StatefulWidget {
     this.textInputAction,
     this.onSubmitted,
     this.onKeyboardVisibilityChanged,
+    this.onClear,
     this.focusNode,
     this.label,
     this.caption,
@@ -108,6 +109,7 @@ class OptimusInputField extends StatefulWidget {
   final bool readOnly;
 
   final VoidCallback? onTap;
+  final VoidCallback? onClear;
 
   final ValueChanged<bool>? onKeyboardVisibilityChanged;
 
@@ -244,6 +246,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   void _onClearAllTap() {
     _effectiveController.clear();
     widget.onChanged?.call('');
+    widget.onClear?.call();
   }
 
   bool get _shouldShowClearAllButton =>
