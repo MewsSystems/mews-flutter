@@ -155,7 +155,10 @@ class OptimusInputField extends StatefulWidget {
 }
 
 class _OptimusInputFieldState extends State<OptimusInputField>
-    with WidgetsBindingObserver, ThemeGetter {
+    with
+        // ignore: prefer_mixin, WidgetsBindingObserver does not offer a mixin version yet
+        WidgetsBindingObserver,
+        ThemeGetter {
   FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
   bool _isKeyboardVisible = false;
