@@ -48,29 +48,29 @@ class _HomeState extends State<_Home> {
               MaterialButton(
                 onPressed: mode == KioskMode.enabled
                     ? null
-                    : () => startKioskMode()
-                        .then(
-                          (didStart) => didStart
-                              ? 'Kiosk mode started.'
-                              : Platform.isIOS
-                                  ? 'Single App mode is supported only for devices that are supervised using '
-                                      'Mobile Device Management (MDM) and the app itself must be enabled '
-                                      'for this mode by MDM.'
-                                  : 'Kiosk mode could not be started. Please try again.',
-                        )
-                        .then(_showSnackBar),
+                    : () => startKioskMode().then(
+                          (didStart) {
+                            if (!didStart && Platform.isIOS) {
+                              _showSnackBar(
+                                'Single App mode is supported only for devices that are supervised using '
+                                'Mobile Device Management (MDM) and the app itself must be enabled '
+                                'for this mode by MDM.',
+                              );
+                            }
+                          },
+                        ),
                 child: const Text('Start Kiosk Mode'),
               ),
               MaterialButton(
                 onPressed: mode == KioskMode.disabled
                     ? null
-                    : () => stopKioskMode()
-                        .then(
-                          (didStop) => didStop
-                              ? 'Kiosk mode stopped.'
-                              : 'Kiosk mode could not be stopped or wasn\'t active to begin with.',
-                        )
-                        .then(_showSnackBar),
+                    : () => stopKioskMode().then((didStop) {
+                          if (didStop == false) {
+                            _showSnackBar(
+                              'Kiosk mode could not be stopped or wasn\'t active to begin with.',
+                            );
+                          }
+                        }),
                 child: const Text('Stop Kiosk Mode'),
               ),
               MaterialButton(

@@ -48,7 +48,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 try {
                     a.startLockTask()
                     result.success(true)
-                    kioskModeHandler.setKioskModeState(true)
+                    kioskModeHandler.emit()
                 } catch (e: IllegalArgumentException) {
                     result.success(false)
                 }
@@ -58,19 +58,8 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     private fun stopKioskMode(result: MethodChannel.Result) {
-        fun stopLockTask() {
-            activity?.stopLockTask()
-            result.success(true)
-            kioskModeHandler.setKioskModeState(false)
-        }
-
-        when(isInKioskMode()) {
-            // it may happen that isInKioskMode returns null when the service could not be found
-            // in this case, it's better to allow calling stopLockTask() than being stuck in kiosk mode
-            null -> stopLockTask()
-            true -> stopLockTask()
-            false -> result.success(false)
-        }
+        result.success(null)
+        kioskModeHandler.emit()
     }
 
 

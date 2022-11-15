@@ -17,16 +17,7 @@ class KioskModeStreamHandler(val getKioskModeState: () -> Boolean?) : EventChann
         val period: Int = (arguments as Map<*, *>)["androidQueryPeriod"] as Int
         eventSink = events
         timer = fixedRateTimer(period = period.toLong(), daemon = true) {
-           postEvent(getKioskModeState())
-        }
-    }
-
-    private fun postEvent(currentState: Boolean?) {
-        if (currentState != previousState) {
-            previousState = currentState
-            eventSink?.let {
-                mainHandler.post { it.success(currentState) }
-            }
+          emit()
         }
     }
 
@@ -37,5 +28,13 @@ class KioskModeStreamHandler(val getKioskModeState: () -> Boolean?) : EventChann
         timer = null
     }
 
-    fun setKioskModeState(isInKioskMode: Boolean?) =  postEvent(isInKioskMode)
+    fun emit() {
+        val currentState = getKioskModeState()
+        if (currentState != previousState) {
+            previousState = currentState
+            eventSink?.let {
+                mainHandler.post { it.success(currentState) }
+            }
+        }
+    }
 }
