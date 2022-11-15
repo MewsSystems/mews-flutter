@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kiosk_mode/kiosk_mode.dart';
 
@@ -33,8 +34,20 @@ class _Home extends StatefulWidget {
 class _HomeState extends State<_Home> {
   late final Stream<KioskMode> _currentMode = watchKioskMode();
 
-  void _showSnackBar(String message) => ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(message)));
+  void _showSnackBar(String message) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+
+  void _handleStart(bool didStart) {
+    if (!didStart && Platform.isIOS) {
+      _showSnackBar(
+        'Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM) and'
+        ' the app itself must be enabled for this mode by MDM.',
+      );
+    }
+  }
+
+  void _handleStop(bool? didStop) {
+    if (didStop == false) _showSnackBar('Kiosk mode could not be stopped or was not active to begin with.');
+  }
 
   @override
   Widget build(BuildContext context) => StreamBuilder(
@@ -46,43 +59,20 @@ class _HomeState extends State<_Home> {
             mainAxisSize: MainAxisSize.min,
             children: [
               MaterialButton(
-                onPressed: mode == KioskMode.enabled
-                    ? null
-                    : () => startKioskMode().then(
-                          (didStart) {
-                            if (!didStart && Platform.isIOS) {
-                              _showSnackBar(
-                                'Single App mode is supported only for devices that are supervised using '
-                                'Mobile Device Management (MDM) and the app itself must be enabled '
-                                'for this mode by MDM.',
-                              );
-                            }
-                          },
-                        ),
+                onPressed: mode == null || mode == KioskMode.enabled ? null : () => startKioskMode().then(_handleStart),
                 child: const Text('Start Kiosk Mode'),
               ),
               MaterialButton(
-                onPressed: mode == KioskMode.disabled
-                    ? null
-                    : () => stopKioskMode().then((didStop) {
-                          if (didStop == false) {
-                            _showSnackBar(
-                              'Kiosk mode could not be stopped or wasn\'t active to begin with.',
-                            );
-                          }
-                        }),
+                onPressed: mode == null || mode == KioskMode.disabled ? null : () => stopKioskMode().then(_handleStop),
                 child: const Text('Stop Kiosk Mode'),
               ),
               MaterialButton(
-                onPressed: () => isManagedKiosk()
-                    .then((isManaged) => 'Kiosk is managed: $isManaged')
-                    .then(_showSnackBar),
+                onPressed: () =>
+                    isManagedKiosk().then((isManaged) => 'Kiosk is managed: $isManaged').then(_showSnackBar),
                 child: const Text('Check if managed'),
               ),
               MaterialButton(
-                onPressed: () => getKioskMode()
-                    .then((mode) => 'Kiosk mode: $mode')
-                    .then(_showSnackBar),
+                onPressed: () => getKioskMode().then((mode) => 'Kiosk mode: $mode').then(_showSnackBar),
                 child: const Text('Check mode'),
               ),
               Text('Current mode: ${snapshot.data}'),
