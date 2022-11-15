@@ -54,7 +54,6 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 }
             }
         } ?: result.success(false)
-
     }
 
     private fun stopKioskMode(result: MethodChannel.Result) {
