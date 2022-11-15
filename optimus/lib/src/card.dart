@@ -209,26 +209,26 @@ class _Card extends StatelessWidget {
   BorderRadius get _borderRadius {
     switch (attachment) {
       case OptimusCardAttachment.none:
-        return const BorderRadius.all(borderRadius100);
+        return const BorderRadius.all(borderRadius200);
       case OptimusCardAttachment.left:
         return const BorderRadius.only(
-          topRight: borderRadius100,
-          bottomRight: borderRadius100,
+          topRight: borderRadius200,
+          bottomRight: borderRadius200,
         );
       case OptimusCardAttachment.right:
         return const BorderRadius.only(
-          topLeft: borderRadius100,
-          bottomLeft: borderRadius100,
+          topLeft: borderRadius200,
+          bottomLeft: borderRadius200,
         );
       case OptimusCardAttachment.top:
         return const BorderRadius.only(
-          bottomLeft: borderRadius100,
-          bottomRight: borderRadius100,
+          bottomLeft: borderRadius200,
+          bottomRight: borderRadius200,
         );
       case OptimusCardAttachment.bottom:
         return const BorderRadius.only(
-          topLeft: borderRadius100,
-          topRight: borderRadius100,
+          topLeft: borderRadius200,
+          topRight: borderRadius200,
         );
     }
   }
