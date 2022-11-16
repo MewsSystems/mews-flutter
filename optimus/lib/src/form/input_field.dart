@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/form/form_style.dart';
@@ -16,7 +15,6 @@ class OptimusInputField extends StatefulWidget {
     this.isEnabled = true,
     this.textInputAction,
     this.onSubmitted,
-    this.onKeyboardVisibilityChanged,
     this.onClear,
     this.focusNode,
     this.label,
@@ -111,8 +109,6 @@ class OptimusInputField extends StatefulWidget {
   final VoidCallback? onTap;
   final VoidCallback? onClear;
 
-  final ValueChanged<bool>? onKeyboardVisibilityChanged;
-
   final TextAlign textAlign;
 
   /// {@macro flutter.widgets.editableText.textCapitalization}
@@ -161,7 +157,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         ThemeGetter {
   FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
-  bool _isKeyboardVisible = false;
   TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
@@ -186,26 +181,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     _controller?.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
-  }
-
-  @override
-  void didChangeMetrics() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _afterMetricsChange();
-    });
-  }
-
-  void _afterMetricsChange() {
-    var myContext =
-        context.findRootAncestorStateOfType<ScaffoldState>()?.context;
-    myContext ??= context;
-    final data = MediaQuery.of(context);
-    final bool isKeyboardVisible = (data.viewInsets.bottom / data.size.height) >
-        keyboardVisibilityThreshold;
-    if (_isKeyboardVisible != isKeyboardVisible) {
-      _isKeyboardVisible = isKeyboardVisible;
-      widget.onKeyboardVisibilityChanged?.call(_isKeyboardVisible);
-    }
   }
 
   Widget? get _passwordButton {
@@ -438,6 +413,3 @@ class _ClearAllButton extends StatelessWidget {
 }
 
 const double _iconSize = 24;
-// Magic variable that is used by Flutter Engine to determine if the keyboard is
-// visible.
-const double keyboardVisibilityThreshold = 0.18;
