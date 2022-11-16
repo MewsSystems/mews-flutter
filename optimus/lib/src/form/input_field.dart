@@ -16,6 +16,7 @@ class OptimusInputField extends StatefulWidget {
     this.textInputAction,
     this.onSubmitted,
     this.onClear,
+    this.onEditingComplete,
     this.focusNode,
     this.label,
     this.caption,
@@ -108,6 +109,7 @@ class OptimusInputField extends StatefulWidget {
 
   final VoidCallback? onTap;
   final VoidCallback? onClear;
+  final VoidCallback? onEditingComplete;
 
   final TextAlign textAlign;
 
@@ -271,6 +273,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               style: theme.getTextInputStyle(widget.size),
               decoration: null,
               onChanged: widget.onChanged,
+              onEditingComplete: widget.onEditingComplete,
               keyboardType: widget.keyboardType,
               obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
               onTap: widget.onTap,

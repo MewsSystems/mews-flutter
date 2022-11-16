@@ -213,7 +213,10 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   @override
   void dispose() {
     _styleController?.dispose();
-    _effectiveFocusNode.dispose();
+    if (widget.focusNode == null) {
+      _effectiveFocusNode.dispose();
+    }
+
     super.dispose();
   }
 
@@ -235,6 +238,24 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         isRequired: widget.isRequired,
         onTap: widget.onTap,
         focusNode: widget.focusNode,
+        onEditingComplete: widget.onEditCompleted == null
+            ? null
+            : () {
+                _controller.clearComposing();
+                widget.onEditCompleted?.call(
+                  _controller.isInputComplete
+                      ? _getDateTime(widget.format, _controller.text)
+                      : null,
+                );
+
+                switch (widget.textInputAction) {
+                  case TextInputAction.next:
+                    _effectiveFocusNode.nextFocus();
+                    break;
+                  default:
+                    _effectiveFocusNode.unfocus();
+                }
+              },
         inputFormatters: [DateFormatter(placeholder: _placeholder)],
       );
 }
