@@ -16,7 +16,6 @@ class OptimusInputField extends StatefulWidget {
     this.textInputAction,
     this.onSubmitted,
     this.onClear,
-    this.onEditingComplete,
     this.focusNode,
     this.label,
     this.caption,
@@ -109,7 +108,6 @@ class OptimusInputField extends StatefulWidget {
 
   final VoidCallback? onTap;
   final VoidCallback? onClear;
-  final VoidCallback? onEditingComplete;
 
   final TextAlign textAlign;
 
@@ -153,10 +151,7 @@ class OptimusInputField extends StatefulWidget {
 }
 
 class _OptimusInputFieldState extends State<OptimusInputField>
-    with
-        // ignore: prefer_mixin, WidgetsBindingObserver does not offer a mixin version yet
-        WidgetsBindingObserver,
-        ThemeGetter {
+    with ThemeGetter {
   FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
   TextEditingController? _controller;
@@ -170,7 +165,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
     _effectiveFocusNode.addListener(_onStateUpdate);
     _effectiveController.addListener(_onStateUpdate);
   }
@@ -181,7 +175,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     _effectiveController.removeListener(_onStateUpdate);
     _focusNode?.dispose();
     _controller?.dispose();
-    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -273,7 +266,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               style: theme.getTextInputStyle(widget.size),
               decoration: null,
               onChanged: widget.onChanged,
-              onEditingComplete: widget.onEditingComplete,
               keyboardType: widget.keyboardType,
               obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
               onTap: widget.onTap,
