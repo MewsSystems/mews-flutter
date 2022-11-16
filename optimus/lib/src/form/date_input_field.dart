@@ -213,9 +213,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   @override
   void dispose() {
     _styleController?.dispose();
-    _effectiveFocusNode
-      ..removeListener(_onFocusChanged)
-      ..dispose();
+    _effectiveFocusNode.dispose();
     super.dispose();
   }
 
