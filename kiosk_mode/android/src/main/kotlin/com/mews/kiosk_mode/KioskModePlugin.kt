@@ -19,13 +19,15 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var channel: MethodChannel
     private lateinit var eventChannel: EventChannel
     private var activity: Activity? = null
+    private lateinit var kioskModeHandler: KioskModeStreamHandler
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, methodChannelName)
         channel.setMethodCallHandler(this)
+        kioskModeHandler = KioskModeStreamHandler(this::isInKioskMode)
 
         eventChannel = EventChannel(flutterPluginBinding.binaryMessenger, eventChannelName)
-        eventChannel.setStreamHandler(KioskModeStreamHandler(this::isInKioskMode))
+        eventChannel.setStreamHandler(kioskModeHandler)
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
@@ -46,6 +48,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 try {
                     a.startLockTask()
                     result.success(true)
+                    kioskModeHandler.emit()
                 } catch (e: IllegalArgumentException) {
                     result.success(false)
                 }
@@ -56,6 +59,7 @@ class KioskModePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private fun stopKioskMode(result: MethodChannel.Result) {
         activity?.stopLockTask()
         result.success(null)
+        kioskModeHandler.emit()
     }
 
 

@@ -18,23 +18,31 @@ enum KioskMode {
   disabled,
 }
 
-/// Request to put this activity in a mode where the user is locked to a
-/// restricted set of applications.
+/// Requests the platform to restrict the current user to the app.
 ///
-/// Returns true, if platform satisfied the request successfully,
-/// false - otherwise.
+/// Returns `true`, if platform satisfied the request successfully, `false` - otherwise.
 ///
-/// It's only supported on Android currently, where it calls `startLockTask`.
-/// It will throw `FlutterMethodNotImplemented` on iOS.
+/// On Android, [Activity.startLockTask][1] is called.
+///
+/// On iOS, [UIAccessibility.requestGuidedAccessSession][2] is called.
+/// Entering Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM), and
+/// the app itself must be enabled for this mode by MDM. Otherwise the result will always be `false`.
+///
+/// [1]: https://developer.android.com/reference/android/app/Activity#startLockTask()
+/// [2]: https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession/
 Future<bool> startKioskMode() => _channel
     .invokeMethod<bool>('startKioskMode')
     .then((value) => value ?? false);
 
-/// Stop the current task from being locked.
+/// On Android, stops the current task from being locked. On iOS, exits the Single App mode.
 ///
-/// It's only supported on Android currently, where it calls `stopLockTask`.
-/// It will throw `FlutterMethodNotImplemented` on iOS.
-Future<void> stopKioskMode() => _channel.invokeMethod('stopKioskMode');
+/// On Android, the result will always be `null`, as [Activity.stopLockTask][1] does not guaranteed that a task will be
+/// unlocked, or screen pinning will be stopped.
+///
+/// On iOS, the result will be `true` if the request was fulfilled, `false` - otherwise.
+///
+/// [1]: https://developer.android.com/reference/android/app/Activity#stopLockTask()
+Future<bool?> stopKioskMode() => _channel.invokeMethod<bool>('stopKioskMode');
 
 /// Returns the current [KioskMode].
 ///
