@@ -72,7 +72,6 @@ class OptimusDateInputField extends StatefulWidget {
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
   StyledInputController? _styleController;
-  FocusNode? _focusNode;
   String _previousValue = '';
 
   StyledInputController get _controller =>
@@ -190,7 +189,6 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   @override
   void dispose() {
     _styleController?.dispose();
-    _focusNode?.dispose();
 
     super.dispose();
   }
