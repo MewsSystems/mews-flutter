@@ -25,7 +25,6 @@ class OptimusDateInputField extends StatefulWidget {
     this.value,
     this.isClearAllEnabled = false,
     this.onChanged,
-    this.onClear,
     this.textInputAction,
     this.isRequired = false,
     this.focusNode,
@@ -46,9 +45,6 @@ class OptimusDateInputField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.onChanged}
   final ValueChanged<DateTime?>? onChanged;
-
-  /// Function to be called when the input focus was lost or keyboard is hid.
-  final VoidCallback? onClear;
 
   final TextInputAction? textInputAction;
 
@@ -199,17 +195,13 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         caption: widget.caption,
         isEnabled: widget.isEnabled,
         isClearEnabled: widget.isClearAllEnabled,
-        onClear: () {
-          widget.onClear?.call();
-          _updateControllerValue(null);
-        },
         textInputAction: widget.textInputAction,
         secondaryCaption: widget.secondaryCaption,
         placeholder: _placeholder,
         controller: _controller,
         error: widget.error,
         onSubmitted: _handleSubmitted,
-        onChanged: widget.onChanged != null ? _onChanged : null,
+        onChanged: _onChanged,
         keyboardType: TextInputType.number,
         isRequired: widget.isRequired,
         onTap: widget.onTap,
