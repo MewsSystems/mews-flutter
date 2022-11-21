@@ -1,3 +1,7 @@
+## 0.2.2
+
+ - **FEAT**: [RND-125108] Implement `startKioskMode` on iOS (#275).
+
 ## 0.2.1
 
  - **FEAT**: [RND-106334] move watchKioskMode implementation on platform side (android) (#210).
