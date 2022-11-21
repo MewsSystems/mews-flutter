@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 class OptimusDateInputFormField extends FormField<DateTime?> {
   OptimusDateInputFormField({
     Key? key,
-    DateTime? initialValue,
+    DateTime? value,
     required DateFormat format,
     FormFieldSetter<DateTime?>? onSaved,
     FormFieldValidator<DateTime?>? validator,
@@ -29,7 +29,7 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
             isEnabled: isEnabled,
             isClearAllEnabled: isClearAllEnabled,
             onSubmitted: onSubmitted,
-            initialValue: initialValue,
+            value: value,
             format: format,
             focusNode: focusNode,
             label: label,
