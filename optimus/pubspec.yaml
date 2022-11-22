@@ -33,3 +33,6 @@ flutter:
     - family: OptimusIcons
       fonts:
         - asset: packages/optimus/fonts/OptimusIcons.ttf
+    - family: OptimusIconsV2
+      fonts:
+        - asset: packages/optimus/fonts/OptimusIconsV2.ttf
