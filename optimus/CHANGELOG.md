@@ -1,3 +1,12 @@
+## 0.21.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: [RND-132138] Make new icons a secondary option (#280).
+ - **FEAT**: [RND-126798] Implement new elevations and border radiuses for mobile (#277).
+ - **BREAKING** **FEAT**: [RND-126039] Additional changes for date input field (#276).
+ - **BREAKING** **FEAT**: [RND-126802] Implement new icons for mobile (#278).
+
 ## 0.20.0
 
 > Note: This release has breaking changes.
