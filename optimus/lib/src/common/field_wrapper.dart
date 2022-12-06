@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/common/field_error.dart';
 import 'package:optimus/src/common/field_label.dart';
 import 'package:optimus/src/constants.dart';

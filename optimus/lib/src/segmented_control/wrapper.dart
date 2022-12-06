@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_radius.dart';
 
 class BorderWrapper extends StatefulWidget {
   const BorderWrapper({

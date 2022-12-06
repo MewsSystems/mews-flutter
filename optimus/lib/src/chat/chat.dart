@@ -1,7 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/chat/optimus_chat_input.dart';
 import 'package:optimus/src/typography/presets.dart';
 
