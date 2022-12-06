@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/typography/presets.dart';
 

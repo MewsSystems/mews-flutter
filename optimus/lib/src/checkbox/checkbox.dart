@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 import 'package:optimus/src/typography/presets.dart';
 
