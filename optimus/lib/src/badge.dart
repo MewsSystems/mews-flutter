@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/typography/presets.dart';
 
 class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
@@ -40,14 +41,10 @@ class OptimusBadge extends StatelessWidget {
               ? Text(
                   text,
                   textAlign: TextAlign.center,
-                  // TODO(KB): Sync with text presets
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                  style: preset50b.copyWith(
                     color: theme.isDark
                         ? theme.colors.neutral1000
                         : theme.colors.neutral0,
-                    height: 1,
                   ),
                 )
               : const SizedBox(),
