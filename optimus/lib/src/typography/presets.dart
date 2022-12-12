@@ -73,7 +73,7 @@ TextStyle preset500b(Breakpoint breakpoint) {
 TextStyle preset400b(Breakpoint breakpoint) {
   switch (breakpoint.scale) {
     case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w600);
+      return baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
     case _Scale.light:
       return baseTextStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w500);
   }
