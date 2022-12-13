@@ -88,7 +88,7 @@ ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
       brightness: brightness,
       scaffoldBackgroundColor: OptimusColors(brightness).background,
       primarySwatch: Colors.blue,
-      fontFamily: 'packages/optimus/OpenSans',
+      fontFamily: 'packages/optimus/Inter',
       textTheme: const TextTheme(
         headline1: baseTextStyle,
         headline2: baseTextStyle,
