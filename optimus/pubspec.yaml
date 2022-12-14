@@ -22,13 +22,13 @@ dev_dependencies:
   mews_pedantic: ^0.10.0
 flutter:
   fonts:
-    - family: OpenSans
+    - family: Inter
       fonts:
-        - asset: packages/optimus/fonts/OpenSans-Regular.ttf
+        - asset: packages/optimus/fonts/Inter-Regular.ttf
           weight: 400
-        - asset: packages/optimus/fonts/OpenSans-SemiBold.ttf
+        - asset: packages/optimus/fonts/Inter-SemiBold.ttf
           weight: 600
-        - asset: packages/optimus/fonts/OpenSans-Bold.ttf
+        - asset: packages/optimus/fonts/Inter-Bold.ttf
           weight: 700
     - family: OptimusIcons
       fonts:

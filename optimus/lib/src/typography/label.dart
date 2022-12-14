@@ -33,7 +33,7 @@ class OptimusLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => preset200s,
+        resolveStyle: (_) => preset200b,
         color: variation.color,
         align: align,
         child: child,
@@ -66,7 +66,7 @@ class OptimusLabelSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => preset100s,
+        resolveStyle: (_) => preset100b,
         color: variation.color,
         align: align,
         child: child,
