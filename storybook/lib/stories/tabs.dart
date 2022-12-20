@@ -5,8 +5,8 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story tabs = Story(
   name: 'Navigation/Tabs',
-  builder: (_) => Container(
-    color: OptimusLightColors.success500t16,
+  builder: (BuildContext context) => Container(
+    color: OptimusTheme.of(context).colors.success500t16,
     constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
     child: OptimusTabBar(
       tabs: _items.map((i) => OptimusTab(text: 'Tab ${i + 1}')).toList(),

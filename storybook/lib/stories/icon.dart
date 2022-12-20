@@ -74,6 +74,7 @@ final List<Option<IconData>> _icons = [
   const Option(label: 'Edit', value: OptimusIcons.edit),
   const Option(label: 'Chevron right', value: OptimusIcons.chevron_right),
   const Option(label: 'Chevron left', value: OptimusIcons.chevron_left),
+  const Option(label: 'Warning', value: OptimusIcons.problematic),
 ];
 
 final _sizes = OptimusIconSize.values.toOptions();

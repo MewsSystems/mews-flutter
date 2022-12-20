@@ -47,7 +47,7 @@ final Story inlineLink = Story(
 
 const _colors = [
   Option(label: 'none', value: null),
-  Option(label: 'black', value: OptimusLightColors.neutral1000),
-  Option(label: 'green', value: OptimusLightColors.success),
-  Option(label: 'red', value: OptimusLightColors.danger),
+  Option(label: 'black', value: OptimusSemanticColors.grey1100),
+  Option(label: 'green', value: OptimusSemanticColors.grey500),
+  Option(label: 'red', value: OptimusSemanticColors.red500),
 ];
