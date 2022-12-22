@@ -57,12 +57,12 @@ abstract class OptimusSemanticColors {
   static const night800 = Color(0xFF4A4959);
   static const night900 = Color(0xFF242435);
 
-  static const night500t8 = Color(0x148B8A94);
-  static const night500t16 = Color(0x288B8A94);
-  static const night500t24 = Color(0x3D8B8A94);
-  static const night500t32 = Color(0x518B8A94);
-  static const night500t40 = Color(0x668B8A94);
-  static const night500t48 = Color(0x7A8B8A94);
+  static const night700t8 = Color(0x145E5D6B);
+  static const night700t16 = Color(0x285E5D6B);
+  static const night700t24 = Color(0x3D5E5D6B);
+  static const night700t32 = Color(0x515E5D6B);
+  static const night700t40 = Color(0x665E5D6B);
+  static const night700t48 = Color(0x7A5E5D6B);
 
   static const night900t32 = Color(0x51242435);
   static const night900t64 = Color(0xA3242435);
@@ -147,6 +147,13 @@ abstract class OptimusSemanticColors {
   static const blue800 = Color(0xFF194990);
   static const blue900 = Color(0xFF143A72);
 
+  static const blue300t8 = Color(0x14A2BEE8);
+  static const blue300t16 = Color(0x28A2BEE8);
+  static const blue300t24 = Color(0x3DA2BEE8);
+  static const blue300t32 = Color(0x51A2BEE8);
+  static const blue300t40 = Color(0x66A2BEE8);
+  static const blue300t48 = Color(0x7AA2BEE8);
+
   static const blue500t8 = Color(0x145A8CD6);
   static const blue500t16 = Color(0x285A8CD6);
   static const blue500t24 = Color(0x3D5A8CD6);
@@ -203,6 +210,247 @@ abstract class OptimusSemanticColors {
   static const red600t48 = Color(0x7AD62F29);
 }
 
+abstract class OptimusLightColors {
+  OptimusLightColors._();
+
+  static const neutral0 = OptimusSemanticColors.white;
+  static const neutral25 = OptimusSemanticColors.night100;
+  static const neutral50 = OptimusSemanticColors.night200;
+  static const neutral100 = OptimusSemanticColors.night300;
+  static const neutral200 = OptimusSemanticColors.night400;
+  static const neutral300 = OptimusSemanticColors.night500;
+  static const neutral400 = OptimusSemanticColors.night600;
+  static const neutral500 = OptimusSemanticColors.night700;
+  static const neutral700 = OptimusSemanticColors.night800;
+  static const neutral800 = OptimusSemanticColors.night900;
+  static const neutral900 = OptimusSemanticColors.night900;
+  static const neutral1000 = OptimusSemanticColors.night900;
+
+  static const neutral0t32 = OptimusSemanticColors.whitet32;
+  static const neutral0t64 = OptimusSemanticColors.whitet64;
+  static const neutral500t8 = OptimusSemanticColors.night700t8;
+  static const neutral500t16 = OptimusSemanticColors.night700t16;
+  static const neutral500t24 = OptimusSemanticColors.night700t24;
+  static const neutral500t32 = OptimusSemanticColors.night700t32;
+  static const neutral500t40 = OptimusSemanticColors.night700t40;
+  static const neutral500t48 = OptimusSemanticColors.night700t48;
+  static const neutral1000t32 = OptimusSemanticColors.night900t32;
+  static const neutral1000t64 = OptimusSemanticColors.night900t64;
+
+  static const primary50 = OptimusSemanticColors.indigo100;
+  static const primary100 = OptimusSemanticColors.indigo200;
+  static const primary200 = OptimusSemanticColors.indigo200;
+  static const primary300 = OptimusSemanticColors.indigo300;
+  static const primary400 = OptimusSemanticColors.indigo400;
+  static const primary500 = OptimusSemanticColors.indigo500;
+  static const primary700 = OptimusSemanticColors.indigo600;
+  static const primary800 = OptimusSemanticColors.indigo800;
+  static const primary900 = OptimusSemanticColors.indigo900;
+
+  static const primary500t8 = OptimusSemanticColors.indigo500t8;
+  static const primary500t16 = OptimusSemanticColors.indigo500t16;
+  static const primary500t24 = OptimusSemanticColors.indigo500t24;
+  static const primary500t32 = OptimusSemanticColors.indigo500t32;
+  static const primary500t40 = OptimusSemanticColors.indigo500t40;
+  static const primary500t48 = OptimusSemanticColors.indigo500t48;
+
+  static const success50 = OptimusSemanticColors.green100;
+  static const success100 = OptimusSemanticColors.green200;
+  static const success200 = OptimusSemanticColors.green300;
+  static const success300 = OptimusSemanticColors.green400;
+  static const success400 = OptimusSemanticColors.green500;
+  static const success500 = OptimusSemanticColors.green700;
+  static const success700 = OptimusSemanticColors.green800;
+  static const success800 = OptimusSemanticColors.green800;
+  static const success900 = OptimusSemanticColors.green900;
+
+  static const success500t8 = OptimusSemanticColors.green700t8;
+  static const success500t16 = OptimusSemanticColors.green700t16;
+  static const success500t24 = OptimusSemanticColors.green700t24;
+  static const success500t32 = OptimusSemanticColors.green700t32;
+  static const success500t40 = OptimusSemanticColors.green700t40;
+  static const success500t48 = OptimusSemanticColors.green700t48;
+
+  static const info50 = OptimusSemanticColors.blue100;
+  static const info100 = OptimusSemanticColors.blue200;
+  static const info200 = OptimusSemanticColors.blue300;
+  static const info300 = OptimusSemanticColors.blue400;
+  static const info400 = OptimusSemanticColors.blue500;
+  static const info500 = OptimusSemanticColors.blue600;
+  static const info700 = OptimusSemanticColors.blue700;
+  static const info800 = OptimusSemanticColors.blue800;
+  static const info900 = OptimusSemanticColors.blue900;
+
+  static const info500t8 = OptimusSemanticColors.blue600t8;
+  static const info500t16 = OptimusSemanticColors.blue600t16;
+  static const info500t24 = OptimusSemanticColors.blue600t24;
+  static const info500t32 = OptimusSemanticColors.blue600t32;
+  static const info500t40 = OptimusSemanticColors.blue600t40;
+  static const info500t48 = OptimusSemanticColors.blue600t48;
+
+  static const warning50 = OptimusSemanticColors.yellow100;
+  static const warning100 = OptimusSemanticColors.yellow200;
+  static const warning200 = OptimusSemanticColors.yellow200;
+  static const warning300 = OptimusSemanticColors.yellow300;
+  static const warning400 = OptimusSemanticColors.yellow400;
+  static const warning500 = OptimusSemanticColors.yellow500;
+  static const warning700 = OptimusSemanticColors.yellow600;
+  static const warning800 = OptimusSemanticColors.yellow800;
+  static const warning900 = OptimusSemanticColors.yellow900;
+
+  static const warning500t8 = OptimusSemanticColors.yellow500t8;
+  static const warning500t16 = OptimusSemanticColors.yellow500t16;
+  static const warning500t24 = OptimusSemanticColors.yellow500t24;
+  static const warning500t32 = OptimusSemanticColors.yellow500t32;
+  static const warning500t40 = OptimusSemanticColors.yellow500t40;
+  static const warning500t48 = OptimusSemanticColors.yellow500t48;
+
+  static const danger50 = OptimusSemanticColors.red100;
+  static const danger100 = OptimusSemanticColors.red200;
+  static const danger200 = OptimusSemanticColors.red300;
+  static const danger300 = OptimusSemanticColors.red400;
+  static const danger400 = OptimusSemanticColors.red500;
+  static const danger500 = OptimusSemanticColors.red600;
+  static const danger700 = OptimusSemanticColors.red700;
+  static const danger800 = OptimusSemanticColors.red800;
+  static const danger900 = OptimusSemanticColors.red900;
+
+  static const danger500t8 = OptimusSemanticColors.red600t8;
+  static const danger500t16 = OptimusSemanticColors.red600t16;
+  static const danger500t24 = OptimusSemanticColors.red600t24;
+  static const danger500t32 = OptimusSemanticColors.red600t32;
+  static const danger500t40 = OptimusSemanticColors.red600t40;
+  static const danger500t48 = OptimusSemanticColors.red600t48;
+
+  static const basic = neutral500;
+  static const primary = primary500;
+  static const success = success500;
+  static const info = info500;
+  static const warning = warning500;
+  static const danger = danger500;
+}
+
+abstract class OptimusDarkColors {
+  OptimusDarkColors._();
+
+  static const neutral0 = OptimusSemanticColors.white;
+  static const neutral25 = OptimusSemanticColors.grey100;
+  static const neutral50 = OptimusSemanticColors.grey200;
+  static const neutral100 = OptimusSemanticColors.grey300;
+  static const neutral200 = OptimusSemanticColors.grey500;
+  static const neutral300 = OptimusSemanticColors.grey600;
+  static const neutral400 = OptimusSemanticColors.grey700;
+  static const neutral500 = OptimusSemanticColors.grey1000;
+  static const neutral700 = OptimusSemanticColors.grey1000;
+  static const neutral800 = OptimusSemanticColors.grey1000;
+  static const neutral900 = OptimusSemanticColors.grey1100;
+  static const neutral1000 = OptimusSemanticColors.grey1100;
+
+  static const neutral0t32 = OptimusSemanticColors.whitet32;
+  static const neutral0t64 = OptimusSemanticColors.whitet64;
+
+  static const neutral500t8 = OptimusSemanticColors.grey1000t8;
+  static const neutral500t16 = OptimusSemanticColors.grey1000t16;
+  static const neutral500t24 = OptimusSemanticColors.grey1000t24;
+  static const neutral500t32 = OptimusSemanticColors.grey1000t32;
+  static const neutral500t40 = OptimusSemanticColors.grey1000t40;
+  static const neutral500t48 = OptimusSemanticColors.grey1000t48;
+  static const neutral1000t32 = OptimusSemanticColors.grey1100t32;
+  static const neutral1000t64 = OptimusSemanticColors.grey1100t64;
+
+  static const primary50 = OptimusSemanticColors.blue100;
+  static const primary100 = OptimusSemanticColors.blue100;
+  static const primary200 = OptimusSemanticColors.blue100;
+  static const primary300 = OptimusSemanticColors.blue100;
+  static const primary400 = OptimusSemanticColors.blue200;
+  static const primary500 = OptimusSemanticColors.blue300;
+  static const primary700 = OptimusSemanticColors.blue400;
+  static const primary800 = OptimusSemanticColors.blue500;
+  static const primary900 = OptimusSemanticColors.blue600;
+
+  static const primary500t8 = OptimusSemanticColors.blue300t8;
+  static const primary500t16 = OptimusSemanticColors.blue300t16;
+  static const primary500t24 = OptimusSemanticColors.blue300t24;
+  static const primary500t32 = OptimusSemanticColors.blue300t32;
+  static const primary500t40 = OptimusSemanticColors.blue300t40;
+  static const primary500t48 = OptimusSemanticColors.blue300t48;
+
+  static const success50 = OptimusSemanticColors.green100;
+  static const success100 = OptimusSemanticColors.green100;
+  static const success200 = OptimusSemanticColors.green200;
+  static const success300 = OptimusSemanticColors.green300;
+  static const success400 = OptimusSemanticColors.green400;
+  static const success500 = OptimusSemanticColors.green500;
+  static const success700 = OptimusSemanticColors.green600;
+  static const success800 = OptimusSemanticColors.green700;
+  static const success900 = OptimusSemanticColors.green800;
+
+  static const success500t8 = OptimusSemanticColors.green500t8;
+  static const success500t16 = OptimusSemanticColors.green500t16;
+  static const success500t24 = OptimusSemanticColors.green500t24;
+  static const success500t32 = OptimusSemanticColors.green500t32;
+  static const success500t40 = OptimusSemanticColors.green500t40;
+  static const success500t48 = OptimusSemanticColors.green500t48;
+
+  static const info50 = OptimusSemanticColors.blue100;
+  static const info100 = OptimusSemanticColors.blue100;
+  static const info200 = OptimusSemanticColors.blue200;
+  static const info300 = OptimusSemanticColors.blue300;
+  static const info400 = OptimusSemanticColors.blue400;
+  static const info500 = OptimusSemanticColors.blue500;
+  static const info700 = OptimusSemanticColors.blue600;
+  static const info800 = OptimusSemanticColors.blue700;
+  static const info900 = OptimusSemanticColors.blue800;
+
+  static const info500t8 = OptimusSemanticColors.blue500t8;
+  static const info500t16 = OptimusSemanticColors.blue500t16;
+  static const info500t24 = OptimusSemanticColors.blue500t24;
+  static const info500t32 = OptimusSemanticColors.blue500t32;
+  static const info500t40 = OptimusSemanticColors.blue500t40;
+  static const info500t48 = OptimusSemanticColors.blue500t48;
+
+  static const warning50 = OptimusSemanticColors.yellow100;
+  static const warning100 = OptimusSemanticColors.yellow200;
+  static const warning200 = OptimusSemanticColors.yellow200;
+  static const warning300 = OptimusSemanticColors.yellow300;
+  static const warning400 = OptimusSemanticColors.yellow400;
+  static const warning500 = OptimusSemanticColors.yellow500;
+  static const warning700 = OptimusSemanticColors.yellow600;
+  static const warning800 = OptimusSemanticColors.yellow700;
+  static const warning900 = OptimusSemanticColors.yellow800;
+
+  static const warning500t8 = OptimusSemanticColors.yellow500t8;
+  static const warning500t16 = OptimusSemanticColors.yellow500t16;
+  static const warning500t24 = OptimusSemanticColors.yellow500t24;
+  static const warning500t32 = OptimusSemanticColors.yellow500t32;
+  static const warning500t40 = OptimusSemanticColors.yellow500t40;
+  static const warning500t48 = OptimusSemanticColors.yellow500t48;
+
+  static const danger50 = OptimusSemanticColors.red100;
+  static const danger100 = OptimusSemanticColors.red100;
+  static const danger200 = OptimusSemanticColors.red200;
+  static const danger300 = OptimusSemanticColors.red300;
+  static const danger400 = OptimusSemanticColors.red400;
+  static const danger500 = OptimusSemanticColors.red500;
+  static const danger700 = OptimusSemanticColors.red600;
+  static const danger800 = OptimusSemanticColors.red700;
+  static const danger900 = OptimusSemanticColors.red800;
+
+  static const danger500t8 = OptimusSemanticColors.red500t8;
+  static const danger500t16 = OptimusSemanticColors.red500t16;
+  static const danger500t24 = OptimusSemanticColors.red500t24;
+  static const danger500t32 = OptimusSemanticColors.red500t32;
+  static const danger500t40 = OptimusSemanticColors.red500t40;
+  static const danger500t48 = OptimusSemanticColors.red500t48;
+
+  static const basic = neutral500;
+  static const primary = primary500;
+  static const success = success500;
+  static const info = info500;
+  static const warning = warning500;
+  static const danger = danger500;
+}
+
 class OptimusColors {
   OptimusColors(this.brightness);
 
@@ -219,351 +467,358 @@ class OptimusColors {
 
   bool get _isLight => brightness == Brightness.light;
 
-  Color get selectedTabItemColor => _isLight ? neutral1000 : neutral0;
+  Color get selectedTabItemColor =>
+      _isLight ? OptimusLightColors.neutral1000 : OptimusDarkColors.neutral0;
 
-  Color get unselectedTabItemColor => _isLight ? neutral1000t64 : neutral0t64;
+  Color get unselectedTabItemColor => _isLight
+      ? OptimusLightColors.neutral1000t64
+      : OptimusDarkColors.neutral0t64;
 
-  Color get bottomTabBarBackground => _isLight ? neutral0 : neutral800;
+  Color get bottomTabBarBackground =>
+      _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral800;
 
-  Color get background => _isLight ? neutral0 : neutral1000;
+  Color get background =>
+      _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral1000;
 
-  Color get horizontalBorder => _isLight ? neutral50 : neutral400;
+  Color get horizontalBorder =>
+      _isLight ? OptimusLightColors.neutral50 : OptimusDarkColors.neutral400;
 
-  Color get neutral0 => OptimusSemanticColors.white;
+  Color get neutral0 =>
+      _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral0;
 
   Color get neutral25 =>
-      _isLight ? OptimusSemanticColors.night100 : OptimusSemanticColors.grey100;
+      _isLight ? OptimusLightColors.neutral25 : OptimusDarkColors.neutral25;
 
   Color get neutral50 =>
-      _isLight ? OptimusSemanticColors.night200 : OptimusSemanticColors.grey200;
+      _isLight ? OptimusLightColors.neutral50 : OptimusDarkColors.neutral50;
 
   Color get neutral100 =>
-      _isLight ? OptimusSemanticColors.night300 : OptimusSemanticColors.grey300;
+      _isLight ? OptimusLightColors.neutral100 : OptimusDarkColors.neutral100;
 
   Color get neutral200 =>
-      _isLight ? OptimusSemanticColors.night400 : OptimusSemanticColors.grey500;
+      _isLight ? OptimusLightColors.neutral200 : OptimusDarkColors.neutral200;
 
   Color get neutral300 =>
-      _isLight ? OptimusSemanticColors.night500 : OptimusSemanticColors.grey600;
+      _isLight ? OptimusLightColors.neutral300 : OptimusDarkColors.neutral300;
 
   Color get neutral400 =>
-      _isLight ? OptimusSemanticColors.night600 : OptimusSemanticColors.grey700;
+      _isLight ? OptimusLightColors.neutral400 : OptimusDarkColors.neutral400;
 
-  Color get neutral500 => _isLight
-      ? OptimusSemanticColors.night700
-      : OptimusSemanticColors.grey1000;
+  Color get neutral500 =>
+      _isLight ? OptimusLightColors.neutral500 : OptimusDarkColors.neutral500;
 
-  Color get neutral700 => _isLight
-      ? OptimusSemanticColors.night800
-      : OptimusSemanticColors.grey1000;
+  Color get neutral700 =>
+      _isLight ? OptimusLightColors.neutral700 : OptimusDarkColors.neutral700;
 
-  Color get neutral800 => _isLight
-      ? OptimusSemanticColors.night900
-      : OptimusSemanticColors.grey1000;
+  Color get neutral800 =>
+      _isLight ? OptimusLightColors.neutral800 : OptimusDarkColors.neutral800;
 
-  Color get neutral900 => _isLight
-      ? OptimusSemanticColors.night900
-      : OptimusSemanticColors.grey1100;
+  Color get neutral900 =>
+      _isLight ? OptimusLightColors.neutral900 : OptimusDarkColors.neutral900;
 
-  Color get neutral1000 => _isLight
-      ? OptimusSemanticColors.night900
-      : OptimusSemanticColors.grey1100;
+  Color get neutral1000 =>
+      _isLight ? OptimusLightColors.neutral1000 : OptimusDarkColors.neutral1000;
 
-  Color get neutral0t32 => OptimusSemanticColors.whitet32;
+  Color get neutral0t32 =>
+      _isLight ? OptimusLightColors.neutral0t32 : OptimusDarkColors.neutral0t32;
 
-  Color get neutral0t64 => OptimusSemanticColors.whitet64;
+  Color get neutral0t64 =>
+      _isLight ? OptimusLightColors.neutral0t64 : OptimusDarkColors.neutral0t64;
 
   Color get neutral500t8 => _isLight
-      ? OptimusSemanticColors.night500t8
-      : OptimusSemanticColors.grey1000t8;
+      ? OptimusLightColors.neutral500t8
+      : OptimusDarkColors.neutral500t8;
 
   Color get neutral500t16 => _isLight
-      ? OptimusSemanticColors.night500t16
-      : OptimusSemanticColors.grey1000t16;
+      ? OptimusLightColors.neutral500t16
+      : OptimusDarkColors.neutral500t16;
 
   Color get neutral500t24 => _isLight
-      ? OptimusSemanticColors.night500t24
-      : OptimusSemanticColors.grey1000t24;
+      ? OptimusLightColors.neutral500t24
+      : OptimusDarkColors.neutral500t24;
 
   Color get neutral500t32 => _isLight
-      ? OptimusSemanticColors.night500t32
-      : OptimusSemanticColors.grey1000t32;
+      ? OptimusLightColors.neutral500t32
+      : OptimusDarkColors.neutral500t32;
 
   Color get neutral500t40 => _isLight
-      ? OptimusSemanticColors.night500t40
-      : OptimusSemanticColors.grey1000t40;
+      ? OptimusLightColors.neutral500t40
+      : OptimusDarkColors.neutral500t40;
 
   Color get neutral500t48 => _isLight
-      ? OptimusSemanticColors.night500t48
-      : OptimusSemanticColors.grey1000t48;
+      ? OptimusLightColors.neutral500t48
+      : OptimusDarkColors.neutral500t48;
 
   Color get neutral1000t32 => _isLight
-      ? OptimusSemanticColors.night900t32
-      : OptimusSemanticColors.grey1100t32;
+      ? OptimusLightColors.neutral1000t32
+      : OptimusDarkColors.neutral1000t32;
 
   Color get neutral1000t64 => _isLight
-      ? OptimusSemanticColors.night900t64
-      : OptimusSemanticColors.grey1100t64;
+      ? OptimusLightColors.neutral1000t64
+      : OptimusDarkColors.neutral1000t64;
 
-  Color get primary50 => OptimusSemanticColors.indigo100;
+  Color get primary50 =>
+      _isLight ? OptimusLightColors.primary50 : OptimusDarkColors.primary50;
 
-  Color get primary100 => _isLight
-      ? OptimusSemanticColors.indigo200
-      : OptimusSemanticColors.indigo100;
+  Color get primary100 =>
+      _isLight ? OptimusLightColors.primary100 : OptimusDarkColors.primary100;
 
-  Color get primary200 => _isLight
-      ? OptimusSemanticColors.indigo200
-      : OptimusSemanticColors.indigo100;
+  Color get primary200 =>
+      _isLight ? OptimusLightColors.primary200 : OptimusDarkColors.primary200;
 
-  Color get primary300 => _isLight
-      ? OptimusSemanticColors.indigo300
-      : OptimusSemanticColors.indigo100;
+  Color get primary300 =>
+      _isLight ? OptimusLightColors.primary300 : OptimusDarkColors.primary300;
 
-  Color get primary400 => _isLight
-      ? OptimusSemanticColors.indigo400
-      : OptimusSemanticColors.indigo200;
+  Color get primary400 =>
+      _isLight ? OptimusLightColors.primary400 : OptimusDarkColors.primary400;
 
-  Color get primary500 => _isLight
-      ? OptimusSemanticColors.indigo500
-      : OptimusSemanticColors.indigo300;
+  Color get primary500 =>
+      _isLight ? OptimusLightColors.primary500 : OptimusDarkColors.primary500;
 
-  Color get primary700 => _isLight
-      ? OptimusSemanticColors.indigo600
-      : OptimusSemanticColors.indigo400;
+  Color get primary700 =>
+      _isLight ? OptimusLightColors.primary700 : OptimusDarkColors.primary700;
 
-  Color get primary800 => _isLight
-      ? OptimusSemanticColors.indigo800
-      : OptimusSemanticColors.indigo500;
+  Color get primary800 =>
+      _isLight ? OptimusLightColors.primary800 : OptimusDarkColors.primary800;
 
-  Color get primary900 => _isLight
-      ? OptimusSemanticColors.indigo900
-      : OptimusSemanticColors.indigo600;
+  Color get primary900 =>
+      _isLight ? OptimusLightColors.primary900 : OptimusDarkColors.primary900;
 
   Color get primary500t8 => _isLight
-      ? OptimusSemanticColors.indigo500t8
-      : OptimusSemanticColors.indigo300t8;
+      ? OptimusLightColors.primary500t8
+      : OptimusDarkColors.primary500t8;
 
   Color get primary500t16 => _isLight
-      ? OptimusSemanticColors.indigo500t16
-      : OptimusSemanticColors.indigo300t16;
+      ? OptimusLightColors.primary500t16
+      : OptimusDarkColors.primary500t16;
 
   Color get primary500t24 => _isLight
-      ? OptimusSemanticColors.indigo500t24
-      : OptimusSemanticColors.indigo300t24;
+      ? OptimusLightColors.primary500t24
+      : OptimusDarkColors.primary500t24;
 
   Color get primary500t32 => _isLight
-      ? OptimusSemanticColors.indigo500t32
-      : OptimusSemanticColors.indigo300t32;
+      ? OptimusLightColors.primary500t32
+      : OptimusDarkColors.primary500t32;
 
   Color get primary500t40 => _isLight
-      ? OptimusSemanticColors.indigo500t40
-      : OptimusSemanticColors.indigo300t40;
+      ? OptimusLightColors.primary500t40
+      : OptimusDarkColors.primary500t40;
 
   Color get primary500t48 => _isLight
-      ? OptimusSemanticColors.indigo500t48
-      : OptimusSemanticColors.indigo300t48;
+      ? OptimusLightColors.primary500t48
+      : OptimusDarkColors.primary500t48;
 
-  Color get success50 => OptimusSemanticColors.green100;
+  Color get success50 =>
+      _isLight ? OptimusLightColors.success50 : OptimusDarkColors.success50;
 
-  Color get success100 => _isLight
-      ? OptimusSemanticColors.green200
-      : OptimusSemanticColors.green100;
+  Color get success100 =>
+      _isLight ? OptimusLightColors.success100 : OptimusDarkColors.success100;
 
-  Color get success200 => _isLight
-      ? OptimusSemanticColors.green300
-      : OptimusSemanticColors.green200;
+  Color get success200 =>
+      _isLight ? OptimusLightColors.success200 : OptimusDarkColors.success200;
 
-  Color get success300 => _isLight
-      ? OptimusSemanticColors.green400
-      : OptimusSemanticColors.green300;
+  Color get success300 =>
+      _isLight ? OptimusLightColors.success300 : OptimusDarkColors.success300;
 
-  Color get success400 => _isLight
-      ? OptimusSemanticColors.green500
-      : OptimusSemanticColors.green400;
+  Color get success400 =>
+      _isLight ? OptimusLightColors.success400 : OptimusDarkColors.success400;
 
-  Color get success500 => _isLight
-      ? OptimusSemanticColors.green700
-      : OptimusSemanticColors.green500;
+  Color get success500 =>
+      _isLight ? OptimusLightColors.success500 : OptimusDarkColors.success500;
 
-  Color get success700 => _isLight
-      ? OptimusSemanticColors.green800
-      : OptimusSemanticColors.green600;
+  Color get success700 =>
+      _isLight ? OptimusLightColors.success700 : OptimusDarkColors.success700;
 
-  Color get success800 => _isLight
-      ? OptimusSemanticColors.green800
-      : OptimusSemanticColors.green700;
+  Color get success800 =>
+      _isLight ? OptimusLightColors.success800 : OptimusDarkColors.success800;
 
-  Color get success900 => _isLight
-      ? OptimusSemanticColors.green900
-      : OptimusSemanticColors.green800;
+  Color get success900 =>
+      _isLight ? OptimusLightColors.success900 : OptimusDarkColors.success900;
 
   Color get success500t8 => _isLight
-      ? OptimusSemanticColors.green700t8
-      : OptimusSemanticColors.green500t8;
+      ? OptimusLightColors.success500t8
+      : OptimusDarkColors.success500t8;
 
   Color get success500t16 => _isLight
-      ? OptimusSemanticColors.green700t16
-      : OptimusSemanticColors.green500t16;
+      ? OptimusLightColors.success500t16
+      : OptimusDarkColors.success500t16;
 
   Color get success500t24 => _isLight
-      ? OptimusSemanticColors.green700t24
-      : OptimusSemanticColors.green500t24;
+      ? OptimusLightColors.success500t24
+      : OptimusDarkColors.success500t24;
 
   Color get success500t32 => _isLight
-      ? OptimusSemanticColors.green700t32
-      : OptimusSemanticColors.green500t32;
+      ? OptimusLightColors.success500t32
+      : OptimusDarkColors.success500t32;
 
   Color get success500t40 => _isLight
-      ? OptimusSemanticColors.green700t40
-      : OptimusSemanticColors.green500t40;
+      ? OptimusLightColors.success500t40
+      : OptimusDarkColors.success500t40;
 
   Color get success500t48 => _isLight
-      ? OptimusSemanticColors.green700t48
-      : OptimusSemanticColors.green500t48;
+      ? OptimusLightColors.success500t48
+      : OptimusDarkColors.success500t48;
 
-  Color get info50 => OptimusSemanticColors.blue100;
+  Color get info50 =>
+      _isLight ? OptimusLightColors.info50 : OptimusDarkColors.info50;
 
   Color get info100 =>
-      _isLight ? OptimusSemanticColors.blue200 : OptimusSemanticColors.blue100;
+      _isLight ? OptimusLightColors.info100 : OptimusDarkColors.info100;
 
   Color get info200 =>
-      _isLight ? OptimusSemanticColors.blue300 : OptimusSemanticColors.blue200;
+      _isLight ? OptimusLightColors.info200 : OptimusDarkColors.info200;
 
   Color get info300 =>
-      _isLight ? OptimusSemanticColors.blue400 : OptimusSemanticColors.blue300;
+      _isLight ? OptimusLightColors.info300 : OptimusDarkColors.info300;
 
   Color get info400 =>
-      _isLight ? OptimusSemanticColors.blue500 : OptimusSemanticColors.blue400;
+      _isLight ? OptimusLightColors.info400 : OptimusDarkColors.info400;
 
   Color get info500 =>
-      _isLight ? OptimusSemanticColors.blue600 : OptimusSemanticColors.blue500;
+      _isLight ? OptimusLightColors.info500 : OptimusDarkColors.info500;
 
   Color get info700 =>
-      _isLight ? OptimusSemanticColors.blue700 : OptimusSemanticColors.blue600;
+      _isLight ? OptimusLightColors.info700 : OptimusDarkColors.info700;
 
   Color get info800 =>
-      _isLight ? OptimusSemanticColors.blue800 : OptimusSemanticColors.blue700;
+      _isLight ? OptimusLightColors.info800 : OptimusDarkColors.info800;
 
   Color get info900 =>
-      _isLight ? OptimusSemanticColors.blue900 : OptimusSemanticColors.blue800;
+      _isLight ? OptimusLightColors.info900 : OptimusDarkColors.info900;
 
-  Color get info500t8 => _isLight
-      ? OptimusSemanticColors.blue600t8
-      : OptimusSemanticColors.blue500t8;
+  Color get info500t8 =>
+      _isLight ? OptimusLightColors.info500t8 : OptimusDarkColors.info500t8;
 
-  Color get info500t16 => _isLight
-      ? OptimusSemanticColors.blue600t16
-      : OptimusSemanticColors.blue500t16;
+  Color get info500t16 =>
+      _isLight ? OptimusLightColors.info500t16 : OptimusDarkColors.info500t16;
 
-  Color get info500t24 => _isLight
-      ? OptimusSemanticColors.blue600t24
-      : OptimusSemanticColors.blue500t24;
+  Color get info500t24 =>
+      _isLight ? OptimusLightColors.info500t24 : OptimusDarkColors.info500t24;
 
-  Color get info500t32 => _isLight
-      ? OptimusSemanticColors.blue600t32
-      : OptimusSemanticColors.blue500t32;
+  Color get info500t32 =>
+      _isLight ? OptimusLightColors.info500t32 : OptimusDarkColors.info500t32;
 
-  Color get info500t40 => _isLight
-      ? OptimusSemanticColors.blue600t40
-      : OptimusSemanticColors.blue500t40;
+  Color get info500t40 =>
+      _isLight ? OptimusLightColors.info500t40 : OptimusDarkColors.info500t40;
 
-  Color get info500t48 => _isLight
-      ? OptimusSemanticColors.blue600t48
-      : OptimusSemanticColors.blue500t48;
+  Color get info500t48 =>
+      _isLight ? OptimusLightColors.info500t48 : OptimusDarkColors.info500t48;
 
-  Color get warning50 => OptimusSemanticColors.yellow100;
+  Color get warning50 =>
+      _isLight ? OptimusLightColors.warning50 : OptimusDarkColors.warning50;
 
-  Color get warning100 => OptimusSemanticColors.yellow200;
+  Color get warning100 =>
+      _isLight ? OptimusLightColors.warning100 : OptimusDarkColors.warning100;
 
-  Color get warning200 => OptimusSemanticColors.yellow200;
+  Color get warning200 =>
+      _isLight ? OptimusLightColors.warning200 : OptimusDarkColors.warning200;
 
-  Color get warning300 => OptimusSemanticColors.yellow300;
+  Color get warning300 =>
+      _isLight ? OptimusLightColors.warning300 : OptimusDarkColors.warning300;
 
-  Color get warning400 => OptimusSemanticColors.yellow400;
+  Color get warning400 =>
+      _isLight ? OptimusLightColors.warning400 : OptimusDarkColors.warning400;
 
-  Color get warning500 => OptimusSemanticColors.yellow500;
+  Color get warning500 =>
+      _isLight ? OptimusLightColors.warning500 : OptimusDarkColors.warning500;
 
-  Color get warning700 => OptimusSemanticColors.yellow600;
+  Color get warning700 =>
+      _isLight ? OptimusLightColors.warning700 : OptimusDarkColors.warning700;
 
-  Color get warning800 => _isLight
-      ? OptimusSemanticColors.yellow800
-      : OptimusSemanticColors.yellow700;
+  Color get warning800 =>
+      _isLight ? OptimusLightColors.warning800 : OptimusDarkColors.warning800;
 
-  Color get warning900 => _isLight
-      ? OptimusSemanticColors.yellow900
-      : OptimusSemanticColors.yellow800;
+  Color get warning900 =>
+      _isLight ? OptimusLightColors.warning900 : OptimusDarkColors.warning900;
 
-  Color get warning500t8 => OptimusSemanticColors.yellow500t8;
+  Color get warning500t8 => _isLight
+      ? OptimusLightColors.warning500t8
+      : OptimusDarkColors.warning500t8;
 
-  Color get warning500t16 => OptimusSemanticColors.yellow500t16;
+  Color get warning500t16 => _isLight
+      ? OptimusLightColors.warning500t16
+      : OptimusDarkColors.warning500t16;
 
-  Color get warning500t24 => OptimusSemanticColors.yellow500t24;
+  Color get warning500t24 => _isLight
+      ? OptimusLightColors.warning500t24
+      : OptimusDarkColors.warning500t24;
 
-  Color get warning500t32 => OptimusSemanticColors.yellow500t32;
+  Color get warning500t32 => _isLight
+      ? OptimusLightColors.warning500t32
+      : OptimusDarkColors.warning500t32;
 
-  Color get warning500t40 => OptimusSemanticColors.yellow500t40;
+  Color get warning500t40 => _isLight
+      ? OptimusLightColors.warning500t40
+      : OptimusDarkColors.warning500t40;
 
-  Color get warning500t48 => OptimusSemanticColors.yellow500t48;
+  Color get warning500t48 => _isLight
+      ? OptimusLightColors.warning500t48
+      : OptimusDarkColors.warning500t48;
 
-  Color get danger50 => OptimusSemanticColors.red100;
+  Color get danger50 =>
+      _isLight ? OptimusLightColors.danger50 : OptimusDarkColors.danger50;
 
   Color get danger100 =>
-      _isLight ? OptimusSemanticColors.red200 : OptimusSemanticColors.red100;
+      _isLight ? OptimusLightColors.danger100 : OptimusDarkColors.danger100;
 
   Color get danger200 =>
-      _isLight ? OptimusSemanticColors.red300 : OptimusSemanticColors.red200;
+      _isLight ? OptimusLightColors.danger200 : OptimusDarkColors.danger200;
 
   Color get danger300 =>
-      _isLight ? OptimusSemanticColors.red400 : OptimusSemanticColors.red300;
+      _isLight ? OptimusLightColors.danger300 : OptimusDarkColors.danger300;
 
   Color get danger400 =>
-      _isLight ? OptimusSemanticColors.red500 : OptimusSemanticColors.red400;
+      _isLight ? OptimusLightColors.danger400 : OptimusDarkColors.danger400;
 
   Color get danger500 =>
-      _isLight ? OptimusSemanticColors.red600 : OptimusSemanticColors.red500;
+      _isLight ? OptimusLightColors.danger500 : OptimusDarkColors.danger500;
 
   Color get danger700 =>
-      _isLight ? OptimusSemanticColors.red700 : OptimusSemanticColors.red600;
+      _isLight ? OptimusLightColors.danger700 : OptimusDarkColors.danger700;
 
   Color get danger800 =>
-      _isLight ? OptimusSemanticColors.red800 : OptimusSemanticColors.red700;
+      _isLight ? OptimusLightColors.danger800 : OptimusDarkColors.danger800;
 
   Color get danger900 =>
-      _isLight ? OptimusSemanticColors.red900 : OptimusSemanticColors.red800;
+      _isLight ? OptimusLightColors.danger900 : OptimusDarkColors.danger900;
 
-  Color get danger500t8 => _isLight
-      ? OptimusSemanticColors.red600t8
-      : OptimusSemanticColors.red500t8;
+  Color get danger500t8 =>
+      _isLight ? OptimusLightColors.danger500t8 : OptimusDarkColors.danger500t8;
 
   Color get danger500t16 => _isLight
-      ? OptimusSemanticColors.red600t16
-      : OptimusSemanticColors.red500t16;
+      ? OptimusLightColors.danger500t16
+      : OptimusDarkColors.danger500t16;
 
   Color get danger500t24 => _isLight
-      ? OptimusSemanticColors.red600t24
-      : OptimusSemanticColors.red500t24;
+      ? OptimusLightColors.danger500t24
+      : OptimusDarkColors.danger500t24;
 
   Color get danger500t32 => _isLight
-      ? OptimusSemanticColors.red600t32
-      : OptimusSemanticColors.red500t32;
+      ? OptimusLightColors.danger500t32
+      : OptimusDarkColors.danger500t32;
 
   Color get danger500t40 => _isLight
-      ? OptimusSemanticColors.red600t40
-      : OptimusSemanticColors.red500t40;
+      ? OptimusLightColors.danger500t40
+      : OptimusDarkColors.danger500t40;
 
   Color get danger500t48 => _isLight
-      ? OptimusSemanticColors.red600t48
-      : OptimusSemanticColors.red500t48;
+      ? OptimusLightColors.danger500t48
+      : OptimusDarkColors.danger500t48;
 
-  Color get basic => neutral500;
+  Color get basic =>
+      _isLight ? OptimusLightColors.basic : OptimusDarkColors.basic;
 
-  Color get primary => primary500;
+  Color get primary =>
+      _isLight ? OptimusLightColors.primary : OptimusDarkColors.primary;
 
-  Color get success => success500;
+  Color get success =>
+      _isLight ? OptimusLightColors.success : OptimusDarkColors.success;
 
-  Color get info => info500;
+  Color get info => _isLight ? OptimusLightColors.info : OptimusDarkColors.info;
 
-  Color get warning => warning500;
+  Color get warning =>
+      _isLight ? OptimusLightColors.warning : OptimusDarkColors.warning;
 
-  Color get danger => danger500;
+  Color get danger =>
+      _isLight ? OptimusLightColors.danger : OptimusDarkColors.danger;
 }
