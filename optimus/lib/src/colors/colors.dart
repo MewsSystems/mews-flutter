@@ -358,22 +358,22 @@ abstract class OptimusDarkColors {
   static const neutral1000t32 = OptimusSemanticColors.grey1100t32;
   static const neutral1000t64 = OptimusSemanticColors.grey1100t64;
 
-  static const primary50 = OptimusSemanticColors.blue100;
-  static const primary100 = OptimusSemanticColors.blue100;
-  static const primary200 = OptimusSemanticColors.blue100;
-  static const primary300 = OptimusSemanticColors.blue100;
-  static const primary400 = OptimusSemanticColors.blue200;
-  static const primary500 = OptimusSemanticColors.blue300;
-  static const primary700 = OptimusSemanticColors.blue400;
-  static const primary800 = OptimusSemanticColors.blue500;
-  static const primary900 = OptimusSemanticColors.blue600;
+  static const primary50 = OptimusSemanticColors.indigo100;
+  static const primary100 = OptimusSemanticColors.indigo100;
+  static const primary200 = OptimusSemanticColors.indigo100;
+  static const primary300 = OptimusSemanticColors.indigo100;
+  static const primary400 = OptimusSemanticColors.indigo200;
+  static const primary500 = OptimusSemanticColors.indigo300;
+  static const primary700 = OptimusSemanticColors.indigo400;
+  static const primary800 = OptimusSemanticColors.indigo500;
+  static const primary900 = OptimusSemanticColors.indigo600;
 
-  static const primary500t8 = OptimusSemanticColors.blue300t8;
-  static const primary500t16 = OptimusSemanticColors.blue300t16;
-  static const primary500t24 = OptimusSemanticColors.blue300t24;
-  static const primary500t32 = OptimusSemanticColors.blue300t32;
-  static const primary500t40 = OptimusSemanticColors.blue300t40;
-  static const primary500t48 = OptimusSemanticColors.blue300t48;
+  static const primary500t8 = OptimusSemanticColors.indigo300t8;
+  static const primary500t16 = OptimusSemanticColors.indigo300t16;
+  static const primary500t24 = OptimusSemanticColors.indigo300t24;
+  static const primary500t32 = OptimusSemanticColors.indigo300t32;
+  static const primary500t40 = OptimusSemanticColors.indigo300t40;
+  static const primary500t48 = OptimusSemanticColors.indigo300t48;
 
   static const success50 = OptimusSemanticColors.green100;
   static const success100 = OptimusSemanticColors.green100;
