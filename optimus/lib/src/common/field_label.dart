@@ -15,7 +15,7 @@ class OptimusFieldLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(bottom: 2),
-        child: OptimusLabelSmall(
+        child: OptimusLabel(
           variation: Variation.variationSecondary,
           child: Text(
             isRequired ? '$label *' : label,
