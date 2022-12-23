@@ -76,9 +76,9 @@ class BaseButton extends StatelessWidget {
   Color _color(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return theme.colors.neutral50;
+        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
       case OptimusButtonVariant.primary:
-        return theme.colors.primary500;
+        return theme.isDark ? theme.colors.primary700 : theme.colors.primary500;
       case OptimusButtonVariant.text:
         return Colors.transparent;
       case OptimusButtonVariant.destructive:
@@ -106,9 +106,9 @@ class BaseButton extends StatelessWidget {
   Color _hoverColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return theme.colors.neutral100;
+        return theme.isDark ? theme.colors.neutral300 : theme.colors.neutral100;
       case OptimusButtonVariant.primary:
-        return theme.colors.primary700;
+        return theme.isDark ? theme.colors.primary400 : theme.colors.primary700;
       case OptimusButtonVariant.text:
         return theme.colors.neutral500t8;
       case OptimusButtonVariant.destructive:
@@ -123,7 +123,7 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.defaultButton:
         return theme.colors.neutral200;
       case OptimusButtonVariant.primary:
-        return theme.colors.primary900;
+        return theme.isDark ? theme.colors.primary500 : theme.colors.primary900;
       case OptimusButtonVariant.text:
         return theme.colors.neutral500t16;
       case OptimusButtonVariant.destructive:
@@ -136,9 +136,9 @@ class BaseButton extends StatelessWidget {
   Color _textColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return theme.colors.neutral500;
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.primary:
-        return theme.colors.neutral0;
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.text:
         // TODO(V): can be changed when final dark theme design is ready.
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;

@@ -143,7 +143,7 @@ extension on OptimusIconColorOption {
       case OptimusIconColorOption.info:
         return theme.colors.info500;
       case OptimusIconColorOption.warning:
-        return theme.colors.warning500;
+        return theme.colors.warning700;
       case OptimusIconColorOption.danger:
         return theme.colors.danger500;
       case OptimusIconColorOption.subtle:
