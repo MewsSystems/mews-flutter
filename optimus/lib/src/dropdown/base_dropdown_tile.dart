@@ -29,12 +29,12 @@ class _BaseDropdownTileState extends State<BaseDropdownTile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           OptimusTypography(
-            resolveStyle: (_) => preset300b,
+            resolveStyle: (_) => preset300s,
             child: widget.title,
           ),
           if (subtitle != null)
             OptimusTypography(
-              resolveStyle: (_) => preset200b,
+              resolveStyle: (_) => preset200s,
               color: OptimusTypographyColor.secondary,
               child: subtitle,
             ),
