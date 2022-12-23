@@ -177,7 +177,7 @@ class _TagState extends State<_Tag> with ThemeGetter {
 
       // TODO(VG): can be changed when final dark theme design is ready.
       case OptimusColorOption.plain:
-        return theme.isDark ? theme.colors.neutral50 : theme.colors.neutral700;
+        return theme.isDark ? theme.colors.neutral50 : theme.colors.neutral200;
       case OptimusColorOption.primary:
         return theme.isDark ? theme.colors.primary500 : theme.colors.primary200;
       case OptimusColorOption.success:
