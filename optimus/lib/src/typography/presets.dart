@@ -41,6 +41,7 @@ const TextStyle baseTextStyle = TextStyle(
     FontFeature('cv10'),
   ],
   height: 1.5,
+  leadingDistribution: TextLeadingDistribution.even,
 );
 
 TextStyle preset700b(Breakpoint breakpoint) {
