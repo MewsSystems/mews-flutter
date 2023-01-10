@@ -7,8 +7,8 @@ const List<BoxShadow> elevation25 = [
   BoxShadow(
     color: _shadowt8,
     offset: Offset(0, 4),
-    blurRadius: 4,
-    spreadRadius: -2,
+    blurRadius: 6,
+    spreadRadius: -1,
   ),
   BoxShadow(
     color: _shadowt16,
