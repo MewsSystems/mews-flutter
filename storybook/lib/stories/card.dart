@@ -25,7 +25,7 @@ final Story cardStory = Story(
         initial: OptimusCardAttachment.none,
         options: _attachments,
       ),
-      child: _content,
+      child: const _Content(),
     );
   },
 );
@@ -51,16 +51,23 @@ final Story nestedCardStory = Story(
         initial: OptimusCardAttachment.none,
         options: _attachments,
       ),
-      child: _content,
+      child: const _Content(),
     );
   },
 );
 
-Widget get _content => Container(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      color: OptimusLightColors.success500t16,
-      child: const Text('Content'),
-    );
+class _Content extends StatelessWidget {
+  const _Content({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+        color: OptimusTheme.of(context).colors.success500t16,
+        child: const Text('Content'),
+      );
+}
 
 final _paddings = OptimusCardSpacing.values.toOptions();
 final _basicCardVariants = OptimusBasicCardVariant.values.toOptions();

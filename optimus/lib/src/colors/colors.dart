@@ -14,23 +14,23 @@ import 'package:flutter/material.dart';
 /// carry no specific semantic information. It serves as a foundation for
 /// the majority of the interface and typography.
 ///
-/// Primary
+/// Indigo
 ///
 /// This color serves as a primary action color across all products for
 /// elements like buttons, links, and as an indication of progress and some
 /// interactive components. Use sparingly to keep the maximum impact.
 ///
-/// Success
+/// Green
 ///
 /// One of the "alert" colors, its purpose is to communicate and convey a
 /// sense of success, safety, and confirmation to the user.
 ///
-/// Info
+/// Blue
 ///
 /// One of the "alert" colors, its purpose is to communicate and convey an
 /// informative and supportive message or feedback.
 ///
-/// Warning
+/// Yellow
 ///
 /// One of the "alert" colors, its purpose is to communicate and convey a
 /// sense of warning, problem, or something that requires attention.
@@ -39,117 +39,288 @@ import 'package:flutter/material.dart';
 ///
 /// One of the "alert" colors, its purpose is to communicate and convey a
 /// sense of danger, error, or destructive action.
+abstract class OptimusSemanticColors {
+  OptimusSemanticColors._();
+
+  static const white = Color(0xFFFFFFFF);
+
+  static const whitet32 = Color(0x51FFFFFF);
+  static const whitet64 = Color(0xA3FFFFFF);
+
+  static const night100 = Color(0xFFF5F5F5);
+  static const night200 = Color(0xFFE7E7E7);
+  static const night300 = Color(0xFFBCBBC2);
+  static const night400 = Color(0xFFA4A3AC);
+  static const night500 = Color(0xFF8B8A94);
+  static const night600 = Color(0xFF72717D);
+  static const night700 = Color(0xFF5E5D6B);
+  static const night800 = Color(0xFF4A4959);
+  static const night900 = Color(0xFF242435);
+
+  static const night700t8 = Color(0x145E5D6B);
+  static const night700t16 = Color(0x285E5D6B);
+  static const night700t24 = Color(0x3D5E5D6B);
+  static const night700t32 = Color(0x515E5D6B);
+  static const night700t40 = Color(0x665E5D6B);
+  static const night700t48 = Color(0x7A5E5D6B);
+
+  static const night900t32 = Color(0x51242435);
+  static const night900t64 = Color(0xA3242435);
+
+  static const grey100 = Color(0xFFEBEBED);
+  static const grey200 = Color(0xFFD5D4D8);
+  static const grey300 = Color(0xFFACAAB3);
+  static const grey400 = Color(0xFF787583);
+  static const grey500 = Color(0xFF585565);
+  static const grey600 = Color(0xFF4C495A);
+  static const grey700 = Color(0xFF403E4F);
+  static const grey800 = Color(0xFF2E2C3F);
+  static const grey900 = Color(0xFF1E1C2B);
+  static const grey1000 = Color(0xFF181621);
+  static const grey1100 = Color(0xFF08070C);
+
+  static const grey1000t8 = Color(0x14181621);
+  static const grey1000t16 = Color(0x28181621);
+  static const grey1000t24 = Color(0x3D181621);
+  static const grey1000t32 = Color(0x51181621);
+  static const grey1000t40 = Color(0x66181621);
+  static const grey1000t48 = Color(0x7A181621);
+
+  static const grey1100t32 = Color(0x5108070C);
+  static const grey1100t64 = Color(0xA308070C);
+
+  static const indigo100 = Color(0xFFEFEFFF);
+  static const indigo200 = Color(0xFFB3B2FB);
+  static const indigo300 = Color(0xFF8B89F3);
+  static const indigo400 = Color(0xFF6C69E8);
+  static const indigo500 = Color(0xFF3E3BD9);
+  static const indigo600 = Color(0xFF2D2BBA);
+  static const indigo700 = Color(0xFF1F1D9C);
+  static const indigo800 = Color(0xFF14127D);
+  static const indigo900 = Color(0xFF0C0B68);
+
+  static const indigo300t8 = Color(0x148B89F3);
+  static const indigo300t16 = Color(0x288B89F3);
+  static const indigo300t24 = Color(0x3D8B89F3);
+  static const indigo300t32 = Color(0x518B89F3);
+  static const indigo300t40 = Color(0x668B89F3);
+  static const indigo300t48 = Color(0x7A8B89F3);
+
+  static const indigo500t8 = Color(0x143E3BD9);
+  static const indigo500t16 = Color(0x283E3BD9);
+  static const indigo500t24 = Color(0x3D3E3BD9);
+  static const indigo500t32 = Color(0x513E3BD9);
+  static const indigo500t40 = Color(0x663E3BD9);
+  static const indigo500t48 = Color(0x7A3E3BD9);
+
+  static const green100 = Color(0xFFEFFDE3);
+  static const green200 = Color(0xFFDDFBC9);
+  static const green300 = Color(0xFFC2F4AB);
+  static const green400 = Color(0xFFA8EA92);
+  static const green500 = Color(0xFF81DD6E);
+  static const green600 = Color(0xFF5BBE51);
+  static const green700 = Color(0xFF39A037);
+  static const green800 = Color(0xFF237F28);
+  static const green900 = Color(0xFF166A1F);
+
+  static const green500t8 = Color(0x1481DD6E);
+  static const green500t16 = Color(0x2881DD6E);
+  static const green500t24 = Color(0x3D81DD6E);
+  static const green500t32 = Color(0x5181DD6E);
+  static const green500t40 = Color(0x6681DD6E);
+  static const green500t48 = Color(0x7A81DD6E);
+
+  static const green700t8 = Color(0x1439A037);
+  static const green700t16 = Color(0x2839A037);
+  static const green700t24 = Color(0x3D39A037);
+  static const green700t32 = Color(0x5139A037);
+  static const green700t40 = Color(0x6639A037);
+  static const green700t48 = Color(0x7A39A037);
+
+  static const blue100 = Color(0xFFE7EEFD);
+  static const blue200 = Color(0xFFD6E2FC);
+  static const blue300 = Color(0xFFA2BEE8);
+  static const blue400 = Color(0xFF80A6DF);
+  static const blue500 = Color(0xFF5A8CD6);
+  static const blue600 = Color(0xFF2365C8);
+  static const blue700 = Color(0xFF205CB6);
+  static const blue800 = Color(0xFF194990);
+  static const blue900 = Color(0xFF143A72);
+
+  static const blue300t8 = Color(0x14A2BEE8);
+  static const blue300t16 = Color(0x28A2BEE8);
+  static const blue300t24 = Color(0x3DA2BEE8);
+  static const blue300t32 = Color(0x51A2BEE8);
+  static const blue300t40 = Color(0x66A2BEE8);
+  static const blue300t48 = Color(0x7AA2BEE8);
+
+  static const blue500t8 = Color(0x145A8CD6);
+  static const blue500t16 = Color(0x285A8CD6);
+  static const blue500t24 = Color(0x3D5A8CD6);
+  static const blue500t32 = Color(0x515A8CD6);
+  static const blue500t40 = Color(0x665A8CD6);
+  static const blue500t48 = Color(0x7A5A8CD6);
+
+  static const blue600t8 = Color(0x142365C8);
+  static const blue600t16 = Color(0x282365C8);
+  static const blue600t24 = Color(0x3D2365C8);
+  static const blue600t32 = Color(0x512365C8);
+  static const blue600t40 = Color(0x662365C8);
+  static const blue600t48 = Color(0x7A2365C8);
+
+  static const yellow100 = Color(0xFFFFFAE1);
+  static const yellow200 = Color(0xFFFFEFB3);
+  static const yellow300 = Color(0xFFFFE48D);
+  static const yellow400 = Color(0xFFFFD871);
+  static const yellow500 = Color(0xFFFFC641);
+  static const yellow600 = Color(0xFFDBA22F);
+  static const yellow700 = Color(0xFFB78121);
+  static const yellow800 = Color(0xFF926115);
+  static const yellow900 = Color(0xFF7B4B0D);
+
+  static const yellow500t8 = Color(0x14FFC641);
+  static const yellow500t16 = Color(0x28FFC641);
+  static const yellow500t24 = Color(0x3DFFC641);
+  static const yellow500t32 = Color(0x51FFC641);
+  static const yellow500t40 = Color(0x66FFC641);
+  static const yellow500t48 = Color(0x7AFFC641);
+
+  static const red100 = Color(0xFFFEDDD8);
+  static const red200 = Color(0xFFFFBBB2);
+  static const red300 = Color(0xFFFD9789);
+  static const red400 = Color(0xFFFC736A);
+  static const red500 = Color(0xFFED4646);
+  static const red600 = Color(0xFFD62F29);
+  static const red700 = Color(0xFFB31C23);
+  static const red800 = Color(0xFF901122);
+  static const red900 = Color(0xFF770A21);
+
+  static const red500t8 = Color(0x14ED4646);
+  static const red500t16 = Color(0x28ED4646);
+  static const red500t24 = Color(0x3DED4646);
+  static const red500t32 = Color(0x51ED4646);
+  static const red500t40 = Color(0x66ED4646);
+  static const red500t48 = Color(0x7AED4646);
+
+  static const red600t8 = Color(0x14D62F29);
+  static const red600t16 = Color(0x28D62F29);
+  static const red600t24 = Color(0x3DD62F29);
+  static const red600t32 = Color(0x51D62F29);
+  static const red600t40 = Color(0x66D62F29);
+  static const red600t48 = Color(0x7AD62F29);
+}
+
 abstract class OptimusLightColors {
   OptimusLightColors._();
 
-  static const neutral0 = Color(0xFFFFFFFF);
-  static const neutral25 = Color(0xFFF3F3F4);
-  static const neutral50 = Color(0xFFE6E6E6);
-  static const neutral100 = Color(0xFFBFBFC0);
-  static const neutral200 = Color(0xFF959597);
-  static const neutral300 = Color(0xFF6B6B6D);
-  static const neutral400 = Color(0xFF4B4B4D);
-  static const neutral500 = Color(0xFF2B2B2E);
-  static const neutral700 = Color(0xFF202023);
-  static const neutral800 = Color(0xFF1A1A1D);
-  static const neutral900 = Color(0xFF101012);
-  static const neutral1000 = Color(0xFF000000);
+  static const neutral0 = OptimusSemanticColors.white;
+  static const neutral25 = OptimusSemanticColors.night100;
+  static const neutral50 = OptimusSemanticColors.night200;
+  static const neutral100 = OptimusSemanticColors.night300;
+  static const neutral200 = OptimusSemanticColors.night400;
+  static const neutral300 = OptimusSemanticColors.night500;
+  static const neutral400 = OptimusSemanticColors.night600;
+  static const neutral500 = OptimusSemanticColors.night700;
+  static const neutral700 = OptimusSemanticColors.night800;
+  static const neutral800 = OptimusSemanticColors.night900;
+  static const neutral900 = OptimusSemanticColors.night900;
+  static const neutral1000 = OptimusSemanticColors.night900;
 
-  static const neutral0t32 = Color(0x52FFFFFF);
-  static const neutral0t64 = Color(0xA3FFFFFF);
-  static const neutral500t8 = Color(0x142B2B2E);
-  static const neutral500t16 = Color(0x282B2B2E);
-  static const neutral500t24 = Color(0x3D2B2B2E);
-  static const neutral500t32 = Color(0x512B2B2E);
-  static const neutral500t40 = Color(0x662B2B2E);
-  static const neutral500t48 = Color(0x7A2B2B2E);
-  static const neutral1000t32 = Color(0x51000000);
-  static const neutral1000t64 = Color(0xA3000000);
+  static const neutral0t32 = OptimusSemanticColors.whitet32;
+  static const neutral0t64 = OptimusSemanticColors.whitet64;
+  static const neutral500t8 = OptimusSemanticColors.night700t8;
+  static const neutral500t16 = OptimusSemanticColors.night700t16;
+  static const neutral500t24 = OptimusSemanticColors.night700t24;
+  static const neutral500t32 = OptimusSemanticColors.night700t32;
+  static const neutral500t40 = OptimusSemanticColors.night700t40;
+  static const neutral500t48 = OptimusSemanticColors.night700t48;
+  static const neutral1000t32 = OptimusSemanticColors.night900t32;
+  static const neutral1000t64 = OptimusSemanticColors.night900t64;
 
-  static const primary50 = Color(0xFFE9EDF8);
-  static const primary100 = Color(0xFFC8D1ED);
-  static const primary200 = Color(0xFFA3B3E1);
-  static const primary300 = Color(0xFF7E95D5);
-  static const primary400 = Color(0xFF627ECC);
-  static const primary500 = Color(0xFF4667C3);
-  static const primary700 = Color(0xFF3754B5);
-  static const primary800 = Color(0xFF2F4AAE);
-  static const primary900 = Color(0xFF2039A1);
+  static const primary50 = OptimusSemanticColors.indigo100;
+  static const primary100 = OptimusSemanticColors.indigo200;
+  static const primary200 = OptimusSemanticColors.indigo200;
+  static const primary300 = OptimusSemanticColors.indigo300;
+  static const primary400 = OptimusSemanticColors.indigo400;
+  static const primary500 = OptimusSemanticColors.indigo500;
+  static const primary700 = OptimusSemanticColors.indigo600;
+  static const primary800 = OptimusSemanticColors.indigo800;
+  static const primary900 = OptimusSemanticColors.indigo900;
 
-  static const primary500t8 = Color(0x144667C3);
-  static const primary500t16 = Color(0x284667C3);
-  static const primary500t24 = Color(0x3D4667C3);
-  static const primary500t32 = Color(0x514667C3);
-  static const primary500t40 = Color(0x664667C3);
-  static const primary500t48 = Color(0x7A4667C3);
+  static const primary500t8 = OptimusSemanticColors.indigo500t8;
+  static const primary500t16 = OptimusSemanticColors.indigo500t16;
+  static const primary500t24 = OptimusSemanticColors.indigo500t24;
+  static const primary500t32 = OptimusSemanticColors.indigo500t32;
+  static const primary500t40 = OptimusSemanticColors.indigo500t40;
+  static const primary500t48 = OptimusSemanticColors.indigo500t48;
 
-  static const success50 = Color(0xFFE6EFEC);
-  static const success100 = Color(0xFFBFD7D1);
-  static const success200 = Color(0xFF95BCB2);
-  static const success300 = Color(0xFF6BA193);
-  static const success400 = Color(0xFF4B8D7B);
-  static const success500 = Color(0xFF2B7964);
-  static const success700 = Color(0xFF206652);
-  static const success800 = Color(0xFF1A5C48);
-  static const success900 = Color(0xFF104936);
+  static const success50 = OptimusSemanticColors.green100;
+  static const success100 = OptimusSemanticColors.green200;
+  static const success200 = OptimusSemanticColors.green300;
+  static const success300 = OptimusSemanticColors.green400;
+  static const success400 = OptimusSemanticColors.green500;
+  static const success500 = OptimusSemanticColors.green700;
+  static const success700 = OptimusSemanticColors.green800;
+  static const success800 = OptimusSemanticColors.green800;
+  static const success900 = OptimusSemanticColors.green900;
 
-  static const success500t8 = Color(0x142B7964);
-  static const success500t16 = Color(0x282B7964);
-  static const success500t24 = Color(0x3D2B7964);
-  static const success500t32 = Color(0x512B7964);
-  static const success500t40 = Color(0x662B7964);
-  static const success500t48 = Color(0x7A2B7964);
+  static const success500t8 = OptimusSemanticColors.green700t8;
+  static const success500t16 = OptimusSemanticColors.green700t16;
+  static const success500t24 = OptimusSemanticColors.green700t24;
+  static const success500t32 = OptimusSemanticColors.green700t32;
+  static const success500t40 = OptimusSemanticColors.green700t40;
+  static const success500t48 = OptimusSemanticColors.green700t48;
 
-  static const info50 = Color(0xFFE6EEF1);
-  static const info100 = Color(0xFFC1D5DC);
-  static const info200 = Color(0xFF98BAC4);
-  static const info300 = Color(0xFF6F9EAC);
-  static const info400 = Color(0xFF50899B);
-  static const info500 = Color(0xFF317489);
-  static const info700 = Color(0xFF256176);
-  static const info800 = Color(0xFF1F576C);
-  static const info900 = Color(0xFF134459);
+  static const info50 = OptimusSemanticColors.blue100;
+  static const info100 = OptimusSemanticColors.blue200;
+  static const info200 = OptimusSemanticColors.blue300;
+  static const info300 = OptimusSemanticColors.blue400;
+  static const info400 = OptimusSemanticColors.blue500;
+  static const info500 = OptimusSemanticColors.blue600;
+  static const info700 = OptimusSemanticColors.blue700;
+  static const info800 = OptimusSemanticColors.blue800;
+  static const info900 = OptimusSemanticColors.blue900;
 
-  static const info500t8 = Color(0x14317489);
-  static const info500t16 = Color(0x28317489);
-  static const info500t24 = Color(0x3D317489);
-  static const info500t32 = Color(0x51317489);
-  static const info500t40 = Color(0x66317489);
-  static const info500t48 = Color(0x7A317489);
+  static const info500t8 = OptimusSemanticColors.blue600t8;
+  static const info500t16 = OptimusSemanticColors.blue600t16;
+  static const info500t24 = OptimusSemanticColors.blue600t24;
+  static const info500t32 = OptimusSemanticColors.blue600t32;
+  static const info500t40 = OptimusSemanticColors.blue600t40;
+  static const info500t48 = OptimusSemanticColors.blue600t48;
 
-  static const warning50 = Color(0xFFFEF3EB);
-  static const warning100 = Color(0xFFFCE0CD);
-  static const warning200 = Color(0xFFFACBAC);
-  static const warning300 = Color(0xFFF8B68B);
-  static const warning400 = Color(0xFFF7A772);
-  static const warning500 = Color(0xFFF59759);
-  static const warning700 = Color(0xFFF28448);
-  static const warning800 = Color(0xFFF07A3E);
-  static const warning900 = Color(0xFFEE692E);
+  static const warning50 = OptimusSemanticColors.yellow100;
+  static const warning100 = OptimusSemanticColors.yellow200;
+  static const warning200 = OptimusSemanticColors.yellow200;
+  static const warning300 = OptimusSemanticColors.yellow300;
+  static const warning400 = OptimusSemanticColors.yellow400;
+  static const warning500 = OptimusSemanticColors.yellow500;
+  static const warning700 = OptimusSemanticColors.yellow600;
+  static const warning800 = OptimusSemanticColors.yellow800;
+  static const warning900 = OptimusSemanticColors.yellow900;
 
-  static const warning500t8 = Color(0x14F59759);
-  static const warning500t16 = Color(0x28F59759);
-  static const warning500t24 = Color(0x3DF59759);
-  static const warning500t32 = Color(0x51F59759);
-  static const warning500t40 = Color(0x66F59759);
-  static const warning500t48 = Color(0x7AF59759);
+  static const warning500t8 = OptimusSemanticColors.yellow500t8;
+  static const warning500t16 = OptimusSemanticColors.yellow500t16;
+  static const warning500t24 = OptimusSemanticColors.yellow500t24;
+  static const warning500t32 = OptimusSemanticColors.yellow500t32;
+  static const warning500t40 = OptimusSemanticColors.yellow500t40;
+  static const warning500t48 = OptimusSemanticColors.yellow500t48;
 
-  static const danger50 = Color(0xFFFAE7E9);
-  static const danger100 = Color(0xFFF3C3C8);
-  static const danger200 = Color(0xFFEB9CA4);
-  static const danger300 = Color(0xFFE2747F);
-  static const danger400 = Color(0xFFDC5663);
-  static const danger500 = Color(0xFFD63848);
-  static const danger700 = Color(0xFFCC2B38);
-  static const danger800 = Color(0xFFC62430);
-  static const danger900 = Color(0xFFBC1721);
+  static const danger50 = OptimusSemanticColors.red100;
+  static const danger100 = OptimusSemanticColors.red200;
+  static const danger200 = OptimusSemanticColors.red300;
+  static const danger300 = OptimusSemanticColors.red400;
+  static const danger400 = OptimusSemanticColors.red500;
+  static const danger500 = OptimusSemanticColors.red600;
+  static const danger700 = OptimusSemanticColors.red700;
+  static const danger800 = OptimusSemanticColors.red800;
+  static const danger900 = OptimusSemanticColors.red900;
 
-  static const danger500t8 = Color(0x14D63848);
-  static const danger500t16 = Color(0x28D63848);
-  static const danger500t24 = Color(0x3DD63848);
-  static const danger500t32 = Color(0x51D63848);
-  static const danger500t40 = Color(0x66D63848);
-  static const danger500t48 = Color(0x7AD63848);
+  static const danger500t8 = OptimusSemanticColors.red600t8;
+  static const danger500t16 = OptimusSemanticColors.red600t16;
+  static const danger500t24 = OptimusSemanticColors.red600t24;
+  static const danger500t32 = OptimusSemanticColors.red600t32;
+  static const danger500t40 = OptimusSemanticColors.red600t40;
+  static const danger500t48 = OptimusSemanticColors.red600t48;
 
   static const basic = neutral500;
   static const primary = primary500;
@@ -162,114 +333,115 @@ abstract class OptimusLightColors {
 abstract class OptimusDarkColors {
   OptimusDarkColors._();
 
-  static const neutral0 = Color(0xFFFFFFFF);
-  static const neutral25 = Color(0xFFF3F3F4);
-  static const neutral50 = Color(0xFFE6E6E6);
-  static const neutral100 = Color(0xFFBFBFC0);
-  static const neutral200 = Color(0xFF959597);
-  static const neutral300 = Color(0xFF6B6B6D);
-  static const neutral400 = Color(0xFF4B4B4D);
-  static const neutral500 = Color(0xFF2B2B2E);
-  static const neutral700 = Color(0xFF202023);
-  static const neutral800 = Color(0xFF1A1A1D);
-  static const neutral900 = Color(0xFF101012);
-  static const neutral1000 = Color(0xFF000000);
+  static const neutral0 = OptimusSemanticColors.white;
+  static const neutral25 = OptimusSemanticColors.grey100;
+  static const neutral50 = OptimusSemanticColors.grey200;
+  static const neutral100 = OptimusSemanticColors.grey300;
+  static const neutral200 = OptimusSemanticColors.grey500;
+  static const neutral300 = OptimusSemanticColors.grey600;
+  static const neutral400 = OptimusSemanticColors.grey700;
+  static const neutral500 = OptimusSemanticColors.grey1000;
+  static const neutral700 = OptimusSemanticColors.grey1000;
+  static const neutral800 = OptimusSemanticColors.grey1000;
+  static const neutral900 = OptimusSemanticColors.grey1100;
+  static const neutral1000 = OptimusSemanticColors.grey1100;
 
-  static const neutral0t32 = Color(0x52FFFFFF);
-  static const neutral0t64 = Color(0xA3FFFFFF);
-  static const neutral500t8 = Color(0x142B2B2E);
-  static const neutral500t16 = Color(0x282B2B2E);
-  static const neutral500t24 = Color(0x3D2B2B2E);
-  static const neutral500t32 = Color(0x512B2B2E);
-  static const neutral500t40 = Color(0x662B2B2E);
-  static const neutral500t48 = Color(0x7A2B2B2E);
-  static const neutral1000t32 = Color(0x51000000);
-  static const neutral1000t64 = Color(0xA3000000);
+  static const neutral0t32 = OptimusSemanticColors.whitet32;
+  static const neutral0t64 = OptimusSemanticColors.whitet64;
 
-  static const primary50 = Color(0xFFF0F2FA);
-  static const primary100 = Color(0xFFD8DFF2);
-  static const primary200 = Color(0xFFBFCAEA);
-  static const primary300 = Color(0xFFA5B5E2);
-  static const primary400 = Color(0xFF91A5DB);
-  static const primary500 = Color(0xFF7E95D5);
-  static const primary700 = Color(0xFF6B82CA);
-  static const primary800 = Color(0xFF6178C4);
-  static const primary900 = Color(0xFF4E67BA);
+  static const neutral500t8 = OptimusSemanticColors.grey1000t8;
+  static const neutral500t16 = OptimusSemanticColors.grey1000t16;
+  static const neutral500t24 = OptimusSemanticColors.grey1000t24;
+  static const neutral500t32 = OptimusSemanticColors.grey1000t32;
+  static const neutral500t40 = OptimusSemanticColors.grey1000t40;
+  static const neutral500t48 = OptimusSemanticColors.grey1000t48;
+  static const neutral1000t32 = OptimusSemanticColors.grey1100t32;
+  static const neutral1000t64 = OptimusSemanticColors.grey1100t64;
 
-  static const primary500t8 = Color(0x147E95D5);
-  static const primary500t16 = Color(0x287E95D5);
-  static const primary500t24 = Color(0x3D7E95D5);
-  static const primary500t32 = Color(0x517E95D5);
-  static const primary500t40 = Color(0x667E95D5);
-  static const primary500t48 = Color(0x7A7E95D5);
+  static const primary50 = OptimusSemanticColors.indigo100;
+  static const primary100 = OptimusSemanticColors.indigo100;
+  static const primary200 = OptimusSemanticColors.indigo100;
+  static const primary300 = OptimusSemanticColors.indigo100;
+  static const primary400 = OptimusSemanticColors.indigo200;
+  static const primary500 = OptimusSemanticColors.indigo300;
+  static const primary700 = OptimusSemanticColors.indigo400;
+  static const primary800 = OptimusSemanticColors.indigo500;
+  static const primary900 = OptimusSemanticColors.indigo600;
 
-  static const success50 = Color(0xFFEDF4F2);
-  static const success100 = Color(0xFFD3E3DF);
-  static const success200 = Color(0xFFB5D0C9);
-  static const success300 = Color(0xFF97BDB3);
-  static const success400 = Color(0xFF81AFA3);
-  static const success500 = Color(0xFF6BA193);
-  static const success700 = Color(0xFF588F80);
-  static const success800 = Color(0xFF4E8576);
-  static const success900 = Color(0xFF3C7464);
+  static const primary500t8 = OptimusSemanticColors.indigo300t8;
+  static const primary500t16 = OptimusSemanticColors.indigo300t16;
+  static const primary500t24 = OptimusSemanticColors.indigo300t24;
+  static const primary500t32 = OptimusSemanticColors.indigo300t32;
+  static const primary500t40 = OptimusSemanticColors.indigo300t40;
+  static const primary500t48 = OptimusSemanticColors.indigo300t48;
 
-  static const success500t8 = Color(0x146BA193);
-  static const success500t16 = Color(0x286BA193);
-  static const success500t24 = Color(0x3D6BA193);
-  static const success500t32 = Color(0x516BA193);
-  static const success500t40 = Color(0x666BA193);
-  static const success500t48 = Color(0x7A6BA193);
+  static const success50 = OptimusSemanticColors.green100;
+  static const success100 = OptimusSemanticColors.green100;
+  static const success200 = OptimusSemanticColors.green200;
+  static const success300 = OptimusSemanticColors.green300;
+  static const success400 = OptimusSemanticColors.green400;
+  static const success500 = OptimusSemanticColors.green500;
+  static const success700 = OptimusSemanticColors.green600;
+  static const success800 = OptimusSemanticColors.green700;
+  static const success900 = OptimusSemanticColors.green800;
 
-  static const info50 = Color(0xFFEEF3F5);
-  static const info100 = Color(0xFFD4E2E6);
-  static const info200 = Color(0xFFB7CFD6);
-  static const info300 = Color(0xFF9ABBC5);
-  static const info400 = Color(0xFF85ADB8);
-  static const info500 = Color(0xFF6F9EAC);
-  static const info700 = Color(0xFF5C8C9B);
-  static const info800 = Color(0xFF528292);
-  static const info900 = Color(0xFF407082);
+  static const success500t8 = OptimusSemanticColors.green500t8;
+  static const success500t16 = OptimusSemanticColors.green500t16;
+  static const success500t24 = OptimusSemanticColors.green500t24;
+  static const success500t32 = OptimusSemanticColors.green500t32;
+  static const success500t40 = OptimusSemanticColors.green500t40;
+  static const success500t48 = OptimusSemanticColors.green500t48;
 
-  static const info500t8 = Color(0x146F9EAC);
-  static const info500t16 = Color(0x286F9EAC);
-  static const info500t24 = Color(0x3D6F9EAC);
-  static const info500t32 = Color(0x516F9EAC);
-  static const info500t40 = Color(0x666F9EAC);
-  static const info500t48 = Color(0x7A6F9EAC);
+  static const info50 = OptimusSemanticColors.blue100;
+  static const info100 = OptimusSemanticColors.blue100;
+  static const info200 = OptimusSemanticColors.blue200;
+  static const info300 = OptimusSemanticColors.blue300;
+  static const info400 = OptimusSemanticColors.blue400;
+  static const info500 = OptimusSemanticColors.blue500;
+  static const info700 = OptimusSemanticColors.blue600;
+  static const info800 = OptimusSemanticColors.blue700;
+  static const info900 = OptimusSemanticColors.blue800;
 
-  static const warning50 = Color(0xFFFEF6F1);
-  static const warning100 = Color(0xFFFDE9DC);
-  static const warning200 = Color(0xFFFCDBC5);
-  static const warning300 = Color(0xFFFACCAE);
-  static const warning400 = Color(0xFFF9C19C);
-  static const warning500 = Color(0xFFF8B68B);
-  static const warning700 = Color(0xFFF6A678);
-  static const warning800 = Color(0xFFF59E6E);
-  static const warning900 = Color(0xFFF38E5B);
+  static const info500t8 = OptimusSemanticColors.blue500t8;
+  static const info500t16 = OptimusSemanticColors.blue500t16;
+  static const info500t24 = OptimusSemanticColors.blue500t24;
+  static const info500t32 = OptimusSemanticColors.blue500t32;
+  static const info500t40 = OptimusSemanticColors.blue500t40;
+  static const info500t48 = OptimusSemanticColors.blue500t48;
 
-  static const warning500t8 = Color(0x14F8B68B);
-  static const warning500t16 = Color(0x28F8B68B);
-  static const warning500t24 = Color(0x3DF8B68B);
-  static const warning500t32 = Color(0x51F8B68B);
-  static const warning500t40 = Color(0x66F8B68B);
-  static const warning500t48 = Color(0x7AF8B68B);
+  static const warning50 = OptimusSemanticColors.yellow100;
+  static const warning100 = OptimusSemanticColors.yellow200;
+  static const warning200 = OptimusSemanticColors.yellow200;
+  static const warning300 = OptimusSemanticColors.yellow300;
+  static const warning400 = OptimusSemanticColors.yellow400;
+  static const warning500 = OptimusSemanticColors.yellow500;
+  static const warning700 = OptimusSemanticColors.yellow600;
+  static const warning800 = OptimusSemanticColors.yellow700;
+  static const warning900 = OptimusSemanticColors.yellow800;
 
-  static const danger50 = Color(0xFFFCEEF0);
-  static const danger100 = Color(0xFFF6D5D9);
-  static const danger200 = Color(0xFFF1BABF);
-  static const danger300 = Color(0xFFEB9EA5);
-  static const danger400 = Color(0xFFE68992);
-  static const danger500 = Color(0xFFE2747F);
-  static const danger700 = Color(0xFFDA616C);
-  static const danger800 = Color(0xFFD65762);
-  static const danger900 = Color(0xFFCF444F);
+  static const warning500t8 = OptimusSemanticColors.yellow500t8;
+  static const warning500t16 = OptimusSemanticColors.yellow500t16;
+  static const warning500t24 = OptimusSemanticColors.yellow500t24;
+  static const warning500t32 = OptimusSemanticColors.yellow500t32;
+  static const warning500t40 = OptimusSemanticColors.yellow500t40;
+  static const warning500t48 = OptimusSemanticColors.yellow500t48;
 
-  static const danger500t8 = Color(0x14E2747F);
-  static const danger500t16 = Color(0x28E2747F);
-  static const danger500t24 = Color(0x3DE2747F);
-  static const danger500t32 = Color(0x51E2747F);
-  static const danger500t40 = Color(0x66E2747F);
-  static const danger500t48 = Color(0x7AE2747F);
+  static const danger50 = OptimusSemanticColors.red100;
+  static const danger100 = OptimusSemanticColors.red100;
+  static const danger200 = OptimusSemanticColors.red200;
+  static const danger300 = OptimusSemanticColors.red300;
+  static const danger400 = OptimusSemanticColors.red400;
+  static const danger500 = OptimusSemanticColors.red500;
+  static const danger700 = OptimusSemanticColors.red600;
+  static const danger800 = OptimusSemanticColors.red700;
+  static const danger900 = OptimusSemanticColors.red800;
+
+  static const danger500t8 = OptimusSemanticColors.red500t8;
+  static const danger500t16 = OptimusSemanticColors.red500t16;
+  static const danger500t24 = OptimusSemanticColors.red500t24;
+  static const danger500t32 = OptimusSemanticColors.red500t32;
+  static const danger500t40 = OptimusSemanticColors.red500t40;
+  static const danger500t48 = OptimusSemanticColors.red500t48;
 
   static const basic = neutral500;
   static const primary = primary500;
