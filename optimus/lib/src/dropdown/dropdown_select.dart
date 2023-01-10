@@ -92,7 +92,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     if (_effectiveFocusNode.hasFocus) {
       WidgetsBinding.instance.addPostFrameCallback(_afterLayoutWithShow);
     } else {
-      setState(_removeOverlay);
+      _removeOverlay();
     }
   }
 
