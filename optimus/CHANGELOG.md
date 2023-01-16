@@ -1,3 +1,17 @@
+## 0.22.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: [RND-131920] Fixed null exception in the dropdown (#296).
+ - **FIX**: [RND-148068] Fix tags vertical alignment (#295).
+ - **FEAT**: [RND-132392] Update elevation values (#294).
+ - **FEAT**: [RND-120947] Replace old semantic colors with new for mobile (#288).
+ - **FEAT**: [RND-146254] Additional changes to the typography (#289).
+ - **FEAT**: [RND-133970] Implement additional icons for mobile (#287).
+ - **FEAT**: [RND-137138] Export borderRadius from mobile package. (#284).
+ - **BREAKING** **FEAT**: [RND-132141] Replace OptimusIcons with new icon library (#285).
+ - **BREAKING** **FEAT**: [RND-134751] Change OpenSans to Inter (#286).
+
 ## 0.21.0
 
 > Note: This release has breaking changes.
