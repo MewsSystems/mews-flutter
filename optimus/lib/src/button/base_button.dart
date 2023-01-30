@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/common.dart';
-import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/typography/presets.dart';
 
-class BaseButton extends StatelessWidget {
+class BaseButton extends StatefulWidget {
   const BaseButton({
     Key? key,
     this.onPressed,
@@ -36,11 +35,18 @@ class BaseButton extends StatelessWidget {
 
   final BorderRadius borderRadius;
 
+  @override
+  State<BaseButton> createState() => _BaseButtonState();
+}
+
+class _BaseButtonState extends State<BaseButton> {
+  bool _isPressed = false;
+
   Widget _buildIcon(IconData icon, OptimusThemeData theme) =>
       Icon(icon, size: _iconSize, color: _textColor(theme));
 
   TextStyle get _textStyle =>
-      size == OptimusWidgetSize.small ? preset200b : preset300b;
+      widget.size == OptimusWidgetSize.small ? preset200b : preset300b;
 
   Widget _buildBadgeLabel(String badgeLabel, OptimusThemeData theme) =>
       SizedBox(
@@ -64,7 +70,7 @@ class BaseButton extends StatelessWidget {
       );
 
   double get _iconSize {
-    switch (size) {
+    switch (widget.size) {
       case OptimusWidgetSize.small:
         return 16;
       case OptimusWidgetSize.medium:
@@ -74,7 +80,7 @@ class BaseButton extends StatelessWidget {
   }
 
   Color _color(OptimusThemeData theme) {
-    switch (variant) {
+    switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
       case OptimusButtonVariant.primary:
@@ -89,7 +95,7 @@ class BaseButton extends StatelessWidget {
   }
 
   Color _badgeTextColor(OptimusThemeData theme) {
-    switch (variant) {
+    switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.colors.neutral0;
       case OptimusButtonVariant.primary:
@@ -104,7 +110,7 @@ class BaseButton extends StatelessWidget {
   }
 
   Color _hoverColor(OptimusThemeData theme) {
-    switch (variant) {
+    switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral300 : theme.colors.neutral100;
       case OptimusButtonVariant.primary:
@@ -119,7 +125,7 @@ class BaseButton extends StatelessWidget {
   }
 
   Color _highLightColor(OptimusThemeData theme) {
-    switch (variant) {
+    switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.colors.neutral200;
       case OptimusButtonVariant.primary:
@@ -129,12 +135,12 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.destructive:
         return theme.colors.danger900;
       case OptimusButtonVariant.warning:
-        return theme.colors.warning900;
+        return theme.colors.warning800;
     }
   }
 
   Color _textColor(OptimusThemeData theme) {
-    switch (variant) {
+    switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.primary:
@@ -145,54 +151,59 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.destructive:
         return theme.colors.neutral0;
       case OptimusButtonVariant.warning:
-        return theme.colors.neutral900;
+        return _isPressed ? theme.colors.neutral0 : theme.colors.neutral900;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final leftIcon = this.leftIcon;
-    final rightIcon = this.rightIcon;
-    final badgeLabel = this.badgeLabel;
+    final leftIcon = widget.leftIcon;
+    final rightIcon = widget.rightIcon;
+    final badgeLabel = widget.badgeLabel;
 
-    return Opacity(
-      opacity: onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
-      child: MaterialButton(
-        minWidth: minWidth,
-        height: size.value,
-        visualDensity: VisualDensity.standard,
-        elevation: 0,
-        highlightElevation: 0,
-        highlightColor: _highLightColor(theme),
-        disabledColor: _color(theme),
-        disabledTextColor: _textColor(theme),
-        hoverElevation: 0,
-        splashColor: Colors.transparent,
-        hoverColor: _hoverColor(theme),
-        onPressed: onPressed,
-        animationDuration: buttonAnimationDuration,
-        shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        color: _color(theme),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (leftIcon != null) _buildIcon(leftIcon, theme),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: spacing100),
-              child: DefaultTextStyle.merge(
-                child: child,
-                style: _textStyle.copyWith(
-                  color: _textColor(theme),
-                  height: 1,
+    return OptimusEnabled(
+      isEnabled: widget.onPressed != null,
+      child: GestureDetector(
+        onTapDown: (_) => setState(() => _isPressed = true),
+        onTapUp: (_) => setState(() => _isPressed = false),
+        onTapCancel: () => setState(() => _isPressed = false),
+        child: MaterialButton(
+          minWidth: widget.minWidth,
+          height: widget.size.value,
+          visualDensity: VisualDensity.standard,
+          elevation: 0,
+          highlightElevation: 0,
+          highlightColor: _highLightColor(theme),
+          disabledColor: _color(theme),
+          disabledTextColor: _textColor(theme),
+          hoverElevation: 0,
+          splashColor: Colors.transparent,
+          hoverColor: _hoverColor(theme),
+          onPressed: widget.onPressed,
+          animationDuration: buttonAnimationDuration,
+          shape: RoundedRectangleBorder(borderRadius: widget.borderRadius),
+          color: _color(theme),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              if (leftIcon != null) _buildIcon(leftIcon, theme),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: spacing100),
+                child: DefaultTextStyle.merge(
+                  child: widget.child,
+                  style: _textStyle.copyWith(
+                    color: _textColor(theme),
+                    height: 1,
+                  ),
                 ),
               ),
-            ),
-            if (badgeLabel != null && badgeLabel.isNotEmpty)
-              _buildBadgeLabel(badgeLabel, theme),
-            if (rightIcon != null) _buildIcon(rightIcon, theme),
-          ],
+              if (badgeLabel != null && badgeLabel.isNotEmpty)
+                _buildBadgeLabel(badgeLabel, theme),
+              if (rightIcon != null) _buildIcon(rightIcon, theme),
+            ],
+          ),
         ),
       ),
     );
