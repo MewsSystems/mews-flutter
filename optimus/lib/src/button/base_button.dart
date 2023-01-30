@@ -53,15 +53,12 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
           borderRadius: const BorderRadius.all(borderRadius200),
           child: Container(
             height: 16,
-            color: _textColor,
+            color: _badgeColor,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: spacing50),
+              padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
               child: Text(
                 badgeLabel,
-                style: preset100s.copyWith(
-                  color: _badgeTextColor,
-                  height: 1.3,
-                ),
+                style: preset50b.copyWith(color: _badgeTextColor),
               ),
             ),
           ),
@@ -96,7 +93,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
   Color get _badgeTextColor {
     switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
-        return theme.colors.neutral0;
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.primary:
         return theme.colors.primary500;
       case OptimusButtonVariant.text:
@@ -138,6 +135,21 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
     }
   }
 
+  Color get _badgeColor {
+    switch (widget.variant) {
+      case OptimusButtonVariant.defaultButton:
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
+      case OptimusButtonVariant.primary:
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
+      case OptimusButtonVariant.text:
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
+      case OptimusButtonVariant.destructive:
+        return theme.colors.neutral0;
+      case OptimusButtonVariant.warning:
+        return theme.colors.neutral900;
+    }
+  }
+
   Color get _textColor {
     switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
@@ -145,7 +157,6 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
       case OptimusButtonVariant.primary:
         return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.text:
-        // TODO(V): can be changed when final dark theme design is ready.
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.destructive:
         return theme.colors.neutral0;
