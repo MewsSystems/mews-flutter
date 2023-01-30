@@ -52,38 +52,19 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  Future<ThemeMode> _getThemeModeFromPreferences() async =>
+      (await SharedPreferences.getInstance()).getString(_keyTheme).toThemeMode;
 
-class _MyAppState extends State<MyApp> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late Future<ThemeMode> _themeMode;
-
-  @override
-  void initState() {
-    super.initState();
-    _themeMode = _getThemeModeFromPreferences();
-  }
-
-  Future<ThemeMode> _getThemeModeFromPreferences() async {
-    final prefs = await _prefs;
-    final value = prefs.getString('themeMode');
-
-    return value.toThemeMode;
-  }
-
-  Future<void> _saveThemeMode(ThemeMode themeMode) async {
-    final prefs = await _prefs;
-    await prefs.setString('themeMode', themeMode.toString());
-  }
+  Future<void> _saveThemeMode(ThemeMode themeMode) async =>
+      (await SharedPreferences.getInstance())
+          .setString(_keyTheme, themeMode.name);
 
   @override
   Widget build(BuildContext context) => FutureBuilder<ThemeMode>(
-        future: _themeMode,
+        future: _getThemeModeFromPreferences(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -166,14 +147,16 @@ class _MyAppState extends State<MyApp> {
 extension on String? {
   ThemeMode get toThemeMode {
     switch (this) {
-      case 'ThemeMode.system':
+      case 'system':
         return ThemeMode.system;
-      case 'ThemeMode.light':
+      case 'light':
         return ThemeMode.light;
-      case 'ThemeMode.dark':
+      case 'dark':
         return ThemeMode.dark;
       default:
         return ThemeMode.system;
     }
   }
 }
+
+const _keyTheme = 'themeMode';
