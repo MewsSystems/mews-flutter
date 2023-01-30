@@ -145,18 +145,8 @@ class MyApp extends StatelessWidget {
 }
 
 extension on String? {
-  ThemeMode get toThemeMode {
-    switch (this) {
-      case 'system':
-        return ThemeMode.system;
-      case 'light':
-        return ThemeMode.light;
-      case 'dark':
-        return ThemeMode.dark;
-      default:
-        return ThemeMode.system;
-    }
-  }
+  ThemeMode get toThemeMode => ThemeMode.values
+      .firstWhere((e) => e.name == this, orElse: () => ThemeMode.system);
 }
 
 const _keyTheme = 'themeMode';
