@@ -56,7 +56,9 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   Future<ThemeMode> _getThemeModeFromPreferences() async =>
-      (await SharedPreferences.getInstance()).getString(_keyTheme).toThemeMode;
+      (await SharedPreferences.getInstance())
+          .getString(_keyTheme)
+          .toThemeMode();
 
   Future<void> _saveThemeMode(ThemeMode themeMode) async =>
       (await SharedPreferences.getInstance())
@@ -145,7 +147,7 @@ class MyApp extends StatelessWidget {
 }
 
 extension on String? {
-  ThemeMode get toThemeMode => ThemeMode.values
+  ThemeMode toThemeMode() => ThemeMode.values
       .firstWhere((e) => e.name == this, orElse: () => ThemeMode.system);
 }
 
