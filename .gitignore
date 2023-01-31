@@ -2,4 +2,5 @@
 *.iml
 
 pubspec.lock
+!storybook/pubspec.lock
 pubspec_overrides.yaml
