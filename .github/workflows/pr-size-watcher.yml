@@ -15,7 +15,7 @@ jobs:
     name: Check PR size
     runs-on: ubuntu-latest
     steps:
-      - uses: ookami-kb/gh-pr-size-watcher@v1.4.0
+      - uses: ookami-kb/gh-pr-size-watcher@v1.4.1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           excludeTitle: '(^Release|\[ignore-size\])'
