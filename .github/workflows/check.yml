@@ -25,7 +25,7 @@ jobs:
         run: melos bs
 
       - name: Check formatting
-        run: flutter format --set-exit-if-changed -n .
+        run: dart format --set-exit-if-changed -n .
 
       - name: Built-in analyzer
         run: flutter analyze .
