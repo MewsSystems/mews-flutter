@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storybook/stories/avatar.dart';
 import 'package:storybook/stories/badge.dart';
 import 'package:storybook/stories/banner.dart';
@@ -54,67 +55,100 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  Future<ThemeMode> _getThemeModeFromPreferences() async =>
+      (await SharedPreferences.getInstance())
+          .getString(_keyTheme)
+          .toThemeMode();
+
+  Future<void> _saveThemeMode(ThemeMode themeMode) async =>
+      (await SharedPreferences.getInstance())
+          .setString(_keyTheme, themeMode.name);
+
   @override
-  Widget build(BuildContext context) => Storybook(
-        plugins: initializePlugins(
-          contentsSidePanel: true,
-          knobsSidePanel: true,
-        ),
-        stories: [
-          formStory,
-          avatarStory,
-          button,
-          dropdownButton,
-          iconButton,
-          splitButton,
-          selectInputStory,
-          checkbox,
-          checkboxGroup,
-          checkboxNestedGroup,
-          inputStory,
-          searchFieldStory,
-          dateInputStory,
-          dateInputFormFieldStory,
-          numberPickerStory,
-          spacingStory,
-          tagStory,
-          bannerStory,
-          wideBannerStory,
-          interactiveTagStory,
-          iconStory,
-          logoStory,
-          supplementaryIconStory,
-          iconListStory,
-          cardStory,
-          nestedCardStory,
-          radioStory,
-          radioGroupStory,
-          dialogStory,
-          nonModalDialogStory,
-          inlineDialogStory,
-          stackStory,
-          stepBarStory,
-          badgeStory,
-          listTileStory,
-          expandedListTileStory,
-          tabs,
-          segmentedControlStory,
-          slidableStory,
-          nestedSelectStory,
-          nestedSearchStory,
-          nestedNonModalDialogStory,
-          titleStory,
-          paragraphStory,
-          labelStory,
-          captionStory,
-          highlightStory,
-          chatStory,
-          chatBubbleStory,
-          standaloneLink,
-          inlineLink,
-          loaderStory,
-          dateTimeFieldStory,
-          notificationStory,
-        ],
+  Widget build(BuildContext context) => FutureBuilder<ThemeMode>(
+        future: _getThemeModeFromPreferences(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return const CircularProgressIndicator();
+            case ConnectionState.active:
+            case ConnectionState.done:
+              return Storybook(
+                plugins: [
+                  const ContentsPlugin(sidePanel: true),
+                  KnobsPlugin(sidePanel: true),
+                  ThemeModePlugin(
+                    initialTheme: snapshot.data,
+                    onThemeChanged: _saveThemeMode,
+                  ),
+                  DeviceFramePlugin(initialData: const DeviceFrameData()),
+                ],
+                stories: [
+                  formStory,
+                  avatarStory,
+                  button,
+                  dropdownButton,
+                  iconButton,
+                  splitButton,
+                  selectInputStory,
+                  checkbox,
+                  checkboxGroup,
+                  checkboxNestedGroup,
+                  inputStory,
+                  searchFieldStory,
+                  dateInputStory,
+                  dateInputFormFieldStory,
+                  numberPickerStory,
+                  spacingStory,
+                  tagStory,
+                  bannerStory,
+                  wideBannerStory,
+                  interactiveTagStory,
+                  iconStory,
+                  logoStory,
+                  supplementaryIconStory,
+                  iconListStory,
+                  cardStory,
+                  nestedCardStory,
+                  radioStory,
+                  radioGroupStory,
+                  dialogStory,
+                  nonModalDialogStory,
+                  inlineDialogStory,
+                  stackStory,
+                  stepBarStory,
+                  badgeStory,
+                  listTileStory,
+                  expandedListTileStory,
+                  tabs,
+                  segmentedControlStory,
+                  slidableStory,
+                  nestedSelectStory,
+                  nestedSearchStory,
+                  nestedNonModalDialogStory,
+                  titleStory,
+                  paragraphStory,
+                  labelStory,
+                  captionStory,
+                  highlightStory,
+                  chatStory,
+                  chatBubbleStory,
+                  standaloneLink,
+                  inlineLink,
+                  loaderStory,
+                  dateTimeFieldStory,
+                  notificationStory,
+                ],
+              );
+          }
+        },
       );
 }
+
+extension on String? {
+  ThemeMode toThemeMode() => ThemeMode.values
+      .firstWhere((e) => e.name == this, orElse: () => ThemeMode.system);
+}
+
+const _keyTheme = 'themeMode';
