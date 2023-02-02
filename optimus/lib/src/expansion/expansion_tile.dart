@@ -99,7 +99,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
 
-    _isExpanded = (PageStorage.of(context)?.readState(context) ??
+    _isExpanded = (PageStorage.of(context).readState(context) ??
         widget.initiallyExpanded) as bool;
     if (_isExpanded) _controller.value = 1.0;
   }
@@ -123,7 +123,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
           });
         });
       }
-      PageStorage.of(context)?.writeState(context, _isExpanded);
+      PageStorage.of(context).writeState(context, _isExpanded);
     });
     widget.onExpansionChanged?.call(_isExpanded);
   }

@@ -70,7 +70,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       ),
     );
     _entry = entry;
-    Overlay.of(context, rootOverlay: rootOverlay)?.insert(entry);
+    Overlay.of(context, rootOverlay: rootOverlay).insert(entry);
   }
 
   @override
@@ -99,7 +99,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       ),
     );
     _entry = entry;
-    Overlay.of(context, rootOverlay: rootOverlay)?.insert(entry);
+    Overlay.of(context, rootOverlay: rootOverlay).insert(entry);
   }
 
   @override
