@@ -1,3 +1,9 @@
+## 0.12.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**: Updated to Flutter 3.7.
+
 ## 0.11.0
 
 > Note: This release has breaking changes.
