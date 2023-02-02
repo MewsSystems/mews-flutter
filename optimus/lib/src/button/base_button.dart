@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/common.dart';
-import 'package:optimus/src/constants.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 class BaseButton extends StatelessWidget {
@@ -36,8 +35,7 @@ class BaseButton extends StatelessWidget {
 
   final BorderRadius borderRadius;
 
-  Widget _buildIcon(IconData icon, OptimusThemeData theme) =>
-      Icon(icon, size: _iconSize, color: _textColor(theme));
+  Widget _buildIcon(IconData icon) => Icon(icon, size: _iconSize);
 
   TextStyle get _textStyle =>
       size == OptimusWidgetSize.small ? preset200b : preset300b;
@@ -48,14 +46,14 @@ class BaseButton extends StatelessWidget {
           borderRadius: const BorderRadius.all(borderRadius200),
           child: Container(
             height: 16,
-            color: _textColor(theme),
+            color: _badgeColor(theme),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: spacing50),
+              padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
               child: Text(
                 badgeLabel,
-                style: preset100s.copyWith(
+                style: preset50b.copyWith(
                   color: _badgeTextColor(theme),
-                  height: 1.3,
+                  leadingDistribution: TextLeadingDistribution.proportional,
                 ),
               ),
             ),
@@ -91,7 +89,7 @@ class BaseButton extends StatelessWidget {
   Color _badgeTextColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
-        return theme.colors.neutral0;
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.primary:
         return theme.colors.primary500;
       case OptimusButtonVariant.text:
@@ -129,18 +127,34 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.destructive:
         return theme.colors.danger900;
       case OptimusButtonVariant.warning:
-        return theme.colors.warning900;
+        return theme.colors.warning800;
     }
   }
 
-  Color _textColor(OptimusThemeData theme) {
+  Color _textColor(OptimusThemeData theme, Set<MaterialState> states) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.primary:
         return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.text:
-        // TODO(V): can be changed when final dark theme design is ready.
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
+      case OptimusButtonVariant.destructive:
+        return theme.colors.neutral0;
+      case OptimusButtonVariant.warning:
+        return states.isPressed
+            ? theme.colors.neutral0
+            : theme.colors.neutral900;
+    }
+  }
+
+  Color _badgeColor(OptimusThemeData theme) {
+    switch (variant) {
+      case OptimusButtonVariant.defaultButton:
+        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
+      case OptimusButtonVariant.primary:
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
+      case OptimusButtonVariant.text:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.destructive:
         return theme.colors.neutral0;
@@ -156,8 +170,8 @@ class BaseButton extends StatelessWidget {
     final rightIcon = this.rightIcon;
     final badgeLabel = this.badgeLabel;
 
-    return Opacity(
-      opacity: onPressed != null ? OpacityValue.enabled : OpacityValue.disabled,
+    return OptimusEnabled(
+      isEnabled: onPressed != null,
       child: MaterialButton(
         minWidth: minWidth,
         height: size.value,
@@ -166,7 +180,8 @@ class BaseButton extends StatelessWidget {
         highlightElevation: 0,
         highlightColor: _highLightColor(theme),
         disabledColor: _color(theme),
-        disabledTextColor: _textColor(theme),
+        disabledTextColor:
+            MaterialStateColor.resolveWith((s) => _textColor(theme, s)),
         hoverElevation: 0,
         splashColor: Colors.transparent,
         hoverColor: _hoverColor(theme),
@@ -174,27 +189,26 @@ class BaseButton extends StatelessWidget {
         animationDuration: buttonAnimationDuration,
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
         color: _color(theme),
+        textColor: MaterialStateColor.resolveWith((s) => _textColor(theme, s)),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (leftIcon != null) _buildIcon(leftIcon, theme),
+            if (leftIcon != null) _buildIcon(leftIcon),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: spacing100),
-              child: DefaultTextStyle.merge(
-                child: child,
-                style: _textStyle.copyWith(
-                  color: _textColor(theme),
-                  height: 1,
-                ),
-              ),
+              child: DefaultTextStyle.merge(child: child, style: _textStyle),
             ),
             if (badgeLabel != null && badgeLabel.isNotEmpty)
               _buildBadgeLabel(badgeLabel, theme),
-            if (rightIcon != null) _buildIcon(rightIcon, theme),
+            if (rightIcon != null) _buildIcon(rightIcon),
           ],
         ),
       ),
     );
   }
+}
+
+extension on Set<MaterialState> {
+  bool get isPressed => contains(MaterialState.pressed);
 }
