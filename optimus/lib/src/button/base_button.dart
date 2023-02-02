@@ -40,10 +40,7 @@ class BaseButton extends StatefulWidget {
 }
 
 class _BaseButtonState extends State<BaseButton> with ThemeGetter {
-  bool _isPressed = false;
-
-  Widget _buildIcon(IconData icon) =>
-      Icon(icon, size: _iconSize, color: _textColor);
+  Widget _buildIcon(IconData icon) => Icon(icon, size: _iconSize);
 
   TextStyle get _textStyle =>
       widget.size == OptimusWidgetSize.small ? preset200b : preset300b;
@@ -58,7 +55,10 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
               padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
               child: Text(
                 badgeLabel,
-                style: preset50b.copyWith(color: _badgeTextColor),
+                style: preset50b.copyWith(
+                  color: _badgeTextColor,
+                  leadingDistribution: TextLeadingDistribution.proportional,
+                ),
               ),
             ),
           ),
@@ -150,7 +150,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
     }
   }
 
-  Color get _textColor {
+  Color _textColor(Set<MaterialState> states) {
     switch (widget.variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
@@ -161,7 +161,9 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
       case OptimusButtonVariant.destructive:
         return theme.colors.neutral0;
       case OptimusButtonVariant.warning:
-        return _isPressed ? theme.colors.neutral0 : theme.colors.neutral900;
+        return states.isPressed
+            ? theme.colors.neutral0
+            : theme.colors.neutral900;
     }
   }
 
@@ -173,45 +175,45 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
 
     return OptimusEnabled(
       isEnabled: widget.onPressed != null,
-      child: GestureDetector(
-        onTapDown: (_) => setState(() => _isPressed = true),
-        onTapUp: (_) => setState(() => _isPressed = false),
-        onTapCancel: () => setState(() => _isPressed = false),
-        child: MaterialButton(
-          minWidth: widget.minWidth,
-          height: widget.size.value,
-          visualDensity: VisualDensity.standard,
-          elevation: 0,
-          highlightElevation: 0,
-          highlightColor: _highLightColor,
-          disabledColor: _color,
-          disabledTextColor: _textColor,
-          hoverElevation: 0,
-          splashColor: Colors.transparent,
-          hoverColor: _hoverColor,
-          onPressed: widget.onPressed,
-          animationDuration: buttonAnimationDuration,
-          shape: RoundedRectangleBorder(borderRadius: widget.borderRadius),
-          color: _color,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (leftIcon != null) _buildIcon(leftIcon),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: spacing100),
-                child: DefaultTextStyle.merge(
-                  child: widget.child,
-                  style: _textStyle.copyWith(color: _textColor),
-                ),
+      child: MaterialButton(
+        minWidth: widget.minWidth,
+        height: widget.size.value,
+        visualDensity: VisualDensity.standard,
+        elevation: 0,
+        highlightElevation: 0,
+        highlightColor: _highLightColor,
+        disabledColor: _color,
+        disabledTextColor: MaterialStateColor.resolveWith(_textColor),
+        hoverElevation: 0,
+        splashColor: Colors.transparent,
+        hoverColor: _hoverColor,
+        onPressed: widget.onPressed,
+        animationDuration: buttonAnimationDuration,
+        shape: RoundedRectangleBorder(borderRadius: widget.borderRadius),
+        color: _color,
+        textColor: MaterialStateColor.resolveWith(_textColor),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (leftIcon != null) _buildIcon(leftIcon),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: spacing100),
+              child: DefaultTextStyle.merge(
+                child: widget.child,
+                style: _textStyle,
               ),
-              if (badgeLabel != null && badgeLabel.isNotEmpty)
-                _buildBadgeLabel(badgeLabel),
-              if (rightIcon != null) _buildIcon(rightIcon),
-            ],
-          ),
+            ),
+            if (badgeLabel != null && badgeLabel.isNotEmpty)
+              _buildBadgeLabel(badgeLabel),
+            if (rightIcon != null) _buildIcon(rightIcon),
+          ],
         ),
       ),
     );
   }
+}
+
+extension on Set<MaterialState> {
+  bool get isPressed => contains(MaterialState.pressed);
 }
