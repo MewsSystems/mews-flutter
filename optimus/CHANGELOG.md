@@ -1,3 +1,11 @@
+## 0.23.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: [RND-142516] Updated button colors for the dark theme (#306).
+ - **FEAT**: [RND-158539] Updated icons library (#304).
+ - **BREAKING** **REFACTOR**: Update to Flutter 3.7.
+
 ## 0.22.0
 
 > Note: This release has breaking changes.

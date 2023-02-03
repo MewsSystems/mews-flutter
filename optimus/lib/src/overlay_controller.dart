@@ -58,7 +58,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   void _showOverlay() {
     if (_overlayEntry != null) return;
     _overlayEntry = _createOverlayEntry().also((it) {
-      Overlay.of(context, rootOverlay: widget.rootOverlay)?.insert(it);
+      Overlay.of(context, rootOverlay: widget.rootOverlay).insert(it);
     });
 
     widget.onShown?.call();

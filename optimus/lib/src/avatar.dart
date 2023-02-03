@@ -29,7 +29,7 @@ class OptimusAvatar extends StatelessWidget {
             radius: isSmall ? _smallRadius : _radius,
             backgroundColor:
                 imageUrl == null ? colors.neutral200 : colors.neutral0,
-            backgroundImage: imageUrl?.let((url) => NetworkImage(url)),
+            backgroundImage: imageUrl?.let(NetworkImage.new),
             child: imageUrl == null
                 ? Text(
                     substring(title, 0, 1).toUpperCase(),

@@ -119,7 +119,7 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   RenderBox? _getOverlay() =>
       Overlay.of(context, rootOverlay: widget.rootOverlay)
-          ?.context
+          .context
           .findRenderObject() as RenderBox;
 
   Size? _getOverlaySize() => _getOverlay()?.size;

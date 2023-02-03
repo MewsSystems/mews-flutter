@@ -134,8 +134,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   void _showOverlay() {
     final overlayEntry = _overlayEntry;
     if (overlayEntry != null) {
-      Overlay.of(context, rootOverlay: widget.rootOverlay)
-          ?.insert(overlayEntry);
+      Overlay.of(context, rootOverlay: widget.rootOverlay).insert(overlayEntry);
     }
   }
 

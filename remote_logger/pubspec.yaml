@@ -1,10 +1,10 @@
 name: remote_logger
 description: A listener for logging library to post logs to remote storage.
-version: 0.1.0+2
+version: 0.2.0
 repository: https://github.com/MewsSystems/mews-flutter
 
 environment:
-  sdk: '>=2.14.0 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 
 dependencies:

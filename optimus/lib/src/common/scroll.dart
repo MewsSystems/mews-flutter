@@ -18,10 +18,10 @@ class OptimusScrollConfiguration extends StatelessWidget {
 
 class _OptimusScrollBehaviour extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
+  Widget buildOverscrollIndicator(
     BuildContext context,
     Widget child,
-    AxisDirection axisDirection,
+    ScrollableDetails details,
   ) =>
       child;
 }
