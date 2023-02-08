@@ -60,7 +60,7 @@ class DateFormatter extends TextInputFormatter {
     int selectionEnd,
     String replacement,
   ) {
-    final cleanInput = replacement.clean;
+    final cleanInput = replacement.clean();
     int resultIndex = selectionStart;
 
     if (cleanInput.isNotEmpty) {
@@ -119,7 +119,7 @@ class DateFormatter extends TextInputFormatter {
     int resultSelection = oldSelectionStart;
 
     if (oldValue.text.isEmpty) {
-      if (newText.clean.isEmpty) return oldValue;
+      if (newText.clean().isEmpty) return oldValue;
 
       return _pasteStarting(placeholder, 0, placeholder.length, newText);
     } else if (oldSelection.end - oldSelection.start >= 1) {
@@ -208,7 +208,7 @@ class DateFormatter extends TextInputFormatter {
 }
 
 extension on String {
-  String get clean => replaceAll(_restrictedInput, '');
+  String clean() => replaceAll(_restrictedInput, '');
 }
 
 const _digitSymbol = '#';
