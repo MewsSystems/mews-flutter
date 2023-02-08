@@ -237,6 +237,242 @@ void main() {
     );
   });
 
+  group('Inserting', () {
+    testFormat(
+      description: 'Inserting valid number inside the date on valid position',
+      oldValue: const TextEditingValue(
+        text: '17-06-2017',
+        selection: TextSelection(baseOffset: 0, extentOffset: 2),
+      ),
+      newValue: const TextEditingValue(
+        text: '2-06-2017',
+        selection: TextSelection.collapsed(offset: 1),
+      ),
+      expected: const TextEditingValue(
+        text: '2D-06-2017',
+        selection: TextSelection.collapsed(offset: 1),
+      ),
+    );
+
+    testFormat(
+      description: 'Inserting valid number inside the date on invalid position',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 5, extentOffset: 6),
+      ),
+      newValue: const TextEditingValue(
+        text: '31-0152023',
+        selection: TextSelection.collapsed(offset: 6),
+      ),
+      expected: const TextEditingValue(
+        text: '31-01-5202',
+        selection: TextSelection.collapsed(offset: 7),
+      ),
+    );
+
+    testFormat(
+      description: 'Inserting invalid number inside the date on valid position',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 3, extentOffset: 5),
+      ),
+      newValue: const TextEditingValue(
+        text: '31-v-2023',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+      expected: const TextEditingValue(
+        text: '31-MM-2023',
+        selection: TextSelection.collapsed(offset: 3),
+      ),
+    );
+
+    testFormat(
+      description:
+          'Inserting invalid number inside the date on invalid position',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 5, extentOffset: 6),
+      ),
+      newValue: const TextEditingValue(
+        text: '31-01v2023',
+        selection: TextSelection.collapsed(offset: 6),
+      ),
+      expected: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection.collapsed(offset: 5),
+      ),
+    );
+
+    testFormat(
+      description: 'Replacing whole field with valid date',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 10, extentOffset: 0),
+      ),
+      newValue: const TextEditingValue(
+        text: '17-12-1234',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      expected: const TextEditingValue(
+        text: '17-12-1234',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      description: 'Replacing whole field with invalid date with numbers',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 0, extentOffset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: 'v1-01-2023',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      expected: const TextEditingValue(
+        text: '10-12-023Y',
+        selection: TextSelection.collapsed(offset: 9),
+      ),
+    );
+
+    testFormat(
+      description: 'Replacing whole field with invalid date without numbers',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 0, extentOffset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: 'loremIpsum',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      expected: const TextEditingValue(
+        text: 'DD-MM-YYYY',
+        selection: TextSelection.collapsed(offset: 0),
+      ),
+    );
+
+    testFormat(
+      description:
+          'Replacing whole field with insufficient date (length does not match the pattern)',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 10, extentOffset: 0),
+      ),
+      newValue: const TextEditingValue(
+        text: '2/12/2022',
+        selection: TextSelection.collapsed(offset: 9),
+      ),
+      expected: const TextEditingValue(
+        text: '21-22-022Y',
+        selection: TextSelection.collapsed(offset: 9),
+      ),
+    );
+
+    testFormat(
+      description:
+          'Replacing whole field with date that extend the pattern length',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 0, extentOffset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: '07/1312/20722',
+        selection: TextSelection.collapsed(offset: 13),
+      ),
+      expected: const TextEditingValue(
+        text: '07-13-1220',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      description: 'Inserting value that is greater than selected length',
+      oldValue: const TextEditingValue(
+        text: '31-01-9023',
+        selection: TextSelection(baseOffset: 3, extentOffset: 5),
+      ),
+      newValue: const TextEditingValue(
+        text: '31-20722-9023',
+        selection: TextSelection.collapsed(offset: 8),
+      ),
+      expected: const TextEditingValue(
+        text: '31-20-7229',
+        selection: TextSelection.collapsed(offset: 9),
+      ),
+    );
+
+    testFormat(
+      description: 'Inserting value that length is lesser than selected length',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 6, extentOffset: 10),
+      ),
+      newValue: const TextEditingValue(
+        text: '31-01-1',
+        selection: TextSelection.collapsed(offset: 7),
+      ),
+      expected: const TextEditingValue(
+        text: '31-01-1YYY',
+        selection: TextSelection.collapsed(offset: 7),
+      ),
+    );
+
+    testFormat(
+      description: 'Inserting value that contains invalid char',
+      oldValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection(baseOffset: 3, extentOffset: 5),
+      ),
+      newValue: const TextEditingValue(
+        text: '31-1X-2023',
+        selection: TextSelection.collapsed(offset: 5),
+      ),
+      expected: const TextEditingValue(
+        text: '31-1M-2023',
+        selection: TextSelection.collapsed(offset: 4),
+      ),
+    );
+
+    testFormat(
+      description: 'Pasting valid value into the empty filed',
+      oldValue: TextEditingValue.empty,
+      newValue: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+      expected: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      description: 'Pasting value with more chars than expected. Empty field',
+      oldValue: TextEditingValue.empty,
+      newValue: const TextEditingValue(
+        text: '31-01-20231234',
+        selection: TextSelection.collapsed(offset: 14),
+      ),
+      expected: const TextEditingValue(
+        text: '31-01-2023',
+        selection: TextSelection.collapsed(offset: 10),
+      ),
+    );
+
+    testFormat(
+      description: 'Pasting value with less chars than expected. Empty field.',
+      oldValue: TextEditingValue.empty,
+      newValue: const TextEditingValue(
+        text: '31-01-20',
+        selection: TextSelection.collapsed(offset: 8),
+      ),
+      expected: const TextEditingValue(
+        text: '31-01-20YY',
+        selection: TextSelection.collapsed(offset: 8),
+      ),
+    );
+  });
+
   group('Removing', () {
     testFormat(
       oldValue: const TextEditingValue(
