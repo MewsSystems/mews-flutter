@@ -52,8 +52,15 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final _theme = _getThemeModeFromPreferences();
 
   Future<ThemeMode> _getThemeModeFromPreferences() async =>
       (await SharedPreferences.getInstance())
@@ -66,7 +73,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<ThemeMode>(
-        future: _getThemeModeFromPreferences(),
+        future: _theme,
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:

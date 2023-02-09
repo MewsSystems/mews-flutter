@@ -24,7 +24,7 @@ void main() {
   );
 
   // Set remoteLogger as a listener.
-  Logger.root.onRecord.listen(remoteLogger);
+  Logger.root.onRecord.listen(remoteLogger.call);
 
   // Log a message.
   logger.info('Test message');

@@ -67,17 +67,15 @@ class _NotificationStoryContent extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ...OptimusNotificationVariant.values
-                  .map(
-                    (variant) => OptimusNotification(
-                      title: Text(title),
-                      body: body.isNotEmpty ? Text(body) : null,
-                      variant: variant,
-                      link: _link,
-                      onDismissed: dismissible ? () {} : null,
-                    ),
-                  )
-                  .toList(),
+              ...OptimusNotificationVariant.values.map(
+                (variant) => OptimusNotification(
+                  title: Text(title),
+                  body: body.isNotEmpty ? Text(body) : null,
+                  variant: variant,
+                  link: _link,
+                  onDismissed: dismissible ? () {} : null,
+                ),
+              ),
               OptimusButton(
                 onPressed: () {
                   OptimusNotificationsOverlay.of(context)?.show(
