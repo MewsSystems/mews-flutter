@@ -31,7 +31,7 @@ class OptimusDialogAction {
 Future<T?> showOptimusDialog<T>({
   required BuildContext context,
   required Widget title,
-  required Widget content,
+  Widget? content,
   ContentWrapperBuilder? contentWrapperBuilder,
   List<OptimusDialogAction> actions = const [],
   OptimusDialogSize size = OptimusDialogSize.regular,
@@ -80,7 +80,7 @@ class OptimusDialog extends StatelessWidget {
   const OptimusDialog.modal({
     Key? key,
     required Widget title,
-    required Widget content,
+    Widget? content,
     ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
@@ -100,7 +100,7 @@ class OptimusDialog extends StatelessWidget {
   const OptimusDialog.nonModal({
     Key? key,
     required Widget title,
-    required Widget content,
+    Widget? content,
     ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
@@ -128,7 +128,7 @@ class OptimusDialog extends StatelessWidget {
   /// a sentence, question, or just a subject.
   final Widget title;
 
-  final Widget content;
+  final Widget? content;
 
   /// {@template optimus.dialog.wrapper}
   /// Builds custom content. If content padding needed wrap in
