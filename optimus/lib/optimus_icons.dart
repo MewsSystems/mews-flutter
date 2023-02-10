@@ -89,8 +89,6 @@ class OptimusIcons {
       IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData card_check =
       IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData card_keyhole =
-      IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData card_keys =
       IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData cash_payment =
