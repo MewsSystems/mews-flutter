@@ -23,10 +23,10 @@ final Story iconStory = Story(
       children: OptimusIconColorOption.values
           .map(
             (c) => OptimusListTile(
-              title: OptimusSubsectionTitle(
+              headline: OptimusSubsectionTitle(
                 child: Text(describeEnum(c).toUpperCase()),
               ),
-              prefix: OptimusIcon(
+              leadingIcon: OptimusIcon(
                 iconData: icon,
                 colorOption: c,
                 iconSize: size,
@@ -52,10 +52,10 @@ final Story supplementaryIconStory = Story(
       children: OptimusIconColorOption.values
           .map(
             (c) => OptimusListTile(
-              title: OptimusSubsectionTitle(
+              headline: OptimusSubsectionTitle(
                 child: Text(describeEnum(c).toUpperCase()),
               ),
-              prefix: OptimusSupplementaryIcon(
+              leadingIcon: OptimusSupplementaryIcon(
                 iconData: icon,
                 colorOption: c,
               ),

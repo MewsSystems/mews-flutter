@@ -4,49 +4,97 @@ import 'package:optimus/src/border_side.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
+/// Lists are vertically organized groups of data. Optimized for reading
+/// comprehension, a list consists of a single continuous column of rows, with
+/// each row representing a list item (in some cases on bigger viewports it
+/// could use a multi-column layout).
+///
+/// A list should be easily scannable, and any element of a list can be used to
+/// anchor and align list item content. Scannability is improved when elements
+/// (such as supporting visuals and headlines) are placed in consistent
+/// locations across list items. It's not recommended to mix tiles with icon,
+/// avatar or without any leading widget in the same list.
 class OptimusListTile extends StatefulWidget {
   const OptimusListTile({
     Key? key,
-    required this.title,
-    this.subtitle,
-    this.prefix,
-    this.suffix,
-    this.info,
-    this.infoWidget,
+    required this.headline,
+    this.description,
+    this.leadingIcon,
+    this.leadingAvatar,
+    this.trailingIcon,
+    this.metadata,
     this.onTap,
     this.fontVariant = FontVariant.normal,
+    this.tileSize = TileSize.normal,
   }) : super(key: key);
 
-  final Widget title;
-  final Widget? subtitle;
-  final Widget? prefix;
-  final Widget? suffix;
-  final Widget? info;
-  final Widget? infoWidget;
+  /// Communicates the subject of the list item.
+  final Widget headline;
+
+  /// Can provide extra information needed for the user to make a choice.
+  final Widget? description;
+
+  /// Icons can help with scanning and speed up the user's decision. Remember
+  /// to use icons that can be easily recognized by the users. If
+  /// [leadingAvatar] is provided, the [leadingIcon] will be hidden.
+  final Widget? leadingIcon;
+
+  /// An image that would be displayed on the leading position. Used for better
+  /// recognition. Will replace [leadingIcon] if provided.
+  final Widget? leadingAvatar;
+
+  /// Additional cue to indicate the interactive character of the list item.
+  final Widget? trailingIcon;
+
+  /// Can be used in addition to Additional Description, to communicate
+  /// meta-information about the list item, such as price, content count, or
+  /// other details.
+  final Widget? metadata;
+
+  /// Action to be called on the tap gesture.
   final VoidCallback? onTap;
+
+  /// Font variant used for the tile. Will be set to [FontVariant.normal], if
+  /// not provided.
+  /// [FontVariant.normal] - default typography preset
+  /// [FontVariant.bold] - bold typography preset
   final FontVariant fontVariant;
+
+  /// Depending on the screen size and list context you might need to use small
+  /// variant. Will be set to [TileSize.normal], if not provided.
+  /// - [TileSize.normal] - This variant should be used always when there is no
+  /// space constraint
+  /// - [TileSize.small] - Uses smaller font sizes and has less padding on top
+  /// and bottom than the default variant. This variant should only be used
+  /// when vertical space is scarce and showing more items on the list without
+  /// the need to scroll is important for the user's task completion.
+  final TileSize tileSize;
 
   @override
   State<OptimusListTile> createState() => _OptimusListTileState();
 }
 
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
-  Widget _buildPrefix(Widget prefix) => Padding(
-        padding: const EdgeInsets.only(right: spacing100),
-        child: OptimusTypography(
-          color: OptimusTypographyColor.secondary,
-          resolveStyle: (_) => preset200s,
-          child: prefix,
+  Widget _buildLeadingIcon(Widget icon) => Padding(
+        padding: const EdgeInsets.only(right: spacing200),
+        child: IconTheme.merge(
+          data: const IconThemeData(size: spacing300),
+          child: icon,
         ),
       );
 
-  Widget _buildInfo(Widget info) => OptimusTypography(
-        resolveStyle: (_) => preset100s,
-        color: OptimusTypographyColor.secondary,
-        child: info,
+  Widget _buildLeadingAvatar(Widget avatar) => Padding(
+        padding: const EdgeInsets.only(right: spacing200),
+        child: SizedBox(width: spacing500, child: avatar),
       );
 
-  TextStyle get _titleStyle {
+  Widget _buildMetadata(Widget metadata) => OptimusTypography(
+        resolveStyle: (_) => preset100s,
+        color: OptimusTypographyColor.secondary,
+        child: metadata,
+      );
+
+  TextStyle get _headlineStyle {
     switch (widget.fontVariant) {
       case FontVariant.normal:
         return preset300s;
@@ -55,27 +103,47 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
-  Widget get _title => Padding(
+  double get _contentSpacing {
+    switch (widget.tileSize) {
+      case TileSize.normal:
+        return spacing200;
+      case TileSize.small:
+        return spacing100;
+    }
+  }
+
+  Widget get _headline => Padding(
         padding: const EdgeInsets.only(right: spacing100),
         child: OptimusTypography(
-          resolveStyle: (_) => _titleStyle,
-          child: widget.title,
+          resolveStyle: (_) => _headlineStyle,
+          child: DefaultTextStyle.merge(
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            child: widget.headline,
+          ),
         ),
       );
 
-  Widget get _subtitle {
-    final subtitle = widget.subtitle;
+  Widget get _description {
+    final description = widget.description;
 
-    return subtitle != null
-        ? OptimusTypography(
-            resolveStyle: (_) => preset200s,
-            color: _subtitleColor,
-            child: subtitle,
+    return description != null
+        ? Padding(
+            padding: const EdgeInsets.only(right: spacing100),
+            child: OptimusTypography(
+              resolveStyle: (_) => preset200s,
+              color: _descriptionColor,
+              child: DefaultTextStyle.merge(
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                child: description,
+              ),
+            ),
           )
         : const SizedBox.shrink();
   }
 
-  OptimusTypographyColor get _subtitleColor {
+  OptimusTypographyColor get _descriptionColor {
     switch (widget.fontVariant) {
       case FontVariant.normal:
         return OptimusTypographyColor.secondary;
@@ -84,55 +152,49 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
-  Widget _buildSuffix(Widget suffix) => OptimusTypography(
-        resolveStyle: (_) => preset200s,
-        child: suffix,
+  Widget _buildTrailingIcon(Widget suffix) => Padding(
+        padding: const EdgeInsets.only(left: spacing200),
+        child: IconTheme.merge(
+          data: const IconThemeData(size: spacing300),
+          child: suffix,
+        ),
       );
 
   @override
   Widget build(BuildContext context) {
-    final prefix = widget.prefix;
-    final info = widget.info;
-    final suffix = widget.suffix;
-    final infoWidget = widget.infoWidget;
+    final metadata = widget.metadata;
+    final trailing = widget.trailingIcon;
+    final leadingIcon = widget.leadingIcon;
+    final leadingAvatar = widget.leadingAvatar;
 
     return Container(
       decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
-      constraints: const BoxConstraints(minHeight: 94),
+      constraints: const BoxConstraints(minHeight: spacing700),
       child: InkWell(
         highlightColor:
             theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,
         hoverColor:
             theme.isDark ? theme.colors.neutral400 : theme.colors.neutral25,
+        splashColor: Colors.transparent,
         onTap: widget.onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: spacing300,
+          padding: EdgeInsets.symmetric(
+            vertical: _contentSpacing,
             horizontal: spacing200,
           ),
           child: Row(
             children: <Widget>[
-              if (prefix != null) _buildPrefix(prefix),
+              if (leadingAvatar != null) _buildLeadingAvatar(leadingAvatar),
+              if (leadingAvatar == null && leadingIcon != null)
+                _buildLeadingIcon(leadingIcon),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Expanded(child: _title),
-                        if (info != null) _buildInfo(info),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(child: _subtitle),
-                        if (infoWidget != null) infoWidget,
-                      ],
-                    ),
-                  ],
+                  children: <Widget>[_headline, _description],
                 ),
               ),
-              if (suffix != null) _buildSuffix(suffix),
+              if (metadata != null) _buildMetadata(metadata),
+              if (trailing != null) _buildTrailingIcon(trailing),
             ],
           ),
         ),
@@ -142,3 +204,5 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
 }
 
 enum FontVariant { normal, bold }
+
+enum TileSize { normal, small }
