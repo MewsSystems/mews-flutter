@@ -28,19 +28,33 @@ class OptimusListTile extends StatefulWidget {
     this.tileSize = TileSize.normal,
   }) : super(key: key);
 
+  /// {@template optimus.list.headline}
   /// Communicates the subject of the list item.
+  /// The primary content of the list item.
+  ///
+  /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget headline;
 
+  /// {@template optimus.list.description}
+  /// Additional content displayed below the [headline].
   /// Can provide extra information needed for the user to make a choice.
+  ///
+  /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget? description;
 
+  /// {@template optimus.list.leadingIcon}
   /// Icons can help with scanning and speed up the user's decision. Remember
   /// to use icons that can be easily recognized by the users. If
   /// [leadingAvatar] is provided, the [leadingIcon] will be hidden.
+  /// {@endtemplate}
   final Widget? leadingIcon;
 
+  /// {@template optimus.list.leadingAvatar}
   /// An image that would be displayed on the leading position. Used for better
   /// recognition. Will replace [leadingIcon] if provided.
+  /// {@endtemplate}
   final Widget? leadingAvatar;
 
   /// Additional cue to indicate the interactive character of the list item.
