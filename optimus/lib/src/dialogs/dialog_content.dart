@@ -6,17 +6,21 @@ class DialogContent extends StatelessWidget {
   const DialogContent({
     Key? key,
     required this.actions,
-    required this.content,
     required this.type,
     required this.size,
     required this.maxWidth,
+    this.content,
     this.title,
     this.close,
     this.isDismissible,
     this.contentWrapperBuilder,
     this.spacing,
     this.margin,
-  }) : super(key: key);
+  })  : assert(
+          title != null || content != null,
+          'Either title or content need to be provided',
+        ),
+        super(key: key);
 
   final List<OptimusDialogAction> actions;
   final Widget? title;
@@ -24,7 +28,7 @@ class DialogContent extends StatelessWidget {
   final double maxWidth;
   final EdgeInsetsGeometry? margin;
 
-  final Widget content;
+  final Widget? content;
   final VoidCallback? close;
   final OptimusDialogSize size;
   final bool? isDismissible;
@@ -38,7 +42,8 @@ class DialogContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final titleValue = title;
+    final title = this.title;
+    final content = this.content;
 
     return Container(
       margin: margin,
@@ -57,21 +62,22 @@ class DialogContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  if (titleValue != null)
+                  if (title != null)
                     _Title(
-                      title: titleValue,
+                      title: title,
                       close: close ?? () => Navigator.pop(context),
                       isDismissible: isDismissible ??
                           ModalRoute.of(context)?.barrierDismissible ??
                           true,
                     ),
-                  if (titleValue != null) _divider(theme),
-                  OptimusParagraph(
-                    child: _Content(
-                      content: content,
-                      contentWrapperBuilder: contentWrapperBuilder,
+                  if (title != null && content != null) _divider(theme),
+                  if (content != null)
+                    OptimusParagraph(
+                      child: _Content(
+                        content: content,
+                        contentWrapperBuilder: contentWrapperBuilder,
+                      ),
                     ),
-                  ),
                   if (actions.isNotEmpty) _divider(theme),
                   if (actions.isNotEmpty)
                     _Actions(

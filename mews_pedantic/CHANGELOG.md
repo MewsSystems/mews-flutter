@@ -1,3 +1,9 @@
+## 0.13.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Enable additional lint rules.
+
 ## 0.12.0
 
 > Note: This release has breaking changes.

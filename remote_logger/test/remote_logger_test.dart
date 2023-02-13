@@ -15,7 +15,7 @@ void main() {
   final client = MockClient();
   final sut = RemoteLogger(client: client, url: Uri());
 
-  setUp(() => Logger.root.onRecord.listen(sut));
+  setUp(() => Logger.root.onRecord.listen(sut.call));
 
   tearDown(() {
     Logger.root.clearListeners();

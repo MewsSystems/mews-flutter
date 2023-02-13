@@ -54,6 +54,44 @@ class DateFormatter extends TextInputFormatter {
           ? ''
           : value.substring(index + replacement.length));
 
+  TextEditingValue _pasteStarting(
+    String value,
+    int selectionStart,
+    int selectionEnd,
+    String replacement,
+  ) {
+    final cleanInput = replacement.clean();
+    int resultIndex = selectionStart;
+
+    if (cleanInput.isNotEmpty) {
+      int newInputPosition = 0;
+      while (newInputPosition < cleanInput.length) {
+        if (resultIndex >= placeholder.length) break;
+        if (!_isDesignatedSpace(resultIndex)) {
+          final post = resultIndex >= selectionEnd
+              ? value.substring(resultIndex, value.length - 1)
+              : value.substring(resultIndex + 1);
+          value = value.substring(0, resultIndex) +
+              cleanInput[newInputPosition] +
+              post;
+          newInputPosition++;
+        }
+        resultIndex++;
+      }
+    }
+
+    if (resultIndex < selectionEnd) {
+      value = value.substring(0, resultIndex) +
+          placeholder.substring(resultIndex, selectionEnd) +
+          value.substring(selectionEnd);
+    }
+
+    return TextEditingValue(
+      text: value,
+      selection: TextSelection.collapsed(offset: resultIndex),
+    );
+  }
+
   /// Because the input is filled with the placeholder, the whole process is
   /// going to be something like this:
   /// oldValue = 'DD-MM-YYYY'
@@ -78,16 +116,19 @@ class DateFormatter extends TextInputFormatter {
     final newSelectionStart = newValue.selection.start;
 
     String resultText = oldText;
-    TextSelection resultSelection = oldSelection;
+    int resultSelection = oldSelectionStart;
 
     if (oldValue.text.isEmpty) {
-      final selectPosition = _getNextInputIndex(0);
-      if (_isValidDigit(newText[0])) {
-        resultText = _replaceCharAt(placeholder, selectPosition, newText[0]);
-        resultSelection = TextSelection.collapsed(offset: selectPosition + 1);
-      } else {
-        return oldValue;
-      }
+      if (newText.clean().isEmpty) return oldValue;
+
+      return _pasteStarting(placeholder, 0, placeholder.length, newText);
+    } else if (oldSelection.end - oldSelection.start >= 1) {
+      return _pasteStarting(
+        oldText,
+        oldSelectionStart,
+        oldSelection.end,
+        newText.substring(oldSelection.start, newSelection.end),
+      );
     } else {
       if (newText.length > oldText.length) {
         if (_isComplete(oldText) ||
@@ -105,11 +146,9 @@ class DateFormatter extends TextInputFormatter {
               nextInputSpace,
               newText[newSelectionStart - 1],
             );
-            resultSelection = TextSelection.collapsed(
-              offset: _getNextInputIndex(nextInputSpace + 1),
-            );
+            resultSelection = _getNextInputIndex(nextInputSpace + 1);
           } else {
-            resultSelection = TextSelection.collapsed(offset: nextInputSpace);
+            resultSelection = nextInputSpace;
           }
         } else {
           resultText = _replaceCharAt(
@@ -117,9 +156,7 @@ class DateFormatter extends TextInputFormatter {
             oldSelectionStart,
             newText[oldSelectionStart],
           );
-          resultSelection = TextSelection.collapsed(
-            offset: _getNextInputIndex(newSelectionStart),
-          );
+          resultSelection = _getNextInputIndex(newSelectionStart);
         }
       } else if (newText.length < oldText.length) {
         if (_isValidDigit(oldText[newSelectionStart])) {
@@ -144,7 +181,7 @@ class DateFormatter extends TextInputFormatter {
 
           if (_inputLength(resultText) == 0) resultText = '';
 
-          resultSelection = TextSelection.collapsed(offset: selectionPosition);
+          resultSelection = selectionPosition;
         } else if (_isDesignatedSpace(newSelectionStart)) {
           final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
           if (_isValidDigit(oldText[prevInputSpace])) {
@@ -154,23 +191,29 @@ class DateFormatter extends TextInputFormatter {
               placeholder[prevInputSpace],
             );
           }
-          resultSelection = TextSelection.collapsed(
-            offset: _getPreviousInputIndex(newSelectionStart),
-          );
+          resultSelection = _getPreviousInputIndex(newSelectionStart);
         } else if (!_isValidDigit(oldText[newSelectionStart])) {
-          resultSelection = newSelection;
+          resultSelection = newSelectionStart;
         }
       } else {
-        resultSelection = newSelection;
+        resultSelection = newSelectionStart;
       }
     }
 
-    return TextEditingValue(text: resultText, selection: resultSelection);
+    return TextEditingValue(
+      text: resultText,
+      selection: TextSelection.collapsed(offset: resultSelection),
+    );
   }
+}
+
+extension on String {
+  String clean() => replaceAll(_restrictedInput, '');
 }
 
 const _digitSymbol = '#';
 final RegExp _allowedDigits = RegExp('[0-9]');
+final RegExp _restrictedInput = RegExp('[^0-9]');
 final RegExp _maskRegExp = RegExp('[a-zA-z]');
 final RegExp _nonDigitSymbols = RegExp('[^$_digitSymbol]');
 
