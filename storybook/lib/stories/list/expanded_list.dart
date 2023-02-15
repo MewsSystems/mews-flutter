@@ -26,12 +26,14 @@ final Story expandedListTileStory = Story(
         children: Iterable<int>.generate(10)
             .map(
               (i) => OptimusExpansionTile(
-                title: Text(title),
-                subtitle: Text(subtitle),
+                headline: Text(title),
+                description: Text(subtitle),
                 trailing: trailing != null ? Icon(trailing) : null,
-                leading: leading != null ? Icon(leading) : null,
+                leadingIcon: leading != null ? Icon(leading) : null,
                 children: Iterable<int>.generate(3)
-                    .map((e) => OptimusListTile(title: Text('Children of $i')))
+                    .map(
+                      (e) => OptimusListTile(headline: Text('Children of $i')),
+                    )
                     .toList(),
               ),
             )

@@ -8,14 +8,15 @@ const Duration _kExpand = Duration(milliseconds: 200);
 ///
 /// Based on flutter/lib/src/material/expansion_tile.dart
 class OptimusExpansionTile extends StatefulWidget {
-  /// Creates a single-line [ListTile] with a trailing button that expands or
+  /// Creates a single-line [OptimusListTile] with a trailing button that expands or
   /// collapses the tile to reveal or hide the [children]. The
   /// [initiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
     Key? key,
-    this.leading,
-    required this.title,
-    this.subtitle,
+    required this.headline,
+    this.leadingIcon,
+    this.leadingAvatar,
+    this.description,
     this.backgroundColor,
     this.onExpansionChanged,
     this.children = const <Widget>[],
@@ -26,20 +27,17 @@ class OptimusExpansionTile extends StatefulWidget {
     this.slidableActions = const <Widget>[],
   }) : super(key: key);
 
-  /// A widget to display before the title.
-  ///
-  /// Typically a [CircleAvatar] widget.
-  final Widget? leading;
+  ///{@macro optimus.list.headline}
+  final Widget headline;
 
-  /// The primary content of the list item.
-  ///
-  /// Typically a [Text] widget.
-  final Widget title;
+  ///{@macro optimus.list.leadingIcon}
+  final Widget? leadingIcon;
 
-  /// Additional content displayed below the title.
-  ///
-  /// Typically a [Text] widget.
-  final Widget? subtitle;
+  ///{@macro optimus.list.leadingAvatar}
+  final Widget? leadingAvatar;
+
+  ///{@macro optimus.list.description}
+  final Widget? description;
 
   /// Called when the tile expands or collapses.
   ///
@@ -150,12 +148,13 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     );
   }
 
-  Widget _buildListTile() => ListTile(
+  Widget _buildListTile() => OptimusListTile(
         onTap: _handleTap,
-        leading: widget.leading,
-        title: widget.title,
-        subtitle: widget.subtitle,
-        trailing: widget.trailing ??
+        leadingIcon: widget.leadingIcon,
+        leadingAvatar: widget.leadingAvatar,
+        headline: widget.headline,
+        description: widget.description,
+        trailingIcon: widget.trailing ??
             RotationTransition(
               turns: _iconTurns,
               child: const Icon(Icons.expand_more),
