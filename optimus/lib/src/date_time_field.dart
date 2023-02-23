@@ -82,6 +82,9 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     }
   }
 
+  Color get _iconColor =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
+
   @override
   Widget build(BuildContext context) => OptimusInputField(
         controller: _controller,
@@ -95,7 +98,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
           child: Icon(
             OptimusIcons.calendar,
             size: 20,
-            color: theme.colors.neutral1000,
+            color: _iconColor,
           ),
         ),
         placeholder: widget.placeholder,
