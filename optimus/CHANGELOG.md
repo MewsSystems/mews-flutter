@@ -1,3 +1,14 @@
+## 0.24.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Bump mews_pedantic to 0.13.0 (#319).
+ - **FIX**: [RND-163981] Fix icon color in OptimusDateTimeField in dark mode. (#321).
+ - **FIX**: [RND-153737] Fixed pasting inside the date field (#315).
+ - **FEAT**: [RND-162130] Added a dialogue variation without the content (#317).
+ - **BREAKING** **FEAT**: [RND-124950] Update OptimusListTile (#320).
+ - **BREAKING** **FEAT**: [RND-159990] Updated icons library (#316).
+
 ## 0.23.0
 
 > Note: This release has breaking changes.
