@@ -4,6 +4,7 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/typography/typography.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
 /// a sequence of either numbered or logical steps.
@@ -91,17 +92,18 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  DefaultTextStyle.merge(
-                    style: preset200b,
-                    overflow: TextOverflow.ellipsis,
+                  OptimusTypography(
+                    resolveStyle: (_) =>
+                        preset200b.copyWith(overflow: TextOverflow.ellipsis),
                     maxLines: 1,
                     child: item.label,
                   ),
                   if (description != null)
-                    DefaultTextStyle.merge(
-                      overflow: TextOverflow.ellipsis,
-                      style: preset200s.copyWith(
+                    OptimusTypography(
+                      resolveStyle: (_) => preset200s.copyWith(
+                        overflow: TextOverflow.ellipsis,
                         color: theme.isDark
                             ? theme.colors.neutral0t64
                             : theme.colors.neutral1000t64,
@@ -293,9 +295,13 @@ extension on OptimusStepBarItemState {
       case OptimusStepBarItemState.active:
         return theme.colors.primary;
       case OptimusStepBarItemState.enabled:
-        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
+        return theme.isDark
+            ? theme.colors.neutral500t40
+            : theme.colors.neutral50;
       case OptimusStepBarItemState.disabled:
-        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
+        return theme.isDark
+            ? theme.colors.neutral500t40
+            : theme.colors.neutral50;
     }
   }
 
