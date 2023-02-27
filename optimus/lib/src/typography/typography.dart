@@ -11,12 +11,14 @@ class OptimusTypography extends StatelessWidget {
     required this.resolveStyle,
     this.color = OptimusTypographyColor.primary,
     required this.child,
+    this.maxLines,
     this.align,
   }) : super(key: key);
 
   final ResolveStyle resolveStyle;
   final Widget child;
   final OptimusTypographyColor color;
+  final int? maxLines;
   final TextAlign? align;
 
   @override
@@ -27,6 +29,7 @@ class OptimusTypography extends StatelessWidget {
     return DefaultTextStyle.merge(
       child: child,
       textAlign: align,
+      maxLines: maxLines,
       style: resolveStyle(screenSize).copyWith(color: _color(theme)),
     );
   }
