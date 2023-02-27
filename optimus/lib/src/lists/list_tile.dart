@@ -168,9 +168,9 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
-  Widget _buildTrailingIcon(Widget suffix) => OptimusLabel(
-        child: Padding(
-          padding: const EdgeInsets.only(left: spacing200),
+  Widget _buildTrailingIcon(Widget suffix) => Padding(
+        padding: const EdgeInsets.only(left: spacing200),
+        child: OptimusLabel(
           child: IconTheme.merge(
             data: const IconThemeData(size: spacing300),
             child: suffix,
