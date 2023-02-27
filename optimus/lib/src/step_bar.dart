@@ -92,7 +92,6 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   OptimusTypography(
                     resolveStyle: (_) =>
