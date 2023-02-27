@@ -57,6 +57,8 @@ abstract class OptimusSemanticColors {
   static const night800 = Color(0xFF4A4959);
   static const night900 = Color(0xFF242435);
 
+  static const night600t24 = Color(0x3D72717D);
+
   static const night700t8 = Color(0x145E5D6B);
   static const night700t16 = Color(0x285E5D6B);
   static const night700t24 = Color(0x3D5E5D6B);
@@ -78,6 +80,8 @@ abstract class OptimusSemanticColors {
   static const grey900 = Color(0xFF1E1C2B);
   static const grey1000 = Color(0xFF181621);
   static const grey1100 = Color(0xFF08070C);
+
+  static const grey700t24 = Color(0x3D403E4F);
 
   static const grey1000t8 = Color(0x14181621);
   static const grey1000t16 = Color(0x28181621);
@@ -228,6 +232,7 @@ abstract class OptimusLightColors {
 
   static const neutral0t32 = OptimusSemanticColors.whitet32;
   static const neutral0t64 = OptimusSemanticColors.whitet64;
+  static const neutral400t24 = OptimusSemanticColors.night600t24;
   static const neutral500t8 = OptimusSemanticColors.night700t8;
   static const neutral500t16 = OptimusSemanticColors.night700t16;
   static const neutral500t24 = OptimusSemanticColors.night700t24;
@@ -348,7 +353,7 @@ abstract class OptimusDarkColors {
 
   static const neutral0t32 = OptimusSemanticColors.whitet32;
   static const neutral0t64 = OptimusSemanticColors.whitet64;
-
+  static const neutral400t24 = OptimusSemanticColors.grey700t24;
   static const neutral500t8 = OptimusSemanticColors.grey1000t8;
   static const neutral500t16 = OptimusSemanticColors.grey1000t16;
   static const neutral500t24 = OptimusSemanticColors.grey1000t24;
@@ -524,6 +529,10 @@ class OptimusColors {
 
   Color get neutral0t64 =>
       _isLight ? OptimusLightColors.neutral0t64 : OptimusDarkColors.neutral0t64;
+
+  Color get neutral400t24 => _isLight
+      ? OptimusLightColors.neutral400t24
+      : OptimusDarkColors.neutral400t24;
 
   Color get neutral500t8 => _isLight
       ? OptimusLightColors.neutral500t8

@@ -156,7 +156,7 @@ class OptimusNestedCard extends StatelessWidget {
     switch (variant) {
       case OptimusNestedCardVariant.emphasized:
         return theme.isDark
-            ? theme.colors.neutral400.withOpacity(0.2)
+            ? theme.colors.neutral400t24
             : theme.colors.neutral500t8;
       case OptimusNestedCardVariant.highlighted:
         return theme.colors.primary500t8;
