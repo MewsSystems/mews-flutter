@@ -91,9 +91,11 @@ class OptimusListTile extends StatefulWidget {
 class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
   Widget _buildLeadingIcon(Widget icon) => Padding(
         padding: const EdgeInsets.only(right: spacing200),
-        child: IconTheme.merge(
-          data: const IconThemeData(size: spacing300),
-          child: icon,
+        child: OptimusLabel(
+          child: IconTheme.merge(
+            data: const IconThemeData(size: spacing300),
+            child: icon,
+          ),
         ),
       );
 
@@ -166,11 +168,13 @@ class _OptimusListTileState extends State<OptimusListTile> with ThemeGetter {
     }
   }
 
-  Widget _buildTrailingIcon(Widget suffix) => Padding(
-        padding: const EdgeInsets.only(left: spacing200),
-        child: IconTheme.merge(
-          data: const IconThemeData(size: spacing300),
-          child: suffix,
+  Widget _buildTrailingIcon(Widget suffix) => OptimusLabel(
+        child: Padding(
+          padding: const EdgeInsets.only(left: spacing200),
+          child: IconTheme.merge(
+            data: const IconThemeData(size: spacing300),
+            child: suffix,
+          ),
         ),
       );
 
