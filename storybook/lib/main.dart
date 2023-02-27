@@ -26,6 +26,7 @@ import 'package:storybook/stories/link/inline_link.dart';
 import 'package:storybook/stories/link/standalone_link.dart';
 import 'package:storybook/stories/list/expanded_list.dart';
 import 'package:storybook/stories/list/list_tile.dart';
+import 'package:storybook/stories/list/nav_list_tile.dart';
 import 'package:storybook/stories/loader.dart';
 import 'package:storybook/stories/logo.dart';
 import 'package:storybook/stories/nested_overlays.dart';
@@ -127,6 +128,7 @@ class _MyAppState extends State<MyApp> {
                   stepBarStory,
                   badgeStory,
                   listTileStory,
+                  navListTileStory,
                   expandedListTileStory,
                   tabs,
                   segmentedControlStory,
