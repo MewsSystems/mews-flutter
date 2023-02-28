@@ -1,3 +1,7 @@
+## 0.3.0+1
+
+ - **REFACTOR**: Bump mews_pedantic to 0.13.0 (#319).
+
 ## 0.3.0
 
 > Note: This release has breaking changes.

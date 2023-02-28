@@ -1,3 +1,8 @@
+## 0.2.0+1
+
+ - **REFACTOR**: Bump mews_pedantic to 0.13.0 (#319).
+ - **REFACTOR**: Fix new lint errors.
+
 ## 0.2.0
 
 > Note: This release has breaking changes.
