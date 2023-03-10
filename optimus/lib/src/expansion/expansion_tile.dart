@@ -13,10 +13,9 @@ class OptimusExpansionTile extends StatefulWidget {
   /// [initiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
     Key? key,
-    required this.headline,
-    this.leadingIcon,
-    this.leadingAvatar,
-    this.description,
+    this.leading,
+    required this.title,
+    this.subtitle,
     this.backgroundColor,
     this.onExpansionChanged,
     this.children = const <Widget>[],
@@ -27,17 +26,20 @@ class OptimusExpansionTile extends StatefulWidget {
     this.slidableActions = const <Widget>[],
   }) : super(key: key);
 
-  ///{@macro optimus.list.headline}
-  final Widget headline;
+  /// A widget to display before the title.
+  ///
+  /// Typically a [CircleAvatar] widget.
+  final Widget? leading;
 
-  ///{@macro optimus.list.leadingIcon}
-  final Widget? leadingIcon;
+  /// The primary content of the list item.
+  ///
+  /// Typically a [Text] widget.
+  final Widget title;
 
-  ///{@macro optimus.list.leadingAvatar}
-  final Widget? leadingAvatar;
-
-  ///{@macro optimus.list.description}
-  final Widget? description;
+  /// Additional content displayed below the title.
+  ///
+  /// Typically a [Text] widget.
+  final Widget? subtitle;
 
   /// Called when the tile expands or collapses.
   ///
@@ -150,11 +152,10 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
 
   Widget _buildListTile() => OptimusListTile(
         onTap: _handleTap,
-        leadingIcon: widget.leadingIcon,
-        leadingAvatar: widget.leadingAvatar,
-        headline: widget.headline,
-        description: widget.description,
-        trailingIcon: widget.trailing ??
+        prefix: widget.leading,
+        title: widget.title,
+        subtitle: widget.subtitle,
+        suffix: widget.trailing ??
             RotationTransition(
               turns: _iconTurns,
               child: const Icon(Icons.expand_more),
