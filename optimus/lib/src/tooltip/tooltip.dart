@@ -24,7 +24,7 @@ class OptimusTooltip extends StatelessWidget {
   /// The size of the tooltip. Defaults to [OptimusToolTipSize.small].
   final OptimusToolTipSize size;
 
-  /// The position of the tooltip.
+  /// The position of the tooltip. Defaults to [OptimusTooltipPosition.top].
   final OptimusTooltipPosition tooltipPosition;
 
   Color tooltipColor(OptimusThemeData theme) => theme.colors.neutral1000;
