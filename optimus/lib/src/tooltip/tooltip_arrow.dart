@@ -34,29 +34,21 @@ class _TrianglePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final path = Path();
     switch (tooltipPosition) {
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightBottom:
+      case OptimusTooltipPosition.right:
         path.moveTo(0, size.height / 2);
         path.lineTo(size.width, 0);
         path.lineTo(size.width, size.height);
         break;
-      case OptimusTooltipPosition.bottomRight:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomLeft:
+      case OptimusTooltipPosition.bottom:
         path.moveTo(size.width / 2, 0);
         path.lineTo(size.width, size.height);
         path.lineTo(0, size.height);
         break;
-      case OptimusTooltipPosition.leftTop:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftBottom:
+      case OptimusTooltipPosition.left:
         path.lineTo(size.width, size.height / 2);
         path.lineTo(0, size.height);
         break;
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
+      case OptimusTooltipPosition.top:
         path.lineTo(size.width / 2, size.height);
         path.lineTo(size.width, 0);
         break;
@@ -76,38 +68,22 @@ class _TrianglePainter extends CustomPainter {
 extension on OptimusTooltipPosition {
   double get width {
     switch (this) {
-      case OptimusTooltipPosition.leftBottom:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftTop:
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightBottom:
+      case OptimusTooltipPosition.left:
+      case OptimusTooltipPosition.right:
         return 5;
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
-      case OptimusTooltipPosition.bottomRight:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomLeft:
+      case OptimusTooltipPosition.top:
+      case OptimusTooltipPosition.bottom:
         return 10;
     }
   }
 
   double get height {
     switch (this) {
-      case OptimusTooltipPosition.leftBottom:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftTop:
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightBottom:
+      case OptimusTooltipPosition.left:
+      case OptimusTooltipPosition.right:
         return 10;
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
-      case OptimusTooltipPosition.bottomRight:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomLeft:
+      case OptimusTooltipPosition.top:
+      case OptimusTooltipPosition.bottom:
         return 5;
     }
   }

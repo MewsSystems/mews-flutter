@@ -12,7 +12,7 @@ final Story tooltipStory = Story(
     final text = knobs.text(label: 'Label text:', initial: 'Tooltip text');
     final position = knobs.options(
       label: 'Position',
-      initial: OptimusTooltipPosition.topCenter,
+      initial: OptimusTooltipPosition.top,
       options: OptimusTooltipPosition.values.toOptions(),
     );
     final size = knobs.options(

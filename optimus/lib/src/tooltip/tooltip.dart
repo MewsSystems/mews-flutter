@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/tooltip/tooltip_alignment.dart';
 import 'package:optimus/src/tooltip/tooltip_arrow.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -12,7 +13,7 @@ class OptimusTooltip extends StatelessWidget {
     Key? key,
     required this.content,
     this.size = OptimusToolTipSize.small,
-    this.tooltipPosition = OptimusTooltipPosition.topCenter,
+    this.tooltipPosition = OptimusTooltipPosition.top,
   }) : super(key: key);
 
   /// The content of the tooltip. Typically a [Text] widget.
@@ -31,15 +32,16 @@ class OptimusTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final alignment = tooltipPosition.toTooltipAlignment();
 
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
         Positioned(
-          left: tooltipPosition.arrowLeft,
-          top: tooltipPosition.arrowTop,
-          right: tooltipPosition.arrowRight,
-          bottom: tooltipPosition.arrowBottom,
+          left: alignment.arrowLeft,
+          top: alignment.arrowTop,
+          right: alignment.arrowRight,
+          bottom: alignment.arrowBottom,
           child: TooltipArrow(
             position: tooltipPosition,
             color: tooltipColor(theme),
@@ -74,119 +76,113 @@ class OptimusTooltip extends StatelessWidget {
 
 enum OptimusToolTipSize { small, medium, large }
 
-enum OptimusTooltipPosition {
-  leftBottom,
-  leftCenter,
-  leftTop,
-  topLeft,
-  topCenter,
-  topRight,
-  rightTop,
-  rightCenter,
-  rightBottom,
-  bottomRight,
-  bottomCenter,
-  bottomLeft
-}
+enum OptimusTooltipPosition { top, bottom, left, right }
 
 extension on OptimusTooltipPosition {
   EdgeInsets get arrowPadding {
     switch (this) {
-      case OptimusTooltipPosition.leftBottom:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftTop:
+      case OptimusTooltipPosition.left:
         return const EdgeInsets.only(right: _arrowPadding);
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
+      case OptimusTooltipPosition.top:
         return const EdgeInsets.only(bottom: _arrowPadding);
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightBottom:
+      case OptimusTooltipPosition.right:
         return const EdgeInsets.only(left: _arrowPadding);
-      case OptimusTooltipPosition.bottomRight:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomLeft:
+      case OptimusTooltipPosition.bottom:
         return const EdgeInsets.only(top: _arrowPadding);
     }
   }
 
+  TooltipAlignment toTooltipAlignment() {
+    switch (this) {
+      case OptimusTooltipPosition.left:
+        return TooltipAlignment.leftCenter;
+      case OptimusTooltipPosition.top:
+        return TooltipAlignment.topCenter;
+      case OptimusTooltipPosition.right:
+        return TooltipAlignment.rightCenter;
+      case OptimusTooltipPosition.bottom:
+        return TooltipAlignment.bottomCenter;
+    }
+  }
+}
+
+extension on TooltipAlignment {
   double? get arrowLeft {
     switch (this) {
-      case OptimusTooltipPosition.rightBottom:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightTop:
+      case TooltipAlignment.rightBottom:
+      case TooltipAlignment.rightCenter:
+      case TooltipAlignment.rightTop:
         return 0;
-      case OptimusTooltipPosition.topRight:
-      case OptimusTooltipPosition.bottomRight:
+      case TooltipAlignment.topRight:
+      case TooltipAlignment.bottomRight:
         return _arrowAlignOffset;
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.bottomLeft:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.leftBottom:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftTop:
+      case TooltipAlignment.topCenter:
+      case TooltipAlignment.topLeft:
+      case TooltipAlignment.bottomLeft:
+      case TooltipAlignment.bottomCenter:
+      case TooltipAlignment.leftBottom:
+      case TooltipAlignment.leftCenter:
+      case TooltipAlignment.leftTop:
         return null;
     }
   }
 
   double? get arrowTop {
     switch (this) {
-      case OptimusTooltipPosition.rightBottom:
-      case OptimusTooltipPosition.leftBottom:
+      case TooltipAlignment.rightBottom:
+      case TooltipAlignment.leftBottom:
         return _arrowAlignOffset;
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomLeft:
-      case OptimusTooltipPosition.bottomRight:
+      case TooltipAlignment.bottomCenter:
+      case TooltipAlignment.bottomLeft:
+      case TooltipAlignment.bottomRight:
         return 0;
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftTop:
+      case TooltipAlignment.rightCenter:
+      case TooltipAlignment.rightTop:
+      case TooltipAlignment.topLeft:
+      case TooltipAlignment.topCenter:
+      case TooltipAlignment.topRight:
+      case TooltipAlignment.leftCenter:
+      case TooltipAlignment.leftTop:
         return null;
     }
   }
 
   double? get arrowRight {
     switch (this) {
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.bottomLeft:
+      case TooltipAlignment.topLeft:
+      case TooltipAlignment.bottomLeft:
         return _arrowAlignOffset;
-      case OptimusTooltipPosition.leftBottom:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.leftTop:
+      case TooltipAlignment.leftBottom:
+      case TooltipAlignment.leftCenter:
+      case TooltipAlignment.leftTop:
         return 0;
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomRight:
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.rightBottom:
+      case TooltipAlignment.topCenter:
+      case TooltipAlignment.topRight:
+      case TooltipAlignment.bottomCenter:
+      case TooltipAlignment.bottomRight:
+      case TooltipAlignment.rightTop:
+      case TooltipAlignment.rightCenter:
+      case TooltipAlignment.rightBottom:
         return null;
     }
   }
 
   double? get arrowBottom {
     switch (this) {
-      case OptimusTooltipPosition.rightTop:
-      case OptimusTooltipPosition.leftTop:
+      case TooltipAlignment.rightTop:
+      case TooltipAlignment.leftTop:
         return _arrowAlignOffset;
-      case OptimusTooltipPosition.topLeft:
-      case OptimusTooltipPosition.topCenter:
-      case OptimusTooltipPosition.topRight:
+      case TooltipAlignment.topLeft:
+      case TooltipAlignment.topCenter:
+      case TooltipAlignment.topRight:
         return 0;
-      case OptimusTooltipPosition.rightBottom:
-      case OptimusTooltipPosition.rightCenter:
-      case OptimusTooltipPosition.leftBottom:
-      case OptimusTooltipPosition.leftCenter:
-      case OptimusTooltipPosition.bottomCenter:
-      case OptimusTooltipPosition.bottomLeft:
-      case OptimusTooltipPosition.bottomRight:
+      case TooltipAlignment.rightBottom:
+      case TooltipAlignment.rightCenter:
+      case TooltipAlignment.leftBottom:
+      case TooltipAlignment.leftCenter:
+      case TooltipAlignment.bottomCenter:
+      case TooltipAlignment.bottomLeft:
+      case TooltipAlignment.bottomRight:
         return null;
     }
   }
