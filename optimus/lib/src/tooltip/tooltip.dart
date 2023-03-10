@@ -3,6 +3,10 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/tooltip/tooltip_arrow.dart';
 import 'package:optimus/src/typography/presets.dart';
 
+/// Tooltip displays contextual content upon the click or focus of a UI trigger
+/// element. Tooltip's content should be contextual, helpful, and nonessential
+/// while providing that extra ability to communicate and give clarity to a
+/// user.
 class OptimusTooltip extends StatelessWidget {
   const OptimusTooltip({
     Key? key,
@@ -11,8 +15,15 @@ class OptimusTooltip extends StatelessWidget {
     this.tooltipPosition = OptimusTooltipPosition.topCenter,
   }) : super(key: key);
 
+  /// The content of the tooltip. Typically a [Text] widget.
+  /// Tooltip's content should be contextual, helpful, and nonessential.
+  /// Tooltips should never contain essential content.
   final Widget content;
+
+  /// The size of the tooltip. Defaults to [OptimusToolTipSize.small].
   final OptimusToolTipSize size;
+
+  /// The position of the tooltip.
   final OptimusTooltipPosition tooltipPosition;
 
   Color tooltipColor(OptimusThemeData theme) => theme.colors.neutral1000;
