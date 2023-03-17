@@ -19,12 +19,14 @@ jobs:
       - name: Check out develop branch
         uses: actions/checkout@v3
       
+      - uses: subosito/flutter-action@v2
+      
       - name: Build APK with Debug Symbols
-        uses: subosito/flutter-action@v2
         run: flutter build apk --debug
       
+      - uses: subosito/flutter-action@v2
+
       - name: Build IPA with Debug Symbols
-        uses: subosito/flutter-action@v2
         run: flutter build ipa --debug
       
       - name: Show iOS Output Directory
