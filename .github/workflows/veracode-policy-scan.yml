@@ -21,15 +21,12 @@ jobs:
       
       - name: Install Flutter
         uses: subosito/flutter-action@v2
-      
-      - name: Change into Storybook directory
-        run: cd storybook
 
       - name: Build APK with Debug Symbols
-        run: flutter build apk --debug
+        run: flutter build apk --debug storybook/lib/main.dart
 
       - name: Build IPA with Debug Symbols
-        run: flutter build ipa --debug
+        run: flutter build ipa --debug storybook/lib/main.dart
       
       - name: Show iOS Output Directory
         run: ls -alh build/ios/ipa
