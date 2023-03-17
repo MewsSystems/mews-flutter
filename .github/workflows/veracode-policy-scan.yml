@@ -19,6 +19,9 @@ jobs:
       - name: Check out develop branch
         uses: actions/checkout@v3
       
+      - name: Update Java Version
+        run: export JAVA_HOME=$JAVA_HOME_11_X64
+      
       - name: Install Flutter
         uses: subosito/flutter-action@v2
       
