@@ -1,0 +1,38 @@
+name: "Veracode Policy Scan"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "master" ]
+#  schedule:
+#    - cron: '0 0 * * *' # Run Policy Scan every day at midnight
+  workflow_dispatch:
+
+jobs:
+  build_and_upload_macos:
+    name: Build and Upload
+    runs-on: macos-12
+  
+    steps:
+      - name: Check out develop branch
+        uses: actions/checkout@v3
+      
+      - name: Build APK with Debug Symbols
+        uses: subosito/flutter-action@v2
+        run: flutter build apk --debug
+      
+      - name: Build IPA with Debug Symbols
+        uses: subosito/flutter-action@v2
+        run: flutter build ipa --debug
+      
+      - name: Show iOS Output Directory
+        run: ls -alh build/ios/ipa
+      
+      - name: Show Android Output Directory
+        run: ls -alh build/app/outputs/flutter-apk
+
+    
+
+
