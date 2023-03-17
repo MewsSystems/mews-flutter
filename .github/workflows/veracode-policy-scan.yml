@@ -21,6 +21,9 @@ jobs:
       
       - name: Install Flutter
         uses: subosito/flutter-action@v2
+      
+      - name: Repair project
+        run: flutter create .
 
       - name: Build APK with Debug Symbols
         run: flutter build apk --debug storybook/lib/main.dart
