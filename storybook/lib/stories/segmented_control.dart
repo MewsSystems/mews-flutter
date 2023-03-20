@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story segmentedControlStory = Story(
-  name: 'Segmented control',
+  name: 'Forms/Segmented control',
   builder: (context) {
     final k = context.knobs;
     final label = k.text(label: 'Label', initial: '');
     final error = k.text(label: 'Error', initial: '');
+    final direction = k.options(
+      label: 'Direction',
+      initial: Axis.horizontal,
+      options: Axis.values.toOptions(),
+    );
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final isRequired = k.boolean(label: 'Required', initial: false);
 
@@ -21,6 +27,7 @@ final Story segmentedControlStory = Story(
             child: _SegmentedControlExample(
               label: label,
               error: error,
+              direction: direction,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options2,
@@ -31,6 +38,7 @@ final Story segmentedControlStory = Story(
             child: _SegmentedControlExample(
               label: label,
               error: error,
+              direction: direction,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options3,
@@ -41,11 +49,23 @@ final Story segmentedControlStory = Story(
             child: _SegmentedControlExample(
               label: label,
               error: error,
+              direction: direction,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options4,
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: spacing100),
+            child: _SegmentedControlExample(
+              label: label,
+              error: error,
+              direction: direction,
+              isEnabled: isEnabled,
+              isRequired: isRequired,
+              options: _options5,
+            ),
+          )
         ],
       ),
     );
@@ -60,6 +80,7 @@ class _SegmentedControlExample extends StatefulWidget {
     required this.isEnabled,
     required this.isRequired,
     required this.options,
+    required this.direction,
   }) : super(key: key);
 
   final String label;
@@ -67,6 +88,7 @@ class _SegmentedControlExample extends StatefulWidget {
   final bool isEnabled;
   final bool isRequired;
   final List<String> options;
+  final Axis direction;
 
   @override
   _SegmentedControlExampleState createState() =>
@@ -83,6 +105,7 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
         isRequired: widget.isRequired,
         error: widget.error,
         isEnabled: widget.isEnabled,
+        direction: widget.direction,
         onItemSelected: (value) => setState(() => _value = value),
         items: widget.options
             .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
@@ -104,6 +127,13 @@ const _options3 = [
 const _options4 = [
   'Another long option',
   'B',
+  'C',
+  'D',
+];
+
+const _options5 = [
+  'Another long option',
+  'Option that is meant to break a line \n Second line text \n several times',
   'C',
   'D',
 ];
