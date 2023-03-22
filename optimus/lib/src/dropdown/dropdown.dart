@@ -20,7 +20,7 @@ class OptimusDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (items.isEmpty) return Container();
+    if (items.isEmpty) return const SizedBox.shrink();
 
     return Stack(
       alignment: AlignmentDirectional.topCenter,
