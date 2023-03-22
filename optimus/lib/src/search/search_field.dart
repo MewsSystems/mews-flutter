@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/dropdown/dropdown_select.dart';
 
+/// An input field with a dropdown menu. [items] are displayed in the dropdown
+/// and could be filtered to show only matching items.
 class OptimusSearch<T> extends StatelessWidget {
   const OptimusSearch({
     Key? key,
@@ -82,10 +84,10 @@ class OptimusSearch<T> extends StatelessWidget {
   final Widget? leading;
 
   /// A prefix widget to be displayed before the search field, but after the
-  /// leading widget. Typically an [Text] widget.
+  /// leading widget. Typically a [Text] widget.
   final Widget? prefix;
 
-  /// A suffix widget to be displayed after the search field. Typically an
+  /// A suffix widget to be displayed after the search field. Typically a
   /// [Text] widget.
   final Widget? suffix;
 
