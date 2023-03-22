@@ -33,6 +33,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.focusNode,
     this.shouldCloseOnInputTap = false,
     this.showLoader = false,
+    this.isClearEnabled = false,
     this.rootOverlay = false,
   }) : super(key: key);
 
@@ -56,6 +57,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final Widget? trailing;
   final Widget? trailingImplicit;
   final bool showLoader;
+  final bool isClearEnabled;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
   final bool rootOverlay;
@@ -233,6 +235,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           readOnly: widget.readOnly,
           showCursor: widget.showCursor,
           showLoader: widget.showLoader,
+          isClearEnabled: widget.isClearEnabled,
         ),
       );
 }

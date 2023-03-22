@@ -71,6 +71,7 @@ class _SearchStoryState extends State<SearchStory> {
         initial: OptimusWidgetSize.large,
         options: sizeOptions,
       ),
+      isClearEnabled: k.boolean(label: 'Clear enabled', initial: false),
       error: k.text(label: 'Error', initial: ''),
     );
   }
