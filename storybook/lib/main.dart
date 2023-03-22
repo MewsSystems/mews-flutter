@@ -44,6 +44,7 @@ import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tabs.dart';
 import 'package:storybook/stories/tags.dart';
 import 'package:storybook/stories/tooltip.dart';
+import 'package:storybook/stories/tooltip_wrapper.dart';
 import 'package:storybook/stories/typography/caption.dart';
 import 'package:storybook/stories/typography/highlight.dart';
 import 'package:storybook/stories/typography/label.dart';
@@ -150,6 +151,7 @@ class _MyAppState extends State<MyApp> {
                   dateTimeFieldStory,
                   notificationStory,
                   tooltipStory,
+                  tooltipWrapperStory,
                 ],
               );
           }
