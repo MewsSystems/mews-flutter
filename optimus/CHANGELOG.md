@@ -1,3 +1,9 @@
+## 0.24.1
+
+ - **FEAT**: [RND-168345] Updated OptimusSearch (#332).
+ - **FEAT**: [RND-164809] Update OptimusSegmentedControl (#331).
+ - **FEAT**: [RND-162272] Added OptimusTooltip.
+
 ## 0.24.0
 
 > Note: This release has breaking changes.
