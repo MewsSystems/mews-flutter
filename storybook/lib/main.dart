@@ -17,6 +17,7 @@ import 'package:storybook/stories/date_input_field.dart';
 import 'package:storybook/stories/date_input_form_field.dart';
 import 'package:storybook/stories/date_time_field.dart';
 import 'package:storybook/stories/dialog.dart';
+import 'package:storybook/stories/divider.dart';
 import 'package:storybook/stories/form/form_story.dart';
 import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_list.dart';
@@ -97,6 +98,7 @@ class _MyAppState extends State<MyApp> {
                   formStory,
                   avatarStory,
                   button,
+                  dividerStory,
                   dropdownButton,
                   iconButton,
                   splitButton,
