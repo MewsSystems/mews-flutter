@@ -394,7 +394,7 @@ class _ClearAllButton extends StatelessWidget {
     final theme = OptimusTheme.of(context);
 
     return GestureDetector(
-      onTap: onTap,
+      onTapDown: (_) => onTap.call(),
       child: Icon(
         OptimusIcons.clear_selection,
         size: _iconSize,
