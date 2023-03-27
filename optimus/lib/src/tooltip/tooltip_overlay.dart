@@ -60,12 +60,14 @@ class TooltipOverlayState extends State<TooltipOverlay>
   late Rect _savedRect = _calculateRect(widget.anchorKey);
   late Rect _tooltipRect = _calculateRect(widget.tooltipKey);
   late Size? _overlaySize = _getOverlaySize();
+  late OptimusTooltipPosition _position = _getPreferredPosition;
+
   double _opacity = 0.0;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(_afterFirstLayoutCallback);
+    WidgetsBinding.instance.addPostFrameCallback(_afterInitialLayoutCallback);
   }
 
   @override
@@ -102,8 +104,32 @@ class TooltipOverlayState extends State<TooltipOverlay>
       _savedRect.top - _savedRect.height / 2 + _tooltipRect.height / 2;
 
   OptimusTooltipPosition get _getPreferredPosition =>
-      widget.position ??
-      (_isOnTop ? OptimusTooltipPosition.top : OptimusTooltipPosition.bottom);
+      widget.position ?? _fallbackPosition;
+
+  OptimusTooltipPosition get _fallbackPosition =>
+      _isOnTop ? OptimusTooltipPosition.top : OptimusTooltipPosition.bottom;
+
+  OptimusTooltipPosition _calculatePosition() {
+    final position = widget.position;
+    if (position != null) {
+      return _isOverflowing(position) ? _fallbackPosition : position;
+    }
+
+    return _fallbackPosition;
+  }
+
+  bool _isOverflowing(OptimusTooltipPosition position) {
+    switch (position) {
+      case OptimusTooltipPosition.top:
+        return _tooltipRect.top < _screenPadding;
+      case OptimusTooltipPosition.bottom:
+        return _tooltipRect.bottom > _overlayHeight - _screenPadding;
+      case OptimusTooltipPosition.left:
+        return _tooltipRect.left < _screenPadding;
+      case OptimusTooltipPosition.right:
+        return _tooltipRect.right > _overlayWidth - _screenPadding;
+    }
+  }
 
   double? get _leftOffset {
     switch (alignment) {
@@ -175,7 +201,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
   @override
   TooltipAlignment get alignment {
-    switch (_getPreferredPosition) {
+    switch (_position) {
       case OptimusTooltipPosition.top:
         return _calculateHorizontalAlignment(
           TooltipAlignment.topLeft,
@@ -229,9 +255,14 @@ class TooltipOverlayState extends State<TooltipOverlay>
     return center;
   }
 
-  void _afterFirstLayoutCallback(dynamic _) {
+  void _afterInitialLayoutCallback(dynamic _) {
     _updateRect(_);
+    WidgetsBinding.instance.addPostFrameCallback(_afterFirstLayoutCallback);
+  }
+
+  void _afterFirstLayoutCallback(dynamic _) {
     setState(() {
+      _position = _calculatePosition();
       _opacity = 1.0;
     });
   }
