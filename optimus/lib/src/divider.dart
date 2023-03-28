@@ -6,7 +6,7 @@ import 'package:optimus/src/typography/presets.dart';
 class OptimusDivider extends StatelessWidget {
   const OptimusDivider({
     Key? key,
-    this.text,
+    this.child,
     this.direction = Axis.horizontal,
     this.variant = OptimusDividerVariant.normal,
     this.crossAxisSpacing = spacing100,
@@ -14,7 +14,7 @@ class OptimusDivider extends StatelessWidget {
 
   /// The text to display in the middle of the divider. If null, the divider
   /// will be just a line.
-  final Widget? text;
+  final Widget? child;
 
   /// The direction of the divider.
   final Axis direction;
@@ -46,13 +46,13 @@ class OptimusDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final text = this.text;
+    final child = this.child;
 
     return Flex(
       direction: direction,
       children: [
         Expanded(child: _buildDivider(theme)),
-        if (text != null) ...[
+        if (child != null) ...[
           Padding(
             padding: EdgeInsetsDirectional.symmetric(
               horizontal: _horizontalPadding,
@@ -60,7 +60,7 @@ class OptimusDivider extends StatelessWidget {
             ),
             child: DefaultTextStyle.merge(
               style: preset100s.copyWith(color: theme.colors.neutral1000t64),
-              child: text,
+              child: child,
             ),
           ),
           Expanded(child: _buildDivider(theme)),
