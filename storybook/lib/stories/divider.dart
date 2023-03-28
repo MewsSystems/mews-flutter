@@ -32,9 +32,9 @@ final Story dividerStory = Story(
         children: [
           const OptimusLabel(child: Text('Text before divider')),
           OptimusDivider(
-            text: text.isNotEmpty ? Text(text) : null,
             direction: direction,
             variant: variant,
+            child: text.isNotEmpty ? Text(text) : null,
           ),
           const OptimusLabel(child: Text('Text after divider'))
         ],
