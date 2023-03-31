@@ -37,6 +37,7 @@ export 'src/dialogs/dialog.dart';
 export 'src/dialogs/dialog_size.dart';
 export 'src/dialogs/dialog_wrapper.dart';
 export 'src/dialogs/inline_dialog.dart';
+export 'src/divider.dart';
 export 'src/dropdown/dropdown.dart';
 export 'src/dropdown/dropdown_tile.dart';
 export 'src/enabled.dart';
