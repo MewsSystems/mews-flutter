@@ -302,7 +302,6 @@ class _CustomRawGestureDetector extends RawGestureDetector {
   _CustomRawGestureDetector({
     Key? key,
     GestureTapCallback? onTap,
-    GestureTapDownCallback? onTapDown,
     Widget? child,
   }) : super(
           key: key,
@@ -312,11 +311,8 @@ class _CustomRawGestureDetector extends RawGestureDetector {
                 GestureRecognizerFactoryWithHandlers<
                     _AllowMultipleGestureRecognizer>(
               _AllowMultipleGestureRecognizer.new,
-              (_AllowMultipleGestureRecognizer instance) {
-                instance
-                  ..onTap = onTap
-                  ..onTapDown = onTapDown;
-              },
+              (_AllowMultipleGestureRecognizer instance) =>
+                  instance.onTap = onTap,
             ),
           },
           child: child,
