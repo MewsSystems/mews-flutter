@@ -17,6 +17,7 @@ import 'package:storybook/stories/date_input_field.dart';
 import 'package:storybook/stories/date_input_form_field.dart';
 import 'package:storybook/stories/date_time_field.dart';
 import 'package:storybook/stories/dialog.dart';
+import 'package:storybook/stories/divider.dart';
 import 'package:storybook/stories/form/form_story.dart';
 import 'package:storybook/stories/icon.dart';
 import 'package:storybook/stories/icon_list.dart';
@@ -44,6 +45,7 @@ import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tabs.dart';
 import 'package:storybook/stories/tags.dart';
 import 'package:storybook/stories/tooltip.dart';
+import 'package:storybook/stories/tooltip_wrapper.dart';
 import 'package:storybook/stories/typography/caption.dart';
 import 'package:storybook/stories/typography/highlight.dart';
 import 'package:storybook/stories/typography/label.dart';
@@ -97,6 +99,7 @@ class _MyAppState extends State<MyApp> {
                   formStory,
                   avatarStory,
                   button,
+                  dividerStory,
                   dropdownButton,
                   iconButton,
                   splitButton,
@@ -150,6 +153,7 @@ class _MyAppState extends State<MyApp> {
                   dateTimeFieldStory,
                   notificationStory,
                   tooltipStory,
+                  tooltipWrapperStory,
                 ],
               );
           }

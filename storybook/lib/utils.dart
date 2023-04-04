@@ -17,6 +17,16 @@ final List<Option<IconData?>> exampleIcons = [
   const Option(label: 'Chevron left', value: OptimusIcons.chevron_left),
 ];
 
+final List<Option<Alignment>> alignments = [
+  const Option<Alignment>(value: Alignment.center, label: 'Center'),
+  const Option<Alignment>(value: Alignment.centerLeft, label: 'Center left'),
+  const Option<Alignment>(value: Alignment.centerRight, label: 'Center right'),
+  const Option<Alignment>(value: Alignment.topLeft, label: 'Top left'),
+  const Option<Alignment>(value: Alignment.topRight, label: 'Top right'),
+  const Option<Alignment>(value: Alignment.bottomLeft, label: 'Bottom left'),
+  const Option<Alignment>(value: Alignment.bottomRight, label: 'Bottom right'),
+];
+
 final List<Option<OptimusWidgetSize>> sizeOptions = OptimusWidgetSize.values
     .map((e) => Option(label: e.name, value: e))
     .toList();

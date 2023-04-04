@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story inlineDialogStory = Story(
@@ -22,7 +23,7 @@ class InlineDialogStory extends StatelessWidget {
     final hasActions = k.boolean(label: 'Has actions', initial: false);
     final position = k.options(
       label: 'Button Position',
-      options: _alignments,
+      options: alignments,
       initial: Alignment.center,
     );
 
@@ -119,13 +120,3 @@ class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusLabel(child: Text(title));
 }
-
-final List<Option<Alignment>> _alignments = [
-  const Option<Alignment>(value: Alignment.center, label: 'Center'),
-  const Option<Alignment>(value: Alignment.centerLeft, label: 'Center left'),
-  const Option<Alignment>(value: Alignment.centerRight, label: 'Center right'),
-  const Option<Alignment>(value: Alignment.topLeft, label: 'Top left'),
-  const Option<Alignment>(value: Alignment.topRight, label: 'Top right'),
-  const Option<Alignment>(value: Alignment.bottomLeft, label: 'Bottom left'),
-  const Option<Alignment>(value: Alignment.bottomRight, label: 'Bottom right'),
-];

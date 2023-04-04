@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/tooltip/tooltip_alignment.dart';
+import 'package:optimus/src/tooltip/tooltip_overlay.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 /// Tooltip displays contextual content upon the click or focus of a UI trigger
@@ -12,7 +13,7 @@ class OptimusTooltip extends StatelessWidget {
     Key? key,
     required this.content,
     this.size = OptimusToolTipSize.small,
-    this.tooltipPosition = OptimusTooltipPosition.top,
+    this.tooltipPosition,
   }) : super(key: key);
 
   /// The content of the tooltip. Typically a [Text] widget.
@@ -24,14 +25,20 @@ class OptimusTooltip extends StatelessWidget {
   final OptimusToolTipSize size;
 
   /// The position of the tooltip. Defaults to [OptimusTooltipPosition.top].
-  final OptimusTooltipPosition tooltipPosition;
+  /// If wrapped with [OptimusTooltipWrapper], the position will be set
+  /// by the wrapper.
+  final OptimusTooltipPosition? tooltipPosition;
 
   Color tooltipColor(OptimusThemeData theme) => theme.colors.neutral1000;
+
+  OptimusTooltipPosition get _fallbackPosition =>
+      tooltipPosition ?? OptimusTooltipPosition.top;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final alignment = tooltipPosition.toTooltipAlignment();
+    final alignment = TooltipOverlay.of(context)?.alignment ??
+        _fallbackPosition.toTooltipAlignment();
 
     return Padding(
       padding: const EdgeInsets.all(_arrowHeight),
