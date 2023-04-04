@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -76,9 +77,13 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   final _fieldBoxKey = GlobalKey();
 
   FocusNode? _focusNode;
+  TextEditingController? _controller;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
+
+  TextEditingController get _effectiveController =>
+      widget.controller ?? (_controller ??= TextEditingController());
 
   OverlayEntry? _overlayEntry;
 
@@ -159,17 +164,48 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     _showOverlay();
   }
 
-  Widget? get _trailing => widget.isUpdating
-      ? const OptimusProgressSpinner()
-      : widget.trailingImplicit != null
-          ? _TrailingStack(
-              trailing: widget.trailing,
-              trailingImplicit: GestureDetector(
-                onTapDown: (_) => _effectiveFocusNode.requestFocus(),
-                child: widget.trailingImplicit,
-              ),
-            )
-          : widget.trailing;
+  void _onClearAllTap() {
+    _effectiveController.clear();
+    widget.onTextChanged?.call('');
+  }
+
+  bool get _isClearAllButtonVisible =>
+      widget.isClearEnabled && _effectiveController.text.isNotEmpty;
+
+  Widget? get _clearAllButton =>
+      _isClearAllButtonVisible ? _ClearAllButton(onTap: _onClearAllTap) : null;
+
+  List<Widget> _buildTrailingWidgets() {
+    final trailing = widget.trailing;
+    final trailingImplicit = widget.trailingImplicit;
+    if (widget.isUpdating) {
+      return [const OptimusProgressSpinner()];
+    } else {
+      return [
+        if (trailing != null) trailing,
+        if (trailingImplicit != null) trailingImplicit,
+      ];
+    }
+  }
+
+  Widget? get _trailing {
+    final clearAll = _clearAllButton;
+    final trailingWidgets = _buildTrailingWidgets();
+    if (clearAll == null && trailingWidgets.isEmpty) return null;
+
+    return GestureDetector(
+      onTapDown: (_) => _effectiveFocusNode.requestFocus(),
+      child: OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (clearAll != null) clearAll,
+          ...trailingWidgets,
+        ],
+      ),
+    );
+  }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
@@ -196,7 +232,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           }
 
           return GestureDetector(
-            key: const Key('OptimusSearchOverlay'),
+            key: const Key('OptimusDropdownOverlay'),
             behavior: HitTestBehavior.translucent,
             onTapDown: onTapDown,
             child: DropdownTapInterceptor(
@@ -217,7 +253,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
         child: OptimusInputField(
           leading: widget.leading,
           prefix: widget.prefix,
-          controller: widget.controller,
+          controller: _effectiveController,
           onChanged: widget.onTextChanged,
           isRequired: widget.isRequired,
           label: widget.label,
@@ -235,33 +271,61 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           readOnly: widget.readOnly,
           showCursor: widget.showCursor,
           showLoader: widget.showLoader,
-          isClearEnabled: widget.isClearEnabled,
         ),
       );
 }
 
-class _TrailingStack extends StatelessWidget {
-  const _TrailingStack({
+class _ClearAllButton extends StatelessWidget {
+  const _ClearAllButton({
     Key? key,
-    required this.trailing,
-    required this.trailingImplicit,
+    required this.onTap,
   }) : super(key: key);
 
-  final Widget? trailing;
-  final Widget trailingImplicit;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final trailingWidget = trailing;
+    final theme = OptimusTheme.of(context);
 
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (trailingWidget != null) trailingWidget,
-        trailingImplicit,
-      ],
+    return _CustomRawGestureDetector(
+      onTap: onTap,
+      child: Icon(
+        OptimusIcons.clear_selection,
+        size: 24,
+        color: theme.colors.neutral100,
+      ),
     );
+  }
+}
+
+class _CustomRawGestureDetector extends RawGestureDetector {
+  _CustomRawGestureDetector({
+    Key? key,
+    GestureTapCallback? onTap,
+    GestureTapDownCallback? onTapDown,
+    Widget? child,
+  }) : super(
+          key: key,
+          behavior: HitTestBehavior.opaque,
+          gestures: <Type, GestureRecognizerFactory>{
+            _AllowMultipleGestureRecognizer:
+                GestureRecognizerFactoryWithHandlers<
+                    _AllowMultipleGestureRecognizer>(
+              _AllowMultipleGestureRecognizer.new,
+              (_AllowMultipleGestureRecognizer instance) {
+                instance
+                  ..onTap = onTap
+                  ..onTapDown = onTapDown;
+              },
+            ),
+          },
+          child: child,
+        );
+}
+
+class _AllowMultipleGestureRecognizer extends TapGestureRecognizer {
+  @override
+  void rejectGesture(int pointer) {
+    acceptGesture(pointer);
   }
 }
