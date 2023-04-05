@@ -23,6 +23,7 @@ class OptimusInputField extends StatefulWidget {
     this.minLines,
     this.controller,
     this.error,
+    this.useInlineError = false,
     this.enableInteractiveSelection = true,
     this.autofocus = false,
     this.autocorrect = true,
@@ -73,6 +74,9 @@ class OptimusInputField extends StatefulWidget {
   final int? minLines;
   final TextEditingController? controller;
   final String? error;
+
+  /// If true, error will be displayed via the tooltip.
+  final bool useInlineError;
   final bool enableInteractiveSelection;
 
   /// {@macro flutter.widgets.editableText.autofocus}
@@ -199,17 +203,33 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     }
   }
 
+  bool get _shouldShowInlineError => widget.useInlineError && widget.hasError;
+
+  Widget? get _inlineError {
+    if (_shouldShowInlineError) {
+      final error = widget.error;
+      if (error == null) return null;
+
+      return OptimusTooltipWrapper(
+        text: Text(error),
+        child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
+      );
+    }
+  }
+
   Widget? get _suffix {
     if (widget.suffix != null ||
         widget.trailing != null ||
         widget.showLoader ||
-        _shouldShowClearAllButton) {
+        _shouldShowClearAllButton ||
+        _shouldShowInlineError) {
       return _Suffix(
         suffix: widget.suffix,
         trailing: widget.trailing,
         passwordButton: _passwordButton,
         showLoader: widget.showLoader,
         clearAllButton: _clearAllButton,
+        inlineError: _inlineError,
       );
     }
   }
@@ -229,7 +249,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         label: widget.label,
         caption: widget.caption,
         secondaryCaption: widget.secondaryCaption,
-        error: widget.error,
+        error: widget.useInlineError ? null : widget.error,
         hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
         prefix: _prefix,
@@ -308,6 +328,7 @@ class _Suffix extends StatelessWidget {
     this.suffix,
     this.passwordButton,
     this.trailing,
+    this.inlineError,
     required this.clearAllButton,
     required this.showLoader,
   }) : super(key: key);
@@ -316,6 +337,7 @@ class _Suffix extends StatelessWidget {
   final Widget? passwordButton;
   final Widget? trailing;
   final Widget? clearAllButton;
+  final Widget? inlineError;
   final bool showLoader;
 
   OptimusCircleLoader get _loader => const OptimusCircleLoader(
@@ -330,20 +352,21 @@ class _Suffix extends StatelessWidget {
     final passwordButtonWidget = passwordButton;
     final trailingWidget = trailing;
 
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (suffixWidget != null) suffixWidget,
-        if (showLoader) _loader,
-        if (clearAllButtonWidget != null) clearAllButtonWidget,
-        if (passwordButtonWidget != null)
-          passwordButtonWidget
-        else if (trailingWidget != null)
-          trailingWidget
-      ],
-    );
+    return inlineError ??
+        OptimusStack(
+          direction: Axis.horizontal,
+          spacing: OptimusStackSpacing.spacing100,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (suffixWidget != null) suffixWidget,
+            if (showLoader) _loader,
+            if (clearAllButtonWidget != null) clearAllButtonWidget,
+            if (passwordButtonWidget != null)
+              passwordButtonWidget
+            else if (trailingWidget != null)
+              trailingWidget
+          ],
+        );
   }
 }
 
