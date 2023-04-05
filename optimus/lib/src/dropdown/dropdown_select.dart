@@ -107,6 +107,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   void dispose() {
     _effectiveFocusNode.removeListener(_onFocusChanged);
     _focusNode?.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
