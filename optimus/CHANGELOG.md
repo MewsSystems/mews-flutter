@@ -1,3 +1,9 @@
+## 0.24.2
+
+ - **FIX**: [RND-169480] Fix clearAll button not reacting in the OptimusSearch (#336).
+ - **FEAT**: [RND-164806] Add OptimusDivider (#335).
+ - **FEAT**: [RND-165619] Add OptimusTooltipWrapper (#333).
+
 ## 0.24.1
 
  - **FEAT**: [RND-168345] Updated OptimusSearch (#332).
