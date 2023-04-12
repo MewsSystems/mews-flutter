@@ -23,7 +23,7 @@ class OptimusInputField extends StatefulWidget {
     this.minLines,
     this.controller,
     this.error,
-    this.useInlineError = false,
+    this.errorVariant = OptimusInputErrorVariant.bottomHint,
     this.enableInteractiveSelection = true,
     this.autofocus = false,
     this.autocorrect = true,
@@ -75,8 +75,10 @@ class OptimusInputField extends StatefulWidget {
   final TextEditingController? controller;
   final String? error;
 
-  /// If true, error will be displayed via the tooltip.
-  final bool useInlineError;
+  /// The way error should be displayed. Will be set to the
+  /// [OptimusInputErrorVariant.bottomHint] if not provided.
+  final OptimusInputErrorVariant errorVariant;
+
   final bool enableInteractiveSelection;
 
   /// {@macro flutter.widgets.editableText.autofocus}
@@ -203,7 +205,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     }
   }
 
-  bool get _shouldShowInlineError => widget.useInlineError && widget.hasError;
+  bool get _isUsingInlineError =>
+      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
+
+  bool get _shouldShowInlineError => _isUsingInlineError && widget.hasError;
 
   Widget? get _inlineError {
     if (_shouldShowInlineError) {
@@ -250,7 +255,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         caption: widget.caption,
         secondaryCaption: widget.secondaryCaption,
         error: widget.error,
-        usingInlineError: widget.useInlineError,
+        usingInlineError: _isUsingInlineError,
         hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
         prefix: _prefix,
@@ -426,6 +431,16 @@ class _ClearAllButton extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The way of displaying the error message.
+enum OptimusInputErrorVariant {
+  /// The error message is displayed below the input.
+  bottomHint,
+
+  /// The error message is displayed as a tooltip near the input. The tooltip is
+  /// shown after the interaction with the error icon.
+  inlineTooltip,
 }
 
 const double _iconSize = 24;
