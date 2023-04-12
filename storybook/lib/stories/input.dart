@@ -21,6 +21,12 @@ final Story inputStory = Story(
       initial: null,
       options: exampleIcons,
     );
+    final error = k.text(label: 'Error', initial: '');
+    final errorVariant = k.options(
+      label: 'Error variant',
+      initial: OptimusInputErrorVariant.bottomHint,
+      options: OptimusInputErrorVariant.values.toOptions(),
+    );
 
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
@@ -34,6 +40,7 @@ final Story inputStory = Story(
         trailing: trailingIcon == null ? null : Icon(trailingIcon),
         isClearEnabled: k.boolean(label: 'Clear all', initial: false),
         showLoader: k.boolean(label: 'Show loader', initial: false),
+        errorVariant: errorVariant,
         size: k.options(
           label: 'Size',
           initial: OptimusWidgetSize.large,
@@ -44,7 +51,7 @@ final Story inputStory = Story(
             k.text(label: 'Placeholder', initial: 'Put some hint here...'),
         caption: Text(k.text(label: 'Caption', initial: '')),
         secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
-        error: k.text(label: 'Error', initial: ''),
+        error: error,
       ),
     );
   },

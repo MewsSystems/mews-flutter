@@ -261,6 +261,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
   }
 
   void _afterFirstLayoutCallback(dynamic _) {
+    if (!mounted) return;
     setState(() {
       _position = _calculatePosition();
       _opacity = 1.0;

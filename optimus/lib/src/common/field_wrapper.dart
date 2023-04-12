@@ -16,6 +16,7 @@ class FieldWrapper extends StatefulWidget {
     this.caption,
     this.secondaryCaption,
     this.error,
+    this.errorVariant = OptimusInputErrorVariant.bottomHint,
     this.hasBorders = true,
     this.isRequired = false,
     this.suffix,
@@ -30,6 +31,7 @@ class FieldWrapper extends StatefulWidget {
   final Widget? caption;
   final Widget? secondaryCaption;
   final String? error;
+  final OptimusInputErrorVariant errorVariant;
   final bool hasBorders;
   final bool isRequired;
   final Widget? suffix;
@@ -59,6 +61,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     widget.focusNode.removeListener(_onFocusChanged);
     super.dispose();
   }
+
+  bool get _isUsingBottomHint =>
+      widget.errorVariant == OptimusInputErrorVariant.bottomHint;
 
   String get _normalizedError {
     final error = widget.error;
@@ -119,7 +124,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                   ),
                 ),
               ),
-              if (_normalizedError.isNotEmpty)
+              if (_isUsingBottomHint && _normalizedError.isNotEmpty)
                 OptimusFieldError(error: _normalizedError),
               if (!widget.hasError && caption != null)
                 OptimusCaption(

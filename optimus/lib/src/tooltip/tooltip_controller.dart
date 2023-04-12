@@ -34,7 +34,9 @@ class TooltipController extends StatefulWidget {
   /// [OptimusTooltipPosition.bottom].
   final OptimusTooltipPosition? tooltipPosition;
 
-  /// Duration for which the tooltip will be shown. Defaults to 1 second.
+  /// Duration for which the tooltip will be shown. Defaults to 1 second. If
+  /// the tooltip is triggered by a mouse hover, it will not be hidden
+  /// until the mouse leaves the widget.
   final Duration autoHideDuration;
 
   @override
@@ -46,7 +48,6 @@ class _TooltipControllerState extends State<TooltipController> {
 
   OverlayEntry createEntry() => OverlayEntry(
         builder: (context) => GestureDetector(
-          behavior: HitTestBehavior.opaque,
           onTapDown: (_) => hideTooltip(),
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
@@ -62,10 +63,12 @@ class _TooltipControllerState extends State<TooltipController> {
         ),
       );
 
-  void showTooltip() {
+  void showTooltip({bool autoHide = true}) {
+    if (_entry != null) return;
+
     _entry = createEntry().also((it) {
       Overlay.of(context).insert(it);
-      Future.delayed(widget.autoHideDuration, hideTooltip);
+      if (autoHide) Future.delayed(widget.autoHideDuration, hideTooltip);
     });
   }
 
@@ -75,8 +78,12 @@ class _TooltipControllerState extends State<TooltipController> {
   }
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: showTooltip,
-        child: widget.child,
+  Widget build(BuildContext context) => MouseRegion(
+        onEnter: (_) => showTooltip(autoHide: false),
+        onExit: (_) => hideTooltip(),
+        child: GestureDetector(
+          onTap: showTooltip,
+          child: widget.child,
+        ),
       );
 }
