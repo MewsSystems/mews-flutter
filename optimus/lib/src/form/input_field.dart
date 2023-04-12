@@ -255,7 +255,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         caption: widget.caption,
         secondaryCaption: widget.secondaryCaption,
         error: widget.error,
-        usingInlineError: _isUsingInlineError,
+        errorVariant: widget.errorVariant,
         hasBorders: widget.hasBorders,
         isRequired: widget.isRequired,
         prefix: _prefix,
