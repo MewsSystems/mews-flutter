@@ -62,7 +62,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     super.dispose();
   }
 
-  bool get _usingBottomHint =>
+  bool get _isUsingBottomHint =>
       widget.errorVariant == OptimusInputErrorVariant.bottomHint;
 
   String get _normalizedError {
@@ -124,7 +124,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                   ),
                 ),
               ),
-              if (_usingBottomHint && _normalizedError.isNotEmpty)
+              if (_isUsingBottomHint && _normalizedError.isNotEmpty)
                 OptimusFieldError(error: _normalizedError),
               if (!widget.hasError && caption != null)
                 OptimusCaption(
