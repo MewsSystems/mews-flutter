@@ -28,6 +28,7 @@ class OptimusInputField extends StatefulWidget {
     this.autocorrect = true,
     this.hasBorders = true,
     this.isRequired = false,
+    this.isFocused,
     this.isClearEnabled = false,
     this.suffix,
     this.prefix,
@@ -77,6 +78,7 @@ class OptimusInputField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.autofocus}
   final bool autofocus;
+  final bool? isFocused;
 
   /// {@macro flutter.widgets.editableText.autocorrect}
   final bool autocorrect;
@@ -225,6 +227,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   Widget build(BuildContext context) => FieldWrapper(
         focusNode: _effectiveFocusNode,
+        isFocused: widget.isFocused,
         isEnabled: widget.isEnabled,
         label: widget.label,
         caption: widget.caption,
