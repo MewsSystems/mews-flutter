@@ -39,6 +39,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
     final trailing =
         k.options(label: 'Trailing Icon', options: exampleIcons, initial: null);
     final showLoader = k.boolean(label: 'Show loader', initial: false);
+    final embeddedSearch = k.boolean(label: 'Embedded search', initial: false);
 
     return OptimusSelectInput<String>(
       value: _selectedValue,
@@ -74,6 +75,17 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           )
           .toList(),
       builder: (option) => option,
+      emptyResultPlaceholder: const Padding(
+        padding: EdgeInsets.all(spacing100),
+        child: OptimusLabel(child: Text('No results found')),
+      ),
+      embeddedSearch: embeddedSearch
+          ? OptimusDropdownEmbeddedSearch(
+              initialValue: _searchToken,
+              onTextChanged: _onTextChanged,
+              placeholder: 'Search',
+            )
+          : null,
     );
   }
 }

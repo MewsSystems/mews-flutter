@@ -11,28 +11,33 @@ class OptimusDropdown<T> extends StatelessWidget {
     required this.anchorKey,
     required this.onChanged,
     this.width,
+    this.embeddedSearch,
+    this.emptyResultPlaceholder,
   }) : super(key: key);
 
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
   final GlobalKey anchorKey;
   final double? width;
+  final Widget? embeddedSearch;
+  final Widget? emptyResultPlaceholder;
 
   @override
-  Widget build(BuildContext context) {
-    if (items.isEmpty) return const SizedBox.shrink();
-
-    return Stack(
-      alignment: AlignmentDirectional.topCenter,
-      children: <Widget>[
-        AnchoredOverlay(
-          anchorKey: anchorKey,
-          width: width,
-          child: _DropdownContent(items: items, onChanged: onChanged),
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: <Widget>[
+          AnchoredOverlay(
+            anchorKey: anchorKey,
+            width: width,
+            child: _DropdownContent(
+              items: items,
+              onChanged: onChanged,
+              embeddedSearch: embeddedSearch,
+              emptyResultPlaceholder: emptyResultPlaceholder,
+            ),
+          ),
+        ],
+      );
 }
 
 class _DropdownContent<T> extends StatelessWidget {
@@ -40,10 +45,14 @@ class _DropdownContent<T> extends StatelessWidget {
     Key? key,
     required this.onChanged,
     required this.items,
+    this.embeddedSearch,
+    this.emptyResultPlaceholder,
   }) : super(key: key);
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
+  final Widget? embeddedSearch;
+  final Widget? emptyResultPlaceholder;
 
   // TODO(VG): can be changed when final dark theme design is ready.
   BoxDecoration _dropdownDecoration(BuildContext context) {
@@ -56,19 +65,63 @@ class _DropdownContent<T> extends StatelessWidget {
     );
   }
 
+  Widget? _buildEmptyPlaceholder() {
+    if (emptyResultPlaceholder != null) {
+      return Material(
+        color: Colors.transparent,
+        child: emptyResultPlaceholder,
+      );
+    }
+  }
+
+  Widget _buildSearch(
+    AnchoredOverlayController controller,
+    bool isOnTop,
+    Widget embeddedSearch,
+  ) =>
+      _SearchWrapper(
+        width: controller.width,
+        showDivider: items.isNotEmpty,
+        isOnTop: isOnTop,
+        child: embeddedSearch,
+      );
+
   @override
   Widget build(BuildContext context) {
     final controller = AnchoredOverlay.of(context);
+    final embeddedSearch = this.embeddedSearch;
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
+      final listMaxHeight = embeddedSearch != null
+          ? controller.maxHeight - _embeddedSearchHeight
+          : controller.maxHeight;
 
       return Container(
-        decoration: _dropdownDecoration(context),
         constraints: BoxConstraints(maxHeight: controller.maxHeight),
-        child: _DropdownListView(
-          items: items,
-          onChanged: onChanged,
-          isReversed: isOnTop,
+        width: controller.width,
+        decoration: _dropdownDecoration(context),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (embeddedSearch != null && !isOnTop)
+              _buildSearch(controller, isOnTop, embeddedSearch),
+            if (items.isNotEmpty)
+              Container(
+                constraints: BoxConstraints(
+                  maxHeight: listMaxHeight,
+                  maxWidth: controller.width,
+                ),
+                child: _DropdownListView(
+                  items: items,
+                  onChanged: onChanged,
+                  isReversed: isOnTop,
+                ),
+              ),
+            if (items.isEmpty)
+              _buildEmptyPlaceholder() ?? const SizedBox.shrink(),
+            if (embeddedSearch != null && isOnTop)
+              _buildSearch(controller, isOnTop, embeddedSearch),
+          ],
         ),
       );
     } else {
@@ -144,3 +197,38 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
             : widget.child,
       );
 }
+
+class _SearchWrapper extends StatelessWidget {
+  const _SearchWrapper({
+    Key? key,
+    required this.width,
+    required this.showDivider,
+    required this.isOnTop,
+    required this.child,
+  }) : super(key: key);
+
+  final double width;
+  final Widget child;
+  final bool showDivider;
+  final bool isOnTop;
+
+  Widget _buildDivider(OptimusThemeData theme) =>
+      Divider(thickness: 1, height: 1, color: theme.colors.neutral50);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+
+    return SizedBox(
+      child: Column(
+        children: [
+          if (showDivider && isOnTop) _buildDivider(theme),
+          child,
+          if (showDivider && !isOnTop) _buildDivider(theme),
+        ],
+      ),
+    );
+  }
+}
+
+const _embeddedSearchHeight = 54.0;

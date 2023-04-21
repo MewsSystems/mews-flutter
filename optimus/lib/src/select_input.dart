@@ -36,6 +36,8 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.focusNode,
     this.readOnly,
     this.showLoader = false,
+    this.emptyResultPlaceholder,
+    this.embeddedSearch,
   }) : super(key: key);
 
   /// Describes the purpose of the select field.
@@ -65,6 +67,16 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final ValueSetter<String>? onTextChanged;
   final bool? readOnly;
 
+  /// An embedded search field that can be used to filter the list of items.
+  /// Will be displayed as a part of the dropdown menu. If the [controller] or
+  /// [onTextChanged] is provided, the embedded search will not be used. Instead
+  /// the search will be a part of the input field.
+  final OptimusDropdownEmbeddedSearch? embeddedSearch;
+
+  /// A widget that is displayed when the list of items is empty. If not
+  /// provided the dropdown will not be displayed.
+  final Widget? emptyResultPlaceholder;
+
   @override
   State<OptimusSelectInput<T>> createState() => _OptimusSelectInput<T>();
 }
@@ -90,15 +102,13 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
       widget.controller ?? (_controller ??= TextEditingController());
 
   void _onFocusChanged() {
-    setState(() {
-      if (!_effectiveFocusNode.hasFocus) {
-        _effectiveController.text = '';
+    if (!_isUsingEmbeddedSearch) {
+      if (_effectiveFocusNode.hasFocus) {
+        _animationController.forward();
+      } else {
+        setState(() => _effectiveController.text = '');
+        _animationController.reverse();
       }
-    });
-    if (_effectiveFocusNode.hasFocus) {
-      _animationController.forward();
-    } else {
-      _animationController.reverse();
     }
   }
 
@@ -138,8 +148,11 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     super.dispose();
   }
 
-  bool get _isSearchable =>
+  bool get _isUsingInlineSearch =>
       widget.controller != null || widget.onTextChanged != null;
+
+  bool get _isUsingEmbeddedSearch =>
+      widget.embeddedSearch != null && !_isUsingInlineSearch;
 
   Widget get _icon => RotationTransition(
         turns: _iconTurns,
@@ -196,9 +209,15 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
-        readOnly: widget.readOnly ?? !_isSearchable,
-        showCursor: _isSearchable,
+        readOnly: widget.readOnly ?? !_isUsingInlineSearch,
+        showCursor: _isUsingInlineSearch,
         showLoader: widget.showLoader,
-        shouldCloseOnInputTap: !_isSearchable,
+        shouldCloseOnInputTap: !_isUsingInlineSearch,
+        emptyResultPlaceholder: widget.emptyResultPlaceholder,
+        embeddedSearch: _isUsingEmbeddedSearch ? widget.embeddedSearch : null,
+        onDropdownShow:
+            _isUsingEmbeddedSearch ? _animationController.forward : null,
+        onDropdownHide:
+            _isUsingEmbeddedSearch ? _animationController.reverse : null,
       );
 }

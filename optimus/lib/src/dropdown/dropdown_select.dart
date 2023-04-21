@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -36,6 +37,10 @@ class DropdownSelect<T> extends StatefulWidget {
     this.showLoader = false,
     this.isClearEnabled = false,
     this.rootOverlay = false,
+    this.emptyResultPlaceholder,
+    this.embeddedSearch,
+    this.onDropdownShow,
+    this.onDropdownHide,
   }) : super(key: key);
 
   final String? label;
@@ -62,6 +67,10 @@ class DropdownSelect<T> extends StatefulWidget {
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
   final bool rootOverlay;
+  final OptimusDropdownEmbeddedSearch? embeddedSearch;
+  final Widget? emptyResultPlaceholder;
+  final VoidCallback? onDropdownShow;
+  final VoidCallback? onDropdownHide;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -91,15 +100,13 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   void initState() {
     super.initState();
     _effectiveFocusNode.addListener(_onFocusChanged);
-
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayoutBuild);
   }
 
   void _onFocusChanged() {
     if (_effectiveFocusNode.hasFocus) {
-      WidgetsBinding.instance.addPostFrameCallback(_afterLayoutWithShow);
+      _showOverlay();
     } else {
-      _removeOverlay();
+      if (widget.embeddedSearch == null) _removeOverlay();
     }
   }
 
@@ -132,43 +139,40 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
       _effectiveFocusNode.unfocus();
 
       return false;
+    } else if (widget.embeddedSearch != null) {
+      final overlay = _overlayEntry;
+      if (overlay != null) {
+        _removeOverlay();
+
+        return false;
+      }
     }
 
     return true;
   }
 
-  void _createOverlay() => _overlayEntry = _createOverlayEntry();
-
   void _showOverlay() {
-    final overlayEntry = _overlayEntry;
-    if (overlayEntry != null) {
-      Overlay.of(context, rootOverlay: widget.rootOverlay).insert(overlayEntry);
-    }
+    if (_overlayEntry != null) return;
+    _overlayEntry = _createOverlayEntry().also((it) {
+      Overlay.of(context, rootOverlay: widget.rootOverlay).insert(it);
+      widget.onDropdownShow?.call();
+    });
   }
 
   void _removeOverlay() {
-    if (_overlayEntry != null) {
-      _overlayEntry?.remove();
-      _overlayEntry = null;
-    }
-    _effectiveFocusNode.unfocus();
-  }
-
-  void _afterLayoutBuild(dynamic _) {
-    if (!mounted) return;
-    _createOverlay();
-  }
-
-  void _afterLayoutWithShow(dynamic _) {
-    if (!mounted) return;
-    _createOverlay();
-    _showOverlay();
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+    widget.onDropdownHide?.call();
+    setState(() {});
   }
 
   void _onClearAllTap() {
     _effectiveController.clear();
     widget.onTextChanged?.call('');
   }
+
+  bool? get _isFocused =>
+      widget.embeddedSearch != null ? _overlayEntry != null : null;
 
   bool get _isClearAllButtonVisible =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
@@ -220,7 +224,6 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
                 _fieldBoxKey.currentContext?.findRenderObject();
             final RenderObject? dropdownRenderObject =
                 context.findRenderObject();
-
             if (dropdownRenderObject is RenderBox &&
                 hitTest(dropdownRenderObject)) {
               // Touch on dropdown shouldn't close overlay
@@ -242,6 +245,8 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
                 items: widget.items,
                 anchorKey: _fieldBoxKey,
                 onChanged: widget.onChanged,
+                embeddedSearch: widget.embeddedSearch,
+                emptyResultPlaceholder: widget.emptyResultPlaceholder,
               ),
             ),
           );
@@ -261,6 +266,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           placeholder: widget.placeholder,
           placeholderStyle: widget.placeholderStyle,
           focusNode: _effectiveFocusNode,
+          isFocused: _isFocused,
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.suffix,
           trailing: _trailing,
