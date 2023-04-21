@@ -40,6 +40,7 @@ export 'src/dialogs/inline_dialog.dart';
 export 'src/divider.dart';
 export 'src/dropdown/dropdown.dart';
 export 'src/dropdown/dropdown_tile.dart';
+export 'src/dropdown/embedded_search.dart';
 export 'src/enabled.dart';
 export 'src/expansion/expansion_tile.dart';
 export 'src/form/checkbox_form_field.dart';
