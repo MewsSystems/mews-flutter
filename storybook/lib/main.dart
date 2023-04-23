@@ -13,6 +13,7 @@ import 'package:storybook/stories/chat/chat.dart';
 import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
 import 'package:storybook/stories/checkbox_nested.dart';
+import 'package:storybook/stories/compact_step_bar.dart';
 import 'package:storybook/stories/date_input_field.dart';
 import 'package:storybook/stories/date_input_form_field.dart';
 import 'package:storybook/stories/date_time_field.dart';
@@ -130,6 +131,7 @@ class _MyAppState extends State<MyApp> {
                   inlineDialogStory,
                   stackStory,
                   stepBarStory,
+                  compactStepBarStory,
                   badgeStory,
                   listTileStory,
                   navListTileStory,
