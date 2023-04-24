@@ -37,6 +37,7 @@ Future<T?> showOptimusDialog<T>({
   OptimusDialogSize size = OptimusDialogSize.regular,
   OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
+  bool useSafeArea = false,
   bool useRootNavigator = true,
 }) =>
     showGeneralDialog(
@@ -47,6 +48,7 @@ Future<T?> showOptimusDialog<T>({
         content: content,
         contentWrapperBuilder: contentWrapperBuilder,
         actions: actions,
+        useSafeArea: useSafeArea,
         size: size,
         type: type,
       ),
@@ -75,6 +77,7 @@ class OptimusDialog extends StatelessWidget {
     this.close,
     this.isDismissible,
     this.position = OptimusDialogPosition.center,
+    this.useSafeArea = false,
   }) : super(key: key);
 
   const OptimusDialog.modal({
@@ -86,6 +89,7 @@ class OptimusDialog extends StatelessWidget {
     OptimusDialogSize size = OptimusDialogSize.regular,
     OptimusDialogType type = OptimusDialogType.common,
     bool? isDismissible,
+    bool useSafeArea = false,
   }) : this._(
           key: key,
           title: title,
@@ -95,6 +99,7 @@ class OptimusDialog extends StatelessWidget {
           size: size,
           type: type,
           isDismissible: isDismissible,
+          useSafeArea: useSafeArea,
         );
 
   const OptimusDialog.nonModal({
@@ -105,6 +110,7 @@ class OptimusDialog extends StatelessWidget {
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
     bool? isDismissible,
+    bool useSafeArea = false,
     required VoidCallback close,
   }) : this._(
           key: key,
@@ -116,6 +122,7 @@ class OptimusDialog extends StatelessWidget {
               ? OptimusDialogSize.regular
               : size,
           isDismissible: isDismissible,
+          useSafeArea: useSafeArea,
           close: close,
           position: OptimusDialogPosition.corner,
         );
@@ -160,6 +167,8 @@ class OptimusDialog extends StatelessWidget {
   final OptimusDialogSize size;
 
   final OptimusDialogType type;
+
+  final bool useSafeArea;
 
   OptimusDialogSize _autoSize(BuildContext context) {
     switch (MediaQuery.of(context).screenBreakpoint) {
@@ -206,22 +215,27 @@ class OptimusDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = _autoSize(context);
+    Widget dialogContent = DialogContent(
+      title: title,
+      content: content,
+      actions: actions,
+      type: type,
+      size: size,
+      maxWidth: size.width,
+      spacing: spacing300,
+      margin: MediaQuery.of(context).viewInsets,
+      contentWrapperBuilder: contentWrapperBuilder,
+      isDismissible: isDismissible,
+      close: close,
+    );
+
+    if (useSafeArea) {
+      dialogContent = SafeArea(child: dialogContent);
+    }
 
     return Align(
       alignment: _alignment(context),
-      child: DialogContent(
-        title: title,
-        content: content,
-        actions: actions,
-        type: type,
-        size: size,
-        maxWidth: size.width,
-        spacing: spacing300,
-        margin: MediaQuery.of(context).viewInsets,
-        contentWrapperBuilder: contentWrapperBuilder,
-        isDismissible: isDismissible,
-        close: close,
-      ),
+      child: dialogContent,
     );
   }
 }
