@@ -1,0 +1,11 @@
+name: storybook
+
+packages:
+  - packages/**
+
+scripts:
+  gen_icons:
+    name: Generate icons list
+    description: Create a list with all optimus icons
+    run: dart utils/gen_icons.dart ../optimus/lib/fonts/config/ lib/stories/icon && dart format lib/stories/icon/icons_list.dart
+

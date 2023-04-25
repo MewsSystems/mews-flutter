@@ -19,8 +19,9 @@ import 'package:storybook/stories/date_time_field.dart';
 import 'package:storybook/stories/dialog.dart';
 import 'package:storybook/stories/divider.dart';
 import 'package:storybook/stories/form/form_story.dart';
-import 'package:storybook/stories/icon.dart';
-import 'package:storybook/stories/icon_list.dart';
+import 'package:storybook/stories/icon/icon.dart';
+import 'package:storybook/stories/icon/icon_list.dart';
+import 'package:storybook/stories/icon/icons.dart';
 import 'package:storybook/stories/inline_dialog.dart';
 import 'package:storybook/stories/input.dart';
 import 'package:storybook/stories/link/inline_link.dart';
@@ -117,6 +118,7 @@ class _MyAppState extends State<MyApp> {
                   bannerStory,
                   wideBannerStory,
                   interactiveTagStory,
+                  allIconsStory,
                   iconStory,
                   logoStory,
                   supplementaryIconStory,
