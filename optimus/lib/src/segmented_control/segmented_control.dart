@@ -18,6 +18,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
     this.error,
     this.isEnabled = true,
     this.isRequired = false,
+    this.maxLines,
     this.direction = Axis.horizontal,
   })  : assert(
           items.map((i) => i.value).contains(value),
@@ -53,8 +54,14 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
   /// Direction of the segmented control widget.
   final Axis direction;
 
+  /// Limits the number of lines of the segmented item text. In case of
+  /// the [Axis.horizontal] this will be set to 1.
+  final int? maxLines;
+
   late final _selectedItemIndex =
       items.map((i) => i.value).toList().indexOf(value);
+
+  int? get _maxLines => direction == Axis.horizontal ? 1 : maxLines;
 
   OptimusStackDistribution get _distribution => direction == Axis.horizontal
       ? OptimusStackDistribution.stretch
@@ -90,6 +97,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
         groupValue: value,
         onItemSelected: onItemSelected,
         isEnabled: isEnabled,
+        maxLines: _maxLines,
         child: item.label,
       );
 
@@ -121,6 +129,7 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
     required this.groupValue,
     required this.onItemSelected,
     required this.isEnabled,
+    required this.maxLines,
   }) : super(key: key);
 
   final Widget child;
@@ -134,6 +143,8 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
   final ValueChanged<T> onItemSelected;
 
   final bool isEnabled;
+
+  final int? maxLines;
 
   @override
   _OptimusSegmentedControlItemState<T> createState() =>
@@ -199,6 +210,7 @@ class _OptimusSegmentedControlItemState<T>
                   child: DefaultTextStyle.merge(
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
+                    maxLines: widget.maxLines,
                     style: preset300b.copyWith(
                       color: theme.isDark
                           ? theme.colors.neutral0
