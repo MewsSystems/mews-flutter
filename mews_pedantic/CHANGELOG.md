@@ -1,3 +1,9 @@
+## 0.14.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Use dart_code_metrics 5.7.2.
+
 ## 0.13.0
 
 > Note: This release has breaking changes.
