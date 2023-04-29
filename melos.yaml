@@ -1,8 +1,8 @@
 name: mews-flutter
 
 command:
-  bootstrap:
-    usePubspecOverrides: true
+  version:
+    workspaceChangelog: false
 
 packages:
   - "**"
