@@ -5,6 +5,39 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
+/// Both types of step have dedicated states. State is shown through a visual
+/// change in the step indicator and in the divider between steps.
+/// All of this forms a visual distinction between the finished and unfinished
+/// part of a process.
+enum OptimusStepBarItemState {
+  /// The step is finished. The icon is always changed to a check icon.
+  completed,
+
+  /// The step is active and unfinished.
+  active,
+
+  /// The step is inactive and unfinished.
+  enabled,
+
+  /// The step is disabled and unavailable.
+  disabled,
+}
+
+class OptimusStepBarItem {
+  const OptimusStepBarItem({
+    required this.label,
+    this.description,
+    required this.icon,
+  });
+
+  final Widget label;
+  final Widget? description;
+  final IconData icon;
+
+  static const double itemMinWidth = 112;
+  static const double itemMaxWidth = 320;
+}
+
 class StepBarItem extends StatelessWidget {
   const StepBarItem({
     Key? key,
@@ -41,8 +74,8 @@ class StepBarItem extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxWidth: min(_itemMaxWidth, maxWidth),
-        minWidth: _itemMinWidth,
+        maxWidth: min(OptimusStepBarItem.itemMaxWidth, maxWidth),
+        minWidth: OptimusStepBarItem.itemMinWidth,
       ),
       child: OptimusEnabled(
         isEnabled: state != OptimusStepBarItemState.disabled,
@@ -187,6 +220,8 @@ class StepBarSpacer extends StatelessWidget {
   final OptimusStepBarItemState nextItemState;
   final Axis layout;
 
+  static const double spacerMinWidth = 16;
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -196,7 +231,7 @@ class StepBarSpacer extends StatelessWidget {
       case Axis.horizontal:
         return Flexible(
           child: Container(
-            constraints: const BoxConstraints(minWidth: _spacerMinWidth),
+            constraints: const BoxConstraints(minWidth: spacerMinWidth),
             height: _spacerThickness,
             color: color,
           ),
@@ -272,6 +307,3 @@ const _itemLeftPadding = spacing100;
 const _verticalSpacerLeftPadding = _iconWrapperSize / 2 + _itemLeftPadding;
 const double _spacerHeight = 16;
 const double _spacerThickness = 1;
-const double _itemMinWidth = 112;
-const double _itemMaxWidth = 320;
-const double _spacerMinWidth = 16;

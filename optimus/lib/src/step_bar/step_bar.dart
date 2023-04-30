@@ -96,10 +96,12 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
-          final totalSpacerWidth = (widget.items.length - 1) * _spacerMinWidth;
+          final totalSpacerWidth =
+              (widget.items.length - 1) * StepBarSpacer.spacerMinWidth;
           final totalFreeSpace =
               (constraints.maxWidth - totalSpacerWidth) / widget.items.length;
-          final maxItemWidth = max(totalFreeSpace, _itemMinWidth);
+          final maxItemWidth =
+              max(totalFreeSpace, OptimusStepBarItem.itemMinWidth);
 
           return OptimusStack(
             mainAxisSize: _effectiveLayout == Axis.vertical
@@ -116,36 +118,3 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
 }
 
 enum OptimusStepBarType { icon, numbered }
-
-/// Both types of step have dedicated states. State is shown through a visual
-/// change in the step indicator and in the divider between steps.
-/// All of this forms a visual distinction between the finished and unfinished
-/// part of a process.
-enum OptimusStepBarItemState {
-  /// The step is finished. The icon is always changed to a check icon.
-  completed,
-
-  /// The step is active and unfinished.
-  active,
-
-  /// The step is inactive and unfinished.
-  enabled,
-
-  /// The step is disabled and unavailable.
-  disabled,
-}
-
-class OptimusStepBarItem {
-  const OptimusStepBarItem({
-    required this.label,
-    this.description,
-    required this.icon,
-  });
-
-  final Widget label;
-  final Widget? description;
-  final IconData icon;
-}
-
-const double _itemMinWidth = 112;
-const double _spacerMinWidth = 16;

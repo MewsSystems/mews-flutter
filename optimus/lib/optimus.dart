@@ -76,6 +76,7 @@ export 'src/spacing.dart';
 export 'src/stack.dart';
 export 'src/step_bar/step_bar.dart';
 export 'src/step_bar/step_bar_compact.dart';
+export 'src/step_bar/step_bar_item.dart';
 export 'src/tabs.dart';
 export 'src/tag.dart';
 export 'src/theme/theme.dart';
