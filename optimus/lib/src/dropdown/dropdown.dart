@@ -198,7 +198,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
       );
 }
 
-class _SearchWrapper extends StatelessWidget {
+class _SearchWrapper extends StatefulWidget {
   const _SearchWrapper({
     Key? key,
     required this.width,
@@ -212,6 +212,13 @@ class _SearchWrapper extends StatelessWidget {
   final bool showDivider;
   final bool isOnTop;
 
+  @override
+  State<_SearchWrapper> createState() => _SearchWrapperState();
+}
+
+class _SearchWrapperState extends State<_SearchWrapper> {
+  final GlobalKey _searchKey = GlobalKey();
+
   Widget _buildDivider(OptimusThemeData theme) =>
       Divider(thickness: 1, height: 1, color: theme.colors.neutral50);
 
@@ -222,9 +229,9 @@ class _SearchWrapper extends StatelessWidget {
     return SizedBox(
       child: Column(
         children: [
-          if (showDivider && isOnTop) _buildDivider(theme),
-          child,
-          if (showDivider && !isOnTop) _buildDivider(theme),
+          if (widget.showDivider && widget.isOnTop) _buildDivider(theme),
+          Container(key: _searchKey, child: widget.child),
+          if (widget.showDivider && !widget.isOnTop) _buildDivider(theme),
         ],
       ),
     );
