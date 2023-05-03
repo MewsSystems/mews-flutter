@@ -15,6 +15,19 @@ final Story segmentedControlStory = Story(
       initial: Axis.horizontal,
       options: Axis.values.toOptions(),
     );
+    final maxLines = k.sliderInt(
+      label: 'Max Lines:',
+      description:
+          'Max lines for the vertical layout. Horizontal layout will always be set to 1 line max.',
+      initial: 1,
+      min: 1,
+      max: 3,
+    );
+    final size = k.options(
+      label: 'Size',
+      initial: OptimusWidgetSize.large,
+      options: OptimusWidgetSize.values.toOptions(),
+    );
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final isRequired = k.boolean(label: 'Required', initial: false);
 
@@ -28,6 +41,8 @@ final Story segmentedControlStory = Story(
               label: label,
               error: error,
               direction: direction,
+              size: size,
+              maxLines: maxLines,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options2,
@@ -39,6 +54,8 @@ final Story segmentedControlStory = Story(
               label: label,
               error: error,
               direction: direction,
+              size: size,
+              maxLines: maxLines,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options3,
@@ -50,6 +67,8 @@ final Story segmentedControlStory = Story(
               label: label,
               error: error,
               direction: direction,
+              size: size,
+              maxLines: maxLines,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options4,
@@ -61,6 +80,8 @@ final Story segmentedControlStory = Story(
               label: label,
               error: error,
               direction: direction,
+              size: size,
+              maxLines: maxLines,
               isEnabled: isEnabled,
               isRequired: isRequired,
               options: _options5,
@@ -81,6 +102,8 @@ class _SegmentedControlExample extends StatefulWidget {
     required this.isRequired,
     required this.options,
     required this.direction,
+    required this.size,
+    required this.maxLines,
   }) : super(key: key);
 
   final String label;
@@ -89,6 +112,8 @@ class _SegmentedControlExample extends StatefulWidget {
   final bool isRequired;
   final List<String> options;
   final Axis direction;
+  final OptimusWidgetSize size;
+  final int maxLines;
 
   @override
   _SegmentedControlExampleState createState() =>
@@ -102,6 +127,8 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
   Widget build(BuildContext context) => OptimusSegmentedControl<String>(
         value: _value,
         label: widget.label,
+        size: widget.size,
+        maxLines: widget.maxLines,
         isRequired: widget.isRequired,
         error: widget.error,
         isEnabled: widget.isEnabled,

@@ -1,9 +1,9 @@
 name: mews-flutter
 
 command:
-  bootstrap:
-    usePubspecOverrides: true
-  
+  version:
+    workspaceChangelog: false
+
 scripts:
   gen_icons: melos exec --scope="storybook" -- "dart utils/gen_icons.dart $MELOS_ROOT_PATH/optimus/lib/fonts/config/ lib/stories/icon && dart format lib/stories/icon/icons_list.dart"
 
