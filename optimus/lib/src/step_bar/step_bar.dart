@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/step_bar/step_bar_item.dart';
+import 'package:optimus/src/step_bar/common.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
 /// a sequence of either numbered or logical steps.
@@ -96,12 +96,10 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
-          final totalSpacerWidth =
-              (widget.items.length - 1) * StepBarSpacer.spacerMinWidth;
+          final totalSpacerWidth = (widget.items.length - 1) * spacerMinWidth;
           final totalFreeSpace =
               (constraints.maxWidth - totalSpacerWidth) / widget.items.length;
-          final maxItemWidth =
-              max(totalFreeSpace, OptimusStepBarItem.itemMinWidth);
+          final maxItemWidth = max(totalFreeSpace, itemMinWidth);
 
           return OptimusStack(
             mainAxisSize: _effectiveLayout == Axis.vertical

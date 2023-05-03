@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/step_bar/common.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -33,9 +34,6 @@ class OptimusStepBarItem {
   final Widget label;
   final Widget? description;
   final IconData icon;
-
-  static const double itemMinWidth = 112;
-  static const double itemMaxWidth = 320;
 }
 
 class StepBarItem extends StatelessWidget {
@@ -74,8 +72,8 @@ class StepBarItem extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxWidth: min(OptimusStepBarItem.itemMaxWidth, maxWidth),
-        minWidth: OptimusStepBarItem.itemMinWidth,
+        maxWidth: min(itemMaxWidth, maxWidth),
+        minWidth: itemMinWidth,
       ),
       child: OptimusEnabled(
         isEnabled: state != OptimusStepBarItemState.disabled,
@@ -219,8 +217,6 @@ class StepBarSpacer extends StatelessWidget {
 
   final OptimusStepBarItemState nextItemState;
   final Axis layout;
-
-  static const double spacerMinWidth = 16;
 
   @override
   Widget build(BuildContext context) {
