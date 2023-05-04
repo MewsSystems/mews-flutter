@@ -230,7 +230,7 @@ class _SearchWrapperState extends State<_SearchWrapper> {
       child: Column(
         children: [
           if (widget.showDivider && widget.isOnTop) _buildDivider(theme),
-          Container(key: _searchKey, child: widget.child),
+          KeyedSubtree(key: _searchKey, child: widget.child),
           if (widget.showDivider && !widget.isOnTop) _buildDivider(theme),
         ],
       ),
