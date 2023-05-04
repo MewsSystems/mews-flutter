@@ -207,20 +207,22 @@ class OptimusDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = _autoSize(context);
 
-    return Align(
-      alignment: _alignment(context),
-      child: DialogContent(
-        title: title,
-        content: content,
-        actions: actions,
-        type: type,
-        size: size,
-        maxWidth: size.width,
-        spacing: spacing300,
-        margin: MediaQuery.of(context).viewInsets,
-        contentWrapperBuilder: contentWrapperBuilder,
-        isDismissible: isDismissible,
-        close: close,
+    return SafeArea(
+      child: Align(
+        alignment: _alignment(context),
+        child: DialogContent(
+          title: title,
+          content: content,
+          actions: actions,
+          type: type,
+          size: size,
+          maxWidth: size.width,
+          spacing: spacing300,
+          margin: MediaQuery.of(context).viewInsets,
+          contentWrapperBuilder: contentWrapperBuilder,
+          isDismissible: isDismissible,
+          close: close,
+        ),
       ),
     );
   }
