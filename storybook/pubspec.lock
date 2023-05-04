@@ -302,7 +302,7 @@ packages:
       path: "../optimus"
       relative: true
     source: path
-    version: "0.24.1"
+    version: "0.24.2"
   package_config:
     dependency: transitive
     description:

@@ -18,5 +18,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mews_pedantic: ^0.14.0
+  path: ^1.8.2
 flutter:
   uses-material-design: true
