@@ -103,10 +103,12 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   }
 
   void _onFocusChanged() {
-    if (_effectiveFocusNode.hasFocus) {
-      _showOverlay();
-    } else {
-      if (widget.embeddedSearch == null) _removeOverlay();
+    if (widget.embeddedSearch == null) {
+      if (_effectiveFocusNode.hasFocus) {
+        _showOverlay();
+      } else {
+        _removeOverlay();
+      }
     }
   }
 
@@ -163,8 +165,12 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     _overlayEntry?.remove();
     _overlayEntry = null;
     widget.onDropdownHide?.call();
+    _effectiveFocusNode.unfocus();
     setState(() {});
   }
+
+  VoidCallback? get _onTap =>
+      widget.embeddedSearch != null ? _showOverlay : null;
 
   void _onClearAllTap() {
     _effectiveController.clear();
@@ -267,6 +273,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           placeholderStyle: widget.placeholderStyle,
           focusNode: _effectiveFocusNode,
           isFocused: _isFocused,
+          onTap: _onTap,
           fieldBoxKey: _fieldBoxKey,
           suffix: widget.suffix,
           trailing: _trailing,
