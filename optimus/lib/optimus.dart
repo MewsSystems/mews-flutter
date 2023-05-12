@@ -51,6 +51,7 @@ export 'src/form/input_field.dart';
 export 'src/form/input_form_field.dart';
 export 'src/form/select_form_field.dart';
 export 'src/form/select_input_form_field.dart';
+export 'src/form/styled_input_controller.dart';
 export 'src/icon.dart';
 export 'src/icon_list.dart';
 export 'src/link/inline_link.dart';

@@ -1,8 +1,9 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/form/date_formatter.dart';
 import 'package:optimus/src/form/form_style.dart';
-import 'package:optimus/src/form/styled_input_controller.dart';
 
 typedef _SymbolConverter = String Function(_SupportedSymbol symbol);
 
@@ -13,7 +14,7 @@ typedef _SymbolConverter = String Function(_SupportedSymbol symbol);
 /// digits only, which are retrieved from the [format].
 class OptimusDateInputField extends StatefulWidget {
   const OptimusDateInputField({
-    Key? key,
+    super.key,
     this.onSubmitted,
     required this.format,
     this.label,
@@ -29,7 +30,33 @@ class OptimusDateInputField extends StatefulWidget {
     this.isRequired = false,
     this.focusNode,
     this.onTap,
-  }) : super(key: key);
+  })  : customBuilder = null,
+        inputStyle = null,
+        placeholderStyle = null;
+
+  /// Allows to leverage the logic of the masked input and build a custom
+  /// Widget around it.
+  const OptimusDateInputField.custom({
+    super.key,
+    this.value,
+    this.onChanged,
+    this.onSubmitted,
+    required this.format,
+    required TextStyle this.inputStyle,
+    required TextStyle this.placeholderStyle,
+    required OptimusHelperBuilder builder,
+  })  : customBuilder = builder,
+        label = null,
+        error = null,
+        caption = null,
+        secondaryCaption = null,
+        size = OptimusWidgetSize.large,
+        isEnabled = true,
+        isClearAllEnabled = false,
+        textInputAction = null,
+        isRequired = false,
+        focusNode = null,
+        onTap = null;
 
   /// Format of the date. It will define the placeholder and the separator.
   final DateFormat format;
@@ -60,6 +87,9 @@ class OptimusDateInputField extends StatefulWidget {
   final Widget? secondaryCaption;
   final bool isEnabled;
   final bool isClearAllEnabled;
+  final OptimusHelperBuilder? customBuilder;
+  final TextStyle? inputStyle;
+  final TextStyle? placeholderStyle;
 
   @override
   State<OptimusDateInputField> createState() => _OptimusDateInputFieldState();
@@ -67,14 +97,14 @@ class OptimusDateInputField extends StatefulWidget {
 
 class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     with ThemeGetter {
-  StyledInputController? _styleController;
+  StyledInputController? _ownController;
   String _previousValue = '';
 
   StyledInputController get _controller =>
-      _styleController ??= StyledInputController(
+      _ownController ??= StyledInputController(
         text: _formatValue(widget.value),
-        inputStyle: _inputStyle,
-        placeholderStyle: _placeholderStyle,
+        inputStyle: widget.inputStyle ?? _inputStyle,
+        placeholderStyle: widget.placeholderStyle ?? _placeholderStyle,
       );
 
   TextStyle get _placeholderStyle => theme.getPlaceholderStyle(widget.size);
@@ -184,13 +214,23 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   @override
   void dispose() {
-    _styleController?.dispose();
+    _ownController?.dispose();
 
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => OptimusInputField(
+  Widget build(BuildContext context) =>
+      widget.customBuilder?.let(
+        (builder) => builder(
+          onChanged: _onChanged,
+          onSubmitted: _handleSubmitted,
+          placeholder: _placeholder,
+          controller: _controller,
+          inputFormatters: [DateFormatter(placeholder: _placeholder)],
+        ),
+      ) ??
+      OptimusInputField(
         label: widget.label,
         caption: widget.caption,
         isEnabled: widget.isEnabled,
@@ -209,6 +249,18 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         inputFormatters: [DateFormatter(placeholder: _placeholder)],
       );
 }
+
+/// Builds a custom Widget that should have a masked input from
+/// [OptimusDateInputField].
+///
+/// All parameters of this function must be passed to the custom text field.
+typedef OptimusHelperBuilder = Widget Function({
+  required String Function(String) onChanged,
+  required void Function(String value) onSubmitted,
+  required String placeholder,
+  required StyledInputController controller,
+  required List<TextInputFormatter> inputFormatters,
+});
 
 enum _SupportedSymbol { day, month, year, hour, minute, second }
 
