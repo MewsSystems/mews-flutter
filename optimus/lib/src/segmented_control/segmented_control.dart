@@ -9,7 +9,7 @@ import 'package:optimus/src/typography/presets.dart';
 /// related choices that affect an object, state, or view.
 class OptimusSegmentedControl<T> extends StatelessWidget {
   OptimusSegmentedControl({
-    Key? key,
+    super.key,
     this.size = OptimusWidgetSize.large,
     required Iterable<OptimusGroupItem<T>> items,
     required this.value,
@@ -24,8 +24,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
           items.map((i) => i.value).contains(value),
           'Segmented control should always have some existing value',
         ),
-        items = List.unmodifiable(items),
-        super(key: key);
+        items = List.unmodifiable(items);
 
   /// Size of the segmented control.
   final OptimusWidgetSize size;
@@ -122,7 +121,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
 
 class _OptimusSegmentedControlItem<T> extends StatefulWidget {
   const _OptimusSegmentedControlItem({
-    Key? key,
+    super.key,
     required this.child,
     required this.size,
     required this.value,
@@ -130,7 +129,7 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
     required this.onItemSelected,
     required this.isEnabled,
     required this.maxLines,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -171,7 +170,7 @@ class _OptimusSegmentedControlItemState<T>
   Color get _iconColor =>
       widget.isEnabled ? theme.colors.primary500 : theme.colors.neutral100;
 
-  Color? get _color => _isHovering || _isTappedDown
+  Color get _color => _isHovering || _isTappedDown
       ? theme.colors.primary500t8
       : Colors.transparent;
 
@@ -233,11 +232,10 @@ class _OptimusSegmentedControlItemState<T>
 
 class _SegmentDecoration extends StatelessWidget {
   const _SegmentDecoration({
-    Key? key,
     required this.child,
     required this.isEnabled,
     required this.isSelected,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final bool isEnabled;

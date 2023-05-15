@@ -12,8 +12,8 @@ final Story inlineDialogStory = Story(
 class InlineDialogStory extends StatelessWidget {
   InlineDialogStory(
     this.k, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final KnobsBuilder k;
   final GlobalKey _anchor = GlobalKey();
@@ -49,14 +49,9 @@ class InlineDialogStory extends StatelessWidget {
   }
 }
 
-class _InlineContentExample extends StatefulWidget {
-  const _InlineContentExample({Key? key}) : super(key: key);
+class _InlineContentExample extends StatelessWidget {
+  const _InlineContentExample();
 
-  @override
-  State<_InlineContentExample> createState() => _InlineContentExampleState();
-}
-
-class _InlineContentExampleState extends State<_InlineContentExample> {
   @override
   Widget build(BuildContext context) => Column(
         children: const [
@@ -77,8 +72,7 @@ class _InlineContentExampleState extends State<_InlineContentExample> {
 }
 
 class _NumberRow extends StatelessWidget {
-  const _NumberRow({Key? key, required this.title, required this.description})
-      : super(key: key);
+  const _NumberRow({required this.title, required this.description});
 
   final String title;
   final String description;
@@ -103,7 +97,7 @@ class _NumberRow extends StatelessWidget {
 }
 
 class _Description extends StatelessWidget {
-  const _Description({Key? key, required this.description}) : super(key: key);
+  const _Description({required this.description});
 
   final String description;
 
@@ -113,7 +107,7 @@ class _Description extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-  const _Title({Key? key, required this.title}) : super(key: key);
+  const _Title({required this.title});
 
   final String title;
 

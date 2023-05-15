@@ -25,7 +25,7 @@ final Story nestedNonModalDialogStory = Story(
 );
 
 class _Content extends StatelessWidget {
-  const _Content(this.contentBuilder, {Key? key}) : super(key: key);
+  const _Content(this.contentBuilder);
 
   final WidgetBuilder contentBuilder;
 
@@ -64,7 +64,7 @@ class _Content extends StatelessWidget {
 }
 
 class _Bar extends StatelessWidget {
-  const _Bar({Key? key}) : super(key: key);
+  const _Bar();
 
   @override
   Widget build(BuildContext context) => Container(

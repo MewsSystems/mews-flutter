@@ -7,13 +7,13 @@ import 'package:optimus/src/tooltip/tooltip_controller.dart';
 /// available space.
 class OptimusTooltipWrapper extends StatefulWidget {
   const OptimusTooltipWrapper({
-    Key? key,
+    super.key,
     required this.text,
     required this.child,
     this.tooltipPosition = OptimusTooltipPosition.top,
     this.size = OptimusToolTipSize.small,
     this.autoHideDuration = const Duration(seconds: 1),
-  }) : super(key: key);
+  });
 
   /// Tooltip text. Typically a [Text] widget. This widget will be passed to the
   /// tooltip and styled accordingly.
@@ -39,23 +39,23 @@ class OptimusTooltipWrapper extends StatefulWidget {
 }
 
 class _OptimusTooltipWrapperState extends State<OptimusTooltipWrapper> {
-  final GlobalKey anchorKey = GlobalKey();
-  final GlobalKey tooltipKey = GlobalKey();
+  final GlobalKey _anchorKey = GlobalKey();
+  final GlobalKey _tooltipKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) => TooltipController(
-        anchorKey: anchorKey,
-        tooltipKey: tooltipKey,
+        anchorKey: _anchorKey,
+        tooltipKey: _tooltipKey,
         tooltipPosition: widget.tooltipPosition,
         autoHideDuration: widget.autoHideDuration,
         tooltip: OptimusTooltip(
-          key: tooltipKey,
+          key: _tooltipKey,
           size: widget.size,
           tooltipPosition: widget.tooltipPosition,
           content: widget.text,
         ),
         child: Container(
-          key: anchorKey,
+          key: _anchorKey,
           child: widget.child,
         ),
       );

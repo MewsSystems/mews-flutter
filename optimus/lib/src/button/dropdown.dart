@@ -19,13 +19,13 @@ enum OptimusDropdownButtonVariant {
 /// context of the button.
 class OptimusDropDownButton<T> extends StatelessWidget {
   const OptimusDropDownButton({
-    Key? key,
+    super.key,
     required this.child,
     required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
-  }) : super(key: key);
+  });
 
   /// Typically the button's label.
   final Widget child;

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SpinningContainer extends StatefulWidget {
-  const SpinningContainer({Key? key, required this.child}) : super(key: key);
+  const SpinningContainer({super.key, required this.child});
 
   final Widget child;
 
@@ -39,9 +39,8 @@ class _SpinningContainerState extends State<SpinningContainer>
 class _SpinningContainer extends AnimatedWidget {
   const _SpinningContainer(
     this.child, {
-    Key? key,
     required AnimationController controller,
-  }) : super(key: key, listenable: controller);
+  }) : super(listenable: controller);
 
   final Widget child;
 

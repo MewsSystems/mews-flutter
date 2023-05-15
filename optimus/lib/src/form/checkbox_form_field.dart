@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 
 class OptimusCheckBoxFormField extends StatelessWidget {
   const OptimusCheckBoxFormField({
-    Key? key,
+    super.key,
     required this.label,
     this.onSaved,
     this.initialValue = false,
@@ -11,7 +11,7 @@ class OptimusCheckBoxFormField extends StatelessWidget {
     this.size = OptimusCheckboxSize.large,
     this.validator,
     this.autovalidateMode,
-  }) : super(key: key);
+  });
 
   final Widget label;
   final ValueChanged<bool?>? onSaved;

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
 abstract class DialogController {
+  const DialogController();
+
   void show({
     required Widget title,
     required Widget content,
@@ -23,9 +25,9 @@ abstract class DialogController {
 
 class DialogWrapper extends StatefulWidget {
   const DialogWrapper({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -47,6 +49,12 @@ class _DialogWrapperState extends State<DialogWrapper>
     if (widget.child != oldWidget.child) {
       hide();
     }
+  }
+
+  @override
+  void dispose() {
+    _entry?.dispose();
+    super.dispose();
   }
 
   @override
@@ -121,10 +129,10 @@ class _DialogWrapperState extends State<DialogWrapper>
 
 class DialogWrapperData extends InheritedWidget {
   const DialogWrapperData({
-    Key? key,
+    super.key,
     required this.controller,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final DialogController controller;
 

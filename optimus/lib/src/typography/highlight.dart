@@ -13,10 +13,10 @@ import 'package:optimus/src/typography/typography.dart';
 /// for maximum impact.
 class OptimusHighlightMajor extends StatelessWidget {
   const OptimusHighlightMajor({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -38,10 +38,10 @@ class OptimusHighlightMajor extends StatelessWidget {
 /// limitations across the page.
 class OptimusHighlightModerate extends StatelessWidget {
   const OptimusHighlightModerate({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -63,10 +63,10 @@ class OptimusHighlightModerate extends StatelessWidget {
 /// across the page.
 class OptimusHighlightMinor extends StatelessWidget {
   const OptimusHighlightMinor({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;

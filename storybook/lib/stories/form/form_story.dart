@@ -8,7 +8,7 @@ final Story formStory = Story(
 );
 
 class _Content extends StatefulWidget {
-  const _Content(this.knobs, {Key? key}) : super(key: key);
+  const _Content(this.knobs);
 
   final KnobsBuilder knobs;
 

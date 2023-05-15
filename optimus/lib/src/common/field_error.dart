@@ -4,9 +4,9 @@ import 'package:optimus/optimus.dart';
 
 class OptimusFieldError extends StatelessWidget {
   const OptimusFieldError({
-    Key? key,
+    super.key,
     required this.error,
-  }) : super(key: key);
+  });
 
   final String error;
 

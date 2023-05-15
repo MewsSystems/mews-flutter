@@ -17,14 +17,14 @@ enum OptimusSplitButtonVariant {
 /// related to the main action.
 class OptimusSplitButton<T> extends StatelessWidget {
   const OptimusSplitButton({
-    Key? key,
+    super.key,
     required this.child,
     this.onPressed,
     required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusSplitButtonVariant.defaultButton,
-  }) : super(key: key);
+  });
 
   /// Typically the button's label.
   final Widget child;

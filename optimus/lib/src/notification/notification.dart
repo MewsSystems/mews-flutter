@@ -27,14 +27,14 @@ enum OptimusNotificationVariant {
 /// are noticeable but not intrusive to the use and can be temporary.
 class OptimusNotification extends StatelessWidget {
   const OptimusNotification({
-    Key? key,
+    super.key,
     required this.title,
     this.body,
     this.icon,
     this.link,
     this.onDismissed,
     this.variant = OptimusNotificationVariant.info,
-  }) : super(key: key);
+  });
 
   final Widget title;
   final Widget? body;
@@ -103,7 +103,7 @@ class OptimusNotification extends StatelessWidget {
 /// function that will be executed after a click. After clicking on the link,
 /// notification will be dismissed.
 class OptimusNotificationLink {
-  OptimusNotificationLink({
+  const OptimusNotificationLink({
     required this.text,
     required this.onPressed,
   });
@@ -116,10 +116,7 @@ class OptimusNotificationLink {
 ///
 /// Title should be straight and easy-to-understand.
 class _NotificationTitle extends StatelessWidget {
-  const _NotificationTitle(
-    this.title, {
-    Key? key,
-  }) : super(key: key);
+  const _NotificationTitle(this.title);
 
   final Widget title;
 
@@ -142,10 +139,7 @@ class _NotificationTitle extends StatelessWidget {
 /// as possible. Number or lines is limited to [_maxLinesBody] and is truncated
 /// with ellipsis.
 class _NotificationBody extends StatelessWidget {
-  const _NotificationBody(
-    this.body, {
-    Key? key,
-  }) : super(key: key);
+  const _NotificationBody(this.body);
 
   final Widget body;
 
@@ -169,10 +163,7 @@ class _NotificationBody extends StatelessWidget {
 /// Link should be short and precise. Number of lines is limited
 /// to [_maxLinesLink]
 class _NotificationLink extends StatelessWidget {
-  const _NotificationLink(
-    this.link, {
-    Key? key,
-  }) : super(key: key);
+  const _NotificationLink(this.link);
 
   final Widget link;
 
@@ -194,7 +185,6 @@ class _NotificationLink extends StatelessWidget {
 
 class _NotificationContent extends StatelessWidget {
   const _NotificationContent({
-    Key? key,
     required this.icon,
     required this.variant,
     required this.title,
@@ -202,7 +192,7 @@ class _NotificationContent extends StatelessWidget {
     required this.link,
     required this.onLinkPressed,
     required this.dismissible,
-  }) : super(key: key);
+  });
 
   final IconData? icon;
   final OptimusNotificationVariant variant;
@@ -292,10 +282,9 @@ class _NotificationContent extends StatelessWidget {
 
 class _LeadingIcon extends StatelessWidget {
   const _LeadingIcon({
-    Key? key,
     required this.icon,
     required this.variant,
-  }) : super(key: key);
+  });
 
   final IconData? icon;
   final OptimusNotificationVariant variant;
@@ -332,9 +321,8 @@ class _LeadingIcon extends StatelessWidget {
 
 class _NotificationCloseButton extends StatelessWidget {
   const _NotificationCloseButton({
-    Key? key,
     required this.onDismissed,
-  }) : super(key: key);
+  });
 
   final VoidCallback onDismissed;
 

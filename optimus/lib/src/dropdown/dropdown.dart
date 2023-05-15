@@ -6,14 +6,14 @@ import 'package:optimus/src/elevation.dart';
 
 class OptimusDropdown<T> extends StatelessWidget {
   const OptimusDropdown({
-    Key? key,
+    super.key,
     required this.items,
     required this.anchorKey,
     required this.onChanged,
     this.width,
     this.embeddedSearch,
     this.emptyResultPlaceholder,
-  }) : super(key: key);
+  });
 
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
@@ -42,12 +42,12 @@ class OptimusDropdown<T> extends StatelessWidget {
 
 class _DropdownContent<T> extends StatelessWidget {
   const _DropdownContent({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.items,
     this.embeddedSearch,
     this.emptyResultPlaceholder,
-  }) : super(key: key);
+  });
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
@@ -124,19 +124,19 @@ class _DropdownContent<T> extends StatelessWidget {
           ],
         ),
       );
-    } else {
-      return const SizedBox.shrink();
     }
+
+    return const SizedBox.shrink();
   }
 }
 
 class _DropdownListView<T> extends StatelessWidget {
   const _DropdownListView({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.items,
     required this.isReversed,
-  }) : super(key: key);
+  });
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
@@ -160,10 +160,10 @@ class _DropdownListView<T> extends StatelessWidget {
 
 class _DropdownItem<T> extends StatefulWidget {
   const _DropdownItem({
-    Key? key,
+    super.key,
     required this.child,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final OptimusDropdownTile<T> child;
   final ValueSetter<T> onChanged;
@@ -200,12 +200,11 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
 
 class _SearchWrapper extends StatefulWidget {
   const _SearchWrapper({
-    Key? key,
     required this.width,
     required this.showDivider,
     required this.isOnTop,
     required this.child,
-  }) : super(key: key);
+  });
 
   final double width;
   final Widget child;

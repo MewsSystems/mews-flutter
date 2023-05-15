@@ -49,11 +49,11 @@ enum OptimusCircleLoaderAppearance {
 /// or downloading, and others.
 class OptimusCircleLoader extends StatelessWidget {
   const OptimusCircleLoader({
-    Key? key,
+    super.key,
     required this.variant,
     this.size = OptimusCircleLoaderSize.medium,
     this.appearance = OptimusCircleLoaderAppearance.normal,
-  }) : super(key: key);
+  });
 
   /// Controls variant of the loader.
   final OptimusCircleLoaderVariant variant;

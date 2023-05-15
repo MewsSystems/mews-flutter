@@ -6,14 +6,14 @@ import 'package:optimus/src/typography/presets.dart';
 
 class BaseDropDownButton<T> extends StatefulWidget {
   const BaseDropDownButton({
-    Key? key,
+    super.key,
     this.child,
     required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
     this.borderRadius = const BorderRadius.all(borderRadius50),
-  }) : super(key: key);
+  });
 
   /// Typically the button's label.
   final Widget? child;
@@ -54,6 +54,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 
   @override
   void dispose() {
+    _node.dispose();
     _controller.dispose();
     super.dispose();
   }

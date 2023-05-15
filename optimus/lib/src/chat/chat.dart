@@ -4,8 +4,8 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/optimus_chat_input.dart';
 import 'package:optimus/src/typography/presets.dart';
 
-typedef FormatDate = String Function(DateTime);
-typedef FormatTime = String Function(DateTime);
+typedef FormatDate = String Function(DateTime value);
+typedef FormatTime = String Function(DateTime value);
 
 /// The chat components offer instant real-time communication between
 /// two (or multiple) parties. It also serves as a log or transcript
@@ -13,7 +13,7 @@ typedef FormatTime = String Function(DateTime);
 /// a chat window layout.
 class OptimusChat extends StatelessWidget {
   OptimusChat({
-    Key? key,
+    super.key,
     required List<OptimusMessage> messages,
     required this.hasAvatars,
     required this.formatTime,
@@ -23,7 +23,7 @@ class OptimusChat extends StatelessWidget {
     required this.error,
     required this.onSendPressed,
     required this.isFromCurrentUser,
-  }) : super(key: key) {
+  }) {
     _messages
       ..addAll(messages)
       ..sort(_byTime);
@@ -286,7 +286,7 @@ class OptimusChat extends StatelessWidget {
 }
 
 class _Status extends StatelessWidget {
-  const _Status({Key? key, required this.child}) : super(key: key);
+  const _Status({required this.child});
 
   final Widget child;
 
@@ -308,7 +308,7 @@ class _Status extends StatelessWidget {
 }
 
 class _StatusCircle extends StatelessWidget {
-  const _StatusCircle({Key? key}) : super(key: key);
+  const _StatusCircle();
 
   @override
   Widget build(BuildContext context) {

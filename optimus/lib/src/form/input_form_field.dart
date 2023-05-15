@@ -4,12 +4,12 @@ import 'package:optimus/optimus.dart';
 
 class OptimusInputFormField extends FormField<String> {
   OptimusInputFormField({
-    Key? key,
+    super.key,
     String? initialValue,
     this.controller,
-    FormFieldSetter<String>? onSaved,
-    FormFieldValidator<String>? validator,
-    AutovalidateMode? autovalidateMode,
+    super.onSaved,
+    super.validator,
+    super.autovalidateMode,
     String? placeholder,
     TextInputType? keyboardType,
     bool isPasswordField = false,
@@ -45,12 +45,8 @@ class OptimusInputFormField extends FormField<String> {
           'Provide either initial value or controller',
         ),
         super(
-          key: key,
           initialValue:
               controller != null ? controller.text : (initialValue ?? ''),
-          onSaved: onSaved,
-          validator: validator,
-          autovalidateMode: autovalidateMode,
           enabled: isEnabled,
           builder: (FormFieldState<String> field) {
             final _InputFormFieldState state = field as _InputFormFieldState;
@@ -145,6 +141,7 @@ class _InputFormFieldState extends FormFieldState<String> {
   @override
   void dispose() {
     widget.controller?.removeListener(_handleControllerChanged);
+    _controller?.dispose();
     super.dispose();
   }
 

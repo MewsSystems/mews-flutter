@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
-typedef DateTimeFormatter = String Function(DateTime);
+typedef DateTimeFormatter = String Function(DateTime value);
 
 class OptimusDateTimeField extends StatefulWidget {
   const OptimusDateTimeField({
-    Key? key,
+    super.key,
     this.value,
     this.label,
     required this.onChanged,
@@ -16,7 +16,7 @@ class OptimusDateTimeField extends StatefulWidget {
     required this.formatDateTime,
     this.isClearEnabled = false,
     this.placeholder,
-  }) : super(key: key);
+  });
 
   final DateTime? value;
   final String? label;

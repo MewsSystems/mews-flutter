@@ -5,7 +5,7 @@ import 'package:optimus/src/typography/presets.dart';
 
 class BaseButton extends StatelessWidget {
   const BaseButton({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.child,
     this.minWidth,
@@ -15,7 +15,7 @@ class BaseButton extends StatelessWidget {
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.defaultButton,
     this.borderRadius = const BorderRadius.all(borderRadius100),
-  }) : super(key: key);
+  });
 
   final VoidCallback? onPressed;
 
@@ -88,10 +88,9 @@ class BaseButton extends StatelessWidget {
 
   Color _badgeTextColor(OptimusThemeData theme) {
     switch (variant) {
-      case OptimusButtonVariant.defaultButton:
-        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.primary:
         return theme.colors.primary500;
+      case OptimusButtonVariant.defaultButton:
       case OptimusButtonVariant.text:
         return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.destructive:
@@ -133,10 +132,9 @@ class BaseButton extends StatelessWidget {
 
   Color _textColor(OptimusThemeData theme, Set<MaterialState> states) {
     switch (variant) {
-      case OptimusButtonVariant.defaultButton:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.primary:
         return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
+      case OptimusButtonVariant.defaultButton:
       case OptimusButtonVariant.text:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.destructive:
@@ -150,10 +148,9 @@ class BaseButton extends StatelessWidget {
 
   Color _badgeColor(OptimusThemeData theme) {
     switch (variant) {
-      case OptimusButtonVariant.defaultButton:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.primary:
         return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
+      case OptimusButtonVariant.defaultButton:
       case OptimusButtonVariant.text:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
       case OptimusButtonVariant.destructive:

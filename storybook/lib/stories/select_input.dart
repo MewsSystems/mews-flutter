@@ -12,7 +12,7 @@ final Story selectInputStory = Story(
 );
 
 class SelectInputStory extends StatefulWidget {
-  const SelectInputStory(this.knobs, {Key? key}) : super(key: key);
+  const SelectInputStory(this.knobs, {super.key});
 
   final KnobsBuilder knobs;
 

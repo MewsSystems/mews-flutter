@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
 abstract class AnchoredOverlayController {
+  const AnchoredOverlayController();
+
   double get maxHeight;
   double get width;
   double get top;
@@ -12,10 +14,10 @@ abstract class AnchoredOverlayController {
 
 class AnchoredOverlayData extends InheritedWidget {
   const AnchoredOverlayData({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
     required this.controller,
-  }) : super(key: key, child: child);
+  });
 
   final AnchoredOverlayController controller;
 
@@ -25,12 +27,12 @@ class AnchoredOverlayData extends InheritedWidget {
 
 class AnchoredOverlay extends StatefulWidget {
   const AnchoredOverlay({
-    Key? key,
+    super.key,
     required this.anchorKey,
     required this.child,
     required this.width,
     this.rootOverlay = false,
-  }) : super(key: key);
+  });
 
   final GlobalKey anchorKey;
   final double? width;
@@ -81,7 +83,7 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   double get _width => widget.width ?? _savedRect.width;
 
-  bool get isOnTop => top > bottom;
+  bool get _isOnTop => top > bottom;
 
   @override
   double get maxHeight => max(top, bottom);
@@ -120,7 +122,7 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   RenderBox? _getOverlay() =>
       Overlay.of(context, rootOverlay: widget.rootOverlay)
           .context
-          .findRenderObject() as RenderBox;
+          .findRenderObject() as RenderBox?;
 
   Size? _getOverlaySize() => _getOverlay()?.size;
 
@@ -152,8 +154,8 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
           width: _width,
           left: left,
           right: right,
-          top: isOnTop ? null : _offsetTop,
-          bottom: isOnTop ? _offsetBottom : null,
+          top: _isOnTop ? null : _offsetTop,
+          bottom: _isOnTop ? _offsetBottom : null,
           child: widget.child,
         ),
       ),
