@@ -50,17 +50,23 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       vsync: this,
     );
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
+    _node.addListener(_onFocusChanged);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _node
+      ..removeListener(_onFocusChanged)
+      ..dispose();
     super.dispose();
   }
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
   }
+
+  void _onFocusChanged() => setState(() {});
 
   bool get _isEnabled => widget.onItemSelected != null;
 
