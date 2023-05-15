@@ -1,69 +1,103 @@
 linter:
   rules:
+    # Errors
+
     - always_use_package_imports
-    - annotate_overrides
-    - avoid_catches_without_on_clauses
-    - avoid_catching_errors
     - avoid_dynamic_calls
     - avoid_empty_else
-    - avoid_final_parameters
-    - avoid_function_literals_in_foreach_calls
-    - avoid_implementing_value_types
-    - avoid_init_to_null
-    - avoid_null_checks_in_equality_operators
     - avoid_print
     - avoid_relative_lib_imports
-    - avoid_renaming_method_parameters
-    - avoid_return_types_on_setters
-    - avoid_returning_null_for_void
-    - avoid_shadowing_type_parameters
-    - avoid_single_cascade_in_expression_statements
+    - avoid_slow_async_io
+    - avoid_type_to_string
     - avoid_types_as_parameter_names
-    - avoid_unnecessary_containers
-    - avoid_unused_constructor_parameters
-    - avoid_void_async
     - avoid_web_libraries_in_flutter
-    - await_only_futures
-    - camel_case_extensions
-    - camel_case_types
     - cancel_subscriptions
-    - cascade_invocations
     - close_sinks
     - collection_methods_unrelated_type
-    - combinators_ordering
     - comment_references
-    - constant_identifier_names
     - control_flow_in_finally
-    - curly_braces_in_flow_control_structures
-    - depend_on_referenced_packages
-    - directives_ordering
-    - empty_catches
-    - empty_constructor_bodies
     - empty_statements
-    - exhaustive_cases
-    - file_names
-    - flutter_style_todos
     - hash_and_equals
-    - implementation_imports
-    - implicit_call_tearoffs
+    # - implicit_reopen
+    # - invalid_case_patterns
     - iterable_contains_unrelated_type
-    - join_return_with_assignment
-    - library_names
-    - library_prefixes
-    - library_private_types_in_public_api
     - list_remove_unrelated_type
     - literal_only_boolean_expressions
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
+    - no_logic_in_create_state
+    - prefer_void_to_null
+    - test_types_in_equals
+    - throw_in_finally
+    - unnecessary_statements
+    - unrelated_type_equality_checks
+    - use_build_context_synchronously
+    - use_key_in_widget_constructors
+    - valid_regexps
+
+    # Style
+
+    - always_declare_return_types
+    - annotate_overrides
+    - avoid_catches_without_on_clauses
+    - avoid_catching_errors
+    - avoid_double_and_int_checks
+    - avoid_equals_and_hash_code_on_mutable_classes
+    - avoid_final_parameters
+    - avoid_function_literals_in_foreach_calls
+    - avoid_implementing_value_types
+    - avoid_init_to_null
+    - avoid_js_rounded_ints
+    - avoid_null_checks_in_equality_operators
+    - avoid_positional_boolean_parameters
+    - avoid_renaming_method_parameters
+    - avoid_return_types_on_setters
+    - avoid_returning_null_for_void
+    - avoid_returning_this
+    - avoid_shadowing_type_parameters
+    - avoid_single_cascade_in_expression_statements
+    - avoid_unnecessary_containers
+    - avoid_unused_constructor_parameters
+    - avoid_void_async
+    - await_only_futures
+    - camel_case_extensions
+    - camel_case_types
+    - cascade_invocations
+    - cast_nullable_to_non_nullable
+    - combinators_ordering
+    - conditional_uri_does_not_exist
+    - constant_identifier_names
+    - curly_braces_in_flow_control_structures
+    - deprecated_consistency
+    - directives_ordering
+    - empty_catches
+    - empty_constructor_bodies
+    - eol_at_end_of_file
+    - exhaustive_cases
+    - file_names
+    - flutter_style_todos
+    - implementation_imports
+    - implicit_call_tearoffs
+    - join_return_with_assignment
+    - leading_newlines_in_multiline_strings
+    - library_annotations
+    - library_names
+    - library_prefixes
+    - library_private_types_in_public_api
+    # - matching_super_parameters
+    - missing_whitespace_between_adjacent_strings
+    - no_default_cases
     - no_leading_underscores_for_library_prefixes
     - no_leading_underscores_for_local_identifiers
-    - no_logic_in_create_state
+    # - no_literal_bool_comparisons
+    - no_runtimeType_toString
     - non_constant_identifier_names
+    - noop_primitive_operations
     - null_check_on_nullable_type_parameter
+    - null_closures
     - only_throw_errors
     - overridden_fields
     - package_api_docs
-    - package_names
     - package_prefixed_library_names
     - prefer_adjacent_string_concatenation
     - prefer_asserts_in_initializer_lists
@@ -74,6 +108,7 @@ linter:
     - prefer_const_constructors_in_immutables
     - prefer_const_declarations
     - prefer_const_literals_to_create_immutables
+    - prefer_constructors_over_static_methods
     - prefer_contains
     - prefer_equal_for_default_values
     - prefer_expression_function_bodies
@@ -93,11 +128,11 @@ linter:
     - prefer_is_not_operator
     - prefer_iterable_whereType
     - prefer_mixin
+    - prefer_null_aware_method_calls
     - prefer_null_aware_operators
     - prefer_single_quotes
     - prefer_spread_collections
     - prefer_typing_uninitialized_variables
-    - prefer_void_to_null
     - provide_deprecation_message
     - recursive_getters
     - require_trailing_commas
@@ -106,48 +141,58 @@ linter:
     - slash_for_doc_comments
     - sort_child_properties_last
     - sort_constructors_first
-    - sort_pub_dependencies
     - sort_unnamed_constructors_first
-    - test_types_in_equals
-    - throw_in_finally
+    - tighten_type_of_initializing_formals
     - type_annotate_public_apis
     - type_init_formals
+    # - type_literal_in_constant_pattern
     - unawaited_futures
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
+    # - unnecessary_breaks
     - unnecessary_const
     - unnecessary_constructor_name
     - unnecessary_getters_setters
     - unnecessary_lambdas
     - unnecessary_late
+    - unnecessary_library_directive
     - unnecessary_new
     - unnecessary_null_aware_assignments
     - unnecessary_null_aware_operator_on_extension_on_nullable
+    - unnecessary_null_checks
     - unnecessary_null_in_if_null_operators
     - unnecessary_nullable_for_final_variable_declarations
     - unnecessary_overrides
     - unnecessary_parenthesis
-    - unnecessary_statements
     - unnecessary_string_escapes
     - unnecessary_string_interpolations
     - unnecessary_this
     - unnecessary_to_list_in_spreads
     - unreachable_from_main
-    - unrelated_type_equality_checks
-    - use_build_context_synchronously
+    - use_colored_box
     - use_decorated_box
+    - use_enums
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
-    - use_key_in_widget_constructors
+    - use_is_even_rather_than_modulo
+    - use_late_for_private_fields_and_variables
     - use_named_constants
     - use_raw_strings
     - use_rethrow_when_possible
     - use_setters_to_change_properties
     - use_string_buffers
     - use_string_in_part_of_directives
+    - use_super_parameters
+    - use_test_throws_matchers
     - use_to_and_as_if_applicable
-    - valid_regexps
     - void_checks
+
+    # Pub
+
+    - depend_on_referenced_packages
+    - package_names
+    - secure_pubspec_urls
+    - sort_pub_dependencies
 
 analyzer:
   language:
@@ -155,50 +200,97 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
 
-  plugins:
-    - dart_code_metrics
-
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
 
   errors:
-    annotate_overrides: error
-    avoid_dynamic_calls: error
-    avoid_shadowing_type_parameters: warning
     body_might_complete_normally_nullable: ignore
     deprecated_member_use_from_same_package: ignore
-    exhaustive_cases: warning
-    literal_only_boolean_expressions: warning
-    no_duplicate_case_values: error
-    only_throw_errors: error
-    override_on_non_overriding_member: error
-    parameter_assignments: error
-    unawaited_futures: error
-    unnecessary_overrides: error
-    unused_element: warning
 
 dart_code_metrics:
   rules:
+    # Common
+
+    - avoid-cascade-after-if-null
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-double-slash-imports
+    - avoid-duplicate-exports
     - avoid-global-state
     - avoid-non-null-assertion
-    - avoid-unnecessary-setstate
+    - avoid-unnecessary-conditionals
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
-    - avoid-unrelated-type-assertions:
-        severity: error
+    - avoid-unrelated-type-assertions
     - avoid-unused-parameters
     - newline-before-return
     - no-boolean-literal-compare
     - no-equal-then-else
+    - no-object-declaration
     - prefer-commenting-analyzer-ignores
-    - prefer-const-border-radius
     - prefer-correct-test-file-name:
         exclude: ["lib/**", "bin/**"]
-    - prefer-first
     - prefer-immediate-return
     - prefer-iterable-of
     - prefer-last
+
+    # Flutter
+
+    - avoid-expanded-as-spacer
+    - avoid-shrink-wrap-in-lists
+    - avoid-unnecessary-setstate
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - prefer-const-border-radius
+    - prefer-correct-edge-insets-constructor
+    - prefer-define-hero-tag
+    - use-setstate-synchronously
+
+    # Teams Common
+
+    - avoid-duplicate-named-imports
+    - avoid-equal-expressions
+    - avoid-inverted-boolean-checks
+    - avoid-missed-calls
+    - avoid-nested-switches
+    - avoid-redundant-else
+    - avoid-self-assignment
+    - avoid-self-compare
+    - avoid-unnecessary-negations
+    - avoid-unnecessary-nullable-return-type
+    - avoid-unrelated-type-casts
+    - avoid-unused-generics
+    - no-equal-conditions
+    - no-equal-switch-case
+    - prefer-declaring-const-constructor
+    - prefer-early-return
+    - prefer-explicit-parameter-names
+    - prefer-return-await
+
+    # Teams Flutter
+
+    - avoid-late-context
+    - avoid-state-constructors
+    - avoid-unnecessary-stateful-widgets
+    - dispose-fields
+    - prefer-widget-private-members:
+        ignore-static: true
+    - proper-super-calls
+
+    # Teams Provider
+
+    - avoid-instantiating-in-value-provider
+    - avoid-read-inside-build
+    - dispose-providers
+    - prefer-multi-provider
+
+    # Teams Bloc
+
+    - avoid-bloc-public-methods
+    - avoid-cubits
+    - avoid-passing-bloc-to-bloc
+    - prefer-correct-bloc-provider
+    - prefer-multi-bloc-provider
 
   metrics-exclude:
     - lib/**
