@@ -58,8 +58,8 @@ class _InlineContentExample extends StatefulWidget {
 
 class _InlineContentExampleState extends State<_InlineContentExample> {
   @override
-  Widget build(BuildContext context) => Column(
-        children: const [
+  Widget build(BuildContext context) => const Column(
+        children: [
           _NumberRow(
             title: 'Adults',
             description: 'From 13 to 100',
