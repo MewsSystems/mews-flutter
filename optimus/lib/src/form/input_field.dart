@@ -290,7 +290,13 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               enabled: widget.isEnabled,
               padding: _prefix != null ? _textWithPrefixPadding : _textPadding,
               style: theme.getTextInputStyle(widget.size),
-              decoration: null,
+              // [CupertinoTextField] will try to resolve colors to its own theme,
+              // this will ensure the visible [BoxDecoration] is from the
+              // [FieldWrapper] above.
+              decoration: const BoxDecoration(
+                color: Color(0x00000000),
+                backgroundBlendMode: BlendMode.dst,
+              ),
               onChanged: widget.onChanged,
               keyboardType: widget.keyboardType,
               obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
