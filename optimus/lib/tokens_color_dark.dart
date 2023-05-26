@@ -4,7 +4,7 @@
 //
 
 // Do not edit directly
-// Generated on Fri, 26 May 2023 13:04:36 GMT
+// Generated on Fri, 26 May 2023 15:17:45 GMT
 
 
 
@@ -55,7 +55,9 @@ class DesignTokensColor {
     static const borderDisabled = Color(0xFF53536D);
     static const borderInteractiveDanger = Color(0xFFEC5C5C);
     static const borderInteractiveFocus = Color(0xFF524FF2);
+    static const borderInteractivePrimaryActive = Color(0xFFAEACFA);
     static const borderInteractivePrimaryDefault = Color(0xFF524FF2);
+    static const borderInteractivePrimaryHover = Color(0xFF7A78F6);
     static const borderInteractiveSecondaryActive = Color(0xFF656582);
     static const borderInteractiveSecondaryDefault = Color(0xFF424258);
     static const borderInteractiveSecondaryHover = Color(0xFF53536D);
