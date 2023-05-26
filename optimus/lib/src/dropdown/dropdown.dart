@@ -6,7 +6,6 @@ import 'package:optimus/src/elevation.dart';
 
 typedef Grouper<T> = String Function(T item);
 typedef GroupBuilder = Widget Function(String value);
-typedef Comparer<T> = int Function(T first, T second);
 
 class OptimusDropdown<T> extends StatelessWidget {
   const OptimusDropdown({
