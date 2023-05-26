@@ -38,6 +38,8 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.showLoader = false,
     this.emptyResultPlaceholder,
     this.embeddedSearch,
+    this.groupBy,
+    this.groupBuilder,
   }) : super(key: key);
 
   /// Describes the purpose of the select field.
@@ -76,6 +78,13 @@ class OptimusSelectInput<T> extends StatefulWidget {
   /// A widget that is displayed when the list of items is empty. If not
   /// provided the dropdown will not be displayed.
   final Widget? emptyResultPlaceholder;
+
+  /// A function that would retrieve value for the grouping.
+  final Grouper<T>? groupBy;
+
+  /// A builder that would create a group header. If not provided the
+  /// [OptimusDropdownGroupSeparator] widget will be used.
+  final GroupBuilder? groupBuilder;
 
   @override
   State<OptimusSelectInput<T>> createState() => _OptimusSelectInput<T>();
@@ -219,5 +228,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
             _isUsingEmbeddedSearch ? _animationController.forward : null,
         onDropdownHide:
             _isUsingEmbeddedSearch ? _animationController.reverse : null,
+        groupBy: widget.groupBy,
+        groupBuilder: widget.groupBuilder,
       );
 }

@@ -41,6 +41,8 @@ class DropdownSelect<T> extends StatefulWidget {
     this.embeddedSearch,
     this.onDropdownShow,
     this.onDropdownHide,
+    this.groupBy,
+    this.groupBuilder,
   }) : super(key: key);
 
   final String? label;
@@ -71,6 +73,8 @@ class DropdownSelect<T> extends StatefulWidget {
   final Widget? emptyResultPlaceholder;
   final VoidCallback? onDropdownShow;
   final VoidCallback? onDropdownHide;
+  final Grouper<T>? groupBy;
+  final GroupBuilder? groupBuilder;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -253,6 +257,8 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
                 onChanged: widget.onChanged,
                 embeddedSearch: widget.embeddedSearch,
                 emptyResultPlaceholder: widget.emptyResultPlaceholder,
+                groupBy: widget.groupBy,
+                groupBuilder: widget.groupBuilder,
               ),
             ),
           );
