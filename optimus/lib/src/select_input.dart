@@ -79,11 +79,15 @@ class OptimusSelectInput<T> extends StatefulWidget {
   /// provided the dropdown will not be displayed.
   final Widget? emptyResultPlaceholder;
 
+  /// {@template optimus.select.groupBy}
   /// A function that would retrieve value for the grouping.
+  /// {@endtemplate}
   final Grouper<T>? groupBy;
 
+  /// {@template optimus.select.groupBuilder}
   /// A builder that would create a group header. If not provided the
   /// [OptimusDropdownGroupSeparator] widget will be used.
+  /// {@endtemplate}
   final GroupBuilder? groupBuilder;
 
   @override

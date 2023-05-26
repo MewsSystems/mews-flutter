@@ -31,6 +31,8 @@ class OptimusSearch<T> extends StatelessWidget {
     this.focusNode,
     this.shouldCloseOnInputTap = false,
     this.isClearEnabled = false,
+    this.groupBy,
+    this.groupBuilder,
   }) : super(key: key);
 
   /// Label of the search field.
@@ -111,6 +113,12 @@ class OptimusSearch<T> extends StatelessWidget {
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
 
+  /// {@macro optimus.select.groupBy}
+  final Grouper<T>? groupBy;
+
+  /// {@macro optimus.select.groupBuilder}
+  final GroupBuilder? groupBuilder;
+
   Color _iconColor(OptimusThemeData theme) =>
       theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
 
@@ -147,6 +155,8 @@ class OptimusSearch<T> extends StatelessWidget {
       focusNode: focusNode,
       shouldCloseOnInputTap: shouldCloseOnInputTap,
       isClearEnabled: isClearEnabled,
+      groupBy: groupBy,
+      groupBuilder: groupBuilder,
     );
   }
 }
