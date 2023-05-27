@@ -276,7 +276,6 @@ dart_code_metrics:
     - avoid-unnecessary-nullable-return-type
     - avoid-unrelated-type-casts
     - avoid-unused-generics
-    - function-always-returns-null
     - no-equal-conditions
     - no-equal-switch-case
     - prefer-declaring-const-constructor
@@ -298,7 +297,6 @@ dart_code_metrics:
 
     - avoid-instantiating-in-value-provider
     - avoid-read-inside-build
-    - avoid-watch-outside-build
     - dispose-providers
     - prefer-multi-provider
 
