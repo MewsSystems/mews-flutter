@@ -24,12 +24,10 @@ class OptimusChat extends StatelessWidget {
     required this.onSendPressed,
     required this.isFromCurrentUser,
   }) {
-    _messages
-      ..addAll(messages)
-      ..sort(_byTime);
+    _messages = [...messages]..sort(_byTime);
   }
 
-  final List<OptimusMessage> _messages = [];
+  late final List<OptimusMessage> _messages;
   final bool hasAvatars;
   final FormatTime formatTime;
   final FormatDate formatDate;

@@ -163,48 +163,46 @@ class StepBarItemNumberIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    if (state == OptimusStepBarItemState.completed) {
-      return const SizedBox(
-        width: _iconWrapperSize,
-        height: _iconWrapperSize,
-        child: OptimusIcon(
-          iconData: OptimusIcons.done,
-          colorOption: OptimusIconColorOption.primary,
-        ),
-      );
-    }
-
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          width: _iconWrapperSize,
-          height: _iconWrapperSize,
-          decoration: state == OptimusStepBarItemState.active
-              ? BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: theme.colors.primary500t8,
-                )
-              : null,
-        ),
-        Container(
-          width: 24,
-          height: 24,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: state.iconBackgroundColor(theme),
-          ),
-          child: Center(
-            child: Text(
-              text,
-              style: preset200b.merge(
-                TextStyle(height: 1, color: state.textColor(theme)),
-              ),
+    return state == OptimusStepBarItemState.completed
+        ? const SizedBox(
+            width: _iconWrapperSize,
+            height: _iconWrapperSize,
+            child: OptimusIcon(
+              iconData: OptimusIcons.done,
+              colorOption: OptimusIconColorOption.primary,
             ),
-          ),
-        ),
-      ],
-    );
+          )
+        : Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: _iconWrapperSize,
+                height: _iconWrapperSize,
+                decoration: state == OptimusStepBarItemState.active
+                    ? BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: theme.colors.primary500t8,
+                      )
+                    : null,
+              ),
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: state.iconBackgroundColor(theme),
+                ),
+                child: Center(
+                  child: Text(
+                    text,
+                    style: preset200b.merge(
+                      TextStyle(height: 1, color: state.textColor(theme)),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }
 

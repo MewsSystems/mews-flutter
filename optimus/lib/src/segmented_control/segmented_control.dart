@@ -24,7 +24,8 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
           items.map((i) => i.value).contains(value),
           'Segmented control should always have some existing value',
         ),
-        items = List.unmodifiable(items);
+        items = List.unmodifiable(items),
+        _selectedItemIndex = items.map((i) => i.value).toList().indexOf(value);
 
   /// Size of the segmented control.
   final OptimusWidgetSize size;
@@ -57,8 +58,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
   /// the [Axis.horizontal] this will be set to 1.
   final int? maxLines;
 
-  late final _selectedItemIndex =
-      items.map((i) => i.value).toList().indexOf(value);
+  final int _selectedItemIndex;
 
   int? get _maxLines => direction == Axis.horizontal ? 1 : maxLines;
 

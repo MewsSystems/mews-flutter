@@ -9,19 +9,25 @@ final Story inlineDialogStory = Story(
   builder: (context) => DialogWrapper(child: InlineDialogStory(context.knobs)),
 );
 
-class InlineDialogStory extends StatelessWidget {
-  InlineDialogStory(
+class InlineDialogStory extends StatefulWidget {
+  const InlineDialogStory(
     this.k, {
     super.key,
   });
 
   final KnobsBuilder k;
+
+  @override
+  State<InlineDialogStory> createState() => _InlineDialogStoryState();
+}
+
+class _InlineDialogStoryState extends State<InlineDialogStory> {
   final GlobalKey _anchor = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    final hasActions = k.boolean(label: 'Has actions', initial: false);
-    final position = k.options(
+    final hasActions = widget.k.boolean(label: 'Has actions', initial: false);
+    final position = widget.k.options(
       label: 'Button Position',
       options: alignments,
       initial: Alignment.center,

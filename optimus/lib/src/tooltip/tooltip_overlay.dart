@@ -113,11 +113,12 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
   OptimusTooltipPosition _calculatePosition() {
     final position = widget.position;
-    if (position != null) {
-      return _isOverflowing(position) ? _fallbackPosition : position;
-    }
 
-    return _fallbackPosition;
+    return position != null
+        ? _isOverflowing(position)
+            ? _fallbackPosition
+            : position
+        : _fallbackPosition;
   }
 
   bool _isOverflowing(OptimusTooltipPosition position) {
@@ -235,27 +236,25 @@ class TooltipOverlayState extends State<TooltipOverlay>
     TooltipAlignment start,
     TooltipAlignment center,
     TooltipAlignment end,
-  ) {
-    if (_horizontalCenterLeft < _screenPadding ||
-        _horizontalCenterRight > _overlayWidth - _screenPadding) {
-      return _spaceLeft > _spaceRight ? start : end;
-    }
-
-    return center;
-  }
+  ) =>
+      _horizontalCenterLeft < _screenPadding ||
+              _horizontalCenterRight > _overlayWidth - _screenPadding
+          ? _spaceLeft > _spaceRight
+              ? start
+              : end
+          : center;
 
   TooltipAlignment _calculateVerticalAlignment(
     TooltipAlignment start,
     TooltipAlignment center,
     TooltipAlignment end,
-  ) {
-    if (_verticalCenterTop < _screenPadding ||
-        _verticalCenterBottom > _overlayHeight - _screenPadding) {
-      return _spaceTop > _spaceBottom ? start : end;
-    }
-
-    return center;
-  }
+  ) =>
+      _verticalCenterTop < _screenPadding ||
+              _verticalCenterBottom > _overlayHeight - _screenPadding
+          ? _spaceTop > _spaceBottom
+              ? start
+              : end
+          : center;
 
   void _afterInitialLayoutCallback(dynamic _) {
     _updateRect(_);

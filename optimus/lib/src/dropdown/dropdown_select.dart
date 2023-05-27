@@ -191,14 +191,13 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   List<Widget> _buildTrailingWidgets() {
     final trailing = widget.trailing;
     final trailingImplicit = widget.trailingImplicit;
-    if (widget.isUpdating) {
-      return [const OptimusProgressSpinner()];
-    }
 
-    return [
-      if (trailing != null) trailing,
-      if (trailingImplicit != null) trailingImplicit,
-    ];
+    return widget.isUpdating
+        ? [const OptimusProgressSpinner()]
+        : [
+            if (trailing != null) trailing,
+            if (trailingImplicit != null) trailingImplicit,
+          ];
   }
 
   Widget? get _trailing {
