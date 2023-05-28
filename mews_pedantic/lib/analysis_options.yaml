@@ -212,31 +212,19 @@ dart_code_metrics:
   rules:
     # Common
 
-    - avoid-bottom-type-in-patterns
-    - avoid-bottom-type-in-records
     - avoid-cascade-after-if-null
     - avoid-collection-methods-with-unrelated-types
     - avoid-double-slash-imports
     - avoid-duplicate-exports
-    - avoid-duplicate-patterns
-    - avoid-explicit-pattern-field-name
-    - avoid-function-type-in-records
     - avoid-global-state
-    - avoid-mixing-named-and-positional-fields
-    - avoid-nested-records
     - avoid-non-null-assertion
-    - avoid-one-field-records
-    - avoid-positional-record-field-access
-    - avoid-redundant-positional-field-name
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
     - avoid-unrelated-type-assertions
     - avoid-unused-parameters
-    - move-records-to-typedefs
     - newline-before-return
     - no-boolean-literal-compare
-    - no-equal-switch-expression-cases
     - no-equal-then-else
     - no-object-declaration
     - prefer-commenting-analyzer-ignores
@@ -245,9 +233,6 @@ dart_code_metrics:
     - prefer-immediate-return
     - prefer-iterable-of
     - prefer-last
-    - prefer-returning-conditional-expressions
-    - prefer-simpler-patterns-null-check
-    - prefer-wildcard-pattern
 
     # Flutter
 
@@ -264,24 +249,38 @@ dart_code_metrics:
 
     # Teams Common
 
+    - avoid-bottom-type-in-patterns
+    - avoid-bottom-type-in-records
     - avoid-duplicate-named-imports
+    - avoid-duplicate-patterns
     - avoid-equal-expressions
+    - avoid-explicit-pattern-field-name
+    - avoid-function-type-in-records
     - avoid-inverted-boolean-checks
     - avoid-missed-calls
+    - avoid-mixing-named-and-positional-fields
+    - avoid-nested-records
     - avoid-nested-switches
+    - avoid-one-field-records
     - avoid-redundant-else
+    - avoid-redundant-positional-field-name
     - avoid-self-assignment
     - avoid-self-compare
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
     - avoid-unrelated-type-casts
     - avoid-unused-generics
+    - move-records-to-typedefs
     - no-equal-conditions
     - no-equal-switch-case
+    - no-equal-switch-expression-cases
     - prefer-declaring-const-constructor
     - prefer-early-return
     - prefer-explicit-parameter-names
     - prefer-return-await
+    - prefer-returning-conditional-expressions
+    - prefer-simpler-patterns-null-check
+    - prefer-wildcard-pattern
 
     # Teams Flutter
 
