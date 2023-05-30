@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
@@ -101,6 +103,7 @@ class _DropdownContent<T> extends StatelessWidget {
 
   Widget _buildList(
     bool isOnTop,
+    double maxHeight,
   ) {
     final groupBy = this.groupBy;
 
@@ -111,6 +114,7 @@ class _DropdownContent<T> extends StatelessWidget {
         isReversed: isOnTop,
         groupBy: groupBy,
         groupBuilder: groupBuilder,
+        maxHeight: maxHeight,
       );
     }
 
@@ -118,6 +122,7 @@ class _DropdownContent<T> extends StatelessWidget {
       items: items,
       onChanged: onChanged,
       isReversed: isOnTop,
+      maxHeight: maxHeight,
     );
   }
 
@@ -149,7 +154,7 @@ class _DropdownContent<T> extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: OptimusScrollConfiguration(
-                    child: _buildList(isOnTop),
+                    child: _buildList(isOnTop, listMaxHeight),
                   ),
                 ),
               ),
@@ -172,20 +177,27 @@ class _DropdownListView<T> extends StatelessWidget {
     required this.onChanged,
     required this.items,
     required this.isReversed,
+    required this.maxHeight,
   }) : super(key: key);
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
   final bool isReversed;
+  final double maxHeight;
+
+  double get _minHeight =>
+      items.length * _itemMinHeight + _listVerticalSpacing * 2;
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
-        reverse: isReversed,
-        padding: const EdgeInsets.symmetric(vertical: spacing100),
-        shrinkWrap: true,
-        itemCount: items.length,
-        itemBuilder: (context, index) =>
-            _DropdownItem(onChanged: onChanged, child: items[index]),
+  Widget build(BuildContext context) => SizedBox(
+        height: min(_minHeight, maxHeight),
+        child: ListView.builder(
+          reverse: isReversed,
+          padding: const EdgeInsets.symmetric(vertical: _listVerticalSpacing),
+          itemCount: items.length,
+          itemBuilder: (context, index) =>
+              _DropdownItem(onChanged: onChanged, child: items[index]),
+        ),
       );
 }
 
@@ -195,6 +207,7 @@ class _GroupedDropdownListView<T> extends StatefulWidget {
     required this.onChanged,
     required this.items,
     required this.isReversed,
+    required this.maxHeight,
     required this.groupBy,
     required this.groupBuilder,
   }) : super(key: key);
@@ -202,6 +215,7 @@ class _GroupedDropdownListView<T> extends StatefulWidget {
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
   final bool isReversed;
+  final double maxHeight;
   final Grouper<T> groupBy;
   final GroupBuilder? groupBuilder;
 
@@ -212,7 +226,14 @@ class _GroupedDropdownListView<T> extends StatefulWidget {
 
 class _GroupedDropdownListViewState<T>
     extends State<_GroupedDropdownListView<T>> with ThemeGetter {
-  late List<OptimusDropdownTile<T>> _sortedItems = _sortItems();
+  late List<OptimusDropdownTile<T>> _sortedItems;
+  late int _groupsCount;
+
+  @override
+  void initState() {
+    super.initState();
+    _sortedItems = _sortItems();
+  }
 
   @override
   void didUpdateWidget(_GroupedDropdownListView<T> oldWidget) {
@@ -227,82 +248,106 @@ class _GroupedDropdownListViewState<T>
       (value) =>
           OptimusDropdownGroupSeparator(child: Text(value.toUpperCase()));
 
-  List<OptimusDropdownTile<T>> _sortItems() =>
-      [...widget.items]..sort((e1, e2) {
-          int? result;
-          result = widget.groupBy(e1.value).compareTo(widget.groupBy(e2.value));
-          if (result == 0) {
-            if (e1.value is Comparable) {
-              result =
-                  (e1.value as Comparable).compareTo(e2.value as Comparable);
-            }
-          }
+  List<OptimusDropdownTile<T>> _sortItems() {
+    int groupsCount = 1;
 
-          return result;
-        });
+    final sorted = [...widget.items]..sort((e1, e2) {
+        int? result;
+        final value1 = e1.value;
+        final value2 = e2.value;
+
+        result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
+        if (result == 0) {
+          if (value1 is Comparable) {
+            result = value1.compareTo(value2 as Comparable);
+          }
+        } else {
+          groupsCount++;
+        }
+
+        return result;
+      });
+    _groupsCount = groupsCount;
+
+    return sorted;
+  }
 
   Widget _buildItem(OptimusDropdownTile<T> child) =>
       _DropdownItem(onChanged: widget.onChanged, child: child);
 
+  Widget _buildHeader(
+    bool useBorder,
+    OptimusDropdownTile<T> child,
+  ) =>
+      _GroupWrapper(
+        useBorder: useBorder,
+        group: _effectiveGroupBuilder(widget.groupBy(child.value)),
+        child: _buildItem(child),
+      );
+
+  int get _leadingIndex => widget.isReversed ? _sortedItems.length - 1 : 0;
+
+  double get _minListHeight =>
+      _groupsCount * _groupMinHeight +
+      widget.items.length * _itemMinHeight +
+      _listVerticalSpacing * 2;
+
   @override
-  Widget build(BuildContext context) {
-    final leadingItem = widget.isReversed ? _sortedItems.length * 2 - 1 : 0;
-
-    return ListView.builder(
-      reverse: widget.isReversed,
-      padding: const EdgeInsets.symmetric(vertical: spacing100),
-      shrinkWrap: true,
-      itemCount: _sortedItems.length * 2,
-      itemBuilder: (context, index) {
-        final itemIndex = index ~/ 2;
-        final currentItem = _sortedItems[itemIndex];
-        final currentGroup = widget.groupBy(currentItem.value);
-
-        if (index == leadingItem) {
-          return _GroupDecorator(
-            useBorder: false,
-            child: _effectiveGroupBuilder(currentGroup),
-          );
-        }
-
-        if (index.isReserved(widget.isReversed)) {
-          final previousGroup = widget.groupBy(
-            _sortedItems[itemIndex + (widget.isReversed ? 1 : -1)].value,
-          );
-
-          return previousGroup != currentGroup
-              ? _GroupDecorator(child: _effectiveGroupBuilder(currentGroup))
-              : const SizedBox.shrink();
-        } else {
-          return _buildItem(currentItem);
-        }
-      },
-    );
-  }
+  Widget build(BuildContext context) => SizedBox(
+        height: min(_minListHeight, widget.maxHeight),
+        child: ListView.builder(
+          reverse: widget.isReversed,
+          padding: const EdgeInsets.symmetric(vertical: _listVerticalSpacing),
+          itemCount: widget.items.length,
+          itemBuilder: (context, index) {
+            final current = _sortedItems[index];
+            if (index == _leadingIndex) {
+              return _buildHeader(false, current);
+            } else {
+              final previous =
+                  _sortedItems[index + (widget.isReversed ? 1 : -1)];
+              if (widget.groupBy(current.value) !=
+                  widget.groupBy(previous.value)) {
+                return _buildHeader(true, current);
+              } else {
+                return _buildItem(current);
+              }
+            }
+          },
+        ),
+      );
 }
 
-class _GroupDecorator extends StatelessWidget {
-  const _GroupDecorator({Key? key, this.useBorder = true, required this.child})
-      : super(key: key);
+class _GroupWrapper extends StatelessWidget {
+  const _GroupWrapper({
+    Key? key,
+    required this.group,
+    required this.child,
+    this.useBorder = true,
+  }) : super(key: key);
 
   final bool useBorder;
+  final Widget group;
   final Widget child;
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        border: Border(
-          top: useBorder
-              ? BorderSide(color: theme.colors.neutral25)
-              : BorderSide.none,
+  Widget _buildGroup(BuildContext context) => Container(
+        width: AnchoredOverlay.of(context)?.width,
+        decoration: BoxDecoration(
+          border: Border(
+            top: useBorder
+                ? BorderSide(color: OptimusTheme.of(context).colors.neutral25)
+                : BorderSide.none,
+          ),
         ),
-      ),
-      child: child,
-    );
-  }
+        child: group,
+      );
+
+  @override
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [_buildGroup(context), child],
+      );
 }
 
 class _DropdownItem<T> extends StatefulWidget {
@@ -328,20 +373,23 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   }
 
   @override
-  Widget build(BuildContext context) => InkWell(
-        highlightColor: theme.colors.primary,
-        onHighlightChanged: (isHighlighted) =>
-            setState(() => _isHighlighted = isHighlighted),
-        onTap: _onItemTap,
-        child: _isHighlighted
-            ? OptimusTheme(
-                themeMode: ThemeMode.dark,
-                darkTheme: OptimusTheme.of(context).copyWith(
-                  brightness: Brightness.dark,
-                ),
-                child: widget.child,
-              )
-            : widget.child,
+  Widget build(BuildContext context) => SizedBox(
+        width: AnchoredOverlay.of(context)?.width,
+        child: InkWell(
+          highlightColor: theme.colors.primary,
+          onHighlightChanged: (isHighlighted) =>
+              setState(() => _isHighlighted = isHighlighted),
+          onTap: _onItemTap,
+          child: _isHighlighted
+              ? OptimusTheme(
+                  themeMode: ThemeMode.dark,
+                  darkTheme: OptimusTheme.of(context).copyWith(
+                    brightness: Brightness.dark,
+                  ),
+                  child: widget.child,
+                )
+              : widget.child,
+        ),
       );
 }
 
@@ -385,8 +433,7 @@ class _SearchWrapperState extends State<_SearchWrapper> {
   }
 }
 
-extension on int {
-  bool isReserved(bool isReversed) => isReversed ? isOdd : isEven;
-}
-
 const _embeddedSearchHeight = 54.0;
+const _groupMinHeight = 28.0;
+const _itemMinHeight = 69.0;
+const _listVerticalSpacing = spacing100;
