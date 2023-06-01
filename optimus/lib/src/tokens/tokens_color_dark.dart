@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Tue, 30 May 2023 09:38:25 GMT
+// Generated on Thu, 01 Jun 2023 12:08:25 GMT
 
 import 'dart:ui';
 
@@ -22,6 +22,7 @@ class DesignTokensColor {
   static const backgroundAlertSuccessSecondary = Color(0xFFEAFDE6);
   static const backgroundAlertWarningPrimary = Color(0xFFECAF21);
   static const backgroundAlertWarningSecondary = Color(0xFFFDF0D2);
+  static const backgroundBackdrop = Color(0x1412121A);
   static const backgroundBrand = Color(0xFFFFFFFF);
   static const backgroundDisabled = Color(0xFF323243);
   static const backgroundInteractiveBoldActive = Color(0xFFC4C4D5);
@@ -30,9 +31,9 @@ class DesignTokensColor {
   static const backgroundInteractiveDangerActive = Color(0xFFF68E8E);
   static const backgroundInteractiveDangerDefault = Color(0xFFEC5C5C);
   static const backgroundInteractiveDangerHover = Color(0xFFF26D6D);
-  static const backgroundInteractivePrimaryActive = Color(0xFFAEACFA);
-  static const backgroundInteractivePrimaryDefault = Color(0xFF524FF2);
-  static const backgroundInteractivePrimaryHover = Color(0xFF7A78F6);
+  static const backgroundInteractivePrimaryActive = Color(0xFFD9D8FD);
+  static const backgroundInteractivePrimaryDefault = Color(0xFF7A78F6);
+  static const backgroundInteractivePrimaryHover = Color(0xFFAEACFA);
   static const backgroundInteractiveSecondaryActive = Color(0xFF080680);
   static const backgroundInteractiveSecondaryDefault = Color(0xFF010045);
   static const backgroundInteractiveSecondaryHover = Color(0xFF040259);
@@ -105,6 +106,7 @@ class DesignTokensColor {
   static const paletteBrandIndigo800 = Color(0xFFAEACFA);
   static const paletteBrandIndigo900 = Color(0xFFD9D8FD);
   static const paletteBrandNight0 = Color(0xFF12121A);
+  static const paletteBrandNight08 = Color(0x1412121A);
   static const paletteBrandNight100 = Color(0xFF22222E);
   static const paletteBrandNight1000 = Color(0xFFFFFFFF);
   static const paletteBrandNight150 = Color(0xFF323243);
