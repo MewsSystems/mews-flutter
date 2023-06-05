@@ -1,26 +1,35 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:optimus/src/loader/painter.dart';
 
-class SpinningContainer extends StatefulWidget {
-  const SpinningContainer({Key? key, required this.child}) : super(key: key);
+class SpinningLoader extends StatefulWidget {
+  const SpinningLoader({
+    Key? key,
+    required this.progress,
+    required this.trackColor,
+    required this.indicatorColor,
+  }) : super(key: key);
 
-  final Widget child;
+  final double progress;
+  final Color trackColor;
+  final Color indicatorColor;
 
   @override
-  State<SpinningContainer> createState() => _SpinningContainerState();
+  State<SpinningLoader> createState() => _SpinningLoaderState();
 }
 
-class _SpinningContainerState extends State<SpinningContainer>
-    with TickerProviderStateMixin {
+class _SpinningLoaderState extends State<SpinningLoader>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+
+  static final Animatable<double> _rotationTween =
+      CurveTween(curve: const SawTooth(_rotationCount));
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: _spinningDuration),
       vsync: this,
     )..repeat();
   }
@@ -32,22 +41,18 @@ class _SpinningContainerState extends State<SpinningContainer>
   }
 
   @override
-  Widget build(BuildContext context) =>
-      _SpinningContainer(widget.child, controller: _controller);
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) => CustomPaint(
+          foregroundPainter: CirclePainter(
+            trackColor: widget.trackColor,
+            indicatorColor: widget.indicatorColor,
+            progress: widget.progress,
+            baseAngle: _rotationTween.evaluate(_controller),
+          ),
+        ),
+      );
 }
 
-class _SpinningContainer extends AnimatedWidget {
-  const _SpinningContainer(
-    this.child, {
-    Key? key,
-    required AnimationController controller,
-  }) : super(key: key, listenable: controller);
-
-  final Widget child;
-
-  Animation<double> get _progress => listenable as Animation<double>;
-
-  @override
-  Widget build(BuildContext context) =>
-      Transform.rotate(angle: _progress.value * 2.0 * pi, child: child);
-}
+const int _spinningDuration = 15000;
+const int _rotationCount = 15;

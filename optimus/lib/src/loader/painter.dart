@@ -8,6 +8,7 @@ class CirclePainter extends CustomPainter {
     required this.trackColor,
     required this.indicatorColor,
     required this.progress,
+    this.baseAngle = 0,
   }) : assert(
           progress >= 0 && progress <= 100,
           'progress should be in [0, 100] range',
@@ -16,6 +17,12 @@ class CirclePainter extends CustomPainter {
   final Color trackColor;
   final Color indicatorColor;
   final double progress;
+  final double baseAngle;
+
+  static const _twoPi = 2 * pi;
+  static const _topStartAngle = 3 * pi / 2;
+
+  double get _startAngle => _twoPi * baseAngle + _topStartAngle;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -38,13 +45,17 @@ class CirclePainter extends CustomPainter {
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      3 * pi / 2,
-      2 * pi * (progress / 100),
+      _startAngle,
+      _twoPi * (progress / 100),
       false,
       indicatorArc,
     );
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
+  bool shouldRepaint(CirclePainter oldDelegate) =>
+      trackColor != oldDelegate.trackColor ||
+      indicatorColor != oldDelegate.indicatorColor ||
+      progress != oldDelegate.progress ||
+      baseAngle != oldDelegate.baseAngle;
 }

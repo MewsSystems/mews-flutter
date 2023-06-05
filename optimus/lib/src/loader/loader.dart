@@ -93,15 +93,6 @@ class OptimusCircleLoader extends StatelessWidget {
     }
   }
 
-  Widget _getCirclePainter(OptimusThemeData theme, double progress) =>
-      CustomPaint(
-        foregroundPainter: CirclePainter(
-          trackColor: _getTrackColor(theme),
-          indicatorColor: _getIndicatorColor(theme),
-          progress: progress,
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -110,9 +101,18 @@ class OptimusCircleLoader extends StatelessWidget {
       height: _loaderSize,
       width: _loaderSize,
       child: variant.map(
-        indeterminate: (_) =>
-            SpinningContainer(child: _getCirclePainter(theme, 25)),
-        determinate: (v) => _getCirclePainter(theme, v.progress),
+        indeterminate: (_) => SpinningLoader(
+          progress: 25,
+          trackColor: _getTrackColor(theme),
+          indicatorColor: _getIndicatorColor(theme),
+        ),
+        determinate: (v) => CustomPaint(
+          foregroundPainter: CirclePainter(
+            trackColor: _getTrackColor(theme),
+            indicatorColor: _getIndicatorColor(theme),
+            progress: v.progress,
+          ),
+        ),
       ),
     );
   }
