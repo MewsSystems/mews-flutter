@@ -74,6 +74,9 @@ class _SearchStoryState extends State<SearchStory> {
       isUpdating: k.boolean(label: 'Updating', initial: false),
       isClearEnabled: k.boolean(label: 'Clear enabled', initial: false),
       error: k.text(label: 'Error', initial: ''),
+      groupBy: k.boolean(label: 'Grouped', initial: false)
+          ? (item) => item.split(' ')[1][0].toLowerCase()
+          : null,
     );
   }
 }
