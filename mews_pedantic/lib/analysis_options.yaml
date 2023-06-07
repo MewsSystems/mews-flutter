@@ -212,94 +212,88 @@ dart_code_metrics:
   rules:
     # Common
 
+    - avoid-bottom-type-in-patterns
+    - avoid-bottom-type-in-records
     - avoid-cascade-after-if-null
     - avoid-collection-methods-with-unrelated-types
     - avoid-double-slash-imports
     - avoid-duplicate-exports
-    - avoid-global-state
-    - avoid-non-null-assertion
-    - avoid-unnecessary-conditionals
-    - avoid-unnecessary-type-assertions
-    - avoid-unnecessary-type-casts
-    - avoid-unrelated-type-assertions
-    - avoid-unused-parameters
-    - newline-before-return
-    - no-boolean-literal-compare
-    - no-equal-then-else
-    - no-object-declaration
-    - prefer-commenting-analyzer-ignores
-    - prefer-correct-test-file-name:
-        exclude: ["lib/**", "bin/**"]
-    - prefer-immediate-return
-    - prefer-iterable-of
-    - prefer-last
-
-    # Flutter
-
-    - avoid-expanded-as-spacer
-    - avoid-shrink-wrap-in-lists
-    - avoid-stateless-widget-initialized-fields
-    - avoid-unnecessary-setstate
-    - check-for-equals-in-render-object-setters
-    - consistent-update-render-object
-    - prefer-const-border-radius
-    - prefer-correct-edge-insets-constructor
-    - prefer-define-hero-tag
-    - use-setstate-synchronously
-
-    # Teams Common
-
-    - avoid-bottom-type-in-patterns
-    - avoid-bottom-type-in-records
     - avoid-duplicate-named-imports
     - avoid-duplicate-patterns
     - avoid-equal-expressions
     - avoid-explicit-pattern-field-name
     - avoid-function-type-in-records
+    - avoid-global-state
     - avoid-inverted-boolean-checks
     - avoid-missed-calls
     - avoid-mixing-named-and-positional-fields
     - avoid-nested-records
     - avoid-nested-switches
+    - avoid-non-null-assertion
     - avoid-one-field-records
     - avoid-redundant-else
     - avoid-redundant-positional-field-name
     - avoid-self-assignment
     - avoid-self-compare
+    - avoid-unnecessary-conditionals
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
     - avoid-unrelated-type-casts
     - avoid-unused-generics
+    - avoid-unused-parameters
     - move-records-to-typedefs
+    - newline-before-return
+    - no-boolean-literal-compare
     - no-equal-conditions
     - no-equal-switch-case
     - no-equal-switch-expression-cases
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-commenting-analyzer-ignores
+    - prefer-correct-test-file-name:
+        exclude: ["lib/**", "bin/**"]
     - prefer-declaring-const-constructor
     - prefer-early-return
     - prefer-explicit-parameter-names
+    - prefer-immediate-return
+    - prefer-iterable-of
+    - prefer-last
     - prefer-return-await
     - prefer-returning-conditional-expressions
     - prefer-simpler-patterns-null-check
     - prefer-wildcard-pattern
 
-    # Teams Flutter
+    # Flutter
 
+    - avoid-expanded-as-spacer
     - avoid-late-context
+    - avoid-shrink-wrap-in-lists
     - avoid-state-constructors
+    - avoid-stateless-widget-initialized-fields
+    - avoid-unnecessary-setstate
     - avoid-unnecessary-stateful-widgets
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
     - dispose-fields
+    - prefer-const-border-radius
+    - prefer-correct-edge-insets-constructor
+    - prefer-define-hero-tag
     - prefer-widget-private-members:
         ignore-static: true
     - proper-super-calls
+    - use-setstate-synchronously
 
-    # Teams Provider
+    # Provider
 
     - avoid-instantiating-in-value-provider
     - avoid-read-inside-build
     - dispose-providers
     - prefer-multi-provider
 
-    # Teams Bloc
+    # Bloc
 
     - avoid-bloc-public-methods
     - avoid-cubits
