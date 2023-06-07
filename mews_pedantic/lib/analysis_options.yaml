@@ -223,6 +223,8 @@ dart_code_metrics:
     - avoid-equal-expressions
     - avoid-explicit-pattern-field-name
     - avoid-function-type-in-records
+    - avoid-future-tostring
+    - avoid-unassigned-late-fields-keyword
     - avoid-global-state
     - avoid-inverted-boolean-checks
     - avoid-missed-calls
@@ -238,6 +240,7 @@ dart_code_metrics:
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
+    - avoid-unnecessary-return
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
     - avoid-unrelated-type-assertions
@@ -285,6 +288,10 @@ dart_code_metrics:
         ignore-static: true
     - proper-super-calls
     - use-setstate-synchronously
+
+    # Intl
+
+    - prefer-number-format
 
     # Provider
 
