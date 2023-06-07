@@ -247,6 +247,8 @@ dart_code_metrics:
     - avoid-unrelated-type-casts
     - avoid-unused-generics
     - avoid-unused-parameters
+    - avoid-watch-outside-build
+    - function-always-returns-null
     - move-records-to-typedefs
     - newline-before-return
     - no-boolean-literal-compare
@@ -288,10 +290,6 @@ dart_code_metrics:
         ignore-static: true
     - proper-super-calls
     - use-setstate-synchronously
-
-    # Intl
-
-    - prefer-number-format
 
     # Provider
 
