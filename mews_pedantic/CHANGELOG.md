@@ -1,3 +1,8 @@
+## 0.15.0-dev.4
+
+ - **FEAT**: enable more rules.
+ - **FEAT**: dcm 1.6.0.
+
 ## 0.15.0-dev.3
 
  - **FEAT**: update rules.
