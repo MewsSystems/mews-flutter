@@ -1,3 +1,22 @@
+## 0.25.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: [RND-164305] Fix OptimusCircleLoader glitch after Flutter 3.7.3 (#368).
+ - **FIX**(optimus): [RND-176636] DropdownButton color not updating after dropdown hides (#360).
+ - **FIX**(optimus): [RND-170692] Dialog is overlapping with screen safe area (#347).
+ - **FIX**(optimus): [RND-174939] Fix focus change on SelectInput (#357).
+ - **FIX**(optimus): [RND-173007] Fix SegmentedControl text overflow (#349).
+ - **FEAT**: [RND-164813] Add grouping support to SelectInput (#367).
+ - **FEAT**: [RND-175747] Output tokens in correct format for mobile (#366).
+ - **FEAT**(optimus): [RND-173002] Update InputForm colors and style (#364).
+ - **FEAT**(optimus): [RND-176793] Add custom content padding to the OptimusListTile (#362).
+ - **FEAT**(optimus): [RND-164749] Add OptimusCompactStepBar (#346).
+ - **FEAT**(storybook): [RND-171375] Add story with all icons (#348).
+ - **FEAT**(optimus): [RND-164814] Add an embedded search to the dropdown (#344).
+ - **FEAT**(optimus): [RND-166993] Add inline input error for the OptimusTextInput (#341).
+ - **BREAKING** **FEAT**(optimus): [RND-168006] Replace icons in the current library (#342).
+
 ## 0.24.2
 
  - **FIX**: [RND-169480] Fix clearAll button not reacting in the OptimusSearch (#336).
