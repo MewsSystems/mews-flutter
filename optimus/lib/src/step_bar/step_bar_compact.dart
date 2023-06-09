@@ -9,13 +9,13 @@ import 'package:optimus/src/typography/typography.dart';
 /// layout that can be expanded and collapsed.
 class OptimusCompactStepBar extends StatefulWidget {
   const OptimusCompactStepBar({
-    Key? key,
+    super.key,
     required this.type,
     required this.items,
     required this.currentItem,
     this.maxItem,
     this.rootOverlay = false,
-  }) : super(key: key);
+  });
 
   final OptimusStepBarType type;
   final List<OptimusStepBarItem> items;
@@ -37,7 +37,9 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
     vsync: this,
   );
 
-  bool expanded = false;
+  bool _expanded = false;
+
+  // ignore: dispose-fields, disposed in _collapse
   OverlayEntry? _overlayEntry;
 
   @override
@@ -55,12 +57,12 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
     });
   }
 
-  void expand() {
+  void _expand() {
     if (_overlayEntry != null) return;
 
     _overlayEntry = _createOverlayEntry().also((it) {
       Overlay.of(context, rootOverlay: widget.rootOverlay).insert(it);
-      setState(() => expanded = true);
+      setState(() => _expanded = true);
     });
   }
 
@@ -69,8 +71,10 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
 
     if (overlay != null) {
       _animationController.reverse().then((value) {
-        overlay.remove();
-        setState(() => expanded = false);
+        overlay
+          ..remove()
+          ..dispose();
+        setState(() => _expanded = false);
         _overlayEntry = null;
       });
     }
@@ -107,12 +111,12 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
         currentItem: widget.currentItem,
         maxItem: widget.maxItem,
         child: GestureDetector(
-          onTap: expand,
+          onTap: _expand,
           child: CompositedTransformTarget(
             link: _layerLink,
             child: _CollapsedCompactStepBar(
               key: _anchorKey,
-              showShadow: !expanded,
+              showShadow: !_expanded,
             ),
           ),
         ),
@@ -121,9 +125,9 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
 
 class _CollapsedCompactStepBar extends StatelessWidget {
   const _CollapsedCompactStepBar({
-    Key? key,
+    super.key,
     this.showShadow = true,
-  }) : super(key: key);
+  });
 
   final bool showShadow;
 
@@ -162,9 +166,8 @@ class _CollapsedCompactStepBar extends StatelessWidget {
 
 class _CompactStepBarItem extends StatelessWidget {
   const _CompactStepBarItem({
-    Key? key,
     required this.indicatorText,
-  }) : super(key: key);
+  });
 
   final String indicatorText;
 
@@ -192,10 +195,9 @@ class _CompactStepBarItem extends StatelessWidget {
 
 class _CompactStepBarIndicator extends StatelessWidget {
   const _CompactStepBarIndicator({
-    Key? key,
     required this.currentStep,
     required this.maxSteps,
-  }) : super(key: key);
+  });
 
   final int currentStep;
   final int? maxSteps;
@@ -227,12 +229,11 @@ class _CompactStepBarIndicator extends StatelessWidget {
 
 class _ExpandedCompactStepBar extends StatefulWidget {
   const _ExpandedCompactStepBar({
-    Key? key,
     required this.layerLink,
     required this.controller,
     required this.targetKey,
     this.rootOverlay = false,
-  }) : super(key: key);
+  });
 
   final LayerLink layerLink;
 
@@ -289,7 +290,7 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
   RenderBox? _getOverlay() =>
       Overlay.of(context, rootOverlay: widget.rootOverlay)
           .context
-          .findRenderObject() as RenderBox;
+          .findRenderObject() as RenderBox?;
 
   Size? _getOverlaySize() => _getOverlay()?.size;
 
@@ -335,10 +336,9 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
 
 class _ReverseAnimatedStepBar extends StatefulWidget {
   const _ReverseAnimatedStepBar({
-    Key? key,
     required this.controller,
     required this.width,
-  }) : super(key: key);
+  });
 
   final AnimationController controller;
   final double width;
@@ -380,11 +380,10 @@ class _ReverseAnimatedStepBarState extends State<_ReverseAnimatedStepBar> {
 
 class _AnimatedStepBar extends StatefulWidget {
   const _AnimatedStepBar({
-    Key? key,
     required this.controller,
     required this.itemsCount,
     required this.width,
-  }) : super(key: key);
+  });
 
   final AnimationController controller;
   final int itemsCount;
@@ -466,13 +465,12 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
 
 class _StepBarData extends InheritedWidget {
   const _StepBarData({
-    Key? key,
     required this.type,
     required this.items,
     required this.currentItem,
     required this.maxItem,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final OptimusStepBarType type;
   final List<OptimusStepBarItem> items;

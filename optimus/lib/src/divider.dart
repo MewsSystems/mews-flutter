@@ -5,12 +5,12 @@ import 'package:optimus/src/typography/presets.dart';
 /// Divider is a visual representation of a separation between two areas.
 class OptimusDivider extends StatelessWidget {
   const OptimusDivider({
-    Key? key,
+    super.key,
     this.child,
     this.direction = Axis.horizontal,
     this.variant = OptimusDividerVariant.normal,
     this.crossAxisSpacing = spacing100,
-  }) : super(key: key);
+  });
 
   /// The text to display in the middle of the divider. If null, the divider
   /// will be just a line.

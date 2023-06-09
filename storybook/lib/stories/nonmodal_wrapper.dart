@@ -11,7 +11,7 @@ final Story nonModalDialogStory = Story(
 );
 
 class NonModalDialogStory extends StatelessWidget {
-  const NonModalDialogStory(this.k, {Key? key}) : super(key: key);
+  const NonModalDialogStory(this.k, {super.key});
 
   final KnobsBuilder k;
 

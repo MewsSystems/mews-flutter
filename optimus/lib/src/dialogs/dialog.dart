@@ -39,7 +39,7 @@ Future<T?> showOptimusDialog<T>({
   bool isDismissible = true,
   bool useRootNavigator = true,
 }) =>
-    showGeneralDialog(
+    showGeneralDialog<T>(
       context: context,
       pageBuilder: (buildContext, animation, secondaryAnimation) =>
           OptimusDialog.modal(
@@ -65,7 +65,7 @@ Future<T?> showOptimusDialog<T>({
 /// a short term task without losing the context of the underlying page.
 class OptimusDialog extends StatelessWidget {
   const OptimusDialog._({
-    Key? key,
+    super.key,
     required this.title,
     required this.content,
     this.contentWrapperBuilder,
@@ -75,7 +75,7 @@ class OptimusDialog extends StatelessWidget {
     this.close,
     this.isDismissible,
     this.position = OptimusDialogPosition.center,
-  }) : super(key: key);
+  });
 
   const OptimusDialog.modal({
     Key? key,
@@ -230,9 +230,9 @@ class OptimusDialog extends StatelessWidget {
 
 class OptimusDialogContentPadding extends StatelessWidget {
   const OptimusDialogContentPadding({
-    Key? key,
+    super.key,
     this.child,
-  }) : super(key: key);
+  });
 
   final Widget? child;
 

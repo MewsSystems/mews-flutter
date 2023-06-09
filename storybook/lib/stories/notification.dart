@@ -11,8 +11,7 @@ final Story notificationStory = Story(
 );
 
 class NotificationStory extends StatelessWidget {
-  const NotificationStory({Key? key, required this.knobsBuilder})
-      : super(key: key);
+  const NotificationStory({super.key, required this.knobsBuilder});
 
   final KnobsBuilder knobsBuilder;
 
@@ -42,12 +41,11 @@ class NotificationStory extends StatelessWidget {
 
 class _NotificationStoryContent extends StatelessWidget {
   const _NotificationStoryContent({
-    Key? key,
     required this.title,
     required this.body,
     required this.link,
     required this.dismissible,
-  }) : super(key: key);
+  });
 
   final String title;
   final String body;

@@ -20,7 +20,7 @@ enum OptimusRadioSize {
 /// options. Users can make only one selection in a list at any given time.
 class OptimusRadio<T> extends StatefulWidget {
   const OptimusRadio({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     required this.groupValue,
@@ -28,7 +28,7 @@ class OptimusRadio<T> extends StatefulWidget {
     this.size = OptimusRadioSize.large,
     this.error,
     this.isEnabled = true,
-  }) : super(key: key);
+  });
 
   /// Controls label.
   final Widget label;
@@ -166,10 +166,9 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
 
 class _RadioCircle extends StatelessWidget {
   const _RadioCircle({
-    Key? key,
     required this.isSelected,
     required this.isActive,
-  }) : super(key: key);
+  });
 
   final bool isSelected;
   final bool isActive;

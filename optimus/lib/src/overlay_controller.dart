@@ -6,7 +6,7 @@ import 'package:optimus/src/dropdown/dropdown_tile.dart';
 
 class OverlayController<T> extends StatefulWidget {
   const OverlayController({
-    Key? key,
+    super.key,
     required this.child,
     required this.items,
     required this.onItemSelected,
@@ -16,7 +16,7 @@ class OverlayController<T> extends StatefulWidget {
     this.onShown,
     this.onHidden,
     this.rootOverlay = false,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -34,6 +34,7 @@ class OverlayController<T> extends StatefulWidget {
 }
 
 class _OverlayControllerState<T> extends State<OverlayController<T>> {
+  // ignore: dispose-fields, disposed in _removeOverlay
   OverlayEntry? _overlayEntry;
 
   @override
@@ -66,6 +67,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
 
   void _removeOverlay() {
     _overlayEntry?.remove();
+    _overlayEntry?.dispose();
     _overlayEntry = null;
     widget.onHidden?.call();
   }

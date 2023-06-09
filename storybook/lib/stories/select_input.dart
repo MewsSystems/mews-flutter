@@ -12,7 +12,7 @@ final Story selectInputStory = Story(
 );
 
 class SelectInputStory extends StatefulWidget {
-  const SelectInputStory(this.knobs, {Key? key}) : super(key: key);
+  const SelectInputStory(this.knobs, {super.key});
 
   final KnobsBuilder knobs;
 
@@ -40,6 +40,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
         k.options(label: 'Trailing Icon', options: exampleIcons, initial: null);
     final showLoader = k.boolean(label: 'Show loader', initial: false);
     final embeddedSearch = k.boolean(label: 'Embedded search', initial: false);
+    final enableGrouping = k.boolean(label: 'Grouped', initial: true);
 
     return OptimusSelectInput<String>(
       value: _selectedValue,
@@ -86,6 +87,8 @@ class _SelectInputStoryState extends State<SelectInputStory> {
               placeholder: 'Search',
             )
           : null,
+      groupBy:
+          enableGrouping ? (item) => item.split(' ')[1][0].toLowerCase() : null,
     );
   }
 }

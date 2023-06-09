@@ -8,7 +8,7 @@ final Story dateTimeFieldStory = Story(
 );
 
 class _Content extends StatefulWidget {
-  const _Content({Key? key, required this.k}) : super(key: key);
+  const _Content({required this.k});
 
   final KnobsBuilder k;
 

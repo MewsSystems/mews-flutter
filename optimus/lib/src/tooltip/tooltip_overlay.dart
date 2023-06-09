@@ -3,15 +3,17 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/tooltip/tooltip_alignment.dart';
 
 abstract class TooltipOverlayController {
+  const TooltipOverlayController();
+
   TooltipAlignment get alignment;
 }
 
 class TooltipOverlayData extends InheritedWidget {
   const TooltipOverlayData({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
     required this.controller,
-  }) : super(key: key, child: child);
+  });
 
   final TooltipOverlayController controller;
 
@@ -21,13 +23,13 @@ class TooltipOverlayData extends InheritedWidget {
 
 class TooltipOverlay extends StatefulWidget {
   const TooltipOverlay({
-    Key? key,
+    super.key,
     required this.anchorKey,
     required this.tooltip,
     this.rootOverlay = false,
     required this.tooltipKey,
     this.position,
-  }) : super(key: key);
+  });
 
   /// Key of the widget that should be wrapped with the tooltip.
   final GlobalKey anchorKey;
@@ -111,11 +113,12 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
   OptimusTooltipPosition _calculatePosition() {
     final position = widget.position;
-    if (position != null) {
-      return _isOverflowing(position) ? _fallbackPosition : position;
-    }
 
-    return _fallbackPosition;
+    return position != null
+        ? _isOverflowing(position)
+            ? _fallbackPosition
+            : position
+        : _fallbackPosition;
   }
 
   bool _isOverflowing(OptimusTooltipPosition position) {
@@ -131,7 +134,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
     }
   }
 
-  double? get _leftOffset {
+  double get _leftOffset {
     switch (alignment) {
       case TooltipAlignment.leftTop:
       case TooltipAlignment.leftCenter:
@@ -233,27 +236,25 @@ class TooltipOverlayState extends State<TooltipOverlay>
     TooltipAlignment start,
     TooltipAlignment center,
     TooltipAlignment end,
-  ) {
-    if (_horizontalCenterLeft < _screenPadding ||
-        _horizontalCenterRight > _overlayWidth - _screenPadding) {
-      return _spaceLeft > _spaceRight ? start : end;
-    }
-
-    return center;
-  }
+  ) =>
+      _horizontalCenterLeft < _screenPadding ||
+              _horizontalCenterRight > _overlayWidth - _screenPadding
+          ? _spaceLeft > _spaceRight
+              ? start
+              : end
+          : center;
 
   TooltipAlignment _calculateVerticalAlignment(
     TooltipAlignment start,
     TooltipAlignment center,
     TooltipAlignment end,
-  ) {
-    if (_verticalCenterTop < _screenPadding ||
-        _verticalCenterBottom > _overlayHeight - _screenPadding) {
-      return _spaceTop > _spaceBottom ? start : end;
-    }
-
-    return center;
-  }
+  ) =>
+      _verticalCenterTop < _screenPadding ||
+              _verticalCenterBottom > _overlayHeight - _screenPadding
+          ? _spaceTop > _spaceBottom
+              ? start
+              : end
+          : center;
 
   void _afterInitialLayoutCallback(dynamic _) {
     _updateRect(_);
@@ -294,7 +295,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
   RenderBox? _getOverlay() =>
       Overlay.of(context, rootOverlay: widget.rootOverlay)
           .context
-          .findRenderObject() as RenderBox;
+          .findRenderObject() as RenderBox?;
 
   Size? _getOverlaySize() => _getOverlay()?.size;
 

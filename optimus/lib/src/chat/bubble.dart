@@ -7,7 +7,7 @@ import 'package:optimus/src/typography/presets.dart';
 /// this widget is in OptimusChat widget but it can be used also stand-alone.
 class OptimusChatBubble extends StatelessWidget {
   const OptimusChatBubble({
-    Key? key,
+    super.key,
     required this.message,
     required this.isUserNameVisible,
     required this.isDateVisible,
@@ -16,7 +16,7 @@ class OptimusChatBubble extends StatelessWidget {
     required this.sending,
     required this.sent,
     required this.error,
-  }) : super(key: key);
+  });
 
   final OptimusMessage message;
   final bool isUserNameVisible;
@@ -53,7 +53,7 @@ class OptimusChatBubble extends StatelessWidget {
 }
 
 class _Date extends StatelessWidget {
-  const _Date({Key? key, required this.date}) : super(key: key);
+  const _Date({required this.date});
 
   final String date;
 
@@ -77,7 +77,7 @@ class _Date extends StatelessWidget {
 }
 
 class _Bubble extends StatelessWidget {
-  const _Bubble({Key? key, required this.message}) : super(key: key);
+  const _Bubble({required this.message});
 
   final OptimusMessage message;
 

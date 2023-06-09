@@ -57,10 +57,9 @@ final Story interactiveTagStory = Story(
 
 class _PaddedSystemTag extends StatelessWidget {
   const _PaddedSystemTag({
-    Key? key,
     required this.colorOption,
     required this.text,
-  }) : super(key: key);
+  });
 
   final OptimusColorOption colorOption;
   final String text;
@@ -77,10 +76,9 @@ class _PaddedSystemTag extends StatelessWidget {
 
 class _PaddedCategoricalTag extends StatelessWidget {
   const _PaddedCategoricalTag({
-    Key? key,
     required this.colorOption,
     required this.text,
-  }) : super(key: key);
+  });
 
   final OptimusCategoricalColorOption colorOption;
   final String text;

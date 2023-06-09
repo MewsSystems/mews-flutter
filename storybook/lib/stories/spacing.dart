@@ -24,7 +24,7 @@ final Story spacingStory = Story(
 );
 
 Widget _buildSpacing(double spacing, String label) => Padding(
-      padding: const EdgeInsets.only(left: 24, top: 12, right: 24, bottom: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Row(
         children: [
           SizedBox(

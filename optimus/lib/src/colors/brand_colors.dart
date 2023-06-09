@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 /// brand-specific components, system backgrounds, and other neutral
 /// elements like cards.
 abstract class OptimusBrandColors {
-  OptimusBrandColors._();
+  const OptimusBrandColors._();
 
   static const coral500 = Color(0xFFFF5E64);
   static const coral500t8 = Color(0x14FF5E64);

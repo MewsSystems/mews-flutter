@@ -100,10 +100,10 @@ class RemoteLogger {
       } else if (response.statusCode >= 500 && response.statusCode < 600) {
         // Server error, should retry.
         return false;
-      } else {
-        // Some other status code, don't retry.
-        return true;
       }
+
+      // Some other status code, don't retry.
+      return true;
     } on TimeoutException {
       return false;
     } on ClientException {

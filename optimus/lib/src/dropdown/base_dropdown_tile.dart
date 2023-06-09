@@ -3,24 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
-class BaseDropdownTile extends StatefulWidget {
+class BaseDropdownTile extends StatelessWidget {
   const BaseDropdownTile({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
-  }) : super(key: key);
+  });
 
   final Widget title;
   final Widget? subtitle;
 
   @override
-  State<BaseDropdownTile> createState() => _BaseDropdownTileState();
-}
-
-class _BaseDropdownTileState extends State<BaseDropdownTile> {
-  @override
   Widget build(BuildContext context) {
-    final subtitle = widget.subtitle;
+    final subtitle = this.subtitle;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -30,7 +25,7 @@ class _BaseDropdownTileState extends State<BaseDropdownTile> {
         children: <Widget>[
           OptimusTypography(
             resolveStyle: (_) => preset300s,
-            child: widget.title,
+            child: title,
           ),
           if (subtitle != null)
             OptimusTypography(

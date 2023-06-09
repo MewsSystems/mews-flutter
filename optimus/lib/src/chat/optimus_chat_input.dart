@@ -3,8 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
 class OptimusChatInput extends StatefulWidget {
-  const OptimusChatInput({Key? key, required this.onSendPressed})
-      : super(key: key);
+  const OptimusChatInput({super.key, required this.onSendPressed});
 
   final SendCallback onSendPressed;
 

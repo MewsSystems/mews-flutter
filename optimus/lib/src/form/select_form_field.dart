@@ -4,24 +4,19 @@ import 'package:optimus/src/select.dart';
 
 @Deprecated('Use `OptimusSelectInputFormField` instead.')
 class OptimusSelectFormField<T> extends FormField<T> {
+  @Deprecated('Use `OptimusSelectInputFormField` instead.')
   OptimusSelectFormField({
-    Key? key,
-    required T initialValue,
-    FormFieldSetter<T>? onSaved,
-    FormFieldValidator<T>? validator,
-    bool enabled = true,
-    AutovalidateMode? autovalidateMode,
+    super.key,
+    required T super.initialValue,
+    super.onSaved,
+    super.validator,
+    super.enabled,
+    super.autovalidateMode,
     String? label,
     String placeholder = '',
     required CurrentValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          onSaved: onSaved,
-          validator: validator,
-          enabled: enabled,
-          autovalidateMode: autovalidateMode,
           builder: (FormFieldState<T> field) => OptimusSelect<T>(
             label: label,
             placeholder: placeholder,

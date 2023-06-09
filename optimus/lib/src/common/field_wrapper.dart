@@ -9,7 +9,7 @@ import 'package:optimus/src/typography/presets.dart';
 
 class FieldWrapper extends StatefulWidget {
   const FieldWrapper({
-    Key? key,
+    super.key,
     this.isEnabled = true,
     required this.focusNode,
     this.isFocused,
@@ -24,7 +24,7 @@ class FieldWrapper extends StatefulWidget {
     this.prefix,
     this.fieldBoxKey,
     this.children = const <Widget>[],
-  }) : super(key: key);
+  });
 
   final bool isEnabled;
   final FocusNode focusNode;
@@ -182,7 +182,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 }
 
 class _Icon extends StatelessWidget {
-  const _Icon({Key? key, required this.child}) : super(key: key);
+  const _Icon({required this.child});
 
   final Widget child;
 
@@ -200,7 +200,7 @@ class _Icon extends StatelessWidget {
 }
 
 class _FieldPadding extends StatelessWidget {
-  const _FieldPadding({Key? key, required this.child}) : super(key: key);
+  const _FieldPadding({required this.child});
 
   final Widget child;
 
@@ -212,7 +212,7 @@ class _FieldPadding extends StatelessWidget {
 }
 
 class _SuffixPadding extends StatelessWidget {
-  const _SuffixPadding({Key? key, required this.child}) : super(key: key);
+  const _SuffixPadding({required this.child});
 
   final Widget child;
 
@@ -224,7 +224,7 @@ class _SuffixPadding extends StatelessWidget {
 }
 
 class _PrefixPadding extends StatelessWidget {
-  const _PrefixPadding({Key? key, required this.child}) : super(key: key);
+  const _PrefixPadding({required this.child});
 
   final Widget child;
 
@@ -236,7 +236,7 @@ class _PrefixPadding extends StatelessWidget {
 }
 
 class _Styled extends StatelessWidget {
-  const _Styled({Key? key, required this.child}) : super(key: key);
+  const _Styled({required this.child});
 
   final Widget child;
 

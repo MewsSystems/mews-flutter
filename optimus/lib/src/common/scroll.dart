@@ -3,20 +3,22 @@ import 'package:flutter/widgets.dart';
 /// Removes platform native animations from scroll.
 class OptimusScrollConfiguration extends StatelessWidget {
   const OptimusScrollConfiguration({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
   @override
   Widget build(BuildContext context) => ScrollConfiguration(
-        behavior: _OptimusScrollBehaviour(),
+        behavior: const _OptimusScrollBehaviour(),
         child: child,
       );
 }
 
 class _OptimusScrollBehaviour extends ScrollBehavior {
+  const _OptimusScrollBehaviour();
+
   @override
   Widget buildOverscrollIndicator(
     BuildContext context,

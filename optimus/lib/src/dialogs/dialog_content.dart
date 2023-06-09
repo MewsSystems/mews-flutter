@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 
 class DialogContent extends StatelessWidget {
   const DialogContent({
-    Key? key,
+    super.key,
     required this.actions,
     required this.type,
     required this.size,
@@ -16,11 +16,10 @@ class DialogContent extends StatelessWidget {
     this.contentWrapperBuilder,
     this.spacing,
     this.margin,
-  })  : assert(
+  }) : assert(
           title != null || content != null,
           'Either title or content need to be provided',
-        ),
-        super(key: key);
+        );
 
   final List<OptimusDialogAction> actions;
   final Widget? title;
@@ -98,10 +97,9 @@ class DialogContent extends StatelessWidget {
 
 class _Content extends StatelessWidget {
   const _Content({
-    Key? key,
     required this.content,
     this.contentWrapperBuilder,
-  }) : super(key: key);
+  });
 
   final Widget content;
   final ContentWrapperBuilder? contentWrapperBuilder;
@@ -123,11 +121,10 @@ class _Content extends StatelessWidget {
 
 class _Title extends StatelessWidget {
   const _Title({
-    Key? key,
     required this.title,
     required this.close,
     required this.isDismissible,
-  }) : super(key: key);
+  });
 
   final Widget title;
   final VoidCallback close;
@@ -158,12 +155,11 @@ class _Title extends StatelessWidget {
 
 class _Actions extends StatelessWidget {
   const _Actions({
-    Key? key,
     required this.actions,
     required this.dialogSize,
     required this.type,
     required this.close,
-  }) : super(key: key);
+  });
 
   final List<OptimusDialogAction> actions;
   final OptimusDialogSize dialogSize;

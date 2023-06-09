@@ -95,7 +95,6 @@ final Story segmentedControlStory = Story(
 
 class _SegmentedControlExample extends StatefulWidget {
   const _SegmentedControlExample({
-    Key? key,
     required this.label,
     required this.error,
     required this.isEnabled,
@@ -104,7 +103,7 @@ class _SegmentedControlExample extends StatefulWidget {
     required this.direction,
     required this.size,
     required this.maxLines,
-  }) : super(key: key);
+  });
 
   final String label;
   final String error;

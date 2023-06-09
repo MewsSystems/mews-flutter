@@ -46,7 +46,7 @@ enum OptimusStackSpacing {
 /// Stacks are flexible in order to cover a wide range of scenarios.
 class OptimusStack extends StatelessWidget {
   const OptimusStack({
-    Key? key,
+    super.key,
     required this.children,
     this.direction = Axis.vertical,
     this.mainAxisAlignment = OptimusStackAlignment.start,
@@ -55,7 +55,7 @@ class OptimusStack extends StatelessWidget {
     this.breakpoint,
     this.spacing = OptimusStackSpacing.spacing0,
     this.mainAxisSize = MainAxisSize.max,
-  }) : super(key: key);
+  });
 
   /// Establishes a horizontal or vertical direction for stack items.
   final Axis direction;

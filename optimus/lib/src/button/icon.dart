@@ -34,12 +34,12 @@ enum OptimusIconButtonVariant {
 /// clear enough, you can use an icon button without text.
 class OptimusIconButton extends StatefulWidget {
   const OptimusIconButton({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.icon,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusIconButtonVariant.defaultButton,
-  }) : super(key: key);
+  });
 
   /// Called when the button is tapped or otherwise activated.
   ///
@@ -126,14 +126,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
         return theme.colors.neutral50;
-      case OptimusIconButtonVariant.primary:
-        return theme.colors.primary500;
-      case OptimusIconButtonVariant.text:
-        return Colors.transparent;
       case OptimusIconButtonVariant.destructive:
         return theme.colors.danger500;
+      case OptimusIconButtonVariant.primary:
       case OptimusIconButtonVariant.float:
         return theme.colors.primary500;
+      case OptimusIconButtonVariant.text:
       case OptimusIconButtonVariant.bare:
         return Colors.transparent;
     }
@@ -143,12 +141,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
         return theme.colors.neutral100;
-      case OptimusIconButtonVariant.primary:
-        return theme.colors.primary700;
       case OptimusIconButtonVariant.text:
         return theme.colors.neutral500t8;
       case OptimusIconButtonVariant.destructive:
         return theme.colors.danger700;
+      case OptimusIconButtonVariant.primary:
       case OptimusIconButtonVariant.float:
         return theme.colors.primary700;
       case OptimusIconButtonVariant.bare:
@@ -160,12 +157,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
     switch (widget.variant) {
       case OptimusIconButtonVariant.defaultButton:
         return theme.colors.neutral200;
-      case OptimusIconButtonVariant.primary:
-        return theme.colors.primary900;
       case OptimusIconButtonVariant.text:
         return theme.colors.neutral500t16;
       case OptimusIconButtonVariant.destructive:
         return theme.colors.danger900;
+      case OptimusIconButtonVariant.primary:
       case OptimusIconButtonVariant.float:
         return theme.colors.primary900;
       case OptimusIconButtonVariant.bare:

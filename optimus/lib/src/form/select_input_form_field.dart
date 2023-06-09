@@ -3,24 +3,18 @@ import 'package:optimus/optimus.dart';
 
 class OptimusSelectInputFormField<T> extends FormField<T> {
   OptimusSelectInputFormField({
-    Key? key,
-    required T initialValue,
-    FormFieldSetter<T>? onSaved,
-    FormFieldValidator<T>? validator,
-    bool enabled = true,
-    AutovalidateMode? autovalidateMode,
+    super.key,
+    required T super.initialValue,
+    super.onSaved,
+    super.validator,
+    super.enabled,
+    super.autovalidateMode,
     String? label,
     String placeholder = '',
     required ValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
     ValueChanged<T>? onChanged,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          onSaved: onSaved,
-          validator: validator,
-          enabled: enabled,
-          autovalidateMode: autovalidateMode,
           builder: (FormFieldState<T> field) => OptimusSelectInput<T>(
             label: label,
             placeholder: placeholder,

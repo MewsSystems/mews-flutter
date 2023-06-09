@@ -5,16 +5,16 @@ import 'package:optimus/src/common/group_wrapper.dart';
 /// Group of checkboxes with a parent checkbox, which displays the current state
 /// of its children. Clicking on the parent checkbox will change the state of
 /// all its children.
-class OptimusNestedCheckboxGroup extends StatefulWidget {
+class OptimusNestedCheckboxGroup extends StatelessWidget {
   const OptimusNestedCheckboxGroup({
-    Key? key,
+    super.key,
     this.label,
     this.error,
     this.size = OptimusCheckboxSize.large,
     this.isEnabled = true,
     required this.parent,
     required this.children,
-  }) : super(key: key);
+  });
 
   /// Children of this nested checkbox group.
   final List<OptimusCheckbox> children;
@@ -34,30 +34,22 @@ class OptimusNestedCheckboxGroup extends StatefulWidget {
   /// Controls whether the whole group is enabled.
   final bool isEnabled;
 
-  @override
-  State<OptimusNestedCheckboxGroup> createState() =>
-      _OptimusNestedCheckboxGroupState();
-}
-
-class _OptimusNestedCheckboxGroupState
-    extends State<OptimusNestedCheckboxGroup> {
   bool? get _isParentChecked {
-    final checked =
-        widget.children.where((child) => child.isChecked == true).toList();
+    final checked = children.where((child) => child.isChecked == true).toList();
 
     return checked.isEmpty
         ? false
-        : checked.length == widget.children.length
+        : checked.length == children.length
             ? true
             : null;
   }
 
   @override
   Widget build(BuildContext context) => GroupWrapper(
-        label: widget.label,
-        error: widget.error,
+        label: label,
+        error: error,
         child: OptimusEnabled(
-          isEnabled: widget.isEnabled,
+          isEnabled: isEnabled,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,9 +57,9 @@ class _OptimusNestedCheckboxGroupState
               OptimusCheckbox(
                 tristate: true,
                 isChecked: _isParentChecked,
-                label: widget.parent,
+                label: parent,
                 onChanged: (bool value) {
-                  for (final child in widget.children) {
+                  for (final child in children) {
                     child.onChanged(value);
                   }
                 },
@@ -77,7 +69,7 @@ class _OptimusNestedCheckboxGroupState
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: widget.children,
+                  children: children,
                 ),
               ),
             ],

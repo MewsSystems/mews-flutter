@@ -18,7 +18,7 @@ enum OptimusButtonIconPosition { left, right }
 /// badge at the same time.
 class OptimusButton extends StatelessWidget {
   const OptimusButton({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.child,
     this.minWidth,
@@ -27,7 +27,7 @@ class OptimusButton extends StatelessWidget {
     this.iconPosition = OptimusButtonIconPosition.left,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.defaultButton,
-  }) : super(key: key);
+  });
 
   /// Called when the button is tapped or otherwise activated.
   ///
