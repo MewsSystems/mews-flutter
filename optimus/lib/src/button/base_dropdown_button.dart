@@ -55,7 +55,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 
   @override
   void dispose() {
-    _node.dispose();
     _controller.dispose();
     _node
       ..removeListener(_onFocusChanged)
