@@ -1,6 +1,6 @@
 name: mews_pedantic
 description: Dart and Flutter static analysis and lint rules incorporated in Mews.
-version: 0.14.0
+version: 0.15.0
 repository: https://github.com/MewsSystems/mews-flutter
 
 environment:
