@@ -16,11 +16,11 @@ import 'package:optimus/src/typography/variation.dart';
 /// element to describe its function with less emphasis.
 class OptimusLabel extends StatelessWidget {
   const OptimusLabel({
-    Key? key,
+    super.key,
     this.variation = Variation.variationNormal,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -49,11 +49,11 @@ class OptimusLabel extends StatelessWidget {
 /// another element to describe its function with less emphasis.
 class OptimusLabelSmall extends StatelessWidget {
   const OptimusLabelSmall({
-    Key? key,
+    super.key,
     this.variation = Variation.variationNormal,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;

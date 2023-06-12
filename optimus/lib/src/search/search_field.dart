@@ -7,7 +7,7 @@ import 'package:optimus/src/dropdown/dropdown_select.dart';
 /// and could be filtered to show only matching items.
 class OptimusSearch<T> extends StatelessWidget {
   const OptimusSearch({
-    Key? key,
+    super.key,
     this.label,
     this.placeholder = '',
     this.placeholderStyle,
@@ -33,7 +33,7 @@ class OptimusSearch<T> extends StatelessWidget {
     this.isClearEnabled = false,
     this.groupBy,
     this.groupBuilder,
-  }) : super(key: key);
+  });
 
   /// Label of the search field.
   final String? label;

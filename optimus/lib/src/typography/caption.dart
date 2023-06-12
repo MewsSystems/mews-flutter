@@ -14,11 +14,11 @@ import 'package:optimus/src/typography/variation.dart';
 /// description or explanation of the element with less emphasis.
 class OptimusCaption extends StatelessWidget {
   const OptimusCaption({
-    Key? key,
+    super.key,
     this.variation = Variation.variationNormal,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@template optimus.typography.child}
   /// The content of this widget.

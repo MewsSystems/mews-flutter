@@ -13,7 +13,7 @@ final Story searchFieldStory = Story(
 );
 
 class SearchStory extends StatefulWidget {
-  const SearchStory(this.knobs, {Key? key}) : super(key: key);
+  const SearchStory(this.knobs, {super.key});
 
   final KnobsBuilder knobs;
 
@@ -32,7 +32,9 @@ class _SearchStoryState extends State<SearchStory> {
 
   @override
   void dispose() {
-    _controller.removeListener(_onValueChanged);
+    _controller
+      ..removeListener(_onValueChanged)
+      ..dispose();
     super.dispose();
   }
 

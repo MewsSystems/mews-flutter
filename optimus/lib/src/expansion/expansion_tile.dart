@@ -12,7 +12,7 @@ class OptimusExpansionTile extends StatefulWidget {
   /// collapses the tile to reveal or hide the [children]. The
   /// [initiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
-    Key? key,
+    super.key,
     this.leading,
     required this.title,
     this.subtitle,
@@ -25,7 +25,7 @@ class OptimusExpansionTile extends StatefulWidget {
     this.actionsWidth = 0,
     this.slidableActions = const <Widget>[],
     this.contentPadding,
-  }) : super(key: key);
+  });
 
   /// A widget to display before the title.
   ///

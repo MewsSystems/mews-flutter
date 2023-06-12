@@ -5,9 +5,9 @@ import 'package:optimus/src/typography/presets.dart';
 
 class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
-    Key? key,
+    super.key,
     this.text = '',
-  }) : super(key: key);
+  });
 
   final String text;
 

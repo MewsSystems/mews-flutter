@@ -129,75 +129,75 @@ class DateFormatter extends TextInputFormatter {
         oldSelection.end,
         newText.substring(oldSelection.start, newSelection.end),
       );
-    } else {
-      if (newText.length > oldText.length) {
-        if (_isComplete(oldText) ||
-            !_isValidPosition(newSelectionStart) ||
-            !_isValidDigit(newText[newSelectionStart - 1])) {
-          return oldValue;
-        }
+    }
 
-        if (_isDesignatedSpace(oldSelectionStart)) {
-          final nextInputSpace = _getNextInputIndex(oldSelectionStart);
-          if (_isValidDigit(newText[newSelectionStart - 1]) &&
-              !_isValidDigit(oldText[nextInputSpace])) {
-            resultText = _replaceCharAt(
-              oldText,
-              nextInputSpace,
-              newText[newSelectionStart - 1],
-            );
-            resultSelection = _getNextInputIndex(nextInputSpace + 1);
-          } else {
-            resultSelection = nextInputSpace;
-          }
+    if (newText.length > oldText.length) {
+      if (_isComplete(oldText) ||
+          !_isValidPosition(newSelectionStart) ||
+          !_isValidDigit(newText[newSelectionStart - 1])) {
+        return oldValue;
+      }
+
+      if (_isDesignatedSpace(oldSelectionStart)) {
+        final nextInputSpace = _getNextInputIndex(oldSelectionStart);
+        if (_isValidDigit(newText[newSelectionStart - 1]) &&
+            !_isValidDigit(oldText[nextInputSpace])) {
+          resultText = _replaceCharAt(
+            oldText,
+            nextInputSpace,
+            newText[newSelectionStart - 1],
+          );
+          resultSelection = _getNextInputIndex(nextInputSpace + 1);
         } else {
-          resultText = _replaceCharAt(
-            oldText,
-            oldSelectionStart,
-            newText[oldSelectionStart],
-          );
-          resultSelection = _getNextInputIndex(newSelectionStart);
-        }
-      } else if (newText.length < oldText.length) {
-        if (_isValidDigit(oldText[newSelectionStart])) {
-          final start = oldSelectionStart == oldSelection.end
-              ? newSelectionStart
-              : oldSelectionStart;
-          final end = oldSelectionStart == oldSelection.end
-              ? newSelectionStart + 1
-              : oldSelection.end;
-
-          int selectionPosition = _getPreviousInputIndex(start);
-
-          if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {
-            selectionPosition = _getPreviousInputIndex(start - 1) + 1;
-          }
-
-          resultText = _replaceCharAt(
-            oldText,
-            newSelectionStart,
-            placeholder.substring(start, end),
-          );
-
-          if (_inputLength(resultText) == 0) resultText = '';
-
-          resultSelection = selectionPosition;
-        } else if (_isDesignatedSpace(newSelectionStart)) {
-          final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
-          if (_isValidDigit(oldText[prevInputSpace])) {
-            resultText = _replaceCharAt(
-              oldText,
-              prevInputSpace,
-              placeholder[prevInputSpace],
-            );
-          }
-          resultSelection = _getPreviousInputIndex(newSelectionStart);
-        } else if (!_isValidDigit(oldText[newSelectionStart])) {
-          resultSelection = newSelectionStart;
+          resultSelection = nextInputSpace;
         }
       } else {
+        resultText = _replaceCharAt(
+          oldText,
+          oldSelectionStart,
+          newText[oldSelectionStart],
+        );
+        resultSelection = _getNextInputIndex(newSelectionStart);
+      }
+    } else if (newText.length < oldText.length) {
+      if (_isValidDigit(oldText[newSelectionStart])) {
+        final start = oldSelectionStart == oldSelection.end
+            ? newSelectionStart
+            : oldSelectionStart;
+        final end = oldSelectionStart == oldSelection.end
+            ? newSelectionStart + 1
+            : oldSelection.end;
+
+        int selectionPosition = _getPreviousInputIndex(start);
+
+        if (start - 1 >= 0 && _isDesignatedSpace(start - 1)) {
+          selectionPosition = _getPreviousInputIndex(start - 1) + 1;
+        }
+
+        resultText = _replaceCharAt(
+          oldText,
+          newSelectionStart,
+          placeholder.substring(start, end),
+        );
+
+        if (_inputLength(resultText) == 0) resultText = '';
+
+        resultSelection = selectionPosition;
+      } else if (_isDesignatedSpace(newSelectionStart)) {
+        final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
+        if (_isValidDigit(oldText[prevInputSpace])) {
+          resultText = _replaceCharAt(
+            oldText,
+            prevInputSpace,
+            placeholder[prevInputSpace],
+          );
+        }
+        resultSelection = _getPreviousInputIndex(newSelectionStart);
+      } else if (!_isValidDigit(oldText[newSelectionStart])) {
         resultSelection = newSelectionStart;
       }
+    } else {
+      resultSelection = newSelectionStart;
     }
 
     return TextEditingValue(

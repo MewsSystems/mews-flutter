@@ -14,7 +14,7 @@ typedef ValueBuilder<T> = String Function(T value);
 /// This select component is most commonly found in form patterns.
 class OptimusSelectInput<T> extends StatefulWidget {
   const OptimusSelectInput({
-    Key? key,
+    super.key,
     this.label,
     this.placeholder = '',
     this.value,
@@ -40,7 +40,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.embeddedSearch,
     this.groupBy,
     this.groupBuilder,
-  }) : super(key: key);
+  });
 
   /// Describes the purpose of the select field.
   ///

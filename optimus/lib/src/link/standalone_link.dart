@@ -22,7 +22,7 @@ enum OptimusStandaloneLinkSize {
 /// the user to understand the hierarchy and structure.
 class OptimusStandaloneLink extends StatelessWidget {
   const OptimusStandaloneLink({
-    Key? key,
+    super.key,
     this.onPressed,
     required this.text,
     required this.size,
@@ -30,7 +30,7 @@ class OptimusStandaloneLink extends StatelessWidget {
     this.overflow,
     this.inherit = false,
     this.external = false,
-  }) : super(key: key);
+  });
 
   /// Called when link is tapped.
   ///

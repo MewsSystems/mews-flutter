@@ -13,7 +13,7 @@ typedef _SymbolConverter = String Function(_SupportedSymbol symbol);
 /// digits only, which are retrieved from the [format].
 class OptimusDateInputField extends StatefulWidget {
   const OptimusDateInputField({
-    Key? key,
+    super.key,
     this.onSubmitted,
     required this.format,
     this.label,
@@ -29,7 +29,7 @@ class OptimusDateInputField extends StatefulWidget {
     this.isRequired = false,
     this.focusNode,
     this.onTap,
-  }) : super(key: key);
+  });
 
   /// Format of the date. It will define the placeholder and the separator.
   final DateFormat format;
@@ -129,8 +129,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     return value;
   }
 
-  String _formatOutput(DateTime value) =>
-      _placeholderFormat.format(value).toString();
+  String _formatOutput(DateTime value) => _placeholderFormat.format(value);
 
   void _handleSubmitted(String value) {
     final onSubmitted = widget.onSubmitted;

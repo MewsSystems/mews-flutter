@@ -9,13 +9,13 @@ import 'package:optimus/src/dialogs/dialog_content.dart';
 /// display extra information while keeping the main content still visible.
 class OptimusInlineDialog extends StatelessWidget {
   const OptimusInlineDialog({
-    Key? key,
+    super.key,
     required this.content,
     this.contentWrapperBuilder,
     this.actions = const [],
     this.close,
     required this.anchorKey,
-  }) : super(key: key);
+  });
 
   /// Key of the widget that the dialog should be anchored to.
   final GlobalKey anchorKey;

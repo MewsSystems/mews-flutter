@@ -17,7 +17,7 @@ import 'package:optimus/src/typography/typography.dart';
 /// it with list items without any prefix.
 class OptimusListTile extends StatelessWidget {
   const OptimusListTile({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.prefix,
@@ -27,7 +27,7 @@ class OptimusListTile extends StatelessWidget {
     this.onTap,
     this.fontVariant = FontVariant.normal,
     this.contentPadding,
-  }) : super(key: key);
+  });
 
   /// Communicates the subject of the list item.
   /// The primary content of the list item.

@@ -3,13 +3,13 @@ import 'package:optimus/optimus.dart';
 
 class BorderWrapper extends StatefulWidget {
   const BorderWrapper({
-    Key? key,
+    super.key,
     required this.child,
     required this.size,
     required this.selectedItemIndex,
     required this.listSize,
     required this.isEnabled,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

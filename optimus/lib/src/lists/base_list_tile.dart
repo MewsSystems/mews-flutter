@@ -4,10 +4,10 @@ import 'package:optimus/src/border_side.dart';
 
 class BaseListTile extends StatelessWidget {
   const BaseListTile({
-    Key? key,
+    super.key,
     required this.content,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final Widget content;
   final VoidCallback? onTap;

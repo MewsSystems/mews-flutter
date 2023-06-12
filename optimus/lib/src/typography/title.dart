@@ -11,10 +11,10 @@ import 'package:optimus/src/typography/typography.dart';
 /// [OptimusPageTitle] - is used only once per page (with exceptions).
 class OptimusPageTitle extends StatelessWidget {
   const OptimusPageTitle({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -35,10 +35,10 @@ class OptimusPageTitle extends StatelessWidget {
 /// [OptimusSectionTitle] - is used to divide individual sections of the page.
 class OptimusSectionTitle extends StatelessWidget {
   const OptimusSectionTitle({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -60,10 +60,10 @@ class OptimusSectionTitle extends StatelessWidget {
 /// into subsections.
 class OptimusSubsectionTitle extends StatelessWidget {
   const OptimusSubsectionTitle({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -84,10 +84,10 @@ class OptimusSubsectionTitle extends StatelessWidget {
 /// [OptimusSubtitle] is used in combination with one of the titles.
 class OptimusSubtitle extends StatelessWidget {
   const OptimusSubtitle({
-    Key? key,
+    super.key,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;

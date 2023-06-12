@@ -3,10 +3,10 @@ import 'package:optimus/src/constants.dart';
 
 class OptimusEnabled extends StatelessWidget {
   const OptimusEnabled({
-    Key? key,
+    super.key,
     required this.isEnabled,
     required this.child,
-  }) : super(key: key);
+  });
 
   final bool isEnabled;
   final Widget child;

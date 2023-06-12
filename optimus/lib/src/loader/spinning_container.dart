@@ -4,11 +4,11 @@ import 'package:optimus/src/loader/painter.dart';
 
 class SpinningLoader extends StatefulWidget {
   const SpinningLoader({
-    Key? key,
+    super.key,
     required this.progress,
     required this.trackColor,
     required this.indicatorColor,
-  }) : super(key: key);
+  });
 
   final double progress;
   final Color trackColor;

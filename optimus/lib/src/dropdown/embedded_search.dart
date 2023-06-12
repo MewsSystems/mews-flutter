@@ -6,12 +6,12 @@ import 'package:optimus/optimus.dart';
 /// the focus on display.
 class OptimusDropdownEmbeddedSearch extends StatefulWidget {
   const OptimusDropdownEmbeddedSearch({
-    Key? key,
+    super.key,
     this.placeholder,
     this.onTextChanged,
     this.initialValue = '',
     this.isClearEnabled = true,
-  }) : super(key: key);
+  });
 
   /// The initial value of the search when the dropdown becomes visible.
   final String initialValue;

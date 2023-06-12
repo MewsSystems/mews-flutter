@@ -8,8 +8,9 @@ typedef CurrentValueBuilder<T> = Widget Function(BuildContext context, T value);
 
 @Deprecated('Use `OptimusSelectInput` instead')
 class OptimusSelect<T> extends StatefulWidget {
+  @Deprecated('Use `OptimusSelectInput` instead')
   const OptimusSelect({
-    Key? key,
+    super.key,
     this.label,
     this.placeholder = '',
     this.value,
@@ -23,7 +24,7 @@ class OptimusSelect<T> extends StatefulWidget {
     this.error,
     this.size = OptimusWidgetSize.large,
     required this.onItemSelected,
-  }) : super(key: key);
+  });
 
   final String? label;
   final String placeholder;
@@ -47,6 +48,12 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
   bool _isOpened = false;
+
+  @override
+  void dispose() {
+    _node.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => OverlayController(
@@ -129,11 +136,10 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
 
 class _SelectedValue extends StatelessWidget {
   const _SelectedValue({
-    Key? key,
     required this.child,
     required this.size,
     required this.textStyle,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final OptimusWidgetSize size;

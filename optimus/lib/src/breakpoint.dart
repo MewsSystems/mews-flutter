@@ -13,8 +13,8 @@ extension MediaQueryDataScreenBreakpoint on MediaQueryData {
       return Breakpoint.medium;
     } else if (width < 1400) {
       return Breakpoint.large;
-    } else {
-      return Breakpoint.extraLarge;
     }
+
+    return Breakpoint.extraLarge;
   }
 }

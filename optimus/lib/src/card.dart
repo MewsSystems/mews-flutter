@@ -43,13 +43,13 @@ enum OptimusCardAttachment { none, top, right, bottom, left }
 /// the best result.
 class OptimusCard extends StatelessWidget {
   const OptimusCard({
-    Key? key,
+    super.key,
     required this.child,
     this.contentWrapperBuilder,
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
     this.variant = OptimusBasicCardVariant.normal,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -102,13 +102,13 @@ class OptimusCard extends StatelessWidget {
 /// a basic card type. It is recommended to use only one layer of nesting.
 class OptimusNestedCard extends StatelessWidget {
   const OptimusNestedCard({
-    Key? key,
+    super.key,
     required this.child,
     this.contentWrapperBuilder,
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
     this.variant = OptimusNestedCardVariant.normal,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -168,7 +168,6 @@ class OptimusNestedCard extends StatelessWidget {
 
 class _Card extends StatelessWidget {
   const _Card({
-    Key? key,
     required this.child,
     this.contentWrapperBuilder,
     required this.spacing,
@@ -176,7 +175,7 @@ class _Card extends StatelessWidget {
     this.shadows = const [],
     this.border,
     this.color,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final ContentWrapperBuilder? contentWrapperBuilder;
@@ -235,10 +234,10 @@ class _Card extends StatelessWidget {
 
 class OptimusCardChildPadding extends StatelessWidget {
   const OptimusCardChildPadding({
-    Key? key,
+    super.key,
     required this.child,
     this.spacing = OptimusCardSpacing.spacing200,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final OptimusCardSpacing spacing;

@@ -21,7 +21,7 @@ enum OptimusCheckboxSize {
 /// three states: checked, unchecked and indeterminate.
 class OptimusCheckbox extends StatefulWidget {
   const OptimusCheckbox({
-    Key? key,
+    super.key,
     required this.label,
     this.isChecked = false,
     this.error,
@@ -29,11 +29,10 @@ class OptimusCheckbox extends StatefulWidget {
     this.size = OptimusCheckboxSize.large,
     this.tristate = false,
     required this.onChanged,
-  })  : assert(
+  }) : assert(
           tristate || isChecked != null,
           'isChecked must be set if tristate is false',
-        ),
-        super(key: key);
+        );
 
   /// Label displayed next to checkbox.
   ///
@@ -183,10 +182,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
 }
 
 class _CheckboxIcon extends StatelessWidget {
-  const _CheckboxIcon({
-    Key? key,
-    this.icon,
-  }) : super(key: key);
+  const _CheckboxIcon({this.icon});
 
   final IconData? icon;
 

@@ -19,7 +19,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ">=1.0.0 <3.0.0"
-  mews_pedantic: ^0.14.0
+  mews_pedantic: ^0.15.0
 flutter:
   fonts:
     - family: Inter

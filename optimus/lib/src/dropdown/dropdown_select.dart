@@ -10,7 +10,7 @@ import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
 class DropdownSelect<T> extends StatefulWidget {
   const DropdownSelect({
-    Key? key,
+    super.key,
     this.label,
     this.placeholder = '',
     this.placeholderStyle,
@@ -43,7 +43,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.onDropdownHide,
     this.groupBy,
     this.groupBuilder,
-  }) : super(key: key);
+  });
 
   final String? label;
   final String placeholder;
@@ -98,6 +98,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
 
+  // ignore: dispose-fields, disposed in _removeOverlay
   OverlayEntry? _overlayEntry;
 
   @override
@@ -167,6 +168,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
 
   void _removeOverlay() {
     _overlayEntry?.remove();
+    _overlayEntry?.dispose();
     _overlayEntry = null;
     widget.onDropdownHide?.call();
     _effectiveFocusNode.unfocus();
@@ -193,14 +195,13 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   List<Widget> _buildTrailingWidgets() {
     final trailing = widget.trailing;
     final trailingImplicit = widget.trailingImplicit;
-    if (widget.isUpdating) {
-      return [const OptimusProgressSpinner()];
-    } else {
-      return [
-        if (trailing != null) trailing,
-        if (trailingImplicit != null) trailingImplicit,
-      ];
-    }
+
+    return widget.isUpdating
+        ? [const OptimusProgressSpinner()]
+        : [
+            if (trailing != null) trailing,
+            if (trailingImplicit != null) trailingImplicit,
+          ];
   }
 
   Widget? get _trailing {
@@ -296,10 +297,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
 }
 
 class _ClearAllButton extends StatelessWidget {
-  const _ClearAllButton({
-    Key? key,
-    required this.onTap,
-  }) : super(key: key);
+  const _ClearAllButton({required this.onTap});
 
   final GestureTapCallback? onTap;
 
@@ -320,11 +318,9 @@ class _ClearAllButton extends StatelessWidget {
 
 class _CustomRawGestureDetector extends RawGestureDetector {
   _CustomRawGestureDetector({
-    Key? key,
     GestureTapCallback? onTap,
-    Widget? child,
+    super.child,
   }) : super(
-          key: key,
           behavior: HitTestBehavior.opaque,
           gestures: <Type, GestureRecognizerFactory>{
             _AllowMultipleGestureRecognizer:
@@ -335,7 +331,6 @@ class _CustomRawGestureDetector extends RawGestureDetector {
                   instance.onTap = onTap,
             ),
           },
-          child: child,
         );
 }
 

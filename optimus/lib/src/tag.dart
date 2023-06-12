@@ -17,10 +17,10 @@ import 'package:optimus/src/typography/presets.dart';
 /// in tables, forms, and cards.
 class OptimusTag extends StatelessWidget {
   const OptimusTag({
-    Key? key,
+    super.key,
     required this.text,
     this.colorOption = OptimusColorOption.basic,
-  }) : super(key: key);
+  });
 
   /// The text to display in the tag.
   final String text;
@@ -50,10 +50,10 @@ class OptimusTag extends StatelessWidget {
 /// components.
 class OptimusInteractiveTag extends StatelessWidget {
   const OptimusInteractiveTag({
-    Key? key,
+    super.key,
     required this.text,
     this.onRemoved,
-  }) : super(key: key);
+  });
 
   /// The text to display in the tag.
   final String text;
@@ -76,11 +76,10 @@ class OptimusInteractiveTag extends StatelessWidget {
 
 class _Tag extends StatefulWidget {
   const _Tag({
-    Key? key,
     required this.text,
     this.colorOption = OptimusColorOption.basic,
     this.onRemoved,
-  }) : super(key: key);
+  });
 
   final String text;
   final OptimusColorOption colorOption;
@@ -290,10 +289,9 @@ extension on OptimusCategoricalColorOption {
         return OptimusDataColors.lavender900;
       case OptimusCategoricalColorOption.lime:
         return OptimusDataColors.lime900;
-      case OptimusCategoricalColorOption.mustard:
-        return theme.colors.neutral1000;
       case OptimusCategoricalColorOption.ruby:
         return OptimusDataColors.ruby900;
+      case OptimusCategoricalColorOption.mustard:
       case OptimusCategoricalColorOption.tangerine:
         return theme.colors.neutral1000;
     }
@@ -311,10 +309,10 @@ extension on OptimusCategoricalColorOption {
 /// [OptimusCategoricalColorOption.tangerine] - Tangerine Orange
 class OptimusCategoricalTag extends StatelessWidget {
   const OptimusCategoricalTag({
-    Key? key,
+    super.key,
     required this.text,
     required this.colorOption,
-  }) : super(key: key);
+  });
 
   final String text;
   final OptimusCategoricalColorOption colorOption;

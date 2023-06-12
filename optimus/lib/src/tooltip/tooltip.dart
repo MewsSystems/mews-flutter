@@ -10,11 +10,11 @@ import 'package:optimus/src/typography/presets.dart';
 /// user.
 class OptimusTooltip extends StatelessWidget {
   const OptimusTooltip({
-    Key? key,
+    super.key,
     required this.content,
     this.size = OptimusToolTipSize.small,
     this.tooltipPosition,
-  }) : super(key: key);
+  });
 
   /// The content of the tooltip. Typically a [Text] widget.
   /// Tooltip's content should be contextual, helpful, and nonessential.
@@ -29,7 +29,7 @@ class OptimusTooltip extends StatelessWidget {
   /// by the wrapper.
   final OptimusTooltipPosition? tooltipPosition;
 
-  Color tooltipColor(OptimusThemeData theme) => theme.colors.neutral1000;
+  Color _tooltipColor(OptimusThemeData theme) => theme.colors.neutral1000;
 
   OptimusTooltipPosition get _fallbackPosition =>
       tooltipPosition ?? OptimusTooltipPosition.top;
@@ -44,7 +44,7 @@ class OptimusTooltip extends StatelessWidget {
       padding: const EdgeInsets.all(_arrowHeight),
       child: CustomPaint(
         painter: _TooltipPainter(
-          color: tooltipColor(theme),
+          color: _tooltipColor(theme),
           alignment: alignment,
         ),
         child: Container(
@@ -54,7 +54,7 @@ class OptimusTooltip extends StatelessWidget {
             horizontal: spacing100,
           ),
           child: Material(
-            color: tooltipColor(theme),
+            color: _tooltipColor(theme),
             child: DefaultTextStyle.merge(
               style: preset100b.copyWith(color: theme.colors.neutral0),
               textAlign: TextAlign.center,

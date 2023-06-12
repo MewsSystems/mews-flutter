@@ -6,7 +6,7 @@ import 'package:optimus/src/form/form_style.dart';
 /// General input, used to allow users to enter data into the interface.
 class OptimusInputField extends StatefulWidget {
   const OptimusInputField({
-    Key? key,
+    super.key,
     this.onChanged,
     this.placeholder,
     this.placeholderStyle,
@@ -48,7 +48,7 @@ class OptimusInputField extends StatefulWidget {
     this.keyboardAppearance,
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
-  }) : super(key: key);
+  });
 
   /// {@macro flutter.widgets.editableText.onChanged}
   final ValueChanged<String>? onChanged;
@@ -213,15 +213,15 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _shouldShowInlineError => _isUsingInlineError && widget.hasError;
 
   Widget? get _inlineError {
-    if (_shouldShowInlineError) {
-      final error = widget.error;
-      if (error == null) return null;
+    if (!_shouldShowInlineError) return null;
 
-      return OptimusTooltipWrapper(
-        text: Text(error),
-        child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
-      );
-    }
+    final error = widget.error;
+    if (error == null) return null;
+
+    return OptimusTooltipWrapper(
+      text: Text(error),
+      child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
+    );
   }
 
   Widget? get _suffix {
@@ -339,14 +339,13 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
 class _Suffix extends StatelessWidget {
   const _Suffix({
-    Key? key,
     this.suffix,
     this.passwordButton,
     this.trailing,
     this.inlineError,
     required this.clearAllButton,
     required this.showLoader,
-  }) : super(key: key);
+  });
 
   final Widget? suffix;
   final Widget? passwordButton;
@@ -386,7 +385,7 @@ class _Suffix extends StatelessWidget {
 }
 
 class _Prefix extends StatelessWidget {
-  const _Prefix({Key? key, this.prefix, this.leading}) : super(key: key);
+  const _Prefix({this.prefix, this.leading});
 
   final Widget? prefix;
   final Widget? leading;
@@ -405,10 +404,9 @@ class _Prefix extends StatelessWidget {
 
 class _PasswordButton extends StatelessWidget {
   const _PasswordButton({
-    Key? key,
     required this.onTap,
     required this.isShowPasswordEnabled,
-  }) : super(key: key);
+  });
 
   final VoidCallback onTap;
   final bool isShowPasswordEnabled;
@@ -423,7 +421,7 @@ class _PasswordButton extends StatelessWidget {
 }
 
 class _ClearAllButton extends StatelessWidget {
-  const _ClearAllButton({Key? key, required this.onTap}) : super(key: key);
+  const _ClearAllButton({required this.onTap});
 
   final GestureTapCallback onTap;
 

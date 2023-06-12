@@ -11,7 +11,7 @@ typedef GroupBuilder = Widget Function(String value);
 
 class OptimusDropdown<T> extends StatelessWidget {
   const OptimusDropdown({
-    Key? key,
+    super.key,
     required this.items,
     required this.anchorKey,
     required this.onChanged,
@@ -20,7 +20,7 @@ class OptimusDropdown<T> extends StatelessWidget {
     this.emptyResultPlaceholder,
     this.groupBy,
     this.groupBuilder,
-  }) : super(key: key);
+  });
 
   final List<OptimusDropdownTile<T>> items;
   final ValueSetter<T> onChanged;
@@ -53,14 +53,14 @@ class OptimusDropdown<T> extends StatelessWidget {
 
 class _DropdownContent<T> extends StatelessWidget {
   const _DropdownContent({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.items,
     this.embeddedSearch,
     this.emptyResultPlaceholder,
     this.groupBy,
     this.groupBuilder,
-  }) : super(key: key);
+  });
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
@@ -107,23 +107,21 @@ class _DropdownContent<T> extends StatelessWidget {
   ) {
     final groupBy = this.groupBy;
 
-    if (groupBy != null) {
-      return _GroupedDropdownListView(
-        items: items,
-        onChanged: onChanged,
-        isReversed: isOnTop,
-        groupBy: groupBy,
-        groupBuilder: groupBuilder,
-        maxHeight: maxHeight,
-      );
-    }
-
-    return _DropdownListView(
-      items: items,
-      onChanged: onChanged,
-      isReversed: isOnTop,
-      maxHeight: maxHeight,
-    );
+    return groupBy != null
+        ? _GroupedDropdownListView(
+            items: items,
+            onChanged: onChanged,
+            isReversed: isOnTop,
+            groupBy: groupBy,
+            groupBuilder: groupBuilder,
+            maxHeight: maxHeight,
+          )
+        : _DropdownListView(
+            items: items,
+            onChanged: onChanged,
+            isReversed: isOnTop,
+            maxHeight: maxHeight,
+          );
   }
 
   @override
@@ -165,20 +163,20 @@ class _DropdownContent<T> extends StatelessWidget {
           ],
         ),
       );
-    } else {
-      return const SizedBox.shrink();
     }
+
+    return const SizedBox.shrink();
   }
 }
 
 class _DropdownListView<T> extends StatelessWidget {
   const _DropdownListView({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.items,
     required this.isReversed,
     required this.maxHeight,
-  }) : super(key: key);
+  });
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
@@ -203,14 +201,14 @@ class _DropdownListView<T> extends StatelessWidget {
 
 class _GroupedDropdownListView<T> extends StatefulWidget {
   const _GroupedDropdownListView({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.items,
     required this.isReversed,
     required this.maxHeight,
     required this.groupBy,
     required this.groupBuilder,
-  }) : super(key: key);
+  });
 
   final ValueSetter<T> onChanged;
   final List<OptimusDropdownTile<T>> items;
@@ -303,16 +301,14 @@ class _GroupedDropdownListViewState<T>
             final current = _sortedItems[index];
             if (index == _leadingIndex) {
               return _buildHeader(false, current);
-            } else {
-              final previous =
-                  _sortedItems[index + (widget.isReversed ? 1 : -1)];
-              if (widget.groupBy(current.value) !=
-                  widget.groupBy(previous.value)) {
-                return _buildHeader(true, current);
-              } else {
-                return _buildItem(current);
-              }
             }
+
+            final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+
+            return widget.groupBy(current.value) !=
+                    widget.groupBy(previous.value)
+                ? _buildHeader(true, current)
+                : _buildItem(current);
           },
         ),
       );
@@ -320,11 +316,10 @@ class _GroupedDropdownListViewState<T>
 
 class _GroupWrapper extends StatelessWidget {
   const _GroupWrapper({
-    Key? key,
     required this.group,
     required this.child,
     this.useBorder = true,
-  }) : super(key: key);
+  });
 
   final bool useBorder;
   final Widget group;
@@ -352,10 +347,10 @@ class _GroupWrapper extends StatelessWidget {
 
 class _DropdownItem<T> extends StatefulWidget {
   const _DropdownItem({
-    Key? key,
+    super.key,
     required this.child,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final OptimusDropdownTile<T> child;
   final ValueSetter<T> onChanged;
@@ -395,12 +390,11 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
 
 class _SearchWrapper extends StatefulWidget {
   const _SearchWrapper({
-    Key? key,
     required this.width,
     required this.showDivider,
     required this.isOnTop,
     required this.child,
-  }) : super(key: key);
+  });
 
   final double width;
   final Widget child;

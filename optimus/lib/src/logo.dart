@@ -46,12 +46,12 @@ enum OptimusMewsLogoAlignVariant { topLeft, topCenter, center }
 /// elements may be placed within 1x(x = logo heigh) of the space around it.
 class OptimusMewsLogo extends StatelessWidget {
   const OptimusMewsLogo({
-    Key? key,
+    super.key,
     this.logoVariant = OptimusMewsLogoVariant.logomark,
     this.sizeVariant = OptimusMewsLogoSizeVariant.medium,
     this.colorVariant = OptimusMewsLogoColorVariant.black,
     this.alignVariant = OptimusMewsLogoAlignVariant.topCenter,
-  }) : super(key: key);
+  });
 
   final OptimusMewsLogoVariant logoVariant;
   final OptimusMewsLogoSizeVariant sizeVariant;
@@ -115,10 +115,9 @@ class OptimusMewsLogo extends StatelessWidget {
 class _NonSquaredIcon extends StatelessWidget {
   const _NonSquaredIcon(
     this.icon, {
-    Key? key,
     required this.size,
     required this.color,
-  }) : super(key: key);
+  });
 
   final IconData icon;
 

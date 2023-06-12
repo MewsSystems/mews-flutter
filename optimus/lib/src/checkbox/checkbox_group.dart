@@ -6,7 +6,7 @@ import 'package:optimus/src/common/group_wrapper.dart';
 /// Group of checkboxes with the same label and error messages.
 class OptimusCheckboxGroup<T> extends StatelessWidget {
   OptimusCheckboxGroup({
-    Key? key,
+    super.key,
     required Iterable<OptimusGroupItem<T>> items,
     required Iterable<T> values,
     required this.onChanged,
@@ -15,8 +15,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
     this.error,
     this.isEnabled = true,
   })  : _values = values.toSet(),
-        _items = items.toSet(),
-        super(key: key);
+        _items = items.toSet();
 
   final Set<OptimusGroupItem<T>> _items;
 

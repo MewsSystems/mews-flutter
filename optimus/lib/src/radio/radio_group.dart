@@ -6,7 +6,7 @@ import 'package:optimus/src/radio/radio.dart';
 
 class OptimusRadioGroup<T> extends StatelessWidget {
   const OptimusRadioGroup({
-    Key? key,
+    super.key,
     required this.items,
     required this.value,
     required this.onChanged,
@@ -14,7 +14,7 @@ class OptimusRadioGroup<T> extends StatelessWidget {
     this.label,
     this.error,
     this.isEnabled = true,
-  }) : super(key: key);
+  });
 
   final List<OptimusGroupItem<T>> items;
 

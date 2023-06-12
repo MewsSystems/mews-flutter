@@ -1,5 +1,3 @@
-library optimus;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/colors/colors.dart';

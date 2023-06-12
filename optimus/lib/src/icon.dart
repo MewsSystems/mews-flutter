@@ -30,11 +30,11 @@ enum OptimusIconColorOption {
 /// The default icon is used when there is no need for additional emphasis.
 class OptimusIcon extends StatelessWidget {
   const OptimusIcon({
-    Key? key,
+    super.key,
     required this.iconData,
     this.iconSize = OptimusIconSize.medium,
     this.colorOption,
-  }) : super(key: key);
+  });
 
   /// Controls the icon.
   final IconData iconData;
@@ -88,10 +88,10 @@ class OptimusIcon extends StatelessWidget {
 /// provide additional emphasis.
 class OptimusSupplementaryIcon extends StatelessWidget {
   const OptimusSupplementaryIcon({
-    Key? key,
+    super.key,
     required this.iconData,
     this.colorOption = OptimusIconColorOption.basic,
-  }) : super(key: key);
+  });
 
   /// Controls the icon.
   final IconData iconData;
@@ -159,7 +159,11 @@ extension on OptimusIconColorOption {
         return theme.colors.neutral500;
       case OptimusIconColorOption.warning:
         return theme.colors.neutral1000;
-      default:
+      case OptimusIconColorOption.primary:
+      case OptimusIconColorOption.success:
+      case OptimusIconColorOption.info:
+      case OptimusIconColorOption.danger:
+      case OptimusIconColorOption.subtle:
         return theme.colors.neutral0;
     }
   }
@@ -178,6 +182,7 @@ extension on OptimusIconColorOption {
         return theme.colors.warning500;
       case OptimusIconColorOption.danger:
         return theme.colors.danger500;
+      // ignore: no-equal-switch-case, temp duplication
       case OptimusIconColorOption.subtle:
         // TODO(VG): Add proper color when design is ready.
         return theme.colors.neutral50;

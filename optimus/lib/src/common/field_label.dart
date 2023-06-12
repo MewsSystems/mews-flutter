@@ -4,10 +4,10 @@ import 'package:optimus/optimus.dart';
 
 class OptimusFieldLabel extends StatelessWidget {
   const OptimusFieldLabel({
-    Key? key,
+    super.key,
     required this.label,
     this.isRequired = false,
-  }) : super(key: key);
+  });
 
   final String label;
   final bool isRequired;

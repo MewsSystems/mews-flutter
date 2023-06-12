@@ -3,8 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 class OptimusDropdownGroupSeparator extends StatelessWidget {
-  const OptimusDropdownGroupSeparator({Key? key, required this.child})
-      : super(key: key);
+  const OptimusDropdownGroupSeparator({super.key, required this.child});
 
   final Widget child;
 
