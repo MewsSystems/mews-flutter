@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 
 class BaseLink extends StatefulWidget {
   const BaseLink({
-    Key? key,
+    super.key,
     required this.text,
     required this.textStyle,
     this.color,
@@ -11,7 +11,7 @@ class BaseLink extends StatefulWidget {
     this.onPressed,
     this.overflow,
     this.inherit = false,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onPressed;
   final TextStyle textStyle;

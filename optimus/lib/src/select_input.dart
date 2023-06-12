@@ -14,7 +14,7 @@ typedef ValueBuilder<T> = String Function(T value);
 /// This select component is most commonly found in form patterns.
 class OptimusSelectInput<T> extends StatefulWidget {
   const OptimusSelectInput({
-    Key? key,
+    super.key,
     this.label,
     this.placeholder = '',
     this.value,
@@ -38,7 +38,9 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.showLoader = false,
     this.emptyResultPlaceholder,
     this.embeddedSearch,
-  }) : super(key: key);
+    this.groupBy,
+    this.groupBuilder,
+  });
 
   /// Describes the purpose of the select field.
   ///
@@ -76,6 +78,17 @@ class OptimusSelectInput<T> extends StatefulWidget {
   /// A widget that is displayed when the list of items is empty. If not
   /// provided the dropdown will not be displayed.
   final Widget? emptyResultPlaceholder;
+
+  /// {@template optimus.select.groupBy}
+  /// A function that would retrieve value for the grouping.
+  /// {@endtemplate}
+  final Grouper<T>? groupBy;
+
+  /// {@template optimus.select.groupBuilder}
+  /// A builder that would create a group header. If not provided the
+  /// [OptimusDropdownGroupSeparator] widget will be used.
+  /// {@endtemplate}
+  final GroupBuilder? groupBuilder;
 
   @override
   State<OptimusSelectInput<T>> createState() => _OptimusSelectInput<T>();
@@ -219,5 +232,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
             _isUsingEmbeddedSearch ? _animationController.forward : null,
         onDropdownHide:
             _isUsingEmbeddedSearch ? _animationController.reverse : null,
+        groupBy: widget.groupBy,
+        groupBuilder: widget.groupBuilder,
       );
 }

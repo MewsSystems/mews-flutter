@@ -13,13 +13,13 @@ import 'package:optimus/src/step_bar/common.dart';
 /// of journeying through a process.
 class OptimusStepBar extends StatefulWidget {
   const OptimusStepBar({
-    Key? key,
+    super.key,
     required this.type,
     required this.layout,
     required this.items,
     this.currentItem = 0,
     this.maxItem,
-  }) : super(key: key);
+  });
 
   /// Type of the step bar.
   final OptimusStepBarType type;
@@ -57,11 +57,10 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
     }
 
     final maxItem = widget.maxItem;
-    if (maxItem == null || position <= maxItem) {
-      return OptimusStepBarItemState.enabled;
-    }
 
-    return OptimusStepBarItemState.disabled;
+    return maxItem == null || position <= maxItem
+        ? OptimusStepBarItemState.enabled
+        : OptimusStepBarItemState.disabled;
   }
 
   String _indicatorText(OptimusStepBarItem item) =>
@@ -84,14 +83,10 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
           )
           .toList();
 
-  Axis get _effectiveLayout {
-    if (MediaQuery.of(context).screenBreakpoint.index >
-        Breakpoint.small.index) {
-      return widget.layout;
-    } else {
-      return Axis.vertical;
-    }
-  }
+  Axis get _effectiveLayout =>
+      MediaQuery.of(context).screenBreakpoint.index > Breakpoint.small.index
+          ? widget.layout
+          : Axis.vertical;
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(

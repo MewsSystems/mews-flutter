@@ -14,11 +14,11 @@ import 'package:optimus/optimus.dart';
 /// added.
 class OptimusNotificationsOverlay extends StatefulWidget {
   const OptimusNotificationsOverlay({
-    Key? key,
+    super.key,
     required this.child,
     this.maxVisible = _defaultMaxVisibleCount,
     this.position = OptimusNotificationPosition.topRight,
-  }) : super(key: key);
+  });
 
   final OptimusNotificationPosition position;
   final Widget child;
@@ -113,10 +113,10 @@ class _OptimusNotificationsOverlayState
           children: [
             widget.child,
             Positioned(
-              left: widget.position.left(isCompact),
-              top: widget.position.top(isCompact),
-              right: widget.position.right(isCompact),
-              bottom: widget.position.bottom(isCompact),
+              left: widget.position.left(isCompact: isCompact),
+              top: widget.position.top(isCompact: isCompact),
+              right: widget.position.right(isCompact: isCompact),
+              bottom: widget.position.bottom(isCompact: isCompact),
               child: SafeArea(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: _maxWidth),
@@ -142,6 +142,8 @@ class _OptimusNotificationsOverlayState
 }
 
 abstract class OptimusNotificationManager {
+  const OptimusNotificationManager();
+
   void show(OptimusNotification notification);
   void remove(OptimusNotification notification);
 }
@@ -149,9 +151,8 @@ abstract class OptimusNotificationManager {
 class _OptimusNotificationData extends InheritedWidget {
   const _OptimusNotificationData(
     this.manager, {
-    Key? key,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final OptimusNotificationManager manager;
 
@@ -161,12 +162,11 @@ class _OptimusNotificationData extends InheritedWidget {
 
 class _AnimatedNotification extends StatelessWidget {
   const _AnimatedNotification({
-    Key? key,
     required this.animation,
     required this.notification,
     required this.slideTween,
     this.isOutgoing = false,
-  }) : super(key: key);
+  });
 
   final Animation<double> animation;
   final OptimusNotification notification;
@@ -200,10 +200,9 @@ class _AnimatedNotification extends StatelessWidget {
 /// Similar to [ScaleTransition], but without clipping.
 class _NoClipSizeTransition extends AnimatedWidget {
   const _NoClipSizeTransition({
-    Key? key,
     required Animation<double> sizeFactor,
     this.child,
-  }) : super(key: key, listenable: sizeFactor);
+  }) : super(listenable: sizeFactor);
 
   final Widget? child;
 
@@ -221,7 +220,7 @@ class _NoClipSizeTransition extends AnimatedWidget {
 enum OptimusNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
 
 extension on OptimusNotificationPosition {
-  double? left(bool isCompact) {
+  double? left({required bool isCompact}) {
     switch (this) {
       case OptimusNotificationPosition.bottomLeft:
       case OptimusNotificationPosition.topLeft:
@@ -232,7 +231,7 @@ extension on OptimusNotificationPosition {
     }
   }
 
-  double? top(bool isCompact) {
+  double? top({required bool isCompact}) {
     switch (this) {
       case OptimusNotificationPosition.topLeft:
       case OptimusNotificationPosition.topRight:
@@ -243,7 +242,7 @@ extension on OptimusNotificationPosition {
     }
   }
 
-  double? right(bool isCompact) {
+  double? right({required bool isCompact}) {
     switch (this) {
       case OptimusNotificationPosition.bottomRight:
       case OptimusNotificationPosition.topRight:
@@ -254,7 +253,7 @@ extension on OptimusNotificationPosition {
     }
   }
 
-  double? bottom(bool isCompact) {
+  double? bottom({required bool isCompact}) {
     switch (this) {
       case OptimusNotificationPosition.topLeft:
       case OptimusNotificationPosition.topRight:

@@ -12,13 +12,13 @@ import 'package:optimus/src/link/base_link.dart';
 /// the user to understand the hierarchy and structure.
 class OptimusInlineLink extends StatelessWidget {
   const OptimusInlineLink({
-    Key? key,
+    super.key,
     required this.text,
     this.textStyle,
     this.onPressed,
     this.overflow,
     this.inherit = false,
-  }) : super(key: key);
+  });
 
   /// Called when link is tapped.
   ///

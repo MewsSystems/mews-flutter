@@ -30,14 +30,14 @@ enum OptimusBannerVariant {
 /// A banner always takes the full width of the component it is within.
 class OptimusBanner extends StatelessWidget {
   const OptimusBanner({
-    Key? key,
+    super.key,
     required this.title,
     this.variant = OptimusBannerVariant.primary,
     this.hasIcon = false,
     this.description,
     this.isDismissible = false,
     this.onDismiss,
-  }) : super(key: key);
+  });
 
   /// The title of the banner.
   ///
@@ -207,10 +207,10 @@ enum OptimusWideBannerVariant {
 /// System-wide banners must be removed when no longer necessary.
 class OptimusWideBanner extends StatelessWidget {
   const OptimusWideBanner({
-    Key? key,
+    super.key,
     required this.content,
     this.variant = OptimusWideBannerVariant.informative,
-  }) : super(key: key);
+  });
 
   /// Content of the banner.
   ///

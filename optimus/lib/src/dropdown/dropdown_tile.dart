@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/src/dropdown/base_dropdown_tile.dart';
 
 abstract class OptimusDropdownTile<T> extends StatelessWidget {
-  const OptimusDropdownTile({Key? key, required this.value}) : super(key: key);
+  const OptimusDropdownTile({super.key, required this.value});
 
   final T value;
 
@@ -12,11 +12,11 @@ abstract class OptimusDropdownTile<T> extends StatelessWidget {
 
 class ListDropdownTile<T> extends OptimusDropdownTile<T> {
   const ListDropdownTile({
-    Key? key,
-    required T value,
+    super.key,
+    required super.value,
     required this.title,
     this.subtitle,
-  }) : super(key: key, value: value);
+  });
 
   final Widget title;
   final Widget? subtitle;

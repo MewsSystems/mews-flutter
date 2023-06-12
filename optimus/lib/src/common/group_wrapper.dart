@@ -4,12 +4,12 @@ import 'package:optimus/src/common/field_label.dart';
 
 class GroupWrapper extends StatelessWidget {
   const GroupWrapper({
-    Key? key,
+    super.key,
     required this.child,
     this.label,
     this.error,
     this.isRequired = false,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final String? label;

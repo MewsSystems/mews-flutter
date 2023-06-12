@@ -18,7 +18,7 @@ import 'package:optimus/src/typography/typography.dart';
 /// avatar or without any leading widget in the same list.
 class OptimusNavListTile extends StatelessWidget {
   const OptimusNavListTile({
-    Key? key,
+    super.key,
     required this.headline,
     this.description,
     this.leadingIcon,
@@ -28,7 +28,7 @@ class OptimusNavListTile extends StatelessWidget {
     this.onTap,
     this.fontVariant = FontVariant.normal,
     this.tileSize = TileSize.normal,
-  }) : super(key: key);
+  });
 
   /// Communicates the subject of the list item.
   /// The primary content of the list item.

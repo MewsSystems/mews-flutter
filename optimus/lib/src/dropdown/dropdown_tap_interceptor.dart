@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 class DropdownTapInterceptor extends InheritedWidget {
   const DropdownTapInterceptor({
-    Key? key,
+    super.key,
     required this.onTap,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   static DropdownTapInterceptor? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType();

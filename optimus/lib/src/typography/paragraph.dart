@@ -15,11 +15,11 @@ import 'package:optimus/src/typography/variation.dart';
 /// distinct section of text dealing with a single topic of less emphasis.
 class OptimusParagraph extends StatelessWidget {
   const OptimusParagraph({
-    Key? key,
+    super.key,
     this.variation = Variation.variationNormal,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;
@@ -48,11 +48,11 @@ class OptimusParagraph extends StatelessWidget {
 /// distinct section of text dealing with a single topic of less emphasis.
 class OptimusParagraphSmall extends StatelessWidget {
   const OptimusParagraphSmall({
-    Key? key,
+    super.key,
     this.variation = Variation.variationNormal,
     this.align,
     required this.child,
-  }) : super(key: key);
+  });
 
   /// {@macro optimus.typography.child}
   final Widget child;

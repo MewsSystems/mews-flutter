@@ -17,7 +17,7 @@ import 'package:optimus/src/typography/typography.dart';
 /// it with list items without any prefix.
 class OptimusListTile extends StatelessWidget {
   const OptimusListTile({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.prefix,
@@ -26,7 +26,8 @@ class OptimusListTile extends StatelessWidget {
     this.infoWidget,
     this.onTap,
     this.fontVariant = FontVariant.normal,
-  }) : super(key: key);
+    this.contentPadding,
+  });
 
   /// Communicates the subject of the list item.
   /// The primary content of the list item.
@@ -60,6 +61,14 @@ class OptimusListTile extends StatelessWidget {
   /// Font variant, which will determine the text style. See [FontVariant] for
   /// more details.
   final FontVariant fontVariant;
+
+  /// The padding of the list content. If not specified, the default padding
+  /// will be used.
+  final EdgeInsets? contentPadding;
+
+  EdgeInsets get _contentPadding =>
+      contentPadding ??
+      const EdgeInsets.symmetric(vertical: spacing300, horizontal: spacing200);
 
   Widget _buildPrefix(Widget prefix) => Padding(
         padding: const EdgeInsets.only(right: spacing100),
@@ -111,10 +120,7 @@ class OptimusListTile extends StatelessWidget {
     return BaseListTile(
       onTap: onTap,
       content: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: spacing300,
-          horizontal: spacing200,
-        ),
+        padding: _contentPadding,
         child: Row(
           children: <Widget>[
             if (prefix != null) _buildPrefix(prefix),

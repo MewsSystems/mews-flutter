@@ -4,12 +4,12 @@ import 'package:optimus/src/theme/theme_data.dart';
 
 class OptimusTheme extends StatelessWidget {
   const OptimusTheme({
-    Key? key,
+    super.key,
     required this.child,
     this.lightTheme,
     this.darkTheme,
     this.themeMode = ThemeMode.system,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final OptimusThemeData? lightTheme;
@@ -44,10 +44,9 @@ class OptimusTheme extends StatelessWidget {
 
 class _OptimusTheme extends InheritedWidget {
   const _OptimusTheme({
-    Key? key,
     required this.theme,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final OptimusThemeData theme;
 

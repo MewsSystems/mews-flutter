@@ -38,13 +38,13 @@ class OptimusStepBarItem {
 
 class StepBarItem extends StatelessWidget {
   const StepBarItem({
-    Key? key,
+    super.key,
     required this.maxWidth,
     required this.item,
     required this.state,
     required this.type,
     required this.indicatorText,
-  }) : super(key: key);
+  });
 
   final double maxWidth;
   final OptimusStepBarItem item;
@@ -118,11 +118,11 @@ class StepBarItem extends StatelessWidget {
 
 class StepBarItemIconIndicator extends StatelessWidget {
   const StepBarItemIconIndicator({
-    Key? key,
+    super.key,
     required this.icon,
     required this.state,
     required this.type,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final OptimusStepBarItemState state;
@@ -151,10 +151,10 @@ class StepBarItemIconIndicator extends StatelessWidget {
 
 class StepBarItemNumberIndicator extends StatelessWidget {
   const StepBarItemNumberIndicator({
-    Key? key,
+    super.key,
     required this.state,
     required this.text,
-  }) : super(key: key);
+  });
 
   final OptimusStepBarItemState state;
   final String text;
@@ -163,57 +163,55 @@ class StepBarItemNumberIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    if (state == OptimusStepBarItemState.completed) {
-      return const SizedBox(
-        width: _iconWrapperSize,
-        height: _iconWrapperSize,
-        child: OptimusIcon(
-          iconData: OptimusIcons.done,
-          colorOption: OptimusIconColorOption.primary,
-        ),
-      );
-    } else {
-      return Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
+    return state == OptimusStepBarItemState.completed
+        ? const SizedBox(
             width: _iconWrapperSize,
             height: _iconWrapperSize,
-            decoration: state == OptimusStepBarItemState.active
-                ? BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colors.primary500t8,
-                  )
-                : null,
-          ),
-          Container(
-            width: 24,
-            height: 24,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: state.iconBackgroundColor(theme),
+            child: OptimusIcon(
+              iconData: OptimusIcons.done,
+              colorOption: OptimusIconColorOption.primary,
             ),
-            child: Center(
-              child: Text(
-                text,
-                style: preset200b.merge(
-                  TextStyle(height: 1, color: state.textColor(theme)),
+          )
+        : Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: _iconWrapperSize,
+                height: _iconWrapperSize,
+                decoration: state == OptimusStepBarItemState.active
+                    ? BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: theme.colors.primary500t8,
+                      )
+                    : null,
+              ),
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: state.iconBackgroundColor(theme),
+                ),
+                child: Center(
+                  child: Text(
+                    text,
+                    style: preset200b.merge(
+                      TextStyle(height: 1, color: state.textColor(theme)),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ],
-      );
-    }
+            ],
+          );
   }
 }
 
 class StepBarSpacer extends StatelessWidget {
   const StepBarSpacer({
-    Key? key,
+    super.key,
     required this.nextItemState,
     required this.layout,
-  }) : super(key: key);
+  });
 
   final OptimusStepBarItemState nextItemState;
   final Axis layout;
@@ -253,13 +251,9 @@ extension OptimusStepBarItemTheme on OptimusStepBarItemState {
   Color iconBackgroundColor(OptimusThemeData theme) {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return theme.colors.primary;
       case OptimusStepBarItemState.active:
         return theme.colors.primary;
       case OptimusStepBarItemState.enabled:
-        return theme.isDark
-            ? theme.colors.neutral500t40
-            : theme.colors.neutral50;
       case OptimusStepBarItemState.disabled:
         return theme.isDark
             ? theme.colors.neutral500t40
@@ -274,7 +268,6 @@ extension OptimusStepBarItemTheme on OptimusStepBarItemState {
       case OptimusStepBarItemState.active:
         return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusStepBarItemState.enabled:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
       case OptimusStepBarItemState.disabled:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
     }
@@ -283,11 +276,9 @@ extension OptimusStepBarItemTheme on OptimusStepBarItemState {
   OptimusIconColorOption get iconColor {
     switch (this) {
       case OptimusStepBarItemState.completed:
-        return OptimusIconColorOption.primary;
       case OptimusStepBarItemState.active:
         return OptimusIconColorOption.primary;
       case OptimusStepBarItemState.enabled:
-        return OptimusIconColorOption.basic;
       case OptimusStepBarItemState.disabled:
         return OptimusIconColorOption.basic;
     }

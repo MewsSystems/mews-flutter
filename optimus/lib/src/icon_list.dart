@@ -7,10 +7,10 @@ import 'package:optimus/src/typography/presets.dart';
 /// used when you need to show an icon with a label and/or optional description.
 class OptimusIconList extends StatelessWidget {
   const OptimusIconList({
-    Key? key,
+    super.key,
     this.items = const [],
     this.listSize,
-  }) : super(key: key);
+  });
 
   /// Controls the content of tiles.
   final List<OptimusIconListItem> items;
@@ -94,10 +94,9 @@ class OptimusIconListItem {
 
 class _ListTile extends StatelessWidget {
   const _ListTile({
-    Key? key,
     required this.item,
     required this.size,
-  }) : super(key: key);
+  });
 
   final OptimusIconListItem item;
   final OptimusIconListSize size;

@@ -12,7 +12,7 @@ class OptimusExpansionTile extends StatefulWidget {
   /// collapses the tile to reveal or hide the [children]. The
   /// [initiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
-    Key? key,
+    super.key,
     this.leading,
     required this.title,
     this.subtitle,
@@ -24,7 +24,8 @@ class OptimusExpansionTile extends StatefulWidget {
     this.hasBorders = true,
     this.actionsWidth = 0,
     this.slidableActions = const <Widget>[],
-  }) : super(key: key);
+    this.contentPadding,
+  });
 
   /// A widget to display before the title.
   ///
@@ -71,6 +72,9 @@ class OptimusExpansionTile extends StatefulWidget {
 
   /// List of actions on list tile left swipe.
   final List<Widget> slidableActions;
+
+  /// The padding of the tile's inner content.
+  final EdgeInsets? contentPadding;
 
   @override
   State<OptimusExpansionTile> createState() => _OptimusExpansionTileState();
@@ -154,6 +158,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
         onTap: _handleTap,
         prefix: widget.leading,
         title: widget.title,
+        contentPadding: widget.contentPadding,
         subtitle: widget.subtitle,
         suffix: widget.trailing ??
             RotationTransition(

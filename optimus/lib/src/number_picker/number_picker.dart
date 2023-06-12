@@ -9,15 +9,15 @@ class OptimusNumberPickerFormField extends FormField<int> {
   /// will be constructed automatically and its `text` will be initialized
   /// to [initialValue].
   OptimusNumberPickerFormField({
-    Key? key,
+    super.key,
     int? initialValue,
     int min = 0,
     int max = 100,
-    FormFieldSetter<int>? onSaved,
+    super.onSaved,
     ValueChanged<int?>? onChanged,
-    AutovalidateMode autovalidateMode = AutovalidateMode.always,
+    AutovalidateMode super.autovalidateMode = AutovalidateMode.always,
     String? validationError,
-    bool enabled = true,
+    super.enabled,
     FocusNode? focusNode,
     TextEditingController? controller,
   })  : assert(
@@ -29,14 +29,10 @@ class OptimusNumberPickerFormField extends FormField<int> {
           'initial value should be null or in [min, max] range',
         ),
         super(
-          key: key,
           initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
-          onSaved: onSaved,
           validator: (value) => value != null && (value >= min && value <= max)
               ? null
               : validationError,
-          enabled: enabled,
-          autovalidateMode: autovalidateMode,
           builder: (FormFieldState<int> field) {
             void handleChanged(int? value) {
               field.didChange(value);
@@ -59,7 +55,6 @@ class OptimusNumberPickerFormField extends FormField<int> {
 
 class _OptimusNumberPicker extends StatefulWidget {
   const _OptimusNumberPicker({
-    Key? key,
     required this.onChanged,
     this.initialValue,
     this.min = 0,
@@ -68,7 +63,7 @@ class _OptimusNumberPicker extends StatefulWidget {
     this.enabled = true,
     this.error,
     this.controller,
-  }) : super(key: key);
+  });
 
   final int? initialValue;
   final ValueChanged<int?> onChanged;

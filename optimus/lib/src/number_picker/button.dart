@@ -3,10 +3,10 @@ import 'package:optimus/optimus.dart';
 
 class NumberPickerButton extends StatelessWidget {
   const NumberPickerButton({
-    Key? key,
+    super.key,
     required this.iconData,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   final IconData iconData;
   final VoidCallback? onPressed;

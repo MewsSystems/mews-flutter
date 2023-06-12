@@ -4,13 +4,13 @@ import 'package:optimus/src/borders.dart';
 
 class OptimusSlidable extends StatefulWidget {
   const OptimusSlidable({
-    Key? key,
+    super.key,
     required this.child,
     this.actions = const <Widget>[],
     this.isEnabled = true,
     this.hasBorders = true,
     this.actionsWidth = 0,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final List<Widget> actions;

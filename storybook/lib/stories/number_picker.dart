@@ -16,10 +16,9 @@ final Story numberPickerStory = Story(
 
 class _Content extends StatefulWidget {
   const _Content({
-    Key? key,
     required this.isEnabled,
     this.error,
-  }) : super(key: key);
+  });
 
   final bool isEnabled;
   final String? error;

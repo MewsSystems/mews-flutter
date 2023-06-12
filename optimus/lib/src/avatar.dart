@@ -5,12 +5,12 @@ import 'package:optimus/src/typography/presets.dart';
 
 class OptimusAvatar extends StatelessWidget {
   const OptimusAvatar({
-    Key? key,
+    super.key,
     required this.title,
     this.imageUrl,
     this.isSmall = true,
     this.isIndicatorVisible = false,
-  }) : super(key: key);
+  });
 
   final String title;
   final String? imageUrl;
@@ -45,7 +45,7 @@ class OptimusAvatar extends StatelessWidget {
 }
 
 class _Indicator extends StatelessWidget {
-  const _Indicator({Key? key}) : super(key: key);
+  const _Indicator();
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class OptimusDataColors {
-  OptimusDataColors._();
+  const OptimusDataColors._();
 
   static const denim50 = Color(0xFFE6EFF6);
   static const denim100 = Color(0xFFC0D7E8);

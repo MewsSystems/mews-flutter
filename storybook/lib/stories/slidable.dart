@@ -18,7 +18,7 @@ final Story slidableStory = Story(
 );
 
 class _Content extends StatelessWidget {
-  const _Content({Key? key, required this.actionsWidth}) : super(key: key);
+  const _Content({required this.actionsWidth});
 
   final double actionsWidth;
 

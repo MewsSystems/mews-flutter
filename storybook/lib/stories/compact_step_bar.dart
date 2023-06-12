@@ -41,20 +41,16 @@ final Story compactStepBarStory = Story(
               OptimusCompactStepBar(
                 type: type,
                 items: _items,
-                currentItem: k
-                    .sliderInt(
-                      label: 'Current',
-                      initial: 0,
-                      max: _items.length - 1,
-                    )
-                    .toInt(),
-                maxItem: k
-                    .sliderInt(
-                      label: 'Max',
-                      initial: 2,
-                      max: _items.length - 1,
-                    )
-                    .toInt(),
+                currentItem: k.sliderInt(
+                  label: 'Current',
+                  initial: 0,
+                  max: _items.length - 1,
+                ),
+                maxItem: k.sliderInt(
+                  label: 'Max',
+                  initial: 2,
+                  max: _items.length - 1,
+                ),
               ),
               const OptimusNotification(
                 title: Text(

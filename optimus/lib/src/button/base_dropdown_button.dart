@@ -6,14 +6,14 @@ import 'package:optimus/src/typography/presets.dart';
 
 class BaseDropDownButton<T> extends StatefulWidget {
   const BaseDropDownButton({
-    Key? key,
+    super.key,
     this.child,
     required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
     this.borderRadius = const BorderRadius.all(borderRadius50),
-  }) : super(key: key);
+  });
 
   /// Typically the button's label.
   final Widget? child;
@@ -50,17 +50,23 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       vsync: this,
     );
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
+    _node.addListener(_onFocusChanged);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _node
+      ..removeListener(_onFocusChanged)
+      ..dispose();
     super.dispose();
   }
 
   void _onHoverChanged(bool isHovering) {
     setState(() => _isHovering = isHovering);
   }
+
+  void _onFocusChanged() => setState(() {});
 
   bool get _isEnabled => widget.onItemSelected != null;
 

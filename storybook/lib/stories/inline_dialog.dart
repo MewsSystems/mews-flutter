@@ -9,19 +9,25 @@ final Story inlineDialogStory = Story(
   builder: (context) => DialogWrapper(child: InlineDialogStory(context.knobs)),
 );
 
-class InlineDialogStory extends StatelessWidget {
-  InlineDialogStory(
+class InlineDialogStory extends StatefulWidget {
+  const InlineDialogStory(
     this.k, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final KnobsBuilder k;
+
+  @override
+  State<InlineDialogStory> createState() => _InlineDialogStoryState();
+}
+
+class _InlineDialogStoryState extends State<InlineDialogStory> {
   final GlobalKey _anchor = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    final hasActions = k.boolean(label: 'Has actions', initial: false);
-    final position = k.options(
+    final hasActions = widget.k.boolean(label: 'Has actions', initial: false);
+    final position = widget.k.options(
       label: 'Button Position',
       options: alignments,
       initial: Alignment.center,
@@ -49,17 +55,12 @@ class InlineDialogStory extends StatelessWidget {
   }
 }
 
-class _InlineContentExample extends StatefulWidget {
-  const _InlineContentExample({Key? key}) : super(key: key);
+class _InlineContentExample extends StatelessWidget {
+  const _InlineContentExample();
 
   @override
-  State<_InlineContentExample> createState() => _InlineContentExampleState();
-}
-
-class _InlineContentExampleState extends State<_InlineContentExample> {
-  @override
-  Widget build(BuildContext context) => const Column(
-        children: [
+  Widget build(BuildContext context) => Column(
+        children: const [
           _NumberRow(
             title: 'Adults',
             description: 'From 13 to 100',
@@ -77,8 +78,7 @@ class _InlineContentExampleState extends State<_InlineContentExample> {
 }
 
 class _NumberRow extends StatelessWidget {
-  const _NumberRow({Key? key, required this.title, required this.description})
-      : super(key: key);
+  const _NumberRow({required this.title, required this.description});
 
   final String title;
   final String description;
@@ -103,7 +103,7 @@ class _NumberRow extends StatelessWidget {
 }
 
 class _Description extends StatelessWidget {
-  const _Description({Key? key, required this.description}) : super(key: key);
+  const _Description({required this.description});
 
   final String description;
 
@@ -113,7 +113,7 @@ class _Description extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-  const _Title({Key? key, required this.title}) : super(key: key);
+  const _Title({required this.title});
 
   final String title;
 
