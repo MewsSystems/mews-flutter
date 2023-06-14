@@ -76,7 +76,6 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
       case OptimusButtonVariant.primary:
-        // return theme.isDark ? theme.colors.primary700 : theme.colors.primary500;
         return context.tokens.backgroundInteractivePrimaryDefault;
       case OptimusButtonVariant.text:
         return Colors.transparent;
@@ -106,7 +105,6 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral300 : theme.colors.neutral100;
       case OptimusButtonVariant.primary:
-        // return theme.isDark ? theme.colors.primary400 : theme.colors.primary700;
         return context.tokens.backgroundInteractivePrimaryHover;
       case OptimusButtonVariant.text:
         return theme.colors.neutral500t8;
@@ -139,7 +137,6 @@ class BaseButton extends StatelessWidget {
   ) {
     switch (variant) {
       case OptimusButtonVariant.primary:
-        // return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
         return context.tokens.textStaticInverse;
       case OptimusButtonVariant.defaultButton:
       case OptimusButtonVariant.text:
