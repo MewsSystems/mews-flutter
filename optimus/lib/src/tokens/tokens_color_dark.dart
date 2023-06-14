@@ -7,8 +7,8 @@
 
 import 'dart:ui';
 
-class DesignTokensColor {
-  const DesignTokensColor._();
+class DesignTokensColorDark {
+  const DesignTokensColorDark._();
 
   static const backgroundAccentPrimary = Color(0xFF524FF2);
   static const backgroundAccentSecondary = Color(0xFFF20010);

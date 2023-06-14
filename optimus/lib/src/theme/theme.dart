@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/src/colors/colors.dart';
+import 'package:optimus/src/theme/optimus_tokens.dart';
 import 'package:optimus/src/theme/theme_data.dart';
 
 class OptimusTheme extends StatelessWidget {
@@ -60,11 +61,18 @@ final _defaultDarkTheme = _createTheme(Brightness.dark);
 
 OptimusThemeData _createTheme(Brightness brightness) {
   final colors = OptimusColors(brightness);
+  final tokens =
+      brightness == Brightness.dark ? OptimusTokens.dark : OptimusTokens.light;
 
   return OptimusThemeData(
     brightness: brightness,
     colors: colors,
+    tokens: tokens,
   );
+}
+
+extension ThemeTokens on BuildContext {
+  OptimusTokens get tokens => OptimusTheme.of(this).tokens;
 }
 
 mixin ThemeGetter<T extends StatefulWidget> on State<T> {
