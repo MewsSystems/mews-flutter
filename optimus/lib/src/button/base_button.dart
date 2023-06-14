@@ -120,7 +120,7 @@ class BaseButton extends StatelessWidget {
       case OptimusButtonVariant.defaultButton:
         return theme.colors.neutral200;
       case OptimusButtonVariant.primary:
-        return theme.isDark ? theme.colors.primary500 : theme.colors.primary900;
+        return context.tokens.backgroundInteractivePrimaryActive;
       case OptimusButtonVariant.text:
         return theme.colors.neutral500t16;
       case OptimusButtonVariant.destructive:
