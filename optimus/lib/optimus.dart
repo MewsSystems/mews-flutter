@@ -118,5 +118,6 @@ ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
         const CupertinoTextThemeData(),
         Colors.white,
         Colors.white,
+        null,
       ),
     );
