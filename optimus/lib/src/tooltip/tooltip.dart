@@ -138,13 +138,11 @@ class _TooltipPainter extends CustomPainter {
         tooltipPath.lineTo(_arrowOffset, -_arrowHeight);
         tooltipPath.lineTo(_arrowOffset + _arrowWidth / 2, 0);
         tooltipPath.lineTo(_arrowOffset - _arrowWidth / 2, 0);
-        break;
       case TooltipAlignment.bottomCenter:
         tooltipPath.moveTo(width / 2 - _arrowWidth / 2, 0);
         tooltipPath.lineTo(width / 2, -_arrowHeight);
         tooltipPath.lineTo(width / 2 + _arrowWidth / 2, 0);
         tooltipPath.lineTo(width / 2 - _arrowWidth / 2, 0);
-        break;
       case TooltipAlignment.bottomLeft:
         tooltipPath.moveTo(width - _arrowOffset - _arrowWidth / 2, 0);
         tooltipPath.lineTo(width - _arrowOffset, -_arrowHeight);
