@@ -10,6 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install DCM
+        run: >
+          wget -qO- https://dcm.dev/pgp-key.public | sudo gpg --dearmor -o /usr/share/keyrings/dcm.gpg &&
+          echo 'deb [signed-by=/usr/share/keyrings/dcm.gpg arch=amd64] https://dcm.dev/debian stable main' | sudo tee /etc/apt/sources.list.d/dart_stable.list &&
+          sudo apt-get update &&
+          sudo apt-get install dcm
+
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: "3.7.0"
@@ -29,10 +36,8 @@ jobs:
       - name: Built-in analyzer
         run: flutter analyze .
 
+      - name: Dart Code Metrics
+        run: melos exec -c 1 --ignore="*example*" -- dcm analyze --fatal-style --fatal-performance --fatal-warnings --ci-key=${{ secrets.DCM_CI_KEY }} --email=${{ vars.DCM_CI_EMAIL }} .
+
       - name: Test
         run: melos exec -c 1 --dir-exists="test" -- flutter test --no-pub
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: pr
-          path: .
