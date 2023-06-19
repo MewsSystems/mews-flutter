@@ -18,8 +18,8 @@ linter:
     - control_flow_in_finally
     - empty_statements
     - hash_and_equals
-    # - implicit_reopen
-    # - invalid_case_patterns
+    - implicit_reopen
+    - invalid_case_patterns
     - iterable_contains_unrelated_type
     - list_remove_unrelated_type
     - literal_only_boolean_expressions
@@ -84,12 +84,12 @@ linter:
     - library_names
     - library_prefixes
     - library_private_types_in_public_api
-    # - matching_super_parameters
+    - matching_super_parameters
     - missing_whitespace_between_adjacent_strings
     - no_default_cases
     - no_leading_underscores_for_library_prefixes
     - no_leading_underscores_for_local_identifiers
-    # - no_literal_bool_comparisons
+    - no_literal_bool_comparisons
     - no_runtimeType_toString
     - non_constant_identifier_names
     - noop_primitive_operations
@@ -144,11 +144,11 @@ linter:
     - tighten_type_of_initializing_formals
     - type_annotate_public_apis
     - type_init_formals
-    # - type_literal_in_constant_pattern
+    - type_literal_in_constant_pattern
     - unawaited_futures
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
-    # - unnecessary_breaks
+    - unnecessary_breaks
     - unnecessary_const
     - unnecessary_constructor_name
     - unnecessary_getters_setters
