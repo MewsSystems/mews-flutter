@@ -242,6 +242,11 @@ class _$OptimusTokens {
     DesignTokensColorDark.borderInteractiveSecondaryActive
   ];
 
+  static List<Color> borderInteractiveSecondaryDefault = [
+    DesignTokensColorLight.borderInteractiveSecondaryDefault,
+    DesignTokensColorDark.borderInteractiveSecondaryDefault
+  ];
+
   static List<Color> borderInteractiveSecondaryHover = [
     DesignTokensColorLight.borderInteractiveSecondaryHover,
     DesignTokensColorDark.borderInteractiveSecondaryHover

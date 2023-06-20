@@ -58,6 +58,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderInteractivePrimaryDefault,
     required this.borderInteractivePrimaryHover,
     required this.borderInteractiveSecondaryActive,
+    required this.borderInteractiveSecondaryDefault,
     required this.borderInteractiveSecondaryHover,
     required this.borderStaticInverse,
     required this.borderStaticPrimary,
@@ -310,6 +311,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderInteractivePrimaryDefault;
   final Color borderInteractivePrimaryHover;
   final Color borderInteractiveSecondaryActive;
+  final Color borderInteractiveSecondaryDefault;
   final Color borderInteractiveSecondaryHover;
   final Color borderStaticInverse;
   final Color borderStaticPrimary;
@@ -589,6 +591,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.borderInteractivePrimaryHover[0],
     borderInteractiveSecondaryActive:
         _$OptimusTokens.borderInteractiveSecondaryActive[0],
+    borderInteractiveSecondaryDefault:
+        _$OptimusTokens.borderInteractiveSecondaryDefault[0],
     borderInteractiveSecondaryHover:
         _$OptimusTokens.borderInteractiveSecondaryHover[0],
     borderStaticInverse: _$OptimusTokens.borderStaticInverse[0],
@@ -870,6 +874,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.borderInteractivePrimaryHover[1],
     borderInteractiveSecondaryActive:
         _$OptimusTokens.borderInteractiveSecondaryActive[1],
+    borderInteractiveSecondaryDefault:
+        _$OptimusTokens.borderInteractiveSecondaryDefault[1],
     borderInteractiveSecondaryHover:
         _$OptimusTokens.borderInteractiveSecondaryHover[1],
     borderStaticInverse: _$OptimusTokens.borderStaticInverse[1],
@@ -1130,6 +1136,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? borderInteractivePrimaryDefault,
     Color? borderInteractivePrimaryHover,
     Color? borderInteractiveSecondaryActive,
+    Color? borderInteractiveSecondaryDefault,
     Color? borderInteractiveSecondaryHover,
     Color? borderStaticInverse,
     Color? borderStaticPrimary,
@@ -1423,6 +1430,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           borderInteractivePrimaryHover ?? this.borderInteractivePrimaryHover,
       borderInteractiveSecondaryActive: borderInteractiveSecondaryActive ??
           this.borderInteractiveSecondaryActive,
+      borderInteractiveSecondaryDefault: borderInteractiveSecondaryDefault ??
+          this.borderInteractiveSecondaryDefault,
       borderInteractiveSecondaryHover: borderInteractiveSecondaryHover ??
           this.borderInteractiveSecondaryHover,
       borderStaticInverse: borderStaticInverse ?? this.borderStaticInverse,
@@ -1892,6 +1901,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       borderInteractiveSecondaryActive: Color.lerp(
           borderInteractiveSecondaryActive,
           other.borderInteractiveSecondaryActive,
+          t)!,
+      borderInteractiveSecondaryDefault: Color.lerp(
+          borderInteractiveSecondaryDefault,
+          other.borderInteractiveSecondaryDefault,
           t)!,
       borderInteractiveSecondaryHover: Color.lerp(
           borderInteractiveSecondaryHover,
@@ -2387,6 +2400,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           'borderInteractivePrimaryHover', borderInteractivePrimaryHover))
       ..add(DiagnosticsProperty(
           'borderInteractiveSecondaryActive', borderInteractiveSecondaryActive))
+      ..add(DiagnosticsProperty('borderInteractiveSecondaryDefault',
+          borderInteractiveSecondaryDefault))
       ..add(DiagnosticsProperty(
           'borderInteractiveSecondaryHover', borderInteractiveSecondaryHover))
       ..add(DiagnosticsProperty('borderStaticInverse', borderStaticInverse))
@@ -2756,6 +2771,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(borderInteractivePrimaryDefault, other.borderInteractivePrimaryDefault) &&
             const DeepCollectionEquality().equals(borderInteractivePrimaryHover, other.borderInteractivePrimaryHover) &&
             const DeepCollectionEquality().equals(borderInteractiveSecondaryActive, other.borderInteractiveSecondaryActive) &&
+            const DeepCollectionEquality().equals(borderInteractiveSecondaryDefault, other.borderInteractiveSecondaryDefault) &&
             const DeepCollectionEquality().equals(borderInteractiveSecondaryHover, other.borderInteractiveSecondaryHover) &&
             const DeepCollectionEquality().equals(borderStaticInverse, other.borderStaticInverse) &&
             const DeepCollectionEquality().equals(borderStaticPrimary, other.borderStaticPrimary) &&
@@ -3013,6 +3029,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(borderInteractivePrimaryDefault),
       const DeepCollectionEquality().hash(borderInteractivePrimaryHover),
       const DeepCollectionEquality().hash(borderInteractiveSecondaryActive),
+      const DeepCollectionEquality().hash(borderInteractiveSecondaryDefault),
       const DeepCollectionEquality().hash(borderInteractiveSecondaryHover),
       const DeepCollectionEquality().hash(borderStaticInverse),
       const DeepCollectionEquality().hash(borderStaticPrimary),
