@@ -1,3 +1,10 @@
+## 0.4.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix lint errors.
+ - **BREAKING** **BUILD**: Increase kotlin_version to 1.5.20 (#373).
+
 ## 0.3.0+1
 
  - **REFACTOR**: Bump mews_pedantic to 0.13.0 (#319).
