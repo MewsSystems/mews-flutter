@@ -153,7 +153,7 @@ class _$OptimusTokens {
 
   static List<Color> backgroundOverlay = [
     DesignTokensColorLight.backgroundOverlay,
-    DesignTokensColorLight.backgroundOverlay //TODO(witwash): add dark token
+    DesignTokensColorLight.backgroundOverlay // TODO(witwash): add dark token
   ];
 
   static List<Color> backgroundStaticFlat = [
@@ -214,7 +214,7 @@ class _$OptimusTokens {
   static List<Color> borderInteractiveError = [
     DesignTokensColorLight.borderInteractiveError,
     DesignTokensColorLight
-        .borderInteractiveError //TODO(witwash): add dark token
+        .borderInteractiveError // TODO(witwash): add dark token
   ];
 
   static List<Color> borderInteractiveFocus = [
@@ -264,61 +264,62 @@ class _$OptimusTokens {
 
   static List<Color> inputActiveColor = [
     DesignTokensColorLight.inputActiveColor,
-    DesignTokensColorLight.inputActiveColor //TODO(witwash): add dark token
+    DesignTokensColorLight.inputActiveColor // TODO(witwash): add dark token
   ];
 
   static List<Color> inputDangerColor = [
     DesignTokensColorLight.inputDangerColor,
-    DesignTokensColorLight.inputDangerColor //TODO(witwash): add dark token
+    DesignTokensColorLight.inputDangerColor // TODO(witwash): add dark token
   ];
 
   static List<Color> inputDefaultColor = [
     DesignTokensColorLight.inputDefaultColor,
-    DesignTokensColorLight.inputDefaultColor //TODO(witwash): add dark token
+    DesignTokensColorLight.inputDefaultColor // TODO(witwash): add dark token
   ];
 
   static List<Color> inputDisabledColor = [
     DesignTokensColorLight.inputDisabledColor,
-    DesignTokensColorLight.inputDisabledColor //TODO(witwash): add dark token
+    DesignTokensColorLight.inputDisabledColor // TODO(witwash): add dark token
   ];
 
   static List<Color> inputHoverColor = [
     DesignTokensColorLight.inputHoverColor,
-    DesignTokensColorLight.inputHoverColor //TODO(witwash): add dark token
+    DesignTokensColorLight.inputHoverColor // TODO(witwash): add dark token
   ];
 
   static List<Color> inputInverseColor = [
     DesignTokensColorLight.inputInverseColor,
-    DesignTokensColorLight.inputInverseColor //TODO(witwash): add dark token
+    DesignTokensColorLight.inputInverseColor // TODO(witwash): add dark token
   ];
 
   static List<Color> interactiveDangerColor = [
     DesignTokensColorLight.interactiveDangerColor,
     DesignTokensColorLight
-        .interactiveDangerColor //TODO(witwash): add dark token
+        .interactiveDangerColor // TODO(witwash): add dark token
   ];
 
   static List<Color> interactiveDefaultColor = [
     DesignTokensColorLight.interactiveDefaultColor,
     DesignTokensColorLight
-        .interactiveDefaultColor //TODO(witwash): add dark token
+        .interactiveDefaultColor // TODO(witwash): add dark token
   ];
 
   static List<Color> interactiveDisabledColor = [
     DesignTokensColorLight.interactiveDisabledColor,
     DesignTokensColorLight
-        .interactiveDisabledColor //TODO(witwash): add dark token
+        .interactiveDisabledColor // TODO(witwash): add dark token
   ];
 
   static List<Color> interactiveHoverColor = [
     DesignTokensColorLight.interactiveHoverColor,
-    DesignTokensColorLight.interactiveHoverColor //TODO(witwash): add dark token
+    DesignTokensColorLight
+        .interactiveHoverColor // TODO(witwash): add dark token
   ];
 
   static List<Color> interactiveInverseColor = [
     DesignTokensColorLight.interactiveInverseColor,
     DesignTokensColorLight
-        .interactiveInverseColor //TODO(witwash): add dark token
+        .interactiveInverseColor // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteBasicsBlack = [
@@ -343,7 +344,8 @@ class _$OptimusTokens {
 
   static List<Color> paletteBrandCoral1000 = [
     DesignTokensColorLight.paletteBrandCoral1000,
-    DesignTokensColorLight.paletteBrandCoral1000 //TODO(witwash): add dark token
+    DesignTokensColorLight
+        .paletteBrandCoral1000 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteBrandCoral150 = [
@@ -479,7 +481,7 @@ class _$OptimusTokens {
   static List<Color> paletteBrandIndigo1000 = [
     DesignTokensColorLight.paletteBrandIndigo1000,
     DesignTokensColorLight
-        .paletteBrandIndigo1000 //TODO(witwash): add dark token
+        .paletteBrandIndigo1000 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteBrandIndigo150 = [
@@ -555,19 +557,19 @@ class _$OptimusTokens {
   static List<Color> paletteBrandNight100012 = [
     DesignTokensColorLight.paletteBrandNight100012,
     DesignTokensColorLight
-        .paletteBrandNight100012 //TODO(witwash): add dark token
+        .paletteBrandNight100012 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteBrandNight100016 = [
     DesignTokensColorLight.paletteBrandNight100016,
     DesignTokensColorLight
-        .paletteBrandNight100016 //TODO(witwash): add dark token
+        .paletteBrandNight100016 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteBrandNight10008 = [
     DesignTokensColorLight.paletteBrandNight10008,
     DesignTokensColorLight
-        .paletteBrandNight10008 //TODO(witwash): add dark token
+        .paletteBrandNight10008 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteBrandNight150 = [
@@ -933,7 +935,7 @@ class _$OptimusTokens {
   static List<Color> paletteSemanticBlue1000 = [
     DesignTokensColorLight.paletteSemanticBlue1000,
     DesignTokensColorLight
-        .paletteSemanticBlue1000 //TODO(witwash): add dark token
+        .paletteSemanticBlue1000 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteSemanticBlue150 = [
@@ -999,7 +1001,7 @@ class _$OptimusTokens {
   static List<Color> paletteSemanticGreen1000 = [
     DesignTokensColorLight.paletteSemanticGreen1000,
     DesignTokensColorLight
-        .paletteSemanticGreen1000 //TODO(witwash): add dark token
+        .paletteSemanticGreen1000 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteSemanticGreen150 = [
@@ -1065,7 +1067,7 @@ class _$OptimusTokens {
   static List<Color> paletteSemanticOrange1000 = [
     DesignTokensColorLight.paletteSemanticOrange1000,
     DesignTokensColorLight
-        .paletteSemanticOrange1000 //TODO(witwash): add dark token
+        .paletteSemanticOrange1000 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteSemanticOrange150 = [
@@ -1131,7 +1133,7 @@ class _$OptimusTokens {
   static List<Color> paletteSemanticRed1000 = [
     DesignTokensColorLight.paletteSemanticRed1000,
     DesignTokensColorLight
-        .paletteSemanticRed1000 //TODO(witwash): add dark token
+        .paletteSemanticRed1000 // TODO(witwash): add dark token
   ];
 
   static List<Color> paletteSemanticRed150 = [
@@ -1191,12 +1193,12 @@ class _$OptimusTokens {
 
   static List<Color> staticContainerColor = [
     DesignTokensColorLight.staticContainerColor,
-    DesignTokensColorLight.staticContainerColor //TODO(witwash): add dark token
+    DesignTokensColorLight.staticContainerColor // TODO(witwash): add dark token
   ];
 
   static List<Color> staticDividerColor = [
     DesignTokensColorLight.staticDividerColor,
-    DesignTokensColorLight.staticDividerColor //TODO(witwash): add dark token
+    DesignTokensColorLight.staticDividerColor // TODO(witwash): add dark token
   ];
 
   static List<Color> textAlertBasic = [
@@ -1206,7 +1208,7 @@ class _$OptimusTokens {
 
   static List<Color> textAlertDanger = [
     DesignTokensColorLight.textAlertDanger,
-    DesignTokensColorLight.textAlertDanger //TODO(witwash): add dark token
+    DesignTokensColorLight.textAlertDanger // TODO(witwash): add dark token
   ];
 
   static List<Color> textAlertInfo = [
