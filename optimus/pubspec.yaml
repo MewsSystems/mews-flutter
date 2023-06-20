@@ -35,3 +35,6 @@ flutter:
     - family: OptimusIcons
       fonts:
         - asset: packages/optimus/fonts/OptimusIcons.ttf
+
+dependency_overrides:
+  analyzer: 5.12.0
