@@ -71,12 +71,12 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  Color _color(BuildContext context, OptimusThemeData theme) {
+  Color _color(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
       case OptimusButtonVariant.primary:
-        return context.tokens.backgroundInteractivePrimaryDefault;
+        return theme.isDark ? theme.colors.primary700 : theme.colors.primary500;
       case OptimusButtonVariant.text:
         return Colors.transparent;
       case OptimusButtonVariant.destructive:
@@ -100,12 +100,12 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  Color _hoverColor(BuildContext context, OptimusThemeData theme) {
+  Color _hoverColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.isDark ? theme.colors.neutral300 : theme.colors.neutral100;
       case OptimusButtonVariant.primary:
-        return context.tokens.backgroundInteractivePrimaryHover;
+        return theme.isDark ? theme.colors.primary400 : theme.colors.primary700;
       case OptimusButtonVariant.text:
         return theme.colors.neutral500t8;
       case OptimusButtonVariant.destructive:
@@ -115,12 +115,12 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  Color _highLightColor(BuildContext context, OptimusThemeData theme) {
+  Color _highLightColor(OptimusThemeData theme) {
     switch (variant) {
       case OptimusButtonVariant.defaultButton:
         return theme.colors.neutral200;
       case OptimusButtonVariant.primary:
-        return context.tokens.backgroundInteractivePrimaryActive;
+        return theme.isDark ? theme.colors.primary500 : theme.colors.primary900;
       case OptimusButtonVariant.text:
         return theme.colors.neutral500t16;
       case OptimusButtonVariant.destructive:
@@ -130,14 +130,10 @@ class BaseButton extends StatelessWidget {
     }
   }
 
-  Color _textColor(
-    BuildContext context,
-    OptimusThemeData theme,
-    Set<MaterialState> states,
-  ) {
+  Color _textColor(OptimusThemeData theme, Set<MaterialState> states) {
     switch (variant) {
       case OptimusButtonVariant.primary:
-        return context.tokens.textStaticInverse;
+        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
       case OptimusButtonVariant.defaultButton:
       case OptimusButtonVariant.text:
         return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
@@ -179,21 +175,18 @@ class BaseButton extends StatelessWidget {
         visualDensity: VisualDensity.standard,
         elevation: 0,
         highlightElevation: 0,
-        highlightColor: _highLightColor(context, theme),
-        disabledColor: _color(context, theme),
-        disabledTextColor: MaterialStateColor.resolveWith(
-          (s) => _textColor(context, theme, s),
-        ),
+        highlightColor: _highLightColor(theme),
+        disabledColor: _color(theme),
+        disabledTextColor:
+            MaterialStateColor.resolveWith((s) => _textColor(theme, s)),
         hoverElevation: 0,
         splashColor: Colors.transparent,
-        hoverColor: _hoverColor(context, theme),
+        hoverColor: _hoverColor(theme),
         onPressed: onPressed,
         animationDuration: buttonAnimationDuration,
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        color: _color(context, theme),
-        textColor: MaterialStateColor.resolveWith(
-          (s) => _textColor(context, theme, s),
-        ),
+        color: _color(theme),
+        textColor: MaterialStateColor.resolveWith((s) => _textColor(theme, s)),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
