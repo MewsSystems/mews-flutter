@@ -51,8 +51,7 @@ class OptimusAvatar extends StatelessWidget {
                         placeholder: _transparentImage,
                         image: imageUrl,
                         fit: BoxFit.cover,
-                        imageErrorBuilder: (context, error, stackTrace) =>
-                            Container(
+                        imageErrorBuilder: (_, __, ___) => Container(
                           width: double.infinity,
                           height: double.infinity,
                           color: colors.neutral200,
