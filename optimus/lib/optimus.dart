@@ -78,6 +78,7 @@ export 'src/step_bar/step_bar_compact.dart';
 export 'src/step_bar/step_bar_item.dart';
 export 'src/tabs.dart';
 export 'src/tag.dart';
+export 'src/theme/optimus_tokens.dart';
 export 'src/theme/theme.dart';
 export 'src/theme/theme_data.dart';
 export 'src/tooltip/tooltip.dart';
