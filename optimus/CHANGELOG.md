@@ -1,3 +1,10 @@
+## 0.26.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: [RND-177241] Enable theming using tokens (#372).
+ - **BREAKING** **FIX**: Fix icons mismatch (#382).
+
 ## 0.25.0
 
 > Note: This release has breaking changes.
