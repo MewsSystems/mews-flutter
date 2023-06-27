@@ -1,3 +1,7 @@
+## 0.26.0+1
+
+ - **REFACTOR**: Change to named constructor (#384).
+
 ## 0.26.0
 
 > Note: This release has breaking changes.
