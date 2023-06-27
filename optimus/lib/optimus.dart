@@ -112,12 +112,12 @@ ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
         labelLarge: baseTextStyle,
         labelSmall: baseTextStyle,
       ),
-      cupertinoOverrideTheme: CupertinoThemeData.raw(
-        brightness,
-        Colors.blue,
-        Colors.blue,
-        const CupertinoTextThemeData(),
-        Colors.white,
-        Colors.white,
+      cupertinoOverrideTheme: CupertinoThemeData(
+        brightness: brightness,
+        primaryColor: Colors.blue,
+        primaryContrastingColor: Colors.blue,
+        textTheme: const CupertinoTextThemeData(),
+        barBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
       ),
     );
