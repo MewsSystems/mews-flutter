@@ -1,3 +1,10 @@
+## 0.27.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: [RND-178412] OptimusAvatar offline mode throwing exception (#381).
+ - **BREAKING** **REFACTOR**: Migrate to Dart 3 (#387).
+
 ## 0.26.0+1
 
  - **REFACTOR**: Change to named constructor (#384).
