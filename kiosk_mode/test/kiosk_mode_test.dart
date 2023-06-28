@@ -10,11 +10,16 @@ void main() {
 
   setUp(() {
     calls.clear();
-    channel.setMockMethodCallHandler((call) async => calls.add(call.method));
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      channel,
+      (call) async => calls.add(call.method),
+    );
   });
 
   tearDown(() {
-    channel.setMockMethodCallHandler(null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
   test('startKioskMode', () async {

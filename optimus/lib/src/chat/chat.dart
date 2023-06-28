@@ -171,7 +171,6 @@ class OptimusChat extends StatelessWidget {
           _Status(child: sending),
           const _StatusCircle(),
         ];
-        break;
       case MessageState.sent:
         children = [
           _Status(child: Text(formatTime(message.time))),
@@ -186,7 +185,6 @@ class OptimusChat extends StatelessWidget {
             ),
           ],
         ];
-        break;
       case MessageState.error:
         children = [
           _Status(child: error),
@@ -196,7 +194,6 @@ class OptimusChat extends StatelessWidget {
             colorOption: OptimusIconColorOption.danger,
           ),
         ];
-        break;
     }
 
     return OptimusStack(

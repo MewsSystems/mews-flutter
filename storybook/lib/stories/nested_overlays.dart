@@ -37,7 +37,6 @@ class _Content extends StatelessWidget {
               constraints: const BoxConstraints(maxWidth: 400),
               child: contentBuilder(context),
             );
-        break;
     }
 
     return MaterialPageRoute<dynamic>(
