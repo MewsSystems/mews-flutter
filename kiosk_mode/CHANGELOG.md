@@ -1,3 +1,9 @@
+## 0.5.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**: Migrate to Dart 3 (#387).
+
 ## 0.4.0
 
 > Note: This release has breaking changes.
