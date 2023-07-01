@@ -53,10 +53,10 @@ packages:
     dependency: transitive
     description:
       name: dfunc
-      sha256: cb0e20067771ae3da6b09827d0097faec18e91c3b3100b2d966ba95b9338a296
+      sha256: "5a8d6afe681ea5db8047dc7fc0d5035b66f77ed71721165b3ac588eaeb59a6ef"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.2"
+    version: "0.9.0"
   fake_async:
     dependency: transitive
     description:
