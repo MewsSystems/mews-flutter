@@ -1,0 +1,23 @@
+name: DCM
+on:
+  pull_request_target:
+    branches:
+      - master
+
+jobs:
+  dcm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install DCM
+        run: >
+          wget -qO- https://dcm.dev/pgp-key.public | sudo gpg --dearmor -o /usr/share/keyrings/dcm.gpg &&
+          echo 'deb [signed-by=/usr/share/keyrings/dcm.gpg arch=amd64] https://dcm.dev/debian stable main' | sudo tee /etc/apt/sources.list.d/dart_stable.list &&
+          sudo apt-get update &&
+          sudo apt-get install dcm
+
+      - uses: ./.github/actions/setup
+
+      - name: Dart Code Metrics
+        run: melos exec -c 1 --ignore="*example*" -- dcm analyze --fatal-style --fatal-performance --fatal-warnings --ci-key=${{ secrets.DCM_CI_KEY }} --email=${{ vars.DCM_CI_EMAIL }} .
