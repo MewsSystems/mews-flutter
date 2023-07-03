@@ -10,7 +10,7 @@ final Story iconButton = Story(
 
     return SingleChildScrollView(
       child: Column(
-        children: OptimusIconButtonVariant.values
+        children: OptimusButtonVariant.values
             .map(
               (v) => Padding(
                 padding: const EdgeInsets.all(8),

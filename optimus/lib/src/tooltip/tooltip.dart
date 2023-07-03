@@ -93,61 +93,73 @@ class _TooltipPainter extends CustomPainter {
         tooltipPath.lineTo(width + _arrowHeight, _arrowOffset);
         tooltipPath.lineTo(width, _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(width, _arrowOffset - _arrowWidth / 2);
+        break;
       case TooltipAlignment.leftCenter:
         tooltipPath.moveTo(width, height / 2 - _arrowWidth / 2);
         tooltipPath.lineTo(width + _arrowHeight, height / 2);
         tooltipPath.lineTo(width, height / 2 + _arrowWidth / 2);
         tooltipPath.lineTo(width, height / 2 - _arrowWidth / 2);
+        break;
       case TooltipAlignment.leftTop:
         tooltipPath.moveTo(width, height - _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(width + _arrowHeight, height - _arrowOffset);
         tooltipPath.lineTo(width, height - _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(width, height - _arrowOffset - _arrowWidth / 2);
+        break;
       case TooltipAlignment.topLeft:
         tooltipPath.moveTo(width - _arrowOffset - _arrowWidth / 2, height);
         tooltipPath.lineTo(width - _arrowOffset, height + _arrowHeight);
         tooltipPath.lineTo(width - _arrowOffset + _arrowWidth / 2, height);
         tooltipPath.lineTo(width - _arrowOffset - _arrowWidth / 2, height);
+        break;
       case TooltipAlignment.topCenter:
         tooltipPath.moveTo(width / 2 - _arrowWidth / 2, height);
         tooltipPath.lineTo(width / 2, _arrowHeight + height);
         tooltipPath.lineTo(width / 2 + _arrowWidth / 2, height);
         tooltipPath.lineTo(width / 2 - _arrowWidth / 2, height);
+        break;
       case TooltipAlignment.topRight:
         tooltipPath.moveTo(_arrowOffset - _arrowWidth / 2, height);
         tooltipPath.lineTo(_arrowOffset, height + _arrowHeight);
         tooltipPath.lineTo(_arrowOffset + _arrowWidth / 2, height);
         tooltipPath.lineTo(_arrowOffset - _arrowWidth / 2, height);
+        break;
       case TooltipAlignment.rightTop:
         tooltipPath.moveTo(0, height - _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(-_arrowHeight, height - _arrowOffset);
         tooltipPath.lineTo(0, height - _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(0, height - _arrowOffset - _arrowWidth / 2);
+        break;
       case TooltipAlignment.rightCenter:
         tooltipPath.moveTo(0, height / 2 - _arrowWidth / 2);
         tooltipPath.lineTo(-_arrowHeight, height / 2);
         tooltipPath.lineTo(0, height / 2 + _arrowWidth / 2);
         tooltipPath.lineTo(0, height / 2 - _arrowWidth / 2);
+        break;
       case TooltipAlignment.rightBottom:
         tooltipPath.moveTo(0, _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(-_arrowHeight, _arrowOffset);
         tooltipPath.lineTo(0, _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(0, _arrowOffset - _arrowWidth / 2);
+        break;
       case TooltipAlignment.bottomRight:
         tooltipPath.moveTo(_arrowOffset - _arrowWidth / 2, 0);
         tooltipPath.lineTo(_arrowOffset, -_arrowHeight);
         tooltipPath.lineTo(_arrowOffset + _arrowWidth / 2, 0);
         tooltipPath.lineTo(_arrowOffset - _arrowWidth / 2, 0);
+        break;
       case TooltipAlignment.bottomCenter:
         tooltipPath.moveTo(width / 2 - _arrowWidth / 2, 0);
         tooltipPath.lineTo(width / 2, -_arrowHeight);
         tooltipPath.lineTo(width / 2 + _arrowWidth / 2, 0);
         tooltipPath.lineTo(width / 2 - _arrowWidth / 2, 0);
+        break;
       case TooltipAlignment.bottomLeft:
         tooltipPath.moveTo(width - _arrowOffset - _arrowWidth / 2, 0);
         tooltipPath.lineTo(width - _arrowOffset, -_arrowHeight);
         tooltipPath.lineTo(width - _arrowOffset + _arrowWidth / 2, 0);
         tooltipPath.lineTo(width - _arrowOffset - _arrowWidth / 2, 0);
+        break;
     }
 
     tooltipPath.addRRect(RRect.fromLTRBR(0, 0, width, height, borderRadius100));

@@ -13,6 +13,7 @@ export 'src/border_radius.dart';
 export 'src/borders.dart';
 export 'src/breakpoint.dart';
 export 'src/button/button.dart';
+export 'src/button/button_variant.dart';
 export 'src/button/dropdown.dart';
 export 'src/button/icon.dart';
 export 'src/button/split.dart';

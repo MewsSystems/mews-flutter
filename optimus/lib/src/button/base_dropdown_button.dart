@@ -37,8 +37,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
-  bool _isHovering = false;
-  bool _isTappedDown = false;
+  bool _isHovered = false;
+  bool _isPressed = false;
   late final AnimationController _controller;
   late final Animation<double> _iconTurns;
 
@@ -62,35 +62,39 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     super.dispose();
   }
 
-  void _onHoverChanged(bool isHovering) {
-    setState(() => _isHovering = isHovering);
-  }
-
   void _onFocusChanged() => setState(() {});
 
   bool get _isEnabled => widget.onItemSelected != null;
 
-  Color get _textColor => widget.variant.textColor(theme);
+  Color get _textColor => widget.variant.toButtonVariant().foregroundColor(
+        tokens,
+        isEnabled: _isEnabled,
+        isPressed: _isPressed,
+        isHovered: _isHovered,
+      );
 
-  Color get _highlightColor => widget.variant.highlightColor(theme);
-
-  Color get _hoverColor => widget.variant.hoverColor(theme);
-
-  Color get _normalColor => widget.variant.normalColor(theme);
+  Color? get _borderColor => widget.variant.toButtonVariant().borderColor(
+        tokens,
+        isHovered: _isHovered,
+        isPressed: _isPressed,
+        isEnabled: _isEnabled,
+      );
 
   TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
       ? preset200b.copyWith(color: _textColor)
       : preset300b.copyWith(color: _textColor);
 
-  Color get _color => _node.hasFocus || _isTappedDown
-      ? _highlightColor
-      : _isHovering
-          ? _hoverColor
-          : _normalColor;
+  Color? get _color => widget.variant.toButtonVariant().backgroundColor(
+        tokens,
+        isEnabled: _isEnabled,
+        isPressed: _isPressed,
+        isHovered: _isHovered,
+      );
 
   @override
   Widget build(BuildContext context) {
     final child = widget.child;
+    final borderColor = this._borderColor;
 
     return OverlayController(
       items: widget.items,
@@ -100,16 +104,16 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       width: _dropdownWidth,
       onShown: _controller.forward,
       onHidden: _controller.reverse,
-      child: OptimusEnabled(
-        isEnabled: _isEnabled,
+      child: IgnorePointer(
+        ignoring: !_isEnabled,
         child: MouseRegion(
-          onEnter: (_) => _onHoverChanged(true),
-          onExit: (_) => _onHoverChanged(false),
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
           child: GestureDetector(
             onTap: _node.requestFocus,
-            onTapDown: (_) => setState(() => _isTappedDown = true),
-            onTapUp: (_) => setState(() => _isTappedDown = false),
-            onTapCancel: () => setState(() => _isTappedDown = false),
+            onTapDown: (_) => setState(() => _isPressed = true),
+            onTapUp: (_) => setState(() => _isPressed = false),
+            onTapCancel: () => setState(() => _isPressed = false),
             child: Focus(
               focusNode: _node,
               child: SizedBox(
@@ -120,9 +124,12 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                   decoration: BoxDecoration(
                     color: _color,
                     borderRadius: widget.borderRadius,
+                    border: borderColor != null
+                        ? Border.all(color: borderColor, width: 1)
+                        : null,
                   ),
                   duration: buttonAnimationDuration,
-                  curve: Curves.fastOutSlowIn,
+                  curve: buttonAnimationCurve,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -160,33 +167,5 @@ extension on OptimusWidgetSize {
   double get iconSize => switch (this) {
         OptimusWidgetSize.small => 16,
         OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
-      };
-}
-
-extension on OptimusDropdownButtonVariant {
-  Color normalColor(OptimusThemeData theme) => switch (this) {
-        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral50,
-        OptimusDropdownButtonVariant.primary => theme.colors.primary500,
-        OptimusDropdownButtonVariant.text => Colors.transparent,
-      };
-
-  Color hoverColor(OptimusThemeData theme) => switch (this) {
-        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral100,
-        OptimusDropdownButtonVariant.primary => theme.colors.primary700,
-        OptimusDropdownButtonVariant.text => theme.colors.neutral500t8,
-      };
-
-  Color highlightColor(OptimusThemeData theme) => switch (this) {
-        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral200,
-        OptimusDropdownButtonVariant.primary => theme.colors.primary900,
-        OptimusDropdownButtonVariant.text => theme.colors.neutral500t16,
-      };
-
-  // TODO(VG): can be changed when final dark theme design is ready.
-  Color textColor(OptimusThemeData theme) => switch (this) {
-        OptimusDropdownButtonVariant.primary => theme.colors.neutral0,
-        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral500,
-        OptimusDropdownButtonVariant.text =>
-          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
       };
 }

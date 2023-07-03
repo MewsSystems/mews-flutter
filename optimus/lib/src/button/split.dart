@@ -53,7 +53,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
         children: [
           BaseButton(
             onPressed: onPressed,
-            variant: _buttonVariant,
+            variant: variant.toButtonVariant(),
             borderRadius: const BorderRadius.only(
               topLeft: borderRadius50,
               bottomLeft: borderRadius50,
@@ -65,7 +65,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
           BaseDropDownButton(
             items: items,
             onItemSelected: onItemSelected,
-            variant: _dropdownButtonVariant,
+            variant: variant.toDropdownButtonVariant(),
             borderRadius: const BorderRadius.only(
               topRight: borderRadius50,
               bottomRight: borderRadius50,
@@ -74,14 +74,16 @@ class OptimusSplitButton<T> extends StatelessWidget {
           ),
         ],
       );
+}
 
-  OptimusButtonVariant get _buttonVariant => switch (variant) {
+extension on OptimusSplitButtonVariant {
+  OptimusButtonVariant toButtonVariant() => switch (this) {
         OptimusSplitButtonVariant.defaultButton =>
-          OptimusButtonVariant.defaultButton,
+          OptimusButtonVariant.tertiary,
         OptimusSplitButtonVariant.primary => OptimusButtonVariant.primary,
       };
 
-  OptimusDropdownButtonVariant get _dropdownButtonVariant => switch (variant) {
+  OptimusDropdownButtonVariant toDropdownButtonVariant() => switch (this) {
         OptimusSplitButtonVariant.defaultButton =>
           OptimusDropdownButtonVariant.defaultButton,
         OptimusSplitButtonVariant.primary =>
