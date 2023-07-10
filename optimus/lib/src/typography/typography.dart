@@ -35,12 +35,8 @@ class OptimusTypography extends StatelessWidget {
   }
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  Color _color(OptimusThemeData theme) {
-    switch (color) {
-      case OptimusTypographyColor.primary:
-        return theme.colors.defaultTextColor;
-      case OptimusTypographyColor.secondary:
-        return theme.colors.secondaryTextColor;
-    }
-  }
+  Color _color(OptimusThemeData theme) => switch (color) {
+        OptimusTypographyColor.primary => theme.colors.defaultTextColor,
+        OptimusTypographyColor.secondary => theme.colors.secondaryTextColor,
+      };
 }

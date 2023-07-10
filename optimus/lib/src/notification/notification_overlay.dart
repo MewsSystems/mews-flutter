@@ -220,71 +220,59 @@ class _NoClipSizeTransition extends AnimatedWidget {
 enum OptimusNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
 
 extension on OptimusNotificationPosition {
-  double? left({required bool isCompact}) {
-    switch (this) {
-      case OptimusNotificationPosition.bottomLeft:
-      case OptimusNotificationPosition.topLeft:
-        return isCompact ? spacing100 : spacing200;
-      case OptimusNotificationPosition.topRight:
-      case OptimusNotificationPosition.bottomRight:
-        return isCompact ? spacing100 : null;
-    }
-  }
+  double? left({required bool isCompact}) => switch (this) {
+        OptimusNotificationPosition.bottomLeft ||
+        OptimusNotificationPosition.topLeft =>
+          isCompact ? spacing100 : spacing200,
+        OptimusNotificationPosition.topRight ||
+        OptimusNotificationPosition.bottomRight =>
+          isCompact ? spacing100 : null,
+      };
 
-  double? top({required bool isCompact}) {
-    switch (this) {
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.topRight:
-        return isCompact ? spacing100 : spacing200;
-      case OptimusNotificationPosition.bottomRight:
-      case OptimusNotificationPosition.bottomLeft:
-        return null;
-    }
-  }
+  double? top({required bool isCompact}) => switch (this) {
+        OptimusNotificationPosition.topLeft ||
+        OptimusNotificationPosition.topRight =>
+          isCompact ? spacing100 : spacing200,
+        OptimusNotificationPosition.bottomRight ||
+        OptimusNotificationPosition.bottomLeft =>
+          null,
+      };
 
-  double? right({required bool isCompact}) {
-    switch (this) {
-      case OptimusNotificationPosition.bottomRight:
-      case OptimusNotificationPosition.topRight:
-        return isCompact ? spacing100 : spacing200;
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.bottomLeft:
-        return isCompact ? spacing100 : null;
-    }
-  }
+  double? right({required bool isCompact}) => switch (this) {
+        OptimusNotificationPosition.bottomRight ||
+        OptimusNotificationPosition.topRight =>
+          isCompact ? spacing100 : spacing200,
+        OptimusNotificationPosition.topLeft ||
+        OptimusNotificationPosition.bottomLeft =>
+          isCompact ? spacing100 : null,
+      };
 
-  double? bottom({required bool isCompact}) {
-    switch (this) {
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.topRight:
-        return null;
-      case OptimusNotificationPosition.bottomRight:
-      case OptimusNotificationPosition.bottomLeft:
-        return isCompact ? spacing100 : spacing200;
-    }
-  }
+  double? bottom({required bool isCompact}) => switch (this) {
+        OptimusNotificationPosition.topLeft ||
+        OptimusNotificationPosition.topRight =>
+          null,
+        OptimusNotificationPosition.bottomRight ||
+        OptimusNotificationPosition.bottomLeft =>
+          isCompact ? spacing100 : spacing200,
+      };
 
-  Tween<Offset> get slideTween {
-    switch (this) {
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.bottomLeft:
-        return Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero);
-      case OptimusNotificationPosition.topRight:
-      case OptimusNotificationPosition.bottomRight:
-        return Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero);
-    }
-  }
+  Tween<Offset> get slideTween => switch (this) {
+        OptimusNotificationPosition.topLeft ||
+        OptimusNotificationPosition.bottomLeft =>
+          Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero),
+        OptimusNotificationPosition.topRight ||
+        OptimusNotificationPosition.bottomRight =>
+          Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero),
+      };
 
-  bool get reverse {
-    switch (this) {
-      case OptimusNotificationPosition.topLeft:
-      case OptimusNotificationPosition.topRight:
-        return false;
-      case OptimusNotificationPosition.bottomLeft:
-      case OptimusNotificationPosition.bottomRight:
-        return true;
-    }
-  }
+  bool get reverse => switch (this) {
+        OptimusNotificationPosition.topLeft ||
+        OptimusNotificationPosition.topRight =>
+          false,
+        OptimusNotificationPosition.bottomLeft ||
+        OptimusNotificationPosition.bottomRight =>
+          true,
+      };
 }
 
 const Duration _animationDuration = Duration(milliseconds: 300);

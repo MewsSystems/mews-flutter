@@ -143,71 +143,56 @@ class _TagState extends State<_Tag> with ThemeGetter {
       ? const EdgeInsets.only(top: 1.5, bottom: 1.5, left: 8)
       : const EdgeInsets.symmetric(vertical: 2, horizontal: 8);
 
-  Color get _tagColor {
-    switch (widget.colorOption) {
-      case OptimusColorOption.basic:
+  Color get _tagColor => switch (widget.colorOption) {
+        OptimusColorOption.basic =>
+          // TODO(VG): can be changed when final dark theme design is ready.
+          theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,
+        OptimusColorOption.plain =>
+          theme.isDark ? theme.colors.neutral200 : theme.colors.neutral25,
+        OptimusColorOption.primary =>
+          theme.isDark ? theme.colors.primary500t32 : theme.colors.primary50,
+        OptimusColorOption.success =>
+          theme.isDark ? theme.colors.success500t32 : theme.colors.success50,
+        OptimusColorOption.info =>
+          theme.isDark ? theme.colors.info500t32 : theme.colors.info50,
+        OptimusColorOption.warning =>
+          theme.isDark ? theme.colors.warning500t32 : theme.colors.warning50,
+        OptimusColorOption.danger =>
+          theme.isDark ? theme.colors.danger500t32 : theme.colors.danger50,
+      };
+
+  Color get _borderColor => switch (widget.colorOption) {
+        OptimusColorOption.basic =>
+          theme.isDark ? theme.colors.neutral100 : theme.colors.neutral700,
         // TODO(VG): can be changed when final dark theme design is ready.
-        return theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50;
-      case OptimusColorOption.plain:
-        return theme.isDark ? theme.colors.neutral200 : theme.colors.neutral25;
-      case OptimusColorOption.primary:
-        return theme.isDark
-            ? theme.colors.primary500t32
-            : theme.colors.primary50;
-      case OptimusColorOption.success:
-        return theme.isDark
-            ? theme.colors.success500t32
-            : theme.colors.success50;
-      case OptimusColorOption.info:
-        return theme.isDark ? theme.colors.info500t32 : theme.colors.info50;
-      case OptimusColorOption.warning:
-        return theme.isDark
-            ? theme.colors.warning500t32
-            : theme.colors.warning50;
-      case OptimusColorOption.danger:
-        return theme.isDark ? theme.colors.danger500t32 : theme.colors.danger50;
-    }
-  }
-
-  Color get _borderColor {
-    switch (widget.colorOption) {
-      case OptimusColorOption.basic:
-        return theme.isDark ? theme.colors.neutral100 : theme.colors.neutral700;
-
-      // TODO(VG): can be changed when final dark theme design is ready.
-      case OptimusColorOption.plain:
-        return theme.isDark ? theme.colors.neutral50 : theme.colors.neutral200;
-      case OptimusColorOption.primary:
-        return theme.isDark ? theme.colors.primary500 : theme.colors.primary200;
-      case OptimusColorOption.success:
-        return theme.isDark ? theme.colors.success500 : theme.colors.success300;
-      case OptimusColorOption.info:
-        return theme.isDark ? theme.colors.info500 : theme.colors.info300;
-      case OptimusColorOption.warning:
-        return theme.isDark ? theme.colors.warning500 : theme.colors.warning300;
-      case OptimusColorOption.danger:
-        return theme.isDark ? theme.colors.danger500 : theme.colors.danger200;
-    }
-  }
+        OptimusColorOption.plain =>
+          theme.isDark ? theme.colors.neutral50 : theme.colors.neutral200,
+        OptimusColorOption.primary =>
+          theme.isDark ? theme.colors.primary500 : theme.colors.primary200,
+        OptimusColorOption.success =>
+          theme.isDark ? theme.colors.success500 : theme.colors.success300,
+        OptimusColorOption.info =>
+          theme.isDark ? theme.colors.info500 : theme.colors.info300,
+        OptimusColorOption.warning =>
+          theme.isDark ? theme.colors.warning500 : theme.colors.warning300,
+        OptimusColorOption.danger =>
+          theme.isDark ? theme.colors.danger500 : theme.colors.danger200,
+      };
 
   Color get _textColor {
     // TODO(VG): can be changed when final dark theme design is ready.
     if (theme.isDark) return theme.colors.neutral50;
 
-    switch (widget.colorOption) {
-      case OptimusColorOption.basic:
-      case OptimusColorOption.plain:
-      case OptimusColorOption.warning:
-        return theme.colors.neutral1000;
-      case OptimusColorOption.primary:
-        return theme.colors.primary900;
-      case OptimusColorOption.success:
-        return theme.colors.success900;
-      case OptimusColorOption.info:
-        return theme.colors.info900;
-      case OptimusColorOption.danger:
-        return theme.colors.danger900;
-    }
+    return switch (widget.colorOption) {
+      OptimusColorOption.primary => theme.colors.primary900,
+      OptimusColorOption.success => theme.colors.success900,
+      OptimusColorOption.info => theme.colors.info900,
+      OptimusColorOption.danger => theme.colors.danger900,
+      OptimusColorOption.basic ||
+      OptimusColorOption.plain ||
+      OptimusColorOption.warning =>
+        theme.colors.neutral1000,
+    };
   }
 }
 
@@ -221,80 +206,58 @@ enum OptimusCategoricalColorOption {
 }
 
 extension on OptimusCategoricalColorOption {
-  Color borderColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusCategoricalColorOption.denim:
-        return theme.isDark
+  Color borderColor(OptimusThemeData theme) => switch (this) {
+        OptimusCategoricalColorOption.denim => theme.isDark
             ? OptimusDataColors.denim500
-            : OptimusDataColors.denim200;
-      case OptimusCategoricalColorOption.lavender:
-        return theme.isDark
+            : OptimusDataColors.denim200,
+        OptimusCategoricalColorOption.lavender => theme.isDark
             ? OptimusDataColors.lavender500
-            : OptimusDataColors.lavender200;
-      case OptimusCategoricalColorOption.lime:
-        return theme.isDark
-            ? OptimusDataColors.lime500
-            : OptimusDataColors.lime200;
-      case OptimusCategoricalColorOption.mustard:
-        return theme.isDark
+            : OptimusDataColors.lavender200,
+        OptimusCategoricalColorOption.lime =>
+          theme.isDark ? OptimusDataColors.lime500 : OptimusDataColors.lime200,
+        OptimusCategoricalColorOption.mustard => theme.isDark
             ? OptimusDataColors.mustard500
-            : OptimusDataColors.mustard200;
-      case OptimusCategoricalColorOption.ruby:
-        return theme.isDark
-            ? OptimusDataColors.ruby500
-            : OptimusDataColors.ruby200;
-      case OptimusCategoricalColorOption.tangerine:
-        return theme.isDark
+            : OptimusDataColors.mustard200,
+        OptimusCategoricalColorOption.ruby =>
+          theme.isDark ? OptimusDataColors.ruby500 : OptimusDataColors.ruby200,
+        OptimusCategoricalColorOption.tangerine => theme.isDark
             ? OptimusDataColors.tangerine500
-            : OptimusDataColors.tangerine200;
-    }
-  }
+            : OptimusDataColors.tangerine200,
+      };
 
-  Color tagColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusCategoricalColorOption.denim:
-        return theme.isDark
+  Color tagColor(OptimusThemeData theme) => switch (this) {
+        OptimusCategoricalColorOption.denim => theme.isDark
             ? OptimusDataColors.denim500t32
-            : OptimusDataColors.denim50;
-      case OptimusCategoricalColorOption.lavender:
-        return theme.isDark
+            : OptimusDataColors.denim50,
+        OptimusCategoricalColorOption.lavender => theme.isDark
             ? OptimusDataColors.lavender500t32
-            : OptimusDataColors.lavender50;
-      case OptimusCategoricalColorOption.lime:
-        return theme.isDark
+            : OptimusDataColors.lavender50,
+        OptimusCategoricalColorOption.lime => theme.isDark
             ? OptimusDataColors.lime500t32
-            : OptimusDataColors.lime50;
-      case OptimusCategoricalColorOption.mustard:
-        return theme.isDark
+            : OptimusDataColors.lime50,
+        OptimusCategoricalColorOption.mustard => theme.isDark
             ? OptimusDataColors.mustard500t32
-            : OptimusDataColors.mustard50;
-      case OptimusCategoricalColorOption.ruby:
-        return theme.isDark
+            : OptimusDataColors.mustard50,
+        OptimusCategoricalColorOption.ruby => theme.isDark
             ? OptimusDataColors.ruby500t32
-            : OptimusDataColors.ruby50;
-      case OptimusCategoricalColorOption.tangerine:
-        return theme.isDark
+            : OptimusDataColors.ruby50,
+        OptimusCategoricalColorOption.tangerine => theme.isDark
             ? OptimusDataColors.tangerine500t32
-            : OptimusDataColors.tangerine50;
-    }
-  }
+            : OptimusDataColors.tangerine50,
+      };
 
   Color textColor(OptimusThemeData theme) {
     if (theme.isDark) return theme.colors.neutral50;
 
-    switch (this) {
-      case OptimusCategoricalColorOption.denim:
-        return OptimusDataColors.denim900;
-      case OptimusCategoricalColorOption.lavender:
-        return OptimusDataColors.lavender900;
-      case OptimusCategoricalColorOption.lime:
-        return OptimusDataColors.lime900;
-      case OptimusCategoricalColorOption.ruby:
-        return OptimusDataColors.ruby900;
-      case OptimusCategoricalColorOption.mustard:
-      case OptimusCategoricalColorOption.tangerine:
-        return theme.colors.neutral1000;
-    }
+    return switch (this) {
+      OptimusCategoricalColorOption.denim => OptimusDataColors.denim900,
+      OptimusCategoricalColorOption.lavender => OptimusDataColors.lavender900,
+      OptimusCategoricalColorOption.lime => OptimusDataColors.lime900,
+      OptimusCategoricalColorOption.ruby => OptimusDataColors.ruby900,
+      OptimusCategoricalColorOption.mustard ||
+      OptimusCategoricalColorOption.tangerine =>
+        theme.colors.neutral1000,
+    };
   }
 }
 

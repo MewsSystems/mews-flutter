@@ -212,54 +212,30 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 enum _SupportedSymbol { day, month, year, hour, minute, second }
 
 extension on _SupportedSymbol {
-  String get pattern {
-    switch (this) {
-      case _SupportedSymbol.day:
-        return 'd';
-      case _SupportedSymbol.month:
-        return 'M';
-      case _SupportedSymbol.year:
-        return 'y';
-      case _SupportedSymbol.hour:
-        return 'H';
-      case _SupportedSymbol.minute:
-        return 'm';
-      case _SupportedSymbol.second:
-        return 's';
-    }
-  }
+  String get pattern => switch (this) {
+        _SupportedSymbol.day => 'd',
+        _SupportedSymbol.month => 'M',
+        _SupportedSymbol.year => 'y',
+        _SupportedSymbol.hour => 'H',
+        _SupportedSymbol.minute => 'm',
+        _SupportedSymbol.second => 's',
+      };
 
-  String get format {
-    switch (this) {
-      case _SupportedSymbol.day:
-        return 'dd';
-      case _SupportedSymbol.month:
-        return 'MM';
-      case _SupportedSymbol.year:
-        return 'yyyy';
-      case _SupportedSymbol.hour:
-        return 'HH';
-      case _SupportedSymbol.minute:
-        return 'mm';
-      case _SupportedSymbol.second:
-        return 'ss';
-    }
-  }
+  String get format => switch (this) {
+        _SupportedSymbol.day => 'dd',
+        _SupportedSymbol.month => 'MM',
+        _SupportedSymbol.year => 'yyyy',
+        _SupportedSymbol.hour => 'HH',
+        _SupportedSymbol.minute => 'mm',
+        _SupportedSymbol.second => 'ss',
+      };
 
-  String get placeholder {
-    switch (this) {
-      case _SupportedSymbol.day:
-        return 'DD';
-      case _SupportedSymbol.month:
-        return 'MM';
-      case _SupportedSymbol.year:
-        return 'YYYY';
-      case _SupportedSymbol.hour:
-        return 'HH';
-      case _SupportedSymbol.minute:
-        return 'mm';
-      case _SupportedSymbol.second:
-        return 'ss';
-    }
-  }
+  String get placeholder => switch (this) {
+        _SupportedSymbol.day => 'DD',
+        _SupportedSymbol.month => 'MM',
+        _SupportedSymbol.year => 'YYYY',
+        _SupportedSymbol.hour => 'HH',
+        _SupportedSymbol.minute => 'mm',
+        _SupportedSymbol.second => 'ss',
+      };
 }

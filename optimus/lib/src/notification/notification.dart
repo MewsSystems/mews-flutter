@@ -43,17 +43,14 @@ class OptimusNotification extends StatelessWidget {
   final OptimusNotificationLink? link;
   final OptimusNotificationVariant variant;
 
-  double _getPadding(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return spacing200;
-      case Breakpoint.small:
-      case Breakpoint.extraSmall:
-        return spacing100;
-    }
-  }
+  double _getPadding(BuildContext context) =>
+      switch (MediaQuery.of(context).screenBreakpoint) {
+        Breakpoint.small || Breakpoint.extraSmall => spacing100,
+        Breakpoint.medium ||
+        Breakpoint.large ||
+        Breakpoint.extraLarge =>
+          spacing200,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -289,19 +286,6 @@ class _LeadingIcon extends StatelessWidget {
   final IconData? icon;
   final OptimusNotificationVariant variant;
 
-  IconData get _bannerIcon {
-    switch (variant) {
-      case OptimusNotificationVariant.info:
-        return OptimusIcons.info;
-      case OptimusNotificationVariant.success:
-        return OptimusIcons.done_circle;
-      case OptimusNotificationVariant.warning:
-        return OptimusIcons.problematic;
-      case OptimusNotificationVariant.danger:
-        return OptimusIcons.blacklist;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -311,7 +295,7 @@ class _LeadingIcon extends StatelessWidget {
         horizontal: _iconHorizontalPadding,
       ),
       child: Icon(
-        icon ?? _bannerIcon,
+        icon ?? variant.bannerIcon,
         color: variant.getBannerIconColor(theme),
         size: _iconSize,
       ),
@@ -349,29 +333,27 @@ class _NotificationCloseButton extends StatelessWidget {
 }
 
 extension on OptimusNotificationVariant {
-  Color getBannerColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusNotificationVariant.info:
-        return theme.colors.info500;
-      case OptimusNotificationVariant.success:
-        return theme.colors.success500;
-      case OptimusNotificationVariant.warning:
-        return theme.colors.warning500;
-      case OptimusNotificationVariant.danger:
-        return theme.colors.danger500;
-    }
-  }
+  Color getBannerColor(OptimusThemeData theme) => switch (this) {
+        OptimusNotificationVariant.info => theme.colors.info500,
+        OptimusNotificationVariant.success => theme.colors.success500,
+        OptimusNotificationVariant.warning => theme.colors.warning500,
+        OptimusNotificationVariant.danger => theme.colors.danger500,
+      };
 
-  Color getBannerIconColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusNotificationVariant.info:
-      case OptimusNotificationVariant.success:
-      case OptimusNotificationVariant.danger:
-        return theme.colors.neutral0;
-      case OptimusNotificationVariant.warning:
-        return theme.colors.neutral1000;
-    }
-  }
+  Color getBannerIconColor(OptimusThemeData theme) => switch (this) {
+        OptimusNotificationVariant.info ||
+        OptimusNotificationVariant.success ||
+        OptimusNotificationVariant.danger =>
+          theme.colors.neutral0,
+        OptimusNotificationVariant.warning => theme.colors.neutral1000,
+      };
+
+  IconData get bannerIcon => switch (this) {
+        OptimusNotificationVariant.info => OptimusIcons.info,
+        OptimusNotificationVariant.success => OptimusIcons.done_circle,
+        OptimusNotificationVariant.warning => OptimusIcons.problematic,
+        OptimusNotificationVariant.danger => OptimusIcons.blacklist,
+      };
 }
 
 const double _maxWidth = 360;

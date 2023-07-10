@@ -84,41 +84,32 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
 
-  Color get _borderColor {
-    switch (_state) {
-      case _CheckboxState.checked:
-      case _CheckboxState.undetermined:
-        return theme.colors.primary500;
-      case _CheckboxState.unchecked:
-        return _isHovering || _isTappedDown
+  Color get _borderColor => switch (_state) {
+        _CheckboxState.checked ||
+        _CheckboxState.undetermined =>
+          theme.colors.primary500,
+        _CheckboxState.unchecked => _isHovering || _isTappedDown
             ? theme.colors.primary500
-            : theme.colors.neutral100;
-    }
-  }
+            : theme.colors.neutral100,
+      };
 
-  Color get _backgroundColor {
-    switch (_state) {
-      case _CheckboxState.undetermined:
-      case _CheckboxState.checked:
-        return theme.colors.primary500;
-      case _CheckboxState.unchecked:
-        return _isHovering || _isTappedDown
+  Color get _backgroundColor => switch (_state) {
+        _CheckboxState.undetermined ||
+        _CheckboxState.checked =>
+          theme.colors.primary500,
+        _CheckboxState.unchecked => _isHovering || _isTappedDown
             ? theme.colors.primary500t8
-            : Colors.transparent;
-    }
-  }
+            : Colors.transparent,
+      };
 
   _CheckboxState get _state => widget.isChecked.toState;
 
-  TextStyle get _labelStyle {
-    final color = theme.colors.defaultTextColor;
-    switch (widget.size) {
-      case OptimusCheckboxSize.large:
-        return preset300s.copyWith(color: color);
-      case OptimusCheckboxSize.small:
-        return preset200s.copyWith(color: color);
-    }
-  }
+  TextStyle get _labelStyle => switch (widget.size) {
+        OptimusCheckboxSize.large =>
+          preset300s.copyWith(color: theme.colors.defaultTextColor),
+        OptimusCheckboxSize.small =>
+          preset200s.copyWith(color: theme.colors.defaultTextColor),
+      };
 
   void _onTap() {
     final newValue = widget.isChecked ?? false;
@@ -205,27 +196,17 @@ class _CheckboxIcon extends StatelessWidget {
 enum _CheckboxState { checked, unchecked, undetermined }
 
 extension on _CheckboxState {
-  IconData? get icon {
-    switch (this) {
-      case _CheckboxState.checked:
-        return OptimusIcons.done;
-      case _CheckboxState.unchecked:
-        return null;
-      case _CheckboxState.undetermined:
-        return OptimusIcons.minus_simple;
-    }
-  }
+  IconData? get icon => switch (this) {
+        _CheckboxState.checked => OptimusIcons.done,
+        _CheckboxState.unchecked => null,
+        _CheckboxState.undetermined => OptimusIcons.minus_simple,
+      };
 }
 
 extension on bool? {
-  _CheckboxState get toState {
-    switch (this) {
-      case true:
-        return _CheckboxState.checked;
-      case false:
-        return _CheckboxState.unchecked;
-      default:
-        return _CheckboxState.undetermined;
-    }
-  }
+  _CheckboxState get toState => switch (this) {
+        true => _CheckboxState.checked,
+        false => _CheckboxState.unchecked,
+        null => _CheckboxState.undetermined,
+      };
 }

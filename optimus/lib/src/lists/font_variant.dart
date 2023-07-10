@@ -9,21 +9,13 @@ import 'package:optimus/src/typography/typography.dart';
 enum FontVariant { normal, bold }
 
 extension FontStyles on FontVariant {
-  TextStyle get primaryStyle {
-    switch (this) {
-      case FontVariant.normal:
-        return preset300s;
-      case FontVariant.bold:
-        return preset300b;
-    }
-  }
+  TextStyle get primaryStyle => switch (this) {
+        FontVariant.normal => preset300s,
+        FontVariant.bold => preset300b,
+      };
 
-  OptimusTypographyColor get secondaryColor {
-    switch (this) {
-      case FontVariant.normal:
-        return OptimusTypographyColor.secondary;
-      case FontVariant.bold:
-        return OptimusTypographyColor.primary;
-    }
-  }
+  OptimusTypographyColor get secondaryColor => switch (this) {
+        FontVariant.normal => OptimusTypographyColor.secondary,
+        FontVariant.bold => OptimusTypographyColor.primary,
+      };
 }

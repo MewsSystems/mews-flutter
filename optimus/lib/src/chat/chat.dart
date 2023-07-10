@@ -66,14 +66,10 @@ class OptimusChat extends StatelessWidget {
         ],
       );
 
-  Widget _buildBubble(int index) {
-    switch (_messages[index].alignment) {
-      case MessageAlignment.left:
-        return _buildBubbleStart(index);
-      case MessageAlignment.right:
-        return _buildBubbleEnd(index);
-    }
-  }
+  Widget _buildBubble(int index) => switch (_messages[index].alignment) {
+        MessageAlignment.left => _buildBubbleStart(index),
+        MessageAlignment.right => _buildBubbleEnd(index),
+      };
 
   Widget _buildBubbleStart(int index) => OptimusStack(
         direction: Axis.horizontal,
@@ -124,14 +120,10 @@ class OptimusChat extends StatelessWidget {
 
   double get _avatarWidth => hasAvatars ? spacing500 : 0;
 
-  Widget _buildStatus(int index) {
-    switch (_messages[index].alignment) {
-      case MessageAlignment.left:
-        return _buildStatusStart(index);
-      case MessageAlignment.right:
-        return _buildStatusEnd(index);
-    }
-  }
+  Widget _buildStatus(int index) => switch (_messages[index].alignment) {
+        MessageAlignment.left => _buildStatusStart(index),
+        MessageAlignment.right => _buildStatusEnd(index),
+      };
 
   Widget _buildStatusStart(int index) => Column(
         children: [
@@ -162,17 +154,13 @@ class OptimusChat extends StatelessWidget {
 
   Widget _buildStatusText(int index) {
     final message = _messages[index];
-    late final List<Widget> children;
-
-    switch (message.state) {
-      case MessageState.sending:
-        children = [
+    final List<Widget> children = switch (message.state) {
+      MessageState.sending => [
           _Status(child: Text(formatTime(message.time))),
           _Status(child: sending),
           const _StatusCircle(),
-        ];
-      case MessageState.sent:
-        children = [
+        ],
+      MessageState.sent => [
           _Status(child: Text(formatTime(message.time))),
           if (isFromCurrentUser(message)) ...[
             _Status(child: sent),
@@ -184,17 +172,16 @@ class OptimusChat extends StatelessWidget {
               ),
             ),
           ],
-        ];
-      case MessageState.error:
-        children = [
+        ],
+      MessageState.error => [
           _Status(child: error),
           const OptimusIcon(
             iconData: OptimusIcons.disable,
             iconSize: OptimusIconSize.small,
             colorOption: OptimusIconColorOption.danger,
           ),
-        ];
-    }
+        ],
+    };
 
     return OptimusStack(
       mainAxisAlignment: message.alignment.stackAlignment,
@@ -326,12 +313,8 @@ class _StatusCircle extends StatelessWidget {
 }
 
 extension on MessageAlignment {
-  OptimusStackAlignment get stackAlignment {
-    switch (this) {
-      case MessageAlignment.left:
-        return OptimusStackAlignment.start;
-      case MessageAlignment.right:
-        return OptimusStackAlignment.end;
-    }
-  }
+  OptimusStackAlignment get stackAlignment => switch (this) {
+        MessageAlignment.left => OptimusStackAlignment.start,
+        MessageAlignment.right => OptimusStackAlignment.end,
+      };
 }

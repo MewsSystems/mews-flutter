@@ -81,14 +81,10 @@ class OptimusCard extends StatelessWidget {
     );
   }
 
-  List<BoxShadow> get _shadows {
-    switch (variant) {
-      case OptimusBasicCardVariant.normal:
-        return elevation25;
-      case OptimusBasicCardVariant.overlay:
-        return elevation100;
-    }
-  }
+  List<BoxShadow> get _shadows => switch (variant) {
+        OptimusBasicCardVariant.normal => elevation25,
+        OptimusBasicCardVariant.overlay => elevation100,
+      };
 
   // TODO(VG): can be changed when final dark theme design is ready.
   Color _color(OptimusThemeData theme) =>
@@ -152,18 +148,13 @@ class OptimusNestedCard extends StatelessWidget {
           : null;
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  Color _color(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusNestedCardVariant.emphasized:
-        return theme.isDark
-            ? theme.colors.neutral400t24
-            : theme.colors.neutral500t8;
-      case OptimusNestedCardVariant.highlighted:
-        return theme.colors.primary500t8;
-      case OptimusNestedCardVariant.normal:
-        return theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
-    }
-  }
+  Color _color(OptimusThemeData theme) => switch (variant) {
+        OptimusNestedCardVariant.emphasized =>
+          theme.isDark ? theme.colors.neutral400t24 : theme.colors.neutral500t8,
+        OptimusNestedCardVariant.highlighted => theme.colors.primary500t8,
+        OptimusNestedCardVariant.normal =>
+          theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
+      };
 }
 
 class _Card extends StatelessWidget {
@@ -204,32 +195,13 @@ class _Card extends StatelessWidget {
     );
   }
 
-  BorderRadius get _borderRadius {
-    switch (attachment) {
-      case OptimusCardAttachment.none:
-        return const BorderRadius.all(borderRadius200);
-      case OptimusCardAttachment.left:
-        return const BorderRadius.only(
-          topRight: borderRadius200,
-          bottomRight: borderRadius200,
-        );
-      case OptimusCardAttachment.right:
-        return const BorderRadius.only(
-          topLeft: borderRadius200,
-          bottomLeft: borderRadius200,
-        );
-      case OptimusCardAttachment.top:
-        return const BorderRadius.only(
-          bottomLeft: borderRadius200,
-          bottomRight: borderRadius200,
-        );
-      case OptimusCardAttachment.bottom:
-        return const BorderRadius.only(
-          topLeft: borderRadius200,
-          topRight: borderRadius200,
-        );
-    }
-  }
+  BorderRadius get _borderRadius => switch (attachment) {
+        OptimusCardAttachment.none => _rounded,
+        OptimusCardAttachment.left => _roundedRight,
+        OptimusCardAttachment.right => _roundedLeft,
+        OptimusCardAttachment.top => _roundedBottom,
+        OptimusCardAttachment.bottom => _roundedTop,
+      };
 }
 
 class OptimusCardChildPadding extends StatelessWidget {
@@ -246,18 +218,29 @@ class OptimusCardChildPadding extends StatelessWidget {
   Widget build(BuildContext context) =>
       Padding(padding: _padding, child: child);
 
-  EdgeInsets get _padding {
-    switch (spacing) {
-      case OptimusCardSpacing.spacing0:
-        return EdgeInsets.zero;
-      case OptimusCardSpacing.spacing100:
-        return const EdgeInsets.all(spacing100);
-      case OptimusCardSpacing.spacing200:
-        return const EdgeInsets.all(spacing200);
-      case OptimusCardSpacing.spacing300:
-        return const EdgeInsets.all(spacing300);
-      case OptimusCardSpacing.spacing400:
-        return const EdgeInsets.all(spacing400);
-    }
-  }
+  EdgeInsets get _padding => switch (spacing) {
+        OptimusCardSpacing.spacing0 => EdgeInsets.zero,
+        OptimusCardSpacing.spacing100 => const EdgeInsets.all(spacing100),
+        OptimusCardSpacing.spacing200 => const EdgeInsets.all(spacing200),
+        OptimusCardSpacing.spacing300 => const EdgeInsets.all(spacing300),
+        OptimusCardSpacing.spacing400 => const EdgeInsets.all(spacing400),
+      };
 }
+
+const _rounded = BorderRadius.all(borderRadius200);
+const _roundedTop = BorderRadius.only(
+  topLeft: borderRadius200,
+  topRight: borderRadius200,
+);
+const _roundedBottom = BorderRadius.only(
+  bottomLeft: borderRadius200,
+  bottomRight: borderRadius200,
+);
+const _roundedLeft = BorderRadius.only(
+  topLeft: borderRadius200,
+  bottomLeft: borderRadius200,
+);
+const _roundedRight = BorderRadius.only(
+  topRight: borderRadius200,
+  bottomRight: borderRadius200,
+);

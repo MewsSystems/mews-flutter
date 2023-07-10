@@ -108,23 +108,13 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
       );
 
   TextStyle get _textStyle {
-    if (widget.value == null) {
-      switch (widget.size) {
-        case OptimusWidgetSize.small:
-          return preset200s.copyWith(color: _placeholderColor);
-        case OptimusWidgetSize.medium:
-        case OptimusWidgetSize.large:
-          return preset300s.copyWith(color: _placeholderColor);
-      }
-    } else {
-      switch (widget.size) {
-        case OptimusWidgetSize.small:
-          return preset200s.copyWith(color: _textColor);
-        case OptimusWidgetSize.medium:
-        case OptimusWidgetSize.large:
-          return preset300s.copyWith(color: _textColor);
-      }
-    }
+    final color = widget.value == null ? _placeholderColor : _textColor;
+    return switch (widget.size) {
+      OptimusWidgetSize.small => preset200s.copyWith(color: color),
+      OptimusWidgetSize.medium ||
+      OptimusWidgetSize.large =>
+        preset300s.copyWith(color: color),
+    };
   }
 
   Color get _placeholderColor =>

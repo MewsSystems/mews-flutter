@@ -75,21 +75,16 @@ class OptimusSplitButton<T> extends StatelessWidget {
         ],
       );
 
-  OptimusButtonVariant get _buttonVariant {
-    switch (variant) {
-      case OptimusSplitButtonVariant.defaultButton:
-        return OptimusButtonVariant.defaultButton;
-      case OptimusSplitButtonVariant.primary:
-        return OptimusButtonVariant.primary;
-    }
-  }
+  OptimusButtonVariant get _buttonVariant => switch (variant) {
+        OptimusSplitButtonVariant.defaultButton =>
+          OptimusButtonVariant.defaultButton,
+        OptimusSplitButtonVariant.primary => OptimusButtonVariant.primary,
+      };
 
-  OptimusDropdownButtonVariant get _dropdownButtonVariant {
-    switch (variant) {
-      case OptimusSplitButtonVariant.defaultButton:
-        return OptimusDropdownButtonVariant.defaultButton;
-      case OptimusSplitButtonVariant.primary:
-        return OptimusDropdownButtonVariant.primary;
-    }
-  }
+  OptimusDropdownButtonVariant get _dropdownButtonVariant => switch (variant) {
+        OptimusSplitButtonVariant.defaultButton =>
+          OptimusDropdownButtonVariant.defaultButton,
+        OptimusSplitButtonVariant.primary =>
+          OptimusDropdownButtonVariant.primary,
+      };
 }

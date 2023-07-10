@@ -96,18 +96,16 @@ class OptimusStack extends StatelessWidget {
         : Axis.horizontal;
   }
 
-  List<Widget> _children(BuildContext context) {
-    switch (distribution) {
-      case OptimusStackDistribution.basic:
-        return _childrenWithSpacing(context, children);
-      case OptimusStackDistribution.spaceBetween:
-        return children.intersperse(const Spacer()).toList();
-      case OptimusStackDistribution.stretch:
-        final wrappedChildren =
-            children.map((c) => Expanded(child: c)).toList();
-        return _childrenWithSpacing(context, wrappedChildren);
-    }
-  }
+  List<Widget> _children(BuildContext context) => switch (distribution) {
+        OptimusStackDistribution.basic =>
+          _childrenWithSpacing(context, children),
+        OptimusStackDistribution.spaceBetween =>
+          children.intersperse(const Spacer()).toList(),
+        OptimusStackDistribution.stretch => _childrenWithSpacing(
+            context,
+            children.map((c) => Expanded(child: c)).toList(),
+          ),
+      };
 
   List<Widget> _childrenWithSpacing(
     BuildContext context,
@@ -133,48 +131,28 @@ class OptimusStack extends StatelessWidget {
 }
 
 extension on OptimusStackSpacing {
-  double get size {
-    switch (this) {
-      case OptimusStackSpacing.spacing0:
-        return spacing0;
-      case OptimusStackSpacing.spacing25:
-        return spacing25;
-      case OptimusStackSpacing.spacing50:
-        return spacing50;
-      case OptimusStackSpacing.spacing100:
-        return spacing100;
-      case OptimusStackSpacing.spacing200:
-        return spacing200;
-      case OptimusStackSpacing.spacing300:
-        return spacing300;
-      case OptimusStackSpacing.spacing400:
-        return spacing400;
-      case OptimusStackSpacing.spacing500:
-        return spacing500;
-    }
-  }
+  double get size => switch (this) {
+        OptimusStackSpacing.spacing0 => spacing0,
+        OptimusStackSpacing.spacing25 => spacing25,
+        OptimusStackSpacing.spacing50 => spacing50,
+        OptimusStackSpacing.spacing100 => spacing100,
+        OptimusStackSpacing.spacing200 => spacing200,
+        OptimusStackSpacing.spacing300 => spacing300,
+        OptimusStackSpacing.spacing400 => spacing400,
+        OptimusStackSpacing.spacing500 => spacing500,
+      };
 }
 
 extension on OptimusStackAlignment {
-  CrossAxisAlignment get crossAxisAlignment {
-    switch (this) {
-      case OptimusStackAlignment.start:
-        return CrossAxisAlignment.start;
-      case OptimusStackAlignment.center:
-        return CrossAxisAlignment.center;
-      case OptimusStackAlignment.end:
-        return CrossAxisAlignment.end;
-    }
-  }
+  CrossAxisAlignment get crossAxisAlignment => switch (this) {
+        OptimusStackAlignment.start => CrossAxisAlignment.start,
+        OptimusStackAlignment.center => CrossAxisAlignment.center,
+        OptimusStackAlignment.end => CrossAxisAlignment.end,
+      };
 
-  MainAxisAlignment get mainAxisAlignment {
-    switch (this) {
-      case OptimusStackAlignment.start:
-        return MainAxisAlignment.start;
-      case OptimusStackAlignment.center:
-        return MainAxisAlignment.center;
-      case OptimusStackAlignment.end:
-        return MainAxisAlignment.end;
-    }
-  }
+  MainAxisAlignment get mainAxisAlignment => switch (this) {
+        OptimusStackAlignment.start => MainAxisAlignment.start,
+        OptimusStackAlignment.center => MainAxisAlignment.center,
+        OptimusStackAlignment.end => MainAxisAlignment.end,
+      };
 }

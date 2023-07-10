@@ -69,16 +69,11 @@ class OptimusIcon extends StatelessWidget {
     );
   }
 
-  double get _iconSize {
-    switch (iconSize) {
-      case OptimusIconSize.small:
-        return 16;
-      case OptimusIconSize.medium:
-        return 24;
-      case OptimusIconSize.large:
-        return 32;
-    }
-  }
+  double get _iconSize => switch (iconSize) {
+        OptimusIconSize.small => 16,
+        OptimusIconSize.medium => 24,
+        OptimusIconSize.large => 32,
+      };
 }
 
 /// Icons are symbols that provide a visual representation of meaning in
@@ -132,62 +127,44 @@ class OptimusSupplementaryIcon extends StatelessWidget {
 }
 
 extension on OptimusIconColorOption {
-  Color toIconColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusIconColorOption.basic:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-      case OptimusIconColorOption.primary:
-        return theme.colors.primary500;
-      case OptimusIconColorOption.success:
-        return theme.colors.success500;
-      case OptimusIconColorOption.info:
-        return theme.colors.info500;
-      case OptimusIconColorOption.warning:
-        return theme.colors.warning700;
-      case OptimusIconColorOption.danger:
-        return theme.colors.danger500;
-      case OptimusIconColorOption.subtle:
-        return theme.colors.neutral300;
-    }
-  }
+  Color toIconColor(OptimusThemeData theme) => switch (this) {
+        OptimusIconColorOption.basic =>
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
+        OptimusIconColorOption.primary => theme.colors.primary500,
+        OptimusIconColorOption.success => theme.colors.success500,
+        OptimusIconColorOption.info => theme.colors.info500,
+        OptimusIconColorOption.warning => theme.colors.warning700,
+        OptimusIconColorOption.danger => theme.colors.danger500,
+        OptimusIconColorOption.subtle => theme.colors.neutral300,
+      };
 
   Color toSupplementaryIconColor(OptimusThemeData theme) {
     if (theme.isDark) return theme.colors.neutral1000;
 
-    switch (this) {
-      case OptimusIconColorOption.basic:
-        return theme.colors.neutral500;
-      case OptimusIconColorOption.warning:
-        return theme.colors.neutral1000;
-      case OptimusIconColorOption.primary:
-      case OptimusIconColorOption.success:
-      case OptimusIconColorOption.info:
-      case OptimusIconColorOption.danger:
-      case OptimusIconColorOption.subtle:
-        return theme.colors.neutral0;
-    }
+    return switch (this) {
+      OptimusIconColorOption.basic => theme.colors.neutral500,
+      OptimusIconColorOption.warning => theme.colors.neutral1000,
+      OptimusIconColorOption.danger ||
+      OptimusIconColorOption.primary ||
+      OptimusIconColorOption.success ||
+      OptimusIconColorOption.info ||
+      OptimusIconColorOption.subtle =>
+        theme.colors.neutral0,
+    };
   }
 
-  Color toSupplementaryBackgroundColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusIconColorOption.basic:
-        return theme.colors.neutral50;
-      case OptimusIconColorOption.primary:
-        return theme.colors.primary500;
-      case OptimusIconColorOption.success:
-        return theme.colors.success500;
-      case OptimusIconColorOption.info:
-        return theme.colors.info500;
-      case OptimusIconColorOption.warning:
-        return theme.colors.warning500;
-      case OptimusIconColorOption.danger:
-        return theme.colors.danger500;
-      // ignore: no-equal-switch-case, temp duplication
-      case OptimusIconColorOption.subtle:
-        // TODO(VG): Add proper color when design is ready.
-        return theme.colors.neutral50;
-    }
-  }
+  Color toSupplementaryBackgroundColor(OptimusThemeData theme) =>
+      switch (this) {
+        OptimusIconColorOption.basic => theme.colors.neutral50,
+        OptimusIconColorOption.primary => theme.colors.primary500,
+        OptimusIconColorOption.success => theme.colors.success500,
+        OptimusIconColorOption.info => theme.colors.info500,
+        OptimusIconColorOption.warning => theme.colors.warning500,
+        OptimusIconColorOption.danger => theme.colors.danger500,
+        OptimusIconColorOption.subtle =>
+          // TODO(VG): Add proper color when design is ready.
+          theme.colors.neutral50,
+      };
 }
 
 const double _diameter = 64;

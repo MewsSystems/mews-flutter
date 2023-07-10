@@ -95,14 +95,10 @@ class OptimusNavListTile extends StatelessWidget {
         child: metadata,
       );
 
-  double get _contentSpacing {
-    switch (tileSize) {
-      case TileSize.normal:
-        return spacing200;
-      case TileSize.small:
-        return spacing100;
-    }
-  }
+  double get _contentSpacing => switch (tileSize) {
+        TileSize.normal => spacing200,
+        TileSize.small => spacing100,
+      };
 
   Widget get _headline => Padding(
         padding: const EdgeInsets.only(right: spacing100),

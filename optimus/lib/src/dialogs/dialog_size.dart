@@ -29,14 +29,9 @@ enum OptimusDialogType {
 }
 
 extension DialogSize on OptimusDialogSize {
-  double get width {
-    switch (this) {
-      case OptimusDialogSize.small:
-        return 320;
-      case OptimusDialogSize.regular:
-        return 576;
-      case OptimusDialogSize.large:
-        return 896;
-    }
-  }
+  double get width => switch (this) {
+        OptimusDialogSize.small => 320,
+        OptimusDialogSize.regular => 576,
+        OptimusDialogSize.large => 896,
+      };
 }

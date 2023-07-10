@@ -61,104 +61,70 @@ class BaseButton extends StatelessWidget {
         ),
       );
 
-  double get _iconSize {
-    switch (size) {
-      case OptimusWidgetSize.small:
-        return 16;
-      case OptimusWidgetSize.medium:
-      case OptimusWidgetSize.large:
-        return 24;
-    }
-  }
+  double get _iconSize => switch (size) {
+        OptimusWidgetSize.small => 16,
+        OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
+      };
 
-  Color _color(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusButtonVariant.defaultButton:
-        return theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50;
-      case OptimusButtonVariant.primary:
-        return theme.isDark ? theme.colors.primary700 : theme.colors.primary500;
-      case OptimusButtonVariant.text:
-        return Colors.transparent;
-      case OptimusButtonVariant.destructive:
-        return theme.colors.danger500;
-      case OptimusButtonVariant.warning:
-        return theme.colors.warning500;
-    }
-  }
+  Color _color(OptimusThemeData theme) => switch (variant) {
+        OptimusButtonVariant.defaultButton =>
+          theme.isDark ? theme.colors.neutral400 : theme.colors.neutral50,
+        OptimusButtonVariant.primary =>
+          theme.isDark ? theme.colors.primary700 : theme.colors.primary500,
+        OptimusButtonVariant.text => Colors.transparent,
+        OptimusButtonVariant.destructive => theme.colors.danger500,
+        OptimusButtonVariant.warning => theme.colors.warning500,
+      };
 
-  Color _badgeTextColor(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusButtonVariant.primary:
-        return theme.colors.primary500;
-      case OptimusButtonVariant.defaultButton:
-      case OptimusButtonVariant.text:
-        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
-      case OptimusButtonVariant.destructive:
-        return theme.colors.danger500;
-      case OptimusButtonVariant.warning:
-        return theme.colors.warning500;
-    }
-  }
+  Color _badgeTextColor(OptimusThemeData theme) => switch (variant) {
+        OptimusButtonVariant.primary => theme.colors.primary500,
+        OptimusButtonVariant.defaultButton ||
+        OptimusButtonVariant.text =>
+          theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
+        OptimusButtonVariant.destructive => theme.colors.danger500,
+        OptimusButtonVariant.warning => theme.colors.warning500,
+      };
 
-  Color _hoverColor(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusButtonVariant.defaultButton:
-        return theme.isDark ? theme.colors.neutral300 : theme.colors.neutral100;
-      case OptimusButtonVariant.primary:
-        return theme.isDark ? theme.colors.primary400 : theme.colors.primary700;
-      case OptimusButtonVariant.text:
-        return theme.colors.neutral500t8;
-      case OptimusButtonVariant.destructive:
-        return theme.colors.danger700;
-      case OptimusButtonVariant.warning:
-        return theme.colors.warning700;
-    }
-  }
+  Color _hoverColor(OptimusThemeData theme) => switch (variant) {
+        OptimusButtonVariant.defaultButton =>
+          theme.isDark ? theme.colors.neutral300 : theme.colors.neutral100,
+        OptimusButtonVariant.primary =>
+          theme.isDark ? theme.colors.primary400 : theme.colors.primary700,
+        OptimusButtonVariant.text => theme.colors.neutral500t8,
+        OptimusButtonVariant.destructive => theme.colors.danger700,
+        OptimusButtonVariant.warning => theme.colors.warning700,
+      };
 
-  Color _highLightColor(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusButtonVariant.defaultButton:
-        return theme.colors.neutral200;
-      case OptimusButtonVariant.primary:
-        return theme.isDark ? theme.colors.primary500 : theme.colors.primary900;
-      case OptimusButtonVariant.text:
-        return theme.colors.neutral500t16;
-      case OptimusButtonVariant.destructive:
-        return theme.colors.danger900;
-      case OptimusButtonVariant.warning:
-        return theme.colors.warning800;
-    }
-  }
+  Color _highLightColor(OptimusThemeData theme) => switch (variant) {
+        OptimusButtonVariant.defaultButton => theme.colors.neutral200,
+        OptimusButtonVariant.primary =>
+          theme.isDark ? theme.colors.primary500 : theme.colors.primary900,
+        OptimusButtonVariant.text => theme.colors.neutral500t16,
+        OptimusButtonVariant.destructive => theme.colors.danger900,
+        OptimusButtonVariant.warning => theme.colors.warning800,
+      };
 
-  Color _textColor(OptimusThemeData theme, Set<MaterialState> states) {
-    switch (variant) {
-      case OptimusButtonVariant.primary:
-        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
-      case OptimusButtonVariant.defaultButton:
-      case OptimusButtonVariant.text:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-      case OptimusButtonVariant.destructive:
-        return theme.colors.neutral0;
-      case OptimusButtonVariant.warning:
-        return states.isPressed
-            ? theme.colors.neutral0
-            : theme.colors.neutral900;
-    }
-  }
+  Color _textColor(OptimusThemeData theme, Set<MaterialState> states) =>
+      switch (variant) {
+        OptimusButtonVariant.primary =>
+          theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
+        OptimusButtonVariant.defaultButton ||
+        OptimusButtonVariant.text =>
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
+        OptimusButtonVariant.destructive => theme.colors.neutral0,
+        OptimusButtonVariant.warning =>
+          states.isPressed ? theme.colors.neutral0 : theme.colors.neutral900,
+      };
 
-  Color _badgeColor(OptimusThemeData theme) {
-    switch (variant) {
-      case OptimusButtonVariant.primary:
-        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
-      case OptimusButtonVariant.defaultButton:
-      case OptimusButtonVariant.text:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-      case OptimusButtonVariant.destructive:
-        return theme.colors.neutral0;
-      case OptimusButtonVariant.warning:
-        return theme.colors.neutral900;
-    }
-  }
+  Color _badgeColor(OptimusThemeData theme) => switch (variant) {
+        OptimusButtonVariant.primary =>
+          theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
+        OptimusButtonVariant.defaultButton ||
+        OptimusButtonVariant.text =>
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
+        OptimusButtonVariant.destructive => theme.colors.neutral0,
+        OptimusButtonVariant.warning => theme.colors.neutral900,
+      };
 
   @override
   Widget build(BuildContext context) {

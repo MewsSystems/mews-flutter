@@ -161,47 +161,30 @@ class OptimusDialog extends StatelessWidget {
 
   final OptimusDialogType type;
 
-  OptimusDialogSize _autoSize(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-        return OptimusDialogSize.small;
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return size;
-    }
-  }
+  OptimusDialogSize _autoSize(BuildContext context) =>
+      switch (MediaQuery.of(context).screenBreakpoint) {
+        Breakpoint.extraSmall || Breakpoint.small => OptimusDialogSize.small,
+        Breakpoint.medium || Breakpoint.large || Breakpoint.extraLarge => size,
+      };
 
-  Alignment _alignment(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-        return _smallScreenAlignment;
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return _largeScreenAlignment;
-    }
-  }
+  Alignment _alignment(BuildContext context) =>
+      switch (MediaQuery.of(context).screenBreakpoint) {
+        Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
+        Breakpoint.medium ||
+        Breakpoint.large ||
+        Breakpoint.extraLarge =>
+          _largeScreenAlignment,
+      };
 
-  Alignment get _smallScreenAlignment {
-    switch (position) {
-      case OptimusDialogPosition.center:
-        return Alignment.center;
-      case OptimusDialogPosition.corner:
-        return Alignment.topCenter;
-    }
-  }
+  Alignment get _smallScreenAlignment => switch (position) {
+        OptimusDialogPosition.center => Alignment.center,
+        OptimusDialogPosition.corner => Alignment.topCenter,
+      };
 
-  Alignment get _largeScreenAlignment {
-    switch (position) {
-      case OptimusDialogPosition.center:
-        return Alignment.center;
-      case OptimusDialogPosition.corner:
-        return Alignment.bottomRight;
-    }
-  }
+  Alignment get _largeScreenAlignment => switch (position) {
+        OptimusDialogPosition.center => Alignment.center,
+        OptimusDialogPosition.corner => Alignment.bottomRight,
+      };
 
   @override
   Widget build(BuildContext context) {
