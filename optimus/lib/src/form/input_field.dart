@@ -310,31 +310,25 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         ],
       );
 
-  void _onStateUpdate() {
-    setState(() {});
-  }
+  void _onStateUpdate() => setState(() {});
 
-  EdgeInsets get _textPadding {
-    switch (widget.size) {
-      case OptimusWidgetSize.small:
-        return const EdgeInsets.only(left: 16, right: 8, top: 5, bottom: 6);
-      case OptimusWidgetSize.medium:
-        return const EdgeInsets.only(left: 16, right: 8, top: 8, bottom: 8);
-      case OptimusWidgetSize.large:
-        return const EdgeInsets.only(left: 16, right: 8, top: 12, bottom: 12);
-    }
-  }
+  EdgeInsets get _textPadding => switch (widget.size) {
+        OptimusWidgetSize.small =>
+          const EdgeInsets.only(left: 16, right: 8, top: 5, bottom: 6),
+        OptimusWidgetSize.medium =>
+          const EdgeInsets.only(left: 16, right: 8, top: 8, bottom: 8),
+        OptimusWidgetSize.large =>
+          const EdgeInsets.only(left: 16, right: 8, top: 12, bottom: 12),
+      };
 
-  EdgeInsets get _textWithPrefixPadding {
-    switch (widget.size) {
-      case OptimusWidgetSize.small:
-        return const EdgeInsets.only(left: 16, right: 8, top: 5, bottom: 6);
-      case OptimusWidgetSize.medium:
-        return const EdgeInsets.only(left: 10, right: 8, top: 8, bottom: 8);
-      case OptimusWidgetSize.large:
-        return const EdgeInsets.only(left: 10, right: 8, top: 12, bottom: 12);
-    }
-  }
+  EdgeInsets get _textWithPrefixPadding => switch (widget.size) {
+        OptimusWidgetSize.small =>
+          const EdgeInsets.only(left: 16, right: 8, top: 5, bottom: 6),
+        OptimusWidgetSize.medium =>
+          const EdgeInsets.only(left: 10, right: 8, top: 8, bottom: 8),
+        OptimusWidgetSize.large =>
+          const EdgeInsets.only(left: 10, right: 8, top: 12, bottom: 12),
+      };
 }
 
 class _Suffix extends StatelessWidget {

@@ -44,59 +44,43 @@ const TextStyle baseTextStyle = TextStyle(
   leadingDistribution: TextLeadingDistribution.even,
 );
 
-TextStyle preset700b(Breakpoint breakpoint) {
-  switch (breakpoint.scale) {
-    case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 28, fontWeight: FontWeight.w600);
-    case _Scale.light:
-      return baseTextStyle.copyWith(fontSize: 36, fontWeight: FontWeight.w600);
-  }
-}
+TextStyle preset700b(Breakpoint breakpoint) => switch (breakpoint.scale) {
+      _Scale.dense =>
+        baseTextStyle.copyWith(fontSize: 28, fontWeight: FontWeight.w600),
+      _Scale.light =>
+        baseTextStyle.copyWith(fontSize: 36, fontWeight: FontWeight.w600),
+    };
 
-TextStyle preset600b(Breakpoint breakpoint) {
-  switch (breakpoint.scale) {
-    case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 22, fontWeight: FontWeight.w600);
-    case _Scale.light:
-      return baseTextStyle.copyWith(fontSize: 28, fontWeight: FontWeight.w600);
-  }
-}
+TextStyle preset600b(Breakpoint breakpoint) => switch (breakpoint.scale) {
+      _Scale.dense =>
+        baseTextStyle.copyWith(fontSize: 22, fontWeight: FontWeight.w600),
+      _Scale.light =>
+        baseTextStyle.copyWith(fontSize: 28, fontWeight: FontWeight.w600),
+    };
 
-TextStyle preset500b(Breakpoint breakpoint) {
-  switch (breakpoint.scale) {
-    case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w500);
-    case _Scale.light:
-      return baseTextStyle.copyWith(fontSize: 24, fontWeight: FontWeight.w500);
-  }
-}
+TextStyle preset500b(Breakpoint breakpoint) => switch (breakpoint.scale) {
+      _Scale.dense =>
+        baseTextStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w500),
+      _Scale.light =>
+        baseTextStyle.copyWith(fontSize: 24, fontWeight: FontWeight.w500),
+    };
 
-TextStyle preset400b(Breakpoint breakpoint) {
-  switch (breakpoint.scale) {
-    case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
-    case _Scale.light:
-      return baseTextStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w500);
-  }
-}
+TextStyle preset400b(Breakpoint breakpoint) => switch (breakpoint.scale) {
+      _Scale.dense =>
+        baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w500),
+      _Scale.light =>
+        baseTextStyle.copyWith(fontSize: 20, fontWeight: FontWeight.w500),
+    };
 
-TextStyle preset400s(Breakpoint breakpoint) {
-  switch (breakpoint.scale) {
-    case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 18);
-    case _Scale.light:
-      return baseTextStyle.copyWith(fontSize: 20);
-  }
-}
+TextStyle preset400s(Breakpoint breakpoint) => switch (breakpoint.scale) {
+      _Scale.dense => baseTextStyle.copyWith(fontSize: 18),
+      _Scale.light => baseTextStyle.copyWith(fontSize: 20),
+    };
 
-TextStyle preset400r(Breakpoint breakpoint) {
-  switch (breakpoint.scale) {
-    case _Scale.dense:
-      return baseTextStyle.copyWith(fontSize: 18);
-    case _Scale.light:
-      return baseTextStyle.copyWith(fontSize: 20);
-  }
-}
+TextStyle preset400r(Breakpoint breakpoint) => switch (breakpoint.scale) {
+      _Scale.dense => baseTextStyle.copyWith(fontSize: 18),
+      _Scale.light => baseTextStyle.copyWith(fontSize: 20),
+    };
 
 TextStyle get preset300b => baseTextStyle.copyWith(
       fontSize: 16,
@@ -143,15 +127,11 @@ TextStyle get preset50b => baseTextStyle.copyWith(
     );
 
 extension on Breakpoint {
-  _Scale get scale {
-    switch (this) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-      case Breakpoint.medium:
-        return _Scale.dense;
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return _Scale.light;
-    }
-  }
+  _Scale get scale => switch (this) {
+        Breakpoint.extraSmall ||
+        Breakpoint.small ||
+        Breakpoint.medium =>
+          _Scale.dense,
+        Breakpoint.large || Breakpoint.extraLarge => _Scale.light,
+      };
 }

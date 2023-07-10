@@ -104,45 +104,30 @@ class _Bubble extends StatelessWidget {
     );
   }
 
-  Color _getBackgroundColor(OptimusThemeData theme) {
-    switch (message.color) {
-      case MessageColor.neutral:
-        return theme.colors.neutral25;
-      case MessageColor.dark:
-        return theme.colors.primary;
-      case MessageColor.light:
-        return theme.colors.primary500t16;
-    }
-  }
+  Color _getBackgroundColor(OptimusThemeData theme) => switch (message.color) {
+        MessageColor.neutral => theme.colors.neutral25,
+        MessageColor.dark => theme.colors.primary,
+        MessageColor.light => theme.colors.primary500t16,
+      };
 
-  Color _getTextColor(OptimusThemeData theme) {
-    switch (message.color) {
-      case MessageColor.neutral:
-        return theme.colors.neutral1000;
-      case MessageColor.light:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
-      case MessageColor.dark:
-        return theme.colors.neutral0;
-    }
-  }
+  Color _getTextColor(OptimusThemeData theme) => switch (message.color) {
+        MessageColor.neutral => theme.colors.neutral1000,
+        MessageColor.light =>
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
+        MessageColor.dark => theme.colors.neutral0,
+      };
 }
 
 extension on MessageAlignment {
-  EdgeInsetsGeometry get horizontalPadding {
-    switch (this) {
-      case MessageAlignment.left:
-        return const EdgeInsets.only(left: spacing100, right: 0);
-      case MessageAlignment.right:
-        return const EdgeInsets.only(left: 0, right: spacing100);
-    }
-  }
+  EdgeInsetsGeometry get horizontalPadding => switch (this) {
+        MessageAlignment.left =>
+          const EdgeInsets.only(left: spacing100, right: 0),
+        MessageAlignment.right =>
+          const EdgeInsets.only(left: 0, right: spacing100),
+      };
 
-  CrossAxisAlignment get crossAxisAlignment {
-    switch (this) {
-      case MessageAlignment.left:
-        return CrossAxisAlignment.start;
-      case MessageAlignment.right:
-        return CrossAxisAlignment.end;
-    }
-  }
+  CrossAxisAlignment get crossAxisAlignment => switch (this) {
+        MessageAlignment.left => CrossAxisAlignment.start,
+        MessageAlignment.right => CrossAxisAlignment.end,
+      };
 }

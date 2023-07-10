@@ -64,34 +64,21 @@ class OptimusCircleLoader extends StatelessWidget {
   /// Controls appearance of the loader.
   final OptimusCircleLoaderAppearance appearance;
 
-  double get _loaderSize {
-    switch (size) {
-      case OptimusCircleLoaderSize.small:
-        return 24;
-      case OptimusCircleLoaderSize.medium:
-        return 40;
-      case OptimusCircleLoaderSize.large:
-        return 56;
-    }
-  }
+  double get _loaderSize => switch (size) {
+        OptimusCircleLoaderSize.small => 24,
+        OptimusCircleLoaderSize.medium => 40,
+        OptimusCircleLoaderSize.large => 56,
+      };
 
-  Color _getIndicatorColor(OptimusThemeData theme) {
-    switch (appearance) {
-      case OptimusCircleLoaderAppearance.normal:
-        return theme.colors.primary500;
-      case OptimusCircleLoaderAppearance.contrast:
-        return theme.colors.neutral0;
-    }
-  }
+  Color _getIndicatorColor(OptimusThemeData theme) => switch (appearance) {
+        OptimusCircleLoaderAppearance.normal => theme.colors.primary500,
+        OptimusCircleLoaderAppearance.contrast => theme.colors.neutral0,
+      };
 
-  Color _getTrackColor(OptimusThemeData theme) {
-    switch (appearance) {
-      case OptimusCircleLoaderAppearance.normal:
-        return theme.colors.neutral50;
-      case OptimusCircleLoaderAppearance.contrast:
-        return theme.colors.neutral0t32;
-    }
-  }
+  Color _getTrackColor(OptimusThemeData theme) => switch (appearance) {
+        OptimusCircleLoaderAppearance.normal => theme.colors.neutral50,
+        OptimusCircleLoaderAppearance.contrast => theme.colors.neutral0t32,
+      };
 
   @override
   Widget build(BuildContext context) {

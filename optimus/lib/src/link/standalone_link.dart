@@ -75,21 +75,13 @@ class OptimusStandaloneLink extends StatelessWidget {
 }
 
 extension on OptimusStandaloneLinkSize {
-  TextStyle get linkStyle {
-    switch (this) {
-      case OptimusStandaloneLinkSize.small:
-        return preset200b;
-      case OptimusStandaloneLinkSize.normal:
-        return preset300b;
-    }
-  }
+  TextStyle get linkStyle => switch (this) {
+        OptimusStandaloneLinkSize.small => preset200b,
+        OptimusStandaloneLinkSize.normal => preset300b,
+      };
 
-  double get iconSize {
-    switch (this) {
-      case OptimusStandaloneLinkSize.small:
-        return 14;
-      case OptimusStandaloneLinkSize.normal:
-        return 16;
-    }
-  }
+  double get iconSize => switch (this) {
+        OptimusStandaloneLinkSize.small => 14,
+        OptimusStandaloneLinkSize.normal => 16,
+      };
 }

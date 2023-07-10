@@ -64,45 +64,29 @@ class OptimusMewsLogo extends StatelessWidget {
         color: _color,
       );
 
-  IconData get _logoIcon {
-    switch (logoVariant) {
-      case OptimusMewsLogoVariant.wordmark:
-        return OptimusIcons.mews_logo;
-      case OptimusMewsLogoVariant.logomark:
-        return OptimusIcons.mews_logo_small;
-    }
-  }
+  IconData get _logoIcon => switch (logoVariant) {
+        OptimusMewsLogoVariant.wordmark => OptimusIcons.mews_logo,
+        OptimusMewsLogoVariant.logomark => OptimusIcons.mews_logo_small,
+      };
 
-  double get _size {
-    switch (sizeVariant) {
-      case OptimusMewsLogoSizeVariant.large:
-        return 24;
-      case OptimusMewsLogoSizeVariant.medium:
-        return 16;
-      case OptimusMewsLogoSizeVariant.small:
-        return 8;
-    }
-  }
+  double get _size => switch (sizeVariant) {
+        OptimusMewsLogoSizeVariant.large => 24,
+        OptimusMewsLogoSizeVariant.medium => 16,
+        OptimusMewsLogoSizeVariant.small => 8,
+      };
 
-  Color get _color {
-    switch (colorVariant) {
-      case OptimusMewsLogoColorVariant.black:
-        return Colors.black;
-      case OptimusMewsLogoColorVariant.white:
-        return Colors.white;
-    }
-  }
+  Color get _color => switch (colorVariant) {
+        OptimusMewsLogoColorVariant.black => Colors.black,
+        OptimusMewsLogoColorVariant.white => Colors.white,
+      };
 
-  EdgeInsets get _margin {
-    switch (alignVariant) {
-      case OptimusMewsLogoAlignVariant.topLeft:
-        return EdgeInsets.only(bottom: _size, right: _size);
-      case OptimusMewsLogoAlignVariant.topCenter:
-        return EdgeInsets.fromLTRB(_size, 0, _size, _size);
-      case OptimusMewsLogoAlignVariant.center:
-        return EdgeInsets.all(_size);
-    }
-  }
+  EdgeInsets get _margin => switch (alignVariant) {
+        OptimusMewsLogoAlignVariant.topLeft =>
+          EdgeInsets.only(bottom: _size, right: _size),
+        OptimusMewsLogoAlignVariant.topCenter =>
+          EdgeInsets.fromLTRB(_size, 0, _size, _size),
+        OptimusMewsLogoAlignVariant.center => EdgeInsets.all(_size),
+      };
 
   @override
   Widget build(BuildContext context) => Container(

@@ -157,60 +157,36 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 const double _dropdownWidth = 280;
 
 extension on OptimusWidgetSize {
-  double get iconSize {
-    switch (this) {
-      case OptimusWidgetSize.small:
-        return 16;
-      case OptimusWidgetSize.medium:
-      case OptimusWidgetSize.large:
-        return 24;
-    }
-  }
+  double get iconSize => switch (this) {
+        OptimusWidgetSize.small => 16,
+        OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
+      };
 }
 
 extension on OptimusDropdownButtonVariant {
-  Color normalColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral50;
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.primary500;
-      case OptimusDropdownButtonVariant.text:
-        return Colors.transparent;
-    }
-  }
+  Color normalColor(OptimusThemeData theme) => switch (this) {
+        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral50,
+        OptimusDropdownButtonVariant.primary => theme.colors.primary500,
+        OptimusDropdownButtonVariant.text => Colors.transparent,
+      };
 
-  Color hoverColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral100;
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.primary700;
-      case OptimusDropdownButtonVariant.text:
-        return theme.colors.neutral500t8;
-    }
-  }
+  Color hoverColor(OptimusThemeData theme) => switch (this) {
+        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral100,
+        OptimusDropdownButtonVariant.primary => theme.colors.primary700,
+        OptimusDropdownButtonVariant.text => theme.colors.neutral500t8,
+      };
 
-  Color highlightColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral200;
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.primary900;
-      case OptimusDropdownButtonVariant.text:
-        return theme.colors.neutral500t16;
-    }
-  }
+  Color highlightColor(OptimusThemeData theme) => switch (this) {
+        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral200,
+        OptimusDropdownButtonVariant.primary => theme.colors.primary900,
+        OptimusDropdownButtonVariant.text => theme.colors.neutral500t16,
+      };
 
   // TODO(VG): can be changed when final dark theme design is ready.
-  Color textColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusDropdownButtonVariant.primary:
-        return theme.colors.neutral0;
-      case OptimusDropdownButtonVariant.defaultButton:
-        return theme.colors.neutral500;
-      case OptimusDropdownButtonVariant.text:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-    }
-  }
+  Color textColor(OptimusThemeData theme) => switch (this) {
+        OptimusDropdownButtonVariant.primary => theme.colors.neutral0,
+        OptimusDropdownButtonVariant.defaultButton => theme.colors.neutral500,
+        OptimusDropdownButtonVariant.text =>
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
+      };
 }

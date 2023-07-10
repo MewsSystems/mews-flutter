@@ -105,16 +105,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           borderRadius: const BorderRadius.all(borderRadius50),
         );
 
-  double get _containerSize {
-    switch (widget.size) {
-      case OptimusWidgetSize.small:
-        return 32;
-      case OptimusWidgetSize.medium:
-        return 40;
-      case OptimusWidgetSize.large:
-        return 48;
-    }
-  }
+  double get _containerSize => switch (widget.size) {
+        OptimusWidgetSize.small => 32,
+        OptimusWidgetSize.medium => 40,
+        OptimusWidgetSize.large => 48,
+      };
 
   Color get _color => _isTappedDown
       ? _highlightColor
@@ -122,78 +117,53 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           ? _hoverColor
           : _normalColor;
 
-  Color get _normalColor {
-    switch (widget.variant) {
-      case OptimusIconButtonVariant.defaultButton:
-        return theme.colors.neutral50;
-      case OptimusIconButtonVariant.destructive:
-        return theme.colors.danger500;
-      case OptimusIconButtonVariant.primary:
-      case OptimusIconButtonVariant.float:
-        return theme.colors.primary500;
-      case OptimusIconButtonVariant.text:
-      case OptimusIconButtonVariant.bare:
-        return Colors.transparent;
-    }
-  }
+  Color get _normalColor => switch (widget.variant) {
+        OptimusIconButtonVariant.defaultButton => theme.colors.neutral50,
+        OptimusIconButtonVariant.destructive => theme.colors.danger500,
+        OptimusIconButtonVariant.primary ||
+        OptimusIconButtonVariant.float =>
+          theme.colors.primary500,
+        OptimusIconButtonVariant.text ||
+        OptimusIconButtonVariant.bare =>
+          Colors.transparent,
+      };
 
-  Color get _hoverColor {
-    switch (widget.variant) {
-      case OptimusIconButtonVariant.defaultButton:
-        return theme.colors.neutral100;
-      case OptimusIconButtonVariant.text:
-        return theme.colors.neutral500t8;
-      case OptimusIconButtonVariant.destructive:
-        return theme.colors.danger700;
-      case OptimusIconButtonVariant.primary:
-      case OptimusIconButtonVariant.float:
-        return theme.colors.primary700;
-      case OptimusIconButtonVariant.bare:
-        return Colors.transparent;
-    }
-  }
+  Color get _hoverColor => switch (widget.variant) {
+        OptimusIconButtonVariant.defaultButton => theme.colors.neutral100,
+        OptimusIconButtonVariant.text => theme.colors.neutral500t8,
+        OptimusIconButtonVariant.destructive => theme.colors.danger700,
+        OptimusIconButtonVariant.primary ||
+        OptimusIconButtonVariant.float =>
+          theme.colors.primary700,
+        OptimusIconButtonVariant.bare => Colors.transparent,
+      };
 
-  Color get _highlightColor {
-    switch (widget.variant) {
-      case OptimusIconButtonVariant.defaultButton:
-        return theme.colors.neutral200;
-      case OptimusIconButtonVariant.text:
-        return theme.colors.neutral500t16;
-      case OptimusIconButtonVariant.destructive:
-        return theme.colors.danger900;
-      case OptimusIconButtonVariant.primary:
-      case OptimusIconButtonVariant.float:
-        return theme.colors.primary900;
-      case OptimusIconButtonVariant.bare:
-        return Colors.transparent;
-    }
-  }
+  Color get _highlightColor => switch (widget.variant) {
+        OptimusIconButtonVariant.defaultButton => theme.colors.neutral200,
+        OptimusIconButtonVariant.text => theme.colors.neutral500t16,
+        OptimusIconButtonVariant.destructive => theme.colors.danger900,
+        OptimusIconButtonVariant.primary ||
+        OptimusIconButtonVariant.float =>
+          theme.colors.primary900,
+        OptimusIconButtonVariant.bare => Colors.transparent,
+      };
 
-  double get _iconSize {
-    switch (widget.size) {
-      case OptimusWidgetSize.small:
-        return 16;
-      case OptimusWidgetSize.medium:
-      case OptimusWidgetSize.large:
-        return 24;
-    }
-  }
+  double get _iconSize => switch (widget.size) {
+        OptimusWidgetSize.small => 16,
+        OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
+      };
 
-  Color get _iconColor {
-    switch (widget.variant) {
-      case OptimusIconButtonVariant.primary:
-      case OptimusIconButtonVariant.destructive:
-      case OptimusIconButtonVariant.float:
-        return theme.colors.neutral0;
-      case OptimusIconButtonVariant.defaultButton:
-        return theme.colors.neutral500;
-      case OptimusIconButtonVariant.text:
-        // TODO(V): can be changed when final dark theme design is ready.
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500;
-      case OptimusIconButtonVariant.bare:
-        return _bareIconColor;
-    }
-  }
+  Color get _iconColor => switch (widget.variant) {
+        OptimusIconButtonVariant.primary ||
+        OptimusIconButtonVariant.destructive ||
+        OptimusIconButtonVariant.float =>
+          theme.colors.neutral0,
+        OptimusIconButtonVariant.defaultButton => theme.colors.neutral500,
+        OptimusIconButtonVariant.text =>
+          // TODO(V): can be changed when final dark theme design is ready.
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
+        OptimusIconButtonVariant.bare => _bareIconColor,
+      };
 
   // TODO(V): can be changed when final dark theme design is ready.
   Color get _bareIconColor =>

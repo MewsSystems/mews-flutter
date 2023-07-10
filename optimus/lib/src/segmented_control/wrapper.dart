@@ -47,43 +47,34 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
     final leftPosition =
         (maxWidth / widget.listSize) * widget.selectedItemIndex;
 
-    switch (_position) {
-      case _ItemPosition.first:
-        return leftPosition;
-      case _ItemPosition.inBetween:
-      case _ItemPosition.last:
-        return leftPosition - _borderWidth;
-    }
+    return switch (_position) {
+      _ItemPosition.first => leftPosition,
+      _ItemPosition.inBetween ||
+      _ItemPosition.last =>
+        leftPosition - _borderWidth,
+    };
   }
 
   double _width(double maxWidth) {
     final itemWidth = maxWidth / widget.listSize;
 
-    switch (_position) {
-      case _ItemPosition.first:
-        return itemWidth;
-      case _ItemPosition.inBetween:
-      case _ItemPosition.last:
-        return itemWidth + _borderWidth;
-    }
+    return switch (_position) {
+      _ItemPosition.first => itemWidth,
+      _ItemPosition.inBetween || _ItemPosition.last => itemWidth + _borderWidth,
+    };
   }
 
-  BorderRadiusGeometry get _borderRadius {
-    switch (_position) {
-      case _ItemPosition.first:
-        return const BorderRadius.only(
-          topLeft: borderRadius50,
-          bottomLeft: borderRadius50,
-        );
-      case _ItemPosition.inBetween:
-        return BorderRadius.zero;
-      case _ItemPosition.last:
-        return const BorderRadius.only(
-          topRight: borderRadius50,
-          bottomRight: borderRadius50,
-        );
-    }
-  }
+  BorderRadiusGeometry get _borderRadius => switch (_position) {
+        _ItemPosition.first => const BorderRadius.only(
+            topLeft: borderRadius50,
+            bottomLeft: borderRadius50,
+          ),
+        _ItemPosition.inBetween => BorderRadius.zero,
+        _ItemPosition.last => const BorderRadius.only(
+            topRight: borderRadius50,
+            bottomRight: borderRadius50,
+          ),
+      };
 
   _ItemPosition get _position {
     if (widget.selectedItemIndex == 0) {

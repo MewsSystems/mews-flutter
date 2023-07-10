@@ -37,17 +37,14 @@ class OptimusIconList extends StatelessWidget {
     );
   }
 
-  OptimusIconListSize _getListSize(BuildContext context) {
-    switch (MediaQuery.of(context).screenBreakpoint) {
-      case Breakpoint.extraSmall:
-      case Breakpoint.small:
-        return OptimusIconListSize.small;
-      case Breakpoint.medium:
-      case Breakpoint.large:
-      case Breakpoint.extraLarge:
-        return OptimusIconListSize.large;
-    }
-  }
+  OptimusIconListSize _getListSize(BuildContext context) =>
+      switch (MediaQuery.of(context).screenBreakpoint) {
+        Breakpoint.extraSmall || Breakpoint.small => OptimusIconListSize.small,
+        Breakpoint.medium ||
+        Breakpoint.large ||
+        Breakpoint.extraLarge =>
+          OptimusIconListSize.large,
+      };
 }
 
 enum OptimusIconListSize {
@@ -131,23 +128,15 @@ class _ListTile extends StatelessWidget {
     );
   }
 
-  TextStyle get _labelStyle {
-    switch (size) {
-      case OptimusIconListSize.large:
-        return preset300s;
-      case OptimusIconListSize.small:
-        return preset200s;
-    }
-  }
+  TextStyle get _labelStyle => switch (size) {
+        OptimusIconListSize.large => preset300s,
+        OptimusIconListSize.small => preset200s,
+      };
 
-  TextStyle get _descriptionStyle {
-    switch (size) {
-      case OptimusIconListSize.large:
-        return preset200s;
-      case OptimusIconListSize.small:
-        return preset100s;
-    }
-  }
+  TextStyle get _descriptionStyle => switch (size) {
+        OptimusIconListSize.large => preset200s,
+        OptimusIconListSize.small => preset100s,
+      };
 }
 
 extension on String {

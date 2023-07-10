@@ -52,18 +52,15 @@ class StepBarItem extends StatelessWidget {
   final OptimusStepBarType type;
   final String indicatorText;
 
-  Widget get _icon {
-    switch (type) {
-      case OptimusStepBarType.icon:
-        return StepBarItemIconIndicator(
-          icon: item.icon,
-          state: state,
-          type: type,
-        );
-      case OptimusStepBarType.numbered:
-        return StepBarItemNumberIndicator(state: state, text: indicatorText);
-    }
-  }
+  Widget get _icon => switch (type) {
+        OptimusStepBarType.icon => StepBarItemIconIndicator(
+            icon: item.icon,
+            state: state,
+            type: type,
+          ),
+        OptimusStepBarType.numbered =>
+          StepBarItemNumberIndicator(state: state, text: indicatorText),
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -221,17 +218,15 @@ class StepBarSpacer extends StatelessWidget {
     final theme = OptimusTheme.of(context);
     final enabled = nextItemState.isAccessible;
     final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
-    switch (layout) {
-      case Axis.horizontal:
-        return Flexible(
+    return switch (layout) {
+      Axis.horizontal => Flexible(
           child: Container(
             constraints: const BoxConstraints(minWidth: spacerMinWidth),
             height: _spacerThickness,
             color: color,
           ),
-        );
-      case Axis.vertical:
-        return Padding(
+        ),
+      Axis.vertical => Padding(
           padding: const EdgeInsets.only(
             left: _verticalSpacerLeftPadding,
             bottom: spacing100,
@@ -242,47 +237,38 @@ class StepBarSpacer extends StatelessWidget {
             width: _spacerThickness,
             child: Container(color: color),
           ),
-        );
-    }
+        ),
+    };
   }
 }
 
 extension OptimusStepBarItemTheme on OptimusStepBarItemState {
-  Color iconBackgroundColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusStepBarItemState.completed:
-      case OptimusStepBarItemState.active:
-        return theme.colors.primary;
-      case OptimusStepBarItemState.enabled:
-      case OptimusStepBarItemState.disabled:
-        return theme.isDark
-            ? theme.colors.neutral500t40
-            : theme.colors.neutral50;
-    }
-  }
+  Color iconBackgroundColor(OptimusThemeData theme) => switch (this) {
+        OptimusStepBarItemState.completed ||
+        OptimusStepBarItemState.active =>
+          theme.colors.primary,
+        OptimusStepBarItemState.enabled ||
+        OptimusStepBarItemState.disabled =>
+          theme.isDark ? theme.colors.neutral500t40 : theme.colors.neutral50,
+      };
 
-  Color textColor(OptimusThemeData theme) {
-    switch (this) {
-      case OptimusStepBarItemState.completed:
-        return theme.colors.primary;
-      case OptimusStepBarItemState.active:
-        return theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0;
-      case OptimusStepBarItemState.enabled:
-      case OptimusStepBarItemState.disabled:
-        return theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
-    }
-  }
+  Color textColor(OptimusThemeData theme) => switch (this) {
+        OptimusStepBarItemState.completed => theme.colors.primary,
+        OptimusStepBarItemState.active =>
+          theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
+        OptimusStepBarItemState.enabled ||
+        OptimusStepBarItemState.disabled =>
+          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
+      };
 
-  OptimusIconColorOption get iconColor {
-    switch (this) {
-      case OptimusStepBarItemState.completed:
-      case OptimusStepBarItemState.active:
-        return OptimusIconColorOption.primary;
-      case OptimusStepBarItemState.enabled:
-      case OptimusStepBarItemState.disabled:
-        return OptimusIconColorOption.basic;
-    }
-  }
+  OptimusIconColorOption get iconColor => switch (this) {
+        OptimusStepBarItemState.completed ||
+        OptimusStepBarItemState.active =>
+          OptimusIconColorOption.primary,
+        OptimusStepBarItemState.enabled ||
+        OptimusStepBarItemState.disabled =>
+          OptimusIconColorOption.basic,
+      };
 
   bool get isAccessible =>
       this == OptimusStepBarItemState.completed ||

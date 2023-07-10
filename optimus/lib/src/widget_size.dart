@@ -1,14 +1,9 @@
 enum OptimusWidgetSize { small, medium, large }
 
 extension Value on OptimusWidgetSize {
-  double get value {
-    switch (this) {
-      case OptimusWidgetSize.small:
-        return 32;
-      case OptimusWidgetSize.medium:
-        return 40;
-      case OptimusWidgetSize.large:
-        return 48;
-    }
-  }
+  double get value => switch (this) {
+        OptimusWidgetSize.small => 32,
+        OptimusWidgetSize.medium => 40,
+        OptimusWidgetSize.large => 48,
+      };
 }

@@ -164,31 +164,20 @@ enum OptimusToolTipSize { small, medium, large }
 enum OptimusTooltipPosition { top, bottom, left, right }
 
 extension on OptimusToolTipSize {
-  double get maxWidth {
-    switch (this) {
-      case OptimusToolTipSize.small:
-        return 100;
-      case OptimusToolTipSize.medium:
-        return 200;
-      case OptimusToolTipSize.large:
-        return 300;
-    }
-  }
+  double get maxWidth => switch (this) {
+        OptimusToolTipSize.small => 100,
+        OptimusToolTipSize.medium => 200,
+        OptimusToolTipSize.large => 300,
+      };
 }
 
 extension on OptimusTooltipPosition {
-  TooltipAlignment toTooltipAlignment() {
-    switch (this) {
-      case OptimusTooltipPosition.left:
-        return TooltipAlignment.leftBottom;
-      case OptimusTooltipPosition.top:
-        return TooltipAlignment.topCenter;
-      case OptimusTooltipPosition.right:
-        return TooltipAlignment.rightCenter;
-      case OptimusTooltipPosition.bottom:
-        return TooltipAlignment.bottomCenter;
-    }
-  }
+  TooltipAlignment toTooltipAlignment() => switch (this) {
+        OptimusTooltipPosition.left => TooltipAlignment.leftBottom,
+        OptimusTooltipPosition.top => TooltipAlignment.topCenter,
+        OptimusTooltipPosition.right => TooltipAlignment.rightCenter,
+        OptimusTooltipPosition.bottom => TooltipAlignment.bottomCenter,
+      };
 }
 
 const double _arrowWidth = 10.0;
