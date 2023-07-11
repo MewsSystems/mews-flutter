@@ -218,6 +218,7 @@ class StepBarSpacer extends StatelessWidget {
     final theme = OptimusTheme.of(context);
     final enabled = nextItemState.isAccessible;
     final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
+
     return switch (layout) {
       Axis.horizontal => Flexible(
           child: Container(

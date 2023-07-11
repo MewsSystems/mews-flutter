@@ -32,8 +32,7 @@ class OptimusDivider extends StatelessWidget {
   double get _horizontalPadding =>
       direction == Axis.horizontal ? spacing200 : crossAxisSpacing;
 
-  Widget _buildDivider(OptimusThemeData theme, Color dividerColor) =>
-      switch (direction) {
+  Widget _buildDivider(Color dividerColor) => switch (direction) {
         Axis.horizontal => Divider(color: dividerColor, thickness: 1),
         Axis.vertical => VerticalDivider(color: dividerColor, thickness: 1),
       };
@@ -46,7 +45,7 @@ class OptimusDivider extends StatelessWidget {
     return Flex(
       direction: direction,
       children: [
-        Expanded(child: _buildDivider(theme, variant.getColor(theme))),
+        Expanded(child: _buildDivider(variant.getColor(theme))),
         if (child != null) ...[
           Padding(
             padding: EdgeInsetsDirectional.symmetric(
@@ -58,7 +57,7 @@ class OptimusDivider extends StatelessWidget {
               child: child,
             ),
           ),
-          Expanded(child: _buildDivider(theme, variant.getColor(theme))),
+          Expanded(child: _buildDivider(variant.getColor(theme))),
         ]
       ],
     );

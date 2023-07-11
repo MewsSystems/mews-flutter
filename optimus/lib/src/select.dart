@@ -109,6 +109,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
 
   TextStyle get _textStyle {
     final color = widget.value == null ? _placeholderColor : _textColor;
+
     return switch (widget.size) {
       OptimusWidgetSize.small => preset200s.copyWith(color: color),
       OptimusWidgetSize.medium ||

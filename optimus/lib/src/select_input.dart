@@ -176,20 +176,20 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         ),
       );
 
-  TextStyle get _textStyle {
-    final color = widget.value == null ? _placeholderColor : _textColor;
-    return switch (widget.size) {
-      OptimusWidgetSize.small => preset200s.copyWith(color: color),
-      OptimusWidgetSize.medium ||
-      OptimusWidgetSize.large =>
-        preset300s.copyWith(color: color),
-    };
-  }
+  TextStyle get _textStyle => switch (widget.size) {
+        OptimusWidgetSize.small => preset200s.copyWith(color: _textColor),
+        OptimusWidgetSize.medium ||
+        OptimusWidgetSize.large =>
+          preset300s.copyWith(color: _textColor),
+      };
+
+  Color get _textColor =>
+      widget.value == null ? _placeholderColor : _defaultTextColor;
 
   Color get _placeholderColor =>
       theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 
-  Color get _textColor =>
+  Color get _defaultTextColor =>
       theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
   @override

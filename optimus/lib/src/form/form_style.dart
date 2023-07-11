@@ -13,6 +13,7 @@ extension TextInputStyle on OptimusThemeData {
 
   TextStyle getPlaceholderStyle(OptimusWidgetSize size) {
     final color = isDark ? colors.neutral0t64 : colors.neutral1000t64;
+
     return switch (size) {
       OptimusWidgetSize.small => preset200s.copyWith(color: color),
       OptimusWidgetSize.medium ||
