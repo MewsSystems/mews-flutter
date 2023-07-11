@@ -104,6 +104,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
     if (!widget.isEnabled) return _InteractionState.disabled;
     if (_isTappedDown) return _InteractionState.active;
     if (_isHovering) return _InteractionState.hover;
+
     return _InteractionState.basic;
   }
 
@@ -118,6 +119,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
 
   bool get _isError {
     final error = widget.error;
+
     return error != null && error.isNotEmpty;
   }
 
