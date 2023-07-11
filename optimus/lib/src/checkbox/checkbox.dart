@@ -34,26 +34,39 @@ class OptimusCheckbox extends StatefulWidget {
           'isChecked must be set if tristate is false',
         );
 
+  /// {@template optimus.checkbox.label}
   /// Label displayed next to checkbox.
   ///
   /// Typically a [Text] widget.
+  /// {@endtemplate}
   final Widget label;
 
+  /// {@template optimus.checkbox.isChecked}
   /// Whether this checkbox is checked.
+  /// {@endtemplate}
   final bool? isChecked;
 
+  /// {@template optimus.checkbox.tristate}
   /// Whether this checkbox has 3 states.
+  /// {@endtemplate}
   final bool tristate;
 
+  /// {@template optimus.checkbox.error}
   /// Controls error that appears below checkbox.
+  /// {@endtemplate}
   final String? error;
 
+  /// {@template optimus.checkbox.isEnabled}
   /// Whether this widget is enabled.
+  /// {@endtemplate}
   final bool isEnabled;
 
+  /// {@template optimus.checkbox.size}
   /// Controls size of the label.
+  /// {@endtemplate}
   final OptimusCheckboxSize size;
 
+  /// {@template optimus.checkbox.onChanged}
   /// Called when the user clicks on this check button.
   ///
   /// The checkbox button passes `value` as a parameter to this callback.
@@ -74,6 +87,7 @@ class OptimusCheckbox extends StatefulWidget {
   ///   },
   /// )
   /// ```
+  /// {@endtemplate}
   final ValueChanged<bool> onChanged;
 
   @override
@@ -84,47 +98,41 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
   bool _isHovering = false;
   bool _isTappedDown = false;
 
-  Color get _borderColor => switch (_state) {
-        _CheckboxState.checked ||
-        _CheckboxState.undetermined =>
-          theme.colors.primary500,
-        _CheckboxState.unchecked => _isHovering || _isTappedDown
-            ? theme.colors.primary500
-            : theme.colors.neutral100,
-      };
-
-  Color get _backgroundColor => switch (_state) {
-        _CheckboxState.undetermined ||
-        _CheckboxState.checked =>
-          theme.colors.primary500,
-        _CheckboxState.unchecked => _isHovering || _isTappedDown
-            ? theme.colors.primary500t8
-            : Colors.transparent,
-      };
-
   _CheckboxState get _state => widget.isChecked.toState;
 
+  _InteractionState get _interactionState {
+    if (!widget.isEnabled) return _InteractionState.disabled;
+    if (_isTappedDown) return _InteractionState.active;
+    if (_isHovering) return _InteractionState.hover;
+    return _InteractionState.basic;
+  }
+
+  Color get _labelColor => widget.isEnabled
+      ? theme.tokens.textStaticPrimary
+      : theme.tokens.textDisabled;
+
   TextStyle get _labelStyle => switch (widget.size) {
-        OptimusCheckboxSize.large =>
-          preset300s.copyWith(color: theme.colors.defaultTextColor),
-        OptimusCheckboxSize.small =>
-          preset200s.copyWith(color: theme.colors.defaultTextColor),
+        OptimusCheckboxSize.large => preset300s.copyWith(color: _labelColor),
+        OptimusCheckboxSize.small => preset200s.copyWith(color: _labelColor),
       };
+
+  bool get _isError {
+    final error = widget.error;
+    return error != null && error.isNotEmpty;
+  }
 
   void _onTap() {
     final newValue = widget.isChecked ?? false;
     widget.onChanged.call(!newValue);
   }
 
-  void _onHoverChanged(bool hovered) {
-    setState(() => _isHovering = hovered);
-  }
+  void _onHoverChanged(bool hovered) => setState(() => _isHovering = hovered);
 
   @override
   Widget build(BuildContext context) {
     final label = Padding(
       padding: const EdgeInsets.fromLTRB(
-        spacing100,
+        spacing150,
         spacing50,
         spacing0,
         spacing50,
@@ -132,8 +140,8 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
       child: DefaultTextStyle.merge(style: _labelStyle, child: widget.label),
     );
 
-    return OptimusEnabled(
-      isEnabled: widget.isEnabled,
+    return IgnorePointer(
+      ignoring: !widget.isEnabled,
       child: GroupWrapper(
         error: widget.error,
         child: GestureDetector(
@@ -149,16 +157,25 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 9),
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 100),
                     decoration: BoxDecoration(
-                      color: _backgroundColor,
-                      border: Border.all(color: _borderColor, width: 1),
+                      color: _interactionState._fillColor(context, _state),
+                      border: _state.isUnchecked
+                          ? Border.all(
+                              color: _isError
+                                  ? theme.tokens.borderInteractiveError
+                                  : _interactionState._borderColor(context),
+                              width: 1,
+                            )
+                          : null,
                       borderRadius: const BorderRadius.all(borderRadius25),
                     ),
                     width: 16,
                     height: 16,
                     child: _CheckboxIcon(
                       icon: _state.icon,
+                      isEnabled: widget.isEnabled,
                     ),
                   ),
                 ),
@@ -173,24 +190,23 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
 }
 
 class _CheckboxIcon extends StatelessWidget {
-  const _CheckboxIcon({this.icon});
+  const _CheckboxIcon({this.icon, required this.isEnabled});
 
   final IconData? icon;
+  final bool isEnabled;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return icon == null
-        ? const SizedBox.shrink()
-        : Center(
-            child: Icon(
-              icon,
-              size: 10,
-              color: theme.colors.neutral0,
-            ),
-          );
-  }
+  Widget build(BuildContext context) => icon == null
+      ? const SizedBox.shrink()
+      : Center(
+          child: Icon(
+            icon,
+            size: 10,
+            color: isEnabled
+                ? context.tokens.textStaticInverse
+                : context.tokens.textDisabled,
+          ),
+        );
 }
 
 enum _CheckboxState { checked, unchecked, undetermined }
@@ -200,6 +216,38 @@ extension on _CheckboxState {
         _CheckboxState.checked => OptimusIcons.done,
         _CheckboxState.unchecked => null,
         _CheckboxState.undetermined => OptimusIcons.minus_simple,
+      };
+
+  bool get isUnchecked => this == _CheckboxState.unchecked;
+}
+
+enum _InteractionState { basic, hover, active, disabled }
+
+extension on _InteractionState {
+  Color _fillColor(BuildContext context, _CheckboxState state) =>
+      switch (this) {
+        _InteractionState.basic => state.isUnchecked
+            ? context.tokens.backgroundInteractiveSubtleDefault
+            : context.tokens.backgroundInteractivePrimaryDefault,
+        _InteractionState.hover => state.isUnchecked
+            ? context.tokens.backgroundInteractiveSubtleHover
+            : context.tokens.backgroundInteractivePrimaryHover,
+        _InteractionState.active => state.isUnchecked
+            ? context.tokens.backgroundInteractiveSubtleActive
+            : context.tokens.backgroundInteractivePrimaryActive,
+        _InteractionState.disabled => state.isUnchecked
+            ? context.tokens.backgroundStaticFlat
+            : context.tokens.backgroundDisabled,
+      };
+
+  Color _borderColor(BuildContext context) => switch (this) {
+        _InteractionState.basic =>
+          context.tokens.borderInteractiveSecondaryDefault,
+        _InteractionState.hover =>
+          context.tokens.borderInteractiveSecondaryHover,
+        _InteractionState.active =>
+          context.tokens.borderInteractiveSecondaryActive,
+        _InteractionState.disabled => context.tokens.borderDisabled,
       };
 }
 

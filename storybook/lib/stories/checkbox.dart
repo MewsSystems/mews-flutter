@@ -24,19 +24,24 @@ class _CheckboxStoryState extends State<_CheckboxStory> {
   Widget build(BuildContext context) {
     final k = widget.knobs;
 
-    return OptimusCheckbox(
-      label: Text(k.text(label: 'Label', initial: 'Checkbox Label')),
-      error: k.text(label: 'Error'),
-      isEnabled: k.boolean(label: 'Enabled', initial: true),
-      size: k.options(
-        label: 'Size',
-        options: OptimusCheckboxSize.values.toOptions(),
-        initial: OptimusCheckboxSize.large,
+    return Center(
+      child: SizedBox(
+        width: 400,
+        child: OptimusCheckbox(
+          label: Text(k.text(label: 'Label', initial: 'Checkbox Label')),
+          error: k.text(label: 'Error'),
+          isEnabled: k.boolean(label: 'Enabled', initial: true),
+          size: k.options(
+            label: 'Size',
+            options: OptimusCheckboxSize.values.toOptions(),
+            initial: OptimusCheckboxSize.large,
+          ),
+          isChecked: _checked,
+          onChanged: (b) => setState(() {
+            _checked = b;
+          }),
+        ),
       ),
-      isChecked: _checked,
-      onChanged: (b) => setState(() {
-        _checked = b;
-      }),
     );
   }
 }
