@@ -155,15 +155,14 @@ extension on OptimusIconColorOption {
 
   Color toSupplementaryBackgroundColor(OptimusThemeData theme) =>
       switch (this) {
-        OptimusIconColorOption.basic => theme.colors.neutral50,
+        OptimusIconColorOption.basic ||
+        OptimusIconColorOption.subtle =>
+          theme.colors.neutral50,
         OptimusIconColorOption.primary => theme.colors.primary500,
         OptimusIconColorOption.success => theme.colors.success500,
         OptimusIconColorOption.info => theme.colors.info500,
         OptimusIconColorOption.warning => theme.colors.warning500,
         OptimusIconColorOption.danger => theme.colors.danger500,
-        OptimusIconColorOption.subtle =>
-          // TODO(VG): Add proper color when design is ready.
-          theme.colors.neutral50,
       };
 }
 
