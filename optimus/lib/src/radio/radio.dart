@@ -220,7 +220,7 @@ extension on _RadioState {
             : context.tokens.borderDisabled,
       };
 
-  Color? _circleFillColor(BuildContext context) => switch (this) {
+  Color _circleFillColor(BuildContext context) => switch (this) {
         _RadioState.basic ||
         _RadioState.disabled =>
           context.tokens.backgroundInteractiveSubtleDefault,
