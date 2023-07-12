@@ -86,16 +86,17 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
 
   bool get _isSelected => widget.value == widget.groupValue;
 
+  Color get _textColor => widget.isEnabled
+      ? theme.tokens.textStaticPrimary
+      : theme.tokens.textDisabled;
+
   TextStyle get _labelStyle => switch (widget.size) {
-        OptimusRadioSize.small =>
-          preset200s.copyWith(color: theme.colors.defaultTextColor),
-        OptimusRadioSize.large =>
-          preset300s.copyWith(color: theme.colors.defaultTextColor),
+        OptimusRadioSize.small => preset200s.copyWith(color: _textColor),
+        OptimusRadioSize.large => preset300s.copyWith(color: _textColor),
       };
 
-  void _onHoverChanged(bool isHovering) {
-    setState(() => _isHovering = isHovering);
-  }
+  void _onHoverChanged(bool isHovering) =>
+      setState(() => _isHovering = isHovering);
 
   void _onChanged() {
     if (!_isSelected) {
@@ -103,11 +104,19 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
     }
   }
 
+  _RadioState get _state {
+    if (!widget.isEnabled) return _RadioState.disabled;
+    if (_isTappedDown) return _RadioState.active;
+    if (_isHovering) return _RadioState.hover;
+
+    return _RadioState.basic;
+  }
+
   @override
   Widget build(BuildContext context) => GroupWrapper(
         error: widget.error,
-        child: OptimusEnabled(
-          isEnabled: widget.isEnabled,
+        child: IgnorePointer(
+          ignoring: !widget.isEnabled,
           child: MouseRegion(
             onEnter: (_) => _onHoverChanged(true),
             onExit: (_) => _onHoverChanged(false),
@@ -126,8 +135,8 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: _RadioCircle(
+                        state: _state,
                         isSelected: _isSelected,
-                        isActive: _isHovering || _isTappedDown,
                       ),
                     ),
                   ),
@@ -163,41 +172,61 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
 
 class _RadioCircle extends StatelessWidget {
   const _RadioCircle({
+    required this.state,
     required this.isSelected,
-    required this.isActive,
   });
 
+  final _RadioState state;
   final bool isSelected;
-  final bool isActive;
-
-  Color _borderColor(OptimusThemeData theme) => (isSelected || isActive)
-      ? theme.colors.primary500
-      : theme.colors.neutral100;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: spacing100,
-        bottom: spacing100,
-        right: spacing200,
-      ),
-      child: Container(
-        width: 16,
-        height: 16,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            width: isSelected ? 6 : 1,
-            color: _borderColor(theme),
-          ),
-          color: isActive ? theme.colors.primary500t8 : null,
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(
+          top: spacing100,
+          bottom: spacing100,
+          right: spacing200,
         ),
-      ),
-    );
-  }
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          width: 16,
+          height: 16,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              width: isSelected ? 6 : 1,
+              color: state._borderColor(context, isSelected),
+            ),
+            color: state._circleFillColor(context),
+          ),
+        ),
+      );
+}
+
+enum _RadioState { basic, hover, active, disabled }
+
+extension on _RadioState {
+  Color _borderColor(BuildContext context, bool isSelected) => switch (this) {
+        _RadioState.basic => isSelected
+            ? context.tokens.backgroundInteractivePrimaryDefault
+            : context.tokens.borderInteractiveSecondaryDefault,
+        _RadioState.hover => isSelected
+            ? context.tokens.backgroundInteractivePrimaryHover
+            : context.tokens.borderInteractiveSecondaryHover,
+        _RadioState.active => isSelected
+            ? context.tokens.backgroundInteractivePrimaryActive
+            : context.tokens.borderInteractiveSecondaryActive,
+        _RadioState.disabled => isSelected
+            ? context.tokens.backgroundDisabled
+            : context.tokens.borderDisabled,
+      };
+
+  Color _circleFillColor(BuildContext context) => switch (this) {
+        _RadioState.basic ||
+        _RadioState.disabled =>
+          context.tokens.backgroundInteractiveSubtleDefault,
+        _RadioState.hover => context.tokens.backgroundInteractiveSubtleHover,
+        _RadioState.active => context.tokens.backgroundInteractiveSubtleActive,
+      };
 }
 
 const double _leadingSize = 32;
