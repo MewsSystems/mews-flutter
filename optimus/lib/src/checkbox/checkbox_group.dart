@@ -58,8 +58,8 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   Widget build(BuildContext context) => GroupWrapper(
         label: label,
         error: error,
-        child: OptimusEnabled(
-          isEnabled: isEnabled,
+        child: IgnorePointer(
+          ignoring: !isEnabled,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: _items
@@ -68,6 +68,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
                     isChecked: _values.contains(v.value),
                     size: size,
                     label: v.label,
+                    isEnabled: isEnabled,
                     onChanged: (checked) => _onChanged(v, checked),
                   ),
                 )
