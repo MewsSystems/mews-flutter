@@ -55,6 +55,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
                 isPressed: _statesController.value.isPressed,
                 isHovered: _statesController.value.isHovered,
               );
+
               return RoundedRectangleBorder(
                 borderRadius: widget.borderRadius,
                 side: color != null

@@ -22,10 +22,6 @@ extension ColorScheme on OptimusButtonVariant {
         if (isHovered) return tokens.backgroundInteractivePrimaryHover;
         return null;
       case OptimusButtonVariant.tertiary:
-        if (!isEnabled) return null;
-        if (isPressed) return tokens.backgroundInteractiveSubtleActive;
-        if (isHovered) return tokens.backgroundInteractiveSubtleHover;
-        return null;
       case OptimusButtonVariant.ghost:
         if (!isEnabled) return null;
         if (isPressed) return tokens.backgroundInteractiveSubtleActive;
