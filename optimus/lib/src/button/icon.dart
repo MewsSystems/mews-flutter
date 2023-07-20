@@ -24,7 +24,7 @@ class OptimusIconButton extends StatefulWidget {
   /// Button size.
   final OptimusWidgetSize size;
 
-  /// Button type.
+  /// {@macro optimus.button.variant}
   final OptimusButtonVariant variant;
 
   @override
