@@ -86,13 +86,11 @@ class _MyAppState extends State<MyApp> {
             const CircularProgressIndicator(),
           ConnectionState.active || ConnectionState.done => Storybook(
               plugins: [
-                const ContentsPlugin(sidePanel: true),
-                KnobsPlugin(sidePanel: true),
                 ThemeModePlugin(
                   initialTheme: snapshot.data,
                   onThemeChanged: _saveThemeMode,
                 ),
-                DeviceFramePlugin(initialData: const DeviceFrameData()),
+                DeviceFramePlugin(),
               ],
               stories: [
                 formStory,
