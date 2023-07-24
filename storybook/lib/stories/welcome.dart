@@ -10,19 +10,23 @@ final welcomeStory = Story(
       mainAxisSize: MainAxisSize.min,
       children: [
         OptimusPageTitle(
-          child: Text('Welcome to the Mobile Design System Storybook'),
+          align: TextAlign.center,
+          child: Text('Welcome to the MEWS Mobile Design System Storybook'),
         ),
         OptimusCaption(
+          align: TextAlign.center,
           child: Text(
             'Here you can find live examples of the design system components with most common modifiers to tune the component to your needs.',
           ),
         ),
         OptimusCaption(
+          align: TextAlign.center,
           child: Text(
             'You can find the list of all components on the left side (or collapsed in to the bottom bar) and exposed controls on the right side.',
           ),
         ),
         OptimusLabel(
+          align: TextAlign.center,
           child: Text('For more detailed documentation, please visit:'),
         ),
         OptimusStandaloneLink(
