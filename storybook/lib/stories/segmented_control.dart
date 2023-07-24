@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story segmentedControlStory = Story(
-  name: 'Forms/Segmented control',
+  name: 'Forms/Segmented Control',
   builder: (context) {
     final k = context.knobs;
     final label = k.text(label: 'Label', initial: '');

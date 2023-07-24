@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story titleStory = Story(
-  name: 'General/Typography/Title',
+  name: 'Other/Typography/Title',
   builder: (context) {
     final k = context.knobs;
 

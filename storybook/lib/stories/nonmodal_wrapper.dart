@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story nonModalDialogStory = Story(
-  name: 'General/Dialogs/Non-modal dialog',
+  name: 'Data Display/Dialogs/Non-modal Dialog',
   builder: (context) => DialogWrapper(
     child: NonModalDialogStory(context.knobs),
   ),

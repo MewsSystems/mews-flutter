@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story inlineLink = Story(
-  name: 'Link/Inline link',
+  name: 'Navigation/Link/Inline Link',
   builder: (context) {
     final k = context.knobs;
 

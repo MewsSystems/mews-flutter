@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story loaderStory = Story(
-  name: 'Feedback/Circle loader',
+  name: 'Feedback/Circle Loader',
   builder: (context) {
     final k = context.knobs;
     final size = k.options(
