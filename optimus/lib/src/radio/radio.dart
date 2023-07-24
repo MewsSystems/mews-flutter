@@ -193,7 +193,7 @@ class _RadioCircle extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              width: isSelected ? 6 : 1,
+              width: isSelected ? 6 : 1.5,
               color: state._borderColor(context, isSelected),
             ),
             color: state._circleFillColor(context),
