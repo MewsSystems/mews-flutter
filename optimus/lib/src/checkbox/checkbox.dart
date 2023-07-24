@@ -168,7 +168,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
                               color: _isError
                                   ? theme.tokens.borderInteractiveError
                                   : _interactionState._borderColor(context),
-                              width: 1,
+                              width: 1.5,
                             )
                           : null,
                       borderRadius: const BorderRadius.all(borderRadius25),
