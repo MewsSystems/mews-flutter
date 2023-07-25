@@ -44,7 +44,7 @@ final Story tagStory = Story(
 );
 
 final Story interactiveTagStory = Story(
-  name: 'Feedback/Tags/Interactive tag',
+  name: 'Feedback/Tags/Interactive Tag',
   builder: (context) {
     final k = context.knobs;
 

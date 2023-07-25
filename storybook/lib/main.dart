@@ -53,6 +53,7 @@ import 'package:storybook/stories/typography/highlight.dart';
 import 'package:storybook/stories/typography/label.dart';
 import 'package:storybook/stories/typography/paragraph.dart';
 import 'package:storybook/stories/typography/title.dart';
+import 'package:storybook/stories/welcome.dart';
 import 'package:storybook/stories/wide_banner.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -92,7 +93,9 @@ class _MyAppState extends State<MyApp> {
                 ),
                 DeviceFramePlugin(),
               ],
+              initialStory: 'Welcome',
               stories: [
+                welcomeStory,
                 formStory,
                 avatarStory,
                 button,

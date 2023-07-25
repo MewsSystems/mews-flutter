@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story numberPickerStory = Story(
-  name: 'Forms/Number picker',
+  name: 'Forms/Number Picker',
   builder: (context) {
     final k = context.knobs;
 

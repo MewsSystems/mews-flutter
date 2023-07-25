@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story dateTimeFieldStory = Story(
-  name: 'Forms/Date time field',
+  name: 'Forms/Date Time Field',
   builder: (context) => _Content(k: context.knobs),
 );
 

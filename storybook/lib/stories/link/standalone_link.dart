@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story standaloneLink = Story(
-  name: 'Link/Standalone link',
+  name: 'Navigation/Link/Standalone Link',
   builder: (context) {
     final k = context.knobs;
 

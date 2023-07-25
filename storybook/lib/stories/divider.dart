@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story dividerStory = Story(
-  name: 'Structure/Divider',
+  name: 'Layout/Divider',
   builder: (context) {
     final k = context.knobs;
     final text = k.text(label: 'Divider Text', initial: 'Divider Text');

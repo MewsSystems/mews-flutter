@@ -4,7 +4,7 @@ import 'package:storybook/stories/icon/icons_list.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story allIconsStory = Story(
-  name: 'Media And Icons/Icons/All Icons',
+  name: 'Media/Icons/All Icons',
   builder: (context) => GridView.builder(
     itemCount: optimusIcons.length,
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story stackStory = Story(
-  name: 'Structure/Stack',
+  name: 'Layout/Stack',
   builder: (context) {
     final k = context.knobs;
 
