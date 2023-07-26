@@ -220,10 +220,10 @@ class _Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
+        height: 16,
         child: ClipRRect(
           borderRadius: const BorderRadius.all(borderRadius200),
-          child: Container(
-            height: 16,
+          child: ColoredBox(
             color: color,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
