@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story dropdownButton = Story(
-  name: 'General/Buttons/Dropdown button',
+  name: 'Buttons/Dropdown Button',
   builder: (context) {
     final k = context.knobs;
     final isEnabled = k.boolean(label: 'Enabled', initial: true);

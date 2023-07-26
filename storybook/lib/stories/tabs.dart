@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story tabs = Story(
-  name: 'Navigation/Tabs',
+  name: 'Data Display/Tabs',
   builder: (BuildContext context) => Container(
     color: OptimusTheme.of(context).colors.success500t16,
     constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),

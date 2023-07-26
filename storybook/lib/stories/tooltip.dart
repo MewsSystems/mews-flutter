@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story tooltipStory = Story(
-  name: 'Feedback/Tooltip',
+  name: 'Data Display/Tooltip',
   builder: (BuildContext context) {
     final knobs = context.knobs;
 

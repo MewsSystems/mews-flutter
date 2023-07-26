@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story navListTileStory = Story(
-  name: 'General/List/Navigation List tile',
+  name: 'Data Display/List/Navigation List Tile',
   builder: (context) {
     final k = context.knobs;
     final headline = k.text(label: 'Headline', initial: 'Headline');

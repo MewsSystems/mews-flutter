@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story inlineDialogStory = Story(
-  name: 'General/Dialogs/Inline dialog',
+  name: 'Data Display/Dialogs/Inline Dialog',
   builder: (context) => DialogWrapper(child: InlineDialogStory(context.knobs)),
 );
 

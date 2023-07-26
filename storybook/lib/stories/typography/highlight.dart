@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story highlightStory = Story(
-  name: 'General/Typography/Highlight',
+  name: 'Other/Typography/Highlight',
   builder: (context) {
     final k = context.knobs;
 

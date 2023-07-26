@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story iconStory = Story(
-  name: 'Media And Icons/Icons/Icon',
+  name: 'Media/Icons/Icon',
   builder: (context) {
     final k = context.knobs;
     final icon = k.options(
@@ -39,7 +39,7 @@ final Story iconStory = Story(
 );
 
 final Story supplementaryIconStory = Story(
-  name: 'Media And Icons/Icons/Supplementary icon',
+  name: 'Media/Icons/Supplementary Icon',
   builder: (context) {
     final k = context.knobs;
     final icon = k.options(

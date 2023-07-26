@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story labelStory = Story(
-  name: 'General/Typography/Label',
+  name: 'Other/Typography/Label',
   builder: (context) {
     final k = context.knobs;
     final variation = k.options(

@@ -5,7 +5,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story listTileStory = Story(
-  name: 'General/List/List tile',
+  name: 'Data Display/List/List Tile',
   builder: (context) {
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');

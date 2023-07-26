@@ -65,7 +65,7 @@ class _RadioExampleState extends State<RadioExample> {
 }
 
 final Story radioGroupStory = Story(
-  name: 'Forms/Radio/Radio group',
+  name: 'Forms/Radio/Radio Group',
   builder: (context) {
     final k = context.knobs;
     final size = k.options(
