@@ -12,7 +12,7 @@
 
 #### Check during review
 
-- Verify against YouTrack issue.
+- Verify against Jira issue.
 - Is the PR over 300 additions? Consider rejecting it with advice to split it. Is it over 500 additions? It should definitely be rejected.
 - Unused code removed.
 - Build passing.
