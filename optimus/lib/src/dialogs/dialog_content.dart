@@ -142,10 +142,12 @@ class _Title extends StatelessWidget {
           ),
           if (isDismissible)
             Padding(
-              padding: const EdgeInsets.only(top: spacing50),
+              padding:
+                  const EdgeInsets.only(top: spacing200, right: spacing200),
               child: OptimusIconButton(
                 icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-                variant: OptimusIconButtonVariant.bare,
+                size: OptimusWidgetSize.small,
+                variant: OptimusButtonVariant.tertiary,
                 onPressed: close,
               ),
             ),
@@ -170,12 +172,12 @@ class _Actions extends StatelessWidget {
 
   OptimusButtonVariant _getVariant(int i) {
     if (type == OptimusDialogType.destructive && i == 0) {
-      return OptimusButtonVariant.destructive;
+      return OptimusButtonVariant.danger;
     }
     if (i == 0) return OptimusButtonVariant.primary;
-    if (i == 1) return OptimusButtonVariant.defaultButton;
+    if (i == 1) return OptimusButtonVariant.tertiary;
 
-    return OptimusButtonVariant.text;
+    return OptimusButtonVariant.ghost;
   }
 
   @override

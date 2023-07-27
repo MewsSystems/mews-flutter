@@ -112,7 +112,7 @@ class OptimusBanner extends StatelessWidget {
                           onPressed: () => onDismiss,
                           icon: const Icon(OptimusIcons.cross_close, size: 12),
                           size: OptimusWidgetSize.small,
-                          variant: OptimusIconButtonVariant.bare,
+                          variant: OptimusButtonVariant.ghost,
                         ),
                     ],
                   ),

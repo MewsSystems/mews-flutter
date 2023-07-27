@@ -44,3 +44,12 @@ class OptimusDropDownButton<T> extends StatelessWidget {
         child: child,
       );
 }
+
+extension CommonButtonVariant on OptimusDropdownButtonVariant {
+  OptimusButtonVariant toButtonVariant() => switch (this) {
+        OptimusDropdownButtonVariant.defaultButton =>
+          OptimusButtonVariant.tertiary,
+        OptimusDropdownButtonVariant.primary => OptimusButtonVariant.primary,
+        OptimusDropdownButtonVariant.text => OptimusButtonVariant.ghost,
+      };
+}
