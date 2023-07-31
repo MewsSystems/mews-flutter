@@ -82,6 +82,7 @@ export 'src/tag.dart';
 export 'src/theme/optimus_tokens.dart';
 export 'src/theme/theme.dart';
 export 'src/theme/theme_data.dart';
+export 'src/toggle.dart';
 export 'src/tooltip/tooltip.dart';
 export 'src/tooltip/tooltip_wrapper.dart';
 export 'src/typography/caption.dart';
