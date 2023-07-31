@@ -77,4 +77,5 @@ extension ThemeTokens on BuildContext {
 
 mixin ThemeGetter<T extends StatefulWidget> on State<T> {
   OptimusThemeData get theme => OptimusTheme.of(context);
+  OptimusTokens get tokens => OptimusTheme.of(context).tokens;
 }

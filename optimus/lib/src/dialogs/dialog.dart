@@ -140,15 +140,15 @@ class OptimusDialog extends StatelessWidget {
   /// Controls dialog actions.
   ///
   /// First button should always contain primary action. When single button it
-  /// has [OptimusButtonVariant.defaultButton] variant, otherwise it has
+  /// has [OptimusButtonVariant.tertiary] variant, otherwise it has
   /// [OptimusButtonVariant.primary] variant for [OptimusDialogType.common] type
-  /// or [OptimusButtonVariant.destructive] variant for
+  /// or [OptimusButtonVariant.danger] variant for
   /// [OptimusDialogType.destructive] type.
   ///
   /// Second button represents secondary action. It always has
-  /// [OptimusButtonVariant.defaultButton] variant.
+  /// [OptimusButtonVariant.tertiary] variant.
   ///
-  /// All other buttons have [OptimusButtonVariant.text] variant and represent
+  /// All other buttons have [OptimusButtonVariant.ghost] variant and represent
   /// additional actions.
   /// {@endtemplate}
   final List<OptimusDialogAction> actions;
