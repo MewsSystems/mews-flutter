@@ -9,21 +9,23 @@ on:
       - optimus/
 
 jobs:
-    deploy_storybook:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+  deploy_storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-            - name: Build Web
-              run: |
-                melos exec --scope="storybook" -- "flutter build web"
+      - uses: ./.github/actions/setup
 
-            - name: Deploy to Firebase
-              uses: FirebaseExtended/action-hosting-deploy@v0
-              with:
-                repoToken: "${{ secrets.GITHUB_TOKEN }}"
-                firebaseServiceAccount: "${{ secrets.FIREBASE_WEB_DEPLOY }}"
-                channelId: live
-                projectId: mews-optimus
-                entryPoint: storybook/
+      - name: Build Web
+        run: |
+          melos exec --scope="storybook" -- "flutter build web"
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_WEB_DEPLOY }}"
+          channelId: live
+          projectId: mews-optimus
+          entryPoint: storybook/
