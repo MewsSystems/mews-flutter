@@ -12,7 +12,7 @@ class OptimusToggle extends StatefulWidget {
     super.key,
     this.offIcon,
     this.onIcon,
-    this.initState,
+    this.isChecked = false,
     required this.onChanged,
   });
 
@@ -22,8 +22,9 @@ class OptimusToggle extends StatefulWidget {
   /// An optional icon for the on state.
   final IconData? onIcon;
 
-  /// The initial state of the toggle.
-  final bool? initState;
+  /// Whether the toggle is checked. The state of the toggle is managed in the
+  /// parent widget.
+  final bool isChecked;
 
   /// The callback on the toggle state change. If not provided, the toggle will
   /// be disabled.
@@ -34,16 +35,8 @@ class OptimusToggle extends StatefulWidget {
 }
 
 class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
-  late bool _isChecked;
-
   bool _isHovered = false;
   bool _isTapped = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isChecked = widget.initState ?? false;
-  }
 
   bool get _isEnabled => widget.onChanged != null;
 
@@ -52,17 +45,17 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
       : context.tokens.textDisabled;
 
   Widget get _spacer => const SizedBox(width: spacing50);
-  double get _leftPadding => _isChecked ? 20 : 0;
+  double get _leftPadding => widget.isChecked ? 20 : 0;
 
-  Color get _tappedColor => _isChecked
+  Color get _tappedColor => widget.isChecked
       ? context.tokens.backgroundInteractivePrimaryActive
       : context.tokens.backgroundInteractiveBoldActive;
 
-  Color get _hoveredColor => _isChecked
+  Color get _hoveredColor => widget.isChecked
       ? context.tokens.backgroundInteractivePrimaryHover
       : context.tokens.backgroundInteractiveBoldHover;
 
-  Color get _defaultColor => _isChecked
+  Color get _defaultColor => widget.isChecked
       ? context.tokens.backgroundInteractivePrimaryDefault
       : context.tokens.backgroundInteractiveBoldDefault;
 
@@ -76,14 +69,14 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
 
   Widget get _onIcon => widget.onIcon != null
       ? Opacity(
-          opacity: _isChecked ? 0 : 1,
+          opacity: widget.isChecked ? 0 : 1,
           child: Icon(widget.onIcon, size: _iconSize, color: _iconColor),
         )
       : const SizedBox(width: _iconSize);
 
   Widget get _offIcon => widget.offIcon != null
       ? Opacity(
-          opacity: _isChecked ? 1 : 0,
+          opacity: widget.isChecked ? 1 : 0,
           child: Icon(widget.offIcon, size: _iconSize, color: _iconColor),
         )
       : const SizedBox(width: _iconSize);
@@ -101,10 +94,7 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
         child: GestureDetector(
           onTapDown: (details) => setState(() => _isTapped = true),
           onTapUp: (details) => setState(() => _isTapped = false),
-          onTap: () => setState(() {
-            _isChecked = !_isChecked;
-            widget.onChanged?.call(_isChecked);
-          }),
+          onTap: () => widget.onChanged?.call(!widget.isChecked),
           child: AnimatedContainer(
             width: _toggleWidth,
             height: _toggleHeight,
