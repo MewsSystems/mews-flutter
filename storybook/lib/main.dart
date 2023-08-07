@@ -46,6 +46,7 @@ import 'package:storybook/stories/stack.dart';
 import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tabs.dart';
 import 'package:storybook/stories/tags.dart';
+import 'package:storybook/stories/toggle.dart';
 import 'package:storybook/stories/tooltip.dart';
 import 'package:storybook/stories/tooltip_wrapper.dart';
 import 'package:storybook/stories/typography/caption.dart';
@@ -156,6 +157,7 @@ class _MyAppState extends State<MyApp> {
                 notificationStory,
                 tooltipStory,
                 tooltipWrapperStory,
+                toggleStory,
               ],
             ),
         },
