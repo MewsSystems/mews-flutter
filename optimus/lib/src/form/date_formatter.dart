@@ -62,6 +62,7 @@ class DateFormatter extends TextInputFormatter {
   ) {
     final cleanInput = replacement.clean();
     int resultIndex = selectionStart;
+    String newValue = value;
 
     if (cleanInput.isNotEmpty) {
       int newInputPosition = 0;
@@ -69,9 +70,9 @@ class DateFormatter extends TextInputFormatter {
         if (resultIndex >= placeholder.length) break;
         if (!_isDesignatedSpace(resultIndex)) {
           final post = resultIndex >= selectionEnd
-              ? value.substring(resultIndex, value.length - 1)
-              : value.substring(resultIndex + 1);
-          value = value.substring(0, resultIndex) +
+              ? newValue.substring(resultIndex, newValue.length - 1)
+              : newValue.substring(resultIndex + 1);
+          newValue = newValue.substring(0, resultIndex) +
               cleanInput[newInputPosition] +
               post;
           newInputPosition++;
@@ -81,13 +82,13 @@ class DateFormatter extends TextInputFormatter {
     }
 
     if (resultIndex < selectionEnd) {
-      value = value.substring(0, resultIndex) +
+      newValue = newValue.substring(0, resultIndex) +
           placeholder.substring(resultIndex, selectionEnd) +
-          value.substring(selectionEnd);
+          newValue.substring(selectionEnd);
     }
 
     return TextEditingValue(
-      text: value,
+      text: newValue,
       selection: TextSelection.collapsed(offset: resultIndex),
     );
   }

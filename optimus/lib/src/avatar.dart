@@ -43,6 +43,7 @@ class OptimusAvatar extends StatelessWidget {
             ),
             child: Center(
               child: MediaQuery(
+                // ignore: prefer-dedicated-media-query-methods, need whole MediaQuery
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: imageUrl != null
                     ? FadeInImage.memoryNetwork(

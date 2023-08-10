@@ -103,7 +103,7 @@ class _OptimusNotificationsOverlayState
 
   @override
   Widget build(BuildContext context) {
-    final isCompact = MediaQuery.of(context).screenBreakpoint.index <=
+    final isCompact = MediaQuery.sizeOf(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 
     return Builder(

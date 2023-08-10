@@ -44,7 +44,7 @@ class OptimusNotification extends StatelessWidget {
   final OptimusNotificationVariant variant;
 
   double _getPadding(BuildContext context) =>
-      switch (MediaQuery.of(context).screenBreakpoint) {
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
         Breakpoint.small || Breakpoint.extraSmall => spacing100,
         Breakpoint.medium ||
         Breakpoint.large ||
@@ -55,10 +55,8 @@ class OptimusNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = _getPadding(context);
-    final double notificationWidth = min(
-      MediaQuery.of(context).size.width - padding * 2,
-      _maxWidth,
-    );
+    final double notificationWidth =
+        min(MediaQuery.sizeOf(context).width - padding * 2, _maxWidth);
     final dismiss = onDismissed;
     final bool isDismissible = dismiss != null;
 
@@ -75,7 +73,7 @@ class OptimusNotification extends StatelessWidget {
               body: body,
               link: link?.text,
               onLinkPressed: () {
-                link?.onPressed.call();
+                link?.onPressed();
                 OptimusNotificationsOverlay.of(context)?.remove(this);
               },
               dismissible: isDismissible,
@@ -83,7 +81,7 @@ class OptimusNotification extends StatelessWidget {
             if (isDismissible)
               _NotificationCloseButton(
                 onDismissed: () {
-                  dismiss.call();
+                  dismiss();
                   OptimusNotificationsOverlay.of(context)?.remove(this);
                 },
               )

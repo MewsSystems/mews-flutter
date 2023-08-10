@@ -110,9 +110,9 @@ class _NonSquaredIcon extends StatelessWidget {
   final Color color;
 
   @override
-  Widget build(BuildContext context) => RichText(
+  Widget build(BuildContext context) => Text.rich(
         overflow: TextOverflow.visible,
-        text: TextSpan(
+        TextSpan(
           text: String.fromCharCode(icon.codePoint),
           style: TextStyle(
             inherit: false,

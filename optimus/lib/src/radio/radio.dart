@@ -194,9 +194,9 @@ class _RadioCircle extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(
               width: isSelected ? 6 : 1.5,
-              color: state._borderColor(context, isSelected),
+              color: state.borderColor(context, isSelected: isSelected),
             ),
-            color: state._circleFillColor(context),
+            color: state.circleFillColor(context),
           ),
         ),
       );
@@ -205,7 +205,8 @@ class _RadioCircle extends StatelessWidget {
 enum _RadioState { basic, hover, active, disabled }
 
 extension on _RadioState {
-  Color _borderColor(BuildContext context, bool isSelected) => switch (this) {
+  Color borderColor(BuildContext context, {required bool isSelected}) =>
+      switch (this) {
         _RadioState.basic => isSelected
             ? context.tokens.backgroundInteractivePrimaryDefault
             : context.tokens.borderInteractiveSecondaryDefault,
@@ -220,7 +221,7 @@ extension on _RadioState {
             : context.tokens.borderDisabled,
       };
 
-  Color _circleFillColor(BuildContext context) => switch (this) {
+  Color circleFillColor(BuildContext context) => switch (this) {
         _RadioState.basic ||
         _RadioState.disabled =>
           context.tokens.backgroundInteractiveSubtleDefault,
