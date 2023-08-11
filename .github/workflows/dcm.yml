@@ -10,13 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.sha }}  
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - name: Install DCM
-        run: >
-          wget -qO- https://dcm.dev/pgp-key.public | sudo gpg --dearmor -o /usr/share/keyrings/dcm.gpg &&
-          echo 'deb [signed-by=/usr/share/keyrings/dcm.gpg arch=amd64] https://dcm.dev/debian stable main' | sudo tee /etc/apt/sources.list.d/dart_stable.list &&
-          sudo apt-get update &&
-          sudo apt-get install dcm
+        uses: CQLabs/setup-dcm@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          version: "1.8.1"
 
       - uses: ./.github/actions/setup
 
