@@ -17,7 +17,7 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
     bool isClearAllEnabled = false,
     VoidCallback? onTap,
     Widget? caption,
-    Widget? secondaryCaption,
+    Widget? helperMessage,
   }) : super(
           enabled: isEnabled,
           builder: (FormFieldState<DateTime?> field) => OptimusDateInputField(
@@ -33,7 +33,7 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
             isRequired: isRequired,
             onTap: onTap,
             caption: caption,
-            secondaryCaption: secondaryCaption,
+            helperMessage: helperMessage,
           ),
         );
 

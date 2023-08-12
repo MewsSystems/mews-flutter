@@ -11,10 +11,25 @@ class OptimusFieldError extends StatelessWidget {
   final String error;
 
   @override
-  Widget build(BuildContext context) => OptimusCaption(
-        child: Text(
-          error,
-          style: TextStyle(color: OptimusTheme.of(context).colors.danger500),
-        ),
+  Widget build(BuildContext context) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: spacing150),
+            child: Icon(
+              OptimusIcons.error_circle,
+              size: 16,
+              color: context.tokens.textAlertDanger,
+            ),
+          ),
+          OptimusCaption(
+            child: Text(
+              error,
+              style: TextStyle(
+                color: context.tokens.textAlertDanger,
+              ),
+            ),
+          ),
+        ],
       );
 }

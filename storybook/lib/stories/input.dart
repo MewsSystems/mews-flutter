@@ -21,6 +21,13 @@ final Story inputStory = Story(
       initial: null,
       options: exampleIcons,
     );
+    final caption = k.text(label: 'Caption', initial: '');
+    final captionIcon = k.options(
+      label: 'Caption Icon',
+      initial: OptimusIcons.info,
+      options: exampleIcons.withEmpty(),
+    );
+    final helperMessage = k.text(label: 'Helper Message', initial: '');
     final error = k.text(label: 'Error', initial: '');
     final errorVariant = k.options(
       label: 'Error variant',
@@ -28,30 +35,34 @@ final Story inputStory = Story(
       options: OptimusInputErrorVariant.values.toOptions(),
     );
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 400),
-      child: OptimusInputField(
-        isEnabled: k.boolean(label: 'Enabled', initial: true),
-        isRequired: k.boolean(label: 'Required'),
-        isPasswordField: k.boolean(label: 'Password'),
-        prefix: prefix.isNotEmpty ? Text(prefix) : null,
-        suffix: suffix.isNotEmpty ? Text(suffix) : null,
-        leading: leadingIcon == null ? null : Icon(leadingIcon),
-        trailing: trailingIcon == null ? null : Icon(trailingIcon),
-        isClearEnabled: k.boolean(label: 'Clear all', initial: false),
-        showLoader: k.boolean(label: 'Show loader', initial: false),
-        errorVariant: errorVariant,
-        size: k.options(
-          label: 'Size',
-          initial: OptimusWidgetSize.large,
-          options: sizeOptions,
+    return Align(
+      alignment: Alignment.center,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
+        child: OptimusInputField(
+          isEnabled: k.boolean(label: 'Enabled', initial: true),
+          isRequired: k.boolean(label: 'Required'),
+          isPasswordField: k.boolean(label: 'Password'),
+          prefix: prefix.isNotEmpty ? Text(prefix) : null,
+          suffix: suffix.isNotEmpty ? Text(suffix) : null,
+          leading: leadingIcon == null ? null : Icon(leadingIcon),
+          trailing: trailingIcon == null ? null : Icon(trailingIcon),
+          isClearEnabled: k.boolean(label: 'Clear all', initial: false),
+          showLoader: k.boolean(label: 'Show loader', initial: false),
+          errorVariant: errorVariant,
+          size: k.options(
+            label: 'Size',
+            initial: OptimusWidgetSize.large,
+            options: sizeOptions,
+          ),
+          label: k.text(label: 'Label', initial: 'Optimus input field'),
+          placeholder:
+              k.text(label: 'Placeholder', initial: 'Put some hint here...'),
+          caption: caption.isNotEmpty ? Text(caption) : null,
+          captionIcon: captionIcon,
+          helperMessage: helperMessage.isNotEmpty ? Text(helperMessage) : null,
+          error: error,
         ),
-        label: k.text(label: 'Label', initial: 'Optimus input field'),
-        placeholder:
-            k.text(label: 'Placeholder', initial: 'Put some hint here...'),
-        caption: Text(k.text(label: 'Caption', initial: '')),
-        secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
-        error: error,
       ),
     );
   },

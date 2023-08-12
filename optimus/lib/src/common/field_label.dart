@@ -19,11 +19,8 @@ class OptimusFieldLabel extends StatelessWidget {
           variation: Variation.variationSecondary,
           child: Text(
             isRequired ? '$label *' : label,
-            style: TextStyle(color: _textColor(OptimusTheme.of(context))),
+            style: TextStyle(color: context.tokens.textStaticPrimary),
           ),
         ),
       );
-
-  Color _textColor(OptimusThemeData theme) =>
-      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
 }
