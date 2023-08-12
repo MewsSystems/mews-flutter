@@ -5,7 +5,7 @@ import 'package:optimus/optimus.dart';
 class OptimusChatInput extends StatefulWidget {
   const OptimusChatInput({super.key, required this.onSendPressed});
 
-  final SendCallback onSendPressed;
+  final ValueChanged<String> onSendPressed;
 
   @override
   State<OptimusChatInput> createState() => _OptimusChatInputState();
@@ -19,12 +19,22 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() => setState(() {}));
+    _controller.addListener(_onControllerChange);
   }
+
+  void _onControllerChange() => setState(() {});
 
   void _onTap() {
     widget.onSendPressed(_controller.text);
     _controller.clear();
+  }
+
+  @override
+  void dispose() {
+    _controller
+      ..removeListener(_onControllerChange)
+      ..dispose();
+    super.dispose();
   }
 
   @override
@@ -43,12 +53,4 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
           ),
         ),
       );
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 }
-
-typedef SendCallback = void Function(String message);
