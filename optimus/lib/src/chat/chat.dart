@@ -34,7 +34,7 @@ class OptimusChat extends StatelessWidget {
   final Widget sending;
   final Widget sent;
   final Widget error;
-  final SendCallback onSendPressed;
+  final ValueChanged<String> onSendPressed;
   final Predicate<OptimusMessage> isFromCurrentUser;
 
   double get _avatarWidth => hasAvatars ? spacing500 : 0;
