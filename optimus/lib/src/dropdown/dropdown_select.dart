@@ -189,40 +189,6 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   bool get _isClearAllButtonVisible =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
-  Widget? get _clearAllButton =>
-      _isClearAllButtonVisible ? _ClearAllButton(onTap: _onClearAllTap) : null;
-
-  List<Widget> _buildTrailingWidgets() {
-    final trailing = widget.trailing;
-    final trailingImplicit = widget.trailingImplicit;
-
-    return widget.isUpdating
-        ? [const OptimusProgressSpinner()]
-        : [
-            if (trailing != null) trailing,
-            if (trailingImplicit != null) trailingImplicit,
-          ];
-  }
-
-  Widget? get _trailing {
-    final clearAll = _clearAllButton;
-    final trailingWidgets = _buildTrailingWidgets();
-    if (clearAll == null && trailingWidgets.isEmpty) return null;
-
-    return GestureDetector(
-      onTapDown: (_) => _effectiveFocusNode.requestFocus(),
-      child: OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (clearAll != null) clearAll,
-          ...trailingWidgets,
-        ],
-      ),
-    );
-  }
-
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
           void onTapDown(TapDownDetails details) {
@@ -267,33 +233,92 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
       );
 
   @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
-        child: OptimusInputField(
-          leading: widget.leading,
-          prefix: widget.prefix,
-          controller: _effectiveController,
-          onChanged: widget.onTextChanged,
-          isRequired: widget.isRequired,
-          label: widget.label,
-          placeholder: widget.placeholder,
-          placeholderStyle: widget.placeholderStyle,
-          focusNode: _effectiveFocusNode,
-          isFocused: _isFocused,
-          onTap: _onTap,
-          fieldBoxKey: _fieldBoxKey,
-          suffix: widget.suffix,
-          trailing: _trailing,
-          isEnabled: widget.isEnabled,
-          caption: widget.caption,
-          secondaryCaption: widget.secondaryCaption,
-          error: widget.error,
-          size: widget.size,
-          readOnly: widget.readOnly,
-          showCursor: widget.showCursor,
-          showLoader: widget.showLoader,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final clearAll = _isClearAllButtonVisible
+        ? _ClearAllButton(onTap: _onClearAllTap)
+        : null;
+    final trailing = clearAll == null &&
+            widget.trailing == null &&
+            widget.trailingImplicit == null
+        ? null
+        : _Trailing(
+            focusNode: _effectiveFocusNode,
+            clearAllButton: clearAll,
+            trailing: widget.trailing,
+            trailingImplicit: widget.trailingImplicit,
+            isUpdating: widget.isUpdating,
+          );
+
+    return WillPopScope(
+      onWillPop: _handleOnBackPressed,
+      child: OptimusInputField(
+        leading: widget.leading,
+        prefix: widget.prefix,
+        controller: _effectiveController,
+        onChanged: widget.onTextChanged,
+        isRequired: widget.isRequired,
+        label: widget.label,
+        placeholder: widget.placeholder,
+        placeholderStyle: widget.placeholderStyle,
+        focusNode: _effectiveFocusNode,
+        isFocused: _isFocused,
+        onTap: _onTap,
+        fieldBoxKey: _fieldBoxKey,
+        suffix: widget.suffix,
+        trailing: trailing,
+        isEnabled: widget.isEnabled,
+        caption: widget.caption,
+        secondaryCaption: widget.secondaryCaption,
+        error: widget.error,
+        size: widget.size,
+        readOnly: widget.readOnly,
+        showCursor: widget.showCursor,
+        showLoader: widget.showLoader,
+      ),
+    );
+  }
+}
+
+class _Trailing extends StatelessWidget {
+  const _Trailing({
+    required this.focusNode,
+    this.clearAllButton,
+    this.trailing,
+    this.trailingImplicit,
+    required this.isUpdating,
+  });
+
+  final FocusNode focusNode;
+  final Widget? clearAllButton;
+  final Widget? trailing;
+  final Widget? trailingImplicit;
+  final bool isUpdating;
+
+  @override
+  Widget build(BuildContext context) {
+    final trailing = this.trailing;
+    final trailingImplicit = this.trailingImplicit;
+    final clearAllButton = this.clearAllButton;
+
+    return GestureDetector(
+      onTapDown: (_) => focusNode.requestFocus(),
+      child: OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (clearAllButton != null) clearAllButton,
+          if (isUpdating)
+            const OptimusCircleLoader(
+              size: OptimusCircleLoaderSize.small,
+              variant: OptimusCircleLoaderVariant.indeterminate(),
+            ),
+          if (trailing != null && !isUpdating) trailing,
+          if (trailingImplicit != null && !isUpdating) trailingImplicit,
+        ],
+      ),
+    );
+  }
 }
 
 class _ClearAllButton extends StatelessWidget {
