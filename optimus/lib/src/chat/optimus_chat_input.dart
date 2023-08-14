@@ -19,10 +19,10 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_onControllerChange);
+    _controller.addListener(_handleControllerChanged);
   }
 
-  void _onControllerChange() => setState(() {});
+  void _handleControllerChanged() => setState(() {});
 
   void _onTap() {
     widget.onSendPressed(_controller.text);
@@ -32,7 +32,7 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
   @override
   void dispose() {
     _controller
-      ..removeListener(_onControllerChange)
+      ..removeListener(_handleControllerChanged)
       ..dispose();
     super.dispose();
   }
