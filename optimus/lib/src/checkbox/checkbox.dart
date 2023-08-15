@@ -227,8 +227,7 @@ extension on _CheckboxState {
 enum _InteractionState { basic, hover, active, disabled }
 
 extension on _InteractionState {
-  Color fillColor(BuildContext context, _CheckboxState state) =>
-      switch (this) {
+  Color fillColor(BuildContext context, _CheckboxState state) => switch (this) {
         _InteractionState.basic => state.isUnchecked
             ? Colors.transparent
             : context.tokens.backgroundInteractivePrimaryDefault,
