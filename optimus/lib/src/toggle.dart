@@ -49,15 +49,15 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
 
   Color get _tappedColor => widget.isChecked
       ? context.tokens.backgroundInteractivePrimaryActive
-      : context.tokens.backgroundInteractiveBoldActive;
+      : context.tokens.backgroundInteractiveNeutralBoldActive;
 
   Color get _hoveredColor => widget.isChecked
       ? context.tokens.backgroundInteractivePrimaryHover
-      : context.tokens.backgroundInteractiveBoldHover;
+      : context.tokens.backgroundInteractiveNeutralBoldHover;
 
   Color get _defaultColor => widget.isChecked
       ? context.tokens.backgroundInteractivePrimaryDefault
-      : context.tokens.backgroundInteractiveBoldDefault;
+      : context.tokens.backgroundInteractiveNeutralBoldDefault;
 
   Color get _color => !_isEnabled
       ? context.tokens.backgroundDisabled

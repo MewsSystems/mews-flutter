@@ -166,7 +166,8 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
                       border: _state.isUnchecked
                           ? Border.all(
                               color: _isError
-                                  ? theme.tokens.borderInteractiveError
+                                  ? theme
+                                      .tokens.backgroundInteractiveDangerDefault
                                   : _interactionState.borderColor(context),
                               width: 1.5,
                             )
@@ -226,18 +227,19 @@ extension on _CheckboxState {
 enum _InteractionState { basic, hover, active, disabled }
 
 extension on _InteractionState {
-  Color fillColor(BuildContext context, _CheckboxState state) => switch (this) {
+  Color fillColor(BuildContext context, _CheckboxState state) =>
+      switch (this) {
         _InteractionState.basic => state.isUnchecked
-            ? context.tokens.backgroundInteractiveSubtleDefault
+            ? Colors.transparent
             : context.tokens.backgroundInteractivePrimaryDefault,
         _InteractionState.hover => state.isUnchecked
-            ? context.tokens.backgroundInteractiveSubtleHover
+            ? context.tokens.backgroundInteractiveNeutralSubtleHover
             : context.tokens.backgroundInteractivePrimaryHover,
         _InteractionState.active => state.isUnchecked
-            ? context.tokens.backgroundInteractiveSubtleActive
+            ? context.tokens.backgroundInteractiveNeutralSubtleActive
             : context.tokens.backgroundInteractivePrimaryActive,
         _InteractionState.disabled => state.isUnchecked
-            ? context.tokens.backgroundStaticFlat
+            ? Colors.transparent
             : context.tokens.backgroundDisabled,
       };
 

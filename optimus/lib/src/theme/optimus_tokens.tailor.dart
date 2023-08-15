@@ -25,22 +25,24 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundAlertWarningSecondary,
     required this.backgroundBrand,
     required this.backgroundDisabled,
-    required this.backgroundInteractiveBoldActive,
-    required this.backgroundInteractiveBoldDefault,
-    required this.backgroundInteractiveBoldHover,
     required this.backgroundInteractiveDangerActive,
     required this.backgroundInteractiveDangerDefault,
     required this.backgroundInteractiveDangerHover,
+    required this.backgroundInteractiveNeutralActive,
+    required this.backgroundInteractiveNeutralBoldActive,
+    required this.backgroundInteractiveNeutralBoldDefault,
+    required this.backgroundInteractiveNeutralBoldHover,
+    required this.backgroundInteractiveNeutralDefault,
+    required this.backgroundInteractiveNeutralHover,
+    required this.backgroundInteractiveNeutralSubtleActive,
+    required this.backgroundInteractiveNeutralSubtleDefault,
+    required this.backgroundInteractiveNeutralSubtleHover,
     required this.backgroundInteractivePrimaryActive,
     required this.backgroundInteractivePrimaryDefault,
     required this.backgroundInteractivePrimaryHover,
     required this.backgroundInteractiveSecondaryActive,
     required this.backgroundInteractiveSecondaryDefault,
     required this.backgroundInteractiveSecondaryHover,
-    required this.backgroundInteractiveSubtleActive,
-    required this.backgroundInteractiveSubtleDefault,
-    required this.backgroundInteractiveSubtleHover,
-    required this.backgroundOverlay,
     required this.backgroundStaticFlat,
     required this.backgroundStaticFloating,
     required this.backgroundStaticInverse,
@@ -52,7 +54,9 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderAlertSuccess,
     required this.borderAlertWarning,
     required this.borderDisabled,
-    required this.borderInteractiveError,
+    required this.borderInteractiveBoldActive,
+    required this.borderInteractiveBoldDefault,
+    required this.borderInteractiveBoldHover,
     required this.borderInteractiveFocus,
     required this.borderInteractivePrimaryActive,
     required this.borderInteractivePrimaryDefault,
@@ -74,6 +78,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.interactiveDisabledColor,
     required this.interactiveHoverColor,
     required this.interactiveInverseColor,
+    required this.legacySupportTagBackgroundBasicBold,
+    required this.legacySupportTagBackgroundDenim,
+    required this.legacySupportTagBackgroundLavender,
+    required this.legacySupportTagBackgroundLime,
+    required this.legacySupportTagBackgroundMustard,
+    required this.legacySupportTagBackgroundPrimary,
+    required this.legacySupportTagBackgroundRuby,
+    required this.legacySupportTagBackgroundTangerine,
+    required this.legacySupportTagBorderBasicBold,
+    required this.legacySupportTagBorderDenim,
+    required this.legacySupportTagBorderLavender,
+    required this.legacySupportTagBorderLime,
+    required this.legacySupportTagBorderMustard,
+    required this.legacySupportTagBorderPrimary,
+    required this.legacySupportTagBorderRuby,
+    required this.legacySupportTagBorderTangerine,
+    required this.legacySupportTagTextBasicBold,
+    required this.legacySupportTagTextDenim,
+    required this.legacySupportTagTextLavender,
+    required this.legacySupportTagTextLime,
+    required this.legacySupportTagTextMustard,
+    required this.legacySupportTagTextPrimary,
+    required this.legacySupportTagTextRuby,
+    required this.legacySupportTagTextTangerine,
     required this.paletteBasicsBlack,
     required this.paletteBasicsWhite,
     required this.paletteBasicsWhite64,
@@ -118,6 +146,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.paletteBrandIndigo800,
     required this.paletteBrandIndigo900,
     required this.paletteBrandNight0,
+    required this.paletteBrandNight064,
     required this.paletteBrandNight100,
     required this.paletteBrandNight1000,
     required this.paletteBrandNight100012,
@@ -257,7 +286,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.textInteractiveActive,
     required this.textInteractiveDefault,
     required this.textInteractiveHover,
-    required this.textStaticError,
     required this.textStaticInverse,
     required this.textStaticPrimary,
     required this.textStaticSecondary,
@@ -278,22 +306,24 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundAlertWarningSecondary;
   final Color backgroundBrand;
   final Color backgroundDisabled;
-  final Color backgroundInteractiveBoldActive;
-  final Color backgroundInteractiveBoldDefault;
-  final Color backgroundInteractiveBoldHover;
   final Color backgroundInteractiveDangerActive;
   final Color backgroundInteractiveDangerDefault;
   final Color backgroundInteractiveDangerHover;
+  final Color backgroundInteractiveNeutralActive;
+  final Color backgroundInteractiveNeutralBoldActive;
+  final Color backgroundInteractiveNeutralBoldDefault;
+  final Color backgroundInteractiveNeutralBoldHover;
+  final Color backgroundInteractiveNeutralDefault;
+  final Color backgroundInteractiveNeutralHover;
+  final Color backgroundInteractiveNeutralSubtleActive;
+  final Color backgroundInteractiveNeutralSubtleDefault;
+  final Color backgroundInteractiveNeutralSubtleHover;
   final Color backgroundInteractivePrimaryActive;
   final Color backgroundInteractivePrimaryDefault;
   final Color backgroundInteractivePrimaryHover;
   final Color backgroundInteractiveSecondaryActive;
   final Color backgroundInteractiveSecondaryDefault;
   final Color backgroundInteractiveSecondaryHover;
-  final Color backgroundInteractiveSubtleActive;
-  final Color backgroundInteractiveSubtleDefault;
-  final Color backgroundInteractiveSubtleHover;
-  final Color backgroundOverlay;
   final Color backgroundStaticFlat;
   final Color backgroundStaticFloating;
   final Color backgroundStaticInverse;
@@ -305,7 +335,9 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderAlertSuccess;
   final Color borderAlertWarning;
   final Color borderDisabled;
-  final Color borderInteractiveError;
+  final Color borderInteractiveBoldActive;
+  final Color borderInteractiveBoldDefault;
+  final Color borderInteractiveBoldHover;
   final Color borderInteractiveFocus;
   final Color borderInteractivePrimaryActive;
   final Color borderInteractivePrimaryDefault;
@@ -327,6 +359,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color interactiveDisabledColor;
   final Color interactiveHoverColor;
   final Color interactiveInverseColor;
+  final Color legacySupportTagBackgroundBasicBold;
+  final Color legacySupportTagBackgroundDenim;
+  final Color legacySupportTagBackgroundLavender;
+  final Color legacySupportTagBackgroundLime;
+  final Color legacySupportTagBackgroundMustard;
+  final Color legacySupportTagBackgroundPrimary;
+  final Color legacySupportTagBackgroundRuby;
+  final Color legacySupportTagBackgroundTangerine;
+  final Color legacySupportTagBorderBasicBold;
+  final Color legacySupportTagBorderDenim;
+  final Color legacySupportTagBorderLavender;
+  final Color legacySupportTagBorderLime;
+  final Color legacySupportTagBorderMustard;
+  final Color legacySupportTagBorderPrimary;
+  final Color legacySupportTagBorderRuby;
+  final Color legacySupportTagBorderTangerine;
+  final Color legacySupportTagTextBasicBold;
+  final Color legacySupportTagTextDenim;
+  final Color legacySupportTagTextLavender;
+  final Color legacySupportTagTextLime;
+  final Color legacySupportTagTextMustard;
+  final Color legacySupportTagTextPrimary;
+  final Color legacySupportTagTextRuby;
+  final Color legacySupportTagTextTangerine;
   final Color paletteBasicsBlack;
   final Color paletteBasicsWhite;
   final Color paletteBasicsWhite64;
@@ -371,6 +427,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color paletteBrandIndigo800;
   final Color paletteBrandIndigo900;
   final Color paletteBrandNight0;
+  final Color paletteBrandNight064;
   final Color paletteBrandNight100;
   final Color paletteBrandNight1000;
   final Color paletteBrandNight100012;
@@ -510,7 +567,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color textInteractiveActive;
   final Color textInteractiveDefault;
   final Color textInteractiveHover;
-  final Color textStaticError;
   final Color textStaticInverse;
   final Color textStaticPrimary;
   final Color textStaticSecondary;
@@ -539,18 +595,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundAlertWarningSecondary[0],
     backgroundBrand: _$OptimusTokens.backgroundBrand[0],
     backgroundDisabled: _$OptimusTokens.backgroundDisabled[0],
-    backgroundInteractiveBoldActive:
-        _$OptimusTokens.backgroundInteractiveBoldActive[0],
-    backgroundInteractiveBoldDefault:
-        _$OptimusTokens.backgroundInteractiveBoldDefault[0],
-    backgroundInteractiveBoldHover:
-        _$OptimusTokens.backgroundInteractiveBoldHover[0],
     backgroundInteractiveDangerActive:
         _$OptimusTokens.backgroundInteractiveDangerActive[0],
     backgroundInteractiveDangerDefault:
         _$OptimusTokens.backgroundInteractiveDangerDefault[0],
     backgroundInteractiveDangerHover:
         _$OptimusTokens.backgroundInteractiveDangerHover[0],
+    backgroundInteractiveNeutralActive:
+        _$OptimusTokens.backgroundInteractiveNeutralActive[0],
+    backgroundInteractiveNeutralBoldActive:
+        _$OptimusTokens.backgroundInteractiveNeutralBoldActive[0],
+    backgroundInteractiveNeutralBoldDefault:
+        _$OptimusTokens.backgroundInteractiveNeutralBoldDefault[0],
+    backgroundInteractiveNeutralBoldHover:
+        _$OptimusTokens.backgroundInteractiveNeutralBoldHover[0],
+    backgroundInteractiveNeutralDefault:
+        _$OptimusTokens.backgroundInteractiveNeutralDefault[0],
+    backgroundInteractiveNeutralHover:
+        _$OptimusTokens.backgroundInteractiveNeutralHover[0],
+    backgroundInteractiveNeutralSubtleActive:
+        _$OptimusTokens.backgroundInteractiveNeutralSubtleActive[0],
+    backgroundInteractiveNeutralSubtleDefault:
+        _$OptimusTokens.backgroundInteractiveNeutralSubtleDefault[0],
+    backgroundInteractiveNeutralSubtleHover:
+        _$OptimusTokens.backgroundInteractiveNeutralSubtleHover[0],
     backgroundInteractivePrimaryActive:
         _$OptimusTokens.backgroundInteractivePrimaryActive[0],
     backgroundInteractivePrimaryDefault:
@@ -563,13 +631,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundInteractiveSecondaryDefault[0],
     backgroundInteractiveSecondaryHover:
         _$OptimusTokens.backgroundInteractiveSecondaryHover[0],
-    backgroundInteractiveSubtleActive:
-        _$OptimusTokens.backgroundInteractiveSubtleActive[0],
-    backgroundInteractiveSubtleDefault:
-        _$OptimusTokens.backgroundInteractiveSubtleDefault[0],
-    backgroundInteractiveSubtleHover:
-        _$OptimusTokens.backgroundInteractiveSubtleHover[0],
-    backgroundOverlay: _$OptimusTokens.backgroundOverlay[0],
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[0],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[0],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[0],
@@ -581,7 +642,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderAlertSuccess: _$OptimusTokens.borderAlertSuccess[0],
     borderAlertWarning: _$OptimusTokens.borderAlertWarning[0],
     borderDisabled: _$OptimusTokens.borderDisabled[0],
-    borderInteractiveError: _$OptimusTokens.borderInteractiveError[0],
+    borderInteractiveBoldActive: _$OptimusTokens.borderInteractiveBoldActive[0],
+    borderInteractiveBoldDefault:
+        _$OptimusTokens.borderInteractiveBoldDefault[0],
+    borderInteractiveBoldHover: _$OptimusTokens.borderInteractiveBoldHover[0],
     borderInteractiveFocus: _$OptimusTokens.borderInteractiveFocus[0],
     borderInteractivePrimaryActive:
         _$OptimusTokens.borderInteractivePrimaryActive[0],
@@ -609,6 +673,46 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     interactiveDisabledColor: _$OptimusTokens.interactiveDisabledColor[0],
     interactiveHoverColor: _$OptimusTokens.interactiveHoverColor[0],
     interactiveInverseColor: _$OptimusTokens.interactiveInverseColor[0],
+    legacySupportTagBackgroundBasicBold:
+        _$OptimusTokens.legacySupportTagBackgroundBasicBold[0],
+    legacySupportTagBackgroundDenim:
+        _$OptimusTokens.legacySupportTagBackgroundDenim[0],
+    legacySupportTagBackgroundLavender:
+        _$OptimusTokens.legacySupportTagBackgroundLavender[0],
+    legacySupportTagBackgroundLime:
+        _$OptimusTokens.legacySupportTagBackgroundLime[0],
+    legacySupportTagBackgroundMustard:
+        _$OptimusTokens.legacySupportTagBackgroundMustard[0],
+    legacySupportTagBackgroundPrimary:
+        _$OptimusTokens.legacySupportTagBackgroundPrimary[0],
+    legacySupportTagBackgroundRuby:
+        _$OptimusTokens.legacySupportTagBackgroundRuby[0],
+    legacySupportTagBackgroundTangerine:
+        _$OptimusTokens.legacySupportTagBackgroundTangerine[0],
+    legacySupportTagBorderBasicBold:
+        _$OptimusTokens.legacySupportTagBorderBasicBold[0],
+    legacySupportTagBorderDenim: _$OptimusTokens.legacySupportTagBorderDenim[0],
+    legacySupportTagBorderLavender:
+        _$OptimusTokens.legacySupportTagBorderLavender[0],
+    legacySupportTagBorderLime: _$OptimusTokens.legacySupportTagBorderLime[0],
+    legacySupportTagBorderMustard:
+        _$OptimusTokens.legacySupportTagBorderMustard[0],
+    legacySupportTagBorderPrimary:
+        _$OptimusTokens.legacySupportTagBorderPrimary[0],
+    legacySupportTagBorderRuby: _$OptimusTokens.legacySupportTagBorderRuby[0],
+    legacySupportTagBorderTangerine:
+        _$OptimusTokens.legacySupportTagBorderTangerine[0],
+    legacySupportTagTextBasicBold:
+        _$OptimusTokens.legacySupportTagTextBasicBold[0],
+    legacySupportTagTextDenim: _$OptimusTokens.legacySupportTagTextDenim[0],
+    legacySupportTagTextLavender:
+        _$OptimusTokens.legacySupportTagTextLavender[0],
+    legacySupportTagTextLime: _$OptimusTokens.legacySupportTagTextLime[0],
+    legacySupportTagTextMustard: _$OptimusTokens.legacySupportTagTextMustard[0],
+    legacySupportTagTextPrimary: _$OptimusTokens.legacySupportTagTextPrimary[0],
+    legacySupportTagTextRuby: _$OptimusTokens.legacySupportTagTextRuby[0],
+    legacySupportTagTextTangerine:
+        _$OptimusTokens.legacySupportTagTextTangerine[0],
     paletteBasicsBlack: _$OptimusTokens.paletteBasicsBlack[0],
     paletteBasicsWhite: _$OptimusTokens.paletteBasicsWhite[0],
     paletteBasicsWhite64: _$OptimusTokens.paletteBasicsWhite64[0],
@@ -653,6 +757,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandIndigo800: _$OptimusTokens.paletteBrandIndigo800[0],
     paletteBrandIndigo900: _$OptimusTokens.paletteBrandIndigo900[0],
     paletteBrandNight0: _$OptimusTokens.paletteBrandNight0[0],
+    paletteBrandNight064: _$OptimusTokens.paletteBrandNight064[0],
     paletteBrandNight100: _$OptimusTokens.paletteBrandNight100[0],
     paletteBrandNight1000: _$OptimusTokens.paletteBrandNight1000[0],
     paletteBrandNight100012: _$OptimusTokens.paletteBrandNight100012[0],
@@ -792,7 +897,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     textInteractiveActive: _$OptimusTokens.textInteractiveActive[0],
     textInteractiveDefault: _$OptimusTokens.textInteractiveDefault[0],
     textInteractiveHover: _$OptimusTokens.textInteractiveHover[0],
-    textStaticError: _$OptimusTokens.textStaticError[0],
     textStaticInverse: _$OptimusTokens.textStaticInverse[0],
     textStaticPrimary: _$OptimusTokens.textStaticPrimary[0],
     textStaticSecondary: _$OptimusTokens.textStaticSecondary[0],
@@ -822,18 +926,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundAlertWarningSecondary[1],
     backgroundBrand: _$OptimusTokens.backgroundBrand[1],
     backgroundDisabled: _$OptimusTokens.backgroundDisabled[1],
-    backgroundInteractiveBoldActive:
-        _$OptimusTokens.backgroundInteractiveBoldActive[1],
-    backgroundInteractiveBoldDefault:
-        _$OptimusTokens.backgroundInteractiveBoldDefault[1],
-    backgroundInteractiveBoldHover:
-        _$OptimusTokens.backgroundInteractiveBoldHover[1],
     backgroundInteractiveDangerActive:
         _$OptimusTokens.backgroundInteractiveDangerActive[1],
     backgroundInteractiveDangerDefault:
         _$OptimusTokens.backgroundInteractiveDangerDefault[1],
     backgroundInteractiveDangerHover:
         _$OptimusTokens.backgroundInteractiveDangerHover[1],
+    backgroundInteractiveNeutralActive:
+        _$OptimusTokens.backgroundInteractiveNeutralActive[1],
+    backgroundInteractiveNeutralBoldActive:
+        _$OptimusTokens.backgroundInteractiveNeutralBoldActive[1],
+    backgroundInteractiveNeutralBoldDefault:
+        _$OptimusTokens.backgroundInteractiveNeutralBoldDefault[1],
+    backgroundInteractiveNeutralBoldHover:
+        _$OptimusTokens.backgroundInteractiveNeutralBoldHover[1],
+    backgroundInteractiveNeutralDefault:
+        _$OptimusTokens.backgroundInteractiveNeutralDefault[1],
+    backgroundInteractiveNeutralHover:
+        _$OptimusTokens.backgroundInteractiveNeutralHover[1],
+    backgroundInteractiveNeutralSubtleActive:
+        _$OptimusTokens.backgroundInteractiveNeutralSubtleActive[1],
+    backgroundInteractiveNeutralSubtleDefault:
+        _$OptimusTokens.backgroundInteractiveNeutralSubtleDefault[1],
+    backgroundInteractiveNeutralSubtleHover:
+        _$OptimusTokens.backgroundInteractiveNeutralSubtleHover[1],
     backgroundInteractivePrimaryActive:
         _$OptimusTokens.backgroundInteractivePrimaryActive[1],
     backgroundInteractivePrimaryDefault:
@@ -846,13 +962,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundInteractiveSecondaryDefault[1],
     backgroundInteractiveSecondaryHover:
         _$OptimusTokens.backgroundInteractiveSecondaryHover[1],
-    backgroundInteractiveSubtleActive:
-        _$OptimusTokens.backgroundInteractiveSubtleActive[1],
-    backgroundInteractiveSubtleDefault:
-        _$OptimusTokens.backgroundInteractiveSubtleDefault[1],
-    backgroundInteractiveSubtleHover:
-        _$OptimusTokens.backgroundInteractiveSubtleHover[1],
-    backgroundOverlay: _$OptimusTokens.backgroundOverlay[1],
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[1],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[1],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[1],
@@ -864,7 +973,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderAlertSuccess: _$OptimusTokens.borderAlertSuccess[1],
     borderAlertWarning: _$OptimusTokens.borderAlertWarning[1],
     borderDisabled: _$OptimusTokens.borderDisabled[1],
-    borderInteractiveError: _$OptimusTokens.borderInteractiveError[1],
+    borderInteractiveBoldActive: _$OptimusTokens.borderInteractiveBoldActive[1],
+    borderInteractiveBoldDefault:
+        _$OptimusTokens.borderInteractiveBoldDefault[1],
+    borderInteractiveBoldHover: _$OptimusTokens.borderInteractiveBoldHover[1],
     borderInteractiveFocus: _$OptimusTokens.borderInteractiveFocus[1],
     borderInteractivePrimaryActive:
         _$OptimusTokens.borderInteractivePrimaryActive[1],
@@ -892,6 +1004,46 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     interactiveDisabledColor: _$OptimusTokens.interactiveDisabledColor[1],
     interactiveHoverColor: _$OptimusTokens.interactiveHoverColor[1],
     interactiveInverseColor: _$OptimusTokens.interactiveInverseColor[1],
+    legacySupportTagBackgroundBasicBold:
+        _$OptimusTokens.legacySupportTagBackgroundBasicBold[1],
+    legacySupportTagBackgroundDenim:
+        _$OptimusTokens.legacySupportTagBackgroundDenim[1],
+    legacySupportTagBackgroundLavender:
+        _$OptimusTokens.legacySupportTagBackgroundLavender[1],
+    legacySupportTagBackgroundLime:
+        _$OptimusTokens.legacySupportTagBackgroundLime[1],
+    legacySupportTagBackgroundMustard:
+        _$OptimusTokens.legacySupportTagBackgroundMustard[1],
+    legacySupportTagBackgroundPrimary:
+        _$OptimusTokens.legacySupportTagBackgroundPrimary[1],
+    legacySupportTagBackgroundRuby:
+        _$OptimusTokens.legacySupportTagBackgroundRuby[1],
+    legacySupportTagBackgroundTangerine:
+        _$OptimusTokens.legacySupportTagBackgroundTangerine[1],
+    legacySupportTagBorderBasicBold:
+        _$OptimusTokens.legacySupportTagBorderBasicBold[1],
+    legacySupportTagBorderDenim: _$OptimusTokens.legacySupportTagBorderDenim[1],
+    legacySupportTagBorderLavender:
+        _$OptimusTokens.legacySupportTagBorderLavender[1],
+    legacySupportTagBorderLime: _$OptimusTokens.legacySupportTagBorderLime[1],
+    legacySupportTagBorderMustard:
+        _$OptimusTokens.legacySupportTagBorderMustard[1],
+    legacySupportTagBorderPrimary:
+        _$OptimusTokens.legacySupportTagBorderPrimary[1],
+    legacySupportTagBorderRuby: _$OptimusTokens.legacySupportTagBorderRuby[1],
+    legacySupportTagBorderTangerine:
+        _$OptimusTokens.legacySupportTagBorderTangerine[1],
+    legacySupportTagTextBasicBold:
+        _$OptimusTokens.legacySupportTagTextBasicBold[1],
+    legacySupportTagTextDenim: _$OptimusTokens.legacySupportTagTextDenim[1],
+    legacySupportTagTextLavender:
+        _$OptimusTokens.legacySupportTagTextLavender[1],
+    legacySupportTagTextLime: _$OptimusTokens.legacySupportTagTextLime[1],
+    legacySupportTagTextMustard: _$OptimusTokens.legacySupportTagTextMustard[1],
+    legacySupportTagTextPrimary: _$OptimusTokens.legacySupportTagTextPrimary[1],
+    legacySupportTagTextRuby: _$OptimusTokens.legacySupportTagTextRuby[1],
+    legacySupportTagTextTangerine:
+        _$OptimusTokens.legacySupportTagTextTangerine[1],
     paletteBasicsBlack: _$OptimusTokens.paletteBasicsBlack[1],
     paletteBasicsWhite: _$OptimusTokens.paletteBasicsWhite[1],
     paletteBasicsWhite64: _$OptimusTokens.paletteBasicsWhite64[1],
@@ -936,6 +1088,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandIndigo800: _$OptimusTokens.paletteBrandIndigo800[1],
     paletteBrandIndigo900: _$OptimusTokens.paletteBrandIndigo900[1],
     paletteBrandNight0: _$OptimusTokens.paletteBrandNight0[1],
+    paletteBrandNight064: _$OptimusTokens.paletteBrandNight064[1],
     paletteBrandNight100: _$OptimusTokens.paletteBrandNight100[1],
     paletteBrandNight1000: _$OptimusTokens.paletteBrandNight1000[1],
     paletteBrandNight100012: _$OptimusTokens.paletteBrandNight100012[1],
@@ -1075,7 +1228,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     textInteractiveActive: _$OptimusTokens.textInteractiveActive[1],
     textInteractiveDefault: _$OptimusTokens.textInteractiveDefault[1],
     textInteractiveHover: _$OptimusTokens.textInteractiveHover[1],
-    textStaticError: _$OptimusTokens.textStaticError[1],
     textStaticInverse: _$OptimusTokens.textStaticInverse[1],
     textStaticPrimary: _$OptimusTokens.textStaticPrimary[1],
     textStaticSecondary: _$OptimusTokens.textStaticSecondary[1],
@@ -1103,22 +1255,24 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? backgroundAlertWarningSecondary,
     Color? backgroundBrand,
     Color? backgroundDisabled,
-    Color? backgroundInteractiveBoldActive,
-    Color? backgroundInteractiveBoldDefault,
-    Color? backgroundInteractiveBoldHover,
     Color? backgroundInteractiveDangerActive,
     Color? backgroundInteractiveDangerDefault,
     Color? backgroundInteractiveDangerHover,
+    Color? backgroundInteractiveNeutralActive,
+    Color? backgroundInteractiveNeutralBoldActive,
+    Color? backgroundInteractiveNeutralBoldDefault,
+    Color? backgroundInteractiveNeutralBoldHover,
+    Color? backgroundInteractiveNeutralDefault,
+    Color? backgroundInteractiveNeutralHover,
+    Color? backgroundInteractiveNeutralSubtleActive,
+    Color? backgroundInteractiveNeutralSubtleDefault,
+    Color? backgroundInteractiveNeutralSubtleHover,
     Color? backgroundInteractivePrimaryActive,
     Color? backgroundInteractivePrimaryDefault,
     Color? backgroundInteractivePrimaryHover,
     Color? backgroundInteractiveSecondaryActive,
     Color? backgroundInteractiveSecondaryDefault,
     Color? backgroundInteractiveSecondaryHover,
-    Color? backgroundInteractiveSubtleActive,
-    Color? backgroundInteractiveSubtleDefault,
-    Color? backgroundInteractiveSubtleHover,
-    Color? backgroundOverlay,
     Color? backgroundStaticFlat,
     Color? backgroundStaticFloating,
     Color? backgroundStaticInverse,
@@ -1130,7 +1284,9 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? borderAlertSuccess,
     Color? borderAlertWarning,
     Color? borderDisabled,
-    Color? borderInteractiveError,
+    Color? borderInteractiveBoldActive,
+    Color? borderInteractiveBoldDefault,
+    Color? borderInteractiveBoldHover,
     Color? borderInteractiveFocus,
     Color? borderInteractivePrimaryActive,
     Color? borderInteractivePrimaryDefault,
@@ -1152,6 +1308,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? interactiveDisabledColor,
     Color? interactiveHoverColor,
     Color? interactiveInverseColor,
+    Color? legacySupportTagBackgroundBasicBold,
+    Color? legacySupportTagBackgroundDenim,
+    Color? legacySupportTagBackgroundLavender,
+    Color? legacySupportTagBackgroundLime,
+    Color? legacySupportTagBackgroundMustard,
+    Color? legacySupportTagBackgroundPrimary,
+    Color? legacySupportTagBackgroundRuby,
+    Color? legacySupportTagBackgroundTangerine,
+    Color? legacySupportTagBorderBasicBold,
+    Color? legacySupportTagBorderDenim,
+    Color? legacySupportTagBorderLavender,
+    Color? legacySupportTagBorderLime,
+    Color? legacySupportTagBorderMustard,
+    Color? legacySupportTagBorderPrimary,
+    Color? legacySupportTagBorderRuby,
+    Color? legacySupportTagBorderTangerine,
+    Color? legacySupportTagTextBasicBold,
+    Color? legacySupportTagTextDenim,
+    Color? legacySupportTagTextLavender,
+    Color? legacySupportTagTextLime,
+    Color? legacySupportTagTextMustard,
+    Color? legacySupportTagTextPrimary,
+    Color? legacySupportTagTextRuby,
+    Color? legacySupportTagTextTangerine,
     Color? paletteBasicsBlack,
     Color? paletteBasicsWhite,
     Color? paletteBasicsWhite64,
@@ -1196,6 +1376,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? paletteBrandIndigo800,
     Color? paletteBrandIndigo900,
     Color? paletteBrandNight0,
+    Color? paletteBrandNight064,
     Color? paletteBrandNight100,
     Color? paletteBrandNight1000,
     Color? paletteBrandNight100012,
@@ -1335,7 +1516,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? textInteractiveActive,
     Color? textInteractiveDefault,
     Color? textInteractiveHover,
-    Color? textStaticError,
     Color? textStaticInverse,
     Color? textStaticPrimary,
     Color? textStaticSecondary,
@@ -1368,18 +1548,37 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           this.backgroundAlertWarningSecondary,
       backgroundBrand: backgroundBrand ?? this.backgroundBrand,
       backgroundDisabled: backgroundDisabled ?? this.backgroundDisabled,
-      backgroundInteractiveBoldActive: backgroundInteractiveBoldActive ??
-          this.backgroundInteractiveBoldActive,
-      backgroundInteractiveBoldDefault: backgroundInteractiveBoldDefault ??
-          this.backgroundInteractiveBoldDefault,
-      backgroundInteractiveBoldHover:
-          backgroundInteractiveBoldHover ?? this.backgroundInteractiveBoldHover,
       backgroundInteractiveDangerActive: backgroundInteractiveDangerActive ??
           this.backgroundInteractiveDangerActive,
       backgroundInteractiveDangerDefault: backgroundInteractiveDangerDefault ??
           this.backgroundInteractiveDangerDefault,
       backgroundInteractiveDangerHover: backgroundInteractiveDangerHover ??
           this.backgroundInteractiveDangerHover,
+      backgroundInteractiveNeutralActive: backgroundInteractiveNeutralActive ??
+          this.backgroundInteractiveNeutralActive,
+      backgroundInteractiveNeutralBoldActive:
+          backgroundInteractiveNeutralBoldActive ??
+              this.backgroundInteractiveNeutralBoldActive,
+      backgroundInteractiveNeutralBoldDefault:
+          backgroundInteractiveNeutralBoldDefault ??
+              this.backgroundInteractiveNeutralBoldDefault,
+      backgroundInteractiveNeutralBoldHover:
+          backgroundInteractiveNeutralBoldHover ??
+              this.backgroundInteractiveNeutralBoldHover,
+      backgroundInteractiveNeutralDefault:
+          backgroundInteractiveNeutralDefault ??
+              this.backgroundInteractiveNeutralDefault,
+      backgroundInteractiveNeutralHover: backgroundInteractiveNeutralHover ??
+          this.backgroundInteractiveNeutralHover,
+      backgroundInteractiveNeutralSubtleActive:
+          backgroundInteractiveNeutralSubtleActive ??
+              this.backgroundInteractiveNeutralSubtleActive,
+      backgroundInteractiveNeutralSubtleDefault:
+          backgroundInteractiveNeutralSubtleDefault ??
+              this.backgroundInteractiveNeutralSubtleDefault,
+      backgroundInteractiveNeutralSubtleHover:
+          backgroundInteractiveNeutralSubtleHover ??
+              this.backgroundInteractiveNeutralSubtleHover,
       backgroundInteractivePrimaryActive: backgroundInteractivePrimaryActive ??
           this.backgroundInteractivePrimaryActive,
       backgroundInteractivePrimaryDefault:
@@ -1396,13 +1595,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       backgroundInteractiveSecondaryHover:
           backgroundInteractiveSecondaryHover ??
               this.backgroundInteractiveSecondaryHover,
-      backgroundInteractiveSubtleActive: backgroundInteractiveSubtleActive ??
-          this.backgroundInteractiveSubtleActive,
-      backgroundInteractiveSubtleDefault: backgroundInteractiveSubtleDefault ??
-          this.backgroundInteractiveSubtleDefault,
-      backgroundInteractiveSubtleHover: backgroundInteractiveSubtleHover ??
-          this.backgroundInteractiveSubtleHover,
-      backgroundOverlay: backgroundOverlay ?? this.backgroundOverlay,
       backgroundStaticFlat: backgroundStaticFlat ?? this.backgroundStaticFlat,
       backgroundStaticFloating:
           backgroundStaticFloating ?? this.backgroundStaticFloating,
@@ -1418,8 +1610,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       borderAlertSuccess: borderAlertSuccess ?? this.borderAlertSuccess,
       borderAlertWarning: borderAlertWarning ?? this.borderAlertWarning,
       borderDisabled: borderDisabled ?? this.borderDisabled,
-      borderInteractiveError:
-          borderInteractiveError ?? this.borderInteractiveError,
+      borderInteractiveBoldActive:
+          borderInteractiveBoldActive ?? this.borderInteractiveBoldActive,
+      borderInteractiveBoldDefault:
+          borderInteractiveBoldDefault ?? this.borderInteractiveBoldDefault,
+      borderInteractiveBoldHover:
+          borderInteractiveBoldHover ?? this.borderInteractiveBoldHover,
       borderInteractiveFocus:
           borderInteractiveFocus ?? this.borderInteractiveFocus,
       borderInteractivePrimaryActive:
@@ -1454,6 +1650,56 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           interactiveHoverColor ?? this.interactiveHoverColor,
       interactiveInverseColor:
           interactiveInverseColor ?? this.interactiveInverseColor,
+      legacySupportTagBackgroundBasicBold:
+          legacySupportTagBackgroundBasicBold ??
+              this.legacySupportTagBackgroundBasicBold,
+      legacySupportTagBackgroundDenim: legacySupportTagBackgroundDenim ??
+          this.legacySupportTagBackgroundDenim,
+      legacySupportTagBackgroundLavender: legacySupportTagBackgroundLavender ??
+          this.legacySupportTagBackgroundLavender,
+      legacySupportTagBackgroundLime:
+          legacySupportTagBackgroundLime ?? this.legacySupportTagBackgroundLime,
+      legacySupportTagBackgroundMustard: legacySupportTagBackgroundMustard ??
+          this.legacySupportTagBackgroundMustard,
+      legacySupportTagBackgroundPrimary: legacySupportTagBackgroundPrimary ??
+          this.legacySupportTagBackgroundPrimary,
+      legacySupportTagBackgroundRuby:
+          legacySupportTagBackgroundRuby ?? this.legacySupportTagBackgroundRuby,
+      legacySupportTagBackgroundTangerine:
+          legacySupportTagBackgroundTangerine ??
+              this.legacySupportTagBackgroundTangerine,
+      legacySupportTagBorderBasicBold: legacySupportTagBorderBasicBold ??
+          this.legacySupportTagBorderBasicBold,
+      legacySupportTagBorderDenim:
+          legacySupportTagBorderDenim ?? this.legacySupportTagBorderDenim,
+      legacySupportTagBorderLavender:
+          legacySupportTagBorderLavender ?? this.legacySupportTagBorderLavender,
+      legacySupportTagBorderLime:
+          legacySupportTagBorderLime ?? this.legacySupportTagBorderLime,
+      legacySupportTagBorderMustard:
+          legacySupportTagBorderMustard ?? this.legacySupportTagBorderMustard,
+      legacySupportTagBorderPrimary:
+          legacySupportTagBorderPrimary ?? this.legacySupportTagBorderPrimary,
+      legacySupportTagBorderRuby:
+          legacySupportTagBorderRuby ?? this.legacySupportTagBorderRuby,
+      legacySupportTagBorderTangerine: legacySupportTagBorderTangerine ??
+          this.legacySupportTagBorderTangerine,
+      legacySupportTagTextBasicBold:
+          legacySupportTagTextBasicBold ?? this.legacySupportTagTextBasicBold,
+      legacySupportTagTextDenim:
+          legacySupportTagTextDenim ?? this.legacySupportTagTextDenim,
+      legacySupportTagTextLavender:
+          legacySupportTagTextLavender ?? this.legacySupportTagTextLavender,
+      legacySupportTagTextLime:
+          legacySupportTagTextLime ?? this.legacySupportTagTextLime,
+      legacySupportTagTextMustard:
+          legacySupportTagTextMustard ?? this.legacySupportTagTextMustard,
+      legacySupportTagTextPrimary:
+          legacySupportTagTextPrimary ?? this.legacySupportTagTextPrimary,
+      legacySupportTagTextRuby:
+          legacySupportTagTextRuby ?? this.legacySupportTagTextRuby,
+      legacySupportTagTextTangerine:
+          legacySupportTagTextTangerine ?? this.legacySupportTagTextTangerine,
       paletteBasicsBlack: paletteBasicsBlack ?? this.paletteBasicsBlack,
       paletteBasicsWhite: paletteBasicsWhite ?? this.paletteBasicsWhite,
       paletteBasicsWhite64: paletteBasicsWhite64 ?? this.paletteBasicsWhite64,
@@ -1510,6 +1756,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       paletteBrandIndigo900:
           paletteBrandIndigo900 ?? this.paletteBrandIndigo900,
       paletteBrandNight0: paletteBrandNight0 ?? this.paletteBrandNight0,
+      paletteBrandNight064: paletteBrandNight064 ?? this.paletteBrandNight064,
       paletteBrandNight100: paletteBrandNight100 ?? this.paletteBrandNight100,
       paletteBrandNight1000:
           paletteBrandNight1000 ?? this.paletteBrandNight1000,
@@ -1763,7 +2010,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       textInteractiveDefault:
           textInteractiveDefault ?? this.textInteractiveDefault,
       textInteractiveHover: textInteractiveHover ?? this.textInteractiveHover,
-      textStaticError: textStaticError ?? this.textStaticError,
       textStaticInverse: textStaticInverse ?? this.textStaticInverse,
       textStaticPrimary: textStaticPrimary ?? this.textStaticPrimary,
       textStaticSecondary: textStaticSecondary ?? this.textStaticSecondary,
@@ -1806,16 +2052,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       backgroundBrand: Color.lerp(backgroundBrand, other.backgroundBrand, t)!,
       backgroundDisabled:
           Color.lerp(backgroundDisabled, other.backgroundDisabled, t)!,
-      backgroundInteractiveBoldActive: Color.lerp(
-          backgroundInteractiveBoldActive,
-          other.backgroundInteractiveBoldActive,
-          t)!,
-      backgroundInteractiveBoldDefault: Color.lerp(
-          backgroundInteractiveBoldDefault,
-          other.backgroundInteractiveBoldDefault,
-          t)!,
-      backgroundInteractiveBoldHover: Color.lerp(backgroundInteractiveBoldHover,
-          other.backgroundInteractiveBoldHover, t)!,
       backgroundInteractiveDangerActive: Color.lerp(
           backgroundInteractiveDangerActive,
           other.backgroundInteractiveDangerActive,
@@ -1827,6 +2063,42 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       backgroundInteractiveDangerHover: Color.lerp(
           backgroundInteractiveDangerHover,
           other.backgroundInteractiveDangerHover,
+          t)!,
+      backgroundInteractiveNeutralActive: Color.lerp(
+          backgroundInteractiveNeutralActive,
+          other.backgroundInteractiveNeutralActive,
+          t)!,
+      backgroundInteractiveNeutralBoldActive: Color.lerp(
+          backgroundInteractiveNeutralBoldActive,
+          other.backgroundInteractiveNeutralBoldActive,
+          t)!,
+      backgroundInteractiveNeutralBoldDefault: Color.lerp(
+          backgroundInteractiveNeutralBoldDefault,
+          other.backgroundInteractiveNeutralBoldDefault,
+          t)!,
+      backgroundInteractiveNeutralBoldHover: Color.lerp(
+          backgroundInteractiveNeutralBoldHover,
+          other.backgroundInteractiveNeutralBoldHover,
+          t)!,
+      backgroundInteractiveNeutralDefault: Color.lerp(
+          backgroundInteractiveNeutralDefault,
+          other.backgroundInteractiveNeutralDefault,
+          t)!,
+      backgroundInteractiveNeutralHover: Color.lerp(
+          backgroundInteractiveNeutralHover,
+          other.backgroundInteractiveNeutralHover,
+          t)!,
+      backgroundInteractiveNeutralSubtleActive: Color.lerp(
+          backgroundInteractiveNeutralSubtleActive,
+          other.backgroundInteractiveNeutralSubtleActive,
+          t)!,
+      backgroundInteractiveNeutralSubtleDefault: Color.lerp(
+          backgroundInteractiveNeutralSubtleDefault,
+          other.backgroundInteractiveNeutralSubtleDefault,
+          t)!,
+      backgroundInteractiveNeutralSubtleHover: Color.lerp(
+          backgroundInteractiveNeutralSubtleHover,
+          other.backgroundInteractiveNeutralSubtleHover,
           t)!,
       backgroundInteractivePrimaryActive: Color.lerp(
           backgroundInteractivePrimaryActive,
@@ -1852,20 +2124,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundInteractiveSecondaryHover,
           other.backgroundInteractiveSecondaryHover,
           t)!,
-      backgroundInteractiveSubtleActive: Color.lerp(
-          backgroundInteractiveSubtleActive,
-          other.backgroundInteractiveSubtleActive,
-          t)!,
-      backgroundInteractiveSubtleDefault: Color.lerp(
-          backgroundInteractiveSubtleDefault,
-          other.backgroundInteractiveSubtleDefault,
-          t)!,
-      backgroundInteractiveSubtleHover: Color.lerp(
-          backgroundInteractiveSubtleHover,
-          other.backgroundInteractiveSubtleHover,
-          t)!,
-      backgroundOverlay:
-          Color.lerp(backgroundOverlay, other.backgroundOverlay, t)!,
       backgroundStaticFlat:
           Color.lerp(backgroundStaticFlat, other.backgroundStaticFlat, t)!,
       backgroundStaticFloating: Color.lerp(
@@ -1886,8 +2144,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       borderAlertWarning:
           Color.lerp(borderAlertWarning, other.borderAlertWarning, t)!,
       borderDisabled: Color.lerp(borderDisabled, other.borderDisabled, t)!,
-      borderInteractiveError:
-          Color.lerp(borderInteractiveError, other.borderInteractiveError, t)!,
+      borderInteractiveBoldActive: Color.lerp(
+          borderInteractiveBoldActive, other.borderInteractiveBoldActive, t)!,
+      borderInteractiveBoldDefault: Color.lerp(
+          borderInteractiveBoldDefault, other.borderInteractiveBoldDefault, t)!,
+      borderInteractiveBoldHover: Color.lerp(
+          borderInteractiveBoldHover, other.borderInteractiveBoldHover, t)!,
       borderInteractiveFocus:
           Color.lerp(borderInteractiveFocus, other.borderInteractiveFocus, t)!,
       borderInteractivePrimaryActive: Color.lerp(borderInteractivePrimaryActive,
@@ -1937,6 +2199,70 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(interactiveHoverColor, other.interactiveHoverColor, t)!,
       interactiveInverseColor: Color.lerp(
           interactiveInverseColor, other.interactiveInverseColor, t)!,
+      legacySupportTagBackgroundBasicBold: Color.lerp(
+          legacySupportTagBackgroundBasicBold,
+          other.legacySupportTagBackgroundBasicBold,
+          t)!,
+      legacySupportTagBackgroundDenim: Color.lerp(
+          legacySupportTagBackgroundDenim,
+          other.legacySupportTagBackgroundDenim,
+          t)!,
+      legacySupportTagBackgroundLavender: Color.lerp(
+          legacySupportTagBackgroundLavender,
+          other.legacySupportTagBackgroundLavender,
+          t)!,
+      legacySupportTagBackgroundLime: Color.lerp(legacySupportTagBackgroundLime,
+          other.legacySupportTagBackgroundLime, t)!,
+      legacySupportTagBackgroundMustard: Color.lerp(
+          legacySupportTagBackgroundMustard,
+          other.legacySupportTagBackgroundMustard,
+          t)!,
+      legacySupportTagBackgroundPrimary: Color.lerp(
+          legacySupportTagBackgroundPrimary,
+          other.legacySupportTagBackgroundPrimary,
+          t)!,
+      legacySupportTagBackgroundRuby: Color.lerp(legacySupportTagBackgroundRuby,
+          other.legacySupportTagBackgroundRuby, t)!,
+      legacySupportTagBackgroundTangerine: Color.lerp(
+          legacySupportTagBackgroundTangerine,
+          other.legacySupportTagBackgroundTangerine,
+          t)!,
+      legacySupportTagBorderBasicBold: Color.lerp(
+          legacySupportTagBorderBasicBold,
+          other.legacySupportTagBorderBasicBold,
+          t)!,
+      legacySupportTagBorderDenim: Color.lerp(
+          legacySupportTagBorderDenim, other.legacySupportTagBorderDenim, t)!,
+      legacySupportTagBorderLavender: Color.lerp(legacySupportTagBorderLavender,
+          other.legacySupportTagBorderLavender, t)!,
+      legacySupportTagBorderLime: Color.lerp(
+          legacySupportTagBorderLime, other.legacySupportTagBorderLime, t)!,
+      legacySupportTagBorderMustard: Color.lerp(legacySupportTagBorderMustard,
+          other.legacySupportTagBorderMustard, t)!,
+      legacySupportTagBorderPrimary: Color.lerp(legacySupportTagBorderPrimary,
+          other.legacySupportTagBorderPrimary, t)!,
+      legacySupportTagBorderRuby: Color.lerp(
+          legacySupportTagBorderRuby, other.legacySupportTagBorderRuby, t)!,
+      legacySupportTagBorderTangerine: Color.lerp(
+          legacySupportTagBorderTangerine,
+          other.legacySupportTagBorderTangerine,
+          t)!,
+      legacySupportTagTextBasicBold: Color.lerp(legacySupportTagTextBasicBold,
+          other.legacySupportTagTextBasicBold, t)!,
+      legacySupportTagTextDenim: Color.lerp(
+          legacySupportTagTextDenim, other.legacySupportTagTextDenim, t)!,
+      legacySupportTagTextLavender: Color.lerp(
+          legacySupportTagTextLavender, other.legacySupportTagTextLavender, t)!,
+      legacySupportTagTextLime: Color.lerp(
+          legacySupportTagTextLime, other.legacySupportTagTextLime, t)!,
+      legacySupportTagTextMustard: Color.lerp(
+          legacySupportTagTextMustard, other.legacySupportTagTextMustard, t)!,
+      legacySupportTagTextPrimary: Color.lerp(
+          legacySupportTagTextPrimary, other.legacySupportTagTextPrimary, t)!,
+      legacySupportTagTextRuby: Color.lerp(
+          legacySupportTagTextRuby, other.legacySupportTagTextRuby, t)!,
+      legacySupportTagTextTangerine: Color.lerp(legacySupportTagTextTangerine,
+          other.legacySupportTagTextTangerine, t)!,
       paletteBasicsBlack:
           Color.lerp(paletteBasicsBlack, other.paletteBasicsBlack, t)!,
       paletteBasicsWhite:
@@ -2025,6 +2351,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(paletteBrandIndigo900, other.paletteBrandIndigo900, t)!,
       paletteBrandNight0:
           Color.lerp(paletteBrandNight0, other.paletteBrandNight0, t)!,
+      paletteBrandNight064:
+          Color.lerp(paletteBrandNight064, other.paletteBrandNight064, t)!,
       paletteBrandNight100:
           Color.lerp(paletteBrandNight100, other.paletteBrandNight100, t)!,
       paletteBrandNight1000:
@@ -2299,7 +2627,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(textInteractiveDefault, other.textInteractiveDefault, t)!,
       textInteractiveHover:
           Color.lerp(textInteractiveHover, other.textInteractiveHover, t)!,
-      textStaticError: Color.lerp(textStaticError, other.textStaticError, t)!,
       textStaticInverse:
           Color.lerp(textStaticInverse, other.textStaticInverse, t)!,
       textStaticPrimary:
@@ -2342,18 +2669,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           'backgroundAlertWarningSecondary', backgroundAlertWarningSecondary))
       ..add(DiagnosticsProperty('backgroundBrand', backgroundBrand))
       ..add(DiagnosticsProperty('backgroundDisabled', backgroundDisabled))
-      ..add(DiagnosticsProperty(
-          'backgroundInteractiveBoldActive', backgroundInteractiveBoldActive))
-      ..add(DiagnosticsProperty(
-          'backgroundInteractiveBoldDefault', backgroundInteractiveBoldDefault))
-      ..add(DiagnosticsProperty(
-          'backgroundInteractiveBoldHover', backgroundInteractiveBoldHover))
       ..add(DiagnosticsProperty('backgroundInteractiveDangerActive',
           backgroundInteractiveDangerActive))
       ..add(DiagnosticsProperty('backgroundInteractiveDangerDefault',
           backgroundInteractiveDangerDefault))
       ..add(DiagnosticsProperty(
           'backgroundInteractiveDangerHover', backgroundInteractiveDangerHover))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralActive',
+          backgroundInteractiveNeutralActive))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralBoldActive',
+          backgroundInteractiveNeutralBoldActive))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralBoldDefault',
+          backgroundInteractiveNeutralBoldDefault))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralBoldHover',
+          backgroundInteractiveNeutralBoldHover))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralDefault',
+          backgroundInteractiveNeutralDefault))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralHover',
+          backgroundInteractiveNeutralHover))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralSubtleActive',
+          backgroundInteractiveNeutralSubtleActive))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralSubtleDefault',
+          backgroundInteractiveNeutralSubtleDefault))
+      ..add(DiagnosticsProperty('backgroundInteractiveNeutralSubtleHover',
+          backgroundInteractiveNeutralSubtleHover))
       ..add(DiagnosticsProperty('backgroundInteractivePrimaryActive',
           backgroundInteractivePrimaryActive))
       ..add(DiagnosticsProperty('backgroundInteractivePrimaryDefault',
@@ -2366,13 +2705,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundInteractiveSecondaryDefault))
       ..add(DiagnosticsProperty('backgroundInteractiveSecondaryHover',
           backgroundInteractiveSecondaryHover))
-      ..add(DiagnosticsProperty('backgroundInteractiveSubtleActive',
-          backgroundInteractiveSubtleActive))
-      ..add(DiagnosticsProperty('backgroundInteractiveSubtleDefault',
-          backgroundInteractiveSubtleDefault))
-      ..add(DiagnosticsProperty(
-          'backgroundInteractiveSubtleHover', backgroundInteractiveSubtleHover))
-      ..add(DiagnosticsProperty('backgroundOverlay', backgroundOverlay))
       ..add(DiagnosticsProperty('backgroundStaticFlat', backgroundStaticFlat))
       ..add(DiagnosticsProperty(
           'backgroundStaticFloating', backgroundStaticFloating))
@@ -2388,8 +2720,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('borderAlertSuccess', borderAlertSuccess))
       ..add(DiagnosticsProperty('borderAlertWarning', borderAlertWarning))
       ..add(DiagnosticsProperty('borderDisabled', borderDisabled))
-      ..add(
-          DiagnosticsProperty('borderInteractiveError', borderInteractiveError))
+      ..add(DiagnosticsProperty(
+          'borderInteractiveBoldActive', borderInteractiveBoldActive))
+      ..add(DiagnosticsProperty(
+          'borderInteractiveBoldDefault', borderInteractiveBoldDefault))
+      ..add(DiagnosticsProperty(
+          'borderInteractiveBoldHover', borderInteractiveBoldHover))
       ..add(
           DiagnosticsProperty('borderInteractiveFocus', borderInteractiveFocus))
       ..add(DiagnosticsProperty(
@@ -2422,6 +2758,54 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('interactiveHoverColor', interactiveHoverColor))
       ..add(DiagnosticsProperty(
           'interactiveInverseColor', interactiveInverseColor))
+      ..add(DiagnosticsProperty('legacySupportTagBackgroundBasicBold',
+          legacySupportTagBackgroundBasicBold))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBackgroundDenim', legacySupportTagBackgroundDenim))
+      ..add(DiagnosticsProperty('legacySupportTagBackgroundLavender',
+          legacySupportTagBackgroundLavender))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBackgroundLime', legacySupportTagBackgroundLime))
+      ..add(DiagnosticsProperty('legacySupportTagBackgroundMustard',
+          legacySupportTagBackgroundMustard))
+      ..add(DiagnosticsProperty('legacySupportTagBackgroundPrimary',
+          legacySupportTagBackgroundPrimary))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBackgroundRuby', legacySupportTagBackgroundRuby))
+      ..add(DiagnosticsProperty('legacySupportTagBackgroundTangerine',
+          legacySupportTagBackgroundTangerine))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderBasicBold', legacySupportTagBorderBasicBold))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderDenim', legacySupportTagBorderDenim))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderLavender', legacySupportTagBorderLavender))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderLime', legacySupportTagBorderLime))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderMustard', legacySupportTagBorderMustard))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderPrimary', legacySupportTagBorderPrimary))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderRuby', legacySupportTagBorderRuby))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagBorderTangerine', legacySupportTagBorderTangerine))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextBasicBold', legacySupportTagTextBasicBold))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextDenim', legacySupportTagTextDenim))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextLavender', legacySupportTagTextLavender))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextLime', legacySupportTagTextLime))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextMustard', legacySupportTagTextMustard))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextPrimary', legacySupportTagTextPrimary))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextRuby', legacySupportTagTextRuby))
+      ..add(DiagnosticsProperty(
+          'legacySupportTagTextTangerine', legacySupportTagTextTangerine))
       ..add(DiagnosticsProperty('paletteBasicsBlack', paletteBasicsBlack))
       ..add(DiagnosticsProperty('paletteBasicsWhite', paletteBasicsWhite))
       ..add(DiagnosticsProperty('paletteBasicsWhite64', paletteBasicsWhite64))
@@ -2467,6 +2851,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('paletteBrandIndigo800', paletteBrandIndigo800))
       ..add(DiagnosticsProperty('paletteBrandIndigo900', paletteBrandIndigo900))
       ..add(DiagnosticsProperty('paletteBrandNight0', paletteBrandNight0))
+      ..add(DiagnosticsProperty('paletteBrandNight064', paletteBrandNight064))
       ..add(DiagnosticsProperty('paletteBrandNight100', paletteBrandNight100))
       ..add(DiagnosticsProperty('paletteBrandNight1000', paletteBrandNight1000))
       ..add(DiagnosticsProperty(
@@ -2687,7 +3072,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(
           DiagnosticsProperty('textInteractiveDefault', textInteractiveDefault))
       ..add(DiagnosticsProperty('textInteractiveHover', textInteractiveHover))
-      ..add(DiagnosticsProperty('textStaticError', textStaticError))
       ..add(DiagnosticsProperty('textStaticInverse', textStaticInverse))
       ..add(DiagnosticsProperty('textStaticPrimary', textStaticPrimary))
       ..add(DiagnosticsProperty('textStaticSecondary', textStaticSecondary))
@@ -2731,29 +3115,31 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality()
                 .equals(backgroundDisabled, other.backgroundDisabled) &&
             const DeepCollectionEquality().equals(
-                backgroundInteractiveBoldActive,
-                other.backgroundInteractiveBoldActive) &&
-            const DeepCollectionEquality().equals(
-                backgroundInteractiveBoldDefault,
-                other.backgroundInteractiveBoldDefault) &&
-            const DeepCollectionEquality().equals(
-                backgroundInteractiveBoldHover,
-                other.backgroundInteractiveBoldHover) &&
-            const DeepCollectionEquality().equals(
                 backgroundInteractiveDangerActive,
                 other.backgroundInteractiveDangerActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveDangerDefault, other.backgroundInteractiveDangerDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveDangerHover, other.backgroundInteractiveDangerHover) &&
+            const DeepCollectionEquality().equals(
+                backgroundInteractiveDangerDefault,
+                other.backgroundInteractiveDangerDefault) &&
+            const DeepCollectionEquality().equals(
+                backgroundInteractiveDangerHover,
+                other.backgroundInteractiveDangerHover) &&
+            const DeepCollectionEquality().equals(
+                backgroundInteractiveNeutralActive,
+                other.backgroundInteractiveNeutralActive) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldActive, other.backgroundInteractiveNeutralBoldActive) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldDefault, other.backgroundInteractiveNeutralBoldDefault) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldHover, other.backgroundInteractiveNeutralBoldHover) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralDefault, other.backgroundInteractiveNeutralDefault) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralHover, other.backgroundInteractiveNeutralHover) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralSubtleActive, other.backgroundInteractiveNeutralSubtleActive) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralSubtleDefault, other.backgroundInteractiveNeutralSubtleDefault) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralSubtleHover, other.backgroundInteractiveNeutralSubtleHover) &&
             const DeepCollectionEquality().equals(backgroundInteractivePrimaryActive, other.backgroundInteractivePrimaryActive) &&
             const DeepCollectionEquality().equals(backgroundInteractivePrimaryDefault, other.backgroundInteractivePrimaryDefault) &&
             const DeepCollectionEquality().equals(backgroundInteractivePrimaryHover, other.backgroundInteractivePrimaryHover) &&
             const DeepCollectionEquality().equals(backgroundInteractiveSecondaryActive, other.backgroundInteractiveSecondaryActive) &&
             const DeepCollectionEquality().equals(backgroundInteractiveSecondaryDefault, other.backgroundInteractiveSecondaryDefault) &&
             const DeepCollectionEquality().equals(backgroundInteractiveSecondaryHover, other.backgroundInteractiveSecondaryHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSubtleActive, other.backgroundInteractiveSubtleActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSubtleDefault, other.backgroundInteractiveSubtleDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSubtleHover, other.backgroundInteractiveSubtleHover) &&
-            const DeepCollectionEquality().equals(backgroundOverlay, other.backgroundOverlay) &&
             const DeepCollectionEquality().equals(backgroundStaticFlat, other.backgroundStaticFlat) &&
             const DeepCollectionEquality().equals(backgroundStaticFloating, other.backgroundStaticFloating) &&
             const DeepCollectionEquality().equals(backgroundStaticInverse, other.backgroundStaticInverse) &&
@@ -2765,7 +3151,9 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(borderAlertSuccess, other.borderAlertSuccess) &&
             const DeepCollectionEquality().equals(borderAlertWarning, other.borderAlertWarning) &&
             const DeepCollectionEquality().equals(borderDisabled, other.borderDisabled) &&
-            const DeepCollectionEquality().equals(borderInteractiveError, other.borderInteractiveError) &&
+            const DeepCollectionEquality().equals(borderInteractiveBoldActive, other.borderInteractiveBoldActive) &&
+            const DeepCollectionEquality().equals(borderInteractiveBoldDefault, other.borderInteractiveBoldDefault) &&
+            const DeepCollectionEquality().equals(borderInteractiveBoldHover, other.borderInteractiveBoldHover) &&
             const DeepCollectionEquality().equals(borderInteractiveFocus, other.borderInteractiveFocus) &&
             const DeepCollectionEquality().equals(borderInteractivePrimaryActive, other.borderInteractivePrimaryActive) &&
             const DeepCollectionEquality().equals(borderInteractivePrimaryDefault, other.borderInteractivePrimaryDefault) &&
@@ -2787,6 +3175,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(interactiveDisabledColor, other.interactiveDisabledColor) &&
             const DeepCollectionEquality().equals(interactiveHoverColor, other.interactiveHoverColor) &&
             const DeepCollectionEquality().equals(interactiveInverseColor, other.interactiveInverseColor) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundBasicBold, other.legacySupportTagBackgroundBasicBold) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundDenim, other.legacySupportTagBackgroundDenim) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundLavender, other.legacySupportTagBackgroundLavender) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundLime, other.legacySupportTagBackgroundLime) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundMustard, other.legacySupportTagBackgroundMustard) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundPrimary, other.legacySupportTagBackgroundPrimary) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundRuby, other.legacySupportTagBackgroundRuby) &&
+            const DeepCollectionEquality().equals(legacySupportTagBackgroundTangerine, other.legacySupportTagBackgroundTangerine) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderBasicBold, other.legacySupportTagBorderBasicBold) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderDenim, other.legacySupportTagBorderDenim) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderLavender, other.legacySupportTagBorderLavender) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderLime, other.legacySupportTagBorderLime) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderMustard, other.legacySupportTagBorderMustard) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderPrimary, other.legacySupportTagBorderPrimary) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderRuby, other.legacySupportTagBorderRuby) &&
+            const DeepCollectionEquality().equals(legacySupportTagBorderTangerine, other.legacySupportTagBorderTangerine) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextBasicBold, other.legacySupportTagTextBasicBold) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextDenim, other.legacySupportTagTextDenim) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextLavender, other.legacySupportTagTextLavender) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextLime, other.legacySupportTagTextLime) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextMustard, other.legacySupportTagTextMustard) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextPrimary, other.legacySupportTagTextPrimary) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextRuby, other.legacySupportTagTextRuby) &&
+            const DeepCollectionEquality().equals(legacySupportTagTextTangerine, other.legacySupportTagTextTangerine) &&
             const DeepCollectionEquality().equals(paletteBasicsBlack, other.paletteBasicsBlack) &&
             const DeepCollectionEquality().equals(paletteBasicsWhite, other.paletteBasicsWhite) &&
             const DeepCollectionEquality().equals(paletteBasicsWhite64, other.paletteBasicsWhite64) &&
@@ -2831,6 +3243,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(paletteBrandIndigo800, other.paletteBrandIndigo800) &&
             const DeepCollectionEquality().equals(paletteBrandIndigo900, other.paletteBrandIndigo900) &&
             const DeepCollectionEquality().equals(paletteBrandNight0, other.paletteBrandNight0) &&
+            const DeepCollectionEquality().equals(paletteBrandNight064, other.paletteBrandNight064) &&
             const DeepCollectionEquality().equals(paletteBrandNight100, other.paletteBrandNight100) &&
             const DeepCollectionEquality().equals(paletteBrandNight1000, other.paletteBrandNight1000) &&
             const DeepCollectionEquality().equals(paletteBrandNight100012, other.paletteBrandNight100012) &&
@@ -2970,7 +3383,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(textInteractiveActive, other.textInteractiveActive) &&
             const DeepCollectionEquality().equals(textInteractiveDefault, other.textInteractiveDefault) &&
             const DeepCollectionEquality().equals(textInteractiveHover, other.textInteractiveHover) &&
-            const DeepCollectionEquality().equals(textStaticError, other.textStaticError) &&
             const DeepCollectionEquality().equals(textStaticInverse, other.textStaticInverse) &&
             const DeepCollectionEquality().equals(textStaticPrimary, other.textStaticPrimary) &&
             const DeepCollectionEquality().equals(textStaticSecondary, other.textStaticSecondary) &&
@@ -2995,12 +3407,24 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(backgroundAlertWarningSecondary),
       const DeepCollectionEquality().hash(backgroundBrand),
       const DeepCollectionEquality().hash(backgroundDisabled),
-      const DeepCollectionEquality().hash(backgroundInteractiveBoldActive),
-      const DeepCollectionEquality().hash(backgroundInteractiveBoldDefault),
-      const DeepCollectionEquality().hash(backgroundInteractiveBoldHover),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerActive),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerDefault),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerHover),
+      const DeepCollectionEquality().hash(backgroundInteractiveNeutralActive),
+      const DeepCollectionEquality()
+          .hash(backgroundInteractiveNeutralBoldActive),
+      const DeepCollectionEquality()
+          .hash(backgroundInteractiveNeutralBoldDefault),
+      const DeepCollectionEquality()
+          .hash(backgroundInteractiveNeutralBoldHover),
+      const DeepCollectionEquality().hash(backgroundInteractiveNeutralDefault),
+      const DeepCollectionEquality().hash(backgroundInteractiveNeutralHover),
+      const DeepCollectionEquality()
+          .hash(backgroundInteractiveNeutralSubtleActive),
+      const DeepCollectionEquality()
+          .hash(backgroundInteractiveNeutralSubtleDefault),
+      const DeepCollectionEquality()
+          .hash(backgroundInteractiveNeutralSubtleHover),
       const DeepCollectionEquality().hash(backgroundInteractivePrimaryActive),
       const DeepCollectionEquality().hash(backgroundInteractivePrimaryDefault),
       const DeepCollectionEquality().hash(backgroundInteractivePrimaryHover),
@@ -3008,10 +3432,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality()
           .hash(backgroundInteractiveSecondaryDefault),
       const DeepCollectionEquality().hash(backgroundInteractiveSecondaryHover),
-      const DeepCollectionEquality().hash(backgroundInteractiveSubtleActive),
-      const DeepCollectionEquality().hash(backgroundInteractiveSubtleDefault),
-      const DeepCollectionEquality().hash(backgroundInteractiveSubtleHover),
-      const DeepCollectionEquality().hash(backgroundOverlay),
       const DeepCollectionEquality().hash(backgroundStaticFlat),
       const DeepCollectionEquality().hash(backgroundStaticFloating),
       const DeepCollectionEquality().hash(backgroundStaticInverse),
@@ -3023,7 +3443,9 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(borderAlertSuccess),
       const DeepCollectionEquality().hash(borderAlertWarning),
       const DeepCollectionEquality().hash(borderDisabled),
-      const DeepCollectionEquality().hash(borderInteractiveError),
+      const DeepCollectionEquality().hash(borderInteractiveBoldActive),
+      const DeepCollectionEquality().hash(borderInteractiveBoldDefault),
+      const DeepCollectionEquality().hash(borderInteractiveBoldHover),
       const DeepCollectionEquality().hash(borderInteractiveFocus),
       const DeepCollectionEquality().hash(borderInteractivePrimaryActive),
       const DeepCollectionEquality().hash(borderInteractivePrimaryDefault),
@@ -3045,6 +3467,30 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(interactiveDisabledColor),
       const DeepCollectionEquality().hash(interactiveHoverColor),
       const DeepCollectionEquality().hash(interactiveInverseColor),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundBasicBold),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundDenim),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundLavender),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundLime),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundMustard),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundPrimary),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundRuby),
+      const DeepCollectionEquality().hash(legacySupportTagBackgroundTangerine),
+      const DeepCollectionEquality().hash(legacySupportTagBorderBasicBold),
+      const DeepCollectionEquality().hash(legacySupportTagBorderDenim),
+      const DeepCollectionEquality().hash(legacySupportTagBorderLavender),
+      const DeepCollectionEquality().hash(legacySupportTagBorderLime),
+      const DeepCollectionEquality().hash(legacySupportTagBorderMustard),
+      const DeepCollectionEquality().hash(legacySupportTagBorderPrimary),
+      const DeepCollectionEquality().hash(legacySupportTagBorderRuby),
+      const DeepCollectionEquality().hash(legacySupportTagBorderTangerine),
+      const DeepCollectionEquality().hash(legacySupportTagTextBasicBold),
+      const DeepCollectionEquality().hash(legacySupportTagTextDenim),
+      const DeepCollectionEquality().hash(legacySupportTagTextLavender),
+      const DeepCollectionEquality().hash(legacySupportTagTextLime),
+      const DeepCollectionEquality().hash(legacySupportTagTextMustard),
+      const DeepCollectionEquality().hash(legacySupportTagTextPrimary),
+      const DeepCollectionEquality().hash(legacySupportTagTextRuby),
+      const DeepCollectionEquality().hash(legacySupportTagTextTangerine),
       const DeepCollectionEquality().hash(paletteBasicsBlack),
       const DeepCollectionEquality().hash(paletteBasicsWhite),
       const DeepCollectionEquality().hash(paletteBasicsWhite64),
@@ -3089,6 +3535,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(paletteBrandIndigo800),
       const DeepCollectionEquality().hash(paletteBrandIndigo900),
       const DeepCollectionEquality().hash(paletteBrandNight0),
+      const DeepCollectionEquality().hash(paletteBrandNight064),
       const DeepCollectionEquality().hash(paletteBrandNight100),
       const DeepCollectionEquality().hash(paletteBrandNight1000),
       const DeepCollectionEquality().hash(paletteBrandNight100012),
@@ -3228,7 +3675,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(textInteractiveActive),
       const DeepCollectionEquality().hash(textInteractiveDefault),
       const DeepCollectionEquality().hash(textInteractiveHover),
-      const DeepCollectionEquality().hash(textStaticError),
       const DeepCollectionEquality().hash(textStaticInverse),
       const DeepCollectionEquality().hash(textStaticPrimary),
       const DeepCollectionEquality().hash(textStaticSecondary),

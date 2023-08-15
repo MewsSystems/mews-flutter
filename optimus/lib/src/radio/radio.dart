@@ -224,9 +224,11 @@ extension on _RadioState {
   Color circleFillColor(BuildContext context) => switch (this) {
         _RadioState.basic ||
         _RadioState.disabled =>
-          context.tokens.backgroundInteractiveSubtleDefault,
-        _RadioState.hover => context.tokens.backgroundInteractiveSubtleHover,
-        _RadioState.active => context.tokens.backgroundInteractiveSubtleActive,
+          context.tokens.backgroundInteractiveNeutralSubtleDefault,
+        _RadioState.hover =>
+          context.tokens.backgroundInteractiveNeutralSubtleHover,
+        _RadioState.active =>
+          context.tokens.backgroundInteractiveNeutralSubtleActive,
       };
 }
 
