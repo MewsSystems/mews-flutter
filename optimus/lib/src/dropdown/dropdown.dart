@@ -250,11 +250,10 @@ class _GroupedDropdownListViewState<T>
     int groupsCount = 1;
 
     final sorted = [...widget.items]..sort((e1, e2) {
-        int? result;
         final value1 = e1.value;
         final value2 = e2.value;
 
-        result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
+        int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
         if (result == 0) {
           if (value1 is Comparable) {
             result = value1.compareTo(value2 as Comparable);

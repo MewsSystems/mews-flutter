@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +139,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     });
   }
 
-  Future<bool> _handleOnBackPressed() async {
+  bool _handleOnBackPressed() {
     if (_effectiveFocusNode.hasFocus) {
       _effectiveFocusNode.unfocus();
 
@@ -250,7 +248,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           );
 
     return WillPopScope(
-      onWillPop: _handleOnBackPressed,
+      onWillPop: () async => _handleOnBackPressed(),
       child: OptimusInputField(
         leading: widget.leading,
         prefix: widget.prefix,

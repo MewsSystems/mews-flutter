@@ -84,7 +84,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
           .toList();
 
   Axis get _effectiveLayout =>
-      MediaQuery.of(context).screenBreakpoint.index > Breakpoint.small.index
+      MediaQuery.sizeOf(context).screenBreakpoint.index > Breakpoint.small.index
           ? widget.layout
           : Axis.vertical;
 

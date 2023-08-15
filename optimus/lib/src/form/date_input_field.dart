@@ -134,7 +134,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   void _handleSubmitted(String value) {
     final onSubmitted = widget.onSubmitted;
     if (onSubmitted != null) {
-      onSubmitted.call(_getDateTime(widget.format, value));
+      onSubmitted(_getDateTime(widget.format, value));
     }
   }
 

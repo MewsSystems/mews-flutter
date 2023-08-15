@@ -38,7 +38,7 @@ class OptimusIconList extends StatelessWidget {
   }
 
   OptimusIconListSize _getListSize(BuildContext context) =>
-      switch (MediaQuery.of(context).screenBreakpoint) {
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
         Breakpoint.extraSmall || Breakpoint.small => OptimusIconListSize.small,
         Breakpoint.medium ||
         Breakpoint.large ||

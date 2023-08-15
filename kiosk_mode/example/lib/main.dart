@@ -57,6 +57,9 @@ class _HomeState extends State<_Home> {
         stream: _currentMode,
         builder: (context, snapshot) {
           final mode = snapshot.data;
+          final message = mode == null
+              ? 'Can\'t determine the mode'
+              : 'Current mode: $mode';
 
           return Column(
             mainAxisSize: MainAxisSize.min,
@@ -85,7 +88,7 @@ class _HomeState extends State<_Home> {
                     .then(_showSnackBar),
                 child: const Text('Check mode'),
               ),
-              Text('Current mode: ${snapshot.data}'),
+              Text(message),
             ],
           );
         },
