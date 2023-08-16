@@ -72,16 +72,6 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
     widget.onHidden?.call();
   }
 
-  Future<bool> _handleOnBackPressed() async {
-    if (widget.focusNode.hasFocus) {
-      widget.focusNode.unfocus();
-
-      return false;
-    }
-
-    return true;
-  }
-
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) => Stack(
           key: const Key('OptimusSelectOverlay'),
@@ -112,7 +102,15 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
 
   @override
   Widget build(BuildContext context) => WillPopScope(
-        onWillPop: _handleOnBackPressed,
+        onWillPop: () async {
+          if (widget.focusNode.hasFocus) {
+            widget.focusNode.unfocus();
+
+            return false;
+          }
+
+          return true;
+        },
         child: widget.child,
       );
 }

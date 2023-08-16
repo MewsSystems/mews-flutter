@@ -23,7 +23,7 @@ class OptimusTypography extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).screenBreakpoint;
+    final screenSize = MediaQuery.sizeOf(context).screenBreakpoint;
     final theme = OptimusTheme.of(context);
 
     return DefaultTextStyle.merge(

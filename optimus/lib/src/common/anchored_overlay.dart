@@ -73,9 +73,9 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   double get _offsetTop => _savedRect.top + _savedRect.height + _widgetPadding;
 
   double get _paddingBottom =>
-      MediaQuery.of(context).viewInsets.bottom + _screenPadding;
+      MediaQuery.viewInsetsOf(context).bottom + _screenPadding;
 
-  double get _paddingTop => MediaQuery.of(context).padding.top + _screenPadding;
+  double get _paddingTop => MediaQuery.paddingOf(context).top + _screenPadding;
 
   double get _rightSpace => _overlayWidth - _savedRect.left;
 

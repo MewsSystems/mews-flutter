@@ -34,7 +34,7 @@ class _ContentState extends State<_Content> {
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Current value: $_value'),
+          Text('Current value: ${_value ?? 0}'),
           const SizedBox(height: 16),
           OptimusNumberPickerFormField(
             enabled: widget.isEnabled,

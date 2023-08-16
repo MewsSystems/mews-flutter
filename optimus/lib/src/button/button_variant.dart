@@ -26,8 +26,8 @@ extension ColorScheme on OptimusButtonVariant {
       case OptimusButtonVariant.tertiary:
       case OptimusButtonVariant.ghost:
         if (!isEnabled) return null;
-        if (isPressed) return tokens.backgroundInteractiveSubtleActive;
-        if (isHovered) return tokens.backgroundInteractiveSubtleHover;
+        if (isPressed) return tokens.backgroundInteractiveNeutralSubtleActive;
+        if (isHovered) return tokens.backgroundInteractiveNeutralSubtleHover;
 
         return null;
       case OptimusButtonVariant.danger:
@@ -119,14 +119,14 @@ extension ColorScheme on OptimusButtonVariant {
         return tokens.textStaticInverse;
       case OptimusButtonVariant.tertiary:
         if (!isEnabled) return tokens.textDisabled;
-        if (isPressed) return tokens.backgroundInteractiveSubtleActive;
-        if (isHovered) return tokens.backgroundInteractiveSubtleHover;
+        if (isPressed) return tokens.backgroundInteractiveNeutralSubtleActive;
+        if (isHovered) return tokens.backgroundInteractiveNeutralSubtleHover;
 
         return tokens.backgroundStaticFlat;
       case OptimusButtonVariant.ghost:
         if (!isEnabled) return tokens.textDisabled;
-        if (isPressed) return tokens.backgroundInteractiveSubtleActive;
-        if (isHovered) return tokens.backgroundInteractiveSubtleHover;
+        if (isPressed) return tokens.backgroundInteractiveNeutralSubtleActive;
+        if (isHovered) return tokens.backgroundInteractiveNeutralSubtleHover;
 
         return tokens.textStaticInverse;
       case OptimusButtonVariant.danger:

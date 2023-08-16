@@ -76,21 +76,6 @@ class _$OptimusTokens {
     DesignTokensColorDark.backgroundDisabled
   ];
 
-  static List<Color> backgroundInteractiveBoldActive = [
-    DesignTokensColorLight.backgroundInteractiveBoldActive,
-    DesignTokensColorDark.backgroundInteractiveBoldActive
-  ];
-
-  static List<Color> backgroundInteractiveBoldDefault = [
-    DesignTokensColorLight.backgroundInteractiveBoldDefault,
-    DesignTokensColorDark.backgroundInteractiveBoldDefault
-  ];
-
-  static List<Color> backgroundInteractiveBoldHover = [
-    DesignTokensColorLight.backgroundInteractiveBoldHover,
-    DesignTokensColorDark.backgroundInteractiveBoldHover
-  ];
-
   static List<Color> backgroundInteractiveDangerActive = [
     DesignTokensColorLight.backgroundInteractiveDangerActive,
     DesignTokensColorDark.backgroundInteractiveDangerActive
@@ -104,6 +89,50 @@ class _$OptimusTokens {
   static List<Color> backgroundInteractiveDangerHover = [
     DesignTokensColorLight.backgroundInteractiveDangerHover,
     DesignTokensColorDark.backgroundInteractiveDangerHover
+  ];
+
+  static List<Color> backgroundInteractiveNeutralActive = [
+    DesignTokensColorLight.backgroundInteractiveNeutralActive,
+    DesignTokensColorDark.backgroundInteractiveNeutralActive
+  ];
+
+  static List<Color> backgroundInteractiveNeutralBoldDefault = [
+    DesignTokensColorLight.backgroundInteractiveNeutralBoldDefault,
+    DesignTokensColorDark.backgroundInteractiveNeutralBoldDefault
+  ];
+
+  static List<Color> backgroundInteractiveNeutralBoldHover = [
+    DesignTokensColorLight.backgroundInteractiveNeutralBoldHover,
+    DesignTokensColorDark.backgroundInteractiveNeutralBoldHover
+  ];
+  static List<Color> backgroundInteractiveNeutralBoldActive = [
+    DesignTokensColorLight.backgroundInteractiveNeutralBoldActive,
+    DesignTokensColorDark.backgroundInteractiveNeutralBoldActive
+  ];
+
+  static List<Color> backgroundInteractiveNeutralDefault = [
+    DesignTokensColorLight.backgroundInteractiveNeutralDefault,
+    DesignTokensColorDark.backgroundInteractiveNeutralDefault
+  ];
+
+  static List<Color> backgroundInteractiveNeutralHover = [
+    DesignTokensColorLight.backgroundInteractiveNeutralHover,
+    DesignTokensColorDark.backgroundInteractiveNeutralHover
+  ];
+
+  static List<Color> backgroundInteractiveNeutralSubtleActive = [
+    DesignTokensColorLight.backgroundInteractiveNeutralSubtleActive,
+    DesignTokensColorDark.backgroundInteractiveNeutralSubtleActive
+  ];
+
+  static List<Color> backgroundInteractiveNeutralSubtleDefault = [
+    DesignTokensColorLight.backgroundInteractiveNeutralSubtleDefault,
+    DesignTokensColorDark.backgroundInteractiveNeutralSubtleDefault
+  ];
+
+  static List<Color> backgroundInteractiveNeutralSubtleHover = [
+    DesignTokensColorLight.backgroundInteractiveNeutralSubtleHover,
+    DesignTokensColorDark.backgroundInteractiveNeutralSubtleHover
   ];
 
   static List<Color> backgroundInteractivePrimaryActive = [
@@ -134,26 +163,6 @@ class _$OptimusTokens {
   static List<Color> backgroundInteractiveSecondaryHover = [
     DesignTokensColorLight.backgroundInteractiveSecondaryHover,
     DesignTokensColorDark.backgroundInteractiveSecondaryHover
-  ];
-
-  static List<Color> backgroundInteractiveSubtleActive = [
-    DesignTokensColorLight.backgroundInteractiveSubtleActive,
-    DesignTokensColorDark.backgroundInteractiveSubtleActive
-  ];
-
-  static List<Color> backgroundInteractiveSubtleDefault = [
-    DesignTokensColorLight.backgroundInteractiveSubtleDefault,
-    DesignTokensColorDark.backgroundInteractiveSubtleDefault
-  ];
-
-  static List<Color> backgroundInteractiveSubtleHover = [
-    DesignTokensColorLight.backgroundInteractiveSubtleHover,
-    DesignTokensColorDark.backgroundInteractiveSubtleHover
-  ];
-
-  static List<Color> backgroundOverlay = [
-    DesignTokensColorLight.backgroundOverlay,
-    DesignTokensColorLight.backgroundOverlay // TODO(witwash): add dark token
   ];
 
   static List<Color> backgroundStaticFlat = [
@@ -211,10 +220,19 @@ class _$OptimusTokens {
     DesignTokensColorDark.borderDisabled
   ];
 
-  static List<Color> borderInteractiveError = [
-    DesignTokensColorLight.borderInteractiveError,
-    DesignTokensColorLight
-        .borderInteractiveError // TODO(witwash): add dark token
+  static List<Color> borderInteractiveBoldActive = [
+    DesignTokensColorLight.borderInteractiveBoldActive,
+    DesignTokensColorDark.borderInteractiveBoldActive
+  ];
+
+  static List<Color> borderInteractiveBoldDefault = [
+    DesignTokensColorLight.borderInteractiveBoldDefault,
+    DesignTokensColorDark.borderInteractiveBoldDefault
+  ];
+
+  static List<Color> borderInteractiveBoldHover = [
+    DesignTokensColorLight.borderInteractiveBoldHover,
+    DesignTokensColorDark.borderInteractiveBoldHover
   ];
 
   static List<Color> borderInteractiveFocus = [
@@ -265,6 +283,126 @@ class _$OptimusTokens {
   static List<Color> borderStaticSecondary = [
     DesignTokensColorLight.borderStaticSecondary,
     DesignTokensColorDark.borderStaticSecondary
+  ];
+
+  static List<Color> legacySupportTagBackgroundBasicBold = [
+    DesignTokensColorLight.legacySupportTagBackgroundBasicBold,
+    DesignTokensColorDark.legacySupportTagBackgroundBasicBold
+  ];
+
+  static List<Color> legacySupportTagBackgroundDenim = [
+    DesignTokensColorLight.legacySupportTagBackgroundDenim,
+    DesignTokensColorDark.legacySupportTagBackgroundDenim
+  ];
+
+  static List<Color> legacySupportTagBackgroundLavender = [
+    DesignTokensColorLight.legacySupportTagBackgroundLavender,
+    DesignTokensColorDark.legacySupportTagBackgroundLavender
+  ];
+
+  static List<Color> legacySupportTagBackgroundLime = [
+    DesignTokensColorLight.legacySupportTagBackgroundLime,
+    DesignTokensColorDark.legacySupportTagBackgroundLime
+  ];
+
+  static List<Color> legacySupportTagBackgroundMustard = [
+    DesignTokensColorLight.legacySupportTagBackgroundMustard,
+    DesignTokensColorDark.legacySupportTagBackgroundMustard
+  ];
+
+  static List<Color> legacySupportTagBackgroundPrimary = [
+    DesignTokensColorLight.legacySupportTagBackgroundPrimary,
+    DesignTokensColorDark.legacySupportTagBackgroundPrimary
+  ];
+
+  static List<Color> legacySupportTagBackgroundRuby = [
+    DesignTokensColorLight.legacySupportTagBackgroundRuby,
+    DesignTokensColorDark.legacySupportTagBackgroundRuby
+  ];
+
+  static List<Color> legacySupportTagBackgroundTangerine = [
+    DesignTokensColorLight.legacySupportTagBackgroundTangerine,
+    DesignTokensColorDark.legacySupportTagBackgroundTangerine
+  ];
+
+  static List<Color> legacySupportTagBorderBasicBold = [
+    DesignTokensColorLight.legacySupportTagBorderBasicBold,
+    DesignTokensColorDark.legacySupportTagBorderBasicBold
+  ];
+
+  static List<Color> legacySupportTagBorderDenim = [
+    DesignTokensColorLight.legacySupportTagBorderDenim,
+    DesignTokensColorDark.legacySupportTagBorderDenim
+  ];
+
+  static List<Color> legacySupportTagBorderLavender = [
+    DesignTokensColorLight.legacySupportTagBorderLavender,
+    DesignTokensColorDark.legacySupportTagBorderLavender
+  ];
+
+  static List<Color> legacySupportTagBorderLime = [
+    DesignTokensColorLight.legacySupportTagBorderLime,
+    DesignTokensColorDark.legacySupportTagBorderLime
+  ];
+
+  static List<Color> legacySupportTagBorderMustard = [
+    DesignTokensColorLight.legacySupportTagBorderMustard,
+    DesignTokensColorDark.legacySupportTagBorderMustard
+  ];
+
+  static List<Color> legacySupportTagBorderPrimary = [
+    DesignTokensColorLight.legacySupportTagBorderPrimary,
+    DesignTokensColorDark.legacySupportTagBorderPrimary
+  ];
+
+  static List<Color> legacySupportTagBorderRuby = [
+    DesignTokensColorLight.legacySupportTagBorderRuby,
+    DesignTokensColorDark.legacySupportTagBorderRuby
+  ];
+
+  static List<Color> legacySupportTagBorderTangerine = [
+    DesignTokensColorLight.legacySupportTagBorderTangerine,
+    DesignTokensColorDark.legacySupportTagBorderTangerine
+  ];
+
+  static List<Color> legacySupportTagTextBasicBold = [
+    DesignTokensColorLight.legacySupportTagTextBasicBold,
+    DesignTokensColorDark.legacySupportTagTextBasicBold
+  ];
+
+  static List<Color> legacySupportTagTextTangerine = [
+    DesignTokensColorLight.legacySupportTagTextTangerine,
+    DesignTokensColorDark.legacySupportTagTextTangerine
+  ];
+
+  static List<Color> legacySupportTagTextRuby = [
+    DesignTokensColorLight.legacySupportTagTextRuby,
+    DesignTokensColorDark.legacySupportTagTextRuby
+  ];
+
+  static List<Color> legacySupportTagTextPrimary = [
+    DesignTokensColorLight.legacySupportTagTextPrimary,
+    DesignTokensColorDark.legacySupportTagTextPrimary
+  ];
+
+  static List<Color> legacySupportTagTextMustard = [
+    DesignTokensColorLight.legacySupportTagTextMustard,
+    DesignTokensColorDark.legacySupportTagTextMustard
+  ];
+
+  static List<Color> legacySupportTagTextLime = [
+    DesignTokensColorLight.legacySupportTagTextLime,
+    DesignTokensColorDark.legacySupportTagTextLime
+  ];
+
+  static List<Color> legacySupportTagTextLavender = [
+    DesignTokensColorLight.legacySupportTagTextLavender,
+    DesignTokensColorDark.legacySupportTagTextLavender
+  ];
+
+  static List<Color> legacySupportTagTextDenim = [
+    DesignTokensColorLight.legacySupportTagTextDenim,
+    DesignTokensColorDark.legacySupportTagTextDenim
   ];
 
   static List<Color> inputActiveColor = [
@@ -547,6 +685,11 @@ class _$OptimusTokens {
   static List<Color> paletteBrandNight0 = [
     DesignTokensColorLight.paletteBrandNight0,
     DesignTokensColorDark.paletteBrandNight0
+  ];
+
+  static List<Color> paletteBrandNight064 = [
+    DesignTokensColorDark.paletteBrandNight064, // TODO(witwash): light missing
+    DesignTokensColorDark.paletteBrandNight064
   ];
 
   static List<Color> paletteBrandNight100 = [
@@ -1249,11 +1392,6 @@ class _$OptimusTokens {
   static List<Color> textInteractiveHover = [
     DesignTokensColorLight.textInteractiveHover,
     DesignTokensColorDark.textInteractiveHover
-  ];
-
-  static List<Color> textStaticError = [
-    DesignTokensColorLight.textStaticError,
-    DesignTokensColorDark.textStaticError
   ];
 
   static List<Color> textStaticInverse = [

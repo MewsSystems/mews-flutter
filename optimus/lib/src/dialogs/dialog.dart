@@ -162,13 +162,13 @@ class OptimusDialog extends StatelessWidget {
   final OptimusDialogType type;
 
   OptimusDialogSize _autoSize(BuildContext context) =>
-      switch (MediaQuery.of(context).screenBreakpoint) {
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
         Breakpoint.extraSmall || Breakpoint.small => OptimusDialogSize.small,
         Breakpoint.medium || Breakpoint.large || Breakpoint.extraLarge => size,
       };
 
   Alignment _alignment(BuildContext context) =>
-      switch (MediaQuery.of(context).screenBreakpoint) {
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
         Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
         Breakpoint.medium ||
         Breakpoint.large ||
@@ -201,7 +201,7 @@ class OptimusDialog extends StatelessWidget {
           size: size,
           maxWidth: size.width,
           spacing: spacing300,
-          margin: MediaQuery.of(context).viewInsets,
+          margin: MediaQuery.viewInsetsOf(context),
           contentWrapperBuilder: contentWrapperBuilder,
           isDismissible: isDismissible,
           close: close,

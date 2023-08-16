@@ -125,7 +125,7 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
 
   void _onTap() {
     final newValue = widget.isChecked ?? false;
-    widget.onChanged.call(!newValue);
+    widget.onChanged(!newValue);
   }
 
   void _onHoverChanged(bool hovered) => setState(() => _isHovering = hovered);
@@ -162,12 +162,13 @@ class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 100),
                     decoration: BoxDecoration(
-                      color: _interactionState._fillColor(context, _state),
+                      color: _interactionState.fillColor(context, _state),
                       border: _state.isUnchecked
                           ? Border.all(
                               color: _isError
-                                  ? theme.tokens.borderInteractiveError
-                                  : _interactionState._borderColor(context),
+                                  ? theme
+                                      .tokens.backgroundInteractiveDangerDefault
+                                  : _interactionState.borderColor(context),
                               width: 1.5,
                             )
                           : null,
@@ -226,23 +227,22 @@ extension on _CheckboxState {
 enum _InteractionState { basic, hover, active, disabled }
 
 extension on _InteractionState {
-  Color _fillColor(BuildContext context, _CheckboxState state) =>
-      switch (this) {
+  Color fillColor(BuildContext context, _CheckboxState state) => switch (this) {
         _InteractionState.basic => state.isUnchecked
-            ? context.tokens.backgroundInteractiveSubtleDefault
+            ? Colors.transparent
             : context.tokens.backgroundInteractivePrimaryDefault,
         _InteractionState.hover => state.isUnchecked
-            ? context.tokens.backgroundInteractiveSubtleHover
+            ? context.tokens.backgroundInteractiveNeutralSubtleHover
             : context.tokens.backgroundInteractivePrimaryHover,
         _InteractionState.active => state.isUnchecked
-            ? context.tokens.backgroundInteractiveSubtleActive
+            ? context.tokens.backgroundInteractiveNeutralSubtleActive
             : context.tokens.backgroundInteractivePrimaryActive,
         _InteractionState.disabled => state.isUnchecked
-            ? context.tokens.backgroundStaticFlat
+            ? Colors.transparent
             : context.tokens.backgroundDisabled,
       };
 
-  Color _borderColor(BuildContext context) => switch (this) {
+  Color borderColor(BuildContext context) => switch (this) {
         _InteractionState.basic =>
           context.tokens.borderInteractiveSecondaryDefault,
         _InteractionState.hover =>
