@@ -34,21 +34,15 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
   bool _isHovered = false;
   bool _isTapped = false;
 
-  Color get _tappedColor => theme.isDark ? _tappedColorDark : _tappedColorLight;
-  Color get _hoveredColor =>
-      theme.isDark ? _hoveredColorDark : _hoveredColorLight;
-  Color get _defaultColor =>
-      theme.isDark ? _defaultColorDark : _defaultColorLight;
-
   Color get _backgroundColor => !widget.isEnabled
       ? theme.tokens.backgroundDisabled
       : widget.hasError
           ? theme.tokens.backgroundAlertDangerSecondary
           : _isTapped
-              ? _tappedColor
+              ? theme.tokens.backgroundInteractiveNeutralActive
               : _isHovered
-                  ? _hoveredColor
-                  : _defaultColor;
+                  ? theme.tokens.backgroundInteractiveNeutralHover
+                  : theme.tokens.backgroundInteractiveNeutralDefault;
 
   Color get _foregroundColor => !widget.isEnabled
       ? theme.tokens.textDisabled
@@ -106,11 +100,3 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
 }
 
 const _height = 24.0;
-const _defaultColorLight =
-    Color(0xFFEFEFF5); // TODO(witwash): replace with tokens when updated
-const _hoveredColorLight = Color(0xFFDFDFEA);
-const _tappedColorLight = Color(0xFFC1C1D5);
-
-const _defaultColorDark = Color(0xFF22222E);
-const _hoveredColorDark = Color(0xFF323243);
-const _tappedColorDark = Color(0xFF424258);
