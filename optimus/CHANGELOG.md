@@ -1,3 +1,20 @@
+## 0.28.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix DCM issues.
+ - **REFACTOR**: Refactor widget getter to standalone widgets (#412).
+ - **REFACTOR**: Extract widgets in dropdown select (#413).
+ - **REFACTOR**: fix dcm issues (#397).
+ - **REFACTOR**: update switch to patterns syntax (#396).
+ - **FEAT**: [UX-137] Add Chip component (#414).
+ - **FEAT**: Add Toggle component (#406).
+ - **FEAT**: Update borders style (#401).
+ - **FEAT**: [RND-177100] Update radio component to use shared colors (#394).
+ - **BREAKING** **FEAT**: Update color tokens (#415).
+ - **BREAKING** **FEAT**: Update Button component (#403).
+ - **BREAKING** **FEAT**: [RND-177099] Update checkbox to use shared colors (#395).
+
 ## 0.27.0
 
 > Note: This release has breaking changes.
