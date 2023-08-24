@@ -84,7 +84,7 @@ class OptimusNotification extends StatelessWidget {
                   dismiss();
                   OptimusNotificationsOverlay.of(context)?.remove(this);
                 },
-              )
+              ),
           ],
         ),
       ),
@@ -262,13 +262,13 @@ class _NotificationContent extends StatelessWidget {
                             onTap: onLinkPressed,
                             child: _NotificationLink(link),
                           ),
-                        )
+                        ),
                     ],
                   ),
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

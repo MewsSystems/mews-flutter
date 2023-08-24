@@ -59,7 +59,7 @@ class OptimusDivider extends StatelessWidget {
             ),
           ),
           Expanded(child: animatedDivider),
-        ]
+        ],
       ],
     );
   }

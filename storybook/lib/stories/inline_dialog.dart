@@ -72,7 +72,7 @@ class _InlineContentExample extends StatelessWidget {
           _NumberRow(
             title: 'Toddlers',
             description: 'From 0 to 3',
-          )
+          ),
         ],
       );
 }
@@ -96,7 +96,7 @@ class _NumberRow extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            OptimusNumberPickerFormField(initialValue: 8)
+            OptimusNumberPickerFormField(initialValue: 8),
           ],
         ),
       );

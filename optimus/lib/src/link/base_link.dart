@@ -76,7 +76,7 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
                   decoration: _isHovering ? null : TextDecoration.underline,
                 ),
                 child: widget.text,
-              )
+              ),
             ],
           ),
         ),
