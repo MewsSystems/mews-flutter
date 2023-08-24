@@ -15,14 +15,6 @@ final Story dividerStory = Story(
         Option(label: 'Vertical', value: Axis.vertical),
       ],
     );
-    final variant = k.options<OptimusDividerVariant>(
-      label: 'Variant',
-      initial: OptimusDividerVariant.normal,
-      options: const [
-        Option(label: 'Normal', value: OptimusDividerVariant.normal),
-        Option(label: 'Bold', value: OptimusDividerVariant.bold),
-      ],
-    );
 
     return Center(
       child: Flex(
@@ -33,7 +25,6 @@ final Story dividerStory = Story(
           const OptimusLabel(child: Text('Text before divider')),
           OptimusDivider(
             direction: direction,
-            variant: variant,
             child: text.isNotEmpty ? Text(text) : null,
           ),
           const OptimusLabel(child: Text('Text after divider'))
