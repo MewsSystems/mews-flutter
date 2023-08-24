@@ -1341,7 +1341,8 @@ class _$OptimusTokens {
 
   static List<Color> staticContainerColor = [
     DesignTokensColorLight.staticContainerColor,
-    DesignTokensColorLight.staticContainerColor, // TODO(witwash): add dark token
+    DesignTokensColorLight
+        .staticContainerColor, // TODO(witwash): add dark token
   ];
 
   static List<Color> staticDividerColor = [
