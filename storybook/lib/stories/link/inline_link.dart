@@ -37,7 +37,7 @@ final Story inlineLink = Story(
             Text(
               ' could be used inside text.',
               style: style,
-            )
+            ),
           ],
         ),
       ),

@@ -88,7 +88,7 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
                           size: 16,
                           color: _foregroundColor,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

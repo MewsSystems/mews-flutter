@@ -161,7 +161,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

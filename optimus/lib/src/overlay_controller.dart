@@ -88,7 +88,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
                 onChanged: widget.onItemSelected,
                 width: widget.width,
               ),
-            )
+            ),
           ],
         ),
       );

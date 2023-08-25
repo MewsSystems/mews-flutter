@@ -84,7 +84,7 @@ class DialogContent extends StatelessWidget {
                       type: type,
                       dialogSize: size,
                       close: close ?? () => Navigator.pop(context),
-                    )
+                    ),
                 ],
               ),
             ),

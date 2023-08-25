@@ -156,7 +156,7 @@ class _CollapsedCompactStepBar extends StatelessWidget {
                 _CompactStepBarIndicator(
                   currentStep: data.currentItem,
                   maxSteps: data.maxItem,
-                )
+                ),
               ],
             ),
           )
@@ -220,7 +220,7 @@ class _CompactStepBarIndicator extends StatelessWidget {
                 child: Text(text),
               ),
               const SizedBox(width: spacing50),
-              const OptimusIcon(iconData: OptimusIcons.chevron_up)
+              const OptimusIcon(iconData: OptimusIcons.chevron_up),
             ],
           ),
         ),
@@ -326,7 +326,7 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
                     controller: widget.controller,
                     itemsCount: data.items.length,
                     width: _targetWidth,
-                  )
+                  ),
               ],
             ),
           )
@@ -453,7 +453,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
                           iconData: OptimusIcons.chevron_up,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

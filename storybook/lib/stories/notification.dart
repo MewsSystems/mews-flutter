@@ -86,7 +86,7 @@ class _NotificationStoryContent extends StatelessWidget {
                   );
                 },
                 child: const Text('Show notification'),
-              )
+              ),
             ],
           ),
         ),

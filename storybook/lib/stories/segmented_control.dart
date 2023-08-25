@@ -86,7 +86,7 @@ final Story segmentedControlStory = Story(
               isRequired: isRequired,
               options: _options5,
             ),
-          )
+          ),
         ],
       ),
     );

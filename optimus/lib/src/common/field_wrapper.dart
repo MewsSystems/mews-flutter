@@ -176,7 +176,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     return <Widget>[
       if (prefix != null) _Styled(child: _PrefixPadding(child: prefix)),
       ...widget.children,
-      if (suffix != null) _Styled(child: _SuffixPadding(child: suffix))
+      if (suffix != null) _Styled(child: _SuffixPadding(child: suffix)),
     ];
   }
 }

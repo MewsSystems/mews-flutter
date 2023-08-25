@@ -372,7 +372,7 @@ class _Suffix extends StatelessWidget {
             if (passwordButtonWidget != null)
               passwordButtonWidget
             else if (trailingWidget != null)
-              trailingWidget
+              trailingWidget,
           ],
         );
   }
