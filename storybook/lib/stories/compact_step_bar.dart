@@ -56,7 +56,7 @@ final Story compactStepBarStory = Story(
                 title: Text(
                   'Some content at the same layer, that will be hid behind the dropdown,',
                 ),
-              )
+              ),
             ],
           ),
         ),

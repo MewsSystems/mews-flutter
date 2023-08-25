@@ -62,7 +62,7 @@ final Story tooltipWrapperStory = Story(
                   ),
                 ),
               ),
-            )
+            ),
         ],
       ),
     );

@@ -115,7 +115,7 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
                   curve: _animationCurve,
                   left: _leftPadding,
                   child: const _Knob(),
-                )
+                ),
               ],
             ),
           ),
