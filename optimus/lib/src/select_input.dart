@@ -200,7 +200,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         isEnabled: widget.isEnabled,
         isRequired: widget.isRequired,
         caption: widget.caption,
-        secondaryCaption: widget.secondaryCaption,
+        helperMessage: widget.secondaryCaption,
         error: widget.error,
         size: widget.size,
         onChanged: widget.onChanged,

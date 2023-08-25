@@ -18,7 +18,8 @@ class OptimusInputField extends StatefulWidget {
     this.focusNode,
     this.label,
     this.caption,
-    this.secondaryCaption,
+    this.captionIcon = OptimusIcons.info,
+    this.helperMessage,
     this.maxLines = 1,
     this.minLines,
     this.controller,
@@ -66,7 +67,8 @@ class OptimusInputField extends StatefulWidget {
   final FocusNode? focusNode;
   final String? label;
   final Widget? caption;
-  final Widget? secondaryCaption;
+  final IconData? captionIcon;
+  final Widget? helperMessage;
 
   /// {@macro flutter.widgets.editableText.maxLines}
   final int maxLines;
@@ -184,62 +186,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     super.dispose();
   }
 
-  Widget? get _passwordButton {
-    if (widget.isPasswordField) {
-      return _PasswordButton(
-        onTap: () => setState(() {
-          _isShowPasswordEnabled = !_isShowPasswordEnabled;
-        }),
-        isShowPasswordEnabled: _isShowPasswordEnabled,
-      );
-    }
-  }
-
-  Widget? get _clearAllButton {
-    if (_shouldShowClearAllButton) {
-      return _ClearAllButton(onTap: _onClearAllTap);
-    }
-  }
-
-  Widget? get _prefix {
-    if (widget.leading != null || widget.prefix != null) {
-      return _Prefix(prefix: widget.prefix, leading: widget.leading);
-    }
-  }
-
   bool get _isUsingInlineError =>
       widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
 
   bool get _shouldShowInlineError => _isUsingInlineError && widget.hasError;
-
-  Widget? get _inlineError {
-    if (!_shouldShowInlineError) return null;
-
-    final error = widget.error;
-    if (error == null) return null;
-
-    return OptimusTooltipWrapper(
-      text: Text(error),
-      child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
-    );
-  }
-
-  Widget? get _suffix {
-    if (widget.suffix != null ||
-        widget.trailing != null ||
-        widget.showLoader ||
-        _shouldShowClearAllButton ||
-        _shouldShowInlineError) {
-      return _Suffix(
-        suffix: widget.suffix,
-        trailing: widget.trailing,
-        passwordButton: _passwordButton,
-        showLoader: widget.showLoader,
-        clearAllButton: _clearAllButton,
-        inlineError: _inlineError,
-      );
-    }
-  }
 
   void _onClearAllTap() {
     _effectiveController.clear();
@@ -249,86 +199,106 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _shouldShowClearAllButton =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
-  @override
-  Widget build(BuildContext context) => FieldWrapper(
-        focusNode: _effectiveFocusNode,
-        isFocused: widget.isFocused,
-        isEnabled: widget.isEnabled,
-        label: widget.label,
-        caption: widget.caption,
-        secondaryCaption: widget.secondaryCaption,
-        error: widget.error,
-        errorVariant: widget.errorVariant,
-        hasBorders: widget.hasBorders,
-        isRequired: widget.isRequired,
-        prefix: _prefix,
-        suffix: _suffix,
-        fieldBoxKey: widget.fieldBoxKey,
-        children: <Widget>[
-          Expanded(
-            child: CupertinoTextField(
-              key: widget.inputKey,
-              textAlign: widget.textAlign,
-              enableIMEPersonalizedLearning:
-                  widget.enableIMEPersonalizedLearning,
-              enableSuggestions: widget.enableSuggestions,
-              textCapitalization: widget.textCapitalization,
-              cursorColor:
-                  theme.isDark ? theme.colors.neutral200 : theme.colors.basic,
-              autocorrect: widget.autocorrect,
-              autofocus: widget.autofocus,
-              enableInteractiveSelection: widget.enableInteractiveSelection,
-              controller: _effectiveController,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              onSubmitted: widget.onSubmitted,
-              textInputAction: widget.textInputAction,
-              placeholder: widget.placeholder,
-              placeholderStyle: widget.placeholderStyle ??
-                  theme.getPlaceholderStyle(widget.size),
-              focusNode: _effectiveFocusNode,
-              enabled: widget.isEnabled,
-              padding: _prefix != null ? _textWithPrefixPadding : _textPadding,
-              style: theme.getTextInputStyle(widget.size),
-              // [CupertinoTextField] will try to resolve colors to its own theme,
-              // this will ensure the visible [BoxDecoration] is from the
-              // [FieldWrapper] above.
-              decoration: const BoxDecoration(
-                color: Color(0x00000000),
-                backgroundBlendMode: BlendMode.dst,
-              ),
-              onChanged: widget.onChanged,
-              keyboardType: widget.keyboardType,
-              obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
-              onTap: widget.onTap,
-              readOnly: widget.readOnly,
-              showCursor: widget.showCursor,
-              inputFormatters: widget.inputFormatters,
-              keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,
-            ),
-          ),
-        ],
-      );
-
   void _onStateUpdate() => setState(() {});
 
-  EdgeInsets get _textPadding => switch (widget.size) {
-        OptimusWidgetSize.small =>
-          const EdgeInsets.only(left: 16, right: 8, top: 5, bottom: 6),
-        OptimusWidgetSize.medium =>
-          const EdgeInsets.only(left: 16, right: 8, top: 8, bottom: 8),
-        OptimusWidgetSize.large =>
-          const EdgeInsets.only(left: 16, right: 8, top: 12, bottom: 12),
-      };
+  @override
+  Widget build(BuildContext context) {
+    final clearAllButton = _shouldShowClearAllButton
+        ? _ClearAllButton(onTap: _onClearAllTap)
+        : null;
+    final passwordButton = widget.isPasswordField
+        ? _PasswordButton(
+            onTap: () => setState(() {
+              _isShowPasswordEnabled = !_isShowPasswordEnabled;
+            }),
+            isShowPasswordEnabled: _isShowPasswordEnabled,
+          )
+        : null;
+    final error = widget.error;
+    final inlineError = _shouldShowInlineError && error != null
+        ? OptimusTooltipWrapper(
+            text: Text(error),
+            child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
+          )
+        : null;
+    final suffix = widget.suffix != null ||
+            widget.trailing != null ||
+            widget.showLoader ||
+            _shouldShowClearAllButton ||
+            _shouldShowInlineError
+        ? _Suffix(
+            suffix: widget.suffix,
+            trailing: widget.trailing,
+            passwordButton: passwordButton,
+            showLoader: widget.showLoader,
+            clearAllButton: clearAllButton,
+            inlineError: inlineError,
+          )
+        : null;
+    final prefix = widget.leading != null || widget.prefix != null
+        ? _Prefix(prefix: widget.prefix, leading: widget.leading)
+        : null;
 
-  EdgeInsets get _textWithPrefixPadding => switch (widget.size) {
-        OptimusWidgetSize.small =>
-          const EdgeInsets.only(left: 16, right: 8, top: 5, bottom: 6),
-        OptimusWidgetSize.medium =>
-          const EdgeInsets.only(left: 10, right: 8, top: 8, bottom: 8),
-        OptimusWidgetSize.large =>
-          const EdgeInsets.only(left: 10, right: 8, top: 12, bottom: 12),
-      };
+    return FieldWrapper(
+      focusNode: _effectiveFocusNode,
+      isFocused: widget.isFocused,
+      isEnabled: widget.isEnabled,
+      label: widget.label,
+      caption: widget.caption,
+      captionIcon: widget.captionIcon,
+      helperMessage: widget.helperMessage,
+      error: widget.error,
+      errorVariant: widget.errorVariant,
+      hasBorders: widget.hasBorders,
+      isRequired: widget.isRequired,
+      prefix: prefix,
+      suffix: suffix,
+      fieldBoxKey: widget.fieldBoxKey,
+      size: widget.size,
+      children: <Widget>[
+        Expanded(
+          child: CupertinoTextField(
+            key: widget.inputKey,
+            textAlign: widget.textAlign,
+            enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+            enableSuggestions: widget.enableSuggestions,
+            textCapitalization: widget.textCapitalization,
+            cursorColor: theme.tokens.textStaticSecondary,
+            autocorrect: widget.autocorrect,
+            autofocus: widget.autofocus,
+            enableInteractiveSelection: widget.enableInteractiveSelection,
+            controller: _effectiveController,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            onSubmitted: widget.onSubmitted,
+            textInputAction: widget.textInputAction,
+            placeholder: widget.placeholder,
+            placeholderStyle: widget.placeholderStyle ??
+                theme.getPlaceholderStyle(widget.size),
+            focusNode: _effectiveFocusNode,
+            enabled: widget.isEnabled,
+            padding: widget.size.contentPadding,
+            style: theme.getTextInputStyle(widget.size),
+            // [CupertinoTextField] will try to resolve colors to its own theme,
+            // this will ensure the visible [BoxDecoration] is from the
+            // [FieldWrapper] above.
+            decoration: const BoxDecoration(
+              color: Color(0x00000000),
+              backgroundBlendMode: BlendMode.dst,
+            ),
+            onChanged: widget.onChanged,
+            keyboardType: widget.keyboardType,
+            obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
+            onTap: widget.onTap,
+            readOnly: widget.readOnly,
+            showCursor: widget.showCursor,
+            inputFormatters: widget.inputFormatters,
+            keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class _Suffix extends StatelessWidget {
@@ -385,15 +355,20 @@ class _Prefix extends StatelessWidget {
   final Widget? leading;
 
   @override
-  Widget build(BuildContext context) => OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          leading ?? const SizedBox.shrink(),
-          prefix ?? const SizedBox.shrink(),
-        ],
-      );
+  Widget build(BuildContext context) {
+    final prefix = this.prefix;
+    final leading = this.leading;
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (leading != null) leading,
+        if (prefix != null) prefix,
+      ],
+    );
+  }
 }
 
 class _PasswordButton extends StatelessWidget {
@@ -420,18 +395,14 @@ class _ClearAllButton extends StatelessWidget {
   final GestureTapCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Icon(
-        OptimusIcons.clear_selection,
-        size: _iconSize,
-        color: theme.colors.neutral100,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: Icon(
+          OptimusIcons.clear_selection,
+          size: _iconSize,
+          color: OptimusTheme.of(context).tokens.textStaticPrimary,
+        ),
+      );
 }
 
 /// The way of displaying the error message.
@@ -442,6 +413,17 @@ enum OptimusInputErrorVariant {
   /// The error message is displayed as a tooltip near the input. The tooltip is
   /// shown after the interaction with the error icon.
   inlineTooltip,
+}
+
+extension on OptimusWidgetSize {
+  EdgeInsets get contentPadding => switch (this) {
+        OptimusWidgetSize.small =>
+          const EdgeInsets.symmetric(vertical: spacing50),
+        OptimusWidgetSize.medium =>
+          const EdgeInsets.symmetric(vertical: spacing100),
+        OptimusWidgetSize.large =>
+          const EdgeInsets.symmetric(vertical: spacing150),
+      };
 }
 
 const double _iconSize = 24;

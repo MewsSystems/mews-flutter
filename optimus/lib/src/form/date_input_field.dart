@@ -19,7 +19,7 @@ class OptimusDateInputField extends StatefulWidget {
     this.label,
     this.error,
     this.caption,
-    this.secondaryCaption,
+    this.helperMessage,
     this.size = OptimusWidgetSize.large,
     this.isEnabled = true,
     this.value,
@@ -57,7 +57,7 @@ class OptimusDateInputField extends StatefulWidget {
   final String? label;
   final String? error;
   final Widget? caption;
-  final Widget? secondaryCaption;
+  final Widget? helperMessage;
   final bool isEnabled;
   final bool isClearAllEnabled;
 
@@ -195,7 +195,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         isEnabled: widget.isEnabled,
         isClearEnabled: widget.isClearAllEnabled,
         textInputAction: widget.textInputAction,
-        secondaryCaption: widget.secondaryCaption,
+        helperMessage: widget.helperMessage,
         placeholder: _placeholder,
         controller: _controller,
         error: widget.error,

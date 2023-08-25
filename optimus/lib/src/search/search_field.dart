@@ -21,7 +21,7 @@ class OptimusSearch<T> extends StatelessWidget {
     this.leading,
     this.trailing,
     this.caption,
-    this.secondaryCaption,
+    this.helperMessage,
     this.error,
     this.size = OptimusWidgetSize.large,
     this.readOnly = false,
@@ -72,7 +72,7 @@ class OptimusSearch<T> extends StatelessWidget {
 
   /// Secondary caption text to be displayed on the right of the search field.
   /// Typically a [Text] widget.
-  final Widget? secondaryCaption;
+  final Widget? helperMessage;
 
   /// Error text to be displayed below the search field. Typically a [Text].
   /// Will replace the caption if both are provided.
@@ -145,7 +145,7 @@ class OptimusSearch<T> extends StatelessWidget {
         color: _iconColor(theme),
       ),
       caption: caption,
-      secondaryCaption: secondaryCaption,
+      helperMessage: helperMessage,
       error: error,
       size: size,
       readOnly: readOnly,

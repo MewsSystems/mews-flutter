@@ -4,6 +4,7 @@ const double spacing50 = 4;
 const double spacing100 = 8;
 const double spacing150 = 12;
 const double spacing200 = 16;
+const double spacing250 = 20;
 const double spacing300 = 24;
 const double spacing400 = 32;
 const double spacing500 = 40;

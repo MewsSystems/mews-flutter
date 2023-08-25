@@ -67,7 +67,7 @@ class _SearchStoryState extends State<SearchStory> {
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       isRequired: k.boolean(label: 'Required'),
       caption: Text(k.text(label: 'Caption', initial: '')),
-      secondaryCaption: Text(k.text(label: 'Secondary caption', initial: '')),
+      helperMessage: Text(k.text(label: 'Secondary caption', initial: '')),
       size: k.options(
         label: 'Size',
         initial: OptimusWidgetSize.large,

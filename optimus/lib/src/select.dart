@@ -77,7 +77,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
               prefix: widget.prefix,
               suffix: _icon,
               caption: widget.caption,
-              secondaryCaption: widget.secondaryCaption,
+              helperMessage: widget.secondaryCaption,
               children: [
                 _SelectedValue(
                   size: widget.size,

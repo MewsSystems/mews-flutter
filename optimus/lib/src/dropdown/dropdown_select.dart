@@ -23,7 +23,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.trailing,
     this.trailingImplicit,
     this.caption,
-    this.secondaryCaption,
+    this.helperMessage,
     this.error,
     this.size = OptimusWidgetSize.large,
     this.readOnly = false,
@@ -54,7 +54,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final bool isRequired;
   final ValueSetter<T> onChanged;
   final Widget? caption;
-  final Widget? secondaryCaption;
+  final Widget? helperMessage;
   final String? error;
   final OptimusWidgetSize size;
   final Widget? leading;
@@ -266,7 +266,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
         trailing: trailing,
         isEnabled: widget.isEnabled,
         caption: widget.caption,
-        secondaryCaption: widget.secondaryCaption,
+        helperMessage: widget.helperMessage,
         error: widget.error,
         size: widget.size,
         readOnly: widget.readOnly,
