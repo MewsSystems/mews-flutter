@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimus/optimus.dart';
 
 /// Mews logo variant.
@@ -58,17 +59,6 @@ class OptimusMewsLogo extends StatelessWidget {
   final OptimusMewsLogoColorVariant colorVariant;
   final OptimusMewsLogoAlignVariant alignVariant;
 
-  Widget get _iconWidget => _NonSquaredIcon(
-        _logoIcon,
-        size: _size,
-        color: _color,
-      );
-
-  IconData get _logoIcon => switch (logoVariant) {
-        OptimusMewsLogoVariant.wordmark => OptimusIcons.mews_logo,
-        OptimusMewsLogoVariant.logomark => OptimusIcons.mews_logo_small,
-      };
-
   double get _size => switch (sizeVariant) {
         OptimusMewsLogoSizeVariant.large => 24,
         OptimusMewsLogoSizeVariant.medium => 16,
@@ -91,7 +81,21 @@ class OptimusMewsLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         margin: _margin,
-        child: _iconWidget,
+        child: switch (logoVariant) {
+          OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
+              OptimusIcons.mews_logo,
+              size: _size,
+              color: _color,
+            ),
+          OptimusMewsLogoVariant.wordmark => SizedBox(
+              height: _size,
+              child: SvgPicture.asset(
+                _logoPath,
+                package: _packageName,
+                colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
+              ),
+            ),
+        },
       );
 }
 
@@ -104,9 +108,7 @@ class _NonSquaredIcon extends StatelessWidget {
   });
 
   final IconData icon;
-
   final double size;
-
   final Color color;
 
   @override
@@ -124,3 +126,6 @@ class _NonSquaredIcon extends StatelessWidget {
         ),
       );
 }
+
+const _packageName = 'optimus';
+const _logoPath = 'assets/mews_logo.svg';
