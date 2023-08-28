@@ -279,7 +279,7 @@ dart_code_metrics:
     # - avoid-missing-enum-constant-in-map
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
-    - avoid-mutating-parameters
+    # - avoid-mutating-parameters
     # - avoid-negated-conditions
     # - avoid-nested-conditional-expressions
     - avoid-nested-futures
@@ -293,7 +293,7 @@ dart_code_metrics:
     - avoid-one-field-records
     # - avoid-passing-async-when-sync-expected
     # - avoid-positional-record-field-access
-    # - avoid-redundant-async
+    - avoid-redundant-async
     - avoid-redundant-else
     - avoid-redundant-positional-field-name
     # - avoid-redundant-pragma-inline
