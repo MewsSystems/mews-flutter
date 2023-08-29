@@ -191,7 +191,7 @@ const optimusIcons = <IconDetails>[
   IconDetails(OptimusIcons.merchant, 'merchant'),
   IconDetails(OptimusIcons.message, 'message'),
   IconDetails(OptimusIcons.messages_plural, 'messages_plural'),
-  IconDetails(OptimusIcons.mews_logo_small, 'mews_logo_small'),
+  IconDetails(OptimusIcons.mews_logo, 'mews_logo'),
   IconDetails(OptimusIcons.military, 'military'),
   IconDetails(OptimusIcons.minus_simple, 'minus_simple'),
   IconDetails(OptimusIcons.minus, 'minus'),
@@ -318,5 +318,4 @@ const optimusIcons = <IconDetails>[
   IconDetails(OptimusIcons.week, 'week'),
   IconDetails(OptimusIcons.wellness, 'wellness'),
   IconDetails(OptimusIcons.window, 'window'),
-  IconDetails(OptimusIcons.mews_logo, 'mews_logo'),
 ];
