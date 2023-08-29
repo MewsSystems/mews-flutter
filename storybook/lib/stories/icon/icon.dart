@@ -67,7 +67,7 @@ final Story supplementaryIconStory = Story(
 );
 
 final List<Option<IconData>> _icons = [
-  const Option(label: 'Mews Logo', value: OptimusIcons.mews_logo_small),
+  const Option(label: 'Mews Logo', value: OptimusIcons.mews_logo),
   const Option(label: 'Magic', value: OptimusIcons.magic),
   const Option(label: 'Plus', value: OptimusIcons.plus),
   const Option(label: 'Delete', value: OptimusIcons.delete),

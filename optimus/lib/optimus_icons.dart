@@ -383,7 +383,7 @@ class OptimusIcons {
       IconData(0xe8b3, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData messages_plural =
       IconData(0xe8b4, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData mews_logo_small =
+  static const IconData mews_logo =
       IconData(0xe8b5, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData military =
       IconData(0xe8b6, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -637,6 +637,4 @@ class OptimusIcons {
       IconData(0xe933, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData window =
       IconData(0xe934, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData mews_logo =
-      IconData(0xe935, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
