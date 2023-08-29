@@ -118,7 +118,6 @@ class _MyAppState extends State<MyApp> {
                 tagStory,
                 bannerStory,
                 wideBannerStory,
-                interactiveTagStory,
                 allIconsStory,
                 iconStory,
                 logoStory,
