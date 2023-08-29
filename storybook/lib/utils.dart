@@ -7,7 +7,7 @@ final List<Option<OptimusColorOption>> colorOptions = OptimusColorOption.values
     .toList();
 
 final List<Option<IconData?>> exampleIcons = [
-  const Option(label: '', value: null),
+  const Option(label: 'none', value: null),
   const Option(label: 'Mews Logo', value: OptimusIcons.mews_logo),
   const Option(label: 'Magic', value: OptimusIcons.magic),
   const Option(label: 'Plus', value: OptimusIcons.plus),
