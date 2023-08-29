@@ -1,3 +1,9 @@
+## 0.18.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Update rules set (#426).
+
 ## 0.17.0
 
 > Note: This release has breaking changes.
