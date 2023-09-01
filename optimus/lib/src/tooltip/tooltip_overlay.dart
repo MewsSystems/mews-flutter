@@ -301,5 +301,5 @@ class TooltipOverlayState extends State<TooltipOverlay>
 const double _screenPadding = spacing200;
 const double _widgetPadding = spacing100;
 const double _sideAlignOffset = spacing100;
-const double _tooltipAlignOffset = 18.0;
+const double _tooltipAlignOffset = 20.0;
 const Duration _animationDuration = Duration(milliseconds: 100);

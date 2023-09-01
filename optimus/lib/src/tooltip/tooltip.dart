@@ -29,8 +29,6 @@ class OptimusTooltip extends StatelessWidget {
   /// by the wrapper.
   final OptimusTooltipPosition? tooltipPosition;
 
-  Color _tooltipColor(OptimusThemeData theme) => theme.colors.neutral1000;
-
   OptimusTooltipPosition get _fallbackPosition =>
       tooltipPosition ?? OptimusTooltipPosition.top;
 
@@ -39,24 +37,27 @@ class OptimusTooltip extends StatelessWidget {
     final theme = OptimusTheme.of(context);
     final alignment = TooltipOverlay.of(context)?.alignment ??
         _fallbackPosition.toTooltipAlignment();
+    final foregroundColor = theme.tokens.textStaticInverse;
+    final backgroundColor = theme.tokens.backgroundStaticInverse;
 
     return Padding(
       padding: const EdgeInsets.all(_arrowHeight),
       child: CustomPaint(
         painter: _TooltipPainter(
-          color: _tooltipColor(theme),
+          color: backgroundColor,
           alignment: alignment,
+          borderRadius: borderRadius50,
         ),
         child: Container(
           width: size.maxWidth,
           padding: const EdgeInsets.symmetric(
             vertical: spacing50,
-            horizontal: spacing100,
+            horizontal: spacing150,
           ),
           child: Material(
-            color: _tooltipColor(theme),
+            color: backgroundColor,
             child: DefaultTextStyle.merge(
-              style: preset100b.copyWith(color: theme.colors.neutral0),
+              style: preset100s.copyWith(color: foregroundColor),
               textAlign: TextAlign.center,
               child: content,
             ),
@@ -71,10 +72,12 @@ class _TooltipPainter extends CustomPainter {
   const _TooltipPainter({
     required this.color,
     required this.alignment,
+    required this.borderRadius,
   });
 
   final Color color;
   final TooltipAlignment alignment;
+  final Radius borderRadius;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -150,7 +153,7 @@ class _TooltipPainter extends CustomPainter {
         tooltipPath.lineTo(width - _arrowOffset - _arrowWidth / 2, 0);
     }
 
-    tooltipPath.addRRect(RRect.fromLTRBR(0, 0, width, height, borderRadius100));
+    tooltipPath.addRRect(RRect.fromLTRBR(0, 0, width, height, borderRadius));
     canvas.drawPath(tooltipPath, paint);
   }
 
@@ -173,13 +176,13 @@ extension on OptimusToolTipSize {
 
 extension on OptimusTooltipPosition {
   TooltipAlignment toTooltipAlignment() => switch (this) {
-        OptimusTooltipPosition.left => TooltipAlignment.leftBottom,
+        OptimusTooltipPosition.left => TooltipAlignment.leftCenter,
         OptimusTooltipPosition.top => TooltipAlignment.topCenter,
         OptimusTooltipPosition.right => TooltipAlignment.rightCenter,
         OptimusTooltipPosition.bottom => TooltipAlignment.bottomCenter,
       };
 }
 
-const double _arrowWidth = 10.0;
-const double _arrowHeight = 5.0;
-const double _arrowOffset = 13.0;
+const double _arrowHeight = 4;
+const double _arrowWidth = 9;
+const double _arrowOffset = 16;
