@@ -3,15 +3,14 @@
 //
 
 // Do not edit directly
-// Generated on Thu, 10 Aug 2023 10:25:09 GMT
+// Generated on Tue, 05 Sep 2023 17:09:47 GMT
 
 import 'dart:ui';
 
 class DesignTokensColorLight {
-  const DesignTokensColorLight._();
+  DesignTokensColorLight._();
 
-  static const backgroundAccentPrimary = Color(0xFF3B37F2);
-  static const backgroundAccentSecondary = Color(0xFFFD424F);
+  static const backgroundAccent = Color(0xFF3B37F2);
   static const backgroundAlertBasicPrimary = Color(0xFF52526D);
   static const backgroundAlertBasicSecondary = Color(0xFFF7F7FA);
   static const backgroundAlertDangerPrimary = Color(0xFFE41C1C);
