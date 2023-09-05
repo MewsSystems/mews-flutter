@@ -54,9 +54,6 @@ class _OptimusTooltipWrapperState extends State<OptimusTooltipWrapper> {
           tooltipPosition: widget.tooltipPosition,
           content: widget.text,
         ),
-        child: Container(
-          key: _anchorKey,
-          child: widget.child,
-        ),
+        child: Container(key: _anchorKey, child: widget.child),
       );
 }
