@@ -7,7 +7,7 @@ export 'package:intl/intl.dart' show DateFormat;
 
 export 'optimus_icons.dart';
 export 'src/avatar.dart';
-export 'src/badge.dart';
+export 'src/badge/badge.dart';
 export 'src/banner.dart';
 export 'src/border_radius.dart';
 export 'src/borders.dart';
