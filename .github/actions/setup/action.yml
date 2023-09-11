@@ -6,7 +6,7 @@ runs:
     - name: Set up Flutter
       uses: subosito/flutter-action@ea686d7c56499339ad176e9f19c516ff6cf05a31
       with:
-        flutter-version: 3.13.1
+        flutter-version: 3.13.4
         cache: true
 
     - name: Set up environment paths
