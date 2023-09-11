@@ -8,6 +8,7 @@ class BaseBadge extends StatelessWidget {
     super.key,
     required this.text,
     required this.outline,
+    this.overflow = TextOverflow.ellipsis,
     this.backgroundColor,
     this.textColor,
     this.outlineColor,
@@ -15,6 +16,7 @@ class BaseBadge extends StatelessWidget {
 
   final String text;
   final bool outline;
+  final TextOverflow overflow;
   final Color? backgroundColor;
   final Color? textColor;
   final Color? outlineColor;
@@ -44,6 +46,8 @@ class BaseBadge extends StatelessWidget {
             children: [
               Text(
                 text,
+                maxLines: 1,
+                overflow: overflow,
                 textAlign: TextAlign.center,
                 style: baseTextStyle.copyWith(
                   fontSize: 11,
