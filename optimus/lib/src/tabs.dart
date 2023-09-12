@@ -18,34 +18,30 @@ class OptimusTab extends StatelessWidget {
   final double? maxWidth;
 
   @override
-  Widget build(BuildContext context) {
-    final badge = this.badge;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: spacing150),
-      height: 48,
-      constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null)
-            Padding(
-              padding: const EdgeInsets.only(right: spacing50),
-              child: Icon(icon, size: 16),
-            ),
-          Text(label, overflow: TextOverflow.ellipsis),
-          if (badge != null)
-            Padding(
-              padding: const EdgeInsets.only(left: spacing50),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 32),
-                child: BaseBadge(text: badge, outline: false),
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: spacing150),
+        height: 48,
+        constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null)
+              Padding(
+                padding: const EdgeInsets.only(right: spacing50),
+                child: Icon(icon, size: 16),
               ),
-            ),
-        ],
-      ),
-    );
-  }
+            Text(label, overflow: TextOverflow.ellipsis),
+            if (badge case final badge?)
+              Padding(
+                padding: const EdgeInsets.only(left: spacing50),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 32),
+                  child: BaseBadge(text: badge, outline: false),
+                ),
+              ),
+          ],
+        ),
+      );
 }
 
 class OptimusTabBar extends StatelessWidget {
