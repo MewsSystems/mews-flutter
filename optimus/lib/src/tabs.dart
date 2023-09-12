@@ -1,18 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_side.dart';
+import 'package:optimus/src/badge/base_badge.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 class OptimusTab extends StatelessWidget {
   const OptimusTab({
     super.key,
-    required this.text,
+    required this.label,
+    this.icon,
+    this.badge,
+    this.maxWidth,
   });
 
-  final String text;
+  final IconData? icon;
+  final String label;
+  final String? badge;
+  final double? maxWidth;
 
   @override
-  Widget build(BuildContext context) => Tab(child: Text(text));
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: spacing150),
+        height: 48,
+        constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null)
+              Padding(
+                padding: const EdgeInsets.only(right: spacing50),
+                child: Icon(icon, size: 16),
+              ),
+            Text(label, overflow: TextOverflow.ellipsis),
+            if (badge case final badge?)
+              Padding(
+                padding: const EdgeInsets.only(left: spacing50),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 32),
+                  child: BaseBadge(text: badge, outline: false),
+                ),
+              ),
+          ],
+        ),
+      );
 }
 
 class OptimusTabBar extends StatelessWidget {
@@ -27,11 +56,18 @@ class OptimusTabBar extends StatelessWidget {
   final List<Widget> pages;
   final TabController? tabController;
 
+  Decoration _buildIndicator(OptimusTokens tokens) => UnderlineTabIndicator(
+        borderSide: BorderSide(
+          color: tokens.borderInteractivePrimaryDefault,
+          width: 2.5,
+        ),
+        insets: const EdgeInsets.only(bottom: -1),
+      );
+
   @override
   Widget build(BuildContext context) {
-    // Think about better implementation with typography components
-    final TextStyle textStyle = preset100s;
-    final theme = OptimusTheme.of(context);
+    final TextStyle textStyle = preset200s;
+    final tokens = OptimusTheme.of(context).tokens;
 
     return DefaultTabController(
       length: tabs.length,
@@ -39,24 +75,26 @@ class OptimusTabBar extends StatelessWidget {
         children: <Widget>[
           DecoratedBox(
             decoration: BoxDecoration(
-              border: Border(bottom: borderSide(theme)),
+              border: Border(
+                bottom: BorderSide(
+                  color: tokens.borderStaticSecondary,
+                  width: 1.5,
+                ),
+              ),
             ),
             child: Material(
-              color: theme.isDark
-                  ? theme.colors.neutral500
-                  : theme.colors.neutral0,
+              color: tokens.backgroundStaticFlat,
               child: TabBar(
                 controller: tabController,
-                indicator: _buildIndicator(theme),
-                unselectedLabelColor: theme.isDark
-                    ? theme.colors.neutral0t64
-                    : theme.colors.neutral1000t64,
-                labelColor: theme.isDark
-                    ? theme.colors.neutral0
-                    : theme.colors.neutral1000,
+                indicator: _buildIndicator(tokens),
+                unselectedLabelColor: tokens.textStaticTertiary,
+                labelColor: tokens.textStaticPrimary,
                 tabs: tabs,
                 unselectedLabelStyle: textStyle,
                 labelStyle: textStyle,
+                splashBorderRadius: null,
+                splashFactory: NoSplash.splashFactory,
+                labelPadding: EdgeInsets.zero,
               ),
             ),
           ),
@@ -71,13 +109,4 @@ class OptimusTabBar extends StatelessWidget {
       ),
     );
   }
-
-  Decoration _buildIndicator(OptimusThemeData theme) => UnderlineTabIndicator(
-        borderSide: BorderSide(
-          color:
-              theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
-          width: 1,
-        ),
-        insets: const EdgeInsets.only(bottom: -1),
-      );
 }
