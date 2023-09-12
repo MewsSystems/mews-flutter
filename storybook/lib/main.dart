@@ -45,7 +45,8 @@ import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/stack.dart';
 import 'package:storybook/stories/step_bar.dart';
-import 'package:storybook/stories/tabs.dart';
+import 'package:storybook/stories/tab/tab.dart';
+import 'package:storybook/stories/tab/tabs.dart';
 import 'package:storybook/stories/tags.dart';
 import 'package:storybook/stories/toggle.dart';
 import 'package:storybook/stories/tooltip.dart';
@@ -137,7 +138,8 @@ class _MyAppState extends State<MyApp> {
                 listTileStory,
                 navListTileStory,
                 expandedListTileStory,
-                tabs,
+                tabStory,
+                tabsStory,
                 segmentedControlStory,
                 slidableStory,
                 nestedSelectStory,
