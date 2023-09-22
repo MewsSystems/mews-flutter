@@ -1,4 +1,3 @@
-import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
@@ -87,8 +86,8 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
               distribution: _distribution,
               spacing: _spacing,
               children: items
-                  .mapIndexed(
-                    (_, item) => _OptimusSegmentedControlItem<T>(
+                  .map(
+                    (item) => _OptimusSegmentedControlItem<T>(
                       value: item.value,
                       size: size,
                       groupValue: value,
