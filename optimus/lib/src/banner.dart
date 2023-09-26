@@ -66,101 +66,106 @@ class OptimusBanner extends StatelessWidget {
   /// Called when close button is pressed (if [isDismissible] == true).
   final VoidCallback? onDismiss;
 
+  Color _getDescriptionColor(OptimusThemeData theme) =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final description = this.description;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: _backgroundColor(theme),
+        color: variant.backgroundColor(theme),
         borderRadius: const BorderRadius.all(borderRadius100),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 18),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (hasIcon)
-              Padding(
-                padding: const EdgeInsets.only(right: 18),
-                child: OptimusIcon(
-                  iconData: _icon,
-                  colorOption: _iconColor,
-                ),
-              ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(spacing200),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (hasIcon)
+                  Padding(
+                    padding: const EdgeInsets.only(right: spacing200),
+                    child: OptimusIcon(
+                      iconData: variant.icon,
+                      colorOption: variant.iconColor,
+                    ),
+                  ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: description != null ? spacing50 : 10,
-                            top: 9,
-                          ),
-                          child: DefaultTextStyle.merge(
-                            child: title,
-                            style: preset300s,
-                          ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          right: isDismissible ? spacing200 : 0,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: DefaultTextStyle.merge(
+                                child: title,
+                                style: preset300s,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      if (isDismissible)
-                        OptimusIconButton(
-                          onPressed: () => onDismiss,
-                          icon: const Icon(OptimusIcons.cross_close, size: 12),
-                          size: OptimusWidgetSize.small,
-                          variant: OptimusButtonVariant.ghost,
+                      if (description case final description?)
+                        Padding(
+                          padding: const EdgeInsets.only(top: spacing50),
+                          child: DefaultTextStyle.merge(
+                            child: description,
+                            style: preset200r.copyWith(
+                              color: _getDescriptionColor(theme),
+                            ),
+                          ),
                         ),
                     ],
                   ),
-                  if (description != null)
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: spacing50,
-                        bottom: 10,
-                      ),
-                      child: DefaultTextStyle.merge(
-                        child: description,
-                        style: preset200r.copyWith(
-                          color: _getDescriptionColor(theme),
-                        ),
-                      ),
-                    ),
-                ],
+                ),
+              ],
+            ),
+          ),
+          if (isDismissible)
+            Positioned(
+              top: spacing100,
+              right: spacing100,
+              child: OptimusIconButton(
+                onPressed: () => onDismiss,
+                icon: const Icon(OptimusIcons.cross_close),
+                size: OptimusWidgetSize.small,
+                variant: OptimusButtonVariant.ghost,
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
+}
 
-  IconData get _icon => switch (variant) {
+extension on OptimusBannerVariant {
+  IconData get icon => switch (this) {
         OptimusBannerVariant.primary => OptimusIcons.info,
         OptimusBannerVariant.success => OptimusIcons.done_circle,
         OptimusBannerVariant.warning => OptimusIcons.problematic,
         OptimusBannerVariant.error => OptimusIcons.blacklist,
       };
 
-  OptimusIconColorOption get _iconColor => switch (variant) {
+  OptimusIconColorOption get iconColor => switch (this) {
         OptimusBannerVariant.primary => OptimusIconColorOption.primary,
         OptimusBannerVariant.success => OptimusIconColorOption.success,
         OptimusBannerVariant.warning => OptimusIconColorOption.warning,
         OptimusBannerVariant.error => OptimusIconColorOption.danger,
       };
 
-  Color _backgroundColor(OptimusThemeData theme) => switch (variant) {
+  Color backgroundColor(OptimusThemeData theme) => switch (this) {
         OptimusBannerVariant.primary => theme.colors.primary500t8,
         OptimusBannerVariant.success => theme.colors.success500t8,
         OptimusBannerVariant.warning => theme.colors.warning500t8,
         OptimusBannerVariant.error => theme.colors.danger500t8,
       };
-
-  Color _getDescriptionColor(OptimusThemeData theme) =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
 }
 
 enum OptimusWideBannerVariant {

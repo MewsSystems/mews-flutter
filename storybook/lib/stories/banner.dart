@@ -9,24 +9,30 @@ final Story bannerStory = Story(
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');
     final description = k.text(label: 'Additional description', initial: '');
+    final width = k.slider(label: 'Width', initial: 400, max: 800, min: 200);
 
-    return SingleChildScrollView(
-      child: Column(
-        children: OptimusBannerVariant.values
-            .map(
-              (v) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: OptimusBanner(
-                  title: Text(title),
-                  description:
-                      description.isNotEmpty ? Text(description) : null,
-                  hasIcon: k.boolean(label: 'Show icon'),
-                  isDismissible: k.boolean(label: 'Dismissible'),
-                  variant: v,
-                ),
-              ),
-            )
-            .toList(),
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: width),
+        child: SingleChildScrollView(
+          child: Column(
+            children: OptimusBannerVariant.values
+                .map(
+                  (v) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: OptimusBanner(
+                      title: Text(title),
+                      description:
+                          description.isNotEmpty ? Text(description) : null,
+                      hasIcon: k.boolean(label: 'Show icon'),
+                      isDismissible: k.boolean(label: 'Dismissible'),
+                      variant: v,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
       ),
     );
   },
