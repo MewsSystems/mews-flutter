@@ -30,64 +30,70 @@ final Story segmentedControlStory = Story(
     );
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final isRequired = k.boolean(label: 'Required', initial: false);
+    final width = k.slider(label: 'Width', min: 200, initial: 600, max: 800);
 
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: spacing100),
-            child: _SegmentedControlExample(
-              label: label,
-              error: error,
-              direction: direction,
-              size: size,
-              maxLines: maxLines,
-              isEnabled: isEnabled,
-              isRequired: isRequired,
-              options: _options2,
-            ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: width),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                child: _SegmentedControlExample(
+                  label: label,
+                  error: error,
+                  direction: direction,
+                  size: size,
+                  maxLines: maxLines,
+                  isEnabled: isEnabled,
+                  isRequired: isRequired,
+                  options: _options2,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                child: _SegmentedControlExample(
+                  label: label,
+                  error: error,
+                  direction: direction,
+                  size: size,
+                  maxLines: maxLines,
+                  isEnabled: isEnabled,
+                  isRequired: isRequired,
+                  options: _options3,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                child: _SegmentedControlExample(
+                  label: label,
+                  error: error,
+                  direction: direction,
+                  size: size,
+                  maxLines: maxLines,
+                  isEnabled: isEnabled,
+                  isRequired: isRequired,
+                  options: _options4,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                child: _SegmentedControlExample(
+                  label: label,
+                  error: error,
+                  direction: direction,
+                  size: size,
+                  maxLines: maxLines,
+                  isEnabled: isEnabled,
+                  isRequired: isRequired,
+                  options: _options5,
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: spacing100),
-            child: _SegmentedControlExample(
-              label: label,
-              error: error,
-              direction: direction,
-              size: size,
-              maxLines: maxLines,
-              isEnabled: isEnabled,
-              isRequired: isRequired,
-              options: _options3,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: spacing100),
-            child: _SegmentedControlExample(
-              label: label,
-              error: error,
-              direction: direction,
-              size: size,
-              maxLines: maxLines,
-              isEnabled: isEnabled,
-              isRequired: isRequired,
-              options: _options4,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: spacing100),
-            child: _SegmentedControlExample(
-              label: label,
-              error: error,
-              direction: direction,
-              size: size,
-              maxLines: maxLines,
-              isEnabled: isEnabled,
-              isRequired: isRequired,
-              options: _options5,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   },
@@ -152,6 +158,7 @@ const _options3 = [
 
 const _options4 = [
   'Another long option',
+  'Option that is meant to overflow because of the long text',
   'B',
   'C',
   'D',
