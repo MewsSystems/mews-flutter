@@ -110,7 +110,6 @@ class DateFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     final oldSelection = oldValue.selection;
-    final newSelection = newValue.selection;
     final oldText = oldValue.text;
     final newText = newValue.text;
     final oldSelectionStart = oldValue.selection.start;
@@ -128,7 +127,7 @@ class DateFormatter extends TextInputFormatter {
         oldText,
         oldSelectionStart,
         oldSelection.end,
-        newText.substring(oldSelection.start, newSelection.end),
+        newText.substring(oldSelection.start, newValue.selection.end),
       );
     }
 
