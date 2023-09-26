@@ -80,15 +80,6 @@ class _DropdownContent<T> extends StatelessWidget {
     );
   }
 
-  Widget? _buildEmptyPlaceholder() {
-    if (emptyResultPlaceholder != null) {
-      return Material(
-        color: Colors.transparent,
-        child: emptyResultPlaceholder,
-      );
-    }
-  }
-
   Widget _buildSearch(
     AnchoredOverlayController controller,
     bool isOnTop,
@@ -101,38 +92,51 @@ class _DropdownContent<T> extends StatelessWidget {
         child: embeddedSearch,
       );
 
-  Widget _buildList(
-    bool isOnTop,
-    double maxHeight,
-  ) {
-    final groupBy = this.groupBy;
+  Widget _buildList(bool isOnTop, double maxHeight) {
+    if (groupBy case final groupBy?) {
+      return _GroupedDropdownListView(
+        items: items,
+        onChanged: onChanged,
+        isReversed: isOnTop,
+        groupBy: groupBy,
+        groupBuilder: groupBuilder,
+        maxHeight: maxHeight,
+      );
+    }
 
-    return groupBy != null
-        ? _GroupedDropdownListView(
-            items: items,
-            onChanged: onChanged,
-            isReversed: isOnTop,
-            groupBy: groupBy,
-            groupBuilder: groupBuilder,
-            maxHeight: maxHeight,
-          )
-        : _DropdownListView(
-            items: items,
-            onChanged: onChanged,
-            isReversed: isOnTop,
-            maxHeight: maxHeight,
-          );
+    return _DropdownListView(
+      items: items,
+      onChanged: onChanged,
+      isReversed: isOnTop,
+      maxHeight: maxHeight,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = AnchoredOverlay.of(context);
-    final embeddedSearch = this.embeddedSearch;
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
       final listMaxHeight = embeddedSearch != null
           ? controller.maxHeight - _embeddedSearchHeight
           : controller.maxHeight;
+
+      final content = items.isNotEmpty
+          ? Container(
+              constraints: BoxConstraints(
+                maxHeight: listMaxHeight,
+                maxWidth: controller.width,
+              ),
+              child: OptimusScrollConfiguration(
+                child: _buildList(isOnTop, listMaxHeight),
+              ),
+            )
+          : emptyResultPlaceholder ?? const SizedBox.shrink();
+      final children = [
+        Material(color: Colors.transparent, child: content),
+        if (embeddedSearch case final embeddedSearch?)
+          _buildSearch(controller, isOnTop, embeddedSearch),
+      ];
 
       return Container(
         constraints: BoxConstraints(maxHeight: controller.maxHeight),
@@ -140,27 +144,7 @@ class _DropdownContent<T> extends StatelessWidget {
         decoration: _dropdownDecoration(context),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            if (embeddedSearch != null && !isOnTop)
-              _buildSearch(controller, isOnTop, embeddedSearch),
-            if (items.isNotEmpty)
-              Container(
-                constraints: BoxConstraints(
-                  maxHeight: listMaxHeight,
-                  maxWidth: controller.width,
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: OptimusScrollConfiguration(
-                    child: _buildList(isOnTop, listMaxHeight),
-                  ),
-                ),
-              ),
-            if (items.isEmpty)
-              _buildEmptyPlaceholder() ?? const SizedBox.shrink(),
-            if (embeddedSearch != null && isOnTop)
-              _buildSearch(controller, isOnTop, embeddedSearch),
-          ],
+          children: isOnTop ? children : children.reversed.toList(),
         ),
       );
     }
