@@ -266,6 +266,7 @@ dart_code_metrics:
     - avoid-future-tostring
     - avoid-generics-shadowing
     - avoid-global-state
+    # - avoid-identical-exception-handling-blocks
     # - avoid-ignoring-return-values
     # - avoid-importing-entrypoint-exports
     - avoid-inverted-boolean-checks
@@ -277,6 +278,7 @@ dart_code_metrics:
     - avoid-map-keys-contains
     - avoid-missed-calls
     # - avoid-missing-enum-constant-in-map
+    - avoid-missing-interpolation
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     # - avoid-mutating-parameters
@@ -292,7 +294,10 @@ dart_code_metrics:
     - avoid-nullable-interpolation
     - avoid-one-field-records
     # - avoid-passing-async-when-sync-expected
+    # - avoid-passing-default-values
+    - avoid-passing-self-as-argument
     # - avoid-positional-record-field-access
+    - avoid-recursive-calls
     - avoid-redundant-async
     - avoid-redundant-else
     - avoid-redundant-positional-field-name
@@ -308,9 +313,11 @@ dart_code_metrics:
     # - avoid-top-level-members-in-tests
     - avoid-unassigned-late-fields-keyword
     - avoid-uncaught-future-errors
+    - avoid-unconditional-break
     - avoid-unnecessary-call
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-futures
+    - avoid-unnecessary-if
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-reassignment
@@ -323,6 +330,7 @@ dart_code_metrics:
     - avoid-unused-generics
     # - avoid-unused-instances
     - avoid-unused-parameters
+    - avoid-weak-cryptographic-algorithms
     # - ban-name
     # - banned-usage
     # - binary-expression-operand-order
@@ -337,6 +345,7 @@ dart_code_metrics:
     # - member-ordering
     # - missing-test-assertion
     - move-records-to-typedefs
+    - move-variable-closer-to-its-usage
     # - newline-before-case
     - newline-before-return
     - no-boolean-literal-compare
@@ -349,6 +358,7 @@ dart_code_metrics:
     - no-equal-then-else
     # - no-magic-number
     - no-object-declaration
+    # - parameters-ordering
     # - prefer-async-await
     # - prefer-bytes-builder
     - prefer-commenting-analyzer-ignores
@@ -368,6 +378,7 @@ dart_code_metrics:
     # - prefer-enums-by-name
     - prefer-explicit-parameter-names
     # - prefer-first
+    # - prefer-getter-over-method
     - prefer-immediate-return
     - prefer-iterable-of
     - prefer-last
