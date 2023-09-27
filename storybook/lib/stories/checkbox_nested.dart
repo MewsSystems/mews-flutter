@@ -45,7 +45,7 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
           ),
           OptimusNestedCheckboxGroup(
             parent: const Text('Parent'),
-            label: k.text(label: 'Label:'),
+            label: k.text(label: 'Label'),
             error: k.text(label: 'Error'),
             isEnabled: enabled,
             children: [
