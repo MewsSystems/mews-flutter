@@ -1,3 +1,20 @@
+## 0.29.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: [UX-283] Fix banner close icon overlapping (#441).
+ - **FIX**: Fix Badge overflowing (#436).
+ - **FEAT**: [UX-264] Update SegmentedControl (#442).
+ - **FEAT**: [UX-140] Update Badge component (#431).
+ - **FEAT**: [UX-257] Update Tooltip (#430).
+ - **BREAKING** **FEAT**: Update rules set (#432).
+ - **BREAKING** **FEAT**: [UX-141] Update OptimusTab component (#439).
+ - **BREAKING** **FEAT**: Move Mews logo out of the icon pack (#427).
+ - **BREAKING** **FEAT**: [UX-136] Update tag component (#425).
+ - **BREAKING** **FEAT**: [UX-138] Update Divider component (#418).
+ - **BREAKING** **FEAT**: [UX-238] Update icons library (#421).
+ - **BREAKING** **FEAT**: Update input style.
+
 ## 0.28.0
 
 > Note: This release has breaking changes.

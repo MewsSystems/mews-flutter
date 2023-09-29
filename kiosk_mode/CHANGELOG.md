@@ -1,3 +1,7 @@
+## 0.5.0+1
+
+ - **REFACTOR**: Fix DCM issues.
+
 ## 0.5.0
 
 > Note: This release has breaking changes.
