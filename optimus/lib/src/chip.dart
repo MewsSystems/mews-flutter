@@ -10,6 +10,7 @@ class OptimusChip extends StatefulWidget {
     super.key,
     required this.child,
     required this.onRemoved,
+    this.onTap,
     this.hasError = false,
     this.isEnabled = true,
   });
@@ -25,6 +26,9 @@ class OptimusChip extends StatefulWidget {
 
   /// Callback to be called on the chip remove.
   final VoidCallback? onRemoved;
+
+  /// Callback to be called on the chip body tap.
+  final VoidCallback? onTap;
 
   @override
   State<OptimusChip> createState() => _OptimusChipState();
@@ -60,6 +64,7 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
             onTapDown: (_) => setState(() => _isTapped = true),
             onTapUp: (_) => setState(() => _isTapped = false),
             onTapCancel: () => setState(() => _isTapped = false),
+            onTap: widget.onTap,
             child: SizedBox(
               height: _height,
               child: AnimatedContainer(
