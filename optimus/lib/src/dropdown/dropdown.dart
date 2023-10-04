@@ -388,29 +388,25 @@ class _SearchWrapper extends StatefulWidget {
   State<_SearchWrapper> createState() => _SearchWrapperState();
 }
 
-class _SearchWrapperState extends State<_SearchWrapper> {
+class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
   final GlobalKey _searchKey = GlobalKey();
-
-  Widget _buildDivider(OptimusThemeData theme) =>
-      Divider(thickness: 1, height: 1, color: theme.colors.neutral50);
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final children = [
+      if (widget.showDivider)
+        Divider(thickness: 1, height: 1, color: theme.colors.neutral50),
+      KeyedSubtree(key: _searchKey, child: widget.child),
+    ];
 
-    return SizedBox(
-      child: Column(
-        children: [
-          if (widget.showDivider && widget.isOnTop) _buildDivider(theme),
-          KeyedSubtree(key: _searchKey, child: widget.child),
-          if (widget.showDivider && !widget.isOnTop) _buildDivider(theme),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: widget.isOnTop ? children : children.reversed.toList(),
     );
   }
 }
 
-const _embeddedSearchHeight = 54.0;
+const _embeddedSearchHeight = 61.0;
 const _groupMinHeight = 28.0;
 const _itemMinHeight = 69.0;
 const _listVerticalSpacing = spacing100;
