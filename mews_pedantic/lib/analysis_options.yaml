@@ -295,7 +295,7 @@ dart_code_metrics:
     - avoid-one-field-records
     # - avoid-passing-async-when-sync-expected
     # - avoid-passing-default-values
-    - avoid-passing-self-as-argument
+    # - avoid-passing-self-as-argument
     # - avoid-positional-record-field-access
     - avoid-recursive-calls
     - avoid-redundant-async
