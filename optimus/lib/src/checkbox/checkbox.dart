@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/checkbox/checkbox_tick.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -19,7 +20,7 @@ enum OptimusCheckboxSize {
 /// or more options for a limited number of choices. Each selection is
 /// independent (with exceptions). If [tristate] is enabled, checkbox can be in
 /// three states: checked, unchecked and indeterminate.
-class OptimusCheckbox extends StatefulWidget {
+class OptimusCheckbox extends StatelessWidget {
   const OptimusCheckbox({
     super.key,
     required this.label,
@@ -90,173 +91,69 @@ class OptimusCheckbox extends StatefulWidget {
   /// {@endtemplate}
   final ValueChanged<bool> onChanged;
 
-  @override
-  State<OptimusCheckbox> createState() => _OptimusCheckboxState();
-}
+  Color _labelColor(OptimusTokens tokens) =>
+      isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
 
-class _OptimusCheckboxState extends State<OptimusCheckbox> with ThemeGetter {
-  bool _isHovering = false;
-  bool _isTappedDown = false;
+  TextStyle _labelStyle(OptimusTokens tokens) {
+    final color = _labelColor(tokens);
 
-  _CheckboxState get _state => widget.isChecked.toState;
-
-  _InteractionState get _interactionState {
-    if (!widget.isEnabled) return _InteractionState.disabled;
-    if (_isTappedDown) return _InteractionState.active;
-    if (_isHovering) return _InteractionState.hover;
-
-    return _InteractionState.basic;
+    return switch (size) {
+      OptimusCheckboxSize.large => preset300s.copyWith(color: color),
+      OptimusCheckboxSize.small => preset200s.copyWith(color: color),
+    };
   }
 
-  Color get _labelColor => widget.isEnabled
-      ? theme.tokens.textStaticPrimary
-      : theme.tokens.textDisabled;
-
-  TextStyle get _labelStyle => switch (widget.size) {
-        OptimusCheckboxSize.large => preset300s.copyWith(color: _labelColor),
-        OptimusCheckboxSize.small => preset200s.copyWith(color: _labelColor),
-      };
-
   bool get _isError {
-    final error = widget.error;
+    if (error case final error?) {
+      return error.isNotEmpty;
+    }
 
-    return error != null && error.isNotEmpty;
+    return false;
   }
 
   void _onTap() {
-    final newValue = widget.isChecked ?? false;
-    widget.onChanged(!newValue);
+    final newValue = isChecked ?? false;
+    onChanged(!newValue);
   }
 
-  void _onHoverChanged(bool hovered) => setState(() => _isHovering = hovered);
-
   @override
-  Widget build(BuildContext context) {
-    final label = Padding(
-      padding: const EdgeInsets.fromLTRB(
-        spacing150,
-        spacing50,
-        spacing0,
-        spacing50,
-      ),
-      child: DefaultTextStyle.merge(style: _labelStyle, child: widget.label),
-    );
-
-    return IgnorePointer(
-      ignoring: !widget.isEnabled,
-      child: GroupWrapper(
-        error: widget.error,
-        child: GestureDetector(
-          onTap: _onTap,
-          onTapDown: (_) => setState(() => _isTappedDown = true),
-          onTapUp: (_) => setState(() => _isTappedDown = false),
-          onTapCancel: () => setState(() => _isTappedDown = false),
-          child: MouseRegion(
-            onEnter: (_) => _onHoverChanged(true),
-            onExit: (_) => _onHoverChanged(false),
+  Widget build(BuildContext context) => IgnorePointer(
+        ignoring: !isEnabled,
+        child: GroupWrapper(
+          error: error,
+          child: GestureDetector(
+            onTap: _onTap,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 9),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 100),
-                    decoration: BoxDecoration(
-                      color: _interactionState.fillColor(context, _state),
-                      border: _state.isUnchecked
-                          ? Border.all(
-                              color: _isError
-                                  ? theme
-                                      .tokens.backgroundInteractiveDangerDefault
-                                  : _interactionState.borderColor(context),
-                              width: 1.5,
-                            )
-                          : null,
-                      borderRadius: const BorderRadius.all(borderRadius25),
+                  child: CheckboxTick(
+                    isError: _isError,
+                    isChecked: isChecked,
+                    isEnabled: isEnabled,
+                    onChanged: onChanged,
+                    onTap: _onTap,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      spacing150,
+                      spacing50,
+                      spacing0,
+                      spacing50,
                     ),
-                    width: 16,
-                    height: 16,
-                    child: _CheckboxIcon(
-                      icon: _state.icon,
-                      isEnabled: widget.isEnabled,
+                    child: DefaultTextStyle.merge(
+                      style: _labelStyle(OptimusTheme.of(context).tokens),
+                      child: label,
                     ),
                   ),
                 ),
-                Expanded(child: label),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _CheckboxIcon extends StatelessWidget {
-  const _CheckboxIcon({this.icon, required this.isEnabled});
-
-  final IconData? icon;
-  final bool isEnabled;
-
-  @override
-  Widget build(BuildContext context) => icon == null
-      ? const SizedBox.shrink()
-      : Center(
-          child: Icon(
-            icon,
-            size: 10,
-            color: isEnabled
-                ? context.tokens.textStaticInverse
-                : context.tokens.textDisabled,
-          ),
-        );
-}
-
-enum _CheckboxState { checked, unchecked, undetermined }
-
-extension on _CheckboxState {
-  IconData? get icon => switch (this) {
-        _CheckboxState.checked => OptimusIcons.done,
-        _CheckboxState.unchecked => null,
-        _CheckboxState.undetermined => OptimusIcons.minus_simple,
-      };
-
-  bool get isUnchecked => this == _CheckboxState.unchecked;
-}
-
-enum _InteractionState { basic, hover, active, disabled }
-
-extension on _InteractionState {
-  Color fillColor(BuildContext context, _CheckboxState state) => switch (this) {
-        _InteractionState.basic => state.isUnchecked
-            ? Colors.transparent
-            : context.tokens.backgroundInteractivePrimaryDefault,
-        _InteractionState.hover => state.isUnchecked
-            ? context.tokens.backgroundInteractiveNeutralSubtleHover
-            : context.tokens.backgroundInteractivePrimaryHover,
-        _InteractionState.active => state.isUnchecked
-            ? context.tokens.backgroundInteractiveNeutralSubtleActive
-            : context.tokens.backgroundInteractivePrimaryActive,
-        _InteractionState.disabled => state.isUnchecked
-            ? Colors.transparent
-            : context.tokens.backgroundDisabled,
-      };
-
-  Color borderColor(BuildContext context) => switch (this) {
-        _InteractionState.basic =>
-          context.tokens.borderInteractiveSecondaryDefault,
-        _InteractionState.hover =>
-          context.tokens.borderInteractiveSecondaryHover,
-        _InteractionState.active =>
-          context.tokens.borderInteractiveSecondaryActive,
-        _InteractionState.disabled => context.tokens.borderDisabled,
-      };
-}
-
-extension on bool? {
-  _CheckboxState get toState => switch (this) {
-        true => _CheckboxState.checked,
-        false => _CheckboxState.unchecked,
-        null => _CheckboxState.undetermined,
-      };
+      );
 }
