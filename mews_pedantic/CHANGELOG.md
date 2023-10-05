@@ -1,3 +1,7 @@
+## 0.19.1
+
+ - **FEAT**: Update rules set (#450).
+
 ## 0.19.0
 
 > Note: This release has breaking changes.

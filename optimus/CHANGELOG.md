@@ -1,3 +1,9 @@
+## 0.29.1
+
+ - **REFACTOR**: Update Checkbox structure (#444).
+ - **FIX**: Fix embedded search overflow (#443).
+ - **FEAT**: Update Chip gestures (#446).
+
 ## 0.29.0
 
 > Note: This release has breaking changes.
