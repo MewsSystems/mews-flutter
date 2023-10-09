@@ -13,26 +13,21 @@ class TileBorders extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Stack(
+      clipBehavior: Clip.none,
       children: <Widget>[
-        Stack(
-          clipBehavior: Clip.none,
-          children: <Widget>[
-            Positioned(
-              bottom: -1,
-              left: -1,
-              right: -1,
-              top: 0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border.all(color: theme.borderColor),
-                ),
-              ),
+        Positioned(
+          bottom: -1,
+          left: -1,
+          right: -1,
+          top: 0,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: theme.borderColor),
             ),
-            child,
-          ],
+          ),
         ),
+        child,
       ],
     );
   }

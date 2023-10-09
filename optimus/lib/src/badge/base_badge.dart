@@ -41,23 +41,18 @@ class BaseBadge extends StatelessWidget {
     );
 
     final child = hasText
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                text,
-                maxLines: 1,
-                overflow: overflow,
-                textAlign: TextAlign.center,
-                style: baseTextStyle.copyWith(
-                  fontSize: 11,
-                  letterSpacing: 0.2,
-                  height: 1,
-                  fontWeight: FontWeight.w600,
-                  color: textColor,
-                ),
-              ),
-            ],
+        ? Text(
+            text,
+            maxLines: 1,
+            overflow: overflow,
+            textAlign: TextAlign.center,
+            style: baseTextStyle.copyWith(
+              fontSize: 11,
+              letterSpacing: 0.2,
+              height: 1,
+              fontWeight: FontWeight.w600,
+              color: textColor,
+            ),
           )
         : null;
 

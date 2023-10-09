@@ -98,18 +98,12 @@ class OptimusBanner extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(
-                          right: isDismissible ? spacing200 : 0,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: DefaultTextStyle.merge(
-                                child: title,
-                                style: preset300s,
-                              ),
-                            ),
-                          ],
+                        padding: isDismissible
+                            ? const EdgeInsets.only(right: spacing200)
+                            : EdgeInsets.zero,
+                        child: DefaultTextStyle.merge(
+                          child: title,
+                          style: preset300s,
                         ),
                       ),
                       if (description case final description?)
