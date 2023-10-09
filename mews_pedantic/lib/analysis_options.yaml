@@ -242,6 +242,7 @@ dart_code_metrics:
     # Common
 
     # - arguments-ordering
+    - avoid-accessing-collections-by-constant-index
     # - avoid-accessing-other-classes-private-members
     # - avoid-async-call-in-sync-function
     # - avoid-banned-file-names
@@ -262,6 +263,7 @@ dart_code_metrics:
     - avoid-equal-expressions
     - avoid-explicit-pattern-field-name
     # - avoid-explicit-type-declaration
+    # - avoid-extensions-on-records
     - avoid-function-type-in-records
     - avoid-future-tostring
     - avoid-generics-shadowing
@@ -272,7 +274,9 @@ dart_code_metrics:
     - avoid-inverted-boolean-checks
     - avoid-keywords-in-wildcard-pattern
     # - avoid-late-keyword
+    # - avoid-local-functions
     # - avoid-long-functions
+    # - avoid-long-files
     # - avoid-long-parameter-list
     # - avoid-long-records
     - avoid-map-keys-contains
@@ -292,6 +296,7 @@ dart_code_metrics:
     # - avoid-non-ascii-symbols
     - avoid-non-null-assertion
     - avoid-nullable-interpolation
+    - avoid-nullable-parameters-with-default-values
     - avoid-one-field-records
     # - avoid-passing-async-when-sync-expected
     # - avoid-passing-default-values
@@ -317,7 +322,9 @@ dart_code_metrics:
     - avoid-unnecessary-call
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-futures
+    - avoid-unnecessary-getter
     - avoid-unnecessary-if
+    - avoid-unnecessary-late
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-reassignment
@@ -331,6 +338,7 @@ dart_code_metrics:
     # - avoid-unused-instances
     - avoid-unused-parameters
     - avoid-weak-cryptographic-algorithms
+    - avoid-wildcard-cases-with-enums
     # - ban-name
     # - banned-usage
     # - binary-expression-operand-order
@@ -341,6 +349,7 @@ dart_code_metrics:
     - function-always-returns-null
     # - map-keys-ordering
     # - match-class-name-pattern
+    - match-getter-setter-field-names
     # - match-positional-field-names-on-assignment
     # - member-ordering
     # - missing-test-assertion
@@ -386,6 +395,7 @@ dart_code_metrics:
     # - prefer-moving-to-variable
     - prefer-named-boolean-parameters:
       ignore-single: true
+    # - prefer-named-imports
     - prefer-parentheses-with-if-null
     - prefer-public-exception-classes
     - prefer-return-await
@@ -415,6 +425,7 @@ dart_code_metrics:
     - avoid-recursive-widget-calls
     # - avoid-returning-widgets
     - avoid-shrink-wrap-in-lists
+    - avoid-single-child-column-or-row
     - avoid-state-constructors
     - avoid-stateless-widget-initialized-fields
     - avoid-unnecessary-overrides-in-state
@@ -431,6 +442,7 @@ dart_code_metrics:
     - prefer-define-hero-tag
     # - prefer-extracting-callbacks
     # - prefer-single-widget-per-file
+    - prefer-sliver-prefix
     - prefer-text-rich
     # - prefer-using-list-view
     - prefer-widget-private-members:
