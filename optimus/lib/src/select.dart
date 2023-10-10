@@ -138,26 +138,11 @@ class _SelectedValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _buildBorderContainer(),
-          ],
-        ),
-      );
-
-  Widget _buildBorderContainer() => Padding(
-        padding: const EdgeInsets.only(left: 16, right: 8),
-        child: SizedBox(
-          height: size.value,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              DefaultTextStyle(
-                style: textStyle,
-                child: child,
-              ),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: spacing200, right: spacing100),
+          child: SizedBox(
+            height: size.value,
+            child: DefaultTextStyle(style: textStyle, child: child),
           ),
         ),
       );

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/step_bar/common.dart';
@@ -68,10 +66,7 @@ class StepBarItem extends StatelessWidget {
     final description = item.description;
 
     return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxWidth: min(itemMaxWidth, maxWidth),
-        minWidth: itemMinWidth,
-      ),
+      constraints: const BoxConstraints(minWidth: itemMinWidth),
       child: OptimusEnabled(
         isEnabled: state != OptimusStepBarItemState.disabled,
         child: Row(

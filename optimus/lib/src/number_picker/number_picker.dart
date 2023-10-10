@@ -33,23 +33,19 @@ class OptimusNumberPickerFormField extends FormField<int> {
           validator: (value) => value != null && (value >= min && value <= max)
               ? null
               : validationError,
-          builder: (FormFieldState<int> field) {
-            void handleChanged(int? value) {
+          builder: (FormFieldState<int> field) => _OptimusNumberPicker(
+            initialValue: initialValue,
+            min: min,
+            max: max,
+            onChanged: (value) {
               field.didChange(value);
               onChanged?.call(value);
-            }
-
-            return _OptimusNumberPicker(
-              initialValue: initialValue,
-              min: min,
-              max: max,
-              onChanged: handleChanged,
-              enabled: enabled,
-              error: field.errorText,
-              focusNode: focusNode,
-              controller: controller,
-            );
-          },
+            },
+            enabled: enabled,
+            error: field.errorText,
+            focusNode: focusNode,
+            controller: controller,
+          ),
         );
 }
 

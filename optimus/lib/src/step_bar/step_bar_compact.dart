@@ -433,16 +433,12 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
                 ),
                 child: Stack(
                   children: [
-                    Row(
-                      children: [
-                        OptimusStepBar(
-                          type: data.type,
-                          layout: Axis.vertical,
-                          items: data.items,
-                          currentItem: data.currentItem,
-                          maxItem: data.maxItem,
-                        ),
-                      ],
+                    OptimusStepBar(
+                      type: data.type,
+                      layout: Axis.vertical,
+                      items: data.items,
+                      currentItem: data.currentItem,
+                      maxItem: data.maxItem,
                     ),
                     Positioned(
                       top: spacing100,
