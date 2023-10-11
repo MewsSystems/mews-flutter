@@ -1,3 +1,10 @@
+## 0.20.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Update rules configuration (#453).
+ - **BREAKING** **FEAT**: Update to DCM 1.10.0.
+
 ## 0.19.1
 
  - **FEAT**: Update rules set (#450).

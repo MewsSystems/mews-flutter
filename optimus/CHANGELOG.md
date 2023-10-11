@@ -1,3 +1,7 @@
+## 0.29.1+1
+
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.29.1
 
  - **REFACTOR**: Update Checkbox structure (#444).
