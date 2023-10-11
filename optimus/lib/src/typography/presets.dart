@@ -39,6 +39,7 @@ const TextStyle baseTextStyle = TextStyle(
     FontFeature('cv08'),
     FontFeature('cv09'),
     FontFeature('cv10'),
+    FontFeature('zero'),
   ],
   height: 1.5,
   leadingDistribution: TextLeadingDistribution.even,
