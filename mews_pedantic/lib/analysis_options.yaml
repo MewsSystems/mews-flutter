@@ -382,7 +382,8 @@ dart_code_metrics:
     - prefer-correct-test-file-name:
         exclude: ["lib/**", "bin/**"]
     # - prefer-correct-type-name
-    - prefer-declaring-const-constructor
+    - prefer-declaring-const-constructor:
+        ignore-abstract: false
     - prefer-early-return
     # - prefer-enums-by-name
     - prefer-explicit-parameter-names
