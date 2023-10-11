@@ -16,14 +16,17 @@ class ListDropdownTile<T> extends OptimusDropdownTile<T> {
     required super.value,
     required this.title,
     this.subtitle,
+    this.isSelected,
   });
 
   final Widget title;
   final Widget? subtitle;
+  final bool? isSelected;
 
   @override
   Widget build(BuildContext context) => BaseDropdownTile(
         title: title,
         subtitle: subtitle,
+        isSelected: isSelected,
       );
 }

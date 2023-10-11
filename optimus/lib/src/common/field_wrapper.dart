@@ -107,6 +107,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     final suffix = widget.suffix;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Padding(
           padding: widget.size.labelPadding,

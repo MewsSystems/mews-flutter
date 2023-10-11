@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/form/common.dart';
 import 'package:optimus/src/form/form_style.dart';
 
 /// General input, used to allow users to enter data into the interface.
@@ -226,7 +227,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             widget.showLoader ||
             _shouldShowClearAllButton ||
             _shouldShowInlineError
-        ? _Suffix(
+        ? Suffix(
             suffix: widget.suffix,
             trailing: widget.trailing,
             passwordButton: passwordButton,
@@ -236,7 +237,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           )
         : null;
     final prefix = widget.leading != null || widget.prefix != null
-        ? _Prefix(prefix: widget.prefix, leading: widget.leading)
+        ? Prefix(prefix: widget.prefix, leading: widget.leading)
         : null;
 
     return FieldWrapper(
@@ -255,7 +256,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       suffix: suffix,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
-      children: <Widget>[
+      children: [
         Expanded(
           child: CupertinoTextField(
             key: widget.inputKey,
@@ -301,76 +302,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 }
 
-class _Suffix extends StatelessWidget {
-  const _Suffix({
-    this.suffix,
-    this.passwordButton,
-    this.trailing,
-    this.inlineError,
-    required this.clearAllButton,
-    required this.showLoader,
-  });
-
-  final Widget? suffix;
-  final Widget? passwordButton;
-  final Widget? trailing;
-  final Widget? clearAllButton;
-  final Widget? inlineError;
-  final bool showLoader;
-
-  OptimusCircleLoader get _loader => const OptimusCircleLoader(
-        size: OptimusCircleLoaderSize.small,
-        variant: OptimusCircleLoaderVariant.indeterminate(),
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    final suffixWidget = suffix;
-    final clearAllButtonWidget = clearAllButton;
-    final passwordButtonWidget = passwordButton;
-    final trailingWidget = trailing;
-
-    return inlineError ??
-        OptimusStack(
-          direction: Axis.horizontal,
-          spacing: OptimusStackSpacing.spacing100,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (suffixWidget != null) suffixWidget,
-            if (showLoader) _loader,
-            if (clearAllButtonWidget != null) clearAllButtonWidget,
-            if (passwordButtonWidget != null)
-              passwordButtonWidget
-            else if (trailingWidget != null)
-              trailingWidget,
-          ],
-        );
-  }
-}
-
-class _Prefix extends StatelessWidget {
-  const _Prefix({this.prefix, this.leading});
-
-  final Widget? prefix;
-  final Widget? leading;
-
-  @override
-  Widget build(BuildContext context) {
-    final prefix = this.prefix;
-    final leading = this.leading;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (leading != null) leading,
-        if (prefix != null) prefix,
-      ],
-    );
-  }
-}
-
 class _PasswordButton extends StatelessWidget {
   const _PasswordButton({
     required this.onTap,
@@ -403,16 +334,6 @@ class _ClearAllButton extends StatelessWidget {
           color: OptimusTheme.of(context).tokens.textStaticPrimary,
         ),
       );
-}
-
-/// The way of displaying the error message.
-enum OptimusInputErrorVariant {
-  /// The error message is displayed below the input.
-  bottomHint,
-
-  /// The error message is displayed as a tooltip near the input. The tooltip is
-  /// shown after the interaction with the error icon.
-  inlineTooltip,
 }
 
 extension on OptimusWidgetSize {
