@@ -64,7 +64,6 @@ export 'src/logo.dart';
 export 'src/notification/notification.dart';
 export 'src/notification/notification_overlay.dart';
 export 'src/number_picker/number_picker.dart';
-export 'src/progress_spinner.dart';
 export 'src/radio/radio.dart';
 export 'src/radio/radio_group.dart';
 export 'src/search/search_field.dart';
