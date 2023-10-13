@@ -48,6 +48,7 @@ export 'src/form/checkbox_form_field.dart';
 export 'src/form/date_input_field.dart';
 export 'src/form/date_input_form_field.dart';
 export 'src/form/date_time_form_field.dart';
+export 'src/form/error_variant.dart';
 export 'src/form/input_field.dart';
 export 'src/form/input_form_field.dart';
 export 'src/form/select_form_field.dart';

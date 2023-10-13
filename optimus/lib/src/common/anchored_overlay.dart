@@ -64,6 +64,12 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     WidgetsBinding.instance.addPostFrameCallback(_updateRect);
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
+  }
+
   double get _overlayHeight => _overlaySize?.height ?? 0;
 
   double get _overlayWidth => _overlaySize?.width ?? 0;
