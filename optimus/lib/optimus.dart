@@ -56,6 +56,7 @@ export 'src/form/select_input_form_field.dart';
 export 'src/icon.dart';
 export 'src/icon_list.dart';
 export 'src/link/inline_link.dart';
+export 'src/link/link_variant.dart';
 export 'src/link/standalone_link.dart';
 export 'src/lists/font_variant.dart';
 export 'src/lists/list_tile.dart';

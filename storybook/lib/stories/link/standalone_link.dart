@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story standaloneLink = Story(
@@ -20,11 +21,12 @@ final Story standaloneLink = Story(
                       k.boolean(label: 'Enabled', initial: true) ? () {} : null,
                   text: Text(k.text(label: 'Text', initial: 'Link')),
                   size: size,
-                  external: k.boolean(label: 'External', initial: false),
-                  color: k.options(
-                    label: 'Color',
-                    initial: null,
-                    options: _colors,
+                  isExternal: k.boolean(label: 'External', initial: false),
+                  strong: k.boolean(label: 'Strong', initial: false),
+                  variant: k.options(
+                    label: 'Variant',
+                    initial: OptimusLinkVariant.primary,
+                    options: OptimusLinkVariant.values.toOptions(),
                   ),
                 ),
               ),
@@ -34,10 +36,3 @@ final Story standaloneLink = Story(
     );
   },
 );
-
-const _colors = [
-  Option(label: 'none', value: null),
-  Option(label: 'black', value: OptimusLightColors.neutral1000),
-  Option(label: 'green', value: OptimusLightColors.success),
-  Option(label: 'red', value: OptimusLightColors.danger),
-];

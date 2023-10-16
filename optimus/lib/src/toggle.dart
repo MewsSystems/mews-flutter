@@ -40,11 +40,6 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
 
   bool get _isEnabled => widget.onChanged != null;
 
-  Color get _iconColor => _isEnabled
-      ? context.tokens.textStaticInverse
-      : context.tokens.textDisabled;
-
-  Widget get _spacer => const SizedBox(width: spacing50);
   double get _leftPadding => widget.isChecked ? 20 : 0;
 
   Color get _tappedColor => widget.isChecked
@@ -67,62 +62,57 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
               ? _hoveredColor
               : _defaultColor;
 
-  Widget get _onIcon => widget.onIcon != null
-      ? Opacity(
-          opacity: widget.isChecked ? 0 : 1,
-          child: Icon(widget.onIcon, size: _iconSize, color: _iconColor),
-        )
-      : const SizedBox(width: _iconSize);
-
-  Widget get _offIcon => widget.offIcon != null
-      ? Opacity(
-          opacity: widget.isChecked ? 1 : 0,
-          child: Icon(widget.offIcon, size: _iconSize, color: _iconColor),
-        )
-      : const SizedBox(width: _iconSize);
-
   @override
-  Widget build(BuildContext context) {
-    final leftIcon = widget.offIcon;
-    final rightIcon = widget.onIcon;
-
-    return IgnorePointer(
-      ignoring: !_isEnabled,
-      child: MouseRegion(
-        onEnter: (event) => setState(() => _isHovered = true),
-        onExit: (event) => setState(() => _isHovered = false),
-        child: GestureDetector(
-          onTapDown: (details) => setState(() => _isTapped = true),
-          onTapUp: (details) => setState(() => _isTapped = false),
-          onTap: () => widget.onChanged?.call(!widget.isChecked),
-          child: AnimatedContainer(
-            width: _toggleWidth,
-            height: _toggleHeight,
-            duration: _animationDuration,
-            padding: const EdgeInsets.all(spacing50),
-            decoration: ShapeDecoration(
-              color: _color,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(56)),
-              ),
-            ),
-            child: Stack(
-              children: [
-                if (leftIcon != null || rightIcon != null)
-                  Row(children: [_offIcon, _spacer, _onIcon]),
-                AnimatedPositioned(
-                  duration: _animationDuration,
-                  curve: _animationCurve,
-                  left: _leftPadding,
-                  child: const _Knob(),
+  Widget build(BuildContext context) => IgnorePointer(
+        ignoring: !_isEnabled,
+        child: MouseRegion(
+          onEnter: (event) => setState(() => _isHovered = true),
+          onExit: (event) => setState(() => _isHovered = false),
+          child: GestureDetector(
+            onTapDown: (details) => setState(() => _isTapped = true),
+            onTapUp: (details) => setState(() => _isTapped = false),
+            onTap: () => widget.onChanged?.call(!widget.isChecked),
+            child: AnimatedContainer(
+              width: _toggleWidth,
+              height: _toggleHeight,
+              duration: _animationDuration,
+              padding: const EdgeInsets.all(spacing50),
+              decoration: ShapeDecoration(
+                color: _color,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(56)),
                 ),
-              ],
+              ),
+              child: Stack(
+                children: [
+                  if (widget.offIcon != null || widget.onChanged != null)
+                    Row(
+                      children: [
+                        _Icon(
+                          icon: widget.offIcon,
+                          isVisible: widget.isChecked,
+                          isEnabled: _isEnabled,
+                        ),
+                        const SizedBox(width: spacing50),
+                        _Icon(
+                          icon: widget.onIcon,
+                          isVisible: !widget.isChecked,
+                          isEnabled: _isEnabled,
+                        ),
+                      ],
+                    ),
+                  AnimatedPositioned(
+                    duration: _animationDuration,
+                    curve: _animationCurve,
+                    left: _leftPadding,
+                    child: const _Knob(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _Knob extends StatelessWidget {
@@ -137,6 +127,26 @@ class _Knob extends StatelessWidget {
             color: context.tokens.backgroundStaticFlat,
             shape: const OvalBorder(),
           ),
+        ),
+      );
+}
+
+class _Icon extends StatelessWidget {
+  const _Icon({this.isVisible = false, this.isEnabled = true, this.icon});
+
+  final bool isVisible;
+  final bool isEnabled;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) => Opacity(
+        opacity: isVisible ? 1 : 0,
+        child: Icon(
+          icon,
+          size: _iconSize,
+          color: isEnabled
+              ? context.tokens.textStaticInverse
+              : context.tokens.textDisabled,
         ),
       );
 }
