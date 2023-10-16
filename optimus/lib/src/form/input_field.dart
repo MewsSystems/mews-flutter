@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/form/common.dart';
 import 'package:optimus/src/form/form_style.dart';
 
 /// General input, used to allow users to enter data into the interface.
@@ -173,71 +174,46 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_onStateUpdate);
-    _effectiveController.addListener(_onStateUpdate);
+    _effectiveFocusNode.addListener(_handleStateUpdate);
+    _effectiveController.addListener(_handleStateUpdate);
   }
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_onStateUpdate);
-    _effectiveController.removeListener(_onStateUpdate);
+    _effectiveFocusNode.removeListener(_handleStateUpdate);
+    _effectiveController.removeListener(_handleStateUpdate);
     _focusNode?.dispose();
     _controller?.dispose();
     super.dispose();
   }
 
-  bool get _isUsingInlineError =>
-      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
+  bool get _shouldShowInlineError =>
+      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip &&
+      widget.hasError;
 
-  bool get _shouldShowInlineError => _isUsingInlineError && widget.hasError;
-
-  void _onClearAllTap() {
+  void _handleClearAllTap() {
     _effectiveController.clear();
     widget.onChanged?.call('');
   }
 
   bool get _shouldShowClearAllButton =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
+  bool get _shouldShowSuffix =>
+      widget.suffix != null ||
+      widget.trailing != null ||
+      widget.showLoader ||
+      _shouldShowClearAllButton ||
+      _shouldShowInlineError;
+  bool get _shouldShowPrefix => widget.leading != null || widget.prefix != null;
 
-  void _onStateUpdate() => setState(() {});
+  void _handleStateUpdate() => setState(() {});
+  void _handlePasswordTap() => setState(
+        () => _isShowPasswordEnabled = !_isShowPasswordEnabled,
+      );
 
   @override
   Widget build(BuildContext context) {
-    final clearAllButton = _shouldShowClearAllButton
-        ? _ClearAllButton(onTap: _onClearAllTap)
-        : null;
-    final passwordButton = widget.isPasswordField
-        ? _PasswordButton(
-            onTap: () => setState(() {
-              _isShowPasswordEnabled = !_isShowPasswordEnabled;
-            }),
-            isShowPasswordEnabled: _isShowPasswordEnabled,
-          )
-        : null;
     final error = widget.error;
-    final inlineError = _shouldShowInlineError && error != null
-        ? OptimusTooltipWrapper(
-            text: Text(error),
-            child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
-          )
-        : null;
-    final suffix = widget.suffix != null ||
-            widget.trailing != null ||
-            widget.showLoader ||
-            _shouldShowClearAllButton ||
-            _shouldShowInlineError
-        ? _Suffix(
-            suffix: widget.suffix,
-            trailing: widget.trailing,
-            passwordButton: passwordButton,
-            showLoader: widget.showLoader,
-            clearAllButton: clearAllButton,
-            inlineError: inlineError,
-          )
-        : null;
-    final prefix = widget.leading != null || widget.prefix != null
-        ? _Prefix(prefix: widget.prefix, leading: widget.leading)
-        : null;
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
@@ -251,11 +227,31 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       errorVariant: widget.errorVariant,
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
-      prefix: prefix,
-      suffix: suffix,
+      prefix: _shouldShowPrefix
+          ? Prefix(prefix: widget.prefix, leading: widget.leading)
+          : null,
+      suffix: _shouldShowSuffix
+          ? Suffix(
+              suffix: widget.suffix,
+              trailing: widget.trailing,
+              passwordButton: widget.isPasswordField
+                  ? _PasswordButton(
+                      onTap: _handlePasswordTap,
+                      isEnabled: _isShowPasswordEnabled,
+                    )
+                  : null,
+              showLoader: widget.showLoader,
+              clearAllButton: _shouldShowClearAllButton
+                  ? _ClearAllButton(onTap: _handleClearAllTap)
+                  : null,
+              inlineError: _shouldShowInlineError && error != null
+                  ? InlineErrorTooltip(error: error)
+                  : null,
+            )
+          : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
-      children: <Widget>[
+      children: [
         Expanded(
           child: CupertinoTextField(
             key: widget.inputKey,
@@ -301,91 +297,19 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 }
 
-class _Suffix extends StatelessWidget {
-  const _Suffix({
-    this.suffix,
-    this.passwordButton,
-    this.trailing,
-    this.inlineError,
-    required this.clearAllButton,
-    required this.showLoader,
-  });
-
-  final Widget? suffix;
-  final Widget? passwordButton;
-  final Widget? trailing;
-  final Widget? clearAllButton;
-  final Widget? inlineError;
-  final bool showLoader;
-
-  OptimusCircleLoader get _loader => const OptimusCircleLoader(
-        size: OptimusCircleLoaderSize.small,
-        variant: OptimusCircleLoaderVariant.indeterminate(),
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    final suffixWidget = suffix;
-    final clearAllButtonWidget = clearAllButton;
-    final passwordButtonWidget = passwordButton;
-    final trailingWidget = trailing;
-
-    return inlineError ??
-        OptimusStack(
-          direction: Axis.horizontal,
-          spacing: OptimusStackSpacing.spacing100,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (suffixWidget != null) suffixWidget,
-            if (showLoader) _loader,
-            if (clearAllButtonWidget != null) clearAllButtonWidget,
-            if (passwordButtonWidget != null)
-              passwordButtonWidget
-            else if (trailingWidget != null)
-              trailingWidget,
-          ],
-        );
-  }
-}
-
-class _Prefix extends StatelessWidget {
-  const _Prefix({this.prefix, this.leading});
-
-  final Widget? prefix;
-  final Widget? leading;
-
-  @override
-  Widget build(BuildContext context) {
-    final prefix = this.prefix;
-    final leading = this.leading;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (leading != null) leading,
-        if (prefix != null) prefix,
-      ],
-    );
-  }
-}
-
 class _PasswordButton extends StatelessWidget {
   const _PasswordButton({
     required this.onTap,
-    required this.isShowPasswordEnabled,
+    required this.isEnabled,
   });
 
   final VoidCallback onTap;
-  final bool isShowPasswordEnabled;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: onTap,
-        child: Icon(
-          isShowPasswordEnabled ? OptimusIcons.hide : OptimusIcons.show,
-        ),
+        child: Icon(isEnabled ? OptimusIcons.hide : OptimusIcons.show),
       );
 }
 
@@ -403,16 +327,6 @@ class _ClearAllButton extends StatelessWidget {
           color: OptimusTheme.of(context).tokens.textStaticPrimary,
         ),
       );
-}
-
-/// The way of displaying the error message.
-enum OptimusInputErrorVariant {
-  /// The error message is displayed below the input.
-  bottomHint,
-
-  /// The error message is displayed as a tooltip near the input. The tooltip is
-  /// shown after the interaction with the error icon.
-  inlineTooltip,
 }
 
 extension on OptimusWidgetSize {

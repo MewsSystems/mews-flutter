@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story inlineLink = Story(
@@ -13,31 +14,29 @@ final Story inlineLink = Story(
     final color = k.options(label: 'Colors', initial: null, options: _colors);
     final onPressed = k.boolean(label: 'Enabled', initial: true) ? () {} : null;
 
-    final TextStyle style = TextStyle(
-      fontSize: size.toDouble(),
-      color: color,
-    );
+    final TextStyle style = TextStyle(fontSize: size.toDouble(), color: color);
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: SingleChildScrollView(
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Some text before inline link. Inline ',
-              style: style,
-            ),
+            Text('Some text before inline link. Inline ', style: style),
             OptimusInlineLink(
               text: const Text('Link'),
               inherit: inherit,
               onPressed: onPressed,
+              strong: k.boolean(label: 'Strong', initial: false),
               textStyle: inherit ? style : null,
+              variant: k.options(
+                label: 'Variant',
+                initial: OptimusLinkVariant.primary,
+                options: OptimusLinkVariant.values.toOptions(),
+              ),
             ),
-            Text(
-              ' could be used inside text.',
-              style: style,
-            ),
+            Text(' could be used inside text.', style: style),
           ],
         ),
       ),

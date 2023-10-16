@@ -107,6 +107,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     final suffix = widget.suffix;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Padding(
           padding: widget.size.labelPadding,
@@ -131,51 +132,48 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             children: [
               IgnorePointer(
                 ignoring: !widget.isEnabled,
-                child: _FieldPadding(
-                  // Decoration is nullable, cannot use DecoratedBox
-                  // ignore: use_decorated_box
-                  child: Container(
-                    key: widget.fieldBoxKey,
-                    decoration: widget.hasBorders
-                        ? BoxDecoration(
-                            color: _background,
-                            borderRadius:
-                                const BorderRadius.all(borderRadius100),
-                            border: Border.all(color: _borderColor, width: 1),
-                          )
-                        : null,
-                    child: MouseRegion(
-                      onEnter: (_) => setState(() => _isHovered = true),
-                      onExit: (_) => setState(() => _isHovered = false),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: widget.size.contentPadding,
-                          ),
-                          child: Row(
-                            children: [
-                              if (prefix != null)
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(right: spacing50),
-                                  child: _Styled(
-                                    isEnabled: widget.isEnabled,
-                                    child: prefix,
-                                  ),
+                child:
+                    // Decoration is nullable, cannot use DecoratedBox
+                    // ignore: use_decorated_box
+                    Container(
+                  key: widget.fieldBoxKey,
+                  decoration: widget.hasBorders
+                      ? BoxDecoration(
+                          color: _background,
+                          borderRadius: const BorderRadius.all(borderRadius100),
+                          border: Border.all(color: _borderColor, width: 1),
+                        )
+                      : null,
+                  child: MouseRegion(
+                    onEnter: (_) => setState(() => _isHovered = true),
+                    onExit: (_) => setState(() => _isHovered = false),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: widget.size.contentPadding,
+                        ),
+                        child: Row(
+                          children: [
+                            if (prefix != null)
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: spacing50),
+                                child: _Styled(
+                                  isEnabled: widget.isEnabled,
+                                  child: prefix,
                                 ),
-                              ...widget.children,
-                              if (suffix != null)
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: spacing50),
-                                  child: _Styled(
-                                    isEnabled: widget.isEnabled,
-                                    child: suffix,
-                                  ),
+                              ),
+                            ...widget.children,
+                            if (suffix != null)
+                              Padding(
+                                padding: const EdgeInsets.only(left: spacing50),
+                                child: _Styled(
+                                  isEnabled: widget.isEnabled,
+                                  child: suffix,
                                 ),
-                            ],
-                          ),
+                              ),
+                          ],
                         ),
                       ),
                     ),
@@ -253,18 +251,6 @@ class _Icon extends StatelessWidget {
 
     return IconTheme(data: IconThemeData(color: color, size: 24), child: child);
   }
-}
-
-class _FieldPadding extends StatelessWidget {
-  const _FieldPadding({required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: spacing25),
-        child: child,
-      );
 }
 
 class _Styled extends StatelessWidget {
