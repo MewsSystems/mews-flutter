@@ -174,25 +174,24 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_onStateUpdate);
-    _effectiveController.addListener(_onStateUpdate);
+    _effectiveFocusNode.addListener(_handleStateUpdate);
+    _effectiveController.addListener(_handleStateUpdate);
   }
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_onStateUpdate);
-    _effectiveController.removeListener(_onStateUpdate);
+    _effectiveFocusNode.removeListener(_handleStateUpdate);
+    _effectiveController.removeListener(_handleStateUpdate);
     _focusNode?.dispose();
     _controller?.dispose();
     super.dispose();
   }
 
-  bool get _isUsingInlineError =>
-      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
+  bool get _shouldShowInlineError =>
+      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip &&
+      widget.hasError;
 
-  bool get _shouldShowInlineError => _isUsingInlineError && widget.hasError;
-
-  void _onClearAllTap() {
+  void _handleClearAllTap() {
     _effectiveController.clear();
     widget.onChanged?.call('');
   }
@@ -200,45 +199,25 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _shouldShowClearAllButton =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
 
-  void _onStateUpdate() => setState(() {});
+  bool get _shouldShowSuffix =>
+      widget.suffix != null ||
+          widget.trailing != null ||
+          widget.showLoader ||
+          _shouldShowClearAllButton ||
+          _shouldShowInlineError;
+
+  bool get _shouldShowPrefix => widget.leading != null || widget.prefix != null;
+
+
+  void _handleStateUpdate() => setState(() {});
+
+  void _handlePasswordTap() => setState(
+        () => _isShowPasswordEnabled = !_isShowPasswordEnabled,
+  );
 
   @override
   Widget build(BuildContext context) {
-    final clearAllButton = _shouldShowClearAllButton
-        ? _ClearAllButton(onTap: _onClearAllTap)
-        : null;
-    final passwordButton = widget.isPasswordField
-        ? _PasswordButton(
-            onTap: () => setState(() {
-              _isShowPasswordEnabled = !_isShowPasswordEnabled;
-            }),
-            isShowPasswordEnabled: _isShowPasswordEnabled,
-          )
-        : null;
     final error = widget.error;
-    final inlineError = _shouldShowInlineError && error != null
-        ? OptimusTooltipWrapper(
-            text: Text(error),
-            child: Icon(OptimusIcons.error_circle, color: theme.colors.danger),
-          )
-        : null;
-    final suffix = widget.suffix != null ||
-            widget.trailing != null ||
-            widget.showLoader ||
-            _shouldShowClearAllButton ||
-            _shouldShowInlineError
-        ? Suffix(
-            suffix: widget.suffix,
-            trailing: widget.trailing,
-            passwordButton: passwordButton,
-            showLoader: widget.showLoader,
-            clearAllButton: clearAllButton,
-            inlineError: inlineError,
-          )
-        : null;
-    final prefix = widget.leading != null || widget.prefix != null
-        ? Prefix(prefix: widget.prefix, leading: widget.leading)
-        : null;
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
@@ -252,8 +231,28 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       errorVariant: widget.errorVariant,
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
-      prefix: prefix,
-      suffix: suffix,
+      prefix: _shouldShowPrefix
+          ? Prefix(prefix: widget.prefix, leading: widget.leading)
+          : null,
+      suffix: _shouldShowSuffix
+          ? Suffix(
+        suffix: widget.suffix,
+        trailing: widget.trailing,
+        passwordButton: widget.isPasswordField
+            ? _PasswordButton(
+          onTap: _handlePasswordTap,
+          isEnabled: _isShowPasswordEnabled,
+        )
+            : null,
+        showLoader: widget.showLoader,
+        clearAllButton: _shouldShowClearAllButton
+            ? _ClearAllButton(onTap: _handleClearAllTap)
+            : null,
+        inlineError: _shouldShowInlineError && error != null
+            ? InlineErrorTooltip(error: error)
+            : null,
+      )
+          : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
       children: [
@@ -305,18 +304,16 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 class _PasswordButton extends StatelessWidget {
   const _PasswordButton({
     required this.onTap,
-    required this.isShowPasswordEnabled,
+    required this.isEnabled,
   });
 
   final VoidCallback onTap;
-  final bool isShowPasswordEnabled;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: onTap,
-        child: Icon(
-          isShowPasswordEnabled ? OptimusIcons.hide : OptimusIcons.show,
-        ),
+        child: Icon(isEnabled ? OptimusIcons.hide : OptimusIcons.show),
       );
 }
 

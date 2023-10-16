@@ -82,6 +82,6 @@ class InlineErrorTooltip extends StatelessWidget {
   Widget build(BuildContext context) => OptimusTooltipWrapper(
         text: Text(error),
         child:
-            Icon(OptimusIcons.error_circle, color: context.data.colors.danger),
+            Icon(OptimusIcons.error_circle, color: context.theme.colors.danger),
       );
 }

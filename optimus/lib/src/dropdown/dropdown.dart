@@ -253,25 +253,18 @@ class _GroupedDropdownListViewState<T>
     return sorted;
   }
 
-  Widget _buildItem(OptimusDropdownTile<T> child) =>
-      _DropdownItem(onChanged: widget.onChanged, child: child);
-
-  Widget _buildHeader(
-    bool useBorder,
-    OptimusDropdownTile<T> child,
-  ) =>
-      _GroupWrapper(
-        useBorder: useBorder,
-        group: _effectiveGroupBuilder(widget.groupBy(child.value)),
-        child: _buildItem(child),
-      );
-
   int get _leadingIndex => widget.isReversed ? _sortedItems.length - 1 : 0;
 
   double get _minListHeight =>
       _groupsCount * _groupMinHeight +
       widget.items.length * _itemMinHeight +
       _listVerticalSpacing * 2;
+
+  bool _isSameGroup(
+    OptimusDropdownTile<T> first,
+    OptimusDropdownTile<T> second,
+  ) =>
+      widget.groupBy(second.value) == widget.groupBy(first.value);
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -282,16 +275,26 @@ class _GroupedDropdownListViewState<T>
           itemCount: widget.items.length,
           itemBuilder: (context, index) {
             final current = _sortedItems[index];
+            final child =
+                _DropdownItem(onChanged: widget.onChanged, child: current);
+
             if (index == _leadingIndex) {
-              return _buildHeader(false, current);
+              return _GroupWrapper(
+                useBorder: false,
+                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                child: child,
+              );
             }
 
             final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
 
-            return widget.groupBy(current.value) !=
-                    widget.groupBy(previous.value)
-                ? _buildHeader(true, current)
-                : _buildItem(current);
+            return _isSameGroup(current, previous)
+                ? child
+                : _GroupWrapper(
+                    group:
+                        _effectiveGroupBuilder(widget.groupBy(current.value)),
+                    child: child,
+                  );
           },
         ),
       );
@@ -308,23 +311,26 @@ class _GroupWrapper extends StatelessWidget {
   final Widget group;
   final Widget child;
 
-  Widget _buildGroup(BuildContext context) => Container(
-        width: AnchoredOverlay.of(context)?.width,
-        decoration: BoxDecoration(
-          border: Border(
-            top: useBorder
-                ? BorderSide(color: OptimusTheme.of(context).colors.neutral25)
-                : BorderSide.none,
-          ),
-        ),
-        child: group,
-      );
-
   @override
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [_buildGroup(context), child],
+        children: [
+          Container(
+            width: AnchoredOverlay.of(context)?.width,
+            decoration: useBorder
+                ? BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: OptimusTheme.of(context).colors.neutral25,
+                      ),
+                    ),
+                  )
+                : null,
+            child: group,
+          ),
+          child,
+        ],
       );
 }
 
@@ -345,7 +351,7 @@ class _DropdownItem<T> extends StatefulWidget {
 class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   bool _isHighlighted = false;
 
-  void _onItemTap() {
+  void _handleItemTap() {
     widget.onChanged(widget.child.value);
     DropdownTapInterceptor.of(context)?.onTap();
   }
@@ -353,11 +359,12 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   @override
   Widget build(BuildContext context) => SizedBox(
         width: AnchoredOverlay.of(context)?.width,
+        height: _itemMinHeight,
         child: InkWell(
           highlightColor: theme.colors.primary,
           onHighlightChanged: (isHighlighted) =>
               setState(() => _isHighlighted = isHighlighted),
-          onTap: _onItemTap,
+          onTap: _handleItemTap,
           child: _isHighlighted
               ? OptimusTheme(
                   themeMode: ThemeMode.dark,

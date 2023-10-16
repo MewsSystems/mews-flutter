@@ -115,7 +115,6 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
   late final Animation<double> _iconTurns;
 
   TextEditingController? _controller;
-
   FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
@@ -124,7 +123,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
 
-  void _onFocusChanged() {
+  void _handleFocusChange() {
     if (!_isUsingEmbeddedSearch) {
       if (_effectiveFocusNode.hasFocus) {
         _animationController.forward();
@@ -135,25 +134,24 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     }
   }
 
-  void _onTextUpdated() {
-    widget.onTextChanged?.call(_effectiveController.text);
-  }
+  void _handleTextUpdate() =>
+      widget.onTextChanged?.call(_effectiveController.text);
 
   @override
   void didUpdateWidget(OptimusSelectInput<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
       _effectiveController
-        ..removeListener(_onTextUpdated)
-        ..addListener(_onTextUpdated);
+        ..removeListener(_handleTextUpdate)
+        ..addListener(_handleTextUpdate);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_onFocusChanged);
-    _effectiveController.addListener(_onTextUpdated);
+    _effectiveFocusNode.addListener(_handleFocusChange);
+    _effectiveController.addListener(_handleTextUpdate);
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 350),
       vsync: this,
@@ -163,9 +161,9 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_onFocusChanged);
+    _effectiveFocusNode.removeListener(_handleFocusChange);
     _focusNode?.dispose();
-    _effectiveController.removeListener(_onTextUpdated);
+    _effectiveController.removeListener(_handleTextUpdate);
     _controller?.dispose();
     _animationController.dispose();
     super.dispose();
@@ -176,15 +174,6 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
 
   bool get _isUsingEmbeddedSearch =>
       widget.embeddedSearch != null && !_isUsingInlineSearch;
-
-  Widget get _icon => RotationTransition(
-        turns: _iconTurns,
-        child: Icon(
-          OptimusIcons.chevron_down,
-          size: 24,
-          color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
-        ),
-      );
 
   TextStyle get _textStyle => switch (widget.size) {
         OptimusWidgetSize.small => preset200s.copyWith(color: _textColor),
@@ -220,7 +209,8 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         leading: widget.leading,
         suffix: widget.suffix,
         trailing: widget.trailing,
-        trailingImplicit: _icon,
+        trailingImplicit:
+            RotationTransition(turns: _iconTurns, child: const _Chevron()),
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
@@ -240,4 +230,17 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         selectedValues: widget.selectedValues,
         builder: widget.builder,
       );
+}
+
+class _Chevron extends StatelessWidget {
+  const _Chevron();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = OptimusTheme.of(context);
+    final color =
+        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400;
+
+    return Icon(OptimusIcons.chevron_down, size: 24, color: color);
+  }
 }

@@ -72,7 +72,7 @@ OptimusThemeData _createTheme(Brightness brightness) {
 
 extension ThemeTokens on BuildContext {
   OptimusTokens get tokens => OptimusTheme.of(this).tokens;
-  OptimusThemeData get data => OptimusTheme.of(this);
+  OptimusThemeData get theme => OptimusTheme.of(this);
 }
 
 mixin ThemeGetter<T extends StatefulWidget> on State<T> {
