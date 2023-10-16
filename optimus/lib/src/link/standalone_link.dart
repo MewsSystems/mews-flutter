@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/link/base_link.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Standalone links are available in two size options to accommodate various
 /// environments with different requirements.
 enum OptimusStandaloneLinkSize {
   /// Used when space is limited or to match with smaller text sizes on a page.
-  small,
+  medium,
 
   /// Used when space is not limited or to match with larger text sizes on a
   /// page.
-  normal,
+  large,
 }
 
 /// A link widget that is used to display a link on its own, not a part of the
@@ -25,11 +24,12 @@ class OptimusStandaloneLink extends StatelessWidget {
     super.key,
     this.onPressed,
     required this.text,
-    required this.size,
-    this.color,
+    this.size,
     this.overflow,
     this.inherit = false,
-    this.external = false,
+    this.isExternal = false,
+    this.strong = false,
+    this.variant = OptimusLinkVariant.primary,
   });
 
   /// Called when link is tapped.
@@ -37,51 +37,49 @@ class OptimusStandaloneLink extends StatelessWidget {
   /// If this callback is null, then the button will be disabled.
   final VoidCallback? onPressed;
 
-  /// Controls the link's text
+  /// Link text.
   final Widget text;
 
-  /// Controls the link's size
-  final OptimusStandaloneLinkSize size;
-
-  /// Controls the link's color
-  final Color? color;
-
-  /// Controls if link should inherit parent style
+  /// Controls if link should inherit parent style.
   final bool inherit;
 
-  /// Controls if link is external and icon should be displayed
-  final bool external;
+  /// Controls if link is external and icon should be displayed.
+  final bool isExternal;
 
-  /// Controls the link's text overflowing
+  /// Link's text overflow style.
   final TextOverflow? overflow;
 
-  Widget? get _icon => external
-      ? Icon(
-          OptimusIcons.external_link,
-          size: size.iconSize,
-        )
-      : null;
+  ///  Weight of the font.
+  final bool strong;
 
+  /// Link size.
+  final OptimusStandaloneLinkSize? size;
+
+  // Link color variant.
+  final OptimusLinkVariant variant;
   @override
   Widget build(BuildContext context) => BaseLink(
         text: text,
-        textStyle: size.linkStyle,
-        color: color,
+        textStyle: DefaultTextStyle.of(context).style.copyWith(
+              fontSize: size?.fontSize,
+            ),
         inherit: inherit,
         onPressed: onPressed,
         overflow: overflow,
-        icon: _icon,
+        icon: isExternal
+            ? Icon(
+                OptimusIcons.external_link,
+                size: size?.fontSize,
+              )
+            : null,
+        variant: variant,
+        strong: strong,
       );
 }
 
 extension on OptimusStandaloneLinkSize {
-  TextStyle get linkStyle => switch (this) {
-        OptimusStandaloneLinkSize.small => preset200b,
-        OptimusStandaloneLinkSize.normal => preset300b,
-      };
-
-  double get iconSize => switch (this) {
-        OptimusStandaloneLinkSize.small => 14,
-        OptimusStandaloneLinkSize.normal => 16,
+  double get fontSize => switch (this) {
+        OptimusStandaloneLinkSize.medium => 14,
+        OptimusStandaloneLinkSize.large => 16,
       };
 }

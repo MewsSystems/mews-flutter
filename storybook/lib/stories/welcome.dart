@@ -31,7 +31,8 @@ final welcomeStory = Story(
         ),
         OptimusStandaloneLink(
           text: Text('mews.design'),
-          size: OptimusStandaloneLinkSize.normal,
+          size: OptimusStandaloneLinkSize.large,
+          isExternal: true,
           onPressed: _launchUrl,
         ),
       ],
