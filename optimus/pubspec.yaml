@@ -31,6 +31,8 @@ flutter:
       fonts:
         - asset: packages/optimus/fonts/Inter-Regular.ttf
           weight: 400
+        - asset: packages/optimus/fonts/Inter-Medium.ttf
+          weight: 500
         - asset: packages/optimus/fonts/Inter-SemiBold.ttf
           weight: 600
         - asset: packages/optimus/fonts/Inter-Bold.ttf
