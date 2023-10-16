@@ -201,19 +201,18 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   bool get _shouldShowSuffix =>
       widget.suffix != null ||
-          widget.trailing != null ||
-          widget.showLoader ||
-          _shouldShowClearAllButton ||
-          _shouldShowInlineError;
+      widget.trailing != null ||
+      widget.showLoader ||
+      _shouldShowClearAllButton ||
+      _shouldShowInlineError;
 
   bool get _shouldShowPrefix => widget.leading != null || widget.prefix != null;
-
 
   void _handleStateUpdate() => setState(() {});
 
   void _handlePasswordTap() => setState(
         () => _isShowPasswordEnabled = !_isShowPasswordEnabled,
-  );
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -236,22 +235,22 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           : null,
       suffix: _shouldShowSuffix
           ? Suffix(
-        suffix: widget.suffix,
-        trailing: widget.trailing,
-        passwordButton: widget.isPasswordField
-            ? _PasswordButton(
-          onTap: _handlePasswordTap,
-          isEnabled: _isShowPasswordEnabled,
-        )
-            : null,
-        showLoader: widget.showLoader,
-        clearAllButton: _shouldShowClearAllButton
-            ? _ClearAllButton(onTap: _handleClearAllTap)
-            : null,
-        inlineError: _shouldShowInlineError && error != null
-            ? InlineErrorTooltip(error: error)
-            : null,
-      )
+              suffix: widget.suffix,
+              trailing: widget.trailing,
+              passwordButton: widget.isPasswordField
+                  ? _PasswordButton(
+                      onTap: _handlePasswordTap,
+                      isEnabled: _isShowPasswordEnabled,
+                    )
+                  : null,
+              showLoader: widget.showLoader,
+              clearAllButton: _shouldShowClearAllButton
+                  ? _ClearAllButton(onTap: _handleClearAllTap)
+                  : null,
+              inlineError: _shouldShowInlineError && error != null
+                  ? InlineErrorTooltip(error: error)
+                  : null,
+            )
           : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
