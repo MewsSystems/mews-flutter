@@ -66,12 +66,12 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_onStateUpdate);
+    _effectiveFocusNode.addListener(_handleStateUpdate);
   }
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_onStateUpdate);
+    _effectiveFocusNode.removeListener(_handleStateUpdate);
     _focusNode?.dispose();
     super.dispose();
   }
@@ -79,7 +79,7 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
   bool get _isUsingInlineError =>
       widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
 
-  void _onStateUpdate() => setState(() {});
+  void _handleStateUpdate() => setState(() {});
 
   @override
   Widget build(BuildContext context) {

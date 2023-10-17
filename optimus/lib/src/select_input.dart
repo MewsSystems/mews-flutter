@@ -92,8 +92,8 @@ class OptimusSelectInput<T> extends StatefulWidget {
   /// {@endtemplate}
   final GroupBuilder? groupBuilder;
 
-  /// Whether to enable having several items selected at the same time.
-  /// State of the selected items is manages outside this widget and has to be
+  /// If enabled, you can select multiple items at the same time.
+  /// State of the selected items is managed outside this widget and has to be
   /// set in [selectedValues].
   final bool multiselect;
 
