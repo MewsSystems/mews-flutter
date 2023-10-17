@@ -1,3 +1,14 @@
+## 0.30.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Refactor Toggle (#458).
+ - **REFACTOR**: Refactor SelectInput (#456).
+ - **FEAT**: [UX-332] Add multiselect support (#448).
+ - **FEAT**: [DX-295] Update font (#455).
+ - **BREAKING** **REFACTOR**: Remove OptimusProgressSpinner (#459).
+ - **BREAKING** **FEAT**: [DX-144] Update link design (#461).
+
 ## 0.29.1+1
 
  - **REFACTOR**: Fix linter issues.
