@@ -198,15 +198,18 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   bool get _shouldShowClearAllButton =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
+
   bool get _shouldShowSuffix =>
       widget.suffix != null ||
       widget.trailing != null ||
       widget.showLoader ||
       _shouldShowClearAllButton ||
       _shouldShowInlineError;
+
   bool get _shouldShowPrefix => widget.leading != null || widget.prefix != null;
 
   void _handleStateUpdate() => setState(() {});
+
   void _handlePasswordTap() => setState(
         () => _isShowPasswordEnabled = !_isShowPasswordEnabled,
       );

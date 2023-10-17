@@ -19,10 +19,13 @@ class _Content extends StatefulWidget {
 class _ContentState extends State<_Content> {
   final _formKey = GlobalKey<FormState>();
 
+  final List<String> _values = [];
+
   @override
   Widget build(BuildContext context) {
-    final error = widget.knobs.text(label: 'Error', initial: 'Required');
-    final autovalidateMode = widget.knobs.options(
+    final k = widget.knobs;
+    final error = k.text(label: 'Error', initial: 'Required');
+    final autovalidateMode = k.options(
       label: 'autovalidateMode',
       initial: AutovalidateMode.onUserInteraction,
       options: [
@@ -34,6 +37,7 @@ class _ContentState extends State<_Content> {
         ),
       ],
     );
+    final multiselect = k.boolean(label: 'Multiselect', initial: false);
 
     return Form(
       key: _formKey,
@@ -52,10 +56,27 @@ class _ContentState extends State<_Content> {
             initialValue: null,
             builder: (value) => value ?? '',
             items: _selectorItems
-                .map((e) => ListDropdownTile<String>(value: e, title: Text(e)))
+                .map(
+                  (e) => ListDropdownTile<String>(
+                    value: e,
+                    title: Text(e),
+                    isSelected: multiselect ? _values.contains(e) : null,
+                  ),
+                )
                 .toList(),
+            onChanged: (v) {
+              if (_values.contains(v)) {
+                setState(() => _values.remove(v));
+              } else {
+                if (v != null) {
+                  setState(() => _values.add(v));
+                }
+              }
+            },
             validator: (String? v) => v?.isNotEmpty != true ? error : null,
             autovalidateMode: autovalidateMode,
+            multiselect: multiselect,
+            values: _values,
           ),
           OptimusButton(
             onPressed: () => _formKey.currentState?.validate(),

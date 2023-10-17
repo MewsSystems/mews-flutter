@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
+import 'package:optimus/src/form/multiselect_field.dart';
 
 class DropdownSelect<T> extends StatefulWidget {
   const DropdownSelect({
@@ -41,6 +42,9 @@ class DropdownSelect<T> extends StatefulWidget {
     this.onDropdownHide,
     this.groupBy,
     this.groupBuilder,
+    this.multiselect = false,
+    this.selectedValues,
+    this.builder,
   });
 
   final String? label;
@@ -80,6 +84,10 @@ class DropdownSelect<T> extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
 
+  final bool multiselect;
+  final List<T>? selectedValues;
+  final ValueBuilder<T>? builder;
+
   @override
   State<DropdownSelect<T>> createState() => _DropdownSelectState<T>();
 }
@@ -106,12 +114,8 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   }
 
   void _onFocusChanged() {
-    if (widget.embeddedSearch == null) {
-      if (_effectiveFocusNode.hasFocus) {
-        _showOverlay();
-      } else {
-        _removeOverlay();
-      }
+    if (widget.embeddedSearch == null && _effectiveFocusNode.hasFocus) {
+      _showOverlay();
     }
   }
 
@@ -131,6 +135,13 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
       _effectiveFocusNode
         ..removeListener(_onFocusChanged)
         ..addListener(_onFocusChanged);
+    }
+
+    if (oldWidget.isEnabled != widget.isEnabled) {
+      _overlayEntry?.remove();
+      _overlayEntry?.dispose();
+      _overlayEntry = null;
+      _effectiveFocusNode.unfocus();
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -181,11 +192,42 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     widget.onTextChanged?.call('');
   }
 
+  void _handleChipTap() {
+    if (_effectiveFocusNode.hasFocus) {
+      _removeOverlay();
+    } else {
+      _effectiveFocusNode.requestFocus();
+    }
+  }
+
+  List<Widget>? get _values {
+    if (widget.builder case final builder?) {
+      return widget.selectedValues
+          ?.map(
+            (e) => OptimusChip(
+              onRemoved: () => widget.onChanged(e),
+              onTap: _handleChipTap,
+              isEnabled: widget.isEnabled,
+              child: Text(builder(e)),
+            ),
+          )
+          .toList();
+    }
+  }
+
   bool? get _isFocused =>
       widget.embeddedSearch != null ? _overlayEntry != null : null;
 
   bool get _isClearAllButtonVisible =>
       widget.isClearEnabled && _effectiveController.text.isNotEmpty;
+
+  bool get _hasValues {
+    if (widget.selectedValues case final values?) {
+      return values.isNotEmpty;
+    }
+
+    return false;
+  }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
@@ -215,7 +257,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
             behavior: HitTestBehavior.translucent,
             onTapDown: onTapDown,
             child: DropdownTapInterceptor(
-              onTap: _removeOverlay,
+              onTap: widget.multiselect ? () {} : _removeOverlay,
               child: OptimusDropdown(
                 items: widget.items,
                 anchorKey: _fieldBoxKey,
@@ -249,30 +291,49 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
 
     return WillPopScope(
       onWillPop: () async => _handleOnBackPressed(),
-      child: OptimusInputField(
-        leading: widget.leading,
-        prefix: widget.prefix,
-        controller: _effectiveController,
-        onChanged: widget.onTextChanged,
-        isRequired: widget.isRequired,
-        label: widget.label,
-        placeholder: widget.placeholder,
-        placeholderStyle: widget.placeholderStyle,
-        focusNode: _effectiveFocusNode,
-        isFocused: _isFocused,
-        onTap: _onTap,
-        fieldBoxKey: _fieldBoxKey,
-        suffix: widget.suffix,
-        trailing: trailing,
-        isEnabled: widget.isEnabled,
-        caption: widget.caption,
-        helperMessage: widget.helperMessage,
-        error: widget.error,
-        size: widget.size,
-        readOnly: widget.readOnly,
-        showCursor: widget.showCursor,
-        showLoader: widget.showLoader,
-      ),
+      child: widget.multiselect && _hasValues
+          ? MultiSelectInputField(
+              values: _values ?? [],
+              leading: widget.leading,
+              prefix: widget.prefix,
+              isRequired: widget.isRequired,
+              label: widget.label,
+              focusNode: _effectiveFocusNode,
+              isFocused: _isFocused,
+              fieldBoxKey: _fieldBoxKey,
+              suffix: widget.suffix,
+              trailing: trailing,
+              isEnabled: widget.isEnabled,
+              caption: widget.caption,
+              helperMessage: widget.helperMessage,
+              error: widget.error,
+              size: widget.size,
+              showLoader: widget.showLoader,
+            )
+          : OptimusInputField(
+              leading: widget.leading,
+              prefix: widget.prefix,
+              controller: _effectiveController,
+              onChanged: widget.onTextChanged,
+              isRequired: widget.isRequired,
+              label: widget.label,
+              placeholder: widget.placeholder,
+              placeholderStyle: widget.placeholderStyle,
+              focusNode: _effectiveFocusNode,
+              isFocused: _isFocused,
+              onTap: _onTap,
+              fieldBoxKey: _fieldBoxKey,
+              suffix: widget.suffix,
+              trailing: trailing,
+              isEnabled: widget.isEnabled,
+              caption: widget.caption,
+              helperMessage: widget.helperMessage,
+              error: widget.error,
+              size: widget.size,
+              readOnly: widget.readOnly,
+              showCursor: widget.showCursor,
+              showLoader: widget.showLoader,
+            ),
     );
   }
 }
