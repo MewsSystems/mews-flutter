@@ -8,6 +8,7 @@ const double spacing250 = 20;
 const double spacing300 = 24;
 const double spacing400 = 32;
 const double spacing500 = 40;
+const double spacing600 = 48;
 const double spacing700 = 56;
 const double spacing900 = 72;
 const double spacing1200 = 96;

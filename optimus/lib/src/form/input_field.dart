@@ -273,11 +273,11 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             textInputAction: widget.textInputAction,
             placeholder: widget.placeholder,
             placeholderStyle: widget.placeholderStyle ??
-                theme.getPlaceholderStyle(widget.size),
+                theme.getPlaceholderStyle(isEnabled: widget.isEnabled),
             focusNode: _effectiveFocusNode,
             enabled: widget.isEnabled,
-            padding: widget.size.contentPadding,
-            style: theme.getTextInputStyle(widget.size),
+            padding: EdgeInsets.zero,
+            style: theme.getTextInputStyle(isEnabled: widget.isEnabled),
             // [CupertinoTextField] will try to resolve colors to its own theme,
             // this will ensure the visible [BoxDecoration] is from the
             // [FieldWrapper] above.
