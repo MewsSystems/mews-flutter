@@ -107,6 +107,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
         widget.isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
