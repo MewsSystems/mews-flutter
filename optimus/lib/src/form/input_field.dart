@@ -332,15 +332,4 @@ class _ClearAllButton extends StatelessWidget {
       );
 }
 
-extension on OptimusWidgetSize {
-  EdgeInsets get contentPadding => switch (this) {
-        OptimusWidgetSize.small =>
-          const EdgeInsets.symmetric(vertical: spacing50),
-        OptimusWidgetSize.medium =>
-          const EdgeInsets.symmetric(vertical: spacing100),
-        OptimusWidgetSize.large =>
-          const EdgeInsets.symmetric(vertical: spacing150),
-      };
-}
-
 const double _iconSize = 24;
