@@ -77,9 +77,11 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
         placeholderStyle: _placeholderStyle,
       );
 
-  TextStyle get _placeholderStyle => theme.getPlaceholderStyle(widget.size);
+  TextStyle get _placeholderStyle =>
+      theme.getPlaceholderStyle(isEnabled: widget.isEnabled);
 
-  TextStyle get _inputStyle => theme.getTextInputStyle(widget.size);
+  TextStyle get _inputStyle =>
+      theme.getTextInputStyle(isEnabled: widget.isEnabled);
 
   @override
   void didUpdateWidget(covariant OptimusDateInputField oldWidget) {
