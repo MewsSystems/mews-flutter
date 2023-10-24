@@ -1,3 +1,7 @@
+## 0.30.1
+
+ - **FEAT**: Update text input design (#467).
+
 ## 0.30.0
 
 > Note: This release has breaking changes.
