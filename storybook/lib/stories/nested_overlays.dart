@@ -29,7 +29,7 @@ class _Content extends StatelessWidget {
 
   final WidgetBuilder contentBuilder;
 
-  Route<dynamic> _onGenerateRoute(RouteSettings settings) {
+  Route<dynamic> _handleGenerateRoute(RouteSettings settings) {
     late WidgetBuilder builder;
     switch (settings.name) {
       case 'initialRoute':
@@ -54,7 +54,7 @@ class _Content extends StatelessWidget {
           Expanded(
             child: Navigator(
               initialRoute: 'initialRoute',
-              onGenerateRoute: _onGenerateRoute,
+              onGenerateRoute: _handleGenerateRoute,
             ),
           ),
           const _Bar(),

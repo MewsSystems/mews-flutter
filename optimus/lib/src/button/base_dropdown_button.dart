@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/common.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/overlay_controller.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -64,6 +65,12 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 
   void _onFocusChanged() => setState(() {});
 
+  void _handleHoverChanged(bool isHovered) =>
+      setState(() => _isHovered = isHovered);
+
+  void _handlePressedChanged(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
+
   bool get _isEnabled => widget.onItemSelected != null;
 
   Color get _textColor => widget.variant.toButtonVariant().foregroundColor(
@@ -106,51 +113,46 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       onHidden: _controller.reverse,
       child: IgnorePointer(
         ignoring: !_isEnabled,
-        child: MouseRegion(
-          onEnter: (_) => setState(() => _isHovered = true),
-          onExit: (_) => setState(() => _isHovered = false),
-          child: GestureDetector(
-            onTap: _node.requestFocus,
-            onTapDown: (_) => setState(() => _isPressed = true),
-            onTapUp: (_) => setState(() => _isPressed = false),
-            onTapCancel: () => setState(() => _isPressed = false),
-            child: Focus(
-              focusNode: _node,
-              child: SizedBox(
-                height: widget.size.value,
-                child: AnimatedContainer(
-                  padding: const EdgeInsets.symmetric(horizontal: spacing200),
-                  key: _selectFieldKey,
-                  decoration: BoxDecoration(
-                    color: _color,
-                    borderRadius: widget.borderRadius,
-                    border: borderColor != null
-                        ? Border.all(color: borderColor, width: 1)
-                        : null,
-                  ),
-                  duration: buttonAnimationDuration,
-                  curve: buttonAnimationCurve,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (child != null)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: DefaultTextStyle.merge(
-                            style: _labelStyle,
-                            child: child,
-                          ),
-                        ),
-                      RotationTransition(
-                        turns: _iconTurns,
-                        child: Icon(
-                          OptimusIcons.chevron_down,
-                          size: widget.size.iconSize,
-                          color: _textColor,
+        child: GestureWrapper(
+          onHoverChanged: _handleHoverChanged,
+          onPressedChanged: _handlePressedChanged,
+          onTap: _node.requestFocus,
+          child: Focus(
+            focusNode: _node,
+            child: SizedBox(
+              height: widget.size.value,
+              child: AnimatedContainer(
+                padding: const EdgeInsets.symmetric(horizontal: spacing200),
+                key: _selectFieldKey,
+                decoration: BoxDecoration(
+                  color: _color,
+                  borderRadius: widget.borderRadius,
+                  border: borderColor != null
+                      ? Border.all(color: borderColor, width: 1)
+                      : null,
+                ),
+                duration: buttonAnimationDuration,
+                curve: buttonAnimationCurve,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (child != null)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: DefaultTextStyle.merge(
+                          style: _labelStyle,
+                          child: child,
                         ),
                       ),
-                    ],
-                  ),
+                    RotationTransition(
+                      turns: _iconTurns,
+                      child: Icon(
+                        OptimusIcons.chevron_down,
+                        size: widget.size.iconSize,
+                        color: _textColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

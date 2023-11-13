@@ -22,6 +22,8 @@ class _CheckboxGroupStory extends StatefulWidget {
 class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
   Iterable<int> _checks = [1, 3];
 
+  void _handleChanged(Iterable<int> values) => setState(() => _checks = values);
+
   @override
   Widget build(BuildContext context) {
     final k = widget.knobs;
@@ -29,7 +31,7 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
     return OptimusCheckboxGroup<int>(
       label: k.text(label: 'Label', initial: 'Checkbox Group Label'),
       error: k.text(label: 'Error'),
-      onChanged: (values) => setState(() => _checks = values),
+      onChanged: _handleChanged,
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       values: _checks,
       items: const [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/link/link_variant.dart';
 import 'package:optimus/src/spacing.dart';
@@ -33,16 +34,19 @@ class BaseLink extends StatefulWidget {
 
 class _BaseLinkState extends State<BaseLink> with ThemeGetter {
   bool _isHovering = false;
-  bool _isTappedDown = false;
+  bool _isPressed = false;
 
   void _handleHoverChange(bool isHovering) =>
       setState(() => _isHovering = isHovering);
+
+  void _handlePressedChange(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
 
   Color get _effectiveColor => widget.inherit ? _inheritedColor : _color;
 
   Color get _color {
     if (!_isEnabled) return widget.variant.getDisabledColor(tokens);
-    if (_isTappedDown) return widget.variant.getTappedColor(tokens);
+    if (_isPressed) return widget.variant.getTappedColor(tokens);
     if (_isHovering) return widget.variant.getHoveredColor(tokens);
 
     return widget.variant.getDefaultColor(tokens);
@@ -87,16 +91,11 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
 
     return OptimusEnabled(
       isEnabled: _isEnabled,
-      child: MouseRegion(
-        onEnter: (_) => _handleHoverChange(true),
-        onExit: (_) => _handleHoverChange(false),
-        child: GestureDetector(
-          onTap: widget.onPressed,
-          onTapDown: (_) => setState(() => _isTappedDown = true),
-          onTapUp: (_) => setState(() => _isTappedDown = false),
-          onTapCancel: () => setState(() => _isTappedDown = false),
-          child: child,
-        ),
+      child: GestureWrapper(
+        onHoverChanged: _handleHoverChange,
+        onPressedChanged: _handlePressedChange,
+        onTap: widget.onPressed,
+        child: child,
       ),
     );
   }

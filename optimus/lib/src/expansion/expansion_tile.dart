@@ -132,49 +132,6 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     widget.onExpansionChanged?.call(_isExpanded);
   }
 
-  Widget _buildChildren(BuildContext context, Widget? child) {
-    final theme = OptimusTheme.of(context);
-    final textColor =
-        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        ListTileTheme.merge(
-          iconColor: textColor,
-          textColor: textColor,
-          child: widget.slidableActions.isEmpty
-              ? _buildListTile()
-              : _buildSlidable(widget.slidableActions, _buildListTile()),
-        ),
-        ClipRect(
-          child: Align(heightFactor: _heightFactor.value, child: child),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildListTile() => OptimusListTile(
-        onTap: _handleTap,
-        prefix: widget.leading,
-        title: widget.title,
-        contentPadding: widget.contentPadding,
-        subtitle: widget.subtitle,
-        suffix: widget.trailing ??
-            RotationTransition(
-              turns: _iconTurns,
-              child: const Icon(Icons.expand_more),
-            ),
-      );
-
-  Widget _buildSlidable(List<Widget> actions, Widget child) => OptimusSlidable(
-        actions: actions,
-        hasBorders: widget.hasBorders,
-        actionsWidth: widget.actionsWidth,
-        isEnabled: widget.slidableActions.isNotEmpty,
-        child: child,
-      );
-
   @override
   void didChangeDependencies() {
     final ThemeData theme = Theme.of(context);
@@ -186,10 +143,48 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
   @override
   Widget build(BuildContext context) {
     final bool closed = !_isExpanded && _controller.isDismissed;
+    final theme = OptimusTheme.of(context);
+    final textColor =
+        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
     return AnimatedBuilder(
       animation: _controller.view,
-      builder: _buildChildren,
+      builder: (context, child) {
+        final listTile = OptimusListTile(
+          onTap: _handleTap,
+          prefix: widget.leading,
+          title: widget.title,
+          contentPadding: widget.contentPadding,
+          subtitle: widget.subtitle,
+          suffix: widget.trailing ??
+              RotationTransition(
+                turns: _iconTurns,
+                child: const Icon(Icons.expand_more),
+              ),
+        );
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTileTheme.merge(
+              iconColor: textColor,
+              textColor: textColor,
+              child: widget.slidableActions.isEmpty
+                  ? listTile
+                  : OptimusSlidable(
+                      actions: widget.slidableActions,
+                      hasBorders: widget.hasBorders,
+                      actionsWidth: widget.actionsWidth,
+                      isEnabled: widget.slidableActions.isNotEmpty,
+                      child: listTile,
+                    ),
+            ),
+            ClipRect(
+              child: Align(heightFactor: _heightFactor.value, child: child),
+            ),
+          ],
+        );
+      },
       child: closed ? null : Column(children: widget.children),
     );
   }

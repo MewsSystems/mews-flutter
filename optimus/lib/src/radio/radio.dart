@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -82,7 +83,7 @@ class OptimusRadio<T> extends StatefulWidget {
 
 class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   bool _isHovering = false;
-  bool _isTappedDown = false;
+  bool _isPressed = false;
 
   bool get _isSelected => widget.value == widget.groupValue;
 
@@ -95,10 +96,13 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
         OptimusRadioSize.large => preset300s.copyWith(color: _textColor),
       };
 
-  void _onHoverChanged(bool isHovering) =>
+  void _handleHoverChanged(bool isHovering) =>
       setState(() => _isHovering = isHovering);
 
-  void _onChanged() {
+  void _handlePressedChanged(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
+
+  void _handleChanged() {
     if (!_isSelected) {
       widget.onChanged(widget.value);
     }
@@ -106,7 +110,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
 
   _RadioState get _state {
     if (!widget.isEnabled) return _RadioState.disabled;
-    if (_isTappedDown) return _RadioState.active;
+    if (_isPressed) return _RadioState.active;
     if (_isHovering) return _RadioState.hover;
 
     return _RadioState.basic;
@@ -117,53 +121,48 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
         error: widget.error,
         child: IgnorePointer(
           ignoring: !widget.isEnabled,
-          child: MouseRegion(
-            onEnter: (_) => _onHoverChanged(true),
-            onExit: (_) => _onHoverChanged(false),
-            child: GestureDetector(
-              onTap: _onChanged,
-              onTapDown: (_) => setState(() => _isTappedDown = true),
-              onTapUp: (_) => setState(() => _isTappedDown = false),
-              onTapCancel: () => setState(() => _isTappedDown = false),
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
-                    width: _leadingSize,
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: _RadioCircle(
-                        state: _state,
-                        isSelected: _isSelected,
-                      ),
+          child: GestureWrapper(
+            onHoverChanged: _handleHoverChanged,
+            onPressedChanged: _handlePressedChanged,
+            onTap: _handleChanged,
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  bottom: 0,
+                  width: _leadingSize,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: _RadioCircle(
+                      state: _state,
+                      isSelected: _isSelected,
                     ),
                   ),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minHeight: _leadingSize,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: _leadingSize),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: spacing25,
-                            ),
-                            child: DefaultTextStyle.merge(
-                              style: _labelStyle,
-                              child: widget.label,
-                            ),
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minHeight: _leadingSize,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: _leadingSize),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: spacing25,
+                          ),
+                          child: DefaultTextStyle.merge(
+                            style: _labelStyle,
+                            child: widget.label,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -30,6 +30,8 @@ class _Content extends StatefulWidget {
 class _ContentState extends State<_Content> {
   int? _value = 8;
 
+  void _handleChanged(int? value) => setState(() => _value = value);
+
   @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +40,7 @@ class _ContentState extends State<_Content> {
           const SizedBox(height: 16),
           OptimusNumberPickerFormField(
             enabled: widget.isEnabled,
-            onChanged: (v) => setState(() => _value = v),
+            onChanged: _handleChanged,
             initialValue: 8,
             min: 5,
             max: 15,

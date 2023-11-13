@@ -63,7 +63,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     _isClearVisible = value != null && widget.isClearEnabled;
   }
 
-  void _showPickerDialog() {
+  void _handleTap() {
     FocusScope.of(context).requestFocus(FocusNode());
     showModalBottomSheet<void>(
       context: context,
@@ -76,7 +76,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     );
   }
 
-  void _onInputChanged(String v) {
+  void _handleInputChanged(String v) {
     if (v.isEmpty) {
       widget.onChanged(null);
     }
@@ -89,12 +89,12 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
   Widget build(BuildContext context) => OptimusInputField(
         controller: _controller,
         readOnly: true,
-        onTap: _showPickerDialog,
+        onTap: _handleTap,
         error: widget.error,
         label: widget.label,
         isClearEnabled: _isClearVisible,
         trailing: GestureDetector(
-          onTap: _showPickerDialog,
+          onTap: _handleTap,
           child: Icon(
             OptimusIcons.calendar,
             size: 20,
@@ -102,6 +102,6 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
           ),
         ),
         placeholder: widget.placeholder,
-        onChanged: _onInputChanged,
+        onChanged: _handleInputChanged,
       );
 }

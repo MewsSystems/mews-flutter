@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/border_radius.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/theme/theme.dart';
 
 class CheckboxTick extends StatefulWidget {
@@ -25,47 +26,45 @@ class CheckboxTick extends StatefulWidget {
 
 class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
   bool _isHovering = false;
-  bool _isTappedDown = false;
+  bool _isPressed = false;
 
   _TickState get _state => widget.isChecked.toState;
 
   _InteractionState get _interactionState {
     if (!widget.isEnabled) return _InteractionState.disabled;
-    if (_isTappedDown) return _InteractionState.active;
+    if (_isPressed) return _InteractionState.active;
     if (_isHovering) return _InteractionState.hover;
 
     return _InteractionState.basic;
   }
 
-  void _onHoverChanged(bool hovered) => setState(() => _isHovering = hovered);
+  void _handleHoverChanged(bool hovered) =>
+      setState(() => _isHovering = hovered);
+
+  void _handlePressedChanged(bool pressed) =>
+      setState(() => _isPressed = pressed);
 
   Color get _borderColor => widget.isError
       ? theme.tokens.backgroundInteractiveDangerDefault
       : _interactionState.borderColor(context);
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
+  Widget build(BuildContext context) => GestureWrapper(
+        onHoverChanged: _handleHoverChanged,
+        onPressedChanged: _handlePressedChanged,
         onTap: widget.onTap,
-        onTapDown: (_) => setState(() => _isTappedDown = true),
-        onTapUp: (_) => setState(() => _isTappedDown = false),
-        onTapCancel: () => setState(() => _isTappedDown = false),
-        child: MouseRegion(
-          onEnter: (_) => _onHoverChanged(true),
-          onExit: (_) => _onHoverChanged(false),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 100),
-            decoration: BoxDecoration(
-              color: _interactionState.fillColor(context, _state),
-              border: _state.isUnchecked
-                  ? Border.all(color: _borderColor, width: 1.5)
-                  : null,
-              borderRadius: const BorderRadius.all(borderRadius25),
-            ),
-            width: 16,
-            height: 16,
-            child:
-                _CheckboxIcon(icon: _state.icon, isEnabled: widget.isEnabled),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          decoration: BoxDecoration(
+            color: _interactionState.fillColor(context, _state),
+            border: _state.isUnchecked
+                ? Border.all(color: _borderColor, width: 1.5)
+                : null,
+            borderRadius: const BorderRadius.all(borderRadius25),
           ),
+          width: 16,
+          height: 16,
+          child: _CheckboxIcon(icon: _state.icon, isEnabled: widget.isEnabled),
         ),
       );
 }

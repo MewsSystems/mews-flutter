@@ -57,6 +57,8 @@ class _DialogWrapperState extends State<DialogWrapper>
     super.dispose();
   }
 
+  void _handleClose() => hide();
+
   @override
   void show({
     required Widget title,
@@ -71,7 +73,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       builder: (context) => OptimusDialog.nonModal(
         title: title,
         content: content,
-        close: hide,
+        close: _handleClose,
         isDismissible: isDismissible,
         actions: actions,
         size: size,
@@ -95,11 +97,11 @@ class _DialogWrapperState extends State<DialogWrapper>
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: hide,
+            onTap: _handleClose,
           ),
           OptimusInlineDialog(
             content: content,
-            close: hide,
+            close: _handleClose,
             actions: actions,
             anchorKey: anchorKey,
           ),

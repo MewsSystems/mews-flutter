@@ -33,14 +33,14 @@ final welcomeStory = Story(
           text: Text('mews.design'),
           size: OptimusStandaloneLinkSize.large,
           isExternal: true,
-          onPressed: _launchUrl,
+          onPressed: _handlePressed,
         ),
       ],
     ),
   ),
 );
 
-Future<void> _launchUrl() async {
+Future<void> _handlePressed() async {
   if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');
   }

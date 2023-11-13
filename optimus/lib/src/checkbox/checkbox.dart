@@ -111,7 +111,7 @@ class OptimusCheckbox extends StatelessWidget {
     return false;
   }
 
-  void _onTap() {
+  void _handleTap() {
     final newValue = isChecked ?? false;
     onChanged(!newValue);
   }
@@ -122,7 +122,7 @@ class OptimusCheckbox extends StatelessWidget {
         child: GroupWrapper(
           error: error,
           child: GestureDetector(
-            onTap: _onTap,
+            onTap: _handleTap,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -134,7 +134,7 @@ class OptimusCheckbox extends StatelessWidget {
                     isChecked: isChecked,
                     isEnabled: isEnabled,
                     onChanged: onChanged,
-                    onTap: _onTap,
+                    onTap: _handleTap,
                   ),
                 ),
                 Expanded(

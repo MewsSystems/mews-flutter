@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/common.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 
 /// When you don’t have enough space for regular buttons, or the action is
 /// clear enough, you can use an icon button without text.
@@ -36,8 +37,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
   bool _isHovered = false;
   bool _isPressed = false;
 
-  void _onHoverChanged(bool isHovering) =>
+  void _handleHoverChanged(bool isHovering) =>
       setState(() => _isHovered = isHovering);
+
+  void _handlePressedChanged(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
 
   bool get _isEnabled => widget.onPressed != null;
 
@@ -53,43 +57,38 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
     return IgnorePointer(
       ignoring: !isEnabled,
-      child: MouseRegion(
-        onEnter: (_) => _onHoverChanged(true),
-        onExit: (_) => _onHoverChanged(false),
-        child: GestureDetector(
-          onTap: widget.onPressed,
-          onTapDown: (_) => setState(() => _isPressed = true),
-          onTapUp: (_) => setState(() => _isPressed = false),
-          onTapCancel: () => setState(() => _isPressed = false),
-          child: AnimatedContainer(
-            height: widget.size.containerSize,
-            width: widget.size.containerSize,
-            padding: EdgeInsets.zero,
-            decoration: BoxDecoration(
-              color: widget.variant.backgroundColor(
+      child: GestureWrapper(
+        onHoverChanged: _handleHoverChanged,
+        onPressedChanged: _handlePressedChanged,
+        onTap: widget.onPressed,
+        child: AnimatedContainer(
+          height: widget.size.containerSize,
+          width: widget.size.containerSize,
+          padding: EdgeInsets.zero,
+          decoration: BoxDecoration(
+            color: widget.variant.backgroundColor(
+              tokens,
+              isEnabled: _isEnabled,
+              isPressed: _isPressed,
+              isHovered: _isHovered,
+            ),
+            border: borderColor != null
+                ? Border.all(color: borderColor, width: 1)
+                : null,
+            borderRadius: const BorderRadius.all(borderRadius50),
+          ),
+          duration: buttonAnimationDuration,
+          child: IconTheme.merge(
+            data: IconThemeData(
+              color: widget.variant.foregroundColor(
                 tokens,
                 isEnabled: _isEnabled,
                 isPressed: _isPressed,
                 isHovered: _isHovered,
               ),
-              border: borderColor != null
-                  ? Border.all(color: borderColor, width: 1)
-                  : null,
-              borderRadius: const BorderRadius.all(borderRadius50),
+              size: widget.size.iconSize,
             ),
-            duration: buttonAnimationDuration,
-            child: IconTheme.merge(
-              data: IconThemeData(
-                color: widget.variant.foregroundColor(
-                  tokens,
-                  isEnabled: _isEnabled,
-                  isPressed: _isPressed,
-                  isHovered: _isHovered,
-                ),
-                size: widget.size.iconSize,
-              ),
-              child: widget.icon,
-            ),
+            child: widget.icon,
           ),
         ),
       ),

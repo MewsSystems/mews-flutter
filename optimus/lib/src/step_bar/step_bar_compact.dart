@@ -57,7 +57,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
     });
   }
 
-  void _expand() {
+  void _handleExpand() {
     if (_overlayEntry != null) return;
 
     _overlayEntry = _createOverlayEntry().also((it) {
@@ -66,7 +66,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
     });
   }
 
-  void _collapse() {
+  void _handleCollapse() {
     final overlay = _overlayEntry;
 
     if (overlay != null) {
@@ -84,7 +84,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
         builder: (context) => IgnorePointer(
           ignoring: _animationController.isAnimating,
           child: GestureDetector(
-            onTap: _collapse,
+            onTap: _handleCollapse,
             child: Material(
               color: Colors.transparent,
               child: _StepBarData(
@@ -111,7 +111,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
         currentItem: widget.currentItem,
         maxItem: widget.maxItem,
         child: GestureDetector(
-          onTap: _expand,
+          onTap: _handleExpand,
           child: CompositedTransformTarget(
             link: _layerLink,
             child: _CollapsedCompactStepBar(

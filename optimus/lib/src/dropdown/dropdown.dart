@@ -356,14 +356,16 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
     DropdownTapInterceptor.of(context)?.onTap();
   }
 
+  void _handleHighlightChanged(bool isHighlighted) =>
+      setState(() => _isHighlighted = isHighlighted);
+
   @override
   Widget build(BuildContext context) => SizedBox(
         width: AnchoredOverlay.of(context)?.width,
         height: _itemMinHeight,
         child: InkWell(
           highlightColor: theme.colors.primary,
-          onHighlightChanged: (isHighlighted) =>
-              setState(() => _isHighlighted = isHighlighted),
+          onHighlightChanged: _handleHighlightChanged,
           onTap: _handleItemTap,
           child: _isHighlighted
               ? OptimusTheme(

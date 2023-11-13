@@ -107,7 +107,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
     super.dispose();
   }
 
-  void _onMinusTap() {
+  void _handleMinusTap() {
     final value = _value;
     final int newValue;
     if (value != null) {
@@ -122,7 +122,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
     _updateController(newValue);
   }
 
-  void _onPlusTap() {
+  void _handlePlusTap() {
     final value = _value;
     final int newValue;
     if (value != null) {
@@ -170,11 +170,13 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         controller: _effectiveController,
         leading: NumberPickerButton(
           iconData: OptimusIcons.minus_simple,
-          onPressed: value == null || value > widget.min ? _onMinusTap : null,
+          onPressed:
+              value == null || value > widget.min ? _handleMinusTap : null,
         ),
         trailing: NumberPickerButton(
           iconData: OptimusIcons.plus_simple,
-          onPressed: value == null || value < widget.max ? _onPlusTap : null,
+          onPressed:
+              value == null || value < widget.max ? _handlePlusTap : null,
         ),
         focusNode: _effectiveFocusNode,
         inputFormatters: [

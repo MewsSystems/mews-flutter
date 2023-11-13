@@ -22,9 +22,19 @@ class _SelectInputStoryState extends State<SelectInputStory> {
   final List<String> _selectedValues = [];
   String _searchToken = '';
 
-  void _onTextChanged(String text) {
-    setState(() => _searchToken = text.toLowerCase());
-  }
+  void _handleTextChanged(String text) =>
+      setState(() => _searchToken = text.toLowerCase());
+
+  void _handleChanged(bool isMultiselect, String value) => setState(() {
+        _selectedValue = value;
+        if (isMultiselect) {
+          if (_selectedValues.contains(value)) {
+            _selectedValues.remove(value);
+          } else {
+            _selectedValues.add(value);
+          }
+        }
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -54,21 +64,13 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           leading: k.boolean(label: 'Leading Icon')
               ? const Icon(OptimusIcons.search)
               : null,
-          onTextChanged: k.boolean(label: 'Searchable') ? _onTextChanged : null,
+          onTextChanged:
+              k.boolean(label: 'Searchable') ? _handleTextChanged : null,
           prefix: prefix.isNotEmpty ? Text(prefix) : null,
           suffix: suffix.isNotEmpty ? Text(suffix) : null,
           trailing: trailing != null ? Icon(trailing) : null,
           showLoader: showLoader,
-          onChanged: (i) => setState(() {
-            _selectedValue = i;
-            if (multiselect) {
-              if (_selectedValues.contains(i)) {
-                _selectedValues.remove(i);
-              } else {
-                _selectedValues.add(i);
-              }
-            }
-          }),
+          onChanged: (value) => _handleChanged(multiselect, value),
           size: k.options(
             label: 'Size',
             initial: OptimusWidgetSize.large,
@@ -101,7 +103,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           embeddedSearch: embeddedSearch
               ? OptimusDropdownEmbeddedSearch(
                   initialValue: _searchToken,
-                  onTextChanged: _onTextChanged,
+                  onTextChanged: _handleTextChanged,
                   placeholder: 'Search',
                 )
               : null,
