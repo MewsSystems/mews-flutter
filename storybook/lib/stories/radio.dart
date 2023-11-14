@@ -39,9 +39,8 @@ class RadioExample extends StatefulWidget {
 class _RadioExampleState extends State<RadioExample> {
   String _groupValue = _options.first;
 
-  void _onChanged(String newValue) {
-    setState(() => _groupValue = newValue);
-  }
+  void _handleChanged(String newValue) =>
+      setState(() => _groupValue = newValue);
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -55,7 +54,7 @@ class _RadioExampleState extends State<RadioExample> {
                   size: widget.size,
                   value: i,
                   groupValue: _groupValue,
-                  onChanged: _onChanged,
+                  onChanged: _handleChanged,
                   error: widget.error,
                 ),
               )
@@ -106,6 +105,8 @@ class _RadioGroupExample extends StatefulWidget {
 class _RadioGroupExampleState extends State<_RadioGroupExample> {
   String _groupValue = '';
 
+  void _handleChanged(String value) => setState(() => _groupValue = value);
+
   @override
   Widget build(BuildContext context) => OptimusRadioGroup<String>(
         size: widget.size,
@@ -113,7 +114,7 @@ class _RadioGroupExampleState extends State<_RadioGroupExample> {
         label: widget.label,
         error: widget.error,
         isEnabled: widget.isEnabled,
-        onChanged: (value) => setState(() => _groupValue = value),
+        onChanged: _handleChanged,
         items: _options
             .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
             .toList(),

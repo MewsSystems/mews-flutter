@@ -245,6 +245,7 @@ dart_code_metrics:
     - avoid-accessing-collections-by-constant-index
     # - avoid-accessing-other-classes-private-members
     # - avoid-async-call-in-sync-function
+    # - avoid-banned-annotations
     # - avoid-banned-file-names
     # - avoid-banned-types
     - avoid-barrel-files
@@ -253,12 +254,15 @@ dart_code_metrics:
     - avoid-cascade-after-if-null
     # - avoid-collapsible-if
     - avoid-collection-methods-with-unrelated-types
+    # - avoid-collection-mutating-methods
     # - avoid-declaring-call-method
     - avoid-double-slash-imports
+    - avoid-duplicate-cascades
     - avoid-duplicate-exports
     - avoid-duplicate-mixins
     - avoid-duplicate-named-imports
     - avoid-duplicate-patterns
+    - avoid-duplicate-switch-case-conditions
     # - avoid-dynamic
     - avoid-equal-expressions
     - avoid-explicit-pattern-field-name
@@ -271,6 +275,7 @@ dart_code_metrics:
     # - avoid-identical-exception-handling-blocks
     # - avoid-ignoring-return-values
     # - avoid-importing-entrypoint-exports
+    # - avoid-inferrable-type-arguments
     - avoid-inverted-boolean-checks
     - avoid-keywords-in-wildcard-pattern
     # - avoid-late-keyword
@@ -283,6 +288,7 @@ dart_code_metrics:
     - avoid-missed-calls
     # - avoid-missing-enum-constant-in-map
     - avoid-missing-interpolation
+    # - avoid-missing-test-files
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     # - avoid-mutating-parameters
@@ -324,11 +330,12 @@ dart_code_metrics:
     - avoid-unnecessary-futures
     - avoid-unnecessary-getter
     - avoid-unnecessary-if
-    - avoid-unnecessary-late
+    - avoid-unnecessary-local-late
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-reassignment
     - avoid-unnecessary-return
+    - avoid-unnecessary-super
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
     - avoid-unrelated-type-assertions
@@ -350,6 +357,7 @@ dart_code_metrics:
     # - map-keys-ordering
     # - match-class-name-pattern
     - match-getter-setter-field-names
+    - match-lib-folder-structure
     # - match-positional-field-names-on-assignment
     # - member-ordering
     # - missing-test-assertion
@@ -368,15 +376,20 @@ dart_code_metrics:
     # - no-magic-number
     - no-object-declaration
     # - parameters-ordering
+    # - prefer-addition-subtraction-assignments
     # - prefer-async-await
+    - prefer-both-inlining-annotations
     # - prefer-bytes-builder
     - prefer-commenting-analyzer-ignores
     # - prefer-conditional-expressions
+    # - prefer-correct-callback-field-name
     - prefer-correct-error-name
     - prefer-correct-for-loop-increment
     - prefer-correct-future-return-type
+    - prefer-correct-handler-name
     # - prefer-correct-identifier-length
     - prefer-correct-json-casts
+    - prefer-correct-setter-parameter-name
     - prefer-correct-stream-return-type
     # - prefer-correct-switch-length
     - prefer-correct-test-file-name:
@@ -386,7 +399,9 @@ dart_code_metrics:
         ignore-abstract: false
     - prefer-early-return
     # - prefer-enums-by-name
+    - prefer-explicit-function-type
     - prefer-explicit-parameter-names
+    - prefer-explicit-type-arguments
     # - prefer-first
     # - prefer-getter-over-method
     - prefer-immediate-return
@@ -397,15 +412,20 @@ dart_code_metrics:
     - prefer-named-boolean-parameters:
       ignore-single: true
     # - prefer-named-imports
+    - prefer-null-aware-spread
     - prefer-parentheses-with-if-null
+    # - prefer-prefixed-global-constants
     - prefer-public-exception-classes
     - prefer-return-await
     - prefer-returning-conditional-expressions
     - prefer-simpler-patterns-null-check
+    - prefer-specific-cases-first
     # - prefer-static-class
     # - prefer-test-matchers
     # - prefer-trailing-comma
     - prefer-type-over-var
+    - prefer-typedefs-for-callbacks
+    - prefer-unique-test-names
     # - prefer-unwrapping-future-or
     # - prefer-visible-for-testing-on-members
     - prefer-wildcard-pattern

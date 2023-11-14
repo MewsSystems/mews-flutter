@@ -55,14 +55,17 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
     super.dispose();
   }
 
+  void _handleOpenedChanged(bool isOpened) =>
+      setState(() => _isOpened = isOpened);
+
   @override
   Widget build(BuildContext context) => OverlayController(
         onItemSelected: widget.onItemSelected,
         focusNode: _node,
         anchorKey: _selectFieldKey,
         items: widget.items,
-        onShown: () => setState(() => _isOpened = true),
-        onHidden: () => setState(() => _isOpened = false),
+        onShown: () => _handleOpenedChanged(true),
+        onHidden: () => _handleOpenedChanged(false),
         child: GestureDetector(
           onTap: () => widget.isEnabled ? _node.requestFocus() : null,
           child: Focus(

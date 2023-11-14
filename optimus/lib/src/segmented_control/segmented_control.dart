@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -132,14 +133,17 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
 class _OptimusSegmentedControlItemState<T>
     extends State<_OptimusSegmentedControlItem<T>> with ThemeGetter {
   bool _isHovering = false;
-  bool _isTappedDown = false;
+  bool _isPressed = false;
 
   bool get _isSelected => widget.value == widget.groupValue;
 
-  void _onHoverChanged(bool isHovering) =>
+  void _handleHoverChanged(bool isHovering) =>
       setState(() => _isHovering = isHovering);
 
-  void _onChanged() {
+  void _handlePressedChanged(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
+
+  void _handleChanged() {
     if (!_isSelected) {
       widget.onItemSelected(widget.value);
     }
@@ -147,7 +151,7 @@ class _OptimusSegmentedControlItemState<T>
 
   Color _color(OptimusTokens tokens) {
     if (!widget.isEnabled) return tokens.backgroundInteractiveNeutralDefault;
-    if (_isTappedDown) return tokens.backgroundInteractiveNeutralActive;
+    if (_isPressed) return tokens.backgroundInteractiveNeutralActive;
     if (_isHovering) return tokens.backgroundInteractiveNeutralHover;
 
     return _isSelected
@@ -158,7 +162,7 @@ class _OptimusSegmentedControlItemState<T>
   Color _foregroundColor(OptimusTokens tokens) {
     if (!widget.isEnabled) return tokens.textDisabled;
 
-    return (_isSelected || _isHovering || _isTappedDown)
+    return (_isSelected || _isHovering || _isPressed)
         ? tokens.textStaticPrimary
         : tokens.textStaticTertiary;
   }
@@ -168,37 +172,32 @@ class _OptimusSegmentedControlItemState<T>
     final tokens = OptimusTheme.of(context).tokens;
 
     return LayoutBuilder(
-      builder: (context, constrains) => MouseRegion(
-        onEnter: (_) => _onHoverChanged(true),
-        onExit: (_) => _onHoverChanged(false),
-        child: GestureDetector(
-          onTap: _onChanged,
-          onTapDown: (_) => setState(() => _isTappedDown = true),
-          onTapUp: (_) => setState(() => _isTappedDown = false),
-          onTapCancel: () => setState(() => _isTappedDown = false),
-          child: Padding(
-            padding: const EdgeInsets.all(spacing25),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 100),
-              curve: Curves.easeOut,
-              constraints: BoxConstraints(minHeight: widget.size.value),
-              padding: const EdgeInsets.symmetric(vertical: spacing50),
-              decoration: BoxDecoration(
-                color: _color(tokens),
-                borderRadius: const BorderRadius.all(borderRadius100),
-              ),
-              alignment: Alignment.center,
-              child: DefaultTextStyle.merge(
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                maxLines: widget.maxLines,
-                style: preset200s.copyWith(color: _foregroundColor(tokens)),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: constrains.adaptivePadding,
-                  ),
-                  child: widget.child,
+      builder: (context, constrains) => GestureWrapper(
+        onTap: _handleChanged,
+        onHoverChanged: _handleHoverChanged,
+        onPressedChanged: _handlePressedChanged,
+        child: Padding(
+          padding: const EdgeInsets.all(spacing25),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            curve: Curves.easeOut,
+            constraints: BoxConstraints(minHeight: widget.size.value),
+            padding: const EdgeInsets.symmetric(vertical: spacing50),
+            decoration: BoxDecoration(
+              color: _color(tokens),
+              borderRadius: const BorderRadius.all(borderRadius100),
+            ),
+            alignment: Alignment.center,
+            child: DefaultTextStyle.merge(
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              maxLines: widget.maxLines,
+              style: preset200s.copyWith(color: _foregroundColor(tokens)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: constrains.adaptivePadding,
                 ),
+                child: widget.child,
               ),
             ),
           ),

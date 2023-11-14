@@ -17,6 +17,8 @@ class _ToggleStory extends StatefulWidget {
 class _ToggleStoryState extends State<_ToggleStory> {
   bool _isChecked = false;
 
+  void _handleChanged(bool isChecked) => setState(() => _isChecked = isChecked);
+
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
@@ -27,8 +29,7 @@ class _ToggleStoryState extends State<_ToggleStory> {
       offIcon: useIcons ? OptimusIcons.lock : null,
       onIcon: useIcons ? OptimusIcons.unlock : null,
       isChecked: _isChecked,
-      onChanged:
-          isEnabled ? (value) => setState(() => _isChecked = value) : null,
+      onChanged: isEnabled ? _handleChanged : null,
     );
   }
 }

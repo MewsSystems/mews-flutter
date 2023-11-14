@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
           .getString(_keyTheme)
           .toThemeMode();
 
-  Future<void> _saveThemeMode(ThemeMode themeMode) async =>
+  Future<void> _handleThemeChanged(ThemeMode themeMode) async =>
       (await SharedPreferences.getInstance())
           .setString(_keyTheme, themeMode.name);
 
@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
               plugins: [
                 ThemeModePlugin(
                   initialTheme: snapshot.data,
-                  onThemeChanged: _saveThemeMode,
+                  onThemeChanged: _handleThemeChanged,
                 ),
                 DeviceFramePlugin(),
               ],

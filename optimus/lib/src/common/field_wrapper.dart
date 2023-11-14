@@ -60,12 +60,12 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   @override
   void initState() {
     super.initState();
-    widget.focusNode.addListener(_onFocusChanged);
+    widget.focusNode.addListener(_handleFocusChanged);
   }
 
   @override
   void dispose() {
-    widget.focusNode.removeListener(_onFocusChanged);
+    widget.focusNode.removeListener(_handleFocusChanged);
     super.dispose();
   }
 
@@ -80,7 +80,10 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     return error;
   }
 
-  void _onFocusChanged() => setState(() {});
+  void _handleFocusChanged() => setState(() {});
+
+  void _handleHoverChanged(bool isHovered) =>
+      setState(() => _isHovered = isHovered);
 
   bool get _isFocused => widget.isFocused ?? widget.focusNode.hasFocus;
 
@@ -145,8 +148,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                   )
                 : null,
             child: MouseRegion(
-              onEnter: (_) => setState(() => _isHovered = true),
-              onExit: (_) => setState(() => _isHovered = false),
+              onEnter: (_) => _handleHoverChanged(true),
+              onExit: (_) => _handleHoverChanged(false),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 height: widget.size.height,

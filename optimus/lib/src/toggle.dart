@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 
 /// The toggle component serves as a visual representation of a binary choice,
 /// providing users with a clear way to control settings, preferences, or switch
@@ -36,7 +37,7 @@ class OptimusToggle extends StatefulWidget {
 
 class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
   bool _isHovered = false;
-  bool _isTapped = false;
+  bool _isPressed = false;
 
   bool get _isEnabled => widget.onChanged != null;
 
@@ -56,59 +57,61 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
 
   Color get _color => !_isEnabled
       ? context.tokens.backgroundDisabled
-      : _isTapped
+      : _isPressed
           ? _tappedColor
           : _isHovered
               ? _hoveredColor
               : _defaultColor;
 
+  void _handleHoveredChanged(bool isHovered) =>
+      setState(() => _isHovered = isHovered);
+
+  void _handlePressedChanged(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
+
   @override
   Widget build(BuildContext context) => IgnorePointer(
         ignoring: !_isEnabled,
-        child: MouseRegion(
-          onEnter: (event) => setState(() => _isHovered = true),
-          onExit: (event) => setState(() => _isHovered = false),
-          child: GestureDetector(
-            onTapDown: (details) => setState(() => _isTapped = true),
-            onTapUp: (details) => setState(() => _isTapped = false),
-            onTap: () => widget.onChanged?.call(!widget.isChecked),
-            child: AnimatedContainer(
-              width: _toggleWidth,
-              height: _toggleHeight,
-              duration: _animationDuration,
-              padding: const EdgeInsets.all(spacing50),
-              decoration: ShapeDecoration(
-                color: _color,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(56)),
-                ),
+        child: GestureWrapper(
+          onHoverChanged: _handleHoveredChanged,
+          onPressedChanged: _handlePressedChanged,
+          onTap: () => widget.onChanged?.call(!widget.isChecked),
+          child: AnimatedContainer(
+            width: _toggleWidth,
+            height: _toggleHeight,
+            duration: _animationDuration,
+            padding: const EdgeInsets.all(spacing50),
+            decoration: ShapeDecoration(
+              color: _color,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(56)),
               ),
-              child: Stack(
-                children: [
-                  if (widget.offIcon != null || widget.onChanged != null)
-                    Row(
-                      children: [
-                        _Icon(
-                          icon: widget.offIcon,
-                          isVisible: widget.isChecked,
-                          isEnabled: _isEnabled,
-                        ),
-                        const SizedBox(width: spacing50),
-                        _Icon(
-                          icon: widget.onIcon,
-                          isVisible: !widget.isChecked,
-                          isEnabled: _isEnabled,
-                        ),
-                      ],
-                    ),
-                  AnimatedPositioned(
-                    duration: _animationDuration,
-                    curve: _animationCurve,
-                    left: _leftPadding,
-                    child: const _Knob(),
+            ),
+            child: Stack(
+              children: [
+                if (widget.offIcon != null || widget.onChanged != null)
+                  Row(
+                    children: [
+                      _Icon(
+                        icon: widget.offIcon,
+                        isVisible: widget.isChecked,
+                        isEnabled: _isEnabled,
+                      ),
+                      const SizedBox(width: spacing50),
+                      _Icon(
+                        icon: widget.onIcon,
+                        isVisible: !widget.isChecked,
+                        isEnabled: _isEnabled,
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                AnimatedPositioned(
+                  duration: _animationDuration,
+                  curve: _animationCurve,
+                  left: _leftPadding,
+                  child: const _Knob(),
+                ),
+              ],
             ),
           ),
         ),

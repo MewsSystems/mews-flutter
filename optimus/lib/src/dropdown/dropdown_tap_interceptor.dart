@@ -8,7 +8,7 @@ class DropdownTapInterceptor extends InheritedWidget {
   });
 
   static DropdownTapInterceptor? of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType();
+      context.dependOnInheritedWidgetOfExactType<DropdownTapInterceptor>();
 
   final VoidCallback onTap;
 

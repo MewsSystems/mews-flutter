@@ -128,6 +128,8 @@ class _SegmentedControlExample extends StatefulWidget {
 class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
   String _value = 'Another long option';
 
+  void _handleItemSelected(String value) => setState(() => _value = value);
+
   @override
   Widget build(BuildContext context) => OptimusSegmentedControl<String>(
         value: _value,
@@ -138,7 +140,7 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
         error: widget.error,
         isEnabled: widget.isEnabled,
         direction: widget.direction,
-        onItemSelected: (value) => setState(() => _value = value),
+        onItemSelected: _handleItemSelected,
         items: widget.options
             .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
             .toList(),

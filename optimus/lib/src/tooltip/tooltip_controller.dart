@@ -49,7 +49,7 @@ class _TooltipControllerState extends State<TooltipController> {
 
   OverlayEntry _createEntry() => OverlayEntry(
         builder: (context) => GestureDetector(
-          onTapDown: (_) => _hideTooltip(),
+          onTapDown: (_) => _handleHide(),
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
             children: <Widget>[
@@ -64,16 +64,16 @@ class _TooltipControllerState extends State<TooltipController> {
         ),
       );
 
-  void _showTooltip({bool autoHide = true}) {
+  void _handleShow({bool autoHide = true}) {
     if (_entry != null) return;
 
     _entry = _createEntry().also((it) {
       Overlay.of(context).insert(it);
-      if (autoHide) Future.delayed(widget.autoHideDuration, _hideTooltip);
+      if (autoHide) Future.delayed(widget.autoHideDuration, _handleHide);
     });
   }
 
-  void _hideTooltip() {
+  void _handleHide() {
     _entry?.remove();
     _entry?.dispose();
     _entry = null;
@@ -81,10 +81,10 @@ class _TooltipControllerState extends State<TooltipController> {
 
   @override
   Widget build(BuildContext context) => MouseRegion(
-        onEnter: (_) => _showTooltip(autoHide: false),
-        onExit: (_) => _hideTooltip(),
+        onEnter: (_) => _handleShow(autoHide: false),
+        onExit: (_) => _handleHide(),
         child: GestureDetector(
-          onTap: _showTooltip,
+          onTap: _handleShow,
           child: widget.child,
         ),
       );

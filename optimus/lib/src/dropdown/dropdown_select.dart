@@ -187,10 +187,12 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   VoidCallback? get _onTap =>
       widget.embeddedSearch != null ? _showOverlay : null;
 
-  void _onClearAllTap() {
+  void _handleClearAllTap() {
     _effectiveController.clear();
     widget.onTextChanged?.call('');
   }
+
+  void _handleClose() => _removeOverlay();
 
   void _handleChipTap() {
     if (_effectiveFocusNode.hasFocus) {
@@ -231,7 +233,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
-          void onTapDown(TapDownDetails details) {
+          void handleTapDown(TapDownDetails details) {
             bool hitTest(RenderBox box) => box.hitTest(
                   BoxHitTestResult(),
                   position: box.globalToLocal(details.globalPosition),
@@ -255,9 +257,9 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
           return GestureDetector(
             key: const Key('OptimusDropdownOverlay'),
             behavior: HitTestBehavior.translucent,
-            onTapDown: onTapDown,
+            onTapDown: handleTapDown,
             child: DropdownTapInterceptor(
-              onTap: widget.multiselect ? () {} : _removeOverlay,
+              onTap: widget.multiselect ? () {} : _handleClose,
               child: OptimusDropdown(
                 items: widget.items,
                 anchorKey: _fieldBoxKey,
@@ -275,7 +277,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   @override
   Widget build(BuildContext context) {
     final clearAll = _isClearAllButtonVisible
-        ? _ClearAllButton(onTap: _onClearAllTap)
+        ? _ClearAllButton(onTap: _handleClearAllTap)
         : null;
     final trailing = clearAll == null &&
             widget.trailing == null &&
