@@ -1,3 +1,7 @@
+## 0.30.1+1
+
+ - **REFACTOR**: Fix linter errors.
+
 ## 0.30.1
 
  - **FEAT**: Update text input design (#467).
