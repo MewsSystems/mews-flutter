@@ -150,22 +150,16 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     });
   }
 
-  bool _handleOnBackPressed() {
+  void _handleOnBackPressed(bool didPop) {
+    if (didPop) return;
     if (_effectiveFocusNode.hasFocus) {
       _effectiveFocusNode.unfocus();
-
-      return false;
-    } else if (widget.embeddedSearch != null) {
-      final overlay = _overlayEntry;
-      if (overlay != null) {
-        _removeOverlay();
-
-        return false;
-      }
     }
-
-    return true;
+    final overlay = _overlayEntry;
+    if (overlay != null) _removeOverlay();
   }
+
+  bool get _canPop => !_effectiveFocusNode.hasFocus && _overlayEntry == null;
 
   void _showOverlay() {
     if (_overlayEntry != null) return;
@@ -173,6 +167,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
       Overlay.of(context, rootOverlay: widget.rootOverlay).insert(it);
       widget.onDropdownShow?.call();
     });
+    setState(() {});
   }
 
   void _removeOverlay() {
@@ -291,8 +286,9 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
             isUpdating: widget.isUpdating,
           );
 
-    return WillPopScope(
-      onWillPop: () async => _handleOnBackPressed(),
+    return PopScope(
+      canPop: _canPop,
+      onPopInvoked: _handleOnBackPressed,
       child: widget.multiselect && _hasValues
           ? MultiSelectInputField(
               values: _values ?? [],

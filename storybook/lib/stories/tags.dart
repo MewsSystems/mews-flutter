@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
@@ -32,7 +31,7 @@ final Story tagStory = Story(
                 (c) => Padding(
                   padding: const EdgeInsets.all(8),
                   child: OptimusTag(
-                    text: text.isEmpty ? describeEnum(c) : text,
+                    text: text.isEmpty ? c.name : text,
                     leadingIcon: leadingIcon,
                     trailingIcon: trailingIcon,
                     colorOption: c,
@@ -50,7 +49,7 @@ final Story tagStory = Story(
                 (c) => Padding(
                   padding: const EdgeInsets.all(8),
                   child: OptimusCategoricalTag(
-                    text: text.isEmpty ? describeEnum(c) : text,
+                    text: text.isEmpty ? c.name : text,
                     leadingIcon: leadingIcon,
                     trailingIcon: trailingIcon,
                     colorOption: c,
