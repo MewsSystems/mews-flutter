@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
@@ -24,7 +23,7 @@ final Story iconStory = Story(
           .map(
             (c) => OptimusListTile(
               title: OptimusSubsectionTitle(
-                child: Text(describeEnum(c).toUpperCase()),
+                child: Text(c.name.toUpperCase()),
               ),
               prefix: OptimusIcon(
                 iconData: icon,
@@ -53,7 +52,7 @@ final Story supplementaryIconStory = Story(
           .map(
             (c) => OptimusListTile(
               title: OptimusSubsectionTitle(
-                child: Text(describeEnum(c).toUpperCase()),
+                child: Text(c.name.toUpperCase()),
               ),
               prefix: OptimusSupplementaryIcon(
                 iconData: icon,
