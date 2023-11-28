@@ -1,0 +1,32 @@
+name: Create Design Tokens PR
+on:
+  push:
+    branches:
+      - "design-tokens-**"
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: "./.github/actions/setup"
+
+      - name: Generate tokens files
+        run: melos gen_theme
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Automated commit of generated tailor files
+          file_pattern: "*tailor.dart"
+
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "master"
+          pr_title: "feat: Design Tokens Update"
+          pr_body: "Design Tokens were updated! This PR was created to update the code."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
