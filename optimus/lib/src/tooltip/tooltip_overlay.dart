@@ -69,13 +69,14 @@ class TooltipOverlayState extends State<TooltipOverlay>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(_afterInitialLayoutCallback);
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _afterInitialLayoutCallback());
   }
 
   @override
   void didUpdateWidget(TooltipOverlay oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback(_updateRect);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateRect());
   }
 
   double get _overlayWidth => _overlaySize?.width ?? 0;
@@ -236,12 +237,13 @@ class TooltipOverlayState extends State<TooltipOverlay>
               : end
           : center;
 
-  void _afterInitialLayoutCallback(dynamic _) {
-    _updateRect(_);
-    WidgetsBinding.instance.addPostFrameCallback(_afterFirstLayoutCallback);
+  void _afterInitialLayoutCallback() {
+    _updateRect();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _afterFirstLayoutCallback());
   }
 
-  void _afterFirstLayoutCallback(dynamic _) {
+  void _afterFirstLayoutCallback() {
     if (!mounted) return;
     setState(() {
       _position = _calculatePosition();
@@ -249,7 +251,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
     });
   }
 
-  void _updateRect(dynamic _) {
+  void _updateRect() {
     if (!mounted) return;
     final newRect = _calculateRect(widget.anchorKey);
     final newTooltipRect = _calculateRect(widget.tooltipKey);

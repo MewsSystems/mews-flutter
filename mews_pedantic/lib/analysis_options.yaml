@@ -27,6 +27,8 @@ linter:
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
     - no_logic_in_create_state
+    - no_self_assignments
+    - no_wildcard_variable_uses
     # - prefer-relative-imports
     - prefer_void_to_null
     - test_types_in_equals
@@ -45,6 +47,7 @@ linter:
     # - always_put_required_named_parameters_first
     # - always_specify_types
     - annotate_overrides
+    - annotate_redeclares
     # - avoid_annotating_with_dynamic
     # - avoid_bool_literals_in_conditional_expressions
     - avoid_catches_without_on_clauses
