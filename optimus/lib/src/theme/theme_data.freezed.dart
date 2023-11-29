@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'theme_data.dart';
 
@@ -70,11 +70,11 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
 }
 
 /// @nodoc
-abstract class _$$_OptimusThemeDataCopyWith<$Res>
+abstract class _$$OptimusThemeDataImplCopyWith<$Res>
     implements $OptimusThemeDataCopyWith<$Res> {
-  factory _$$_OptimusThemeDataCopyWith(
-          _$_OptimusThemeData value, $Res Function(_$_OptimusThemeData) then) =
-      __$$_OptimusThemeDataCopyWithImpl<$Res>;
+  factory _$$OptimusThemeDataImplCopyWith(_$OptimusThemeDataImpl value,
+          $Res Function(_$OptimusThemeDataImpl) then) =
+      __$$OptimusThemeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -82,11 +82,11 @@ abstract class _$$_OptimusThemeDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OptimusThemeDataCopyWithImpl<$Res>
-    extends _$OptimusThemeDataCopyWithImpl<$Res, _$_OptimusThemeData>
-    implements _$$_OptimusThemeDataCopyWith<$Res> {
-  __$$_OptimusThemeDataCopyWithImpl(
-      _$_OptimusThemeData _value, $Res Function(_$_OptimusThemeData) _then)
+class __$$OptimusThemeDataImplCopyWithImpl<$Res>
+    extends _$OptimusThemeDataCopyWithImpl<$Res, _$OptimusThemeDataImpl>
+    implements _$$OptimusThemeDataImplCopyWith<$Res> {
+  __$$OptimusThemeDataImplCopyWithImpl(_$OptimusThemeDataImpl _value,
+      $Res Function(_$OptimusThemeDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_OptimusThemeDataCopyWithImpl<$Res>
     Object? colors = null,
     Object? tokens = null,
   }) {
-    return _then(_$_OptimusThemeData(
+    return _then(_$OptimusThemeDataImpl(
       brightness: null == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
@@ -115,8 +115,8 @@ class __$$_OptimusThemeDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OptimusThemeData extends _OptimusThemeData {
-  const _$_OptimusThemeData(
+class _$OptimusThemeDataImpl extends _OptimusThemeData {
+  const _$OptimusThemeDataImpl(
       {required this.brightness, required this.colors, required this.tokens})
       : super._();
 
@@ -136,32 +136,29 @@ class _$_OptimusThemeData extends _OptimusThemeData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OptimusThemeData &&
-            const DeepCollectionEquality()
-                .equals(other.brightness, brightness) &&
+            other is _$OptimusThemeDataImpl &&
+            (identical(other.brightness, brightness) ||
+                other.brightness == brightness) &&
             (identical(other.colors, colors) || other.colors == colors) &&
-            const DeepCollectionEquality().equals(other.tokens, tokens));
+            (identical(other.tokens, tokens) || other.tokens == tokens));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(brightness),
-      colors,
-      const DeepCollectionEquality().hash(tokens));
+  int get hashCode => Object.hash(runtimeType, brightness, colors, tokens);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OptimusThemeDataCopyWith<_$_OptimusThemeData> get copyWith =>
-      __$$_OptimusThemeDataCopyWithImpl<_$_OptimusThemeData>(this, _$identity);
+  _$$OptimusThemeDataImplCopyWith<_$OptimusThemeDataImpl> get copyWith =>
+      __$$OptimusThemeDataImplCopyWithImpl<_$OptimusThemeDataImpl>(
+          this, _$identity);
 }
 
 abstract class _OptimusThemeData extends OptimusThemeData {
   const factory _OptimusThemeData(
       {required final Brightness brightness,
       required final OptimusColors colors,
-      required final OptimusTokens tokens}) = _$_OptimusThemeData;
+      required final OptimusTokens tokens}) = _$OptimusThemeDataImpl;
   const _OptimusThemeData._() : super._();
 
   @override
@@ -172,6 +169,6 @@ abstract class _OptimusThemeData extends OptimusThemeData {
   OptimusTokens get tokens;
   @override
   @JsonKey(ignore: true)
-  _$$_OptimusThemeDataCopyWith<_$_OptimusThemeData> get copyWith =>
+  _$$OptimusThemeDataImplCopyWith<_$OptimusThemeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
