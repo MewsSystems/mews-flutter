@@ -1,3 +1,10 @@
+## 0.21.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Add new rules from Dart 3.2.
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.11.0.
+
 ## 0.20.0
 
 > Note: This release has breaking changes.
