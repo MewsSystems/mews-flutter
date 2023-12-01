@@ -1,3 +1,7 @@
+## 0.5.0+2
+
+ - **FIX**: Add namespace field to build.gradle (#473).
+
 ## 0.5.0+1
 
  - **REFACTOR**: Fix DCM issues.

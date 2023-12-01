@@ -1,3 +1,11 @@
+## 0.31.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter error.
+ - **REFACTOR**: Fix linter errors.
+ - **BREAKING** **REFACTOR**: Migrate to Flutter 3.16.0.
+
 ## 0.30.1
 
  - **FEAT**: Update text input design (#467).
