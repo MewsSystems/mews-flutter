@@ -38,6 +38,6 @@ jobs:
             --head ${{ github.ref_name }} \
             --title 'feat: Design Tokens Update' \
             --body 'Design Tokens were updated! This PR was created to update the code.' \
-            --reviewer MewsSystems/tech.mo.platform.owners
+            --reviewer MewsSystems/tech-mo-platform-owners
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
