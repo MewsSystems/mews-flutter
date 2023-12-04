@@ -31,6 +31,11 @@ jobs:
 
       - name: Create Pull Request
         run: |
-          gh pr create -B master -H ${{ github.ref_name }} --title 'feat: Design Tokens Update' --body 'Design Tokens were updated! This PR was created to update the code.'
+          gh pr create \ 
+            --base master \ 
+            --head ${{ github.ref_name }} \
+            --title 'feat: Design Tokens Update' \
+            --body 'Design Tokens were updated! This PR was created to update the code.' \
+            --reviwer MewsSystems/tech.mo.platform.owners
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
