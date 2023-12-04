@@ -30,9 +30,7 @@ jobs:
           git push origin ${{ github.ref_name }}
 
       - name: Create Pull Request
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "master"
-          pr_title: "feat: Design Tokens Update"
-          pr_body: "Design Tokens were updated! This PR was created to update the code."
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create -B master -H ${{ github.ref_name }} --title 'feat: Design Tokens Update' --body 'Design Tokens were updated! This PR was created to update the code.'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
