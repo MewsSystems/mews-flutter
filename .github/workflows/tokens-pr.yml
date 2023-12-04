@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
 
       - name: Set up Flutter
         uses: "./.github/actions/setup"
@@ -18,10 +20,14 @@ jobs:
         run: melos gen_theme
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Automated commit of generated tailor files
-          file_pattern: "*tailor.dart"
+        run: |
+          git config --local user.email "tech.account@mewssystems.com"
+          git config --local user.name "mews-tech"
+
+          git add .
+          git commit -m "Update generated files"
+
+          git push origin ${{ github.ref_name }}
 
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
