@@ -1,0 +1,41 @@
+name: Create Design Tokens PR
+on:
+  push:
+    branches:
+      - "design-tokens-**"
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Flutter
+        uses: "./.github/actions/setup"
+
+      - name: Generate tokens files
+        run: melos gen_theme
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "tech.account@mewssystems.com"
+          git config --local user.name "mews-tech"
+
+          git add .
+          git commit -m "Update generated files"
+
+          git push origin ${{ github.ref_name }}
+
+      - name: Create Pull Request
+        run: |
+          gh pr create \ 
+            --base master \ 
+            --head ${{ github.ref_name }} \
+            --title 'feat: Design Tokens Update' \
+            --body 'Design Tokens were updated! This PR was created to update the code.' \
+            --reviwer MewsSystems/tech.mo.platform.owners
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
