@@ -32,12 +32,13 @@ jobs:
           git push origin ${{ github.ref_name }}
 
       - name: Create Pull Request
+        # assigning team as a reviewer is not possible due to the bug: https://github.com/cli/cli/issues/6395
         run: |
           gh pr create \
             --base master \
             --head ${{ github.ref_name }} \
             --title 'feat: Design Tokens Update' \
             --body 'Design Tokens were updated! This PR was created to update the code.' \
-            --reviewer MewsSystems/tech-mo-platform-owners
+            --reviewer witwash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
