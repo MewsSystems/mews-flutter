@@ -24,7 +24,8 @@ updates:
   - package-ecosystem: "pub"
     directory: "/storybook/"
     ignore:
-      # mews_pedantic is a relative dependency that is always up to date
+      # relative dependencies that is always up to date
       - dependency-name: "mews_pedantic"
+      - dependency-name: "optimus"
     schedule:
       interval: "monthly"
