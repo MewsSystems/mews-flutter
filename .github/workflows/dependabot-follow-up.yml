@@ -1,8 +1,6 @@
 name: Update .lock files on dependabot PR
-on:
-  pull_request:
-    types:
-      - opened
+on: pull_request
+
 jobs:
   run_if:
     if: startsWith(github.head_ref, 'dependabot/')
