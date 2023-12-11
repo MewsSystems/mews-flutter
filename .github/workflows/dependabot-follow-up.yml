@@ -1,5 +1,7 @@
 name: Update .lock files on dependabot PR
-on: pull_request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   run_if:
