@@ -24,7 +24,6 @@ class OptimusPageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset700b,
         align: align,
         child: child,
@@ -49,7 +48,6 @@ class OptimusSectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset600b,
         align: align,
         child: child,
@@ -75,7 +73,6 @@ class OptimusSubsectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset500b,
         align: align,
         child: child,
@@ -101,7 +98,6 @@ class OptimusSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusTypography(
         color: OptimusTypographyColor.secondary,
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset400b,
         align: align,
         child: child,
