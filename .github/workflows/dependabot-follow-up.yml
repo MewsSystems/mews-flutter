@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.head_ref }}
 
       - name: Set up Flutter
         uses: ./.github/actions/setup
@@ -32,4 +32,4 @@ jobs:
           git add \*.lock
           git commit -m "Update .lock files"
 
-          git push origin ${{ github.ref_name }}
+          git push origin ${{ github.head_ref }}
