@@ -4,7 +4,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  run_if:
+  dependabot_folow_up:
     if: startsWith(github.head_ref, 'dependabot/')
     runs-on: ubuntu-latest
     steps:
