@@ -14,7 +14,7 @@ class BaseButton extends StatefulWidget {
     this.badgeLabel,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.primary,
-    this.borderRadius = const BorderRadius.all(borderRadius100),
+    this.borderRadius,
   });
 
   final VoidCallback? onPressed;
@@ -25,7 +25,7 @@ class BaseButton extends StatefulWidget {
   final String? badgeLabel;
   final OptimusWidgetSize size;
   final OptimusButtonVariant variant;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   @override
   State<BaseButton> createState() => _BaseButtonState();
@@ -42,57 +42,63 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
   }
 
   @override
-  Widget build(BuildContext context) => TextButton(
-        style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all<Size>(
-            Size(widget.minWidth ?? 0, widget.size.value),
-          ),
-          shape: MaterialStateProperty.resolveWith(
-            (states) {
-              final color = widget.variant.borderColor(
-                tokens,
-                isEnabled: !_statesController.value.isDisabled,
-                isPressed: _statesController.value.isPressed,
-                isHovered: _statesController.value.isHovered,
-              );
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final borderRadius =
+        widget.borderRadius ?? BorderRadius.circular(tokens.borderRadius100);
 
-              return RoundedRectangleBorder(
-                borderRadius: widget.borderRadius,
-                side: color != null
-                    ? BorderSide(color: color, width: 1)
-                    : BorderSide.none,
-              );
-            },
-          ),
-          animationDuration: buttonAnimationDuration,
-          elevation: MaterialStateProperty.all<double>(0),
-          visualDensity: VisualDensity.standard,
-          splashFactory: NoSplash.splashFactory,
-          backgroundColor: MaterialStateProperty.resolveWith(
-            (states) => widget.variant.backgroundColor(
+    return TextButton(
+      style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all<Size>(
+          Size(widget.minWidth ?? 0, widget.size.value),
+        ),
+        shape: MaterialStateProperty.resolveWith(
+          (states) {
+            final color = widget.variant.borderColor(
               tokens,
               isEnabled: !_statesController.value.isDisabled,
               isPressed: _statesController.value.isPressed,
               isHovered: _statesController.value.isHovered,
-            ),
+            );
+
+            return RoundedRectangleBorder(
+              borderRadius: borderRadius,
+              side: color != null
+                  ? BorderSide(color: color, width: 1)
+                  : BorderSide.none,
+            );
+          },
+        ),
+        animationDuration: buttonAnimationDuration,
+        elevation: MaterialStateProperty.all<double>(0),
+        visualDensity: VisualDensity.standard,
+        splashFactory: NoSplash.splashFactory,
+        backgroundColor: MaterialStateProperty.resolveWith(
+          (states) => widget.variant.backgroundColor(
+            tokens,
+            isEnabled: !_statesController.value.isDisabled,
+            isPressed: _statesController.value.isPressed,
+            isHovered: _statesController.value.isHovered,
           ),
-          overlayColor: const MaterialStatePropertyAll(Colors.transparent),
         ),
-        statesController: _statesController,
+        overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+      ),
+      statesController: _statesController,
+      onPressed: widget.onPressed,
+      child: _ButtonContent(
         onPressed: widget.onPressed,
-        child: _ButtonContent(
-          onPressed: widget.onPressed,
-          size: widget.size,
-          variant: widget.variant,
-          borderRadius: widget.borderRadius,
-          statesController: _statesController,
-          badgeLabel: widget.badgeLabel,
-          leadingIcon: widget.leadingIcon,
-          minWidth: widget.minWidth,
-          trailingIcon: widget.trailingIcon,
-          child: widget.child,
-        ),
-      );
+        size: widget.size,
+        variant: widget.variant,
+        borderRadius: borderRadius,
+        statesController: _statesController,
+        badgeLabel: widget.badgeLabel,
+        leadingIcon: widget.leadingIcon,
+        minWidth: widget.minWidth,
+        trailingIcon: widget.trailingIcon,
+        child: widget.child,
+      ),
+    );
+  }
 }
 
 class _ButtonContent extends StatefulWidget {
@@ -222,7 +228,7 @@ class _Badge extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
         height: 16,
         child: ClipRRect(
-          borderRadius: const BorderRadius.all(borderRadius200),
+          borderRadius: BorderRadius.circular(context.tokens.borderRadius200),
           child: ColoredBox(
             color: color,
             child: Padding(

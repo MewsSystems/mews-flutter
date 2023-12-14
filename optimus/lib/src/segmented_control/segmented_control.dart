@@ -79,7 +79,8 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
                     color: OptimusTheme.of(context)
                         .tokens
                         .backgroundInteractiveNeutralDefault,
-                    borderRadius: const BorderRadius.all(borderRadius100),
+                    borderRadius:
+                        BorderRadius.circular(context.tokens.borderRadius100),
                   )
                 : const BoxDecoration(),
             child: OptimusStack(
@@ -185,7 +186,8 @@ class _OptimusSegmentedControlItemState<T>
             padding: const EdgeInsets.symmetric(vertical: spacing50),
             decoration: BoxDecoration(
               color: _color(tokens),
-              borderRadius: const BorderRadius.all(borderRadius100),
+              borderRadius:
+                  BorderRadius.circular(context.tokens.borderRadius100),
             ),
             alignment: Alignment.center,
             child: DefaultTextStyle.merge(

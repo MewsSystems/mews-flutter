@@ -210,10 +210,11 @@ class _NotificationContent extends StatelessWidget {
     final theme = OptimusTheme.of(context);
     final body = this.body;
     final link = this.link;
+    final tokens = context.tokens;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(borderRadius50),
+        borderRadius: BorderRadius.circular(tokens.borderRadius50),
         boxShadow: context.tokens.shadow200,
       ),
       child: Stack(
@@ -226,8 +227,9 @@ class _NotificationContent extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: variant.getBannerColor(theme),
-                borderRadius:
-                    const BorderRadius.horizontal(left: borderRadius50),
+                borderRadius: BorderRadius.horizontal(
+                  left: Radius.circular(tokens.borderRadius50),
+                ),
               ),
               child: _LeadingIcon(icon: icon, variant: variant),
             ),
@@ -240,8 +242,8 @@ class _NotificationContent extends StatelessWidget {
                   padding: _contentPadding,
                   decoration: BoxDecoration(
                     color: theme.colors.neutral0,
-                    borderRadius: const BorderRadius.horizontal(
-                      right: borderRadius50,
+                    borderRadius: BorderRadius.horizontal(
+                      right: Radius.circular(tokens.borderRadius50),
                     ),
                   ),
                   child: Column(

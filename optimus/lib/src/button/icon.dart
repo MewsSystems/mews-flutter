@@ -75,7 +75,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
             border: borderColor != null
                 ? Border.all(color: borderColor, width: 1)
                 : null,
-            borderRadius: const BorderRadius.all(borderRadius50),
+            borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
           ),
           duration: buttonAnimationDuration,
           child: IconTheme.merge(

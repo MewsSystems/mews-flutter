@@ -372,7 +372,7 @@ class _StatusCircle extends StatelessWidget {
       width: 13,
       height: 13,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(borderRadius100),
+        borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
         border: Border.all(
           width: 1.2,
           color: theme.isDark

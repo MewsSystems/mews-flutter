@@ -101,7 +101,7 @@ class _Bubble extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 480),
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(borderRadius100),
+        borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
         color: _getBackgroundColor(theme),
       ),
       padding: const EdgeInsets.only(

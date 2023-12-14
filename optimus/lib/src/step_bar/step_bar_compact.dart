@@ -144,7 +144,7 @@ class _CollapsedCompactStepBar extends StatelessWidget {
             decoration: BoxDecoration(
               color: OptimusTheme.of(context).colors.neutral0,
               boxShadow: _getShadow(context.tokens),
-              borderRadius: const BorderRadius.all(borderRadius50),
+              borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
             ),
             child: Row(
               children: [
@@ -424,7 +424,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
               decoration: BoxDecoration(
                 color: OptimusTheme.of(context).colors.neutral0,
                 boxShadow: context.tokens.shadow100,
-                borderRadius: const BorderRadius.all(borderRadius50),
+                borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(

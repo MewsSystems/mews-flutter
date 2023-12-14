@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus_icons.dart';
-import 'package:optimus/src/border_radius.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/theme/theme.dart';
 
@@ -60,7 +59,7 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
             border: _state.isUnchecked
                 ? Border.all(color: _borderColor, width: 1.5)
                 : null,
-            borderRadius: const BorderRadius.all(borderRadius25),
+            borderRadius: BorderRadius.circular(context.tokens.borderRadius25),
           ),
           width: 16,
           height: 16,

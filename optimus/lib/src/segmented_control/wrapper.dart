@@ -64,17 +64,21 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
     };
   }
 
-  BorderRadiusGeometry get _borderRadius => switch (_position) {
-        _ItemPosition.first => const BorderRadius.only(
-            topLeft: borderRadius50,
-            bottomLeft: borderRadius50,
-          ),
-        _ItemPosition.inBetween => BorderRadius.zero,
-        _ItemPosition.last => const BorderRadius.only(
-            topRight: borderRadius50,
-            bottomRight: borderRadius50,
-          ),
-      };
+  BorderRadiusGeometry get _borderRadius {
+    final borderRadius = Radius.circular(tokens.borderRadius50);
+
+    return switch (_position) {
+      _ItemPosition.first => BorderRadius.only(
+          topLeft: borderRadius,
+          bottomLeft: borderRadius,
+        ),
+      _ItemPosition.inBetween => BorderRadius.zero,
+      _ItemPosition.last => BorderRadius.only(
+          topRight: borderRadius,
+          bottomRight: borderRadius,
+        ),
+    };
+  }
 
   _ItemPosition get _position {
     if (widget.selectedItemIndex == 0) {
@@ -96,7 +100,8 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
             Container(
               height: widget.size.value,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(borderRadius50),
+                borderRadius:
+                    BorderRadius.circular(context.tokens.borderRadius50),
                 border: Border.all(color: theme.colors.neutral100),
               ),
               child: widget.child,

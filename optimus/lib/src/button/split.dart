@@ -48,32 +48,37 @@ class OptimusSplitButton<T> extends StatelessWidget {
   final OptimusSplitButtonVariant variant;
 
   @override
-  Widget build(BuildContext context) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          BaseButton(
-            onPressed: onPressed,
-            variant: variant.toButtonVariant(),
-            borderRadius: const BorderRadius.only(
-              topLeft: borderRadius50,
-              bottomLeft: borderRadius50,
-            ),
-            size: size,
-            child: child,
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final borderRadius = Radius.circular(tokens.borderRadius50);
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BaseButton(
+          onPressed: onPressed,
+          variant: variant.toButtonVariant(),
+          borderRadius: BorderRadius.only(
+            topLeft: borderRadius,
+            bottomLeft: borderRadius,
           ),
-          const SizedBox(width: 1),
-          BaseDropDownButton(
-            items: items,
-            onItemSelected: onItemSelected,
-            variant: variant.toDropdownButtonVariant(),
-            borderRadius: const BorderRadius.only(
-              topRight: borderRadius50,
-              bottomRight: borderRadius50,
-            ),
-            size: size,
+          size: size,
+          child: child,
+        ),
+        const SizedBox(width: 1),
+        BaseDropDownButton(
+          items: items,
+          onItemSelected: onItemSelected,
+          variant: variant.toDropdownButtonVariant(),
+          borderRadius: BorderRadius.only(
+            topRight: borderRadius,
+            bottomRight: borderRadius,
           ),
-        ],
-      );
+          size: size,
+        ),
+      ],
+    );
+  }
 }
 
 extension on OptimusSplitButtonVariant {
