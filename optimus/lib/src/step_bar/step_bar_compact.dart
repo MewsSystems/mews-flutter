@@ -1,7 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -131,7 +130,8 @@ class _CollapsedCompactStepBar extends StatelessWidget {
 
   final bool showShadow;
 
-  List<BoxShadow>? get _shadow => showShadow ? elevation25 : null;
+  List<BoxShadow>? _getShadow(OptimusTokens tokens) =>
+      showShadow ? tokens.shadow100 : null;
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class _CollapsedCompactStepBar extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: _itemHeight),
             decoration: BoxDecoration(
               color: OptimusTheme.of(context).colors.neutral0,
-              boxShadow: _shadow,
+              boxShadow: _getShadow(context.tokens),
               borderRadius: const BorderRadius.all(borderRadius50),
             ),
             child: Row(
@@ -423,7 +423,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
               width: widget.width,
               decoration: BoxDecoration(
                 color: OptimusTheme.of(context).colors.neutral0,
-                boxShadow: elevation25,
+                boxShadow: context.tokens.shadow100,
                 borderRadius: const BorderRadius.all(borderRadius50),
               ),
               child: Padding(

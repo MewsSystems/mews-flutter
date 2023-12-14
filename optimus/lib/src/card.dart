@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/elevation.dart';
 
 enum OptimusBasicCardVariant {
   /// The system default, general purpose option used in the majority of cases.
@@ -70,20 +69,21 @@ class OptimusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = theme.tokens;
 
     return _Card(
       spacing: padding,
       attachment: attachment,
-      shadows: _shadows,
+      shadows: _getShadows(tokens),
       contentWrapperBuilder: contentWrapperBuilder,
       color: _color(theme),
       child: child,
     );
   }
 
-  List<BoxShadow> get _shadows => switch (variant) {
-        OptimusBasicCardVariant.normal => elevation25,
-        OptimusBasicCardVariant.overlay => elevation100,
+  List<BoxShadow> _getShadows(OptimusTokens tokens) => switch (variant) {
+        OptimusBasicCardVariant.normal => tokens.shadow100,
+        OptimusBasicCardVariant.overlay => tokens.shadow300,
       };
 
   // TODO(VG): can be changed when final dark theme design is ready.
