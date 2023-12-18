@@ -8,6 +8,7 @@ on:
 
 jobs:
   pull-request:
+    if: github.event.head_commit.author.name == 'mews-tech'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -38,7 +39,6 @@ jobs:
           git push origin ${{ github.ref_name }}
 
       - name: Create Pull Request
-        # assigning team as a reviewer is not possible due to the bug: https://github.com/cli/cli/issues/6395
         run: |
           gh pr create \
             --base master \
