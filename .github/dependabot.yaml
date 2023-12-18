@@ -20,3 +20,8 @@ updates:
     directory: "/remote_logger/"
     schedule:
       interval: "monthly"
+
+  - package-ecosystem: "pub"
+    directory: "/storybook/"
+    schedule:
+      interval: "monthly"

@@ -1,0 +1,35 @@
+name: Update .lock files on dependabot PR
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  dependabot_folow_up:
+    if: startsWith(github.head_ref, 'dependabot/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Flutter
+        uses: ./.github/actions/setup
+
+      - name: Get dependencies
+        run: melos bs
+
+      - name: Check if .lock was changed
+        id: lock_changed
+        run: git status --porcelain | grep -q '.lock'
+        continue-on-error: true
+
+      - name: Commit changes
+        if: steps.lock_changed.outcome == 'success'
+        run: |
+          git config --local user.email "tech.account@mewssystems.com"
+          git config --local user.name "mews-tech"
+
+          git add \*.lock
+          git commit -m "Update .lock files"
+
+          git push origin ${{ github.head_ref }}

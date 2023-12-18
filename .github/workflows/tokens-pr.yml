@@ -8,6 +8,7 @@ on:
 
 jobs:
   pull-request:
+    if: github.event.head_commit.author.name == 'mews-tech'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -21,24 +22,28 @@ jobs:
       - name: Generate tokens files
         run: melos gen_theme
 
+      - name: Check if tailor file was changed
+        id: tailor_changed
+        run: git status --porcelain | grep -q 'tailor.dart'
+        continue-on-error: true
+
       - name: Commit changes
+        if: steps.tailor_changed.outcome == 'success'
         run: |
           git config --local user.email "tech.account@mewssystems.com"
           git config --local user.name "mews-tech"
 
-          git add .
+          git add optimus/lib/src/theme/optimus_tokens.tailor.dart
           git commit -m "Update generated files"
 
           git push origin ${{ github.ref_name }}
 
       - name: Create Pull Request
-        # assigning team as a reviewer is not possible due to the bug: https://github.com/cli/cli/issues/6395
         run: |
           gh pr create \
             --base master \
             --head ${{ github.ref_name }} \
             --title 'feat: Design Tokens Update' \
-            --body 'Design Tokens were updated! This PR was created to update the code.' \
-            --reviewer witwash
+            --body 'Design Tokens were updated! This PR was created to update the code.'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

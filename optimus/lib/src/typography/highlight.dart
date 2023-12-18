@@ -26,7 +26,6 @@ class OptimusHighlightMajor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset600b,
         align: align,
         child: child,
@@ -52,7 +51,6 @@ class OptimusHighlightModerate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset500b,
         align: align,
         child: child,
@@ -78,7 +76,6 @@ class OptimusHighlightMinor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        // ignore: prefer-correct-handler-name, false trigger on global function
         resolveStyle: preset400b,
         align: align,
         child: child,
