@@ -266,6 +266,7 @@ dart_code_metrics:
     - avoid-duplicate-named-imports
     - avoid-duplicate-patterns
     - avoid-duplicate-switch-case-conditions
+    - avoid-duplicate-test-assertions
     # - avoid-dynamic
     - avoid-equal-expressions
     - avoid-explicit-pattern-field-name
@@ -292,6 +293,7 @@ dart_code_metrics:
     # - avoid-missing-enum-constant-in-map
     - avoid-missing-interpolation
     # - avoid-missing-test-files
+    - avoid-misused-test-matchers
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     # - avoid-mutating-parameters
@@ -325,7 +327,7 @@ dart_code_metrics:
     # - avoid-throw-in-catch-block
     # - avoid-throw-objects-without-tostring
     # - avoid-top-level-members-in-tests
-    - avoid-unassigned-late-fields-keyword
+    - avoid-unassigned-late-fields
     - avoid-uncaught-future-errors
     - avoid-unconditional-break
     - avoid-unnecessary-call
@@ -380,6 +382,7 @@ dart_code_metrics:
     - no-object-declaration
     # - parameters-ordering
     # - prefer-addition-subtraction-assignments
+    - prefer-any-or-every
     # - prefer-async-await
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
@@ -389,7 +392,7 @@ dart_code_metrics:
     - prefer-correct-error-name
     - prefer-correct-for-loop-increment
     - prefer-correct-future-return-type
-    - prefer-correct-handler-name
+    # - prefer-correct-handler-name
     # - prefer-correct-identifier-length
     - prefer-correct-json-casts
     - prefer-correct-setter-parameter-name
@@ -424,10 +427,12 @@ dart_code_metrics:
     - prefer-simpler-patterns-null-check
     - prefer-specific-cases-first
     # - prefer-static-class
+    - prefer-switch-with-enums
     # - prefer-test-matchers
     # - prefer-trailing-comma
     - prefer-type-over-var
-    - prefer-typedefs-for-callbacks
+    - prefer-typedefs-for-callbacks:
+        ignore-parameters: true
     - prefer-unique-test-names
     # - prefer-unwrapping-future-or
     # - prefer-visible-for-testing-on-members
