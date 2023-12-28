@@ -11,8 +11,7 @@ part of 'optimus_tokens.dart';
 class OptimusTokens extends ThemeExtension<OptimusTokens>
     with DiagnosticableTreeMixin {
   const OptimusTokens({
-    required this.backgroundAccentPrimary,
-    required this.backgroundAccentSecondary,
+    required this.backgroundAccent,
     required this.backgroundAlertBasicPrimary,
     required this.backgroundAlertBasicSecondary,
     required this.backgroundAlertDangerPrimary,
@@ -23,7 +22,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundAlertSuccessSecondary,
     required this.backgroundAlertWarningPrimary,
     required this.backgroundAlertWarningSecondary,
+    required this.backgroundBackdrop,
     required this.backgroundBrand,
+    required this.backgroundDatavizBlue,
+    required this.backgroundDatavizGreen,
+    required this.backgroundDatavizOrange,
+    required this.backgroundDatavizPink,
+    required this.backgroundDatavizPurple,
+    required this.backgroundDatavizRed,
     required this.backgroundDisabled,
     required this.backgroundInteractiveDangerActive,
     required this.backgroundInteractiveDangerDefault,
@@ -43,11 +49,22 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundInteractiveSecondaryActive,
     required this.backgroundInteractiveSecondaryDefault,
     required this.backgroundInteractiveSecondaryHover,
+    required this.backgroundInteractiveSuccessActive,
+    required this.backgroundInteractiveSuccessDefault,
+    required this.backgroundInteractiveSuccessHover,
     required this.backgroundStaticFlat,
     required this.backgroundStaticFloating,
     required this.backgroundStaticInverse,
     required this.backgroundStaticRaised,
     required this.backgroundStaticSunken,
+    required this.bodyExtraSmall,
+    required this.bodyExtraSmallStrong,
+    required this.bodyLarge,
+    required this.bodyLargeStrong,
+    required this.bodyMedium,
+    required this.bodyMediumStrong,
+    required this.bodySmall,
+    required this.bodySmallStrong,
     required this.borderAlertBasic,
     required this.borderAlertDanger,
     required this.borderAlertInfo,
@@ -64,44 +81,146 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderInteractiveSecondaryActive,
     required this.borderInteractiveSecondaryDefault,
     required this.borderInteractiveSecondaryHover,
+    required this.borderRadius0,
+    required this.borderRadius100,
+    required this.borderRadius150,
+    required this.borderRadius200,
+    required this.borderRadius25,
+    required this.borderRadius300,
+    required this.borderRadius50,
+    required this.borderRadiusBase,
+    required this.borderRadiusRound,
     required this.borderStaticInverse,
+    required this.borderStaticOnColor,
     required this.borderStaticPrimary,
     required this.borderStaticSecondary,
-    required this.inputActiveColor,
-    required this.inputDangerColor,
-    required this.inputDefaultColor,
-    required this.inputDisabledColor,
-    required this.inputHoverColor,
-    required this.inputInverseColor,
-    required this.interactiveDangerColor,
-    required this.interactiveDefaultColor,
-    required this.interactiveDisabledColor,
-    required this.interactiveHoverColor,
-    required this.interactiveInverseColor,
-    required this.legacySupportTagBackgroundBasicBold,
-    required this.legacySupportTagBackgroundDenim,
-    required this.legacySupportTagBackgroundLavender,
-    required this.legacySupportTagBackgroundLime,
-    required this.legacySupportTagBackgroundMustard,
-    required this.legacySupportTagBackgroundPrimary,
-    required this.legacySupportTagBackgroundRuby,
-    required this.legacySupportTagBackgroundTangerine,
-    required this.legacySupportTagBorderBasicBold,
-    required this.legacySupportTagBorderDenim,
-    required this.legacySupportTagBorderLavender,
-    required this.legacySupportTagBorderLime,
-    required this.legacySupportTagBorderMustard,
-    required this.legacySupportTagBorderPrimary,
-    required this.legacySupportTagBorderRuby,
-    required this.legacySupportTagBorderTangerine,
-    required this.legacySupportTagTextBasicBold,
-    required this.legacySupportTagTextDenim,
-    required this.legacySupportTagTextLavender,
-    required this.legacySupportTagTextLime,
-    required this.legacySupportTagTextMustard,
-    required this.legacySupportTagTextPrimary,
-    required this.legacySupportTagTextRuby,
-    required this.legacySupportTagTextTangerine,
+    required this.borderWidth0,
+    required this.borderWidth100,
+    required this.borderWidth150,
+    required this.borderWidth200,
+    required this.borderWidth250,
+    required this.borderWidth300,
+    required this.borderWidth800,
+    required this.focusOffset,
+    required this.fontFamilyUi,
+    required this.fontSize100,
+    required this.fontSize200,
+    required this.fontSize300,
+    required this.fontSize400,
+    required this.fontSize50,
+    required this.fontSize500,
+    required this.fontSize600,
+    required this.fontSize700,
+    required this.fontSize75,
+    required this.fontSize800,
+    required this.fontSize900,
+    required this.fontSizeBase,
+    required this.fontSizeRatio,
+    required this.fontWeight300,
+    required this.fontWeight400,
+    required this.fontWeight500,
+    required this.fontWeight600,
+    required this.highlightLarge,
+    required this.highlightMedium,
+    required this.highlightSmall,
+    required this.legacyDatavizDenim100,
+    required this.legacyDatavizDenim200,
+    required this.legacyDatavizDenim300,
+    required this.legacyDatavizDenim400,
+    required this.legacyDatavizDenim50,
+    required this.legacyDatavizDenim500,
+    required this.legacyDatavizDenim600,
+    required this.legacyDatavizDenim700,
+    required this.legacyDatavizDenim800,
+    required this.legacyDatavizDenim900,
+    required this.legacyDatavizLavender100,
+    required this.legacyDatavizLavender200,
+    required this.legacyDatavizLavender300,
+    required this.legacyDatavizLavender400,
+    required this.legacyDatavizLavender50,
+    required this.legacyDatavizLavender500,
+    required this.legacyDatavizLavender600,
+    required this.legacyDatavizLavender700,
+    required this.legacyDatavizLavender800,
+    required this.legacyDatavizLavender900,
+    required this.legacyDatavizLime100,
+    required this.legacyDatavizLime200,
+    required this.legacyDatavizLime300,
+    required this.legacyDatavizLime400,
+    required this.legacyDatavizLime50,
+    required this.legacyDatavizLime500,
+    required this.legacyDatavizLime600,
+    required this.legacyDatavizLime700,
+    required this.legacyDatavizLime800,
+    required this.legacyDatavizLime900,
+    required this.legacyDatavizMustard100,
+    required this.legacyDatavizMustard200,
+    required this.legacyDatavizMustard300,
+    required this.legacyDatavizMustard400,
+    required this.legacyDatavizMustard50,
+    required this.legacyDatavizMustard500,
+    required this.legacyDatavizMustard600,
+    required this.legacyDatavizMustard700,
+    required this.legacyDatavizMustard800,
+    required this.legacyDatavizMustard900,
+    required this.legacyDatavizRuby100,
+    required this.legacyDatavizRuby200,
+    required this.legacyDatavizRuby300,
+    required this.legacyDatavizRuby400,
+    required this.legacyDatavizRuby50,
+    required this.legacyDatavizRuby500,
+    required this.legacyDatavizRuby600,
+    required this.legacyDatavizRuby700,
+    required this.legacyDatavizRuby800,
+    required this.legacyDatavizRuby900,
+    required this.legacyDatavizTangerine100,
+    required this.legacyDatavizTangerine200,
+    required this.legacyDatavizTangerine300,
+    required this.legacyDatavizTangerine400,
+    required this.legacyDatavizTangerine50,
+    required this.legacyDatavizTangerine500,
+    required this.legacyDatavizTangerine600,
+    required this.legacyDatavizTangerine700,
+    required this.legacyDatavizTangerine800,
+    required this.legacyDatavizTangerine900,
+    required this.legacyTagBackgroundBasicBold,
+    required this.legacyTagBackgroundDenim,
+    required this.legacyTagBackgroundLavender,
+    required this.legacyTagBackgroundLime,
+    required this.legacyTagBackgroundMustard,
+    required this.legacyTagBackgroundPrimary,
+    required this.legacyTagBackgroundRuby,
+    required this.legacyTagBackgroundTangerine,
+    required this.legacyTagBorderBasicBold,
+    required this.legacyTagBorderDenim,
+    required this.legacyTagBorderLavender,
+    required this.legacyTagBorderLime,
+    required this.legacyTagBorderMustard,
+    required this.legacyTagBorderPrimary,
+    required this.legacyTagBorderRuby,
+    required this.legacyTagBorderTangerine,
+    required this.legacyTagTextBasicBold,
+    required this.legacyTagTextDenim,
+    required this.legacyTagTextLavender,
+    required this.legacyTagTextLime,
+    required this.legacyTagTextMustard,
+    required this.legacyTagTextPrimary,
+    required this.legacyTagTextRuby,
+    required this.legacyTagTextTangerine,
+    required this.letterSpacingCondensed,
+    required this.letterSpacingDefault,
+    required this.letterSpacingWide,
+    required this.lineHeight100,
+    required this.lineHeight200,
+    required this.lineHeight300,
+    required this.opacity0,
+    required this.opacity100,
+    required this.opacity1000,
+    required this.opacity150,
+    required this.opacity200,
+    required this.opacity400,
+    required this.opacity600,
+    required this.opacity800,
     required this.paletteBasicsBlack,
     required this.paletteBasicsWhite,
     required this.paletteBasicsWhite64,
@@ -163,66 +282,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.paletteBrandNight700,
     required this.paletteBrandNight800,
     required this.paletteBrandNight900,
-    required this.paletteDatavizDenim100,
-    required this.paletteDatavizDenim200,
-    required this.paletteDatavizDenim300,
-    required this.paletteDatavizDenim400,
-    required this.paletteDatavizDenim50,
-    required this.paletteDatavizDenim500,
-    required this.paletteDatavizDenim600,
-    required this.paletteDatavizDenim700,
-    required this.paletteDatavizDenim800,
-    required this.paletteDatavizDenim900,
-    required this.paletteDatavizLavender100,
-    required this.paletteDatavizLavender200,
-    required this.paletteDatavizLavender300,
-    required this.paletteDatavizLavender400,
-    required this.paletteDatavizLavender50,
-    required this.paletteDatavizLavender500,
-    required this.paletteDatavizLavender600,
-    required this.paletteDatavizLavender700,
-    required this.paletteDatavizLavender800,
-    required this.paletteDatavizLavender900,
-    required this.paletteDatavizLime100,
-    required this.paletteDatavizLime200,
-    required this.paletteDatavizLime300,
-    required this.paletteDatavizLime400,
-    required this.paletteDatavizLime50,
-    required this.paletteDatavizLime500,
-    required this.paletteDatavizLime600,
-    required this.paletteDatavizLime700,
-    required this.paletteDatavizLime800,
-    required this.paletteDatavizLime900,
-    required this.paletteDatavizMustard100,
-    required this.paletteDatavizMustard200,
-    required this.paletteDatavizMustard300,
-    required this.paletteDatavizMustard400,
-    required this.paletteDatavizMustard50,
-    required this.paletteDatavizMustard500,
-    required this.paletteDatavizMustard600,
-    required this.paletteDatavizMustard700,
-    required this.paletteDatavizMustard800,
-    required this.paletteDatavizMustard900,
-    required this.paletteDatavizRuby100,
-    required this.paletteDatavizRuby200,
-    required this.paletteDatavizRuby300,
-    required this.paletteDatavizRuby400,
-    required this.paletteDatavizRuby50,
-    required this.paletteDatavizRuby500,
-    required this.paletteDatavizRuby600,
-    required this.paletteDatavizRuby700,
-    required this.paletteDatavizRuby800,
-    required this.paletteDatavizRuby900,
-    required this.paletteDatavizTangerine100,
-    required this.paletteDatavizTangerine200,
-    required this.paletteDatavizTangerine300,
-    required this.paletteDatavizTangerine400,
-    required this.paletteDatavizTangerine50,
-    required this.paletteDatavizTangerine500,
-    required this.paletteDatavizTangerine600,
-    required this.paletteDatavizTangerine700,
-    required this.paletteDatavizTangerine800,
-    required this.paletteDatavizTangerine900,
+    required this.paletteDatavizBlue,
+    required this.paletteDatavizGreen,
+    required this.paletteDatavizOrange,
+    required this.paletteDatavizPink,
+    required this.paletteDatavizPurple,
+    required this.paletteDatavizRed,
     required this.paletteSemanticBlue100,
     required this.paletteSemanticBlue1000,
     required this.paletteSemanticBlue150,
@@ -275,25 +340,61 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.paletteSemanticRed700,
     required this.paletteSemanticRed800,
     required this.paletteSemanticRed900,
-    required this.staticContainerColor,
-    required this.staticDividerColor,
+    required this.shadow0,
+    required this.shadow100,
+    required this.shadow200,
+    required this.shadow300,
+    required this.sizing100,
+    required this.sizing200,
+    required this.sizing300,
+    required this.sizing400,
+    required this.sizing50,
+    required this.sizing500,
+    required this.sizing550,
+    required this.sizing600,
+    required this.sizing700,
+    required this.sizing900,
+    required this.sizingBase,
+    required this.spacing0,
+    required this.spacing100,
+    required this.spacing1000,
+    required this.spacing1200,
+    required this.spacing150,
+    required this.spacing200,
+    required this.spacing25,
+    required this.spacing250,
+    required this.spacing300,
+    required this.spacing400,
+    required this.spacing450,
+    required this.spacing50,
+    required this.spacing500,
+    required this.spacing700,
+    required this.spacing900,
+    required this.spacingBase,
     required this.textAlertBasic,
     required this.textAlertDanger,
     required this.textAlertInfo,
     required this.textAlertSuccess,
     required this.textAlertWarning,
+    required this.textDecorationUnderline,
     required this.textDisabled,
     required this.textInteractiveActive,
     required this.textInteractiveDefault,
     required this.textInteractiveHover,
     required this.textStaticInverse,
+    required this.textStaticOnColor,
     required this.textStaticPrimary,
     required this.textStaticSecondary,
     required this.textStaticTertiary,
+    required this.titleLarge,
+    required this.titleLargeStrong,
+    required this.titleMedium,
+    required this.titleMediumStrong,
+    required this.titleSmall,
+    required this.titleSmallStrong,
   });
 
-  final Color backgroundAccentPrimary;
-  final Color backgroundAccentSecondary;
+  final Color backgroundAccent;
   final Color backgroundAlertBasicPrimary;
   final Color backgroundAlertBasicSecondary;
   final Color backgroundAlertDangerPrimary;
@@ -304,7 +405,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundAlertSuccessSecondary;
   final Color backgroundAlertWarningPrimary;
   final Color backgroundAlertWarningSecondary;
+  final Color backgroundBackdrop;
   final Color backgroundBrand;
+  final Color backgroundDatavizBlue;
+  final Color backgroundDatavizGreen;
+  final Color backgroundDatavizOrange;
+  final Color backgroundDatavizPink;
+  final Color backgroundDatavizPurple;
+  final Color backgroundDatavizRed;
   final Color backgroundDisabled;
   final Color backgroundInteractiveDangerActive;
   final Color backgroundInteractiveDangerDefault;
@@ -324,11 +432,22 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundInteractiveSecondaryActive;
   final Color backgroundInteractiveSecondaryDefault;
   final Color backgroundInteractiveSecondaryHover;
+  final Color backgroundInteractiveSuccessActive;
+  final Color backgroundInteractiveSuccessDefault;
+  final Color backgroundInteractiveSuccessHover;
   final Color backgroundStaticFlat;
   final Color backgroundStaticFloating;
   final Color backgroundStaticInverse;
   final Color backgroundStaticRaised;
   final Color backgroundStaticSunken;
+  final TextStyle bodyExtraSmall;
+  final TextStyle bodyExtraSmallStrong;
+  final TextStyle bodyLarge;
+  final TextStyle bodyLargeStrong;
+  final TextStyle bodyMedium;
+  final TextStyle bodyMediumStrong;
+  final TextStyle bodySmall;
+  final TextStyle bodySmallStrong;
   final Color borderAlertBasic;
   final Color borderAlertDanger;
   final Color borderAlertInfo;
@@ -345,44 +464,146 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderInteractiveSecondaryActive;
   final Color borderInteractiveSecondaryDefault;
   final Color borderInteractiveSecondaryHover;
+  final double borderRadius0;
+  final double borderRadius100;
+  final double borderRadius150;
+  final double borderRadius200;
+  final double borderRadius25;
+  final double borderRadius300;
+  final double borderRadius50;
+  final double borderRadiusBase;
+  final double borderRadiusRound;
   final Color borderStaticInverse;
+  final Color borderStaticOnColor;
   final Color borderStaticPrimary;
   final Color borderStaticSecondary;
-  final Color inputActiveColor;
-  final Color inputDangerColor;
-  final Color inputDefaultColor;
-  final Color inputDisabledColor;
-  final Color inputHoverColor;
-  final Color inputInverseColor;
-  final Color interactiveDangerColor;
-  final Color interactiveDefaultColor;
-  final Color interactiveDisabledColor;
-  final Color interactiveHoverColor;
-  final Color interactiveInverseColor;
-  final Color legacySupportTagBackgroundBasicBold;
-  final Color legacySupportTagBackgroundDenim;
-  final Color legacySupportTagBackgroundLavender;
-  final Color legacySupportTagBackgroundLime;
-  final Color legacySupportTagBackgroundMustard;
-  final Color legacySupportTagBackgroundPrimary;
-  final Color legacySupportTagBackgroundRuby;
-  final Color legacySupportTagBackgroundTangerine;
-  final Color legacySupportTagBorderBasicBold;
-  final Color legacySupportTagBorderDenim;
-  final Color legacySupportTagBorderLavender;
-  final Color legacySupportTagBorderLime;
-  final Color legacySupportTagBorderMustard;
-  final Color legacySupportTagBorderPrimary;
-  final Color legacySupportTagBorderRuby;
-  final Color legacySupportTagBorderTangerine;
-  final Color legacySupportTagTextBasicBold;
-  final Color legacySupportTagTextDenim;
-  final Color legacySupportTagTextLavender;
-  final Color legacySupportTagTextLime;
-  final Color legacySupportTagTextMustard;
-  final Color legacySupportTagTextPrimary;
-  final Color legacySupportTagTextRuby;
-  final Color legacySupportTagTextTangerine;
+  final double borderWidth0;
+  final double borderWidth100;
+  final double borderWidth150;
+  final double borderWidth200;
+  final double borderWidth250;
+  final double borderWidth300;
+  final double borderWidth800;
+  final List<BoxShadow> focusOffset;
+  final String fontFamilyUi;
+  final double fontSize100;
+  final double fontSize200;
+  final double fontSize300;
+  final double fontSize400;
+  final double fontSize50;
+  final double fontSize500;
+  final double fontSize600;
+  final double fontSize700;
+  final double fontSize75;
+  final double fontSize800;
+  final double fontSize900;
+  final double fontSizeBase;
+  final double fontSizeRatio;
+  final FontWeight fontWeight300;
+  final FontWeight fontWeight400;
+  final FontWeight fontWeight500;
+  final FontWeight fontWeight600;
+  final TextStyle highlightLarge;
+  final TextStyle highlightMedium;
+  final TextStyle highlightSmall;
+  final Color legacyDatavizDenim100;
+  final Color legacyDatavizDenim200;
+  final Color legacyDatavizDenim300;
+  final Color legacyDatavizDenim400;
+  final Color legacyDatavizDenim50;
+  final Color legacyDatavizDenim500;
+  final Color legacyDatavizDenim600;
+  final Color legacyDatavizDenim700;
+  final Color legacyDatavizDenim800;
+  final Color legacyDatavizDenim900;
+  final Color legacyDatavizLavender100;
+  final Color legacyDatavizLavender200;
+  final Color legacyDatavizLavender300;
+  final Color legacyDatavizLavender400;
+  final Color legacyDatavizLavender50;
+  final Color legacyDatavizLavender500;
+  final Color legacyDatavizLavender600;
+  final Color legacyDatavizLavender700;
+  final Color legacyDatavizLavender800;
+  final Color legacyDatavizLavender900;
+  final Color legacyDatavizLime100;
+  final Color legacyDatavizLime200;
+  final Color legacyDatavizLime300;
+  final Color legacyDatavizLime400;
+  final Color legacyDatavizLime50;
+  final Color legacyDatavizLime500;
+  final Color legacyDatavizLime600;
+  final Color legacyDatavizLime700;
+  final Color legacyDatavizLime800;
+  final Color legacyDatavizLime900;
+  final Color legacyDatavizMustard100;
+  final Color legacyDatavizMustard200;
+  final Color legacyDatavizMustard300;
+  final Color legacyDatavizMustard400;
+  final Color legacyDatavizMustard50;
+  final Color legacyDatavizMustard500;
+  final Color legacyDatavizMustard600;
+  final Color legacyDatavizMustard700;
+  final Color legacyDatavizMustard800;
+  final Color legacyDatavizMustard900;
+  final Color legacyDatavizRuby100;
+  final Color legacyDatavizRuby200;
+  final Color legacyDatavizRuby300;
+  final Color legacyDatavizRuby400;
+  final Color legacyDatavizRuby50;
+  final Color legacyDatavizRuby500;
+  final Color legacyDatavizRuby600;
+  final Color legacyDatavizRuby700;
+  final Color legacyDatavizRuby800;
+  final Color legacyDatavizRuby900;
+  final Color legacyDatavizTangerine100;
+  final Color legacyDatavizTangerine200;
+  final Color legacyDatavizTangerine300;
+  final Color legacyDatavizTangerine400;
+  final Color legacyDatavizTangerine50;
+  final Color legacyDatavizTangerine500;
+  final Color legacyDatavizTangerine600;
+  final Color legacyDatavizTangerine700;
+  final Color legacyDatavizTangerine800;
+  final Color legacyDatavizTangerine900;
+  final Color legacyTagBackgroundBasicBold;
+  final Color legacyTagBackgroundDenim;
+  final Color legacyTagBackgroundLavender;
+  final Color legacyTagBackgroundLime;
+  final Color legacyTagBackgroundMustard;
+  final Color legacyTagBackgroundPrimary;
+  final Color legacyTagBackgroundRuby;
+  final Color legacyTagBackgroundTangerine;
+  final Color legacyTagBorderBasicBold;
+  final Color legacyTagBorderDenim;
+  final Color legacyTagBorderLavender;
+  final Color legacyTagBorderLime;
+  final Color legacyTagBorderMustard;
+  final Color legacyTagBorderPrimary;
+  final Color legacyTagBorderRuby;
+  final Color legacyTagBorderTangerine;
+  final Color legacyTagTextBasicBold;
+  final Color legacyTagTextDenim;
+  final Color legacyTagTextLavender;
+  final Color legacyTagTextLime;
+  final Color legacyTagTextMustard;
+  final Color legacyTagTextPrimary;
+  final Color legacyTagTextRuby;
+  final Color legacyTagTextTangerine;
+  final double letterSpacingCondensed;
+  final double letterSpacingDefault;
+  final double letterSpacingWide;
+  final double lineHeight100;
+  final double lineHeight200;
+  final double lineHeight300;
+  final double opacity0;
+  final double opacity100;
+  final double opacity1000;
+  final double opacity150;
+  final double opacity200;
+  final double opacity400;
+  final double opacity600;
+  final double opacity800;
   final Color paletteBasicsBlack;
   final Color paletteBasicsWhite;
   final Color paletteBasicsWhite64;
@@ -444,66 +665,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color paletteBrandNight700;
   final Color paletteBrandNight800;
   final Color paletteBrandNight900;
-  final Color paletteDatavizDenim100;
-  final Color paletteDatavizDenim200;
-  final Color paletteDatavizDenim300;
-  final Color paletteDatavizDenim400;
-  final Color paletteDatavizDenim50;
-  final Color paletteDatavizDenim500;
-  final Color paletteDatavizDenim600;
-  final Color paletteDatavizDenim700;
-  final Color paletteDatavizDenim800;
-  final Color paletteDatavizDenim900;
-  final Color paletteDatavizLavender100;
-  final Color paletteDatavizLavender200;
-  final Color paletteDatavizLavender300;
-  final Color paletteDatavizLavender400;
-  final Color paletteDatavizLavender50;
-  final Color paletteDatavizLavender500;
-  final Color paletteDatavizLavender600;
-  final Color paletteDatavizLavender700;
-  final Color paletteDatavizLavender800;
-  final Color paletteDatavizLavender900;
-  final Color paletteDatavizLime100;
-  final Color paletteDatavizLime200;
-  final Color paletteDatavizLime300;
-  final Color paletteDatavizLime400;
-  final Color paletteDatavizLime50;
-  final Color paletteDatavizLime500;
-  final Color paletteDatavizLime600;
-  final Color paletteDatavizLime700;
-  final Color paletteDatavizLime800;
-  final Color paletteDatavizLime900;
-  final Color paletteDatavizMustard100;
-  final Color paletteDatavizMustard200;
-  final Color paletteDatavizMustard300;
-  final Color paletteDatavizMustard400;
-  final Color paletteDatavizMustard50;
-  final Color paletteDatavizMustard500;
-  final Color paletteDatavizMustard600;
-  final Color paletteDatavizMustard700;
-  final Color paletteDatavizMustard800;
-  final Color paletteDatavizMustard900;
-  final Color paletteDatavizRuby100;
-  final Color paletteDatavizRuby200;
-  final Color paletteDatavizRuby300;
-  final Color paletteDatavizRuby400;
-  final Color paletteDatavizRuby50;
-  final Color paletteDatavizRuby500;
-  final Color paletteDatavizRuby600;
-  final Color paletteDatavizRuby700;
-  final Color paletteDatavizRuby800;
-  final Color paletteDatavizRuby900;
-  final Color paletteDatavizTangerine100;
-  final Color paletteDatavizTangerine200;
-  final Color paletteDatavizTangerine300;
-  final Color paletteDatavizTangerine400;
-  final Color paletteDatavizTangerine50;
-  final Color paletteDatavizTangerine500;
-  final Color paletteDatavizTangerine600;
-  final Color paletteDatavizTangerine700;
-  final Color paletteDatavizTangerine800;
-  final Color paletteDatavizTangerine900;
+  final Color paletteDatavizBlue;
+  final Color paletteDatavizGreen;
+  final Color paletteDatavizOrange;
+  final Color paletteDatavizPink;
+  final Color paletteDatavizPurple;
+  final Color paletteDatavizRed;
   final Color paletteSemanticBlue100;
   final Color paletteSemanticBlue1000;
   final Color paletteSemanticBlue150;
@@ -556,25 +723,61 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color paletteSemanticRed700;
   final Color paletteSemanticRed800;
   final Color paletteSemanticRed900;
-  final Color staticContainerColor;
-  final Color staticDividerColor;
+  final List<BoxShadow> shadow0;
+  final List<BoxShadow> shadow100;
+  final List<BoxShadow> shadow200;
+  final List<BoxShadow> shadow300;
+  final double sizing100;
+  final double sizing200;
+  final double sizing300;
+  final double sizing400;
+  final double sizing50;
+  final double sizing500;
+  final double sizing550;
+  final double sizing600;
+  final double sizing700;
+  final double sizing900;
+  final double sizingBase;
+  final double spacing0;
+  final double spacing100;
+  final double spacing1000;
+  final double spacing1200;
+  final double spacing150;
+  final double spacing200;
+  final double spacing25;
+  final double spacing250;
+  final double spacing300;
+  final double spacing400;
+  final double spacing450;
+  final double spacing50;
+  final double spacing500;
+  final double spacing700;
+  final double spacing900;
+  final double spacingBase;
   final Color textAlertBasic;
   final Color textAlertDanger;
   final Color textAlertInfo;
   final Color textAlertSuccess;
   final Color textAlertWarning;
+  final TextDecoration textDecorationUnderline;
   final Color textDisabled;
   final Color textInteractiveActive;
   final Color textInteractiveDefault;
   final Color textInteractiveHover;
   final Color textStaticInverse;
+  final Color textStaticOnColor;
   final Color textStaticPrimary;
   final Color textStaticSecondary;
   final Color textStaticTertiary;
+  final TextStyle titleLarge;
+  final TextStyle titleLargeStrong;
+  final TextStyle titleMedium;
+  final TextStyle titleMediumStrong;
+  final TextStyle titleSmall;
+  final TextStyle titleSmallStrong;
 
   static final OptimusTokens light = OptimusTokens(
-    backgroundAccentPrimary: _$OptimusTokens.backgroundAccentPrimary[0],
-    backgroundAccentSecondary: _$OptimusTokens.backgroundAccentSecondary[0],
+    backgroundAccent: _$OptimusTokens.backgroundAccent[0],
     backgroundAlertBasicPrimary: _$OptimusTokens.backgroundAlertBasicPrimary[0],
     backgroundAlertBasicSecondary:
         _$OptimusTokens.backgroundAlertBasicSecondary[0],
@@ -593,7 +796,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundAlertWarningPrimary[0],
     backgroundAlertWarningSecondary:
         _$OptimusTokens.backgroundAlertWarningSecondary[0],
+    backgroundBackdrop: _$OptimusTokens.backgroundBackdrop[0],
     backgroundBrand: _$OptimusTokens.backgroundBrand[0],
+    backgroundDatavizBlue: _$OptimusTokens.backgroundDatavizBlue[0],
+    backgroundDatavizGreen: _$OptimusTokens.backgroundDatavizGreen[0],
+    backgroundDatavizOrange: _$OptimusTokens.backgroundDatavizOrange[0],
+    backgroundDatavizPink: _$OptimusTokens.backgroundDatavizPink[0],
+    backgroundDatavizPurple: _$OptimusTokens.backgroundDatavizPurple[0],
+    backgroundDatavizRed: _$OptimusTokens.backgroundDatavizRed[0],
     backgroundDisabled: _$OptimusTokens.backgroundDisabled[0],
     backgroundInteractiveDangerActive:
         _$OptimusTokens.backgroundInteractiveDangerActive[0],
@@ -631,11 +841,25 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundInteractiveSecondaryDefault[0],
     backgroundInteractiveSecondaryHover:
         _$OptimusTokens.backgroundInteractiveSecondaryHover[0],
+    backgroundInteractiveSuccessActive:
+        _$OptimusTokens.backgroundInteractiveSuccessActive[0],
+    backgroundInteractiveSuccessDefault:
+        _$OptimusTokens.backgroundInteractiveSuccessDefault[0],
+    backgroundInteractiveSuccessHover:
+        _$OptimusTokens.backgroundInteractiveSuccessHover[0],
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[0],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[0],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[0],
     backgroundStaticRaised: _$OptimusTokens.backgroundStaticRaised[0],
     backgroundStaticSunken: _$OptimusTokens.backgroundStaticSunken[0],
+    bodyExtraSmall: _$OptimusTokens.bodyExtraSmall[0],
+    bodyExtraSmallStrong: _$OptimusTokens.bodyExtraSmallStrong[0],
+    bodyLarge: _$OptimusTokens.bodyLarge[0],
+    bodyLargeStrong: _$OptimusTokens.bodyLargeStrong[0],
+    bodyMedium: _$OptimusTokens.bodyMedium[0],
+    bodyMediumStrong: _$OptimusTokens.bodyMediumStrong[0],
+    bodySmall: _$OptimusTokens.bodySmall[0],
+    bodySmallStrong: _$OptimusTokens.bodySmallStrong[0],
     borderAlertBasic: _$OptimusTokens.borderAlertBasic[0],
     borderAlertDanger: _$OptimusTokens.borderAlertDanger[0],
     borderAlertInfo: _$OptimusTokens.borderAlertInfo[0],
@@ -659,60 +883,148 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.borderInteractiveSecondaryDefault[0],
     borderInteractiveSecondaryHover:
         _$OptimusTokens.borderInteractiveSecondaryHover[0],
+    borderRadius0: _$OptimusTokens.borderRadius0[0],
+    borderRadius100: _$OptimusTokens.borderRadius100[0],
+    borderRadius150: _$OptimusTokens.borderRadius150[0],
+    borderRadius200: _$OptimusTokens.borderRadius200[0],
+    borderRadius25: _$OptimusTokens.borderRadius25[0],
+    borderRadius300: _$OptimusTokens.borderRadius300[0],
+    borderRadius50: _$OptimusTokens.borderRadius50[0],
+    borderRadiusBase: _$OptimusTokens.borderRadiusBase[0],
+    borderRadiusRound: _$OptimusTokens.borderRadiusRound[0],
     borderStaticInverse: _$OptimusTokens.borderStaticInverse[0],
+    borderStaticOnColor: _$OptimusTokens.borderStaticOnColor[0],
     borderStaticPrimary: _$OptimusTokens.borderStaticPrimary[0],
     borderStaticSecondary: _$OptimusTokens.borderStaticSecondary[0],
-    inputActiveColor: _$OptimusTokens.inputActiveColor[0],
-    inputDangerColor: _$OptimusTokens.inputDangerColor[0],
-    inputDefaultColor: _$OptimusTokens.inputDefaultColor[0],
-    inputDisabledColor: _$OptimusTokens.inputDisabledColor[0],
-    inputHoverColor: _$OptimusTokens.inputHoverColor[0],
-    inputInverseColor: _$OptimusTokens.inputInverseColor[0],
-    interactiveDangerColor: _$OptimusTokens.interactiveDangerColor[0],
-    interactiveDefaultColor: _$OptimusTokens.interactiveDefaultColor[0],
-    interactiveDisabledColor: _$OptimusTokens.interactiveDisabledColor[0],
-    interactiveHoverColor: _$OptimusTokens.interactiveHoverColor[0],
-    interactiveInverseColor: _$OptimusTokens.interactiveInverseColor[0],
-    legacySupportTagBackgroundBasicBold:
-        _$OptimusTokens.legacySupportTagBackgroundBasicBold[0],
-    legacySupportTagBackgroundDenim:
-        _$OptimusTokens.legacySupportTagBackgroundDenim[0],
-    legacySupportTagBackgroundLavender:
-        _$OptimusTokens.legacySupportTagBackgroundLavender[0],
-    legacySupportTagBackgroundLime:
-        _$OptimusTokens.legacySupportTagBackgroundLime[0],
-    legacySupportTagBackgroundMustard:
-        _$OptimusTokens.legacySupportTagBackgroundMustard[0],
-    legacySupportTagBackgroundPrimary:
-        _$OptimusTokens.legacySupportTagBackgroundPrimary[0],
-    legacySupportTagBackgroundRuby:
-        _$OptimusTokens.legacySupportTagBackgroundRuby[0],
-    legacySupportTagBackgroundTangerine:
-        _$OptimusTokens.legacySupportTagBackgroundTangerine[0],
-    legacySupportTagBorderBasicBold:
-        _$OptimusTokens.legacySupportTagBorderBasicBold[0],
-    legacySupportTagBorderDenim: _$OptimusTokens.legacySupportTagBorderDenim[0],
-    legacySupportTagBorderLavender:
-        _$OptimusTokens.legacySupportTagBorderLavender[0],
-    legacySupportTagBorderLime: _$OptimusTokens.legacySupportTagBorderLime[0],
-    legacySupportTagBorderMustard:
-        _$OptimusTokens.legacySupportTagBorderMustard[0],
-    legacySupportTagBorderPrimary:
-        _$OptimusTokens.legacySupportTagBorderPrimary[0],
-    legacySupportTagBorderRuby: _$OptimusTokens.legacySupportTagBorderRuby[0],
-    legacySupportTagBorderTangerine:
-        _$OptimusTokens.legacySupportTagBorderTangerine[0],
-    legacySupportTagTextBasicBold:
-        _$OptimusTokens.legacySupportTagTextBasicBold[0],
-    legacySupportTagTextDenim: _$OptimusTokens.legacySupportTagTextDenim[0],
-    legacySupportTagTextLavender:
-        _$OptimusTokens.legacySupportTagTextLavender[0],
-    legacySupportTagTextLime: _$OptimusTokens.legacySupportTagTextLime[0],
-    legacySupportTagTextMustard: _$OptimusTokens.legacySupportTagTextMustard[0],
-    legacySupportTagTextPrimary: _$OptimusTokens.legacySupportTagTextPrimary[0],
-    legacySupportTagTextRuby: _$OptimusTokens.legacySupportTagTextRuby[0],
-    legacySupportTagTextTangerine:
-        _$OptimusTokens.legacySupportTagTextTangerine[0],
+    borderWidth0: _$OptimusTokens.borderWidth0[0],
+    borderWidth100: _$OptimusTokens.borderWidth100[0],
+    borderWidth150: _$OptimusTokens.borderWidth150[0],
+    borderWidth200: _$OptimusTokens.borderWidth200[0],
+    borderWidth250: _$OptimusTokens.borderWidth250[0],
+    borderWidth300: _$OptimusTokens.borderWidth300[0],
+    borderWidth800: _$OptimusTokens.borderWidth800[0],
+    focusOffset: _$OptimusTokens.focusOffset[0],
+    fontFamilyUi: _$OptimusTokens.fontFamilyUi[0],
+    fontSize100: _$OptimusTokens.fontSize100[0],
+    fontSize200: _$OptimusTokens.fontSize200[0],
+    fontSize300: _$OptimusTokens.fontSize300[0],
+    fontSize400: _$OptimusTokens.fontSize400[0],
+    fontSize50: _$OptimusTokens.fontSize50[0],
+    fontSize500: _$OptimusTokens.fontSize500[0],
+    fontSize600: _$OptimusTokens.fontSize600[0],
+    fontSize700: _$OptimusTokens.fontSize700[0],
+    fontSize75: _$OptimusTokens.fontSize75[0],
+    fontSize800: _$OptimusTokens.fontSize800[0],
+    fontSize900: _$OptimusTokens.fontSize900[0],
+    fontSizeBase: _$OptimusTokens.fontSizeBase[0],
+    fontSizeRatio: _$OptimusTokens.fontSizeRatio[0],
+    fontWeight300: _$OptimusTokens.fontWeight300[0],
+    fontWeight400: _$OptimusTokens.fontWeight400[0],
+    fontWeight500: _$OptimusTokens.fontWeight500[0],
+    fontWeight600: _$OptimusTokens.fontWeight600[0],
+    highlightLarge: _$OptimusTokens.highlightLarge[0],
+    highlightMedium: _$OptimusTokens.highlightMedium[0],
+    highlightSmall: _$OptimusTokens.highlightSmall[0],
+    legacyDatavizDenim100: _$OptimusTokens.legacyDatavizDenim100[0],
+    legacyDatavizDenim200: _$OptimusTokens.legacyDatavizDenim200[0],
+    legacyDatavizDenim300: _$OptimusTokens.legacyDatavizDenim300[0],
+    legacyDatavizDenim400: _$OptimusTokens.legacyDatavizDenim400[0],
+    legacyDatavizDenim50: _$OptimusTokens.legacyDatavizDenim50[0],
+    legacyDatavizDenim500: _$OptimusTokens.legacyDatavizDenim500[0],
+    legacyDatavizDenim600: _$OptimusTokens.legacyDatavizDenim600[0],
+    legacyDatavizDenim700: _$OptimusTokens.legacyDatavizDenim700[0],
+    legacyDatavizDenim800: _$OptimusTokens.legacyDatavizDenim800[0],
+    legacyDatavizDenim900: _$OptimusTokens.legacyDatavizDenim900[0],
+    legacyDatavizLavender100: _$OptimusTokens.legacyDatavizLavender100[0],
+    legacyDatavizLavender200: _$OptimusTokens.legacyDatavizLavender200[0],
+    legacyDatavizLavender300: _$OptimusTokens.legacyDatavizLavender300[0],
+    legacyDatavizLavender400: _$OptimusTokens.legacyDatavizLavender400[0],
+    legacyDatavizLavender50: _$OptimusTokens.legacyDatavizLavender50[0],
+    legacyDatavizLavender500: _$OptimusTokens.legacyDatavizLavender500[0],
+    legacyDatavizLavender600: _$OptimusTokens.legacyDatavizLavender600[0],
+    legacyDatavizLavender700: _$OptimusTokens.legacyDatavizLavender700[0],
+    legacyDatavizLavender800: _$OptimusTokens.legacyDatavizLavender800[0],
+    legacyDatavizLavender900: _$OptimusTokens.legacyDatavizLavender900[0],
+    legacyDatavizLime100: _$OptimusTokens.legacyDatavizLime100[0],
+    legacyDatavizLime200: _$OptimusTokens.legacyDatavizLime200[0],
+    legacyDatavizLime300: _$OptimusTokens.legacyDatavizLime300[0],
+    legacyDatavizLime400: _$OptimusTokens.legacyDatavizLime400[0],
+    legacyDatavizLime50: _$OptimusTokens.legacyDatavizLime50[0],
+    legacyDatavizLime500: _$OptimusTokens.legacyDatavizLime500[0],
+    legacyDatavizLime600: _$OptimusTokens.legacyDatavizLime600[0],
+    legacyDatavizLime700: _$OptimusTokens.legacyDatavizLime700[0],
+    legacyDatavizLime800: _$OptimusTokens.legacyDatavizLime800[0],
+    legacyDatavizLime900: _$OptimusTokens.legacyDatavizLime900[0],
+    legacyDatavizMustard100: _$OptimusTokens.legacyDatavizMustard100[0],
+    legacyDatavizMustard200: _$OptimusTokens.legacyDatavizMustard200[0],
+    legacyDatavizMustard300: _$OptimusTokens.legacyDatavizMustard300[0],
+    legacyDatavizMustard400: _$OptimusTokens.legacyDatavizMustard400[0],
+    legacyDatavizMustard50: _$OptimusTokens.legacyDatavizMustard50[0],
+    legacyDatavizMustard500: _$OptimusTokens.legacyDatavizMustard500[0],
+    legacyDatavizMustard600: _$OptimusTokens.legacyDatavizMustard600[0],
+    legacyDatavizMustard700: _$OptimusTokens.legacyDatavizMustard700[0],
+    legacyDatavizMustard800: _$OptimusTokens.legacyDatavizMustard800[0],
+    legacyDatavizMustard900: _$OptimusTokens.legacyDatavizMustard900[0],
+    legacyDatavizRuby100: _$OptimusTokens.legacyDatavizRuby100[0],
+    legacyDatavizRuby200: _$OptimusTokens.legacyDatavizRuby200[0],
+    legacyDatavizRuby300: _$OptimusTokens.legacyDatavizRuby300[0],
+    legacyDatavizRuby400: _$OptimusTokens.legacyDatavizRuby400[0],
+    legacyDatavizRuby50: _$OptimusTokens.legacyDatavizRuby50[0],
+    legacyDatavizRuby500: _$OptimusTokens.legacyDatavizRuby500[0],
+    legacyDatavizRuby600: _$OptimusTokens.legacyDatavizRuby600[0],
+    legacyDatavizRuby700: _$OptimusTokens.legacyDatavizRuby700[0],
+    legacyDatavizRuby800: _$OptimusTokens.legacyDatavizRuby800[0],
+    legacyDatavizRuby900: _$OptimusTokens.legacyDatavizRuby900[0],
+    legacyDatavizTangerine100: _$OptimusTokens.legacyDatavizTangerine100[0],
+    legacyDatavizTangerine200: _$OptimusTokens.legacyDatavizTangerine200[0],
+    legacyDatavizTangerine300: _$OptimusTokens.legacyDatavizTangerine300[0],
+    legacyDatavizTangerine400: _$OptimusTokens.legacyDatavizTangerine400[0],
+    legacyDatavizTangerine50: _$OptimusTokens.legacyDatavizTangerine50[0],
+    legacyDatavizTangerine500: _$OptimusTokens.legacyDatavizTangerine500[0],
+    legacyDatavizTangerine600: _$OptimusTokens.legacyDatavizTangerine600[0],
+    legacyDatavizTangerine700: _$OptimusTokens.legacyDatavizTangerine700[0],
+    legacyDatavizTangerine800: _$OptimusTokens.legacyDatavizTangerine800[0],
+    legacyDatavizTangerine900: _$OptimusTokens.legacyDatavizTangerine900[0],
+    legacyTagBackgroundBasicBold:
+        _$OptimusTokens.legacyTagBackgroundBasicBold[0],
+    legacyTagBackgroundDenim: _$OptimusTokens.legacyTagBackgroundDenim[0],
+    legacyTagBackgroundLavender: _$OptimusTokens.legacyTagBackgroundLavender[0],
+    legacyTagBackgroundLime: _$OptimusTokens.legacyTagBackgroundLime[0],
+    legacyTagBackgroundMustard: _$OptimusTokens.legacyTagBackgroundMustard[0],
+    legacyTagBackgroundPrimary: _$OptimusTokens.legacyTagBackgroundPrimary[0],
+    legacyTagBackgroundRuby: _$OptimusTokens.legacyTagBackgroundRuby[0],
+    legacyTagBackgroundTangerine:
+        _$OptimusTokens.legacyTagBackgroundTangerine[0],
+    legacyTagBorderBasicBold: _$OptimusTokens.legacyTagBorderBasicBold[0],
+    legacyTagBorderDenim: _$OptimusTokens.legacyTagBorderDenim[0],
+    legacyTagBorderLavender: _$OptimusTokens.legacyTagBorderLavender[0],
+    legacyTagBorderLime: _$OptimusTokens.legacyTagBorderLime[0],
+    legacyTagBorderMustard: _$OptimusTokens.legacyTagBorderMustard[0],
+    legacyTagBorderPrimary: _$OptimusTokens.legacyTagBorderPrimary[0],
+    legacyTagBorderRuby: _$OptimusTokens.legacyTagBorderRuby[0],
+    legacyTagBorderTangerine: _$OptimusTokens.legacyTagBorderTangerine[0],
+    legacyTagTextBasicBold: _$OptimusTokens.legacyTagTextBasicBold[0],
+    legacyTagTextDenim: _$OptimusTokens.legacyTagTextDenim[0],
+    legacyTagTextLavender: _$OptimusTokens.legacyTagTextLavender[0],
+    legacyTagTextLime: _$OptimusTokens.legacyTagTextLime[0],
+    legacyTagTextMustard: _$OptimusTokens.legacyTagTextMustard[0],
+    legacyTagTextPrimary: _$OptimusTokens.legacyTagTextPrimary[0],
+    legacyTagTextRuby: _$OptimusTokens.legacyTagTextRuby[0],
+    legacyTagTextTangerine: _$OptimusTokens.legacyTagTextTangerine[0],
+    letterSpacingCondensed: _$OptimusTokens.letterSpacingCondensed[0],
+    letterSpacingDefault: _$OptimusTokens.letterSpacingDefault[0],
+    letterSpacingWide: _$OptimusTokens.letterSpacingWide[0],
+    lineHeight100: _$OptimusTokens.lineHeight100[0],
+    lineHeight200: _$OptimusTokens.lineHeight200[0],
+    lineHeight300: _$OptimusTokens.lineHeight300[0],
+    opacity0: _$OptimusTokens.opacity0[0],
+    opacity100: _$OptimusTokens.opacity100[0],
+    opacity1000: _$OptimusTokens.opacity1000[0],
+    opacity150: _$OptimusTokens.opacity150[0],
+    opacity200: _$OptimusTokens.opacity200[0],
+    opacity400: _$OptimusTokens.opacity400[0],
+    opacity600: _$OptimusTokens.opacity600[0],
+    opacity800: _$OptimusTokens.opacity800[0],
     paletteBasicsBlack: _$OptimusTokens.paletteBasicsBlack[0],
     paletteBasicsWhite: _$OptimusTokens.paletteBasicsWhite[0],
     paletteBasicsWhite64: _$OptimusTokens.paletteBasicsWhite64[0],
@@ -774,66 +1086,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandNight700: _$OptimusTokens.paletteBrandNight700[0],
     paletteBrandNight800: _$OptimusTokens.paletteBrandNight800[0],
     paletteBrandNight900: _$OptimusTokens.paletteBrandNight900[0],
-    paletteDatavizDenim100: _$OptimusTokens.paletteDatavizDenim100[0],
-    paletteDatavizDenim200: _$OptimusTokens.paletteDatavizDenim200[0],
-    paletteDatavizDenim300: _$OptimusTokens.paletteDatavizDenim300[0],
-    paletteDatavizDenim400: _$OptimusTokens.paletteDatavizDenim400[0],
-    paletteDatavizDenim50: _$OptimusTokens.paletteDatavizDenim50[0],
-    paletteDatavizDenim500: _$OptimusTokens.paletteDatavizDenim500[0],
-    paletteDatavizDenim600: _$OptimusTokens.paletteDatavizDenim600[0],
-    paletteDatavizDenim700: _$OptimusTokens.paletteDatavizDenim700[0],
-    paletteDatavizDenim800: _$OptimusTokens.paletteDatavizDenim800[0],
-    paletteDatavizDenim900: _$OptimusTokens.paletteDatavizDenim900[0],
-    paletteDatavizLavender100: _$OptimusTokens.paletteDatavizLavender100[0],
-    paletteDatavizLavender200: _$OptimusTokens.paletteDatavizLavender200[0],
-    paletteDatavizLavender300: _$OptimusTokens.paletteDatavizLavender300[0],
-    paletteDatavizLavender400: _$OptimusTokens.paletteDatavizLavender400[0],
-    paletteDatavizLavender50: _$OptimusTokens.paletteDatavizLavender50[0],
-    paletteDatavizLavender500: _$OptimusTokens.paletteDatavizLavender500[0],
-    paletteDatavizLavender600: _$OptimusTokens.paletteDatavizLavender600[0],
-    paletteDatavizLavender700: _$OptimusTokens.paletteDatavizLavender700[0],
-    paletteDatavizLavender800: _$OptimusTokens.paletteDatavizLavender800[0],
-    paletteDatavizLavender900: _$OptimusTokens.paletteDatavizLavender900[0],
-    paletteDatavizLime100: _$OptimusTokens.paletteDatavizLime100[0],
-    paletteDatavizLime200: _$OptimusTokens.paletteDatavizLime200[0],
-    paletteDatavizLime300: _$OptimusTokens.paletteDatavizLime300[0],
-    paletteDatavizLime400: _$OptimusTokens.paletteDatavizLime400[0],
-    paletteDatavizLime50: _$OptimusTokens.paletteDatavizLime50[0],
-    paletteDatavizLime500: _$OptimusTokens.paletteDatavizLime500[0],
-    paletteDatavizLime600: _$OptimusTokens.paletteDatavizLime600[0],
-    paletteDatavizLime700: _$OptimusTokens.paletteDatavizLime700[0],
-    paletteDatavizLime800: _$OptimusTokens.paletteDatavizLime800[0],
-    paletteDatavizLime900: _$OptimusTokens.paletteDatavizLime900[0],
-    paletteDatavizMustard100: _$OptimusTokens.paletteDatavizMustard100[0],
-    paletteDatavizMustard200: _$OptimusTokens.paletteDatavizMustard200[0],
-    paletteDatavizMustard300: _$OptimusTokens.paletteDatavizMustard300[0],
-    paletteDatavizMustard400: _$OptimusTokens.paletteDatavizMustard400[0],
-    paletteDatavizMustard50: _$OptimusTokens.paletteDatavizMustard50[0],
-    paletteDatavizMustard500: _$OptimusTokens.paletteDatavizMustard500[0],
-    paletteDatavizMustard600: _$OptimusTokens.paletteDatavizMustard600[0],
-    paletteDatavizMustard700: _$OptimusTokens.paletteDatavizMustard700[0],
-    paletteDatavizMustard800: _$OptimusTokens.paletteDatavizMustard800[0],
-    paletteDatavizMustard900: _$OptimusTokens.paletteDatavizMustard900[0],
-    paletteDatavizRuby100: _$OptimusTokens.paletteDatavizRuby100[0],
-    paletteDatavizRuby200: _$OptimusTokens.paletteDatavizRuby200[0],
-    paletteDatavizRuby300: _$OptimusTokens.paletteDatavizRuby300[0],
-    paletteDatavizRuby400: _$OptimusTokens.paletteDatavizRuby400[0],
-    paletteDatavizRuby50: _$OptimusTokens.paletteDatavizRuby50[0],
-    paletteDatavizRuby500: _$OptimusTokens.paletteDatavizRuby500[0],
-    paletteDatavizRuby600: _$OptimusTokens.paletteDatavizRuby600[0],
-    paletteDatavizRuby700: _$OptimusTokens.paletteDatavizRuby700[0],
-    paletteDatavizRuby800: _$OptimusTokens.paletteDatavizRuby800[0],
-    paletteDatavizRuby900: _$OptimusTokens.paletteDatavizRuby900[0],
-    paletteDatavizTangerine100: _$OptimusTokens.paletteDatavizTangerine100[0],
-    paletteDatavizTangerine200: _$OptimusTokens.paletteDatavizTangerine200[0],
-    paletteDatavizTangerine300: _$OptimusTokens.paletteDatavizTangerine300[0],
-    paletteDatavizTangerine400: _$OptimusTokens.paletteDatavizTangerine400[0],
-    paletteDatavizTangerine50: _$OptimusTokens.paletteDatavizTangerine50[0],
-    paletteDatavizTangerine500: _$OptimusTokens.paletteDatavizTangerine500[0],
-    paletteDatavizTangerine600: _$OptimusTokens.paletteDatavizTangerine600[0],
-    paletteDatavizTangerine700: _$OptimusTokens.paletteDatavizTangerine700[0],
-    paletteDatavizTangerine800: _$OptimusTokens.paletteDatavizTangerine800[0],
-    paletteDatavizTangerine900: _$OptimusTokens.paletteDatavizTangerine900[0],
+    paletteDatavizBlue: _$OptimusTokens.paletteDatavizBlue[0],
+    paletteDatavizGreen: _$OptimusTokens.paletteDatavizGreen[0],
+    paletteDatavizOrange: _$OptimusTokens.paletteDatavizOrange[0],
+    paletteDatavizPink: _$OptimusTokens.paletteDatavizPink[0],
+    paletteDatavizPurple: _$OptimusTokens.paletteDatavizPurple[0],
+    paletteDatavizRed: _$OptimusTokens.paletteDatavizRed[0],
     paletteSemanticBlue100: _$OptimusTokens.paletteSemanticBlue100[0],
     paletteSemanticBlue1000: _$OptimusTokens.paletteSemanticBlue1000[0],
     paletteSemanticBlue150: _$OptimusTokens.paletteSemanticBlue150[0],
@@ -886,26 +1144,62 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteSemanticRed700: _$OptimusTokens.paletteSemanticRed700[0],
     paletteSemanticRed800: _$OptimusTokens.paletteSemanticRed800[0],
     paletteSemanticRed900: _$OptimusTokens.paletteSemanticRed900[0],
-    staticContainerColor: _$OptimusTokens.staticContainerColor[0],
-    staticDividerColor: _$OptimusTokens.staticDividerColor[0],
+    shadow0: _$OptimusTokens.shadow0[0],
+    shadow100: _$OptimusTokens.shadow100[0],
+    shadow200: _$OptimusTokens.shadow200[0],
+    shadow300: _$OptimusTokens.shadow300[0],
+    sizing100: _$OptimusTokens.sizing100[0],
+    sizing200: _$OptimusTokens.sizing200[0],
+    sizing300: _$OptimusTokens.sizing300[0],
+    sizing400: _$OptimusTokens.sizing400[0],
+    sizing50: _$OptimusTokens.sizing50[0],
+    sizing500: _$OptimusTokens.sizing500[0],
+    sizing550: _$OptimusTokens.sizing550[0],
+    sizing600: _$OptimusTokens.sizing600[0],
+    sizing700: _$OptimusTokens.sizing700[0],
+    sizing900: _$OptimusTokens.sizing900[0],
+    sizingBase: _$OptimusTokens.sizingBase[0],
+    spacing0: _$OptimusTokens.spacing0[0],
+    spacing100: _$OptimusTokens.spacing100[0],
+    spacing1000: _$OptimusTokens.spacing1000[0],
+    spacing1200: _$OptimusTokens.spacing1200[0],
+    spacing150: _$OptimusTokens.spacing150[0],
+    spacing200: _$OptimusTokens.spacing200[0],
+    spacing25: _$OptimusTokens.spacing25[0],
+    spacing250: _$OptimusTokens.spacing250[0],
+    spacing300: _$OptimusTokens.spacing300[0],
+    spacing400: _$OptimusTokens.spacing400[0],
+    spacing450: _$OptimusTokens.spacing450[0],
+    spacing50: _$OptimusTokens.spacing50[0],
+    spacing500: _$OptimusTokens.spacing500[0],
+    spacing700: _$OptimusTokens.spacing700[0],
+    spacing900: _$OptimusTokens.spacing900[0],
+    spacingBase: _$OptimusTokens.spacingBase[0],
     textAlertBasic: _$OptimusTokens.textAlertBasic[0],
     textAlertDanger: _$OptimusTokens.textAlertDanger[0],
     textAlertInfo: _$OptimusTokens.textAlertInfo[0],
     textAlertSuccess: _$OptimusTokens.textAlertSuccess[0],
     textAlertWarning: _$OptimusTokens.textAlertWarning[0],
+    textDecorationUnderline: _$OptimusTokens.textDecorationUnderline[0],
     textDisabled: _$OptimusTokens.textDisabled[0],
     textInteractiveActive: _$OptimusTokens.textInteractiveActive[0],
     textInteractiveDefault: _$OptimusTokens.textInteractiveDefault[0],
     textInteractiveHover: _$OptimusTokens.textInteractiveHover[0],
     textStaticInverse: _$OptimusTokens.textStaticInverse[0],
+    textStaticOnColor: _$OptimusTokens.textStaticOnColor[0],
     textStaticPrimary: _$OptimusTokens.textStaticPrimary[0],
     textStaticSecondary: _$OptimusTokens.textStaticSecondary[0],
     textStaticTertiary: _$OptimusTokens.textStaticTertiary[0],
+    titleLarge: _$OptimusTokens.titleLarge[0],
+    titleLargeStrong: _$OptimusTokens.titleLargeStrong[0],
+    titleMedium: _$OptimusTokens.titleMedium[0],
+    titleMediumStrong: _$OptimusTokens.titleMediumStrong[0],
+    titleSmall: _$OptimusTokens.titleSmall[0],
+    titleSmallStrong: _$OptimusTokens.titleSmallStrong[0],
   );
 
   static final OptimusTokens dark = OptimusTokens(
-    backgroundAccentPrimary: _$OptimusTokens.backgroundAccentPrimary[1],
-    backgroundAccentSecondary: _$OptimusTokens.backgroundAccentSecondary[1],
+    backgroundAccent: _$OptimusTokens.backgroundAccent[1],
     backgroundAlertBasicPrimary: _$OptimusTokens.backgroundAlertBasicPrimary[1],
     backgroundAlertBasicSecondary:
         _$OptimusTokens.backgroundAlertBasicSecondary[1],
@@ -924,7 +1218,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundAlertWarningPrimary[1],
     backgroundAlertWarningSecondary:
         _$OptimusTokens.backgroundAlertWarningSecondary[1],
+    backgroundBackdrop: _$OptimusTokens.backgroundBackdrop[1],
     backgroundBrand: _$OptimusTokens.backgroundBrand[1],
+    backgroundDatavizBlue: _$OptimusTokens.backgroundDatavizBlue[1],
+    backgroundDatavizGreen: _$OptimusTokens.backgroundDatavizGreen[1],
+    backgroundDatavizOrange: _$OptimusTokens.backgroundDatavizOrange[1],
+    backgroundDatavizPink: _$OptimusTokens.backgroundDatavizPink[1],
+    backgroundDatavizPurple: _$OptimusTokens.backgroundDatavizPurple[1],
+    backgroundDatavizRed: _$OptimusTokens.backgroundDatavizRed[1],
     backgroundDisabled: _$OptimusTokens.backgroundDisabled[1],
     backgroundInteractiveDangerActive:
         _$OptimusTokens.backgroundInteractiveDangerActive[1],
@@ -962,11 +1263,25 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.backgroundInteractiveSecondaryDefault[1],
     backgroundInteractiveSecondaryHover:
         _$OptimusTokens.backgroundInteractiveSecondaryHover[1],
+    backgroundInteractiveSuccessActive:
+        _$OptimusTokens.backgroundInteractiveSuccessActive[1],
+    backgroundInteractiveSuccessDefault:
+        _$OptimusTokens.backgroundInteractiveSuccessDefault[1],
+    backgroundInteractiveSuccessHover:
+        _$OptimusTokens.backgroundInteractiveSuccessHover[1],
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[1],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[1],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[1],
     backgroundStaticRaised: _$OptimusTokens.backgroundStaticRaised[1],
     backgroundStaticSunken: _$OptimusTokens.backgroundStaticSunken[1],
+    bodyExtraSmall: _$OptimusTokens.bodyExtraSmall[1],
+    bodyExtraSmallStrong: _$OptimusTokens.bodyExtraSmallStrong[1],
+    bodyLarge: _$OptimusTokens.bodyLarge[1],
+    bodyLargeStrong: _$OptimusTokens.bodyLargeStrong[1],
+    bodyMedium: _$OptimusTokens.bodyMedium[1],
+    bodyMediumStrong: _$OptimusTokens.bodyMediumStrong[1],
+    bodySmall: _$OptimusTokens.bodySmall[1],
+    bodySmallStrong: _$OptimusTokens.bodySmallStrong[1],
     borderAlertBasic: _$OptimusTokens.borderAlertBasic[1],
     borderAlertDanger: _$OptimusTokens.borderAlertDanger[1],
     borderAlertInfo: _$OptimusTokens.borderAlertInfo[1],
@@ -990,60 +1305,148 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         _$OptimusTokens.borderInteractiveSecondaryDefault[1],
     borderInteractiveSecondaryHover:
         _$OptimusTokens.borderInteractiveSecondaryHover[1],
+    borderRadius0: _$OptimusTokens.borderRadius0[1],
+    borderRadius100: _$OptimusTokens.borderRadius100[1],
+    borderRadius150: _$OptimusTokens.borderRadius150[1],
+    borderRadius200: _$OptimusTokens.borderRadius200[1],
+    borderRadius25: _$OptimusTokens.borderRadius25[1],
+    borderRadius300: _$OptimusTokens.borderRadius300[1],
+    borderRadius50: _$OptimusTokens.borderRadius50[1],
+    borderRadiusBase: _$OptimusTokens.borderRadiusBase[1],
+    borderRadiusRound: _$OptimusTokens.borderRadiusRound[1],
     borderStaticInverse: _$OptimusTokens.borderStaticInverse[1],
+    borderStaticOnColor: _$OptimusTokens.borderStaticOnColor[1],
     borderStaticPrimary: _$OptimusTokens.borderStaticPrimary[1],
     borderStaticSecondary: _$OptimusTokens.borderStaticSecondary[1],
-    inputActiveColor: _$OptimusTokens.inputActiveColor[1],
-    inputDangerColor: _$OptimusTokens.inputDangerColor[1],
-    inputDefaultColor: _$OptimusTokens.inputDefaultColor[1],
-    inputDisabledColor: _$OptimusTokens.inputDisabledColor[1],
-    inputHoverColor: _$OptimusTokens.inputHoverColor[1],
-    inputInverseColor: _$OptimusTokens.inputInverseColor[1],
-    interactiveDangerColor: _$OptimusTokens.interactiveDangerColor[1],
-    interactiveDefaultColor: _$OptimusTokens.interactiveDefaultColor[1],
-    interactiveDisabledColor: _$OptimusTokens.interactiveDisabledColor[1],
-    interactiveHoverColor: _$OptimusTokens.interactiveHoverColor[1],
-    interactiveInverseColor: _$OptimusTokens.interactiveInverseColor[1],
-    legacySupportTagBackgroundBasicBold:
-        _$OptimusTokens.legacySupportTagBackgroundBasicBold[1],
-    legacySupportTagBackgroundDenim:
-        _$OptimusTokens.legacySupportTagBackgroundDenim[1],
-    legacySupportTagBackgroundLavender:
-        _$OptimusTokens.legacySupportTagBackgroundLavender[1],
-    legacySupportTagBackgroundLime:
-        _$OptimusTokens.legacySupportTagBackgroundLime[1],
-    legacySupportTagBackgroundMustard:
-        _$OptimusTokens.legacySupportTagBackgroundMustard[1],
-    legacySupportTagBackgroundPrimary:
-        _$OptimusTokens.legacySupportTagBackgroundPrimary[1],
-    legacySupportTagBackgroundRuby:
-        _$OptimusTokens.legacySupportTagBackgroundRuby[1],
-    legacySupportTagBackgroundTangerine:
-        _$OptimusTokens.legacySupportTagBackgroundTangerine[1],
-    legacySupportTagBorderBasicBold:
-        _$OptimusTokens.legacySupportTagBorderBasicBold[1],
-    legacySupportTagBorderDenim: _$OptimusTokens.legacySupportTagBorderDenim[1],
-    legacySupportTagBorderLavender:
-        _$OptimusTokens.legacySupportTagBorderLavender[1],
-    legacySupportTagBorderLime: _$OptimusTokens.legacySupportTagBorderLime[1],
-    legacySupportTagBorderMustard:
-        _$OptimusTokens.legacySupportTagBorderMustard[1],
-    legacySupportTagBorderPrimary:
-        _$OptimusTokens.legacySupportTagBorderPrimary[1],
-    legacySupportTagBorderRuby: _$OptimusTokens.legacySupportTagBorderRuby[1],
-    legacySupportTagBorderTangerine:
-        _$OptimusTokens.legacySupportTagBorderTangerine[1],
-    legacySupportTagTextBasicBold:
-        _$OptimusTokens.legacySupportTagTextBasicBold[1],
-    legacySupportTagTextDenim: _$OptimusTokens.legacySupportTagTextDenim[1],
-    legacySupportTagTextLavender:
-        _$OptimusTokens.legacySupportTagTextLavender[1],
-    legacySupportTagTextLime: _$OptimusTokens.legacySupportTagTextLime[1],
-    legacySupportTagTextMustard: _$OptimusTokens.legacySupportTagTextMustard[1],
-    legacySupportTagTextPrimary: _$OptimusTokens.legacySupportTagTextPrimary[1],
-    legacySupportTagTextRuby: _$OptimusTokens.legacySupportTagTextRuby[1],
-    legacySupportTagTextTangerine:
-        _$OptimusTokens.legacySupportTagTextTangerine[1],
+    borderWidth0: _$OptimusTokens.borderWidth0[1],
+    borderWidth100: _$OptimusTokens.borderWidth100[1],
+    borderWidth150: _$OptimusTokens.borderWidth150[1],
+    borderWidth200: _$OptimusTokens.borderWidth200[1],
+    borderWidth250: _$OptimusTokens.borderWidth250[1],
+    borderWidth300: _$OptimusTokens.borderWidth300[1],
+    borderWidth800: _$OptimusTokens.borderWidth800[1],
+    focusOffset: _$OptimusTokens.focusOffset[1],
+    fontFamilyUi: _$OptimusTokens.fontFamilyUi[1],
+    fontSize100: _$OptimusTokens.fontSize100[1],
+    fontSize200: _$OptimusTokens.fontSize200[1],
+    fontSize300: _$OptimusTokens.fontSize300[1],
+    fontSize400: _$OptimusTokens.fontSize400[1],
+    fontSize50: _$OptimusTokens.fontSize50[1],
+    fontSize500: _$OptimusTokens.fontSize500[1],
+    fontSize600: _$OptimusTokens.fontSize600[1],
+    fontSize700: _$OptimusTokens.fontSize700[1],
+    fontSize75: _$OptimusTokens.fontSize75[1],
+    fontSize800: _$OptimusTokens.fontSize800[1],
+    fontSize900: _$OptimusTokens.fontSize900[1],
+    fontSizeBase: _$OptimusTokens.fontSizeBase[1],
+    fontSizeRatio: _$OptimusTokens.fontSizeRatio[1],
+    fontWeight300: _$OptimusTokens.fontWeight300[1],
+    fontWeight400: _$OptimusTokens.fontWeight400[1],
+    fontWeight500: _$OptimusTokens.fontWeight500[1],
+    fontWeight600: _$OptimusTokens.fontWeight600[1],
+    highlightLarge: _$OptimusTokens.highlightLarge[1],
+    highlightMedium: _$OptimusTokens.highlightMedium[1],
+    highlightSmall: _$OptimusTokens.highlightSmall[1],
+    legacyDatavizDenim100: _$OptimusTokens.legacyDatavizDenim100[1],
+    legacyDatavizDenim200: _$OptimusTokens.legacyDatavizDenim200[1],
+    legacyDatavizDenim300: _$OptimusTokens.legacyDatavizDenim300[1],
+    legacyDatavizDenim400: _$OptimusTokens.legacyDatavizDenim400[1],
+    legacyDatavizDenim50: _$OptimusTokens.legacyDatavizDenim50[1],
+    legacyDatavizDenim500: _$OptimusTokens.legacyDatavizDenim500[1],
+    legacyDatavizDenim600: _$OptimusTokens.legacyDatavizDenim600[1],
+    legacyDatavizDenim700: _$OptimusTokens.legacyDatavizDenim700[1],
+    legacyDatavizDenim800: _$OptimusTokens.legacyDatavizDenim800[1],
+    legacyDatavizDenim900: _$OptimusTokens.legacyDatavizDenim900[1],
+    legacyDatavizLavender100: _$OptimusTokens.legacyDatavizLavender100[1],
+    legacyDatavizLavender200: _$OptimusTokens.legacyDatavizLavender200[1],
+    legacyDatavizLavender300: _$OptimusTokens.legacyDatavizLavender300[1],
+    legacyDatavizLavender400: _$OptimusTokens.legacyDatavizLavender400[1],
+    legacyDatavizLavender50: _$OptimusTokens.legacyDatavizLavender50[1],
+    legacyDatavizLavender500: _$OptimusTokens.legacyDatavizLavender500[1],
+    legacyDatavizLavender600: _$OptimusTokens.legacyDatavizLavender600[1],
+    legacyDatavizLavender700: _$OptimusTokens.legacyDatavizLavender700[1],
+    legacyDatavizLavender800: _$OptimusTokens.legacyDatavizLavender800[1],
+    legacyDatavizLavender900: _$OptimusTokens.legacyDatavizLavender900[1],
+    legacyDatavizLime100: _$OptimusTokens.legacyDatavizLime100[1],
+    legacyDatavizLime200: _$OptimusTokens.legacyDatavizLime200[1],
+    legacyDatavizLime300: _$OptimusTokens.legacyDatavizLime300[1],
+    legacyDatavizLime400: _$OptimusTokens.legacyDatavizLime400[1],
+    legacyDatavizLime50: _$OptimusTokens.legacyDatavizLime50[1],
+    legacyDatavizLime500: _$OptimusTokens.legacyDatavizLime500[1],
+    legacyDatavizLime600: _$OptimusTokens.legacyDatavizLime600[1],
+    legacyDatavizLime700: _$OptimusTokens.legacyDatavizLime700[1],
+    legacyDatavizLime800: _$OptimusTokens.legacyDatavizLime800[1],
+    legacyDatavizLime900: _$OptimusTokens.legacyDatavizLime900[1],
+    legacyDatavizMustard100: _$OptimusTokens.legacyDatavizMustard100[1],
+    legacyDatavizMustard200: _$OptimusTokens.legacyDatavizMustard200[1],
+    legacyDatavizMustard300: _$OptimusTokens.legacyDatavizMustard300[1],
+    legacyDatavizMustard400: _$OptimusTokens.legacyDatavizMustard400[1],
+    legacyDatavizMustard50: _$OptimusTokens.legacyDatavizMustard50[1],
+    legacyDatavizMustard500: _$OptimusTokens.legacyDatavizMustard500[1],
+    legacyDatavizMustard600: _$OptimusTokens.legacyDatavizMustard600[1],
+    legacyDatavizMustard700: _$OptimusTokens.legacyDatavizMustard700[1],
+    legacyDatavizMustard800: _$OptimusTokens.legacyDatavizMustard800[1],
+    legacyDatavizMustard900: _$OptimusTokens.legacyDatavizMustard900[1],
+    legacyDatavizRuby100: _$OptimusTokens.legacyDatavizRuby100[1],
+    legacyDatavizRuby200: _$OptimusTokens.legacyDatavizRuby200[1],
+    legacyDatavizRuby300: _$OptimusTokens.legacyDatavizRuby300[1],
+    legacyDatavizRuby400: _$OptimusTokens.legacyDatavizRuby400[1],
+    legacyDatavizRuby50: _$OptimusTokens.legacyDatavizRuby50[1],
+    legacyDatavizRuby500: _$OptimusTokens.legacyDatavizRuby500[1],
+    legacyDatavizRuby600: _$OptimusTokens.legacyDatavizRuby600[1],
+    legacyDatavizRuby700: _$OptimusTokens.legacyDatavizRuby700[1],
+    legacyDatavizRuby800: _$OptimusTokens.legacyDatavizRuby800[1],
+    legacyDatavizRuby900: _$OptimusTokens.legacyDatavizRuby900[1],
+    legacyDatavizTangerine100: _$OptimusTokens.legacyDatavizTangerine100[1],
+    legacyDatavizTangerine200: _$OptimusTokens.legacyDatavizTangerine200[1],
+    legacyDatavizTangerine300: _$OptimusTokens.legacyDatavizTangerine300[1],
+    legacyDatavizTangerine400: _$OptimusTokens.legacyDatavizTangerine400[1],
+    legacyDatavizTangerine50: _$OptimusTokens.legacyDatavizTangerine50[1],
+    legacyDatavizTangerine500: _$OptimusTokens.legacyDatavizTangerine500[1],
+    legacyDatavizTangerine600: _$OptimusTokens.legacyDatavizTangerine600[1],
+    legacyDatavizTangerine700: _$OptimusTokens.legacyDatavizTangerine700[1],
+    legacyDatavizTangerine800: _$OptimusTokens.legacyDatavizTangerine800[1],
+    legacyDatavizTangerine900: _$OptimusTokens.legacyDatavizTangerine900[1],
+    legacyTagBackgroundBasicBold:
+        _$OptimusTokens.legacyTagBackgroundBasicBold[1],
+    legacyTagBackgroundDenim: _$OptimusTokens.legacyTagBackgroundDenim[1],
+    legacyTagBackgroundLavender: _$OptimusTokens.legacyTagBackgroundLavender[1],
+    legacyTagBackgroundLime: _$OptimusTokens.legacyTagBackgroundLime[1],
+    legacyTagBackgroundMustard: _$OptimusTokens.legacyTagBackgroundMustard[1],
+    legacyTagBackgroundPrimary: _$OptimusTokens.legacyTagBackgroundPrimary[1],
+    legacyTagBackgroundRuby: _$OptimusTokens.legacyTagBackgroundRuby[1],
+    legacyTagBackgroundTangerine:
+        _$OptimusTokens.legacyTagBackgroundTangerine[1],
+    legacyTagBorderBasicBold: _$OptimusTokens.legacyTagBorderBasicBold[1],
+    legacyTagBorderDenim: _$OptimusTokens.legacyTagBorderDenim[1],
+    legacyTagBorderLavender: _$OptimusTokens.legacyTagBorderLavender[1],
+    legacyTagBorderLime: _$OptimusTokens.legacyTagBorderLime[1],
+    legacyTagBorderMustard: _$OptimusTokens.legacyTagBorderMustard[1],
+    legacyTagBorderPrimary: _$OptimusTokens.legacyTagBorderPrimary[1],
+    legacyTagBorderRuby: _$OptimusTokens.legacyTagBorderRuby[1],
+    legacyTagBorderTangerine: _$OptimusTokens.legacyTagBorderTangerine[1],
+    legacyTagTextBasicBold: _$OptimusTokens.legacyTagTextBasicBold[1],
+    legacyTagTextDenim: _$OptimusTokens.legacyTagTextDenim[1],
+    legacyTagTextLavender: _$OptimusTokens.legacyTagTextLavender[1],
+    legacyTagTextLime: _$OptimusTokens.legacyTagTextLime[1],
+    legacyTagTextMustard: _$OptimusTokens.legacyTagTextMustard[1],
+    legacyTagTextPrimary: _$OptimusTokens.legacyTagTextPrimary[1],
+    legacyTagTextRuby: _$OptimusTokens.legacyTagTextRuby[1],
+    legacyTagTextTangerine: _$OptimusTokens.legacyTagTextTangerine[1],
+    letterSpacingCondensed: _$OptimusTokens.letterSpacingCondensed[1],
+    letterSpacingDefault: _$OptimusTokens.letterSpacingDefault[1],
+    letterSpacingWide: _$OptimusTokens.letterSpacingWide[1],
+    lineHeight100: _$OptimusTokens.lineHeight100[1],
+    lineHeight200: _$OptimusTokens.lineHeight200[1],
+    lineHeight300: _$OptimusTokens.lineHeight300[1],
+    opacity0: _$OptimusTokens.opacity0[1],
+    opacity100: _$OptimusTokens.opacity100[1],
+    opacity1000: _$OptimusTokens.opacity1000[1],
+    opacity150: _$OptimusTokens.opacity150[1],
+    opacity200: _$OptimusTokens.opacity200[1],
+    opacity400: _$OptimusTokens.opacity400[1],
+    opacity600: _$OptimusTokens.opacity600[1],
+    opacity800: _$OptimusTokens.opacity800[1],
     paletteBasicsBlack: _$OptimusTokens.paletteBasicsBlack[1],
     paletteBasicsWhite: _$OptimusTokens.paletteBasicsWhite[1],
     paletteBasicsWhite64: _$OptimusTokens.paletteBasicsWhite64[1],
@@ -1105,66 +1508,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandNight700: _$OptimusTokens.paletteBrandNight700[1],
     paletteBrandNight800: _$OptimusTokens.paletteBrandNight800[1],
     paletteBrandNight900: _$OptimusTokens.paletteBrandNight900[1],
-    paletteDatavizDenim100: _$OptimusTokens.paletteDatavizDenim100[1],
-    paletteDatavizDenim200: _$OptimusTokens.paletteDatavizDenim200[1],
-    paletteDatavizDenim300: _$OptimusTokens.paletteDatavizDenim300[1],
-    paletteDatavizDenim400: _$OptimusTokens.paletteDatavizDenim400[1],
-    paletteDatavizDenim50: _$OptimusTokens.paletteDatavizDenim50[1],
-    paletteDatavizDenim500: _$OptimusTokens.paletteDatavizDenim500[1],
-    paletteDatavizDenim600: _$OptimusTokens.paletteDatavizDenim600[1],
-    paletteDatavizDenim700: _$OptimusTokens.paletteDatavizDenim700[1],
-    paletteDatavizDenim800: _$OptimusTokens.paletteDatavizDenim800[1],
-    paletteDatavizDenim900: _$OptimusTokens.paletteDatavizDenim900[1],
-    paletteDatavizLavender100: _$OptimusTokens.paletteDatavizLavender100[1],
-    paletteDatavizLavender200: _$OptimusTokens.paletteDatavizLavender200[1],
-    paletteDatavizLavender300: _$OptimusTokens.paletteDatavizLavender300[1],
-    paletteDatavizLavender400: _$OptimusTokens.paletteDatavizLavender400[1],
-    paletteDatavizLavender50: _$OptimusTokens.paletteDatavizLavender50[1],
-    paletteDatavizLavender500: _$OptimusTokens.paletteDatavizLavender500[1],
-    paletteDatavizLavender600: _$OptimusTokens.paletteDatavizLavender600[1],
-    paletteDatavizLavender700: _$OptimusTokens.paletteDatavizLavender700[1],
-    paletteDatavizLavender800: _$OptimusTokens.paletteDatavizLavender800[1],
-    paletteDatavizLavender900: _$OptimusTokens.paletteDatavizLavender900[1],
-    paletteDatavizLime100: _$OptimusTokens.paletteDatavizLime100[1],
-    paletteDatavizLime200: _$OptimusTokens.paletteDatavizLime200[1],
-    paletteDatavizLime300: _$OptimusTokens.paletteDatavizLime300[1],
-    paletteDatavizLime400: _$OptimusTokens.paletteDatavizLime400[1],
-    paletteDatavizLime50: _$OptimusTokens.paletteDatavizLime50[1],
-    paletteDatavizLime500: _$OptimusTokens.paletteDatavizLime500[1],
-    paletteDatavizLime600: _$OptimusTokens.paletteDatavizLime600[1],
-    paletteDatavizLime700: _$OptimusTokens.paletteDatavizLime700[1],
-    paletteDatavizLime800: _$OptimusTokens.paletteDatavizLime800[1],
-    paletteDatavizLime900: _$OptimusTokens.paletteDatavizLime900[1],
-    paletteDatavizMustard100: _$OptimusTokens.paletteDatavizMustard100[1],
-    paletteDatavizMustard200: _$OptimusTokens.paletteDatavizMustard200[1],
-    paletteDatavizMustard300: _$OptimusTokens.paletteDatavizMustard300[1],
-    paletteDatavizMustard400: _$OptimusTokens.paletteDatavizMustard400[1],
-    paletteDatavizMustard50: _$OptimusTokens.paletteDatavizMustard50[1],
-    paletteDatavizMustard500: _$OptimusTokens.paletteDatavizMustard500[1],
-    paletteDatavizMustard600: _$OptimusTokens.paletteDatavizMustard600[1],
-    paletteDatavizMustard700: _$OptimusTokens.paletteDatavizMustard700[1],
-    paletteDatavizMustard800: _$OptimusTokens.paletteDatavizMustard800[1],
-    paletteDatavizMustard900: _$OptimusTokens.paletteDatavizMustard900[1],
-    paletteDatavizRuby100: _$OptimusTokens.paletteDatavizRuby100[1],
-    paletteDatavizRuby200: _$OptimusTokens.paletteDatavizRuby200[1],
-    paletteDatavizRuby300: _$OptimusTokens.paletteDatavizRuby300[1],
-    paletteDatavizRuby400: _$OptimusTokens.paletteDatavizRuby400[1],
-    paletteDatavizRuby50: _$OptimusTokens.paletteDatavizRuby50[1],
-    paletteDatavizRuby500: _$OptimusTokens.paletteDatavizRuby500[1],
-    paletteDatavizRuby600: _$OptimusTokens.paletteDatavizRuby600[1],
-    paletteDatavizRuby700: _$OptimusTokens.paletteDatavizRuby700[1],
-    paletteDatavizRuby800: _$OptimusTokens.paletteDatavizRuby800[1],
-    paletteDatavizRuby900: _$OptimusTokens.paletteDatavizRuby900[1],
-    paletteDatavizTangerine100: _$OptimusTokens.paletteDatavizTangerine100[1],
-    paletteDatavizTangerine200: _$OptimusTokens.paletteDatavizTangerine200[1],
-    paletteDatavizTangerine300: _$OptimusTokens.paletteDatavizTangerine300[1],
-    paletteDatavizTangerine400: _$OptimusTokens.paletteDatavizTangerine400[1],
-    paletteDatavizTangerine50: _$OptimusTokens.paletteDatavizTangerine50[1],
-    paletteDatavizTangerine500: _$OptimusTokens.paletteDatavizTangerine500[1],
-    paletteDatavizTangerine600: _$OptimusTokens.paletteDatavizTangerine600[1],
-    paletteDatavizTangerine700: _$OptimusTokens.paletteDatavizTangerine700[1],
-    paletteDatavizTangerine800: _$OptimusTokens.paletteDatavizTangerine800[1],
-    paletteDatavizTangerine900: _$OptimusTokens.paletteDatavizTangerine900[1],
+    paletteDatavizBlue: _$OptimusTokens.paletteDatavizBlue[1],
+    paletteDatavizGreen: _$OptimusTokens.paletteDatavizGreen[1],
+    paletteDatavizOrange: _$OptimusTokens.paletteDatavizOrange[1],
+    paletteDatavizPink: _$OptimusTokens.paletteDatavizPink[1],
+    paletteDatavizPurple: _$OptimusTokens.paletteDatavizPurple[1],
+    paletteDatavizRed: _$OptimusTokens.paletteDatavizRed[1],
     paletteSemanticBlue100: _$OptimusTokens.paletteSemanticBlue100[1],
     paletteSemanticBlue1000: _$OptimusTokens.paletteSemanticBlue1000[1],
     paletteSemanticBlue150: _$OptimusTokens.paletteSemanticBlue150[1],
@@ -1217,21 +1566,58 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteSemanticRed700: _$OptimusTokens.paletteSemanticRed700[1],
     paletteSemanticRed800: _$OptimusTokens.paletteSemanticRed800[1],
     paletteSemanticRed900: _$OptimusTokens.paletteSemanticRed900[1],
-    staticContainerColor: _$OptimusTokens.staticContainerColor[1],
-    staticDividerColor: _$OptimusTokens.staticDividerColor[1],
+    shadow0: _$OptimusTokens.shadow0[1],
+    shadow100: _$OptimusTokens.shadow100[1],
+    shadow200: _$OptimusTokens.shadow200[1],
+    shadow300: _$OptimusTokens.shadow300[1],
+    sizing100: _$OptimusTokens.sizing100[1],
+    sizing200: _$OptimusTokens.sizing200[1],
+    sizing300: _$OptimusTokens.sizing300[1],
+    sizing400: _$OptimusTokens.sizing400[1],
+    sizing50: _$OptimusTokens.sizing50[1],
+    sizing500: _$OptimusTokens.sizing500[1],
+    sizing550: _$OptimusTokens.sizing550[1],
+    sizing600: _$OptimusTokens.sizing600[1],
+    sizing700: _$OptimusTokens.sizing700[1],
+    sizing900: _$OptimusTokens.sizing900[1],
+    sizingBase: _$OptimusTokens.sizingBase[1],
+    spacing0: _$OptimusTokens.spacing0[1],
+    spacing100: _$OptimusTokens.spacing100[1],
+    spacing1000: _$OptimusTokens.spacing1000[1],
+    spacing1200: _$OptimusTokens.spacing1200[1],
+    spacing150: _$OptimusTokens.spacing150[1],
+    spacing200: _$OptimusTokens.spacing200[1],
+    spacing25: _$OptimusTokens.spacing25[1],
+    spacing250: _$OptimusTokens.spacing250[1],
+    spacing300: _$OptimusTokens.spacing300[1],
+    spacing400: _$OptimusTokens.spacing400[1],
+    spacing450: _$OptimusTokens.spacing450[1],
+    spacing50: _$OptimusTokens.spacing50[1],
+    spacing500: _$OptimusTokens.spacing500[1],
+    spacing700: _$OptimusTokens.spacing700[1],
+    spacing900: _$OptimusTokens.spacing900[1],
+    spacingBase: _$OptimusTokens.spacingBase[1],
     textAlertBasic: _$OptimusTokens.textAlertBasic[1],
     textAlertDanger: _$OptimusTokens.textAlertDanger[1],
     textAlertInfo: _$OptimusTokens.textAlertInfo[1],
     textAlertSuccess: _$OptimusTokens.textAlertSuccess[1],
     textAlertWarning: _$OptimusTokens.textAlertWarning[1],
+    textDecorationUnderline: _$OptimusTokens.textDecorationUnderline[1],
     textDisabled: _$OptimusTokens.textDisabled[1],
     textInteractiveActive: _$OptimusTokens.textInteractiveActive[1],
     textInteractiveDefault: _$OptimusTokens.textInteractiveDefault[1],
     textInteractiveHover: _$OptimusTokens.textInteractiveHover[1],
     textStaticInverse: _$OptimusTokens.textStaticInverse[1],
+    textStaticOnColor: _$OptimusTokens.textStaticOnColor[1],
     textStaticPrimary: _$OptimusTokens.textStaticPrimary[1],
     textStaticSecondary: _$OptimusTokens.textStaticSecondary[1],
     textStaticTertiary: _$OptimusTokens.textStaticTertiary[1],
+    titleLarge: _$OptimusTokens.titleLarge[1],
+    titleLargeStrong: _$OptimusTokens.titleLargeStrong[1],
+    titleMedium: _$OptimusTokens.titleMedium[1],
+    titleMediumStrong: _$OptimusTokens.titleMediumStrong[1],
+    titleSmall: _$OptimusTokens.titleSmall[1],
+    titleSmallStrong: _$OptimusTokens.titleSmallStrong[1],
   );
 
   static final themes = [
@@ -1241,8 +1627,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
 
   @override
   OptimusTokens copyWith({
-    Color? backgroundAccentPrimary,
-    Color? backgroundAccentSecondary,
+    Color? backgroundAccent,
     Color? backgroundAlertBasicPrimary,
     Color? backgroundAlertBasicSecondary,
     Color? backgroundAlertDangerPrimary,
@@ -1253,7 +1638,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? backgroundAlertSuccessSecondary,
     Color? backgroundAlertWarningPrimary,
     Color? backgroundAlertWarningSecondary,
+    Color? backgroundBackdrop,
     Color? backgroundBrand,
+    Color? backgroundDatavizBlue,
+    Color? backgroundDatavizGreen,
+    Color? backgroundDatavizOrange,
+    Color? backgroundDatavizPink,
+    Color? backgroundDatavizPurple,
+    Color? backgroundDatavizRed,
     Color? backgroundDisabled,
     Color? backgroundInteractiveDangerActive,
     Color? backgroundInteractiveDangerDefault,
@@ -1273,11 +1665,22 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? backgroundInteractiveSecondaryActive,
     Color? backgroundInteractiveSecondaryDefault,
     Color? backgroundInteractiveSecondaryHover,
+    Color? backgroundInteractiveSuccessActive,
+    Color? backgroundInteractiveSuccessDefault,
+    Color? backgroundInteractiveSuccessHover,
     Color? backgroundStaticFlat,
     Color? backgroundStaticFloating,
     Color? backgroundStaticInverse,
     Color? backgroundStaticRaised,
     Color? backgroundStaticSunken,
+    TextStyle? bodyExtraSmall,
+    TextStyle? bodyExtraSmallStrong,
+    TextStyle? bodyLarge,
+    TextStyle? bodyLargeStrong,
+    TextStyle? bodyMedium,
+    TextStyle? bodyMediumStrong,
+    TextStyle? bodySmall,
+    TextStyle? bodySmallStrong,
     Color? borderAlertBasic,
     Color? borderAlertDanger,
     Color? borderAlertInfo,
@@ -1294,44 +1697,146 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? borderInteractiveSecondaryActive,
     Color? borderInteractiveSecondaryDefault,
     Color? borderInteractiveSecondaryHover,
+    double? borderRadius0,
+    double? borderRadius100,
+    double? borderRadius150,
+    double? borderRadius200,
+    double? borderRadius25,
+    double? borderRadius300,
+    double? borderRadius50,
+    double? borderRadiusBase,
+    double? borderRadiusRound,
     Color? borderStaticInverse,
+    Color? borderStaticOnColor,
     Color? borderStaticPrimary,
     Color? borderStaticSecondary,
-    Color? inputActiveColor,
-    Color? inputDangerColor,
-    Color? inputDefaultColor,
-    Color? inputDisabledColor,
-    Color? inputHoverColor,
-    Color? inputInverseColor,
-    Color? interactiveDangerColor,
-    Color? interactiveDefaultColor,
-    Color? interactiveDisabledColor,
-    Color? interactiveHoverColor,
-    Color? interactiveInverseColor,
-    Color? legacySupportTagBackgroundBasicBold,
-    Color? legacySupportTagBackgroundDenim,
-    Color? legacySupportTagBackgroundLavender,
-    Color? legacySupportTagBackgroundLime,
-    Color? legacySupportTagBackgroundMustard,
-    Color? legacySupportTagBackgroundPrimary,
-    Color? legacySupportTagBackgroundRuby,
-    Color? legacySupportTagBackgroundTangerine,
-    Color? legacySupportTagBorderBasicBold,
-    Color? legacySupportTagBorderDenim,
-    Color? legacySupportTagBorderLavender,
-    Color? legacySupportTagBorderLime,
-    Color? legacySupportTagBorderMustard,
-    Color? legacySupportTagBorderPrimary,
-    Color? legacySupportTagBorderRuby,
-    Color? legacySupportTagBorderTangerine,
-    Color? legacySupportTagTextBasicBold,
-    Color? legacySupportTagTextDenim,
-    Color? legacySupportTagTextLavender,
-    Color? legacySupportTagTextLime,
-    Color? legacySupportTagTextMustard,
-    Color? legacySupportTagTextPrimary,
-    Color? legacySupportTagTextRuby,
-    Color? legacySupportTagTextTangerine,
+    double? borderWidth0,
+    double? borderWidth100,
+    double? borderWidth150,
+    double? borderWidth200,
+    double? borderWidth250,
+    double? borderWidth300,
+    double? borderWidth800,
+    List<BoxShadow>? focusOffset,
+    String? fontFamilyUi,
+    double? fontSize100,
+    double? fontSize200,
+    double? fontSize300,
+    double? fontSize400,
+    double? fontSize50,
+    double? fontSize500,
+    double? fontSize600,
+    double? fontSize700,
+    double? fontSize75,
+    double? fontSize800,
+    double? fontSize900,
+    double? fontSizeBase,
+    double? fontSizeRatio,
+    FontWeight? fontWeight300,
+    FontWeight? fontWeight400,
+    FontWeight? fontWeight500,
+    FontWeight? fontWeight600,
+    TextStyle? highlightLarge,
+    TextStyle? highlightMedium,
+    TextStyle? highlightSmall,
+    Color? legacyDatavizDenim100,
+    Color? legacyDatavizDenim200,
+    Color? legacyDatavizDenim300,
+    Color? legacyDatavizDenim400,
+    Color? legacyDatavizDenim50,
+    Color? legacyDatavizDenim500,
+    Color? legacyDatavizDenim600,
+    Color? legacyDatavizDenim700,
+    Color? legacyDatavizDenim800,
+    Color? legacyDatavizDenim900,
+    Color? legacyDatavizLavender100,
+    Color? legacyDatavizLavender200,
+    Color? legacyDatavizLavender300,
+    Color? legacyDatavizLavender400,
+    Color? legacyDatavizLavender50,
+    Color? legacyDatavizLavender500,
+    Color? legacyDatavizLavender600,
+    Color? legacyDatavizLavender700,
+    Color? legacyDatavizLavender800,
+    Color? legacyDatavizLavender900,
+    Color? legacyDatavizLime100,
+    Color? legacyDatavizLime200,
+    Color? legacyDatavizLime300,
+    Color? legacyDatavizLime400,
+    Color? legacyDatavizLime50,
+    Color? legacyDatavizLime500,
+    Color? legacyDatavizLime600,
+    Color? legacyDatavizLime700,
+    Color? legacyDatavizLime800,
+    Color? legacyDatavizLime900,
+    Color? legacyDatavizMustard100,
+    Color? legacyDatavizMustard200,
+    Color? legacyDatavizMustard300,
+    Color? legacyDatavizMustard400,
+    Color? legacyDatavizMustard50,
+    Color? legacyDatavizMustard500,
+    Color? legacyDatavizMustard600,
+    Color? legacyDatavizMustard700,
+    Color? legacyDatavizMustard800,
+    Color? legacyDatavizMustard900,
+    Color? legacyDatavizRuby100,
+    Color? legacyDatavizRuby200,
+    Color? legacyDatavizRuby300,
+    Color? legacyDatavizRuby400,
+    Color? legacyDatavizRuby50,
+    Color? legacyDatavizRuby500,
+    Color? legacyDatavizRuby600,
+    Color? legacyDatavizRuby700,
+    Color? legacyDatavizRuby800,
+    Color? legacyDatavizRuby900,
+    Color? legacyDatavizTangerine100,
+    Color? legacyDatavizTangerine200,
+    Color? legacyDatavizTangerine300,
+    Color? legacyDatavizTangerine400,
+    Color? legacyDatavizTangerine50,
+    Color? legacyDatavizTangerine500,
+    Color? legacyDatavizTangerine600,
+    Color? legacyDatavizTangerine700,
+    Color? legacyDatavizTangerine800,
+    Color? legacyDatavizTangerine900,
+    Color? legacyTagBackgroundBasicBold,
+    Color? legacyTagBackgroundDenim,
+    Color? legacyTagBackgroundLavender,
+    Color? legacyTagBackgroundLime,
+    Color? legacyTagBackgroundMustard,
+    Color? legacyTagBackgroundPrimary,
+    Color? legacyTagBackgroundRuby,
+    Color? legacyTagBackgroundTangerine,
+    Color? legacyTagBorderBasicBold,
+    Color? legacyTagBorderDenim,
+    Color? legacyTagBorderLavender,
+    Color? legacyTagBorderLime,
+    Color? legacyTagBorderMustard,
+    Color? legacyTagBorderPrimary,
+    Color? legacyTagBorderRuby,
+    Color? legacyTagBorderTangerine,
+    Color? legacyTagTextBasicBold,
+    Color? legacyTagTextDenim,
+    Color? legacyTagTextLavender,
+    Color? legacyTagTextLime,
+    Color? legacyTagTextMustard,
+    Color? legacyTagTextPrimary,
+    Color? legacyTagTextRuby,
+    Color? legacyTagTextTangerine,
+    double? letterSpacingCondensed,
+    double? letterSpacingDefault,
+    double? letterSpacingWide,
+    double? lineHeight100,
+    double? lineHeight200,
+    double? lineHeight300,
+    double? opacity0,
+    double? opacity100,
+    double? opacity1000,
+    double? opacity150,
+    double? opacity200,
+    double? opacity400,
+    double? opacity600,
+    double? opacity800,
     Color? paletteBasicsBlack,
     Color? paletteBasicsWhite,
     Color? paletteBasicsWhite64,
@@ -1393,66 +1898,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? paletteBrandNight700,
     Color? paletteBrandNight800,
     Color? paletteBrandNight900,
-    Color? paletteDatavizDenim100,
-    Color? paletteDatavizDenim200,
-    Color? paletteDatavizDenim300,
-    Color? paletteDatavizDenim400,
-    Color? paletteDatavizDenim50,
-    Color? paletteDatavizDenim500,
-    Color? paletteDatavizDenim600,
-    Color? paletteDatavizDenim700,
-    Color? paletteDatavizDenim800,
-    Color? paletteDatavizDenim900,
-    Color? paletteDatavizLavender100,
-    Color? paletteDatavizLavender200,
-    Color? paletteDatavizLavender300,
-    Color? paletteDatavizLavender400,
-    Color? paletteDatavizLavender50,
-    Color? paletteDatavizLavender500,
-    Color? paletteDatavizLavender600,
-    Color? paletteDatavizLavender700,
-    Color? paletteDatavizLavender800,
-    Color? paletteDatavizLavender900,
-    Color? paletteDatavizLime100,
-    Color? paletteDatavizLime200,
-    Color? paletteDatavizLime300,
-    Color? paletteDatavizLime400,
-    Color? paletteDatavizLime50,
-    Color? paletteDatavizLime500,
-    Color? paletteDatavizLime600,
-    Color? paletteDatavizLime700,
-    Color? paletteDatavizLime800,
-    Color? paletteDatavizLime900,
-    Color? paletteDatavizMustard100,
-    Color? paletteDatavizMustard200,
-    Color? paletteDatavizMustard300,
-    Color? paletteDatavizMustard400,
-    Color? paletteDatavizMustard50,
-    Color? paletteDatavizMustard500,
-    Color? paletteDatavizMustard600,
-    Color? paletteDatavizMustard700,
-    Color? paletteDatavizMustard800,
-    Color? paletteDatavizMustard900,
-    Color? paletteDatavizRuby100,
-    Color? paletteDatavizRuby200,
-    Color? paletteDatavizRuby300,
-    Color? paletteDatavizRuby400,
-    Color? paletteDatavizRuby50,
-    Color? paletteDatavizRuby500,
-    Color? paletteDatavizRuby600,
-    Color? paletteDatavizRuby700,
-    Color? paletteDatavizRuby800,
-    Color? paletteDatavizRuby900,
-    Color? paletteDatavizTangerine100,
-    Color? paletteDatavizTangerine200,
-    Color? paletteDatavizTangerine300,
-    Color? paletteDatavizTangerine400,
-    Color? paletteDatavizTangerine50,
-    Color? paletteDatavizTangerine500,
-    Color? paletteDatavizTangerine600,
-    Color? paletteDatavizTangerine700,
-    Color? paletteDatavizTangerine800,
-    Color? paletteDatavizTangerine900,
+    Color? paletteDatavizBlue,
+    Color? paletteDatavizGreen,
+    Color? paletteDatavizOrange,
+    Color? paletteDatavizPink,
+    Color? paletteDatavizPurple,
+    Color? paletteDatavizRed,
     Color? paletteSemanticBlue100,
     Color? paletteSemanticBlue1000,
     Color? paletteSemanticBlue150,
@@ -1505,27 +1956,61 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? paletteSemanticRed700,
     Color? paletteSemanticRed800,
     Color? paletteSemanticRed900,
-    Color? staticContainerColor,
-    Color? staticDividerColor,
+    List<BoxShadow>? shadow0,
+    List<BoxShadow>? shadow100,
+    List<BoxShadow>? shadow200,
+    List<BoxShadow>? shadow300,
+    double? sizing100,
+    double? sizing200,
+    double? sizing300,
+    double? sizing400,
+    double? sizing50,
+    double? sizing500,
+    double? sizing550,
+    double? sizing600,
+    double? sizing700,
+    double? sizing900,
+    double? sizingBase,
+    double? spacing0,
+    double? spacing100,
+    double? spacing1000,
+    double? spacing1200,
+    double? spacing150,
+    double? spacing200,
+    double? spacing25,
+    double? spacing250,
+    double? spacing300,
+    double? spacing400,
+    double? spacing450,
+    double? spacing50,
+    double? spacing500,
+    double? spacing700,
+    double? spacing900,
+    double? spacingBase,
     Color? textAlertBasic,
     Color? textAlertDanger,
     Color? textAlertInfo,
     Color? textAlertSuccess,
     Color? textAlertWarning,
+    TextDecoration? textDecorationUnderline,
     Color? textDisabled,
     Color? textInteractiveActive,
     Color? textInteractiveDefault,
     Color? textInteractiveHover,
     Color? textStaticInverse,
+    Color? textStaticOnColor,
     Color? textStaticPrimary,
     Color? textStaticSecondary,
     Color? textStaticTertiary,
+    TextStyle? titleLarge,
+    TextStyle? titleLargeStrong,
+    TextStyle? titleMedium,
+    TextStyle? titleMediumStrong,
+    TextStyle? titleSmall,
+    TextStyle? titleSmallStrong,
   }) {
     return OptimusTokens(
-      backgroundAccentPrimary:
-          backgroundAccentPrimary ?? this.backgroundAccentPrimary,
-      backgroundAccentSecondary:
-          backgroundAccentSecondary ?? this.backgroundAccentSecondary,
+      backgroundAccent: backgroundAccent ?? this.backgroundAccent,
       backgroundAlertBasicPrimary:
           backgroundAlertBasicPrimary ?? this.backgroundAlertBasicPrimary,
       backgroundAlertBasicSecondary:
@@ -1546,7 +2031,19 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundAlertWarningPrimary ?? this.backgroundAlertWarningPrimary,
       backgroundAlertWarningSecondary: backgroundAlertWarningSecondary ??
           this.backgroundAlertWarningSecondary,
+      backgroundBackdrop: backgroundBackdrop ?? this.backgroundBackdrop,
       backgroundBrand: backgroundBrand ?? this.backgroundBrand,
+      backgroundDatavizBlue:
+          backgroundDatavizBlue ?? this.backgroundDatavizBlue,
+      backgroundDatavizGreen:
+          backgroundDatavizGreen ?? this.backgroundDatavizGreen,
+      backgroundDatavizOrange:
+          backgroundDatavizOrange ?? this.backgroundDatavizOrange,
+      backgroundDatavizPink:
+          backgroundDatavizPink ?? this.backgroundDatavizPink,
+      backgroundDatavizPurple:
+          backgroundDatavizPurple ?? this.backgroundDatavizPurple,
+      backgroundDatavizRed: backgroundDatavizRed ?? this.backgroundDatavizRed,
       backgroundDisabled: backgroundDisabled ?? this.backgroundDisabled,
       backgroundInteractiveDangerActive: backgroundInteractiveDangerActive ??
           this.backgroundInteractiveDangerActive,
@@ -1595,6 +2092,13 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       backgroundInteractiveSecondaryHover:
           backgroundInteractiveSecondaryHover ??
               this.backgroundInteractiveSecondaryHover,
+      backgroundInteractiveSuccessActive: backgroundInteractiveSuccessActive ??
+          this.backgroundInteractiveSuccessActive,
+      backgroundInteractiveSuccessDefault:
+          backgroundInteractiveSuccessDefault ??
+              this.backgroundInteractiveSuccessDefault,
+      backgroundInteractiveSuccessHover: backgroundInteractiveSuccessHover ??
+          this.backgroundInteractiveSuccessHover,
       backgroundStaticFlat: backgroundStaticFlat ?? this.backgroundStaticFlat,
       backgroundStaticFloating:
           backgroundStaticFloating ?? this.backgroundStaticFloating,
@@ -1604,6 +2108,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundStaticRaised ?? this.backgroundStaticRaised,
       backgroundStaticSunken:
           backgroundStaticSunken ?? this.backgroundStaticSunken,
+      bodyExtraSmall: bodyExtraSmall ?? this.bodyExtraSmall,
+      bodyExtraSmallStrong: bodyExtraSmallStrong ?? this.bodyExtraSmallStrong,
+      bodyLarge: bodyLarge ?? this.bodyLarge,
+      bodyLargeStrong: bodyLargeStrong ?? this.bodyLargeStrong,
+      bodyMedium: bodyMedium ?? this.bodyMedium,
+      bodyMediumStrong: bodyMediumStrong ?? this.bodyMediumStrong,
+      bodySmall: bodySmall ?? this.bodySmall,
+      bodySmallStrong: bodySmallStrong ?? this.bodySmallStrong,
       borderAlertBasic: borderAlertBasic ?? this.borderAlertBasic,
       borderAlertDanger: borderAlertDanger ?? this.borderAlertDanger,
       borderAlertInfo: borderAlertInfo ?? this.borderAlertInfo,
@@ -1630,76 +2142,203 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           this.borderInteractiveSecondaryDefault,
       borderInteractiveSecondaryHover: borderInteractiveSecondaryHover ??
           this.borderInteractiveSecondaryHover,
+      borderRadius0: borderRadius0 ?? this.borderRadius0,
+      borderRadius100: borderRadius100 ?? this.borderRadius100,
+      borderRadius150: borderRadius150 ?? this.borderRadius150,
+      borderRadius200: borderRadius200 ?? this.borderRadius200,
+      borderRadius25: borderRadius25 ?? this.borderRadius25,
+      borderRadius300: borderRadius300 ?? this.borderRadius300,
+      borderRadius50: borderRadius50 ?? this.borderRadius50,
+      borderRadiusBase: borderRadiusBase ?? this.borderRadiusBase,
+      borderRadiusRound: borderRadiusRound ?? this.borderRadiusRound,
       borderStaticInverse: borderStaticInverse ?? this.borderStaticInverse,
+      borderStaticOnColor: borderStaticOnColor ?? this.borderStaticOnColor,
       borderStaticPrimary: borderStaticPrimary ?? this.borderStaticPrimary,
       borderStaticSecondary:
           borderStaticSecondary ?? this.borderStaticSecondary,
-      inputActiveColor: inputActiveColor ?? this.inputActiveColor,
-      inputDangerColor: inputDangerColor ?? this.inputDangerColor,
-      inputDefaultColor: inputDefaultColor ?? this.inputDefaultColor,
-      inputDisabledColor: inputDisabledColor ?? this.inputDisabledColor,
-      inputHoverColor: inputHoverColor ?? this.inputHoverColor,
-      inputInverseColor: inputInverseColor ?? this.inputInverseColor,
-      interactiveDangerColor:
-          interactiveDangerColor ?? this.interactiveDangerColor,
-      interactiveDefaultColor:
-          interactiveDefaultColor ?? this.interactiveDefaultColor,
-      interactiveDisabledColor:
-          interactiveDisabledColor ?? this.interactiveDisabledColor,
-      interactiveHoverColor:
-          interactiveHoverColor ?? this.interactiveHoverColor,
-      interactiveInverseColor:
-          interactiveInverseColor ?? this.interactiveInverseColor,
-      legacySupportTagBackgroundBasicBold:
-          legacySupportTagBackgroundBasicBold ??
-              this.legacySupportTagBackgroundBasicBold,
-      legacySupportTagBackgroundDenim: legacySupportTagBackgroundDenim ??
-          this.legacySupportTagBackgroundDenim,
-      legacySupportTagBackgroundLavender: legacySupportTagBackgroundLavender ??
-          this.legacySupportTagBackgroundLavender,
-      legacySupportTagBackgroundLime:
-          legacySupportTagBackgroundLime ?? this.legacySupportTagBackgroundLime,
-      legacySupportTagBackgroundMustard: legacySupportTagBackgroundMustard ??
-          this.legacySupportTagBackgroundMustard,
-      legacySupportTagBackgroundPrimary: legacySupportTagBackgroundPrimary ??
-          this.legacySupportTagBackgroundPrimary,
-      legacySupportTagBackgroundRuby:
-          legacySupportTagBackgroundRuby ?? this.legacySupportTagBackgroundRuby,
-      legacySupportTagBackgroundTangerine:
-          legacySupportTagBackgroundTangerine ??
-              this.legacySupportTagBackgroundTangerine,
-      legacySupportTagBorderBasicBold: legacySupportTagBorderBasicBold ??
-          this.legacySupportTagBorderBasicBold,
-      legacySupportTagBorderDenim:
-          legacySupportTagBorderDenim ?? this.legacySupportTagBorderDenim,
-      legacySupportTagBorderLavender:
-          legacySupportTagBorderLavender ?? this.legacySupportTagBorderLavender,
-      legacySupportTagBorderLime:
-          legacySupportTagBorderLime ?? this.legacySupportTagBorderLime,
-      legacySupportTagBorderMustard:
-          legacySupportTagBorderMustard ?? this.legacySupportTagBorderMustard,
-      legacySupportTagBorderPrimary:
-          legacySupportTagBorderPrimary ?? this.legacySupportTagBorderPrimary,
-      legacySupportTagBorderRuby:
-          legacySupportTagBorderRuby ?? this.legacySupportTagBorderRuby,
-      legacySupportTagBorderTangerine: legacySupportTagBorderTangerine ??
-          this.legacySupportTagBorderTangerine,
-      legacySupportTagTextBasicBold:
-          legacySupportTagTextBasicBold ?? this.legacySupportTagTextBasicBold,
-      legacySupportTagTextDenim:
-          legacySupportTagTextDenim ?? this.legacySupportTagTextDenim,
-      legacySupportTagTextLavender:
-          legacySupportTagTextLavender ?? this.legacySupportTagTextLavender,
-      legacySupportTagTextLime:
-          legacySupportTagTextLime ?? this.legacySupportTagTextLime,
-      legacySupportTagTextMustard:
-          legacySupportTagTextMustard ?? this.legacySupportTagTextMustard,
-      legacySupportTagTextPrimary:
-          legacySupportTagTextPrimary ?? this.legacySupportTagTextPrimary,
-      legacySupportTagTextRuby:
-          legacySupportTagTextRuby ?? this.legacySupportTagTextRuby,
-      legacySupportTagTextTangerine:
-          legacySupportTagTextTangerine ?? this.legacySupportTagTextTangerine,
+      borderWidth0: borderWidth0 ?? this.borderWidth0,
+      borderWidth100: borderWidth100 ?? this.borderWidth100,
+      borderWidth150: borderWidth150 ?? this.borderWidth150,
+      borderWidth200: borderWidth200 ?? this.borderWidth200,
+      borderWidth250: borderWidth250 ?? this.borderWidth250,
+      borderWidth300: borderWidth300 ?? this.borderWidth300,
+      borderWidth800: borderWidth800 ?? this.borderWidth800,
+      focusOffset: focusOffset ?? this.focusOffset,
+      fontFamilyUi: fontFamilyUi ?? this.fontFamilyUi,
+      fontSize100: fontSize100 ?? this.fontSize100,
+      fontSize200: fontSize200 ?? this.fontSize200,
+      fontSize300: fontSize300 ?? this.fontSize300,
+      fontSize400: fontSize400 ?? this.fontSize400,
+      fontSize50: fontSize50 ?? this.fontSize50,
+      fontSize500: fontSize500 ?? this.fontSize500,
+      fontSize600: fontSize600 ?? this.fontSize600,
+      fontSize700: fontSize700 ?? this.fontSize700,
+      fontSize75: fontSize75 ?? this.fontSize75,
+      fontSize800: fontSize800 ?? this.fontSize800,
+      fontSize900: fontSize900 ?? this.fontSize900,
+      fontSizeBase: fontSizeBase ?? this.fontSizeBase,
+      fontSizeRatio: fontSizeRatio ?? this.fontSizeRatio,
+      fontWeight300: fontWeight300 ?? this.fontWeight300,
+      fontWeight400: fontWeight400 ?? this.fontWeight400,
+      fontWeight500: fontWeight500 ?? this.fontWeight500,
+      fontWeight600: fontWeight600 ?? this.fontWeight600,
+      highlightLarge: highlightLarge ?? this.highlightLarge,
+      highlightMedium: highlightMedium ?? this.highlightMedium,
+      highlightSmall: highlightSmall ?? this.highlightSmall,
+      legacyDatavizDenim100:
+          legacyDatavizDenim100 ?? this.legacyDatavizDenim100,
+      legacyDatavizDenim200:
+          legacyDatavizDenim200 ?? this.legacyDatavizDenim200,
+      legacyDatavizDenim300:
+          legacyDatavizDenim300 ?? this.legacyDatavizDenim300,
+      legacyDatavizDenim400:
+          legacyDatavizDenim400 ?? this.legacyDatavizDenim400,
+      legacyDatavizDenim50: legacyDatavizDenim50 ?? this.legacyDatavizDenim50,
+      legacyDatavizDenim500:
+          legacyDatavizDenim500 ?? this.legacyDatavizDenim500,
+      legacyDatavizDenim600:
+          legacyDatavizDenim600 ?? this.legacyDatavizDenim600,
+      legacyDatavizDenim700:
+          legacyDatavizDenim700 ?? this.legacyDatavizDenim700,
+      legacyDatavizDenim800:
+          legacyDatavizDenim800 ?? this.legacyDatavizDenim800,
+      legacyDatavizDenim900:
+          legacyDatavizDenim900 ?? this.legacyDatavizDenim900,
+      legacyDatavizLavender100:
+          legacyDatavizLavender100 ?? this.legacyDatavizLavender100,
+      legacyDatavizLavender200:
+          legacyDatavizLavender200 ?? this.legacyDatavizLavender200,
+      legacyDatavizLavender300:
+          legacyDatavizLavender300 ?? this.legacyDatavizLavender300,
+      legacyDatavizLavender400:
+          legacyDatavizLavender400 ?? this.legacyDatavizLavender400,
+      legacyDatavizLavender50:
+          legacyDatavizLavender50 ?? this.legacyDatavizLavender50,
+      legacyDatavizLavender500:
+          legacyDatavizLavender500 ?? this.legacyDatavizLavender500,
+      legacyDatavizLavender600:
+          legacyDatavizLavender600 ?? this.legacyDatavizLavender600,
+      legacyDatavizLavender700:
+          legacyDatavizLavender700 ?? this.legacyDatavizLavender700,
+      legacyDatavizLavender800:
+          legacyDatavizLavender800 ?? this.legacyDatavizLavender800,
+      legacyDatavizLavender900:
+          legacyDatavizLavender900 ?? this.legacyDatavizLavender900,
+      legacyDatavizLime100: legacyDatavizLime100 ?? this.legacyDatavizLime100,
+      legacyDatavizLime200: legacyDatavizLime200 ?? this.legacyDatavizLime200,
+      legacyDatavizLime300: legacyDatavizLime300 ?? this.legacyDatavizLime300,
+      legacyDatavizLime400: legacyDatavizLime400 ?? this.legacyDatavizLime400,
+      legacyDatavizLime50: legacyDatavizLime50 ?? this.legacyDatavizLime50,
+      legacyDatavizLime500: legacyDatavizLime500 ?? this.legacyDatavizLime500,
+      legacyDatavizLime600: legacyDatavizLime600 ?? this.legacyDatavizLime600,
+      legacyDatavizLime700: legacyDatavizLime700 ?? this.legacyDatavizLime700,
+      legacyDatavizLime800: legacyDatavizLime800 ?? this.legacyDatavizLime800,
+      legacyDatavizLime900: legacyDatavizLime900 ?? this.legacyDatavizLime900,
+      legacyDatavizMustard100:
+          legacyDatavizMustard100 ?? this.legacyDatavizMustard100,
+      legacyDatavizMustard200:
+          legacyDatavizMustard200 ?? this.legacyDatavizMustard200,
+      legacyDatavizMustard300:
+          legacyDatavizMustard300 ?? this.legacyDatavizMustard300,
+      legacyDatavizMustard400:
+          legacyDatavizMustard400 ?? this.legacyDatavizMustard400,
+      legacyDatavizMustard50:
+          legacyDatavizMustard50 ?? this.legacyDatavizMustard50,
+      legacyDatavizMustard500:
+          legacyDatavizMustard500 ?? this.legacyDatavizMustard500,
+      legacyDatavizMustard600:
+          legacyDatavizMustard600 ?? this.legacyDatavizMustard600,
+      legacyDatavizMustard700:
+          legacyDatavizMustard700 ?? this.legacyDatavizMustard700,
+      legacyDatavizMustard800:
+          legacyDatavizMustard800 ?? this.legacyDatavizMustard800,
+      legacyDatavizMustard900:
+          legacyDatavizMustard900 ?? this.legacyDatavizMustard900,
+      legacyDatavizRuby100: legacyDatavizRuby100 ?? this.legacyDatavizRuby100,
+      legacyDatavizRuby200: legacyDatavizRuby200 ?? this.legacyDatavizRuby200,
+      legacyDatavizRuby300: legacyDatavizRuby300 ?? this.legacyDatavizRuby300,
+      legacyDatavizRuby400: legacyDatavizRuby400 ?? this.legacyDatavizRuby400,
+      legacyDatavizRuby50: legacyDatavizRuby50 ?? this.legacyDatavizRuby50,
+      legacyDatavizRuby500: legacyDatavizRuby500 ?? this.legacyDatavizRuby500,
+      legacyDatavizRuby600: legacyDatavizRuby600 ?? this.legacyDatavizRuby600,
+      legacyDatavizRuby700: legacyDatavizRuby700 ?? this.legacyDatavizRuby700,
+      legacyDatavizRuby800: legacyDatavizRuby800 ?? this.legacyDatavizRuby800,
+      legacyDatavizRuby900: legacyDatavizRuby900 ?? this.legacyDatavizRuby900,
+      legacyDatavizTangerine100:
+          legacyDatavizTangerine100 ?? this.legacyDatavizTangerine100,
+      legacyDatavizTangerine200:
+          legacyDatavizTangerine200 ?? this.legacyDatavizTangerine200,
+      legacyDatavizTangerine300:
+          legacyDatavizTangerine300 ?? this.legacyDatavizTangerine300,
+      legacyDatavizTangerine400:
+          legacyDatavizTangerine400 ?? this.legacyDatavizTangerine400,
+      legacyDatavizTangerine50:
+          legacyDatavizTangerine50 ?? this.legacyDatavizTangerine50,
+      legacyDatavizTangerine500:
+          legacyDatavizTangerine500 ?? this.legacyDatavizTangerine500,
+      legacyDatavizTangerine600:
+          legacyDatavizTangerine600 ?? this.legacyDatavizTangerine600,
+      legacyDatavizTangerine700:
+          legacyDatavizTangerine700 ?? this.legacyDatavizTangerine700,
+      legacyDatavizTangerine800:
+          legacyDatavizTangerine800 ?? this.legacyDatavizTangerine800,
+      legacyDatavizTangerine900:
+          legacyDatavizTangerine900 ?? this.legacyDatavizTangerine900,
+      legacyTagBackgroundBasicBold:
+          legacyTagBackgroundBasicBold ?? this.legacyTagBackgroundBasicBold,
+      legacyTagBackgroundDenim:
+          legacyTagBackgroundDenim ?? this.legacyTagBackgroundDenim,
+      legacyTagBackgroundLavender:
+          legacyTagBackgroundLavender ?? this.legacyTagBackgroundLavender,
+      legacyTagBackgroundLime:
+          legacyTagBackgroundLime ?? this.legacyTagBackgroundLime,
+      legacyTagBackgroundMustard:
+          legacyTagBackgroundMustard ?? this.legacyTagBackgroundMustard,
+      legacyTagBackgroundPrimary:
+          legacyTagBackgroundPrimary ?? this.legacyTagBackgroundPrimary,
+      legacyTagBackgroundRuby:
+          legacyTagBackgroundRuby ?? this.legacyTagBackgroundRuby,
+      legacyTagBackgroundTangerine:
+          legacyTagBackgroundTangerine ?? this.legacyTagBackgroundTangerine,
+      legacyTagBorderBasicBold:
+          legacyTagBorderBasicBold ?? this.legacyTagBorderBasicBold,
+      legacyTagBorderDenim: legacyTagBorderDenim ?? this.legacyTagBorderDenim,
+      legacyTagBorderLavender:
+          legacyTagBorderLavender ?? this.legacyTagBorderLavender,
+      legacyTagBorderLime: legacyTagBorderLime ?? this.legacyTagBorderLime,
+      legacyTagBorderMustard:
+          legacyTagBorderMustard ?? this.legacyTagBorderMustard,
+      legacyTagBorderPrimary:
+          legacyTagBorderPrimary ?? this.legacyTagBorderPrimary,
+      legacyTagBorderRuby: legacyTagBorderRuby ?? this.legacyTagBorderRuby,
+      legacyTagBorderTangerine:
+          legacyTagBorderTangerine ?? this.legacyTagBorderTangerine,
+      legacyTagTextBasicBold:
+          legacyTagTextBasicBold ?? this.legacyTagTextBasicBold,
+      legacyTagTextDenim: legacyTagTextDenim ?? this.legacyTagTextDenim,
+      legacyTagTextLavender:
+          legacyTagTextLavender ?? this.legacyTagTextLavender,
+      legacyTagTextLime: legacyTagTextLime ?? this.legacyTagTextLime,
+      legacyTagTextMustard: legacyTagTextMustard ?? this.legacyTagTextMustard,
+      legacyTagTextPrimary: legacyTagTextPrimary ?? this.legacyTagTextPrimary,
+      legacyTagTextRuby: legacyTagTextRuby ?? this.legacyTagTextRuby,
+      legacyTagTextTangerine:
+          legacyTagTextTangerine ?? this.legacyTagTextTangerine,
+      letterSpacingCondensed:
+          letterSpacingCondensed ?? this.letterSpacingCondensed,
+      letterSpacingDefault: letterSpacingDefault ?? this.letterSpacingDefault,
+      letterSpacingWide: letterSpacingWide ?? this.letterSpacingWide,
+      lineHeight100: lineHeight100 ?? this.lineHeight100,
+      lineHeight200: lineHeight200 ?? this.lineHeight200,
+      lineHeight300: lineHeight300 ?? this.lineHeight300,
+      opacity0: opacity0 ?? this.opacity0,
+      opacity100: opacity100 ?? this.opacity100,
+      opacity1000: opacity1000 ?? this.opacity1000,
+      opacity150: opacity150 ?? this.opacity150,
+      opacity200: opacity200 ?? this.opacity200,
+      opacity400: opacity400 ?? this.opacity400,
+      opacity600: opacity600 ?? this.opacity600,
+      opacity800: opacity800 ?? this.opacity800,
       paletteBasicsBlack: paletteBasicsBlack ?? this.paletteBasicsBlack,
       paletteBasicsWhite: paletteBasicsWhite ?? this.paletteBasicsWhite,
       paletteBasicsWhite64: paletteBasicsWhite64 ?? this.paletteBasicsWhite64,
@@ -1777,124 +2416,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       paletteBrandNight700: paletteBrandNight700 ?? this.paletteBrandNight700,
       paletteBrandNight800: paletteBrandNight800 ?? this.paletteBrandNight800,
       paletteBrandNight900: paletteBrandNight900 ?? this.paletteBrandNight900,
-      paletteDatavizDenim100:
-          paletteDatavizDenim100 ?? this.paletteDatavizDenim100,
-      paletteDatavizDenim200:
-          paletteDatavizDenim200 ?? this.paletteDatavizDenim200,
-      paletteDatavizDenim300:
-          paletteDatavizDenim300 ?? this.paletteDatavizDenim300,
-      paletteDatavizDenim400:
-          paletteDatavizDenim400 ?? this.paletteDatavizDenim400,
-      paletteDatavizDenim50:
-          paletteDatavizDenim50 ?? this.paletteDatavizDenim50,
-      paletteDatavizDenim500:
-          paletteDatavizDenim500 ?? this.paletteDatavizDenim500,
-      paletteDatavizDenim600:
-          paletteDatavizDenim600 ?? this.paletteDatavizDenim600,
-      paletteDatavizDenim700:
-          paletteDatavizDenim700 ?? this.paletteDatavizDenim700,
-      paletteDatavizDenim800:
-          paletteDatavizDenim800 ?? this.paletteDatavizDenim800,
-      paletteDatavizDenim900:
-          paletteDatavizDenim900 ?? this.paletteDatavizDenim900,
-      paletteDatavizLavender100:
-          paletteDatavizLavender100 ?? this.paletteDatavizLavender100,
-      paletteDatavizLavender200:
-          paletteDatavizLavender200 ?? this.paletteDatavizLavender200,
-      paletteDatavizLavender300:
-          paletteDatavizLavender300 ?? this.paletteDatavizLavender300,
-      paletteDatavizLavender400:
-          paletteDatavizLavender400 ?? this.paletteDatavizLavender400,
-      paletteDatavizLavender50:
-          paletteDatavizLavender50 ?? this.paletteDatavizLavender50,
-      paletteDatavizLavender500:
-          paletteDatavizLavender500 ?? this.paletteDatavizLavender500,
-      paletteDatavizLavender600:
-          paletteDatavizLavender600 ?? this.paletteDatavizLavender600,
-      paletteDatavizLavender700:
-          paletteDatavizLavender700 ?? this.paletteDatavizLavender700,
-      paletteDatavizLavender800:
-          paletteDatavizLavender800 ?? this.paletteDatavizLavender800,
-      paletteDatavizLavender900:
-          paletteDatavizLavender900 ?? this.paletteDatavizLavender900,
-      paletteDatavizLime100:
-          paletteDatavizLime100 ?? this.paletteDatavizLime100,
-      paletteDatavizLime200:
-          paletteDatavizLime200 ?? this.paletteDatavizLime200,
-      paletteDatavizLime300:
-          paletteDatavizLime300 ?? this.paletteDatavizLime300,
-      paletteDatavizLime400:
-          paletteDatavizLime400 ?? this.paletteDatavizLime400,
-      paletteDatavizLime50: paletteDatavizLime50 ?? this.paletteDatavizLime50,
-      paletteDatavizLime500:
-          paletteDatavizLime500 ?? this.paletteDatavizLime500,
-      paletteDatavizLime600:
-          paletteDatavizLime600 ?? this.paletteDatavizLime600,
-      paletteDatavizLime700:
-          paletteDatavizLime700 ?? this.paletteDatavizLime700,
-      paletteDatavizLime800:
-          paletteDatavizLime800 ?? this.paletteDatavizLime800,
-      paletteDatavizLime900:
-          paletteDatavizLime900 ?? this.paletteDatavizLime900,
-      paletteDatavizMustard100:
-          paletteDatavizMustard100 ?? this.paletteDatavizMustard100,
-      paletteDatavizMustard200:
-          paletteDatavizMustard200 ?? this.paletteDatavizMustard200,
-      paletteDatavizMustard300:
-          paletteDatavizMustard300 ?? this.paletteDatavizMustard300,
-      paletteDatavizMustard400:
-          paletteDatavizMustard400 ?? this.paletteDatavizMustard400,
-      paletteDatavizMustard50:
-          paletteDatavizMustard50 ?? this.paletteDatavizMustard50,
-      paletteDatavizMustard500:
-          paletteDatavizMustard500 ?? this.paletteDatavizMustard500,
-      paletteDatavizMustard600:
-          paletteDatavizMustard600 ?? this.paletteDatavizMustard600,
-      paletteDatavizMustard700:
-          paletteDatavizMustard700 ?? this.paletteDatavizMustard700,
-      paletteDatavizMustard800:
-          paletteDatavizMustard800 ?? this.paletteDatavizMustard800,
-      paletteDatavizMustard900:
-          paletteDatavizMustard900 ?? this.paletteDatavizMustard900,
-      paletteDatavizRuby100:
-          paletteDatavizRuby100 ?? this.paletteDatavizRuby100,
-      paletteDatavizRuby200:
-          paletteDatavizRuby200 ?? this.paletteDatavizRuby200,
-      paletteDatavizRuby300:
-          paletteDatavizRuby300 ?? this.paletteDatavizRuby300,
-      paletteDatavizRuby400:
-          paletteDatavizRuby400 ?? this.paletteDatavizRuby400,
-      paletteDatavizRuby50: paletteDatavizRuby50 ?? this.paletteDatavizRuby50,
-      paletteDatavizRuby500:
-          paletteDatavizRuby500 ?? this.paletteDatavizRuby500,
-      paletteDatavizRuby600:
-          paletteDatavizRuby600 ?? this.paletteDatavizRuby600,
-      paletteDatavizRuby700:
-          paletteDatavizRuby700 ?? this.paletteDatavizRuby700,
-      paletteDatavizRuby800:
-          paletteDatavizRuby800 ?? this.paletteDatavizRuby800,
-      paletteDatavizRuby900:
-          paletteDatavizRuby900 ?? this.paletteDatavizRuby900,
-      paletteDatavizTangerine100:
-          paletteDatavizTangerine100 ?? this.paletteDatavizTangerine100,
-      paletteDatavizTangerine200:
-          paletteDatavizTangerine200 ?? this.paletteDatavizTangerine200,
-      paletteDatavizTangerine300:
-          paletteDatavizTangerine300 ?? this.paletteDatavizTangerine300,
-      paletteDatavizTangerine400:
-          paletteDatavizTangerine400 ?? this.paletteDatavizTangerine400,
-      paletteDatavizTangerine50:
-          paletteDatavizTangerine50 ?? this.paletteDatavizTangerine50,
-      paletteDatavizTangerine500:
-          paletteDatavizTangerine500 ?? this.paletteDatavizTangerine500,
-      paletteDatavizTangerine600:
-          paletteDatavizTangerine600 ?? this.paletteDatavizTangerine600,
-      paletteDatavizTangerine700:
-          paletteDatavizTangerine700 ?? this.paletteDatavizTangerine700,
-      paletteDatavizTangerine800:
-          paletteDatavizTangerine800 ?? this.paletteDatavizTangerine800,
-      paletteDatavizTangerine900:
-          paletteDatavizTangerine900 ?? this.paletteDatavizTangerine900,
+      paletteDatavizBlue: paletteDatavizBlue ?? this.paletteDatavizBlue,
+      paletteDatavizGreen: paletteDatavizGreen ?? this.paletteDatavizGreen,
+      paletteDatavizOrange: paletteDatavizOrange ?? this.paletteDatavizOrange,
+      paletteDatavizPink: paletteDatavizPink ?? this.paletteDatavizPink,
+      paletteDatavizPurple: paletteDatavizPurple ?? this.paletteDatavizPurple,
+      paletteDatavizRed: paletteDatavizRed ?? this.paletteDatavizRed,
       paletteSemanticBlue100:
           paletteSemanticBlue100 ?? this.paletteSemanticBlue100,
       paletteSemanticBlue1000:
@@ -1997,13 +2524,44 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           paletteSemanticRed800 ?? this.paletteSemanticRed800,
       paletteSemanticRed900:
           paletteSemanticRed900 ?? this.paletteSemanticRed900,
-      staticContainerColor: staticContainerColor ?? this.staticContainerColor,
-      staticDividerColor: staticDividerColor ?? this.staticDividerColor,
+      shadow0: shadow0 ?? this.shadow0,
+      shadow100: shadow100 ?? this.shadow100,
+      shadow200: shadow200 ?? this.shadow200,
+      shadow300: shadow300 ?? this.shadow300,
+      sizing100: sizing100 ?? this.sizing100,
+      sizing200: sizing200 ?? this.sizing200,
+      sizing300: sizing300 ?? this.sizing300,
+      sizing400: sizing400 ?? this.sizing400,
+      sizing50: sizing50 ?? this.sizing50,
+      sizing500: sizing500 ?? this.sizing500,
+      sizing550: sizing550 ?? this.sizing550,
+      sizing600: sizing600 ?? this.sizing600,
+      sizing700: sizing700 ?? this.sizing700,
+      sizing900: sizing900 ?? this.sizing900,
+      sizingBase: sizingBase ?? this.sizingBase,
+      spacing0: spacing0 ?? this.spacing0,
+      spacing100: spacing100 ?? this.spacing100,
+      spacing1000: spacing1000 ?? this.spacing1000,
+      spacing1200: spacing1200 ?? this.spacing1200,
+      spacing150: spacing150 ?? this.spacing150,
+      spacing200: spacing200 ?? this.spacing200,
+      spacing25: spacing25 ?? this.spacing25,
+      spacing250: spacing250 ?? this.spacing250,
+      spacing300: spacing300 ?? this.spacing300,
+      spacing400: spacing400 ?? this.spacing400,
+      spacing450: spacing450 ?? this.spacing450,
+      spacing50: spacing50 ?? this.spacing50,
+      spacing500: spacing500 ?? this.spacing500,
+      spacing700: spacing700 ?? this.spacing700,
+      spacing900: spacing900 ?? this.spacing900,
+      spacingBase: spacingBase ?? this.spacingBase,
       textAlertBasic: textAlertBasic ?? this.textAlertBasic,
       textAlertDanger: textAlertDanger ?? this.textAlertDanger,
       textAlertInfo: textAlertInfo ?? this.textAlertInfo,
       textAlertSuccess: textAlertSuccess ?? this.textAlertSuccess,
       textAlertWarning: textAlertWarning ?? this.textAlertWarning,
+      textDecorationUnderline:
+          textDecorationUnderline ?? this.textDecorationUnderline,
       textDisabled: textDisabled ?? this.textDisabled,
       textInteractiveActive:
           textInteractiveActive ?? this.textInteractiveActive,
@@ -2011,9 +2569,16 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           textInteractiveDefault ?? this.textInteractiveDefault,
       textInteractiveHover: textInteractiveHover ?? this.textInteractiveHover,
       textStaticInverse: textStaticInverse ?? this.textStaticInverse,
+      textStaticOnColor: textStaticOnColor ?? this.textStaticOnColor,
       textStaticPrimary: textStaticPrimary ?? this.textStaticPrimary,
       textStaticSecondary: textStaticSecondary ?? this.textStaticSecondary,
       textStaticTertiary: textStaticTertiary ?? this.textStaticTertiary,
+      titleLarge: titleLarge ?? this.titleLarge,
+      titleLargeStrong: titleLargeStrong ?? this.titleLargeStrong,
+      titleMedium: titleMedium ?? this.titleMedium,
+      titleMediumStrong: titleMediumStrong ?? this.titleMediumStrong,
+      titleSmall: titleSmall ?? this.titleSmall,
+      titleSmallStrong: titleSmallStrong ?? this.titleSmallStrong,
     );
   }
 
@@ -2021,10 +2586,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   OptimusTokens lerp(covariant ThemeExtension<OptimusTokens>? other, double t) {
     if (other is! OptimusTokens) return this as OptimusTokens;
     return OptimusTokens(
-      backgroundAccentPrimary: Color.lerp(
-          backgroundAccentPrimary, other.backgroundAccentPrimary, t)!,
-      backgroundAccentSecondary: Color.lerp(
-          backgroundAccentSecondary, other.backgroundAccentSecondary, t)!,
+      backgroundAccent:
+          Color.lerp(backgroundAccent, other.backgroundAccent, t)!,
       backgroundAlertBasicPrimary: Color.lerp(
           backgroundAlertBasicPrimary, other.backgroundAlertBasicPrimary, t)!,
       backgroundAlertBasicSecondary: Color.lerp(backgroundAlertBasicSecondary,
@@ -2049,7 +2612,21 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundAlertWarningSecondary,
           other.backgroundAlertWarningSecondary,
           t)!,
+      backgroundBackdrop:
+          Color.lerp(backgroundBackdrop, other.backgroundBackdrop, t)!,
       backgroundBrand: Color.lerp(backgroundBrand, other.backgroundBrand, t)!,
+      backgroundDatavizBlue:
+          Color.lerp(backgroundDatavizBlue, other.backgroundDatavizBlue, t)!,
+      backgroundDatavizGreen:
+          Color.lerp(backgroundDatavizGreen, other.backgroundDatavizGreen, t)!,
+      backgroundDatavizOrange: Color.lerp(
+          backgroundDatavizOrange, other.backgroundDatavizOrange, t)!,
+      backgroundDatavizPink:
+          Color.lerp(backgroundDatavizPink, other.backgroundDatavizPink, t)!,
+      backgroundDatavizPurple: Color.lerp(
+          backgroundDatavizPurple, other.backgroundDatavizPurple, t)!,
+      backgroundDatavizRed:
+          Color.lerp(backgroundDatavizRed, other.backgroundDatavizRed, t)!,
       backgroundDisabled:
           Color.lerp(backgroundDisabled, other.backgroundDisabled, t)!,
       backgroundInteractiveDangerActive: Color.lerp(
@@ -2124,6 +2701,18 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundInteractiveSecondaryHover,
           other.backgroundInteractiveSecondaryHover,
           t)!,
+      backgroundInteractiveSuccessActive: Color.lerp(
+          backgroundInteractiveSuccessActive,
+          other.backgroundInteractiveSuccessActive,
+          t)!,
+      backgroundInteractiveSuccessDefault: Color.lerp(
+          backgroundInteractiveSuccessDefault,
+          other.backgroundInteractiveSuccessDefault,
+          t)!,
+      backgroundInteractiveSuccessHover: Color.lerp(
+          backgroundInteractiveSuccessHover,
+          other.backgroundInteractiveSuccessHover,
+          t)!,
       backgroundStaticFlat:
           Color.lerp(backgroundStaticFlat, other.backgroundStaticFlat, t)!,
       backgroundStaticFloating: Color.lerp(
@@ -2134,6 +2723,18 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(backgroundStaticRaised, other.backgroundStaticRaised, t)!,
       backgroundStaticSunken:
           Color.lerp(backgroundStaticSunken, other.backgroundStaticSunken, t)!,
+      bodyExtraSmall: TextStyle.lerp(bodyExtraSmall, other.bodyExtraSmall, t)!,
+      bodyExtraSmallStrong:
+          TextStyle.lerp(bodyExtraSmallStrong, other.bodyExtraSmallStrong, t)!,
+      bodyLarge: TextStyle.lerp(bodyLarge, other.bodyLarge, t)!,
+      bodyLargeStrong:
+          TextStyle.lerp(bodyLargeStrong, other.bodyLargeStrong, t)!,
+      bodyMedium: TextStyle.lerp(bodyMedium, other.bodyMedium, t)!,
+      bodyMediumStrong:
+          TextStyle.lerp(bodyMediumStrong, other.bodyMediumStrong, t)!,
+      bodySmall: TextStyle.lerp(bodySmall, other.bodySmall, t)!,
+      bodySmallStrong:
+          TextStyle.lerp(bodySmallStrong, other.bodySmallStrong, t)!,
       borderAlertBasic:
           Color.lerp(borderAlertBasic, other.borderAlertBasic, t)!,
       borderAlertDanger:
@@ -2172,97 +2773,237 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           borderInteractiveSecondaryHover,
           other.borderInteractiveSecondaryHover,
           t)!,
+      borderRadius0: t < 0.5 ? borderRadius0 : other.borderRadius0,
+      borderRadius100: t < 0.5 ? borderRadius100 : other.borderRadius100,
+      borderRadius150: t < 0.5 ? borderRadius150 : other.borderRadius150,
+      borderRadius200: t < 0.5 ? borderRadius200 : other.borderRadius200,
+      borderRadius25: t < 0.5 ? borderRadius25 : other.borderRadius25,
+      borderRadius300: t < 0.5 ? borderRadius300 : other.borderRadius300,
+      borderRadius50: t < 0.5 ? borderRadius50 : other.borderRadius50,
+      borderRadiusBase: t < 0.5 ? borderRadiusBase : other.borderRadiusBase,
+      borderRadiusRound: t < 0.5 ? borderRadiusRound : other.borderRadiusRound,
       borderStaticInverse:
           Color.lerp(borderStaticInverse, other.borderStaticInverse, t)!,
+      borderStaticOnColor:
+          Color.lerp(borderStaticOnColor, other.borderStaticOnColor, t)!,
       borderStaticPrimary:
           Color.lerp(borderStaticPrimary, other.borderStaticPrimary, t)!,
       borderStaticSecondary:
           Color.lerp(borderStaticSecondary, other.borderStaticSecondary, t)!,
-      inputActiveColor:
-          Color.lerp(inputActiveColor, other.inputActiveColor, t)!,
-      inputDangerColor:
-          Color.lerp(inputDangerColor, other.inputDangerColor, t)!,
-      inputDefaultColor:
-          Color.lerp(inputDefaultColor, other.inputDefaultColor, t)!,
-      inputDisabledColor:
-          Color.lerp(inputDisabledColor, other.inputDisabledColor, t)!,
-      inputHoverColor: Color.lerp(inputHoverColor, other.inputHoverColor, t)!,
-      inputInverseColor:
-          Color.lerp(inputInverseColor, other.inputInverseColor, t)!,
-      interactiveDangerColor:
-          Color.lerp(interactiveDangerColor, other.interactiveDangerColor, t)!,
-      interactiveDefaultColor: Color.lerp(
-          interactiveDefaultColor, other.interactiveDefaultColor, t)!,
-      interactiveDisabledColor: Color.lerp(
-          interactiveDisabledColor, other.interactiveDisabledColor, t)!,
-      interactiveHoverColor:
-          Color.lerp(interactiveHoverColor, other.interactiveHoverColor, t)!,
-      interactiveInverseColor: Color.lerp(
-          interactiveInverseColor, other.interactiveInverseColor, t)!,
-      legacySupportTagBackgroundBasicBold: Color.lerp(
-          legacySupportTagBackgroundBasicBold,
-          other.legacySupportTagBackgroundBasicBold,
-          t)!,
-      legacySupportTagBackgroundDenim: Color.lerp(
-          legacySupportTagBackgroundDenim,
-          other.legacySupportTagBackgroundDenim,
-          t)!,
-      legacySupportTagBackgroundLavender: Color.lerp(
-          legacySupportTagBackgroundLavender,
-          other.legacySupportTagBackgroundLavender,
-          t)!,
-      legacySupportTagBackgroundLime: Color.lerp(legacySupportTagBackgroundLime,
-          other.legacySupportTagBackgroundLime, t)!,
-      legacySupportTagBackgroundMustard: Color.lerp(
-          legacySupportTagBackgroundMustard,
-          other.legacySupportTagBackgroundMustard,
-          t)!,
-      legacySupportTagBackgroundPrimary: Color.lerp(
-          legacySupportTagBackgroundPrimary,
-          other.legacySupportTagBackgroundPrimary,
-          t)!,
-      legacySupportTagBackgroundRuby: Color.lerp(legacySupportTagBackgroundRuby,
-          other.legacySupportTagBackgroundRuby, t)!,
-      legacySupportTagBackgroundTangerine: Color.lerp(
-          legacySupportTagBackgroundTangerine,
-          other.legacySupportTagBackgroundTangerine,
-          t)!,
-      legacySupportTagBorderBasicBold: Color.lerp(
-          legacySupportTagBorderBasicBold,
-          other.legacySupportTagBorderBasicBold,
-          t)!,
-      legacySupportTagBorderDenim: Color.lerp(
-          legacySupportTagBorderDenim, other.legacySupportTagBorderDenim, t)!,
-      legacySupportTagBorderLavender: Color.lerp(legacySupportTagBorderLavender,
-          other.legacySupportTagBorderLavender, t)!,
-      legacySupportTagBorderLime: Color.lerp(
-          legacySupportTagBorderLime, other.legacySupportTagBorderLime, t)!,
-      legacySupportTagBorderMustard: Color.lerp(legacySupportTagBorderMustard,
-          other.legacySupportTagBorderMustard, t)!,
-      legacySupportTagBorderPrimary: Color.lerp(legacySupportTagBorderPrimary,
-          other.legacySupportTagBorderPrimary, t)!,
-      legacySupportTagBorderRuby: Color.lerp(
-          legacySupportTagBorderRuby, other.legacySupportTagBorderRuby, t)!,
-      legacySupportTagBorderTangerine: Color.lerp(
-          legacySupportTagBorderTangerine,
-          other.legacySupportTagBorderTangerine,
-          t)!,
-      legacySupportTagTextBasicBold: Color.lerp(legacySupportTagTextBasicBold,
-          other.legacySupportTagTextBasicBold, t)!,
-      legacySupportTagTextDenim: Color.lerp(
-          legacySupportTagTextDenim, other.legacySupportTagTextDenim, t)!,
-      legacySupportTagTextLavender: Color.lerp(
-          legacySupportTagTextLavender, other.legacySupportTagTextLavender, t)!,
-      legacySupportTagTextLime: Color.lerp(
-          legacySupportTagTextLime, other.legacySupportTagTextLime, t)!,
-      legacySupportTagTextMustard: Color.lerp(
-          legacySupportTagTextMustard, other.legacySupportTagTextMustard, t)!,
-      legacySupportTagTextPrimary: Color.lerp(
-          legacySupportTagTextPrimary, other.legacySupportTagTextPrimary, t)!,
-      legacySupportTagTextRuby: Color.lerp(
-          legacySupportTagTextRuby, other.legacySupportTagTextRuby, t)!,
-      legacySupportTagTextTangerine: Color.lerp(legacySupportTagTextTangerine,
-          other.legacySupportTagTextTangerine, t)!,
+      borderWidth0: t < 0.5 ? borderWidth0 : other.borderWidth0,
+      borderWidth100: t < 0.5 ? borderWidth100 : other.borderWidth100,
+      borderWidth150: t < 0.5 ? borderWidth150 : other.borderWidth150,
+      borderWidth200: t < 0.5 ? borderWidth200 : other.borderWidth200,
+      borderWidth250: t < 0.5 ? borderWidth250 : other.borderWidth250,
+      borderWidth300: t < 0.5 ? borderWidth300 : other.borderWidth300,
+      borderWidth800: t < 0.5 ? borderWidth800 : other.borderWidth800,
+      focusOffset: t < 0.5 ? focusOffset : other.focusOffset,
+      fontFamilyUi: t < 0.5 ? fontFamilyUi : other.fontFamilyUi,
+      fontSize100: t < 0.5 ? fontSize100 : other.fontSize100,
+      fontSize200: t < 0.5 ? fontSize200 : other.fontSize200,
+      fontSize300: t < 0.5 ? fontSize300 : other.fontSize300,
+      fontSize400: t < 0.5 ? fontSize400 : other.fontSize400,
+      fontSize50: t < 0.5 ? fontSize50 : other.fontSize50,
+      fontSize500: t < 0.5 ? fontSize500 : other.fontSize500,
+      fontSize600: t < 0.5 ? fontSize600 : other.fontSize600,
+      fontSize700: t < 0.5 ? fontSize700 : other.fontSize700,
+      fontSize75: t < 0.5 ? fontSize75 : other.fontSize75,
+      fontSize800: t < 0.5 ? fontSize800 : other.fontSize800,
+      fontSize900: t < 0.5 ? fontSize900 : other.fontSize900,
+      fontSizeBase: t < 0.5 ? fontSizeBase : other.fontSizeBase,
+      fontSizeRatio: t < 0.5 ? fontSizeRatio : other.fontSizeRatio,
+      fontWeight300: t < 0.5 ? fontWeight300 : other.fontWeight300,
+      fontWeight400: t < 0.5 ? fontWeight400 : other.fontWeight400,
+      fontWeight500: t < 0.5 ? fontWeight500 : other.fontWeight500,
+      fontWeight600: t < 0.5 ? fontWeight600 : other.fontWeight600,
+      highlightLarge: TextStyle.lerp(highlightLarge, other.highlightLarge, t)!,
+      highlightMedium:
+          TextStyle.lerp(highlightMedium, other.highlightMedium, t)!,
+      highlightSmall: TextStyle.lerp(highlightSmall, other.highlightSmall, t)!,
+      legacyDatavizDenim100:
+          Color.lerp(legacyDatavizDenim100, other.legacyDatavizDenim100, t)!,
+      legacyDatavizDenim200:
+          Color.lerp(legacyDatavizDenim200, other.legacyDatavizDenim200, t)!,
+      legacyDatavizDenim300:
+          Color.lerp(legacyDatavizDenim300, other.legacyDatavizDenim300, t)!,
+      legacyDatavizDenim400:
+          Color.lerp(legacyDatavizDenim400, other.legacyDatavizDenim400, t)!,
+      legacyDatavizDenim50:
+          Color.lerp(legacyDatavizDenim50, other.legacyDatavizDenim50, t)!,
+      legacyDatavizDenim500:
+          Color.lerp(legacyDatavizDenim500, other.legacyDatavizDenim500, t)!,
+      legacyDatavizDenim600:
+          Color.lerp(legacyDatavizDenim600, other.legacyDatavizDenim600, t)!,
+      legacyDatavizDenim700:
+          Color.lerp(legacyDatavizDenim700, other.legacyDatavizDenim700, t)!,
+      legacyDatavizDenim800:
+          Color.lerp(legacyDatavizDenim800, other.legacyDatavizDenim800, t)!,
+      legacyDatavizDenim900:
+          Color.lerp(legacyDatavizDenim900, other.legacyDatavizDenim900, t)!,
+      legacyDatavizLavender100: Color.lerp(
+          legacyDatavizLavender100, other.legacyDatavizLavender100, t)!,
+      legacyDatavizLavender200: Color.lerp(
+          legacyDatavizLavender200, other.legacyDatavizLavender200, t)!,
+      legacyDatavizLavender300: Color.lerp(
+          legacyDatavizLavender300, other.legacyDatavizLavender300, t)!,
+      legacyDatavizLavender400: Color.lerp(
+          legacyDatavizLavender400, other.legacyDatavizLavender400, t)!,
+      legacyDatavizLavender50: Color.lerp(
+          legacyDatavizLavender50, other.legacyDatavizLavender50, t)!,
+      legacyDatavizLavender500: Color.lerp(
+          legacyDatavizLavender500, other.legacyDatavizLavender500, t)!,
+      legacyDatavizLavender600: Color.lerp(
+          legacyDatavizLavender600, other.legacyDatavizLavender600, t)!,
+      legacyDatavizLavender700: Color.lerp(
+          legacyDatavizLavender700, other.legacyDatavizLavender700, t)!,
+      legacyDatavizLavender800: Color.lerp(
+          legacyDatavizLavender800, other.legacyDatavizLavender800, t)!,
+      legacyDatavizLavender900: Color.lerp(
+          legacyDatavizLavender900, other.legacyDatavizLavender900, t)!,
+      legacyDatavizLime100:
+          Color.lerp(legacyDatavizLime100, other.legacyDatavizLime100, t)!,
+      legacyDatavizLime200:
+          Color.lerp(legacyDatavizLime200, other.legacyDatavizLime200, t)!,
+      legacyDatavizLime300:
+          Color.lerp(legacyDatavizLime300, other.legacyDatavizLime300, t)!,
+      legacyDatavizLime400:
+          Color.lerp(legacyDatavizLime400, other.legacyDatavizLime400, t)!,
+      legacyDatavizLime50:
+          Color.lerp(legacyDatavizLime50, other.legacyDatavizLime50, t)!,
+      legacyDatavizLime500:
+          Color.lerp(legacyDatavizLime500, other.legacyDatavizLime500, t)!,
+      legacyDatavizLime600:
+          Color.lerp(legacyDatavizLime600, other.legacyDatavizLime600, t)!,
+      legacyDatavizLime700:
+          Color.lerp(legacyDatavizLime700, other.legacyDatavizLime700, t)!,
+      legacyDatavizLime800:
+          Color.lerp(legacyDatavizLime800, other.legacyDatavizLime800, t)!,
+      legacyDatavizLime900:
+          Color.lerp(legacyDatavizLime900, other.legacyDatavizLime900, t)!,
+      legacyDatavizMustard100: Color.lerp(
+          legacyDatavizMustard100, other.legacyDatavizMustard100, t)!,
+      legacyDatavizMustard200: Color.lerp(
+          legacyDatavizMustard200, other.legacyDatavizMustard200, t)!,
+      legacyDatavizMustard300: Color.lerp(
+          legacyDatavizMustard300, other.legacyDatavizMustard300, t)!,
+      legacyDatavizMustard400: Color.lerp(
+          legacyDatavizMustard400, other.legacyDatavizMustard400, t)!,
+      legacyDatavizMustard50:
+          Color.lerp(legacyDatavizMustard50, other.legacyDatavizMustard50, t)!,
+      legacyDatavizMustard500: Color.lerp(
+          legacyDatavizMustard500, other.legacyDatavizMustard500, t)!,
+      legacyDatavizMustard600: Color.lerp(
+          legacyDatavizMustard600, other.legacyDatavizMustard600, t)!,
+      legacyDatavizMustard700: Color.lerp(
+          legacyDatavizMustard700, other.legacyDatavizMustard700, t)!,
+      legacyDatavizMustard800: Color.lerp(
+          legacyDatavizMustard800, other.legacyDatavizMustard800, t)!,
+      legacyDatavizMustard900: Color.lerp(
+          legacyDatavizMustard900, other.legacyDatavizMustard900, t)!,
+      legacyDatavizRuby100:
+          Color.lerp(legacyDatavizRuby100, other.legacyDatavizRuby100, t)!,
+      legacyDatavizRuby200:
+          Color.lerp(legacyDatavizRuby200, other.legacyDatavizRuby200, t)!,
+      legacyDatavizRuby300:
+          Color.lerp(legacyDatavizRuby300, other.legacyDatavizRuby300, t)!,
+      legacyDatavizRuby400:
+          Color.lerp(legacyDatavizRuby400, other.legacyDatavizRuby400, t)!,
+      legacyDatavizRuby50:
+          Color.lerp(legacyDatavizRuby50, other.legacyDatavizRuby50, t)!,
+      legacyDatavizRuby500:
+          Color.lerp(legacyDatavizRuby500, other.legacyDatavizRuby500, t)!,
+      legacyDatavizRuby600:
+          Color.lerp(legacyDatavizRuby600, other.legacyDatavizRuby600, t)!,
+      legacyDatavizRuby700:
+          Color.lerp(legacyDatavizRuby700, other.legacyDatavizRuby700, t)!,
+      legacyDatavizRuby800:
+          Color.lerp(legacyDatavizRuby800, other.legacyDatavizRuby800, t)!,
+      legacyDatavizRuby900:
+          Color.lerp(legacyDatavizRuby900, other.legacyDatavizRuby900, t)!,
+      legacyDatavizTangerine100: Color.lerp(
+          legacyDatavizTangerine100, other.legacyDatavizTangerine100, t)!,
+      legacyDatavizTangerine200: Color.lerp(
+          legacyDatavizTangerine200, other.legacyDatavizTangerine200, t)!,
+      legacyDatavizTangerine300: Color.lerp(
+          legacyDatavizTangerine300, other.legacyDatavizTangerine300, t)!,
+      legacyDatavizTangerine400: Color.lerp(
+          legacyDatavizTangerine400, other.legacyDatavizTangerine400, t)!,
+      legacyDatavizTangerine50: Color.lerp(
+          legacyDatavizTangerine50, other.legacyDatavizTangerine50, t)!,
+      legacyDatavizTangerine500: Color.lerp(
+          legacyDatavizTangerine500, other.legacyDatavizTangerine500, t)!,
+      legacyDatavizTangerine600: Color.lerp(
+          legacyDatavizTangerine600, other.legacyDatavizTangerine600, t)!,
+      legacyDatavizTangerine700: Color.lerp(
+          legacyDatavizTangerine700, other.legacyDatavizTangerine700, t)!,
+      legacyDatavizTangerine800: Color.lerp(
+          legacyDatavizTangerine800, other.legacyDatavizTangerine800, t)!,
+      legacyDatavizTangerine900: Color.lerp(
+          legacyDatavizTangerine900, other.legacyDatavizTangerine900, t)!,
+      legacyTagBackgroundBasicBold: Color.lerp(
+          legacyTagBackgroundBasicBold, other.legacyTagBackgroundBasicBold, t)!,
+      legacyTagBackgroundDenim: Color.lerp(
+          legacyTagBackgroundDenim, other.legacyTagBackgroundDenim, t)!,
+      legacyTagBackgroundLavender: Color.lerp(
+          legacyTagBackgroundLavender, other.legacyTagBackgroundLavender, t)!,
+      legacyTagBackgroundLime: Color.lerp(
+          legacyTagBackgroundLime, other.legacyTagBackgroundLime, t)!,
+      legacyTagBackgroundMustard: Color.lerp(
+          legacyTagBackgroundMustard, other.legacyTagBackgroundMustard, t)!,
+      legacyTagBackgroundPrimary: Color.lerp(
+          legacyTagBackgroundPrimary, other.legacyTagBackgroundPrimary, t)!,
+      legacyTagBackgroundRuby: Color.lerp(
+          legacyTagBackgroundRuby, other.legacyTagBackgroundRuby, t)!,
+      legacyTagBackgroundTangerine: Color.lerp(
+          legacyTagBackgroundTangerine, other.legacyTagBackgroundTangerine, t)!,
+      legacyTagBorderBasicBold: Color.lerp(
+          legacyTagBorderBasicBold, other.legacyTagBorderBasicBold, t)!,
+      legacyTagBorderDenim:
+          Color.lerp(legacyTagBorderDenim, other.legacyTagBorderDenim, t)!,
+      legacyTagBorderLavender: Color.lerp(
+          legacyTagBorderLavender, other.legacyTagBorderLavender, t)!,
+      legacyTagBorderLime:
+          Color.lerp(legacyTagBorderLime, other.legacyTagBorderLime, t)!,
+      legacyTagBorderMustard:
+          Color.lerp(legacyTagBorderMustard, other.legacyTagBorderMustard, t)!,
+      legacyTagBorderPrimary:
+          Color.lerp(legacyTagBorderPrimary, other.legacyTagBorderPrimary, t)!,
+      legacyTagBorderRuby:
+          Color.lerp(legacyTagBorderRuby, other.legacyTagBorderRuby, t)!,
+      legacyTagBorderTangerine: Color.lerp(
+          legacyTagBorderTangerine, other.legacyTagBorderTangerine, t)!,
+      legacyTagTextBasicBold:
+          Color.lerp(legacyTagTextBasicBold, other.legacyTagTextBasicBold, t)!,
+      legacyTagTextDenim:
+          Color.lerp(legacyTagTextDenim, other.legacyTagTextDenim, t)!,
+      legacyTagTextLavender:
+          Color.lerp(legacyTagTextLavender, other.legacyTagTextLavender, t)!,
+      legacyTagTextLime:
+          Color.lerp(legacyTagTextLime, other.legacyTagTextLime, t)!,
+      legacyTagTextMustard:
+          Color.lerp(legacyTagTextMustard, other.legacyTagTextMustard, t)!,
+      legacyTagTextPrimary:
+          Color.lerp(legacyTagTextPrimary, other.legacyTagTextPrimary, t)!,
+      legacyTagTextRuby:
+          Color.lerp(legacyTagTextRuby, other.legacyTagTextRuby, t)!,
+      legacyTagTextTangerine:
+          Color.lerp(legacyTagTextTangerine, other.legacyTagTextTangerine, t)!,
+      letterSpacingCondensed:
+          t < 0.5 ? letterSpacingCondensed : other.letterSpacingCondensed,
+      letterSpacingDefault:
+          t < 0.5 ? letterSpacingDefault : other.letterSpacingDefault,
+      letterSpacingWide: t < 0.5 ? letterSpacingWide : other.letterSpacingWide,
+      lineHeight100: t < 0.5 ? lineHeight100 : other.lineHeight100,
+      lineHeight200: t < 0.5 ? lineHeight200 : other.lineHeight200,
+      lineHeight300: t < 0.5 ? lineHeight300 : other.lineHeight300,
+      opacity0: t < 0.5 ? opacity0 : other.opacity0,
+      opacity100: t < 0.5 ? opacity100 : other.opacity100,
+      opacity1000: t < 0.5 ? opacity1000 : other.opacity1000,
+      opacity150: t < 0.5 ? opacity150 : other.opacity150,
+      opacity200: t < 0.5 ? opacity200 : other.opacity200,
+      opacity400: t < 0.5 ? opacity400 : other.opacity400,
+      opacity600: t < 0.5 ? opacity600 : other.opacity600,
+      opacity800: t < 0.5 ? opacity800 : other.opacity800,
       paletteBasicsBlack:
           Color.lerp(paletteBasicsBlack, other.paletteBasicsBlack, t)!,
       paletteBasicsWhite:
@@ -2385,126 +3126,18 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(paletteBrandNight800, other.paletteBrandNight800, t)!,
       paletteBrandNight900:
           Color.lerp(paletteBrandNight900, other.paletteBrandNight900, t)!,
-      paletteDatavizDenim100:
-          Color.lerp(paletteDatavizDenim100, other.paletteDatavizDenim100, t)!,
-      paletteDatavizDenim200:
-          Color.lerp(paletteDatavizDenim200, other.paletteDatavizDenim200, t)!,
-      paletteDatavizDenim300:
-          Color.lerp(paletteDatavizDenim300, other.paletteDatavizDenim300, t)!,
-      paletteDatavizDenim400:
-          Color.lerp(paletteDatavizDenim400, other.paletteDatavizDenim400, t)!,
-      paletteDatavizDenim50:
-          Color.lerp(paletteDatavizDenim50, other.paletteDatavizDenim50, t)!,
-      paletteDatavizDenim500:
-          Color.lerp(paletteDatavizDenim500, other.paletteDatavizDenim500, t)!,
-      paletteDatavizDenim600:
-          Color.lerp(paletteDatavizDenim600, other.paletteDatavizDenim600, t)!,
-      paletteDatavizDenim700:
-          Color.lerp(paletteDatavizDenim700, other.paletteDatavizDenim700, t)!,
-      paletteDatavizDenim800:
-          Color.lerp(paletteDatavizDenim800, other.paletteDatavizDenim800, t)!,
-      paletteDatavizDenim900:
-          Color.lerp(paletteDatavizDenim900, other.paletteDatavizDenim900, t)!,
-      paletteDatavizLavender100: Color.lerp(
-          paletteDatavizLavender100, other.paletteDatavizLavender100, t)!,
-      paletteDatavizLavender200: Color.lerp(
-          paletteDatavizLavender200, other.paletteDatavizLavender200, t)!,
-      paletteDatavizLavender300: Color.lerp(
-          paletteDatavizLavender300, other.paletteDatavizLavender300, t)!,
-      paletteDatavizLavender400: Color.lerp(
-          paletteDatavizLavender400, other.paletteDatavizLavender400, t)!,
-      paletteDatavizLavender50: Color.lerp(
-          paletteDatavizLavender50, other.paletteDatavizLavender50, t)!,
-      paletteDatavizLavender500: Color.lerp(
-          paletteDatavizLavender500, other.paletteDatavizLavender500, t)!,
-      paletteDatavizLavender600: Color.lerp(
-          paletteDatavizLavender600, other.paletteDatavizLavender600, t)!,
-      paletteDatavizLavender700: Color.lerp(
-          paletteDatavizLavender700, other.paletteDatavizLavender700, t)!,
-      paletteDatavizLavender800: Color.lerp(
-          paletteDatavizLavender800, other.paletteDatavizLavender800, t)!,
-      paletteDatavizLavender900: Color.lerp(
-          paletteDatavizLavender900, other.paletteDatavizLavender900, t)!,
-      paletteDatavizLime100:
-          Color.lerp(paletteDatavizLime100, other.paletteDatavizLime100, t)!,
-      paletteDatavizLime200:
-          Color.lerp(paletteDatavizLime200, other.paletteDatavizLime200, t)!,
-      paletteDatavizLime300:
-          Color.lerp(paletteDatavizLime300, other.paletteDatavizLime300, t)!,
-      paletteDatavizLime400:
-          Color.lerp(paletteDatavizLime400, other.paletteDatavizLime400, t)!,
-      paletteDatavizLime50:
-          Color.lerp(paletteDatavizLime50, other.paletteDatavizLime50, t)!,
-      paletteDatavizLime500:
-          Color.lerp(paletteDatavizLime500, other.paletteDatavizLime500, t)!,
-      paletteDatavizLime600:
-          Color.lerp(paletteDatavizLime600, other.paletteDatavizLime600, t)!,
-      paletteDatavizLime700:
-          Color.lerp(paletteDatavizLime700, other.paletteDatavizLime700, t)!,
-      paletteDatavizLime800:
-          Color.lerp(paletteDatavizLime800, other.paletteDatavizLime800, t)!,
-      paletteDatavizLime900:
-          Color.lerp(paletteDatavizLime900, other.paletteDatavizLime900, t)!,
-      paletteDatavizMustard100: Color.lerp(
-          paletteDatavizMustard100, other.paletteDatavizMustard100, t)!,
-      paletteDatavizMustard200: Color.lerp(
-          paletteDatavizMustard200, other.paletteDatavizMustard200, t)!,
-      paletteDatavizMustard300: Color.lerp(
-          paletteDatavizMustard300, other.paletteDatavizMustard300, t)!,
-      paletteDatavizMustard400: Color.lerp(
-          paletteDatavizMustard400, other.paletteDatavizMustard400, t)!,
-      paletteDatavizMustard50: Color.lerp(
-          paletteDatavizMustard50, other.paletteDatavizMustard50, t)!,
-      paletteDatavizMustard500: Color.lerp(
-          paletteDatavizMustard500, other.paletteDatavizMustard500, t)!,
-      paletteDatavizMustard600: Color.lerp(
-          paletteDatavizMustard600, other.paletteDatavizMustard600, t)!,
-      paletteDatavizMustard700: Color.lerp(
-          paletteDatavizMustard700, other.paletteDatavizMustard700, t)!,
-      paletteDatavizMustard800: Color.lerp(
-          paletteDatavizMustard800, other.paletteDatavizMustard800, t)!,
-      paletteDatavizMustard900: Color.lerp(
-          paletteDatavizMustard900, other.paletteDatavizMustard900, t)!,
-      paletteDatavizRuby100:
-          Color.lerp(paletteDatavizRuby100, other.paletteDatavizRuby100, t)!,
-      paletteDatavizRuby200:
-          Color.lerp(paletteDatavizRuby200, other.paletteDatavizRuby200, t)!,
-      paletteDatavizRuby300:
-          Color.lerp(paletteDatavizRuby300, other.paletteDatavizRuby300, t)!,
-      paletteDatavizRuby400:
-          Color.lerp(paletteDatavizRuby400, other.paletteDatavizRuby400, t)!,
-      paletteDatavizRuby50:
-          Color.lerp(paletteDatavizRuby50, other.paletteDatavizRuby50, t)!,
-      paletteDatavizRuby500:
-          Color.lerp(paletteDatavizRuby500, other.paletteDatavizRuby500, t)!,
-      paletteDatavizRuby600:
-          Color.lerp(paletteDatavizRuby600, other.paletteDatavizRuby600, t)!,
-      paletteDatavizRuby700:
-          Color.lerp(paletteDatavizRuby700, other.paletteDatavizRuby700, t)!,
-      paletteDatavizRuby800:
-          Color.lerp(paletteDatavizRuby800, other.paletteDatavizRuby800, t)!,
-      paletteDatavizRuby900:
-          Color.lerp(paletteDatavizRuby900, other.paletteDatavizRuby900, t)!,
-      paletteDatavizTangerine100: Color.lerp(
-          paletteDatavizTangerine100, other.paletteDatavizTangerine100, t)!,
-      paletteDatavizTangerine200: Color.lerp(
-          paletteDatavizTangerine200, other.paletteDatavizTangerine200, t)!,
-      paletteDatavizTangerine300: Color.lerp(
-          paletteDatavizTangerine300, other.paletteDatavizTangerine300, t)!,
-      paletteDatavizTangerine400: Color.lerp(
-          paletteDatavizTangerine400, other.paletteDatavizTangerine400, t)!,
-      paletteDatavizTangerine50: Color.lerp(
-          paletteDatavizTangerine50, other.paletteDatavizTangerine50, t)!,
-      paletteDatavizTangerine500: Color.lerp(
-          paletteDatavizTangerine500, other.paletteDatavizTangerine500, t)!,
-      paletteDatavizTangerine600: Color.lerp(
-          paletteDatavizTangerine600, other.paletteDatavizTangerine600, t)!,
-      paletteDatavizTangerine700: Color.lerp(
-          paletteDatavizTangerine700, other.paletteDatavizTangerine700, t)!,
-      paletteDatavizTangerine800: Color.lerp(
-          paletteDatavizTangerine800, other.paletteDatavizTangerine800, t)!,
-      paletteDatavizTangerine900: Color.lerp(
-          paletteDatavizTangerine900, other.paletteDatavizTangerine900, t)!,
+      paletteDatavizBlue:
+          Color.lerp(paletteDatavizBlue, other.paletteDatavizBlue, t)!,
+      paletteDatavizGreen:
+          Color.lerp(paletteDatavizGreen, other.paletteDatavizGreen, t)!,
+      paletteDatavizOrange:
+          Color.lerp(paletteDatavizOrange, other.paletteDatavizOrange, t)!,
+      paletteDatavizPink:
+          Color.lerp(paletteDatavizPink, other.paletteDatavizPink, t)!,
+      paletteDatavizPurple:
+          Color.lerp(paletteDatavizPurple, other.paletteDatavizPurple, t)!,
+      paletteDatavizRed:
+          Color.lerp(paletteDatavizRed, other.paletteDatavizRed, t)!,
       paletteSemanticBlue100:
           Color.lerp(paletteSemanticBlue100, other.paletteSemanticBlue100, t)!,
       paletteSemanticBlue1000: Color.lerp(
@@ -2609,10 +3242,37 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(paletteSemanticRed800, other.paletteSemanticRed800, t)!,
       paletteSemanticRed900:
           Color.lerp(paletteSemanticRed900, other.paletteSemanticRed900, t)!,
-      staticContainerColor:
-          Color.lerp(staticContainerColor, other.staticContainerColor, t)!,
-      staticDividerColor:
-          Color.lerp(staticDividerColor, other.staticDividerColor, t)!,
+      shadow0: t < 0.5 ? shadow0 : other.shadow0,
+      shadow100: t < 0.5 ? shadow100 : other.shadow100,
+      shadow200: t < 0.5 ? shadow200 : other.shadow200,
+      shadow300: t < 0.5 ? shadow300 : other.shadow300,
+      sizing100: t < 0.5 ? sizing100 : other.sizing100,
+      sizing200: t < 0.5 ? sizing200 : other.sizing200,
+      sizing300: t < 0.5 ? sizing300 : other.sizing300,
+      sizing400: t < 0.5 ? sizing400 : other.sizing400,
+      sizing50: t < 0.5 ? sizing50 : other.sizing50,
+      sizing500: t < 0.5 ? sizing500 : other.sizing500,
+      sizing550: t < 0.5 ? sizing550 : other.sizing550,
+      sizing600: t < 0.5 ? sizing600 : other.sizing600,
+      sizing700: t < 0.5 ? sizing700 : other.sizing700,
+      sizing900: t < 0.5 ? sizing900 : other.sizing900,
+      sizingBase: t < 0.5 ? sizingBase : other.sizingBase,
+      spacing0: t < 0.5 ? spacing0 : other.spacing0,
+      spacing100: t < 0.5 ? spacing100 : other.spacing100,
+      spacing1000: t < 0.5 ? spacing1000 : other.spacing1000,
+      spacing1200: t < 0.5 ? spacing1200 : other.spacing1200,
+      spacing150: t < 0.5 ? spacing150 : other.spacing150,
+      spacing200: t < 0.5 ? spacing200 : other.spacing200,
+      spacing25: t < 0.5 ? spacing25 : other.spacing25,
+      spacing250: t < 0.5 ? spacing250 : other.spacing250,
+      spacing300: t < 0.5 ? spacing300 : other.spacing300,
+      spacing400: t < 0.5 ? spacing400 : other.spacing400,
+      spacing450: t < 0.5 ? spacing450 : other.spacing450,
+      spacing50: t < 0.5 ? spacing50 : other.spacing50,
+      spacing500: t < 0.5 ? spacing500 : other.spacing500,
+      spacing700: t < 0.5 ? spacing700 : other.spacing700,
+      spacing900: t < 0.5 ? spacing900 : other.spacing900,
+      spacingBase: t < 0.5 ? spacingBase : other.spacingBase,
       textAlertBasic: Color.lerp(textAlertBasic, other.textAlertBasic, t)!,
       textAlertDanger: Color.lerp(textAlertDanger, other.textAlertDanger, t)!,
       textAlertInfo: Color.lerp(textAlertInfo, other.textAlertInfo, t)!,
@@ -2620,6 +3280,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(textAlertSuccess, other.textAlertSuccess, t)!,
       textAlertWarning:
           Color.lerp(textAlertWarning, other.textAlertWarning, t)!,
+      textDecorationUnderline:
+          t < 0.5 ? textDecorationUnderline : other.textDecorationUnderline,
       textDisabled: Color.lerp(textDisabled, other.textDisabled, t)!,
       textInteractiveActive:
           Color.lerp(textInteractiveActive, other.textInteractiveActive, t)!,
@@ -2629,12 +3291,23 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(textInteractiveHover, other.textInteractiveHover, t)!,
       textStaticInverse:
           Color.lerp(textStaticInverse, other.textStaticInverse, t)!,
+      textStaticOnColor:
+          Color.lerp(textStaticOnColor, other.textStaticOnColor, t)!,
       textStaticPrimary:
           Color.lerp(textStaticPrimary, other.textStaticPrimary, t)!,
       textStaticSecondary:
           Color.lerp(textStaticSecondary, other.textStaticSecondary, t)!,
       textStaticTertiary:
           Color.lerp(textStaticTertiary, other.textStaticTertiary, t)!,
+      titleLarge: TextStyle.lerp(titleLarge, other.titleLarge, t)!,
+      titleLargeStrong:
+          TextStyle.lerp(titleLargeStrong, other.titleLargeStrong, t)!,
+      titleMedium: TextStyle.lerp(titleMedium, other.titleMedium, t)!,
+      titleMediumStrong:
+          TextStyle.lerp(titleMediumStrong, other.titleMediumStrong, t)!,
+      titleSmall: TextStyle.lerp(titleSmall, other.titleSmall, t)!,
+      titleSmallStrong:
+          TextStyle.lerp(titleSmallStrong, other.titleSmallStrong, t)!,
     );
   }
 
@@ -2643,10 +3316,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'OptimusTokens'))
-      ..add(DiagnosticsProperty(
-          'backgroundAccentPrimary', backgroundAccentPrimary))
-      ..add(DiagnosticsProperty(
-          'backgroundAccentSecondary', backgroundAccentSecondary))
+      ..add(DiagnosticsProperty('backgroundAccent', backgroundAccent))
       ..add(DiagnosticsProperty(
           'backgroundAlertBasicPrimary', backgroundAlertBasicPrimary))
       ..add(DiagnosticsProperty(
@@ -2667,7 +3337,17 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           'backgroundAlertWarningPrimary', backgroundAlertWarningPrimary))
       ..add(DiagnosticsProperty(
           'backgroundAlertWarningSecondary', backgroundAlertWarningSecondary))
+      ..add(DiagnosticsProperty('backgroundBackdrop', backgroundBackdrop))
       ..add(DiagnosticsProperty('backgroundBrand', backgroundBrand))
+      ..add(DiagnosticsProperty('backgroundDatavizBlue', backgroundDatavizBlue))
+      ..add(
+          DiagnosticsProperty('backgroundDatavizGreen', backgroundDatavizGreen))
+      ..add(DiagnosticsProperty(
+          'backgroundDatavizOrange', backgroundDatavizOrange))
+      ..add(DiagnosticsProperty('backgroundDatavizPink', backgroundDatavizPink))
+      ..add(DiagnosticsProperty(
+          'backgroundDatavizPurple', backgroundDatavizPurple))
+      ..add(DiagnosticsProperty('backgroundDatavizRed', backgroundDatavizRed))
       ..add(DiagnosticsProperty('backgroundDisabled', backgroundDisabled))
       ..add(DiagnosticsProperty('backgroundInteractiveDangerActive',
           backgroundInteractiveDangerActive))
@@ -2705,6 +3385,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundInteractiveSecondaryDefault))
       ..add(DiagnosticsProperty('backgroundInteractiveSecondaryHover',
           backgroundInteractiveSecondaryHover))
+      ..add(DiagnosticsProperty('backgroundInteractiveSuccessActive',
+          backgroundInteractiveSuccessActive))
+      ..add(DiagnosticsProperty('backgroundInteractiveSuccessDefault',
+          backgroundInteractiveSuccessDefault))
+      ..add(DiagnosticsProperty('backgroundInteractiveSuccessHover',
+          backgroundInteractiveSuccessHover))
       ..add(DiagnosticsProperty('backgroundStaticFlat', backgroundStaticFlat))
       ..add(DiagnosticsProperty(
           'backgroundStaticFloating', backgroundStaticFloating))
@@ -2714,6 +3400,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           DiagnosticsProperty('backgroundStaticRaised', backgroundStaticRaised))
       ..add(
           DiagnosticsProperty('backgroundStaticSunken', backgroundStaticSunken))
+      ..add(DiagnosticsProperty('bodyExtraSmall', bodyExtraSmall))
+      ..add(DiagnosticsProperty('bodyExtraSmallStrong', bodyExtraSmallStrong))
+      ..add(DiagnosticsProperty('bodyLarge', bodyLarge))
+      ..add(DiagnosticsProperty('bodyLargeStrong', bodyLargeStrong))
+      ..add(DiagnosticsProperty('bodyMedium', bodyMedium))
+      ..add(DiagnosticsProperty('bodyMediumStrong', bodyMediumStrong))
+      ..add(DiagnosticsProperty('bodySmall', bodySmall))
+      ..add(DiagnosticsProperty('bodySmallStrong', bodySmallStrong))
       ..add(DiagnosticsProperty('borderAlertBasic', borderAlertBasic))
       ..add(DiagnosticsProperty('borderAlertDanger', borderAlertDanger))
       ..add(DiagnosticsProperty('borderAlertInfo', borderAlertInfo))
@@ -2740,72 +3434,192 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           borderInteractiveSecondaryDefault))
       ..add(DiagnosticsProperty(
           'borderInteractiveSecondaryHover', borderInteractiveSecondaryHover))
+      ..add(DiagnosticsProperty('borderRadius0', borderRadius0))
+      ..add(DiagnosticsProperty('borderRadius100', borderRadius100))
+      ..add(DiagnosticsProperty('borderRadius150', borderRadius150))
+      ..add(DiagnosticsProperty('borderRadius200', borderRadius200))
+      ..add(DiagnosticsProperty('borderRadius25', borderRadius25))
+      ..add(DiagnosticsProperty('borderRadius300', borderRadius300))
+      ..add(DiagnosticsProperty('borderRadius50', borderRadius50))
+      ..add(DiagnosticsProperty('borderRadiusBase', borderRadiusBase))
+      ..add(DiagnosticsProperty('borderRadiusRound', borderRadiusRound))
       ..add(DiagnosticsProperty('borderStaticInverse', borderStaticInverse))
+      ..add(DiagnosticsProperty('borderStaticOnColor', borderStaticOnColor))
       ..add(DiagnosticsProperty('borderStaticPrimary', borderStaticPrimary))
       ..add(DiagnosticsProperty('borderStaticSecondary', borderStaticSecondary))
-      ..add(DiagnosticsProperty('inputActiveColor', inputActiveColor))
-      ..add(DiagnosticsProperty('inputDangerColor', inputDangerColor))
-      ..add(DiagnosticsProperty('inputDefaultColor', inputDefaultColor))
-      ..add(DiagnosticsProperty('inputDisabledColor', inputDisabledColor))
-      ..add(DiagnosticsProperty('inputHoverColor', inputHoverColor))
-      ..add(DiagnosticsProperty('inputInverseColor', inputInverseColor))
+      ..add(DiagnosticsProperty('borderWidth0', borderWidth0))
+      ..add(DiagnosticsProperty('borderWidth100', borderWidth100))
+      ..add(DiagnosticsProperty('borderWidth150', borderWidth150))
+      ..add(DiagnosticsProperty('borderWidth200', borderWidth200))
+      ..add(DiagnosticsProperty('borderWidth250', borderWidth250))
+      ..add(DiagnosticsProperty('borderWidth300', borderWidth300))
+      ..add(DiagnosticsProperty('borderWidth800', borderWidth800))
+      ..add(DiagnosticsProperty('focusOffset', focusOffset))
+      ..add(DiagnosticsProperty('fontFamilyUi', fontFamilyUi))
+      ..add(DiagnosticsProperty('fontSize100', fontSize100))
+      ..add(DiagnosticsProperty('fontSize200', fontSize200))
+      ..add(DiagnosticsProperty('fontSize300', fontSize300))
+      ..add(DiagnosticsProperty('fontSize400', fontSize400))
+      ..add(DiagnosticsProperty('fontSize50', fontSize50))
+      ..add(DiagnosticsProperty('fontSize500', fontSize500))
+      ..add(DiagnosticsProperty('fontSize600', fontSize600))
+      ..add(DiagnosticsProperty('fontSize700', fontSize700))
+      ..add(DiagnosticsProperty('fontSize75', fontSize75))
+      ..add(DiagnosticsProperty('fontSize800', fontSize800))
+      ..add(DiagnosticsProperty('fontSize900', fontSize900))
+      ..add(DiagnosticsProperty('fontSizeBase', fontSizeBase))
+      ..add(DiagnosticsProperty('fontSizeRatio', fontSizeRatio))
+      ..add(DiagnosticsProperty('fontWeight300', fontWeight300))
+      ..add(DiagnosticsProperty('fontWeight400', fontWeight400))
+      ..add(DiagnosticsProperty('fontWeight500', fontWeight500))
+      ..add(DiagnosticsProperty('fontWeight600', fontWeight600))
+      ..add(DiagnosticsProperty('highlightLarge', highlightLarge))
+      ..add(DiagnosticsProperty('highlightMedium', highlightMedium))
+      ..add(DiagnosticsProperty('highlightSmall', highlightSmall))
+      ..add(DiagnosticsProperty('legacyDatavizDenim100', legacyDatavizDenim100))
+      ..add(DiagnosticsProperty('legacyDatavizDenim200', legacyDatavizDenim200))
+      ..add(DiagnosticsProperty('legacyDatavizDenim300', legacyDatavizDenim300))
+      ..add(DiagnosticsProperty('legacyDatavizDenim400', legacyDatavizDenim400))
+      ..add(DiagnosticsProperty('legacyDatavizDenim50', legacyDatavizDenim50))
+      ..add(DiagnosticsProperty('legacyDatavizDenim500', legacyDatavizDenim500))
+      ..add(DiagnosticsProperty('legacyDatavizDenim600', legacyDatavizDenim600))
+      ..add(DiagnosticsProperty('legacyDatavizDenim700', legacyDatavizDenim700))
+      ..add(DiagnosticsProperty('legacyDatavizDenim800', legacyDatavizDenim800))
+      ..add(DiagnosticsProperty('legacyDatavizDenim900', legacyDatavizDenim900))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender100', legacyDatavizLavender100))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender200', legacyDatavizLavender200))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender300', legacyDatavizLavender300))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender400', legacyDatavizLavender400))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender50', legacyDatavizLavender50))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender500', legacyDatavizLavender500))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender600', legacyDatavizLavender600))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender700', legacyDatavizLavender700))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender800', legacyDatavizLavender800))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizLavender900', legacyDatavizLavender900))
+      ..add(DiagnosticsProperty('legacyDatavizLime100', legacyDatavizLime100))
+      ..add(DiagnosticsProperty('legacyDatavizLime200', legacyDatavizLime200))
+      ..add(DiagnosticsProperty('legacyDatavizLime300', legacyDatavizLime300))
+      ..add(DiagnosticsProperty('legacyDatavizLime400', legacyDatavizLime400))
+      ..add(DiagnosticsProperty('legacyDatavizLime50', legacyDatavizLime50))
+      ..add(DiagnosticsProperty('legacyDatavizLime500', legacyDatavizLime500))
+      ..add(DiagnosticsProperty('legacyDatavizLime600', legacyDatavizLime600))
+      ..add(DiagnosticsProperty('legacyDatavizLime700', legacyDatavizLime700))
+      ..add(DiagnosticsProperty('legacyDatavizLime800', legacyDatavizLime800))
+      ..add(DiagnosticsProperty('legacyDatavizLime900', legacyDatavizLime900))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizMustard100', legacyDatavizMustard100))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizMustard200', legacyDatavizMustard200))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizMustard300', legacyDatavizMustard300))
+      ..add(DiagnosticsProperty(
+          'legacyDatavizMustard400', legacyDatavizMustard400))
       ..add(
-          DiagnosticsProperty('interactiveDangerColor', interactiveDangerColor))
+          DiagnosticsProperty('legacyDatavizMustard50', legacyDatavizMustard50))
       ..add(DiagnosticsProperty(
-          'interactiveDefaultColor', interactiveDefaultColor))
+          'legacyDatavizMustard500', legacyDatavizMustard500))
       ..add(DiagnosticsProperty(
-          'interactiveDisabledColor', interactiveDisabledColor))
-      ..add(DiagnosticsProperty('interactiveHoverColor', interactiveHoverColor))
+          'legacyDatavizMustard600', legacyDatavizMustard600))
       ..add(DiagnosticsProperty(
-          'interactiveInverseColor', interactiveInverseColor))
-      ..add(DiagnosticsProperty('legacySupportTagBackgroundBasicBold',
-          legacySupportTagBackgroundBasicBold))
+          'legacyDatavizMustard700', legacyDatavizMustard700))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBackgroundDenim', legacySupportTagBackgroundDenim))
-      ..add(DiagnosticsProperty('legacySupportTagBackgroundLavender',
-          legacySupportTagBackgroundLavender))
+          'legacyDatavizMustard800', legacyDatavizMustard800))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBackgroundLime', legacySupportTagBackgroundLime))
-      ..add(DiagnosticsProperty('legacySupportTagBackgroundMustard',
-          legacySupportTagBackgroundMustard))
-      ..add(DiagnosticsProperty('legacySupportTagBackgroundPrimary',
-          legacySupportTagBackgroundPrimary))
+          'legacyDatavizMustard900', legacyDatavizMustard900))
+      ..add(DiagnosticsProperty('legacyDatavizRuby100', legacyDatavizRuby100))
+      ..add(DiagnosticsProperty('legacyDatavizRuby200', legacyDatavizRuby200))
+      ..add(DiagnosticsProperty('legacyDatavizRuby300', legacyDatavizRuby300))
+      ..add(DiagnosticsProperty('legacyDatavizRuby400', legacyDatavizRuby400))
+      ..add(DiagnosticsProperty('legacyDatavizRuby50', legacyDatavizRuby50))
+      ..add(DiagnosticsProperty('legacyDatavizRuby500', legacyDatavizRuby500))
+      ..add(DiagnosticsProperty('legacyDatavizRuby600', legacyDatavizRuby600))
+      ..add(DiagnosticsProperty('legacyDatavizRuby700', legacyDatavizRuby700))
+      ..add(DiagnosticsProperty('legacyDatavizRuby800', legacyDatavizRuby800))
+      ..add(DiagnosticsProperty('legacyDatavizRuby900', legacyDatavizRuby900))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBackgroundRuby', legacySupportTagBackgroundRuby))
-      ..add(DiagnosticsProperty('legacySupportTagBackgroundTangerine',
-          legacySupportTagBackgroundTangerine))
+          'legacyDatavizTangerine100', legacyDatavizTangerine100))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderBasicBold', legacySupportTagBorderBasicBold))
+          'legacyDatavizTangerine200', legacyDatavizTangerine200))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderDenim', legacySupportTagBorderDenim))
+          'legacyDatavizTangerine300', legacyDatavizTangerine300))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderLavender', legacySupportTagBorderLavender))
+          'legacyDatavizTangerine400', legacyDatavizTangerine400))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderLime', legacySupportTagBorderLime))
+          'legacyDatavizTangerine50', legacyDatavizTangerine50))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderMustard', legacySupportTagBorderMustard))
+          'legacyDatavizTangerine500', legacyDatavizTangerine500))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderPrimary', legacySupportTagBorderPrimary))
+          'legacyDatavizTangerine600', legacyDatavizTangerine600))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderRuby', legacySupportTagBorderRuby))
+          'legacyDatavizTangerine700', legacyDatavizTangerine700))
       ..add(DiagnosticsProperty(
-          'legacySupportTagBorderTangerine', legacySupportTagBorderTangerine))
+          'legacyDatavizTangerine800', legacyDatavizTangerine800))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextBasicBold', legacySupportTagTextBasicBold))
+          'legacyDatavizTangerine900', legacyDatavizTangerine900))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextDenim', legacySupportTagTextDenim))
+          'legacyTagBackgroundBasicBold', legacyTagBackgroundBasicBold))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextLavender', legacySupportTagTextLavender))
+          'legacyTagBackgroundDenim', legacyTagBackgroundDenim))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextLime', legacySupportTagTextLime))
+          'legacyTagBackgroundLavender', legacyTagBackgroundLavender))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextMustard', legacySupportTagTextMustard))
+          'legacyTagBackgroundLime', legacyTagBackgroundLime))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextPrimary', legacySupportTagTextPrimary))
+          'legacyTagBackgroundMustard', legacyTagBackgroundMustard))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextRuby', legacySupportTagTextRuby))
+          'legacyTagBackgroundPrimary', legacyTagBackgroundPrimary))
       ..add(DiagnosticsProperty(
-          'legacySupportTagTextTangerine', legacySupportTagTextTangerine))
+          'legacyTagBackgroundRuby', legacyTagBackgroundRuby))
+      ..add(DiagnosticsProperty(
+          'legacyTagBackgroundTangerine', legacyTagBackgroundTangerine))
+      ..add(DiagnosticsProperty(
+          'legacyTagBorderBasicBold', legacyTagBorderBasicBold))
+      ..add(DiagnosticsProperty('legacyTagBorderDenim', legacyTagBorderDenim))
+      ..add(DiagnosticsProperty(
+          'legacyTagBorderLavender', legacyTagBorderLavender))
+      ..add(DiagnosticsProperty('legacyTagBorderLime', legacyTagBorderLime))
+      ..add(
+          DiagnosticsProperty('legacyTagBorderMustard', legacyTagBorderMustard))
+      ..add(
+          DiagnosticsProperty('legacyTagBorderPrimary', legacyTagBorderPrimary))
+      ..add(DiagnosticsProperty('legacyTagBorderRuby', legacyTagBorderRuby))
+      ..add(DiagnosticsProperty(
+          'legacyTagBorderTangerine', legacyTagBorderTangerine))
+      ..add(
+          DiagnosticsProperty('legacyTagTextBasicBold', legacyTagTextBasicBold))
+      ..add(DiagnosticsProperty('legacyTagTextDenim', legacyTagTextDenim))
+      ..add(DiagnosticsProperty('legacyTagTextLavender', legacyTagTextLavender))
+      ..add(DiagnosticsProperty('legacyTagTextLime', legacyTagTextLime))
+      ..add(DiagnosticsProperty('legacyTagTextMustard', legacyTagTextMustard))
+      ..add(DiagnosticsProperty('legacyTagTextPrimary', legacyTagTextPrimary))
+      ..add(DiagnosticsProperty('legacyTagTextRuby', legacyTagTextRuby))
+      ..add(
+          DiagnosticsProperty('legacyTagTextTangerine', legacyTagTextTangerine))
+      ..add(
+          DiagnosticsProperty('letterSpacingCondensed', letterSpacingCondensed))
+      ..add(DiagnosticsProperty('letterSpacingDefault', letterSpacingDefault))
+      ..add(DiagnosticsProperty('letterSpacingWide', letterSpacingWide))
+      ..add(DiagnosticsProperty('lineHeight100', lineHeight100))
+      ..add(DiagnosticsProperty('lineHeight200', lineHeight200))
+      ..add(DiagnosticsProperty('lineHeight300', lineHeight300))
+      ..add(DiagnosticsProperty('opacity0', opacity0))
+      ..add(DiagnosticsProperty('opacity100', opacity100))
+      ..add(DiagnosticsProperty('opacity1000', opacity1000))
+      ..add(DiagnosticsProperty('opacity150', opacity150))
+      ..add(DiagnosticsProperty('opacity200', opacity200))
+      ..add(DiagnosticsProperty('opacity400', opacity400))
+      ..add(DiagnosticsProperty('opacity600', opacity600))
+      ..add(DiagnosticsProperty('opacity800', opacity800))
       ..add(DiagnosticsProperty('paletteBasicsBlack', paletteBasicsBlack))
       ..add(DiagnosticsProperty('paletteBasicsWhite', paletteBasicsWhite))
       ..add(DiagnosticsProperty('paletteBasicsWhite64', paletteBasicsWhite64))
@@ -2871,105 +3685,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('paletteBrandNight700', paletteBrandNight700))
       ..add(DiagnosticsProperty('paletteBrandNight800', paletteBrandNight800))
       ..add(DiagnosticsProperty('paletteBrandNight900', paletteBrandNight900))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim100', paletteDatavizDenim100))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim200', paletteDatavizDenim200))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim300', paletteDatavizDenim300))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim400', paletteDatavizDenim400))
-      ..add(DiagnosticsProperty('paletteDatavizDenim50', paletteDatavizDenim50))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim500', paletteDatavizDenim500))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim600', paletteDatavizDenim600))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim700', paletteDatavizDenim700))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim800', paletteDatavizDenim800))
-      ..add(
-          DiagnosticsProperty('paletteDatavizDenim900', paletteDatavizDenim900))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender100', paletteDatavizLavender100))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender200', paletteDatavizLavender200))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender300', paletteDatavizLavender300))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender400', paletteDatavizLavender400))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender50', paletteDatavizLavender50))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender500', paletteDatavizLavender500))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender600', paletteDatavizLavender600))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender700', paletteDatavizLavender700))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender800', paletteDatavizLavender800))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizLavender900', paletteDatavizLavender900))
-      ..add(DiagnosticsProperty('paletteDatavizLime100', paletteDatavizLime100))
-      ..add(DiagnosticsProperty('paletteDatavizLime200', paletteDatavizLime200))
-      ..add(DiagnosticsProperty('paletteDatavizLime300', paletteDatavizLime300))
-      ..add(DiagnosticsProperty('paletteDatavizLime400', paletteDatavizLime400))
-      ..add(DiagnosticsProperty('paletteDatavizLime50', paletteDatavizLime50))
-      ..add(DiagnosticsProperty('paletteDatavizLime500', paletteDatavizLime500))
-      ..add(DiagnosticsProperty('paletteDatavizLime600', paletteDatavizLime600))
-      ..add(DiagnosticsProperty('paletteDatavizLime700', paletteDatavizLime700))
-      ..add(DiagnosticsProperty('paletteDatavizLime800', paletteDatavizLime800))
-      ..add(DiagnosticsProperty('paletteDatavizLime900', paletteDatavizLime900))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard100', paletteDatavizMustard100))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard200', paletteDatavizMustard200))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard300', paletteDatavizMustard300))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard400', paletteDatavizMustard400))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard50', paletteDatavizMustard50))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard500', paletteDatavizMustard500))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard600', paletteDatavizMustard600))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard700', paletteDatavizMustard700))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard800', paletteDatavizMustard800))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizMustard900', paletteDatavizMustard900))
-      ..add(DiagnosticsProperty('paletteDatavizRuby100', paletteDatavizRuby100))
-      ..add(DiagnosticsProperty('paletteDatavizRuby200', paletteDatavizRuby200))
-      ..add(DiagnosticsProperty('paletteDatavizRuby300', paletteDatavizRuby300))
-      ..add(DiagnosticsProperty('paletteDatavizRuby400', paletteDatavizRuby400))
-      ..add(DiagnosticsProperty('paletteDatavizRuby50', paletteDatavizRuby50))
-      ..add(DiagnosticsProperty('paletteDatavizRuby500', paletteDatavizRuby500))
-      ..add(DiagnosticsProperty('paletteDatavizRuby600', paletteDatavizRuby600))
-      ..add(DiagnosticsProperty('paletteDatavizRuby700', paletteDatavizRuby700))
-      ..add(DiagnosticsProperty('paletteDatavizRuby800', paletteDatavizRuby800))
-      ..add(DiagnosticsProperty('paletteDatavizRuby900', paletteDatavizRuby900))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine100', paletteDatavizTangerine100))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine200', paletteDatavizTangerine200))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine300', paletteDatavizTangerine300))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine400', paletteDatavizTangerine400))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine50', paletteDatavizTangerine50))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine500', paletteDatavizTangerine500))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine600', paletteDatavizTangerine600))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine700', paletteDatavizTangerine700))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine800', paletteDatavizTangerine800))
-      ..add(DiagnosticsProperty(
-          'paletteDatavizTangerine900', paletteDatavizTangerine900))
+      ..add(DiagnosticsProperty('paletteDatavizBlue', paletteDatavizBlue))
+      ..add(DiagnosticsProperty('paletteDatavizGreen', paletteDatavizGreen))
+      ..add(DiagnosticsProperty('paletteDatavizOrange', paletteDatavizOrange))
+      ..add(DiagnosticsProperty('paletteDatavizPink', paletteDatavizPink))
+      ..add(DiagnosticsProperty('paletteDatavizPurple', paletteDatavizPurple))
+      ..add(DiagnosticsProperty('paletteDatavizRed', paletteDatavizRed))
       ..add(
           DiagnosticsProperty('paletteSemanticBlue100', paletteSemanticBlue100))
       ..add(DiagnosticsProperty(
@@ -3060,22 +3781,60 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('paletteSemanticRed700', paletteSemanticRed700))
       ..add(DiagnosticsProperty('paletteSemanticRed800', paletteSemanticRed800))
       ..add(DiagnosticsProperty('paletteSemanticRed900', paletteSemanticRed900))
-      ..add(DiagnosticsProperty('staticContainerColor', staticContainerColor))
-      ..add(DiagnosticsProperty('staticDividerColor', staticDividerColor))
+      ..add(DiagnosticsProperty('shadow0', shadow0))
+      ..add(DiagnosticsProperty('shadow100', shadow100))
+      ..add(DiagnosticsProperty('shadow200', shadow200))
+      ..add(DiagnosticsProperty('shadow300', shadow300))
+      ..add(DiagnosticsProperty('sizing100', sizing100))
+      ..add(DiagnosticsProperty('sizing200', sizing200))
+      ..add(DiagnosticsProperty('sizing300', sizing300))
+      ..add(DiagnosticsProperty('sizing400', sizing400))
+      ..add(DiagnosticsProperty('sizing50', sizing50))
+      ..add(DiagnosticsProperty('sizing500', sizing500))
+      ..add(DiagnosticsProperty('sizing550', sizing550))
+      ..add(DiagnosticsProperty('sizing600', sizing600))
+      ..add(DiagnosticsProperty('sizing700', sizing700))
+      ..add(DiagnosticsProperty('sizing900', sizing900))
+      ..add(DiagnosticsProperty('sizingBase', sizingBase))
+      ..add(DiagnosticsProperty('spacing0', spacing0))
+      ..add(DiagnosticsProperty('spacing100', spacing100))
+      ..add(DiagnosticsProperty('spacing1000', spacing1000))
+      ..add(DiagnosticsProperty('spacing1200', spacing1200))
+      ..add(DiagnosticsProperty('spacing150', spacing150))
+      ..add(DiagnosticsProperty('spacing200', spacing200))
+      ..add(DiagnosticsProperty('spacing25', spacing25))
+      ..add(DiagnosticsProperty('spacing250', spacing250))
+      ..add(DiagnosticsProperty('spacing300', spacing300))
+      ..add(DiagnosticsProperty('spacing400', spacing400))
+      ..add(DiagnosticsProperty('spacing450', spacing450))
+      ..add(DiagnosticsProperty('spacing50', spacing50))
+      ..add(DiagnosticsProperty('spacing500', spacing500))
+      ..add(DiagnosticsProperty('spacing700', spacing700))
+      ..add(DiagnosticsProperty('spacing900', spacing900))
+      ..add(DiagnosticsProperty('spacingBase', spacingBase))
       ..add(DiagnosticsProperty('textAlertBasic', textAlertBasic))
       ..add(DiagnosticsProperty('textAlertDanger', textAlertDanger))
       ..add(DiagnosticsProperty('textAlertInfo', textAlertInfo))
       ..add(DiagnosticsProperty('textAlertSuccess', textAlertSuccess))
       ..add(DiagnosticsProperty('textAlertWarning', textAlertWarning))
+      ..add(DiagnosticsProperty(
+          'textDecorationUnderline', textDecorationUnderline))
       ..add(DiagnosticsProperty('textDisabled', textDisabled))
       ..add(DiagnosticsProperty('textInteractiveActive', textInteractiveActive))
       ..add(
           DiagnosticsProperty('textInteractiveDefault', textInteractiveDefault))
       ..add(DiagnosticsProperty('textInteractiveHover', textInteractiveHover))
       ..add(DiagnosticsProperty('textStaticInverse', textStaticInverse))
+      ..add(DiagnosticsProperty('textStaticOnColor', textStaticOnColor))
       ..add(DiagnosticsProperty('textStaticPrimary', textStaticPrimary))
       ..add(DiagnosticsProperty('textStaticSecondary', textStaticSecondary))
-      ..add(DiagnosticsProperty('textStaticTertiary', textStaticTertiary));
+      ..add(DiagnosticsProperty('textStaticTertiary', textStaticTertiary))
+      ..add(DiagnosticsProperty('titleLarge', titleLarge))
+      ..add(DiagnosticsProperty('titleLargeStrong', titleLargeStrong))
+      ..add(DiagnosticsProperty('titleMedium', titleMedium))
+      ..add(DiagnosticsProperty('titleMediumStrong', titleMediumStrong))
+      ..add(DiagnosticsProperty('titleSmall', titleSmall))
+      ..add(DiagnosticsProperty('titleSmallStrong', titleSmallStrong));
   }
 
   @override
@@ -3083,10 +3842,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is OptimusTokens &&
-            const DeepCollectionEquality().equals(
-                backgroundAccentPrimary, other.backgroundAccentPrimary) &&
-            const DeepCollectionEquality().equals(
-                backgroundAccentSecondary, other.backgroundAccentSecondary) &&
+            const DeepCollectionEquality()
+                .equals(backgroundAccent, other.backgroundAccent) &&
             const DeepCollectionEquality().equals(backgroundAlertBasicPrimary,
                 other.backgroundAlertBasicPrimary) &&
             const DeepCollectionEquality().equals(backgroundAlertBasicSecondary,
@@ -3111,21 +3868,29 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
                 backgroundAlertWarningSecondary,
                 other.backgroundAlertWarningSecondary) &&
             const DeepCollectionEquality()
+                .equals(backgroundBackdrop, other.backgroundBackdrop) &&
+            const DeepCollectionEquality()
                 .equals(backgroundBrand, other.backgroundBrand) &&
+            const DeepCollectionEquality()
+                .equals(backgroundDatavizBlue, other.backgroundDatavizBlue) &&
+            const DeepCollectionEquality()
+                .equals(backgroundDatavizGreen, other.backgroundDatavizGreen) &&
+            const DeepCollectionEquality().equals(
+                backgroundDatavizOrange, other.backgroundDatavizOrange) &&
+            const DeepCollectionEquality()
+                .equals(backgroundDatavizPink, other.backgroundDatavizPink) &&
+            const DeepCollectionEquality().equals(
+                backgroundDatavizPurple, other.backgroundDatavizPurple) &&
+            const DeepCollectionEquality()
+                .equals(backgroundDatavizRed, other.backgroundDatavizRed) &&
             const DeepCollectionEquality()
                 .equals(backgroundDisabled, other.backgroundDisabled) &&
             const DeepCollectionEquality().equals(
                 backgroundInteractiveDangerActive,
                 other.backgroundInteractiveDangerActive) &&
-            const DeepCollectionEquality().equals(
-                backgroundInteractiveDangerDefault,
-                other.backgroundInteractiveDangerDefault) &&
-            const DeepCollectionEquality().equals(
-                backgroundInteractiveDangerHover,
-                other.backgroundInteractiveDangerHover) &&
-            const DeepCollectionEquality().equals(
-                backgroundInteractiveNeutralActive,
-                other.backgroundInteractiveNeutralActive) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveDangerDefault, other.backgroundInteractiveDangerDefault) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveDangerHover, other.backgroundInteractiveDangerHover) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveNeutralActive, other.backgroundInteractiveNeutralActive) &&
             const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldActive, other.backgroundInteractiveNeutralBoldActive) &&
             const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldDefault, other.backgroundInteractiveNeutralBoldDefault) &&
             const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldHover, other.backgroundInteractiveNeutralBoldHover) &&
@@ -3140,11 +3905,22 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(backgroundInteractiveSecondaryActive, other.backgroundInteractiveSecondaryActive) &&
             const DeepCollectionEquality().equals(backgroundInteractiveSecondaryDefault, other.backgroundInteractiveSecondaryDefault) &&
             const DeepCollectionEquality().equals(backgroundInteractiveSecondaryHover, other.backgroundInteractiveSecondaryHover) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveSuccessActive, other.backgroundInteractiveSuccessActive) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveSuccessDefault, other.backgroundInteractiveSuccessDefault) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveSuccessHover, other.backgroundInteractiveSuccessHover) &&
             const DeepCollectionEquality().equals(backgroundStaticFlat, other.backgroundStaticFlat) &&
             const DeepCollectionEquality().equals(backgroundStaticFloating, other.backgroundStaticFloating) &&
             const DeepCollectionEquality().equals(backgroundStaticInverse, other.backgroundStaticInverse) &&
             const DeepCollectionEquality().equals(backgroundStaticRaised, other.backgroundStaticRaised) &&
             const DeepCollectionEquality().equals(backgroundStaticSunken, other.backgroundStaticSunken) &&
+            const DeepCollectionEquality().equals(bodyExtraSmall, other.bodyExtraSmall) &&
+            const DeepCollectionEquality().equals(bodyExtraSmallStrong, other.bodyExtraSmallStrong) &&
+            const DeepCollectionEquality().equals(bodyLarge, other.bodyLarge) &&
+            const DeepCollectionEquality().equals(bodyLargeStrong, other.bodyLargeStrong) &&
+            const DeepCollectionEquality().equals(bodyMedium, other.bodyMedium) &&
+            const DeepCollectionEquality().equals(bodyMediumStrong, other.bodyMediumStrong) &&
+            const DeepCollectionEquality().equals(bodySmall, other.bodySmall) &&
+            const DeepCollectionEquality().equals(bodySmallStrong, other.bodySmallStrong) &&
             const DeepCollectionEquality().equals(borderAlertBasic, other.borderAlertBasic) &&
             const DeepCollectionEquality().equals(borderAlertDanger, other.borderAlertDanger) &&
             const DeepCollectionEquality().equals(borderAlertInfo, other.borderAlertInfo) &&
@@ -3161,44 +3937,146 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(borderInteractiveSecondaryActive, other.borderInteractiveSecondaryActive) &&
             const DeepCollectionEquality().equals(borderInteractiveSecondaryDefault, other.borderInteractiveSecondaryDefault) &&
             const DeepCollectionEquality().equals(borderInteractiveSecondaryHover, other.borderInteractiveSecondaryHover) &&
+            const DeepCollectionEquality().equals(borderRadius0, other.borderRadius0) &&
+            const DeepCollectionEquality().equals(borderRadius100, other.borderRadius100) &&
+            const DeepCollectionEquality().equals(borderRadius150, other.borderRadius150) &&
+            const DeepCollectionEquality().equals(borderRadius200, other.borderRadius200) &&
+            const DeepCollectionEquality().equals(borderRadius25, other.borderRadius25) &&
+            const DeepCollectionEquality().equals(borderRadius300, other.borderRadius300) &&
+            const DeepCollectionEquality().equals(borderRadius50, other.borderRadius50) &&
+            const DeepCollectionEquality().equals(borderRadiusBase, other.borderRadiusBase) &&
+            const DeepCollectionEquality().equals(borderRadiusRound, other.borderRadiusRound) &&
             const DeepCollectionEquality().equals(borderStaticInverse, other.borderStaticInverse) &&
+            const DeepCollectionEquality().equals(borderStaticOnColor, other.borderStaticOnColor) &&
             const DeepCollectionEquality().equals(borderStaticPrimary, other.borderStaticPrimary) &&
             const DeepCollectionEquality().equals(borderStaticSecondary, other.borderStaticSecondary) &&
-            const DeepCollectionEquality().equals(inputActiveColor, other.inputActiveColor) &&
-            const DeepCollectionEquality().equals(inputDangerColor, other.inputDangerColor) &&
-            const DeepCollectionEquality().equals(inputDefaultColor, other.inputDefaultColor) &&
-            const DeepCollectionEquality().equals(inputDisabledColor, other.inputDisabledColor) &&
-            const DeepCollectionEquality().equals(inputHoverColor, other.inputHoverColor) &&
-            const DeepCollectionEquality().equals(inputInverseColor, other.inputInverseColor) &&
-            const DeepCollectionEquality().equals(interactiveDangerColor, other.interactiveDangerColor) &&
-            const DeepCollectionEquality().equals(interactiveDefaultColor, other.interactiveDefaultColor) &&
-            const DeepCollectionEquality().equals(interactiveDisabledColor, other.interactiveDisabledColor) &&
-            const DeepCollectionEquality().equals(interactiveHoverColor, other.interactiveHoverColor) &&
-            const DeepCollectionEquality().equals(interactiveInverseColor, other.interactiveInverseColor) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundBasicBold, other.legacySupportTagBackgroundBasicBold) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundDenim, other.legacySupportTagBackgroundDenim) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundLavender, other.legacySupportTagBackgroundLavender) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundLime, other.legacySupportTagBackgroundLime) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundMustard, other.legacySupportTagBackgroundMustard) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundPrimary, other.legacySupportTagBackgroundPrimary) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundRuby, other.legacySupportTagBackgroundRuby) &&
-            const DeepCollectionEquality().equals(legacySupportTagBackgroundTangerine, other.legacySupportTagBackgroundTangerine) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderBasicBold, other.legacySupportTagBorderBasicBold) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderDenim, other.legacySupportTagBorderDenim) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderLavender, other.legacySupportTagBorderLavender) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderLime, other.legacySupportTagBorderLime) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderMustard, other.legacySupportTagBorderMustard) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderPrimary, other.legacySupportTagBorderPrimary) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderRuby, other.legacySupportTagBorderRuby) &&
-            const DeepCollectionEquality().equals(legacySupportTagBorderTangerine, other.legacySupportTagBorderTangerine) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextBasicBold, other.legacySupportTagTextBasicBold) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextDenim, other.legacySupportTagTextDenim) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextLavender, other.legacySupportTagTextLavender) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextLime, other.legacySupportTagTextLime) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextMustard, other.legacySupportTagTextMustard) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextPrimary, other.legacySupportTagTextPrimary) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextRuby, other.legacySupportTagTextRuby) &&
-            const DeepCollectionEquality().equals(legacySupportTagTextTangerine, other.legacySupportTagTextTangerine) &&
+            const DeepCollectionEquality().equals(borderWidth0, other.borderWidth0) &&
+            const DeepCollectionEquality().equals(borderWidth100, other.borderWidth100) &&
+            const DeepCollectionEquality().equals(borderWidth150, other.borderWidth150) &&
+            const DeepCollectionEquality().equals(borderWidth200, other.borderWidth200) &&
+            const DeepCollectionEquality().equals(borderWidth250, other.borderWidth250) &&
+            const DeepCollectionEquality().equals(borderWidth300, other.borderWidth300) &&
+            const DeepCollectionEquality().equals(borderWidth800, other.borderWidth800) &&
+            const DeepCollectionEquality().equals(focusOffset, other.focusOffset) &&
+            const DeepCollectionEquality().equals(fontFamilyUi, other.fontFamilyUi) &&
+            const DeepCollectionEquality().equals(fontSize100, other.fontSize100) &&
+            const DeepCollectionEquality().equals(fontSize200, other.fontSize200) &&
+            const DeepCollectionEquality().equals(fontSize300, other.fontSize300) &&
+            const DeepCollectionEquality().equals(fontSize400, other.fontSize400) &&
+            const DeepCollectionEquality().equals(fontSize50, other.fontSize50) &&
+            const DeepCollectionEquality().equals(fontSize500, other.fontSize500) &&
+            const DeepCollectionEquality().equals(fontSize600, other.fontSize600) &&
+            const DeepCollectionEquality().equals(fontSize700, other.fontSize700) &&
+            const DeepCollectionEquality().equals(fontSize75, other.fontSize75) &&
+            const DeepCollectionEquality().equals(fontSize800, other.fontSize800) &&
+            const DeepCollectionEquality().equals(fontSize900, other.fontSize900) &&
+            const DeepCollectionEquality().equals(fontSizeBase, other.fontSizeBase) &&
+            const DeepCollectionEquality().equals(fontSizeRatio, other.fontSizeRatio) &&
+            const DeepCollectionEquality().equals(fontWeight300, other.fontWeight300) &&
+            const DeepCollectionEquality().equals(fontWeight400, other.fontWeight400) &&
+            const DeepCollectionEquality().equals(fontWeight500, other.fontWeight500) &&
+            const DeepCollectionEquality().equals(fontWeight600, other.fontWeight600) &&
+            const DeepCollectionEquality().equals(highlightLarge, other.highlightLarge) &&
+            const DeepCollectionEquality().equals(highlightMedium, other.highlightMedium) &&
+            const DeepCollectionEquality().equals(highlightSmall, other.highlightSmall) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim100, other.legacyDatavizDenim100) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim200, other.legacyDatavizDenim200) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim300, other.legacyDatavizDenim300) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim400, other.legacyDatavizDenim400) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim50, other.legacyDatavizDenim50) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim500, other.legacyDatavizDenim500) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim600, other.legacyDatavizDenim600) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim700, other.legacyDatavizDenim700) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim800, other.legacyDatavizDenim800) &&
+            const DeepCollectionEquality().equals(legacyDatavizDenim900, other.legacyDatavizDenim900) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender100, other.legacyDatavizLavender100) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender200, other.legacyDatavizLavender200) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender300, other.legacyDatavizLavender300) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender400, other.legacyDatavizLavender400) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender50, other.legacyDatavizLavender50) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender500, other.legacyDatavizLavender500) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender600, other.legacyDatavizLavender600) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender700, other.legacyDatavizLavender700) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender800, other.legacyDatavizLavender800) &&
+            const DeepCollectionEquality().equals(legacyDatavizLavender900, other.legacyDatavizLavender900) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime100, other.legacyDatavizLime100) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime200, other.legacyDatavizLime200) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime300, other.legacyDatavizLime300) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime400, other.legacyDatavizLime400) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime50, other.legacyDatavizLime50) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime500, other.legacyDatavizLime500) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime600, other.legacyDatavizLime600) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime700, other.legacyDatavizLime700) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime800, other.legacyDatavizLime800) &&
+            const DeepCollectionEquality().equals(legacyDatavizLime900, other.legacyDatavizLime900) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard100, other.legacyDatavizMustard100) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard200, other.legacyDatavizMustard200) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard300, other.legacyDatavizMustard300) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard400, other.legacyDatavizMustard400) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard50, other.legacyDatavizMustard50) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard500, other.legacyDatavizMustard500) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard600, other.legacyDatavizMustard600) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard700, other.legacyDatavizMustard700) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard800, other.legacyDatavizMustard800) &&
+            const DeepCollectionEquality().equals(legacyDatavizMustard900, other.legacyDatavizMustard900) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby100, other.legacyDatavizRuby100) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby200, other.legacyDatavizRuby200) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby300, other.legacyDatavizRuby300) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby400, other.legacyDatavizRuby400) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby50, other.legacyDatavizRuby50) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby500, other.legacyDatavizRuby500) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby600, other.legacyDatavizRuby600) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby700, other.legacyDatavizRuby700) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby800, other.legacyDatavizRuby800) &&
+            const DeepCollectionEquality().equals(legacyDatavizRuby900, other.legacyDatavizRuby900) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine100, other.legacyDatavizTangerine100) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine200, other.legacyDatavizTangerine200) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine300, other.legacyDatavizTangerine300) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine400, other.legacyDatavizTangerine400) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine50, other.legacyDatavizTangerine50) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine500, other.legacyDatavizTangerine500) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine600, other.legacyDatavizTangerine600) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine700, other.legacyDatavizTangerine700) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine800, other.legacyDatavizTangerine800) &&
+            const DeepCollectionEquality().equals(legacyDatavizTangerine900, other.legacyDatavizTangerine900) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundBasicBold, other.legacyTagBackgroundBasicBold) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundDenim, other.legacyTagBackgroundDenim) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundLavender, other.legacyTagBackgroundLavender) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundLime, other.legacyTagBackgroundLime) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundMustard, other.legacyTagBackgroundMustard) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundPrimary, other.legacyTagBackgroundPrimary) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundRuby, other.legacyTagBackgroundRuby) &&
+            const DeepCollectionEquality().equals(legacyTagBackgroundTangerine, other.legacyTagBackgroundTangerine) &&
+            const DeepCollectionEquality().equals(legacyTagBorderBasicBold, other.legacyTagBorderBasicBold) &&
+            const DeepCollectionEquality().equals(legacyTagBorderDenim, other.legacyTagBorderDenim) &&
+            const DeepCollectionEquality().equals(legacyTagBorderLavender, other.legacyTagBorderLavender) &&
+            const DeepCollectionEquality().equals(legacyTagBorderLime, other.legacyTagBorderLime) &&
+            const DeepCollectionEquality().equals(legacyTagBorderMustard, other.legacyTagBorderMustard) &&
+            const DeepCollectionEquality().equals(legacyTagBorderPrimary, other.legacyTagBorderPrimary) &&
+            const DeepCollectionEquality().equals(legacyTagBorderRuby, other.legacyTagBorderRuby) &&
+            const DeepCollectionEquality().equals(legacyTagBorderTangerine, other.legacyTagBorderTangerine) &&
+            const DeepCollectionEquality().equals(legacyTagTextBasicBold, other.legacyTagTextBasicBold) &&
+            const DeepCollectionEquality().equals(legacyTagTextDenim, other.legacyTagTextDenim) &&
+            const DeepCollectionEquality().equals(legacyTagTextLavender, other.legacyTagTextLavender) &&
+            const DeepCollectionEquality().equals(legacyTagTextLime, other.legacyTagTextLime) &&
+            const DeepCollectionEquality().equals(legacyTagTextMustard, other.legacyTagTextMustard) &&
+            const DeepCollectionEquality().equals(legacyTagTextPrimary, other.legacyTagTextPrimary) &&
+            const DeepCollectionEquality().equals(legacyTagTextRuby, other.legacyTagTextRuby) &&
+            const DeepCollectionEquality().equals(legacyTagTextTangerine, other.legacyTagTextTangerine) &&
+            const DeepCollectionEquality().equals(letterSpacingCondensed, other.letterSpacingCondensed) &&
+            const DeepCollectionEquality().equals(letterSpacingDefault, other.letterSpacingDefault) &&
+            const DeepCollectionEquality().equals(letterSpacingWide, other.letterSpacingWide) &&
+            const DeepCollectionEquality().equals(lineHeight100, other.lineHeight100) &&
+            const DeepCollectionEquality().equals(lineHeight200, other.lineHeight200) &&
+            const DeepCollectionEquality().equals(lineHeight300, other.lineHeight300) &&
+            const DeepCollectionEquality().equals(opacity0, other.opacity0) &&
+            const DeepCollectionEquality().equals(opacity100, other.opacity100) &&
+            const DeepCollectionEquality().equals(opacity1000, other.opacity1000) &&
+            const DeepCollectionEquality().equals(opacity150, other.opacity150) &&
+            const DeepCollectionEquality().equals(opacity200, other.opacity200) &&
+            const DeepCollectionEquality().equals(opacity400, other.opacity400) &&
+            const DeepCollectionEquality().equals(opacity600, other.opacity600) &&
+            const DeepCollectionEquality().equals(opacity800, other.opacity800) &&
             const DeepCollectionEquality().equals(paletteBasicsBlack, other.paletteBasicsBlack) &&
             const DeepCollectionEquality().equals(paletteBasicsWhite, other.paletteBasicsWhite) &&
             const DeepCollectionEquality().equals(paletteBasicsWhite64, other.paletteBasicsWhite64) &&
@@ -3260,66 +4138,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(paletteBrandNight700, other.paletteBrandNight700) &&
             const DeepCollectionEquality().equals(paletteBrandNight800, other.paletteBrandNight800) &&
             const DeepCollectionEquality().equals(paletteBrandNight900, other.paletteBrandNight900) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim100, other.paletteDatavizDenim100) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim200, other.paletteDatavizDenim200) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim300, other.paletteDatavizDenim300) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim400, other.paletteDatavizDenim400) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim50, other.paletteDatavizDenim50) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim500, other.paletteDatavizDenim500) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim600, other.paletteDatavizDenim600) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim700, other.paletteDatavizDenim700) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim800, other.paletteDatavizDenim800) &&
-            const DeepCollectionEquality().equals(paletteDatavizDenim900, other.paletteDatavizDenim900) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender100, other.paletteDatavizLavender100) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender200, other.paletteDatavizLavender200) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender300, other.paletteDatavizLavender300) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender400, other.paletteDatavizLavender400) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender50, other.paletteDatavizLavender50) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender500, other.paletteDatavizLavender500) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender600, other.paletteDatavizLavender600) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender700, other.paletteDatavizLavender700) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender800, other.paletteDatavizLavender800) &&
-            const DeepCollectionEquality().equals(paletteDatavizLavender900, other.paletteDatavizLavender900) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime100, other.paletteDatavizLime100) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime200, other.paletteDatavizLime200) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime300, other.paletteDatavizLime300) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime400, other.paletteDatavizLime400) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime50, other.paletteDatavizLime50) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime500, other.paletteDatavizLime500) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime600, other.paletteDatavizLime600) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime700, other.paletteDatavizLime700) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime800, other.paletteDatavizLime800) &&
-            const DeepCollectionEquality().equals(paletteDatavizLime900, other.paletteDatavizLime900) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard100, other.paletteDatavizMustard100) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard200, other.paletteDatavizMustard200) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard300, other.paletteDatavizMustard300) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard400, other.paletteDatavizMustard400) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard50, other.paletteDatavizMustard50) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard500, other.paletteDatavizMustard500) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard600, other.paletteDatavizMustard600) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard700, other.paletteDatavizMustard700) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard800, other.paletteDatavizMustard800) &&
-            const DeepCollectionEquality().equals(paletteDatavizMustard900, other.paletteDatavizMustard900) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby100, other.paletteDatavizRuby100) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby200, other.paletteDatavizRuby200) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby300, other.paletteDatavizRuby300) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby400, other.paletteDatavizRuby400) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby50, other.paletteDatavizRuby50) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby500, other.paletteDatavizRuby500) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby600, other.paletteDatavizRuby600) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby700, other.paletteDatavizRuby700) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby800, other.paletteDatavizRuby800) &&
-            const DeepCollectionEquality().equals(paletteDatavizRuby900, other.paletteDatavizRuby900) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine100, other.paletteDatavizTangerine100) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine200, other.paletteDatavizTangerine200) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine300, other.paletteDatavizTangerine300) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine400, other.paletteDatavizTangerine400) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine50, other.paletteDatavizTangerine50) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine500, other.paletteDatavizTangerine500) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine600, other.paletteDatavizTangerine600) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine700, other.paletteDatavizTangerine700) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine800, other.paletteDatavizTangerine800) &&
-            const DeepCollectionEquality().equals(paletteDatavizTangerine900, other.paletteDatavizTangerine900) &&
+            const DeepCollectionEquality().equals(paletteDatavizBlue, other.paletteDatavizBlue) &&
+            const DeepCollectionEquality().equals(paletteDatavizGreen, other.paletteDatavizGreen) &&
+            const DeepCollectionEquality().equals(paletteDatavizOrange, other.paletteDatavizOrange) &&
+            const DeepCollectionEquality().equals(paletteDatavizPink, other.paletteDatavizPink) &&
+            const DeepCollectionEquality().equals(paletteDatavizPurple, other.paletteDatavizPurple) &&
+            const DeepCollectionEquality().equals(paletteDatavizRed, other.paletteDatavizRed) &&
             const DeepCollectionEquality().equals(paletteSemanticBlue100, other.paletteSemanticBlue100) &&
             const DeepCollectionEquality().equals(paletteSemanticBlue1000, other.paletteSemanticBlue1000) &&
             const DeepCollectionEquality().equals(paletteSemanticBlue150, other.paletteSemanticBlue150) &&
@@ -3372,29 +4196,65 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(paletteSemanticRed700, other.paletteSemanticRed700) &&
             const DeepCollectionEquality().equals(paletteSemanticRed800, other.paletteSemanticRed800) &&
             const DeepCollectionEquality().equals(paletteSemanticRed900, other.paletteSemanticRed900) &&
-            const DeepCollectionEquality().equals(staticContainerColor, other.staticContainerColor) &&
-            const DeepCollectionEquality().equals(staticDividerColor, other.staticDividerColor) &&
+            const DeepCollectionEquality().equals(shadow0, other.shadow0) &&
+            const DeepCollectionEquality().equals(shadow100, other.shadow100) &&
+            const DeepCollectionEquality().equals(shadow200, other.shadow200) &&
+            const DeepCollectionEquality().equals(shadow300, other.shadow300) &&
+            const DeepCollectionEquality().equals(sizing100, other.sizing100) &&
+            const DeepCollectionEquality().equals(sizing200, other.sizing200) &&
+            const DeepCollectionEquality().equals(sizing300, other.sizing300) &&
+            const DeepCollectionEquality().equals(sizing400, other.sizing400) &&
+            const DeepCollectionEquality().equals(sizing50, other.sizing50) &&
+            const DeepCollectionEquality().equals(sizing500, other.sizing500) &&
+            const DeepCollectionEquality().equals(sizing550, other.sizing550) &&
+            const DeepCollectionEquality().equals(sizing600, other.sizing600) &&
+            const DeepCollectionEquality().equals(sizing700, other.sizing700) &&
+            const DeepCollectionEquality().equals(sizing900, other.sizing900) &&
+            const DeepCollectionEquality().equals(sizingBase, other.sizingBase) &&
+            const DeepCollectionEquality().equals(spacing0, other.spacing0) &&
+            const DeepCollectionEquality().equals(spacing100, other.spacing100) &&
+            const DeepCollectionEquality().equals(spacing1000, other.spacing1000) &&
+            const DeepCollectionEquality().equals(spacing1200, other.spacing1200) &&
+            const DeepCollectionEquality().equals(spacing150, other.spacing150) &&
+            const DeepCollectionEquality().equals(spacing200, other.spacing200) &&
+            const DeepCollectionEquality().equals(spacing25, other.spacing25) &&
+            const DeepCollectionEquality().equals(spacing250, other.spacing250) &&
+            const DeepCollectionEquality().equals(spacing300, other.spacing300) &&
+            const DeepCollectionEquality().equals(spacing400, other.spacing400) &&
+            const DeepCollectionEquality().equals(spacing450, other.spacing450) &&
+            const DeepCollectionEquality().equals(spacing50, other.spacing50) &&
+            const DeepCollectionEquality().equals(spacing500, other.spacing500) &&
+            const DeepCollectionEquality().equals(spacing700, other.spacing700) &&
+            const DeepCollectionEquality().equals(spacing900, other.spacing900) &&
+            const DeepCollectionEquality().equals(spacingBase, other.spacingBase) &&
             const DeepCollectionEquality().equals(textAlertBasic, other.textAlertBasic) &&
             const DeepCollectionEquality().equals(textAlertDanger, other.textAlertDanger) &&
             const DeepCollectionEquality().equals(textAlertInfo, other.textAlertInfo) &&
             const DeepCollectionEquality().equals(textAlertSuccess, other.textAlertSuccess) &&
             const DeepCollectionEquality().equals(textAlertWarning, other.textAlertWarning) &&
+            const DeepCollectionEquality().equals(textDecorationUnderline, other.textDecorationUnderline) &&
             const DeepCollectionEquality().equals(textDisabled, other.textDisabled) &&
             const DeepCollectionEquality().equals(textInteractiveActive, other.textInteractiveActive) &&
             const DeepCollectionEquality().equals(textInteractiveDefault, other.textInteractiveDefault) &&
             const DeepCollectionEquality().equals(textInteractiveHover, other.textInteractiveHover) &&
             const DeepCollectionEquality().equals(textStaticInverse, other.textStaticInverse) &&
+            const DeepCollectionEquality().equals(textStaticOnColor, other.textStaticOnColor) &&
             const DeepCollectionEquality().equals(textStaticPrimary, other.textStaticPrimary) &&
             const DeepCollectionEquality().equals(textStaticSecondary, other.textStaticSecondary) &&
-            const DeepCollectionEquality().equals(textStaticTertiary, other.textStaticTertiary));
+            const DeepCollectionEquality().equals(textStaticTertiary, other.textStaticTertiary) &&
+            const DeepCollectionEquality().equals(titleLarge, other.titleLarge) &&
+            const DeepCollectionEquality().equals(titleLargeStrong, other.titleLargeStrong) &&
+            const DeepCollectionEquality().equals(titleMedium, other.titleMedium) &&
+            const DeepCollectionEquality().equals(titleMediumStrong, other.titleMediumStrong) &&
+            const DeepCollectionEquality().equals(titleSmall, other.titleSmall) &&
+            const DeepCollectionEquality().equals(titleSmallStrong, other.titleSmallStrong));
   }
 
   @override
   int get hashCode {
     return Object.hashAll([
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(backgroundAccentPrimary),
-      const DeepCollectionEquality().hash(backgroundAccentSecondary),
+      const DeepCollectionEquality().hash(backgroundAccent),
       const DeepCollectionEquality().hash(backgroundAlertBasicPrimary),
       const DeepCollectionEquality().hash(backgroundAlertBasicSecondary),
       const DeepCollectionEquality().hash(backgroundAlertDangerPrimary),
@@ -3405,7 +4265,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(backgroundAlertSuccessSecondary),
       const DeepCollectionEquality().hash(backgroundAlertWarningPrimary),
       const DeepCollectionEquality().hash(backgroundAlertWarningSecondary),
+      const DeepCollectionEquality().hash(backgroundBackdrop),
       const DeepCollectionEquality().hash(backgroundBrand),
+      const DeepCollectionEquality().hash(backgroundDatavizBlue),
+      const DeepCollectionEquality().hash(backgroundDatavizGreen),
+      const DeepCollectionEquality().hash(backgroundDatavizOrange),
+      const DeepCollectionEquality().hash(backgroundDatavizPink),
+      const DeepCollectionEquality().hash(backgroundDatavizPurple),
+      const DeepCollectionEquality().hash(backgroundDatavizRed),
       const DeepCollectionEquality().hash(backgroundDisabled),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerActive),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerDefault),
@@ -3432,11 +4299,22 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality()
           .hash(backgroundInteractiveSecondaryDefault),
       const DeepCollectionEquality().hash(backgroundInteractiveSecondaryHover),
+      const DeepCollectionEquality().hash(backgroundInteractiveSuccessActive),
+      const DeepCollectionEquality().hash(backgroundInteractiveSuccessDefault),
+      const DeepCollectionEquality().hash(backgroundInteractiveSuccessHover),
       const DeepCollectionEquality().hash(backgroundStaticFlat),
       const DeepCollectionEquality().hash(backgroundStaticFloating),
       const DeepCollectionEquality().hash(backgroundStaticInverse),
       const DeepCollectionEquality().hash(backgroundStaticRaised),
       const DeepCollectionEquality().hash(backgroundStaticSunken),
+      const DeepCollectionEquality().hash(bodyExtraSmall),
+      const DeepCollectionEquality().hash(bodyExtraSmallStrong),
+      const DeepCollectionEquality().hash(bodyLarge),
+      const DeepCollectionEquality().hash(bodyLargeStrong),
+      const DeepCollectionEquality().hash(bodyMedium),
+      const DeepCollectionEquality().hash(bodyMediumStrong),
+      const DeepCollectionEquality().hash(bodySmall),
+      const DeepCollectionEquality().hash(bodySmallStrong),
       const DeepCollectionEquality().hash(borderAlertBasic),
       const DeepCollectionEquality().hash(borderAlertDanger),
       const DeepCollectionEquality().hash(borderAlertInfo),
@@ -3453,44 +4331,146 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(borderInteractiveSecondaryActive),
       const DeepCollectionEquality().hash(borderInteractiveSecondaryDefault),
       const DeepCollectionEquality().hash(borderInteractiveSecondaryHover),
+      const DeepCollectionEquality().hash(borderRadius0),
+      const DeepCollectionEquality().hash(borderRadius100),
+      const DeepCollectionEquality().hash(borderRadius150),
+      const DeepCollectionEquality().hash(borderRadius200),
+      const DeepCollectionEquality().hash(borderRadius25),
+      const DeepCollectionEquality().hash(borderRadius300),
+      const DeepCollectionEquality().hash(borderRadius50),
+      const DeepCollectionEquality().hash(borderRadiusBase),
+      const DeepCollectionEquality().hash(borderRadiusRound),
       const DeepCollectionEquality().hash(borderStaticInverse),
+      const DeepCollectionEquality().hash(borderStaticOnColor),
       const DeepCollectionEquality().hash(borderStaticPrimary),
       const DeepCollectionEquality().hash(borderStaticSecondary),
-      const DeepCollectionEquality().hash(inputActiveColor),
-      const DeepCollectionEquality().hash(inputDangerColor),
-      const DeepCollectionEquality().hash(inputDefaultColor),
-      const DeepCollectionEquality().hash(inputDisabledColor),
-      const DeepCollectionEquality().hash(inputHoverColor),
-      const DeepCollectionEquality().hash(inputInverseColor),
-      const DeepCollectionEquality().hash(interactiveDangerColor),
-      const DeepCollectionEquality().hash(interactiveDefaultColor),
-      const DeepCollectionEquality().hash(interactiveDisabledColor),
-      const DeepCollectionEquality().hash(interactiveHoverColor),
-      const DeepCollectionEquality().hash(interactiveInverseColor),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundBasicBold),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundDenim),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundLavender),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundLime),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundMustard),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundPrimary),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundRuby),
-      const DeepCollectionEquality().hash(legacySupportTagBackgroundTangerine),
-      const DeepCollectionEquality().hash(legacySupportTagBorderBasicBold),
-      const DeepCollectionEquality().hash(legacySupportTagBorderDenim),
-      const DeepCollectionEquality().hash(legacySupportTagBorderLavender),
-      const DeepCollectionEquality().hash(legacySupportTagBorderLime),
-      const DeepCollectionEquality().hash(legacySupportTagBorderMustard),
-      const DeepCollectionEquality().hash(legacySupportTagBorderPrimary),
-      const DeepCollectionEquality().hash(legacySupportTagBorderRuby),
-      const DeepCollectionEquality().hash(legacySupportTagBorderTangerine),
-      const DeepCollectionEquality().hash(legacySupportTagTextBasicBold),
-      const DeepCollectionEquality().hash(legacySupportTagTextDenim),
-      const DeepCollectionEquality().hash(legacySupportTagTextLavender),
-      const DeepCollectionEquality().hash(legacySupportTagTextLime),
-      const DeepCollectionEquality().hash(legacySupportTagTextMustard),
-      const DeepCollectionEquality().hash(legacySupportTagTextPrimary),
-      const DeepCollectionEquality().hash(legacySupportTagTextRuby),
-      const DeepCollectionEquality().hash(legacySupportTagTextTangerine),
+      const DeepCollectionEquality().hash(borderWidth0),
+      const DeepCollectionEquality().hash(borderWidth100),
+      const DeepCollectionEquality().hash(borderWidth150),
+      const DeepCollectionEquality().hash(borderWidth200),
+      const DeepCollectionEquality().hash(borderWidth250),
+      const DeepCollectionEquality().hash(borderWidth300),
+      const DeepCollectionEquality().hash(borderWidth800),
+      const DeepCollectionEquality().hash(focusOffset),
+      const DeepCollectionEquality().hash(fontFamilyUi),
+      const DeepCollectionEquality().hash(fontSize100),
+      const DeepCollectionEquality().hash(fontSize200),
+      const DeepCollectionEquality().hash(fontSize300),
+      const DeepCollectionEquality().hash(fontSize400),
+      const DeepCollectionEquality().hash(fontSize50),
+      const DeepCollectionEquality().hash(fontSize500),
+      const DeepCollectionEquality().hash(fontSize600),
+      const DeepCollectionEquality().hash(fontSize700),
+      const DeepCollectionEquality().hash(fontSize75),
+      const DeepCollectionEquality().hash(fontSize800),
+      const DeepCollectionEquality().hash(fontSize900),
+      const DeepCollectionEquality().hash(fontSizeBase),
+      const DeepCollectionEquality().hash(fontSizeRatio),
+      const DeepCollectionEquality().hash(fontWeight300),
+      const DeepCollectionEquality().hash(fontWeight400),
+      const DeepCollectionEquality().hash(fontWeight500),
+      const DeepCollectionEquality().hash(fontWeight600),
+      const DeepCollectionEquality().hash(highlightLarge),
+      const DeepCollectionEquality().hash(highlightMedium),
+      const DeepCollectionEquality().hash(highlightSmall),
+      const DeepCollectionEquality().hash(legacyDatavizDenim100),
+      const DeepCollectionEquality().hash(legacyDatavizDenim200),
+      const DeepCollectionEquality().hash(legacyDatavizDenim300),
+      const DeepCollectionEquality().hash(legacyDatavizDenim400),
+      const DeepCollectionEquality().hash(legacyDatavizDenim50),
+      const DeepCollectionEquality().hash(legacyDatavizDenim500),
+      const DeepCollectionEquality().hash(legacyDatavizDenim600),
+      const DeepCollectionEquality().hash(legacyDatavizDenim700),
+      const DeepCollectionEquality().hash(legacyDatavizDenim800),
+      const DeepCollectionEquality().hash(legacyDatavizDenim900),
+      const DeepCollectionEquality().hash(legacyDatavizLavender100),
+      const DeepCollectionEquality().hash(legacyDatavizLavender200),
+      const DeepCollectionEquality().hash(legacyDatavizLavender300),
+      const DeepCollectionEquality().hash(legacyDatavizLavender400),
+      const DeepCollectionEquality().hash(legacyDatavizLavender50),
+      const DeepCollectionEquality().hash(legacyDatavizLavender500),
+      const DeepCollectionEquality().hash(legacyDatavizLavender600),
+      const DeepCollectionEquality().hash(legacyDatavizLavender700),
+      const DeepCollectionEquality().hash(legacyDatavizLavender800),
+      const DeepCollectionEquality().hash(legacyDatavizLavender900),
+      const DeepCollectionEquality().hash(legacyDatavizLime100),
+      const DeepCollectionEquality().hash(legacyDatavizLime200),
+      const DeepCollectionEquality().hash(legacyDatavizLime300),
+      const DeepCollectionEquality().hash(legacyDatavizLime400),
+      const DeepCollectionEquality().hash(legacyDatavizLime50),
+      const DeepCollectionEquality().hash(legacyDatavizLime500),
+      const DeepCollectionEquality().hash(legacyDatavizLime600),
+      const DeepCollectionEquality().hash(legacyDatavizLime700),
+      const DeepCollectionEquality().hash(legacyDatavizLime800),
+      const DeepCollectionEquality().hash(legacyDatavizLime900),
+      const DeepCollectionEquality().hash(legacyDatavizMustard100),
+      const DeepCollectionEquality().hash(legacyDatavizMustard200),
+      const DeepCollectionEquality().hash(legacyDatavizMustard300),
+      const DeepCollectionEquality().hash(legacyDatavizMustard400),
+      const DeepCollectionEquality().hash(legacyDatavizMustard50),
+      const DeepCollectionEquality().hash(legacyDatavizMustard500),
+      const DeepCollectionEquality().hash(legacyDatavizMustard600),
+      const DeepCollectionEquality().hash(legacyDatavizMustard700),
+      const DeepCollectionEquality().hash(legacyDatavizMustard800),
+      const DeepCollectionEquality().hash(legacyDatavizMustard900),
+      const DeepCollectionEquality().hash(legacyDatavizRuby100),
+      const DeepCollectionEquality().hash(legacyDatavizRuby200),
+      const DeepCollectionEquality().hash(legacyDatavizRuby300),
+      const DeepCollectionEquality().hash(legacyDatavizRuby400),
+      const DeepCollectionEquality().hash(legacyDatavizRuby50),
+      const DeepCollectionEquality().hash(legacyDatavizRuby500),
+      const DeepCollectionEquality().hash(legacyDatavizRuby600),
+      const DeepCollectionEquality().hash(legacyDatavizRuby700),
+      const DeepCollectionEquality().hash(legacyDatavizRuby800),
+      const DeepCollectionEquality().hash(legacyDatavizRuby900),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine100),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine200),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine300),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine400),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine50),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine500),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine600),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine700),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine800),
+      const DeepCollectionEquality().hash(legacyDatavizTangerine900),
+      const DeepCollectionEquality().hash(legacyTagBackgroundBasicBold),
+      const DeepCollectionEquality().hash(legacyTagBackgroundDenim),
+      const DeepCollectionEquality().hash(legacyTagBackgroundLavender),
+      const DeepCollectionEquality().hash(legacyTagBackgroundLime),
+      const DeepCollectionEquality().hash(legacyTagBackgroundMustard),
+      const DeepCollectionEquality().hash(legacyTagBackgroundPrimary),
+      const DeepCollectionEquality().hash(legacyTagBackgroundRuby),
+      const DeepCollectionEquality().hash(legacyTagBackgroundTangerine),
+      const DeepCollectionEquality().hash(legacyTagBorderBasicBold),
+      const DeepCollectionEquality().hash(legacyTagBorderDenim),
+      const DeepCollectionEquality().hash(legacyTagBorderLavender),
+      const DeepCollectionEquality().hash(legacyTagBorderLime),
+      const DeepCollectionEquality().hash(legacyTagBorderMustard),
+      const DeepCollectionEquality().hash(legacyTagBorderPrimary),
+      const DeepCollectionEquality().hash(legacyTagBorderRuby),
+      const DeepCollectionEquality().hash(legacyTagBorderTangerine),
+      const DeepCollectionEquality().hash(legacyTagTextBasicBold),
+      const DeepCollectionEquality().hash(legacyTagTextDenim),
+      const DeepCollectionEquality().hash(legacyTagTextLavender),
+      const DeepCollectionEquality().hash(legacyTagTextLime),
+      const DeepCollectionEquality().hash(legacyTagTextMustard),
+      const DeepCollectionEquality().hash(legacyTagTextPrimary),
+      const DeepCollectionEquality().hash(legacyTagTextRuby),
+      const DeepCollectionEquality().hash(legacyTagTextTangerine),
+      const DeepCollectionEquality().hash(letterSpacingCondensed),
+      const DeepCollectionEquality().hash(letterSpacingDefault),
+      const DeepCollectionEquality().hash(letterSpacingWide),
+      const DeepCollectionEquality().hash(lineHeight100),
+      const DeepCollectionEquality().hash(lineHeight200),
+      const DeepCollectionEquality().hash(lineHeight300),
+      const DeepCollectionEquality().hash(opacity0),
+      const DeepCollectionEquality().hash(opacity100),
+      const DeepCollectionEquality().hash(opacity1000),
+      const DeepCollectionEquality().hash(opacity150),
+      const DeepCollectionEquality().hash(opacity200),
+      const DeepCollectionEquality().hash(opacity400),
+      const DeepCollectionEquality().hash(opacity600),
+      const DeepCollectionEquality().hash(opacity800),
       const DeepCollectionEquality().hash(paletteBasicsBlack),
       const DeepCollectionEquality().hash(paletteBasicsWhite),
       const DeepCollectionEquality().hash(paletteBasicsWhite64),
@@ -3552,66 +4532,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(paletteBrandNight700),
       const DeepCollectionEquality().hash(paletteBrandNight800),
       const DeepCollectionEquality().hash(paletteBrandNight900),
-      const DeepCollectionEquality().hash(paletteDatavizDenim100),
-      const DeepCollectionEquality().hash(paletteDatavizDenim200),
-      const DeepCollectionEquality().hash(paletteDatavizDenim300),
-      const DeepCollectionEquality().hash(paletteDatavizDenim400),
-      const DeepCollectionEquality().hash(paletteDatavizDenim50),
-      const DeepCollectionEquality().hash(paletteDatavizDenim500),
-      const DeepCollectionEquality().hash(paletteDatavizDenim600),
-      const DeepCollectionEquality().hash(paletteDatavizDenim700),
-      const DeepCollectionEquality().hash(paletteDatavizDenim800),
-      const DeepCollectionEquality().hash(paletteDatavizDenim900),
-      const DeepCollectionEquality().hash(paletteDatavizLavender100),
-      const DeepCollectionEquality().hash(paletteDatavizLavender200),
-      const DeepCollectionEquality().hash(paletteDatavizLavender300),
-      const DeepCollectionEquality().hash(paletteDatavizLavender400),
-      const DeepCollectionEquality().hash(paletteDatavizLavender50),
-      const DeepCollectionEquality().hash(paletteDatavizLavender500),
-      const DeepCollectionEquality().hash(paletteDatavizLavender600),
-      const DeepCollectionEquality().hash(paletteDatavizLavender700),
-      const DeepCollectionEquality().hash(paletteDatavizLavender800),
-      const DeepCollectionEquality().hash(paletteDatavizLavender900),
-      const DeepCollectionEquality().hash(paletteDatavizLime100),
-      const DeepCollectionEquality().hash(paletteDatavizLime200),
-      const DeepCollectionEquality().hash(paletteDatavizLime300),
-      const DeepCollectionEquality().hash(paletteDatavizLime400),
-      const DeepCollectionEquality().hash(paletteDatavizLime50),
-      const DeepCollectionEquality().hash(paletteDatavizLime500),
-      const DeepCollectionEquality().hash(paletteDatavizLime600),
-      const DeepCollectionEquality().hash(paletteDatavizLime700),
-      const DeepCollectionEquality().hash(paletteDatavizLime800),
-      const DeepCollectionEquality().hash(paletteDatavizLime900),
-      const DeepCollectionEquality().hash(paletteDatavizMustard100),
-      const DeepCollectionEquality().hash(paletteDatavizMustard200),
-      const DeepCollectionEquality().hash(paletteDatavizMustard300),
-      const DeepCollectionEquality().hash(paletteDatavizMustard400),
-      const DeepCollectionEquality().hash(paletteDatavizMustard50),
-      const DeepCollectionEquality().hash(paletteDatavizMustard500),
-      const DeepCollectionEquality().hash(paletteDatavizMustard600),
-      const DeepCollectionEquality().hash(paletteDatavizMustard700),
-      const DeepCollectionEquality().hash(paletteDatavizMustard800),
-      const DeepCollectionEquality().hash(paletteDatavizMustard900),
-      const DeepCollectionEquality().hash(paletteDatavizRuby100),
-      const DeepCollectionEquality().hash(paletteDatavizRuby200),
-      const DeepCollectionEquality().hash(paletteDatavizRuby300),
-      const DeepCollectionEquality().hash(paletteDatavizRuby400),
-      const DeepCollectionEquality().hash(paletteDatavizRuby50),
-      const DeepCollectionEquality().hash(paletteDatavizRuby500),
-      const DeepCollectionEquality().hash(paletteDatavizRuby600),
-      const DeepCollectionEquality().hash(paletteDatavizRuby700),
-      const DeepCollectionEquality().hash(paletteDatavizRuby800),
-      const DeepCollectionEquality().hash(paletteDatavizRuby900),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine100),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine200),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine300),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine400),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine50),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine500),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine600),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine700),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine800),
-      const DeepCollectionEquality().hash(paletteDatavizTangerine900),
+      const DeepCollectionEquality().hash(paletteDatavizBlue),
+      const DeepCollectionEquality().hash(paletteDatavizGreen),
+      const DeepCollectionEquality().hash(paletteDatavizOrange),
+      const DeepCollectionEquality().hash(paletteDatavizPink),
+      const DeepCollectionEquality().hash(paletteDatavizPurple),
+      const DeepCollectionEquality().hash(paletteDatavizRed),
       const DeepCollectionEquality().hash(paletteSemanticBlue100),
       const DeepCollectionEquality().hash(paletteSemanticBlue1000),
       const DeepCollectionEquality().hash(paletteSemanticBlue150),
@@ -3664,21 +4590,58 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(paletteSemanticRed700),
       const DeepCollectionEquality().hash(paletteSemanticRed800),
       const DeepCollectionEquality().hash(paletteSemanticRed900),
-      const DeepCollectionEquality().hash(staticContainerColor),
-      const DeepCollectionEquality().hash(staticDividerColor),
+      const DeepCollectionEquality().hash(shadow0),
+      const DeepCollectionEquality().hash(shadow100),
+      const DeepCollectionEquality().hash(shadow200),
+      const DeepCollectionEquality().hash(shadow300),
+      const DeepCollectionEquality().hash(sizing100),
+      const DeepCollectionEquality().hash(sizing200),
+      const DeepCollectionEquality().hash(sizing300),
+      const DeepCollectionEquality().hash(sizing400),
+      const DeepCollectionEquality().hash(sizing50),
+      const DeepCollectionEquality().hash(sizing500),
+      const DeepCollectionEquality().hash(sizing550),
+      const DeepCollectionEquality().hash(sizing600),
+      const DeepCollectionEquality().hash(sizing700),
+      const DeepCollectionEquality().hash(sizing900),
+      const DeepCollectionEquality().hash(sizingBase),
+      const DeepCollectionEquality().hash(spacing0),
+      const DeepCollectionEquality().hash(spacing100),
+      const DeepCollectionEquality().hash(spacing1000),
+      const DeepCollectionEquality().hash(spacing1200),
+      const DeepCollectionEquality().hash(spacing150),
+      const DeepCollectionEquality().hash(spacing200),
+      const DeepCollectionEquality().hash(spacing25),
+      const DeepCollectionEquality().hash(spacing250),
+      const DeepCollectionEquality().hash(spacing300),
+      const DeepCollectionEquality().hash(spacing400),
+      const DeepCollectionEquality().hash(spacing450),
+      const DeepCollectionEquality().hash(spacing50),
+      const DeepCollectionEquality().hash(spacing500),
+      const DeepCollectionEquality().hash(spacing700),
+      const DeepCollectionEquality().hash(spacing900),
+      const DeepCollectionEquality().hash(spacingBase),
       const DeepCollectionEquality().hash(textAlertBasic),
       const DeepCollectionEquality().hash(textAlertDanger),
       const DeepCollectionEquality().hash(textAlertInfo),
       const DeepCollectionEquality().hash(textAlertSuccess),
       const DeepCollectionEquality().hash(textAlertWarning),
+      const DeepCollectionEquality().hash(textDecorationUnderline),
       const DeepCollectionEquality().hash(textDisabled),
       const DeepCollectionEquality().hash(textInteractiveActive),
       const DeepCollectionEquality().hash(textInteractiveDefault),
       const DeepCollectionEquality().hash(textInteractiveHover),
       const DeepCollectionEquality().hash(textStaticInverse),
+      const DeepCollectionEquality().hash(textStaticOnColor),
       const DeepCollectionEquality().hash(textStaticPrimary),
       const DeepCollectionEquality().hash(textStaticSecondary),
       const DeepCollectionEquality().hash(textStaticTertiary),
+      const DeepCollectionEquality().hash(titleLarge),
+      const DeepCollectionEquality().hash(titleLargeStrong),
+      const DeepCollectionEquality().hash(titleMedium),
+      const DeepCollectionEquality().hash(titleMediumStrong),
+      const DeepCollectionEquality().hash(titleSmall),
+      const DeepCollectionEquality().hash(titleSmallStrong),
     ]);
   }
 }

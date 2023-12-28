@@ -29,8 +29,7 @@ class BaseBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasText = text.isNotEmpty;
     final tokens = OptimusTheme.of(context).tokens;
-    final backgroundColor =
-        this.backgroundColor ?? tokens.backgroundAccentPrimary;
+    final backgroundColor = this.backgroundColor ?? tokens.backgroundAccent;
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
     final decoration = BoxDecoration(

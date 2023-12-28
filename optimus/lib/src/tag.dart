@@ -187,9 +187,9 @@ class _Tag extends StatelessWidget {
 
 extension on OptimusColorOption {
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
-        OptimusColorOption.basic => tokens.legacySupportTagBackgroundBasicBold,
+        OptimusColorOption.basic => tokens.legacyTagBackgroundBasicBold,
         OptimusColorOption.plain => tokens.backgroundAlertBasicSecondary,
-        OptimusColorOption.primary => tokens.legacySupportTagBackgroundPrimary,
+        OptimusColorOption.primary => tokens.legacyTagBackgroundPrimary,
         OptimusColorOption.success => tokens.backgroundAlertSuccessSecondary,
         OptimusColorOption.info => tokens.backgroundAlertInfoSecondary,
         OptimusColorOption.warning => tokens.backgroundAlertWarningSecondary,
@@ -197,9 +197,9 @@ extension on OptimusColorOption {
       };
 
   Color borderColor(OptimusTokens tokens) => switch (this) {
-        OptimusColorOption.basic => tokens.legacySupportTagBorderBasicBold,
+        OptimusColorOption.basic => tokens.legacyTagBorderBasicBold,
         OptimusColorOption.plain => tokens.borderAlertBasic,
-        OptimusColorOption.primary => tokens.legacySupportTagBorderPrimary,
+        OptimusColorOption.primary => tokens.legacyTagBorderPrimary,
         OptimusColorOption.success => tokens.borderAlertSuccess,
         OptimusColorOption.info => tokens.borderAlertInfo,
         OptimusColorOption.warning => tokens.borderAlertWarning,
@@ -207,11 +207,11 @@ extension on OptimusColorOption {
       };
 
   Color foregroundColor(OptimusTokens tokens) => switch (this) {
-        OptimusColorOption.primary => tokens.legacySupportTagTextPrimary,
+        OptimusColorOption.primary => tokens.legacyTagTextPrimary,
         OptimusColorOption.success => tokens.textAlertSuccess,
         OptimusColorOption.info => tokens.textAlertInfo,
         OptimusColorOption.danger => tokens.textAlertDanger,
-        OptimusColorOption.basic => tokens.legacySupportTagTextBasicBold,
+        OptimusColorOption.basic => tokens.legacyTagTextBasicBold,
         OptimusColorOption.plain => tokens.textAlertBasic,
         OptimusColorOption.warning => tokens.textAlertWarning,
       };
@@ -219,42 +219,35 @@ extension on OptimusColorOption {
 
 extension on OptimusCategoricalColorOption {
   Color borderColor(OptimusTokens tokens) => switch (this) {
-        OptimusCategoricalColorOption.denim =>
-          tokens.legacySupportTagBorderDenim,
+        OptimusCategoricalColorOption.denim => tokens.legacyTagBorderDenim,
         OptimusCategoricalColorOption.lavender =>
-          tokens.legacySupportTagBorderLavender,
-        OptimusCategoricalColorOption.lime => tokens.legacySupportTagBorderLime,
-        OptimusCategoricalColorOption.mustard =>
-          tokens.legacySupportTagBorderMustard,
-        OptimusCategoricalColorOption.ruby => tokens.legacySupportTagBorderRuby,
+          tokens.legacyTagBorderLavender,
+        OptimusCategoricalColorOption.lime => tokens.legacyTagBorderLime,
+        OptimusCategoricalColorOption.mustard => tokens.legacyTagBorderMustard,
+        OptimusCategoricalColorOption.ruby => tokens.legacyTagBorderRuby,
         OptimusCategoricalColorOption.tangerine =>
-          tokens.legacySupportTagBorderTangerine,
+          tokens.legacyTagBorderTangerine,
       };
 
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
-        OptimusCategoricalColorOption.denim =>
-          tokens.legacySupportTagBackgroundDenim,
+        OptimusCategoricalColorOption.denim => tokens.legacyTagBackgroundDenim,
         OptimusCategoricalColorOption.lavender =>
-          tokens.legacySupportTagBackgroundLavender,
-        OptimusCategoricalColorOption.lime =>
-          tokens.legacySupportTagBackgroundLime,
+          tokens.legacyTagBackgroundLavender,
+        OptimusCategoricalColorOption.lime => tokens.legacyTagBackgroundLime,
         OptimusCategoricalColorOption.mustard =>
-          tokens.legacySupportTagBackgroundMustard,
-        OptimusCategoricalColorOption.ruby =>
-          tokens.legacySupportTagBackgroundRuby,
+          tokens.legacyTagBackgroundMustard,
+        OptimusCategoricalColorOption.ruby => tokens.legacyTagBackgroundRuby,
         OptimusCategoricalColorOption.tangerine =>
-          tokens.legacySupportTagBackgroundTangerine,
+          tokens.legacyTagBackgroundTangerine,
       };
 
   Color foregroundColor(OptimusTokens tokens) => switch (this) {
-        OptimusCategoricalColorOption.denim => tokens.legacySupportTagTextDenim,
-        OptimusCategoricalColorOption.lavender =>
-          tokens.legacySupportTagTextLavender,
-        OptimusCategoricalColorOption.lime => tokens.legacySupportTagTextLime,
-        OptimusCategoricalColorOption.ruby => tokens.legacySupportTagTextRuby,
-        OptimusCategoricalColorOption.mustard =>
-          tokens.legacySupportTagTextMustard,
+        OptimusCategoricalColorOption.denim => tokens.legacyTagTextDenim,
+        OptimusCategoricalColorOption.lavender => tokens.legacyTagTextLavender,
+        OptimusCategoricalColorOption.lime => tokens.legacyTagTextLime,
+        OptimusCategoricalColorOption.ruby => tokens.legacyTagTextRuby,
+        OptimusCategoricalColorOption.mustard => tokens.legacyTagTextMustard,
         OptimusCategoricalColorOption.tangerine =>
-          tokens.legacySupportTagTextTangerine,
+          tokens.legacyTagTextTangerine,
       };
 }
