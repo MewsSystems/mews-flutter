@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/elevation.dart';
 import 'package:optimus/src/typography/presets.dart';
 
 /// Describes a certain type of notification with its semantical meaning.
@@ -213,9 +212,9 @@ class _NotificationContent extends StatelessWidget {
     final link = this.link;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(borderRadius50),
-        boxShadow: elevation50,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(borderRadius50),
+        boxShadow: context.tokens.shadow200,
       ),
       child: Stack(
         children: [

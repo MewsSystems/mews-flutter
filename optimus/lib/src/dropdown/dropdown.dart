@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/elevation.dart';
 
 typedef Grouper<T> = String Function(T item);
 typedef GroupBuilder = Widget Function(String value);
@@ -76,7 +75,7 @@ class _DropdownContent<T> extends StatelessWidget {
     return BoxDecoration(
       borderRadius: const BorderRadius.all(borderRadius100),
       color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
-      boxShadow: elevation50,
+      boxShadow: context.tokens.shadow200,
     );
   }
 
