@@ -13,7 +13,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.defaultButton,
-    this.borderRadius = const BorderRadius.all(borderRadius50),
+    this.borderRadius,
   });
 
   /// Typically the button's label.
@@ -23,7 +23,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final ValueSetter<T>? onItemSelected;
   final OptimusWidgetSize size;
   final OptimusDropdownButtonVariant variant;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   @override
   State<BaseDropDownButton<T>> createState() => _BaseDropDownButtonState<T>();
@@ -102,6 +102,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   Widget build(BuildContext context) {
     final child = widget.child;
     final borderColor = this._borderColor;
+    final borderRadius = widget.borderRadius ??
+        BorderRadius.circular(context.tokens.borderRadius50);
 
     return OverlayController(
       items: widget.items,
@@ -126,7 +128,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                 key: _selectFieldKey,
                 decoration: BoxDecoration(
                   color: _color,
-                  borderRadius: widget.borderRadius,
+                  borderRadius: borderRadius,
                   border: borderColor != null
                       ? Border.all(color: borderColor, width: 1)
                       : null,

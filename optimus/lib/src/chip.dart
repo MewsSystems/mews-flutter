@@ -73,7 +73,8 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 100),
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(borderRadius100),
+                borderRadius:
+                    BorderRadius.circular(context.tokens.borderRadius100),
                 color: _backgroundColor,
               ),
               child: Padding(

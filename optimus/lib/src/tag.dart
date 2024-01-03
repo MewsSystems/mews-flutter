@@ -154,7 +154,7 @@ class _Tag extends StatelessWidget {
                   style: BorderStyle.solid,
                 )
               : null,
-          borderRadius: const BorderRadius.all(borderRadius50),
+          borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
         ),
         padding: const EdgeInsets.symmetric(horizontal: spacing100),
         height: 24,

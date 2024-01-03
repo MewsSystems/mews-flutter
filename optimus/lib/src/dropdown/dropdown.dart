@@ -73,7 +73,7 @@ class _DropdownContent<T> extends StatelessWidget {
     final theme = OptimusTheme.of(context);
 
     return BoxDecoration(
-      borderRadius: const BorderRadius.all(borderRadius100),
+      borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
       color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
       boxShadow: context.tokens.shadow200,
     );
