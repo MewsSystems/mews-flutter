@@ -171,10 +171,9 @@ packages:
   mews_pedantic:
     dependency: "direct dev"
     description:
-      name: mews_pedantic
-      sha256: "4b568058c498f0e1351ee36117311a0174f88b96b05ff4803402f5c5e808cc7e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "../mews_pedantic"
+      relative: true
+    source: path
     version: "0.22.0"
   nested:
     dependency: transitive
@@ -541,5 +540,5 @@ packages:
     source: hosted
     version: "6.3.0"
 sdks:
-  dart: ">=3.2.0-194.0.dev <4.0.0"
-  flutter: ">=3.10.0"
+  dart: ">=3.2.0 <4.0.0"
+  flutter: ">=3.16.0"
