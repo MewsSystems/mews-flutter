@@ -5,8 +5,10 @@ on:
 
 jobs:
   dependabot_folow_up:
-    if: startsWith(github.head_ref, 'dependabot/')
+    if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
         with:
