@@ -174,7 +174,7 @@ packages:
       path: "../mews_pedantic"
       relative: true
     source: path
-    version: "0.21.0"
+    version: "0.22.0"
   nested:
     dependency: transitive
     description:
