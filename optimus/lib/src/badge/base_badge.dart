@@ -21,10 +21,6 @@ class BaseBadge extends StatelessWidget {
   final Color? textColor;
   final Color? outlineColor;
 
-  double get _bareHeight => text.isEmpty ? _emptySize : _badgeHeight;
-  double get _outlinedHeight => _bareHeight + _outlineSize * 2;
-  double get _height => outline ? _outlinedHeight : _bareHeight;
-
   @override
   Widget build(BuildContext context) {
     final hasText = text.isNotEmpty;
@@ -32,11 +28,16 @@ class BaseBadge extends StatelessWidget {
     final backgroundColor = this.backgroundColor ?? tokens.backgroundAccent;
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
+    final outlineSize = tokens.borderWidth200;
+    final bareHeight = text.isEmpty ? _emptySize : _badgeHeight;
+    final outlinedHeight = bareHeight + outlineSize * 2;
+    final height = outline ? outlinedHeight : bareHeight;
+
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(50)),
       color: backgroundColor,
       border:
-          outline ? Border.all(width: _outlineSize, color: outlineColor) : null,
+          outline ? Border.all(width: outlineSize, color: outlineColor) : null,
     );
 
     final child = hasText
@@ -57,10 +58,10 @@ class BaseBadge extends StatelessWidget {
 
     return Container(
       constraints: BoxConstraints(
-        minWidth: hasText ? _badgeHeight : _height,
-        maxWidth: hasText ? double.infinity : _height,
+        minWidth: hasText ? _badgeHeight : height,
+        maxWidth: hasText ? double.infinity : height,
       ),
-      height: _height,
+      height: height,
       decoration: decoration,
       padding: const EdgeInsets.symmetric(
         horizontal: spacing50,
@@ -72,5 +73,4 @@ class BaseBadge extends StatelessWidget {
 }
 
 const _emptySize = spacing100;
-const _outlineSize = 2.0;
 const _badgeHeight = 16.0;
