@@ -9,12 +9,14 @@ class GroupWrapper extends StatelessWidget {
     this.label,
     this.error,
     this.isRequired = false,
+    this.isEnabled = true,
   });
 
   final Widget child;
   final String? label;
   final String? error;
   final bool isRequired;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,11 @@ class GroupWrapper extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (label != null && label.isNotEmpty)
-          OptimusFieldLabel(label: label, isRequired: isRequired),
+          OptimusFieldLabel(
+            label: label,
+            isRequired: isRequired,
+            isEnabled: isEnabled,
+          ),
         child,
         if (error != null && error.isNotEmpty) OptimusFieldError(error: error),
       ],

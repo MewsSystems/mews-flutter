@@ -119,6 +119,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   @override
   Widget build(BuildContext context) => GroupWrapper(
         error: widget.error,
+        isEnabled: widget.isEnabled,
         child: IgnorePointer(
           ignoring: !widget.isEnabled,
           child: GestureWrapper(

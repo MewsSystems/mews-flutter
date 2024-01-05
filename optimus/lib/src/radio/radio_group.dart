@@ -62,6 +62,7 @@ class OptimusRadioGroup<T> extends StatelessWidget {
   Widget build(BuildContext context) => GroupWrapper(
         label: label,
         error: error,
+        isEnabled: isEnabled,
         child: OptimusEnabled(
           isEnabled: isEnabled,
           child: Column(
