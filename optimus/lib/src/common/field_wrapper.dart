@@ -145,7 +145,10 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     color: _background,
                     borderRadius:
                         BorderRadius.circular(context.tokens.borderRadius100),
-                    border: Border.all(color: _borderColor, width: 1.5),
+                    border: Border.all(
+                      color: _borderColor,
+                      width: context.tokens.borderWidth150,
+                    ),
                   )
                 : null,
             child: MouseRegion(

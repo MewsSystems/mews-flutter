@@ -64,6 +64,8 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
     };
   }
 
+  double get _borderWidth => context.tokens.borderWidth100;
+
   BorderRadiusGeometry get _borderRadius {
     final borderRadius = Radius.circular(tokens.borderRadius50);
 
@@ -127,5 +129,3 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
 }
 
 enum _ItemPosition { first, inBetween, last }
-
-const _borderWidth = 1;
