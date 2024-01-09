@@ -150,7 +150,7 @@ class _Tag extends StatelessWidget {
           border: outline
               ? Border.all(
                   color: borderColor,
-                  width: 1.5,
+                  width: context.tokens.borderWidth150,
                   style: BorderStyle.solid,
                 )
               : null,

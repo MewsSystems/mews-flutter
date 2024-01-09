@@ -44,21 +44,26 @@ class _RadioExampleState extends State<RadioExample> {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: _options
-              .map(
-                (i) => OptimusRadio<String>(
-                  isEnabled: widget.isEnabled,
-                  label: Text(i),
-                  size: widget.size,
-                  value: i,
-                  groupValue: _groupValue,
-                  onChanged: _handleChanged,
-                  error: widget.error,
-                ),
-              )
-              .toList(),
+        child: Center(
+          child: SizedBox(
+            width: 400,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: _options
+                  .map(
+                    (i) => OptimusRadio<String>(
+                      isEnabled: widget.isEnabled,
+                      label: Text(i),
+                      size: widget.size,
+                      value: i,
+                      groupValue: _groupValue,
+                      onChanged: _handleChanged,
+                      error: widget.error,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
         ),
       );
 }
@@ -108,16 +113,21 @@ class _RadioGroupExampleState extends State<_RadioGroupExample> {
   void _handleChanged(String value) => setState(() => _groupValue = value);
 
   @override
-  Widget build(BuildContext context) => OptimusRadioGroup<String>(
-        size: widget.size,
-        value: _groupValue,
-        label: widget.label,
-        error: widget.error,
-        isEnabled: widget.isEnabled,
-        onChanged: _handleChanged,
-        items: _options
-            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
-            .toList(),
+  Widget build(BuildContext context) => Center(
+        child: SizedBox(
+          width: 400,
+          child: OptimusRadioGroup<String>(
+            size: widget.size,
+            value: _groupValue,
+            label: widget.label,
+            error: widget.error,
+            isEnabled: widget.isEnabled,
+            onChanged: _handleChanged,
+            items: _options
+                .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
+                .toList(),
+          ),
+        ),
       );
 }
 

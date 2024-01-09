@@ -73,7 +73,10 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
               isHovered: _isHovered,
             ),
             border: borderColor != null
-                ? Border.all(color: borderColor, width: 1)
+                ? Border.all(
+                    color: borderColor,
+                    width: context.tokens.borderWidth100,
+                  )
                 : null,
             borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
           ),

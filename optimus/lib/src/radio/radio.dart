@@ -119,6 +119,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   @override
   Widget build(BuildContext context) => GroupWrapper(
         error: widget.error,
+        isEnabled: widget.isEnabled,
         child: IgnorePointer(
           ignoring: !widget.isEnabled,
           child: GestureWrapper(
@@ -192,7 +193,8 @@ class _RadioCircle extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              width: isSelected ? 6 : 1.5,
+              width:
+                  isSelected ? _selectedBorder : context.tokens.borderWidth150,
               color: state.borderColor(context, isSelected: isSelected),
             ),
             color: state.circleFillColor(context),
@@ -232,3 +234,4 @@ extension on _RadioState {
 }
 
 const double _leadingSize = 32;
+const double _selectedBorder = 6.0;
