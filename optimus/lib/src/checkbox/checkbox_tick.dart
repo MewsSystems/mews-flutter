@@ -57,7 +57,10 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
           decoration: BoxDecoration(
             color: _interactionState.fillColor(context, _state),
             border: _state.isUnchecked
-                ? Border.all(color: _borderColor, width: 1.5)
+                ? Border.all(
+                    color: _borderColor,
+                    width: context.tokens.borderWidth150,
+                  )
                 : null,
             borderRadius: BorderRadius.circular(context.tokens.borderRadius25),
           ),

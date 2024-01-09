@@ -130,7 +130,10 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                   color: _color,
                   borderRadius: borderRadius,
                   border: borderColor != null
-                      ? Border.all(color: borderColor, width: 1)
+                      ? Border.all(
+                          color: borderColor,
+                          width: context.tokens.borderWidth100,
+                        )
                       : null,
                 ),
                 duration: buttonAnimationDuration,

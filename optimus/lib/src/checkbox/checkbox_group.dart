@@ -58,6 +58,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   Widget build(BuildContext context) => GroupWrapper(
         label: label,
         error: error,
+        isEnabled: isEnabled,
         child: IgnorePointer(
           ignoring: !isEnabled,
           child: Column(

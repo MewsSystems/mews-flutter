@@ -374,7 +374,7 @@ class _StatusCircle extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
         border: Border.all(
-          width: 1.2,
+          width: context.tokens.borderWidth100,
           color: theme.isDark
               ? theme.colors.neutral0t64
               : theme.colors.neutral1000t64,

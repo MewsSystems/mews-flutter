@@ -121,6 +121,7 @@ class OptimusCheckbox extends StatelessWidget {
         ignoring: !isEnabled,
         child: GroupWrapper(
           error: error,
+          isEnabled: isEnabled,
           child: GestureDetector(
             onTap: _handleTap,
             child: Row(
