@@ -71,6 +71,7 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
         label: label,
         error: error,
         isRequired: isRequired,
+        isEnabled: isEnabled,
         child: OptimusEnabled(
           isEnabled: isEnabled,
           child: DecoratedBox(

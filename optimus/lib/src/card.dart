@@ -122,14 +122,14 @@ class OptimusNestedCard extends StatelessWidget {
   /// Controls card variant.
   final OptimusNestedCardVariant variant;
 
-  Border? _border(OptimusThemeData theme) =>
+  Border? _border(BuildContext context) =>
       variant == OptimusNestedCardVariant.normal
           ? Border.all(
-              width: 1,
+              width: context.tokens.borderWidth100,
               // TODO(VG): can be changed when final dark theme design is ready.
-              color: theme.isDark
-                  ? theme.colors.neutral0t32
-                  : theme.colors.neutral500t16,
+              color: context.theme.isDark
+                  ? context.theme.colors.neutral0t32
+                  : context.theme.colors.neutral500t16,
             )
           : null;
 
@@ -143,18 +143,14 @@ class OptimusNestedCard extends StatelessWidget {
       };
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return _Card(
-      spacing: padding,
-      attachment: attachment,
-      border: _border(theme),
-      color: _color(theme),
-      contentWrapperBuilder: contentWrapperBuilder,
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => _Card(
+        spacing: padding,
+        attachment: attachment,
+        border: _border(context),
+        color: _color(context.theme),
+        contentWrapperBuilder: contentWrapperBuilder,
+        child: child,
+      );
 }
 
 class _Card extends StatelessWidget {

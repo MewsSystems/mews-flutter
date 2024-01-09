@@ -6,6 +6,9 @@ on:
     paths:
       - "optimus/lib/src/theme/optimus_tokens.dart"
 
+env:
+  PR_TYPE: "feat"
+
 jobs:
   pull-request:
     if: github.event.head_commit.author.name == 'mews-tech'
@@ -38,12 +41,16 @@ jobs:
 
           git push origin ${{ github.ref_name }}
 
+      - name: Mark breaking release
+        if: endsWith(github.ref_name, '.0.0')
+        run: echo "PR_TYPE=feat!" >> $GITHUB_ENV
+
       - name: Create Pull Request
         run: |
           gh pr create \
             --base master \
             --head ${{ github.ref_name }} \
-            --title 'feat: Design Tokens Update' \
+            --title '$PR_TYPE: Design Tokens Update' \
             --body 'Design Tokens were updated! This PR was created to update the code.'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

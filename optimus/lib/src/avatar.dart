@@ -101,7 +101,7 @@ class _Indicator extends StatelessWidget {
           shape: BoxShape.circle,
           color: theme.colors.primary500,
           border: Border.all(
-            width: 2,
+            width: context.tokens.borderWidth200,
             color:
                 theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
           ),
