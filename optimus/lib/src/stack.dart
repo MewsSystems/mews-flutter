@@ -1,8 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:optimus/src/breakpoint.dart';
-import 'package:optimus/src/spacing.dart';
+import 'package:optimus/optimus.dart';
 
 enum OptimusStackAlignment {
   /// Default value.	All items in a stack are aligned to the start of the
@@ -113,8 +112,10 @@ class OptimusStack extends StatelessWidget {
   ) {
     final direction = _direction(context);
     final spacer = SizedBox(
-      width: direction == Axis.vertical ? null : spacing.size,
-      height: direction == Axis.vertical ? spacing.size : null,
+      width:
+          direction == Axis.vertical ? null : spacing.getSize(context.tokens),
+      height:
+          direction == Axis.vertical ? spacing.getSize(context.tokens) : null,
     );
 
     return children.intersperse(spacer).toList();
@@ -131,15 +132,15 @@ class OptimusStack extends StatelessWidget {
 }
 
 extension on OptimusStackSpacing {
-  double get size => switch (this) {
-        OptimusStackSpacing.spacing0 => spacing0,
-        OptimusStackSpacing.spacing25 => spacing25,
-        OptimusStackSpacing.spacing50 => spacing50,
-        OptimusStackSpacing.spacing100 => spacing100,
-        OptimusStackSpacing.spacing200 => spacing200,
-        OptimusStackSpacing.spacing300 => spacing300,
-        OptimusStackSpacing.spacing400 => spacing400,
-        OptimusStackSpacing.spacing500 => spacing500,
+  double getSize(OptimusTokens tokens) => switch (this) {
+        OptimusStackSpacing.spacing0 => tokens.spacing0,
+        OptimusStackSpacing.spacing25 => tokens.spacing25,
+        OptimusStackSpacing.spacing50 => tokens.spacing50,
+        OptimusStackSpacing.spacing100 => tokens.spacing100,
+        OptimusStackSpacing.spacing200 => tokens.spacing200,
+        OptimusStackSpacing.spacing300 => tokens.spacing300,
+        OptimusStackSpacing.spacing400 => tokens.spacing400,
+        OptimusStackSpacing.spacing500 => tokens.spacing500,
       };
 }
 

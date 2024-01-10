@@ -183,7 +183,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
           if (leadingIcon != null)
             Icon(widget.leadingIcon, size: _iconSize, color: foregroundColor),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: spacing100),
+            padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
             child: DefaultTextStyle.merge(
               style: _textStyle.copyWith(color: foregroundColor),
               child: widget.child,

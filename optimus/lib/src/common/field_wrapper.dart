@@ -100,6 +100,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final label = widget.label;
     final helperMessage = widget.helperMessage;
     final caption = widget.caption;
@@ -114,7 +115,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: widget.size.labelPadding,
+          padding: widget.size.getLabelPadding(tokens),
           child: Row(
             children: [
               if (label != null)
@@ -156,16 +157,16 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
               onExit: (_) => _handleHoverChanged(false),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                height: widget.size.height,
+                height: widget.size.getHeight(tokens),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: widget.size.contentPadding,
+                    horizontal: widget.size.getContentPadding(tokens),
                   ),
                   child: Row(
                     children: [
                       if (prefix != null)
                         Padding(
-                          padding: const EdgeInsets.only(right: spacing50),
+                          padding: EdgeInsets.only(right: tokens.spacing50),
                           child: _Styled(
                             isEnabled: widget.isEnabled,
                             child: prefix,
@@ -174,7 +175,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                       ...widget.children,
                       if (suffix != null)
                         Padding(
-                          padding: const EdgeInsets.only(left: spacing50),
+                          padding: EdgeInsets.only(left: tokens.spacing50),
                           child: _Styled(
                             isEnabled: widget.isEnabled,
                             child: suffix,
@@ -189,7 +190,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
         ),
         if (helperMessage != null)
           Padding(
-            padding: widget.size.helperPadding,
+            padding: widget.size.getHelperPadding(tokens),
             child: OptimusCaption(
               child: DefaultTextStyle.merge(
                 style: TextStyle(color: captionColor),
@@ -199,7 +200,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
           ),
         if (_isUsingBottomHint && _normalizedError.isNotEmpty)
           Padding(
-            padding: widget.size.errorPadding,
+            padding: widget.size.getErrorPadding(tokens),
             child: OptimusFieldError(
               error: _normalizedError,
               isEnabled: widget.isEnabled,
@@ -233,7 +234,7 @@ class _InputCaption extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: spacing50),
+          padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
           child: OptimusCaption(
             variation: Variation.variationSecondary,
             child: DefaultTextStyle.merge(
@@ -243,7 +244,7 @@ class _InputCaption extends StatelessWidget {
           ),
         ),
         if (captionIcon != null)
-          Icon(captionIcon, color: iconColor, size: _captionIconSize),
+          Icon(captionIcon, color: iconColor, size: tokens.sizing200),
       ],
     );
   }
@@ -266,7 +267,7 @@ class _Styled extends StatelessWidget {
     return DefaultTextStyle.merge(
       style: preset200r.copyWith(color: textColor),
       child: IconTheme(
-        data: IconThemeData(color: iconColor, size: _iconSize),
+        data: IconThemeData(color: iconColor, size: tokens.sizing200),
         child: child,
       ),
     );
@@ -274,32 +275,30 @@ class _Styled extends StatelessWidget {
 }
 
 extension on OptimusWidgetSize {
-  EdgeInsets get labelPadding => switch (this) {
+  EdgeInsets getLabelPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
-          const EdgeInsets.only(bottom: spacing50),
-        OptimusWidgetSize.large => const EdgeInsets.only(bottom: spacing100),
+          EdgeInsets.only(bottom: tokens.spacing50),
+        OptimusWidgetSize.large => EdgeInsets.only(bottom: tokens.spacing100),
       };
-  EdgeInsets get helperPadding => switch (this) {
+  EdgeInsets getHelperPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
-          const EdgeInsets.only(top: spacing50),
-        OptimusWidgetSize.large => const EdgeInsets.only(top: spacing100),
+          EdgeInsets.only(top: tokens.spacing50),
+        OptimusWidgetSize.large => EdgeInsets.only(top: tokens.spacing100),
       };
-  EdgeInsets get errorPadding => const EdgeInsets.only(top: spacing50);
+  EdgeInsets getErrorPadding(OptimusTokens tokens) =>
+      EdgeInsets.only(top: tokens.spacing50);
 
-  double get contentPadding => switch (this) {
-        OptimusWidgetSize.small => spacing150,
-        OptimusWidgetSize.medium => spacing200,
-        OptimusWidgetSize.large => spacing250,
+  double getContentPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.spacing150,
+        OptimusWidgetSize.medium => tokens.spacing200,
+        OptimusWidgetSize.large => tokens.spacing250,
       };
 
-  double get height => switch (this) {
-        OptimusWidgetSize.small => spacing400,
-        OptimusWidgetSize.medium => spacing500,
-        OptimusWidgetSize.large => spacing600,
+  double getHeight(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing400,
+        OptimusWidgetSize.medium => tokens.sizing500,
+        OptimusWidgetSize.large => tokens.sizing600,
       };
 }
-
-const _captionIconSize = 16.0;
-const _iconSize = 16.0;

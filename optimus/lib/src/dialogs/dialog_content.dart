@@ -131,28 +131,34 @@ class _Title extends StatelessWidget {
   final bool isDismissible;
 
   @override
-  Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(spacing200),
-              child: OptimusSubsectionTitle(child: title),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(tokens.spacing200),
+            child: OptimusSubsectionTitle(child: title),
+          ),
+        ),
+        if (isDismissible)
+          Padding(
+            padding: EdgeInsets.only(
+              top: tokens.spacing200,
+              right: tokens.spacing200,
+            ),
+            child: OptimusIconButton(
+              icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
+              size: OptimusWidgetSize.small,
+              variant: OptimusButtonVariant.tertiary,
+              onPressed: close,
             ),
           ),
-          if (isDismissible)
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: spacing200, right: spacing200),
-              child: OptimusIconButton(
-                icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-                size: OptimusWidgetSize.small,
-                variant: OptimusButtonVariant.tertiary,
-                onPressed: close,
-              ),
-            ),
-        ],
-      );
+      ],
+    );
+  }
 }
 
 class _Actions extends StatelessWidget {
@@ -182,12 +188,13 @@ class _Actions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final children = actions
         .mapIndexed<Widget>(
           (i, e) => Padding(
             padding: EdgeInsets.only(
-              bottom: _isVertical ? spacing200 : 0,
-              left: _isVertical ? 0 : spacing200,
+              bottom: _isVertical ? tokens.spacing200 : tokens.spacing0,
+              left: _isVertical ? tokens.spacing0 : tokens.spacing200,
             ),
             child: OptimusButton(
               onPressed: e.onPressed ?? close,
@@ -205,10 +212,10 @@ class _Actions extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(
-        left: _isVertical ? spacing200 : 0,
-        right: spacing200,
-        top: spacing200,
-        bottom: _isVertical ? 0 : spacing200,
+        left: _isVertical ? tokens.spacing200 : tokens.spacing0,
+        right: tokens.spacing200,
+        top: tokens.spacing200,
+        bottom: _isVertical ? tokens.spacing0 : tokens.spacing200,
       ),
       child: Flex(
         mainAxisAlignment: MainAxisAlignment.end,

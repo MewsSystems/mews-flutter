@@ -189,6 +189,7 @@ class OptimusDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = _autoSize(context);
+    final tokens = context.tokens;
 
     return SafeArea(
       child: Align(
@@ -200,7 +201,7 @@ class OptimusDialog extends StatelessWidget {
           type: type,
           size: size,
           maxWidth: size.width,
-          spacing: spacing300,
+          spacing: tokens.spacing300,
           margin: MediaQuery.viewInsetsOf(context),
           contentWrapperBuilder: contentWrapperBuilder,
           isDismissible: isDismissible,
@@ -221,5 +222,5 @@ class OptimusDialogContentPadding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Padding(padding: const EdgeInsets.all(spacing200), child: child);
+      Padding(padding: EdgeInsets.all(context.tokens.spacing200), child: child);
 }

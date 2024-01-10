@@ -124,7 +124,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
             child: SizedBox(
               height: widget.size.value,
               child: AnimatedContainer(
-                padding: const EdgeInsets.symmetric(horizontal: spacing200),
+                padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
                 key: _selectFieldKey,
                 decoration: BoxDecoration(
                   color: _color,

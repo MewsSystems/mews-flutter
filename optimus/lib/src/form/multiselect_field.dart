@@ -83,6 +83,7 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final error = widget.error;
     final inlineError = _isUsingInlineError && error != null && error.isNotEmpty
         ? InlineErrorTooltip(error: error)
@@ -125,7 +126,7 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
             Flexible(
               fit: FlexFit.loose,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: spacing25),
+                padding: EdgeInsets.symmetric(vertical: tokens.spacing25),
                 child: Focus(
                   focusNode: _effectiveFocusNode,
                   child: Container(
@@ -135,8 +136,8 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
                     child: Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
                       runAlignment: WrapAlignment.center,
-                      spacing: spacing50,
-                      runSpacing: spacing50,
+                      spacing: tokens.spacing50,
+                      runSpacing: tokens.spacing50,
                       clipBehavior: Clip.antiAlias,
                       children: widget.values,
                     ),

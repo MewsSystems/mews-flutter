@@ -44,11 +44,11 @@ class OptimusNotification extends StatelessWidget {
 
   double _getPadding(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.small || Breakpoint.extraSmall => spacing100,
+        Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
         Breakpoint.medium ||
         Breakpoint.large ||
         Breakpoint.extraLarge =>
-          spacing200,
+          context.tokens.spacing200,
       };
 
   @override
@@ -196,14 +196,14 @@ class _NotificationContent extends StatelessWidget {
   final VoidCallback? onLinkPressed;
   final bool dismissible;
 
-  EdgeInsets get _contentPadding => dismissible
-      ? const EdgeInsets.fromLTRB(
-          spacing200,
-          spacing200,
-          spacing400,
-          spacing200,
+  EdgeInsets _getContentPadding(OptimusTokens tokens) => dismissible
+      ? EdgeInsets.fromLTRB(
+          tokens.spacing200,
+          tokens.spacing200,
+          tokens.spacing400,
+          tokens.spacing200,
         )
-      : const EdgeInsets.all(spacing200);
+      : EdgeInsets.all(tokens.spacing200);
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +239,7 @@ class _NotificationContent extends StatelessWidget {
               const SizedBox(width: _leadingSectionWidth),
               Expanded(
                 child: Container(
-                  padding: _contentPadding,
+                  padding: _getContentPadding(tokens),
                   decoration: BoxDecoration(
                     color: theme.colors.neutral0,
                     borderRadius: BorderRadius.horizontal(
@@ -253,12 +253,12 @@ class _NotificationContent extends StatelessWidget {
                       _NotificationTitle(title),
                       if (body != null)
                         Padding(
-                          padding: const EdgeInsets.only(top: spacing50),
+                          padding: EdgeInsets.only(top: tokens.spacing50),
                           child: _NotificationBody(body),
                         ),
                       if (link != null)
                         Padding(
-                          padding: const EdgeInsets.only(top: spacing50),
+                          padding: EdgeInsets.only(top: tokens.spacing50),
                           child: GestureDetector(
                             onTap: onLinkPressed,
                             child: _NotificationLink(link),
@@ -312,14 +312,15 @@ class _NotificationCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Positioned(
-      top: spacing100,
-      right: spacing100,
+      top: tokens.spacing100,
+      right: tokens.spacing100,
       child: GestureDetector(
         onTap: onDismissed,
         child: Padding(
-          padding: const EdgeInsets.all(spacing100),
+          padding: EdgeInsets.all(tokens.spacing100),
           child: Icon(
             OptimusIcons.cross_close,
             color: theme.colors.neutral500,

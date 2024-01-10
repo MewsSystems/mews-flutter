@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/link/link_variant.dart';
-import 'package:optimus/src/spacing.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 import 'package:optimus/src/theme/theme.dart';
 
@@ -79,7 +78,7 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
             children: [
               text,
               Padding(
-                padding: const EdgeInsets.only(left: spacing100),
+                padding: EdgeInsets.only(left: tokens.spacing100),
                 child: IconTheme(
                   data: IconThemeData(color: _effectiveColor),
                   child: icon,

@@ -72,6 +72,7 @@ class OptimusBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -81,13 +82,13 @@ class OptimusBanner extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(spacing200),
+            padding: EdgeInsets.all(tokens.spacing200),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (hasIcon)
                   Padding(
-                    padding: const EdgeInsets.only(right: spacing200),
+                    padding: EdgeInsets.only(right: tokens.spacing200),
                     child: OptimusIcon(
                       iconData: variant.icon,
                       colorOption: variant.iconColor,
@@ -99,7 +100,7 @@ class OptimusBanner extends StatelessWidget {
                     children: [
                       Padding(
                         padding: isDismissible
-                            ? const EdgeInsets.only(right: spacing200)
+                            ? EdgeInsets.only(right: tokens.spacing200)
                             : EdgeInsets.zero,
                         child: DefaultTextStyle.merge(
                           child: title,
@@ -108,7 +109,7 @@ class OptimusBanner extends StatelessWidget {
                       ),
                       if (description case final description?)
                         Padding(
-                          padding: const EdgeInsets.only(top: spacing50),
+                          padding: EdgeInsets.only(top: tokens.spacing50),
                           child: DefaultTextStyle.merge(
                             child: description,
                             style: preset200r.copyWith(
@@ -124,8 +125,8 @@ class OptimusBanner extends StatelessWidget {
           ),
           if (isDismissible)
             Positioned(
-              top: spacing100,
-              right: spacing100,
+              top: tokens.spacing100,
+              right: tokens.spacing100,
               child: OptimusIconButton(
                 onPressed: onDismiss,
                 icon: const Icon(OptimusIcons.cross_close),

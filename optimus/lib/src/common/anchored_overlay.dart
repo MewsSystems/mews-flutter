@@ -74,14 +74,17 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   double get _overlayWidth => _overlaySize?.width ?? 0;
 
-  double get _offsetBottom => _overlayHeight - _savedRect.top + _widgetPadding;
+  double get _offsetBottom =>
+      _overlayHeight - _savedRect.top + context.tokens.spacing100;
 
-  double get _offsetTop => _savedRect.top + _savedRect.height + _widgetPadding;
+  double get _offsetTop =>
+      _savedRect.top + _savedRect.height + context.tokens.spacing100;
 
   double get _paddingBottom =>
-      MediaQuery.viewInsetsOf(context).bottom + _screenPadding;
+      MediaQuery.viewInsetsOf(context).bottom + context.tokens.spacing200;
 
-  double get _paddingTop => MediaQuery.paddingOf(context).top + _screenPadding;
+  double get _paddingTop =>
+      MediaQuery.paddingOf(context).top + context.tokens.spacing200;
 
   double get _rightSpace => _overlayWidth - _savedRect.left;
 
@@ -134,7 +137,7 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final widthWithPadding = _width + _widgetPadding;
+    final widthWithPadding = _width + context.tokens.spacing100;
 
     // If we have enough space to the right, dropdown's left side will be
     // aligned with anchor's left side. If there's not enough space to the
@@ -168,6 +171,3 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
     );
   }
 }
-
-const double _screenPadding = spacing200;
-const double _widgetPadding = spacing100;

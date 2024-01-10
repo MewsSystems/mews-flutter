@@ -8,16 +8,20 @@ class OptimusDropdownGroupSeparator extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: spacing25,
-          horizontal: spacing200,
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: tokens.spacing25,
+        horizontal: tokens.spacing200,
+      ),
+      child: DefaultTextStyle.merge(
+        style: preset300r.copyWith(
+          color: OptimusTheme.of(context).colors.neutral50,
         ),
-        child: DefaultTextStyle.merge(
-          style: preset300r.copyWith(
-            color: OptimusTheme.of(context).colors.neutral50,
-          ),
-          child: child,
-        ),
-      );
+        child: child,
+      ),
+    );
+  }
 }

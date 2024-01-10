@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/spacing.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/presets.dart';
 
@@ -29,7 +28,7 @@ class BaseBadge extends StatelessWidget {
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
     final outlineSize = tokens.borderWidth200;
-    final bareHeight = text.isEmpty ? _emptySize : _badgeHeight;
+    final bareHeight = text.isEmpty ? tokens.spacing100 : _badgeHeight;
     final outlinedHeight = bareHeight + outlineSize * 2;
     final height = outline ? outlinedHeight : bareHeight;
 
@@ -63,14 +62,13 @@ class BaseBadge extends StatelessWidget {
       ),
       height: height,
       decoration: decoration,
-      padding: const EdgeInsets.symmetric(
-        horizontal: spacing50,
-        vertical: spacing25,
+      padding: EdgeInsets.symmetric(
+        horizontal: tokens.spacing50,
+        vertical: tokens.spacing25,
       ),
       child: child,
     );
   }
 }
 
-const _emptySize = spacing100;
 const _badgeHeight = 16.0;

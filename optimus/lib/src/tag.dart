@@ -144,45 +144,49 @@ class _Tag extends StatelessWidget {
   final bool outline;
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          color: outline ? null : backgroundColor,
-          border: outline
-              ? Border.all(
-                  color: borderColor,
-                  width: context.tokens.borderWidth150,
-                  style: BorderStyle.solid,
-                )
-              : null,
-          borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: spacing100),
-        height: 24,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (leadingIcon != null)
-              Padding(
-                padding: const EdgeInsets.only(right: spacing50),
-                child: Icon(leadingIcon, color: foregroundColor, size: 16),
-              ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 200),
-              child: Text(
-                text,
-                style: preset200r.copyWith(color: foregroundColor),
-                overflow: TextOverflow.ellipsis,
-              ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: outline ? null : backgroundColor,
+        border: outline
+            ? Border.all(
+                color: borderColor,
+                width: tokens.borderWidth150,
+                style: BorderStyle.solid,
+              )
+            : null,
+        borderRadius: BorderRadius.circular(tokens.borderRadius50),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+      height: 24,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (leadingIcon != null)
+            Padding(
+              padding: EdgeInsets.only(right: tokens.spacing50),
+              child: Icon(leadingIcon, color: foregroundColor, size: 16),
             ),
-            if (trailingIcon != null)
-              Padding(
-                padding: const EdgeInsets.only(left: spacing50),
-                child: Icon(trailingIcon, color: foregroundColor, size: 16),
-              ),
-          ],
-        ),
-      );
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 200),
+            child: Text(
+              text,
+              style: preset200r.copyWith(color: foregroundColor),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          if (trailingIcon != null)
+            Padding(
+              padding: EdgeInsets.only(left: tokens.spacing50),
+              child: Icon(trailingIcon, color: foregroundColor, size: 16),
+            ),
+        ],
+      ),
+    );
+  }
 }
 
 extension on OptimusColorOption {

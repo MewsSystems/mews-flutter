@@ -33,7 +33,7 @@ final Story tooltipWrapperStory = Story(
     );
 
     return Padding(
-      padding: const EdgeInsets.all(spacing200),
+      padding: const EdgeInsets.all(16),
       child: Stack(
         children: [
           Align(

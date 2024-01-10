@@ -23,11 +23,11 @@ final Story dialogStory = Story(
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              padding: EdgeInsets.only(top: 24, bottom: 16),
               child: OptimusSectionTitle(child: Text('Small dialog')),
             ),
             Wrap(
-              spacing: spacing100,
+              spacing: 8,
               children: [
                 OptimusButton(
                   variant: OptimusButtonVariant.primary,
@@ -68,11 +68,11 @@ final Story dialogStory = Story(
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              padding: EdgeInsets.only(top: 24, bottom: 16),
               child: OptimusSectionTitle(child: Text('Regular dialog')),
             ),
             Wrap(
-              spacing: spacing100,
+              spacing: 8,
               children: [
                 OptimusButton(
                   variant: OptimusButtonVariant.primary,
@@ -113,11 +113,11 @@ final Story dialogStory = Story(
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              padding: EdgeInsets.only(top: 24, bottom: 16),
               child: OptimusSectionTitle(child: Text('Large dialog')),
             ),
             Wrap(
-              spacing: spacing100,
+              spacing: 8,
               children: [
                 OptimusButton(
                   variant: OptimusButtonVariant.primary,
@@ -158,11 +158,11 @@ final Story dialogStory = Story(
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(top: spacing300, bottom: spacing200),
+              padding: EdgeInsets.only(top: 24, bottom: 16),
               child: OptimusSectionTitle(child: Text('Custom content')),
             ),
             Wrap(
-              spacing: spacing100,
+              spacing: 8,
               children: [
                 OptimusButton(
                   variant: OptimusButtonVariant.primary,

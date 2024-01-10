@@ -226,15 +226,15 @@ class OptimusCardChildPadding extends StatelessWidget {
   final Widget child;
   final OptimusCardSpacing spacing;
 
+  EdgeInsets _getPadding(OptimusTokens tokens) => switch (spacing) {
+        OptimusCardSpacing.spacing0 => EdgeInsets.zero,
+        OptimusCardSpacing.spacing100 => EdgeInsets.all(tokens.spacing100),
+        OptimusCardSpacing.spacing200 => EdgeInsets.all(tokens.spacing200),
+        OptimusCardSpacing.spacing300 => EdgeInsets.all(tokens.spacing300),
+        OptimusCardSpacing.spacing400 => EdgeInsets.all(tokens.spacing400),
+      };
+
   @override
   Widget build(BuildContext context) =>
-      Padding(padding: _padding, child: child);
-
-  EdgeInsets get _padding => switch (spacing) {
-        OptimusCardSpacing.spacing0 => EdgeInsets.zero,
-        OptimusCardSpacing.spacing100 => const EdgeInsets.all(spacing100),
-        OptimusCardSpacing.spacing200 => const EdgeInsets.all(spacing200),
-        OptimusCardSpacing.spacing300 => const EdgeInsets.all(spacing300),
-        OptimusCardSpacing.spacing400 => const EdgeInsets.all(spacing400),
-      };
+      Padding(padding: _getPadding(context.tokens), child: child);
 }

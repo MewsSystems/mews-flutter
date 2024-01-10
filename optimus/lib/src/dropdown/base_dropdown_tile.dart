@@ -19,6 +19,7 @@ class BaseDropdownTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final tile = Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,16 +38,16 @@ class BaseDropdownTile extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: spacing200,
-        vertical: spacing150,
+      padding: EdgeInsets.symmetric(
+        horizontal: tokens.spacing200,
+        vertical: tokens.spacing150,
       ),
       child: isSelected != null
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: spacing100),
+                  padding: EdgeInsets.only(right: tokens.spacing100),
                   child: CheckboxTick(
                     isEnabled: true,
                     onChanged: (_) {},

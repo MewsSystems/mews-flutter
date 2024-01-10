@@ -18,7 +18,7 @@ class BaseListTile extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
-      constraints: const BoxConstraints(minHeight: spacing700),
+      constraints: BoxConstraints(minHeight: context.tokens.spacing700),
       child: InkWell(
         highlightColor:
             theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,

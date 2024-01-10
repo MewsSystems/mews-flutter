@@ -140,13 +140,18 @@ class _SelectedValue extends StatelessWidget {
   final TextStyle textStyle;
 
   @override
-  Widget build(BuildContext context) => Expanded(
-        child: Padding(
-          padding: const EdgeInsets.only(left: spacing200, right: spacing100),
-          child: SizedBox(
-            height: size.value,
-            child: DefaultTextStyle(style: textStyle, child: child),
-          ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Expanded(
+      child: Padding(
+        padding:
+            EdgeInsets.only(left: tokens.spacing200, right: tokens.spacing100),
+        child: SizedBox(
+          height: size.value,
+          child: DefaultTextStyle(style: textStyle, child: child),
         ),
-      );
+      ),
+    );
+  }
 }

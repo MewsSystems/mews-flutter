@@ -117,44 +117,48 @@ class OptimusCheckbox extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => IgnorePointer(
-        ignoring: !isEnabled,
-        child: GroupWrapper(
-          error: error,
-          isEnabled: isEnabled,
-          child: GestureDetector(
-            onTap: _handleTap,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 9),
-                  child: CheckboxTick(
-                    isError: _isError,
-                    isChecked: isChecked,
-                    isEnabled: isEnabled,
-                    onChanged: onChanged,
-                    onTap: _handleTap,
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return IgnorePointer(
+      ignoring: !isEnabled,
+      child: GroupWrapper(
+        error: error,
+        isEnabled: isEnabled,
+        child: GestureDetector(
+          onTap: _handleTap,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 9),
+                child: CheckboxTick(
+                  isError: _isError,
+                  isChecked: isChecked,
+                  isEnabled: isEnabled,
+                  onChanged: onChanged,
+                  onTap: _handleTap,
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    tokens.spacing150,
+                    tokens.spacing50,
+                    tokens.spacing0,
+                    tokens.spacing50,
+                  ),
+                  child: DefaultTextStyle.merge(
+                    style: _labelStyle(OptimusTheme.of(context).tokens),
+                    child: label,
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      spacing150,
-                      spacing50,
-                      spacing0,
-                      spacing50,
-                    ),
-                    child: DefaultTextStyle.merge(
-                      style: _labelStyle(OptimusTheme.of(context).tokens),
-                      child: label,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

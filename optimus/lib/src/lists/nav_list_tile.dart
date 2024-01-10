@@ -76,17 +76,17 @@ class OptimusNavListTile extends StatelessWidget {
   /// the need to scroll is important for the user's task completion.
   final TileSize tileSize;
 
-  Widget _buildLeadingIcon(Widget icon) => Padding(
-        padding: const EdgeInsets.only(right: spacing200),
+  Widget _buildLeadingIcon(OptimusTokens tokens, Widget icon) => Padding(
+        padding: EdgeInsets.only(right: tokens.spacing200),
         child: IconTheme.merge(
-          data: const IconThemeData(size: spacing300),
+          data: IconThemeData(size: tokens.sizing300),
           child: icon,
         ),
       );
 
-  Widget _buildLeadingAvatar(Widget avatar) => Padding(
-        padding: const EdgeInsets.only(right: spacing200),
-        child: SizedBox(width: spacing500, child: avatar),
+  Widget _buildLeadingAvatar(OptimusTokens tokens, Widget avatar) => Padding(
+        padding: EdgeInsets.only(right: tokens.spacing200),
+        child: SizedBox(width: tokens.sizing500, child: avatar),
       );
 
   Widget _buildMetadata(Widget metadata) => OptimusTypography(
@@ -95,13 +95,13 @@ class OptimusNavListTile extends StatelessWidget {
         child: metadata,
       );
 
-  double get _contentSpacing => switch (tileSize) {
-        TileSize.normal => spacing200,
-        TileSize.small => spacing100,
+  double _getContentSpacing(OptimusTokens tokens) => switch (tileSize) {
+        TileSize.normal => tokens.spacing200,
+        TileSize.small => tokens.spacing100,
       };
 
-  Widget get _headline => Padding(
-        padding: const EdgeInsets.only(right: spacing100),
+  Widget _getHeadline(OptimusTokens tokens) => Padding(
+        padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
           resolveStyle: (_) => fontVariant.primaryStyle,
           child: DefaultTextStyle.merge(
@@ -112,12 +112,12 @@ class OptimusNavListTile extends StatelessWidget {
         ),
       );
 
-  Widget get _description {
+  Widget _getDescription(OptimusTokens tokens) {
     final description = this.description;
 
     return description != null
         ? Padding(
-            padding: const EdgeInsets.only(right: spacing100),
+            padding: EdgeInsets.only(right: tokens.spacing100),
             child: OptimusTypography(
               resolveStyle: (_) => preset200s,
               color: fontVariant.secondaryColor,
@@ -131,16 +131,17 @@ class OptimusNavListTile extends StatelessWidget {
         : const SizedBox.shrink();
   }
 
-  Widget _buildTrailingIcon(Widget suffix) => Padding(
-        padding: const EdgeInsets.only(left: spacing200),
+  Widget _buildTrailingIcon(OptimusTokens tokens, Widget suffix) => Padding(
+        padding: EdgeInsets.only(left: tokens.spacing200),
         child: IconTheme.merge(
-          data: const IconThemeData(size: spacing300),
+          data: IconThemeData(size: tokens.sizing300),
           child: suffix,
         ),
       );
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final metadata = this.metadata;
     final trailingIcon = this.trailingIcon;
     final leadingIcon = this.leadingIcon;
@@ -150,25 +151,26 @@ class OptimusNavListTile extends StatelessWidget {
       onTap: onTap,
       content: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: _contentSpacing,
-          horizontal: spacing200,
+          vertical: _getContentSpacing(tokens),
+          horizontal: tokens.spacing200,
         ),
         child: Row(
           children: <Widget>[
-            if (leadingAvatar != null) _buildLeadingAvatar(leadingAvatar),
+            if (leadingAvatar != null)
+              _buildLeadingAvatar(tokens, leadingAvatar),
             if (leadingAvatar == null && leadingIcon != null)
-              _buildLeadingIcon(leadingIcon),
+              _buildLeadingIcon(tokens, leadingIcon),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _headline,
-                  _description,
+                  _getHeadline(tokens),
+                  _getDescription(tokens),
                 ],
               ),
             ),
             if (metadata != null) _buildMetadata(metadata),
-            if (trailingIcon != null) _buildTrailingIcon(trailingIcon),
+            if (trailingIcon != null) _buildTrailingIcon(tokens, trailingIcon),
           ],
         ),
       ),

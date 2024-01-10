@@ -78,13 +78,15 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
                 color: _backgroundColor,
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: spacing50),
+                padding:
+                    EdgeInsets.symmetric(horizontal: context.tokens.spacing50),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: spacing50),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.tokens.spacing50,
+                      ),
                       child: DefaultTextStyle.merge(
                         style: preset200r.copyWith(color: _foregroundColor),
                         child: widget.child,
