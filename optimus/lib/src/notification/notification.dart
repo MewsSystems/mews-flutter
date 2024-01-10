@@ -220,9 +220,9 @@ class _NotificationContent extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 0,
-            bottom: 0,
-            top: 0,
+            left: tokens.spacing0,
+            bottom: tokens.spacing0,
+            top: tokens.spacing0,
             width: _leadingSectionWidth,
             child: DecoratedBox(
               decoration: BoxDecoration(

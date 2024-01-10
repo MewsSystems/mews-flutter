@@ -127,9 +127,9 @@ extension on MessageAlignment {
   EdgeInsetsGeometry getHorizontalPadding(OptimusTokens tokens) =>
       switch (this) {
         MessageAlignment.left =>
-          EdgeInsets.only(left: tokens.spacing100, right: 0),
+          EdgeInsets.only(left: tokens.spacing100, right: tokens.spacing0),
         MessageAlignment.right =>
-          EdgeInsets.only(left: 0, right: tokens.spacing100),
+          EdgeInsets.only(left: tokens.spacing0, right: tokens.spacing100),
       };
 
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
