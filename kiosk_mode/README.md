@@ -28,10 +28,6 @@ a configurable interval.
 watchKioskMode().listen((mode) => print(mode));
 ```
 
-## Android only
-
-All the methods in this section will throw `FlutterMethodNotImplemented` in iOS.
-
 ### Start kiosk mode
 
 ```dart
