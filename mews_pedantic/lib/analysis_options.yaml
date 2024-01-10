@@ -261,7 +261,10 @@ dart_code_metrics:
     # - avoid-declaring-call-method
     - avoid-double-slash-imports
     - avoid-duplicate-cascades
+    - avoid-duplicate-collection-elements
     - avoid-duplicate-exports
+    - avoid-duplicate-initializers
+    - avoid-duplicate-map-keys
     - avoid-duplicate-mixins
     - avoid-duplicate-named-imports
     - avoid-duplicate-patterns
@@ -308,6 +311,7 @@ dart_code_metrics:
     - avoid-non-null-assertion
     - avoid-nullable-interpolation
     - avoid-nullable-parameters-with-default-values
+    - avoid-nullable-tostring
     - avoid-one-field-records
     # - avoid-passing-async-when-sync-expected
     # - avoid-passing-default-values
@@ -328,6 +332,7 @@ dart_code_metrics:
     # - avoid-throw-objects-without-tostring
     # - avoid-top-level-members-in-tests
     - avoid-unassigned-late-fields
+    - avoid-unassigned-stream-subscriptions
     - avoid-uncaught-future-errors
     - avoid-unconditional-break
     - avoid-unnecessary-call
@@ -346,6 +351,7 @@ dart_code_metrics:
     - avoid-unrelated-type-assertions
     - avoid-unrelated-type-casts
     # - avoid-unsafe-collection-methods
+    - avoid-unused-after-null-check
     - avoid-unused-generics
     # - avoid-unused-instances
     - avoid-unused-parameters
@@ -368,6 +374,7 @@ dart_code_metrics:
     # - missing-test-assertion
     - move-records-to-typedefs
     - move-variable-closer-to-its-usage
+    - move-variable-outside-iteration
     # - newline-before-case
     - newline-before-return
     - no-boolean-literal-compare
@@ -456,6 +463,7 @@ dart_code_metrics:
     - avoid-shrink-wrap-in-lists
     - avoid-single-child-column-or-row
     - avoid-state-constructors
+    # - avoid-undisposed-instances
     - avoid-stateless-widget-initialized-fields
     - avoid-unnecessary-overrides-in-state
     - avoid-unnecessary-setstate
