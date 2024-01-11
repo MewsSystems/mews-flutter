@@ -316,27 +316,30 @@ class _Bubble extends StatelessWidget {
   final MessageAlignment alignment;
 
   @override
-  Widget build(BuildContext context) => OptimusStack(
-        direction: Axis.horizontal,
-        crossAxisAlignment: OptimusStackAlignment.end,
-        mainAxisAlignment: alignment.stackAlignment,
-        children: [
-          if (hasAvatars && alignment.isStart) avatar,
-          Flexible(
-            child: OptimusChatBubble(
-              message: message,
-              isUserNameVisible: isUserNameVisible,
-              isDateVisible: isDateVisible,
-              formatTime: formatTime,
-              formatDate: formatDate,
-              sending: sending,
-              sent: sent,
-              error: error,
-            ),
-          ),
-          if (hasAvatars && alignment.isEnd) avatar,
-        ],
-      );
+  Widget build(BuildContext context) {
+    final children = [
+      if (hasAvatars) avatar,
+      Flexible(
+        child: OptimusChatBubble(
+          message: message,
+          isUserNameVisible: isUserNameVisible,
+          isDateVisible: isDateVisible,
+          formatTime: formatTime,
+          formatDate: formatDate,
+          sending: sending,
+          sent: sent,
+          error: error,
+        ),
+      ),
+    ];
+
+    return OptimusStack(
+      direction: Axis.horizontal,
+      crossAxisAlignment: OptimusStackAlignment.end,
+      mainAxisAlignment: alignment.stackAlignment,
+      children: alignment.isStart ? children : children.reversed.toList(),
+    );
+  }
 }
 
 class _Status extends StatelessWidget {

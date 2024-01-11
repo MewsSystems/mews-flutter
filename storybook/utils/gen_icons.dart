@@ -148,6 +148,5 @@ const dartReserved = [
   'default',
   'get',
   'static',
-  'yield',
 ];
 const dartFileName = 'icons_list.dart';

@@ -20,6 +20,7 @@ class _CheckboxGroupStory extends StatefulWidget {
 }
 
 class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
+  // ignore: avoid-duplicate-collection-elements, duplicity is intentional
   final List<bool> _values = [false, true, false, false, false];
   bool _outsideCheckbox = false;
 
