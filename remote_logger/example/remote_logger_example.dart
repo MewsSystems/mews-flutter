@@ -24,6 +24,7 @@ void main() {
   );
 
   // Set remoteLogger as a listener.
+  // ignore: avoid-unassigned-stream-subscriptions, assign is not needed
   Logger.root.onRecord.listen(remoteLogger.call);
 
   // Log a message.
