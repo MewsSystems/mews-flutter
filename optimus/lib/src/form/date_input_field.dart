@@ -86,6 +86,11 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   @override
   void didUpdateWidget(covariant OptimusDateInputField oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    if (widget.isEnabled != oldWidget.isEnabled) {
+      _updateControllerStyle();
+    }
+
     if (oldWidget.value != widget.value) {
       _updateControllerValue(widget.value);
     } else if (oldWidget.format.pattern != widget.format.pattern ||
@@ -93,6 +98,18 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
       final oldDate = _getDateTime(oldWidget.format, _controller.text);
       _updateControllerValue(oldDate);
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    _updateControllerStyle();
+    super.didChangeDependencies();
+  }
+
+  void _updateControllerStyle() {
+    _controller
+      ..inputStyle = _inputStyle
+      ..placeholderStyle = _placeholderStyle;
   }
 
   void _updateControllerValue(DateTime? newValue) {

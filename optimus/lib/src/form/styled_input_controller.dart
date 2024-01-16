@@ -5,9 +5,11 @@ import 'package:flutter/widgets.dart';
 class StyledInputController extends TextEditingController {
   StyledInputController({
     required String text,
-    required this.inputStyle,
-    required this.placeholderStyle,
-  }) : super.fromValue(
+    required TextStyle inputStyle,
+    required TextStyle placeholderStyle,
+  })  : _inputStyle = inputStyle,
+        _placeholderStyle = placeholderStyle,
+        super.fromValue(
           // workaround for the issue with the cursor position on Android
           TextEditingValue(
             text: text,
@@ -15,11 +17,22 @@ class StyledInputController extends TextEditingController {
           ),
         );
 
-  /// The style to use for the user entered part.
-  final TextStyle inputStyle;
+  TextStyle _inputStyle;
+  TextStyle _placeholderStyle;
 
-  /// The style to use for the rest.
-  final TextStyle placeholderStyle;
+  set inputStyle(TextStyle value) {
+    if (value == _inputStyle) return;
+
+    _inputStyle = value;
+    notifyListeners();
+  }
+
+  set placeholderStyle(TextStyle value) {
+    if (value == _placeholderStyle) return;
+
+    _placeholderStyle = value;
+    notifyListeners();
+  }
 
   @override
   TextSpan buildTextSpan({
@@ -32,11 +45,12 @@ class StyledInputController extends TextEditingController {
 
     for (int i = textParts.length - 1; i >= 0; i--) {
       if (_allowedDigits.hasMatch(textParts[i])) {
-        children.add(TextSpan(style: inputStyle, text: textParts[i]));
+        children.add(TextSpan(style: _inputStyle, text: textParts[i]));
       } else if (_maskRegExp.hasMatch(textParts[i])) {
-        children.add(TextSpan(style: placeholderStyle, text: textParts[i]));
+        children.add(TextSpan(style: _placeholderStyle, text: textParts[i]));
       } else {
-        final style = children.isEmpty ? placeholderStyle : children.last.style;
+        final style =
+            children.isEmpty ? _placeholderStyle : children.last.style;
         children.add(TextSpan(style: style, text: textParts[i]));
       }
     }
