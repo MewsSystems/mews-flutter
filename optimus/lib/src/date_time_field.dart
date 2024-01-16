@@ -16,6 +16,7 @@ class OptimusDateTimeField extends StatefulWidget {
     required this.formatDateTime,
     this.isClearEnabled = false,
     this.placeholder,
+    this.isEnabled = true,
   });
 
   final DateTime? value;
@@ -27,6 +28,7 @@ class OptimusDateTimeField extends StatefulWidget {
   final String? error;
   final bool isClearEnabled;
   final String? placeholder;
+  final bool isEnabled;
 
   @override
   State<OptimusDateTimeField> createState() => _OptimusDateTimeFieldState();
@@ -93,6 +95,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
         error: widget.error,
         label: widget.label,
         isClearEnabled: _isClearVisible,
+        isEnabled: widget.isEnabled,
         trailing: GestureDetector(
           onTap: _handleTap,
           child: Icon(
