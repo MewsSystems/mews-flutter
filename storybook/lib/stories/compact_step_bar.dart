@@ -25,7 +25,7 @@ final Story compactStepBarStory = Story(
     );
 
     return Padding(
-      padding: const EdgeInsets.all(spacing100),
+      padding: const EdgeInsets.all(8),
       child: SizedBox(
         width: 400,
         child: Align(

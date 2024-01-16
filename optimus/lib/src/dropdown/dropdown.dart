@@ -166,20 +166,22 @@ class _DropdownListView<T> extends StatelessWidget {
   final bool isReversed;
   final double maxHeight;
 
-  double get _minHeight =>
-      items.length * _itemMinHeight + _listVerticalSpacing * 2;
-
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: min(_minHeight, maxHeight),
-        child: ListView.builder(
-          reverse: isReversed,
-          padding: const EdgeInsets.symmetric(vertical: _listVerticalSpacing),
-          itemCount: items.length,
-          itemBuilder: (context, index) =>
-              _DropdownItem(onChanged: onChanged, child: items[index]),
-        ),
-      );
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final minHeight = items.length * _itemMinHeight + tokens.spacing100 * 2;
+
+    return SizedBox(
+      height: min(minHeight, maxHeight),
+      child: ListView.builder(
+        reverse: isReversed,
+        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+        itemCount: items.length,
+        itemBuilder: (context, index) =>
+            _DropdownItem(onChanged: onChanged, child: items[index]),
+      ),
+    );
+  }
 }
 
 class _GroupedDropdownListView<T> extends StatefulWidget {
@@ -254,11 +256,6 @@ class _GroupedDropdownListViewState<T>
 
   int get _leadingIndex => widget.isReversed ? _sortedItems.length - 1 : 0;
 
-  double get _minListHeight =>
-      _groupsCount * _groupMinHeight +
-      widget.items.length * _itemMinHeight +
-      _listVerticalSpacing * 2;
-
   bool _isSameGroup(
     OptimusDropdownTile<T> first,
     OptimusDropdownTile<T> second,
@@ -266,37 +263,43 @@ class _GroupedDropdownListViewState<T>
       widget.groupBy(second.value) == widget.groupBy(first.value);
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: min(_minListHeight, widget.maxHeight),
-        child: ListView.builder(
-          reverse: widget.isReversed,
-          padding: const EdgeInsets.symmetric(vertical: _listVerticalSpacing),
-          itemCount: widget.items.length,
-          itemBuilder: (context, index) {
-            final current = _sortedItems[index];
-            final child =
-                _DropdownItem(onChanged: widget.onChanged, child: current);
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final minListHeight = _groupsCount * _groupMinHeight +
+        widget.items.length * _itemMinHeight +
+        tokens.spacing100 * 2;
 
-            if (index == _leadingIndex) {
-              return _GroupWrapper(
-                useBorder: false,
-                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-                child: child,
-              );
-            }
+    return SizedBox(
+      height: min(minListHeight, widget.maxHeight),
+      child: ListView.builder(
+        reverse: widget.isReversed,
+        padding: EdgeInsets.symmetric(vertical: context.tokens.spacing100),
+        itemCount: widget.items.length,
+        itemBuilder: (context, index) {
+          final current = _sortedItems[index];
+          final child =
+              _DropdownItem(onChanged: widget.onChanged, child: current);
 
-            final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+          if (index == _leadingIndex) {
+            return _GroupWrapper(
+              useBorder: false,
+              group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+              child: child,
+            );
+          }
 
-            return _isSameGroup(current, previous)
-                ? child
-                : _GroupWrapper(
-                    group:
-                        _effectiveGroupBuilder(widget.groupBy(current.value)),
-                    child: child,
-                  );
-          },
-        ),
-      );
+          final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+
+          return _isSameGroup(current, previous)
+              ? child
+              : _GroupWrapper(
+                  group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                  child: child,
+                );
+        },
+      ),
+    );
+  }
 }
 
 class _GroupWrapper extends StatelessWidget {
@@ -417,4 +420,3 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
 const _embeddedSearchHeight = 61.0;
 const _groupMinHeight = 28.0;
 const _itemMinHeight = 69.0;
-const _listVerticalSpacing = spacing100;

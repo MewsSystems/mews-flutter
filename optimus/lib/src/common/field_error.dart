@@ -22,7 +22,7 @@ class OptimusFieldError extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: spacing150),
+          padding: EdgeInsets.only(right: context.tokens.spacing150),
           child: Icon(OptimusIcons.error_circle, size: 16, color: color),
         ),
         OptimusCaption(child: Text(error, style: TextStyle(color: color))),

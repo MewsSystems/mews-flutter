@@ -174,13 +174,14 @@ class _CompactStepBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final data = _StepBarData.of(context);
 
     return data != null
         ? Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: spacing100,
-              vertical: spacing100,
+            padding: EdgeInsets.symmetric(
+              horizontal: tokens.spacing100,
+              vertical: tokens.spacing100,
             ),
             child: StepBarItem(
               item: data.items[data.currentItem],
@@ -207,25 +208,29 @@ class _CompactStepBarIndicator extends StatelessWidget {
       maxSteps == null ? '$currentStep' : '$currentStep/$maxSteps';
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 90,
-        child: Padding(
-          padding: const EdgeInsets.only(right: spacing200),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              OptimusTypography(
-                resolveStyle: (_) =>
-                    preset200s.copyWith(overflow: TextOverflow.ellipsis),
-                maxLines: 1,
-                child: Text(text),
-              ),
-              const SizedBox(width: spacing50),
-              const OptimusIcon(iconData: OptimusIcons.chevron_up),
-            ],
-          ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return SizedBox(
+      width: 90,
+      child: Padding(
+        padding: EdgeInsets.only(right: tokens.spacing200),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            OptimusTypography(
+              resolveStyle: (_) =>
+                  preset200s.copyWith(overflow: TextOverflow.ellipsis),
+              maxLines: 1,
+              child: Text(text),
+            ),
+            SizedBox(width: tokens.spacing50),
+            const OptimusIcon(iconData: OptimusIcons.chevron_up),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
 
 class _ExpandedCompactStepBar extends StatefulWidget {
@@ -414,6 +419,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final data = _StepBarData.of(context);
 
     return data != null
@@ -429,8 +435,8 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
                     BorderRadius.circular(context.tokens.borderRadius50),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: spacing100,
+                padding: EdgeInsets.symmetric(
+                  horizontal: tokens.spacing100,
                   vertical: _verticalSpacing,
                 ),
                 child: Stack(
@@ -443,8 +449,8 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
                       maxItem: data.maxItem,
                     ),
                     Positioned(
-                      top: spacing100,
-                      right: spacing100,
+                      top: tokens.spacing100,
+                      right: tokens.spacing100,
                       child: RotationTransition(
                         turns: _iconTurns,
                         child: const OptimusIcon(

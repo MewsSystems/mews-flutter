@@ -40,7 +40,7 @@ final Story segmentedControlStory = Story(
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: _SegmentedControlExample(
                   label: label,
                   error: error,
@@ -53,7 +53,7 @@ final Story segmentedControlStory = Story(
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: _SegmentedControlExample(
                   label: label,
                   error: error,
@@ -66,7 +66,7 @@ final Story segmentedControlStory = Story(
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: _SegmentedControlExample(
                   label: label,
                   error: error,
@@ -79,7 +79,7 @@ final Story segmentedControlStory = Story(
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: spacing100),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: _SegmentedControlExample(
                   label: label,
                   error: error,

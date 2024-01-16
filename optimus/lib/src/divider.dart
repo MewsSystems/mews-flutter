@@ -18,15 +18,16 @@ class OptimusDivider extends StatelessWidget {
   /// The direction of the divider.
   final Axis direction;
 
-  double get _verticalPadding =>
-      direction == Axis.horizontal ? spacing100 : spacing150;
+  double _getVerticalPadding(OptimusTokens tokens) =>
+      direction == Axis.horizontal ? tokens.spacing100 : tokens.spacing150;
 
-  double get _horizontalPadding =>
-      direction == Axis.horizontal ? spacing200 : spacing150;
+  double _getHorizontalPadding(OptimusTokens tokens) =>
+      direction == Axis.horizontal ? tokens.spacing200 : tokens.spacing150;
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
     final child = this.child;
     final color = theme.tokens.borderStaticSecondary;
 
@@ -45,8 +46,8 @@ class OptimusDivider extends StatelessWidget {
         if (child != null) ...[
           Padding(
             padding: EdgeInsetsDirectional.symmetric(
-              horizontal: _horizontalPadding,
-              vertical: _verticalPadding,
+              horizontal: _getHorizontalPadding(tokens),
+              vertical: _getVerticalPadding(tokens),
             ),
             child: AnimatedContainer(
               duration: themeChangeAnimationDuration,

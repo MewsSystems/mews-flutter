@@ -11,7 +11,7 @@ final Story allIconsStory = Story(
       crossAxisCount: 5,
     ),
     itemBuilder: (context, index) => Padding(
-      padding: const EdgeInsets.all(spacing100),
+      padding: const EdgeInsets.all(8),
       child: Column(
         children: [
           OptimusIcon(iconData: optimusIcons[index].data),

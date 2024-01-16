@@ -85,6 +85,12 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
   bool get _isOnTop => _spaceTop > _spaceBottom;
 
+  double get _widgetPadding => context.tokens.spacing100;
+
+  double get _screenPadding => context.tokens.spacing200;
+
+  double get _sideAlignOffset => context.tokens.spacing100;
+
   double get _spaceLeft => _savedRect.left - _widgetPadding;
 
   double get _spaceRight => _overlayWidth - _widgetPadding - _savedRect.right;
@@ -300,8 +306,5 @@ class TooltipOverlayState extends State<TooltipOverlay>
       );
 }
 
-const double _screenPadding = spacing200;
-const double _widgetPadding = spacing100;
-const double _sideAlignOffset = spacing100;
 const double _tooltipAlignOffset = 20.0;
 const Duration _animationDuration = Duration(milliseconds: 100);

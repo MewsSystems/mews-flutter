@@ -66,12 +66,15 @@ class OptimusListTile extends StatelessWidget {
   /// will be used.
   final EdgeInsets? contentPadding;
 
-  EdgeInsets get _contentPadding =>
+  EdgeInsets _getContentPadding(OptimusTokens tokens) =>
       contentPadding ??
-      const EdgeInsets.symmetric(vertical: spacing300, horizontal: spacing200);
+      EdgeInsets.symmetric(
+        vertical: tokens.spacing300,
+        horizontal: tokens.spacing200,
+      );
 
-  Widget _buildPrefix(Widget prefix) => Padding(
-        padding: const EdgeInsets.only(right: spacing100),
+  Widget _buildPrefix(OptimusTokens tokens, Widget prefix) => Padding(
+        padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
           color: OptimusTypographyColor.secondary,
           resolveStyle: (_) => preset200s,
@@ -85,8 +88,8 @@ class OptimusListTile extends StatelessWidget {
         child: info,
       );
 
-  Widget get _title => Padding(
-        padding: const EdgeInsets.only(right: spacing100),
+  Widget _getTitle(OptimusTokens tokens) => Padding(
+        padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
           resolveStyle: (_) => fontVariant.primaryStyle,
           child: title,
@@ -112,6 +115,7 @@ class OptimusListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final prefix = this.prefix;
     final info = this.info;
     final suffix = this.suffix;
@@ -120,17 +124,17 @@ class OptimusListTile extends StatelessWidget {
     return BaseListTile(
       onTap: onTap,
       content: Padding(
-        padding: _contentPadding,
+        padding: _getContentPadding(tokens),
         child: Row(
           children: <Widget>[
-            if (prefix != null) _buildPrefix(prefix),
+            if (prefix != null) _buildPrefix(tokens, prefix),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Expanded(child: _title),
+                      Expanded(child: _getTitle(tokens)),
                       if (info != null) _buildInfo(info),
                     ],
                   ),

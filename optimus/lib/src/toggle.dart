@@ -70,52 +70,56 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
       setState(() => _isPressed = isPressed);
 
   @override
-  Widget build(BuildContext context) => IgnorePointer(
-        ignoring: !_isEnabled,
-        child: GestureWrapper(
-          onHoverChanged: _handleHoveredChanged,
-          onPressedChanged: _handlePressedChanged,
-          onTap: () => widget.onChanged?.call(!widget.isChecked),
-          child: AnimatedContainer(
-            width: _toggleWidth,
-            height: _toggleHeight,
-            duration: _animationDuration,
-            padding: const EdgeInsets.all(spacing50),
-            decoration: ShapeDecoration(
-              color: _color,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(56)),
-              ),
-            ),
-            child: Stack(
-              children: [
-                if (widget.offIcon != null || widget.onChanged != null)
-                  Row(
-                    children: [
-                      _Icon(
-                        icon: widget.offIcon,
-                        isVisible: widget.isChecked,
-                        isEnabled: _isEnabled,
-                      ),
-                      const SizedBox(width: spacing50),
-                      _Icon(
-                        icon: widget.onIcon,
-                        isVisible: !widget.isChecked,
-                        isEnabled: _isEnabled,
-                      ),
-                    ],
-                  ),
-                AnimatedPositioned(
-                  duration: _animationDuration,
-                  curve: _animationCurve,
-                  left: _leftPadding,
-                  child: const _Knob(),
-                ),
-              ],
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return IgnorePointer(
+      ignoring: !_isEnabled,
+      child: GestureWrapper(
+        onHoverChanged: _handleHoveredChanged,
+        onPressedChanged: _handlePressedChanged,
+        onTap: () => widget.onChanged?.call(!widget.isChecked),
+        child: AnimatedContainer(
+          width: _toggleWidth,
+          height: _toggleHeight,
+          duration: _animationDuration,
+          padding: EdgeInsets.all(tokens.spacing50),
+          decoration: ShapeDecoration(
+            color: _color,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(56)),
             ),
           ),
+          child: Stack(
+            children: [
+              if (widget.offIcon != null || widget.onChanged != null)
+                Row(
+                  children: [
+                    _Icon(
+                      icon: widget.offIcon,
+                      isVisible: widget.isChecked,
+                      isEnabled: _isEnabled,
+                    ),
+                    SizedBox(width: tokens.spacing50),
+                    _Icon(
+                      icon: widget.onIcon,
+                      isVisible: !widget.isChecked,
+                      isEnabled: _isEnabled,
+                    ),
+                  ],
+                ),
+              AnimatedPositioned(
+                duration: _animationDuration,
+                curve: _animationCurve,
+                left: _leftPadding,
+                child: const _Knob(),
+              ),
+            ],
+          ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 class _Knob extends StatelessWidget {

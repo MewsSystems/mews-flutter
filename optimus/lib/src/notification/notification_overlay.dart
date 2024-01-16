@@ -103,6 +103,7 @@ class _OptimusNotificationsOverlayState
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final isCompact = MediaQuery.sizeOf(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 
@@ -113,10 +114,12 @@ class _OptimusNotificationsOverlayState
           children: [
             widget.child,
             Positioned(
-              left: widget.position.left(isCompact: isCompact),
-              top: widget.position.top(isCompact: isCompact),
-              right: widget.position.right(isCompact: isCompact),
-              bottom: widget.position.bottom(isCompact: isCompact),
+              left: widget.position.left(tokens: tokens, isCompact: isCompact),
+              top: widget.position.top(tokens: tokens, isCompact: isCompact),
+              right:
+                  widget.position.right(tokens: tokens, isCompact: isCompact),
+              bottom:
+                  widget.position.bottom(tokens: tokens, isCompact: isCompact),
               child: SafeArea(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: _maxWidth),
@@ -220,40 +223,44 @@ class _NoClipSizeTransition extends AnimatedWidget {
 enum OptimusNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
 
 extension on OptimusNotificationPosition {
-  double? left({required bool isCompact}) => switch (this) {
+  double? left({required OptimusTokens tokens, required bool isCompact}) =>
+      switch (this) {
         OptimusNotificationPosition.bottomLeft ||
         OptimusNotificationPosition.topLeft =>
-          isCompact ? spacing100 : spacing200,
+          isCompact ? tokens.spacing100 : tokens.spacing200,
         OptimusNotificationPosition.topRight ||
         OptimusNotificationPosition.bottomRight =>
-          isCompact ? spacing100 : null,
+          isCompact ? tokens.spacing100 : null,
       };
 
-  double? top({required bool isCompact}) => switch (this) {
+  double? top({required OptimusTokens tokens, required bool isCompact}) =>
+      switch (this) {
         OptimusNotificationPosition.topLeft ||
         OptimusNotificationPosition.topRight =>
-          isCompact ? spacing100 : spacing200,
+          isCompact ? tokens.spacing100 : tokens.spacing200,
         OptimusNotificationPosition.bottomRight ||
         OptimusNotificationPosition.bottomLeft =>
           null,
       };
 
-  double? right({required bool isCompact}) => switch (this) {
+  double? right({required OptimusTokens tokens, required bool isCompact}) =>
+      switch (this) {
         OptimusNotificationPosition.bottomRight ||
         OptimusNotificationPosition.topRight =>
-          isCompact ? spacing100 : spacing200,
+          isCompact ? tokens.spacing100 : tokens.spacing200,
         OptimusNotificationPosition.topLeft ||
         OptimusNotificationPosition.bottomLeft =>
-          isCompact ? spacing100 : null,
+          isCompact ? tokens.spacing100 : null,
       };
 
-  double? bottom({required bool isCompact}) => switch (this) {
+  double? bottom({required OptimusTokens tokens, required bool isCompact}) =>
+      switch (this) {
         OptimusNotificationPosition.topLeft ||
         OptimusNotificationPosition.topRight =>
           null,
         OptimusNotificationPosition.bottomRight ||
         OptimusNotificationPosition.bottomLeft =>
-          isCompact ? spacing100 : spacing200,
+          isCompact ? tokens.spacing100 : tokens.spacing200,
       };
 
   Tween<Offset> get slideTween => switch (this) {

@@ -28,28 +28,32 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget error;
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: message.alignment.crossAxisAlignment,
-        children: [
-          if (isDateVisible) ...[
-            const SizedBox(height: spacing200),
-            _Date(date: formatDate(message.time)),
-            const SizedBox(height: spacing200),
-          ],
-          const SizedBox(height: spacing100),
-          if (isUserNameVisible) ...[
-            Padding(
-              padding: message.alignment.horizontalPadding,
-              child: Text(message.author.username, style: preset100s),
-            ),
-            const SizedBox(height: spacing50),
-          ],
-          Padding(
-            padding: message.alignment.horizontalPadding,
-            child: _Bubble(message: message),
-          ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Column(
+      crossAxisAlignment: message.alignment.crossAxisAlignment,
+      children: [
+        if (isDateVisible) ...[
+          SizedBox(height: tokens.spacing200),
+          _Date(date: formatDate(message.time)),
+          SizedBox(height: tokens.spacing200),
         ],
-      );
+        SizedBox(height: tokens.spacing100),
+        if (isUserNameVisible) ...[
+          Padding(
+            padding: message.alignment.getHorizontalPadding(tokens),
+            child: Text(message.author.username, style: preset100s),
+          ),
+          SizedBox(height: tokens.spacing50),
+        ],
+        Padding(
+          padding: message.alignment.getHorizontalPadding(tokens),
+          child: _Bubble(message: message),
+        ),
+      ],
+    );
+  }
 }
 
 class _Date extends StatelessWidget {
@@ -97,6 +101,7 @@ class _Bubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 480),
@@ -104,11 +109,11 @@ class _Bubble extends StatelessWidget {
         borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
         color: _getBackgroundColor(theme),
       ),
-      padding: const EdgeInsets.only(
-        left: spacing100,
-        right: spacing100,
-        top: spacing50,
-        bottom: spacing100,
+      padding: EdgeInsets.only(
+        left: tokens.spacing100,
+        right: tokens.spacing100,
+        top: tokens.spacing50,
+        bottom: tokens.spacing100,
       ),
       child: Text(
         message.message,
@@ -119,11 +124,12 @@ class _Bubble extends StatelessWidget {
 }
 
 extension on MessageAlignment {
-  EdgeInsetsGeometry get horizontalPadding => switch (this) {
+  EdgeInsetsGeometry getHorizontalPadding(OptimusTokens tokens) =>
+      switch (this) {
         MessageAlignment.left =>
-          const EdgeInsets.only(left: spacing100, right: 0),
+          EdgeInsets.only(left: tokens.spacing100, right: tokens.spacing0),
         MessageAlignment.right =>
-          const EdgeInsets.only(left: 0, right: spacing100),
+          EdgeInsets.only(left: tokens.spacing0, right: tokens.spacing100),
       };
 
   CrossAxisAlignment get crossAxisAlignment => switch (this) {

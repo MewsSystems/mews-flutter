@@ -69,7 +69,7 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: spacing200),
+                  padding: EdgeInsets.only(left: context.tokens.spacing200),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,

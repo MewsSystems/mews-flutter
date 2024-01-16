@@ -34,11 +34,11 @@ class OptimusTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
     final alignment = TooltipOverlay.of(context)?.alignment ??
         _fallbackPosition.toTooltipAlignment();
-    final foregroundColor = theme.tokens.textStaticInverse;
-    final backgroundColor = theme.tokens.backgroundStaticInverse;
+    final foregroundColor = tokens.textStaticInverse;
+    final backgroundColor = tokens.backgroundStaticInverse;
 
     return Padding(
       padding: const EdgeInsets.all(_arrowHeight),
@@ -46,13 +46,13 @@ class OptimusTooltip extends StatelessWidget {
         painter: _TooltipPainter(
           color: backgroundColor,
           alignment: alignment,
-          borderRadius: Radius.circular(context.tokens.borderRadius50),
+          borderRadius: Radius.circular(tokens.borderRadius50),
         ),
         child: Container(
           width: size.maxWidth,
-          padding: const EdgeInsets.symmetric(
-            vertical: spacing50,
-            horizontal: spacing150,
+          padding: EdgeInsets.symmetric(
+            vertical: tokens.spacing50,
+            horizontal: tokens.spacing150,
           ),
           child: Material(
             color: backgroundColor,

@@ -171,7 +171,7 @@ class _OptimusSegmentedControlItemState<T>
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
 
     return LayoutBuilder(
       builder: (context, constrains) => GestureWrapper(
@@ -179,12 +179,12 @@ class _OptimusSegmentedControlItemState<T>
         onHoverChanged: _handleHoverChanged,
         onPressedChanged: _handlePressedChanged,
         child: Padding(
-          padding: const EdgeInsets.all(spacing25),
+          padding: EdgeInsets.all(tokens.spacing25),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 100),
             curve: Curves.easeOut,
             constraints: BoxConstraints(minHeight: widget.size.value),
-            padding: const EdgeInsets.symmetric(vertical: spacing50),
+            padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
             decoration: BoxDecoration(
               color: _color(tokens),
               borderRadius:
@@ -198,7 +198,7 @@ class _OptimusSegmentedControlItemState<T>
               style: preset200s.copyWith(color: _foregroundColor(tokens)),
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: constrains.adaptivePadding,
+                  horizontal: constrains.getAdaptivePadding(tokens),
                 ),
                 child: widget.child,
               ),
@@ -211,5 +211,6 @@ class _OptimusSegmentedControlItemState<T>
 }
 
 extension on BoxConstraints {
-  double get adaptivePadding => maxWidth < 300 ? spacing100 : spacing200;
+  double getAdaptivePadding(OptimusTokens tokens) =>
+      maxWidth < 300 ? tokens.spacing100 : tokens.spacing200;
 }

@@ -63,6 +63,7 @@ class StepBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
     final description = item.description;
 
     return ConstrainedBox(
@@ -72,9 +73,9 @@ class StepBarItem extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(width: _itemLeftPadding),
+            SizedBox(width: tokens.spacing100),
             _icon,
-            const SizedBox(width: spacing100),
+            SizedBox(width: tokens.spacing100),
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +101,7 @@ class StepBarItem extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: spacing200),
+            SizedBox(width: tokens.spacing200),
           ],
         ),
       ),
@@ -133,8 +134,8 @@ class StepBarItemIconIndicator extends StatelessWidget {
     final theme = OptimusTheme.of(context);
 
     return Container(
-      width: _iconWrapperSize,
-      height: _iconWrapperSize,
+      width: context.tokens.sizing500,
+      height: context.tokens.sizing500,
       decoration: BoxDecoration(shape: BoxShape.circle, color: _color(theme)),
       child: OptimusIcon(iconData: _icon, colorOption: state.iconColor),
     );
@@ -153,13 +154,14 @@ class StepBarItemNumberIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final theme = OptimusTheme.of(context);
 
     return state == OptimusStepBarItemState.completed
-        ? const SizedBox(
-            width: _iconWrapperSize,
-            height: _iconWrapperSize,
-            child: OptimusIcon(
+        ? SizedBox(
+            width: tokens.sizing500,
+            height: tokens.sizing500,
+            child: const OptimusIcon(
               iconData: OptimusIcons.done,
               colorOption: OptimusIconColorOption.primary,
             ),
@@ -168,8 +170,8 @@ class StepBarItemNumberIndicator extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Container(
-                width: _iconWrapperSize,
-                height: _iconWrapperSize,
+                width: tokens.sizing500,
+                height: tokens.sizing500,
                 decoration: state == OptimusStepBarItemState.active
                     ? BoxDecoration(
                         shape: BoxShape.circle,
@@ -211,8 +213,10 @@ class StepBarSpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
     final enabled = nextItemState.isAccessible;
     final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
+    final verticalSpacerLeftPadding = tokens.sizing500 / 2 + tokens.spacing100;
 
     return switch (layout) {
       Axis.horizontal => Flexible(
@@ -223,10 +227,10 @@ class StepBarSpacer extends StatelessWidget {
           ),
         ),
       Axis.vertical => Padding(
-          padding: const EdgeInsets.only(
-            left: _verticalSpacerLeftPadding,
-            bottom: spacing100,
-            top: spacing100,
+          padding: EdgeInsets.only(
+            left: verticalSpacerLeftPadding,
+            bottom: tokens.spacing100,
+            top: tokens.spacing100,
           ),
           child: SizedBox(
             height: _spacerHeight,
@@ -271,8 +275,5 @@ extension OptimusStepBarItemTheme on OptimusStepBarItemState {
       this == OptimusStepBarItemState.active;
 }
 
-const _iconWrapperSize = spacing500;
-const _itemLeftPadding = spacing100;
-const _verticalSpacerLeftPadding = _iconWrapperSize / 2 + _itemLeftPadding;
 const double _spacerHeight = 16;
 const double _spacerThickness = 1;

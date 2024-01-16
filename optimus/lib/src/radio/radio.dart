@@ -151,8 +151,8 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                       const SizedBox(width: _leadingSize),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: spacing25,
+                          padding: EdgeInsets.symmetric(
+                            vertical: context.tokens.spacing25,
                           ),
                           child: DefaultTextStyle.merge(
                             style: _labelStyle,
@@ -180,27 +180,30 @@ class _RadioCircle extends StatelessWidget {
   final bool isSelected;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(
-          top: spacing100,
-          bottom: spacing100,
-          right: spacing200,
-        ),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
-          width: 16,
-          height: 16,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              width:
-                  isSelected ? _selectedBorder : context.tokens.borderWidth150,
-              color: state.borderColor(context, isSelected: isSelected),
-            ),
-            color: state.circleFillColor(context),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(
+        top: tokens.spacing100,
+        bottom: tokens.spacing100,
+        right: tokens.spacing200,
+      ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        width: 16,
+        height: 16,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            width: isSelected ? _selectedBorder : context.tokens.borderWidth150,
+            color: state.borderColor(context, isSelected: isSelected),
           ),
+          color: state.circleFillColor(context),
         ),
-      );
+      ),
+    );
+  }
 }
 
 enum _RadioState { basic, hover, active, disabled }
