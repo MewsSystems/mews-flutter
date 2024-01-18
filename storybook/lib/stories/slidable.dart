@@ -26,11 +26,10 @@ class _Content extends StatelessWidget {
   Widget build(BuildContext context) => ListView.builder(
         itemBuilder: (context, i) => OptimusSlidable(
           actionsWidth: actionsWidth,
-          actions: [
+          actions: const [
             OptimusSlideAction(
               color: Colors.red,
-              onTap: () {},
-              child: const Icon(Icons.delete, color: Colors.white),
+              child: Icon(Icons.delete, color: Colors.white),
             ),
           ],
           child: ListTile(

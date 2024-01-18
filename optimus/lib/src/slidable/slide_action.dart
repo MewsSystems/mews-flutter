@@ -6,17 +6,17 @@ class OptimusSlideAction extends StatelessWidget {
     super.key,
     required this.child,
     required this.color,
-    required this.onTap,
+    this.onTap,
   });
 
   final Widget child;
   final Color color;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => CustomSlidableAction(
         backgroundColor: color,
-        onPressed: (_) => onTap(),
+        onPressed: onTap == null ? null : (_) => onTap?.call(),
         child: child,
       );
 }
