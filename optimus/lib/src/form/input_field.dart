@@ -325,11 +325,9 @@ class _ClearAllButton extends StatelessWidget {
   Widget build(BuildContext context) => GestureDetector(
         onTap: onTap,
         child: Icon(
-          OptimusIcons.clear_selection,
-          size: _iconSize,
-          color: OptimusTheme.of(context).tokens.textStaticPrimary,
+          OptimusIcons.cross_close,
+          size: context.tokens.sizing200,
+          color: context.tokens.textStaticPrimary,
         ),
       );
 }
-
-const double _iconSize = 24;
