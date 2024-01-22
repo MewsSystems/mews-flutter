@@ -1,3 +1,7 @@
+## 0.5.0+3
+
+ - **DOCS**: Update documentation (#508).
+
 ## 0.5.0+2
 
  - **FIX**: Add namespace field to build.gradle (#473).

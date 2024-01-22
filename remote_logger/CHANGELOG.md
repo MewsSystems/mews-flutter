@@ -1,3 +1,8 @@
+## 0.3.0+1
+
+ - **REFACTOR**: Fix linter errors.
+ - **REFACTOR**: Update generated files (#476).
+
 ## 0.3.0
 
 > Note: This release has breaking changes.
