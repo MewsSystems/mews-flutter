@@ -1,3 +1,20 @@
+## 0.32.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter errors.
+ - **REFACTOR**: Remove ignores for disabled rule.
+ - **REFACTOR**: Update generated files (#476).
+ - **FIX**: [DX-988] Fix text controller styles (#515).
+ - **FIX**: [DX-911] Fix disabled label style (#506).
+ - **FEAT**: Update OptimusSlidableAction (#517).
+ - **FEAT**: [DX-983] Update OptimusDateTimeField signature (#514).
+ - **FEAT**: Migrate to border width tokens (#503).
+ - **BREAKING** **FEAT**: [DX-289] Migrate to token spacing (#509).
+ - **BREAKING** **FEAT**: Migrate borderRadius to shared tokens (#498).
+ - **BREAKING** **FEAT**: [DX-775] Migrate shadows to shared tokens (#497).
+ - **BREAKING** **FEAT**: Design Tokens Update (#486).
+
 ## 0.31.0
 
 > Note: This release has breaking changes.
