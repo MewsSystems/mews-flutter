@@ -188,7 +188,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             ),
           ),
         ),
-        if (helperMessage != null)
+        if (widget.isEnabled && helperMessage != null)
           Padding(
             padding: widget.size.getHelperPadding(tokens),
             child: OptimusCaption(
@@ -198,7 +198,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
               ),
             ),
           ),
-        if (_isUsingBottomHint && _normalizedError.isNotEmpty)
+        if (widget.isEnabled &&
+            _isUsingBottomHint &&
+            _normalizedError.isNotEmpty)
           Padding(
             padding: widget.size.getErrorPadding(tokens),
             child: OptimusFieldError(
