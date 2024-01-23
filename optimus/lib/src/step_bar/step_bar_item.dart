@@ -62,7 +62,6 @@ class StepBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
     final description = item.description;
 
@@ -91,10 +90,8 @@ class StepBarItem extends StatelessWidget {
                     OptimusTypography(
                       resolveStyle: (_) => preset200s.copyWith(
                         overflow: TextOverflow.ellipsis,
-                        color: theme.isDark
-                            ? theme.colors.neutral0t64
-                            : theme.colors.neutral1000t64,
                       ),
+                      color: OptimusTypographyColor.secondary,
                       maxLines: 1,
                       child: description,
                     ),

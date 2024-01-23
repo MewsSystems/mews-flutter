@@ -142,7 +142,7 @@ class _CollapsedCompactStepBar extends StatelessWidget {
             height: _itemHeight,
             constraints: const BoxConstraints(minHeight: _itemHeight),
             decoration: BoxDecoration(
-              color: OptimusTheme.of(context).colors.neutral0,
+              color: context.tokens.borderStaticInverse,
               boxShadow: _getShadow(context.tokens),
               borderRadius:
                   BorderRadius.circular(context.tokens.borderRadius50),
@@ -429,7 +429,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
             child: Container(
               width: widget.width,
               decoration: BoxDecoration(
-                color: OptimusTheme.of(context).colors.neutral0,
+                color: tokens.backgroundStaticFlat,
                 boxShadow: context.tokens.shadow100,
                 borderRadius:
                     BorderRadius.circular(context.tokens.borderRadius50),
