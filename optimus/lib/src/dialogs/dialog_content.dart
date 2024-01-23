@@ -35,9 +35,6 @@ class DialogContent extends StatelessWidget {
 
   final ContentWrapperBuilder? contentWrapperBuilder;
 
-  Widget _divider(OptimusThemeData theme) =>
-      Divider(height: 1, color: theme.colors.neutral50);
-
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -69,7 +66,6 @@ class DialogContent extends StatelessWidget {
                           ModalRoute.of(context)?.barrierDismissible ??
                           true,
                     ),
-                  if (title != null && content != null) _divider(theme),
                   if (content != null)
                     OptimusParagraph(
                       child: _Content(
@@ -77,7 +73,6 @@ class DialogContent extends StatelessWidget {
                         contentWrapperBuilder: contentWrapperBuilder,
                       ),
                     ),
-                  if (actions.isNotEmpty) _divider(theme),
                   if (actions.isNotEmpty)
                     _Actions(
                       actions: actions,
