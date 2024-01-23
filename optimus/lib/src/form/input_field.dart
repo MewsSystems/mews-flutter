@@ -203,6 +203,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       widget.suffix != null ||
       widget.trailing != null ||
       widget.showLoader ||
+      widget.isPasswordField ||
       _shouldShowClearAllButton ||
       _shouldShowInlineError;
 
