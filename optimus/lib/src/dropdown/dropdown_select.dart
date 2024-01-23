@@ -384,18 +384,14 @@ class _ClearAllButton extends StatelessWidget {
   final GestureTapCallback? onTap;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return _CustomRawGestureDetector(
-      onTap: onTap,
-      child: Icon(
-        OptimusIcons.clear_selection,
-        size: 24,
-        color: theme.colors.neutral100,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => _CustomRawGestureDetector(
+        onTap: onTap,
+        child: Icon(
+          OptimusIcons.cross_close,
+          size: context.tokens.sizing200,
+          color: context.tokens.textStaticPrimary,
+        ),
+      );
 }
 
 class _CustomRawGestureDetector extends RawGestureDetector {
@@ -418,7 +414,5 @@ class _CustomRawGestureDetector extends RawGestureDetector {
 
 class _AllowMultipleGestureRecognizer extends TapGestureRecognizer {
   @override
-  void rejectGesture(int pointer) {
-    acceptGesture(pointer);
-  }
+  void rejectGesture(int pointer) => acceptGesture(pointer);
 }
