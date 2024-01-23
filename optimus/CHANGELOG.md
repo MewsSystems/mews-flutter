@@ -1,3 +1,11 @@
+## 0.32.1
+
+ - **FIX**: [DX-1036] Fix CompactStepBar dark style (#525).
+ - **FIX**: [DX-1032] Fix password button visibility (#522).
+ - **FEAT**: [DX-1035] Update dialog layout (#524).
+ - **FEAT**: [DX-1033] Hide helper message in disabled input (#523).
+ - **FEAT**: [DX-989] Update clear all button (#521).
+
 ## 0.32.0
 
 > Note: This release has breaking changes.
