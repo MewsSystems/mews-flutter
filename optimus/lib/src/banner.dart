@@ -212,7 +212,9 @@ class OptimusWideBanner extends StatelessWidget {
       decoration: BoxDecoration(color: _backgroundColor(theme)),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-            horizontal: 18, vertical: 10), // TODO(witwash): check with design
+          horizontal: 18,
+          vertical: 10,
+        ), // TODO(witwash): check with design
         child: Row(
           children: [
             Padding(

@@ -57,7 +57,7 @@ class OptimusIcon extends StatelessWidget {
   ///   a sense of danger or error.
   final OptimusIconColorOption? colorOption;
 
-  double getIconSize(OptimusTokens tokens) => switch (iconSize) {
+  double _getIconSize(OptimusTokens tokens) => switch (iconSize) {
         OptimusIconSize.small => tokens.sizing200,
         OptimusIconSize.medium => tokens.sizing300,
         OptimusIconSize.large => tokens.sizing400,
@@ -71,7 +71,7 @@ class OptimusIcon extends StatelessWidget {
       iconData,
       color: colorOption?.let((option) => option.toIconColor(theme)) ??
           theme.colors.defaultTextColor,
-      size: getIconSize(context.tokens),
+      size: _getIconSize(context.tokens),
     );
   }
 }
