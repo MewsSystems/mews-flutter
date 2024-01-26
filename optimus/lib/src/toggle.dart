@@ -80,8 +80,8 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
         onPressedChanged: _handlePressedChanged,
         onTap: () => widget.onChanged?.call(!widget.isChecked),
         child: AnimatedContainer(
-          width: _toggleWidth,
-          height: _toggleHeight,
+          width: tokens.sizing550,
+          height: tokens.sizing300,
           duration: _animationDuration,
           padding: EdgeInsets.all(tokens.spacing50),
           decoration: ShapeDecoration(
@@ -126,16 +126,21 @@ class _Knob extends StatelessWidget {
   const _Knob();
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        width: _iconSize,
-        height: _iconSize,
-        child: DecoratedBox(
-          decoration: ShapeDecoration(
-            color: context.tokens.backgroundStaticFlat,
-            shape: const OvalBorder(),
-          ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final knobSize = tokens.sizing200;
+
+    return SizedBox(
+      width: knobSize,
+      height: knobSize,
+      child: DecoratedBox(
+        decoration: ShapeDecoration(
+          color: context.tokens.backgroundStaticFlat,
+          shape: const OvalBorder(),
         ),
-      );
+      ),
+    );
+  }
 }
 
 class _Icon extends StatelessWidget {
@@ -150,7 +155,7 @@ class _Icon extends StatelessWidget {
         opacity: isVisible ? 1 : 0,
         child: Icon(
           icon,
-          size: _iconSize,
+          size: context.tokens.sizing200,
           color: isEnabled
               ? context.tokens.textStaticInverse
               : context.tokens.textDisabled,
@@ -160,6 +165,3 @@ class _Icon extends StatelessWidget {
 
 const Duration _animationDuration = Duration(milliseconds: 200);
 const Curve _animationCurve = Curves.fastOutSlowIn;
-const double _iconSize = 16;
-const double _toggleWidth = 44;
-const double _toggleHeight = 24;

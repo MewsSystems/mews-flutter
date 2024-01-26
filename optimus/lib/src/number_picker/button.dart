@@ -23,10 +23,10 @@ class NumberPickerButton extends StatelessWidget {
         onTap: onPressed,
         child: Icon(
           iconData,
-          color: theme.isDark
+          color: theme.isDark // TODO(witwash): replace with tokens
               ? theme.colors.neutral0
               : theme.colors.neutral1000t64,
-          size: 24,
+          size: context.tokens.sizing300,
         ),
       ),
     );

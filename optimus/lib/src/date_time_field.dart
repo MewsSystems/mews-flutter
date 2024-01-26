@@ -100,7 +100,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
           onTap: _handleTap,
           child: Icon(
             OptimusIcons.calendar,
-            size: 20,
+            size: tokens.fontSize300,
             color: _iconColor,
           ),
         ),

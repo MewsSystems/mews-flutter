@@ -31,11 +31,13 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
           .map(
             (e) => IgnorePointer(
               child: Container(
-                height: widget.size.value,
+                height: widget.size.getValue(tokens),
                 width: maxWidth / widget.listSize,
                 decoration: BoxDecoration(
                   border: Border(
-                    right: BorderSide(color: theme.colors.neutral100),
+                    right: BorderSide(
+                      color: theme.colors.neutral100,
+                    ), // TODO(witwash): replace with tokens
                   ),
                 ),
               ),
@@ -100,11 +102,13 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
         builder: (context, constraints) => Stack(
           children: [
             Container(
-              height: widget.size.value,
+              height: widget.size.getValue(tokens),
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.circular(context.tokens.borderRadius50),
-                border: Border.all(color: theme.colors.neutral100),
+                border: Border.all(
+                  color: theme.colors.neutral100,
+                ), // TODO(witwash): replace with tokens
               ),
               child: widget.child,
             ),
@@ -114,7 +118,7 @@ class _BorderWrapperState extends State<BorderWrapper> with ThemeGetter {
               child: IgnorePointer(
                 child: Container(
                   width: _width(constraints.maxWidth),
-                  height: widget.size.value,
+                  height: widget.size.getValue(tokens),
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: _borderRadius,

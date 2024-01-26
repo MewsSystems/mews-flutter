@@ -57,6 +57,12 @@ class OptimusIcon extends StatelessWidget {
   ///   a sense of danger or error.
   final OptimusIconColorOption? colorOption;
 
+  double getIconSize(OptimusTokens tokens) => switch (iconSize) {
+        OptimusIconSize.small => tokens.sizing200,
+        OptimusIconSize.medium => tokens.sizing300,
+        OptimusIconSize.large => tokens.sizing400,
+      };
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -65,15 +71,9 @@ class OptimusIcon extends StatelessWidget {
       iconData,
       color: colorOption?.let((option) => option.toIconColor(theme)) ??
           theme.colors.defaultTextColor,
-      size: _iconSize,
+      size: getIconSize(context.tokens),
     );
   }
-
-  double get _iconSize => switch (iconSize) {
-        OptimusIconSize.small => 16,
-        OptimusIconSize.medium => 24,
-        OptimusIconSize.large => 32,
-      };
 }
 
 /// Icons are symbols that provide a visual representation of meaning in
@@ -120,7 +120,7 @@ class OptimusSupplementaryIcon extends StatelessWidget {
       child: Icon(
         iconData,
         color: colorOption.toSupplementaryIconColor(theme),
-        size: 32,
+        size: context.tokens.sizing400,
       ),
     );
   }

@@ -106,8 +106,10 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
 
   Icon get _icon => Icon(
         _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
-        size: 24,
-        color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
+        size: tokens.sizing300,
+        color: theme.isDark
+            ? theme.colors.neutral0
+            : theme.colors.neutral400, // TODO(witwash): replace with tokens
       );
 
   TextStyle get _textStyle {
@@ -148,7 +150,7 @@ class _SelectedValue extends StatelessWidget {
         padding:
             EdgeInsets.only(left: tokens.spacing200, right: tokens.spacing100),
         child: SizedBox(
-          height: size.value,
+          height: size.getValue(tokens),
           child: DefaultTextStyle(style: textStyle, child: child),
         ),
       ),

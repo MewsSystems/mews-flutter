@@ -52,7 +52,9 @@ Future<T?> showOptimusDialog<T>({
       ),
       barrierDismissible: isDismissible,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: OptimusTheme.of(context).colors.neutral1000t64,
+      barrierColor: OptimusTheme.of(context)
+          .colors
+          .neutral1000t64, // TODO(witwash): migrate to tokens
       transitionDuration: const Duration(milliseconds: 150),
       transitionBuilder: (_, animation, __, child) => FadeTransition(
         opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),

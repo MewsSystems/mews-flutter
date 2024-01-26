@@ -31,14 +31,14 @@ class OptimusTab extends StatelessWidget {
           if (icon != null)
             Padding(
               padding: EdgeInsets.only(right: tokens.spacing50),
-              child: Icon(icon, size: 16),
+              child: Icon(icon, size: tokens.sizing200),
             ),
           Text(label, overflow: TextOverflow.ellipsis),
           if (badge case final badge?)
             Padding(
               padding: EdgeInsets.only(left: tokens.spacing50),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 32),
+                constraints: BoxConstraints(maxWidth: tokens.sizing400),
                 child: BaseBadge(text: badge, outline: false),
               ),
             ),

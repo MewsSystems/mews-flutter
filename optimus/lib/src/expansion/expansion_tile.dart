@@ -144,8 +144,9 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
   Widget build(BuildContext context) {
     final bool closed = !_isExpanded && _controller.isDismissed;
     final theme = OptimusTheme.of(context);
-    final textColor =
-        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
+    final textColor = theme.isDark
+        ? theme.colors.neutral0
+        : theme.colors.neutral1000; // TODO(witwash): replace with tokens
 
     return AnimatedBuilder(
       animation: _controller.view,

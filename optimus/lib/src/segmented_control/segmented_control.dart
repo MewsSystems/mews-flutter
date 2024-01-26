@@ -183,7 +183,8 @@ class _OptimusSegmentedControlItemState<T>
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 100),
             curve: Curves.easeOut,
-            constraints: BoxConstraints(minHeight: widget.size.value),
+            constraints:
+                BoxConstraints(minHeight: widget.size.getValue(tokens)),
             padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
             decoration: BoxDecoration(
               color: _color(tokens),

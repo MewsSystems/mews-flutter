@@ -68,13 +68,14 @@ class _DropdownContent<T> extends StatelessWidget {
   final Grouper<T>? groupBy;
   final GroupBuilder? groupBuilder;
 
-  // TODO(VG): can be changed when final dark theme design is ready.
   BoxDecoration _dropdownDecoration(BuildContext context) {
     final theme = OptimusTheme.of(context);
 
     return BoxDecoration(
       borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
-      color: theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
+      color: theme.isDark
+          ? theme.colors.neutral500
+          : theme.colors.neutral0, // TODO(witwash): to tokens
       boxShadow: context.tokens.shadow200,
     );
   }
@@ -417,6 +418,7 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
   }
 }
 
-const _embeddedSearchHeight = 61.0;
+const _embeddedSearchHeight =
+    61.0; // TODO(witwash): calculate to avoid problems with tokens
 const _groupMinHeight = 28.0;
 const _itemMinHeight = 69.0;

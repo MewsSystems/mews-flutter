@@ -33,7 +33,8 @@ class OptimusIconList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: items.length,
       itemBuilder: (_, index) => _ListTile(item: items[index], size: size),
-      separatorBuilder: (context, index) => const SizedBox(height: 16),
+      separatorBuilder: (context, index) =>
+          SizedBox(height: context.tokens.sizing200),
     );
   }
 
@@ -102,12 +103,13 @@ class _ListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final description = item.description;
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Row(
       children: [
         OptimusIcon(iconData: item.iconData, colorOption: item.colorOption),
         Padding(
-          padding: const EdgeInsets.only(left: 16),
+          padding: EdgeInsets.only(left: tokens.spacing200),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -50,7 +50,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
     return TextButton(
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(
-          Size(widget.minWidth ?? 0, widget.size.value),
+          Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
         ),
         shape: MaterialStateProperty.resolveWith(
           (states) {
@@ -135,8 +135,8 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
       widget.size == OptimusWidgetSize.small ? preset200b : preset300b;
 
   double get _iconSize => switch (widget.size) {
-        OptimusWidgetSize.small => 16,
-        OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
+        OptimusWidgetSize.small => tokens.sizing200,
+        OptimusWidgetSize.medium || OptimusWidgetSize.large => tokens.sizing300,
       };
 
   @override
@@ -226,7 +226,7 @@ class _Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: 16,
+        height: context.tokens.sizing200,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(context.tokens.borderRadius200),
           child: ColoredBox(

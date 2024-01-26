@@ -1,9 +1,11 @@
+import 'package:optimus/src/theme/optimus_tokens.dart';
+
 enum OptimusWidgetSize { small, medium, large }
 
 extension Value on OptimusWidgetSize {
-  double get value => switch (this) {
-        OptimusWidgetSize.small => 32,
-        OptimusWidgetSize.medium => 40,
-        OptimusWidgetSize.large => 48,
+  double getValue(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing400,
+        OptimusWidgetSize.medium => tokens.sizing500,
+        OptimusWidgetSize.large => tokens.sizing600,
       };
 }

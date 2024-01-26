@@ -38,20 +38,21 @@ class DialogContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
     final title = this.title;
     final content = this.content;
 
     return Container(
       margin: margin,
       child: Padding(
-        padding: EdgeInsets.all(spacing ?? 0),
+        padding: EdgeInsets.all(spacing ?? tokens.spacing0),
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxWidth),
           child: OptimusCard(
             variant: OptimusBasicCardVariant.overlay,
             padding: OptimusCardSpacing.spacing0,
             child: Material(
-              color: theme.isDark
+              color: theme.isDark // TODO(witwash): replace with tokens
                   ? theme.colors.neutral500
                   : theme.colors.neutral0,
               child: Column(

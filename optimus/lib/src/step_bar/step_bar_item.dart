@@ -120,7 +120,7 @@ class StepBarItemIconIndicator extends StatelessWidget {
 
   Color _color(OptimusThemeData theme) =>
       state == OptimusStepBarItemState.active
-          ? theme.colors.primary500t8
+          ? theme.colors.primary500t8 // TODO(witwash): replace with tokens
           : Colors.transparent;
 
   IconData get _icon =>
@@ -153,6 +153,7 @@ class StepBarItemNumberIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final theme = OptimusTheme.of(context);
+    final iconSize = tokens.sizing300;
 
     return state == OptimusStepBarItemState.completed
         ? SizedBox(
@@ -177,8 +178,8 @@ class StepBarItemNumberIndicator extends StatelessWidget {
                     : null,
               ),
               Container(
-                width: 24,
-                height: 24,
+                width: iconSize,
+                height: iconSize,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: state.iconBackgroundColor(theme),
@@ -218,7 +219,7 @@ class StepBarSpacer extends StatelessWidget {
     return switch (layout) {
       Axis.horizontal => Flexible(
           child: Container(
-            constraints: const BoxConstraints(minWidth: spacerMinWidth),
+            constraints: BoxConstraints(minWidth: tokens.sizing200),
             height: _spacerThickness,
             color: color,
           ),
@@ -230,7 +231,7 @@ class StepBarSpacer extends StatelessWidget {
             top: tokens.spacing100,
           ),
           child: SizedBox(
-            height: _spacerHeight,
+            height: tokens.sizing200,
             width: _spacerThickness,
             child: Container(color: color),
           ),
@@ -272,5 +273,4 @@ extension OptimusStepBarItemTheme on OptimusStepBarItemState {
       this == OptimusStepBarItemState.active;
 }
 
-const double _spacerHeight = 16;
 const double _spacerThickness = 1;

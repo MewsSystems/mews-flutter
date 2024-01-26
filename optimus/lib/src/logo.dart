@@ -59,10 +59,16 @@ class OptimusMewsLogo extends StatelessWidget {
   final OptimusMewsLogoColorVariant colorVariant;
   final OptimusMewsLogoAlignVariant alignVariant;
 
-  double get _size => switch (sizeVariant) {
-        OptimusMewsLogoSizeVariant.large => 24,
-        OptimusMewsLogoSizeVariant.medium => 16,
-        OptimusMewsLogoSizeVariant.small => 8,
+  double _getSize(OptimusTokens tokens) => switch (sizeVariant) {
+        OptimusMewsLogoSizeVariant.large => tokens.sizing300,
+        OptimusMewsLogoSizeVariant.medium => tokens.sizing200,
+        OptimusMewsLogoSizeVariant.small => tokens.sizing100,
+      };
+
+  double _getPadding(OptimusTokens tokens) => switch (sizeVariant) {
+        OptimusMewsLogoSizeVariant.large => tokens.sizing300,
+        OptimusMewsLogoSizeVariant.medium => tokens.sizing200,
+        OptimusMewsLogoSizeVariant.small => tokens.sizing100,
       };
 
   Color get _color => switch (colorVariant) {
@@ -70,33 +76,41 @@ class OptimusMewsLogo extends StatelessWidget {
         OptimusMewsLogoColorVariant.white => Colors.white,
       };
 
-  EdgeInsets get _margin => switch (alignVariant) {
-        OptimusMewsLogoAlignVariant.topLeft =>
-          EdgeInsets.only(bottom: _size, right: _size),
-        OptimusMewsLogoAlignVariant.topCenter =>
-          EdgeInsets.fromLTRB(_size, 0, _size, _size),
-        OptimusMewsLogoAlignVariant.center => EdgeInsets.all(_size),
-      };
+  EdgeInsets _getMargin(OptimusTokens tokens) {
+    final padding = _getPadding(tokens);
+
+    return switch (alignVariant) {
+      OptimusMewsLogoAlignVariant.topLeft =>
+        EdgeInsets.only(bottom: padding, right: padding),
+      OptimusMewsLogoAlignVariant.topCenter =>
+        EdgeInsets.fromLTRB(padding, 0, padding, padding),
+      OptimusMewsLogoAlignVariant.center => EdgeInsets.all(padding),
+    };
+  }
 
   @override
-  Widget build(BuildContext context) => Container(
-        margin: _margin,
-        child: switch (logoVariant) {
-          OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
-              OptimusIcons.mews_logo,
-              size: _size,
-              color: _color,
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Container(
+      margin: _getMargin(tokens),
+      child: switch (logoVariant) {
+        OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
+            OptimusIcons.mews_logo,
+            size: _getSize(tokens),
+            color: _color,
+          ),
+        OptimusMewsLogoVariant.wordmark => SizedBox(
+            height: _getSize(tokens),
+            child: SvgPicture.asset(
+              _logoPath,
+              package: _packageName,
+              colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
             ),
-          OptimusMewsLogoVariant.wordmark => SizedBox(
-              height: _size,
-              child: SvgPicture.asset(
-                _logoPath,
-                package: _packageName,
-                colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
-              ),
-            ),
-        },
-      );
+          ),
+      },
+    );
+  }
 }
 
 /// Copy of Flutter Icon, but it does not limit icon shape to square.
