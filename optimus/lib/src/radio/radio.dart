@@ -118,7 +118,6 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
     final leadingSize = tokens.spacing400;
 
     return GroupWrapper(
@@ -200,7 +199,7 @@ class _RadioCircle extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            width: isSelected ? _selectedBorder : context.tokens.borderWidth150,
+            width: isSelected ? _selectedBorder : tokens.borderWidth150,
             color: state.borderColor(context, isSelected: isSelected),
           ),
           color: state.circleFillColor(context),

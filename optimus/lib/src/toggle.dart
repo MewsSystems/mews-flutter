@@ -135,7 +135,7 @@ class _Knob extends StatelessWidget {
       height: knobSize,
       child: DecoratedBox(
         decoration: ShapeDecoration(
-          color: context.tokens.backgroundStaticFlat,
+          color: tokens.backgroundStaticFlat,
           shape: const OvalBorder(),
         ),
       ),
@@ -151,16 +151,18 @@ class _Icon extends StatelessWidget {
   final IconData? icon;
 
   @override
-  Widget build(BuildContext context) => Opacity(
-        opacity: isVisible ? 1 : 0,
-        child: Icon(
-          icon,
-          size: context.tokens.sizing200,
-          color: isEnabled
-              ? context.tokens.textStaticInverse
-              : context.tokens.textDisabled,
-        ),
-      );
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Opacity(
+      opacity: isVisible ? 1 : 0,
+      child: Icon(
+        icon,
+        size: tokens.sizing200,
+        color: isEnabled ? tokens.textStaticInverse : tokens.textDisabled,
+      ),
+    );
+  }
 }
 
 const Duration _animationDuration = Duration(milliseconds: 200);

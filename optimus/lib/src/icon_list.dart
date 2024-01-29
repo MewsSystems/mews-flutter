@@ -34,7 +34,7 @@ class OptimusIconList extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (_, index) => _ListTile(item: items[index], size: size),
       separatorBuilder: (context, index) =>
-          SizedBox(height: context.tokens.sizing200),
+          SizedBox(height: context.tokens.spacing200),
     );
   }
 

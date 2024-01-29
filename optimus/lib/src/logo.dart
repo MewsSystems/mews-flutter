@@ -66,9 +66,9 @@ class OptimusMewsLogo extends StatelessWidget {
       };
 
   double _getPadding(OptimusTokens tokens) => switch (sizeVariant) {
-        OptimusMewsLogoSizeVariant.large => tokens.sizing300,
-        OptimusMewsLogoSizeVariant.medium => tokens.sizing200,
-        OptimusMewsLogoSizeVariant.small => tokens.sizing100,
+        OptimusMewsLogoSizeVariant.large => tokens.spacing300,
+        OptimusMewsLogoSizeVariant.medium => tokens.spacing200,
+        OptimusMewsLogoSizeVariant.small => tokens.spacing100,
       };
 
   Color get _color => switch (colorVariant) {
