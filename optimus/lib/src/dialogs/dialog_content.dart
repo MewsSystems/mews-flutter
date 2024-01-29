@@ -136,7 +136,7 @@ class _Title extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(tokens.spacing200),
-            child: OptimusSubsectionTitle(child: title),
+            child: OptimusTitleSmall(child: title),
           ),
         ),
         if (isDismissible)

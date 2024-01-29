@@ -22,7 +22,7 @@ final Story iconStory = Story(
       children: OptimusIconColorOption.values
           .map(
             (c) => OptimusListTile(
-              title: OptimusSubsectionTitle(
+              title: OptimusTitleSmall(
                 child: Text(c.name.toUpperCase()),
               ),
               prefix: OptimusIcon(
@@ -51,7 +51,7 @@ final Story supplementaryIconStory = Story(
       children: OptimusIconColorOption.values
           .map(
             (c) => OptimusListTile(
-              title: OptimusSubsectionTitle(
+              title: OptimusTitleSmall(
                 child: Text(c.name.toUpperCase()),
               ),
               prefix: OptimusSupplementaryIcon(

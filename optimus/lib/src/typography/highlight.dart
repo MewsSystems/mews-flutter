@@ -9,10 +9,10 @@ import 'package:optimus/src/typography/typography.dart';
 /// such as price or dates.
 /// {@endtemplate}
 ///
-/// [OptimusHighlightMajor] - The highest form of emphasis. Use sporadically
+/// [OptimusHighlightLarge] - The highest form of emphasis. Use sporadically
 /// for maximum impact.
-class OptimusHighlightMajor extends StatelessWidget {
-  const OptimusHighlightMajor({
+class OptimusHighlightLarge extends StatelessWidget {
+  const OptimusHighlightLarge({
     super.key,
     this.align,
     required this.child,
@@ -35,10 +35,10 @@ class OptimusHighlightMajor extends StatelessWidget {
 
 /// {@macro optimus.typography.highlight}
 ///
-/// [OptimusHighlightModerate] - Medium level of emphasis. Used without
+/// [OptimusHighlightMedium] - Medium level of emphasis. Used without
 /// limitations across the page.
-class OptimusHighlightModerate extends StatelessWidget {
-  const OptimusHighlightModerate({
+class OptimusHighlightMedium extends StatelessWidget {
+  const OptimusHighlightMedium({
     super.key,
     this.align,
     required this.child,
@@ -61,10 +61,10 @@ class OptimusHighlightModerate extends StatelessWidget {
 
 /// {@macro optimus.typography.highlight}
 ///
-/// [OptimusHighlightMinor] - Low level of emphasis. Used without limitations
+/// [OptimusHighlightSmall] - Low level of emphasis. Used without limitations
 /// across the page.
-class OptimusHighlightMinor extends StatelessWidget {
-  const OptimusHighlightMinor({
+class OptimusHighlightSmall extends StatelessWidget {
+  const OptimusHighlightSmall({
     super.key,
     this.align,
     required this.child,

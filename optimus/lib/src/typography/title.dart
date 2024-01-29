@@ -8,9 +8,9 @@ import 'package:optimus/src/typography/typography.dart';
 /// essential information quickly.
 /// {@endtemplate}
 ///
-/// [OptimusPageTitle] - is used only once per page (with exceptions).
-class OptimusPageTitle extends StatelessWidget {
-  const OptimusPageTitle({
+/// [OptimusTitleLarge] - is used only once per page (with exceptions).
+class OptimusTitleLarge extends StatelessWidget {
+  const OptimusTitleLarge({
     super.key,
     this.align,
     required this.child,
@@ -32,9 +32,9 @@ class OptimusPageTitle extends StatelessWidget {
 
 /// {@macro optimus.typography.title}
 ///
-/// [OptimusSectionTitle] - is used to divide individual sections of the page.
-class OptimusSectionTitle extends StatelessWidget {
-  const OptimusSectionTitle({
+/// [OptimusTitleMedium] - is used to divide individual sections of the page.
+class OptimusTitleMedium extends StatelessWidget {
+  const OptimusTitleMedium({
     super.key,
     this.align,
     required this.child,
@@ -56,10 +56,10 @@ class OptimusSectionTitle extends StatelessWidget {
 
 /// {@macro optimus.typography.title}
 ///
-/// [OptimusSubsectionTitle] is used to further divide a specific section
+/// [OptimusTitleSmall] is used to further divide a specific section
 /// into subsections.
-class OptimusSubsectionTitle extends StatelessWidget {
-  const OptimusSubsectionTitle({
+class OptimusTitleSmall extends StatelessWidget {
+  const OptimusTitleSmall({
     super.key,
     this.align,
     required this.child,
@@ -73,7 +73,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.titleSmallStrong,
+        resolveStyle: (_) => context.tokens.titleSmall,
         align: align,
         child: child,
       );

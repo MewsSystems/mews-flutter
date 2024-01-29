@@ -19,22 +19,22 @@ final Story titleStory = Story(
         spacing: OptimusStackSpacing.spacing200,
         mainAxisSize: MainAxisSize.min,
         children: [
-          OptimusPageTitle(
+          OptimusTitleLarge(
             align: align,
             child: Text(
-              k.text(label: 'Page Title', initial: 'Page Title'),
+              k.text(label: 'Large Title', initial: 'Large Title'),
             ),
           ),
-          OptimusSectionTitle(
+          OptimusTitleMedium(
             align: align,
             child: Text(
-              k.text(label: 'Section Title', initial: 'Section Title'),
+              k.text(label: 'Medium Title', initial: 'Medium Title'),
             ),
           ),
-          OptimusSubsectionTitle(
+          OptimusTitleSmall(
             align: align,
             child: Text(
-              k.text(label: 'Subsection Title', initial: 'Subsection Title'),
+              k.text(label: 'Small Title', initial: 'Small Title'),
             ),
           ),
           OptimusSubtitle(

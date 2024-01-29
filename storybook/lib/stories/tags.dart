@@ -24,7 +24,7 @@ final Story tagStory = Story(
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const OptimusSectionTitle(child: Text('Semantic')),
+        const OptimusTitleMedium(child: Text('Semantic')),
         Wrap(
           children: OptimusColorOption.values
               .map(
@@ -42,7 +42,7 @@ final Story tagStory = Story(
               .toList(),
         ),
         const SizedBox(height: 20),
-        const OptimusSectionTitle(child: Text('Categorical')),
+        const OptimusTitleMedium(child: Text('Categorical')),
         Wrap(
           children: OptimusCategoricalColorOption.values
               .map(

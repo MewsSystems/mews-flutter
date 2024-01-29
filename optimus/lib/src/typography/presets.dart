@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
 /// To make the overall experience convenient and useful.
@@ -17,12 +18,10 @@ enum _Scale {
   light,
 }
 
-extension on Breakpoint {
-  _Scale get scale => switch (this) {
-        Breakpoint.extraSmall ||
-        Breakpoint.small ||
-        Breakpoint.medium =>
-          _Scale.dense,
-        Breakpoint.large || Breakpoint.extraLarge => _Scale.light,
+extension Scaled on Breakpoint {
+  TextStyle getScaled({required TextStyle dense, required TextStyle light}) =>
+      switch (this) {
+        Breakpoint.extraSmall || Breakpoint.small || Breakpoint.medium => dense,
+        Breakpoint.large || Breakpoint.extraLarge => light,
       };
 }
