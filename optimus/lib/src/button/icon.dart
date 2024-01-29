@@ -62,8 +62,8 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
         onPressedChanged: _handlePressedChanged,
         onTap: widget.onPressed,
         child: AnimatedContainer(
-          height: widget.size.containerSize,
-          width: widget.size.containerSize,
+          height: widget.size.getContainerSize(tokens),
+          width: widget.size.getContainerSize(tokens),
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
             color: widget.variant.backgroundColor(
@@ -89,7 +89,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
                 isPressed: _isPressed,
                 isHovered: _isHovered,
               ),
-              size: widget.size.iconSize,
+              size: widget.size.getIconSize(tokens),
             ),
             child: widget.icon,
           ),
@@ -100,14 +100,14 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 }
 
 extension on OptimusWidgetSize {
-  double get containerSize => switch (this) {
-        OptimusWidgetSize.small => 32,
-        OptimusWidgetSize.medium => 40,
-        OptimusWidgetSize.large => 48,
+  double getContainerSize(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing400,
+        OptimusWidgetSize.medium => tokens.sizing500,
+        OptimusWidgetSize.large => tokens.sizing600,
       };
 
-  double get iconSize => switch (this) {
-        OptimusWidgetSize.small => 16,
-        OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
+  double getIconSize(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing200,
+        OptimusWidgetSize.medium || OptimusWidgetSize.large => tokens.sizing300,
       };
 }

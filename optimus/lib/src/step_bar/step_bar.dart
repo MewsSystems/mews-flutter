@@ -91,7 +91,7 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
-          final totalSpacerWidth = (widget.items.length - 1) * spacerMinWidth;
+          final totalSpacerWidth = (widget.items.length - 1) * tokens.sizing200;
           final totalFreeSpace =
               (constraints.maxWidth - totalSpacerWidth) / widget.items.length;
           final maxItemWidth = max(totalFreeSpace, itemMinWidth);

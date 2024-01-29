@@ -23,12 +23,13 @@ class BaseBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasText = text.isNotEmpty;
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
     final backgroundColor = this.backgroundColor ?? tokens.backgroundAccent;
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
     final outlineSize = tokens.borderWidth200;
-    final bareHeight = text.isEmpty ? tokens.spacing100 : _badgeHeight;
+    final badgeHeight = tokens.sizing200;
+    final bareHeight = text.isEmpty ? tokens.spacing100 : badgeHeight;
     final outlinedHeight = bareHeight + outlineSize * 2;
     final height = outline ? outlinedHeight : bareHeight;
 
@@ -57,7 +58,7 @@ class BaseBadge extends StatelessWidget {
 
     return Container(
       constraints: BoxConstraints(
-        minWidth: hasText ? _badgeHeight : height,
+        minWidth: hasText ? badgeHeight : height,
         maxWidth: hasText ? double.infinity : height,
       ),
       height: height,
@@ -70,5 +71,3 @@ class BaseBadge extends StatelessWidget {
     );
   }
 }
-
-const _badgeHeight = 16.0;

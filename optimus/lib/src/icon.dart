@@ -57,6 +57,12 @@ class OptimusIcon extends StatelessWidget {
   ///   a sense of danger or error.
   final OptimusIconColorOption? colorOption;
 
+  double _getIconSize(OptimusTokens tokens) => switch (iconSize) {
+        OptimusIconSize.small => tokens.sizing200,
+        OptimusIconSize.medium => tokens.sizing300,
+        OptimusIconSize.large => tokens.sizing400,
+      };
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -65,15 +71,9 @@ class OptimusIcon extends StatelessWidget {
       iconData,
       color: colorOption?.let((option) => option.toIconColor(theme)) ??
           theme.colors.defaultTextColor,
-      size: _iconSize,
+      size: _getIconSize(context.tokens),
     );
   }
-
-  double get _iconSize => switch (iconSize) {
-        OptimusIconSize.small => 16,
-        OptimusIconSize.medium => 24,
-        OptimusIconSize.large => 32,
-      };
 }
 
 /// Icons are symbols that provide a visual representation of meaning in
@@ -108,7 +108,8 @@ class OptimusSupplementaryIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final theme = context.theme;
+    final tokens = context.tokens;
 
     return Container(
       width: _diameter,
@@ -120,7 +121,7 @@ class OptimusSupplementaryIcon extends StatelessWidget {
       child: Icon(
         iconData,
         color: colorOption.toSupplementaryIconColor(theme),
-        size: 32,
+        size: tokens.sizing400,
       ),
     );
   }
@@ -128,8 +129,9 @@ class OptimusSupplementaryIcon extends StatelessWidget {
 
 extension on OptimusIconColorOption {
   Color toIconColor(OptimusThemeData theme) => switch (this) {
-        OptimusIconColorOption.basic =>
-          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral500,
+        OptimusIconColorOption.basic => theme.isDark
+            ? theme.colors.neutral0
+            : theme.colors.neutral500, // TODO(witwash): to tokenss
         OptimusIconColorOption.primary => theme.colors.primary500,
         OptimusIconColorOption.success => theme.colors.success500,
         OptimusIconColorOption.info => theme.colors.info500,

@@ -20,7 +20,7 @@ class OptimusFieldLabel extends StatelessWidget {
     final color = isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 2),
+      padding: EdgeInsets.only(bottom: tokens.spacing25),
       child: OptimusLabel(
         variation: Variation.variationSecondary,
         child: Text(

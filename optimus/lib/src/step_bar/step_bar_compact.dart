@@ -437,7 +437,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: tokens.spacing100,
-                  vertical: _verticalSpacing,
+                  vertical: tokens.spacing150,
                 ),
                 child: Stack(
                   children: [
@@ -489,4 +489,3 @@ class _StepBarData extends InheritedWidget {
 }
 
 const double _itemHeight = 66;
-const double _verticalSpacing = 12;

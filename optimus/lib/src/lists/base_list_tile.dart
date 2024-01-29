@@ -20,8 +20,9 @@ class BaseListTile extends StatelessWidget {
       decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
       constraints: BoxConstraints(minHeight: context.tokens.spacing700),
       child: InkWell(
-        highlightColor:
-            theme.isDark ? theme.colors.neutral300 : theme.colors.neutral50,
+        highlightColor: theme.isDark
+            ? theme.colors.neutral300
+            : theme.colors.neutral50, // TODO(witwash): replace with tokens
         hoverColor:
             theme.isDark ? theme.colors.neutral400 : theme.colors.neutral25,
         onTap: onTap,

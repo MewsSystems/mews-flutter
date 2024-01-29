@@ -81,7 +81,9 @@ class InlineErrorTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusTooltipWrapper(
         text: Text(error),
-        child:
-            Icon(OptimusIcons.error_circle, color: context.theme.colors.danger),
+        child: Icon(
+          OptimusIcons.error_circle,
+          color: context.theme.colors.danger,
+        ), // TODO(witwash): replace with tokens
       );
 }

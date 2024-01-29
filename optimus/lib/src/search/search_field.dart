@@ -119,8 +119,9 @@ class OptimusSearch<T> extends StatelessWidget {
   /// {@macro optimus.select.groupBuilder}
   final GroupBuilder? groupBuilder;
 
-  Color _iconColor(OptimusThemeData theme) =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
+  Color _iconColor(OptimusThemeData theme) => theme.isDark
+      ? theme.colors.neutral0
+      : theme.colors.neutral1000t64; // TODO(witwash): replace with tokens
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +142,7 @@ class OptimusSearch<T> extends StatelessWidget {
       trailing: trailing,
       trailingImplicit: Icon(
         OptimusIcons.search,
-        size: 24,
+        size: context.tokens.sizing300,
         color: _iconColor(theme),
       ),
       caption: caption,

@@ -122,7 +122,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
           child: Focus(
             focusNode: _node,
             child: SizedBox(
-              height: widget.size.value,
+              height: widget.size.getValue(tokens),
               child: AnimatedContainer(
                 padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
                 key: _selectFieldKey,
@@ -143,7 +143,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                   children: [
                     if (child != null)
                       Padding(
-                        padding: const EdgeInsets.only(right: 12),
+                        padding: EdgeInsets.only(right: tokens.spacing150),
                         child: DefaultTextStyle.merge(
                           style: _labelStyle,
                           child: child,
@@ -153,7 +153,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                       turns: _iconTurns,
                       child: Icon(
                         OptimusIcons.chevron_down,
-                        size: widget.size.iconSize,
+                        size: widget.size.getIconSize(tokens),
                         color: _textColor,
                       ),
                     ),
@@ -171,8 +171,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 const double _dropdownWidth = 280;
 
 extension on OptimusWidgetSize {
-  double get iconSize => switch (this) {
-        OptimusWidgetSize.small => 16,
-        OptimusWidgetSize.medium || OptimusWidgetSize.large => 24,
+  double getIconSize(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing200,
+        OptimusWidgetSize.medium || OptimusWidgetSize.large => tokens.sizing300,
       };
 }

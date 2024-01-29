@@ -207,10 +207,11 @@ class _NotificationContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final theme = context.theme;
+    final tokens = context.tokens;
     final body = this.body;
     final link = this.link;
-    final tokens = context.tokens;
+    final leadingSectionWidth = tokens.sizing300 + tokens.spacing100 * 2;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -223,7 +224,7 @@ class _NotificationContent extends StatelessWidget {
             left: tokens.spacing0,
             bottom: tokens.spacing0,
             top: tokens.spacing0,
-            width: _leadingSectionWidth,
+            width: leadingSectionWidth,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: variant.getBannerColor(theme),
@@ -236,7 +237,7 @@ class _NotificationContent extends StatelessWidget {
           ),
           Row(
             children: [
-              const SizedBox(width: _leadingSectionWidth),
+              SizedBox(width: leadingSectionWidth),
               Expanded(
                 child: Container(
                   padding: _getContentPadding(tokens),
@@ -288,15 +289,14 @@ class _LeadingIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: _iconHorizontalPadding,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
       child: Icon(
         icon ?? variant.bannerIcon,
         color: variant.getBannerIconColor(theme),
-        size: _iconSize,
+        size: context.tokens.sizing300,
       ),
     );
   }
@@ -323,8 +323,9 @@ class _NotificationCloseButton extends StatelessWidget {
           padding: EdgeInsets.all(tokens.spacing100),
           child: Icon(
             OptimusIcons.cross_close,
-            color: theme.colors.neutral500,
-            size: _closeIconSize,
+            color:
+                theme.colors.neutral500, // TODO(witwash): replace with tokens
+            size: tokens.sizing200,
           ),
         ),
       ),
@@ -334,7 +335,8 @@ class _NotificationCloseButton extends StatelessWidget {
 
 extension on OptimusNotificationVariant {
   Color getBannerColor(OptimusThemeData theme) => switch (this) {
-        OptimusNotificationVariant.info => theme.colors.info500,
+        OptimusNotificationVariant.info =>
+          theme.colors.info500, // TODO(witwash): replace with tokens
         OptimusNotificationVariant.success => theme.colors.success500,
         OptimusNotificationVariant.warning => theme.colors.warning500,
         OptimusNotificationVariant.danger => theme.colors.danger500,
@@ -357,9 +359,5 @@ extension on OptimusNotificationVariant {
 }
 
 const double _maxWidth = 360;
-const double _closeIconSize = 16;
-const double _iconSize = 20;
-const double _iconHorizontalPadding = 10;
 const int _maxLinesBody = 5;
 const int _maxLinesLink = 1;
-const double _leadingSectionWidth = _iconSize + _iconHorizontalPadding * 2;

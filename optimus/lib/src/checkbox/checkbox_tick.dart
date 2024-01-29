@@ -83,7 +83,7 @@ class _CheckboxIcon extends StatelessWidget {
       : Center(
           child: Icon(
             icon,
-            size: 10,
+            size: context.tokens.sizing100,
             color: isEnabled
                 ? context.tokens.textStaticInverse
                 : context.tokens.textDisabled,

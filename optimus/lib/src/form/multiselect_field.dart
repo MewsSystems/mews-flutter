@@ -130,8 +130,9 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
                 child: Focus(
                   focusNode: _effectiveFocusNode,
                   child: Container(
-                    constraints:
-                        BoxConstraints(minHeight: widget.size.minHeight),
+                    constraints: BoxConstraints(
+                      minHeight: widget.size.getMinHeight(tokens),
+                    ),
                     width: double.infinity,
                     child: Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
@@ -153,9 +154,9 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 }
 
 extension on OptimusWidgetSize {
-  double get minHeight => switch (this) {
-        OptimusWidgetSize.small => 32,
-        OptimusWidgetSize.medium => 40,
-        OptimusWidgetSize.large => 48,
+  double getMinHeight(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing400,
+        OptimusWidgetSize.medium => tokens.sizing500,
+        OptimusWidgetSize.large => tokens.sizing600,
       };
 }

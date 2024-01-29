@@ -106,7 +106,7 @@ class _Indicator extends StatelessWidget {
                 theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
           ),
         ),
-        height: 14,
+        height: 14, // TODO(witwash): check with design
         width: 14,
       ),
     );

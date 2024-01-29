@@ -238,9 +238,14 @@ class _Chevron extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
-    final color =
-        theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400;
+    final color = theme.isDark
+        ? theme.colors.neutral0
+        : theme.colors.neutral400; // TODO(witwash): replace with tokens
 
-    return Icon(OptimusIcons.chevron_down, size: 24, color: color);
+    return Icon(
+      OptimusIcons.chevron_down,
+      size: context.tokens.sizing300,
+      color: color,
+    );
   }
 }

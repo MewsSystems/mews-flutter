@@ -64,10 +64,10 @@ class OptimusCircleLoader extends StatelessWidget {
   /// Controls appearance of the loader.
   final OptimusCircleLoaderAppearance appearance;
 
-  double get _loaderSize => switch (size) {
-        OptimusCircleLoaderSize.small => 24,
-        OptimusCircleLoaderSize.medium => 40,
-        OptimusCircleLoaderSize.large => 56,
+  double _getLoaderSize(OptimusTokens tokens) => switch (size) {
+        OptimusCircleLoaderSize.small => tokens.sizing300,
+        OptimusCircleLoaderSize.medium => tokens.sizing500,
+        OptimusCircleLoaderSize.large => tokens.sizing700,
       };
 
   Color _getIndicatorColor(OptimusThemeData theme) => switch (appearance) {
@@ -76,17 +76,19 @@ class OptimusCircleLoader extends StatelessWidget {
       };
 
   Color _getTrackColor(OptimusThemeData theme) => switch (appearance) {
-        OptimusCircleLoaderAppearance.normal => theme.colors.neutral50,
+        OptimusCircleLoaderAppearance.normal =>
+          theme.colors.neutral50, // TODO(witwash): replace with tokens
         OptimusCircleLoaderAppearance.contrast => theme.colors.neutral0t32,
       };
 
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return SizedBox(
-      height: _loaderSize,
-      width: _loaderSize,
+      height: _getLoaderSize(tokens),
+      width: _getLoaderSize(tokens),
       child: variant.map(
         indeterminate: (_) => SpinningLoader(
           progress: 25,
