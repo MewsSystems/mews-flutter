@@ -207,11 +207,11 @@ class _NotificationContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final theme = context.theme;
+    final tokens = context.tokens;
     final body = this.body;
     final link = this.link;
-    final tokens = context.tokens;
-    final leadingSectionWidth = tokens.sizing200 + tokens.spacing100 * 2;
+    final leadingSectionWidth = tokens.sizing300 + tokens.spacing100 * 2;
 
     return DecoratedBox(
       decoration: BoxDecoration(
