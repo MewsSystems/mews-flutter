@@ -2,7 +2,6 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/optimus_chat_input.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 typedef FormatDate = String Function(DateTime value);
 typedef FormatTime = String Function(DateTime value);
@@ -360,13 +359,13 @@ class _Status extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DefaultTextStyle.merge(
-      style: baseTextStyle.copyWith(
+      style: tokens.bodySmall.copyWith(
         color: theme.isDark
             ? theme.colors.neutral0t64
             : theme.colors.neutral1000t64,
-        fontSize: 12,
         fontWeight: FontWeight.w600,
       ),
       child: child,

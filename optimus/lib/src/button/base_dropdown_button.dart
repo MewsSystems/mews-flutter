@@ -3,7 +3,6 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/overlay_controller.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 class BaseDropDownButton<T> extends StatefulWidget {
   const BaseDropDownButton({
@@ -88,8 +87,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       );
 
   TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
-      ? preset200b.copyWith(color: _textColor)
-      : preset300b.copyWith(color: _textColor);
+      ? tokens.bodyMediumStrong.copyWith(color: _textColor)
+      : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
   Color? get _color => widget.variant.toButtonVariant().backgroundColor(
         tokens,

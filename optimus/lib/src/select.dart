@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/overlay_controller.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 typedef CurrentValueBuilder<T> = Widget Function(BuildContext context, T value);
 
@@ -58,6 +57,40 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   void _handleOpenedChanged(bool isOpened) =>
       setState(() => _isOpened = isOpened);
 
+  Widget get _fieldContent {
+    final value = widget.value;
+
+    return value == null
+        ? Text(widget.placeholder, style: _textStyle)
+        : DefaultTextStyle.merge(
+            style: tokens.bodyLargeStrong,
+            child: widget.builder(context, value),
+          );
+  }
+
+  Icon get _icon => Icon(
+        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
+        size: tokens.sizing300,
+        color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
+      );
+
+  TextStyle get _textStyle {
+    final color = widget.value == null ? _placeholderColor : _textColor;
+
+    return switch (widget.size) {
+      OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(color: color),
+      OptimusWidgetSize.medium ||
+      OptimusWidgetSize.large =>
+        tokens.bodyLargeStrong.copyWith(color: color),
+    };
+  }
+
+  Color get _placeholderColor =>
+      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
+
+  Color get _textColor =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
+
   @override
   Widget build(BuildContext context) => OverlayController(
         onItemSelected: widget.onItemSelected,
@@ -92,42 +125,6 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
           ),
         ),
       );
-
-  Widget get _fieldContent {
-    final value = widget.value;
-
-    return value == null
-        ? Text(widget.placeholder, style: _textStyle)
-        : DefaultTextStyle.merge(
-            style: preset300s,
-            child: widget.builder(context, value),
-          );
-  }
-
-  Icon get _icon => Icon(
-        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
-        size: tokens.sizing300,
-        color: theme.isDark
-            ? theme.colors.neutral0
-            : theme.colors.neutral400, // TODO(witwash): replace with tokens
-      );
-
-  TextStyle get _textStyle {
-    final color = widget.value == null ? _placeholderColor : _textColor;
-
-    return switch (widget.size) {
-      OptimusWidgetSize.small => preset200s.copyWith(color: color),
-      OptimusWidgetSize.medium ||
-      OptimusWidgetSize.large =>
-        preset300s.copyWith(color: color),
-    };
-  }
-
-  Color get _placeholderColor =>
-      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
-
-  Color get _textColor =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 }
 
 class _SelectedValue extends StatelessWidget {

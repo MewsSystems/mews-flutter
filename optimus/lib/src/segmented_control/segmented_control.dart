@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Segmented Control is a set of two or more segments, that provide closely
 /// related choices that affect an object, state, or view.
@@ -196,7 +195,8 @@ class _OptimusSegmentedControlItemState<T>
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               maxLines: widget.maxLines,
-              style: preset200s.copyWith(color: _foregroundColor(tokens)),
+              style: tokens.bodyMediumStrong
+                  .copyWith(color: _foregroundColor(tokens)),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: constrains.getAdaptivePadding(tokens),

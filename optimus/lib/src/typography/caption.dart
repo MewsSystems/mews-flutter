@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/typography.dart';
 import 'package:optimus/src/typography/variation.dart';
 
@@ -41,7 +41,7 @@ class OptimusCaption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => preset100s,
+        resolveStyle: (_) => context.tokens.bodySmallStrong,
         color: variation.color,
         align: align,
         child: child,

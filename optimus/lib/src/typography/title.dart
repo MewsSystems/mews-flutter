@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// {@template optimus.typography.title}
@@ -24,7 +24,7 @@ class OptimusPageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset700b,
+        resolveStyle: (_) => context.tokens.titleLargeStrong,
         align: align,
         child: child,
       );
@@ -48,7 +48,7 @@ class OptimusSectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset600b,
+        resolveStyle: (_) => context.tokens.titleMediumStrong,
         align: align,
         child: child,
       );
@@ -73,7 +73,7 @@ class OptimusSubsectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset500b,
+        resolveStyle: (_) => context.tokens.titleSmallStrong,
         align: align,
         child: child,
       );
@@ -98,7 +98,7 @@ class OptimusSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusTypography(
         color: OptimusTypographyColor.secondary,
-        resolveStyle: preset400b,
+        resolveStyle: (_) => context.tokens.titleSmall,
         align: align,
         child: child,
       );

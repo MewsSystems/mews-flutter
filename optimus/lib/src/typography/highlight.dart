@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// {@template optimus.typography.highlight}
@@ -26,7 +26,8 @@ class OptimusHighlightMajor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset600b,
+        resolveStyle: (_) => context.tokens
+            .highlightLarge, // TODO(witwash): mobile typography with breakpoints
         align: align,
         child: child,
       );
@@ -51,7 +52,8 @@ class OptimusHighlightModerate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset500b,
+        resolveStyle: (_) => context.tokens
+            .highlightMedium, // TODO(witwash): mobile typography with breakpoints
         align: align,
         child: child,
       );
@@ -76,7 +78,8 @@ class OptimusHighlightMinor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset400b,
+        resolveStyle: (_) => context.tokens
+            .highlightSmall, // TODO(witwash): mobile typography with breakpoints
         align: align,
         child: child,
       );

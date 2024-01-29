@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 class OptimusAvatar extends StatelessWidget {
   const OptimusAvatar({
@@ -80,7 +79,8 @@ class _FallbackText extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Text(
         substring(title, 0, 1).toUpperCase(),
-        style: preset300b.copyWith(
+        style: context.tokens.bodyLarge.copyWith(
+          fontWeight: FontWeight.w700,
           color: OptimusTheme.of(context).colors.neutral0t64,
         ),
       );

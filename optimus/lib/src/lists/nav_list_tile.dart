@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
-import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Lists are vertically organized groups of data. Optimized for reading
@@ -89,8 +88,9 @@ class OptimusNavListTile extends StatelessWidget {
         child: SizedBox(width: tokens.sizing500, child: avatar),
       );
 
-  Widget _buildMetadata(Widget metadata) => OptimusTypography(
-        resolveStyle: (_) => preset100s,
+  Widget _buildMetadata(OptimusTokens tokens, Widget metadata) =>
+      OptimusTypography(
+        resolveStyle: (_) => tokens.bodySmallStrong,
         color: OptimusTypographyColor.secondary,
         child: metadata,
       );
@@ -103,7 +103,7 @@ class OptimusNavListTile extends StatelessWidget {
   Widget _getHeadline(OptimusTokens tokens) => Padding(
         padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
-          resolveStyle: (_) => fontVariant.primaryStyle,
+          resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
           child: DefaultTextStyle.merge(
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -119,7 +119,7 @@ class OptimusNavListTile extends StatelessWidget {
         ? Padding(
             padding: EdgeInsets.only(right: tokens.spacing100),
             child: OptimusTypography(
-              resolveStyle: (_) => preset200s,
+              resolveStyle: (_) => tokens.bodyMediumStrong,
               color: fontVariant.secondaryColor,
               child: DefaultTextStyle.merge(
                 maxLines: 2,
@@ -169,7 +169,7 @@ class OptimusNavListTile extends StatelessWidget {
                 ],
               ),
             ),
-            if (metadata != null) _buildMetadata(metadata),
+            if (metadata != null) _buildMetadata(tokens, metadata),
             if (trailingIcon != null) _buildTrailingIcon(tokens, trailingIcon),
           ],
         ),

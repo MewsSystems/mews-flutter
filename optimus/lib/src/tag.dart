@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Tags are used to highlight an item’s status or make it easier to recognize
 /// certain items in data-dense content.
@@ -146,6 +145,7 @@ class _Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final textStyle = tokens.bodyMedium.copyWith(color: foregroundColor);
 
     return Container(
       decoration: BoxDecoration(
@@ -178,7 +178,7 @@ class _Tag extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 200),
             child: Text(
               text,
-              style: preset200r.copyWith(color: foregroundColor),
+              style: textStyle,
               overflow: TextOverflow.ellipsis,
             ),
           ),

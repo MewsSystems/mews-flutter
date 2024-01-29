@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 enum OptimusBannerVariant {
   /// To display an informative message.
@@ -104,7 +103,7 @@ class OptimusBanner extends StatelessWidget {
                             : EdgeInsets.zero,
                         child: DefaultTextStyle.merge(
                           child: title,
-                          style: preset300s,
+                          style: tokens.bodyLargeStrong,
                         ),
                       ),
                       if (description case final description?)
@@ -112,7 +111,7 @@ class OptimusBanner extends StatelessWidget {
                           padding: EdgeInsets.only(top: tokens.spacing50),
                           child: DefaultTextStyle.merge(
                             child: description,
-                            style: preset200r.copyWith(
+                            style: tokens.bodyMedium.copyWith(
                               color: _getDescriptionColor(theme),
                             ),
                           ),
@@ -232,7 +231,8 @@ class OptimusWideBanner extends StatelessWidget {
   }
 
   TextStyle _contentTextStyle(OptimusThemeData theme) =>
-      preset200s.merge(TextStyle(color: _color(theme), height: 1));
+      theme.tokens.bodyMediumStrong
+          .merge(TextStyle(color: _color(theme), height: 1));
 
   Color _backgroundColor(OptimusThemeData theme) => switch (variant) {
         OptimusWideBannerVariant.informative => theme.colors.primary500,

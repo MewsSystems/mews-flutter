@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 class BaseBadge extends StatelessWidget {
   const BaseBadge({
@@ -46,13 +45,7 @@ class BaseBadge extends StatelessWidget {
             maxLines: 1,
             overflow: overflow,
             textAlign: TextAlign.center,
-            style: baseTextStyle.copyWith(
-              fontSize: 11,
-              letterSpacing: 0.2,
-              height: 1,
-              fontWeight: FontWeight.w600,
-              color: textColor,
-            ),
+            style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
           )
         : null;
 
