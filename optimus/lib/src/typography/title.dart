@@ -73,7 +73,7 @@ class OptimusTitleSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.titleSmall,
+        resolveStyle: (_) => context.tokens.titleSmallStrong,
         align: align,
         child: child,
       );
@@ -98,7 +98,7 @@ class OptimusSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusTypography(
         color: OptimusTypographyColor.secondary,
-        resolveStyle: (_) => context.tokens.titleSmall,
+        resolveStyle: (_) => context.tokens.titleSmallStrong,
         align: align,
         child: child,
       );
