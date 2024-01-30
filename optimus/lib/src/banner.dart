@@ -103,7 +103,7 @@ class OptimusBanner extends StatelessWidget {
                             : EdgeInsets.zero,
                         child: DefaultTextStyle.merge(
                           child: title,
-                          style: tokens.bodyLargeStrong,
+                          style: tokens.bodyLarge,
                         ),
                       ),
                       if (description case final description?)
@@ -203,6 +203,26 @@ class OptimusWideBanner extends StatelessWidget {
   /// Controls background color.
   final OptimusWideBannerVariant variant;
 
+  TextStyle _contentTextStyle(OptimusThemeData theme) =>
+      theme.tokens.bodyMedium.copyWith(color: _color(theme), height: 1);
+
+  Color _backgroundColor(OptimusThemeData theme) => switch (variant) {
+        OptimusWideBannerVariant.informative => theme.colors.primary500,
+        OptimusWideBannerVariant.warning => theme.colors.warning500,
+        OptimusWideBannerVariant.danger => theme.colors.danger500,
+      };
+
+  Color _lightColor(OptimusThemeData theme) => switch (variant) {
+        OptimusWideBannerVariant.informative ||
+        OptimusWideBannerVariant.danger =>
+          theme.colors.neutral0,
+        OptimusWideBannerVariant.warning => theme.colors.neutral1000,
+      };
+
+  Color _color(OptimusThemeData theme) => theme.brightness == Brightness.light
+      ? _lightColor(theme)
+      : theme.colors.neutral1000;
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -229,25 +249,4 @@ class OptimusWideBanner extends StatelessWidget {
       ),
     );
   }
-
-  TextStyle _contentTextStyle(OptimusThemeData theme) =>
-      theme.tokens.bodyMediumStrong
-          .merge(TextStyle(color: _color(theme), height: 1));
-
-  Color _backgroundColor(OptimusThemeData theme) => switch (variant) {
-        OptimusWideBannerVariant.informative => theme.colors.primary500,
-        OptimusWideBannerVariant.warning => theme.colors.warning500,
-        OptimusWideBannerVariant.danger => theme.colors.danger500,
-      };
-
-  Color _lightColor(OptimusThemeData theme) => switch (variant) {
-        OptimusWideBannerVariant.informative ||
-        OptimusWideBannerVariant.danger =>
-          theme.colors.neutral0,
-        OptimusWideBannerVariant.warning => theme.colors.neutral1000,
-      };
-
-  Color _color(OptimusThemeData theme) => theme.brightness == Brightness.light
-      ? _lightColor(theme)
-      : theme.colors.neutral1000;
 }

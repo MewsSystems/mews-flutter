@@ -29,8 +29,8 @@ final Story highlightStory = Story(
             align: align,
             child: Text(
               k.text(
-                label: 'Moderate Highlight',
-                initial: 'Moderate Highlight',
+                label: 'Medium Highlight',
+                initial: 'Medium Highlight',
               ),
             ),
           ),

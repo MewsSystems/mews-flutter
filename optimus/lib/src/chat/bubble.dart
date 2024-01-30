@@ -42,8 +42,7 @@ class OptimusChatBubble extends StatelessWidget {
         if (isUserNameVisible) ...[
           Padding(
             padding: message.alignment.getHorizontalPadding(tokens),
-            child:
-                Text(message.author.username, style: tokens.bodyMediumStrong),
+            child: Text(message.author.username, style: tokens.bodySmallStrong),
           ),
           SizedBox(height: tokens.spacing50),
         ],
@@ -74,7 +73,7 @@ class _Date extends StatelessWidget {
       spacing: OptimusStackSpacing.spacing100,
       children: [
         Expanded(child: horizontalLine),
-        Text(date, style: tokens.bodyMediumStrong),
+        Text(date, style: tokens.bodySmallStrong),
         Expanded(child: horizontalLine),
       ],
     );
