@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/theme/common.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Divider is a visual representation of a separation between two areas.
 class OptimusDivider extends StatelessWidget {
@@ -52,7 +51,7 @@ class OptimusDivider extends StatelessWidget {
             child: AnimatedContainer(
               duration: themeChangeAnimationDuration,
               child: DefaultTextStyle.merge(
-                style: preset100s.copyWith(
+                style: tokens.bodySmallStrong.copyWith(
                   color: theme.tokens.textStaticSecondary,
                 ),
                 child: child,

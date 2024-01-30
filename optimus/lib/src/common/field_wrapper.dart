@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/field_error.dart';
 import 'package:optimus/src/common/field_label.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 class FieldWrapper extends StatefulWidget {
   const FieldWrapper({
@@ -267,7 +266,7 @@ class _Styled extends StatelessWidget {
         !isEnabled ? tokens.textDisabled : tokens.textStaticPrimary;
 
     return DefaultTextStyle.merge(
-      style: preset200r.copyWith(color: textColor),
+      style: tokens.bodyMedium.copyWith(color: textColor),
       child: IconTheme(
         data: IconThemeData(color: iconColor, size: tokens.sizing200),
         child: child,

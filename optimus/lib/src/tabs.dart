@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/badge/base_badge.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 class OptimusTab extends StatelessWidget {
   const OptimusTab({
@@ -70,8 +69,8 @@ class OptimusTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = preset200s;
     final tokens = OptimusTheme.of(context).tokens;
+    final textStyle = tokens.bodyMediumStrong;
 
     return DefaultTabController(
       length: tabs.length,

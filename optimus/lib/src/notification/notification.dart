@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Describes a certain type of notification with its semantical meaning.
 ///
@@ -117,10 +116,12 @@ class _NotificationTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DefaultTextStyle(
-      style: preset300b.copyWith(
+      style: tokens.bodyLarge.copyWith(
         color: theme.colors.neutral1000,
+        fontWeight: FontWeight.w700,
       ),
       child: title,
     );
@@ -140,11 +141,12 @@ class _NotificationBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DefaultTextStyle(
       maxLines: _maxLinesBody,
       overflow: TextOverflow.ellipsis,
-      style: preset200r.copyWith(
+      style: tokens.bodyMedium.copyWith(
         color: theme.colors.neutral1000t64,
       ),
       child: body,
@@ -164,12 +166,14 @@ class _NotificationLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DefaultTextStyle(
       maxLines: _maxLinesLink,
       overflow: TextOverflow.ellipsis,
-      style: preset200b.copyWith(
+      style: tokens.bodyMedium.copyWith(
         color: theme.colors.neutral1000,
+        fontWeight: FontWeight.w700,
         decoration: TextDecoration.underline,
       ),
       child: link,

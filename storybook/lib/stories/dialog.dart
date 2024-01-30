@@ -24,7 +24,7 @@ final Story dialogStory = Story(
           children: [
             const Padding(
               padding: EdgeInsets.only(top: 24, bottom: 16),
-              child: OptimusSectionTitle(child: Text('Small dialog')),
+              child: OptimusTitleMedium(child: Text('Small dialog')),
             ),
             Wrap(
               spacing: 8,
@@ -69,7 +69,7 @@ final Story dialogStory = Story(
             ),
             const Padding(
               padding: EdgeInsets.only(top: 24, bottom: 16),
-              child: OptimusSectionTitle(child: Text('Regular dialog')),
+              child: OptimusTitleMedium(child: Text('Regular dialog')),
             ),
             Wrap(
               spacing: 8,
@@ -114,7 +114,7 @@ final Story dialogStory = Story(
             ),
             const Padding(
               padding: EdgeInsets.only(top: 24, bottom: 16),
-              child: OptimusSectionTitle(child: Text('Large dialog')),
+              child: OptimusTitleMedium(child: Text('Large dialog')),
             ),
             Wrap(
               spacing: 8,
@@ -159,7 +159,7 @@ final Story dialogStory = Story(
             ),
             const Padding(
               padding: EdgeInsets.only(top: 24, bottom: 16),
-              child: OptimusSectionTitle(child: Text('Custom content')),
+              child: OptimusTitleMedium(child: Text('Custom content')),
             ),
             Wrap(
               spacing: 8,

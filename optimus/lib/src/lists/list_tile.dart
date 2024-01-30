@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
-import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Lists are vertically organized groups of data. Optimized for reading
@@ -77,13 +76,13 @@ class OptimusListTile extends StatelessWidget {
         padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
           color: OptimusTypographyColor.secondary,
-          resolveStyle: (_) => preset200s,
+          resolveStyle: (_) => tokens.bodyMediumStrong,
           child: prefix,
         ),
       );
 
-  Widget _buildInfo(Widget info) => OptimusTypography(
-        resolveStyle: (_) => preset100s,
+  Widget _buildInfo(OptimusTokens tokens, Widget info) => OptimusTypography(
+        resolveStyle: (_) => tokens.bodySmallStrong,
         color: OptimusTypographyColor.secondary,
         child: info,
       );
@@ -91,25 +90,25 @@ class OptimusListTile extends StatelessWidget {
   Widget _getTitle(OptimusTokens tokens) => Padding(
         padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
-          resolveStyle: (_) => fontVariant.primaryStyle,
+          resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
           child: title,
         ),
       );
 
-  Widget get _subtitle {
+  Widget _getSubtitle(OptimusTokens tokens) {
     final subtitle = this.subtitle;
 
     return subtitle != null
         ? OptimusTypography(
-            resolveStyle: (_) => preset200s,
+            resolveStyle: (_) => tokens.bodyMediumStrong,
             color: fontVariant.secondaryColor,
             child: subtitle,
           )
         : const SizedBox.shrink();
   }
 
-  Widget _buildSuffix(Widget suffix) => OptimusTypography(
-        resolveStyle: (_) => preset200s,
+  Widget _buildSuffix(OptimusTokens tokens, Widget suffix) => OptimusTypography(
+        resolveStyle: (_) => tokens.bodyMediumStrong,
         child: suffix,
       );
 
@@ -135,19 +134,19 @@ class OptimusListTile extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Expanded(child: _getTitle(tokens)),
-                      if (info != null) _buildInfo(info),
+                      if (info != null) _buildInfo(tokens, info),
                     ],
                   ),
                   Row(
                     children: <Widget>[
-                      Expanded(child: _subtitle),
+                      Expanded(child: _getSubtitle(tokens)),
                       if (infoWidget != null) infoWidget,
                     ],
                   ),
                 ],
               ),
             ),
-            if (suffix != null) _buildSuffix(suffix),
+            if (suffix != null) _buildSuffix(tokens, suffix),
           ],
         ),
       ),

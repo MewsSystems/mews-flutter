@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/dropdown/dropdown_select.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 typedef ValueBuilder<T> = String Function(T value);
 
@@ -176,10 +175,11 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
       widget.embeddedSearch != null && !_isUsingInlineSearch;
 
   TextStyle get _textStyle => switch (widget.size) {
-        OptimusWidgetSize.small => preset200s.copyWith(color: _textColor),
+        OptimusWidgetSize.small =>
+          tokens.bodyMediumStrong.copyWith(color: _textColor),
         OptimusWidgetSize.medium ||
         OptimusWidgetSize.large =>
-          preset300s.copyWith(color: _textColor),
+          tokens.bodyLargeStrong.copyWith(color: _textColor),
       };
 
   Color get _textColor =>

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/step_bar/common.dart';
-import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Both types of step have dedicated states. State is shown through a visual
@@ -81,14 +80,16 @@ class StepBarItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   OptimusTypography(
-                    resolveStyle: (_) =>
-                        preset200b.copyWith(overflow: TextOverflow.ellipsis),
+                    resolveStyle: (_) => tokens.bodyMedium.copyWith(
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.w700,
+                    ),
                     maxLines: 1,
                     child: item.label,
                   ),
                   if (description != null)
                     OptimusTypography(
-                      resolveStyle: (_) => preset200s.copyWith(
+                      resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
                         overflow: TextOverflow.ellipsis,
                       ),
                       color: OptimusTypographyColor.secondary,
@@ -187,8 +188,12 @@ class StepBarItemNumberIndicator extends StatelessWidget {
                 child: Center(
                   child: Text(
                     text,
-                    style: preset200b.merge(
-                      TextStyle(height: 1, color: state.textColor(theme)),
+                    style: tokens.bodyMedium.merge(
+                      TextStyle(
+                        height: 1,
+                        color: state.textColor(theme),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),

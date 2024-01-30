@@ -9,7 +9,7 @@ final welcomeStory = Story(
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        OptimusPageTitle(
+        OptimusTitleLarge(
           align: TextAlign.center,
           child: Text('Welcome to the MEWS Mobile Design System Storybook'),
         ),

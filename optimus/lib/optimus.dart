@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/colors/colors.dart';
-import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/theme/optimus_tokens.dart';
 
 export 'package:intl/intl.dart' show DateFormat;
 
@@ -94,32 +94,39 @@ export 'src/typography/title.dart';
 export 'src/typography/variation.dart';
 export 'src/widget_size.dart';
 
-ThemeData createOptimusMaterialTheme(Brightness brightness) => ThemeData(
+ThemeData createOptimusMaterialTheme(Brightness brightness) {
+  final tokensTheme =
+      brightness == Brightness.light ? OptimusTokens.light : OptimusTokens.dark;
+  final baseTextStyle = tokensTheme.bodyMedium;
+
+  return ThemeData(
+    brightness: brightness,
+    scaffoldBackgroundColor: OptimusColors(brightness).background,
+    primarySwatch: Colors.blue,
+    fontFamily: tokensTheme.fontFamilyUi,
+    package: 'optimus',
+    textTheme: TextTheme(
+      displayLarge: baseTextStyle,
+      displayMedium: baseTextStyle,
+      displaySmall: baseTextStyle,
+      headlineMedium: baseTextStyle,
+      headlineSmall: baseTextStyle,
+      titleLarge: baseTextStyle,
+      bodyLarge: baseTextStyle,
+      bodyMedium: baseTextStyle,
+      titleMedium: baseTextStyle,
+      titleSmall: baseTextStyle,
+      bodySmall: baseTextStyle,
+      labelLarge: baseTextStyle,
+      labelSmall: baseTextStyle,
+    ),
+    cupertinoOverrideTheme: CupertinoThemeData(
       brightness: brightness,
-      scaffoldBackgroundColor: OptimusColors(brightness).background,
-      primarySwatch: Colors.blue,
-      fontFamily: 'packages/optimus/Inter',
-      textTheme: const TextTheme(
-        displayLarge: baseTextStyle,
-        displayMedium: baseTextStyle,
-        displaySmall: baseTextStyle,
-        headlineMedium: baseTextStyle,
-        headlineSmall: baseTextStyle,
-        titleLarge: baseTextStyle,
-        bodyLarge: baseTextStyle,
-        bodyMedium: baseTextStyle,
-        titleMedium: baseTextStyle,
-        titleSmall: baseTextStyle,
-        bodySmall: baseTextStyle,
-        labelLarge: baseTextStyle,
-        labelSmall: baseTextStyle,
-      ),
-      cupertinoOverrideTheme: CupertinoThemeData(
-        brightness: brightness,
-        primaryColor: Colors.blue,
-        primaryContrastingColor: Colors.blue,
-        textTheme: const CupertinoTextThemeData(),
-        barBackgroundColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-    );
+      primaryColor: Colors.blue,
+      primaryContrastingColor: Colors.blue,
+      textTheme: const CupertinoTextThemeData(),
+      barBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Colors.white,
+    ),
+  );
+}

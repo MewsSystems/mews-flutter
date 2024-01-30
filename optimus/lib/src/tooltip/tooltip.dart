@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/tooltip/tooltip_alignment.dart';
 import 'package:optimus/src/tooltip/tooltip_overlay.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Tooltip displays contextual content upon the click or focus of a UI trigger
 /// element. Tooltip's content should be contextual, helpful, and nonessential
@@ -57,7 +56,7 @@ class OptimusTooltip extends StatelessWidget {
           child: Material(
             color: backgroundColor,
             child: DefaultTextStyle.merge(
-              style: preset100s.copyWith(color: foregroundColor),
+              style: tokens.bodySmallStrong.copyWith(color: foregroundColor),
               textAlign: TextAlign.center,
               child: content,
             ),

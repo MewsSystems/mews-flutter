@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/common.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 class BaseButton extends StatefulWidget {
   const BaseButton({
@@ -131,8 +130,9 @@ class _ButtonContent extends StatefulWidget {
 }
 
 class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
-  TextStyle get _textStyle =>
-      widget.size == OptimusWidgetSize.small ? preset200b : preset300b;
+  TextStyle get _textStyle => widget.size == OptimusWidgetSize.small
+      ? tokens.bodyMediumStrong
+      : tokens.bodyLargeStrong;
 
   double get _iconSize => switch (widget.size) {
         OptimusWidgetSize.small => tokens.sizing200,
@@ -225,25 +225,29 @@ class _Badge extends StatelessWidget {
   final String label;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: context.tokens.sizing200,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(context.tokens.borderRadius200),
-          child: ColoredBox(
-            color: color,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
-              child: Text(
-                label,
-                style: preset50b.copyWith(
-                  color: textColor,
-                  leadingDistribution: TextLeadingDistribution.proportional,
-                ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return SizedBox(
+      height: tokens.sizing200,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(tokens.borderRadius200),
+        child: ColoredBox(
+          color: color,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
+            child: Text(
+              label,
+              style: tokens.bodyExtraSmallStrong.copyWith(
+                color: textColor,
+                leadingDistribution: TextLeadingDistribution.proportional,
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 extension on Set<MaterialState> {

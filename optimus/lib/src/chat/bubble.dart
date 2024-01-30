@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// Chat bubble component offers single configurable bubble. The main use of
 /// this widget is in OptimusChat widget but it can be used also stand-alone.
@@ -43,7 +42,7 @@ class OptimusChatBubble extends StatelessWidget {
         if (isUserNameVisible) ...[
           Padding(
             padding: message.alignment.getHorizontalPadding(tokens),
-            child: Text(message.author.username, style: preset100s),
+            child: Text(message.author.username, style: tokens.bodySmallStrong),
           ),
           SizedBox(height: tokens.spacing50),
         ],
@@ -67,13 +66,14 @@ class _Date extends StatelessWidget {
       height: 1,
       color: OptimusTheme.of(context).colors.neutral50,
     );
+    final tokens = context.tokens;
 
     return OptimusStack(
       direction: Axis.horizontal,
       spacing: OptimusStackSpacing.spacing100,
       children: [
         Expanded(child: horizontalLine),
-        Text(date, style: preset100s),
+        Text(date, style: tokens.bodySmallStrong),
         Expanded(child: horizontalLine),
       ],
     );
@@ -117,7 +117,7 @@ class _Bubble extends StatelessWidget {
       ),
       child: Text(
         message.message,
-        style: preset200s.copyWith(color: _getTextColor(theme)),
+        style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(theme)),
       ),
     );
   }

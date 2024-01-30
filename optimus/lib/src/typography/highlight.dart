@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/src/typography/presets.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// {@template optimus.typography.highlight}
@@ -9,10 +9,10 @@ import 'package:optimus/src/typography/typography.dart';
 /// such as price or dates.
 /// {@endtemplate}
 ///
-/// [OptimusHighlightMajor] - The highest form of emphasis. Use sporadically
+/// [OptimusHighlightLarge] - The highest form of emphasis. Use sporadically
 /// for maximum impact.
-class OptimusHighlightMajor extends StatelessWidget {
-  const OptimusHighlightMajor({
+class OptimusHighlightLarge extends StatelessWidget {
+  const OptimusHighlightLarge({
     super.key,
     this.align,
     required this.child,
@@ -26,7 +26,8 @@ class OptimusHighlightMajor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset600b,
+        resolveStyle: (_) => context.tokens
+            .highlightLarge, // TODO(witwash): mobile typography with breakpoints
         align: align,
         child: child,
       );
@@ -34,10 +35,10 @@ class OptimusHighlightMajor extends StatelessWidget {
 
 /// {@macro optimus.typography.highlight}
 ///
-/// [OptimusHighlightModerate] - Medium level of emphasis. Used without
+/// [OptimusHighlightMedium] - Medium level of emphasis. Used without
 /// limitations across the page.
-class OptimusHighlightModerate extends StatelessWidget {
-  const OptimusHighlightModerate({
+class OptimusHighlightMedium extends StatelessWidget {
+  const OptimusHighlightMedium({
     super.key,
     this.align,
     required this.child,
@@ -51,7 +52,8 @@ class OptimusHighlightModerate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset500b,
+        resolveStyle: (_) => context.tokens
+            .highlightMedium, // TODO(witwash): mobile typography with breakpoints
         align: align,
         child: child,
       );
@@ -59,10 +61,10 @@ class OptimusHighlightModerate extends StatelessWidget {
 
 /// {@macro optimus.typography.highlight}
 ///
-/// [OptimusHighlightMinor] - Low level of emphasis. Used without limitations
+/// [OptimusHighlightSmall] - Low level of emphasis. Used without limitations
 /// across the page.
-class OptimusHighlightMinor extends StatelessWidget {
-  const OptimusHighlightMinor({
+class OptimusHighlightSmall extends StatelessWidget {
+  const OptimusHighlightSmall({
     super.key,
     this.align,
     required this.child,
@@ -76,7 +78,8 @@ class OptimusHighlightMinor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: preset400b,
+        resolveStyle: (_) => context.tokens
+            .highlightSmall, // TODO(witwash): mobile typography with breakpoints
         align: align,
         child: child,
       );

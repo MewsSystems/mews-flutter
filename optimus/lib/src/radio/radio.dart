@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// The radio component is available in two size variants to accommodate
 /// different environments with different requirements.
@@ -92,8 +91,10 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
       : theme.tokens.textDisabled;
 
   TextStyle get _labelStyle => switch (widget.size) {
-        OptimusRadioSize.small => preset200s.copyWith(color: _textColor),
-        OptimusRadioSize.large => preset300s.copyWith(color: _textColor),
+        OptimusRadioSize.small =>
+          tokens.bodyMediumStrong.copyWith(color: _textColor),
+        OptimusRadioSize.large =>
+          tokens.bodyLargeStrong.copyWith(color: _textColor),
       };
 
   void _handleHoverChanged(bool isHovering) =>

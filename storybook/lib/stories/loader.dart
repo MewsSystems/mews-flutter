@@ -26,14 +26,14 @@ final Story loaderStory = Story(
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const OptimusSectionTitle(child: Text('Determinate')),
+        const OptimusTitleMedium(child: Text('Determinate')),
         OptimusCircleLoader(
           variant: OptimusCircleLoaderVariant.determinate(progress),
           size: size,
           appearance: appearance,
         ),
         const SizedBox(height: 24),
-        const OptimusSectionTitle(child: Text('Indeterminate')),
+        const OptimusTitleMedium(child: Text('Indeterminate')),
         OptimusCircleLoader(
           variant: const OptimusCircleLoaderVariant.indeterminate(),
           size: size,

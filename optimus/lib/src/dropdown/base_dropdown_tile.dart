@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
-import 'package:optimus/src/typography/presets.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 class BaseDropdownTile extends StatelessWidget {
@@ -25,12 +24,12 @@ class BaseDropdownTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         OptimusTypography(
-          resolveStyle: (_) => preset300s,
+          resolveStyle: (_) => tokens.bodyLargeStrong,
           child: title,
         ),
         if (subtitle case final subtitle?)
           OptimusTypography(
-            resolveStyle: (_) => preset200s,
+            resolveStyle: (_) => tokens.bodyMediumStrong,
             color: OptimusTypographyColor.secondary,
             child: subtitle,
           ),

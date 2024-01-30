@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
-import 'package:optimus/src/typography/presets.dart';
 
 /// The Checkbox + Label component is available in two size
 /// variants to accommodate different environments with different requirements.
@@ -98,8 +97,10 @@ class OptimusCheckbox extends StatelessWidget {
     final color = _labelColor(tokens);
 
     return switch (size) {
-      OptimusCheckboxSize.large => preset300s.copyWith(color: color),
-      OptimusCheckboxSize.small => preset200s.copyWith(color: color),
+      OptimusCheckboxSize.large =>
+        tokens.bodyLargeStrong.copyWith(color: color),
+      OptimusCheckboxSize.small =>
+        tokens.bodyMediumStrong.copyWith(color: color),
     };
   }
 
