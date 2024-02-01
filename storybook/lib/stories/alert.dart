@@ -3,19 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story wideBannerStory = Story(
-  name: 'Feedback/System-Wide Banner',
+final Story alertStory = Story(
+  name: 'Feedback/Alert',
   builder: (context) {
     final k = context.knobs;
 
     return SingleChildScrollView(
       child: Column(
-        children: OptimusWideBannerVariant.values
+        children: OptimusAlertVariant.values
             .map(
               (v) => Padding(
                 padding: const EdgeInsets.all(8),
-                child: OptimusWideBanner(
-                  content: Text(
+                child: OptimusAlert(
+                  title: Text(
                     k.text(
                       label: 'Content',
                       initial: 'Info Text.',

@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 
 enum OptimusBannerVariant {
   /// To display an informative message.
-  primary,
+  info,
 
   /// To inform a user about a successful event.
   success,
@@ -12,7 +12,7 @@ enum OptimusBannerVariant {
   warning,
 
   /// To inform a user of potential danger or that something has gone wrong.
-  error,
+  danger,
 }
 
 /// Contextual banners display a notification relevant to a specific
@@ -31,7 +31,7 @@ class OptimusBanner extends StatelessWidget {
   const OptimusBanner({
     super.key,
     required this.title,
-    this.variant = OptimusBannerVariant.primary,
+    this.variant = OptimusBannerVariant.info,
     this.hasIcon = false,
     this.description,
     this.isDismissible = false,
@@ -65,18 +65,14 @@ class OptimusBanner extends StatelessWidget {
   /// Called when close button is pressed (if [isDismissible] == true).
   final VoidCallback? onDismiss;
 
-  Color _getDescriptionColor(OptimusThemeData theme) =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000t64;
-
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: variant.backgroundColor(theme),
-        borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
+        color: variant.backgroundColor(tokens),
+        borderRadius: BorderRadius.circular(tokens.borderRadius100),
       ),
       child: Stack(
         children: [
@@ -88,9 +84,10 @@ class OptimusBanner extends StatelessWidget {
                 if (hasIcon)
                   Padding(
                     padding: EdgeInsets.only(right: tokens.spacing200),
-                    child: OptimusIcon(
-                      iconData: variant.icon,
-                      colorOption: variant.iconColor,
+                    child: Icon(
+                      variant.icon,
+                      color: variant.getIconColor(tokens),
+                      size: tokens.sizing300,
                     ),
                   ),
                 Expanded(
@@ -103,7 +100,8 @@ class OptimusBanner extends StatelessWidget {
                             : EdgeInsets.zero,
                         child: DefaultTextStyle.merge(
                           child: title,
-                          style: tokens.bodyLarge,
+                          style: tokens.bodyMediumStrong
+                              .copyWith(color: tokens.textStaticPrimary),
                         ),
                       ),
                       if (description case final description?)
@@ -111,9 +109,8 @@ class OptimusBanner extends StatelessWidget {
                           padding: EdgeInsets.only(top: tokens.spacing50),
                           child: DefaultTextStyle.merge(
                             child: description,
-                            style: tokens.bodyMedium.copyWith(
-                              color: _getDescriptionColor(theme),
-                            ),
+                            style: tokens.bodyMedium
+                                .copyWith(color: tokens.textStaticSecondary),
                           ),
                         ),
                     ],
@@ -124,13 +121,15 @@ class OptimusBanner extends StatelessWidget {
           ),
           if (isDismissible)
             Positioned(
-              top: tokens.spacing100,
-              right: tokens.spacing100,
-              child: OptimusIconButton(
-                onPressed: onDismiss,
-                icon: const Icon(OptimusIcons.cross_close),
-                size: OptimusWidgetSize.small,
-                variant: OptimusButtonVariant.ghost,
+              top: tokens.spacing200,
+              right: tokens.spacing200,
+              child: GestureDetector(
+                onTap: onDismiss,
+                child: Icon(
+                  OptimusIcons.cross_close,
+                  size: tokens.sizing200,
+                  color: tokens.textStaticPrimary,
+                ),
               ),
             ),
         ],
@@ -141,36 +140,39 @@ class OptimusBanner extends StatelessWidget {
 
 extension on OptimusBannerVariant {
   IconData get icon => switch (this) {
-        OptimusBannerVariant.primary => OptimusIcons.info,
+        OptimusBannerVariant.info => OptimusIcons.info,
         OptimusBannerVariant.success => OptimusIcons.done_circle,
         OptimusBannerVariant.warning => OptimusIcons.problematic,
-        OptimusBannerVariant.error => OptimusIcons.blacklist,
+        OptimusBannerVariant.danger => OptimusIcons.error_circle,
       };
 
-  OptimusIconColorOption get iconColor => switch (this) {
-        OptimusBannerVariant.primary => OptimusIconColorOption.primary,
-        OptimusBannerVariant.success => OptimusIconColorOption.success,
-        OptimusBannerVariant.warning => OptimusIconColorOption.warning,
-        OptimusBannerVariant.error => OptimusIconColorOption.danger,
+  Color getIconColor(OptimusTokens tokens) => switch (this) {
+        OptimusBannerVariant.info => tokens.textAlertInfo,
+        OptimusBannerVariant.success => tokens.textAlertSuccess,
+        OptimusBannerVariant.warning => tokens.textAlertWarning,
+        OptimusBannerVariant.danger => tokens.textAlertDanger,
       };
 
-  Color backgroundColor(OptimusThemeData theme) => switch (this) {
-        OptimusBannerVariant.primary => theme.colors.primary500t8,
-        OptimusBannerVariant.success => theme.colors.success500t8,
-        OptimusBannerVariant.warning => theme.colors.warning500t8,
-        OptimusBannerVariant.error => theme.colors.danger500t8,
+  Color backgroundColor(OptimusTokens tokens) => switch (this) {
+        OptimusBannerVariant.info => tokens.backgroundAlertInfoSecondary,
+        OptimusBannerVariant.success => tokens.backgroundAlertSuccessSecondary,
+        OptimusBannerVariant.warning => tokens.backgroundAlertWarningSecondary,
+        OptimusBannerVariant.danger => tokens.backgroundAlertDangerSecondary,
       };
 }
 
-enum OptimusWideBannerVariant {
+enum OptimusAlertVariant {
   /// Used to notify users about crucial, but unproblematic, information.
-  informative,
+  info,
 
   /// Used to warn users about serious potential problems.
   warning,
 
   /// Used to inform users that there is a serious problem with the system.
   danger,
+
+  /// Used to inform users about successful events.
+  success,
 }
 
 /// System-wide banners display critical notifications about the state of
@@ -186,63 +188,95 @@ enum OptimusWideBannerVariant {
 /// only the most important information about the system. If overused,
 /// users could stop perceiving them as something worth paying attention to.
 /// System-wide banners must be removed when no longer necessary.
-class OptimusWideBanner extends StatelessWidget {
-  const OptimusWideBanner({
+class OptimusAlert extends StatelessWidget {
+  const OptimusAlert({
     super.key,
-    required this.content,
-    this.variant = OptimusWideBannerVariant.informative,
+    required this.title,
+    this.link,
+    this.description,
+    this.variant = OptimusAlertVariant.info,
   });
 
   /// Content of the banner.
   ///
   /// Typically a [Text] widget.
-  final Widget content;
+  final Widget title;
+
+  final Widget? description;
+
+  final Widget? link;
 
   /// Variant of the banner.
   ///
   /// Controls background color.
-  final OptimusWideBannerVariant variant;
+  final OptimusAlertVariant variant;
 
-  TextStyle _contentTextStyle(OptimusThemeData theme) =>
-      theme.tokens.bodyMedium.copyWith(color: _color(theme), height: 1);
-
-  Color _backgroundColor(OptimusThemeData theme) => switch (variant) {
-        OptimusWideBannerVariant.informative => theme.colors.primary500,
-        OptimusWideBannerVariant.warning => theme.colors.warning500,
-        OptimusWideBannerVariant.danger => theme.colors.danger500,
+  Color _backgroundColor(OptimusTokens tokens) => switch (variant) {
+        OptimusAlertVariant.info => tokens.backgroundAlertInfoSecondary,
+        OptimusAlertVariant.success => tokens.backgroundAlertSuccessSecondary,
+        OptimusAlertVariant.warning => tokens.backgroundAlertWarningSecondary,
+        OptimusAlertVariant.danger => tokens.backgroundAlertDangerSecondary,
       };
 
-  Color _lightColor(OptimusThemeData theme) => switch (variant) {
-        OptimusWideBannerVariant.informative ||
-        OptimusWideBannerVariant.danger =>
-          theme.colors.neutral0,
-        OptimusWideBannerVariant.warning => theme.colors.neutral1000,
+  IconData get _icon => switch (variant) {
+        OptimusAlertVariant.info => OptimusIcons.info,
+        OptimusAlertVariant.success => OptimusIcons.done_circle,
+        OptimusAlertVariant.warning => OptimusIcons.problematic,
+        OptimusAlertVariant.danger => OptimusIcons.error_circle,
       };
 
-  Color _color(OptimusThemeData theme) => theme.brightness == Brightness.light
-      ? _lightColor(theme)
-      : theme.colors.neutral1000;
+  Color _getIconColor(OptimusTokens tokens) => switch (variant) {
+        OptimusAlertVariant.info => tokens.textAlertInfo,
+        OptimusAlertVariant.success => tokens.textAlertSuccess,
+        OptimusAlertVariant.warning => tokens.textAlertWarning,
+        OptimusAlertVariant.danger => tokens.textAlertDanger,
+      };
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: _backgroundColor(theme)),
+      decoration: BoxDecoration(color: _backgroundColor(tokens)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 18,
-          vertical: 10,
-        ), // TODO(witwash): check with design
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 18),
-              child: Icon(OptimusIcons.info, color: _color(theme)),
+              child: Icon(_icon, color: _getIconColor(tokens)),
             ),
-            DefaultTextStyle.merge(
-              child: content,
-              style: _contentTextStyle(theme),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DefaultTextStyle.merge(
+                    child: title,
+                    style: tokens.bodyMediumStrong
+                        .copyWith(color: tokens.textStaticPrimary),
+                  ),
+                  if (description case final description?)
+                    Padding(
+                      padding: EdgeInsets.only(top: tokens.spacing50),
+                      child: DefaultTextStyle.merge(
+                        child: description,
+                        style: tokens.bodyMedium
+                            .copyWith(color: tokens.textStaticSecondary),
+                      ),
+                    ),
+                  if (link case final link?)
+                    Padding(
+                      padding: EdgeInsets.only(top: tokens.spacing50),
+                      child: DefaultTextStyle.merge(
+                        child: link,
+                        style: tokens.bodyMediumStrong.copyWith(
+                          color: tokens.textStaticSecondary,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ],
         ),
