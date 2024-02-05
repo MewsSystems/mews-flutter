@@ -122,7 +122,6 @@ class _MyAppState extends State<MyApp> {
                 allIconsStory,
                 iconStory,
                 logoStory,
-                supplementaryIconStory,
                 iconListStory,
                 cardStory,
                 nestedCardStory,
