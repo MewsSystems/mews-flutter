@@ -34,6 +34,15 @@ final Story inputStory = Story(
       initial: OptimusInputErrorVariant.bottomHint,
       options: OptimusInputErrorVariant.values.toOptions(),
     );
+    final limitChars = k.boolean(
+      label: 'Limit characters',
+      initial: true,
+    );
+    int? maxChars;
+    if (limitChars) {
+      maxChars =
+          k.sliderInt(label: 'Max Characters', max: 100, min: 1, initial: 30);
+    }
 
     return Align(
       alignment: Alignment.center,
@@ -43,6 +52,7 @@ final Story inputStory = Story(
           isEnabled: k.boolean(label: 'Enabled', initial: true),
           isRequired: k.boolean(label: 'Required'),
           isPasswordField: k.boolean(label: 'Password'),
+          maxCharacters: maxChars,
           prefix: prefix.isNotEmpty ? Text(prefix) : null,
           suffix: suffix.isNotEmpty ? Text(suffix) : null,
           leading: leadingIcon == null ? null : Icon(leadingIcon),

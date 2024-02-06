@@ -10,6 +10,7 @@ class FieldWrapper extends StatefulWidget {
     super.key,
     this.isEnabled = true,
     required this.focusNode,
+    this.controller,
     this.isFocused,
     this.label,
     this.caption,
@@ -24,10 +25,12 @@ class FieldWrapper extends StatefulWidget {
     this.fieldBoxKey,
     this.children = const <Widget>[],
     this.size = OptimusWidgetSize.large,
+    this.maxCharacters,
   });
 
   final bool isEnabled;
   final FocusNode focusNode;
+  final TextEditingController? controller;
   final bool? isFocused;
   final String? label;
   final Widget? caption;
@@ -42,6 +45,7 @@ class FieldWrapper extends StatefulWidget {
   final List<Widget> children;
   final Key? fieldBoxKey;
   final OptimusWidgetSize size;
+  final int? maxCharacters;
 
   bool get hasError {
     final error = this.error;
@@ -105,7 +109,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     final caption = widget.caption;
     final prefix = widget.prefix;
     final suffix = widget.suffix;
-
+    final controller = widget.controller;
+    final maxCharacters = widget.maxCharacters;
     final captionColor =
         widget.isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
 
@@ -187,14 +192,34 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             ),
           ),
         ),
-        if (widget.isEnabled && helperMessage != null)
+        if (widget.isEnabled && helperMessage != null || maxCharacters != null)
           Padding(
             padding: widget.size.getHelperPadding(tokens),
-            child: OptimusCaption(
-              child: DefaultTextStyle.merge(
-                style: TextStyle(color: captionColor),
-                child: helperMessage,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (widget.isEnabled && helperMessage != null)
+                  Expanded(
+                    child: OptimusCaption(
+                      child: DefaultTextStyle.merge(
+                        softWrap: true,
+                        maxLines: 2,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                          color: captionColor,
+                        ),
+                        child: helperMessage,
+                      ),
+                    ),
+                  ),
+                if (helperMessage == null) const Spacer(),
+                if (controller != null && maxCharacters != null)
+                  _CharacterCounter(
+                    current: controller.text.length,
+                    max: maxCharacters,
+                  ),
+              ],
             ),
           ),
         if (widget.isEnabled &&
@@ -248,6 +273,49 @@ class _InputCaption extends StatelessWidget {
           Icon(captionIcon, color: iconColor, size: tokens.sizing200),
       ],
     );
+  }
+}
+
+class _CharacterCounter extends StatelessWidget {
+  const _CharacterCounter({
+    required this.current,
+    required this.max,
+  });
+
+  final int current;
+  final int max;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    final child = Text(
+      '$current/$max',
+      style: tokens.bodyMedium.copyWith(
+        color:
+            current > max ? tokens.textAlertDanger : tokens.textStaticSecondary,
+      ),
+    );
+
+    return current > max
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  left: tokens.spacing200,
+                  right: tokens.spacing25,
+                ),
+                child: const OptimusIcon(
+                  iconData: OptimusIcons.error_circle,
+                  iconSize: OptimusIconSize.small,
+                  colorOption: OptimusIconColorOption.danger,
+                ),
+              ),
+              child,
+            ],
+          )
+        : child;
   }
 }
 

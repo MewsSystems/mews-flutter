@@ -23,6 +23,7 @@ class OptimusInputField extends StatefulWidget {
     this.helperMessage,
     this.maxLines = 1,
     this.minLines,
+    this.maxCharacters,
     this.controller,
     this.error,
     this.errorVariant = OptimusInputErrorVariant.bottomHint,
@@ -73,6 +74,10 @@ class OptimusInputField extends StatefulWidget {
 
   /// {@macro flutter.widgets.editableText.maxLines}
   final int maxLines;
+
+  /// The maximum characters for the field. Current character count will be
+  /// displayed under the field.
+  final int? maxCharacters;
 
   /// {@macro flutter.widgets.editableText.minLines}
   final int? minLines;
@@ -221,6 +226,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
+      controller: _effectiveController,
       isFocused: widget.isFocused,
       isEnabled: widget.isEnabled,
       label: widget.label,
@@ -231,6 +237,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       errorVariant: widget.errorVariant,
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
+      maxCharacters: widget.maxCharacters,
       prefix: _shouldShowPrefix
           ? Prefix(prefix: widget.prefix, leading: widget.leading)
           : null,
