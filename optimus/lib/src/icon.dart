@@ -21,7 +21,7 @@ enum OptimusIconColorOption {
   info,
   warning,
   danger,
-  subtle,
+  inverse,
 }
 
 /// Icons are symbols that provide a visual representation of meaning in
@@ -55,6 +55,8 @@ class OptimusIcon extends StatelessWidget {
   ///   a sense of warning.
   /// - [OptimusIconColorOption.danger] – used to emphasize the item and convey
   ///   a sense of danger or error.
+  /// - [OptimusIconColorOption.inverse] – used to emphasize the item in a
+  ///  general way, but with an inverse color.
   final OptimusIconColorOption? colorOption;
 
   double _getIconSize(OptimusTokens tokens) => switch (iconSize) {
@@ -65,107 +67,25 @@ class OptimusIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Icon(
       iconData,
-      color: colorOption?.let((option) => option.toIconColor(theme)) ??
-          theme.colors.defaultTextColor,
+      color: colorOption?.let((option) => option.toIconColor(tokens)) ??
+          tokens.textStaticPrimary,
       size: _getIconSize(context.tokens),
     );
   }
 }
 
-/// Icons are symbols that provide a visual representation of meaning in
-/// situations where text is not enough or we want to emphasize its impact.
-///
-/// Supplementary icon is used when it's necessary to highlight information or
-/// provide additional emphasis.
-class OptimusSupplementaryIcon extends StatelessWidget {
-  const OptimusSupplementaryIcon({
-    super.key,
-    required this.iconData,
-    this.colorOption = OptimusIconColorOption.basic,
-  });
-
-  /// Controls the icon.
-  final IconData iconData;
-
-  /// Controls color of the icon.
-  ///
-  /// - `null` – default value. Changes the color of the icon to match its
-  ///   parent font color.
-  /// - [OptimusIconColorOption.basic] – variant with no extra emphasis.
-  /// - [OptimusIconColorOption.primary] – used to emphasize the item in a
-  ///   general way.
-  /// - [OptimusIconColorOption.success] – used to emphasize the item and convey
-  ///   a sense of success.
-  /// - [OptimusIconColorOption.warning] – used to emphasize the item and convey
-  ///   a sense of warning.
-  /// - [OptimusIconColorOption.danger] – used to emphasize the item and convey
-  ///   a sense of danger or error.
-  final OptimusIconColorOption colorOption;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.theme;
-    final tokens = context.tokens;
-
-    return Container(
-      width: _diameter,
-      height: _diameter,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: colorOption.toSupplementaryBackgroundColor(theme),
-      ),
-      child: Icon(
-        iconData,
-        color: colorOption.toSupplementaryIconColor(theme),
-        size: tokens.sizing400,
-      ),
-    );
-  }
-}
-
 extension on OptimusIconColorOption {
-  Color toIconColor(OptimusThemeData theme) => switch (this) {
-        OptimusIconColorOption.basic => theme.isDark
-            ? theme.colors.neutral0
-            : theme.colors.neutral500, // TODO(witwash): to tokenss
-        OptimusIconColorOption.primary => theme.colors.primary500,
-        OptimusIconColorOption.success => theme.colors.success500,
-        OptimusIconColorOption.info => theme.colors.info500,
-        OptimusIconColorOption.warning => theme.colors.warning700,
-        OptimusIconColorOption.danger => theme.colors.danger500,
-        OptimusIconColorOption.subtle => theme.colors.neutral300,
-      };
-
-  Color toSupplementaryIconColor(OptimusThemeData theme) {
-    if (theme.isDark) return theme.colors.neutral1000;
-
-    return switch (this) {
-      OptimusIconColorOption.basic => theme.colors.neutral500,
-      OptimusIconColorOption.warning => theme.colors.neutral1000,
-      OptimusIconColorOption.danger ||
-      OptimusIconColorOption.primary ||
-      OptimusIconColorOption.success ||
-      OptimusIconColorOption.info ||
-      OptimusIconColorOption.subtle =>
-        theme.colors.neutral0,
-    };
-  }
-
-  Color toSupplementaryBackgroundColor(OptimusThemeData theme) =>
-      switch (this) {
-        OptimusIconColorOption.basic ||
-        OptimusIconColorOption.subtle =>
-          theme.colors.neutral50,
-        OptimusIconColorOption.primary => theme.colors.primary500,
-        OptimusIconColorOption.success => theme.colors.success500,
-        OptimusIconColorOption.info => theme.colors.info500,
-        OptimusIconColorOption.warning => theme.colors.warning500,
-        OptimusIconColorOption.danger => theme.colors.danger500,
+  Color toIconColor(OptimusTokens tokens) => switch (this) {
+        OptimusIconColorOption.basic => tokens.textStaticPrimary,
+        OptimusIconColorOption.primary => tokens.textInteractiveDefault,
+        OptimusIconColorOption.success => tokens.textAlertSuccess,
+        OptimusIconColorOption.info => tokens.textAlertInfo,
+        OptimusIconColorOption.warning => tokens.textAlertWarning,
+        OptimusIconColorOption.danger => tokens.textAlertDanger,
+        OptimusIconColorOption.inverse => tokens.textStaticInverse,
       };
 }
-
-const double _diameter = 64;
