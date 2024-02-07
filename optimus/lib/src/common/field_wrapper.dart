@@ -10,7 +10,7 @@ class FieldWrapper extends StatefulWidget {
     super.key,
     this.isEnabled = true,
     required this.focusNode,
-    this.controller,
+    this.inputLength = 0,
     this.isFocused,
     this.label,
     this.caption,
@@ -30,7 +30,7 @@ class FieldWrapper extends StatefulWidget {
 
   final bool isEnabled;
   final FocusNode focusNode;
-  final TextEditingController? controller;
+  final int inputLength;
   final bool? isFocused;
   final String? label;
   final Widget? caption;
@@ -109,7 +109,6 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     final caption = widget.caption;
     final prefix = widget.prefix;
     final suffix = widget.suffix;
-    final controller = widget.controller;
     final maxCharacters = widget.maxCharacters;
     final captionColor =
         widget.isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
@@ -214,9 +213,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     ),
                   ),
                 if (helperMessage == null) const Spacer(),
-                if (controller != null && maxCharacters != null)
+                if (maxCharacters != null)
                   _CharacterCounter(
-                    current: controller.text.length,
+                    current: widget.inputLength,
                     max: maxCharacters,
                   ),
               ],

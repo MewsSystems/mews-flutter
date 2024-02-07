@@ -226,7 +226,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
-      controller: _effectiveController,
+      inputLength: _effectiveController.text.length,
       isFocused: widget.isFocused,
       isEnabled: widget.isEnabled,
       label: widget.label,
