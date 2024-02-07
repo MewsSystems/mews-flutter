@@ -178,7 +178,8 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         OptimusWidgetSize.small =>
           tokens.bodyMediumStrong.copyWith(color: _textColor),
         OptimusWidgetSize.medium ||
-        OptimusWidgetSize.large =>
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
           tokens.bodyLargeStrong.copyWith(color: _textColor),
       };
 

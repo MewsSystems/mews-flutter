@@ -80,7 +80,8 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
     return switch (widget.size) {
       OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(color: color),
       OptimusWidgetSize.medium ||
-      OptimusWidgetSize.large =>
+      OptimusWidgetSize.large ||
+      OptimusWidgetSize.extraLarge =>
         tokens.bodyLargeStrong.copyWith(color: color),
     };
   }

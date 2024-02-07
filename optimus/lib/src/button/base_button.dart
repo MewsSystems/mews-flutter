@@ -134,10 +134,9 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
       ? tokens.bodyMediumStrong
       : tokens.bodyLargeStrong;
 
-  double get _iconSize => switch (widget.size) {
-        OptimusWidgetSize.small => tokens.sizing200,
-        OptimusWidgetSize.medium || OptimusWidgetSize.large => tokens.sizing300,
-      };
+  double get _iconSize => widget.size == OptimusWidgetSize.small
+      ? tokens.sizing200
+      : tokens.sizing300;
 
   @override
   void initState() {
