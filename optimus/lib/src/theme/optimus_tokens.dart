@@ -11,7 +11,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Wed, 06 Dec 2023 13:12:52 GMT
+// Generated on Tue, 06 Feb 2024 13:21:37 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -635,8 +635,7 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteBrandCoral1000 = [
     DesignTokensLight.paletteBrandCoral1000,
-    DesignTokensDark
-        .paletteBrandCoral900, // TODO(witwash): error due to different starting value in tokens, see: https://mews.atlassian.net/browse/DX-820.
+    DesignTokensDark.paletteBrandCoral1000,
   ];
   static List<Color> paletteBrandCoral150 = [
     DesignTokensLight.paletteBrandCoral150,
@@ -744,8 +743,7 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteBrandIndigo1000 = [
     DesignTokensLight.paletteBrandIndigo1000,
-    DesignTokensDark
-        .paletteBrandIndigo900, // TODO(witwash): error due to different starting value in tokens, see: https://mews.atlassian.net/browse/DX-820.
+    DesignTokensDark.paletteBrandIndigo1000,
   ];
   static List<Color> paletteBrandIndigo150 = [
     DesignTokensLight.paletteBrandIndigo150,
@@ -893,8 +891,7 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteSemanticBlue1000 = [
     DesignTokensLight.paletteSemanticBlue1000,
-    DesignTokensDark
-        .paletteSemanticBlue900, // TODO(witwash): error due to different starting value in tokens, see: https://mews.atlassian.net/browse/DX-820.
+    DesignTokensDark.paletteSemanticBlue1000,
   ];
   static List<Color> paletteSemanticBlue150 = [
     DesignTokensLight.paletteSemanticBlue150,
@@ -946,8 +943,7 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteSemanticGreen1000 = [
     DesignTokensLight.paletteSemanticGreen1000,
-    DesignTokensDark
-        .paletteSemanticGreen900, // TODO(witwash): error due to different starting value in tokens, see: https://mews.atlassian.net/browse/DX-820.
+    DesignTokensDark.paletteSemanticGreen1000,
   ];
   static List<Color> paletteSemanticGreen150 = [
     DesignTokensLight.paletteSemanticGreen150,
@@ -999,8 +995,7 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteSemanticOrange1000 = [
     DesignTokensLight.paletteSemanticOrange1000,
-    DesignTokensDark
-        .paletteSemanticOrange900, // TODO(witwash): error due to different starting value in tokens, see: https://mews.atlassian.net/browse/DX-820.
+    DesignTokensDark.paletteSemanticOrange1000,
   ];
   static List<Color> paletteSemanticOrange150 = [
     DesignTokensLight.paletteSemanticOrange150,
@@ -1052,8 +1047,7 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteSemanticRed1000 = [
     DesignTokensLight.paletteSemanticRed1000,
-    DesignTokensDark
-        .paletteSemanticRed900, // TODO(witwash): error due to different starting value in tokens, see: https://mews.atlassian.net/browse/DX-820.
+    DesignTokensDark.paletteSemanticRed1000,
   ];
   static List<Color> paletteSemanticRed150 = [
     DesignTokensLight.paletteSemanticRed150,
