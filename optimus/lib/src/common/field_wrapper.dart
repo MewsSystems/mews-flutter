@@ -280,13 +280,17 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
           EdgeInsets.only(bottom: tokens.spacing50),
-        OptimusWidgetSize.large => EdgeInsets.only(bottom: tokens.spacing100),
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          EdgeInsets.only(bottom: tokens.spacing100),
       };
   EdgeInsets getHelperPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
           EdgeInsets.only(top: tokens.spacing50),
-        OptimusWidgetSize.large => EdgeInsets.only(top: tokens.spacing100),
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          EdgeInsets.only(top: tokens.spacing100),
       };
   EdgeInsets getErrorPadding(OptimusTokens tokens) =>
       EdgeInsets.only(top: tokens.spacing50);
@@ -295,11 +299,13 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.small => tokens.spacing150,
         OptimusWidgetSize.medium => tokens.spacing200,
         OptimusWidgetSize.large => tokens.spacing250,
+        OptimusWidgetSize.extraLarge => tokens.spacing300,
       };
 
   double getHeight(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small => tokens.sizing400,
         OptimusWidgetSize.medium => tokens.sizing500,
         OptimusWidgetSize.large => tokens.sizing600,
+        OptimusWidgetSize.extraLarge => tokens.sizing700,
       };
 }
