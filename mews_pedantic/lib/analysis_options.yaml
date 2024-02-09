@@ -258,6 +258,7 @@ dart_code_metrics:
     # - avoid-collapsible-if
     - avoid-collection-methods-with-unrelated-types
     # - avoid-collection-mutating-methods
+    - avoid-contradictory-expressions
     # - avoid-declaring-call-method
     - avoid-double-slash-imports
     - avoid-duplicate-cascades
@@ -271,7 +272,9 @@ dart_code_metrics:
     - avoid-duplicate-switch-case-conditions
     - avoid-duplicate-test-assertions
     # - avoid-dynamic
+    # - avoid-empty-test-groups
     - avoid-equal-expressions
+    - avoid-excessive-expressions
     - avoid-explicit-pattern-field-name
     # - avoid-explicit-type-declaration
     # - avoid-extensions-on-records
@@ -309,6 +312,7 @@ dart_code_metrics:
     - avoid-nested-switches
     # - avoid-non-ascii-symbols
     - avoid-non-null-assertion
+    - avoid-not-encodable-in-to-json
     - avoid-nullable-interpolation
     - avoid-nullable-parameters-with-default-values
     - avoid-nullable-tostring
@@ -381,7 +385,7 @@ dart_code_metrics:
     # - no-empty-block
     # - no-equal-arguments
     - no-equal-conditions
-    # - no-equal-nested-conditions
+    - no-equal-nested-conditions
     - no-equal-switch-case
     - no-equal-switch-expression-cases
     - no-equal-then-else
@@ -423,7 +427,7 @@ dart_code_metrics:
     # - prefer-match-file-name
     # - prefer-moving-to-variable
     - prefer-named-boolean-parameters:
-      ignore-single: true
+        ignore-single: true
     # - prefer-named-imports
     - prefer-null-aware-spread
     - prefer-parentheses-with-if-null
