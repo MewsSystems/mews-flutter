@@ -10,7 +10,6 @@ class FieldWrapper extends StatefulWidget {
     super.key,
     this.isEnabled = true,
     required this.focusNode,
-    this.inputLength = 0,
     this.isFocused,
     this.label,
     this.caption,
@@ -25,12 +24,11 @@ class FieldWrapper extends StatefulWidget {
     this.fieldBoxKey,
     this.children = const <Widget>[],
     this.size = OptimusWidgetSize.large,
-    this.maxCharacters,
+    this.inputLimit,
   });
 
   final bool isEnabled;
   final FocusNode focusNode;
-  final int inputLength;
   final bool? isFocused;
   final String? label;
   final Widget? caption;
@@ -45,7 +43,7 @@ class FieldWrapper extends StatefulWidget {
   final List<Widget> children;
   final Key? fieldBoxKey;
   final OptimusWidgetSize size;
-  final int? maxCharacters;
+  final Widget? inputLimit;
 
   bool get hasError {
     final error = this.error;
@@ -90,6 +88,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _isFocused => widget.isFocused ?? widget.focusNode.hasFocus;
 
+  bool get _hasHelperField =>
+      widget.helperMessage != null || widget.inputLimit != null;
+
   Color? get _background => widget.isEnabled ? null : tokens.backgroundDisabled;
 
   Color get _borderColor {
@@ -105,11 +106,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final label = widget.label;
-    final helperMessage = widget.helperMessage;
     final caption = widget.caption;
     final prefix = widget.prefix;
     final suffix = widget.suffix;
-    final maxCharacters = widget.maxCharacters;
     final captionColor =
         widget.isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
 
@@ -191,14 +190,14 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             ),
           ),
         ),
-        if (widget.isEnabled && helperMessage != null || maxCharacters != null)
+        if (widget.isEnabled && _hasHelperField)
           Padding(
             padding: widget.size.getHelperPadding(tokens),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.isEnabled && helperMessage != null)
+                if (widget.helperMessage case final helperMessage?)
                   Expanded(
                     child: OptimusCaption(
                       child: DefaultTextStyle.merge(
@@ -212,12 +211,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                       ),
                     ),
                   ),
-                if (helperMessage == null) const Spacer(),
-                if (maxCharacters != null)
-                  _CharacterCounter(
-                    current: widget.inputLength,
-                    max: maxCharacters,
-                  ),
+                if (widget.helperMessage == null) const Spacer(),
+                if (widget.inputLimit case final inputLimit?) inputLimit,
               ],
             ),
           ),
@@ -272,49 +267,6 @@ class _InputCaption extends StatelessWidget {
           Icon(captionIcon, color: iconColor, size: tokens.sizing200),
       ],
     );
-  }
-}
-
-class _CharacterCounter extends StatelessWidget {
-  const _CharacterCounter({
-    required this.current,
-    required this.max,
-  });
-
-  final int current;
-  final int max;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    final child = Text(
-      '$current/$max',
-      style: tokens.bodyMedium.copyWith(
-        color:
-            current > max ? tokens.textAlertDanger : tokens.textStaticSecondary,
-      ),
-    );
-
-    return current > max
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: tokens.spacing200,
-                  right: tokens.spacing25,
-                ),
-                child: const OptimusIcon(
-                  iconData: OptimusIcons.error_circle,
-                  iconSize: OptimusIconSize.small,
-                  colorOption: OptimusIconColorOption.danger,
-                ),
-              ),
-              child,
-            ],
-          )
-        : child;
   }
 }
 

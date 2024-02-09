@@ -223,10 +223,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   Widget build(BuildContext context) {
     final error = widget.error;
+    final maxCharacters = widget.maxCharacters;
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
-      inputLength: _effectiveController.text.length,
       isFocused: widget.isFocused,
       isEnabled: widget.isEnabled,
       label: widget.label,
@@ -237,7 +237,12 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       errorVariant: widget.errorVariant,
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
-      maxCharacters: widget.maxCharacters,
+      inputLimit: maxCharacters != null
+          ? _CharacterCounter(
+              current: _effectiveController.text.length,
+              max: maxCharacters,
+            )
+          : null,
       prefix: _shouldShowPrefix
           ? Prefix(prefix: widget.prefix, leading: widget.leading)
           : null,
@@ -338,4 +343,47 @@ class _ClearAllButton extends StatelessWidget {
           color: context.tokens.textStaticPrimary,
         ),
       );
+}
+
+class _CharacterCounter extends StatelessWidget {
+  const _CharacterCounter({
+    required this.current,
+    required this.max,
+  });
+
+  final int current;
+  final int max;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    final child = Text(
+      '$current/$max',
+      style: tokens.bodyMedium.copyWith(
+        color:
+            current > max ? tokens.textAlertDanger : tokens.textStaticSecondary,
+      ),
+    );
+
+    return current > max
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  left: tokens.spacing200,
+                  right: tokens.spacing25,
+                ),
+                child: const OptimusIcon(
+                  iconData: OptimusIcons.error_circle,
+                  iconSize: OptimusIconSize.small,
+                  colorOption: OptimusIconColorOption.danger,
+                ),
+              ),
+              child,
+            ],
+          )
+        : child;
+  }
 }
