@@ -171,9 +171,10 @@ packages:
   mews_pedantic:
     dependency: "direct dev"
     description:
-      path: "../mews_pedantic"
-      relative: true
-    source: path
+      name: mews_pedantic
+      sha256: "20211dfce71161df065d44815f7ca3b5cdae3c097a14542400800d5e9d36763b"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.23.0"
   nested:
     dependency: transitive
@@ -415,10 +416,10 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: e9aa5ea75c84cf46b3db4eea212523591211c3cf2e13099ee4ec147f54201c86
+      sha256: c512655380d241a337521703af62d2c122bf7b77a46ff7dd750092aa9433499c
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.2"
+    version: "6.2.4"
   url_launcher_android:
     dependency: transitive
     description:
