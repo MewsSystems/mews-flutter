@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/feedback/feedback_variant.dart';
 
 /// Notification is used for showing a brief and concise message that
 /// communicates immediate feedback with optional action included. Notifications
