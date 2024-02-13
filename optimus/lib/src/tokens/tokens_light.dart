@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Wed, 06 Dec 2023 13:12:52 GMT
+// Generated on Tue, 06 Feb 2024 13:21:36 GMT
 
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
@@ -301,7 +301,7 @@ class DesignTokensLight {
 
   static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1,
     fontSize: 11,
@@ -310,7 +310,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodyExtraSmallStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1,
     fontSize: 11,
@@ -319,7 +319,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodyLarge = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 16,
@@ -327,7 +327,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodyLargeStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1.5,
     fontSize: 16,
@@ -335,7 +335,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 14,
@@ -343,7 +343,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodyMediumStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1.5,
     fontSize: 14,
@@ -351,7 +351,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodySmall = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 12,
@@ -359,7 +359,7 @@ class DesignTokensLight {
   );
   static const TextStyle bodySmallStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1.5,
     fontSize: 12,
@@ -367,7 +367,7 @@ class DesignTokensLight {
   );
   static const TextStyle highlightLarge = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1.3,
     fontSize: 36,
@@ -376,7 +376,7 @@ class DesignTokensLight {
   );
   static const TextStyle highlightMedium = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1.3,
     fontSize: 25,
@@ -385,7 +385,7 @@ class DesignTokensLight {
   );
   static const TextStyle highlightSmall = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w500,
     height: 1.3,
     fontSize: 18,
@@ -393,7 +393,7 @@ class DesignTokensLight {
   );
   static const TextStyle titleLarge = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 22,
@@ -401,7 +401,7 @@ class DesignTokensLight {
   );
   static const TextStyle titleLargeStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w600,
     height: 1.5,
     fontSize: 22,
@@ -409,7 +409,7 @@ class DesignTokensLight {
   );
   static const TextStyle titleMedium = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 20,
@@ -417,7 +417,7 @@ class DesignTokensLight {
   );
   static const TextStyle titleMediumStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w600,
     height: 1.5,
     fontSize: 20,
@@ -425,7 +425,7 @@ class DesignTokensLight {
   );
   static const TextStyle titleSmall = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w400,
     height: 1.3,
     fontSize: 18,
@@ -433,7 +433,7 @@ class DesignTokensLight {
   );
   static const TextStyle titleSmallStrong = TextStyle(
     fontFamily: 'Inter',
-    package: 'optimus',
+    package: fontPackage,
     fontWeight: FontWeight.w600,
     height: 1.3,
     fontSize: 18,
@@ -599,4 +599,5 @@ class DesignTokensLight {
     FontFeature('cv10'),
     FontFeature('zero'),
   ];
+  static const String fontPackage = 'optimus';
 }
