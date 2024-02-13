@@ -16,11 +16,25 @@ class OptimusNotification extends StatelessWidget {
     this.variant = OptimusFeedbackVariant.info,
   });
 
+  /// The title of the notification.
   final Widget title;
+
+  /// The main content or description which should be as brief and straight
+  /// to the point. Number or lines is limited to [_maxLinesBody].
   final Widget? body;
+
+  /// The icon that will be displayed on the left side of the notification.
   final IconData? icon;
+
+  /// The dismissible callback that will be executed after a click on the close
+  /// button.
   final VoidCallback? onDismissed;
+
+  /// The link with custom action.
   final OptimusNotificationLink? link;
+
+  /// The variant of the notification which determines the background color and
+  /// icon.
   final OptimusFeedbackVariant variant;
 
   double _getPadding(BuildContext context) =>
@@ -83,7 +97,10 @@ class OptimusNotificationLink {
     required this.onPressed,
   });
 
+  /// The text widget that will be displayed as a link.
   final Widget text;
+
+  /// The function that will be executed after a click on the link.
   final VoidCallback onPressed;
 }
 

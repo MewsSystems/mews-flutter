@@ -127,19 +127,19 @@ class OptimusBanner extends StatelessWidget {
   }
 }
 
-/// System-wide banners display critical notifications about the state of
+/// Alert banners display critical notifications about the state of
 /// the entire system.
 ///
 /// They are placed at the top of the screen, above all content
-/// (including navigation). Unlike contextual banners, system-wide banners
+/// (including navigation). Unlike contextual banners, alert banners
 /// remain in the same place on all pages and cannot be dismissed.
 ///
-/// System-wide banners display messages that are critical to the user
+/// Alert banners display messages that are critical to the user
 /// and affect how the system or user operates.
 /// Because of their prominent appearance, they are used to communicate
 /// only the most important information about the system. If overused,
 /// users could stop perceiving them as something worth paying attention to.
-/// System-wide banners must be removed when no longer necessary.
+/// Alert banners must be removed when no longer necessary.
 class OptimusAlert extends StatelessWidget {
   const OptimusAlert({
     super.key,
@@ -154,8 +154,10 @@ class OptimusAlert extends StatelessWidget {
   /// Typically a [Text] widget.
   final Widget title;
 
+  /// Banner's description rendered as a second line.
   final Widget? description;
 
+  /// Link to additional information.
   final OptimusNotificationLink? link;
 
   /// Variant of the banner.
