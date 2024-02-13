@@ -24,6 +24,7 @@ class FieldWrapper extends StatefulWidget {
     this.fieldBoxKey,
     this.children = const <Widget>[],
     this.size = OptimusWidgetSize.large,
+    this.inputLimit,
   });
 
   final bool isEnabled;
@@ -42,6 +43,7 @@ class FieldWrapper extends StatefulWidget {
   final List<Widget> children;
   final Key? fieldBoxKey;
   final OptimusWidgetSize size;
+  final Widget? inputLimit;
 
   bool get hasError {
     final error = this.error;
@@ -86,6 +88,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _isFocused => widget.isFocused ?? widget.focusNode.hasFocus;
 
+  bool get _hasHelperField =>
+      widget.helperMessage != null || widget.inputLimit != null;
+
   Color? get _background => widget.isEnabled ? null : tokens.backgroundDisabled;
 
   Color get _borderColor {
@@ -101,11 +106,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final label = widget.label;
-    final helperMessage = widget.helperMessage;
     final caption = widget.caption;
     final prefix = widget.prefix;
     final suffix = widget.suffix;
-
     final captionColor =
         widget.isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
 
@@ -187,14 +190,30 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             ),
           ),
         ),
-        if (widget.isEnabled && helperMessage != null)
+        if (widget.isEnabled && _hasHelperField)
           Padding(
             padding: widget.size.getHelperPadding(tokens),
-            child: OptimusCaption(
-              child: DefaultTextStyle.merge(
-                style: TextStyle(color: captionColor),
-                child: helperMessage,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (widget.helperMessage case final helperMessage?)
+                  Expanded(
+                    child: OptimusCaption(
+                      child: DefaultTextStyle.merge(
+                        softWrap: true,
+                        maxLines: 2,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                          color: captionColor,
+                        ),
+                        child: helperMessage,
+                      ),
+                    ),
+                  ),
+                if (widget.helperMessage == null) const Spacer(),
+                if (widget.inputLimit case final inputLimit?) inputLimit,
+              ],
             ),
           ),
         if (widget.isEnabled &&
@@ -280,13 +299,17 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
           EdgeInsets.only(bottom: tokens.spacing50),
-        OptimusWidgetSize.large => EdgeInsets.only(bottom: tokens.spacing100),
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          EdgeInsets.only(bottom: tokens.spacing100),
       };
   EdgeInsets getHelperPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
           EdgeInsets.only(top: tokens.spacing50),
-        OptimusWidgetSize.large => EdgeInsets.only(top: tokens.spacing100),
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          EdgeInsets.only(top: tokens.spacing100),
       };
   EdgeInsets getErrorPadding(OptimusTokens tokens) =>
       EdgeInsets.only(top: tokens.spacing50);
@@ -295,11 +318,13 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.small => tokens.spacing150,
         OptimusWidgetSize.medium => tokens.spacing200,
         OptimusWidgetSize.large => tokens.spacing250,
+        OptimusWidgetSize.extraLarge => tokens.spacing300,
       };
 
   double getHeight(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small => tokens.sizing400,
         OptimusWidgetSize.medium => tokens.sizing500,
         OptimusWidgetSize.large => tokens.sizing600,
+        OptimusWidgetSize.extraLarge => tokens.sizing700,
       };
 }

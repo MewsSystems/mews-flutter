@@ -158,5 +158,6 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.small => tokens.sizing400,
         OptimusWidgetSize.medium => tokens.sizing500,
         OptimusWidgetSize.large => tokens.sizing600,
+        OptimusWidgetSize.extraLarge => tokens.sizing700,
       };
 }

@@ -301,6 +301,7 @@ class DesignTokensDark {
 
   static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1,
     fontSize: 11,
@@ -309,6 +310,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodyExtraSmallStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1,
     fontSize: 11,
@@ -317,6 +319,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodyLarge = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 16,
@@ -324,6 +327,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodyLargeStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1.5,
     fontSize: 16,
@@ -331,6 +335,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 14,
@@ -338,6 +343,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodyMediumStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1.5,
     fontSize: 14,
@@ -345,6 +351,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodySmall = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 12,
@@ -352,6 +359,7 @@ class DesignTokensDark {
   );
   static const TextStyle bodySmallStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1.5,
     fontSize: 12,
@@ -359,6 +367,7 @@ class DesignTokensDark {
   );
   static const TextStyle highlightLarge = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1.3,
     fontSize: 36,
@@ -367,6 +376,7 @@ class DesignTokensDark {
   );
   static const TextStyle highlightMedium = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1.3,
     fontSize: 25,
@@ -375,6 +385,7 @@ class DesignTokensDark {
   );
   static const TextStyle highlightSmall = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w500,
     height: 1.3,
     fontSize: 18,
@@ -382,6 +393,7 @@ class DesignTokensDark {
   );
   static const TextStyle titleLarge = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 22,
@@ -389,6 +401,7 @@ class DesignTokensDark {
   );
   static const TextStyle titleLargeStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w600,
     height: 1.5,
     fontSize: 22,
@@ -396,6 +409,7 @@ class DesignTokensDark {
   );
   static const TextStyle titleMedium = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1.5,
     fontSize: 20,
@@ -403,6 +417,7 @@ class DesignTokensDark {
   );
   static const TextStyle titleMediumStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w600,
     height: 1.5,
     fontSize: 20,
@@ -410,6 +425,7 @@ class DesignTokensDark {
   );
   static const TextStyle titleSmall = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w400,
     height: 1.3,
     fontSize: 18,
@@ -417,6 +433,7 @@ class DesignTokensDark {
   );
   static const TextStyle titleSmallStrong = TextStyle(
     fontFamily: 'Inter',
+    package: 'optimus',
     fontWeight: FontWeight.w600,
     height: 1.3,
     fontSize: 18,

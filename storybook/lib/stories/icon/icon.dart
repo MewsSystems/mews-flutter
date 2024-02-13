@@ -19,44 +19,14 @@ final Story iconStory = Story(
     );
 
     return ListView(
-      children: OptimusIconColorOption.values
+      children: _colors
           .map(
             (c) => OptimusListTile(
-              title: OptimusTitleSmall(
-                child: Text(c.name.toUpperCase()),
-              ),
+              title: OptimusTitleSmall(child: Text(c.label.toUpperCase())),
               prefix: OptimusIcon(
                 iconData: icon,
-                colorOption: c,
+                colorOption: c.value,
                 iconSize: size,
-              ),
-            ),
-          )
-          .toList(),
-    );
-  },
-);
-
-final Story supplementaryIconStory = Story(
-  name: 'Media/Icons/Supplementary Icon',
-  builder: (context) {
-    final k = context.knobs;
-    final icon = k.options(
-      label: 'Icon',
-      initial: OptimusIcons.edit,
-      options: _icons,
-    );
-
-    return ListView(
-      children: OptimusIconColorOption.values
-          .map(
-            (c) => OptimusListTile(
-              title: OptimusTitleSmall(
-                child: Text(c.name.toUpperCase()),
-              ),
-              prefix: OptimusSupplementaryIcon(
-                iconData: icon,
-                colorOption: c,
               ),
             ),
           )
@@ -73,6 +43,17 @@ final List<Option<IconData>> _icons = [
   const Option(label: 'Edit', value: OptimusIcons.edit),
   const Option(label: 'Chevron right', value: OptimusIcons.chevron_right),
   const Option(label: 'Chevron left', value: OptimusIcons.chevron_left),
+];
+
+final _colors = [
+  const Option(label: 'Basic', value: OptimusIconColorOption.basic),
+  const Option(label: 'Primary', value: OptimusIconColorOption.primary),
+  const Option(label: 'Success', value: OptimusIconColorOption.success),
+  const Option(label: 'Info', value: OptimusIconColorOption.info),
+  const Option(label: 'Warning', value: OptimusIconColorOption.warning),
+  const Option(label: 'Danger', value: OptimusIconColorOption.danger),
+  const Option(label: 'Inverse', value: OptimusIconColorOption.inverse),
+  const Option(label: 'Inherit', value: null),
 ];
 
 final _sizes = OptimusIconSize.values.toOptions();
