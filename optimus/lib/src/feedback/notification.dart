@@ -1,24 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-
-/// Describes a certain type of notification with its semantical meaning.
-///
-/// Use-cases:
-///  - [OptimusNotificationVariant.info] -  Used for notifying about
-/// informational, supportive, educative matter.
-///  - [OptimusNotificationVariant.success] - Used for notifying about
-/// successful, confirming, positive matter.
-///  - [OptimusNotificationVariant.warning] -  Used for notifying about
-/// warnings, problems, or matters that require the user's attention.
-///  - [OptimusNotificationVariant.danger] - Used for notifying about the
-/// dangerous matter. Could be error, destructive action or negative feedback.
-enum OptimusNotificationVariant {
-  info,
-  success,
-  warning,
-  danger,
-}
+import 'package:optimus/src/feedback/feedback_variant.dart';
 
 /// Notification is used for showing a brief and concise message that
 /// communicates immediate feedback with optional action included. Notifications
@@ -31,7 +14,7 @@ class OptimusNotification extends StatelessWidget {
     this.icon,
     this.link,
     this.onDismissed,
-    this.variant = OptimusNotificationVariant.info,
+    this.variant = OptimusFeedbackVariant.info,
   });
 
   final Widget title;
@@ -39,7 +22,7 @@ class OptimusNotification extends StatelessWidget {
   final IconData? icon;
   final VoidCallback? onDismissed;
   final OptimusNotificationLink? link;
-  final OptimusNotificationVariant variant;
+  final OptimusFeedbackVariant variant;
 
   double _getPadding(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
@@ -115,13 +98,11 @@ class _NotificationTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return DefaultTextStyle(
-      style: tokens.bodyLarge.copyWith(
-        color: theme.colors.neutral1000,
-        fontWeight: FontWeight.w700,
+      style: tokens.bodyMediumStrong.copyWith(
+        color: tokens.textStaticPrimary,
       ),
       child: title,
     );
@@ -140,14 +121,13 @@ class _NotificationBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return DefaultTextStyle(
       maxLines: _maxLinesBody,
       overflow: TextOverflow.ellipsis,
       style: tokens.bodyMedium.copyWith(
-        color: theme.colors.neutral1000t64,
+        color: tokens.textStaticSecondary,
       ),
       child: body,
     );
@@ -165,15 +145,14 @@ class _NotificationLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return DefaultTextStyle(
       maxLines: _maxLinesLink,
       overflow: TextOverflow.ellipsis,
       style: tokens.bodyMedium.copyWith(
-        color: theme.colors.neutral1000,
-        fontWeight: FontWeight.w700,
+        color: tokens.textStaticPrimary,
+        fontWeight: FontWeight.w500,
         decoration: TextDecoration.underline,
       ),
       child: link,
@@ -193,7 +172,7 @@ class _NotificationContent extends StatelessWidget {
   });
 
   final IconData? icon;
-  final OptimusNotificationVariant variant;
+  final OptimusFeedbackVariant variant;
   final Widget title;
   final Widget? body;
   final Widget? link;
@@ -211,7 +190,6 @@ class _NotificationContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
     final tokens = context.tokens;
     final body = this.body;
     final link = this.link;
@@ -219,8 +197,8 @@ class _NotificationContent extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(tokens.borderRadius50),
-        boxShadow: context.tokens.shadow200,
+        borderRadius: BorderRadius.circular(tokens.borderRadius100),
+        boxShadow: context.tokens.shadow300,
       ),
       child: Stack(
         children: [
@@ -231,13 +209,16 @@ class _NotificationContent extends StatelessWidget {
             width: leadingSectionWidth,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: variant.getBannerColor(theme),
+                color: variant.backgroundColor(tokens),
                 borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(tokens.borderRadius50),
+                  left: Radius.circular(tokens.borderRadius100),
                 ),
               ),
-              child: _LeadingIcon(icon: icon, variant: variant),
             ),
+          ),
+          Positioned(
+            top: tokens.spacing200,
+            child: _LeadingIcon(icon: icon, variant: variant),
           ),
           Row(
             children: [
@@ -246,9 +227,9 @@ class _NotificationContent extends StatelessWidget {
                 child: Container(
                   padding: _getContentPadding(tokens),
                   decoration: BoxDecoration(
-                    color: theme.colors.neutral0,
+                    color: tokens.backgroundStaticFlat,
                     borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(tokens.borderRadius50),
+                      right: Radius.circular(tokens.borderRadius100),
                     ),
                   ),
                   child: Column(
@@ -288,18 +269,17 @@ class _LeadingIcon extends StatelessWidget {
   });
 
   final IconData? icon;
-  final OptimusNotificationVariant variant;
+  final OptimusFeedbackVariant variant;
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
       child: Icon(
-        icon ?? variant.bannerIcon,
-        color: variant.getBannerIconColor(theme),
+        icon ?? variant.icon,
+        color: variant.getIconColor(tokens),
         size: context.tokens.sizing300,
       ),
     );
@@ -315,7 +295,6 @@ class _NotificationCloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return Positioned(
@@ -327,39 +306,13 @@ class _NotificationCloseButton extends StatelessWidget {
           padding: EdgeInsets.all(tokens.spacing100),
           child: Icon(
             OptimusIcons.cross_close,
-            color:
-                theme.colors.neutral500, // TODO(witwash): replace with tokens
+            color: tokens.textStaticPrimary,
             size: tokens.sizing200,
           ),
         ),
       ),
     );
   }
-}
-
-extension on OptimusNotificationVariant {
-  Color getBannerColor(OptimusThemeData theme) => switch (this) {
-        OptimusNotificationVariant.info =>
-          theme.colors.info500, // TODO(witwash): replace with tokens
-        OptimusNotificationVariant.success => theme.colors.success500,
-        OptimusNotificationVariant.warning => theme.colors.warning500,
-        OptimusNotificationVariant.danger => theme.colors.danger500,
-      };
-
-  Color getBannerIconColor(OptimusThemeData theme) => switch (this) {
-        OptimusNotificationVariant.info ||
-        OptimusNotificationVariant.success ||
-        OptimusNotificationVariant.danger =>
-          theme.colors.neutral0,
-        OptimusNotificationVariant.warning => theme.colors.neutral1000,
-      };
-
-  IconData get bannerIcon => switch (this) {
-        OptimusNotificationVariant.info => OptimusIcons.info,
-        OptimusNotificationVariant.success => OptimusIcons.done_circle,
-        OptimusNotificationVariant.warning => OptimusIcons.problematic,
-        OptimusNotificationVariant.danger => OptimusIcons.blacklist,
-      };
 }
 
 const double _maxWidth = 360;

@@ -16,7 +16,7 @@ final Story bannerStory = Story(
         constraints: BoxConstraints(maxWidth: width),
         child: SingleChildScrollView(
           child: Column(
-            children: OptimusBannerVariant.values
+            children: OptimusFeedbackVariant.values
                 .map(
                   (v) => Padding(
                     padding: const EdgeInsets.all(8),

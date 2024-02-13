@@ -65,7 +65,7 @@ class _NotificationStoryContent extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ...OptimusNotificationVariant.values.map(
+              ...OptimusFeedbackVariant.values.map(
                 (variant) => OptimusNotification(
                   title: Text(title),
                   body: body.isNotEmpty ? Text(body) : null,
