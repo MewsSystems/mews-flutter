@@ -18,7 +18,7 @@ class NotificationStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final title = knobsBuilder.text(label: 'Title', initial: 'Title');
-    final body = knobsBuilder.text(label: 'Notification body', initial: '');
+    final description = knobsBuilder.text(label: 'Description', initial: '');
     final link = knobsBuilder.text(label: 'Link text', initial: '');
     final dismissible = knobsBuilder.boolean(label: 'Is Dismissible');
     final position = knobsBuilder.options(
@@ -31,7 +31,7 @@ class NotificationStory extends StatelessWidget {
       position: position,
       child: _NotificationStoryContent(
         title: title,
-        body: body,
+        description: description,
         link: link,
         dismissible: dismissible,
       ),
@@ -42,18 +42,18 @@ class NotificationStory extends StatelessWidget {
 class _NotificationStoryContent extends StatelessWidget {
   const _NotificationStoryContent({
     required this.title,
-    required this.body,
+    required this.description,
     required this.link,
     required this.dismissible,
   });
 
   final String title;
-  final String body;
+  final String description;
   final String link;
   final bool dismissible;
 
-  OptimusNotificationLink? get _link => link.isNotEmpty
-      ? OptimusNotificationLink(
+  OptimusFeedbackLink? get _link => link.isNotEmpty
+      ? OptimusFeedbackLink(
           text: Text(link),
           onPressed: () {},
         )
@@ -65,10 +65,11 @@ class _NotificationStoryContent extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ...OptimusNotificationVariant.values.map(
+              ...OptimusFeedbackVariant.values.map(
                 (variant) => OptimusNotification(
                   title: Text(title),
-                  body: body.isNotEmpty ? Text(body) : null,
+                  description:
+                      description.isNotEmpty ? Text(description) : null,
                   variant: variant,
                   link: _link,
                   onDismissed: dismissible ? () {} : null,
@@ -79,7 +80,8 @@ class _NotificationStoryContent extends StatelessWidget {
                   OptimusNotificationsOverlay.of(context)?.show(
                     OptimusNotification(
                       title: Text(title),
-                      body: body.isNotEmpty ? Text(body) : null,
+                      description:
+                          description.isNotEmpty ? Text(description) : null,
                       link: _link,
                       onDismissed: dismissible ? () {} : null,
                     ),
