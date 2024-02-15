@@ -31,7 +31,7 @@ final Story alertStory = Story(
                   description:
                       description.isNotEmpty ? Text(description) : null,
                   link: link.isNotEmpty
-                      ? OptimusNotificationLink(
+                      ? OptimusFeedbackLink(
                           text: Text(link),
                           onPressed: () {},
                         )

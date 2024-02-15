@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/feedback/feedback_link.dart';
 
 /// Notification is used for showing a brief and concise message that
 /// communicates immediate feedback with optional action included. Notifications
@@ -31,7 +32,7 @@ class OptimusNotification extends StatelessWidget {
   final VoidCallback? onDismissed;
 
   /// The link with custom action.
-  final OptimusNotificationLink? link;
+  final OptimusFeedbackLink? link;
 
   /// The variant of the notification which determines the background color and
   /// icon.
@@ -84,24 +85,6 @@ class OptimusNotification extends StatelessWidget {
       ),
     );
   }
-}
-
-/// The notification link with custom action.
-///
-/// This link is defined by the [text] widget, usually [Text] and the
-/// function that will be executed after a click. After clicking on the link,
-/// notification will be dismissed.
-class OptimusNotificationLink {
-  const OptimusNotificationLink({
-    required this.text,
-    required this.onPressed,
-  });
-
-  /// The text widget that will be displayed as a link.
-  final Widget text;
-
-  /// The function that will be executed after a click on the link.
-  final VoidCallback onPressed;
 }
 
 /// Optimus styled notification title.
