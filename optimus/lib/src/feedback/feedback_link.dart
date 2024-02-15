@@ -1,10 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-/// The notification link with custom action.
+/// The link with custom action.
 ///
 /// This link is defined by the [text] widget, usually [Text] and the
-/// function that will be executed after a click. After clicking on the link,
-/// notification will be dismissed.
+/// function that will be executed after a click.
 class OptimusFeedbackLink {
   const OptimusFeedbackLink({
     required this.text,

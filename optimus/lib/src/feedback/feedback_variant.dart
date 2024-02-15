@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 
-/// Describes a certain type of notification with its semantical meaning.
+/// Describes a certain type of feedback with its semantical meaning.
 ///
 /// Use-cases:
 ///  - [OptimusFeedbackVariant.info] -  Used for notifying about
