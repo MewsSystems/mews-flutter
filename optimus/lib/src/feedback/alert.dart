@@ -48,7 +48,10 @@ class OptimusAlert extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(color: variant.backgroundColor(tokens)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        padding: EdgeInsets.symmetric(
+          horizontal: tokens.spacing100,
+          vertical: tokens.spacing200,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

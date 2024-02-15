@@ -1,7 +1,6 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/feedback/feedback_link.dart';
 
 /// Notification is used for showing a brief and concise message that
 /// communicates immediate feedback with optional action included. Notifications
@@ -190,8 +189,6 @@ class _NotificationContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final body = this.body;
-    final link = this.link;
     final leadingSectionWidth = tokens.sizing300 + tokens.spacing100 * 2;
 
     return DecoratedBox(
@@ -236,12 +233,12 @@ class _NotificationContent extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _NotificationTitle(title),
-                      if (body != null)
+                      if (body case final body?)
                         Padding(
                           padding: EdgeInsets.only(top: tokens.spacing50),
                           child: _NotificationBody(body),
                         ),
-                      if (link != null)
+                      if (link case final link?)
                         Padding(
                           padding: EdgeInsets.only(top: tokens.spacing50),
                           child: GestureDetector(
