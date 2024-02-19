@@ -410,10 +410,10 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
     final children = [
       if (widget.showDivider)
         Divider(
-            thickness: 1,
-            height: 1,
-            color:
-                theme.colors.neutral50), // TODO(witwash): replace with tokens
+          thickness: 1,
+          height: 1,
+          color: context.tokens.borderStaticPrimary,
+        ),
       KeyedSubtree(key: _searchKey, child: widget.child),
     ];
 
