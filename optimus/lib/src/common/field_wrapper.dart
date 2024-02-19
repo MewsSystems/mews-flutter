@@ -168,7 +168,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     children: [
                       if (prefix != null)
                         Padding(
-                          padding: EdgeInsets.only(right: tokens.spacing50),
+                          padding: EdgeInsets.only(right: tokens.spacing100),
                           child: _Styled(
                             isEnabled: widget.isEnabled,
                             child: prefix,
