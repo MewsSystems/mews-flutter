@@ -78,7 +78,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
                     width: context.tokens.borderWidth100,
                   )
                 : null,
-            borderRadius: BorderRadius.circular(context.tokens.borderRadius50),
+            borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
           ),
           duration: buttonAnimationDuration,
           child: IconTheme.merge(

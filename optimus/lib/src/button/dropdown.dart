@@ -4,14 +4,9 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
 enum OptimusDropdownButtonVariant {
-  /// The default option. Use this variant for the majority of cases.
-  defaultButton,
-
-  /// Use if you want to grab the user’s attention and group together main
-  /// actions that don’t have any clear priority.
   primary,
-
-  /// Use in non-crucial situations, e.g., to group “more” actions together.
+  secondary,
+  tertiary,
   text,
 }
 
@@ -24,7 +19,7 @@ class OptimusDropDownButton<T> extends StatelessWidget {
     required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
-    this.variant = OptimusDropdownButtonVariant.defaultButton,
+    this.variant = OptimusDropdownButtonVariant.tertiary,
   });
 
   /// Typically the button's label.
@@ -47,9 +42,10 @@ class OptimusDropDownButton<T> extends StatelessWidget {
 
 extension CommonButtonVariant on OptimusDropdownButtonVariant {
   OptimusButtonVariant toButtonVariant() => switch (this) {
-        OptimusDropdownButtonVariant.defaultButton =>
-          OptimusButtonVariant.tertiary,
+        OptimusDropdownButtonVariant.tertiary => OptimusButtonVariant.tertiary,
         OptimusDropdownButtonVariant.primary => OptimusButtonVariant.primary,
+        OptimusDropdownButtonVariant.secondary =>
+          OptimusButtonVariant.secondary,
         OptimusDropdownButtonVariant.text => OptimusButtonVariant.ghost,
       };
 }

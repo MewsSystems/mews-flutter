@@ -51,6 +51,15 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         minimumSize: MaterialStateProperty.all<Size>(
           Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
         ),
+        maximumSize: MaterialStateProperty.all<Size>(
+          Size(double.infinity, widget.size.getValue(tokens)),
+        ),
+        padding: MaterialStateProperty.all<EdgeInsets>(
+          EdgeInsets.symmetric(
+            vertical: widget.size.getVerticalPadding(tokens),
+            horizontal: widget.size.getHorizontalPadding(tokens),
+          ),
+        ),
         shape: MaterialStateProperty.resolveWith(
           (states) {
             final color = widget.variant.borderColor(
@@ -253,4 +262,21 @@ extension on Set<MaterialState> {
   bool get isPressed => contains(MaterialState.pressed);
   bool get isHovered => contains(MaterialState.hovered);
   bool get isDisabled => contains(MaterialState.disabled);
+}
+
+extension on OptimusWidgetSize {
+  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.spacing50,
+        OptimusWidgetSize.medium => tokens.spacing100,
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing150,
+      };
+  double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.spacing150,
+        OptimusWidgetSize.medium => tokens.spacing200,
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing300,
+      };
 }
