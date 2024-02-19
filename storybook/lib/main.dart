@@ -96,6 +96,13 @@ class _MyAppState extends State<MyApp> {
                 ),
                 DeviceFramePlugin(),
               ],
+              wrapperBuilder: (BuildContext _, Widget? child) => MaterialApp(
+                theme: ThemeData.light()
+                    .copyWith(scaffoldBackgroundColor: Colors.white),
+                darkTheme: ThemeData.dark(),
+                debugShowCheckedModeBanner: false,
+                home: Scaffold(body: Center(child: child)),
+              ),
               initialStory: 'Welcome',
               stories: [
                 welcomeStory,
