@@ -94,8 +94,7 @@ class OptimusSearch<T> extends StatelessWidget {
   final Widget? suffix;
 
   /// A trailing widget to be displayed after the search field. Typically an
-  /// [Icon] widget. Will be displayed after the suffix widget, but before the
-  /// search icon.
+  /// [Icon] widget. Will be displayed after the suffix widget.
   final Widget? trailing;
 
   /// Controls the visibility of the clear button.
@@ -119,45 +118,34 @@ class OptimusSearch<T> extends StatelessWidget {
   /// {@macro optimus.select.groupBuilder}
   final GroupBuilder? groupBuilder;
 
-  Color _iconColor(OptimusThemeData theme) => theme.isDark
-      ? theme.colors.neutral0
-      : theme.colors.neutral1000t64; // TODO(witwash): replace with tokens
-
   @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return DropdownSelect<T>(
-      label: label,
-      placeholder: placeholder,
-      placeholderStyle: placeholderStyle,
-      controller: controller,
-      onTextChanged: onTextChanged,
-      items: items,
-      isUpdating: isUpdating,
-      isEnabled: isEnabled,
-      isRequired: isRequired,
-      onChanged: onChanged,
-      leading: leading,
-      trailing: trailing,
-      trailingImplicit: Icon(
-        OptimusIcons.search,
-        size: context.tokens.sizing300,
-        color: _iconColor(theme),
-      ),
-      caption: caption,
-      helperMessage: helperMessage,
-      error: error,
-      size: size,
-      readOnly: readOnly,
-      showCursor: showCursor,
-      prefix: prefix,
-      suffix: suffix,
-      focusNode: focusNode,
-      shouldCloseOnInputTap: shouldCloseOnInputTap,
-      isClearEnabled: isClearEnabled,
-      groupBy: groupBy,
-      groupBuilder: groupBuilder,
-    );
-  }
+  Widget build(BuildContext context) => DropdownSelect<T>(
+        label: label,
+        placeholder: placeholder,
+        placeholderStyle: placeholderStyle,
+        controller: controller,
+        onTextChanged: onTextChanged,
+        items: items,
+        isUpdating: isUpdating,
+        isEnabled: isEnabled,
+        isRequired: isRequired,
+        onChanged: onChanged,
+        leading: leading,
+        leadingImplicit:
+            Icon(OptimusIcons.search, size: context.tokens.sizing200),
+        trailing: trailing,
+        caption: caption,
+        helperMessage: helperMessage,
+        error: error,
+        size: size,
+        readOnly: readOnly,
+        showCursor: showCursor,
+        prefix: prefix,
+        suffix: suffix,
+        focusNode: focusNode,
+        shouldCloseOnInputTap: shouldCloseOnInputTap,
+        isClearEnabled: isClearEnabled,
+        groupBy: groupBy,
+        groupBuilder: groupBuilder,
+      );
 }

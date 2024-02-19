@@ -325,7 +325,9 @@ class _GroupWrapper extends StatelessWidget {
                 ? BoxDecoration(
                     border: Border(
                       top: BorderSide(
-                        color: OptimusTheme.of(context).colors.neutral25,
+                        color: OptimusTheme.of(context)
+                            .colors
+                            .neutral25, // TODO(witwash): replace with tokens
                       ),
                     ),
                   )
@@ -407,7 +409,11 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
   Widget build(BuildContext context) {
     final children = [
       if (widget.showDivider)
-        Divider(thickness: 1, height: 1, color: theme.colors.neutral50),
+        Divider(
+            thickness: 1,
+            height: 1,
+            color:
+                theme.colors.neutral50), // TODO(witwash): replace with tokens
       KeyedSubtree(key: _searchKey, child: widget.child),
     ];
 

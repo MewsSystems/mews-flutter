@@ -29,28 +29,22 @@ class Suffix extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) {
-    final suffixWidget = suffix;
-    final clearAllButtonWidget = clearAllButton;
-    final passwordButtonWidget = passwordButton;
-    final trailingWidget = trailing;
-
-    return inlineError ??
-        OptimusStack(
-          direction: Axis.horizontal,
-          spacing: OptimusStackSpacing.spacing100,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (suffixWidget != null) suffixWidget,
-            if (showLoader) _loader,
-            if (clearAllButtonWidget != null) clearAllButtonWidget,
-            if (passwordButtonWidget != null)
-              passwordButtonWidget
-            else if (trailingWidget != null)
-              trailingWidget,
-          ],
-        );
-  }
+  Widget build(BuildContext context) =>
+      inlineError ??
+      OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (suffix case final suffix?) suffix,
+          if (showLoader) _loader,
+          if (clearAllButton case final clearAllButton?) clearAllButton,
+          if (passwordButton case final passwordButton?)
+            passwordButton
+          else if (trailing case final trailing?)
+            trailing,
+        ],
+      );
 }
 
 class Prefix extends StatelessWidget {
@@ -60,17 +54,15 @@ class Prefix extends StatelessWidget {
   final Widget? leading;
 
   @override
-  Widget build(BuildContext context) {
-    final prefix = this.prefix;
-    final leading = this.leading;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
-      children: [if (leading != null) leading, if (prefix != null) prefix],
-    );
-  }
+  Widget build(BuildContext context) => OptimusStack(
+        direction: Axis.horizontal,
+        spacing: OptimusStackSpacing.spacing100,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (leading case final leading?) leading,
+          if (prefix case final prefix?) prefix,
+        ],
+      );
 }
 
 class InlineErrorTooltip extends StatelessWidget {
@@ -83,7 +75,7 @@ class InlineErrorTooltip extends StatelessWidget {
         text: Text(error),
         child: Icon(
           OptimusIcons.error_circle,
-          color: context.theme.colors.danger,
-        ), // TODO(witwash): replace with tokens
+          color: context.tokens.textAlertDanger,
+        ),
       );
 }

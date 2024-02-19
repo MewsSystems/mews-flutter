@@ -21,6 +21,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.isRequired = false,
     required this.onChanged,
     this.leading,
+    this.leadingImplicit,
     this.trailing,
     this.trailingImplicit,
     this.caption,
@@ -62,6 +63,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final String? error;
   final OptimusWidgetSize size;
   final Widget? leading;
+  final Widget? leadingImplicit;
   final Widget? prefix;
   final Widget? suffix;
   final Widget? trailing;
@@ -226,6 +228,15 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     return false;
   }
 
+  bool get _hasTrailing =>
+      _isClearAllButtonVisible ||
+      widget.trailing != null ||
+      widget.trailingImplicit != null ||
+      widget.isUpdating;
+
+  bool get _hasLeading =>
+      widget.leading != null || widget.leadingImplicit != null;
+
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
           void handleTapDown(TapDownDetails details) {
@@ -274,17 +285,22 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     final clearAll = _isClearAllButtonVisible
         ? _ClearAllButton(onTap: _handleClearAllTap)
         : null;
-    final trailing = clearAll == null &&
-            widget.trailing == null &&
-            widget.trailingImplicit == null
-        ? null
-        : _Trailing(
+    final trailing = _hasTrailing
+        ? _Trailing(
             focusNode: _effectiveFocusNode,
             clearAllButton: clearAll,
             trailing: widget.trailing,
             trailingImplicit: widget.trailingImplicit,
             isUpdating: widget.isUpdating,
-          );
+          )
+        : null;
+    final leading = _hasLeading
+        ? _Leading(
+            leading: widget.leading,
+            leadingImplicit: widget.leadingImplicit,
+            focusNode: _effectiveFocusNode,
+          )
+        : null;
 
     return PopScope(
       canPop: _canPop,
@@ -292,7 +308,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
       child: widget.multiselect && _hasValues
           ? MultiSelectInputField(
               values: _values ?? [],
-              leading: widget.leading,
+              leading: leading,
               prefix: widget.prefix,
               isRequired: widget.isRequired,
               label: widget.label,
@@ -309,7 +325,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
               showLoader: widget.showLoader,
             )
           : OptimusInputField(
-              leading: widget.leading,
+              leading: leading,
               prefix: widget.prefix,
               controller: _effectiveController,
               onChanged: widget.onTextChanged,
@@ -336,6 +352,28 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   }
 }
 
+class _Leading extends StatelessWidget {
+  const _Leading({this.leading, this.leadingImplicit, required this.focusNode});
+
+  final Widget? leading;
+  final Widget? leadingImplicit;
+  final FocusNode focusNode;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        onTapDown: (_) => focusNode.requestFocus(),
+        child: OptimusStack(
+          direction: Axis.horizontal,
+          spacing: OptimusStackSpacing.spacing100,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (leadingImplicit case final leadingImplicit?) leadingImplicit,
+            if (leading case final leading?) leading,
+          ],
+        ),
+      );
+}
+
 class _Trailing extends StatelessWidget {
   const _Trailing({
     required this.focusNode,
@@ -353,9 +391,17 @@ class _Trailing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final trailing = this.trailing;
-    final trailingImplicit = this.trailingImplicit;
-    final clearAllButton = this.clearAllButton;
+    final children = isUpdating
+        ? [
+            const OptimusCircleLoader(
+              size: OptimusCircleLoaderSize.small,
+              variant: OptimusCircleLoaderVariant.indeterminate(),
+            ),
+          ]
+        : [
+            if (trailing case final trailing?) trailing,
+            if (trailingImplicit case final trailingImplicit?) trailingImplicit,
+          ];
 
     return GestureDetector(
       onTapDown: (_) => focusNode.requestFocus(),
@@ -364,14 +410,8 @@ class _Trailing extends StatelessWidget {
         spacing: OptimusStackSpacing.spacing100,
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (clearAllButton != null) clearAllButton,
-          if (isUpdating)
-            const OptimusCircleLoader(
-              size: OptimusCircleLoaderSize.small,
-              variant: OptimusCircleLoaderVariant.indeterminate(),
-            ),
-          if (trailing != null && !isUpdating) trailing,
-          if (trailingImplicit != null && !isUpdating) trailingImplicit,
+          if (clearAllButton case final clearAllButton?) clearAllButton,
+          ...children,
         ],
       ),
     );

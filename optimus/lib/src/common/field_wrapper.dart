@@ -318,7 +318,8 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.small => tokens.spacing150,
         OptimusWidgetSize.medium => tokens.spacing200,
         OptimusWidgetSize.large => tokens.spacing250,
-        OptimusWidgetSize.extraLarge => tokens.spacing300,
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing300, // TODO(witwash): check with design
       };
 
   double getHeight(OptimusTokens tokens) => switch (this) {
