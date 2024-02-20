@@ -42,6 +42,7 @@ export 'src/dropdown/dropdown_tile.dart';
 export 'src/dropdown/embedded_search.dart';
 export 'src/enabled.dart';
 export 'src/expansion/expansion_tile.dart';
+export 'src/feedback/alert.dart';
 export 'src/feedback/banner.dart';
 export 'src/feedback/feedback_link.dart';
 export 'src/feedback/feedback_variant.dart';
