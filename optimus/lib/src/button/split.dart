@@ -4,12 +4,9 @@ import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
 enum OptimusSplitButtonVariant {
-  /// The default option used in most scenarios.
-  defaultButton,
-
-  /// Use this variant if you want to a primary, main action and
-  /// related/similar actions to have the same priority.
   primary,
+  secondary,
+  tertiary,
 }
 
 /// Split buttons have a main action and a dropdown action. The main action is
@@ -23,7 +20,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
     required this.items,
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
-    this.variant = OptimusSplitButtonVariant.defaultButton,
+    this.variant = OptimusSplitButtonVariant.tertiary,
   });
 
   /// Typically the button's label.
@@ -50,7 +47,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final borderRadius = Radius.circular(tokens.borderRadius50);
+    final borderRadius = Radius.circular(tokens.borderRadius100);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -83,15 +80,17 @@ class OptimusSplitButton<T> extends StatelessWidget {
 
 extension on OptimusSplitButtonVariant {
   OptimusButtonVariant toButtonVariant() => switch (this) {
-        OptimusSplitButtonVariant.defaultButton =>
-          OptimusButtonVariant.tertiary,
         OptimusSplitButtonVariant.primary => OptimusButtonVariant.primary,
+        OptimusSplitButtonVariant.secondary => OptimusButtonVariant.secondary,
+        OptimusSplitButtonVariant.tertiary => OptimusButtonVariant.tertiary,
       };
 
   OptimusDropdownButtonVariant toDropdownButtonVariant() => switch (this) {
-        OptimusSplitButtonVariant.defaultButton =>
-          OptimusDropdownButtonVariant.defaultButton,
         OptimusSplitButtonVariant.primary =>
           OptimusDropdownButtonVariant.primary,
+        OptimusSplitButtonVariant.secondary =>
+          OptimusDropdownButtonVariant.secondary,
+        OptimusSplitButtonVariant.tertiary =>
+          OptimusDropdownButtonVariant.tertiary,
       };
 }
