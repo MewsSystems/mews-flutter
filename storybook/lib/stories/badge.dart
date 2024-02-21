@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story badgeStory = Story(
@@ -9,6 +10,11 @@ final Story badgeStory = Story(
     final grayBackground =
         knobs.boolean(label: 'Grey background', initial: true);
     final outline = knobs.boolean(label: 'Outline', initial: true);
+    final variant = knobs.options(
+      label: 'Variant',
+      initial: OptimusBadgeVariant.values.first,
+      options: OptimusBadgeVariant.values.toOptions(),
+    );
 
     return Container(
       width: 600,
@@ -17,6 +23,7 @@ final Story badgeStory = Story(
       child: Center(
         child: OptimusBadge(
           text: knobs.text(label: 'Content', initial: 'Info Text'),
+          variant: variant,
           outline: outline,
         ),
       ),
