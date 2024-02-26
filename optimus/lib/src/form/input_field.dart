@@ -51,6 +51,7 @@ class OptimusInputField extends StatefulWidget {
     this.keyboardAppearance,
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
+    this.inline = false,
   });
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -154,6 +155,11 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.services.TextInputConfiguration.enableSuggestions}
   final bool enableSuggestions;
 
+  /// Controls whether the components should be inside the input field or
+  /// outside, wrapping it. The inline variant is more dense and is smaller in
+  /// the vertical direction.
+  final bool inline;
+
   bool get hasError {
     final error = this.error;
 
@@ -207,6 +213,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _shouldShowSuffix =>
       widget.suffix != null ||
       widget.trailing != null ||
+      (widget.inline && widget.maxCharacters != null) ||
       widget.showLoader ||
       widget.isPasswordField ||
       _shouldShowClearAllButton ||
@@ -224,6 +231,12 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   Widget build(BuildContext context) {
     final error = widget.error;
     final maxCharacters = widget.maxCharacters;
+    final counter = maxCharacters != null
+        ? _CharacterCounter(
+            current: _effectiveController.text.length,
+            max: maxCharacters,
+          )
+        : null;
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
@@ -237,12 +250,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       errorVariant: widget.errorVariant,
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
-      inputLimit: maxCharacters != null
-          ? _CharacterCounter(
-              current: _effectiveController.text.length,
-              max: maxCharacters,
-            )
-          : null,
+      inline: widget.inline,
+      inputCounter: counter,
       prefix: _shouldShowPrefix
           ? Prefix(prefix: widget.prefix, leading: widget.leading)
           : null,
@@ -250,6 +259,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           ? Suffix(
               suffix: widget.suffix,
               trailing: widget.trailing,
+              counter: widget.inline ? counter : null,
               passwordButton: widget.isPasswordField
                   ? _PasswordButton(
                       onTap: _handlePasswordTap,

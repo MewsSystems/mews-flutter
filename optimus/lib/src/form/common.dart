@@ -13,6 +13,7 @@ class Suffix extends StatelessWidget {
     this.trailing,
     this.inlineError,
     this.clearAllButton,
+    this.counter,
     this.showLoader = false,
   });
 
@@ -22,6 +23,7 @@ class Suffix extends StatelessWidget {
   final Widget? clearAllButton;
   final Widget? inlineError;
   final bool showLoader;
+  final Widget? counter;
 
   OptimusCircleLoader get _loader => const OptimusCircleLoader(
         size: OptimusCircleLoaderSize.small,
@@ -36,6 +38,7 @@ class Suffix extends StatelessWidget {
         spacing: OptimusStackSpacing.spacing100,
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (counter case final counter?) counter,
           if (suffix case final suffix?) suffix,
           if (showLoader) _loader,
           if (clearAllButton case final clearAllButton?) clearAllButton,

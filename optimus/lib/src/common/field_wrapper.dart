@@ -24,7 +24,8 @@ class FieldWrapper extends StatefulWidget {
     this.fieldBoxKey,
     this.children = const <Widget>[],
     this.size = OptimusWidgetSize.large,
-    this.inputLimit,
+    this.inputCounter,
+    this.inline = false,
   });
 
   final bool isEnabled;
@@ -43,7 +44,8 @@ class FieldWrapper extends StatefulWidget {
   final List<Widget> children;
   final Key? fieldBoxKey;
   final OptimusWidgetSize size;
-  final Widget? inputLimit;
+  final Widget? inputCounter;
+  final bool inline;
 
   bool get hasError {
     final error = this.error;
@@ -88,10 +90,19 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _isFocused => widget.isFocused ?? widget.focusNode.hasFocus;
 
-  bool get _hasHelperField =>
-      widget.helperMessage != null || widget.inputLimit != null;
+  bool get _hasHeader =>
+      (widget.label != null || widget.caption != null) && !widget.inline;
+
+  bool get _hasFooter =>
+      widget.isEnabled &&
+      !widget.inline &&
+      (widget.helperMessage != null ||
+          widget.inputCounter != null ||
+          _normalizedError.isNotEmpty);
 
   Color? get _background => widget.isEnabled ? null : tokens.backgroundDisabled;
+
+  bool get _hasFooterError => _normalizedError.isNotEmpty && _isUsingBottomHint;
 
   Color get _borderColor {
     if (!widget.isEnabled) return tokens.borderDisabled;
@@ -105,37 +116,22 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final label = widget.label;
-    final caption = widget.caption;
     final prefix = widget.prefix;
     final suffix = widget.suffix;
-    final captionColor =
-        widget.isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: widget.size.getLabelPadding(tokens),
-          child: Row(
-            children: [
-              if (label != null)
-                OptimusFieldLabel(
-                  label: label,
-                  isRequired: widget.isRequired,
-                  isEnabled: widget.isEnabled,
-                ),
-              const Spacer(),
-              if (caption != null)
-                _InputCaption(
-                  caption: caption,
-                  captionIcon: widget.captionIcon,
-                  isEnabled: widget.isEnabled,
-                ),
-            ],
+        if (_hasHeader)
+          _InputHeader(
+            size: widget.size,
+            label: widget.label,
+            isRequired: widget.isRequired,
+            isEnabled: widget.isEnabled,
+            caption: widget.caption,
+            captionIcon: widget.captionIcon,
           ),
-        ),
         IgnorePointer(
           ignoring: !widget.isEnabled,
           child:
@@ -190,43 +186,182 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             ),
           ),
         ),
-        if (widget.isEnabled && _hasHelperField)
-          Padding(
-            padding: widget.size.getHelperPadding(tokens),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (widget.helperMessage case final helperMessage?)
-                  Expanded(
-                    child: OptimusCaption(
-                      child: DefaultTextStyle.merge(
-                        softWrap: true,
-                        maxLines: 2,
-                        overflow: TextOverflow.fade,
-                        style: TextStyle(
-                          color: captionColor,
-                        ),
-                        child: helperMessage,
-                      ),
-                    ),
-                  ),
-                if (widget.helperMessage == null) const Spacer(),
-                if (widget.inputLimit case final inputLimit?) inputLimit,
-              ],
-            ),
-          ),
-        if (widget.isEnabled &&
-            _isUsingBottomHint &&
-            _normalizedError.isNotEmpty)
-          Padding(
-            padding: widget.size.getErrorPadding(tokens),
-            child: OptimusFieldError(
-              error: _normalizedError,
-              isEnabled: widget.isEnabled,
-            ),
+        if (_hasFooter)
+          _InputFooter(
+            size: widget.size,
+            isEnabled: widget.isEnabled,
+            inputCounter: widget.inputCounter,
+            helperMessage: widget.helperMessage,
+            error: _hasFooterError
+                ? _InputError(
+                    error: _normalizedError,
+                    isEnabled: widget.isEnabled,
+                    size: widget.size,
+                  )
+                : null,
           ),
       ],
+    );
+  }
+}
+
+class _InputHeader extends StatelessWidget {
+  const _InputHeader({
+    required this.size,
+    this.label,
+    required this.isRequired,
+    required this.isEnabled,
+    this.caption,
+    this.captionIcon,
+  });
+
+  final OptimusWidgetSize size;
+  final String? label;
+  final bool isRequired;
+  final bool isEnabled;
+  final Widget? caption;
+  final IconData? captionIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: size.getLabelPadding(tokens),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          if (label case final label?)
+            Flexible(
+              child: OptimusFieldLabel(
+                label: label,
+                isRequired: isRequired,
+                isEnabled: isEnabled,
+              ),
+            ),
+          if (caption case final caption?)
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.only(left: tokens.spacing100),
+                child: _InputCaption(
+                  caption: caption,
+                  captionIcon: captionIcon,
+                  isEnabled: isEnabled,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _InputError extends StatelessWidget {
+  const _InputError({
+    required this.error,
+    required this.isEnabled,
+    required this.size,
+  });
+
+  final String error;
+  final bool isEnabled;
+  final OptimusWidgetSize size;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: size.getErrorPadding(context.tokens),
+        child: OptimusFieldError(error: error, isEnabled: isEnabled),
+      );
+}
+
+class _InputFooter extends StatelessWidget {
+  const _InputFooter({
+    this.inputCounter,
+    this.error,
+    this.helperMessage,
+    required this.size,
+    this.isEnabled = true,
+  });
+
+  final Widget? inputCounter;
+  final Widget? error;
+  final Widget? helperMessage;
+  final OptimusWidgetSize size;
+  final bool isEnabled;
+
+  bool get _hasMessage => helperMessage != null || error != null;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final leading = _hasMessage
+        ? Expanded(
+            child: _FooterMessage(
+              helperMessage: helperMessage,
+              errorMessage: error,
+              isEnabled: isEnabled,
+            ),
+          )
+        : const Spacer();
+
+    return Padding(
+      padding: size.getHelperPadding(tokens),
+      child: Row(
+        children: [
+          leading,
+          if (inputCounter case final inputCounter?) inputCounter,
+        ],
+      ),
+    );
+  }
+}
+
+class _FooterMessage extends StatelessWidget {
+  const _FooterMessage({
+    this.helperMessage,
+    this.errorMessage,
+    this.isEnabled = true,
+  });
+
+  final Widget? helperMessage;
+  final Widget? errorMessage;
+  final bool isEnabled;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (helperMessage case final helperMessage?)
+            _HelperMessage(
+              helperMessage: helperMessage,
+              isEnabled: isEnabled,
+            ),
+          if (errorMessage case final errorMessage?) errorMessage,
+        ],
+      );
+}
+
+class _HelperMessage extends StatelessWidget {
+  const _HelperMessage({required this.helperMessage, this.isEnabled = true});
+
+  final Widget helperMessage;
+  final bool isEnabled;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final captionColor =
+        isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
+
+    return OptimusCaption(
+      child: DefaultTextStyle.merge(
+        softWrap: true,
+        maxLines: 2,
+        overflow: TextOverflow.fade,
+        style: TextStyle(color: captionColor),
+        child: helperMessage,
+      ),
     );
   }
 }
@@ -251,15 +386,18 @@ class _InputCaption extends StatelessWidget {
         isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
-          child: OptimusCaption(
-            variation: Variation.variationSecondary,
-            child: DefaultTextStyle.merge(
-              style: TextStyle(color: captionColor),
-              child: caption,
+        Flexible(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
+            child: OptimusCaption(
+              variation: Variation.variationSecondary,
+              child: DefaultTextStyle.merge(
+                style: TextStyle(color: captionColor),
+                textAlign: TextAlign.end,
+                child: caption,
+              ),
             ),
           ),
         ),
