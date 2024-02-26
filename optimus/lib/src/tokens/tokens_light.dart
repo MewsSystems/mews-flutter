@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Tue, 06 Feb 2024 13:21:36 GMT
+// Generated on Fri, 23 Feb 2024 13:33:32 GMT
 
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
@@ -59,6 +59,7 @@ class DesignTokensLight {
   static const Color backgroundStaticFlat = Color(0xFFFFFFFF);
   static const Color backgroundStaticFloating = Color(0xFFFFFFFF);
   static const Color backgroundStaticInverse = Color(0xFF21212E);
+  static const Color backgroundStaticOnColor = Color(0xFFFFFFFF);
   static const Color backgroundStaticRaised = Color(0xFFFFFFFF);
   static const Color backgroundStaticSunken = Color(0xFFF3F3F3);
   static const Color borderAlertBasic = Color(0xFFC1C1D5);
@@ -507,6 +508,7 @@ class DesignTokensLight {
   static const double spacing450 = 36;
   static const double spacing50 = 4;
   static const double spacing500 = 40;
+  static const double spacing600 = 48;
   static const double spacing700 = 56;
   static const double spacing900 = 72;
   static const double spacingBase = 8;

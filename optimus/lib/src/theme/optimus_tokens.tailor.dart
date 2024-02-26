@@ -55,6 +55,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundStaticFlat,
     required this.backgroundStaticFloating,
     required this.backgroundStaticInverse,
+    required this.backgroundStaticOnColor,
     required this.backgroundStaticRaised,
     required this.backgroundStaticSunken,
     required this.bodyExtraSmall,
@@ -368,6 +369,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.spacing450,
     required this.spacing50,
     required this.spacing500,
+    required this.spacing600,
     required this.spacing700,
     required this.spacing900,
     required this.spacingBase,
@@ -438,6 +440,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundStaticFlat;
   final Color backgroundStaticFloating;
   final Color backgroundStaticInverse;
+  final Color backgroundStaticOnColor;
   final Color backgroundStaticRaised;
   final Color backgroundStaticSunken;
   final TextStyle bodyExtraSmall;
@@ -751,6 +754,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final double spacing450;
   final double spacing50;
   final double spacing500;
+  final double spacing600;
   final double spacing700;
   final double spacing900;
   final double spacingBase;
@@ -850,6 +854,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[0],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[0],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[0],
+    backgroundStaticOnColor: _$OptimusTokens.backgroundStaticOnColor[0],
     backgroundStaticRaised: _$OptimusTokens.backgroundStaticRaised[0],
     backgroundStaticSunken: _$OptimusTokens.backgroundStaticSunken[0],
     bodyExtraSmall: _$OptimusTokens.bodyExtraSmall[0],
@@ -1172,6 +1177,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     spacing450: _$OptimusTokens.spacing450[0],
     spacing50: _$OptimusTokens.spacing50[0],
     spacing500: _$OptimusTokens.spacing500[0],
+    spacing600: _$OptimusTokens.spacing600[0],
     spacing700: _$OptimusTokens.spacing700[0],
     spacing900: _$OptimusTokens.spacing900[0],
     spacingBase: _$OptimusTokens.spacingBase[0],
@@ -1272,6 +1278,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[1],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[1],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[1],
+    backgroundStaticOnColor: _$OptimusTokens.backgroundStaticOnColor[1],
     backgroundStaticRaised: _$OptimusTokens.backgroundStaticRaised[1],
     backgroundStaticSunken: _$OptimusTokens.backgroundStaticSunken[1],
     bodyExtraSmall: _$OptimusTokens.bodyExtraSmall[1],
@@ -1594,6 +1601,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     spacing450: _$OptimusTokens.spacing450[1],
     spacing50: _$OptimusTokens.spacing50[1],
     spacing500: _$OptimusTokens.spacing500[1],
+    spacing600: _$OptimusTokens.spacing600[1],
     spacing700: _$OptimusTokens.spacing700[1],
     spacing900: _$OptimusTokens.spacing900[1],
     spacingBase: _$OptimusTokens.spacingBase[1],
@@ -1671,6 +1679,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? backgroundStaticFlat,
     Color? backgroundStaticFloating,
     Color? backgroundStaticInverse,
+    Color? backgroundStaticOnColor,
     Color? backgroundStaticRaised,
     Color? backgroundStaticSunken,
     TextStyle? bodyExtraSmall,
@@ -1984,6 +1993,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     double? spacing450,
     double? spacing50,
     double? spacing500,
+    double? spacing600,
     double? spacing700,
     double? spacing900,
     double? spacingBase,
@@ -2104,6 +2114,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundStaticFloating ?? this.backgroundStaticFloating,
       backgroundStaticInverse:
           backgroundStaticInverse ?? this.backgroundStaticInverse,
+      backgroundStaticOnColor:
+          backgroundStaticOnColor ?? this.backgroundStaticOnColor,
       backgroundStaticRaised:
           backgroundStaticRaised ?? this.backgroundStaticRaised,
       backgroundStaticSunken:
@@ -2552,6 +2564,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       spacing450: spacing450 ?? this.spacing450,
       spacing50: spacing50 ?? this.spacing50,
       spacing500: spacing500 ?? this.spacing500,
+      spacing600: spacing600 ?? this.spacing600,
       spacing700: spacing700 ?? this.spacing700,
       spacing900: spacing900 ?? this.spacing900,
       spacingBase: spacingBase ?? this.spacingBase,
@@ -2719,6 +2732,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundStaticFloating, other.backgroundStaticFloating, t)!,
       backgroundStaticInverse: Color.lerp(
           backgroundStaticInverse, other.backgroundStaticInverse, t)!,
+      backgroundStaticOnColor: Color.lerp(
+          backgroundStaticOnColor, other.backgroundStaticOnColor, t)!,
       backgroundStaticRaised:
           Color.lerp(backgroundStaticRaised, other.backgroundStaticRaised, t)!,
       backgroundStaticSunken:
@@ -3270,6 +3285,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       spacing450: t < 0.5 ? spacing450 : other.spacing450,
       spacing50: t < 0.5 ? spacing50 : other.spacing50,
       spacing500: t < 0.5 ? spacing500 : other.spacing500,
+      spacing600: t < 0.5 ? spacing600 : other.spacing600,
       spacing700: t < 0.5 ? spacing700 : other.spacing700,
       spacing900: t < 0.5 ? spacing900 : other.spacing900,
       spacingBase: t < 0.5 ? spacingBase : other.spacingBase,
@@ -3396,6 +3412,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           'backgroundStaticFloating', backgroundStaticFloating))
       ..add(DiagnosticsProperty(
           'backgroundStaticInverse', backgroundStaticInverse))
+      ..add(DiagnosticsProperty(
+          'backgroundStaticOnColor', backgroundStaticOnColor))
       ..add(
           DiagnosticsProperty('backgroundStaticRaised', backgroundStaticRaised))
       ..add(
@@ -3809,6 +3827,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('spacing450', spacing450))
       ..add(DiagnosticsProperty('spacing50', spacing50))
       ..add(DiagnosticsProperty('spacing500', spacing500))
+      ..add(DiagnosticsProperty('spacing600', spacing600))
       ..add(DiagnosticsProperty('spacing700', spacing700))
       ..add(DiagnosticsProperty('spacing900', spacing900))
       ..add(DiagnosticsProperty('spacingBase', spacingBase))
@@ -3911,6 +3930,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(backgroundStaticFlat, other.backgroundStaticFlat) &&
             const DeepCollectionEquality().equals(backgroundStaticFloating, other.backgroundStaticFloating) &&
             const DeepCollectionEquality().equals(backgroundStaticInverse, other.backgroundStaticInverse) &&
+            const DeepCollectionEquality().equals(backgroundStaticOnColor, other.backgroundStaticOnColor) &&
             const DeepCollectionEquality().equals(backgroundStaticRaised, other.backgroundStaticRaised) &&
             const DeepCollectionEquality().equals(backgroundStaticSunken, other.backgroundStaticSunken) &&
             const DeepCollectionEquality().equals(bodyExtraSmall, other.bodyExtraSmall) &&
@@ -4224,6 +4244,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(spacing450, other.spacing450) &&
             const DeepCollectionEquality().equals(spacing50, other.spacing50) &&
             const DeepCollectionEquality().equals(spacing500, other.spacing500) &&
+            const DeepCollectionEquality().equals(spacing600, other.spacing600) &&
             const DeepCollectionEquality().equals(spacing700, other.spacing700) &&
             const DeepCollectionEquality().equals(spacing900, other.spacing900) &&
             const DeepCollectionEquality().equals(spacingBase, other.spacingBase) &&
@@ -4305,6 +4326,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(backgroundStaticFlat),
       const DeepCollectionEquality().hash(backgroundStaticFloating),
       const DeepCollectionEquality().hash(backgroundStaticInverse),
+      const DeepCollectionEquality().hash(backgroundStaticOnColor),
       const DeepCollectionEquality().hash(backgroundStaticRaised),
       const DeepCollectionEquality().hash(backgroundStaticSunken),
       const DeepCollectionEquality().hash(bodyExtraSmall),
@@ -4618,6 +4640,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(spacing450),
       const DeepCollectionEquality().hash(spacing50),
       const DeepCollectionEquality().hash(spacing500),
+      const DeepCollectionEquality().hash(spacing600),
       const DeepCollectionEquality().hash(spacing700),
       const DeepCollectionEquality().hash(spacing900),
       const DeepCollectionEquality().hash(spacingBase),

@@ -11,7 +11,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Tue, 06 Feb 2024 13:21:37 GMT
+// Generated on Fri, 23 Feb 2024 13:33:32 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -192,6 +192,10 @@ class _$OptimusTokens {
   static List<Color> backgroundStaticInverse = [
     DesignTokensLight.backgroundStaticInverse,
     DesignTokensDark.backgroundStaticInverse,
+  ];
+  static List<Color> backgroundStaticOnColor = [
+    DesignTokensLight.backgroundStaticOnColor,
+    DesignTokensDark.backgroundStaticOnColor,
   ];
   static List<Color> backgroundStaticRaised = [
     DesignTokensLight.backgroundStaticRaised,
@@ -1486,6 +1490,10 @@ class _$OptimusTokens {
   static List<double> spacing500 = [
     DesignTokensLight.spacing500,
     DesignTokensDark.spacing500,
+  ];
+  static List<double> spacing600 = [
+    DesignTokensLight.spacing600,
+    DesignTokensDark.spacing600,
   ];
   static List<double> spacing700 = [
     DesignTokensLight.spacing700,
