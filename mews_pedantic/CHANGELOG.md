@@ -1,3 +1,9 @@
+## 0.24.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.14.0 (#542).
+
 ## 0.23.0
 
 > Note: This release has breaking changes.
