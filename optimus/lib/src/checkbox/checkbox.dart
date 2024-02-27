@@ -120,6 +120,8 @@ class OptimusCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final topPadding =
+        size == OptimusCheckboxSize.large ? tokens.spacing50 : tokens.spacing25;
 
     return IgnorePointer(
       ignoring: !isEnabled,
@@ -133,7 +135,7 @@ class OptimusCheckbox extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 9),
+                padding: EdgeInsets.only(top: topPadding),
                 child: CheckboxTick(
                   isError: _isError,
                   isChecked: isChecked,
@@ -144,14 +146,12 @@ class OptimusCheckbox extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    tokens.spacing150,
-                    tokens.spacing50,
-                    tokens.spacing0,
-                    tokens.spacing50,
+                  padding: EdgeInsets.only(
+                    left: tokens.spacing150,
+                    bottom: tokens.spacing50,
                   ),
                   child: DefaultTextStyle.merge(
-                    style: _labelStyle(OptimusTheme.of(context).tokens),
+                    style: _labelStyle(tokens),
                     child: label,
                   ),
                 ),
