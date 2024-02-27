@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Fri, 23 Feb 2024 13:33:32 GMT
+// Generated on Tue, 27 Feb 2024 10:40:20 GMT
 
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
@@ -59,6 +59,7 @@ class DesignTokensLight {
   static const Color backgroundStaticFlat = Color(0xFFFFFFFF);
   static const Color backgroundStaticFloating = Color(0xFFFFFFFF);
   static const Color backgroundStaticInverse = Color(0xFF21212E);
+  static const Color backgroundStaticInverseOnColor = Color(0xFF21212E);
   static const Color backgroundStaticOnColor = Color(0xFFFFFFFF);
   static const Color backgroundStaticRaised = Color(0xFFFFFFFF);
   static const Color backgroundStaticSunken = Color(0xFFF3F3F3);
