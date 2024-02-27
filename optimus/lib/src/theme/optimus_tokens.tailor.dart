@@ -55,6 +55,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundStaticFlat,
     required this.backgroundStaticFloating,
     required this.backgroundStaticInverse,
+    required this.backgroundStaticInverseOnColor,
     required this.backgroundStaticOnColor,
     required this.backgroundStaticRaised,
     required this.backgroundStaticSunken,
@@ -440,6 +441,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundStaticFlat;
   final Color backgroundStaticFloating;
   final Color backgroundStaticInverse;
+  final Color backgroundStaticInverseOnColor;
   final Color backgroundStaticOnColor;
   final Color backgroundStaticRaised;
   final Color backgroundStaticSunken;
@@ -854,6 +856,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[0],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[0],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[0],
+    backgroundStaticInverseOnColor:
+        _$OptimusTokens.backgroundStaticInverseOnColor[0],
     backgroundStaticOnColor: _$OptimusTokens.backgroundStaticOnColor[0],
     backgroundStaticRaised: _$OptimusTokens.backgroundStaticRaised[0],
     backgroundStaticSunken: _$OptimusTokens.backgroundStaticSunken[0],
@@ -1278,6 +1282,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundStaticFlat: _$OptimusTokens.backgroundStaticFlat[1],
     backgroundStaticFloating: _$OptimusTokens.backgroundStaticFloating[1],
     backgroundStaticInverse: _$OptimusTokens.backgroundStaticInverse[1],
+    backgroundStaticInverseOnColor:
+        _$OptimusTokens.backgroundStaticInverseOnColor[1],
     backgroundStaticOnColor: _$OptimusTokens.backgroundStaticOnColor[1],
     backgroundStaticRaised: _$OptimusTokens.backgroundStaticRaised[1],
     backgroundStaticSunken: _$OptimusTokens.backgroundStaticSunken[1],
@@ -1679,6 +1685,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? backgroundStaticFlat,
     Color? backgroundStaticFloating,
     Color? backgroundStaticInverse,
+    Color? backgroundStaticInverseOnColor,
     Color? backgroundStaticOnColor,
     Color? backgroundStaticRaised,
     Color? backgroundStaticSunken,
@@ -2114,6 +2121,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundStaticFloating ?? this.backgroundStaticFloating,
       backgroundStaticInverse:
           backgroundStaticInverse ?? this.backgroundStaticInverse,
+      backgroundStaticInverseOnColor:
+          backgroundStaticInverseOnColor ?? this.backgroundStaticInverseOnColor,
       backgroundStaticOnColor:
           backgroundStaticOnColor ?? this.backgroundStaticOnColor,
       backgroundStaticRaised:
@@ -2732,6 +2741,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           backgroundStaticFloating, other.backgroundStaticFloating, t)!,
       backgroundStaticInverse: Color.lerp(
           backgroundStaticInverse, other.backgroundStaticInverse, t)!,
+      backgroundStaticInverseOnColor: Color.lerp(backgroundStaticInverseOnColor,
+          other.backgroundStaticInverseOnColor, t)!,
       backgroundStaticOnColor: Color.lerp(
           backgroundStaticOnColor, other.backgroundStaticOnColor, t)!,
       backgroundStaticRaised:
@@ -3413,6 +3424,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty(
           'backgroundStaticInverse', backgroundStaticInverse))
       ..add(DiagnosticsProperty(
+          'backgroundStaticInverseOnColor', backgroundStaticInverseOnColor))
+      ..add(DiagnosticsProperty(
           'backgroundStaticOnColor', backgroundStaticOnColor))
       ..add(
           DiagnosticsProperty('backgroundStaticRaised', backgroundStaticRaised))
@@ -3930,6 +3943,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(backgroundStaticFlat, other.backgroundStaticFlat) &&
             const DeepCollectionEquality().equals(backgroundStaticFloating, other.backgroundStaticFloating) &&
             const DeepCollectionEquality().equals(backgroundStaticInverse, other.backgroundStaticInverse) &&
+            const DeepCollectionEquality().equals(backgroundStaticInverseOnColor, other.backgroundStaticInverseOnColor) &&
             const DeepCollectionEquality().equals(backgroundStaticOnColor, other.backgroundStaticOnColor) &&
             const DeepCollectionEquality().equals(backgroundStaticRaised, other.backgroundStaticRaised) &&
             const DeepCollectionEquality().equals(backgroundStaticSunken, other.backgroundStaticSunken) &&
@@ -4326,6 +4340,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(backgroundStaticFlat),
       const DeepCollectionEquality().hash(backgroundStaticFloating),
       const DeepCollectionEquality().hash(backgroundStaticInverse),
+      const DeepCollectionEquality().hash(backgroundStaticInverseOnColor),
       const DeepCollectionEquality().hash(backgroundStaticOnColor),
       const DeepCollectionEquality().hash(backgroundStaticRaised),
       const DeepCollectionEquality().hash(backgroundStaticSunken),
