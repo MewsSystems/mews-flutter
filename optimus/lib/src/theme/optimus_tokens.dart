@@ -11,7 +11,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Fri, 23 Feb 2024 13:33:32 GMT
+// Generated on Tue, 27 Feb 2024 10:40:21 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -192,6 +192,10 @@ class _$OptimusTokens {
   static List<Color> backgroundStaticInverse = [
     DesignTokensLight.backgroundStaticInverse,
     DesignTokensDark.backgroundStaticInverse,
+  ];
+  static List<Color> backgroundStaticInverseOnColor = [
+    DesignTokensLight.backgroundStaticInverseOnColor,
+    DesignTokensDark.backgroundStaticInverseOnColor,
   ];
   static List<Color> backgroundStaticOnColor = [
     DesignTokensLight.backgroundStaticOnColor,
