@@ -45,12 +45,15 @@ jobs:
         if: endsWith(github.ref_name, '.0.0')
         run: echo "PR_TYPE=feat!" >> $GITHUB_ENV
 
+      - name: Add version
+        run: echo "TOKENS_VERSION=$(echo ${{ github.ref_name }} | sed 's/design-tokens-//')" >> $GITHUB_ENV
+
       - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr create \
             --base master \
             --head ${{ github.ref_name }} \
-            --title '$PR_TYPE: Design Tokens Update' \
+            --title '${{ env.PR_TYPE }}: Design Tokens Update ${{ env.TOKENS_VERSION }}' \
             --body 'Design Tokens were updated! This PR was created to update the code.'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
