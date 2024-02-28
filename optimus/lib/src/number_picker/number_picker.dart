@@ -165,7 +165,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
     final value = _value;
 
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 134),
+      constraints: const BoxConstraints(maxWidth: 200),
       child: OptimusInputField(
         size: widget.size,
         textAlign: TextAlign.center,
