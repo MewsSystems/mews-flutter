@@ -11,7 +11,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Tue, 27 Feb 2024 10:40:21 GMT
+// Generated on Wed, 28 Feb 2024 13:44:47 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -639,55 +639,55 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteBrandCoral100 = [
     DesignTokensLight.paletteBrandCoral100,
-    DesignTokensDark.paletteBrandCoral50,
+    DesignTokensDark.paletteBrandCoral100,
   ];
   static List<Color> paletteBrandCoral1000 = [
     DesignTokensLight.paletteBrandCoral1000,
-    DesignTokensDark.paletteBrandCoral900,
+    DesignTokensDark.paletteBrandCoral1000,
   ];
   static List<Color> paletteBrandCoral150 = [
     DesignTokensLight.paletteBrandCoral150,
-    DesignTokensDark.paletteBrandCoral100,
+    DesignTokensDark.paletteBrandCoral150,
   ];
   static List<Color> paletteBrandCoral200 = [
     DesignTokensLight.paletteBrandCoral200,
-    DesignTokensDark.paletteBrandCoral150,
+    DesignTokensDark.paletteBrandCoral200,
   ];
   static List<Color> paletteBrandCoral25 = [
     DesignTokensLight.paletteBrandCoral25,
-    DesignTokensDark.paletteBrandCoral0,
+    DesignTokensDark.paletteBrandCoral25,
   ];
   static List<Color> paletteBrandCoral300 = [
     DesignTokensLight.paletteBrandCoral300,
-    DesignTokensDark.paletteBrandCoral200,
+    DesignTokensDark.paletteBrandCoral300,
   ];
   static List<Color> paletteBrandCoral400 = [
     DesignTokensLight.paletteBrandCoral400,
-    DesignTokensDark.paletteBrandCoral300,
+    DesignTokensDark.paletteBrandCoral400,
   ];
   static List<Color> paletteBrandCoral50 = [
     DesignTokensLight.paletteBrandCoral50,
-    DesignTokensDark.paletteBrandCoral25,
+    DesignTokensDark.paletteBrandCoral50,
   ];
   static List<Color> paletteBrandCoral500 = [
     DesignTokensLight.paletteBrandCoral500,
-    DesignTokensDark.paletteBrandCoral400,
+    DesignTokensDark.paletteBrandCoral500,
   ];
   static List<Color> paletteBrandCoral600 = [
     DesignTokensLight.paletteBrandCoral600,
-    DesignTokensDark.paletteBrandCoral500,
+    DesignTokensDark.paletteBrandCoral600,
   ];
   static List<Color> paletteBrandCoral700 = [
     DesignTokensLight.paletteBrandCoral700,
-    DesignTokensDark.paletteBrandCoral600,
+    DesignTokensDark.paletteBrandCoral700,
   ];
   static List<Color> paletteBrandCoral800 = [
     DesignTokensLight.paletteBrandCoral800,
-    DesignTokensDark.paletteBrandCoral700,
+    DesignTokensDark.paletteBrandCoral800,
   ];
   static List<Color> paletteBrandCoral900 = [
     DesignTokensLight.paletteBrandCoral900,
-    DesignTokensDark.paletteBrandCoral800,
+    DesignTokensDark.paletteBrandCoral900,
   ];
   static List<Color> paletteBrandGrey0 = [
     DesignTokensLight.paletteBrandGrey0,
@@ -747,55 +747,55 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteBrandIndigo100 = [
     DesignTokensLight.paletteBrandIndigo100,
-    DesignTokensDark.paletteBrandIndigo50,
+    DesignTokensDark.paletteBrandIndigo100,
   ];
   static List<Color> paletteBrandIndigo1000 = [
     DesignTokensLight.paletteBrandIndigo1000,
-    DesignTokensDark.paletteBrandIndigo900,
+    DesignTokensDark.paletteBrandIndigo1000,
   ];
   static List<Color> paletteBrandIndigo150 = [
     DesignTokensLight.paletteBrandIndigo150,
-    DesignTokensDark.paletteBrandIndigo100,
+    DesignTokensDark.paletteBrandIndigo150,
   ];
   static List<Color> paletteBrandIndigo200 = [
     DesignTokensLight.paletteBrandIndigo200,
-    DesignTokensDark.paletteBrandIndigo150,
+    DesignTokensDark.paletteBrandIndigo200,
   ];
   static List<Color> paletteBrandIndigo25 = [
     DesignTokensLight.paletteBrandIndigo25,
-    DesignTokensDark.paletteBrandIndigo0,
+    DesignTokensDark.paletteBrandIndigo25,
   ];
   static List<Color> paletteBrandIndigo300 = [
     DesignTokensLight.paletteBrandIndigo300,
-    DesignTokensDark.paletteBrandIndigo200,
+    DesignTokensDark.paletteBrandIndigo300,
   ];
   static List<Color> paletteBrandIndigo400 = [
     DesignTokensLight.paletteBrandIndigo400,
-    DesignTokensDark.paletteBrandIndigo300,
+    DesignTokensDark.paletteBrandIndigo400,
   ];
   static List<Color> paletteBrandIndigo50 = [
     DesignTokensLight.paletteBrandIndigo50,
-    DesignTokensDark.paletteBrandIndigo25,
+    DesignTokensDark.paletteBrandIndigo50,
   ];
   static List<Color> paletteBrandIndigo500 = [
     DesignTokensLight.paletteBrandIndigo500,
-    DesignTokensDark.paletteBrandIndigo400,
+    DesignTokensDark.paletteBrandIndigo500,
   ];
   static List<Color> paletteBrandIndigo600 = [
     DesignTokensLight.paletteBrandIndigo600,
-    DesignTokensDark.paletteBrandIndigo500,
+    DesignTokensDark.paletteBrandIndigo600,
   ];
   static List<Color> paletteBrandIndigo700 = [
     DesignTokensLight.paletteBrandIndigo700,
-    DesignTokensDark.paletteBrandIndigo600,
+    DesignTokensDark.paletteBrandIndigo700,
   ];
   static List<Color> paletteBrandIndigo800 = [
     DesignTokensLight.paletteBrandIndigo800,
-    DesignTokensDark.paletteBrandIndigo700,
+    DesignTokensDark.paletteBrandIndigo800,
   ];
   static List<Color> paletteBrandIndigo900 = [
     DesignTokensLight.paletteBrandIndigo900,
-    DesignTokensDark.paletteBrandIndigo800,
+    DesignTokensDark.paletteBrandIndigo900,
   ];
   static List<Color> paletteBrandNight0 = [
     DesignTokensLight.paletteBrandNight0,
@@ -895,211 +895,211 @@ class _$OptimusTokens {
   ];
   static List<Color> paletteSemanticBlue100 = [
     DesignTokensLight.paletteSemanticBlue100,
-    DesignTokensDark.paletteSemanticBlue50,
+    DesignTokensDark.paletteSemanticBlue100,
   ];
   static List<Color> paletteSemanticBlue1000 = [
     DesignTokensLight.paletteSemanticBlue1000,
-    DesignTokensDark.paletteSemanticBlue900,
+    DesignTokensDark.paletteSemanticBlue1000,
   ];
   static List<Color> paletteSemanticBlue150 = [
     DesignTokensLight.paletteSemanticBlue150,
-    DesignTokensDark.paletteSemanticBlue100,
+    DesignTokensDark.paletteSemanticBlue150,
   ];
   static List<Color> paletteSemanticBlue200 = [
     DesignTokensLight.paletteSemanticBlue200,
-    DesignTokensDark.paletteSemanticBlue150,
+    DesignTokensDark.paletteSemanticBlue200,
   ];
   static List<Color> paletteSemanticBlue25 = [
     DesignTokensLight.paletteSemanticBlue25,
-    DesignTokensDark.paletteSemanticBlue0,
+    DesignTokensDark.paletteSemanticBlue25,
   ];
   static List<Color> paletteSemanticBlue300 = [
     DesignTokensLight.paletteSemanticBlue300,
-    DesignTokensDark.paletteSemanticBlue200,
+    DesignTokensDark.paletteSemanticBlue300,
   ];
   static List<Color> paletteSemanticBlue400 = [
     DesignTokensLight.paletteSemanticBlue400,
-    DesignTokensDark.paletteSemanticBlue300,
+    DesignTokensDark.paletteSemanticBlue400,
   ];
   static List<Color> paletteSemanticBlue50 = [
     DesignTokensLight.paletteSemanticBlue50,
-    DesignTokensDark.paletteSemanticBlue25,
+    DesignTokensDark.paletteSemanticBlue50,
   ];
   static List<Color> paletteSemanticBlue500 = [
     DesignTokensLight.paletteSemanticBlue500,
-    DesignTokensDark.paletteSemanticBlue400,
+    DesignTokensDark.paletteSemanticBlue500,
   ];
   static List<Color> paletteSemanticBlue600 = [
     DesignTokensLight.paletteSemanticBlue600,
-    DesignTokensDark.paletteSemanticBlue500,
+    DesignTokensDark.paletteSemanticBlue600,
   ];
   static List<Color> paletteSemanticBlue700 = [
     DesignTokensLight.paletteSemanticBlue700,
-    DesignTokensDark.paletteSemanticBlue600,
+    DesignTokensDark.paletteSemanticBlue700,
   ];
   static List<Color> paletteSemanticBlue800 = [
     DesignTokensLight.paletteSemanticBlue800,
-    DesignTokensDark.paletteSemanticBlue700,
+    DesignTokensDark.paletteSemanticBlue800,
   ];
   static List<Color> paletteSemanticBlue900 = [
     DesignTokensLight.paletteSemanticBlue900,
-    DesignTokensDark.paletteSemanticBlue800,
+    DesignTokensDark.paletteSemanticBlue900,
   ];
   static List<Color> paletteSemanticGreen100 = [
     DesignTokensLight.paletteSemanticGreen100,
-    DesignTokensDark.paletteSemanticGreen50,
+    DesignTokensDark.paletteSemanticGreen100,
   ];
   static List<Color> paletteSemanticGreen1000 = [
     DesignTokensLight.paletteSemanticGreen1000,
-    DesignTokensDark.paletteSemanticGreen900,
+    DesignTokensDark.paletteSemanticGreen1000,
   ];
   static List<Color> paletteSemanticGreen150 = [
     DesignTokensLight.paletteSemanticGreen150,
-    DesignTokensDark.paletteSemanticGreen100,
+    DesignTokensDark.paletteSemanticGreen150,
   ];
   static List<Color> paletteSemanticGreen200 = [
     DesignTokensLight.paletteSemanticGreen200,
-    DesignTokensDark.paletteSemanticGreen100,
+    DesignTokensDark.paletteSemanticGreen200,
   ];
   static List<Color> paletteSemanticGreen25 = [
     DesignTokensLight.paletteSemanticGreen25,
-    DesignTokensDark.paletteSemanticGreen0,
+    DesignTokensDark.paletteSemanticGreen25,
   ];
   static List<Color> paletteSemanticGreen300 = [
     DesignTokensLight.paletteSemanticGreen300,
-    DesignTokensDark.paletteSemanticGreen200,
+    DesignTokensDark.paletteSemanticGreen300,
   ];
   static List<Color> paletteSemanticGreen400 = [
     DesignTokensLight.paletteSemanticGreen400,
-    DesignTokensDark.paletteSemanticGreen300,
+    DesignTokensDark.paletteSemanticGreen400,
   ];
   static List<Color> paletteSemanticGreen50 = [
     DesignTokensLight.paletteSemanticGreen50,
-    DesignTokensDark.paletteSemanticGreen25,
+    DesignTokensDark.paletteSemanticGreen50,
   ];
   static List<Color> paletteSemanticGreen500 = [
     DesignTokensLight.paletteSemanticGreen500,
-    DesignTokensDark.paletteSemanticGreen400,
+    DesignTokensDark.paletteSemanticGreen500,
   ];
   static List<Color> paletteSemanticGreen600 = [
     DesignTokensLight.paletteSemanticGreen600,
-    DesignTokensDark.paletteSemanticGreen500,
+    DesignTokensDark.paletteSemanticGreen600,
   ];
   static List<Color> paletteSemanticGreen700 = [
     DesignTokensLight.paletteSemanticGreen700,
-    DesignTokensDark.paletteSemanticGreen600,
+    DesignTokensDark.paletteSemanticGreen700,
   ];
   static List<Color> paletteSemanticGreen800 = [
     DesignTokensLight.paletteSemanticGreen800,
-    DesignTokensDark.paletteSemanticGreen700,
+    DesignTokensDark.paletteSemanticGreen800,
   ];
   static List<Color> paletteSemanticGreen900 = [
     DesignTokensLight.paletteSemanticGreen900,
-    DesignTokensDark.paletteSemanticGreen800,
+    DesignTokensDark.paletteSemanticGreen900,
   ];
   static List<Color> paletteSemanticOrange100 = [
     DesignTokensLight.paletteSemanticOrange100,
-    DesignTokensDark.paletteSemanticOrange50,
+    DesignTokensDark.paletteSemanticOrange100,
   ];
   static List<Color> paletteSemanticOrange1000 = [
     DesignTokensLight.paletteSemanticOrange1000,
-    DesignTokensDark.paletteSemanticOrange900,
+    DesignTokensDark.paletteSemanticOrange1000,
   ];
   static List<Color> paletteSemanticOrange150 = [
     DesignTokensLight.paletteSemanticOrange150,
-    DesignTokensDark.paletteSemanticOrange100,
+    DesignTokensDark.paletteSemanticOrange150,
   ];
   static List<Color> paletteSemanticOrange200 = [
     DesignTokensLight.paletteSemanticOrange200,
-    DesignTokensDark.paletteSemanticOrange150,
+    DesignTokensDark.paletteSemanticOrange200,
   ];
   static List<Color> paletteSemanticOrange25 = [
     DesignTokensLight.paletteSemanticOrange25,
-    DesignTokensDark.paletteSemanticOrange0,
+    DesignTokensDark.paletteSemanticOrange25,
   ];
   static List<Color> paletteSemanticOrange300 = [
     DesignTokensLight.paletteSemanticOrange300,
-    DesignTokensDark.paletteSemanticOrange200,
+    DesignTokensDark.paletteSemanticOrange300,
   ];
   static List<Color> paletteSemanticOrange400 = [
     DesignTokensLight.paletteSemanticOrange400,
-    DesignTokensDark.paletteSemanticOrange300,
+    DesignTokensDark.paletteSemanticOrange400,
   ];
   static List<Color> paletteSemanticOrange50 = [
     DesignTokensLight.paletteSemanticOrange50,
-    DesignTokensDark.paletteSemanticOrange25,
+    DesignTokensDark.paletteSemanticOrange50,
   ];
   static List<Color> paletteSemanticOrange500 = [
     DesignTokensLight.paletteSemanticOrange500,
-    DesignTokensDark.paletteSemanticOrange400,
+    DesignTokensDark.paletteSemanticOrange500,
   ];
   static List<Color> paletteSemanticOrange600 = [
     DesignTokensLight.paletteSemanticOrange600,
-    DesignTokensDark.paletteSemanticOrange500,
+    DesignTokensDark.paletteSemanticOrange600,
   ];
   static List<Color> paletteSemanticOrange700 = [
     DesignTokensLight.paletteSemanticOrange700,
-    DesignTokensDark.paletteSemanticOrange600,
+    DesignTokensDark.paletteSemanticOrange700,
   ];
   static List<Color> paletteSemanticOrange800 = [
     DesignTokensLight.paletteSemanticOrange800,
-    DesignTokensDark.paletteSemanticOrange700,
+    DesignTokensDark.paletteSemanticOrange800,
   ];
   static List<Color> paletteSemanticOrange900 = [
     DesignTokensLight.paletteSemanticOrange900,
-    DesignTokensDark.paletteSemanticOrange800,
+    DesignTokensDark.paletteSemanticOrange900,
   ];
   static List<Color> paletteSemanticRed100 = [
     DesignTokensLight.paletteSemanticRed100,
-    DesignTokensDark.paletteSemanticRed50,
+    DesignTokensDark.paletteSemanticRed100,
   ];
   static List<Color> paletteSemanticRed1000 = [
     DesignTokensLight.paletteSemanticRed1000,
-    DesignTokensDark.paletteSemanticRed900,
+    DesignTokensDark.paletteSemanticRed1000,
   ];
   static List<Color> paletteSemanticRed150 = [
     DesignTokensLight.paletteSemanticRed150,
-    DesignTokensDark.paletteSemanticRed100,
+    DesignTokensDark.paletteSemanticRed150,
   ];
   static List<Color> paletteSemanticRed200 = [
     DesignTokensLight.paletteSemanticRed200,
-    DesignTokensDark.paletteSemanticRed150,
+    DesignTokensDark.paletteSemanticRed200,
   ];
   static List<Color> paletteSemanticRed25 = [
     DesignTokensLight.paletteSemanticRed25,
-    DesignTokensDark.paletteSemanticRed0,
+    DesignTokensDark.paletteSemanticRed25,
   ];
   static List<Color> paletteSemanticRed300 = [
     DesignTokensLight.paletteSemanticRed300,
-    DesignTokensDark.paletteSemanticRed200,
+    DesignTokensDark.paletteSemanticRed300,
   ];
   static List<Color> paletteSemanticRed400 = [
     DesignTokensLight.paletteSemanticRed400,
-    DesignTokensDark.paletteSemanticRed300,
+    DesignTokensDark.paletteSemanticRed400,
   ];
   static List<Color> paletteSemanticRed50 = [
     DesignTokensLight.paletteSemanticRed50,
-    DesignTokensDark.paletteSemanticRed25,
+    DesignTokensDark.paletteSemanticRed50,
   ];
   static List<Color> paletteSemanticRed500 = [
     DesignTokensLight.paletteSemanticRed500,
-    DesignTokensDark.paletteSemanticRed400,
+    DesignTokensDark.paletteSemanticRed500,
   ];
   static List<Color> paletteSemanticRed600 = [
     DesignTokensLight.paletteSemanticRed600,
-    DesignTokensDark.paletteSemanticRed500,
+    DesignTokensDark.paletteSemanticRed600,
   ];
   static List<Color> paletteSemanticRed700 = [
     DesignTokensLight.paletteSemanticRed700,
-    DesignTokensDark.paletteSemanticRed600,
+    DesignTokensDark.paletteSemanticRed700,
   ];
   static List<Color> paletteSemanticRed800 = [
     DesignTokensLight.paletteSemanticRed800,
-    DesignTokensDark.paletteSemanticRed700,
+    DesignTokensDark.paletteSemanticRed800,
   ];
   static List<Color> paletteSemanticRed900 = [
     DesignTokensLight.paletteSemanticRed900,
-    DesignTokensDark.paletteSemanticRed800,
+    DesignTokensDark.paletteSemanticRed900,
   ];
   static List<Color> textAlertBasic = [
     DesignTokensLight.textAlertBasic,
