@@ -31,9 +31,7 @@ class Suffix extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) =>
-      inlineError ??
-      OptimusStack(
+  Widget build(BuildContext context) => OptimusStack(
         direction: Axis.horizontal,
         spacing: OptimusStackSpacing.spacing100,
         mainAxisSize: MainAxisSize.min,
@@ -46,6 +44,7 @@ class Suffix extends StatelessWidget {
             passwordButton
           else if (trailing case final trailing?)
             trailing,
+          if (inlineError case final inlineError?) inlineError,
         ],
       );
 }

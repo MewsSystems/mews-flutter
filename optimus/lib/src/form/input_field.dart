@@ -199,7 +199,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 
   bool get _shouldShowInlineError =>
-      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip &&
+      (widget.errorVariant == OptimusInputErrorVariant.inlineTooltip ||
+          widget.inline) &&
       widget.hasError;
 
   void _handleClearAllTap() {
@@ -235,6 +236,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         ? _CharacterCounter(
             current: _effectiveController.text.length,
             max: maxCharacters,
+            isEnabled: widget.isEnabled,
           )
         : null;
 
@@ -359,20 +361,26 @@ class _CharacterCounter extends StatelessWidget {
   const _CharacterCounter({
     required this.current,
     required this.max,
+    this.isEnabled = true,
   });
 
   final int current;
   final int max;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final color = isEnabled
+        ? max < current
+            ? tokens.textAlertDanger
+            : tokens.textStaticSecondary
+        : tokens.textDisabled;
 
     final child = Text(
       '$current/$max',
       style: tokens.bodyMedium.copyWith(
-        color:
-            current > max ? tokens.textAlertDanger : tokens.textStaticSecondary,
+        color: color,
       ),
     );
 
