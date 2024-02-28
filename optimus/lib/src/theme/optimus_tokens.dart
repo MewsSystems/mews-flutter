@@ -11,7 +11,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Tue, 27 Feb 2024 10:40:21 GMT
+// Generated on Wed, 28 Feb 2024 13:44:47 GMT
 
 part 'optimus_tokens.tailor.dart';
 
