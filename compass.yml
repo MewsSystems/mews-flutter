@@ -1,0 +1,25 @@
+name: mews-flutter
+id: ari:cloud:compass:9cb80e14-6d83-4419-a743-3b8c78b0bf7f:component/4cc129c1-d8a1-41b8-bb4e-b20a5e598709/78a9f3ae-3053-4e44-8c5b-9999d5357df9
+description: Flutter and Dart open-source packages maintained by Mews.
+configVersion: 1
+typeId: SERVICE
+ownerId: null
+fields:
+  tier: 4
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/MewsSystems/mews-flutter
+relationships:
+  DEPENDS_ON: []
+labels:
+  - dart
+  - dart-library
+  - dart-package
+  - dart2
+  - flutter
+  - flutter-package
+  - flutter-plugin
+  - language:dart
+  - source:github
+customFields: null
