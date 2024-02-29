@@ -15,7 +15,7 @@ class NumberPickerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return OptimusEnabled(
       isEnabled: _isEnabled,
@@ -23,9 +23,7 @@ class NumberPickerButton extends StatelessWidget {
         onTap: onPressed,
         child: Icon(
           iconData,
-          color: theme.isDark // TODO(witwash): replace with tokens
-              ? theme.colors.neutral0
-              : theme.colors.neutral1000t64,
+          color: _isEnabled ? tokens.textStaticPrimary : tokens.textDisabled,
           size: context.tokens.sizing300,
         ),
       ),

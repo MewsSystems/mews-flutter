@@ -20,6 +20,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
     super.enabled,
     FocusNode? focusNode,
     TextEditingController? controller,
+    OptimusWidgetSize size = OptimusWidgetSize.large,
   })  : assert(
           initialValue == null || controller == null,
           'initialValue or controller must be null',
@@ -45,6 +46,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
             error: field.errorText,
             focusNode: focusNode,
             controller: controller,
+            size: size,
           ),
         );
 }
@@ -59,6 +61,7 @@ class _OptimusNumberPicker extends StatefulWidget {
     this.enabled = true,
     this.error,
     this.controller,
+    this.size = OptimusWidgetSize.large,
   });
 
   final int? initialValue;
@@ -69,6 +72,7 @@ class _OptimusNumberPicker extends StatefulWidget {
   final bool enabled;
   final String? error;
   final TextEditingController? controller;
+  final OptimusWidgetSize size;
 
   @override
   _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
@@ -161,8 +165,9 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
     final value = _value;
 
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 134),
+      constraints: const BoxConstraints(maxWidth: 200),
       child: OptimusInputField(
+        size: widget.size,
         textAlign: TextAlign.center,
         error: widget.error,
         isEnabled: widget.enabled,
@@ -170,13 +175,19 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         controller: _effectiveController,
         leading: NumberPickerButton(
           iconData: OptimusIcons.minus_simple,
-          onPressed:
-              value == null || value > widget.min ? _handleMinusTap : null,
+          onPressed: widget.enabled
+              ? value == null || value > widget.min
+                  ? _handleMinusTap
+                  : null
+              : null,
         ),
         trailing: NumberPickerButton(
           iconData: OptimusIcons.plus_simple,
-          onPressed:
-              value == null || value < widget.max ? _handlePlusTap : null,
+          onPressed: widget.enabled
+              ? value == null || value < widget.max
+                  ? _handlePlusTap
+                  : null
+              : null,
         ),
         focusNode: _effectiveFocusNode,
         inputFormatters: [

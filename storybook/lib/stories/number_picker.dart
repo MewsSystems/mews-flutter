@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story numberPickerStory = Story(
@@ -10,6 +11,11 @@ final Story numberPickerStory = Story(
     return _Content(
       isEnabled: k.boolean(label: 'Enabled', initial: true),
       error: k.text(label: 'Validation error', initial: 'Validation error'),
+      size: k.options(
+        label: 'Size',
+        initial: OptimusWidgetSize.large,
+        options: OptimusWidgetSize.values.toOptions(),
+      ),
     );
   },
 );
@@ -17,11 +23,13 @@ final Story numberPickerStory = Story(
 class _Content extends StatefulWidget {
   const _Content({
     required this.isEnabled,
+    required this.size,
     this.error,
   });
 
   final bool isEnabled;
   final String? error;
+  final OptimusWidgetSize size;
 
   @override
   State<_Content> createState() => _ContentState();
@@ -40,6 +48,7 @@ class _ContentState extends State<_Content> {
           const SizedBox(height: 16),
           OptimusNumberPickerFormField(
             enabled: widget.isEnabled,
+            size: widget.size,
             onChanged: _handleChanged,
             initialValue: 8,
             min: 5,
