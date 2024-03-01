@@ -22,7 +22,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ">=1.0.0 <3.0.0"
   mews_pedantic: ^0.24.0
-  theme_tailor: ">=2.0.0 <2.1.0"
+  theme_tailor: ^2.0.0
 flutter:
   assets:
     - assets/
