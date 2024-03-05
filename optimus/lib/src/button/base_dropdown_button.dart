@@ -131,7 +131,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                   border: borderColor != null
                       ? Border.all(
                           color: borderColor,
-                          width: context.tokens.borderWidth100,
+                          width: context.tokens.borderWidth150,
                         )
                       : null,
                 ),

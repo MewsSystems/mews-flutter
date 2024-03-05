@@ -72,7 +72,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
             return RoundedRectangleBorder(
               borderRadius: borderRadius,
               side: color != null
-                  ? BorderSide(color: color, width: 1)
+                  ? BorderSide(color: color, width: tokens.borderWidth150)
                   : BorderSide.none,
             );
           },
