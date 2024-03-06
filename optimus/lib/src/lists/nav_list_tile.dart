@@ -75,75 +75,14 @@ class OptimusNavListTile extends StatelessWidget {
   /// the need to scroll is important for the user's task completion.
   final TileSize tileSize;
 
-  Widget _buildLeadingIcon(OptimusTokens tokens, Widget icon) => Padding(
-        padding: EdgeInsets.only(right: tokens.spacing200),
-        child: IconTheme.merge(
-          data: IconThemeData(size: tokens.sizing300),
-          child: icon,
-        ),
-      );
-
-  Widget _buildLeadingAvatar(OptimusTokens tokens, Widget avatar) => Padding(
-        padding: EdgeInsets.only(right: tokens.spacing200),
-        child: SizedBox(width: tokens.sizing500, child: avatar),
-      );
-
-  Widget _buildMetadata(OptimusTokens tokens, Widget metadata) =>
-      OptimusTypography(
-        resolveStyle: (_) => tokens.bodySmallStrong,
-        color: OptimusTypographyColor.secondary,
-        child: metadata,
-      );
-
   double _getContentSpacing(OptimusTokens tokens) => switch (tileSize) {
         TileSize.normal => tokens.spacing200,
         TileSize.small => tokens.spacing100,
       };
 
-  Widget _getHeadline(OptimusTokens tokens) => Padding(
-        padding: EdgeInsets.only(right: tokens.spacing100),
-        child: OptimusTypography(
-          resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
-          child: DefaultTextStyle.merge(
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            child: headline,
-          ),
-        ),
-      );
-
-  Widget _getDescription(OptimusTokens tokens) {
-    final description = this.description;
-
-    return description != null
-        ? Padding(
-            padding: EdgeInsets.only(right: tokens.spacing100),
-            child: OptimusTypography(
-              resolveStyle: (_) => tokens.bodyMediumStrong,
-              color: fontVariant.secondaryColor,
-              child: DefaultTextStyle.merge(
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                child: description,
-              ),
-            ),
-          )
-        : const SizedBox.shrink();
-  }
-
-  Widget _buildTrailingIcon(OptimusTokens tokens, Widget suffix) => Padding(
-        padding: EdgeInsets.only(left: tokens.spacing200),
-        child: IconTheme.merge(
-          data: IconThemeData(size: tokens.sizing300),
-          child: suffix,
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final metadata = this.metadata;
-    final trailingIcon = this.trailingIcon;
     final leadingIcon = this.leadingIcon;
     final leadingAvatar = this.leadingAvatar;
 
@@ -156,23 +95,146 @@ class OptimusNavListTile extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            if (leadingAvatar != null)
-              _buildLeadingAvatar(tokens, leadingAvatar),
+            if (leadingAvatar != null) _Avatar(avatar: leadingAvatar),
             if (leadingAvatar == null && leadingIcon != null)
-              _buildLeadingIcon(tokens, leadingIcon),
+              _LeadingIcon(icon: leadingIcon),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _getHeadline(tokens),
-                  _getDescription(tokens),
+                  _Headline(fontVariant: fontVariant, headline: headline),
+                  if (description case final description?)
+                    _Description(
+                      description: description,
+                      fontVariant: fontVariant,
+                    ),
                 ],
               ),
             ),
-            if (metadata != null) _buildMetadata(tokens, metadata),
-            if (trailingIcon != null) _buildTrailingIcon(tokens, trailingIcon),
+            if (metadata case final metadata?) _Metadata(metadata: metadata),
+            if (trailingIcon case final trailingIcon?)
+              _TrailingIcon(icon: trailingIcon),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _Description extends StatelessWidget {
+  const _Description({
+    required this.description,
+    required this.fontVariant,
+  });
+
+  final Widget description;
+  final FontVariant fontVariant;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(right: tokens.spacing100),
+      child: OptimusTypography(
+        resolveStyle: (_) => tokens.bodyMediumStrong,
+        color: fontVariant.secondaryColor,
+        child: DefaultTextStyle.merge(
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          child: description,
+        ),
+      ),
+    );
+  }
+}
+
+class _LeadingIcon extends StatelessWidget {
+  const _LeadingIcon({required this.icon});
+
+  final Widget icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(right: tokens.spacing200),
+      child: IconTheme.merge(
+        data: IconThemeData(size: tokens.sizing300),
+        child: icon,
+      ),
+    );
+  }
+}
+
+class _Avatar extends StatelessWidget {
+  const _Avatar({required this.avatar});
+
+  final Widget avatar;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(right: tokens.spacing200),
+      child: SizedBox(width: tokens.sizing500, child: avatar),
+    );
+  }
+}
+
+class _Headline extends StatelessWidget {
+  const _Headline({required this.fontVariant, required this.headline});
+
+  final FontVariant fontVariant;
+  final Widget headline;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(right: tokens.spacing100),
+      child: OptimusTypography(
+        resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
+        child: DefaultTextStyle.merge(
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          child: headline,
+        ),
+      ),
+    );
+  }
+}
+
+class _Metadata extends StatelessWidget {
+  const _Metadata({required this.metadata});
+
+  final Widget metadata;
+
+  @override
+  Widget build(BuildContext context) => OptimusTypography(
+        resolveStyle: (_) => context.tokens.bodySmallStrong,
+        color: OptimusTypographyColor.secondary,
+        child: metadata,
+      );
+}
+
+class _TrailingIcon extends StatelessWidget {
+  const _TrailingIcon({required this.icon});
+
+  final Widget icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(left: tokens.spacing200),
+      child: IconTheme.merge(
+        data: IconThemeData(size: tokens.sizing300),
+        child: icon,
       ),
     );
   }
