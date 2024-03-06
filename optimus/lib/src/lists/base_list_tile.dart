@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/border_side.dart';
 
 class BaseListTile extends StatelessWidget {
   const BaseListTile({
@@ -14,17 +13,17 @@ class BaseListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Container(
-      decoration: BoxDecoration(border: Border(bottom: borderSide(theme))),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: tokens.borderStaticSecondary)),
+        color: tokens.backgroundInteractiveNeutralSubtleDefault,
+      ),
       constraints: BoxConstraints(minHeight: context.tokens.spacing700),
       child: InkWell(
-        highlightColor: theme.isDark
-            ? theme.colors.neutral300
-            : theme.colors.neutral50, // TODO(witwash): replace with tokens
-        hoverColor:
-            theme.isDark ? theme.colors.neutral400 : theme.colors.neutral25,
+        highlightColor: tokens.backgroundInteractiveNeutralSubtleActive,
+        hoverColor: tokens.backgroundInteractiveNeutralSubtleHover,
         onTap: onTap,
         splashColor: Colors.transparent,
         child: content,

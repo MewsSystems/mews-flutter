@@ -38,8 +38,8 @@ final Story listTileStory = Story(
             .map(
               (i) => OptimusListTile(
                 title: Text(title),
-                subtitle: Text(subtitle),
-                info: Text(info),
+                subtitle: subtitle.isNotEmpty ? Text(subtitle) : null,
+                info: info.isNotEmpty ? Text(info) : null,
                 fontVariant: fontVariant,
                 prefix: prefix != null ? Icon(prefix) : null,
                 suffix: suffix != null ? Icon(suffix) : null,

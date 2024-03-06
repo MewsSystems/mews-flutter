@@ -72,53 +72,11 @@ class OptimusListTile extends StatelessWidget {
         horizontal: tokens.spacing200,
       );
 
-  Widget _buildPrefix(OptimusTokens tokens, Widget prefix) => Padding(
-        padding: EdgeInsets.only(right: tokens.spacing100),
-        child: OptimusTypography(
-          color: OptimusTypographyColor.secondary,
-          resolveStyle: (_) => tokens.bodyMediumStrong,
-          child: prefix,
-        ),
-      );
-
-  Widget _buildInfo(OptimusTokens tokens, Widget info) => OptimusTypography(
-        resolveStyle: (_) => tokens.bodySmallStrong,
-        color: OptimusTypographyColor.secondary,
-        child: info,
-      );
-
-  Widget _getTitle(OptimusTokens tokens) => Padding(
-        padding: EdgeInsets.only(right: tokens.spacing100),
-        child: OptimusTypography(
-          resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
-          child: title,
-        ),
-      );
-
-  Widget _getSubtitle(OptimusTokens tokens) {
-    final subtitle = this.subtitle;
-
-    return subtitle != null
-        ? OptimusTypography(
-            resolveStyle: (_) => tokens.bodyMediumStrong,
-            color: fontVariant.secondaryColor,
-            child: subtitle,
-          )
-        : const SizedBox.shrink();
-  }
-
-  Widget _buildSuffix(OptimusTokens tokens, Widget suffix) => OptimusTypography(
-        resolveStyle: (_) => tokens.bodyMediumStrong,
-        child: suffix,
-      );
-
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final prefix = this.prefix;
     final info = this.info;
-    final suffix = this.suffix;
-    final infoWidget = this.infoWidget;
+    final subtitle = this.subtitle;
 
     return BaseListTile(
       onTap: onTap,
@@ -126,30 +84,121 @@ class OptimusListTile extends StatelessWidget {
         padding: _getContentPadding(tokens),
         child: Row(
           children: <Widget>[
-            if (prefix != null) _buildPrefix(tokens, prefix),
+            if (prefix case final prefix?) _Prefix(prefix: prefix),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(child: _getTitle(tokens)),
-                      if (info != null) _buildInfo(tokens, info),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(child: _getSubtitle(tokens)),
-                      if (infoWidget != null) infoWidget,
-                    ],
-                  ),
-                ],
+              child: Padding(
+                padding: EdgeInsets.only(right: tokens.spacing100),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: _Title(
+                            title: title,
+                            fontVariant: fontVariant,
+                          ),
+                        ),
+                        if (info != null) _Info(info: info),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: subtitle != null
+                              ? _Subtitle(
+                                  subtitle: subtitle,
+                                  fontVariant: fontVariant,
+                                )
+                              : const SizedBox.shrink(),
+                        ),
+                        if (infoWidget case final infoWidget?) infoWidget,
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            if (suffix != null) _buildSuffix(tokens, suffix),
+            if (suffix case final suffix?) _Suffix(suffix: suffix),
           ],
         ),
       ),
     );
   }
+}
+
+class _Prefix extends StatelessWidget {
+  const _Prefix({required this.prefix});
+
+  final Widget prefix;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(right: tokens.spacing100),
+      child: OptimusTypography(
+        color: OptimusTypographyColor.secondary,
+        resolveStyle: (_) => tokens.bodyMediumStrong,
+        child: prefix,
+      ),
+    );
+  }
+}
+
+class _Suffix extends StatelessWidget {
+  const _Suffix({required this.suffix});
+
+  final Widget suffix;
+
+  @override
+  Widget build(BuildContext context) => OptimusTypography(
+        resolveStyle: (_) => context.tokens.bodyMediumStrong,
+        child: suffix,
+      );
+}
+
+class _Title extends StatelessWidget {
+  const _Title({required this.title, required this.fontVariant});
+
+  final Widget title;
+  final FontVariant fontVariant;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return OptimusTypography(
+      resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
+      child: title,
+    );
+  }
+}
+
+class _Info extends StatelessWidget {
+  const _Info({required this.info});
+
+  final Widget info;
+
+  @override
+  Widget build(BuildContext context) => OptimusTypography(
+        resolveStyle: (_) => context.tokens.bodySmallStrong,
+        color: OptimusTypographyColor.secondary,
+        child: info,
+      );
+}
+
+class _Subtitle extends StatelessWidget {
+  const _Subtitle({required this.subtitle, required this.fontVariant});
+
+  final Widget subtitle;
+  final FontVariant fontVariant;
+
+  @override
+  Widget build(BuildContext context) => OptimusTypography(
+        resolveStyle: (_) => context.tokens.bodyMediumStrong,
+        color: fontVariant.secondaryColor,
+        child: subtitle,
+      );
 }

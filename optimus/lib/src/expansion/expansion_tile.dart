@@ -81,7 +81,7 @@ class OptimusExpansionTile extends StatefulWidget {
 }
 
 class _OptimusExpansionTileState extends State<OptimusExpansionTile>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, ThemeGetter {
   static final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween =
@@ -134,8 +134,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
 
   @override
   void didChangeDependencies() {
-    final ThemeData theme = Theme.of(context);
-    _borderColorTween.end = theme.dividerColor;
+    _borderColorTween.end = tokens.borderStaticSecondary;
     _backgroundColorTween.end = widget.backgroundColor;
     super.didChangeDependencies();
   }
@@ -143,10 +142,6 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
   @override
   Widget build(BuildContext context) {
     final bool closed = !_isExpanded && _controller.isDismissed;
-    final theme = OptimusTheme.of(context);
-    final textColor = theme.isDark
-        ? theme.colors.neutral0
-        : theme.colors.neutral1000; // TODO(witwash): replace with tokens
 
     return AnimatedBuilder(
       animation: _controller.view,
@@ -167,19 +162,16 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ListTileTheme.merge(
-              iconColor: textColor,
-              textColor: textColor,
-              child: widget.slidableActions.isEmpty
-                  ? listTile
-                  : OptimusSlidable(
-                      actions: widget.slidableActions,
-                      hasBorders: widget.hasBorders,
-                      actionsWidth: widget.actionsWidth,
-                      isEnabled: widget.slidableActions.isNotEmpty,
-                      child: listTile,
-                    ),
-            ),
+            if (widget.slidableActions.isEmpty)
+              listTile
+            else
+              OptimusSlidable(
+                actions: widget.slidableActions,
+                hasBorders: widget.hasBorders,
+                actionsWidth: widget.actionsWidth,
+                isEnabled: widget.slidableActions.isNotEmpty,
+                child: listTile,
+              ),
             ClipRect(
               child: Align(heightFactor: _heightFactor.value, child: child),
             ),
