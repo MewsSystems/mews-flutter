@@ -62,7 +62,8 @@ class OptimusSplitButton<T> extends StatelessWidget {
           size: size,
           child: child,
         ),
-        const SizedBox(width: 1),
+        if (variant == OptimusSplitButtonVariant.primary)
+          const SizedBox(width: 1),
         BaseDropDownButton(
           items: items,
           onItemSelected: onItemSelected,

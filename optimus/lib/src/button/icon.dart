@@ -75,7 +75,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
             border: borderColor != null
                 ? Border.all(
                     color: borderColor,
-                    width: context.tokens.borderWidth100,
+                    width: context.tokens.borderWidth150,
                   )
                 : null,
             borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
