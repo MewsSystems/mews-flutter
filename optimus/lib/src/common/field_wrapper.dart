@@ -142,11 +142,10 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             decoration: widget.hasBorders
                 ? BoxDecoration(
                     color: _background,
-                    borderRadius:
-                        BorderRadius.circular(context.tokens.borderRadius100),
+                    borderRadius: BorderRadius.circular(tokens.borderRadius100),
                     border: Border.all(
                       color: _borderColor,
-                      width: context.tokens.borderWidth150,
+                      width: tokens.borderWidth150,
                     ),
                   )
                 : null,
@@ -154,8 +153,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
               onEnter: (_) => _handleHoverChanged(true),
               onExit: (_) => _handleHoverChanged(false),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                height: widget.size.getHeight(tokens),
+                duration: _kAnimationDuration,
+                constraints:
+                    BoxConstraints(minHeight: widget.size.getHeight(tokens)),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: widget.size.getContentPadding(tokens),
@@ -467,3 +467,5 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.extraLarge => tokens.sizing700,
       };
 }
+
+const _kAnimationDuration = Duration(milliseconds: 200);

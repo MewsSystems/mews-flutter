@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/form/common.dart';
 
@@ -124,24 +125,23 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
           size: widget.size,
           children: [
             Flexible(
-              fit: FlexFit.loose,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: tokens.spacing25),
-                child: Focus(
-                  focusNode: _effectiveFocusNode,
-                  child: Container(
-                    constraints: BoxConstraints(
-                      minHeight: widget.size.getMinHeight(tokens),
-                    ),
-                    width: double.infinity,
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runAlignment: WrapAlignment.center,
-                      spacing: tokens.spacing50,
-                      runSpacing: tokens.spacing50,
-                      clipBehavior: Clip.antiAlias,
-                      children: widget.values,
-                    ),
+              child: Focus(
+                focusNode: _effectiveFocusNode,
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: widget.size.getVerticalPadding(tokens),
+                  ),
+                  constraints: BoxConstraints(
+                    minHeight: widget.size.getMinHeight(tokens),
+                  ),
+                  width: double.infinity,
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    spacing: tokens.spacing50,
+                    runSpacing: tokens.spacing50,
+                    clipBehavior: Clip.antiAlias,
+                    children: widget.values,
                   ),
                 ),
               ),
@@ -159,5 +159,13 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.medium => tokens.sizing500,
         OptimusWidgetSize.large => tokens.sizing600,
         OptimusWidgetSize.extraLarge => tokens.sizing700,
+      };
+
+  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.spacing50,
+        OptimusWidgetSize.medium => tokens.spacing100,
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing150,
       };
 }
