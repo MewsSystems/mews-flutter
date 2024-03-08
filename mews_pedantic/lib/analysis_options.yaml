@@ -255,6 +255,7 @@ dart_code_metrics:
     - avoid-bottom-type-in-patterns
     - avoid-bottom-type-in-records
     - avoid-cascade-after-if-null
+    - avoid-casting-to-extension-type
     # - avoid-collapsible-if
     - avoid-collection-methods-with-unrelated-types
     # - avoid-collection-mutating-methods
@@ -272,6 +273,7 @@ dart_code_metrics:
     - avoid-duplicate-switch-case-conditions
     - avoid-duplicate-test-assertions
     # - avoid-dynamic
+    - avoid-empty-spread
     # - avoid-empty-test-groups
     - avoid-equal-expressions
     - avoid-excessive-expressions
@@ -296,6 +298,7 @@ dart_code_metrics:
     # - avoid-long-records
     - avoid-map-keys-contains
     - avoid-missed-calls
+    - avoid-missing-completer-stack-trace
     # - avoid-missing-enum-constant-in-map
     - avoid-missing-interpolation
     # - avoid-missing-test-files
@@ -305,6 +308,7 @@ dart_code_metrics:
     # - avoid-mutating-parameters
     # - avoid-negated-conditions
     # - avoid-nested-conditional-expressions
+    - avoid-nested-extension-types
     - avoid-nested-futures
     - avoid-nested-records
     - avoid-nested-streams-and-futures
@@ -326,11 +330,15 @@ dart_code_metrics:
     - avoid-redundant-else
     - avoid-redundant-positional-field-name
     # - avoid-redundant-pragma-inline
+    # - avoid-referencing-discarded-variables
+    # - avoid-renaming-representation-getters
+    - avoid-returning-void
     - avoid-self-assignment
     - avoid-self-compare
     - avoid-shadowed-extension-methods
     # - avoid-shadowing
     # - avoid-similar-names
+    # - avoid-slow-collection-methods
     # - avoid-substring
     # - avoid-throw-in-catch-block
     # - avoid-throw-objects-without-tostring
@@ -339,7 +347,9 @@ dart_code_metrics:
     - avoid-unassigned-stream-subscriptions
     - avoid-uncaught-future-errors
     - avoid-unconditional-break
+    # - avoid-unknown-pragma
     - avoid-unnecessary-call
+    - avoid-unnecessary-collections
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-futures
     - avoid-unnecessary-getter
@@ -430,8 +440,10 @@ dart_code_metrics:
         ignore-single: true
     # - prefer-named-imports
     - prefer-null-aware-spread
+    - prefer-overriding-parent-equality
     - prefer-parentheses-with-if-null
     # - prefer-prefixed-global-constants
+    # - prefer-private-extension-type-field
     - prefer-public-exception-classes
     - prefer-return-await
     - prefer-returning-conditional-expressions
@@ -461,6 +473,7 @@ dart_code_metrics:
     # - avoid-incomplete-copy-with
     # - avoid-inherited-widget-in-initstate
     - avoid-late-context
+    - avoid-missing-controller
     # - avoid-missing-image-alt
     - avoid-recursive-widget-calls
     # - avoid-returning-widgets
@@ -468,6 +481,7 @@ dart_code_metrics:
     - avoid-single-child-column-or-row
     - avoid-state-constructors
     # - avoid-undisposed-instances
+    - avoid-unnecessary-gesture-detector
     - avoid-stateless-widget-initialized-fields
     - avoid-unnecessary-overrides-in-state
     - avoid-unnecessary-setstate
