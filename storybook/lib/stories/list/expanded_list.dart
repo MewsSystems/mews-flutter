@@ -27,7 +27,7 @@ final Story expandedListTileStory = Story(
             .map(
               (i) => OptimusExpansionTile(
                 title: Text(title),
-                subtitle: Text(subtitle),
+                subtitle: subtitle.isNotEmpty ? Text(subtitle) : null,
                 trailing: trailing != null ? Icon(trailing) : null,
                 leading: leading != null ? Icon(leading) : null,
                 children: Iterable<int>.generate(3)
