@@ -161,21 +161,16 @@ final Story dialogStory = Story(
               padding: EdgeInsets.only(top: 24, bottom: 16),
               child: OptimusTitleMedium(child: Text('Custom content')),
             ),
-            Wrap(
-              spacing: 8,
-              children: [
-                OptimusButton(
-                  variant: OptimusButtonVariant.primary,
-                  onPressed: () => _handleShowCustomContentDialog(
-                    context: context,
-                    isDismissible: isDismissible,
-                    size: OptimusDialogSize.large,
-                    type: type,
-                    title: title,
-                  ),
-                  child: const Text('Custom content'),
-                ),
-              ],
+            OptimusButton(
+              variant: OptimusButtonVariant.primary,
+              onPressed: () => _handleShowCustomContentDialog(
+                context: context,
+                isDismissible: isDismissible,
+                size: OptimusDialogSize.large,
+                type: type,
+                title: title,
+              ),
+              child: const Text('Custom content'),
             ),
           ],
         ),
