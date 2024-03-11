@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/theme/optimus_tokens.dart';
 import 'package:optimus/src/theme/theme.dart';
 
 class CheckboxTick extends StatefulWidget {
@@ -43,39 +44,55 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
   void _handlePressedChanged(bool pressed) =>
       setState(() => _isPressed = pressed);
 
-  Color get _borderColor => widget.isError
-      ? theme.tokens.backgroundInteractiveDangerDefault
-      : _interactionState.borderColor(context);
-
   @override
-  Widget build(BuildContext context) => GestureWrapper(
-        onHoverChanged: _handleHoverChanged,
-        onPressedChanged: _handlePressedChanged,
-        onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
-          decoration: BoxDecoration(
-            color: _interactionState.fillColor(context, _state),
-            border: _state.isUnchecked
-                ? Border.all(
-                    color: _borderColor,
-                    width: context.tokens.borderWidth150,
-                  )
-                : null,
-            borderRadius: BorderRadius.circular(context.tokens.borderRadius25),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return GestureWrapper(
+      onHoverChanged: _handleHoverChanged,
+      onPressedChanged: _handlePressedChanged,
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        decoration: BoxDecoration(
+          color: _interactionState.fillColor(
+            tokens: tokens,
+            state: _state,
+            isError: widget.isError,
           ),
-          width: 16,
-          height: 16,
-          child: _CheckboxIcon(icon: _state.icon, isEnabled: widget.isEnabled),
+          border: _state.isUnchecked
+              ? Border.all(
+                  color: _interactionState.borderColor(
+                    tokens: context.tokens,
+                    isError: widget.isError,
+                  ),
+                  width: tokens.borderWidth150,
+                )
+              : null,
+          borderRadius: BorderRadius.circular(tokens.borderRadius25),
         ),
-      );
+        width: tokens.sizing200,
+        height: tokens.sizing200,
+        child: _CheckboxIcon(
+          icon: _state.icon,
+          isEnabled: widget.isEnabled,
+          isError: widget.isError,
+        ),
+      ),
+    );
+  }
 }
 
 class _CheckboxIcon extends StatelessWidget {
-  const _CheckboxIcon({this.icon, required this.isEnabled});
+  const _CheckboxIcon({
+    this.icon,
+    required this.isEnabled,
+    required this.isError,
+  });
 
   final IconData? icon;
   final bool isEnabled;
+  final bool isError;
 
   @override
   Widget build(BuildContext context) => icon == null
@@ -106,29 +123,42 @@ extension on _TickState {
 enum _InteractionState { basic, hover, active, disabled }
 
 extension on _InteractionState {
-  Color? fillColor(BuildContext context, _TickState state) => switch (this) {
+  Color? fillColor({
+    required OptimusTokens tokens,
+    required _TickState state,
+    required bool isError,
+  }) =>
+      switch (this) {
         _InteractionState.basic => state.isUnchecked
             ? null
-            : context.tokens.backgroundInteractivePrimaryDefault,
+            : isError
+                ? tokens.backgroundInteractiveDangerDefault
+                : tokens.backgroundInteractivePrimaryDefault,
         _InteractionState.hover => state.isUnchecked
-            ? context.tokens.backgroundInteractiveNeutralSubtleHover
-            : context.tokens.backgroundInteractivePrimaryHover,
+            ? tokens.backgroundInteractiveNeutralSubtleHover
+            : isError
+                ? tokens.backgroundInteractiveDangerHover
+                : tokens.backgroundInteractivePrimaryHover,
         _InteractionState.active => state.isUnchecked
-            ? context.tokens.backgroundInteractiveNeutralSubtleActive
-            : context.tokens.backgroundInteractivePrimaryActive,
+            ? tokens.backgroundInteractiveNeutralSubtleActive
+            : isError
+                ? tokens.backgroundInteractiveDangerActive
+                : tokens.backgroundInteractivePrimaryActive,
         _InteractionState.disabled =>
-          state.isUnchecked ? null : context.tokens.backgroundDisabled,
+          state.isUnchecked ? null : tokens.backgroundDisabled,
       };
 
-  Color borderColor(BuildContext context) => switch (this) {
-        _InteractionState.basic =>
-          context.tokens.borderInteractiveSecondaryDefault,
-        _InteractionState.hover =>
-          context.tokens.borderInteractiveSecondaryHover,
-        _InteractionState.active =>
-          context.tokens.borderInteractiveSecondaryActive,
-        _InteractionState.disabled => context.tokens.borderDisabled,
-      };
+  Color borderColor({required OptimusTokens tokens, required bool isError}) =>
+      (isError && this != _InteractionState.disabled)
+          ? tokens.borderAlertDanger
+          : switch (this) {
+              _InteractionState.basic =>
+                tokens.borderInteractiveSecondaryDefault,
+              _InteractionState.hover => tokens.borderInteractiveSecondaryHover,
+              _InteractionState.active =>
+                tokens.borderInteractiveSecondaryActive,
+              _InteractionState.disabled => tokens.borderDisabled,
+            };
 }
 
 extension on bool? {
