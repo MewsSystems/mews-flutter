@@ -43,11 +43,12 @@ final Story inputStory = Story(
       maxChars =
           k.sliderInt(label: 'Max Characters', max: 100, min: 1, initial: 30);
     }
+    final inline = k.boolean(label: 'Inline', initial: false);
 
     return Align(
       alignment: Alignment.center,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
+        constraints: const BoxConstraints(maxWidth: 400, maxHeight: 300),
         child: OptimusInputField(
           isEnabled: k.boolean(label: 'Enabled', initial: true),
           isRequired: k.boolean(label: 'Required'),
@@ -65,6 +66,7 @@ final Story inputStory = Story(
             initial: OptimusWidgetSize.large,
             options: sizeOptions,
           ),
+          inline: inline,
           label: k.text(label: 'Label', initial: 'Optimus input field'),
           placeholder:
               k.text(label: 'Placeholder', initial: 'Put some hint here...'),
