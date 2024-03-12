@@ -1,3 +1,40 @@
+## 0.33.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Refactor ListTile (#571).
+ - **REFACTOR**: Refactor OptimusNavListTile (#570).
+ - **FIX**: Fix MultiselectSelectInput layout (#572).
+ - **FIX**: Remove unused imports.
+ - **FIX**: Add missing text style package (#537).
+ - **FIX**: [DX-1036] Fix CompactStepBar dark style (#525).
+ - **FIX**: [DX-1032] Fix password button visibility (#522).
+ - **FEAT**: Update Checkbox style (#557).
+ - **FEAT**: Add inline variant (#554).
+ - **FEAT**: Update SplitButton style (#568).
+ - **FEAT**: Update Button border width (#569).
+ - **FEAT**: Update NumberPicker style (#558).
+ - **FEAT**: Design Tokens Update 5.10.2 (#559).
+ - **FEAT**: Design Tokens Update (#555).
+ - **FEAT**: Design Tokens Update (#551).
+ - **FEAT**: Add Badge variants (#549).
+ - **FEAT**: Update OptimusSearch style (#547).
+ - **FEAT**: [DX-939] Update icons set (#543).
+ - **FEAT**: Design Tokens Update (#541).
+ - **FEAT**: [DX-1034] Add characters count to the OptimusInputField (#539).
+ - **FEAT**: [DX-1107] Add extraLarge widget size (#540).
+ - **FEAT**: [DX-723] Migrate to typography tokens (#531).
+ - **FEAT**: [DX-724] Migrate to sizes tokens (#530).
+ - **FEAT**: [DX-1035] Update dialog layout (#524).
+ - **FEAT**: [DX-1033] Hide helper message in disabled input (#523).
+ - **FEAT**: [DX-989] Update clear all button (#521).
+ - **BREAKING** **FEAT**: Design Tokens Update 6.0.0 (#574).
+ - **BREAKING** **FEAT**: Upgrade to Flutter 3.19.2.
+ - **BREAKING** **FEAT**: Update OptimusBanner and OptimusAlert (#545).
+ - **BREAKING** **FEAT**: Update Split and Dropdown Button styles (#548).
+ - **BREAKING** **FEAT**: Update OptimusNotification (#544).
+ - **BREAKING** **FEAT**: [DX-1155] Update OptimusIcon (#536).
+
 ## 0.32.0
 
 > Note: This release has breaking changes.
