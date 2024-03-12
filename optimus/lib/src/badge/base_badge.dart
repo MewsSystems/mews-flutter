@@ -23,7 +23,8 @@ class BaseBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasText = text.isNotEmpty;
     final tokens = context.tokens;
-    final backgroundColor = this.backgroundColor ?? tokens.backgroundAccent;
+    final backgroundColor =
+        this.backgroundColor ?? tokens.backgroundAccentPrimary;
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
     final outlineSize = tokens.borderWidth200;

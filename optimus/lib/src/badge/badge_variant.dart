@@ -13,7 +13,7 @@ enum OptimusBadgeVariant {
 
 extension Style on OptimusBadgeVariant {
   Color getBackgroundColor(OptimusTokens tokens) => switch (this) {
-        OptimusBadgeVariant.primary => tokens.backgroundAccent,
+        OptimusBadgeVariant.primary => tokens.backgroundAccentPrimary,
         OptimusBadgeVariant.success => tokens.backgroundAlertSuccessSecondary,
         OptimusBadgeVariant.warning => tokens.backgroundAlertWarningSecondary,
         OptimusBadgeVariant.danger => tokens.backgroundAlertDangerSecondary,
