@@ -3,14 +3,15 @@
 //
 
 // Do not edit directly
-// Generated on Wed, 28 Feb 2024 13:44:46 GMT
+// Generated on Mon, 11 Mar 2024 18:37:42 GMT
 
 import 'package:flutter/widgets.dart';
 
 class DesignTokensDark {
   const DesignTokensDark._();
 
-  static const Color backgroundAccent = Color(0xFF7A78F6);
+  static const Color backgroundAccentPrimary = Color(0xFF7A78F6);
+  static const Color backgroundAccentSecondary = Color(0xFFFA5F69);
   static const Color backgroundAlertBasicPrimary = Color(0xFF8D8DAC);
   static const Color backgroundAlertBasicSecondary = Color(0xFF22222E);
   static const Color backgroundAlertDangerPrimary = Color(0xFFEC5C5C);
@@ -82,6 +83,7 @@ class DesignTokensDark {
   static const Color borderStaticOnColor = Color(0xFFFFFFFF);
   static const Color borderStaticPrimary = Color(0xFF424258);
   static const Color borderStaticSecondary = Color(0xFF323243);
+  static const Color borderStaticTertiary = Color(0xFF53536D);
   static const Color legacyDatavizDenim100 = Color(0xFF1D5E99);
   static const Color legacyDatavizDenim200 = Color(0xFF2368A2);
   static const Color legacyDatavizDenim300 = Color(0xFF2973AB);
@@ -485,6 +487,7 @@ class DesignTokensDark {
   static const double opacity600 = 0.48;
   static const double opacity800 = 0.64;
   static const double sizing100 = 8;
+  static const double sizing1300 = 104;
   static const double sizing200 = 16;
   static const double sizing300 = 24;
   static const double sizing400 = 32;

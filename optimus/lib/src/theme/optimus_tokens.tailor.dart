@@ -11,7 +11,8 @@ part of 'optimus_tokens.dart';
 class OptimusTokens extends ThemeExtension<OptimusTokens>
     with DiagnosticableTreeMixin {
   const OptimusTokens({
-    required this.backgroundAccent,
+    required this.backgroundAccentPrimary,
+    required this.backgroundAccentSecondary,
     required this.backgroundAlertBasicPrimary,
     required this.backgroundAlertBasicSecondary,
     required this.backgroundAlertDangerPrimary,
@@ -96,6 +97,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderStaticOnColor,
     required this.borderStaticPrimary,
     required this.borderStaticSecondary,
+    required this.borderStaticTertiary,
     required this.borderWidth0,
     required this.borderWidth100,
     required this.borderWidth150,
@@ -347,6 +349,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.shadow200,
     required this.shadow300,
     required this.sizing100,
+    required this.sizing1300,
     required this.sizing200,
     required this.sizing300,
     required this.sizing400,
@@ -397,7 +400,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.titleSmallStrong,
   });
 
-  final Color backgroundAccent;
+  final Color backgroundAccentPrimary;
+  final Color backgroundAccentSecondary;
   final Color backgroundAlertBasicPrimary;
   final Color backgroundAlertBasicSecondary;
   final Color backgroundAlertDangerPrimary;
@@ -482,6 +486,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderStaticOnColor;
   final Color borderStaticPrimary;
   final Color borderStaticSecondary;
+  final Color borderStaticTertiary;
   final double borderWidth0;
   final double borderWidth100;
   final double borderWidth150;
@@ -733,6 +738,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final List<BoxShadow> shadow200;
   final List<BoxShadow> shadow300;
   final double sizing100;
+  final double sizing1300;
   final double sizing200;
   final double sizing300;
   final double sizing400;
@@ -783,7 +789,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final TextStyle titleSmallStrong;
 
   static final OptimusTokens light = OptimusTokens(
-    backgroundAccent: _$OptimusTokens.backgroundAccent[0],
+    backgroundAccentPrimary: _$OptimusTokens.backgroundAccentPrimary[0],
+    backgroundAccentSecondary: _$OptimusTokens.backgroundAccentSecondary[0],
     backgroundAlertBasicPrimary: _$OptimusTokens.backgroundAlertBasicPrimary[0],
     backgroundAlertBasicSecondary:
         _$OptimusTokens.backgroundAlertBasicSecondary[0],
@@ -905,6 +912,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderStaticOnColor: _$OptimusTokens.borderStaticOnColor[0],
     borderStaticPrimary: _$OptimusTokens.borderStaticPrimary[0],
     borderStaticSecondary: _$OptimusTokens.borderStaticSecondary[0],
+    borderStaticTertiary: _$OptimusTokens.borderStaticTertiary[0],
     borderWidth0: _$OptimusTokens.borderWidth0[0],
     borderWidth100: _$OptimusTokens.borderWidth100[0],
     borderWidth150: _$OptimusTokens.borderWidth150[0],
@@ -1158,6 +1166,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     shadow200: _$OptimusTokens.shadow200[0],
     shadow300: _$OptimusTokens.shadow300[0],
     sizing100: _$OptimusTokens.sizing100[0],
+    sizing1300: _$OptimusTokens.sizing1300[0],
     sizing200: _$OptimusTokens.sizing200[0],
     sizing300: _$OptimusTokens.sizing300[0],
     sizing400: _$OptimusTokens.sizing400[0],
@@ -1209,7 +1218,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   );
 
   static final OptimusTokens dark = OptimusTokens(
-    backgroundAccent: _$OptimusTokens.backgroundAccent[1],
+    backgroundAccentPrimary: _$OptimusTokens.backgroundAccentPrimary[1],
+    backgroundAccentSecondary: _$OptimusTokens.backgroundAccentSecondary[1],
     backgroundAlertBasicPrimary: _$OptimusTokens.backgroundAlertBasicPrimary[1],
     backgroundAlertBasicSecondary:
         _$OptimusTokens.backgroundAlertBasicSecondary[1],
@@ -1331,6 +1341,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderStaticOnColor: _$OptimusTokens.borderStaticOnColor[1],
     borderStaticPrimary: _$OptimusTokens.borderStaticPrimary[1],
     borderStaticSecondary: _$OptimusTokens.borderStaticSecondary[1],
+    borderStaticTertiary: _$OptimusTokens.borderStaticTertiary[1],
     borderWidth0: _$OptimusTokens.borderWidth0[1],
     borderWidth100: _$OptimusTokens.borderWidth100[1],
     borderWidth150: _$OptimusTokens.borderWidth150[1],
@@ -1584,6 +1595,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     shadow200: _$OptimusTokens.shadow200[1],
     shadow300: _$OptimusTokens.shadow300[1],
     sizing100: _$OptimusTokens.sizing100[1],
+    sizing1300: _$OptimusTokens.sizing1300[1],
     sizing200: _$OptimusTokens.sizing200[1],
     sizing300: _$OptimusTokens.sizing300[1],
     sizing400: _$OptimusTokens.sizing400[1],
@@ -1641,7 +1653,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
 
   @override
   OptimusTokens copyWith({
-    Color? backgroundAccent,
+    Color? backgroundAccentPrimary,
+    Color? backgroundAccentSecondary,
     Color? backgroundAlertBasicPrimary,
     Color? backgroundAlertBasicSecondary,
     Color? backgroundAlertDangerPrimary,
@@ -1726,6 +1739,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     Color? borderStaticOnColor,
     Color? borderStaticPrimary,
     Color? borderStaticSecondary,
+    Color? borderStaticTertiary,
     double? borderWidth0,
     double? borderWidth100,
     double? borderWidth150,
@@ -1977,6 +1991,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     List<BoxShadow>? shadow200,
     List<BoxShadow>? shadow300,
     double? sizing100,
+    double? sizing1300,
     double? sizing200,
     double? sizing300,
     double? sizing400,
@@ -2027,7 +2042,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     TextStyle? titleSmallStrong,
   }) {
     return OptimusTokens(
-      backgroundAccent: backgroundAccent ?? this.backgroundAccent,
+      backgroundAccentPrimary:
+          backgroundAccentPrimary ?? this.backgroundAccentPrimary,
+      backgroundAccentSecondary:
+          backgroundAccentSecondary ?? this.backgroundAccentSecondary,
       backgroundAlertBasicPrimary:
           backgroundAlertBasicPrimary ?? this.backgroundAlertBasicPrimary,
       backgroundAlertBasicSecondary:
@@ -2177,6 +2195,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       borderStaticPrimary: borderStaticPrimary ?? this.borderStaticPrimary,
       borderStaticSecondary:
           borderStaticSecondary ?? this.borderStaticSecondary,
+      borderStaticTertiary: borderStaticTertiary ?? this.borderStaticTertiary,
       borderWidth0: borderWidth0 ?? this.borderWidth0,
       borderWidth100: borderWidth100 ?? this.borderWidth100,
       borderWidth150: borderWidth150 ?? this.borderWidth150,
@@ -2550,6 +2569,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       shadow200: shadow200 ?? this.shadow200,
       shadow300: shadow300 ?? this.shadow300,
       sizing100: sizing100 ?? this.sizing100,
+      sizing1300: sizing1300 ?? this.sizing1300,
       sizing200: sizing200 ?? this.sizing200,
       sizing300: sizing300 ?? this.sizing300,
       sizing400: sizing400 ?? this.sizing400,
@@ -2608,8 +2628,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   OptimusTokens lerp(covariant ThemeExtension<OptimusTokens>? other, double t) {
     if (other is! OptimusTokens) return this as OptimusTokens;
     return OptimusTokens(
-      backgroundAccent:
-          Color.lerp(backgroundAccent, other.backgroundAccent, t)!,
+      backgroundAccentPrimary: Color.lerp(
+          backgroundAccentPrimary, other.backgroundAccentPrimary, t)!,
+      backgroundAccentSecondary: Color.lerp(
+          backgroundAccentSecondary, other.backgroundAccentSecondary, t)!,
       backgroundAlertBasicPrimary: Color.lerp(
           backgroundAlertBasicPrimary, other.backgroundAlertBasicPrimary, t)!,
       backgroundAlertBasicSecondary: Color.lerp(backgroundAlertBasicSecondary,
@@ -2816,6 +2838,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
           Color.lerp(borderStaticPrimary, other.borderStaticPrimary, t)!,
       borderStaticSecondary:
           Color.lerp(borderStaticSecondary, other.borderStaticSecondary, t)!,
+      borderStaticTertiary:
+          Color.lerp(borderStaticTertiary, other.borderStaticTertiary, t)!,
       borderWidth0: t < 0.5 ? borderWidth0 : other.borderWidth0,
       borderWidth100: t < 0.5 ? borderWidth100 : other.borderWidth100,
       borderWidth150: t < 0.5 ? borderWidth150 : other.borderWidth150,
@@ -3273,6 +3297,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       shadow200: t < 0.5 ? shadow200 : other.shadow200,
       shadow300: t < 0.5 ? shadow300 : other.shadow300,
       sizing100: t < 0.5 ? sizing100 : other.sizing100,
+      sizing1300: t < 0.5 ? sizing1300 : other.sizing1300,
       sizing200: t < 0.5 ? sizing200 : other.sizing200,
       sizing300: t < 0.5 ? sizing300 : other.sizing300,
       sizing400: t < 0.5 ? sizing400 : other.sizing400,
@@ -3343,7 +3368,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'OptimusTokens'))
-      ..add(DiagnosticsProperty('backgroundAccent', backgroundAccent))
+      ..add(DiagnosticsProperty(
+          'backgroundAccentPrimary', backgroundAccentPrimary))
+      ..add(DiagnosticsProperty(
+          'backgroundAccentSecondary', backgroundAccentSecondary))
       ..add(DiagnosticsProperty(
           'backgroundAlertBasicPrimary', backgroundAlertBasicPrimary))
       ..add(DiagnosticsProperty(
@@ -3478,6 +3506,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('borderStaticOnColor', borderStaticOnColor))
       ..add(DiagnosticsProperty('borderStaticPrimary', borderStaticPrimary))
       ..add(DiagnosticsProperty('borderStaticSecondary', borderStaticSecondary))
+      ..add(DiagnosticsProperty('borderStaticTertiary', borderStaticTertiary))
       ..add(DiagnosticsProperty('borderWidth0', borderWidth0))
       ..add(DiagnosticsProperty('borderWidth100', borderWidth100))
       ..add(DiagnosticsProperty('borderWidth150', borderWidth150))
@@ -3817,6 +3846,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       ..add(DiagnosticsProperty('shadow200', shadow200))
       ..add(DiagnosticsProperty('shadow300', shadow300))
       ..add(DiagnosticsProperty('sizing100', sizing100))
+      ..add(DiagnosticsProperty('sizing1300', sizing1300))
       ..add(DiagnosticsProperty('sizing200', sizing200))
       ..add(DiagnosticsProperty('sizing300', sizing300))
       ..add(DiagnosticsProperty('sizing400', sizing400))
@@ -3874,8 +3904,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is OptimusTokens &&
-            const DeepCollectionEquality()
-                .equals(backgroundAccent, other.backgroundAccent) &&
+            const DeepCollectionEquality().equals(
+                backgroundAccentPrimary, other.backgroundAccentPrimary) &&
+            const DeepCollectionEquality().equals(
+                backgroundAccentSecondary, other.backgroundAccentSecondary) &&
             const DeepCollectionEquality().equals(backgroundAlertBasicPrimary,
                 other.backgroundAlertBasicPrimary) &&
             const DeepCollectionEquality().equals(backgroundAlertBasicSecondary,
@@ -3918,8 +3950,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality()
                 .equals(backgroundDisabled, other.backgroundDisabled) &&
             const DeepCollectionEquality().equals(
-                backgroundInteractiveDangerActive,
-                other.backgroundInteractiveDangerActive) &&
+                backgroundInteractiveDangerActive, other.backgroundInteractiveDangerActive) &&
             const DeepCollectionEquality().equals(backgroundInteractiveDangerDefault, other.backgroundInteractiveDangerDefault) &&
             const DeepCollectionEquality().equals(backgroundInteractiveDangerHover, other.backgroundInteractiveDangerHover) &&
             const DeepCollectionEquality().equals(backgroundInteractiveNeutralActive, other.backgroundInteractiveNeutralActive) &&
@@ -3984,6 +4015,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(borderStaticOnColor, other.borderStaticOnColor) &&
             const DeepCollectionEquality().equals(borderStaticPrimary, other.borderStaticPrimary) &&
             const DeepCollectionEquality().equals(borderStaticSecondary, other.borderStaticSecondary) &&
+            const DeepCollectionEquality().equals(borderStaticTertiary, other.borderStaticTertiary) &&
             const DeepCollectionEquality().equals(borderWidth0, other.borderWidth0) &&
             const DeepCollectionEquality().equals(borderWidth100, other.borderWidth100) &&
             const DeepCollectionEquality().equals(borderWidth150, other.borderWidth150) &&
@@ -4235,6 +4267,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
             const DeepCollectionEquality().equals(shadow200, other.shadow200) &&
             const DeepCollectionEquality().equals(shadow300, other.shadow300) &&
             const DeepCollectionEquality().equals(sizing100, other.sizing100) &&
+            const DeepCollectionEquality().equals(sizing1300, other.sizing1300) &&
             const DeepCollectionEquality().equals(sizing200, other.sizing200) &&
             const DeepCollectionEquality().equals(sizing300, other.sizing300) &&
             const DeepCollectionEquality().equals(sizing400, other.sizing400) &&
@@ -4289,7 +4322,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   int get hashCode {
     return Object.hashAll([
       runtimeType.hashCode,
-      const DeepCollectionEquality().hash(backgroundAccent),
+      const DeepCollectionEquality().hash(backgroundAccentPrimary),
+      const DeepCollectionEquality().hash(backgroundAccentSecondary),
       const DeepCollectionEquality().hash(backgroundAlertBasicPrimary),
       const DeepCollectionEquality().hash(backgroundAlertBasicSecondary),
       const DeepCollectionEquality().hash(backgroundAlertDangerPrimary),
@@ -4381,6 +4415,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(borderStaticOnColor),
       const DeepCollectionEquality().hash(borderStaticPrimary),
       const DeepCollectionEquality().hash(borderStaticSecondary),
+      const DeepCollectionEquality().hash(borderStaticTertiary),
       const DeepCollectionEquality().hash(borderWidth0),
       const DeepCollectionEquality().hash(borderWidth100),
       const DeepCollectionEquality().hash(borderWidth150),
@@ -4632,6 +4667,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
       const DeepCollectionEquality().hash(shadow200),
       const DeepCollectionEquality().hash(shadow300),
       const DeepCollectionEquality().hash(sizing100),
+      const DeepCollectionEquality().hash(sizing1300),
       const DeepCollectionEquality().hash(sizing200),
       const DeepCollectionEquality().hash(sizing300),
       const DeepCollectionEquality().hash(sizing400),

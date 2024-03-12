@@ -11,15 +11,19 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Wed, 28 Feb 2024 13:44:47 GMT
+// Generated on Mon, 11 Mar 2024 18:37:43 GMT
 
 part 'optimus_tokens.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.none)
 class _$OptimusTokens {
-  static List<Color> backgroundAccent = [
-    DesignTokensLight.backgroundAccent,
-    DesignTokensDark.backgroundAccent,
+  static List<Color> backgroundAccentPrimary = [
+    DesignTokensLight.backgroundAccentPrimary,
+    DesignTokensDark.backgroundAccentPrimary,
+  ];
+  static List<Color> backgroundAccentSecondary = [
+    DesignTokensLight.backgroundAccentSecondary,
+    DesignTokensDark.backgroundAccentSecondary,
   ];
   static List<Color> backgroundAlertBasicPrimary = [
     DesignTokensLight.backgroundAlertBasicPrimary,
@@ -288,6 +292,10 @@ class _$OptimusTokens {
   static List<Color> borderStaticSecondary = [
     DesignTokensLight.borderStaticSecondary,
     DesignTokensDark.borderStaticSecondary,
+  ];
+  static List<Color> borderStaticTertiary = [
+    DesignTokensLight.borderStaticTertiary,
+    DesignTokensDark.borderStaticTertiary,
   ];
   static List<Color> legacyDatavizDenim100 = [
     DesignTokensLight.legacyDatavizDenim100,
@@ -1402,6 +1410,10 @@ class _$OptimusTokens {
   static List<double> sizing100 = [
     DesignTokensLight.sizing100,
     DesignTokensDark.sizing100,
+  ];
+  static List<double> sizing1300 = [
+    DesignTokensLight.sizing1300,
+    DesignTokensDark.sizing1300,
   ];
   static List<double> sizing200 = [
     DesignTokensLight.sizing200,
