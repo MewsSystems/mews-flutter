@@ -5,7 +5,6 @@
 // Do not edit directly
 // Generated on Mon, 11 Mar 2024 18:37:42 GMT
 
-import 'dart:ui';
 import 'package:flutter/widgets.dart';
 
 class DesignTokensLight {
