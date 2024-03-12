@@ -210,8 +210,10 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         leading: widget.leading,
         suffix: widget.suffix,
         trailing: widget.trailing,
-        trailingImplicit:
-            RotationTransition(turns: _iconTurns, child: const _Chevron()),
+        trailingImplicit: RotationTransition(
+          turns: _iconTurns,
+          child: _Chevron(isEnabled: widget.isEnabled),
+        ),
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
@@ -234,19 +236,18 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
 }
 
 class _Chevron extends StatelessWidget {
-  const _Chevron();
+  const _Chevron({this.isEnabled = true});
+
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-    final color = theme.isDark
-        ? theme.colors.neutral0
-        : theme.colors.neutral400; // TODO(witwash): replace with tokens
+    final tokens = context.tokens;
 
     return Icon(
       OptimusIcons.chevron_down,
       size: context.tokens.sizing300,
-      color: color,
+      color: isEnabled ? tokens.textStaticPrimary : tokens.textDisabled,
     );
   }
 }
