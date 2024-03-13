@@ -101,7 +101,6 @@ export 'src/widget_size.dart';
 ThemeData createOptimusMaterialTheme(Brightness brightness) {
   final tokensTheme =
       brightness == Brightness.light ? OptimusTokens.light : OptimusTokens.dark;
-
   final baseTextStyle = tokensTheme.bodyMedium;
 
   return ThemeData(
