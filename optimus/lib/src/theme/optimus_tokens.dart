@@ -406,1165 +406,778 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.fontWeight600,
     required this.textDecorationUnderline,
   });
-
   @override
   final Color backgroundAccentPrimary;
-
   @override
   final Color backgroundAccentSecondary;
-
   @override
   final Color backgroundAlertBasicPrimary;
-
   @override
   final Color backgroundAlertBasicSecondary;
-
   @override
   final Color backgroundAlertDangerPrimary;
-
   @override
   final Color backgroundAlertDangerSecondary;
-
   @override
   final Color backgroundAlertInfoPrimary;
-
   @override
   final Color backgroundAlertInfoSecondary;
-
   @override
   final Color backgroundAlertSuccessPrimary;
-
   @override
   final Color backgroundAlertSuccessSecondary;
-
   @override
   final Color backgroundAlertWarningPrimary;
-
   @override
   final Color backgroundAlertWarningSecondary;
-
   @override
   final Color backgroundBackdrop;
-
   @override
   final Color backgroundBrand;
-
   @override
   final Color backgroundDatavizBlue;
-
   @override
   final Color backgroundDatavizGreen;
-
   @override
   final Color backgroundDatavizOrange;
-
   @override
   final Color backgroundDatavizPink;
-
   @override
   final Color backgroundDatavizPurple;
-
   @override
   final Color backgroundDatavizRed;
-
   @override
   final Color backgroundDisabled;
-
   @override
   final Color backgroundInteractiveDangerActive;
-
   @override
   final Color backgroundInteractiveDangerDefault;
-
   @override
   final Color backgroundInteractiveDangerHover;
-
   @override
   final Color backgroundInteractiveNeutralActive;
-
   @override
   final Color backgroundInteractiveNeutralBoldActive;
-
   @override
   final Color backgroundInteractiveNeutralBoldDefault;
-
   @override
   final Color backgroundInteractiveNeutralBoldHover;
-
   @override
   final Color backgroundInteractiveNeutralDefault;
-
   @override
   final Color backgroundInteractiveNeutralHover;
-
   @override
   final Color backgroundInteractiveNeutralSubtleActive;
-
   @override
   final Color backgroundInteractiveNeutralSubtleDefault;
-
   @override
   final Color backgroundInteractiveNeutralSubtleHover;
-
   @override
   final Color backgroundInteractivePrimaryActive;
-
   @override
   final Color backgroundInteractivePrimaryDefault;
-
   @override
   final Color backgroundInteractivePrimaryHover;
-
   @override
   final Color backgroundInteractiveSecondaryActive;
-
   @override
   final Color backgroundInteractiveSecondaryDefault;
-
   @override
   final Color backgroundInteractiveSecondaryHover;
-
   @override
   final Color backgroundInteractiveSuccessActive;
-
   @override
   final Color backgroundInteractiveSuccessDefault;
-
   @override
   final Color backgroundInteractiveSuccessHover;
-
   @override
   final Color backgroundStaticFlat;
-
   @override
   final Color backgroundStaticFloating;
-
   @override
   final Color backgroundStaticInverse;
-
   @override
   final Color backgroundStaticInverseOnColor;
-
   @override
   final Color backgroundStaticOnColor;
-
   @override
   final Color backgroundStaticRaised;
-
   @override
   final Color backgroundStaticSunken;
-
   @override
   final Color borderAlertBasic;
-
   @override
   final Color borderAlertDanger;
-
   @override
   final Color borderAlertInfo;
-
   @override
   final Color borderAlertSuccess;
-
   @override
   final Color borderAlertWarning;
-
   @override
   final Color borderDisabled;
-
   @override
   final Color borderInteractiveBoldActive;
-
   @override
   final Color borderInteractiveBoldDefault;
-
   @override
   final Color borderInteractiveBoldHover;
-
   @override
   final Color borderInteractiveFocus;
-
   @override
   final Color borderInteractivePrimaryActive;
-
   @override
   final Color borderInteractivePrimaryDefault;
-
   @override
   final Color borderInteractivePrimaryHover;
-
   @override
   final Color borderInteractiveSecondaryActive;
-
   @override
   final Color borderInteractiveSecondaryDefault;
-
   @override
   final Color borderInteractiveSecondaryHover;
-
   @override
   final Color borderStaticInverse;
-
   @override
   final Color borderStaticOnColor;
-
   @override
   final Color borderStaticPrimary;
-
   @override
   final Color borderStaticSecondary;
-
   @override
   final Color borderStaticTertiary;
-
   @override
   final Color legacyDatavizDenim100;
-
   @override
   final Color legacyDatavizDenim200;
-
   @override
   final Color legacyDatavizDenim300;
-
   @override
   final Color legacyDatavizDenim400;
-
   @override
   final Color legacyDatavizDenim50;
-
   @override
   final Color legacyDatavizDenim500;
-
   @override
   final Color legacyDatavizDenim600;
-
   @override
   final Color legacyDatavizDenim700;
-
   @override
   final Color legacyDatavizDenim800;
-
   @override
   final Color legacyDatavizDenim900;
-
   @override
   final Color legacyDatavizLavender100;
-
   @override
   final Color legacyDatavizLavender200;
-
   @override
   final Color legacyDatavizLavender300;
-
   @override
   final Color legacyDatavizLavender400;
-
   @override
   final Color legacyDatavizLavender50;
-
   @override
   final Color legacyDatavizLavender500;
-
   @override
   final Color legacyDatavizLavender600;
-
   @override
   final Color legacyDatavizLavender700;
-
   @override
   final Color legacyDatavizLavender800;
-
   @override
   final Color legacyDatavizLavender900;
-
   @override
   final Color legacyDatavizLime100;
-
   @override
   final Color legacyDatavizLime200;
-
   @override
   final Color legacyDatavizLime300;
-
   @override
   final Color legacyDatavizLime400;
-
   @override
   final Color legacyDatavizLime50;
-
   @override
   final Color legacyDatavizLime500;
-
   @override
   final Color legacyDatavizLime600;
-
   @override
   final Color legacyDatavizLime700;
-
   @override
   final Color legacyDatavizLime800;
-
   @override
   final Color legacyDatavizLime900;
-
   @override
   final Color legacyDatavizMustard100;
-
   @override
   final Color legacyDatavizMustard200;
-
   @override
   final Color legacyDatavizMustard300;
-
   @override
   final Color legacyDatavizMustard400;
-
   @override
   final Color legacyDatavizMustard50;
-
   @override
   final Color legacyDatavizMustard500;
-
   @override
   final Color legacyDatavizMustard600;
-
   @override
   final Color legacyDatavizMustard700;
-
   @override
   final Color legacyDatavizMustard800;
-
   @override
   final Color legacyDatavizMustard900;
-
   @override
   final Color legacyDatavizRuby100;
-
   @override
   final Color legacyDatavizRuby200;
-
   @override
   final Color legacyDatavizRuby300;
-
   @override
   final Color legacyDatavizRuby400;
-
   @override
   final Color legacyDatavizRuby50;
-
   @override
   final Color legacyDatavizRuby500;
-
   @override
   final Color legacyDatavizRuby600;
-
   @override
   final Color legacyDatavizRuby700;
-
   @override
   final Color legacyDatavizRuby800;
-
   @override
   final Color legacyDatavizRuby900;
-
   @override
   final Color legacyDatavizTangerine100;
-
   @override
   final Color legacyDatavizTangerine200;
-
   @override
   final Color legacyDatavizTangerine300;
-
   @override
   final Color legacyDatavizTangerine400;
-
   @override
   final Color legacyDatavizTangerine50;
-
   @override
   final Color legacyDatavizTangerine500;
-
   @override
   final Color legacyDatavizTangerine600;
-
   @override
   final Color legacyDatavizTangerine700;
-
   @override
   final Color legacyDatavizTangerine800;
-
   @override
   final Color legacyDatavizTangerine900;
-
   @override
   final Color legacyTagBackgroundBasicBold;
-
   @override
   final Color legacyTagBackgroundDenim;
-
   @override
   final Color legacyTagBackgroundLavender;
-
   @override
   final Color legacyTagBackgroundLime;
-
   @override
   final Color legacyTagBackgroundMustard;
-
   @override
   final Color legacyTagBackgroundPrimary;
-
   @override
   final Color legacyTagBackgroundRuby;
-
   @override
   final Color legacyTagBackgroundTangerine;
-
   @override
   final Color legacyTagBorderBasicBold;
-
   @override
   final Color legacyTagBorderDenim;
-
   @override
   final Color legacyTagBorderLavender;
-
   @override
   final Color legacyTagBorderLime;
-
   @override
   final Color legacyTagBorderMustard;
-
   @override
   final Color legacyTagBorderPrimary;
-
   @override
   final Color legacyTagBorderRuby;
-
   @override
   final Color legacyTagBorderTangerine;
-
   @override
   final Color legacyTagTextBasicBold;
-
   @override
   final Color legacyTagTextDenim;
-
   @override
   final Color legacyTagTextLavender;
-
   @override
   final Color legacyTagTextLime;
-
   @override
   final Color legacyTagTextMustard;
-
   @override
   final Color legacyTagTextPrimary;
-
   @override
   final Color legacyTagTextRuby;
-
   @override
   final Color legacyTagTextTangerine;
-
   @override
   final Color paletteBasicsBlack;
-
   @override
   final Color paletteBasicsWhite;
-
   @override
   final Color paletteBasicsWhite64;
-
   @override
   final Color paletteBrandCoral100;
-
   @override
   final Color paletteBrandCoral1000;
-
   @override
   final Color paletteBrandCoral150;
-
   @override
   final Color paletteBrandCoral200;
-
   @override
   final Color paletteBrandCoral25;
-
   @override
   final Color paletteBrandCoral300;
-
   @override
   final Color paletteBrandCoral400;
-
   @override
   final Color paletteBrandCoral50;
-
   @override
   final Color paletteBrandCoral500;
-
   @override
   final Color paletteBrandCoral600;
-
   @override
   final Color paletteBrandCoral700;
-
   @override
   final Color paletteBrandCoral800;
-
   @override
   final Color paletteBrandCoral900;
-
   @override
   final Color paletteBrandGrey0;
-
   @override
   final Color paletteBrandGrey100;
-
   @override
   final Color paletteBrandGrey1000;
-
   @override
   final Color paletteBrandGrey150;
-
   @override
   final Color paletteBrandGrey200;
-
   @override
   final Color paletteBrandGrey25;
-
   @override
   final Color paletteBrandGrey300;
-
   @override
   final Color paletteBrandGrey400;
-
   @override
   final Color paletteBrandGrey50;
-
   @override
   final Color paletteBrandGrey500;
-
   @override
   final Color paletteBrandGrey600;
-
   @override
   final Color paletteBrandGrey700;
-
   @override
   final Color paletteBrandGrey800;
-
   @override
   final Color paletteBrandGrey900;
-
   @override
   final Color paletteBrandIndigo100;
-
   @override
   final Color paletteBrandIndigo1000;
-
   @override
   final Color paletteBrandIndigo150;
-
   @override
   final Color paletteBrandIndigo200;
-
   @override
   final Color paletteBrandIndigo25;
-
   @override
   final Color paletteBrandIndigo300;
-
   @override
   final Color paletteBrandIndigo400;
-
   @override
   final Color paletteBrandIndigo50;
-
   @override
   final Color paletteBrandIndigo500;
-
   @override
   final Color paletteBrandIndigo600;
-
   @override
   final Color paletteBrandIndigo700;
-
   @override
   final Color paletteBrandIndigo800;
-
   @override
   final Color paletteBrandIndigo900;
-
   @override
   final Color paletteBrandNight0;
-
   @override
   final Color paletteBrandNight064;
-
   @override
   final Color paletteBrandNight100;
-
   @override
   final Color paletteBrandNight1000;
-
   @override
   final Color paletteBrandNight100012;
-
   @override
   final Color paletteBrandNight100016;
-
   @override
   final Color paletteBrandNight10008;
-
   @override
   final Color paletteBrandNight150;
-
   @override
   final Color paletteBrandNight200;
-
   @override
   final Color paletteBrandNight25;
-
   @override
   final Color paletteBrandNight300;
-
   @override
   final Color paletteBrandNight400;
-
   @override
   final Color paletteBrandNight50;
-
   @override
   final Color paletteBrandNight500;
-
   @override
   final Color paletteBrandNight600;
-
   @override
   final Color paletteBrandNight700;
-
   @override
   final Color paletteBrandNight800;
-
   @override
   final Color paletteBrandNight900;
-
   @override
   final Color paletteDatavizBlue;
-
   @override
   final Color paletteDatavizGreen;
-
   @override
   final Color paletteDatavizOrange;
-
   @override
   final Color paletteDatavizPink;
-
   @override
   final Color paletteDatavizPurple;
-
   @override
   final Color paletteDatavizRed;
-
   @override
   final Color paletteSemanticBlue100;
-
   @override
   final Color paletteSemanticBlue1000;
-
   @override
   final Color paletteSemanticBlue150;
-
   @override
   final Color paletteSemanticBlue200;
-
   @override
   final Color paletteSemanticBlue25;
-
   @override
   final Color paletteSemanticBlue300;
-
   @override
   final Color paletteSemanticBlue400;
-
   @override
   final Color paletteSemanticBlue50;
-
   @override
   final Color paletteSemanticBlue500;
-
   @override
   final Color paletteSemanticBlue600;
-
   @override
   final Color paletteSemanticBlue700;
-
   @override
   final Color paletteSemanticBlue800;
-
   @override
   final Color paletteSemanticBlue900;
-
   @override
   final Color paletteSemanticGreen100;
-
   @override
   final Color paletteSemanticGreen1000;
-
   @override
   final Color paletteSemanticGreen150;
-
   @override
   final Color paletteSemanticGreen200;
-
   @override
   final Color paletteSemanticGreen25;
-
   @override
   final Color paletteSemanticGreen300;
-
   @override
   final Color paletteSemanticGreen400;
-
   @override
   final Color paletteSemanticGreen50;
-
   @override
   final Color paletteSemanticGreen500;
-
   @override
   final Color paletteSemanticGreen600;
-
   @override
   final Color paletteSemanticGreen700;
-
   @override
   final Color paletteSemanticGreen800;
-
   @override
   final Color paletteSemanticGreen900;
-
   @override
   final Color paletteSemanticOrange100;
-
   @override
   final Color paletteSemanticOrange1000;
-
   @override
   final Color paletteSemanticOrange150;
-
   @override
   final Color paletteSemanticOrange200;
-
   @override
   final Color paletteSemanticOrange25;
-
   @override
   final Color paletteSemanticOrange300;
-
   @override
   final Color paletteSemanticOrange400;
-
   @override
   final Color paletteSemanticOrange50;
-
   @override
   final Color paletteSemanticOrange500;
-
   @override
   final Color paletteSemanticOrange600;
-
   @override
   final Color paletteSemanticOrange700;
-
   @override
   final Color paletteSemanticOrange800;
-
   @override
   final Color paletteSemanticOrange900;
-
   @override
   final Color paletteSemanticRed100;
-
   @override
   final Color paletteSemanticRed1000;
-
   @override
   final Color paletteSemanticRed150;
-
   @override
   final Color paletteSemanticRed200;
-
   @override
   final Color paletteSemanticRed25;
-
   @override
   final Color paletteSemanticRed300;
-
   @override
   final Color paletteSemanticRed400;
-
   @override
   final Color paletteSemanticRed50;
-
   @override
   final Color paletteSemanticRed500;
-
   @override
   final Color paletteSemanticRed600;
-
   @override
   final Color paletteSemanticRed700;
-
   @override
   final Color paletteSemanticRed800;
-
   @override
   final Color paletteSemanticRed900;
-
   @override
   final Color textAlertBasic;
-
   @override
   final Color textAlertDanger;
-
   @override
   final Color textAlertInfo;
-
   @override
   final Color textAlertSuccess;
-
   @override
   final Color textAlertWarning;
-
   @override
   final Color textDisabled;
-
   @override
   final Color textInteractiveActive;
-
   @override
   final Color textInteractiveDefault;
-
   @override
   final Color textInteractiveHover;
-
   @override
   final Color textStaticInverse;
-
   @override
   final Color textStaticOnColor;
-
   @override
   final Color textStaticPrimary;
-
   @override
   final Color textStaticSecondary;
-
   @override
   final Color textStaticTertiary;
-
   @override
   final TextStyle bodyExtraSmall;
-
   @override
   final TextStyle bodyExtraSmallStrong;
-
   @override
   final TextStyle bodyLarge;
-
   @override
   final TextStyle bodyLargeStrong;
-
   @override
   final TextStyle bodyMedium;
-
   @override
   final TextStyle bodyMediumStrong;
-
   @override
   final TextStyle bodySmall;
-
   @override
   final TextStyle bodySmallStrong;
-
   @override
   final TextStyle highlightLarge;
-
   @override
   final TextStyle highlightMedium;
-
   @override
   final TextStyle highlightSmall;
-
   @override
   final TextStyle titleLarge;
-
   @override
   final TextStyle titleLargeStrong;
-
   @override
   final TextStyle titleMedium;
-
   @override
   final TextStyle titleMediumStrong;
-
   @override
   final TextStyle titleSmall;
-
   @override
   final TextStyle titleSmallStrong;
-
   @override
   final double borderRadius0;
-
   @override
   final double borderRadius100;
-
   @override
   final double borderRadius150;
-
   @override
   final double borderRadius200;
-
   @override
   final double borderRadius25;
-
   @override
   final double borderRadius300;
-
   @override
   final double borderRadius50;
-
   @override
   final double borderRadiusBase;
-
   @override
   final double borderRadiusRound;
-
   @override
   final double borderWidth0;
-
   @override
   final double borderWidth100;
-
   @override
   final double borderWidth150;
-
   @override
   final double borderWidth200;
-
   @override
   final double borderWidth250;
-
   @override
   final double borderWidth300;
-
   @override
   final double borderWidth800;
-
   @override
   final double fontSize100;
-
   @override
   final double fontSize200;
-
   @override
   final double fontSize300;
-
   @override
   final double fontSize400;
-
   @override
   final double fontSize50;
-
   @override
   final double fontSize500;
-
   @override
   final double fontSize600;
-
   @override
   final double fontSize700;
-
   @override
   final double fontSize75;
-
   @override
   final double fontSize800;
-
   @override
   final double fontSize900;
-
   @override
   final double fontSizeBase;
-
   @override
   final double fontSizeRatio;
-
   @override
   final double letterSpacingCondensed;
-
   @override
   final double letterSpacingDefault;
-
   @override
   final double letterSpacingWide;
-
   @override
   final double lineHeight100;
-
   @override
   final double lineHeight200;
-
   @override
   final double lineHeight300;
-
   @override
   final double opacity0;
-
   @override
   final double opacity100;
-
   @override
   final double opacity1000;
-
   @override
   final double opacity150;
-
   @override
   final double opacity200;
-
   @override
   final double opacity400;
-
   @override
   final double opacity600;
-
   @override
   final double opacity800;
-
   @override
   final double sizing100;
-
   @override
   final double sizing1300;
-
   @override
   final double sizing200;
-
   @override
   final double sizing300;
-
   @override
   final double sizing400;
-
   @override
   final double sizing50;
-
   @override
   final double sizing500;
-
   @override
   final double sizing550;
-
   @override
   final double sizing600;
-
   @override
   final double sizing700;
-
   @override
   final double sizing900;
-
   @override
   final double sizingBase;
-
   @override
   final double spacing0;
-
   @override
   final double spacing100;
-
   @override
   final double spacing1000;
-
   @override
   final double spacing1200;
-
   @override
   final double spacing150;
-
   @override
   final double spacing200;
-
   @override
   final double spacing25;
-
   @override
   final double spacing250;
-
   @override
   final double spacing300;
-
   @override
   final double spacing400;
-
   @override
   final double spacing450;
-
   @override
   final double spacing50;
-
   @override
   final double spacing500;
-
   @override
   final double spacing600;
-
   @override
   final double spacing700;
-
   @override
   final double spacing900;
-
   @override
   final double spacingBase;
-
   @override
   final List<BoxShadow> focusOffset;
-
   @override
   final List<BoxShadow> shadow0;
-
   @override
   final List<BoxShadow> shadow100;
-
   @override
   final List<BoxShadow> shadow200;
-
   @override
   final List<BoxShadow> shadow300;
-
   @override
   final String fontFamilyUi;
-
   @override
   final FontWeight fontWeight300;
-
   @override
   final FontWeight fontWeight400;
-
   @override
   final FontWeight fontWeight500;
-
   @override
   final FontWeight fontWeight600;
-
   @override
   final TextDecoration textDecorationUnderline;
 }
