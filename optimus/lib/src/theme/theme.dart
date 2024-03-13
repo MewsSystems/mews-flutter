@@ -60,9 +60,8 @@ final _defaultDarkTheme = _createTheme(Brightness.dark);
 
 OptimusThemeData _createTheme(Brightness brightness) {
   final colors = OptimusColors(brightness);
-  final tokens = brightness == Brightness.dark
-      ? optimusTokensThemeDark
-      : optimusTokensThemeLight;
+  final tokens =
+      brightness == Brightness.dark ? OptimusTokens.dark : OptimusTokens.light;
 
   return OptimusThemeData(
     brightness: brightness,

@@ -8,7 +8,7 @@ part of 'optimus_tokens.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokens> {
+mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get backgroundAccentPrimary;
   Color get backgroundAccentSecondary;
   Color get backgroundAlertBasicPrimary;
@@ -2930,511 +2930,451 @@ mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokens> {
   }
 }
 
-extension OptimusTokensThemeBuildContextProps on BuildContext {
-  OptimusTokens get optimusTokensTheme =>
-      Theme.of(this).extension<OptimusTokens>()!;
-  Color get backgroundAccentPrimary =>
-      optimusTokensTheme.backgroundAccentPrimary;
+extension OptimusTokensBuildContextProps on BuildContext {
+  OptimusTokens get optimusTokens => Theme.of(this).extension<OptimusTokens>()!;
+  Color get backgroundAccentPrimary => optimusTokens.backgroundAccentPrimary;
   Color get backgroundAccentSecondary =>
-      optimusTokensTheme.backgroundAccentSecondary;
+      optimusTokens.backgroundAccentSecondary;
   Color get backgroundAlertBasicPrimary =>
-      optimusTokensTheme.backgroundAlertBasicPrimary;
+      optimusTokens.backgroundAlertBasicPrimary;
   Color get backgroundAlertBasicSecondary =>
-      optimusTokensTheme.backgroundAlertBasicSecondary;
+      optimusTokens.backgroundAlertBasicSecondary;
   Color get backgroundAlertDangerPrimary =>
-      optimusTokensTheme.backgroundAlertDangerPrimary;
+      optimusTokens.backgroundAlertDangerPrimary;
   Color get backgroundAlertDangerSecondary =>
-      optimusTokensTheme.backgroundAlertDangerSecondary;
+      optimusTokens.backgroundAlertDangerSecondary;
   Color get backgroundAlertInfoPrimary =>
-      optimusTokensTheme.backgroundAlertInfoPrimary;
+      optimusTokens.backgroundAlertInfoPrimary;
   Color get backgroundAlertInfoSecondary =>
-      optimusTokensTheme.backgroundAlertInfoSecondary;
+      optimusTokens.backgroundAlertInfoSecondary;
   Color get backgroundAlertSuccessPrimary =>
-      optimusTokensTheme.backgroundAlertSuccessPrimary;
+      optimusTokens.backgroundAlertSuccessPrimary;
   Color get backgroundAlertSuccessSecondary =>
-      optimusTokensTheme.backgroundAlertSuccessSecondary;
+      optimusTokens.backgroundAlertSuccessSecondary;
   Color get backgroundAlertWarningPrimary =>
-      optimusTokensTheme.backgroundAlertWarningPrimary;
+      optimusTokens.backgroundAlertWarningPrimary;
   Color get backgroundAlertWarningSecondary =>
-      optimusTokensTheme.backgroundAlertWarningSecondary;
-  Color get backgroundBackdrop => optimusTokensTheme.backgroundBackdrop;
-  Color get backgroundBrand => optimusTokensTheme.backgroundBrand;
-  Color get backgroundDatavizBlue => optimusTokensTheme.backgroundDatavizBlue;
-  Color get backgroundDatavizGreen => optimusTokensTheme.backgroundDatavizGreen;
-  Color get backgroundDatavizOrange =>
-      optimusTokensTheme.backgroundDatavizOrange;
-  Color get backgroundDatavizPink => optimusTokensTheme.backgroundDatavizPink;
-  Color get backgroundDatavizPurple =>
-      optimusTokensTheme.backgroundDatavizPurple;
-  Color get backgroundDatavizRed => optimusTokensTheme.backgroundDatavizRed;
-  Color get backgroundDisabled => optimusTokensTheme.backgroundDisabled;
+      optimusTokens.backgroundAlertWarningSecondary;
+  Color get backgroundBackdrop => optimusTokens.backgroundBackdrop;
+  Color get backgroundBrand => optimusTokens.backgroundBrand;
+  Color get backgroundDatavizBlue => optimusTokens.backgroundDatavizBlue;
+  Color get backgroundDatavizGreen => optimusTokens.backgroundDatavizGreen;
+  Color get backgroundDatavizOrange => optimusTokens.backgroundDatavizOrange;
+  Color get backgroundDatavizPink => optimusTokens.backgroundDatavizPink;
+  Color get backgroundDatavizPurple => optimusTokens.backgroundDatavizPurple;
+  Color get backgroundDatavizRed => optimusTokens.backgroundDatavizRed;
+  Color get backgroundDisabled => optimusTokens.backgroundDisabled;
   Color get backgroundInteractiveDangerActive =>
-      optimusTokensTheme.backgroundInteractiveDangerActive;
+      optimusTokens.backgroundInteractiveDangerActive;
   Color get backgroundInteractiveDangerDefault =>
-      optimusTokensTheme.backgroundInteractiveDangerDefault;
+      optimusTokens.backgroundInteractiveDangerDefault;
   Color get backgroundInteractiveDangerHover =>
-      optimusTokensTheme.backgroundInteractiveDangerHover;
+      optimusTokens.backgroundInteractiveDangerHover;
   Color get backgroundInteractiveNeutralActive =>
-      optimusTokensTheme.backgroundInteractiveNeutralActive;
+      optimusTokens.backgroundInteractiveNeutralActive;
   Color get backgroundInteractiveNeutralBoldActive =>
-      optimusTokensTheme.backgroundInteractiveNeutralBoldActive;
+      optimusTokens.backgroundInteractiveNeutralBoldActive;
   Color get backgroundInteractiveNeutralBoldDefault =>
-      optimusTokensTheme.backgroundInteractiveNeutralBoldDefault;
+      optimusTokens.backgroundInteractiveNeutralBoldDefault;
   Color get backgroundInteractiveNeutralBoldHover =>
-      optimusTokensTheme.backgroundInteractiveNeutralBoldHover;
+      optimusTokens.backgroundInteractiveNeutralBoldHover;
   Color get backgroundInteractiveNeutralDefault =>
-      optimusTokensTheme.backgroundInteractiveNeutralDefault;
+      optimusTokens.backgroundInteractiveNeutralDefault;
   Color get backgroundInteractiveNeutralHover =>
-      optimusTokensTheme.backgroundInteractiveNeutralHover;
+      optimusTokens.backgroundInteractiveNeutralHover;
   Color get backgroundInteractiveNeutralSubtleActive =>
-      optimusTokensTheme.backgroundInteractiveNeutralSubtleActive;
+      optimusTokens.backgroundInteractiveNeutralSubtleActive;
   Color get backgroundInteractiveNeutralSubtleDefault =>
-      optimusTokensTheme.backgroundInteractiveNeutralSubtleDefault;
+      optimusTokens.backgroundInteractiveNeutralSubtleDefault;
   Color get backgroundInteractiveNeutralSubtleHover =>
-      optimusTokensTheme.backgroundInteractiveNeutralSubtleHover;
+      optimusTokens.backgroundInteractiveNeutralSubtleHover;
   Color get backgroundInteractivePrimaryActive =>
-      optimusTokensTheme.backgroundInteractivePrimaryActive;
+      optimusTokens.backgroundInteractivePrimaryActive;
   Color get backgroundInteractivePrimaryDefault =>
-      optimusTokensTheme.backgroundInteractivePrimaryDefault;
+      optimusTokens.backgroundInteractivePrimaryDefault;
   Color get backgroundInteractivePrimaryHover =>
-      optimusTokensTheme.backgroundInteractivePrimaryHover;
+      optimusTokens.backgroundInteractivePrimaryHover;
   Color get backgroundInteractiveSecondaryActive =>
-      optimusTokensTheme.backgroundInteractiveSecondaryActive;
+      optimusTokens.backgroundInteractiveSecondaryActive;
   Color get backgroundInteractiveSecondaryDefault =>
-      optimusTokensTheme.backgroundInteractiveSecondaryDefault;
+      optimusTokens.backgroundInteractiveSecondaryDefault;
   Color get backgroundInteractiveSecondaryHover =>
-      optimusTokensTheme.backgroundInteractiveSecondaryHover;
+      optimusTokens.backgroundInteractiveSecondaryHover;
   Color get backgroundInteractiveSuccessActive =>
-      optimusTokensTheme.backgroundInteractiveSuccessActive;
+      optimusTokens.backgroundInteractiveSuccessActive;
   Color get backgroundInteractiveSuccessDefault =>
-      optimusTokensTheme.backgroundInteractiveSuccessDefault;
+      optimusTokens.backgroundInteractiveSuccessDefault;
   Color get backgroundInteractiveSuccessHover =>
-      optimusTokensTheme.backgroundInteractiveSuccessHover;
-  Color get backgroundStaticFlat => optimusTokensTheme.backgroundStaticFlat;
-  Color get backgroundStaticFloating =>
-      optimusTokensTheme.backgroundStaticFloating;
-  Color get backgroundStaticInverse =>
-      optimusTokensTheme.backgroundStaticInverse;
+      optimusTokens.backgroundInteractiveSuccessHover;
+  Color get backgroundStaticFlat => optimusTokens.backgroundStaticFlat;
+  Color get backgroundStaticFloating => optimusTokens.backgroundStaticFloating;
+  Color get backgroundStaticInverse => optimusTokens.backgroundStaticInverse;
   Color get backgroundStaticInverseOnColor =>
-      optimusTokensTheme.backgroundStaticInverseOnColor;
-  Color get backgroundStaticOnColor =>
-      optimusTokensTheme.backgroundStaticOnColor;
-  Color get backgroundStaticRaised => optimusTokensTheme.backgroundStaticRaised;
-  Color get backgroundStaticSunken => optimusTokensTheme.backgroundStaticSunken;
-  Color get borderAlertBasic => optimusTokensTheme.borderAlertBasic;
-  Color get borderAlertDanger => optimusTokensTheme.borderAlertDanger;
-  Color get borderAlertInfo => optimusTokensTheme.borderAlertInfo;
-  Color get borderAlertSuccess => optimusTokensTheme.borderAlertSuccess;
-  Color get borderAlertWarning => optimusTokensTheme.borderAlertWarning;
-  Color get borderDisabled => optimusTokensTheme.borderDisabled;
+      optimusTokens.backgroundStaticInverseOnColor;
+  Color get backgroundStaticOnColor => optimusTokens.backgroundStaticOnColor;
+  Color get backgroundStaticRaised => optimusTokens.backgroundStaticRaised;
+  Color get backgroundStaticSunken => optimusTokens.backgroundStaticSunken;
+  Color get borderAlertBasic => optimusTokens.borderAlertBasic;
+  Color get borderAlertDanger => optimusTokens.borderAlertDanger;
+  Color get borderAlertInfo => optimusTokens.borderAlertInfo;
+  Color get borderAlertSuccess => optimusTokens.borderAlertSuccess;
+  Color get borderAlertWarning => optimusTokens.borderAlertWarning;
+  Color get borderDisabled => optimusTokens.borderDisabled;
   Color get borderInteractiveBoldActive =>
-      optimusTokensTheme.borderInteractiveBoldActive;
+      optimusTokens.borderInteractiveBoldActive;
   Color get borderInteractiveBoldDefault =>
-      optimusTokensTheme.borderInteractiveBoldDefault;
+      optimusTokens.borderInteractiveBoldDefault;
   Color get borderInteractiveBoldHover =>
-      optimusTokensTheme.borderInteractiveBoldHover;
-  Color get borderInteractiveFocus => optimusTokensTheme.borderInteractiveFocus;
+      optimusTokens.borderInteractiveBoldHover;
+  Color get borderInteractiveFocus => optimusTokens.borderInteractiveFocus;
   Color get borderInteractivePrimaryActive =>
-      optimusTokensTheme.borderInteractivePrimaryActive;
+      optimusTokens.borderInteractivePrimaryActive;
   Color get borderInteractivePrimaryDefault =>
-      optimusTokensTheme.borderInteractivePrimaryDefault;
+      optimusTokens.borderInteractivePrimaryDefault;
   Color get borderInteractivePrimaryHover =>
-      optimusTokensTheme.borderInteractivePrimaryHover;
+      optimusTokens.borderInteractivePrimaryHover;
   Color get borderInteractiveSecondaryActive =>
-      optimusTokensTheme.borderInteractiveSecondaryActive;
+      optimusTokens.borderInteractiveSecondaryActive;
   Color get borderInteractiveSecondaryDefault =>
-      optimusTokensTheme.borderInteractiveSecondaryDefault;
+      optimusTokens.borderInteractiveSecondaryDefault;
   Color get borderInteractiveSecondaryHover =>
-      optimusTokensTheme.borderInteractiveSecondaryHover;
-  Color get borderStaticInverse => optimusTokensTheme.borderStaticInverse;
-  Color get borderStaticOnColor => optimusTokensTheme.borderStaticOnColor;
-  Color get borderStaticPrimary => optimusTokensTheme.borderStaticPrimary;
-  Color get borderStaticSecondary => optimusTokensTheme.borderStaticSecondary;
-  Color get borderStaticTertiary => optimusTokensTheme.borderStaticTertiary;
-  Color get legacyDatavizDenim100 => optimusTokensTheme.legacyDatavizDenim100;
-  Color get legacyDatavizDenim200 => optimusTokensTheme.legacyDatavizDenim200;
-  Color get legacyDatavizDenim300 => optimusTokensTheme.legacyDatavizDenim300;
-  Color get legacyDatavizDenim400 => optimusTokensTheme.legacyDatavizDenim400;
-  Color get legacyDatavizDenim50 => optimusTokensTheme.legacyDatavizDenim50;
-  Color get legacyDatavizDenim500 => optimusTokensTheme.legacyDatavizDenim500;
-  Color get legacyDatavizDenim600 => optimusTokensTheme.legacyDatavizDenim600;
-  Color get legacyDatavizDenim700 => optimusTokensTheme.legacyDatavizDenim700;
-  Color get legacyDatavizDenim800 => optimusTokensTheme.legacyDatavizDenim800;
-  Color get legacyDatavizDenim900 => optimusTokensTheme.legacyDatavizDenim900;
-  Color get legacyDatavizLavender100 =>
-      optimusTokensTheme.legacyDatavizLavender100;
-  Color get legacyDatavizLavender200 =>
-      optimusTokensTheme.legacyDatavizLavender200;
-  Color get legacyDatavizLavender300 =>
-      optimusTokensTheme.legacyDatavizLavender300;
-  Color get legacyDatavizLavender400 =>
-      optimusTokensTheme.legacyDatavizLavender400;
-  Color get legacyDatavizLavender50 =>
-      optimusTokensTheme.legacyDatavizLavender50;
-  Color get legacyDatavizLavender500 =>
-      optimusTokensTheme.legacyDatavizLavender500;
-  Color get legacyDatavizLavender600 =>
-      optimusTokensTheme.legacyDatavizLavender600;
-  Color get legacyDatavizLavender700 =>
-      optimusTokensTheme.legacyDatavizLavender700;
-  Color get legacyDatavizLavender800 =>
-      optimusTokensTheme.legacyDatavizLavender800;
-  Color get legacyDatavizLavender900 =>
-      optimusTokensTheme.legacyDatavizLavender900;
-  Color get legacyDatavizLime100 => optimusTokensTheme.legacyDatavizLime100;
-  Color get legacyDatavizLime200 => optimusTokensTheme.legacyDatavizLime200;
-  Color get legacyDatavizLime300 => optimusTokensTheme.legacyDatavizLime300;
-  Color get legacyDatavizLime400 => optimusTokensTheme.legacyDatavizLime400;
-  Color get legacyDatavizLime50 => optimusTokensTheme.legacyDatavizLime50;
-  Color get legacyDatavizLime500 => optimusTokensTheme.legacyDatavizLime500;
-  Color get legacyDatavizLime600 => optimusTokensTheme.legacyDatavizLime600;
-  Color get legacyDatavizLime700 => optimusTokensTheme.legacyDatavizLime700;
-  Color get legacyDatavizLime800 => optimusTokensTheme.legacyDatavizLime800;
-  Color get legacyDatavizLime900 => optimusTokensTheme.legacyDatavizLime900;
-  Color get legacyDatavizMustard100 =>
-      optimusTokensTheme.legacyDatavizMustard100;
-  Color get legacyDatavizMustard200 =>
-      optimusTokensTheme.legacyDatavizMustard200;
-  Color get legacyDatavizMustard300 =>
-      optimusTokensTheme.legacyDatavizMustard300;
-  Color get legacyDatavizMustard400 =>
-      optimusTokensTheme.legacyDatavizMustard400;
-  Color get legacyDatavizMustard50 => optimusTokensTheme.legacyDatavizMustard50;
-  Color get legacyDatavizMustard500 =>
-      optimusTokensTheme.legacyDatavizMustard500;
-  Color get legacyDatavizMustard600 =>
-      optimusTokensTheme.legacyDatavizMustard600;
-  Color get legacyDatavizMustard700 =>
-      optimusTokensTheme.legacyDatavizMustard700;
-  Color get legacyDatavizMustard800 =>
-      optimusTokensTheme.legacyDatavizMustard800;
-  Color get legacyDatavizMustard900 =>
-      optimusTokensTheme.legacyDatavizMustard900;
-  Color get legacyDatavizRuby100 => optimusTokensTheme.legacyDatavizRuby100;
-  Color get legacyDatavizRuby200 => optimusTokensTheme.legacyDatavizRuby200;
-  Color get legacyDatavizRuby300 => optimusTokensTheme.legacyDatavizRuby300;
-  Color get legacyDatavizRuby400 => optimusTokensTheme.legacyDatavizRuby400;
-  Color get legacyDatavizRuby50 => optimusTokensTheme.legacyDatavizRuby50;
-  Color get legacyDatavizRuby500 => optimusTokensTheme.legacyDatavizRuby500;
-  Color get legacyDatavizRuby600 => optimusTokensTheme.legacyDatavizRuby600;
-  Color get legacyDatavizRuby700 => optimusTokensTheme.legacyDatavizRuby700;
-  Color get legacyDatavizRuby800 => optimusTokensTheme.legacyDatavizRuby800;
-  Color get legacyDatavizRuby900 => optimusTokensTheme.legacyDatavizRuby900;
+      optimusTokens.borderInteractiveSecondaryHover;
+  Color get borderStaticInverse => optimusTokens.borderStaticInverse;
+  Color get borderStaticOnColor => optimusTokens.borderStaticOnColor;
+  Color get borderStaticPrimary => optimusTokens.borderStaticPrimary;
+  Color get borderStaticSecondary => optimusTokens.borderStaticSecondary;
+  Color get borderStaticTertiary => optimusTokens.borderStaticTertiary;
+  Color get legacyDatavizDenim100 => optimusTokens.legacyDatavizDenim100;
+  Color get legacyDatavizDenim200 => optimusTokens.legacyDatavizDenim200;
+  Color get legacyDatavizDenim300 => optimusTokens.legacyDatavizDenim300;
+  Color get legacyDatavizDenim400 => optimusTokens.legacyDatavizDenim400;
+  Color get legacyDatavizDenim50 => optimusTokens.legacyDatavizDenim50;
+  Color get legacyDatavizDenim500 => optimusTokens.legacyDatavizDenim500;
+  Color get legacyDatavizDenim600 => optimusTokens.legacyDatavizDenim600;
+  Color get legacyDatavizDenim700 => optimusTokens.legacyDatavizDenim700;
+  Color get legacyDatavizDenim800 => optimusTokens.legacyDatavizDenim800;
+  Color get legacyDatavizDenim900 => optimusTokens.legacyDatavizDenim900;
+  Color get legacyDatavizLavender100 => optimusTokens.legacyDatavizLavender100;
+  Color get legacyDatavizLavender200 => optimusTokens.legacyDatavizLavender200;
+  Color get legacyDatavizLavender300 => optimusTokens.legacyDatavizLavender300;
+  Color get legacyDatavizLavender400 => optimusTokens.legacyDatavizLavender400;
+  Color get legacyDatavizLavender50 => optimusTokens.legacyDatavizLavender50;
+  Color get legacyDatavizLavender500 => optimusTokens.legacyDatavizLavender500;
+  Color get legacyDatavizLavender600 => optimusTokens.legacyDatavizLavender600;
+  Color get legacyDatavizLavender700 => optimusTokens.legacyDatavizLavender700;
+  Color get legacyDatavizLavender800 => optimusTokens.legacyDatavizLavender800;
+  Color get legacyDatavizLavender900 => optimusTokens.legacyDatavizLavender900;
+  Color get legacyDatavizLime100 => optimusTokens.legacyDatavizLime100;
+  Color get legacyDatavizLime200 => optimusTokens.legacyDatavizLime200;
+  Color get legacyDatavizLime300 => optimusTokens.legacyDatavizLime300;
+  Color get legacyDatavizLime400 => optimusTokens.legacyDatavizLime400;
+  Color get legacyDatavizLime50 => optimusTokens.legacyDatavizLime50;
+  Color get legacyDatavizLime500 => optimusTokens.legacyDatavizLime500;
+  Color get legacyDatavizLime600 => optimusTokens.legacyDatavizLime600;
+  Color get legacyDatavizLime700 => optimusTokens.legacyDatavizLime700;
+  Color get legacyDatavizLime800 => optimusTokens.legacyDatavizLime800;
+  Color get legacyDatavizLime900 => optimusTokens.legacyDatavizLime900;
+  Color get legacyDatavizMustard100 => optimusTokens.legacyDatavizMustard100;
+  Color get legacyDatavizMustard200 => optimusTokens.legacyDatavizMustard200;
+  Color get legacyDatavizMustard300 => optimusTokens.legacyDatavizMustard300;
+  Color get legacyDatavizMustard400 => optimusTokens.legacyDatavizMustard400;
+  Color get legacyDatavizMustard50 => optimusTokens.legacyDatavizMustard50;
+  Color get legacyDatavizMustard500 => optimusTokens.legacyDatavizMustard500;
+  Color get legacyDatavizMustard600 => optimusTokens.legacyDatavizMustard600;
+  Color get legacyDatavizMustard700 => optimusTokens.legacyDatavizMustard700;
+  Color get legacyDatavizMustard800 => optimusTokens.legacyDatavizMustard800;
+  Color get legacyDatavizMustard900 => optimusTokens.legacyDatavizMustard900;
+  Color get legacyDatavizRuby100 => optimusTokens.legacyDatavizRuby100;
+  Color get legacyDatavizRuby200 => optimusTokens.legacyDatavizRuby200;
+  Color get legacyDatavizRuby300 => optimusTokens.legacyDatavizRuby300;
+  Color get legacyDatavizRuby400 => optimusTokens.legacyDatavizRuby400;
+  Color get legacyDatavizRuby50 => optimusTokens.legacyDatavizRuby50;
+  Color get legacyDatavizRuby500 => optimusTokens.legacyDatavizRuby500;
+  Color get legacyDatavizRuby600 => optimusTokens.legacyDatavizRuby600;
+  Color get legacyDatavizRuby700 => optimusTokens.legacyDatavizRuby700;
+  Color get legacyDatavizRuby800 => optimusTokens.legacyDatavizRuby800;
+  Color get legacyDatavizRuby900 => optimusTokens.legacyDatavizRuby900;
   Color get legacyDatavizTangerine100 =>
-      optimusTokensTheme.legacyDatavizTangerine100;
+      optimusTokens.legacyDatavizTangerine100;
   Color get legacyDatavizTangerine200 =>
-      optimusTokensTheme.legacyDatavizTangerine200;
+      optimusTokens.legacyDatavizTangerine200;
   Color get legacyDatavizTangerine300 =>
-      optimusTokensTheme.legacyDatavizTangerine300;
+      optimusTokens.legacyDatavizTangerine300;
   Color get legacyDatavizTangerine400 =>
-      optimusTokensTheme.legacyDatavizTangerine400;
-  Color get legacyDatavizTangerine50 =>
-      optimusTokensTheme.legacyDatavizTangerine50;
+      optimusTokens.legacyDatavizTangerine400;
+  Color get legacyDatavizTangerine50 => optimusTokens.legacyDatavizTangerine50;
   Color get legacyDatavizTangerine500 =>
-      optimusTokensTheme.legacyDatavizTangerine500;
+      optimusTokens.legacyDatavizTangerine500;
   Color get legacyDatavizTangerine600 =>
-      optimusTokensTheme.legacyDatavizTangerine600;
+      optimusTokens.legacyDatavizTangerine600;
   Color get legacyDatavizTangerine700 =>
-      optimusTokensTheme.legacyDatavizTangerine700;
+      optimusTokens.legacyDatavizTangerine700;
   Color get legacyDatavizTangerine800 =>
-      optimusTokensTheme.legacyDatavizTangerine800;
+      optimusTokens.legacyDatavizTangerine800;
   Color get legacyDatavizTangerine900 =>
-      optimusTokensTheme.legacyDatavizTangerine900;
+      optimusTokens.legacyDatavizTangerine900;
   Color get legacyTagBackgroundBasicBold =>
-      optimusTokensTheme.legacyTagBackgroundBasicBold;
-  Color get legacyTagBackgroundDenim =>
-      optimusTokensTheme.legacyTagBackgroundDenim;
+      optimusTokens.legacyTagBackgroundBasicBold;
+  Color get legacyTagBackgroundDenim => optimusTokens.legacyTagBackgroundDenim;
   Color get legacyTagBackgroundLavender =>
-      optimusTokensTheme.legacyTagBackgroundLavender;
-  Color get legacyTagBackgroundLime =>
-      optimusTokensTheme.legacyTagBackgroundLime;
+      optimusTokens.legacyTagBackgroundLavender;
+  Color get legacyTagBackgroundLime => optimusTokens.legacyTagBackgroundLime;
   Color get legacyTagBackgroundMustard =>
-      optimusTokensTheme.legacyTagBackgroundMustard;
+      optimusTokens.legacyTagBackgroundMustard;
   Color get legacyTagBackgroundPrimary =>
-      optimusTokensTheme.legacyTagBackgroundPrimary;
-  Color get legacyTagBackgroundRuby =>
-      optimusTokensTheme.legacyTagBackgroundRuby;
+      optimusTokens.legacyTagBackgroundPrimary;
+  Color get legacyTagBackgroundRuby => optimusTokens.legacyTagBackgroundRuby;
   Color get legacyTagBackgroundTangerine =>
-      optimusTokensTheme.legacyTagBackgroundTangerine;
-  Color get legacyTagBorderBasicBold =>
-      optimusTokensTheme.legacyTagBorderBasicBold;
-  Color get legacyTagBorderDenim => optimusTokensTheme.legacyTagBorderDenim;
-  Color get legacyTagBorderLavender =>
-      optimusTokensTheme.legacyTagBorderLavender;
-  Color get legacyTagBorderLime => optimusTokensTheme.legacyTagBorderLime;
-  Color get legacyTagBorderMustard => optimusTokensTheme.legacyTagBorderMustard;
-  Color get legacyTagBorderPrimary => optimusTokensTheme.legacyTagBorderPrimary;
-  Color get legacyTagBorderRuby => optimusTokensTheme.legacyTagBorderRuby;
-  Color get legacyTagBorderTangerine =>
-      optimusTokensTheme.legacyTagBorderTangerine;
-  Color get legacyTagTextBasicBold => optimusTokensTheme.legacyTagTextBasicBold;
-  Color get legacyTagTextDenim => optimusTokensTheme.legacyTagTextDenim;
-  Color get legacyTagTextLavender => optimusTokensTheme.legacyTagTextLavender;
-  Color get legacyTagTextLime => optimusTokensTheme.legacyTagTextLime;
-  Color get legacyTagTextMustard => optimusTokensTheme.legacyTagTextMustard;
-  Color get legacyTagTextPrimary => optimusTokensTheme.legacyTagTextPrimary;
-  Color get legacyTagTextRuby => optimusTokensTheme.legacyTagTextRuby;
-  Color get legacyTagTextTangerine => optimusTokensTheme.legacyTagTextTangerine;
-  Color get paletteBasicsBlack => optimusTokensTheme.paletteBasicsBlack;
-  Color get paletteBasicsWhite => optimusTokensTheme.paletteBasicsWhite;
-  Color get paletteBasicsWhite64 => optimusTokensTheme.paletteBasicsWhite64;
-  Color get paletteBrandCoral100 => optimusTokensTheme.paletteBrandCoral100;
-  Color get paletteBrandCoral1000 => optimusTokensTheme.paletteBrandCoral1000;
-  Color get paletteBrandCoral150 => optimusTokensTheme.paletteBrandCoral150;
-  Color get paletteBrandCoral200 => optimusTokensTheme.paletteBrandCoral200;
-  Color get paletteBrandCoral25 => optimusTokensTheme.paletteBrandCoral25;
-  Color get paletteBrandCoral300 => optimusTokensTheme.paletteBrandCoral300;
-  Color get paletteBrandCoral400 => optimusTokensTheme.paletteBrandCoral400;
-  Color get paletteBrandCoral50 => optimusTokensTheme.paletteBrandCoral50;
-  Color get paletteBrandCoral500 => optimusTokensTheme.paletteBrandCoral500;
-  Color get paletteBrandCoral600 => optimusTokensTheme.paletteBrandCoral600;
-  Color get paletteBrandCoral700 => optimusTokensTheme.paletteBrandCoral700;
-  Color get paletteBrandCoral800 => optimusTokensTheme.paletteBrandCoral800;
-  Color get paletteBrandCoral900 => optimusTokensTheme.paletteBrandCoral900;
-  Color get paletteBrandGrey0 => optimusTokensTheme.paletteBrandGrey0;
-  Color get paletteBrandGrey100 => optimusTokensTheme.paletteBrandGrey100;
-  Color get paletteBrandGrey1000 => optimusTokensTheme.paletteBrandGrey1000;
-  Color get paletteBrandGrey150 => optimusTokensTheme.paletteBrandGrey150;
-  Color get paletteBrandGrey200 => optimusTokensTheme.paletteBrandGrey200;
-  Color get paletteBrandGrey25 => optimusTokensTheme.paletteBrandGrey25;
-  Color get paletteBrandGrey300 => optimusTokensTheme.paletteBrandGrey300;
-  Color get paletteBrandGrey400 => optimusTokensTheme.paletteBrandGrey400;
-  Color get paletteBrandGrey50 => optimusTokensTheme.paletteBrandGrey50;
-  Color get paletteBrandGrey500 => optimusTokensTheme.paletteBrandGrey500;
-  Color get paletteBrandGrey600 => optimusTokensTheme.paletteBrandGrey600;
-  Color get paletteBrandGrey700 => optimusTokensTheme.paletteBrandGrey700;
-  Color get paletteBrandGrey800 => optimusTokensTheme.paletteBrandGrey800;
-  Color get paletteBrandGrey900 => optimusTokensTheme.paletteBrandGrey900;
-  Color get paletteBrandIndigo100 => optimusTokensTheme.paletteBrandIndigo100;
-  Color get paletteBrandIndigo1000 => optimusTokensTheme.paletteBrandIndigo1000;
-  Color get paletteBrandIndigo150 => optimusTokensTheme.paletteBrandIndigo150;
-  Color get paletteBrandIndigo200 => optimusTokensTheme.paletteBrandIndigo200;
-  Color get paletteBrandIndigo25 => optimusTokensTheme.paletteBrandIndigo25;
-  Color get paletteBrandIndigo300 => optimusTokensTheme.paletteBrandIndigo300;
-  Color get paletteBrandIndigo400 => optimusTokensTheme.paletteBrandIndigo400;
-  Color get paletteBrandIndigo50 => optimusTokensTheme.paletteBrandIndigo50;
-  Color get paletteBrandIndigo500 => optimusTokensTheme.paletteBrandIndigo500;
-  Color get paletteBrandIndigo600 => optimusTokensTheme.paletteBrandIndigo600;
-  Color get paletteBrandIndigo700 => optimusTokensTheme.paletteBrandIndigo700;
-  Color get paletteBrandIndigo800 => optimusTokensTheme.paletteBrandIndigo800;
-  Color get paletteBrandIndigo900 => optimusTokensTheme.paletteBrandIndigo900;
-  Color get paletteBrandNight0 => optimusTokensTheme.paletteBrandNight0;
-  Color get paletteBrandNight064 => optimusTokensTheme.paletteBrandNight064;
-  Color get paletteBrandNight100 => optimusTokensTheme.paletteBrandNight100;
-  Color get paletteBrandNight1000 => optimusTokensTheme.paletteBrandNight1000;
-  Color get paletteBrandNight100012 =>
-      optimusTokensTheme.paletteBrandNight100012;
-  Color get paletteBrandNight100016 =>
-      optimusTokensTheme.paletteBrandNight100016;
-  Color get paletteBrandNight10008 => optimusTokensTheme.paletteBrandNight10008;
-  Color get paletteBrandNight150 => optimusTokensTheme.paletteBrandNight150;
-  Color get paletteBrandNight200 => optimusTokensTheme.paletteBrandNight200;
-  Color get paletteBrandNight25 => optimusTokensTheme.paletteBrandNight25;
-  Color get paletteBrandNight300 => optimusTokensTheme.paletteBrandNight300;
-  Color get paletteBrandNight400 => optimusTokensTheme.paletteBrandNight400;
-  Color get paletteBrandNight50 => optimusTokensTheme.paletteBrandNight50;
-  Color get paletteBrandNight500 => optimusTokensTheme.paletteBrandNight500;
-  Color get paletteBrandNight600 => optimusTokensTheme.paletteBrandNight600;
-  Color get paletteBrandNight700 => optimusTokensTheme.paletteBrandNight700;
-  Color get paletteBrandNight800 => optimusTokensTheme.paletteBrandNight800;
-  Color get paletteBrandNight900 => optimusTokensTheme.paletteBrandNight900;
-  Color get paletteDatavizBlue => optimusTokensTheme.paletteDatavizBlue;
-  Color get paletteDatavizGreen => optimusTokensTheme.paletteDatavizGreen;
-  Color get paletteDatavizOrange => optimusTokensTheme.paletteDatavizOrange;
-  Color get paletteDatavizPink => optimusTokensTheme.paletteDatavizPink;
-  Color get paletteDatavizPurple => optimusTokensTheme.paletteDatavizPurple;
-  Color get paletteDatavizRed => optimusTokensTheme.paletteDatavizRed;
-  Color get paletteSemanticBlue100 => optimusTokensTheme.paletteSemanticBlue100;
-  Color get paletteSemanticBlue1000 =>
-      optimusTokensTheme.paletteSemanticBlue1000;
-  Color get paletteSemanticBlue150 => optimusTokensTheme.paletteSemanticBlue150;
-  Color get paletteSemanticBlue200 => optimusTokensTheme.paletteSemanticBlue200;
-  Color get paletteSemanticBlue25 => optimusTokensTheme.paletteSemanticBlue25;
-  Color get paletteSemanticBlue300 => optimusTokensTheme.paletteSemanticBlue300;
-  Color get paletteSemanticBlue400 => optimusTokensTheme.paletteSemanticBlue400;
-  Color get paletteSemanticBlue50 => optimusTokensTheme.paletteSemanticBlue50;
-  Color get paletteSemanticBlue500 => optimusTokensTheme.paletteSemanticBlue500;
-  Color get paletteSemanticBlue600 => optimusTokensTheme.paletteSemanticBlue600;
-  Color get paletteSemanticBlue700 => optimusTokensTheme.paletteSemanticBlue700;
-  Color get paletteSemanticBlue800 => optimusTokensTheme.paletteSemanticBlue800;
-  Color get paletteSemanticBlue900 => optimusTokensTheme.paletteSemanticBlue900;
-  Color get paletteSemanticGreen100 =>
-      optimusTokensTheme.paletteSemanticGreen100;
-  Color get paletteSemanticGreen1000 =>
-      optimusTokensTheme.paletteSemanticGreen1000;
-  Color get paletteSemanticGreen150 =>
-      optimusTokensTheme.paletteSemanticGreen150;
-  Color get paletteSemanticGreen200 =>
-      optimusTokensTheme.paletteSemanticGreen200;
-  Color get paletteSemanticGreen25 => optimusTokensTheme.paletteSemanticGreen25;
-  Color get paletteSemanticGreen300 =>
-      optimusTokensTheme.paletteSemanticGreen300;
-  Color get paletteSemanticGreen400 =>
-      optimusTokensTheme.paletteSemanticGreen400;
-  Color get paletteSemanticGreen50 => optimusTokensTheme.paletteSemanticGreen50;
-  Color get paletteSemanticGreen500 =>
-      optimusTokensTheme.paletteSemanticGreen500;
-  Color get paletteSemanticGreen600 =>
-      optimusTokensTheme.paletteSemanticGreen600;
-  Color get paletteSemanticGreen700 =>
-      optimusTokensTheme.paletteSemanticGreen700;
-  Color get paletteSemanticGreen800 =>
-      optimusTokensTheme.paletteSemanticGreen800;
-  Color get paletteSemanticGreen900 =>
-      optimusTokensTheme.paletteSemanticGreen900;
-  Color get paletteSemanticOrange100 =>
-      optimusTokensTheme.paletteSemanticOrange100;
+      optimusTokens.legacyTagBackgroundTangerine;
+  Color get legacyTagBorderBasicBold => optimusTokens.legacyTagBorderBasicBold;
+  Color get legacyTagBorderDenim => optimusTokens.legacyTagBorderDenim;
+  Color get legacyTagBorderLavender => optimusTokens.legacyTagBorderLavender;
+  Color get legacyTagBorderLime => optimusTokens.legacyTagBorderLime;
+  Color get legacyTagBorderMustard => optimusTokens.legacyTagBorderMustard;
+  Color get legacyTagBorderPrimary => optimusTokens.legacyTagBorderPrimary;
+  Color get legacyTagBorderRuby => optimusTokens.legacyTagBorderRuby;
+  Color get legacyTagBorderTangerine => optimusTokens.legacyTagBorderTangerine;
+  Color get legacyTagTextBasicBold => optimusTokens.legacyTagTextBasicBold;
+  Color get legacyTagTextDenim => optimusTokens.legacyTagTextDenim;
+  Color get legacyTagTextLavender => optimusTokens.legacyTagTextLavender;
+  Color get legacyTagTextLime => optimusTokens.legacyTagTextLime;
+  Color get legacyTagTextMustard => optimusTokens.legacyTagTextMustard;
+  Color get legacyTagTextPrimary => optimusTokens.legacyTagTextPrimary;
+  Color get legacyTagTextRuby => optimusTokens.legacyTagTextRuby;
+  Color get legacyTagTextTangerine => optimusTokens.legacyTagTextTangerine;
+  Color get paletteBasicsBlack => optimusTokens.paletteBasicsBlack;
+  Color get paletteBasicsWhite => optimusTokens.paletteBasicsWhite;
+  Color get paletteBasicsWhite64 => optimusTokens.paletteBasicsWhite64;
+  Color get paletteBrandCoral100 => optimusTokens.paletteBrandCoral100;
+  Color get paletteBrandCoral1000 => optimusTokens.paletteBrandCoral1000;
+  Color get paletteBrandCoral150 => optimusTokens.paletteBrandCoral150;
+  Color get paletteBrandCoral200 => optimusTokens.paletteBrandCoral200;
+  Color get paletteBrandCoral25 => optimusTokens.paletteBrandCoral25;
+  Color get paletteBrandCoral300 => optimusTokens.paletteBrandCoral300;
+  Color get paletteBrandCoral400 => optimusTokens.paletteBrandCoral400;
+  Color get paletteBrandCoral50 => optimusTokens.paletteBrandCoral50;
+  Color get paletteBrandCoral500 => optimusTokens.paletteBrandCoral500;
+  Color get paletteBrandCoral600 => optimusTokens.paletteBrandCoral600;
+  Color get paletteBrandCoral700 => optimusTokens.paletteBrandCoral700;
+  Color get paletteBrandCoral800 => optimusTokens.paletteBrandCoral800;
+  Color get paletteBrandCoral900 => optimusTokens.paletteBrandCoral900;
+  Color get paletteBrandGrey0 => optimusTokens.paletteBrandGrey0;
+  Color get paletteBrandGrey100 => optimusTokens.paletteBrandGrey100;
+  Color get paletteBrandGrey1000 => optimusTokens.paletteBrandGrey1000;
+  Color get paletteBrandGrey150 => optimusTokens.paletteBrandGrey150;
+  Color get paletteBrandGrey200 => optimusTokens.paletteBrandGrey200;
+  Color get paletteBrandGrey25 => optimusTokens.paletteBrandGrey25;
+  Color get paletteBrandGrey300 => optimusTokens.paletteBrandGrey300;
+  Color get paletteBrandGrey400 => optimusTokens.paletteBrandGrey400;
+  Color get paletteBrandGrey50 => optimusTokens.paletteBrandGrey50;
+  Color get paletteBrandGrey500 => optimusTokens.paletteBrandGrey500;
+  Color get paletteBrandGrey600 => optimusTokens.paletteBrandGrey600;
+  Color get paletteBrandGrey700 => optimusTokens.paletteBrandGrey700;
+  Color get paletteBrandGrey800 => optimusTokens.paletteBrandGrey800;
+  Color get paletteBrandGrey900 => optimusTokens.paletteBrandGrey900;
+  Color get paletteBrandIndigo100 => optimusTokens.paletteBrandIndigo100;
+  Color get paletteBrandIndigo1000 => optimusTokens.paletteBrandIndigo1000;
+  Color get paletteBrandIndigo150 => optimusTokens.paletteBrandIndigo150;
+  Color get paletteBrandIndigo200 => optimusTokens.paletteBrandIndigo200;
+  Color get paletteBrandIndigo25 => optimusTokens.paletteBrandIndigo25;
+  Color get paletteBrandIndigo300 => optimusTokens.paletteBrandIndigo300;
+  Color get paletteBrandIndigo400 => optimusTokens.paletteBrandIndigo400;
+  Color get paletteBrandIndigo50 => optimusTokens.paletteBrandIndigo50;
+  Color get paletteBrandIndigo500 => optimusTokens.paletteBrandIndigo500;
+  Color get paletteBrandIndigo600 => optimusTokens.paletteBrandIndigo600;
+  Color get paletteBrandIndigo700 => optimusTokens.paletteBrandIndigo700;
+  Color get paletteBrandIndigo800 => optimusTokens.paletteBrandIndigo800;
+  Color get paletteBrandIndigo900 => optimusTokens.paletteBrandIndigo900;
+  Color get paletteBrandNight0 => optimusTokens.paletteBrandNight0;
+  Color get paletteBrandNight064 => optimusTokens.paletteBrandNight064;
+  Color get paletteBrandNight100 => optimusTokens.paletteBrandNight100;
+  Color get paletteBrandNight1000 => optimusTokens.paletteBrandNight1000;
+  Color get paletteBrandNight100012 => optimusTokens.paletteBrandNight100012;
+  Color get paletteBrandNight100016 => optimusTokens.paletteBrandNight100016;
+  Color get paletteBrandNight10008 => optimusTokens.paletteBrandNight10008;
+  Color get paletteBrandNight150 => optimusTokens.paletteBrandNight150;
+  Color get paletteBrandNight200 => optimusTokens.paletteBrandNight200;
+  Color get paletteBrandNight25 => optimusTokens.paletteBrandNight25;
+  Color get paletteBrandNight300 => optimusTokens.paletteBrandNight300;
+  Color get paletteBrandNight400 => optimusTokens.paletteBrandNight400;
+  Color get paletteBrandNight50 => optimusTokens.paletteBrandNight50;
+  Color get paletteBrandNight500 => optimusTokens.paletteBrandNight500;
+  Color get paletteBrandNight600 => optimusTokens.paletteBrandNight600;
+  Color get paletteBrandNight700 => optimusTokens.paletteBrandNight700;
+  Color get paletteBrandNight800 => optimusTokens.paletteBrandNight800;
+  Color get paletteBrandNight900 => optimusTokens.paletteBrandNight900;
+  Color get paletteDatavizBlue => optimusTokens.paletteDatavizBlue;
+  Color get paletteDatavizGreen => optimusTokens.paletteDatavizGreen;
+  Color get paletteDatavizOrange => optimusTokens.paletteDatavizOrange;
+  Color get paletteDatavizPink => optimusTokens.paletteDatavizPink;
+  Color get paletteDatavizPurple => optimusTokens.paletteDatavizPurple;
+  Color get paletteDatavizRed => optimusTokens.paletteDatavizRed;
+  Color get paletteSemanticBlue100 => optimusTokens.paletteSemanticBlue100;
+  Color get paletteSemanticBlue1000 => optimusTokens.paletteSemanticBlue1000;
+  Color get paletteSemanticBlue150 => optimusTokens.paletteSemanticBlue150;
+  Color get paletteSemanticBlue200 => optimusTokens.paletteSemanticBlue200;
+  Color get paletteSemanticBlue25 => optimusTokens.paletteSemanticBlue25;
+  Color get paletteSemanticBlue300 => optimusTokens.paletteSemanticBlue300;
+  Color get paletteSemanticBlue400 => optimusTokens.paletteSemanticBlue400;
+  Color get paletteSemanticBlue50 => optimusTokens.paletteSemanticBlue50;
+  Color get paletteSemanticBlue500 => optimusTokens.paletteSemanticBlue500;
+  Color get paletteSemanticBlue600 => optimusTokens.paletteSemanticBlue600;
+  Color get paletteSemanticBlue700 => optimusTokens.paletteSemanticBlue700;
+  Color get paletteSemanticBlue800 => optimusTokens.paletteSemanticBlue800;
+  Color get paletteSemanticBlue900 => optimusTokens.paletteSemanticBlue900;
+  Color get paletteSemanticGreen100 => optimusTokens.paletteSemanticGreen100;
+  Color get paletteSemanticGreen1000 => optimusTokens.paletteSemanticGreen1000;
+  Color get paletteSemanticGreen150 => optimusTokens.paletteSemanticGreen150;
+  Color get paletteSemanticGreen200 => optimusTokens.paletteSemanticGreen200;
+  Color get paletteSemanticGreen25 => optimusTokens.paletteSemanticGreen25;
+  Color get paletteSemanticGreen300 => optimusTokens.paletteSemanticGreen300;
+  Color get paletteSemanticGreen400 => optimusTokens.paletteSemanticGreen400;
+  Color get paletteSemanticGreen50 => optimusTokens.paletteSemanticGreen50;
+  Color get paletteSemanticGreen500 => optimusTokens.paletteSemanticGreen500;
+  Color get paletteSemanticGreen600 => optimusTokens.paletteSemanticGreen600;
+  Color get paletteSemanticGreen700 => optimusTokens.paletteSemanticGreen700;
+  Color get paletteSemanticGreen800 => optimusTokens.paletteSemanticGreen800;
+  Color get paletteSemanticGreen900 => optimusTokens.paletteSemanticGreen900;
+  Color get paletteSemanticOrange100 => optimusTokens.paletteSemanticOrange100;
   Color get paletteSemanticOrange1000 =>
-      optimusTokensTheme.paletteSemanticOrange1000;
-  Color get paletteSemanticOrange150 =>
-      optimusTokensTheme.paletteSemanticOrange150;
-  Color get paletteSemanticOrange200 =>
-      optimusTokensTheme.paletteSemanticOrange200;
-  Color get paletteSemanticOrange25 =>
-      optimusTokensTheme.paletteSemanticOrange25;
-  Color get paletteSemanticOrange300 =>
-      optimusTokensTheme.paletteSemanticOrange300;
-  Color get paletteSemanticOrange400 =>
-      optimusTokensTheme.paletteSemanticOrange400;
-  Color get paletteSemanticOrange50 =>
-      optimusTokensTheme.paletteSemanticOrange50;
-  Color get paletteSemanticOrange500 =>
-      optimusTokensTheme.paletteSemanticOrange500;
-  Color get paletteSemanticOrange600 =>
-      optimusTokensTheme.paletteSemanticOrange600;
-  Color get paletteSemanticOrange700 =>
-      optimusTokensTheme.paletteSemanticOrange700;
-  Color get paletteSemanticOrange800 =>
-      optimusTokensTheme.paletteSemanticOrange800;
-  Color get paletteSemanticOrange900 =>
-      optimusTokensTheme.paletteSemanticOrange900;
-  Color get paletteSemanticRed100 => optimusTokensTheme.paletteSemanticRed100;
-  Color get paletteSemanticRed1000 => optimusTokensTheme.paletteSemanticRed1000;
-  Color get paletteSemanticRed150 => optimusTokensTheme.paletteSemanticRed150;
-  Color get paletteSemanticRed200 => optimusTokensTheme.paletteSemanticRed200;
-  Color get paletteSemanticRed25 => optimusTokensTheme.paletteSemanticRed25;
-  Color get paletteSemanticRed300 => optimusTokensTheme.paletteSemanticRed300;
-  Color get paletteSemanticRed400 => optimusTokensTheme.paletteSemanticRed400;
-  Color get paletteSemanticRed50 => optimusTokensTheme.paletteSemanticRed50;
-  Color get paletteSemanticRed500 => optimusTokensTheme.paletteSemanticRed500;
-  Color get paletteSemanticRed600 => optimusTokensTheme.paletteSemanticRed600;
-  Color get paletteSemanticRed700 => optimusTokensTheme.paletteSemanticRed700;
-  Color get paletteSemanticRed800 => optimusTokensTheme.paletteSemanticRed800;
-  Color get paletteSemanticRed900 => optimusTokensTheme.paletteSemanticRed900;
-  Color get textAlertBasic => optimusTokensTheme.textAlertBasic;
-  Color get textAlertDanger => optimusTokensTheme.textAlertDanger;
-  Color get textAlertInfo => optimusTokensTheme.textAlertInfo;
-  Color get textAlertSuccess => optimusTokensTheme.textAlertSuccess;
-  Color get textAlertWarning => optimusTokensTheme.textAlertWarning;
-  Color get textDisabled => optimusTokensTheme.textDisabled;
-  Color get textInteractiveActive => optimusTokensTheme.textInteractiveActive;
-  Color get textInteractiveDefault => optimusTokensTheme.textInteractiveDefault;
-  Color get textInteractiveHover => optimusTokensTheme.textInteractiveHover;
-  Color get textStaticInverse => optimusTokensTheme.textStaticInverse;
-  Color get textStaticOnColor => optimusTokensTheme.textStaticOnColor;
-  Color get textStaticPrimary => optimusTokensTheme.textStaticPrimary;
-  Color get textStaticSecondary => optimusTokensTheme.textStaticSecondary;
-  Color get textStaticTertiary => optimusTokensTheme.textStaticTertiary;
-  TextStyle get bodyExtraSmall => optimusTokensTheme.bodyExtraSmall;
-  TextStyle get bodyExtraSmallStrong => optimusTokensTheme.bodyExtraSmallStrong;
-  TextStyle get bodyLarge => optimusTokensTheme.bodyLarge;
-  TextStyle get bodyLargeStrong => optimusTokensTheme.bodyLargeStrong;
-  TextStyle get bodyMedium => optimusTokensTheme.bodyMedium;
-  TextStyle get bodyMediumStrong => optimusTokensTheme.bodyMediumStrong;
-  TextStyle get bodySmall => optimusTokensTheme.bodySmall;
-  TextStyle get bodySmallStrong => optimusTokensTheme.bodySmallStrong;
-  TextStyle get highlightLarge => optimusTokensTheme.highlightLarge;
-  TextStyle get highlightMedium => optimusTokensTheme.highlightMedium;
-  TextStyle get highlightSmall => optimusTokensTheme.highlightSmall;
-  TextStyle get titleLarge => optimusTokensTheme.titleLarge;
-  TextStyle get titleLargeStrong => optimusTokensTheme.titleLargeStrong;
-  TextStyle get titleMedium => optimusTokensTheme.titleMedium;
-  TextStyle get titleMediumStrong => optimusTokensTheme.titleMediumStrong;
-  TextStyle get titleSmall => optimusTokensTheme.titleSmall;
-  TextStyle get titleSmallStrong => optimusTokensTheme.titleSmallStrong;
-  double get borderRadius0 => optimusTokensTheme.borderRadius0;
-  double get borderRadius100 => optimusTokensTheme.borderRadius100;
-  double get borderRadius150 => optimusTokensTheme.borderRadius150;
-  double get borderRadius200 => optimusTokensTheme.borderRadius200;
-  double get borderRadius25 => optimusTokensTheme.borderRadius25;
-  double get borderRadius300 => optimusTokensTheme.borderRadius300;
-  double get borderRadius50 => optimusTokensTheme.borderRadius50;
-  double get borderRadiusBase => optimusTokensTheme.borderRadiusBase;
-  double get borderRadiusRound => optimusTokensTheme.borderRadiusRound;
-  double get borderWidth0 => optimusTokensTheme.borderWidth0;
-  double get borderWidth100 => optimusTokensTheme.borderWidth100;
-  double get borderWidth150 => optimusTokensTheme.borderWidth150;
-  double get borderWidth200 => optimusTokensTheme.borderWidth200;
-  double get borderWidth250 => optimusTokensTheme.borderWidth250;
-  double get borderWidth300 => optimusTokensTheme.borderWidth300;
-  double get borderWidth800 => optimusTokensTheme.borderWidth800;
-  double get fontSize100 => optimusTokensTheme.fontSize100;
-  double get fontSize200 => optimusTokensTheme.fontSize200;
-  double get fontSize300 => optimusTokensTheme.fontSize300;
-  double get fontSize400 => optimusTokensTheme.fontSize400;
-  double get fontSize50 => optimusTokensTheme.fontSize50;
-  double get fontSize500 => optimusTokensTheme.fontSize500;
-  double get fontSize600 => optimusTokensTheme.fontSize600;
-  double get fontSize700 => optimusTokensTheme.fontSize700;
-  double get fontSize75 => optimusTokensTheme.fontSize75;
-  double get fontSize800 => optimusTokensTheme.fontSize800;
-  double get fontSize900 => optimusTokensTheme.fontSize900;
-  double get fontSizeBase => optimusTokensTheme.fontSizeBase;
-  double get fontSizeRatio => optimusTokensTheme.fontSizeRatio;
-  double get letterSpacingCondensed =>
-      optimusTokensTheme.letterSpacingCondensed;
-  double get letterSpacingDefault => optimusTokensTheme.letterSpacingDefault;
-  double get letterSpacingWide => optimusTokensTheme.letterSpacingWide;
-  double get lineHeight100 => optimusTokensTheme.lineHeight100;
-  double get lineHeight200 => optimusTokensTheme.lineHeight200;
-  double get lineHeight300 => optimusTokensTheme.lineHeight300;
-  double get opacity0 => optimusTokensTheme.opacity0;
-  double get opacity100 => optimusTokensTheme.opacity100;
-  double get opacity1000 => optimusTokensTheme.opacity1000;
-  double get opacity150 => optimusTokensTheme.opacity150;
-  double get opacity200 => optimusTokensTheme.opacity200;
-  double get opacity400 => optimusTokensTheme.opacity400;
-  double get opacity600 => optimusTokensTheme.opacity600;
-  double get opacity800 => optimusTokensTheme.opacity800;
-  double get sizing100 => optimusTokensTheme.sizing100;
-  double get sizing1300 => optimusTokensTheme.sizing1300;
-  double get sizing200 => optimusTokensTheme.sizing200;
-  double get sizing300 => optimusTokensTheme.sizing300;
-  double get sizing400 => optimusTokensTheme.sizing400;
-  double get sizing50 => optimusTokensTheme.sizing50;
-  double get sizing500 => optimusTokensTheme.sizing500;
-  double get sizing550 => optimusTokensTheme.sizing550;
-  double get sizing600 => optimusTokensTheme.sizing600;
-  double get sizing700 => optimusTokensTheme.sizing700;
-  double get sizing900 => optimusTokensTheme.sizing900;
-  double get sizingBase => optimusTokensTheme.sizingBase;
-  double get spacing0 => optimusTokensTheme.spacing0;
-  double get spacing100 => optimusTokensTheme.spacing100;
-  double get spacing1000 => optimusTokensTheme.spacing1000;
-  double get spacing1200 => optimusTokensTheme.spacing1200;
-  double get spacing150 => optimusTokensTheme.spacing150;
-  double get spacing200 => optimusTokensTheme.spacing200;
-  double get spacing25 => optimusTokensTheme.spacing25;
-  double get spacing250 => optimusTokensTheme.spacing250;
-  double get spacing300 => optimusTokensTheme.spacing300;
-  double get spacing400 => optimusTokensTheme.spacing400;
-  double get spacing450 => optimusTokensTheme.spacing450;
-  double get spacing50 => optimusTokensTheme.spacing50;
-  double get spacing500 => optimusTokensTheme.spacing500;
-  double get spacing600 => optimusTokensTheme.spacing600;
-  double get spacing700 => optimusTokensTheme.spacing700;
-  double get spacing900 => optimusTokensTheme.spacing900;
-  double get spacingBase => optimusTokensTheme.spacingBase;
-  List<BoxShadow> get focusOffset => optimusTokensTheme.focusOffset;
-  List<BoxShadow> get shadow0 => optimusTokensTheme.shadow0;
-  List<BoxShadow> get shadow100 => optimusTokensTheme.shadow100;
-  List<BoxShadow> get shadow200 => optimusTokensTheme.shadow200;
-  List<BoxShadow> get shadow300 => optimusTokensTheme.shadow300;
-  String get fontFamilyUi => optimusTokensTheme.fontFamilyUi;
-  FontWeight get fontWeight300 => optimusTokensTheme.fontWeight300;
-  FontWeight get fontWeight400 => optimusTokensTheme.fontWeight400;
-  FontWeight get fontWeight500 => optimusTokensTheme.fontWeight500;
-  FontWeight get fontWeight600 => optimusTokensTheme.fontWeight600;
+      optimusTokens.paletteSemanticOrange1000;
+  Color get paletteSemanticOrange150 => optimusTokens.paletteSemanticOrange150;
+  Color get paletteSemanticOrange200 => optimusTokens.paletteSemanticOrange200;
+  Color get paletteSemanticOrange25 => optimusTokens.paletteSemanticOrange25;
+  Color get paletteSemanticOrange300 => optimusTokens.paletteSemanticOrange300;
+  Color get paletteSemanticOrange400 => optimusTokens.paletteSemanticOrange400;
+  Color get paletteSemanticOrange50 => optimusTokens.paletteSemanticOrange50;
+  Color get paletteSemanticOrange500 => optimusTokens.paletteSemanticOrange500;
+  Color get paletteSemanticOrange600 => optimusTokens.paletteSemanticOrange600;
+  Color get paletteSemanticOrange700 => optimusTokens.paletteSemanticOrange700;
+  Color get paletteSemanticOrange800 => optimusTokens.paletteSemanticOrange800;
+  Color get paletteSemanticOrange900 => optimusTokens.paletteSemanticOrange900;
+  Color get paletteSemanticRed100 => optimusTokens.paletteSemanticRed100;
+  Color get paletteSemanticRed1000 => optimusTokens.paletteSemanticRed1000;
+  Color get paletteSemanticRed150 => optimusTokens.paletteSemanticRed150;
+  Color get paletteSemanticRed200 => optimusTokens.paletteSemanticRed200;
+  Color get paletteSemanticRed25 => optimusTokens.paletteSemanticRed25;
+  Color get paletteSemanticRed300 => optimusTokens.paletteSemanticRed300;
+  Color get paletteSemanticRed400 => optimusTokens.paletteSemanticRed400;
+  Color get paletteSemanticRed50 => optimusTokens.paletteSemanticRed50;
+  Color get paletteSemanticRed500 => optimusTokens.paletteSemanticRed500;
+  Color get paletteSemanticRed600 => optimusTokens.paletteSemanticRed600;
+  Color get paletteSemanticRed700 => optimusTokens.paletteSemanticRed700;
+  Color get paletteSemanticRed800 => optimusTokens.paletteSemanticRed800;
+  Color get paletteSemanticRed900 => optimusTokens.paletteSemanticRed900;
+  Color get textAlertBasic => optimusTokens.textAlertBasic;
+  Color get textAlertDanger => optimusTokens.textAlertDanger;
+  Color get textAlertInfo => optimusTokens.textAlertInfo;
+  Color get textAlertSuccess => optimusTokens.textAlertSuccess;
+  Color get textAlertWarning => optimusTokens.textAlertWarning;
+  Color get textDisabled => optimusTokens.textDisabled;
+  Color get textInteractiveActive => optimusTokens.textInteractiveActive;
+  Color get textInteractiveDefault => optimusTokens.textInteractiveDefault;
+  Color get textInteractiveHover => optimusTokens.textInteractiveHover;
+  Color get textStaticInverse => optimusTokens.textStaticInverse;
+  Color get textStaticOnColor => optimusTokens.textStaticOnColor;
+  Color get textStaticPrimary => optimusTokens.textStaticPrimary;
+  Color get textStaticSecondary => optimusTokens.textStaticSecondary;
+  Color get textStaticTertiary => optimusTokens.textStaticTertiary;
+  TextStyle get bodyExtraSmall => optimusTokens.bodyExtraSmall;
+  TextStyle get bodyExtraSmallStrong => optimusTokens.bodyExtraSmallStrong;
+  TextStyle get bodyLarge => optimusTokens.bodyLarge;
+  TextStyle get bodyLargeStrong => optimusTokens.bodyLargeStrong;
+  TextStyle get bodyMedium => optimusTokens.bodyMedium;
+  TextStyle get bodyMediumStrong => optimusTokens.bodyMediumStrong;
+  TextStyle get bodySmall => optimusTokens.bodySmall;
+  TextStyle get bodySmallStrong => optimusTokens.bodySmallStrong;
+  TextStyle get highlightLarge => optimusTokens.highlightLarge;
+  TextStyle get highlightMedium => optimusTokens.highlightMedium;
+  TextStyle get highlightSmall => optimusTokens.highlightSmall;
+  TextStyle get titleLarge => optimusTokens.titleLarge;
+  TextStyle get titleLargeStrong => optimusTokens.titleLargeStrong;
+  TextStyle get titleMedium => optimusTokens.titleMedium;
+  TextStyle get titleMediumStrong => optimusTokens.titleMediumStrong;
+  TextStyle get titleSmall => optimusTokens.titleSmall;
+  TextStyle get titleSmallStrong => optimusTokens.titleSmallStrong;
+  double get borderRadius0 => optimusTokens.borderRadius0;
+  double get borderRadius100 => optimusTokens.borderRadius100;
+  double get borderRadius150 => optimusTokens.borderRadius150;
+  double get borderRadius200 => optimusTokens.borderRadius200;
+  double get borderRadius25 => optimusTokens.borderRadius25;
+  double get borderRadius300 => optimusTokens.borderRadius300;
+  double get borderRadius50 => optimusTokens.borderRadius50;
+  double get borderRadiusBase => optimusTokens.borderRadiusBase;
+  double get borderRadiusRound => optimusTokens.borderRadiusRound;
+  double get borderWidth0 => optimusTokens.borderWidth0;
+  double get borderWidth100 => optimusTokens.borderWidth100;
+  double get borderWidth150 => optimusTokens.borderWidth150;
+  double get borderWidth200 => optimusTokens.borderWidth200;
+  double get borderWidth250 => optimusTokens.borderWidth250;
+  double get borderWidth300 => optimusTokens.borderWidth300;
+  double get borderWidth800 => optimusTokens.borderWidth800;
+  double get fontSize100 => optimusTokens.fontSize100;
+  double get fontSize200 => optimusTokens.fontSize200;
+  double get fontSize300 => optimusTokens.fontSize300;
+  double get fontSize400 => optimusTokens.fontSize400;
+  double get fontSize50 => optimusTokens.fontSize50;
+  double get fontSize500 => optimusTokens.fontSize500;
+  double get fontSize600 => optimusTokens.fontSize600;
+  double get fontSize700 => optimusTokens.fontSize700;
+  double get fontSize75 => optimusTokens.fontSize75;
+  double get fontSize800 => optimusTokens.fontSize800;
+  double get fontSize900 => optimusTokens.fontSize900;
+  double get fontSizeBase => optimusTokens.fontSizeBase;
+  double get fontSizeRatio => optimusTokens.fontSizeRatio;
+  double get letterSpacingCondensed => optimusTokens.letterSpacingCondensed;
+  double get letterSpacingDefault => optimusTokens.letterSpacingDefault;
+  double get letterSpacingWide => optimusTokens.letterSpacingWide;
+  double get lineHeight100 => optimusTokens.lineHeight100;
+  double get lineHeight200 => optimusTokens.lineHeight200;
+  double get lineHeight300 => optimusTokens.lineHeight300;
+  double get opacity0 => optimusTokens.opacity0;
+  double get opacity100 => optimusTokens.opacity100;
+  double get opacity1000 => optimusTokens.opacity1000;
+  double get opacity150 => optimusTokens.opacity150;
+  double get opacity200 => optimusTokens.opacity200;
+  double get opacity400 => optimusTokens.opacity400;
+  double get opacity600 => optimusTokens.opacity600;
+  double get opacity800 => optimusTokens.opacity800;
+  double get sizing100 => optimusTokens.sizing100;
+  double get sizing1300 => optimusTokens.sizing1300;
+  double get sizing200 => optimusTokens.sizing200;
+  double get sizing300 => optimusTokens.sizing300;
+  double get sizing400 => optimusTokens.sizing400;
+  double get sizing50 => optimusTokens.sizing50;
+  double get sizing500 => optimusTokens.sizing500;
+  double get sizing550 => optimusTokens.sizing550;
+  double get sizing600 => optimusTokens.sizing600;
+  double get sizing700 => optimusTokens.sizing700;
+  double get sizing900 => optimusTokens.sizing900;
+  double get sizingBase => optimusTokens.sizingBase;
+  double get spacing0 => optimusTokens.spacing0;
+  double get spacing100 => optimusTokens.spacing100;
+  double get spacing1000 => optimusTokens.spacing1000;
+  double get spacing1200 => optimusTokens.spacing1200;
+  double get spacing150 => optimusTokens.spacing150;
+  double get spacing200 => optimusTokens.spacing200;
+  double get spacing25 => optimusTokens.spacing25;
+  double get spacing250 => optimusTokens.spacing250;
+  double get spacing300 => optimusTokens.spacing300;
+  double get spacing400 => optimusTokens.spacing400;
+  double get spacing450 => optimusTokens.spacing450;
+  double get spacing50 => optimusTokens.spacing50;
+  double get spacing500 => optimusTokens.spacing500;
+  double get spacing600 => optimusTokens.spacing600;
+  double get spacing700 => optimusTokens.spacing700;
+  double get spacing900 => optimusTokens.spacing900;
+  double get spacingBase => optimusTokens.spacingBase;
+  List<BoxShadow> get focusOffset => optimusTokens.focusOffset;
+  List<BoxShadow> get shadow0 => optimusTokens.shadow0;
+  List<BoxShadow> get shadow100 => optimusTokens.shadow100;
+  List<BoxShadow> get shadow200 => optimusTokens.shadow200;
+  List<BoxShadow> get shadow300 => optimusTokens.shadow300;
+  String get fontFamilyUi => optimusTokens.fontFamilyUi;
+  FontWeight get fontWeight300 => optimusTokens.fontWeight300;
+  FontWeight get fontWeight400 => optimusTokens.fontWeight400;
+  FontWeight get fontWeight500 => optimusTokens.fontWeight500;
+  FontWeight get fontWeight600 => optimusTokens.fontWeight600;
   TextDecoration get textDecorationUnderline =>
-      optimusTokensTheme.textDecorationUnderline;
+      optimusTokens.textDecorationUnderline;
 }

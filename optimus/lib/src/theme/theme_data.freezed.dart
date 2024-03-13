@@ -50,7 +50,7 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
   $Res call({
     Object? brightness = null,
     Object? colors = null,
-    Object? tokens = freezed,
+    Object? tokens = null,
   }) {
     return _then(_value.copyWith(
       brightness: null == brightness
@@ -61,7 +61,7 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as OptimusColors,
-      tokens: freezed == tokens
+      tokens: null == tokens
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as OptimusTokens,
@@ -94,7 +94,7 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
   $Res call({
     Object? brightness = null,
     Object? colors = null,
-    Object? tokens = freezed,
+    Object? tokens = null,
   }) {
     return _then(_$OptimusThemeDataImpl(
       brightness: null == brightness
@@ -105,7 +105,7 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as OptimusColors,
-      tokens: freezed == tokens
+      tokens: null == tokens
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as OptimusTokens,
@@ -140,12 +140,11 @@ class _$OptimusThemeDataImpl extends _OptimusThemeData {
             (identical(other.brightness, brightness) ||
                 other.brightness == brightness) &&
             (identical(other.colors, colors) || other.colors == colors) &&
-            const DeepCollectionEquality().equals(other.tokens, tokens));
+            (identical(other.tokens, tokens) || other.tokens == tokens));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, brightness, colors,
-      const DeepCollectionEquality().hash(tokens));
+  int get hashCode => Object.hash(runtimeType, brightness, colors, tokens);
 
   @JsonKey(ignore: true)
   @override
