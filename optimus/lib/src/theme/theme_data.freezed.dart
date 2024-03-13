@@ -12,7 +12,7 @@ part of 'theme_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$OptimusThemeData {
@@ -50,7 +50,7 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
   $Res call({
     Object? brightness = null,
     Object? colors = null,
-    Object? tokens = null,
+    Object? tokens = freezed,
   }) {
     return _then(_value.copyWith(
       brightness: null == brightness
@@ -61,7 +61,7 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as OptimusColors,
-      tokens: null == tokens
+      tokens: freezed == tokens
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as OptimusTokens,
@@ -94,7 +94,7 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
   $Res call({
     Object? brightness = null,
     Object? colors = null,
-    Object? tokens = null,
+    Object? tokens = freezed,
   }) {
     return _then(_$OptimusThemeDataImpl(
       brightness: null == brightness
@@ -105,7 +105,7 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as OptimusColors,
-      tokens: null == tokens
+      tokens: freezed == tokens
           ? _value.tokens
           : tokens // ignore: cast_nullable_to_non_nullable
               as OptimusTokens,
@@ -133,18 +133,19 @@ class _$OptimusThemeDataImpl extends _OptimusThemeData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OptimusThemeDataImpl &&
             (identical(other.brightness, brightness) ||
                 other.brightness == brightness) &&
             (identical(other.colors, colors) || other.colors == colors) &&
-            (identical(other.tokens, tokens) || other.tokens == tokens));
+            const DeepCollectionEquality().equals(other.tokens, tokens));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, brightness, colors, tokens);
+  int get hashCode => Object.hash(runtimeType, brightness, colors,
+      const DeepCollectionEquality().hash(tokens));
 
   @JsonKey(ignore: true)
   @override

@@ -99,8 +99,10 @@ export 'src/typography/variation.dart';
 export 'src/widget_size.dart';
 
 ThemeData createOptimusMaterialTheme(Brightness brightness) {
-  final tokensTheme =
-      brightness == Brightness.light ? OptimusTokens.light : OptimusTokens.dark;
+  final tokensTheme = brightness == Brightness.light
+      ? optimusTokensThemeLight
+      : optimusTokensThemeDark;
+
   final baseTextStyle = tokensTheme.bodyMedium;
 
   return ThemeData(
