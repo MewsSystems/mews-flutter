@@ -98,6 +98,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         focusNode: _node,
         anchorKey: _selectFieldKey,
         items: widget.items,
+        size: widget.size,
         onShown: () => _handleOpenedChanged(true),
         onHidden: () => _handleOpenedChanged(false),
         child: GestureDetector(

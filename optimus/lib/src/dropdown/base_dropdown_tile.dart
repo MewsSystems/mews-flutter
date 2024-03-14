@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
+import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 class BaseDropdownTile extends StatelessWidget {
@@ -19,9 +20,11 @@ class BaseDropdownTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final size = DropdownSizeData.of(context)?.size ?? OptimusWidgetSize.large;
     final tile = Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         OptimusTypography(
           resolveStyle: (_) => tokens.bodyLargeStrong,
@@ -39,18 +42,16 @@ class BaseDropdownTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: tokens.spacing200,
-        vertical: tokens.spacing150,
+        vertical: size.getVerticalPadding(tokens),
       ),
       child: isSelected != null
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(right: tokens.spacing100),
-                  child: CheckboxTick(
+                  padding: EdgeInsets.only(right: tokens.spacing200),
+                  child: CheckboxIcon(
                     isEnabled: true,
-                    onChanged: (_) {},
-                    onTap: () {},
                     isChecked: isSelected,
                   ),
                 ),
@@ -60,4 +61,15 @@ class BaseDropdownTile extends StatelessWidget {
           : tile,
     );
   }
+}
+
+extension on OptimusWidgetSize {
+  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small =>
+          6, // TODO(witwash): replace with token when added
+        OptimusWidgetSize.medium => tokens.spacing100,
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing150,
+      };
 }

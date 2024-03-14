@@ -207,7 +207,10 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
               onRemoved: () => widget.onChanged(e),
               onTap: _handleChipTap,
               isEnabled: widget.isEnabled,
-              child: Text(builder(e)),
+              child: Text(
+                builder(e),
+                style: const TextStyle(decoration: TextDecoration.underline),
+              ),
             ),
           )
           .toList();
@@ -268,6 +271,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
               onTap: widget.multiselect ? () {} : _handleClose,
               child: OptimusDropdown(
                 items: widget.items,
+                size: widget.size,
                 anchorKey: _fieldBoxKey,
                 onChanged: widget.onChanged,
                 embeddedSearch: widget.embeddedSearch,

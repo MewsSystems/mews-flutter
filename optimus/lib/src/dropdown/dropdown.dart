@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
+import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
 typedef Grouper<T> = String Function(T item);
@@ -14,6 +15,7 @@ class OptimusDropdown<T> extends StatelessWidget {
     required this.items,
     required this.anchorKey,
     required this.onChanged,
+    required this.size,
     this.width,
     this.embeddedSearch,
     this.emptyResultPlaceholder,
@@ -29,24 +31,28 @@ class OptimusDropdown<T> extends StatelessWidget {
   final Widget? emptyResultPlaceholder;
   final Grouper<T>? groupBy;
   final GroupBuilder? groupBuilder;
+  final OptimusWidgetSize size;
 
   @override
-  Widget build(BuildContext context) => Stack(
-        alignment: AlignmentDirectional.topCenter,
-        children: <Widget>[
-          AnchoredOverlay(
-            anchorKey: anchorKey,
-            width: width,
-            child: _DropdownContent(
-              items: items,
-              onChanged: onChanged,
-              embeddedSearch: embeddedSearch,
-              emptyResultPlaceholder: emptyResultPlaceholder,
-              groupBy: groupBy,
-              groupBuilder: groupBuilder,
+  Widget build(BuildContext context) => DropdownSizeData(
+        size: size,
+        child: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: <Widget>[
+            AnchoredOverlay(
+              anchorKey: anchorKey,
+              width: width,
+              child: _DropdownContent(
+                items: items,
+                onChanged: onChanged,
+                embeddedSearch: embeddedSearch,
+                emptyResultPlaceholder: emptyResultPlaceholder,
+                groupBy: groupBy,
+                groupBuilder: groupBuilder,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
 }
 
@@ -69,14 +75,11 @@ class _DropdownContent<T> extends StatelessWidget {
   final GroupBuilder? groupBuilder;
 
   BoxDecoration _dropdownDecoration(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return BoxDecoration(
       borderRadius: BorderRadius.all(tokens.borderRadius100),
-      color: theme.isDark
-          ? theme.colors.neutral500
-          : theme.colors.neutral0, // TODO(witwash): to tokens
+      color: tokens.backgroundStaticFloating, // TODO(witwash): to tokens
       boxShadow: tokens.shadow200,
     );
   }
@@ -326,9 +329,7 @@ class _GroupWrapper extends StatelessWidget {
                 ? BoxDecoration(
                     border: Border(
                       top: BorderSide(
-                        color: OptimusTheme.of(context)
-                            .colors
-                            .neutral25, // TODO(witwash): replace with tokens
+                        color: context.tokens.borderStaticSecondary,
                       ),
                     ),
                   )
@@ -355,33 +356,18 @@ class _DropdownItem<T> extends StatefulWidget {
 }
 
 class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
-  bool _isHighlighted = false;
-
   void _handleItemTap() {
     widget.onChanged(widget.child.value);
     DropdownTapInterceptor.of(context)?.onTap();
   }
-
-  void _handleHighlightChanged(bool isHighlighted) =>
-      setState(() => _isHighlighted = isHighlighted);
 
   @override
   Widget build(BuildContext context) => SizedBox(
         width: AnchoredOverlay.of(context)?.width,
         height: _itemMinHeight,
         child: InkWell(
-          highlightColor: theme.colors.primary,
-          onHighlightChanged: _handleHighlightChanged,
           onTap: _handleItemTap,
-          child: _isHighlighted
-              ? OptimusTheme(
-                  themeMode: ThemeMode.dark,
-                  darkTheme: OptimusTheme.of(context).copyWith(
-                    brightness: Brightness.dark,
-                  ),
-                  child: widget.child,
-                )
-              : widget.child,
+          child: widget.child,
         ),
       );
 }
