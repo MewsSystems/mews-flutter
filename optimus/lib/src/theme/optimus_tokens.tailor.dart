@@ -8,7 +8,7 @@ part of 'optimus_tokens.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
+mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokensTheme> {
   Color get backgroundAccentPrimary;
   Color get backgroundAccentSecondary;
   Color get backgroundAlertBasicPrimary;
@@ -313,15 +313,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   TextStyle get titleMediumStrong;
   TextStyle get titleSmall;
   TextStyle get titleSmallStrong;
-  double get borderRadius0;
-  double get borderRadius100;
-  double get borderRadius150;
-  double get borderRadius200;
-  double get borderRadius25;
-  double get borderRadius300;
-  double get borderRadius50;
-  double get borderRadiusBase;
-  double get borderRadiusRound;
+  Radius get borderRadius0;
+  Radius get borderRadius100;
+  Radius get borderRadius150;
+  Radius get borderRadius200;
+  Radius get borderRadius25;
+  Radius get borderRadius300;
+  Radius get borderRadius50;
+  Radius get borderRadiusBase;
+  Radius get borderRadiusRound;
   double get borderWidth0;
   double get borderWidth100;
   double get borderWidth150;
@@ -398,7 +398,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   TextDecoration get textDecorationUnderline;
 
   @override
-  OptimusTokens copyWith({
+  OptimusTokensTheme copyWith({
     Color? backgroundAccentPrimary,
     Color? backgroundAccentSecondary,
     Color? backgroundAlertBasicPrimary,
@@ -703,15 +703,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     TextStyle? titleMediumStrong,
     TextStyle? titleSmall,
     TextStyle? titleSmallStrong,
-    double? borderRadius0,
-    double? borderRadius100,
-    double? borderRadius150,
-    double? borderRadius200,
-    double? borderRadius25,
-    double? borderRadius300,
-    double? borderRadius50,
-    double? borderRadiusBase,
-    double? borderRadiusRound,
+    Radius? borderRadius0,
+    Radius? borderRadius100,
+    Radius? borderRadius150,
+    Radius? borderRadius200,
+    Radius? borderRadius25,
+    Radius? borderRadius300,
+    Radius? borderRadius50,
+    Radius? borderRadiusBase,
+    Radius? borderRadiusRound,
     double? borderWidth0,
     double? borderWidth100,
     double? borderWidth150,
@@ -787,7 +787,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     FontWeight? fontWeight600,
     TextDecoration? textDecorationUnderline,
   }) {
-    return OptimusTokens(
+    return OptimusTokensTheme(
       backgroundAccentPrimary:
           backgroundAccentPrimary ?? this.backgroundAccentPrimary,
       backgroundAccentSecondary:
@@ -1371,9 +1371,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   }
 
   @override
-  OptimusTokens lerp(covariant ThemeExtension<OptimusTokens>? other, double t) {
-    if (other is! OptimusTokens) return this as OptimusTokens;
-    return OptimusTokens(
+  OptimusTokensTheme lerp(
+      covariant ThemeExtension<OptimusTokensTheme>? other, double t) {
+    if (other is! OptimusTokensTheme) return this as OptimusTokensTheme;
+    return OptimusTokensTheme(
       backgroundAccentPrimary: Color.lerp(
           backgroundAccentPrimary, other.backgroundAccentPrimary, t)!,
       backgroundAccentSecondary: Color.lerp(
@@ -2113,7 +2114,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is OptimusTokens &&
+            other is OptimusTokensTheme &&
             const DeepCollectionEquality().equals(
                 backgroundAccentPrimary, other.backgroundAccentPrimary) &&
             const DeepCollectionEquality().equals(
