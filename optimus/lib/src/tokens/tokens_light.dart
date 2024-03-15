@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Mon, 11 Mar 2024 18:37:42 GMT
+// Generated on Fri, 15 Mar 2024 12:25:56 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -443,15 +443,16 @@ class DesignTokensLight {
     fontFeatures: fontFeatures,
   );
 
-  static const double borderRadius0 = 0;
-  static const double borderRadius100 = 8;
-  static const double borderRadius150 = 12;
-  static const double borderRadius200 = 16;
-  static const double borderRadius25 = 2;
-  static const double borderRadius300 = 24;
-  static const double borderRadius50 = 4;
-  static const double borderRadiusBase = 8;
-  static const double borderRadiusRound = 0.5;
+  static const Radius borderRadius0 = Radius.zero;
+  static const Radius borderRadius100 = Radius.circular(8);
+  static const Radius borderRadius150 = Radius.circular(12);
+  static const Radius borderRadius200 = Radius.circular(16);
+  static const Radius borderRadius25 = Radius.circular(2);
+  static const Radius borderRadius300 = Radius.circular(24);
+  static const Radius borderRadius50 = Radius.circular(4);
+  static const Radius borderRadiusBase = Radius.circular(8);
+  static const Radius borderRadiusRound = Radius.circular(0.5);
+
   static const double borderWidth0 = 0;
   static const double borderWidth100 = 1;
   static const double borderWidth150 = 1.5;
