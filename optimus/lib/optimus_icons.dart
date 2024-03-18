@@ -25,201 +25,201 @@ class OptimusIcons {
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData action_log =
       IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData activity_report =
-      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData add_customer =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData accounting_report =
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData add_photo =
+  static const IconData activity_report =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData add =
+  static const IconData add_photo =
       IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData ai =
+  static const IconData add =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData alert_circle =
+  static const IconData ai =
       IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData align_center =
+  static const IconData alert_circle =
       IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData align_justify =
+  static const IconData align_center =
       IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData align_left =
       IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData analytics =
+  static const IconData align_right =
       IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData archive =
+  static const IconData analytics =
       IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrivals =
+  static const IconData archive =
       IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_down =
+  static const IconData align_justify =
       IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_right =
+  static const IconData arrivals =
       IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_up =
+  static const IconData arrow_down =
       IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData at =
+  static const IconData arrow_left =
       IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bathroom =
+  static const IconData arrow_right =
       IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData availability =
+  static const IconData arrow_up =
       IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData backward =
+  static const IconData at =
       IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bills_invoices =
+  static const IconData assign =
       IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData blacklist =
-      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData building_plus =
-      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bus =
-      IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData available_dates =
-      IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bulk_edit =
-      IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData broom =
-      IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData calendar =
-      IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bulb_stars =
-      IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData camera =
-      IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData campervan =
-      IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cancel_square =
-      IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData birthday =
-      IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData card_keys =
-      IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData card_check =
-      IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cash_payment =
-      IconData(0xe824, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData card_nfc =
-      IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cashier =
-      IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cashlist =
-      IconData(0xe827, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData channel_manager =
-      IconData(0xe828, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData charge =
-      IconData(0xe829, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chargeable =
-      IconData(0xe82a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chargeback =
-      IconData(0xe82b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData camping_pitch =
-      IconData(0xe82c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkbox_empty =
-      IconData(0xe82d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkbox_plus =
-      IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checked_in =
-      IconData(0xe82f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkbox_tick =
-      IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checked_out =
-      IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkin =
-      IconData(0xe832, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData caravan =
-      IconData(0xe833, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkout =
-      IconData(0xe834, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chevron_left =
-      IconData(0xe835, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chevron_down =
-      IconData(0xe836, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chevron_right =
-      IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData chevron_up =
-      IconData(0xe838, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData child_head =
-      IconData(0xe839, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData city =
-      IconData(0xe83a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData collapse_all =
-      IconData(0xe83b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData clear_selection =
-      IconData(0xe83c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData collapse =
-      IconData(0xe83d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData companies =
-      IconData(0xe83e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData complaint =
-      IconData(0xe83f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData connect =
-      IconData(0xe840, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData copy =
-      IconData(0xe841, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData countries =
-      IconData(0xe842, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData credit_card_file =
-      IconData(0xe843, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkbox_minus =
-      IconData(0xe844, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cross_close =
-      IconData(0xe845, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData covid_protection =
-      IconData(0xe846, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cultures =
-      IconData(0xe847, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData configuration =
-      IconData(0xe848, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData contract =
-      IconData(0xe849, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData custom_link =
-      IconData(0xe84a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData custom_link_item =
-      IconData(0xe84b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData customer_profiles =
-      IconData(0xe84c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData day =
-      IconData(0xe84d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete =
-      IconData(0xe84e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData dashboard =
-      IconData(0xe84f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData departures =
-      IconData(0xe850, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData deployments =
-      IconData(0xe851, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData desk =
-      IconData(0xe852, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData device_command =
-      IconData(0xe853, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData credit_card_report =
-      IconData(0xe854, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData backward_more =
-      IconData(0xe855, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData availability =
+      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bathroom =
+      IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData backward =
+      IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData available_dates =
+      IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bike =
+      IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData blacklist =
+      IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData broom =
+      IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData building_plus =
+      IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bills_invoices =
+      IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bulk_edit =
+      IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bus =
+      IconData(0xe821, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData camera =
+      IconData(0xe822, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar =
+      IconData(0xe823, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData camping_pitch =
+      IconData(0xe824, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData caravan =
+      IconData(0xe825, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData card_check =
+      IconData(0xe826, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData card_keys =
+      IconData(0xe827, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cancel_square =
+      IconData(0xe828, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cash_payment =
+      IconData(0xe829, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cashier =
+      IconData(0xe82a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData birthday =
+      IconData(0xe82b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bulb_stars =
+      IconData(0xe82c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cashlist =
+      IconData(0xe82d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData channel_manager =
+      IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chargeable =
+      IconData(0xe82f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chargeback =
+      IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData charge =
+      IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkbox_minus =
+      IconData(0xe832, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData card_nfc =
+      IconData(0xe833, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData campervan =
+      IconData(0xe834, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkbox_plus =
+      IconData(0xe835, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkbox_empty =
+      IconData(0xe836, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkbox_tick =
+      IconData(0xe837, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checked_out =
+      IconData(0xe838, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkin =
+      IconData(0xe839, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkout =
+      IconData(0xe83a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chevron_down =
+      IconData(0xe83b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chevron_left =
+      IconData(0xe83c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checked_in =
+      IconData(0xe83d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chevron_right =
+      IconData(0xe83e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData chevron_up =
+      IconData(0xe83f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData child_head =
+      IconData(0xe840, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData city =
+      IconData(0xe841, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData clear_selection =
+      IconData(0xe842, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData collapse_all =
+      IconData(0xe843, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData collapse =
+      IconData(0xe844, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData companies =
+      IconData(0xe845, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData complaint =
+      IconData(0xe846, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData configuration =
+      IconData(0xe847, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData contract =
+      IconData(0xe848, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData connect =
+      IconData(0xe849, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData countries =
+      IconData(0xe84a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData copy =
+      IconData(0xe84b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData covid_protection =
+      IconData(0xe84c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData credit_card_report =
+      IconData(0xe84d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cross_close =
+      IconData(0xe84e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData credit_card_file =
+      IconData(0xe84f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cultures =
+      IconData(0xe850, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData custom_link_item =
+      IconData(0xe851, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData customer_success =
-      IconData(0xe856, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData disability =
-      IconData(0xe857, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData done_circle =
-      IconData(0xe858, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData dollar_arrow_down =
-      IconData(0xe859, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData done =
-      IconData(0xe85a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe852, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData custom_link =
+      IconData(0xe853, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData currency_switch =
+      IconData(0xe854, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData customer_profiles =
+      IconData(0xe855, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData dashboard =
+      IconData(0xe856, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData day =
+      IconData(0xe857, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData delete =
+      IconData(0xe858, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData departures =
+      IconData(0xe859, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData deployments =
+      IconData(0xe85a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData desk =
       IconData(0xe85b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData door_hanger =
+  static const IconData device_command =
       IconData(0xe85c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData double_bed =
+  static const IconData disability =
       IconData(0xe85d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData disable =
       IconData(0xe85e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_left =
+  static const IconData dollar_arrow_down =
       IconData(0xe85f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData accounting_report =
+  static const IconData door_hanger =
       IconData(0xe860, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData align_right =
+  static const IconData done =
       IconData(0xe861, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData assign =
+  static const IconData double_bed =
       IconData(0xe862, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bike =
+  static const IconData done_circle =
       IconData(0xe863, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData download =
       IconData(0xe864, fontFamily: _kFontFam, fontPackage: _kFontPkg);
@@ -237,9 +237,9 @@ class OptimusIcons {
       IconData(0xe86a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData employees =
       IconData(0xe86b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData enterprise_snapshot =
-      IconData(0xe86c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData error_circle =
+      IconData(0xe86c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData enterprise_snapshot =
       IconData(0xe86d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData execute_merchant =
       IconData(0xe86e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
