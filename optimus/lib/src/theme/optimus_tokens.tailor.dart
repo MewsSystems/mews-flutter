@@ -8,7 +8,7 @@ part of 'optimus_tokens.dart';
 // TailorAnnotationsGenerator
 // **************************************************************************
 
-mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokensTheme> {
+mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get backgroundAccentPrimary;
   Color get backgroundAccentSecondary;
   Color get backgroundAlertBasicPrimary;
@@ -398,7 +398,7 @@ mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokensTheme> {
   TextDecoration get textDecorationUnderline;
 
   @override
-  OptimusTokensTheme copyWith({
+  OptimusTokens copyWith({
     Color? backgroundAccentPrimary,
     Color? backgroundAccentSecondary,
     Color? backgroundAlertBasicPrimary,
@@ -787,7 +787,7 @@ mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokensTheme> {
     FontWeight? fontWeight600,
     TextDecoration? textDecorationUnderline,
   }) {
-    return OptimusTokensTheme(
+    return OptimusTokens(
       backgroundAccentPrimary:
           backgroundAccentPrimary ?? this.backgroundAccentPrimary,
       backgroundAccentSecondary:
@@ -1371,10 +1371,9 @@ mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokensTheme> {
   }
 
   @override
-  OptimusTokensTheme lerp(
-      covariant ThemeExtension<OptimusTokensTheme>? other, double t) {
-    if (other is! OptimusTokensTheme) return this as OptimusTokensTheme;
-    return OptimusTokensTheme(
+  OptimusTokens lerp(covariant ThemeExtension<OptimusTokens>? other, double t) {
+    if (other is! OptimusTokens) return this as OptimusTokens;
+    return OptimusTokens(
       backgroundAccentPrimary: Color.lerp(
           backgroundAccentPrimary, other.backgroundAccentPrimary, t)!,
       backgroundAccentSecondary: Color.lerp(
@@ -2114,7 +2113,7 @@ mixin _$OptimusTokensThemeTailorMixin on ThemeExtension<OptimusTokensTheme> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is OptimusTokensTheme &&
+            other is OptimusTokens &&
             const DeepCollectionEquality().equals(
                 backgroundAccentPrimary, other.backgroundAccentPrimary) &&
             const DeepCollectionEquality().equals(
