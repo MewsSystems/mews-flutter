@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
@@ -48,11 +49,15 @@ class BaseDropdownTile extends StatelessWidget {
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(right: tokens.spacing200),
-                  child: CheckboxIcon(
-                    isEnabled: true,
-                    isChecked: isSelected,
+                IgnorePointer(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: tokens.spacing200),
+                    child: CheckboxTick(
+                      isEnabled: true,
+                      onChanged: (_) {},
+                      onTap: () {},
+                      isChecked: isSelected,
+                    ),
                   ),
                 ),
                 Flexible(fit: FlexFit.loose, child: tile),
