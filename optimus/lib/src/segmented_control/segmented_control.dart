@@ -66,44 +66,45 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
       : OptimusStackSpacing.spacing50;
 
   @override
-  Widget build(BuildContext context) => GroupWrapper(
-        label: label,
-        error: error,
-        isRequired: isRequired,
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return GroupWrapper(
+      label: label,
+      error: error,
+      isRequired: isRequired,
+      isEnabled: isEnabled,
+      child: OptimusEnabled(
         isEnabled: isEnabled,
-        child: OptimusEnabled(
-          isEnabled: isEnabled,
-          child: DecoratedBox(
-            decoration: direction == Axis.horizontal
-                ? BoxDecoration(
-                    color: OptimusTheme.of(context)
-                        .tokens
-                        .backgroundInteractiveNeutralDefault,
-                    borderRadius:
-                        BorderRadius.circular(context.tokens.borderRadius100),
-                  )
-                : const BoxDecoration(),
-            child: OptimusStack(
-              direction: direction,
-              distribution: _distribution,
-              spacing: _spacing,
-              children: items
-                  .map(
-                    (item) => _OptimusSegmentedControlItem<T>(
-                      value: item.value,
-                      size: size,
-                      groupValue: value,
-                      onItemSelected: onItemSelected,
-                      isEnabled: isEnabled,
-                      maxLines: _maxLines,
-                      child: item.label,
-                    ),
-                  )
-                  .toList(),
-            ),
+        child: DecoratedBox(
+          decoration: direction == Axis.horizontal
+              ? BoxDecoration(
+                  color: tokens.backgroundInteractiveNeutralDefault,
+                  borderRadius: BorderRadius.all(tokens.borderRadius100),
+                )
+              : const BoxDecoration(),
+          child: OptimusStack(
+            direction: direction,
+            distribution: _distribution,
+            spacing: _spacing,
+            children: items
+                .map(
+                  (item) => _OptimusSegmentedControlItem<T>(
+                    value: item.value,
+                    size: size,
+                    groupValue: value,
+                    onItemSelected: onItemSelected,
+                    isEnabled: isEnabled,
+                    maxLines: _maxLines,
+                    child: item.label,
+                  ),
+                )
+                .toList(),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 class _OptimusSegmentedControlItem<T> extends StatefulWidget {
@@ -187,8 +188,7 @@ class _OptimusSegmentedControlItemState<T>
             padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
             decoration: BoxDecoration(
               color: _color(tokens),
-              borderRadius:
-                  BorderRadius.circular(context.tokens.borderRadius100),
+              borderRadius: BorderRadius.all(tokens.borderRadius100),
             ),
             alignment: Alignment.center,
             child: DefaultTextStyle.merge(

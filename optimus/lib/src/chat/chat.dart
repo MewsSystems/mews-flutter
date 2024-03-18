@@ -379,14 +379,15 @@ class _StatusCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return Container(
       width: 13,
       height: 13,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
+        borderRadius: BorderRadius.all(tokens.borderRadius100),
         border: Border.all(
-          width: context.tokens.borderWidth100,
+          width: tokens.borderWidth100,
           color: theme.isDark
               ? theme.colors.neutral0t64
               : theme.colors.neutral1000t64,

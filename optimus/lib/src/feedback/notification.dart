@@ -132,8 +132,8 @@ class _NotificationContent extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(tokens.borderRadius100),
-        boxShadow: context.tokens.shadow300,
+        borderRadius: BorderRadius.all(tokens.borderRadius100),
+        boxShadow: tokens.shadow300,
       ),
       child: Stack(
         children: [
@@ -146,7 +146,7 @@ class _NotificationContent extends StatelessWidget {
               decoration: BoxDecoration(
                 color: variant.backgroundColor(tokens),
                 borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(tokens.borderRadius100),
+                  left: tokens.borderRadius100,
                 ),
               ),
             ),
@@ -168,7 +168,7 @@ class _NotificationContent extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: tokens.backgroundStaticFlat,
                     borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(tokens.borderRadius100),
+                      right: tokens.borderRadius100,
                     ),
                   ),
                   child: Column(

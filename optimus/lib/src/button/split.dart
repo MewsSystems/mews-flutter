@@ -47,7 +47,7 @@ class OptimusSplitButton<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final borderRadius = Radius.circular(tokens.borderRadius100);
+    final borderRadius = tokens.borderRadius100;
 
     return Row(
       mainAxisSize: MainAxisSize.min,

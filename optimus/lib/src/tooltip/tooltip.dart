@@ -45,7 +45,7 @@ class OptimusTooltip extends StatelessWidget {
         painter: _TooltipPainter(
           color: backgroundColor,
           alignment: alignment,
-          borderRadius: Radius.circular(tokens.borderRadius50),
+          borderRadius: tokens.borderRadius50,
         ),
         child: Container(
           width: size.maxWidth,

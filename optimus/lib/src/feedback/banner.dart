@@ -62,7 +62,7 @@ class OptimusBanner extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: variant.backgroundColor(tokens),
-        borderRadius: BorderRadius.circular(tokens.borderRadius100),
+        borderRadius: BorderRadius.all(tokens.borderRadius100),
       ),
       child: Stack(
         children: [

@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Wed, 13 Mar 2024 15:44:39 GMT
+// Generated on Fri, 15 Mar 2024 12:25:57 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -981,6 +981,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color textStaticSecondary;
   @override
   final Color textStaticTertiary;
+
   @override
   final TextStyle bodyExtraSmall;
   @override
@@ -1015,24 +1016,26 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final TextStyle titleSmall;
   @override
   final TextStyle titleSmallStrong;
+
   @override
-  final double borderRadius0;
+  final Radius borderRadius0;
   @override
-  final double borderRadius100;
+  final Radius borderRadius100;
   @override
-  final double borderRadius150;
+  final Radius borderRadius150;
   @override
-  final double borderRadius200;
+  final Radius borderRadius200;
   @override
-  final double borderRadius25;
+  final Radius borderRadius25;
   @override
-  final double borderRadius300;
+  final Radius borderRadius300;
   @override
-  final double borderRadius50;
+  final Radius borderRadius50;
   @override
-  final double borderRadiusBase;
+  final Radius borderRadiusBase;
   @override
-  final double borderRadiusRound;
+  final Radius borderRadiusRound;
+
   @override
   final double borderWidth0;
   @override
@@ -1159,6 +1162,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final double spacing900;
   @override
   final double spacingBase;
+
   @override
   final List<BoxShadow> focusOffset;
   @override
@@ -1169,8 +1173,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final List<BoxShadow> shadow200;
   @override
   final List<BoxShadow> shadow300;
+
   @override
   final String fontFamilyUi;
+
   @override
   final FontWeight fontWeight300;
   @override
@@ -1179,6 +1185,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final FontWeight fontWeight500;
   @override
   final FontWeight fontWeight600;
+
   @override
   final TextDecoration textDecorationUnderline;
 
