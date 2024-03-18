@@ -135,16 +135,16 @@ class _CollapsedCompactStepBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = _StepBarData.of(context);
+    final tokens = context.tokens;
 
     return data != null
         ? Container(
             height: _itemHeight,
             constraints: const BoxConstraints(minHeight: _itemHeight),
             decoration: BoxDecoration(
-              color: context.tokens.borderStaticInverse,
+              color: tokens.borderStaticInverse,
               boxShadow: _getShadow(context.tokens),
-              borderRadius:
-                  BorderRadius.circular(context.tokens.borderRadius50),
+              borderRadius: BorderRadius.all(tokens.borderRadius50),
             ),
             child: Row(
               children: [
@@ -430,8 +430,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
               decoration: BoxDecoration(
                 color: tokens.backgroundStaticFlat,
                 boxShadow: context.tokens.shadow100,
-                borderRadius:
-                    BorderRadius.circular(context.tokens.borderRadius50),
+                borderRadius: BorderRadius.all(tokens.borderRadius50),
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(

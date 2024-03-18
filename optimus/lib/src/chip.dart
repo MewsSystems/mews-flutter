@@ -72,20 +72,17 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 100),
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.circular(context.tokens.borderRadius100),
+                borderRadius: BorderRadius.all(tokens.borderRadius100),
                 color: _backgroundColor,
               ),
               child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: context.tokens.spacing50),
+                padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: context.tokens.spacing50,
-                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: tokens.spacing50),
                       child: DefaultTextStyle.merge(
                         style:
                             tokens.bodyMedium.copyWith(color: _foregroundColor),

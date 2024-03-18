@@ -47,6 +47,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final borderColor = widget.variant.borderColor(
       tokens,
       isEnabled: _isEnabled,
@@ -75,10 +76,10 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
             border: borderColor != null
                 ? Border.all(
                     color: borderColor,
-                    width: context.tokens.borderWidth150,
+                    width: tokens.borderWidth150,
                   )
                 : null,
-            borderRadius: BorderRadius.circular(context.tokens.borderRadius100),
+            borderRadius: BorderRadius.all(tokens.borderRadius100),
           ),
           duration: buttonAnimationDuration,
           child: IconTheme.merge(

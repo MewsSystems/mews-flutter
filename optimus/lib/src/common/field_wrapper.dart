@@ -142,7 +142,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             decoration: widget.hasBorders
                 ? BoxDecoration(
                     color: _background,
-                    borderRadius: BorderRadius.circular(tokens.borderRadius100),
+                    borderRadius: BorderRadius.all(tokens.borderRadius100),
                     border: Border.all(
                       color: _borderColor,
                       width: tokens.borderWidth150,

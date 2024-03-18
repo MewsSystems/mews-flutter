@@ -173,7 +173,7 @@ class _Card extends StatelessWidget {
   final Color? color;
 
   BorderRadius _getBorderRadius(OptimusTokens tokens) {
-    final radius = Radius.circular(tokens.borderRadius200);
+    final radius = tokens.borderRadius200;
 
     return switch (attachment) {
       OptimusCardAttachment.none => BorderRadius.all(radius),

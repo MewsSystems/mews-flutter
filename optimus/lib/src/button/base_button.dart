@@ -44,7 +44,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final borderRadius =
-        widget.borderRadius ?? BorderRadius.circular(tokens.borderRadius100);
+        widget.borderRadius ?? BorderRadius.all(tokens.borderRadius100);
 
     return TextButton(
       style: ButtonStyle(
@@ -239,7 +239,7 @@ class _Badge extends StatelessWidget {
     return SizedBox(
       height: tokens.sizing200,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(tokens.borderRadius200),
+        borderRadius: BorderRadius.all(tokens.borderRadius200),
         child: ColoredBox(
           color: color,
           child: Padding(
