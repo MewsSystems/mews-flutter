@@ -85,14 +85,14 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     vsync: this,
   );
 
-  late final _animation = Tween<double>(begin: 0, end: 1).animate(
+  late final _sizeAnimation = Tween<double>(begin: 0, end: 1).animate(
     CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.25, 1.0, curve: Curves.easeInOutCubic),
     ),
   );
 
-  late final _pause = Tween<double>(begin: 0, end: 1).animate(
+  late final _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
     CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.3, 1, curve: Curves.decelerate),
@@ -179,13 +179,13 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
               : null;
 
       return FadeTransition(
-        opacity: _pause,
+        opacity: _fadeAnimation,
         child: Container(
           constraints: BoxConstraints(maxHeight: controller.maxHeight),
           width: controller.width,
           decoration: decoration,
           child: SizeTransition(
-            sizeFactor: _animation,
+            sizeFactor: _sizeAnimation,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: isOnTop ? children : children.reversed.toList(),
