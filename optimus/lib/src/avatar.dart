@@ -9,22 +9,21 @@ class OptimusAvatar extends StatelessWidget {
     super.key,
     required this.title,
     this.imageUrl,
-    this.isSmall = true,
     this.isIndicatorVisible = false,
+    this.size = OptimusWidgetSize.medium,
   });
 
   final String title;
   final String? imageUrl;
-  final bool isSmall;
   final bool isIndicatorVisible;
-
-  double get _radius => isSmall ? _smallRadius : _defaultRadius;
-  double get _diameter => _radius * 2;
+  final OptimusWidgetSize size;
 
   @override
   Widget build(BuildContext context) {
-    final colors = OptimusTheme.of(context).colors;
+    final tokens = context.tokens;
     final imageUrl = this.imageUrl;
+    final emptyColor = tokens.backgroundAlertBasicSecondary;
+    final diameter = size.getSize(tokens);
 
     return Stack(
       clipBehavior: Clip.none,
@@ -32,29 +31,27 @@ class OptimusAvatar extends StatelessWidget {
         ClipOval(
           child: Container(
             constraints: BoxConstraints(
-              minHeight: _diameter,
-              minWidth: _diameter,
-              maxWidth: _diameter,
-              maxHeight: _diameter,
+              minHeight: diameter,
+              minWidth: diameter,
+              maxWidth: diameter,
+              maxHeight: diameter,
             ),
-            decoration: BoxDecoration(
-              color: imageUrl == null ? colors.neutral200 : colors.neutral0,
-            ),
+            decoration: BoxDecoration(color: emptyColor),
             child: Center(
               child: MediaQuery(
                 data: MediaQuery.of(context)
                     .copyWith(textScaler: TextScaler.noScaling),
                 child: imageUrl != null
                     ? FadeInImage.memoryNetwork(
-                        width: _diameter,
-                        height: _diameter,
+                        width: diameter,
+                        height: diameter,
                         placeholder: _transparentImage,
                         image: imageUrl,
                         fit: BoxFit.cover,
                         imageErrorBuilder: (_, __, ___) => Container(
                           width: double.infinity,
                           height: double.infinity,
-                          color: colors.neutral200,
+                          color: emptyColor,
                           child: Center(child: _FallbackText(title: title)),
                         ),
                       )
@@ -63,7 +60,7 @@ class OptimusAvatar extends StatelessWidget {
             ),
           ),
         ),
-        if (isIndicatorVisible) const _Indicator(),
+        if (isIndicatorVisible) const OptimusBadge(),
       ],
     );
   }
@@ -86,31 +83,13 @@ class _FallbackText extends StatelessWidget {
       );
 }
 
-class _Indicator extends StatelessWidget {
-  const _Indicator();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Positioned(
-      top: -2,
-      left: -2,
-      child: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: theme.colors.primary500,
-          border: Border.all(
-            width: context.tokens.borderWidth200,
-            color:
-                theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
-          ),
-        ),
-        height: 14, // TODO(witwash): check with design
-        width: 14,
-      ),
-    );
-  }
+extension on OptimusWidgetSize {
+  double getSize(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.sizing400,
+        OptimusWidgetSize.medium => tokens.sizing500,
+        OptimusWidgetSize.large => tokens.sizing700,
+        OptimusWidgetSize.extraLarge => tokens.sizing1300,
+      };
 }
 
 final Uint8List _transparentImage = Uint8List.fromList(_imageData);
@@ -123,6 +102,3 @@ const _imageData = [
   0x05, 0x00, 0x01, 0x0D, 0x0A, 0x2D, 0xB4, 0x00, 0x00, 0x00, 0x00, 0x49,
   0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82,
 ];
-
-const double _smallRadius = 20;
-const double _defaultRadius = 24;

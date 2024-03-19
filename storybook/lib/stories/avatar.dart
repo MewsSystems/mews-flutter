@@ -11,8 +11,8 @@ final avatarStory = Story(
     children: [
       OptimusAvatar(title: 'Test'),
       OptimusAvatar(title: 'Test', isIndicatorVisible: true),
-      OptimusAvatar(title: 'Test', isSmall: false),
-      OptimusAvatar(title: 'Test', isSmall: false, isIndicatorVisible: true),
+      OptimusAvatar(title: 'Test'),
+      OptimusAvatar(title: 'Test', isIndicatorVisible: true),
     ],
   ),
 );
