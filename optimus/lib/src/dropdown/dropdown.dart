@@ -56,7 +56,7 @@ class OptimusDropdown<T> extends StatelessWidget {
       );
 }
 
-class _DropdownContent<T> extends StatelessWidget {
+class _DropdownContent<T> extends StatefulWidget {
   const _DropdownContent({
     super.key,
     required this.onChanged,
@@ -74,14 +74,41 @@ class _DropdownContent<T> extends StatelessWidget {
   final Grouper<T>? groupBy;
   final GroupBuilder? groupBuilder;
 
-  BoxDecoration _dropdownDecoration(BuildContext context) {
-    final tokens = context.tokens;
+  @override
+  State<_DropdownContent<T>> createState() => _DropdownContentState<T>();
+}
 
-    return BoxDecoration(
-      borderRadius: BorderRadius.all(tokens.borderRadius100),
-      color: tokens.backgroundStaticFloating, // TODO(witwash): to tokens
-      boxShadow: tokens.shadow200,
-    );
+class _DropdownContentState<T> extends State<_DropdownContent<T>>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 350),
+    vsync: this,
+  );
+
+  late final _animation = Tween<double>(begin: 0, end: 1).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.25, 1.0, curve: Curves.easeInOutCubic),
+    ),
+  );
+
+  late final _pause = Tween<double>(begin: 0, end: 1).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.3, 1, curve: Curves.decelerate),
+    ),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _controller.forward());
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   Widget _buildSearch(
@@ -91,26 +118,26 @@ class _DropdownContent<T> extends StatelessWidget {
   ) =>
       _SearchWrapper(
         width: controller.width,
-        showDivider: items.isNotEmpty,
+        showDivider: widget.items.isNotEmpty,
         isOnTop: isOnTop,
         child: embeddedSearch,
       );
 
   Widget _buildList(bool isOnTop, double maxHeight) {
-    if (groupBy case final groupBy?) {
+    if (widget.groupBy case final groupBy?) {
       return _GroupedDropdownListView(
-        items: items,
-        onChanged: onChanged,
+        items: widget.items,
+        onChanged: widget.onChanged,
         isReversed: isOnTop,
         groupBy: groupBy,
-        groupBuilder: groupBuilder,
+        groupBuilder: widget.groupBuilder,
         maxHeight: maxHeight,
       );
     }
 
     return _DropdownListView(
-      items: items,
-      onChanged: onChanged,
+      items: widget.items,
+      onChanged: widget.onChanged,
       isReversed: isOnTop,
       maxHeight: maxHeight,
     );
@@ -120,12 +147,13 @@ class _DropdownContent<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
+      final tokens = context.tokens;
       final isOnTop = controller.top > controller.bottom;
-      final listMaxHeight = embeddedSearch != null
+      final listMaxHeight = widget.embeddedSearch != null
           ? controller.maxHeight - _embeddedSearchHeight
           : controller.maxHeight;
 
-      final content = items.isNotEmpty
+      final content = widget.items.isNotEmpty
           ? Container(
               constraints: BoxConstraints(
                 maxHeight: listMaxHeight,
@@ -135,20 +163,34 @@ class _DropdownContent<T> extends StatelessWidget {
                 child: _buildList(isOnTop, listMaxHeight),
               ),
             )
-          : emptyResultPlaceholder ?? const SizedBox.shrink();
+          : widget.emptyResultPlaceholder ?? const SizedBox.shrink();
       final children = [
         Material(color: Colors.transparent, child: content),
-        if (embeddedSearch case final embeddedSearch?)
+        if (widget.embeddedSearch case final embeddedSearch?)
           _buildSearch(controller, isOnTop, embeddedSearch),
       ];
+      final decoration =
+          widget.items.isNotEmpty || widget.emptyResultPlaceholder != null
+              ? BoxDecoration(
+                  borderRadius: BorderRadius.all(tokens.borderRadius100),
+                  color: tokens.backgroundStaticFloating,
+                  boxShadow: tokens.shadow200,
+                )
+              : null;
 
-      return Container(
-        constraints: BoxConstraints(maxHeight: controller.maxHeight),
-        width: controller.width,
-        decoration: _dropdownDecoration(context),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: isOnTop ? children : children.reversed.toList(),
+      return FadeTransition(
+        opacity: _pause,
+        child: Container(
+          constraints: BoxConstraints(maxHeight: controller.maxHeight),
+          width: controller.width,
+          decoration: decoration,
+          child: SizeTransition(
+            sizeFactor: _animation,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: isOnTop ? children : children.reversed.toList(),
+            ),
+          ),
         ),
       );
     }
