@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/src/dropdown/dropdown.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/dropdown/dropdown_tile.dart';
+import 'package:optimus/src/widget_size.dart';
 
 class OverlayController<T> extends StatefulWidget {
   const OverlayController({
@@ -12,6 +13,7 @@ class OverlayController<T> extends StatefulWidget {
     required this.onItemSelected,
     required this.focusNode,
     required this.anchorKey,
+    required this.size,
     this.width,
     this.onShown,
     this.onHidden,
@@ -28,6 +30,7 @@ class OverlayController<T> extends StatefulWidget {
   final VoidCallback? onShown;
   final VoidCallback? onHidden;
   final bool rootOverlay;
+  final OptimusWidgetSize size;
 
   @override
   State<OverlayController<T>> createState() => _OverlayControllerState<T>();
@@ -84,6 +87,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
               onTap: widget.focusNode.unfocus,
               child: OptimusDropdown<T>(
                 items: widget.items,
+                size: widget.size,
                 anchorKey: widget.anchorKey,
                 onChanged: widget.onItemSelected,
                 width: widget.width,

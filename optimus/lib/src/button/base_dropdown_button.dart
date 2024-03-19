@@ -106,6 +106,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 
     return OverlayController(
       items: widget.items,
+      size: widget.size,
       anchorKey: _selectFieldKey,
       onItemSelected: widget.onItemSelected ?? (_) {},
       focusNode: _node,
