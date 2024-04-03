@@ -24,19 +24,18 @@ class OptimusTypography extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context).screenBreakpoint;
-    final theme = OptimusTheme.of(context);
+    final tokens = context.tokens;
 
     return DefaultTextStyle.merge(
       child: child,
       textAlign: align,
       maxLines: maxLines,
-      style: resolveStyle(screenSize).copyWith(color: _color(theme)),
+      style: resolveStyle(screenSize).copyWith(color: _color(tokens)),
     );
   }
 
-  // TODO(VG): can be changed when final dark theme design is ready.
-  Color _color(OptimusThemeData theme) => switch (color) {
-        OptimusTypographyColor.primary => theme.colors.defaultTextColor,
-        OptimusTypographyColor.secondary => theme.colors.secondaryTextColor,
+  Color _color(OptimusTokens tokens) => switch (color) {
+        OptimusTypographyColor.primary => tokens.textStaticPrimary,
+        OptimusTypographyColor.secondary => tokens.textStaticSecondary,
       };
 }

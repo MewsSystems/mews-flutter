@@ -111,7 +111,6 @@ class _ListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final description = item.description;
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return Row(
@@ -127,9 +126,7 @@ class _ListTile extends StatelessWidget {
                 Text(
                   description.capitalize(),
                   style: _getDescriptionStyle(tokens).copyWith(
-                    color: theme.isDark
-                        ? theme.colors.neutral0t64
-                        : theme.colors.neutral1000t64,
+                    color: tokens.textStaticSecondary,
                   ),
                 ),
             ],

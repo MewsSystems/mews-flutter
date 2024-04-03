@@ -71,11 +71,15 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   Icon get _icon => Icon(
         _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
         size: tokens.sizing300,
-        color: theme.isDark ? theme.colors.neutral0 : theme.colors.neutral400,
+        color: tokens.textStaticPrimary,
       );
 
   TextStyle get _textStyle {
-    final color = widget.value == null ? _placeholderColor : _textColor;
+    final color = widget.isEnabled
+        ? widget.value == null
+            ? tokens.textStaticSecondary
+            : tokens.textStaticPrimary
+        : tokens.textDisabled;
 
     return switch (widget.size) {
       OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(color: color),
@@ -85,12 +89,6 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         tokens.bodyLargeStrong.copyWith(color: color),
     };
   }
-
-  Color get _placeholderColor =>
-      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
-
-  Color get _textColor =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
 
   @override
   Widget build(BuildContext context) => OverlayController(
