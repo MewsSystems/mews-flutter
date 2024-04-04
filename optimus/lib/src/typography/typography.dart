@@ -21,6 +21,12 @@ class OptimusTypography extends StatelessWidget {
   final int? maxLines;
   final TextAlign? align;
 
+
+  Color _color(OptimusTokens tokens) => switch (color) {
+        OptimusTypographyColor.primary => tokens.textStaticPrimary,
+        OptimusTypographyColor.secondary => tokens.textStaticSecondary,
+      };
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context).screenBreakpoint;
@@ -34,8 +40,4 @@ class OptimusTypography extends StatelessWidget {
     );
   }
 
-  Color _color(OptimusTokens tokens) => switch (color) {
-        OptimusTypographyColor.primary => tokens.textStaticPrimary,
-        OptimusTypographyColor.secondary => tokens.textStaticSecondary,
-      };
 }

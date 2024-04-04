@@ -1,5 +1,4 @@
 import 'package:dfunc/dfunc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/optimus_chat_input.dart';
