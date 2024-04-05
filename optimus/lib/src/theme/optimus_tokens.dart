@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Fri, 15 Mar 2024 12:25:57 GMT
+// Generated on Thu, 04 Apr 2024 17:15:46 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -18,8 +18,14 @@ part 'optimus_tokens.tailor.dart';
 class OptimusTokens extends ThemeExtension<OptimusTokens>
     with _$OptimusTokensTailorMixin {
   const OptimusTokens({
+    required this.backgroundAccentBrand,
+    required this.backgroundAccentDanger,
+    required this.backgroundAccentGradient,
+    required this.backgroundAccentInfo,
     required this.backgroundAccentPrimary,
     required this.backgroundAccentSecondary,
+    required this.backgroundAccentSuccess,
+    required this.backgroundAccentWarning,
     required this.backgroundAlertBasicPrimary,
     required this.backgroundAlertBasicSecondary,
     required this.backgroundAlertDangerPrimary,
@@ -67,6 +73,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundStaticOnColor,
     required this.backgroundStaticRaised,
     required this.backgroundStaticSunken,
+    required this.borderAccent,
     required this.borderAlertBasic,
     required this.borderAlertDanger,
     required this.borderAlertInfo,
@@ -408,9 +415,21 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   });
 
   @override
+  final Color backgroundAccentBrand;
+  @override
+  final Color backgroundAccentDanger;
+  @override
+  final Color backgroundAccentGradient;
+  @override
+  final Color backgroundAccentInfo;
+  @override
   final Color backgroundAccentPrimary;
   @override
   final Color backgroundAccentSecondary;
+  @override
+  final Color backgroundAccentSuccess;
+  @override
+  final Color backgroundAccentWarning;
   @override
   final Color backgroundAlertBasicPrimary;
   @override
@@ -505,6 +524,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundStaticRaised;
   @override
   final Color backgroundStaticSunken;
+  @override
+  final Color borderAccent;
   @override
   final Color borderAlertBasic;
   @override
@@ -1190,8 +1211,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final TextDecoration textDecorationUnderline;
 
   static const OptimusTokens light = OptimusTokens(
+    backgroundAccentBrand: DesignTokensLight.backgroundAccentBrand,
+    backgroundAccentDanger: DesignTokensLight.backgroundAccentDanger,
+    backgroundAccentGradient: DesignTokensLight.backgroundAccentGradient,
+    backgroundAccentInfo: DesignTokensLight.backgroundAccentInfo,
     backgroundAccentPrimary: DesignTokensLight.backgroundAccentPrimary,
     backgroundAccentSecondary: DesignTokensLight.backgroundAccentSecondary,
+    backgroundAccentSuccess: DesignTokensLight.backgroundAccentSuccess,
+    backgroundAccentWarning: DesignTokensLight.backgroundAccentWarning,
     backgroundAlertBasicPrimary: DesignTokensLight.backgroundAlertBasicPrimary,
     backgroundAlertBasicSecondary:
         DesignTokensLight.backgroundAlertBasicSecondary,
@@ -1269,6 +1296,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundStaticOnColor: DesignTokensLight.backgroundStaticOnColor,
     backgroundStaticRaised: DesignTokensLight.backgroundStaticRaised,
     backgroundStaticSunken: DesignTokensLight.backgroundStaticSunken,
+    borderAccent: DesignTokensLight.borderAccent,
     borderAlertBasic: DesignTokensLight.borderAlertBasic,
     borderAlertDanger: DesignTokensLight.borderAlertDanger,
     borderAlertInfo: DesignTokensLight.borderAlertInfo,
@@ -1619,8 +1647,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   );
 
   static const OptimusTokens dark = OptimusTokens(
+    backgroundAccentBrand: DesignTokensDark.backgroundAccentBrand,
+    backgroundAccentDanger: DesignTokensDark.backgroundAccentDanger,
+    backgroundAccentGradient: DesignTokensDark.backgroundAccentGradient,
+    backgroundAccentInfo: DesignTokensDark.backgroundAccentInfo,
     backgroundAccentPrimary: DesignTokensDark.backgroundAccentPrimary,
     backgroundAccentSecondary: DesignTokensDark.backgroundAccentSecondary,
+    backgroundAccentSuccess: DesignTokensDark.backgroundAccentSuccess,
+    backgroundAccentWarning: DesignTokensDark.backgroundAccentWarning,
     backgroundAlertBasicPrimary: DesignTokensDark.backgroundAlertBasicPrimary,
     backgroundAlertBasicSecondary:
         DesignTokensDark.backgroundAlertBasicSecondary,
@@ -1696,6 +1730,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundStaticOnColor: DesignTokensDark.backgroundStaticOnColor,
     backgroundStaticRaised: DesignTokensDark.backgroundStaticRaised,
     backgroundStaticSunken: DesignTokensDark.backgroundStaticSunken,
+    borderAccent: DesignTokensDark.borderAccent,
     borderAlertBasic: DesignTokensDark.borderAlertBasic,
     borderAlertDanger: DesignTokensDark.borderAlertDanger,
     borderAlertInfo: DesignTokensDark.borderAlertInfo,
@@ -1810,19 +1845,19 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBasicsBlack: DesignTokensDark.paletteBasicsBlack,
     paletteBasicsWhite: DesignTokensDark.paletteBasicsWhite,
     paletteBasicsWhite64: DesignTokensDark.paletteBasicsWhite64,
-    paletteBrandCoral100: DesignTokensDark.paletteBrandCoral50,
-    paletteBrandCoral1000: DesignTokensDark.paletteBrandCoral900,
-    paletteBrandCoral150: DesignTokensDark.paletteBrandCoral100,
-    paletteBrandCoral200: DesignTokensDark.paletteBrandCoral150,
-    paletteBrandCoral25: DesignTokensDark.paletteBrandCoral0,
-    paletteBrandCoral300: DesignTokensDark.paletteBrandCoral200,
-    paletteBrandCoral400: DesignTokensDark.paletteBrandCoral300,
-    paletteBrandCoral50: DesignTokensDark.paletteBrandCoral25,
-    paletteBrandCoral500: DesignTokensDark.paletteBrandCoral400,
-    paletteBrandCoral600: DesignTokensDark.paletteBrandCoral500,
-    paletteBrandCoral700: DesignTokensDark.paletteBrandCoral600,
-    paletteBrandCoral800: DesignTokensDark.paletteBrandCoral700,
-    paletteBrandCoral900: DesignTokensDark.paletteBrandCoral800,
+    paletteBrandCoral100: DesignTokensDark.paletteBrandCoral100,
+    paletteBrandCoral1000: DesignTokensDark.paletteBrandCoral1000,
+    paletteBrandCoral150: DesignTokensDark.paletteBrandCoral150,
+    paletteBrandCoral200: DesignTokensDark.paletteBrandCoral200,
+    paletteBrandCoral25: DesignTokensDark.paletteBrandCoral25,
+    paletteBrandCoral300: DesignTokensDark.paletteBrandCoral300,
+    paletteBrandCoral400: DesignTokensDark.paletteBrandCoral400,
+    paletteBrandCoral50: DesignTokensDark.paletteBrandCoral50,
+    paletteBrandCoral500: DesignTokensDark.paletteBrandCoral500,
+    paletteBrandCoral600: DesignTokensDark.paletteBrandCoral600,
+    paletteBrandCoral700: DesignTokensDark.paletteBrandCoral700,
+    paletteBrandCoral800: DesignTokensDark.paletteBrandCoral800,
+    paletteBrandCoral900: DesignTokensDark.paletteBrandCoral900,
     paletteBrandGrey0: DesignTokensDark.paletteBrandGrey0,
     paletteBrandGrey100: DesignTokensDark.paletteBrandGrey100,
     paletteBrandGrey1000: DesignTokensDark.paletteBrandGrey1000,
@@ -1837,19 +1872,19 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandGrey700: DesignTokensDark.paletteBrandGrey700,
     paletteBrandGrey800: DesignTokensDark.paletteBrandGrey800,
     paletteBrandGrey900: DesignTokensDark.paletteBrandGrey900,
-    paletteBrandIndigo100: DesignTokensDark.paletteBrandIndigo50,
-    paletteBrandIndigo1000: DesignTokensDark.paletteBrandIndigo900,
-    paletteBrandIndigo150: DesignTokensDark.paletteBrandIndigo100,
-    paletteBrandIndigo200: DesignTokensDark.paletteBrandIndigo150,
-    paletteBrandIndigo25: DesignTokensDark.paletteBrandIndigo0,
-    paletteBrandIndigo300: DesignTokensDark.paletteBrandIndigo200,
-    paletteBrandIndigo400: DesignTokensDark.paletteBrandIndigo300,
-    paletteBrandIndigo50: DesignTokensDark.paletteBrandIndigo25,
-    paletteBrandIndigo500: DesignTokensDark.paletteBrandIndigo400,
-    paletteBrandIndigo600: DesignTokensDark.paletteBrandIndigo500,
-    paletteBrandIndigo700: DesignTokensDark.paletteBrandIndigo600,
-    paletteBrandIndigo800: DesignTokensDark.paletteBrandIndigo700,
-    paletteBrandIndigo900: DesignTokensDark.paletteBrandIndigo800,
+    paletteBrandIndigo100: DesignTokensDark.paletteBrandIndigo100,
+    paletteBrandIndigo1000: DesignTokensDark.paletteBrandIndigo1000,
+    paletteBrandIndigo150: DesignTokensDark.paletteBrandIndigo150,
+    paletteBrandIndigo200: DesignTokensDark.paletteBrandIndigo200,
+    paletteBrandIndigo25: DesignTokensDark.paletteBrandIndigo25,
+    paletteBrandIndigo300: DesignTokensDark.paletteBrandIndigo300,
+    paletteBrandIndigo400: DesignTokensDark.paletteBrandIndigo400,
+    paletteBrandIndigo50: DesignTokensDark.paletteBrandIndigo50,
+    paletteBrandIndigo500: DesignTokensDark.paletteBrandIndigo500,
+    paletteBrandIndigo600: DesignTokensDark.paletteBrandIndigo600,
+    paletteBrandIndigo700: DesignTokensDark.paletteBrandIndigo700,
+    paletteBrandIndigo800: DesignTokensDark.paletteBrandIndigo800,
+    paletteBrandIndigo900: DesignTokensDark.paletteBrandIndigo900,
     paletteBrandNight0: DesignTokensDark.paletteBrandNight0,
     paletteBrandNight064: DesignTokensDark.paletteBrandNight064,
     paletteBrandNight100: DesignTokensDark.paletteBrandNight100,
@@ -1874,58 +1909,58 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteDatavizPink: DesignTokensDark.paletteDatavizPink,
     paletteDatavizPurple: DesignTokensDark.paletteDatavizPurple,
     paletteDatavizRed: DesignTokensDark.paletteDatavizRed,
-    paletteSemanticBlue100: DesignTokensDark.paletteSemanticBlue50,
-    paletteSemanticBlue1000: DesignTokensDark.paletteSemanticBlue900,
-    paletteSemanticBlue150: DesignTokensDark.paletteSemanticBlue100,
-    paletteSemanticBlue200: DesignTokensDark.paletteSemanticBlue150,
-    paletteSemanticBlue25: DesignTokensDark.paletteSemanticBlue0,
-    paletteSemanticBlue300: DesignTokensDark.paletteSemanticBlue200,
-    paletteSemanticBlue400: DesignTokensDark.paletteSemanticBlue300,
-    paletteSemanticBlue50: DesignTokensDark.paletteSemanticBlue25,
-    paletteSemanticBlue500: DesignTokensDark.paletteSemanticBlue400,
-    paletteSemanticBlue600: DesignTokensDark.paletteSemanticBlue500,
-    paletteSemanticBlue700: DesignTokensDark.paletteSemanticBlue600,
-    paletteSemanticBlue800: DesignTokensDark.paletteSemanticBlue700,
-    paletteSemanticBlue900: DesignTokensDark.paletteSemanticBlue800,
-    paletteSemanticGreen100: DesignTokensDark.paletteSemanticGreen50,
-    paletteSemanticGreen1000: DesignTokensDark.paletteSemanticGreen900,
-    paletteSemanticGreen150: DesignTokensDark.paletteSemanticGreen100,
-    paletteSemanticGreen200: DesignTokensDark.paletteSemanticGreen150,
-    paletteSemanticGreen25: DesignTokensDark.paletteSemanticGreen0,
-    paletteSemanticGreen300: DesignTokensDark.paletteSemanticGreen200,
-    paletteSemanticGreen400: DesignTokensDark.paletteSemanticGreen300,
-    paletteSemanticGreen50: DesignTokensDark.paletteSemanticGreen25,
-    paletteSemanticGreen500: DesignTokensDark.paletteSemanticGreen400,
-    paletteSemanticGreen600: DesignTokensDark.paletteSemanticGreen500,
-    paletteSemanticGreen700: DesignTokensDark.paletteSemanticGreen600,
-    paletteSemanticGreen800: DesignTokensDark.paletteSemanticGreen700,
-    paletteSemanticGreen900: DesignTokensDark.paletteSemanticGreen800,
-    paletteSemanticOrange100: DesignTokensDark.paletteSemanticOrange50,
-    paletteSemanticOrange1000: DesignTokensDark.paletteSemanticOrange900,
-    paletteSemanticOrange150: DesignTokensDark.paletteSemanticOrange100,
-    paletteSemanticOrange200: DesignTokensDark.paletteSemanticOrange150,
-    paletteSemanticOrange25: DesignTokensDark.paletteSemanticOrange0,
-    paletteSemanticOrange300: DesignTokensDark.paletteSemanticOrange200,
-    paletteSemanticOrange400: DesignTokensDark.paletteSemanticOrange300,
-    paletteSemanticOrange50: DesignTokensDark.paletteSemanticOrange25,
-    paletteSemanticOrange500: DesignTokensDark.paletteSemanticOrange400,
-    paletteSemanticOrange600: DesignTokensDark.paletteSemanticOrange500,
-    paletteSemanticOrange700: DesignTokensDark.paletteSemanticOrange600,
-    paletteSemanticOrange800: DesignTokensDark.paletteSemanticOrange700,
-    paletteSemanticOrange900: DesignTokensDark.paletteSemanticOrange800,
-    paletteSemanticRed100: DesignTokensDark.paletteSemanticRed50,
-    paletteSemanticRed1000: DesignTokensDark.paletteSemanticRed900,
-    paletteSemanticRed150: DesignTokensDark.paletteSemanticRed100,
-    paletteSemanticRed200: DesignTokensDark.paletteSemanticRed150,
-    paletteSemanticRed25: DesignTokensDark.paletteSemanticRed0,
-    paletteSemanticRed300: DesignTokensDark.paletteSemanticRed200,
-    paletteSemanticRed400: DesignTokensDark.paletteSemanticRed300,
-    paletteSemanticRed50: DesignTokensDark.paletteSemanticRed25,
-    paletteSemanticRed500: DesignTokensDark.paletteSemanticRed400,
-    paletteSemanticRed600: DesignTokensDark.paletteSemanticRed500,
-    paletteSemanticRed700: DesignTokensDark.paletteSemanticRed600,
-    paletteSemanticRed800: DesignTokensDark.paletteSemanticRed700,
-    paletteSemanticRed900: DesignTokensDark.paletteSemanticRed800,
+    paletteSemanticBlue100: DesignTokensDark.paletteSemanticBlue100,
+    paletteSemanticBlue1000: DesignTokensDark.paletteSemanticBlue1000,
+    paletteSemanticBlue150: DesignTokensDark.paletteSemanticBlue150,
+    paletteSemanticBlue200: DesignTokensDark.paletteSemanticBlue200,
+    paletteSemanticBlue25: DesignTokensDark.paletteSemanticBlue25,
+    paletteSemanticBlue300: DesignTokensDark.paletteSemanticBlue300,
+    paletteSemanticBlue400: DesignTokensDark.paletteSemanticBlue400,
+    paletteSemanticBlue50: DesignTokensDark.paletteSemanticBlue50,
+    paletteSemanticBlue500: DesignTokensDark.paletteSemanticBlue500,
+    paletteSemanticBlue600: DesignTokensDark.paletteSemanticBlue600,
+    paletteSemanticBlue700: DesignTokensDark.paletteSemanticBlue700,
+    paletteSemanticBlue800: DesignTokensDark.paletteSemanticBlue800,
+    paletteSemanticBlue900: DesignTokensDark.paletteSemanticBlue900,
+    paletteSemanticGreen100: DesignTokensDark.paletteSemanticGreen100,
+    paletteSemanticGreen1000: DesignTokensDark.paletteSemanticGreen1000,
+    paletteSemanticGreen150: DesignTokensDark.paletteSemanticGreen150,
+    paletteSemanticGreen200: DesignTokensDark.paletteSemanticGreen200,
+    paletteSemanticGreen25: DesignTokensDark.paletteSemanticGreen25,
+    paletteSemanticGreen300: DesignTokensDark.paletteSemanticGreen300,
+    paletteSemanticGreen400: DesignTokensDark.paletteSemanticGreen400,
+    paletteSemanticGreen50: DesignTokensDark.paletteSemanticGreen50,
+    paletteSemanticGreen500: DesignTokensDark.paletteSemanticGreen500,
+    paletteSemanticGreen600: DesignTokensDark.paletteSemanticGreen600,
+    paletteSemanticGreen700: DesignTokensDark.paletteSemanticGreen700,
+    paletteSemanticGreen800: DesignTokensDark.paletteSemanticGreen800,
+    paletteSemanticGreen900: DesignTokensDark.paletteSemanticGreen900,
+    paletteSemanticOrange100: DesignTokensDark.paletteSemanticOrange100,
+    paletteSemanticOrange1000: DesignTokensDark.paletteSemanticOrange1000,
+    paletteSemanticOrange150: DesignTokensDark.paletteSemanticOrange150,
+    paletteSemanticOrange200: DesignTokensDark.paletteSemanticOrange200,
+    paletteSemanticOrange25: DesignTokensDark.paletteSemanticOrange25,
+    paletteSemanticOrange300: DesignTokensDark.paletteSemanticOrange300,
+    paletteSemanticOrange400: DesignTokensDark.paletteSemanticOrange400,
+    paletteSemanticOrange50: DesignTokensDark.paletteSemanticOrange50,
+    paletteSemanticOrange500: DesignTokensDark.paletteSemanticOrange500,
+    paletteSemanticOrange600: DesignTokensDark.paletteSemanticOrange600,
+    paletteSemanticOrange700: DesignTokensDark.paletteSemanticOrange700,
+    paletteSemanticOrange800: DesignTokensDark.paletteSemanticOrange800,
+    paletteSemanticOrange900: DesignTokensDark.paletteSemanticOrange900,
+    paletteSemanticRed100: DesignTokensDark.paletteSemanticRed100,
+    paletteSemanticRed1000: DesignTokensDark.paletteSemanticRed1000,
+    paletteSemanticRed150: DesignTokensDark.paletteSemanticRed150,
+    paletteSemanticRed200: DesignTokensDark.paletteSemanticRed200,
+    paletteSemanticRed25: DesignTokensDark.paletteSemanticRed25,
+    paletteSemanticRed300: DesignTokensDark.paletteSemanticRed300,
+    paletteSemanticRed400: DesignTokensDark.paletteSemanticRed400,
+    paletteSemanticRed50: DesignTokensDark.paletteSemanticRed50,
+    paletteSemanticRed500: DesignTokensDark.paletteSemanticRed500,
+    paletteSemanticRed600: DesignTokensDark.paletteSemanticRed600,
+    paletteSemanticRed700: DesignTokensDark.paletteSemanticRed700,
+    paletteSemanticRed800: DesignTokensDark.paletteSemanticRed800,
+    paletteSemanticRed900: DesignTokensDark.paletteSemanticRed900,
     textAlertBasic: DesignTokensDark.textAlertBasic,
     textAlertDanger: DesignTokensDark.textAlertDanger,
     textAlertInfo: DesignTokensDark.textAlertInfo,
