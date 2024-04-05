@@ -9,8 +9,14 @@ part of 'optimus_tokens.dart';
 // **************************************************************************
 
 mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
+  Color get backgroundAccentBrand;
+  Color get backgroundAccentDanger;
+  Color get backgroundAccentGradient;
+  Color get backgroundAccentInfo;
   Color get backgroundAccentPrimary;
   Color get backgroundAccentSecondary;
+  Color get backgroundAccentSuccess;
+  Color get backgroundAccentWarning;
   Color get backgroundAlertBasicPrimary;
   Color get backgroundAlertBasicSecondary;
   Color get backgroundAlertDangerPrimary;
@@ -58,6 +64,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get backgroundStaticOnColor;
   Color get backgroundStaticRaised;
   Color get backgroundStaticSunken;
+  Color get borderAccent;
   Color get borderAlertBasic;
   Color get borderAlertDanger;
   Color get borderAlertInfo;
@@ -399,8 +406,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
 
   @override
   OptimusTokens copyWith({
+    Color? backgroundAccentBrand,
+    Color? backgroundAccentDanger,
+    Color? backgroundAccentGradient,
+    Color? backgroundAccentInfo,
     Color? backgroundAccentPrimary,
     Color? backgroundAccentSecondary,
+    Color? backgroundAccentSuccess,
+    Color? backgroundAccentWarning,
     Color? backgroundAlertBasicPrimary,
     Color? backgroundAlertBasicSecondary,
     Color? backgroundAlertDangerPrimary,
@@ -448,6 +461,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? backgroundStaticOnColor,
     Color? backgroundStaticRaised,
     Color? backgroundStaticSunken,
+    Color? borderAccent,
     Color? borderAlertBasic,
     Color? borderAlertDanger,
     Color? borderAlertInfo,
@@ -788,10 +802,21 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     TextDecoration? textDecorationUnderline,
   }) {
     return OptimusTokens(
+      backgroundAccentBrand:
+          backgroundAccentBrand ?? this.backgroundAccentBrand,
+      backgroundAccentDanger:
+          backgroundAccentDanger ?? this.backgroundAccentDanger,
+      backgroundAccentGradient:
+          backgroundAccentGradient ?? this.backgroundAccentGradient,
+      backgroundAccentInfo: backgroundAccentInfo ?? this.backgroundAccentInfo,
       backgroundAccentPrimary:
           backgroundAccentPrimary ?? this.backgroundAccentPrimary,
       backgroundAccentSecondary:
           backgroundAccentSecondary ?? this.backgroundAccentSecondary,
+      backgroundAccentSuccess:
+          backgroundAccentSuccess ?? this.backgroundAccentSuccess,
+      backgroundAccentWarning:
+          backgroundAccentWarning ?? this.backgroundAccentWarning,
       backgroundAlertBasicPrimary:
           backgroundAlertBasicPrimary ?? this.backgroundAlertBasicPrimary,
       backgroundAlertBasicSecondary:
@@ -893,6 +918,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           backgroundStaticRaised ?? this.backgroundStaticRaised,
       backgroundStaticSunken:
           backgroundStaticSunken ?? this.backgroundStaticSunken,
+      borderAccent: borderAccent ?? this.borderAccent,
       borderAlertBasic: borderAlertBasic ?? this.borderAlertBasic,
       borderAlertDanger: borderAlertDanger ?? this.borderAlertDanger,
       borderAlertInfo: borderAlertInfo ?? this.borderAlertInfo,
@@ -1374,10 +1400,22 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   OptimusTokens lerp(covariant ThemeExtension<OptimusTokens>? other, double t) {
     if (other is! OptimusTokens) return this as OptimusTokens;
     return OptimusTokens(
+      backgroundAccentBrand:
+          Color.lerp(backgroundAccentBrand, other.backgroundAccentBrand, t)!,
+      backgroundAccentDanger:
+          Color.lerp(backgroundAccentDanger, other.backgroundAccentDanger, t)!,
+      backgroundAccentGradient: Color.lerp(
+          backgroundAccentGradient, other.backgroundAccentGradient, t)!,
+      backgroundAccentInfo:
+          Color.lerp(backgroundAccentInfo, other.backgroundAccentInfo, t)!,
       backgroundAccentPrimary: Color.lerp(
           backgroundAccentPrimary, other.backgroundAccentPrimary, t)!,
       backgroundAccentSecondary: Color.lerp(
           backgroundAccentSecondary, other.backgroundAccentSecondary, t)!,
+      backgroundAccentSuccess: Color.lerp(
+          backgroundAccentSuccess, other.backgroundAccentSuccess, t)!,
+      backgroundAccentWarning: Color.lerp(
+          backgroundAccentWarning, other.backgroundAccentWarning, t)!,
       backgroundAlertBasicPrimary: Color.lerp(
           backgroundAlertBasicPrimary, other.backgroundAlertBasicPrimary, t)!,
       backgroundAlertBasicSecondary: Color.lerp(backgroundAlertBasicSecondary,
@@ -1517,6 +1555,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(backgroundStaticRaised, other.backgroundStaticRaised, t)!,
       backgroundStaticSunken:
           Color.lerp(backgroundStaticSunken, other.backgroundStaticSunken, t)!,
+      borderAccent: Color.lerp(borderAccent, other.borderAccent, t)!,
       borderAlertBasic:
           Color.lerp(borderAlertBasic, other.borderAlertBasic, t)!,
       borderAlertDanger:
@@ -2114,10 +2153,22 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is OptimusTokens &&
+            const DeepCollectionEquality()
+                .equals(backgroundAccentBrand, other.backgroundAccentBrand) &&
+            const DeepCollectionEquality()
+                .equals(backgroundAccentDanger, other.backgroundAccentDanger) &&
+            const DeepCollectionEquality().equals(
+                backgroundAccentGradient, other.backgroundAccentGradient) &&
+            const DeepCollectionEquality()
+                .equals(backgroundAccentInfo, other.backgroundAccentInfo) &&
             const DeepCollectionEquality().equals(
                 backgroundAccentPrimary, other.backgroundAccentPrimary) &&
             const DeepCollectionEquality().equals(
                 backgroundAccentSecondary, other.backgroundAccentSecondary) &&
+            const DeepCollectionEquality().equals(
+                backgroundAccentSuccess, other.backgroundAccentSuccess) &&
+            const DeepCollectionEquality().equals(
+                backgroundAccentWarning, other.backgroundAccentWarning) &&
             const DeepCollectionEquality().equals(backgroundAlertBasicPrimary,
                 other.backgroundAlertBasicPrimary) &&
             const DeepCollectionEquality().equals(backgroundAlertBasicSecondary,
@@ -2155,12 +2206,9 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
                 .equals(backgroundDatavizPink, other.backgroundDatavizPink) &&
             const DeepCollectionEquality().equals(
                 backgroundDatavizPurple, other.backgroundDatavizPurple) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDatavizRed, other.backgroundDatavizRed) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDisabled, other.backgroundDisabled) &&
-            const DeepCollectionEquality().equals(
-                backgroundInteractiveDangerActive, other.backgroundInteractiveDangerActive) &&
+            const DeepCollectionEquality().equals(backgroundDatavizRed, other.backgroundDatavizRed) &&
+            const DeepCollectionEquality().equals(backgroundDisabled, other.backgroundDisabled) &&
+            const DeepCollectionEquality().equals(backgroundInteractiveDangerActive, other.backgroundInteractiveDangerActive) &&
             const DeepCollectionEquality().equals(backgroundInteractiveDangerDefault, other.backgroundInteractiveDangerDefault) &&
             const DeepCollectionEquality().equals(backgroundInteractiveDangerHover, other.backgroundInteractiveDangerHover) &&
             const DeepCollectionEquality().equals(backgroundInteractiveNeutralActive, other.backgroundInteractiveNeutralActive) &&
@@ -2188,6 +2236,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(backgroundStaticOnColor, other.backgroundStaticOnColor) &&
             const DeepCollectionEquality().equals(backgroundStaticRaised, other.backgroundStaticRaised) &&
             const DeepCollectionEquality().equals(backgroundStaticSunken, other.backgroundStaticSunken) &&
+            const DeepCollectionEquality().equals(borderAccent, other.borderAccent) &&
             const DeepCollectionEquality().equals(borderAlertBasic, other.borderAlertBasic) &&
             const DeepCollectionEquality().equals(borderAlertDanger, other.borderAlertDanger) &&
             const DeepCollectionEquality().equals(borderAlertInfo, other.borderAlertInfo) &&
@@ -2532,8 +2581,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   int get hashCode {
     return Object.hashAll([
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(backgroundAccentBrand),
+      const DeepCollectionEquality().hash(backgroundAccentDanger),
+      const DeepCollectionEquality().hash(backgroundAccentGradient),
+      const DeepCollectionEquality().hash(backgroundAccentInfo),
       const DeepCollectionEquality().hash(backgroundAccentPrimary),
       const DeepCollectionEquality().hash(backgroundAccentSecondary),
+      const DeepCollectionEquality().hash(backgroundAccentSuccess),
+      const DeepCollectionEquality().hash(backgroundAccentWarning),
       const DeepCollectionEquality().hash(backgroundAlertBasicPrimary),
       const DeepCollectionEquality().hash(backgroundAlertBasicSecondary),
       const DeepCollectionEquality().hash(backgroundAlertDangerPrimary),
@@ -2588,6 +2643,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(backgroundStaticOnColor),
       const DeepCollectionEquality().hash(backgroundStaticRaised),
       const DeepCollectionEquality().hash(backgroundStaticSunken),
+      const DeepCollectionEquality().hash(borderAccent),
       const DeepCollectionEquality().hash(borderAlertBasic),
       const DeepCollectionEquality().hash(borderAlertDanger),
       const DeepCollectionEquality().hash(borderAlertInfo),
