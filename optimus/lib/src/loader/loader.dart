@@ -76,26 +76,26 @@ class OptimusCircleLoader extends StatelessWidget {
           tokens.backgroundInteractiveNeutralBoldActive,
       };
 
-  Color _getTrackColor(OptimusTokens tokens) =>
-      tokens.backgroundInteractiveNeutralActive;
-
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final trackColor = tokens.backgroundInteractiveNeutralActive;
+    final indicatorColor = _getIndicatorColor(tokens);
+    final size = _getLoaderSize(tokens);
 
     return SizedBox(
-      height: _getLoaderSize(tokens),
-      width: _getLoaderSize(tokens),
+      height: size,
+      width: size,
       child: variant.map(
         indeterminate: (_) => SpinningLoader(
           progress: 25,
-          trackColor: _getTrackColor(tokens),
-          indicatorColor: _getIndicatorColor(tokens),
+          trackColor: trackColor,
+          indicatorColor: indicatorColor,
         ),
         determinate: (v) => CustomPaint(
           foregroundPainter: CirclePainter(
-            trackColor: _getTrackColor(tokens),
-            indicatorColor: _getIndicatorColor(tokens),
+            trackColor: trackColor,
+            indicatorColor: indicatorColor,
             progress: v.progress,
           ),
         ),
