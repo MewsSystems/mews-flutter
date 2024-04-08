@@ -3,15 +3,21 @@
 //
 
 // Do not edit directly
-// Generated on Fri, 15 Mar 2024 12:25:56 GMT
+// Generated on Thu, 04 Apr 2024 17:15:46 GMT
 
 import 'package:flutter/widgets.dart';
 
 class DesignTokensDark {
   const DesignTokensDark._();
 
+  static const Color backgroundAccentBrand = Color(0xFFAEACFA);
+  static const Color backgroundAccentDanger = Color(0xFFEC5C5C);
+  static const Color backgroundAccentGradient = Color(0xFF000000);
+  static const Color backgroundAccentInfo = Color(0xFF4F90F2);
   static const Color backgroundAccentPrimary = Color(0xFF7A78F6);
   static const Color backgroundAccentSecondary = Color(0xFFFA5F69);
+  static const Color backgroundAccentSuccess = Color(0xFF9EF28D);
+  static const Color backgroundAccentWarning = Color(0xFFF6CB64);
   static const Color backgroundAlertBasicPrimary = Color(0xFF8D8DAC);
   static const Color backgroundAlertBasicSecondary = Color(0xFF22222E);
   static const Color backgroundAlertDangerPrimary = Color(0xFFEC5C5C);
@@ -63,6 +69,7 @@ class DesignTokensDark {
   static const Color backgroundStaticOnColor = Color(0xFFFFFFFF);
   static const Color backgroundStaticRaised = Color(0xFF16161F);
   static const Color backgroundStaticSunken = Color(0xFF000000);
+  static const Color borderAccent = Color(0xFFFFFFFF);
   static const Color borderAlertBasic = Color(0xFF53536D);
   static const Color borderAlertDanger = Color(0xFFD74141);
   static const Color borderAlertInfo = Color(0xFF1F69D7);
