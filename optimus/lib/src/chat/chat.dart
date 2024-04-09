@@ -358,14 +358,11 @@ class _Status extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return DefaultTextStyle.merge(
       style: tokens.bodySmall.copyWith(
-        color: theme.isDark
-            ? theme.colors.neutral0t64
-            : theme.colors.neutral1000t64,
+        color: tokens.textStaticTertiary,
         fontWeight: FontWeight.w600,
       ),
       child: child,
@@ -378,7 +375,6 @@ class _StatusCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return Container(
@@ -388,9 +384,7 @@ class _StatusCircle extends StatelessWidget {
         borderRadius: BorderRadius.all(tokens.borderRadius100),
         border: Border.all(
           width: tokens.borderWidth100,
-          color: theme.isDark
-              ? theme.colors.neutral0t64
-              : theme.colors.neutral1000t64,
+          color: tokens.textStaticTertiary,
         ),
       ),
     );

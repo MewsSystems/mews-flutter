@@ -70,35 +70,32 @@ class OptimusCircleLoader extends StatelessWidget {
         OptimusCircleLoaderSize.large => tokens.sizing700,
       };
 
-  Color _getIndicatorColor(OptimusThemeData theme) => switch (appearance) {
-        OptimusCircleLoaderAppearance.normal => theme.colors.primary500,
-        OptimusCircleLoaderAppearance.contrast => theme.colors.neutral0,
-      };
-
-  Color _getTrackColor(OptimusThemeData theme) => switch (appearance) {
-        OptimusCircleLoaderAppearance.normal =>
-          theme.colors.neutral50, // TODO(witwash): replace with tokens
-        OptimusCircleLoaderAppearance.contrast => theme.colors.neutral0t32,
+  Color _getIndicatorColor(OptimusTokens tokens) => switch (appearance) {
+        OptimusCircleLoaderAppearance.normal => tokens.backgroundAccentPrimary,
+        OptimusCircleLoaderAppearance.contrast =>
+          tokens.backgroundInteractiveNeutralBoldActive,
       };
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
+    final trackColor = tokens.backgroundInteractiveNeutralActive;
+    final indicatorColor = _getIndicatorColor(tokens);
+    final size = _getLoaderSize(tokens);
 
     return SizedBox(
-      height: _getLoaderSize(tokens),
-      width: _getLoaderSize(tokens),
+      height: size,
+      width: size,
       child: variant.map(
         indeterminate: (_) => SpinningLoader(
           progress: 25,
-          trackColor: _getTrackColor(theme),
-          indicatorColor: _getIndicatorColor(theme),
+          trackColor: trackColor,
+          indicatorColor: indicatorColor,
         ),
         determinate: (v) => CustomPaint(
           foregroundPainter: CirclePainter(
-            trackColor: _getTrackColor(theme),
-            indicatorColor: _getIndicatorColor(theme),
+            trackColor: trackColor,
+            indicatorColor: indicatorColor,
             progress: v.progress,
           ),
         ),

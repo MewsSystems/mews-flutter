@@ -183,14 +183,11 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
           tokens.bodyLargeStrong.copyWith(color: _textColor),
       };
 
-  Color get _textColor =>
-      _value == null ? _placeholderColor : _defaultTextColor;
-
-  Color get _placeholderColor =>
-      theme.isDark ? theme.colors.neutral0t64 : theme.colors.neutral1000t64;
-
-  Color get _defaultTextColor =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000;
+  Color get _textColor => widget.isEnabled
+      ? _value == null
+          ? tokens.textStaticSecondary
+          : tokens.textStaticPrimary
+      : tokens.textDisabled;
 
   T? get _value => widget.multiselect ? null : widget.value;
 
