@@ -6,7 +6,7 @@ import 'package:optimus/src/theme/optimus_tokens.dart';
 export 'package:intl/intl.dart' show DateFormat;
 
 export 'optimus_icons.dart';
-export 'src/avatar.dart';
+export 'src/avatar/avatar.dart';
 export 'src/badge/badge.dart';
 export 'src/badge/badge_variant.dart';
 export 'src/borders.dart';
