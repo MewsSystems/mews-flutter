@@ -16,7 +16,7 @@ jobs:
         uses: CQLabs/setup-dcm@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          version: "1.15.0"
+          version: "1.16.2"
 
       - uses: ./.github/actions/setup
 
