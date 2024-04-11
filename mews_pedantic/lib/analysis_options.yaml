@@ -259,6 +259,7 @@ dart_code_metrics:
     # - avoid-collapsible-if
     - avoid-collection-methods-with-unrelated-types
     # - avoid-collection-mutating-methods
+    - avoid-conditions-with-boolean-literals
     - avoid-contradictory-expressions
     # - avoid-declaring-call-method
     - avoid-double-slash-imports
@@ -386,6 +387,9 @@ dart_code_metrics:
     # - match-positional-field-names-on-assignment
     # - member-ordering
     # - missing-test-assertion
+    - missing-use-result-annotation:
+        types:
+          - Either
     - move-records-to-typedefs
     - move-variable-closer-to-its-usage
     - move-variable-outside-iteration
@@ -400,6 +404,7 @@ dart_code_metrics:
     - no-equal-switch-expression-cases
     - no-equal-then-else
     # - no-magic-number
+    # - no-magic-string
     - no-object-declaration
     # - parameters-ordering
     # - prefer-addition-subtraction-assignments
@@ -496,6 +501,7 @@ dart_code_metrics:
     - prefer-dedicated-media-query-methods
     - prefer-define-hero-tag
     # - prefer-extracting-callbacks
+    # - prefer-for-loop-in-children
     # - prefer-single-widget-per-file
     - prefer-sliver-prefix
     - prefer-text-rich
