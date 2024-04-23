@@ -222,6 +222,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   bool get _shouldShowPrefix => widget.leading != null || widget.prefix != null;
 
+  bool get _isPasswordToggleVisible =>
+      widget.isPasswordField && !widget.showLoader;
+
   void _handleStateUpdate() => setState(() {});
 
   void _handlePasswordTap() => setState(
@@ -262,7 +265,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               suffix: widget.suffix,
               trailing: widget.trailing,
               counter: widget.inline ? counter : null,
-              passwordButton: widget.isPasswordField
+              passwordButton: _isPasswordToggleVisible
                   ? _PasswordButton(
                       onTap: _handlePasswordTap,
                       isEnabled: _isShowPasswordEnabled,
