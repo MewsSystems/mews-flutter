@@ -52,6 +52,7 @@ class OptimusInputField extends StatefulWidget {
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
     this.inline = false,
+    this.statusBarState,
   });
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -160,6 +161,8 @@ class OptimusInputField extends StatefulWidget {
   /// the vertical direction.
   final bool inline;
 
+  final OptimusStatusBarState? statusBarState;
+
   bool get hasError {
     final error = this.error;
 
@@ -254,6 +257,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       isRequired: widget.isRequired,
       inline: widget.inline,
       inputCounter: counter,
+      statusBarState: widget.statusBarState,
       prefix: _shouldShowPrefix
           ? Prefix(prefix: widget.prefix, leading: widget.leading)
           : null,

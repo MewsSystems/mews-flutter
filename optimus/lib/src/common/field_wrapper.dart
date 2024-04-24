@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/field_error.dart';
 import 'package:optimus/src/common/field_label.dart';
@@ -26,6 +24,7 @@ class FieldWrapper extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.inputCounter,
     this.inline = false,
+    this.statusBarState,
   });
 
   final bool isEnabled;
@@ -46,6 +45,7 @@ class FieldWrapper extends StatefulWidget {
   final OptimusWidgetSize size;
   final Widget? inputCounter;
   final bool inline;
+  final OptimusStatusBarState? statusBarState;
 
   bool get hasError {
     final error = this.error;
@@ -186,6 +186,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             ),
           ),
         ),
+        if (widget.statusBarState case final inputState?)
+          _StatusBar(state: inputState),
         if (_hasFooter)
           _InputFooter(
             size: widget.size,
@@ -430,6 +432,49 @@ class _Styled extends StatelessWidget {
       ),
     );
   }
+}
+
+enum OptimusStatusBarState { empty, danger, medium, strong }
+
+class _StatusBar extends StatelessWidget {
+  const _StatusBar({required this.state});
+
+  final OptimusStatusBarState state;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.only(top: tokens.spacing50),
+      child: SizedBox(
+        height: tokens.sizing50,
+        child: AnimatedFractionallySizedBox(
+          duration: _kAnimationDuration,
+          alignment: Alignment.centerLeft,
+          heightFactor: 1,
+          widthFactor: state.progress,
+          child: ColoredBox(color: state.getStatusBarColor(tokens)),
+        ),
+      ),
+    );
+  }
+}
+
+extension on OptimusStatusBarState {
+  Color getStatusBarColor(OptimusTokens tokens) => switch (this) {
+        OptimusStatusBarState.empty => Colors.transparent,
+        OptimusStatusBarState.danger => tokens.backgroundAlertDangerPrimary,
+        OptimusStatusBarState.medium => tokens.backgroundAlertWarningPrimary,
+        OptimusStatusBarState.strong => tokens.backgroundAlertSuccessPrimary,
+      };
+
+  double get progress => switch (this) {
+        OptimusStatusBarState.empty => 0,
+        OptimusStatusBarState.danger => 0.33,
+        OptimusStatusBarState.medium => 0.66,
+        OptimusStatusBarState.strong => 1,
+      };
 }
 
 extension on OptimusWidgetSize {
