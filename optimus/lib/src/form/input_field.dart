@@ -134,7 +134,7 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
 
-  /// If true, displays [OptimusCircleLoader].
+  /// If true, displays [OptimusSpinner].
   final bool showLoader;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}

@@ -66,7 +66,7 @@ export 'src/link/standalone_link.dart';
 export 'src/lists/font_variant.dart';
 export 'src/lists/list_tile.dart';
 export 'src/lists/nav_list_tile.dart';
-export 'src/loader/loader.dart';
+export 'src/loader/spinner.dart';
 export 'src/logo.dart';
 export 'src/number_picker/number_picker.dart';
 export 'src/radio/radio.dart';
