@@ -38,12 +38,10 @@ class Suffix extends StatelessWidget {
         children: [
           if (counter case final counter?) counter,
           if (suffix case final suffix?) suffix,
-          if (showLoader) _loader,
           if (clearAllButton case final clearAllButton?) clearAllButton,
-          if (passwordButton case final passwordButton?)
-            passwordButton
-          else if (trailing case final trailing?)
-            trailing,
+          if (showLoader) _loader,
+          if (passwordButton case final passwordButton?) passwordButton,
+          if (trailing case final trailing?) trailing,
           if (inlineError case final inlineError?) inlineError,
         ],
       );
