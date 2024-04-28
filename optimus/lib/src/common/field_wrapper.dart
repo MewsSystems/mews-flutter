@@ -464,8 +464,9 @@ class _StatusBar extends StatelessWidget {
 
 extension on OptimusStatusBarState {
   Color getStatusBarColor(OptimusTokens tokens) => switch (this) {
-        OptimusStatusBarState.empty => Colors.transparent,
-        OptimusStatusBarState.danger => tokens.backgroundAlertDangerPrimary,
+        OptimusStatusBarState.empty ||
+        OptimusStatusBarState.danger =>
+          tokens.backgroundAlertDangerPrimary,
         OptimusStatusBarState.medium => tokens.backgroundAlertWarningPrimary,
         OptimusStatusBarState.strong => tokens.backgroundAlertSuccessPrimary,
       };
