@@ -454,7 +454,7 @@ class _StatusBar extends StatelessWidget {
           alignment: Alignment.centerLeft,
           heightFactor: 1,
           widthFactor: state.progress,
-          curve: Curves.easeInOutCubic,
+          curve: Curves.fastOutSlowIn,
           child: ColoredBox(color: state.getStatusBarColor(tokens)),
         ),
       ),
