@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus_icons.dart';
-import 'package:optimus/src/loader/loader.dart';
+import 'package:optimus/src/loader/spinner.dart';
 import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/tooltip/tooltip_wrapper.dart';
@@ -25,11 +25,6 @@ class Suffix extends StatelessWidget {
   final bool showLoader;
   final Widget? counter;
 
-  OptimusCircleLoader get _loader => const OptimusCircleLoader(
-        size: OptimusCircleLoaderSize.small,
-        variant: OptimusCircleLoaderVariant.indeterminate(),
-      );
-
   @override
   Widget build(BuildContext context) => OptimusStack(
         direction: Axis.horizontal,
@@ -39,7 +34,7 @@ class Suffix extends StatelessWidget {
           if (counter case final counter?) counter,
           if (suffix case final suffix?) suffix,
           if (clearAllButton case final clearAllButton?) clearAllButton,
-          if (showLoader) _loader,
+          if (showLoader) const OptimusSpinner(size: OptimusSpinnerSize.small),
           if (passwordButton case final passwordButton?) passwordButton,
           if (trailing case final trailing?) trailing,
           if (inlineError case final inlineError?) inlineError,

@@ -32,7 +32,6 @@ import 'package:storybook/stories/link/standalone_link.dart';
 import 'package:storybook/stories/list/expanded_list.dart';
 import 'package:storybook/stories/list/list_tile.dart';
 import 'package:storybook/stories/list/nav_list_tile.dart';
-import 'package:storybook/stories/loader.dart';
 import 'package:storybook/stories/logo.dart';
 import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
@@ -44,6 +43,7 @@ import 'package:storybook/stories/segmented_control.dart';
 import 'package:storybook/stories/select_input.dart';
 import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
+import 'package:storybook/stories/spinner.dart';
 import 'package:storybook/stories/stack.dart';
 import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tab/tab.dart';
@@ -160,13 +160,13 @@ class _MyAppState extends State<MyApp> {
                 chatBubbleStory,
                 standaloneLink,
                 inlineLink,
-                loaderStory,
                 dateTimeFieldStory,
                 notificationStory,
                 tooltipStory,
                 tooltipWrapperStory,
                 toggleStory,
                 chipStory,
+                spinnerStory,
               ],
             ),
         },
