@@ -373,6 +373,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   double get sizing550;
   double get sizing600;
   double get sizing700;
+  double get sizing800;
   double get sizing900;
   double get sizingBase;
   double get spacing0;
@@ -390,6 +391,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   double get spacing500;
   double get spacing600;
   double get spacing700;
+  double get spacing800;
   double get spacing900;
   double get spacingBase;
   List<BoxShadow> get focusOffset;
@@ -770,6 +772,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     double? sizing550,
     double? sizing600,
     double? sizing700,
+    double? sizing800,
     double? sizing900,
     double? sizingBase,
     double? spacing0,
@@ -787,6 +790,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     double? spacing500,
     double? spacing600,
     double? spacing700,
+    double? spacing800,
     double? spacing900,
     double? spacingBase,
     List<BoxShadow>? focusOffset,
@@ -1362,6 +1366,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       sizing550: sizing550 ?? this.sizing550,
       sizing600: sizing600 ?? this.sizing600,
       sizing700: sizing700 ?? this.sizing700,
+      sizing800: sizing800 ?? this.sizing800,
       sizing900: sizing900 ?? this.sizing900,
       sizingBase: sizingBase ?? this.sizingBase,
       spacing0: spacing0 ?? this.spacing0,
@@ -1379,6 +1384,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       spacing500: spacing500 ?? this.spacing500,
       spacing600: spacing600 ?? this.spacing600,
       spacing700: spacing700 ?? this.spacing700,
+      spacing800: spacing800 ?? this.spacing800,
       spacing900: spacing900 ?? this.spacing900,
       spacingBase: spacingBase ?? this.spacingBase,
       focusOffset: focusOffset ?? this.focusOffset,
@@ -2114,6 +2120,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       sizing550: t < 0.5 ? sizing550 : other.sizing550,
       sizing600: t < 0.5 ? sizing600 : other.sizing600,
       sizing700: t < 0.5 ? sizing700 : other.sizing700,
+      sizing800: t < 0.5 ? sizing800 : other.sizing800,
       sizing900: t < 0.5 ? sizing900 : other.sizing900,
       sizingBase: t < 0.5 ? sizingBase : other.sizingBase,
       spacing0: t < 0.5 ? spacing0 : other.spacing0,
@@ -2131,6 +2138,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       spacing500: t < 0.5 ? spacing500 : other.spacing500,
       spacing600: t < 0.5 ? spacing600 : other.spacing600,
       spacing700: t < 0.5 ? spacing700 : other.spacing700,
+      spacing800: t < 0.5 ? spacing800 : other.spacing800,
       spacing900: t < 0.5 ? spacing900 : other.spacing900,
       spacingBase: t < 0.5 ? spacingBase : other.spacingBase,
       focusOffset: t < 0.5 ? focusOffset : other.focusOffset,
@@ -2545,6 +2553,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(sizing550, other.sizing550) &&
             const DeepCollectionEquality().equals(sizing600, other.sizing600) &&
             const DeepCollectionEquality().equals(sizing700, other.sizing700) &&
+            const DeepCollectionEquality().equals(sizing800, other.sizing800) &&
             const DeepCollectionEquality().equals(sizing900, other.sizing900) &&
             const DeepCollectionEquality().equals(sizingBase, other.sizingBase) &&
             const DeepCollectionEquality().equals(spacing0, other.spacing0) &&
@@ -2562,6 +2571,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(spacing500, other.spacing500) &&
             const DeepCollectionEquality().equals(spacing600, other.spacing600) &&
             const DeepCollectionEquality().equals(spacing700, other.spacing700) &&
+            const DeepCollectionEquality().equals(spacing800, other.spacing800) &&
             const DeepCollectionEquality().equals(spacing900, other.spacing900) &&
             const DeepCollectionEquality().equals(spacingBase, other.spacingBase) &&
             const DeepCollectionEquality().equals(focusOffset, other.focusOffset) &&
@@ -2952,6 +2962,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(sizing550),
       const DeepCollectionEquality().hash(sizing600),
       const DeepCollectionEquality().hash(sizing700),
+      const DeepCollectionEquality().hash(sizing800),
       const DeepCollectionEquality().hash(sizing900),
       const DeepCollectionEquality().hash(sizingBase),
       const DeepCollectionEquality().hash(spacing0),
@@ -2969,6 +2980,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(spacing500),
       const DeepCollectionEquality().hash(spacing600),
       const DeepCollectionEquality().hash(spacing700),
+      const DeepCollectionEquality().hash(spacing800),
       const DeepCollectionEquality().hash(spacing900),
       const DeepCollectionEquality().hash(spacingBase),
       const DeepCollectionEquality().hash(focusOffset),

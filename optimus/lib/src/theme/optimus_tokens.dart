@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Thu, 04 Apr 2024 17:15:46 GMT
+// Generated on Mon, 29 Apr 2024 23:33:30 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -382,6 +382,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.sizing550,
     required this.sizing600,
     required this.sizing700,
+    required this.sizing800,
     required this.sizing900,
     required this.sizingBase,
     required this.spacing0,
@@ -399,6 +400,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.spacing500,
     required this.spacing600,
     required this.spacing700,
+    required this.spacing800,
     required this.spacing900,
     required this.spacingBase,
     required this.focusOffset,
@@ -1146,6 +1148,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final double sizing700;
   @override
+  final double sizing800;
+  @override
   final double sizing900;
   @override
   final double sizingBase;
@@ -1179,6 +1183,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final double spacing600;
   @override
   final double spacing700;
+  @override
+  final double spacing800;
   @override
   final double spacing900;
   @override
@@ -1614,6 +1620,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     sizing550: DesignTokensLight.sizing550,
     sizing600: DesignTokensLight.sizing600,
     sizing700: DesignTokensLight.sizing700,
+    sizing800: DesignTokensLight.sizing800,
     sizing900: DesignTokensLight.sizing900,
     sizingBase: DesignTokensLight.sizingBase,
     spacing0: DesignTokensLight.spacing0,
@@ -1631,6 +1638,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     spacing500: DesignTokensLight.spacing500,
     spacing600: DesignTokensLight.spacing600,
     spacing700: DesignTokensLight.spacing700,
+    spacing800: DesignTokensLight.spacing800,
     spacing900: DesignTokensLight.spacing900,
     spacingBase: DesignTokensLight.spacingBase,
     focusOffset: DesignTokensLight.focusOffset,
@@ -2045,6 +2053,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     sizing550: DesignTokensDark.sizing550,
     sizing600: DesignTokensDark.sizing600,
     sizing700: DesignTokensDark.sizing700,
+    sizing800: DesignTokensDark.sizing800,
     sizing900: DesignTokensDark.sizing900,
     sizingBase: DesignTokensDark.sizingBase,
     spacing0: DesignTokensDark.spacing0,
@@ -2062,6 +2071,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     spacing500: DesignTokensDark.spacing500,
     spacing600: DesignTokensDark.spacing600,
     spacing700: DesignTokensDark.spacing700,
+    spacing800: DesignTokensDark.spacing800,
     spacing900: DesignTokensDark.spacing900,
     spacingBase: DesignTokensDark.spacingBase,
     focusOffset: DesignTokensDark.focusOffset,
