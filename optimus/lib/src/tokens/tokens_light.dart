@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Thu, 04 Apr 2024 17:15:45 GMT
+// Generated on Mon, 29 Apr 2024 23:33:29 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -504,6 +504,7 @@ class DesignTokensLight {
   static const double sizing550 = 44;
   static const double sizing600 = 48;
   static const double sizing700 = 56;
+  static const double sizing800 = 64;
   static const double sizing900 = 72;
   static const double sizingBase = 8;
   static const double spacing0 = 0;
@@ -521,6 +522,7 @@ class DesignTokensLight {
   static const double spacing500 = 40;
   static const double spacing600 = 48;
   static const double spacing700 = 56;
+  static const double spacing800 = 64;
   static const double spacing900 = 72;
   static const double spacingBase = 8;
 
