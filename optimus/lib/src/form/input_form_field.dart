@@ -41,6 +41,7 @@ class OptimusInputFormField extends FormField<String> {
     Brightness? keyboardAppearance,
     bool enableIMEPersonalizedLearning = false,
     bool enableSuggestions = true,
+    OptimusStatusBarState? statusBarState,
   })  : assert(
           initialValue == null || controller == null,
           'Provide either initial value or controller',
@@ -87,6 +88,7 @@ class OptimusInputFormField extends FormField<String> {
               keyboardAppearance: keyboardAppearance,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
               enableSuggestions: enableSuggestions,
+              statusBarState: statusBarState,
             );
           },
         );

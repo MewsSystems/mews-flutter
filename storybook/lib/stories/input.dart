@@ -45,6 +45,12 @@ final Story inputStory = Story(
     }
     final inline = k.boolean(label: 'Inline', initial: false);
 
+    final statusBar = k.options(
+      label: 'Status Bar',
+      options: OptimusStatusBarState.values.toOptions().withEmpty(),
+      initial: null,
+    );
+
     return Align(
       alignment: Alignment.center,
       child: ConstrainedBox(
@@ -61,6 +67,7 @@ final Story inputStory = Story(
           isClearEnabled: k.boolean(label: 'Clear all', initial: false),
           showLoader: k.boolean(label: 'Show loader', initial: false),
           errorVariant: errorVariant,
+          statusBarState: statusBar,
           size: k.options(
             label: 'Size',
             initial: OptimusWidgetSize.large,
