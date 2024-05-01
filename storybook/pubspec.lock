@@ -211,10 +211,9 @@ packages:
   mews_pedantic:
     dependency: "direct dev"
     description:
-      name: mews_pedantic
-      sha256: e05e23939d52f7de00bcef2265f5edc3dfbee1f2bd513ba1f03500c9ab116f16
-      url: "https://pub.dev"
-    source: hosted
+      path: "../mews_pedantic"
+      relative: true
+    source: path
     version: "0.26.0"
   nested:
     dependency: transitive
