@@ -12,7 +12,7 @@ dependencies:
   optimus:
     path: ../optimus
   shared_preferences: ^2.2.2
-  storybook_flutter: ^0.14.0
+  storybook_flutter: ^0.14.1
   url_launcher: ^6.2.5
 
 dev_dependencies:

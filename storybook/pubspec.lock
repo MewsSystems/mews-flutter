@@ -211,10 +211,11 @@ packages:
   mews_pedantic:
     dependency: "direct dev"
     description:
-      path: "../mews_pedantic"
-      relative: true
-    source: path
-    version: "0.24.0"
+      name: mews_pedantic
+      sha256: e05e23939d52f7de00bcef2265f5edc3dfbee1f2bd513ba1f03500c9ab116f16
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.26.0"
   nested:
     dependency: transitive
     description:
@@ -229,7 +230,7 @@ packages:
       path: "../optimus"
       relative: true
     source: path
-    version: "0.32.0"
+    version: "0.33.0"
   path:
     dependency: "direct dev"
     description:
@@ -399,10 +400,10 @@ packages:
     dependency: "direct main"
     description:
       name: storybook_flutter
-      sha256: bd8e3d215aad611df6668721a28912eab8a65c33f9b7d092365922f90f5fd5df
+      sha256: "68f07d2caf16bd34e9cfbc479d60298a6568abfac552ea1998ef724344c6cc13"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.0"
+    version: "0.14.1"
   stream_channel:
     dependency: transitive
     description:
@@ -439,10 +440,10 @@ packages:
     dependency: transitive
     description:
       name: theme_tailor_annotation
-      sha256: "1a4b57193386f7cab5fb85aed65a1c496a70985383160c9e583fc6187112678d"
+      sha256: "2990264653b700c7eece3557a5fe5f999cdcd32981aed67023a66004943db08d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "3.0.1"
   typed_data:
     dependency: transitive
     description:
