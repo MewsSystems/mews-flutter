@@ -211,10 +211,11 @@ packages:
   mews_pedantic:
     dependency: "direct dev"
     description:
-      path: "../mews_pedantic"
-      relative: true
-    source: path
-    version: "0.24.0"
+      name: mews_pedantic
+      sha256: e05e23939d52f7de00bcef2265f5edc3dfbee1f2bd513ba1f03500c9ab116f16
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.26.0"
   nested:
     dependency: transitive
     description:
@@ -229,7 +230,7 @@ packages:
       path: "../optimus"
       relative: true
     source: path
-    version: "0.32.0"
+    version: "0.33.0"
   path:
     dependency: "direct dev"
     description:
@@ -439,10 +440,10 @@ packages:
     dependency: transitive
     description:
       name: theme_tailor_annotation
-      sha256: "1a4b57193386f7cab5fb85aed65a1c496a70985383160c9e583fc6187112678d"
+      sha256: "2990264653b700c7eece3557a5fe5f999cdcd32981aed67023a66004943db08d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "3.0.1"
   typed_data:
     dependency: transitive
     description:
@@ -455,10 +456,10 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: "0ecc004c62fd3ed36a2ffcbe0dd9700aee63bd7532d0b642a488b1ec310f492e"
+      sha256: "6ce1e04375be4eed30548f10a315826fd933c1e493206eab82eed01f438c8d2e"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.5"
+    version: "6.2.6"
   url_launcher_android:
     dependency: transitive
     description:
