@@ -1,3 +1,22 @@
+## 0.34.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: [DX-726] Migrate to color tokens (#587).
+ - **FEAT**: Design Tokens Update 6.3.0 (#597).
+ - **FEAT**: [DX-1624] Add input status bar (#592).
+ - **FEAT**: [DX-1521] Update icons library (#595).
+ - **FEAT**: [DX-1513] Hide password toggle while loading (#591).
+ - **FEAT**: Design Tokens Update 6.2.0 (#588).
+ - **FEAT**: [DX-1204] Update dropdown item layout (#582).
+ - **FEAT**: [DX-1416] Update icon library (#581).
+ - **FEAT**: Design Tokens Update 6.1.0 (#579).
+ - **FEAT**: Migrate to theme_tailor 3.0.0 (#578).
+ - **FEAT**: [DX-1218] Update icon library (#577).
+ - **BREAKING** **FEAT**: [DX-1385] Add OptimusSpinner (#593).
+ - **BREAKING** **FEAT**: [DX-1344] Update Avatar component (#583).
+
 ## 0.33.0
 
 > Note: This release has breaking changes.
