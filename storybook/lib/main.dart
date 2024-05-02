@@ -15,7 +15,7 @@ import 'package:storybook/stories/checkbox.dart';
 import 'package:storybook/stories/checkbox_group.dart';
 import 'package:storybook/stories/checkbox_nested.dart';
 import 'package:storybook/stories/chip.dart';
-import 'package:storybook/stories/compact_step_bar.dart';
+import 'package:storybook/stories/compact_progress_indicator.dart';
 import 'package:storybook/stories/date_input_field.dart';
 import 'package:storybook/stories/date_input_form_field.dart';
 import 'package:storybook/stories/date_time_field.dart';
@@ -37,6 +37,7 @@ import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
 import 'package:storybook/stories/notification.dart';
 import 'package:storybook/stories/number_picker.dart';
+import 'package:storybook/stories/progress_indicator.dart';
 import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
 import 'package:storybook/stories/segmented_control.dart';
@@ -45,7 +46,6 @@ import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/spinner.dart';
 import 'package:storybook/stories/stack.dart';
-import 'package:storybook/stories/step_bar.dart';
 import 'package:storybook/stories/tab/tab.dart';
 import 'package:storybook/stories/tab/tabs.dart';
 import 'package:storybook/stories/tags.dart';
@@ -138,8 +138,8 @@ class _MyAppState extends State<MyApp> {
                 nonModalDialogStory,
                 inlineDialogStory,
                 stackStory,
-                stepBarStory,
-                compactStepBarStory,
+                progressIndicatorStory,
+                compactProgressIndicatorStory,
                 badgeStory,
                 listTileStory,
                 navListTileStory,

@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story compactStepBarStory = Story(
-  name: 'Navigation/Compact Step Bar',
+final Story compactProgressIndicatorStory = Story(
+  name: 'Navigation/Compact Progress Indicator',
   builder: (context) {
     final k = context.knobs;
 
-    final type = k.options(
-      label: 'Type: ',
-      options: OptimusStepBarType.values.toOptions(),
-      initial: OptimusStepBarType.icon,
-    );
     final alignment = k.options(
       label: 'Alignment position',
       initial: MainAxisAlignment.center,
@@ -38,8 +32,7 @@ final Story compactStepBarStory = Story(
                   'Some content at the same layer, that will be hid behind the dropdown,',
                 ),
               ),
-              OptimusCompactStepBar(
-                type: type,
+              OptimusCompactProgressIndicator(
                 items: _items,
                 currentItem: k.sliderInt(
                   label: 'Current',
@@ -65,22 +58,22 @@ final Story compactStepBarStory = Story(
   },
 );
 
-const List<OptimusStepBarItem> _items = [
-  OptimusStepBarItem(
+const List<OptimusProgressIndicatorItem> _items = [
+  OptimusProgressIndicatorItem(
     label: Text('Step with long title'),
     description: Text('Some description goes here'),
     icon: OptimusIcons.edit,
   ),
-  OptimusStepBarItem(
+  OptimusProgressIndicatorItem(
     label: Text('Step 2'),
     icon: OptimusIcons.connect,
   ),
-  OptimusStepBarItem(
+  OptimusProgressIndicatorItem(
     label: Text('Step 3'),
     description: Text('Description'),
     icon: OptimusIcons.delete,
   ),
-  OptimusStepBarItem(
+  OptimusProgressIndicatorItem(
     label: Text('Step 4'),
     description: Text('Description'),
     icon: OptimusIcons.magic,

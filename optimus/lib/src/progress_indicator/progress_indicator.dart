@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/step_bar/common.dart';
+import 'package:optimus/src/progress_indicator/common.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
 /// a sequence of either numbered or logical steps.
@@ -11,18 +11,14 @@ import 'package:optimus/src/step_bar/common.dart';
 /// Every step-bar is composed of repeatable elements in individual steps
 /// linked by either horizontal or vertical lines to convey the sense
 /// of journeying through a process.
-class OptimusStepBar extends StatefulWidget {
-  const OptimusStepBar({
+class OptimusProgressIndicator extends StatefulWidget {
+  const OptimusProgressIndicator({
     super.key,
-    required this.type,
     required this.layout,
     required this.items,
     this.currentItem = 0,
     this.maxItem,
   });
-
-  /// Type of the step bar.
-  final OptimusStepBarType type;
 
   /// Whether the step bar would be laid out horizontally or vertically.
   ///
@@ -31,7 +27,7 @@ class OptimusStepBar extends StatefulWidget {
   final Axis layout;
 
   /// Step bar items.
-  final List<OptimusStepBarItem> items;
+  final List<OptimusProgressIndicatorItem> items;
 
   /// Current (active) step.
   final int currentItem;
@@ -43,40 +39,47 @@ class OptimusStepBar extends StatefulWidget {
   final int? maxItem;
 
   @override
-  State<OptimusStepBar> createState() => _OptimusStepBarState();
+  State<OptimusProgressIndicator> createState() =>
+      _OptimusProgressIndicatorState();
 }
 
-class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
-  OptimusStepBarItemState _getItemState(OptimusStepBarItem item) {
+class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
+    with ThemeGetter {
+  OptimusProgressIndicatorItemState _getItemState(
+    OptimusProgressIndicatorItem item,
+  ) {
     final position = widget.items.indexOf(item);
     if (position == widget.currentItem) {
-      return OptimusStepBarItemState.active;
+      return OptimusProgressIndicatorItemState.active;
     }
     if (position < widget.currentItem) {
-      return OptimusStepBarItemState.completed;
+      return OptimusProgressIndicatorItemState.completed;
     }
 
     final maxItem = widget.maxItem;
 
     return maxItem == null || position <= maxItem
-        ? OptimusStepBarItemState.enabled
-        : OptimusStepBarItemState.disabled;
+        ? OptimusProgressIndicatorItemState.enabled
+        : OptimusProgressIndicatorItemState.disabled;
   }
 
-  String _indicatorText(OptimusStepBarItem item) =>
+  String _indicatorText(OptimusProgressIndicatorItem item) =>
       (widget.items.indexOf(item) + 1).toString();
 
-  List<Widget> _buildItems(List<OptimusStepBarItem> items, double maxWidth) =>
+  List<Widget> _buildItems(
+    List<OptimusProgressIndicatorItem> items,
+    double maxWidth,
+  ) =>
       items
           .intersperseWith(
-            itemBuilder: (item) => StepBarItem(
+            itemBuilder: (item) => ProgressIndicatorItem(
               maxWidth: maxWidth,
               item: item,
               state: _getItemState(item),
-              type: widget.type,
               indicatorText: _indicatorText(item),
+              axis: _effectiveLayout,
             ),
-            separatorBuilder: (_, nextItem) => StepBarSpacer(
+            separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
               nextItemState: _getItemState(nextItem),
               layout: _effectiveLayout,
             ),
@@ -96,18 +99,18 @@ class _OptimusStepBarState extends State<OptimusStepBar> with ThemeGetter {
               (constraints.maxWidth - totalSpacerWidth) / widget.items.length;
           final maxItemWidth = max(totalFreeSpace, itemMinWidth);
 
-          return OptimusStack(
-            mainAxisSize: _effectiveLayout == Axis.vertical
-                ? MainAxisSize.min
-                : MainAxisSize.max,
-            direction: _effectiveLayout,
-            crossAxisAlignment: _effectiveLayout == Axis.vertical
-                ? OptimusStackAlignment.start
-                : OptimusStackAlignment.center,
-            children: _buildItems(widget.items, maxItemWidth),
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+            child: OptimusStack(
+              mainAxisSize: MainAxisSize.min,
+              direction: _effectiveLayout,
+              crossAxisAlignment: OptimusStackAlignment.start,
+              mainAxisAlignment: OptimusStackAlignment.center,
+              distribution: OptimusStackDistribution
+                  .basic, // TODO(witwash): to other distribution
+              children: _buildItems(widget.items, maxItemWidth),
+            ),
           );
         },
       );
 }
-
-enum OptimusStepBarType { icon, numbered }
