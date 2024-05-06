@@ -47,7 +47,7 @@ class OptimusTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
 
     return _Tag(
       text: text,
@@ -109,7 +109,7 @@ class OptimusCategoricalTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
 
     return _Tag(
       text: text,

@@ -201,9 +201,9 @@ class _RadioCircle extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(
             width: isSelected ? _selectedBorder : tokens.borderWidth150,
-            color: state.borderColor(context, isSelected: isSelected),
+            color: state.borderColor(tokens, isSelected: isSelected),
           ),
-          color: state.circleFillColor(context),
+          color: state.circleFillColor(tokens),
         ),
       ),
     );
@@ -213,30 +213,27 @@ class _RadioCircle extends StatelessWidget {
 enum _RadioState { basic, hover, active, disabled }
 
 extension on _RadioState {
-  Color borderColor(BuildContext context, {required bool isSelected}) =>
+  Color borderColor(OptimusTokens tokens, {required bool isSelected}) =>
       switch (this) {
         _RadioState.basic => isSelected
-            ? context.tokens.backgroundInteractivePrimaryDefault
-            : context.tokens.borderInteractiveSecondaryDefault,
+            ? tokens.backgroundInteractivePrimaryDefault
+            : tokens.borderInteractiveSecondaryDefault,
         _RadioState.hover => isSelected
-            ? context.tokens.backgroundInteractivePrimaryHover
-            : context.tokens.borderInteractiveSecondaryHover,
+            ? tokens.backgroundInteractivePrimaryHover
+            : tokens.borderInteractiveSecondaryHover,
         _RadioState.active => isSelected
-            ? context.tokens.backgroundInteractivePrimaryActive
-            : context.tokens.borderInteractiveSecondaryActive,
-        _RadioState.disabled => isSelected
-            ? context.tokens.backgroundDisabled
-            : context.tokens.borderDisabled,
+            ? tokens.backgroundInteractivePrimaryActive
+            : tokens.borderInteractiveSecondaryActive,
+        _RadioState.disabled =>
+          isSelected ? tokens.backgroundDisabled : tokens.borderDisabled,
       };
 
-  Color circleFillColor(BuildContext context) => switch (this) {
+  Color circleFillColor(OptimusTokens tokens) => switch (this) {
         _RadioState.basic ||
         _RadioState.disabled =>
-          context.tokens.backgroundInteractiveNeutralSubtleDefault,
-        _RadioState.hover =>
-          context.tokens.backgroundInteractiveNeutralSubtleHover,
-        _RadioState.active =>
-          context.tokens.backgroundInteractiveNeutralSubtleActive,
+          tokens.backgroundInteractiveNeutralSubtleDefault,
+        _RadioState.hover => tokens.backgroundInteractiveNeutralSubtleHover,
+        _RadioState.active => tokens.backgroundInteractiveNeutralSubtleActive,
       };
 }
 

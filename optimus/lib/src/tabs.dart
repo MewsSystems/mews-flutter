@@ -88,7 +88,7 @@ class OptimusTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
     final textStyle = tokens.bodyMediumStrong;
 
     return DefaultTabController(
