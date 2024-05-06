@@ -3,15 +3,15 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story notificationStory = Story(
-  name: 'Feedback/Notification',
-  builder: (context) => NotificationStory(
+final Story alertStory = Story(
+  name: 'Feedback/Alert',
+  builder: (context) => AlertStory(
     knobsBuilder: context.knobs,
   ),
 );
 
-class NotificationStory extends StatelessWidget {
-  const NotificationStory({super.key, required this.knobsBuilder});
+class AlertStory extends StatelessWidget {
+  const AlertStory({super.key, required this.knobsBuilder});
 
   final KnobsBuilder knobsBuilder;
 
@@ -23,13 +23,13 @@ class NotificationStory extends StatelessWidget {
     final dismissible = knobsBuilder.boolean(label: 'Is Dismissible');
     final position = knobsBuilder.options(
       label: 'Position',
-      initial: OptimusNotificationPosition.topRight,
-      options: OptimusNotificationPosition.values.toOptions(),
+      initial: OptimusAlertPosition.topRight,
+      options: OptimusAlertPosition.values.toOptions(),
     );
 
-    return OptimusNotificationsOverlay(
+    return OptimusAlertOverlay(
       position: position,
-      child: _NotificationStoryContent(
+      child: _AlertStoryContent(
         title: title,
         description: description,
         link: link,
@@ -39,8 +39,8 @@ class NotificationStory extends StatelessWidget {
   }
 }
 
-class _NotificationStoryContent extends StatelessWidget {
-  const _NotificationStoryContent({
+class _AlertStoryContent extends StatelessWidget {
+  const _AlertStoryContent({
     required this.title,
     required this.description,
     required this.link,
@@ -66,7 +66,7 @@ class _NotificationStoryContent extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ...OptimusFeedbackVariant.values.map(
-                (variant) => OptimusNotification(
+                (variant) => OptimusAlert(
                   title: Text(title),
                   description:
                       description.isNotEmpty ? Text(description) : null,
@@ -77,8 +77,8 @@ class _NotificationStoryContent extends StatelessWidget {
               ),
               OptimusButton(
                 onPressed: () {
-                  OptimusNotificationsOverlay.of(context)?.show(
-                    OptimusNotification(
+                  OptimusAlertOverlay.of(context)?.show(
+                    OptimusAlert(
                       title: Text(title),
                       description:
                           description.isNotEmpty ? Text(description) : null,
@@ -87,7 +87,7 @@ class _NotificationStoryContent extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Show notification'),
+                child: const Text('Show alert'),
               ),
             ],
           ),
