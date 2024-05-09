@@ -381,7 +381,7 @@ class _InputCaption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
     final iconColor =
         isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
     final captionColor =
@@ -418,7 +418,7 @@ class _Styled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
     final textColor =
         isEnabled ? tokens.textStaticTertiary : tokens.textDisabled;
     final iconColor =

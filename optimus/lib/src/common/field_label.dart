@@ -16,7 +16,7 @@ class OptimusFieldLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = OptimusTheme.of(context).tokens;
+    final tokens = context.tokens;
     final color = isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
 
     return Padding(

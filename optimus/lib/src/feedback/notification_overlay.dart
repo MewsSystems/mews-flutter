@@ -34,6 +34,7 @@ class OptimusNotificationsOverlay extends StatefulWidget {
 
 class _OptimusNotificationsOverlayState
     extends State<OptimusNotificationsOverlay>
+    with ThemeGetter
     implements OptimusNotificationManager {
   final List<OptimusNotification> _notifications = [];
   final List<OptimusNotification> _queue = [];
@@ -103,7 +104,6 @@ class _OptimusNotificationsOverlayState
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
     final isCompact = MediaQuery.sizeOf(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 
