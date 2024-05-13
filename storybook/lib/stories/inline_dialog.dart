@@ -40,6 +40,7 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
         onPressed: () => {
           DialogWrapper.of(context)?.showInline(
             anchorKey: _anchor,
+            size: OptimusDialogSize.regular,
             content: const Padding(
               padding: EdgeInsets.all(8.0),
               child: _InlineContentExample(),
@@ -96,7 +97,10 @@ class _NumberRow extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            OptimusNumberPickerFormField(initialValue: 8),
+            OptimusNumberPickerFormField(
+              initialValue: 8,
+              size: OptimusWidgetSize.small,
+            ),
           ],
         ),
       );

@@ -14,6 +14,7 @@ class OptimusInlineDialog extends StatelessWidget {
     this.contentWrapperBuilder,
     this.actions = const [],
     this.close,
+    this.size = OptimusDialogSize.small,
     required this.anchorKey,
   });
 
@@ -26,19 +27,22 @@ class OptimusInlineDialog extends StatelessWidget {
   /// {@macro optimus.dialog.actions}
   final List<OptimusDialogAction> actions;
 
+  /// The size of the dialog.
+  final OptimusDialogSize size;
+
   final VoidCallback? close;
   final Widget content;
 
   @override
   Widget build(BuildContext context) => AnchoredOverlay(
         anchorKey: anchorKey,
-        width: OptimusDialogSize.small.width,
+        width: size.width,
         child: DialogContent(
           content: content,
           actions: actions,
           type: OptimusDialogType.common,
-          size: OptimusDialogSize.small,
-          maxWidth: OptimusDialogSize.small.width,
+          size: size,
+          maxWidth: size.width,
           contentWrapperBuilder: contentWrapperBuilder,
           isDismissible: true,
           close: close,
