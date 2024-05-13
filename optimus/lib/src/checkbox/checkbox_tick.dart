@@ -45,42 +45,38 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
       setState(() => _isPressed = pressed);
 
   @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return GestureWrapper(
-      onHoverChanged: _handleHoverChanged,
-      onPressedChanged: _handlePressedChanged,
-      onTap: widget.onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 100),
-        decoration: BoxDecoration(
-          color: _interactionState.fillColor(
-            tokens: tokens,
-            state: _state,
+  Widget build(BuildContext context) => GestureWrapper(
+        onHoverChanged: _handleHoverChanged,
+        onPressedChanged: _handlePressedChanged,
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          decoration: BoxDecoration(
+            color: _interactionState.fillColor(
+              tokens: tokens,
+              state: _state,
+              isError: widget.isError,
+            ),
+            border: _state.isUnchecked
+                ? Border.all(
+                    color: _interactionState.borderColor(
+                      tokens: tokens,
+                      isError: widget.isError,
+                    ),
+                    width: tokens.borderWidth150,
+                  )
+                : null,
+            borderRadius: BorderRadius.all(tokens.borderRadius25),
+          ),
+          width: tokens.sizing200,
+          height: tokens.sizing200,
+          child: _CheckboxIcon(
+            icon: _state.icon,
+            isEnabled: widget.isEnabled,
             isError: widget.isError,
           ),
-          border: _state.isUnchecked
-              ? Border.all(
-                  color: _interactionState.borderColor(
-                    tokens: tokens,
-                    isError: widget.isError,
-                  ),
-                  width: tokens.borderWidth150,
-                )
-              : null,
-          borderRadius: BorderRadius.all(tokens.borderRadius25),
         ),
-        width: tokens.sizing200,
-        height: tokens.sizing200,
-        child: _CheckboxIcon(
-          icon: _state.icon,
-          isEnabled: widget.isEnabled,
-          isError: widget.isError,
-        ),
-      ),
-    );
-  }
+      );
 }
 
 class _CheckboxIcon extends StatelessWidget {

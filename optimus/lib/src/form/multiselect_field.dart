@@ -84,7 +84,6 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
     final error = widget.error;
     final inlineError = _isUsingInlineError && error != null && error.isNotEmpty
         ? InlineErrorTooltip(error: error)

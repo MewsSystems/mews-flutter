@@ -32,6 +32,7 @@ class OptimusAlertOverlay extends StatefulWidget {
 }
 
 class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
+    with ThemeGetter
     implements OptimusAlertManager {
   final List<OptimusAlert> _alerts = [];
   final List<OptimusAlert> _queue = [];
@@ -97,7 +98,6 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
     final isCompact = MediaQuery.sizeOf(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 

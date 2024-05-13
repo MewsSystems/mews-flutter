@@ -14,10 +14,8 @@ class OptimusFieldError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isEnabled
-        ? context.tokens.textAlertDanger
-        : context.tokens.textDisabled;
     final tokens = context.tokens;
+    final color = isEnabled ? tokens.textAlertDanger : tokens.textDisabled;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
