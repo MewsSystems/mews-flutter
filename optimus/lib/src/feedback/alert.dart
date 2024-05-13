@@ -1,93 +1,204 @@
+import 'dart:math';
 import 'package:flutter/widgets.dart';
+import 'package:optimus/optimus.dart';
 import 'package:optimus/src/feedback/common.dart';
-import 'package:optimus/src/feedback/feedback_link.dart';
-import 'package:optimus/src/feedback/feedback_variant.dart';
-import 'package:optimus/src/theme/theme.dart';
 
-/// Alert banners display critical notifications about the state of
-/// the entire system.
-///
-/// They are placed at the top of the screen, above all content
-/// (including navigation). Unlike contextual banners, alert banners
-/// remain in the same place on all pages and cannot be dismissed.
-///
-/// Alert banners display messages that are critical to the user
-/// and affect how the system or user operates.
-/// Because of their prominent appearance, they are used to communicate
-/// only the most important information about the system. If overused,
-/// users could stop perceiving them as something worth paying attention to.
-/// Alert banners must be removed when no longer necessary.
+/// Alert is used for showing a brief and concise message that
+/// communicates immediate feedback with optional action included. Alerts
+/// are noticeable but not intrusive to the use and can be temporary.
 class OptimusAlert extends StatelessWidget {
   const OptimusAlert({
     super.key,
     required this.title,
-    this.link,
     this.description,
+    this.icon,
+    this.link,
+    this.onDismissed,
     this.variant = OptimusFeedbackVariant.info,
   });
 
-  /// Content of the banner.
-  ///
-  /// Typically a [Text] widget.
+  /// The title of the alert.
   final Widget title;
 
-  /// Banner's description rendered as a second line.
+  /// The main content or description which should be as brief and straight
+  /// to the point.
   final Widget? description;
 
-  /// Link to additional information.
+  /// The icon that will be displayed on the left side of the alert.
+  final IconData? icon;
+
+  /// The dismissible callback that will be executed after a click on the close
+  /// button.
+  final VoidCallback? onDismissed;
+
+  /// The link with custom action.
   final OptimusFeedbackLink? link;
 
-  /// Variant of the banner.
-  ///
-  /// Controls background color.
+  /// The variant of the alert which determines the background color and
+  /// icon.
   final OptimusFeedbackVariant variant;
 
   bool get _isExpanded => description != null || link != null;
 
+  double _getPadding(BuildContext context) =>
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
+        Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
+        Breakpoint.medium ||
+        Breakpoint.large ||
+        Breakpoint.extraLarge =>
+          context.tokens.spacing200,
+      };
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final padding = _getPadding(context);
+    final double alertWidth =
+        min(MediaQuery.sizeOf(context).width - padding * 2, _maxWidth);
 
-    return DecoratedBox(
-      decoration: BoxDecoration(color: variant.backgroundColor(tokens)),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: tokens.spacing100,
-          vertical: tokens.spacing200,
-        ),
-        child: Row(
-          crossAxisAlignment: _isExpanded
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.center,
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: alertWidth),
+        child: Stack(
           children: [
-            FeedbackIcon(variant: variant),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(left: tokens.spacing150),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FeedbackTitle(title: title),
-                    if (description case final description?)
-                      Padding(
-                        padding: EdgeInsets.only(top: tokens.spacing50),
-                        child: FeedbackDescription(description: description),
-                      ),
-                    if (link case final link?)
-                      Padding(
-                        padding: EdgeInsets.only(top: tokens.spacing50),
-                        child: FeedbackLink(
-                          text: link.text,
-                          onPressed: link.onPressed,
-                        ),
-                      ),
-                  ],
+            _AlertContent(
+              icon: icon,
+              variant: variant,
+              title: title,
+              description: description,
+              linkText: link?.text,
+              onLinkPressed: () {
+                link?.onPressed();
+                OptimusAlertOverlay.of(context)?.remove(this);
+              },
+              dismissible: onDismissed != null,
+            ),
+            if (onDismissed != null)
+              Positioned(
+                top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
+                right: tokens.spacing200,
+                bottom: _isExpanded ? null : tokens.spacing0,
+                child: FeedbackDismissButton(
+                  onDismissed: () {
+                    onDismissed?.call();
+                    OptimusAlertOverlay.of(context)?.remove(this);
+                  },
                 ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
 }
+
+class _AlertContent extends StatelessWidget {
+  const _AlertContent({
+    required this.icon,
+    required this.variant,
+    required this.title,
+    required this.description,
+    required this.dismissible,
+    this.onLinkPressed,
+    this.linkText,
+  });
+
+  final IconData? icon;
+  final OptimusFeedbackVariant variant;
+  final Widget title;
+  final Widget? description;
+  final Widget? linkText;
+  final VoidCallback? onLinkPressed;
+  final bool dismissible;
+
+  bool get _isExpanded => description != null || linkText != null;
+
+  EdgeInsets _getContentPadding(OptimusTokens tokens) => dismissible
+      ? EdgeInsets.fromLTRB(
+          tokens.spacing200,
+          tokens.spacing200,
+          tokens.spacing400,
+          tokens.spacing200,
+        )
+      : EdgeInsets.all(tokens.spacing200);
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final leadingSectionWidth = tokens.sizing300 + tokens.spacing100 * 2;
+    final linkText = this.linkText;
+    final onLinkPressed = this.onLinkPressed;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(tokens.borderRadius100),
+        boxShadow: tokens.shadow300,
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            left: tokens.spacing0,
+            bottom: tokens.spacing0,
+            top: tokens.spacing0,
+            width: leadingSectionWidth,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: variant.backgroundColor(tokens),
+                borderRadius: BorderRadius.horizontal(
+                  left: tokens.borderRadius100,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
+            bottom: _isExpanded ? null : tokens.spacing0,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+              child: FeedbackIcon(icon: icon, variant: variant),
+            ),
+          ),
+          Row(
+            children: [
+              SizedBox(width: leadingSectionWidth),
+              Expanded(
+                child: Container(
+                  padding: _getContentPadding(tokens),
+                  decoration: BoxDecoration(
+                    color: tokens.backgroundStaticFlat,
+                    borderRadius: BorderRadius.horizontal(
+                      right: tokens.borderRadius100,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FeedbackTitle(title: title),
+                      if (description case final description?)
+                        Padding(
+                          padding: EdgeInsets.only(top: tokens.spacing50),
+                          child: FeedbackDescription(description: description),
+                        ),
+                      if (linkText != null && onLinkPressed != null)
+                        Padding(
+                          padding: EdgeInsets.only(top: tokens.spacing50),
+                          child: FeedbackLink(
+                            text: linkText,
+                            onPressed: onLinkPressed,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+const double _maxWidth = 360;

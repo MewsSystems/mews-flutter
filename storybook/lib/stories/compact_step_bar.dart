@@ -33,7 +33,7 @@ final Story compactStepBarStory = Story(
           child: Column(
             mainAxisAlignment: alignment,
             children: [
-              const OptimusNotification(
+              const OptimusAlert(
                 title: Text(
                   'Some content at the same layer, that will be hid behind the dropdown,',
                 ),
@@ -52,7 +52,7 @@ final Story compactStepBarStory = Story(
                   max: _items.length - 1,
                 ),
               ),
-              const OptimusNotification(
+              const OptimusAlert(
                 title: Text(
                   'Some content at the same layer, that will be hid behind the dropdown,',
                 ),
