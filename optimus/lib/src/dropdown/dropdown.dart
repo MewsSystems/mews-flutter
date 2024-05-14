@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
@@ -267,7 +268,7 @@ class _GroupedDropdownListViewState<T>
   @override
   void didUpdateWidget(_GroupedDropdownListView<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.items != widget.items) {
+    if (!listEquals(oldWidget.items, widget.items)) {
       _sortedItems = _sortItems();
     }
   }

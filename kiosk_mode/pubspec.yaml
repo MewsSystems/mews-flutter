@@ -15,7 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mews_pedantic: ^0.26.0
+  mews_pedantic: ^0.27.0
 flutter:
   plugin:
     platforms:

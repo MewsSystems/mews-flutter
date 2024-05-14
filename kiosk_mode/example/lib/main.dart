@@ -65,15 +65,18 @@ class _HomeState extends State<_Home> {
             mainAxisSize: MainAxisSize.min,
             children: [
               MaterialButton(
-                onPressed: mode == null || mode == KioskMode.enabled
-                    ? null
-                    : () => startKioskMode().then(_handleStart),
+                onPressed: switch (mode) {
+                  null || KioskMode.enabled => null,
+                  KioskMode.disabled => () =>
+                      startKioskMode().then(_handleStart)
+                },
                 child: const Text('Start Kiosk Mode'),
               ),
               MaterialButton(
-                onPressed: mode == null || mode == KioskMode.disabled
-                    ? null
-                    : () => stopKioskMode().then(_handleStop),
+                onPressed: switch (mode) {
+                  null || KioskMode.disabled => null,
+                  KioskMode.enabled => () => stopKioskMode().then(_handleStop),
+                },
                 child: const Text('Stop Kiosk Mode'),
               ),
               MaterialButton(
