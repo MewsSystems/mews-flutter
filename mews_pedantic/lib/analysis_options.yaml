@@ -257,6 +257,7 @@ dart_code_metrics:
     - avoid-cascade-after-if-null
     - avoid-casting-to-extension-type
     # - avoid-collapsible-if
+    - avoid-collection-equality-checks
     - avoid-collection-methods-with-unrelated-types
     # - avoid-collection-mutating-methods
     - avoid-conditions-with-boolean-literals
@@ -306,6 +307,7 @@ dart_code_metrics:
     - avoid-misused-test-matchers
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
+    - avoid-multi-assignment
     # - avoid-mutating-parameters
     # - avoid-negated-conditions
     # - avoid-nested-conditional-expressions
@@ -453,9 +455,11 @@ dart_code_metrics:
     - prefer-return-await
     - prefer-returning-conditional-expressions
     - prefer-simpler-patterns-null-check
+    # - prefer-single-declaration-per-file
     - prefer-specific-cases-first
     # - prefer-static-class
     - prefer-switch-with-enums
+    - prefer-switch-with-sealed-classes
     # - prefer-test-matchers
     # - prefer-trailing-comma
     - prefer-type-over-var

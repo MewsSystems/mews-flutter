@@ -44,7 +44,6 @@ class TooltipController extends StatefulWidget {
 }
 
 class _TooltipControllerState extends State<TooltipController> {
-  // ignore: dispose-fields, disposed in _hideTooltip
   OverlayEntry? _entry;
 
   OverlayEntry _createEntry() => OverlayEntry(

@@ -84,6 +84,7 @@ class OptimusStack extends StatelessWidget {
   Axis _direction(BuildContext context) {
     final breakpoint = this.breakpoint;
 
+    // ignore: prefer-switch-with-enums, is a null check
     if (breakpoint == null || direction == Axis.vertical) {
       return direction;
     }

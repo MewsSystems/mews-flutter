@@ -37,7 +37,6 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
 
   bool _expanded = false;
 
-  // ignore: dispose-fields, disposed in _collapse
   OverlayEntry? _overlayEntry;
 
   @override

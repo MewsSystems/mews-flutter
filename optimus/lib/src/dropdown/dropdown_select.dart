@@ -106,7 +106,6 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
 
-  // ignore: dispose-fields, disposed in _removeOverlay
   OverlayEntry? _overlayEntry;
 
   @override
