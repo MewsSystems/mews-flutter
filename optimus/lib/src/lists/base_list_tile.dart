@@ -18,7 +18,6 @@ class BaseListTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: tokens.borderStaticSecondary)),
-        color: tokens.backgroundInteractiveNeutralSubtleDefault,
       ),
       constraints: BoxConstraints(minHeight: tokens.spacing700),
       child: InkWell(
