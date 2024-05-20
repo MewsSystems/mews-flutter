@@ -40,10 +40,15 @@ final passwordStory = Story(
       initial: false,
     );
 
+    final showLeading = k.boolean(
+      label: 'Leading icon',
+      initial: false,
+    );
+
     return Center(
       child: SizedBox(
-        height: 300,
-        width: 500,
+        height: 200,
+        width: 300,
         child: OptimusPasswordFormField(
           size: size,
           placeholder: placeholder,
@@ -55,6 +60,7 @@ final passwordStory = Story(
           statusBarState: statusBarState,
           isClearEnabled: isClearEnabled,
           showLoader: showLoader,
+          leading: showLeading ? const Icon(OptimusIcons.lock) : null,
         ),
       ),
     );

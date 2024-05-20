@@ -38,6 +38,7 @@ class OptimusPasswordFormField extends StatelessWidget {
     this.statusBarState,
     this.size = OptimusWidgetSize.large,
     this.isClearEnabled = false,
+    this.leading,
   });
 
   /// The initial value of the form field.
@@ -133,6 +134,10 @@ class OptimusPasswordFormField extends StatelessWidget {
   /// Whether the clear button is enabled. Defaults to false.
   final bool isClearEnabled;
 
+  /// The leading widget of the form field. Typically an icon, for example, a
+  /// lock icon.
+  final Widget? leading;
+
   @override
   Widget build(BuildContext context) => OptimusInputFormField(
         initialValue: initialValue,
@@ -163,8 +168,8 @@ class OptimusPasswordFormField extends StatelessWidget {
         caption: caption,
         helperMessage: helperMessage,
         keyboardAppearance: keyboardAppearance,
-        statusBarState: statusBarState,
-        prefix: const Icon(OptimusIcons.lock),
+        statusBarState: isEnabled ? statusBarState : null,
+        leading: leading,
         size: size,
         isClearEnabled: isClearEnabled,
         showLoader: showLoader,
