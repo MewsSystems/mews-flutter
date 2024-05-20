@@ -42,6 +42,9 @@ class OptimusInputFormField extends FormField<String> {
     bool enableIMEPersonalizedLearning = false,
     bool enableSuggestions = true,
     OptimusStatusBarState? statusBarState,
+    OptimusWidgetSize size = OptimusWidgetSize.large,
+    bool isClearEnabled = false,
+    bool showLoader = false,
   })  : assert(
           initialValue == null || controller == null,
           'Provide either initial value or controller',
@@ -89,6 +92,9 @@ class OptimusInputFormField extends FormField<String> {
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
               enableSuggestions: enableSuggestions,
               statusBarState: statusBarState,
+              size: size,
+              isClearEnabled: isClearEnabled,
+              showLoader: showLoader,
             );
           },
         );
