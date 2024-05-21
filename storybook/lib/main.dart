@@ -25,6 +25,7 @@ import 'package:storybook/stories/feedback/spinner.dart';
 import 'package:storybook/stories/feedback/system_wide_banner.dart';
 import 'package:storybook/stories/feedback/tags.dart';
 import 'package:storybook/stories/form/form_story.dart';
+import 'package:storybook/stories/form/password_form.dart';
 import 'package:storybook/stories/icon/icon.dart';
 import 'package:storybook/stories/icon/icon_list.dart';
 import 'package:storybook/stories/icon/icons.dart';
@@ -167,6 +168,7 @@ class _MyAppState extends State<MyApp> {
                 chipStory,
                 spinnerStory,
                 systemWideBannerStory,
+                passwordStory,
               ],
             ),
         },

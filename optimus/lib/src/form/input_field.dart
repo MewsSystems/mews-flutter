@@ -275,9 +275,12 @@ class _OptimusInputFieldState extends State<OptimusInputField>
                       isEnabled: _isShowPasswordEnabled,
                     )
                   : null,
-              showLoader: widget.showLoader,
+              showLoader: widget.isEnabled ? widget.showLoader : false,
               clearAllButton: _shouldShowClearAllButton
-                  ? _ClearAllButton(onTap: _handleClearAllTap)
+                  ? _ClearAllButton(
+                      onTap: _handleClearAllTap,
+                      isEnabled: widget.isEnabled,
+                    )
                   : null,
               inlineError: _shouldShowInlineError && error != null
                   ? InlineErrorTooltip(error: error)
@@ -349,9 +352,10 @@ class _PasswordButton extends StatelessWidget {
 }
 
 class _ClearAllButton extends StatelessWidget {
-  const _ClearAllButton({required this.onTap});
+  const _ClearAllButton({required this.onTap, required this.isEnabled});
 
   final GestureTapCallback onTap;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -359,7 +363,9 @@ class _ClearAllButton extends StatelessWidget {
         child: Icon(
           OptimusIcons.cross_close,
           size: context.tokens.sizing200,
-          color: context.tokens.textStaticPrimary,
+          color: isEnabled
+              ? context.tokens.textStaticPrimary
+              : context.tokens.textDisabled,
         ),
       );
 }
