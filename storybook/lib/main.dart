@@ -5,6 +5,7 @@ import 'package:storybook/stories/button/button.dart';
 import 'package:storybook/stories/button/dropdown.dart';
 import 'package:storybook/stories/button/icon.dart';
 import 'package:storybook/stories/button/split.dart';
+import 'package:storybook/stories/button/toggle.dart';
 import 'package:storybook/stories/card.dart';
 import 'package:storybook/stories/chat/bubble.dart';
 import 'package:storybook/stories/chat/chat.dart';
@@ -169,6 +170,7 @@ class _MyAppState extends State<MyApp> {
                 spinnerStory,
                 systemWideBannerStory,
                 passwordStory,
+                toggleButtonStory,
               ],
             ),
         },

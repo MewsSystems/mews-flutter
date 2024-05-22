@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/overlay_controller.dart';
@@ -71,15 +72,16 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       setState(() => _isPressed = isPressed);
 
   bool get _isEnabled => widget.onItemSelected != null;
+  BaseButtonVariant get _variant => widget.variant.toBaseVariant();
 
-  Color get _textColor => widget.variant.toButtonVariant().foregroundColor(
+  Color get _textColor => _variant.foregroundColor(
         tokens,
         isEnabled: _isEnabled,
         isPressed: _isPressed,
         isHovered: _isHovered,
       );
 
-  Color? get _borderColor => widget.variant.toButtonVariant().borderColor(
+  Color? get _borderColor => _variant.borderColor(
         tokens,
         isHovered: _isHovered,
         isPressed: _isPressed,
@@ -90,7 +92,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       ? tokens.bodyMediumStrong.copyWith(color: _textColor)
       : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
-  Color? get _color => widget.variant.toButtonVariant().backgroundColor(
+  Color? get _color => _variant.backgroundColor(
         tokens,
         isEnabled: _isEnabled,
         isPressed: _isPressed,

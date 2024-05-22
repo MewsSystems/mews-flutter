@@ -17,6 +17,7 @@ class OptimusButton extends StatelessWidget {
     this.badgeLabel,
     this.leadingIcon,
     this.trailingIcon,
+    this.isLoading = false,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.primary,
   });
@@ -43,6 +44,9 @@ class OptimusButton extends StatelessWidget {
 
   /// Size of the button widget.
   final OptimusWidgetSize size;
+
+  /// Whether the button is in the loading state.
+  final bool isLoading;
 
   /// {@template optimus.button.variant}
   /// The variant of the button.
@@ -76,7 +80,8 @@ class OptimusButton extends StatelessWidget {
         trailingIcon: trailingIcon,
         badgeLabel: badgeLabel,
         size: size,
-        variant: variant,
+        isLoading: isLoading,
+        variant: variant.toBaseVariant(),
         child: child,
       );
 }

@@ -34,6 +34,7 @@ final Story button = Story(
                     options: sizeOptions,
                   ),
                   variant: v,
+                  isLoading: k.boolean(label: 'Loading', initial: false),
                   leadingIcon: leadingIcon,
                   trailingIcon: trailingIcon,
                   badgeLabel: k.text(label: 'Badge', initial: ''),

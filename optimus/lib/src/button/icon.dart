@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 
@@ -44,15 +45,16 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
       setState(() => _isPressed = isPressed);
 
   bool get _isEnabled => widget.onPressed != null;
+  BaseButtonVariant get _variant => widget.variant.toBaseVariant();
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = widget.variant.borderColor(
-      tokens,
-      isEnabled: _isEnabled,
-      isPressed: _isPressed,
-      isHovered: _isHovered,
-    );
+    final borderColor = widget.variant.toBaseVariant().borderColor(
+          tokens,
+          isEnabled: _isEnabled,
+          isPressed: _isPressed,
+          isHovered: _isHovered,
+        );
     final isEnabled = widget.onPressed != null;
 
     return IgnorePointer(
@@ -66,7 +68,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           width: widget.size.getContainerSize(tokens),
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
-            color: widget.variant.backgroundColor(
+            color: _variant.backgroundColor(
               tokens,
               isEnabled: _isEnabled,
               isPressed: _isPressed,
@@ -83,7 +85,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           duration: buttonAnimationDuration,
           child: IconTheme.merge(
             data: IconThemeData(
-              color: widget.variant.foregroundColor(
+              color: _variant.foregroundColor(
                 tokens,
                 isEnabled: _isEnabled,
                 isPressed: _isPressed,
