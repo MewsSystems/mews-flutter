@@ -24,7 +24,7 @@ class NumberPickerButton extends StatelessWidget {
         child: Icon(
           iconData,
           color: _isEnabled ? tokens.textStaticPrimary : tokens.textDisabled,
-          size: context.tokens.sizing300,
+          size: tokens.sizing300,
         ),
       ),
     );

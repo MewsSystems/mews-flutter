@@ -47,7 +47,6 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
     final borderColor = widget.variant.borderColor(
       tokens,
       isEnabled: _isEnabled,

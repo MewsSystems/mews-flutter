@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
@@ -79,7 +80,7 @@ class _DropdownContent<T> extends StatefulWidget {
 }
 
 class _DropdownContentState<T> extends State<_DropdownContent<T>>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, ThemeGetter {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 350),
     vsync: this,
@@ -147,7 +148,6 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
   Widget build(BuildContext context) {
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
-      final tokens = context.tokens;
       final isOnTop = controller.top > controller.bottom;
       final listMaxHeight = widget.embeddedSearch != null
           ? controller.maxHeight - _embeddedSearchHeight
@@ -268,7 +268,7 @@ class _GroupedDropdownListViewState<T>
   @override
   void didUpdateWidget(_GroupedDropdownListView<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.items != widget.items) {
+    if (!listEquals(oldWidget.items, widget.items)) {
       _sortedItems = _sortItems();
     }
   }
@@ -320,7 +320,7 @@ class _GroupedDropdownListViewState<T>
       height: min(minListHeight, widget.maxHeight),
       child: ListView.builder(
         reverse: widget.isReversed,
-        padding: EdgeInsets.symmetric(vertical: context.tokens.spacing100),
+        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
           final current = _sortedItems[index];

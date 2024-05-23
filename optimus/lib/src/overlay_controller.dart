@@ -37,7 +37,6 @@ class OverlayController<T> extends StatefulWidget {
 }
 
 class _OverlayControllerState<T> extends State<OverlayController<T>> {
-  // ignore: dispose-fields, disposed in _removeOverlay
   OverlayEntry? _overlayEntry;
 
   @override

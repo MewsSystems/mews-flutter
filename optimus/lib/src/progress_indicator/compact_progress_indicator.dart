@@ -37,7 +37,6 @@ class _OptimusCompactProgressIndicatorState
 
   bool _expanded = false;
 
-  // ignore: dispose-fields, disposed in _collapse
   OverlayEntry? _overlayEntry;
 
   @override

@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story alertStory = Story(
-  name: 'Feedback/Alert',
+final Story systemWideBannerStory = Story(
+  name: 'Feedback/System Wide Banner',
   builder: (context) {
     final k = context.knobs;
     final title = k.text(
@@ -26,7 +26,7 @@ final Story alertStory = Story(
             .map(
               (v) => Padding(
                 padding: const EdgeInsets.all(8),
-                child: OptimusAlert(
+                child: OptimusSystemWideBanner(
                   title: Text(title),
                   description:
                       description.isNotEmpty ? Text(description) : null,

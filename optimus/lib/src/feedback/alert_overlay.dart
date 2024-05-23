@@ -3,99 +3,94 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
-/// [OptimusNotificationsOverlay] is an overlay that wraps [child] inside a
-/// stack and provides a method to show an in-app notification.
+/// [OptimusAlertOverlay] is an overlay that wraps [child] inside a
+/// stack and provides a method to show an in-app alerts.
 ///
-/// The position of notifications is determined by [OptimusNotificationPosition]
-/// and by default is set to [OptimusNotificationPosition.topRight].
+/// The position of alerts is determined by [OptimusAlertPosition]
+/// and by default is set to [OptimusAlertPosition.topRight].
 /// You can change the maximum visible count [maxVisible] when declaring the
-/// overlay. Notifications that could not be shown because of the [maxVisible]
+/// overlay. Alerts that could not be shown because of the [maxVisible]
 /// limit will be put into a queue and will be dispatched in the order they were
 /// added.
-class OptimusNotificationsOverlay extends StatefulWidget {
-  const OptimusNotificationsOverlay({
+class OptimusAlertOverlay extends StatefulWidget {
+  const OptimusAlertOverlay({
     super.key,
     required this.child,
     this.maxVisible = _defaultMaxVisibleCount,
-    this.position = OptimusNotificationPosition.topRight,
+    this.position = OptimusAlertPosition.topRight,
   });
 
-  final OptimusNotificationPosition position;
+  final OptimusAlertPosition position;
   final Widget child;
   final int maxVisible;
 
-  static OptimusNotificationManager? of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<_OptimusNotificationData>()
-      ?.manager;
+  static OptimusAlertManager? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_OptimusAlertData>()?.manager;
 
   @override
-  State<StatefulWidget> createState() => _OptimusNotificationsOverlayState();
+  State<StatefulWidget> createState() => _OptimusAlertOverlayState();
 }
 
-class _OptimusNotificationsOverlayState
-    extends State<OptimusNotificationsOverlay>
-    implements OptimusNotificationManager {
-  final List<OptimusNotification> _notifications = [];
-  final List<OptimusNotification> _queue = [];
+class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
+    with ThemeGetter
+    implements OptimusAlertManager {
+  final List<OptimusAlert> _alerts = [];
+  final List<OptimusAlert> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
-  void show(OptimusNotification notification) {
-    if (_notifications.length < widget.maxVisible) {
-      _addNotification(notification);
+  void show(OptimusAlert alert) {
+    if (_alerts.length < widget.maxVisible) {
+      _addAlert(alert);
     } else {
-      _queue.add(notification);
+      _queue.add(alert);
     }
   }
 
   @override
-  void remove(OptimusNotification notification) {
-    final index = _notifications.indexOf(notification);
+  void remove(OptimusAlert alert) {
+    final index = _alerts.indexOf(alert);
     if (index != -1) {
-      _notifications.removeAt(index);
+      _alerts.removeAt(index);
       _listKey.currentState?.removeItem(
         index,
-        (context, animation) =>
-            _buildRemovedNotification(animation, notification),
+        (context, animation) => _buildRemovedAlert(animation, alert),
         duration: _leavingAnimationDuration,
       );
     }
   }
 
-  void _addNotification(
-    OptimusNotification notification, {
-    int index = 0,
-  }) {
-    _notifications.insert(index, notification);
+  void _addAlert(OptimusAlert alert, {int index = 0}) {
+    _alerts.insert(index, alert);
     _listKey.currentState?.insertItem(index, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
-      if (_notifications.contains(notification)) {
-        remove(notification);
+      if (_alerts.contains(alert)) {
+        remove(alert);
       }
     });
   }
 
-  void _handleNotificationDismiss() {
-    if (_queue.isNotEmpty && _notifications.length < widget.maxVisible) {
-      _addNotification(_queue.removeAt(0));
+  void _handleAlertDismiss() {
+    if (_queue.isNotEmpty && _alerts.length < widget.maxVisible) {
+      _addAlert(_queue.removeAt(0));
     }
   }
 
-  _AnimatedNotification _buildRemovedNotification(
+  _AnimatedAlert _buildRemovedAlert(
     Animation<double> animation,
-    OptimusNotification notification,
+    OptimusAlert alert,
   ) {
     animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.dismissed) {
-          _handleNotificationDismiss();
+          _handleAlertDismiss();
         }
       },
     );
 
-    return _AnimatedNotification(
+    return _AnimatedAlert(
       animation: animation,
-      notification: notification,
+      alert: alert,
       isOutgoing: true,
       slideTween: widget.position.slideTween,
     );
@@ -103,12 +98,11 @@ class _OptimusNotificationsOverlayState
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
     final isCompact = MediaQuery.sizeOf(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 
     return Builder(
-      builder: (context) => _OptimusNotificationData(
+      builder: (context) => _OptimusAlertData(
         this,
         child: Stack(
           children: [
@@ -127,10 +121,9 @@ class _OptimusNotificationsOverlayState
                     key: _listKey,
                     shrinkWrap: true,
                     reverse: widget.position.reverse,
-                    itemBuilder: (context, index, animation) =>
-                        _AnimatedNotification(
+                    itemBuilder: (context, index, animation) => _AnimatedAlert(
                       animation: animation,
-                      notification: _notifications[index],
+                      alert: _alerts[index],
                       slideTween: widget.position.slideTween,
                     ),
                   ),
@@ -144,35 +137,35 @@ class _OptimusNotificationsOverlayState
   }
 }
 
-abstract class OptimusNotificationManager {
-  const OptimusNotificationManager();
+abstract class OptimusAlertManager {
+  const OptimusAlertManager();
 
-  void show(OptimusNotification notification);
-  void remove(OptimusNotification notification);
+  void show(OptimusAlert alert);
+  void remove(OptimusAlert alert);
 }
 
-class _OptimusNotificationData extends InheritedWidget {
-  const _OptimusNotificationData(
+class _OptimusAlertData extends InheritedWidget {
+  const _OptimusAlertData(
     this.manager, {
     required super.child,
   });
 
-  final OptimusNotificationManager manager;
+  final OptimusAlertManager manager;
 
   @override
-  bool updateShouldNotify(_OptimusNotificationData oldWidget) => false;
+  bool updateShouldNotify(_OptimusAlertData oldWidget) => false;
 }
 
-class _AnimatedNotification extends StatelessWidget {
-  const _AnimatedNotification({
+class _AnimatedAlert extends StatelessWidget {
+  const _AnimatedAlert({
     required this.animation,
-    required this.notification,
+    required this.alert,
     required this.slideTween,
     this.isOutgoing = false,
   });
 
   final Animation<double> animation;
-  final OptimusNotification notification;
+  final OptimusAlert alert;
   final Tween<Offset> slideTween;
   final bool isOutgoing;
 
@@ -192,7 +185,7 @@ class _AnimatedNotification extends StatelessWidget {
                 curve: Curves.easeInOutCubic,
               ).drive(slideTween),
               child: Center(
-                child: notification,
+                child: alert,
               ),
             ),
           ),
@@ -219,65 +212,61 @@ class _NoClipSizeTransition extends AnimatedWidget {
       );
 }
 
-/// The position of the notifications.
-enum OptimusNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
+/// Position of the alert.
+enum OptimusAlertPosition { topLeft, topRight, bottomRight, bottomLeft }
 
-extension on OptimusNotificationPosition {
+extension on OptimusAlertPosition {
   double? left({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusNotificationPosition.bottomLeft ||
-        OptimusNotificationPosition.topLeft =>
+        OptimusAlertPosition.bottomLeft ||
+        OptimusAlertPosition.topLeft =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusNotificationPosition.topRight ||
-        OptimusNotificationPosition.bottomRight =>
+        OptimusAlertPosition.topRight ||
+        OptimusAlertPosition.bottomRight =>
           isCompact ? tokens.spacing100 : null,
       };
 
   double? top({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusNotificationPosition.topLeft ||
-        OptimusNotificationPosition.topRight =>
+        OptimusAlertPosition.topLeft ||
+        OptimusAlertPosition.topRight =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusNotificationPosition.bottomRight ||
-        OptimusNotificationPosition.bottomLeft =>
+        OptimusAlertPosition.bottomRight ||
+        OptimusAlertPosition.bottomLeft =>
           null,
       };
 
   double? right({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusNotificationPosition.bottomRight ||
-        OptimusNotificationPosition.topRight =>
+        OptimusAlertPosition.bottomRight ||
+        OptimusAlertPosition.topRight =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusNotificationPosition.topLeft ||
-        OptimusNotificationPosition.bottomLeft =>
+        OptimusAlertPosition.topLeft ||
+        OptimusAlertPosition.bottomLeft =>
           isCompact ? tokens.spacing100 : null,
       };
 
   double? bottom({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusNotificationPosition.topLeft ||
-        OptimusNotificationPosition.topRight =>
-          null,
-        OptimusNotificationPosition.bottomRight ||
-        OptimusNotificationPosition.bottomLeft =>
+        OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => null,
+        OptimusAlertPosition.bottomRight ||
+        OptimusAlertPosition.bottomLeft =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
       };
 
   Tween<Offset> get slideTween => switch (this) {
-        OptimusNotificationPosition.topLeft ||
-        OptimusNotificationPosition.bottomLeft =>
+        OptimusAlertPosition.topLeft ||
+        OptimusAlertPosition.bottomLeft =>
           Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero),
-        OptimusNotificationPosition.topRight ||
-        OptimusNotificationPosition.bottomRight =>
+        OptimusAlertPosition.topRight ||
+        OptimusAlertPosition.bottomRight =>
           Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero),
       };
 
   bool get reverse => switch (this) {
-        OptimusNotificationPosition.topLeft ||
-        OptimusNotificationPosition.topRight =>
-          false,
-        OptimusNotificationPosition.bottomLeft ||
-        OptimusNotificationPosition.bottomRight =>
+        OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => false,
+        OptimusAlertPosition.bottomLeft ||
+        OptimusAlertPosition.bottomRight =>
           true,
       };
 }

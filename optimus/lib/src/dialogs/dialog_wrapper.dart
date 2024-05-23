@@ -16,6 +16,7 @@ abstract class DialogController {
   void showInline({
     required GlobalKey anchorKey,
     required Widget content,
+    OptimusDialogSize size = OptimusDialogSize.small,
     List<OptimusDialogAction> actions = const [],
     bool rootOverlay = false,
   });
@@ -88,6 +89,7 @@ class _DialogWrapperState extends State<DialogWrapper>
     required GlobalKey anchorKey,
     required Widget content,
     List<OptimusDialogAction> actions = const [],
+    OptimusDialogSize size = OptimusDialogSize.small,
     bool rootOverlay = false,
   }) {
     hide();
@@ -104,6 +106,7 @@ class _DialogWrapperState extends State<DialogWrapper>
             close: _handleClose,
             actions: actions,
             anchorKey: anchorKey,
+            size: size,
           ),
         ],
       ),
