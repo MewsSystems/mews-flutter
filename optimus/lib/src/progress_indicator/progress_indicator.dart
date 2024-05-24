@@ -66,27 +66,21 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
   String _indicatorText(OptimusProgressIndicatorItem item) =>
       (widget.items.indexOf(item) + 1).toString();
 
-  List<Widget> _buildItems(
-    List<OptimusProgressIndicatorItem> items,
-    double maxWidth,
-  ) =>
-      items
-          .intersperseWith(
-            itemBuilder: (item) => Padding(
-              padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-              child: ProgressIndicatorItem(
-                state: _getItemState(item),
-                indicatorText: _indicatorText(item),
-              ),
-            ),
-            separatorBuilder: (_, nextItem) => Expanded(
-              child: ProgressIndicatorSpacer(
-                nextItemState: _getItemState(nextItem),
-                layout: _effectiveLayout,
-              ),
-            ),
-          )
-          .toList();
+  List<Widget> _buildItems(List<OptimusProgressIndicatorItem> items) => items
+      .intersperseWith(
+        itemBuilder: (item) => ProgressIndicatorItem(
+          state: _getItemState(item),
+          indicatorText: _indicatorText(item),
+        ),
+        separatorBuilder: (_, nextItem) => Expanded(
+          child: ProgressIndicatorSpacer(
+            nextItemState: _getItemState(nextItem),
+            layout: _effectiveLayout,
+          ),
+        ),
+      )
+      .toList();
+
   List<Widget> _buildDescriptions(
     List<OptimusProgressIndicatorItem> items,
     double width,
@@ -110,32 +104,37 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
+        // TODO(witwash): vertical layout
         builder: (context, constraints) {
-          final totalSpacerWidth = (widget.items.length - 1) * tokens.sizing200;
-          final totalFreeSpace =
-              (constraints.maxWidth - totalSpacerWidth) / widget.items.length;
-          final maxItemWidth = max(totalFreeSpace, itemMinWidth);
+          final effectiveWidth = constraints.maxWidth - tokens.spacing100 * 2;
+          final itemWidth = effectiveWidth / widget.items.length;
+          final firstRowHeight = tokens.sizing400;
 
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
             child: SizedBox(
-              width: constraints.maxWidth,
+              width: effectiveWidth,
               child: Column(
                 children: [
                   SizedBox(
-                    height: tokens.sizing400,
+                    width: constraints.maxWidth -
+                        itemWidth / 2 -
+                        tokens.sizing300 *
+                            2, // TODO(witwash): describe, remove magic
+                    height: firstRowHeight,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: _buildItems(widget.items, maxItemWidth),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: _buildItems(widget.items),
                     ),
                   ),
                   SizedBox(
-                    height: constraints.maxHeight - tokens.sizing400,
+                    height: constraints.maxHeight - firstRowHeight,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: _buildDescriptions(widget.items, maxItemWidth),
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _buildDescriptions(
+                          widget.items, itemWidth), // TODO(witwash): add state
                     ),
                   ),
                 ],
