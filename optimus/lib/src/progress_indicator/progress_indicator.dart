@@ -72,16 +72,33 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
   ) =>
       items
           .intersperseWith(
-            itemBuilder: (item) => ProgressIndicatorItem(
-              maxWidth: maxWidth,
-              item: item,
-              state: _getItemState(item),
-              indicatorText: _indicatorText(item),
-              axis: _effectiveLayout,
+            itemBuilder: (item) => Padding(
+              padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+              child: ProgressIndicatorItem(
+                state: _getItemState(item),
+                indicatorText: _indicatorText(item),
+              ),
             ),
-            separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
-              nextItemState: _getItemState(nextItem),
-              layout: _effectiveLayout,
+            separatorBuilder: (_, nextItem) => Expanded(
+              child: ProgressIndicatorSpacer(
+                nextItemState: _getItemState(nextItem),
+                layout: _effectiveLayout,
+              ),
+            ),
+          )
+          .toList();
+  List<Widget> _buildDescriptions(
+    List<OptimusProgressIndicatorItem> items,
+    double width,
+  ) =>
+      items
+          .map(
+            (item) => SizedBox(
+              width: width,
+              child: ProgressIndicatorDescription(
+                label: item.label,
+                description: item.description,
+              ),
             ),
           )
           .toList();
@@ -101,14 +118,28 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
 
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-            child: OptimusStack(
-              mainAxisSize: MainAxisSize.min,
-              direction: _effectiveLayout,
-              crossAxisAlignment: OptimusStackAlignment.start,
-              mainAxisAlignment: OptimusStackAlignment.center,
-              distribution: OptimusStackDistribution
-                  .basic, // TODO(witwash): to other distribution
-              children: _buildItems(widget.items, maxItemWidth),
+            child: SizedBox(
+              width: constraints.maxWidth,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: tokens.sizing400,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _buildItems(widget.items, maxItemWidth),
+                    ),
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight - tokens.sizing400,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: _buildDescriptions(widget.items, maxItemWidth),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

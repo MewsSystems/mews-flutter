@@ -15,8 +15,8 @@ final Story progressIndicatorStory = Story(
     );
 
     return SizedBox(
-      width: axis == Axis.vertical ? 400 : 700,
-      height: axis == Axis.horizontal ? 100 : 700,
+      width: axis == Axis.vertical ? 400 : 600,
+      height: axis == Axis.horizontal ? 100 : 600,
       child: OptimusProgressIndicator(
         layout: axis,
         items: _items,

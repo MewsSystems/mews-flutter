@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
@@ -36,107 +37,24 @@ class OptimusProgressIndicatorItem {
 class ProgressIndicatorItem extends StatelessWidget {
   const ProgressIndicatorItem({
     super.key,
-    required this.maxWidth,
-    required this.item,
     required this.state,
     required this.indicatorText,
-    this.axis = Axis.horizontal,
   });
 
-  final double maxWidth;
-  final OptimusProgressIndicatorItem item;
   final OptimusProgressIndicatorItemState state;
   final String indicatorText;
-  final Axis axis;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final description = item.description;
 
-    return axis == Axis.horizontal
-        ? SizedBox(
-            width: maxWidth,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: tokens.spacing100),
-                  child: ProgressIndicatorItemNumber(
-                    state: state,
-                    text: indicatorText,
-                  ),
-                ),
-                Flexible(
-                  child: OptimusTypography(
-                    resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    maxLines: 1,
-                    child: item.label,
-                  ),
-                ),
-                if (description != null)
-                  Flexible(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: tokens.spacing25),
-                      child: OptimusTypography(
-                        resolveStyle: (_) => tokens.bodySmall.copyWith(
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        color: OptimusTypographyColor.secondary,
-                        maxLines: 1,
-                        child: description,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          )
-        : ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: itemMinWidth),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: tokens.spacing100),
-                  child: ProgressIndicatorItemNumber(
-                    state: state,
-                    text: indicatorText,
-                  ),
-                ),
-                Column(
-                  children: [
-                    Flexible(
-                      child: OptimusTypography(
-                        resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        maxLines: 1,
-                        child: item.label,
-                      ),
-                    ),
-                    if (description != null)
-                      Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing25),
-                          child: OptimusTypography(
-                            resolveStyle: (_) => tokens.bodySmall.copyWith(
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            color: OptimusTypographyColor.secondary,
-                            maxLines: 1,
-                            child: description,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-          );
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+      child: ProgressIndicatorItemNumber(
+        state: state,
+        text: indicatorText,
+      ),
+    );
   }
 }
 
@@ -226,11 +144,9 @@ class ProgressIndicatorSpacer extends StatelessWidget {
         tokens.sizing300 / 2; // center of the circle indicator
 
     return switch (layout) {
-      Axis.horizontal => Container(
-          margin: EdgeInsets.only(top: verticalMargin),
-          constraints: BoxConstraints(minWidth: tokens.sizing200),
+      Axis.horizontal => SizedBox(
           height: tokens.borderWidth150,
-          color: color,
+          child: ColoredBox(color: color),
         ),
       Axis.vertical => Padding(
           padding: EdgeInsets.only(
@@ -245,6 +161,54 @@ class ProgressIndicatorSpacer extends StatelessWidget {
           ),
         ),
     };
+  }
+}
+
+class ProgressIndicatorDescription extends StatelessWidget {
+  const ProgressIndicatorDescription({
+    super.key,
+    required this.label,
+    this.description,
+  });
+
+  final Widget label;
+  final Widget? description;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Flexible(
+          child: OptimusTypography(
+            resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
+              overflow: TextOverflow.ellipsis,
+            ),
+            align: TextAlign.center,
+            maxLines: 1,
+            child: label,
+          ),
+        ),
+        if (description case final description?)
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.only(top: tokens.spacing25),
+              child: OptimusTypography(
+                resolveStyle: (_) => tokens.bodySmall.copyWith(
+                  overflow: TextOverflow.ellipsis,
+                ),
+                align: TextAlign.center,
+                color: OptimusTypographyColor.secondary,
+                maxLines: 2,
+                child: description,
+              ),
+            ),
+          ),
+      ],
+    );
   }
 }
 
