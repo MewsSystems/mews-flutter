@@ -14,24 +14,18 @@ final Story progressIndicatorStory = Story(
       options: Axis.values.toOptions(),
     );
 
-    return Center(
-      child: SizedBox(
-        width: axis == Axis.vertical ? 400 : null,
-        height: axis == Axis.horizontal ? 100 : null,
-        child: SingleChildScrollView(
-          scrollDirection: axis,
-          child: OptimusProgressIndicator(
-            layout: axis,
-            items: _items,
-            currentItem: k.sliderInt(
-              label: 'Current',
-              initial: 0,
-              max: _items.length - 1,
-            ),
-            maxItem:
-                k.sliderInt(label: 'Max', initial: 2, max: _items.length - 1),
-          ),
+    return SizedBox(
+      width: axis == Axis.vertical ? 400 : 700,
+      height: axis == Axis.horizontal ? 100 : 700,
+      child: OptimusProgressIndicator(
+        layout: axis,
+        items: _items,
+        currentItem: k.sliderInt(
+          label: 'Current',
+          initial: 0,
+          max: _items.length - 1,
         ),
+        maxItem: k.sliderInt(label: 'Max', initial: 2, max: _items.length - 1),
       ),
     );
   },
