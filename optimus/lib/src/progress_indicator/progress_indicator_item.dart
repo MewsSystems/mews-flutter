@@ -55,8 +55,8 @@ class ProgressIndicatorItem extends StatelessWidget {
     final description = item.description;
 
     return axis == Axis.horizontal
-        ? ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: itemMinWidth),
+        ? SizedBox(
+            width: maxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -68,23 +68,27 @@ class ProgressIndicatorItem extends StatelessWidget {
                     text: indicatorText,
                   ),
                 ),
-                OptimusTypography(
-                  resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
-                    overflow: TextOverflow.ellipsis,
+                Flexible(
+                  child: OptimusTypography(
+                    resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 1,
+                    child: item.label,
                   ),
-                  maxLines: 1,
-                  child: item.label,
                 ),
                 if (description != null)
-                  Padding(
-                    padding: EdgeInsets.only(top: tokens.spacing25),
-                    child: OptimusTypography(
-                      resolveStyle: (_) => tokens.bodySmall.copyWith(
-                        overflow: TextOverflow.ellipsis,
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: tokens.spacing25),
+                      child: OptimusTypography(
+                        resolveStyle: (_) => tokens.bodySmall.copyWith(
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        color: OptimusTypographyColor.secondary,
+                        maxLines: 1,
+                        child: description,
                       ),
-                      color: OptimusTypographyColor.secondary,
-                      maxLines: 1,
-                      child: description,
                     ),
                   ),
               ],
@@ -105,23 +109,27 @@ class ProgressIndicatorItem extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    OptimusTypography(
-                      resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
-                        overflow: TextOverflow.ellipsis,
+                    Flexible(
+                      child: OptimusTypography(
+                        resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        maxLines: 1,
+                        child: item.label,
                       ),
-                      maxLines: 1,
-                      child: item.label,
                     ),
                     if (description != null)
-                      Padding(
-                        padding: EdgeInsets.only(top: tokens.spacing25),
-                        child: OptimusTypography(
-                          resolveStyle: (_) => tokens.bodySmall.copyWith(
-                            overflow: TextOverflow.ellipsis,
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: tokens.spacing25),
+                          child: OptimusTypography(
+                            resolveStyle: (_) => tokens.bodySmall.copyWith(
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            color: OptimusTypographyColor.secondary,
+                            maxLines: 1,
+                            child: description,
                           ),
-                          color: OptimusTypographyColor.secondary,
-                          maxLines: 1,
-                          child: description,
                         ),
                       ),
                   ],
