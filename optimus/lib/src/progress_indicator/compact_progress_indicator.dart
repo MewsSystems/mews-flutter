@@ -180,8 +180,6 @@ class _CompactProgressIndicatorItem extends StatelessWidget {
               vertical: tokens.spacing100,
             ),
             child: ProgressIndicatorItem(
-              // item: data.items[data.currentItem],
-              // maxWidth: double.infinity,
               state: OptimusProgressIndicatorItemState.active,
               text: text,
               label: data.currentItem.label,

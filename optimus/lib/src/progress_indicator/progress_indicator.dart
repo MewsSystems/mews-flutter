@@ -95,7 +95,7 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                         children: widget.items
                             .intersperseWith(
                               itemBuilder: (_) =>
-                                  SizedBox(width: context.tokens.spacing300),
+                                  SizedBox(width: firstRowItemSize),
                               separatorBuilder: (_, nextItem) => Expanded(
                                 child: ProgressIndicatorSpacer(
                                   nextItemState: _getItemState(nextItem),
