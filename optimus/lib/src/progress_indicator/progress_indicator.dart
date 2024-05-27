@@ -63,38 +63,6 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
   String _getIndicatorText(OptimusProgressIndicatorItem item) =>
       (widget.items.indexOf(item) + 1).toString();
 
-  List<Widget> _buildItems(List<OptimusProgressIndicatorItem> items) => items
-      .intersperseWith(
-        itemBuilder: (item) => ProgressIndicatorItem(
-          state: _getItemState(item),
-          text: _getIndicatorText(item),
-        ),
-        separatorBuilder: (_, nextItem) => Expanded(
-          child: ProgressIndicatorSpacer(
-            nextItemState: _getItemState(nextItem),
-            layout: _effectiveLayout,
-          ),
-        ),
-      )
-      .toList();
-
-  List<Widget> _buildDescriptions(
-    List<OptimusProgressIndicatorItem> items,
-    double width,
-  ) =>
-      items
-          .map(
-            (item) => SizedBox(
-              width: width,
-              child: ProgressIndicatorDescription(
-                label: item.label,
-                description: item.description,
-                state: _getItemState(item),
-              ),
-            ),
-          )
-          .toList();
-
   Axis get _effectiveLayout =>
       MediaQuery.sizeOf(context).screenBreakpoint.index > Breakpoint.small.index
           ? widget.layout
@@ -124,20 +92,38 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: _buildItems(
-                        widget.items,
-                      ), // TODO(witwash): remove build widget methods
+                      children: widget.items
+                          .intersperseWith(
+                            itemBuilder: (item) => ProgressIndicatorItem(
+                              state: _getItemState(item),
+                              text: _getIndicatorText(item),
+                            ),
+                            separatorBuilder: (_, nextItem) => Expanded(
+                              child: ProgressIndicatorSpacer(
+                                nextItemState: _getItemState(nextItem),
+                                layout: _effectiveLayout,
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                   SizedBox(
                     height: constraints.maxHeight - firstRowHeight,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: _buildDescriptions(
-                        // TODO(witwash): remove build widget methods
-                        widget.items,
-                        itemWidth,
-                      ), // TODO(witwash): add state
+                      children: widget.items
+                          .map(
+                            (item) => SizedBox(
+                              width: itemWidth,
+                              child: ProgressIndicatorDescription(
+                                label: item.label,
+                                description: item.description,
+                                state: _getItemState(item),
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                 ],
