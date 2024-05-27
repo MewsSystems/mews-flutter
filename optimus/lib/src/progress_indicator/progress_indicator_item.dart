@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
-import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Both types of step have dedicated states. State is shown through a visual
@@ -118,16 +116,15 @@ class _EnabledIndicatorItem extends StatelessWidget {
   const _EnabledIndicatorItem({
     // required this.state,
     required this.text,
-    required this.backgroundColor,
-    required this.foregroundColor,
+    this.backgroundColor,
+    this.foregroundColor,
     required this.isCompleted,
   });
 
   final String text;
-  final Color backgroundColor;
-  final Color foregroundColor;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
   final bool isCompleted;
-  // final OptimusProgressIndicatorItemState state;
 
   @override
   Widget build(BuildContext context) {
@@ -285,33 +282,48 @@ class ProgressIndicatorDescription extends StatelessWidget {
 
 extension OptimusProgressIndicatorItemTheme
     on OptimusProgressIndicatorItemState {
-  Color getBackgroundColor({
+  Color? getBackgroundColor({
     required OptimusTokens tokens,
     required bool isHovered,
     required bool isPressed,
-  }) =>
-      switch (this) {
-        OptimusProgressIndicatorItemState.completed =>
-          tokens.backgroundInteractiveSecondaryDefault,
-        OptimusProgressIndicatorItemState.active =>
-          tokens.backgroundInteractivePrimaryDefault,
-        OptimusProgressIndicatorItemState.enabled =>
-          tokens.backgroundInteractiveNeutralDefault,
-        OptimusProgressIndicatorItemState.disabled => Colors.transparent,
-      };
+  }) {
+    switch (this) {
+      case OptimusProgressIndicatorItemState.completed:
+        if (isPressed) return tokens.backgroundInteractiveSecondaryActive;
+        if (isHovered) return tokens.backgroundInteractiveSecondaryHover;
+
+        return tokens.backgroundInteractiveSecondaryDefault;
+      case OptimusProgressIndicatorItemState.active:
+        return tokens.backgroundInteractivePrimaryDefault;
+      case OptimusProgressIndicatorItemState.enabled:
+        if (isPressed) return tokens.backgroundInteractiveNeutralActive;
+        if (isHovered) return tokens.backgroundInteractiveNeutralHover;
+
+        return tokens.backgroundInteractiveNeutralDefault;
+      case OptimusProgressIndicatorItemState.disabled:
+        return null;
+    }
+  }
 
   Color getForegroundColor({
     required OptimusTokens tokens,
     required bool isHovered,
     required bool isPressed,
-  }) =>
-      switch (this) {
-        OptimusProgressIndicatorItemState.completed =>
-          tokens.textInteractiveDefault,
-        OptimusProgressIndicatorItemState.active => tokens.textStaticInverse,
-        OptimusProgressIndicatorItemState.enabled => tokens.textStaticPrimary,
-        OptimusProgressIndicatorItemState.disabled => Colors.transparent,
-      };
+  }) {
+    switch (this) {
+      case OptimusProgressIndicatorItemState.completed:
+        if (isHovered) return tokens.textInteractiveHover;
+        if (isPressed) return tokens.textInteractiveActive;
+
+        return tokens.textInteractiveDefault;
+      case OptimusProgressIndicatorItemState.active:
+        return tokens.textStaticInverse;
+      case OptimusProgressIndicatorItemState.enabled:
+        return tokens.textStaticPrimary;
+      case OptimusProgressIndicatorItemState.disabled:
+        return Colors.transparent;
+    }
+  }
 
   OptimusIconColorOption get iconColor => switch (this) {
         OptimusProgressIndicatorItemState.completed =>
