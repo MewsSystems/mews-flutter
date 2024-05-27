@@ -72,26 +72,26 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
   Widget build(BuildContext context) => LayoutBuilder(
         // TODO(witwash): vertical layout
         builder: (context, constraints) {
-          final effectiveWidth = constraints.maxWidth - tokens.spacing100 * 2;
+          final effectiveWidth = constraints.maxWidth;
           final itemWidth = effectiveWidth / widget.items.length;
           final firstRowHeight = tokens.sizing400;
+          final firstRowItemSize = tokens.sizing300;
 
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-            child: SizedBox(
-              width: effectiveWidth,
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: constraints.maxWidth -
-                        itemWidth / 2 -
-                        tokens.sizing300 *
-                            2, // TODO(witwash): describe, remove magic
-                    height: firstRowHeight,
+          return SizedBox(
+            width: effectiveWidth,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: constraints.maxWidth,
+                  height: firstRowHeight,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: (itemWidth / 2) - firstRowItemSize / 2,
+                    ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: widget.items
                           .intersperseWith(
                             itemBuilder: (item) => ProgressIndicatorItem(
@@ -108,26 +108,26 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                           .toList(),
                     ),
                   ),
-                  SizedBox(
-                    height: constraints.maxHeight - firstRowHeight,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.items
-                          .map(
-                            (item) => SizedBox(
-                              width: itemWidth,
-                              child: ProgressIndicatorDescription(
-                                label: item.label,
-                                description: item.description,
-                                state: _getItemState(item),
-                              ),
+                ),
+                SizedBox(
+                  height: constraints.maxHeight - firstRowHeight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: widget.items
+                        .map(
+                          (item) => SizedBox(
+                            width: itemWidth,
+                            child: ProgressIndicatorDescription(
+                              label: item.label,
+                              description: item.description,
+                              state: _getItemState(item),
                             ),
-                          )
-                          .toList(),
-                    ),
+                          ),
+                        )
+                        .toList(),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
