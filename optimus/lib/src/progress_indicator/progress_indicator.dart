@@ -89,6 +89,7 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
               child: ProgressIndicatorDescription(
                 label: item.label,
                 description: item.description,
+                state: _getItemState(item),
               ),
             ),
           )

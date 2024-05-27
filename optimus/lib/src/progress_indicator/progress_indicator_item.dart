@@ -176,10 +176,12 @@ class ProgressIndicatorDescription extends StatelessWidget {
     super.key,
     required this.label,
     this.description,
+    required this.state,
   });
 
   final Widget label;
   final Widget? description;
+  final OptimusProgressIndicatorItemState state;
 
   @override
   Widget build(BuildContext context) {
