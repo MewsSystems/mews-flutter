@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/progress_indicator/common.dart';
 
 /// Step-bars are used to communicate a sense of progress visually through
 /// a sequence of either numbered or logical steps.
@@ -63,14 +60,14 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
         : OptimusProgressIndicatorItemState.disabled;
   }
 
-  String _indicatorText(OptimusProgressIndicatorItem item) =>
+  String _getIndicatorText(OptimusProgressIndicatorItem item) =>
       (widget.items.indexOf(item) + 1).toString();
 
   List<Widget> _buildItems(List<OptimusProgressIndicatorItem> items) => items
       .intersperseWith(
         itemBuilder: (item) => ProgressIndicatorItem(
           state: _getItemState(item),
-          indicatorText: _indicatorText(item),
+          text: _getIndicatorText(item),
         ),
         separatorBuilder: (_, nextItem) => Expanded(
           child: ProgressIndicatorSpacer(
@@ -126,7 +123,9 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: _buildItems(widget.items),
+                      children: _buildItems(
+                        widget.items,
+                      ), // TODO(witwash): remove build widget methods
                     ),
                   ),
                   SizedBox(
@@ -134,7 +133,10 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: _buildDescriptions(
-                          widget.items, itemWidth), // TODO(witwash): add state
+                        // TODO(witwash): remove build widget methods
+                        widget.items,
+                        itemWidth,
+                      ), // TODO(witwash): add state
                     ),
                   ),
                 ],

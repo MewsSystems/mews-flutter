@@ -38,30 +38,6 @@ class ProgressIndicatorItem extends StatelessWidget {
   const ProgressIndicatorItem({
     super.key,
     required this.state,
-    required this.indicatorText,
-  });
-
-  final OptimusProgressIndicatorItemState state;
-  final String indicatorText;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-      child: ProgressIndicatorItemNumber(
-        state: state,
-        text: indicatorText,
-      ),
-    );
-  }
-}
-
-class ProgressIndicatorItemNumber extends StatelessWidget {
-  const ProgressIndicatorItemNumber({
-    super.key,
-    required this.state,
     required this.text,
   });
 
@@ -70,6 +46,21 @@ class ProgressIndicatorItemNumber extends StatelessWidget {
 
   bool get _isEnabled => state != OptimusProgressIndicatorItemState.disabled;
 
+  @override
+  Widget build(BuildContext context) => _isEnabled
+      ? _EnabledIndicatorItem(state: state, text: text)
+      : const _DisabledIndicatorItem();
+}
+
+class _EnabledIndicatorItem extends StatelessWidget {
+  const _EnabledIndicatorItem({
+    required this.state,
+    required this.text,
+  });
+
+  final String text;
+  final OptimusProgressIndicatorItemState state;
+
   bool get _isCompleted => state == OptimusProgressIndicatorItemState.completed;
 
   @override
@@ -77,48 +68,64 @@ class ProgressIndicatorItemNumber extends StatelessWidget {
     final tokens = context.tokens;
     final size = tokens.sizing300;
 
-    return _isEnabled
-        ? Container(
-            width: size,
-            height: size,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: state.iconBackgroundColor(tokens),
-            ),
-            child: Center(
-              child: _isCompleted
-                  ? const OptimusIcon(
-                      iconData: OptimusIcons.done,
-                      colorOption: OptimusIconColorOption.primary,
-                      iconSize: OptimusIconSize.small,
-                    )
-                  : Text(
-                      text,
-                      style: tokens.bodySmallStrong.merge(
-                        TextStyle(color: state.textColor(tokens)),
-                      ),
-                    ),
-            ),
+    final child = _isCompleted
+        ? const OptimusIcon(
+            iconData: OptimusIcons.done,
+            colorOption: OptimusIconColorOption.primary,
+            iconSize: OptimusIconSize.small,
           )
-        : SizedBox(
-            height: size,
-            width: size,
-            child: Center(
-              child: Container(
-                constraints: BoxConstraints(
-                  maxHeight: tokens.sizing100,
-                  maxWidth: tokens.sizing100,
-                ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: tokens.borderWidth150,
-                    color: tokens.borderStaticPrimary,
-                  ),
-                ),
-              ),
+        : Text(
+            text,
+            style: tokens.bodySmallStrong.merge(
+              TextStyle(color: state.textColor(tokens)),
             ),
           );
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: state.iconBackgroundColor(tokens),
+        ),
+        child: Center(child: child),
+      ),
+    );
+  }
+}
+
+class _DisabledIndicatorItem extends StatelessWidget {
+  const _DisabledIndicatorItem();
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final size = tokens.sizing300;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+      child: SizedBox(
+        height: size,
+        width: size,
+        child: Center(
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: tokens.sizing100,
+              maxWidth: tokens.sizing100,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                width: tokens.borderWidth150,
+                color: tokens.borderStaticPrimary,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

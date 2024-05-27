@@ -147,7 +147,7 @@ class _CollapsedCompactProgressIndicator extends StatelessWidget {
               children: [
                 Expanded(
                   child: _CompactProgressIndicatorItem(
-                    indicatorText: (data.currentItem + 1).toString(),
+                    text: (data.currentItem + 1).toString(),
                   ),
                 ),
                 _CompactProgressIndicatorElement(
@@ -163,10 +163,10 @@ class _CollapsedCompactProgressIndicator extends StatelessWidget {
 
 class _CompactProgressIndicatorItem extends StatelessWidget {
   const _CompactProgressIndicatorItem({
-    required this.indicatorText,
+    required this.text,
   });
 
-  final String indicatorText;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +183,7 @@ class _CompactProgressIndicatorItem extends StatelessWidget {
               // item: data.items[data.currentItem],
               // maxWidth: double.infinity,
               state: OptimusProgressIndicatorItemState.active,
-              indicatorText: indicatorText,
+              text: text,
             ),
           )
         : const SizedBox.shrink();
