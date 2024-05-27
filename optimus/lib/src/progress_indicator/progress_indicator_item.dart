@@ -81,17 +81,14 @@ class _EnabledIndicatorItem extends StatelessWidget {
             ),
           );
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: state.iconBackgroundColor(tokens),
-        ),
-        child: Center(child: child),
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: state.iconBackgroundColor(tokens),
       ),
+      child: Center(child: child),
     );
   }
 }
@@ -104,23 +101,20 @@ class _DisabledIndicatorItem extends StatelessWidget {
     final tokens = context.tokens;
     final size = tokens.sizing300;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-      child: SizedBox(
-        height: size,
-        width: size,
-        child: Center(
-          child: Container(
-            constraints: BoxConstraints(
-              maxHeight: tokens.sizing100,
-              maxWidth: tokens.sizing100,
-            ),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: tokens.borderWidth150,
-                color: tokens.borderStaticPrimary,
-              ),
+    return SizedBox(
+      height: size,
+      width: size,
+      child: Center(
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: tokens.sizing100,
+            maxWidth: tokens.sizing100,
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              width: tokens.borderWidth150,
+              color: tokens.borderStaticPrimary,
             ),
           ),
         ),
@@ -147,13 +141,14 @@ class ProgressIndicatorSpacer extends StatelessWidget {
         ? tokens.borderInteractivePrimaryDefault
         : tokens.borderStaticPrimary;
     final verticalSpacerLeftPadding = tokens.sizing500 / 2 + tokens.spacing100;
-    final verticalMargin =
-        tokens.sizing300 / 2; // center of the circle indicator
 
     return switch (layout) {
-      Axis.horizontal => SizedBox(
-          height: tokens.borderWidth150,
-          child: ColoredBox(color: color),
+      Axis.horizontal => Padding(
+          padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+          child: SizedBox(
+            height: tokens.borderWidth150,
+            child: ColoredBox(color: color),
+          ),
         ),
       Axis.vertical => Padding(
           padding: EdgeInsets.only(
