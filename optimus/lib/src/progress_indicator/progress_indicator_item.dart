@@ -251,11 +251,14 @@ class ProgressIndicatorDescription extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
-          child: OptimusTypography(
-            resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
+          child: DefaultTextStyle.merge(
+            style: tokens.bodyMediumStrong.copyWith(
               overflow: TextOverflow.ellipsis,
+              color: state == OptimusProgressIndicatorItemState.disabled
+                  ? tokens.textStaticTertiary
+                  : tokens.textStaticPrimary,
             ),
-            align: TextAlign.center,
+            textAlign: TextAlign.center,
             maxLines: 1,
             child: label,
           ),
