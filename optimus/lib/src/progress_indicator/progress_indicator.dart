@@ -81,53 +81,58 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
 
           return SizedBox(
             width: effectiveWidth,
-            child: Column(
+            child: Stack(
               children: [
-                SizedBox(
-                  width: constraints.maxWidth,
-                  height: firstRowHeight,
-                  child: Padding(
+                if (widget.items.length > 1)
+                  Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: firstRowHorizontalPadding,
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.items
-                          .intersperseWith(
-                            itemBuilder: (item) => ProgressIndicatorItem(
+                    child: SizedBox(
+                      height: firstRowHeight,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: widget.items
+                            .intersperseWith(
+                              itemBuilder: (_) =>
+                                  SizedBox(width: context.tokens.spacing300),
+                              separatorBuilder: (_, nextItem) => Expanded(
+                                child: ProgressIndicatorSpacer(
+                                  nextItemState: _getItemState(nextItem),
+                                  layout: _effectiveLayout,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                  ),
+                Row(
+                  children: [
+                    for (final item in widget.items)
+                      SizedBox(
+                        width: itemWidth,
+                        height: constraints.maxHeight,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ProgressIndicatorItem(
+                              // TODO(witwash): to one widget
                               state: _getItemState(item),
                               text: _getIndicatorText(item),
                             ),
-                            separatorBuilder: (_, nextItem) => Expanded(
-                              child: ProgressIndicatorSpacer(
-                                nextItemState: _getItemState(nextItem),
-                                layout: _effectiveLayout,
+                            SizedBox(
+                              height: constraints.maxHeight - firstRowHeight,
+                              child: ProgressIndicatorDescription(
+                                label: item.label,
+                                description: item.description,
+                                state: _getItemState(item),
                               ),
                             ),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: constraints.maxHeight - firstRowHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: widget.items
-                        .map(
-                          (item) => SizedBox(
-                            width: itemWidth,
-                            child: ProgressIndicatorDescription(
-                              label: item.label,
-                              description: item.description,
-                              state: _getItemState(item),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),
