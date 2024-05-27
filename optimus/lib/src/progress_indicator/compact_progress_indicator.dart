@@ -86,7 +86,7 @@ class _OptimusCompactProgressIndicatorState
               color: Colors.transparent,
               child: _ProgressIndicatorData(
                 items: widget.items,
-                currentItem: widget.currentItem,
+                currentItemIndex: widget.currentItem,
                 maxItem: widget.maxItem,
                 child: _ExpandedCompactProgressIndicator(
                   controller: _animationController,
@@ -103,7 +103,7 @@ class _OptimusCompactProgressIndicatorState
   @override
   Widget build(BuildContext context) => _ProgressIndicatorData(
         items: widget.items,
-        currentItem: widget.currentItem,
+        currentItemIndex: widget.currentItem,
         maxItem: widget.maxItem,
         child: GestureDetector(
           onTap: _handleExpand,
@@ -147,11 +147,11 @@ class _CollapsedCompactProgressIndicator extends StatelessWidget {
               children: [
                 Expanded(
                   child: _CompactProgressIndicatorItem(
-                    text: (data.currentItem + 1).toString(),
+                    text: (data.currentItemIndex + 1).toString(),
                   ),
                 ),
                 _CompactProgressIndicatorElement(
-                  currentStep: data.currentItem,
+                  currentStep: data.currentItemIndex,
                   maxSteps: data.maxItem,
                 ),
               ],
@@ -184,6 +184,8 @@ class _CompactProgressIndicatorItem extends StatelessWidget {
               // maxWidth: double.infinity,
               state: OptimusProgressIndicatorItemState.active,
               text: text,
+              label: data.currentItem.label,
+              description: data.currentItem.description,
             ),
           )
         : const SizedBox.shrink();
@@ -441,7 +443,7 @@ class _AnimatedProgressIndicatorState
                     OptimusProgressIndicator(
                       layout: Axis.vertical,
                       items: data.items,
-                      currentItem: data.currentItem,
+                      currentItem: data.currentItemIndex,
                       maxItem: data.maxItem,
                     ),
                     Positioned(
@@ -466,14 +468,16 @@ class _AnimatedProgressIndicatorState
 class _ProgressIndicatorData extends InheritedWidget {
   const _ProgressIndicatorData({
     required this.items,
-    required this.currentItem,
+    required this.currentItemIndex,
     required this.maxItem,
     required super.child,
   });
 
   final List<OptimusProgressIndicatorItem> items;
-  final int currentItem;
+  final int currentItemIndex;
   final int? maxItem;
+
+  OptimusProgressIndicatorItem get currentItem => items[currentItemIndex];
 
   static _ProgressIndicatorData? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_ProgressIndicatorData>();
@@ -482,4 +486,4 @@ class _ProgressIndicatorData extends InheritedWidget {
   bool updateShouldNotify(_ProgressIndicatorData oldWidget) => true;
 }
 
-const double _itemHeight = 66;
+const double _itemHeight = 66; // TODO(witwash): check with design

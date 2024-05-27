@@ -34,22 +34,52 @@ class OptimusProgressIndicatorItem {
   final IconData icon;
 }
 
-class ProgressIndicatorItem extends StatelessWidget {
+class ProgressIndicatorItem extends StatefulWidget {
   const ProgressIndicatorItem({
     super.key,
     required this.state,
     required this.text,
+    required this.label,
+    this.description,
   });
 
   final OptimusProgressIndicatorItemState state;
   final String text;
-
-  bool get _isEnabled => state != OptimusProgressIndicatorItemState.disabled;
+  final Widget label;
+  final Widget? description;
 
   @override
-  Widget build(BuildContext context) => _isEnabled
-      ? _EnabledIndicatorItem(state: state, text: text)
-      : const _DisabledIndicatorItem();
+  State<ProgressIndicatorItem> createState() => _ProgressIndicatorItemState();
+}
+
+class _ProgressIndicatorItemState extends State<ProgressIndicatorItem> {
+  bool _isHovered = false;
+  bool _isTapped = false;
+
+  bool get _isEnabled =>
+      widget.state != OptimusProgressIndicatorItemState.disabled;
+
+  @override
+  Widget build(BuildContext context) {
+    final indicator = _isEnabled
+        ? _EnabledIndicatorItem(state: widget.state, text: widget.text)
+        : const _DisabledIndicatorItem();
+
+    return Padding(
+      padding: EdgeInsets.only(top: context.tokens.spacing50),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          indicator,
+          ProgressIndicatorDescription(
+            label: widget.label,
+            description: widget.description,
+            state: widget.state,
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _EnabledIndicatorItem extends StatelessWidget {
@@ -185,6 +215,7 @@ class ProgressIndicatorDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
           child: OptimusTypography(

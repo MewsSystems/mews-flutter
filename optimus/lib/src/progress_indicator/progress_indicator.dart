@@ -113,23 +113,11 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                       SizedBox(
                         width: itemWidth,
                         height: constraints.maxHeight,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ProgressIndicatorItem(
-                              // TODO(witwash): to one widget
-                              state: _getItemState(item),
-                              text: _getIndicatorText(item),
-                            ),
-                            SizedBox(
-                              height: constraints.maxHeight - firstRowHeight,
-                              child: ProgressIndicatorDescription(
-                                label: item.label,
-                                description: item.description,
-                                state: _getItemState(item),
-                              ),
-                            ),
-                          ],
+                        child: ProgressIndicatorItem(
+                          state: _getItemState(item),
+                          text: _getIndicatorText(item),
+                          label: item.label,
+                          description: item.description,
                         ),
                       ),
                   ],
