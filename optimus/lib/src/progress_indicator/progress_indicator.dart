@@ -76,6 +76,8 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
           final itemWidth = effectiveWidth / widget.items.length;
           final firstRowHeight = tokens.sizing400;
           final firstRowItemSize = tokens.sizing300;
+          final firstRowHorizontalPadding =
+              itemWidth / 2 - firstRowItemSize / 2;
 
           return SizedBox(
             width: effectiveWidth,
@@ -86,7 +88,7 @@ class _OptimusProgressIndicatorState extends State<OptimusProgressIndicator>
                   height: firstRowHeight,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: (itemWidth / 2) - firstRowItemSize / 2,
+                      horizontal: firstRowHorizontalPadding,
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
