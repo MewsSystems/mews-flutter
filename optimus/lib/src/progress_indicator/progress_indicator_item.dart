@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -52,31 +53,62 @@ class ProgressIndicatorItem extends StatefulWidget {
   State<ProgressIndicatorItem> createState() => _ProgressIndicatorItemState();
 }
 
-class _ProgressIndicatorItemState extends State<ProgressIndicatorItem> {
+class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
+    with ThemeGetter {
   bool _isHovered = false;
-  bool _isTapped = false;
+  bool _isPressed = false;
 
   bool get _isEnabled =>
       widget.state != OptimusProgressIndicatorItemState.disabled;
 
+  bool get _isCompleted =>
+      widget.state == OptimusProgressIndicatorItemState.completed;
+
   @override
   Widget build(BuildContext context) {
     final indicator = _isEnabled
-        ? _EnabledIndicatorItem(state: widget.state, text: widget.text)
+        ? _EnabledIndicatorItem(
+            text: widget.text,
+            isCompleted: _isCompleted,
+            foregroundColor: widget.state.getForegroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+            backgroundColor: widget.state.getBackgroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+          )
         : const _DisabledIndicatorItem();
 
-    return Padding(
-      padding: EdgeInsets.only(top: context.tokens.spacing50),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          indicator,
-          ProgressIndicatorDescription(
-            label: widget.label,
-            description: widget.description,
-            state: widget.state,
-          ),
-        ],
+    return GestureWrapper(
+      onHoverChanged: (value) => setState(() => _isHovered = value),
+      onPressedChanged: (value) => setState(() => _isPressed = value),
+      child: Padding(
+        padding: EdgeInsets.only(top: context.tokens.spacing50),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            indicator,
+            Padding(
+              padding: EdgeInsets.only(top: tokens.spacing100),
+              child: ProgressIndicatorDescription(
+                label: DefaultTextStyle.merge(
+                  style: TextStyle(
+                    decoration: _isPressed || _isHovered
+                        ? TextDecoration.underline
+                        : TextDecoration.none,
+                  ),
+                  child: widget.label,
+                ),
+                description: widget.description,
+                state: widget.state,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -84,30 +116,34 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem> {
 
 class _EnabledIndicatorItem extends StatelessWidget {
   const _EnabledIndicatorItem({
-    required this.state,
+    // required this.state,
     required this.text,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.isCompleted,
   });
 
   final String text;
-  final OptimusProgressIndicatorItemState state;
-
-  bool get _isCompleted => state == OptimusProgressIndicatorItemState.completed;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final bool isCompleted;
+  // final OptimusProgressIndicatorItemState state;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final size = tokens.sizing300;
 
-    final child = _isCompleted
-        ? const OptimusIcon(
-            iconData: OptimusIcons.done,
-            colorOption: OptimusIconColorOption.primary,
-            iconSize: OptimusIconSize.small,
+    final child = isCompleted
+        ? Icon(
+            OptimusIcons.done,
+            color: foregroundColor,
+            size: tokens.sizing200,
           )
         : Text(
             text,
             style: tokens.bodySmallStrong.merge(
-              TextStyle(color: state.textColor(tokens)),
+              TextStyle(color: foregroundColor),
             ),
           );
 
@@ -116,7 +152,7 @@ class _EnabledIndicatorItem extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: state.iconBackgroundColor(tokens),
+        color: backgroundColor,
       ),
       child: Center(child: child),
     );
@@ -249,7 +285,12 @@ class ProgressIndicatorDescription extends StatelessWidget {
 
 extension OptimusProgressIndicatorItemTheme
     on OptimusProgressIndicatorItemState {
-  Color iconBackgroundColor(OptimusTokens tokens) => switch (this) {
+  Color getBackgroundColor({
+    required OptimusTokens tokens,
+    required bool isHovered,
+    required bool isPressed,
+  }) =>
+      switch (this) {
         OptimusProgressIndicatorItemState.completed =>
           tokens.backgroundInteractiveSecondaryDefault,
         OptimusProgressIndicatorItemState.active =>
@@ -259,7 +300,12 @@ extension OptimusProgressIndicatorItemTheme
         OptimusProgressIndicatorItemState.disabled => Colors.transparent,
       };
 
-  Color textColor(OptimusTokens tokens) => switch (this) {
+  Color getForegroundColor({
+    required OptimusTokens tokens,
+    required bool isHovered,
+    required bool isPressed,
+  }) =>
+      switch (this) {
         OptimusProgressIndicatorItemState.completed =>
           tokens.textInteractiveDefault,
         OptimusProgressIndicatorItemState.active => tokens.textStaticInverse,
