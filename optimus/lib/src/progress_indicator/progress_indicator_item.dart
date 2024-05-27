@@ -97,7 +97,7 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
               child: ProgressIndicatorDescription(
                 label: DefaultTextStyle.merge(
                   style: TextStyle(
-                    decoration: _isPressed || _isHovered
+                    decoration: _isEnabled && (_isPressed || _isHovered)
                         ? TextDecoration.underline
                         : TextDecoration.none,
                   ),
