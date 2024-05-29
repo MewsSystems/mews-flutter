@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
@@ -14,7 +15,7 @@ class OptimusButton extends StatelessWidget {
     this.onPressed,
     required this.child,
     this.minWidth,
-    this.badgeLabel,
+    this.counter,
     this.leadingIcon,
     this.trailingIcon,
     this.isLoading = false,
@@ -39,8 +40,10 @@ class OptimusButton extends StatelessWidget {
   /// The icon to the right of the [child].
   final IconData? trailingIcon;
 
-  /// Badge text. Typically used for the counter.
-  final String? badgeLabel;
+  /// Badge counter.
+  ///
+  /// If more than 99 will be displayed as 99+.
+  final num? counter;
 
   /// Size of the button widget.
   final OptimusWidgetSize size;
@@ -78,7 +81,9 @@ class OptimusButton extends StatelessWidget {
         minWidth: minWidth,
         leadingIcon: leadingIcon,
         trailingIcon: trailingIcon,
-        badgeLabel: badgeLabel,
+        badgeLabel: counter?.let(
+          (v) => v.abs() > 99 ? '${v < 0 ? '-' : ''}99+' : v.toString(),
+        ),
         size: size,
         isLoading: isLoading,
         variant: variant.toBaseVariant(),

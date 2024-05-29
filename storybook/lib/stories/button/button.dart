@@ -19,6 +19,10 @@ final Story button = Story(
       options: exampleIcons,
     );
 
+    final showBadge = k.boolean(label: 'Show Badge', initial: false);
+    final counter =
+        k.sliderInt(label: 'Badge Count', initial: 0, max: 110, min: -110);
+
     return SingleChildScrollView(
       child: Column(
         children: OptimusButtonVariant.values
@@ -37,7 +41,7 @@ final Story button = Story(
                   variant: v,
                   leadingIcon: leadingIcon,
                   trailingIcon: trailingIcon,
-                  badgeLabel: k.text(label: 'Badge', initial: ''),
+                  counter: showBadge ? counter : null,
                   child: Text(k.text(label: 'Text', initial: 'Button')),
                 ),
               ),
