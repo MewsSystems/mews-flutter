@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button.dart';
-import 'package:optimus/src/button/button_variant.dart';
 
 /// Buttons are an element that let users trigger or perform an action.
 /// Button labels should inform users about what will happen upon interaction.
