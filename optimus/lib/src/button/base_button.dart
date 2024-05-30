@@ -172,6 +172,8 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
     final leadingIcon = widget.leadingIcon;
     final trailingIcon = widget.trailingIcon;
     final badgeLabel = widget.badgeLabel;
+    final insideHorizontalPadding =
+        widget.size.getInsideHorizontalPadding(tokens);
 
     final foregroundColor = widget.variant.foregroundColor(
       tokens,
@@ -188,32 +190,46 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           if (leadingIcon != null)
-            Icon(widget.leadingIcon, size: _iconSize, color: foregroundColor),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-            child: DefaultTextStyle.merge(
-              style: _textStyle.copyWith(color: foregroundColor),
-              child: widget.child,
+            Padding(
+              padding: EdgeInsets.only(right: insideHorizontalPadding),
+              child: Icon(
+                widget.leadingIcon,
+                size: _iconSize,
+                color: foregroundColor,
+              ),
             ),
+          DefaultTextStyle.merge(
+            style: _textStyle.copyWith(color: foregroundColor),
+            child: widget.child,
           ),
           if (badgeLabel != null && badgeLabel.isNotEmpty)
-            _Badge(
-              label: badgeLabel,
-              color: widget.variant.badgeColor(
-                tokens,
-                isEnabled: _isEnabled,
-                isPressed: _isPressed,
-                isHovered: _isHovered,
-              ),
-              textColor: widget.variant.badgeTextColor(
-                tokens,
-                isEnabled: _isEnabled,
-                isPressed: _isPressed,
-                isHovered: _isHovered,
+            Padding(
+              padding: EdgeInsets.only(left: insideHorizontalPadding),
+              child: _Badge(
+                label: badgeLabel,
+                color: widget.variant.badgeColor(
+                  tokens,
+                  isEnabled: _isEnabled,
+                  isPressed: _isPressed,
+                  isHovered: _isHovered,
+                ),
+                textColor: widget.variant.badgeTextColor(
+                  tokens,
+                  isEnabled: _isEnabled,
+                  isPressed: _isPressed,
+                  isHovered: _isHovered,
+                ),
               ),
             ),
           if (trailingIcon != null)
-            Icon(widget.trailingIcon, size: _iconSize, color: foregroundColor),
+            Padding(
+              padding: EdgeInsets.only(left: insideHorizontalPadding),
+              child: Icon(
+                widget.trailingIcon,
+                size: _iconSize,
+                color: foregroundColor,
+              ),
+            ),
         ],
       ),
     );
@@ -277,5 +293,12 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.large ||
         OptimusWidgetSize.extraLarge =>
           tokens.spacing300,
+      };
+  double getInsideHorizontalPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small => tokens.spacing100,
+        OptimusWidgetSize.medium ||
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing150,
       };
 }
