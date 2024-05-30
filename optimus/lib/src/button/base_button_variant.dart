@@ -4,7 +4,7 @@ import 'package:optimus/src/theme/optimus_tokens.dart';
 enum BaseButtonVariant { primary, secondary, tertiary, ghost, danger, success }
 
 extension ColorScheme on BaseButtonVariant {
-  Color? backgroundColor(
+  Color? getBackgroundColor(
     OptimusTokens tokens, {
     required bool isEnabled,
     required bool isPressed,
@@ -45,7 +45,7 @@ extension ColorScheme on BaseButtonVariant {
     }
   }
 
-  Color foregroundColor(
+  Color getForegroundColor(
     OptimusTokens tokens, {
     required bool isEnabled,
     required bool isPressed,
@@ -76,7 +76,7 @@ extension ColorScheme on BaseButtonVariant {
     }
   }
 
-  Color badgeColor(
+  Color getBadgeColor(
     OptimusTokens tokens, {
     required bool isEnabled,
     required bool isPressed,
@@ -105,7 +105,7 @@ extension ColorScheme on BaseButtonVariant {
     }
   }
 
-  Color badgeTextColor(
+  Color getBadgeTextColor(
     OptimusTokens tokens, {
     required bool isEnabled,
     required bool isPressed,
@@ -151,7 +151,7 @@ extension ColorScheme on BaseButtonVariant {
     }
   }
 
-  Color? borderColor(
+  Color? getBorderColor(
     OptimusTokens tokens, {
     required bool isEnabled,
     required bool isPressed,

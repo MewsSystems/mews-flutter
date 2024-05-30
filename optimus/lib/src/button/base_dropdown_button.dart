@@ -74,14 +74,14 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   bool get _isEnabled => widget.onItemSelected != null;
   BaseButtonVariant get _variant => widget.variant.toBaseVariant();
 
-  Color get _textColor => _variant.foregroundColor(
+  Color get _textColor => _variant.getForegroundColor(
         tokens,
         isEnabled: _isEnabled,
         isPressed: _isPressed,
         isHovered: _isHovered,
       );
 
-  Color? get _borderColor => _variant.borderColor(
+  Color? get _borderColor => _variant.getBorderColor(
         tokens,
         isHovered: _isHovered,
         isPressed: _isPressed,
@@ -92,7 +92,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       ? tokens.bodyMediumStrong.copyWith(color: _textColor)
       : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
-  Color? get _color => _variant.backgroundColor(
+  Color? get _color => _variant.getBackgroundColor(
         tokens,
         isEnabled: _isEnabled,
         isPressed: _isPressed,

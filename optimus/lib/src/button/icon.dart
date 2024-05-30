@@ -49,7 +49,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = widget.variant.toBaseVariant().borderColor(
+    final borderColor = widget.variant.toBaseVariant().getBorderColor(
           tokens,
           isEnabled: _isEnabled,
           isPressed: _isPressed,
@@ -68,7 +68,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           width: widget.size.getContainerSize(tokens),
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
-            color: _variant.backgroundColor(
+            color: _variant.getBackgroundColor(
               tokens,
               isEnabled: _isEnabled,
               isPressed: _isPressed,
@@ -85,7 +85,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
           duration: buttonAnimationDuration,
           child: IconTheme.merge(
             data: IconThemeData(
-              color: _variant.foregroundColor(
+              color: _variant.getForegroundColor(
                 tokens,
                 isEnabled: _isEnabled,
                 isPressed: _isPressed,

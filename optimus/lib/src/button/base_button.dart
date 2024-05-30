@@ -68,7 +68,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         ),
         shape: MaterialStateProperty.resolveWith(
           (states) {
-            final color = widget.variant.borderColor(
+            final color = widget.variant.getBorderColor(
               tokens,
               isEnabled: !_statesController.value.isDisabled,
               isPressed: _statesController.value.isPressed,
@@ -88,7 +88,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         visualDensity: VisualDensity.standard,
         splashFactory: NoSplash.splashFactory,
         backgroundColor: MaterialStateProperty.resolveWith(
-          (states) => widget.variant.backgroundColor(
+          (states) => widget.variant.getBackgroundColor(
             tokens,
             isEnabled: !_statesController.value.isDisabled,
             isPressed: _statesController.value.isPressed,
@@ -178,7 +178,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
   Widget build(BuildContext context) {
     final badgeLabel = widget.badgeLabel;
 
-    final foregroundColor = widget.variant.foregroundColor(
+    final foregroundColor = widget.variant.getForegroundColor(
       tokens,
       isEnabled: _isEnabled,
       isPressed: _isPressed,
@@ -202,13 +202,13 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
           if (badgeLabel != null && badgeLabel.isNotEmpty)
             _Badge(
               label: badgeLabel,
-              color: widget.variant.badgeColor(
+              color: widget.variant.getBadgeColor(
                 tokens,
                 isEnabled: _isEnabled,
                 isPressed: _isPressed,
                 isHovered: _isHovered,
               ),
-              textColor: widget.variant.badgeTextColor(
+              textColor: widget.variant.getBadgeTextColor(
                 tokens,
                 isEnabled: _isEnabled,
                 isPressed: _isPressed,
