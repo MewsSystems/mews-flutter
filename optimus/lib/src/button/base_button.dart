@@ -8,6 +8,7 @@ class BaseButton extends StatefulWidget {
     super.key,
     this.onPressed,
     required this.child,
+    this.isLoading = false,
     this.minWidth,
     this.leadingIcon,
     this.trailingIcon,
@@ -20,6 +21,7 @@ class BaseButton extends StatefulWidget {
 
   final VoidCallback? onPressed;
   final Widget? child;
+  final bool isLoading;
   final double? minWidth;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
@@ -55,61 +57,65 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
     final borderRadius =
         widget.borderRadius ?? BorderRadius.all(tokens.borderRadius100);
 
-    return TextButton(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all<Size>(
-          Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
-        ),
-        maximumSize: MaterialStateProperty.all<Size>(
-          Size(double.infinity, widget.size.getValue(tokens)),
-        ),
-        padding: MaterialStateProperty.all<EdgeInsets>(
-          _padding,
-        ),
-        shape: MaterialStateProperty.resolveWith(
-          (states) {
-            final color = widget.variant.getBorderColor(
+    return IgnorePointer(
+      ignoring: widget.isLoading,
+      child: TextButton(
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all<Size>(
+            Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
+          ),
+          maximumSize: MaterialStateProperty.all<Size>(
+            Size(double.infinity, widget.size.getValue(tokens)),
+          ),
+          padding: MaterialStateProperty.all<EdgeInsets>(
+            _padding,
+          ),
+          shape: MaterialStateProperty.resolveWith(
+            (states) {
+              final color = widget.variant.getBorderColor(
+                tokens,
+                isEnabled: !_statesController.value.isDisabled,
+                isPressed: _statesController.value.isPressed,
+                isHovered: _statesController.value.isHovered,
+              );
+
+              return RoundedRectangleBorder(
+                borderRadius: borderRadius,
+                side: color != null
+                    ? BorderSide(color: color, width: tokens.borderWidth150)
+                    : BorderSide.none,
+              );
+            },
+          ),
+          animationDuration: buttonAnimationDuration,
+          elevation: MaterialStateProperty.all<double>(0),
+          visualDensity: VisualDensity.standard,
+          splashFactory: NoSplash.splashFactory,
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) => widget.variant.getBackgroundColor(
               tokens,
               isEnabled: !_statesController.value.isDisabled,
               isPressed: _statesController.value.isPressed,
               isHovered: _statesController.value.isHovered,
-            );
-
-            return RoundedRectangleBorder(
-              borderRadius: borderRadius,
-              side: color != null
-                  ? BorderSide(color: color, width: tokens.borderWidth150)
-                  : BorderSide.none,
-            );
-          },
-        ),
-        animationDuration: buttonAnimationDuration,
-        elevation: MaterialStateProperty.all<double>(0),
-        visualDensity: VisualDensity.standard,
-        splashFactory: NoSplash.splashFactory,
-        backgroundColor: MaterialStateProperty.resolveWith(
-          (states) => widget.variant.getBackgroundColor(
-            tokens,
-            isEnabled: !_statesController.value.isDisabled,
-            isPressed: _statesController.value.isPressed,
-            isHovered: _statesController.value.isHovered,
+            ),
           ),
+          overlayColor: const MaterialStatePropertyAll(Colors.transparent),
         ),
-        overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-      ),
-      statesController: _statesController,
-      onPressed: widget.onPressed,
-      child: _ButtonContent(
-        onPressed: widget.onPressed,
-        size: widget.size,
-        variant: widget.variant,
-        borderRadius: borderRadius,
         statesController: _statesController,
-        badgeLabel: widget.badgeLabel,
-        leadingIcon: widget.leadingIcon,
-        minWidth: widget.minWidth,
-        trailingIcon: widget.trailingIcon,
-        child: widget.child,
+        onPressed: widget.onPressed,
+        child: _ButtonContent(
+          onPressed: widget.onPressed,
+          size: widget.size,
+          variant: widget.variant,
+          borderRadius: borderRadius,
+          statesController: _statesController,
+          badgeLabel: widget.badgeLabel,
+          leadingIcon: widget.leadingIcon,
+          minWidth: widget.minWidth,
+          trailingIcon: widget.trailingIcon,
+          isLoading: widget.isLoading,
+          child: widget.child,
+        ),
       ),
     );
   }
@@ -127,6 +133,7 @@ class _ButtonContent extends StatefulWidget {
     this.leadingIcon,
     this.minWidth,
     this.trailingIcon,
+    this.isLoading = false,
   });
 
   final VoidCallback? onPressed;
@@ -139,6 +146,7 @@ class _ButtonContent extends StatefulWidget {
   final BaseButtonVariant variant;
   final BorderRadius borderRadius;
   final MaterialStatesController statesController;
+  final bool isLoading;
 
   @override
   State<_ButtonContent> createState() => _ButtonContentState();
@@ -187,56 +195,60 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
       isHovered: _isHovered,
     );
 
-    return AnimatedContainer(
-      duration: buttonAnimationDuration,
-      curve: buttonAnimationCurve,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          if (widget.leadingIcon case final leadingIcon?)
-            Padding(
-              padding: EdgeInsets.only(right: insideHorizontalPadding),
-              child: Icon(
-                leadingIcon,
-                size: _iconSize,
-                color: foregroundColor,
-              ),
-            ),
-          if (widget.child case final child?)
-            DefaultTextStyle.merge(
-              style: _textStyle.copyWith(color: foregroundColor),
-              child: child,
-            ),
-          if (badgeLabel != null && badgeLabel.isNotEmpty)
-            Padding(
-              padding: EdgeInsets.only(left: insideHorizontalPadding),
-              child: _Badge(
-                label: badgeLabel,
-                color: widget.variant.getBadgeColor(
-                  tokens,
-                  isEnabled: _isEnabled,
-                  isPressed: _isPressed,
-                  isHovered: _isHovered,
-                ),
-                textColor: widget.variant.getBadgeTextColor(
-                  tokens,
-                  isEnabled: _isEnabled,
-                  isPressed: _isPressed,
-                  isHovered: _isHovered,
+    return _LoaderStack(
+      isLoading: _isEnabled && widget.isLoading,
+      loaderWidget: _SpinningIcon(color: foregroundColor),
+      child: AnimatedContainer(
+        duration: buttonAnimationDuration,
+        curve: buttonAnimationCurve,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (widget.leadingIcon case final leadingIcon?)
+              Padding(
+                padding: EdgeInsets.only(right: insideHorizontalPadding),
+                child: Icon(
+                  leadingIcon,
+                  size: _iconSize,
+                  color: foregroundColor,
                 ),
               ),
-            ),
-          if (widget.trailingIcon case final trailingIcon?)
-            Padding(
-              padding: EdgeInsets.only(left: insideHorizontalPadding),
-              child: Icon(
-                trailingIcon,
-                size: _iconSize,
-                color: foregroundColor,
+            if (widget.child case final child?)
+              DefaultTextStyle.merge(
+                style: _textStyle.copyWith(color: foregroundColor),
+                child: child,
               ),
-            ),
-        ],
+            if (badgeLabel != null && badgeLabel.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.only(left: insideHorizontalPadding),
+                child: _Badge(
+                  label: badgeLabel,
+                  color: widget.variant.getBadgeColor(
+                    tokens,
+                    isEnabled: _isEnabled,
+                    isPressed: _isPressed,
+                    isHovered: _isHovered,
+                  ),
+                  textColor: widget.variant.getBadgeTextColor(
+                    tokens,
+                    isEnabled: _isEnabled,
+                    isPressed: _isPressed,
+                    isHovered: _isHovered,
+                  ),
+                ),
+              ),
+            if (widget.trailingIcon case final trailingIcon?)
+              Padding(
+                padding: EdgeInsets.only(left: insideHorizontalPadding),
+                child: Icon(
+                  trailingIcon,
+                  size: _iconSize,
+                  color: foregroundColor,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -277,6 +289,72 @@ class _Badge extends StatelessWidget {
       ),
     );
   }
+}
+
+class _LoaderStack extends StatelessWidget {
+  const _LoaderStack({
+    required this.isLoading,
+    required this.loaderWidget,
+    this.child,
+  });
+
+  final bool isLoading;
+  final Widget loaderWidget;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) => Stack(
+        alignment: Alignment.center,
+        children: [
+          if (child case final child?)
+            Opacity(
+              opacity: isLoading ? 0 : 1,
+              child: child,
+            ),
+          if (isLoading) loaderWidget,
+        ],
+      );
+}
+
+class _SpinningIcon extends StatefulWidget {
+  const _SpinningIcon({required this.color});
+
+  final Color color;
+
+  @override
+  State<_SpinningIcon> createState() => _SpinningIconState();
+}
+
+class _SpinningIconState extends State<_SpinningIcon>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _turns;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..repeat();
+    _turns = _controller.drive(Tween(begin: 0, end: 1));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => RotationTransition(
+        turns: _turns,
+        child: Icon(
+          OptimusIcons.spinner,
+          size: context.tokens.sizing200,
+          color: widget.color,
+        ),
+      );
 }
 
 extension on Set<MaterialState> {

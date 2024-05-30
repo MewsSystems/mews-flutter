@@ -33,6 +33,7 @@ final Story button = Story(
                     initial: OptimusWidgetSize.large,
                     options: sizeOptions,
                   ),
+                  isLoading: k.boolean(label: 'Loading', initial: false),
                   variant: v,
                   leadingIcon: leadingIcon,
                   trailingIcon: trailingIcon,
