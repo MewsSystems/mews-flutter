@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 
 class BaseButton extends StatefulWidget {
@@ -12,19 +13,21 @@ class BaseButton extends StatefulWidget {
     this.trailingIcon,
     this.badgeLabel,
     this.size = OptimusWidgetSize.large,
-    this.variant = OptimusButtonVariant.primary,
+    this.variant = BaseButtonVariant.primary,
     this.borderRadius,
+    this.padding,
   });
 
   final VoidCallback? onPressed;
-  final Widget child;
+  final Widget? child;
   final double? minWidth;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final String? badgeLabel;
   final OptimusWidgetSize size;
-  final OptimusButtonVariant variant;
+  final BaseButtonVariant variant;
   final BorderRadius? borderRadius;
+  final EdgeInsets? padding;
 
   @override
   State<BaseButton> createState() => _BaseButtonState();
@@ -40,6 +43,13 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
     super.dispose();
   }
 
+  EdgeInsets get _padding =>
+      widget.padding ??
+      EdgeInsets.symmetric(
+        vertical: widget.size.getVerticalPadding(tokens),
+        horizontal: widget.size.getHorizontalPadding(tokens),
+      );
+
   @override
   Widget build(BuildContext context) {
     final borderRadius =
@@ -54,10 +64,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
           Size(double.infinity, widget.size.getValue(tokens)),
         ),
         padding: MaterialStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            vertical: widget.size.getVerticalPadding(tokens),
-            horizontal: widget.size.getHorizontalPadding(tokens),
-          ),
+          _padding,
         ),
         shape: MaterialStateProperty.resolveWith(
           (states) {
@@ -123,13 +130,13 @@ class _ButtonContent extends StatefulWidget {
   });
 
   final VoidCallback? onPressed;
-  final Widget child;
+  final Widget? child;
   final double? minWidth;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final String? badgeLabel;
   final OptimusWidgetSize size;
-  final OptimusButtonVariant variant;
+  final BaseButtonVariant variant;
   final BorderRadius borderRadius;
   final MaterialStatesController statesController;
 
@@ -169,8 +176,6 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) {
-    final leadingIcon = widget.leadingIcon;
-    final trailingIcon = widget.trailingIcon;
     final badgeLabel = widget.badgeLabel;
 
     final foregroundColor = widget.variant.foregroundColor(
@@ -187,15 +192,13 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          if (leadingIcon != null)
-            Icon(widget.leadingIcon, size: _iconSize, color: foregroundColor),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-            child: DefaultTextStyle.merge(
+          if (widget.leadingIcon case final leadingIcon?)
+            Icon(leadingIcon, size: _iconSize, color: foregroundColor),
+          if (widget.child case final child?)
+            DefaultTextStyle.merge(
               style: _textStyle.copyWith(color: foregroundColor),
-              child: widget.child,
+              child: child,
             ),
-          ),
           if (badgeLabel != null && badgeLabel.isNotEmpty)
             _Badge(
               label: badgeLabel,
@@ -212,8 +215,8 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                 isHovered: _isHovered,
               ),
             ),
-          if (trailingIcon != null)
-            Icon(widget.trailingIcon, size: _iconSize, color: foregroundColor),
+          if (widget.trailingIcon case final trailingIcon?)
+            Icon(trailingIcon, size: _iconSize, color: foregroundColor),
         ],
       ),
     );

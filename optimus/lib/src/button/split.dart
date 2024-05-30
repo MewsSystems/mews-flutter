@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button.dart';
+import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
 enum OptimusSplitButtonVariant {
@@ -80,10 +81,10 @@ class OptimusSplitButton<T> extends StatelessWidget {
 }
 
 extension on OptimusSplitButtonVariant {
-  OptimusButtonVariant toButtonVariant() => switch (this) {
-        OptimusSplitButtonVariant.primary => OptimusButtonVariant.primary,
-        OptimusSplitButtonVariant.secondary => OptimusButtonVariant.secondary,
-        OptimusSplitButtonVariant.tertiary => OptimusButtonVariant.tertiary,
+  BaseButtonVariant toButtonVariant() => switch (this) {
+        OptimusSplitButtonVariant.primary => BaseButtonVariant.primary,
+        OptimusSplitButtonVariant.secondary => BaseButtonVariant.secondary,
+        OptimusSplitButtonVariant.tertiary => BaseButtonVariant.tertiary,
       };
 
   OptimusDropdownButtonVariant toDropdownButtonVariant() => switch (this) {
