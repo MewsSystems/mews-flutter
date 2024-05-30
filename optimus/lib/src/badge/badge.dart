@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/src/badge/badge_variant.dart';
 import 'package:optimus/src/badge/base_badge.dart';
-import 'package:optimus/src/button/button_variant.dart';
 import 'package:optimus/src/theme/theme.dart';
 
 /// Badges are meant to give a subtle feedback about some state change.
@@ -18,9 +17,8 @@ class OptimusBadge extends StatelessWidget {
   /// Text of the badge. If empty, badge will be represented as a simple dot.
   final String text;
 
-  /// Whether to use the outline. Intended to be enabled when the badge is used
-  /// for example on top of the [OptimusButtonVariant.ghost]. Outlined version
-  /// could be more accessible, depending on the underlying component.
+  /// Whether to use the outline. Outlined version could be more accessible,
+  /// depending on the underlying component.
   final bool outline;
 
   /// Define how to display the overflowing text. Defaults to

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 
 class BaseButton extends StatefulWidget {
@@ -12,19 +13,21 @@ class BaseButton extends StatefulWidget {
     this.trailingIcon,
     this.badgeLabel,
     this.size = OptimusWidgetSize.large,
-    this.variant = OptimusButtonVariant.primary,
+    this.variant = BaseButtonVariant.primary,
     this.borderRadius,
+    this.padding,
   });
 
   final VoidCallback? onPressed;
-  final Widget child;
+  final Widget? child;
   final double? minWidth;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final String? badgeLabel;
   final OptimusWidgetSize size;
-  final OptimusButtonVariant variant;
+  final BaseButtonVariant variant;
   final BorderRadius? borderRadius;
+  final EdgeInsets? padding;
 
   @override
   State<BaseButton> createState() => _BaseButtonState();
@@ -40,6 +43,13 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
     super.dispose();
   }
 
+  EdgeInsets get _padding =>
+      widget.padding ??
+      EdgeInsets.symmetric(
+        vertical: widget.size.getVerticalPadding(tokens),
+        horizontal: widget.size.getHorizontalPadding(tokens),
+      );
+
   @override
   Widget build(BuildContext context) {
     final borderRadius =
@@ -54,14 +64,11 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
           Size(double.infinity, widget.size.getValue(tokens)),
         ),
         padding: MaterialStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            vertical: widget.size.getVerticalPadding(tokens),
-            horizontal: widget.size.getHorizontalPadding(tokens),
-          ),
+          _padding,
         ),
         shape: MaterialStateProperty.resolveWith(
           (states) {
-            final color = widget.variant.borderColor(
+            final color = widget.variant.getBorderColor(
               tokens,
               isEnabled: !_statesController.value.isDisabled,
               isPressed: _statesController.value.isPressed,
@@ -81,7 +88,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         visualDensity: VisualDensity.standard,
         splashFactory: NoSplash.splashFactory,
         backgroundColor: MaterialStateProperty.resolveWith(
-          (states) => widget.variant.backgroundColor(
+          (states) => widget.variant.getBackgroundColor(
             tokens,
             isEnabled: !_statesController.value.isDisabled,
             isPressed: _statesController.value.isPressed,
@@ -123,13 +130,13 @@ class _ButtonContent extends StatefulWidget {
   });
 
   final VoidCallback? onPressed;
-  final Widget child;
+  final Widget? child;
   final double? minWidth;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final String? badgeLabel;
   final OptimusWidgetSize size;
-  final OptimusButtonVariant variant;
+  final BaseButtonVariant variant;
   final BorderRadius borderRadius;
   final MaterialStatesController statesController;
 
@@ -169,13 +176,11 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) {
-    final leadingIcon = widget.leadingIcon;
-    final trailingIcon = widget.trailingIcon;
     final badgeLabel = widget.badgeLabel;
     final insideHorizontalPadding =
         widget.size.getInsideHorizontalPadding(tokens);
 
-    final foregroundColor = widget.variant.foregroundColor(
+    final foregroundColor = widget.variant.getForegroundColor(
       tokens,
       isEnabled: _isEnabled,
       isPressed: _isPressed,
@@ -189,31 +194,32 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          if (leadingIcon != null)
+          if (widget.leadingIcon case final leadingIcon?)
             Padding(
               padding: EdgeInsets.only(right: insideHorizontalPadding),
               child: Icon(
-                widget.leadingIcon,
+                leadingIcon,
                 size: _iconSize,
                 color: foregroundColor,
               ),
             ),
-          DefaultTextStyle.merge(
-            style: _textStyle.copyWith(color: foregroundColor),
-            child: widget.child,
-          ),
+          if (widget.child case final child?)
+            DefaultTextStyle.merge(
+              style: _textStyle.copyWith(color: foregroundColor),
+              child: child,
+            ),
           if (badgeLabel != null && badgeLabel.isNotEmpty)
             Padding(
               padding: EdgeInsets.only(left: insideHorizontalPadding),
               child: _Badge(
                 label: badgeLabel,
-                color: widget.variant.badgeColor(
+                color: widget.variant.getBadgeColor(
                   tokens,
                   isEnabled: _isEnabled,
                   isPressed: _isPressed,
                   isHovered: _isHovered,
                 ),
-                textColor: widget.variant.badgeTextColor(
+                textColor: widget.variant.getBadgeTextColor(
                   tokens,
                   isEnabled: _isEnabled,
                   isPressed: _isPressed,
@@ -221,11 +227,11 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                 ),
               ),
             ),
-          if (trailingIcon != null)
+          if (widget.trailingIcon case final trailingIcon?)
             Padding(
               padding: EdgeInsets.only(left: insideHorizontalPadding),
               child: Icon(
-                widget.trailingIcon,
+                trailingIcon,
                 size: _iconSize,
                 color: foregroundColor,
               ),

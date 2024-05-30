@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
 enum OptimusDropdownButtonVariant {
@@ -40,12 +41,11 @@ class OptimusDropDownButton<T> extends StatelessWidget {
       );
 }
 
-extension CommonButtonVariant on OptimusDropdownButtonVariant {
-  OptimusButtonVariant toButtonVariant() => switch (this) {
-        OptimusDropdownButtonVariant.tertiary => OptimusButtonVariant.tertiary,
-        OptimusDropdownButtonVariant.primary => OptimusButtonVariant.primary,
-        OptimusDropdownButtonVariant.secondary =>
-          OptimusButtonVariant.secondary,
-        OptimusDropdownButtonVariant.text => OptimusButtonVariant.ghost,
+extension BaseButtonVariantResolve on OptimusDropdownButtonVariant {
+  BaseButtonVariant toBaseVariant() => switch (this) {
+        OptimusDropdownButtonVariant.tertiary => BaseButtonVariant.tertiary,
+        OptimusDropdownButtonVariant.primary => BaseButtonVariant.primary,
+        OptimusDropdownButtonVariant.secondary => BaseButtonVariant.secondary,
+        OptimusDropdownButtonVariant.text => BaseButtonVariant.ghost,
       };
 }

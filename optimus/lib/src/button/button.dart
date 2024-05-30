@@ -76,7 +76,7 @@ class OptimusButton extends StatelessWidget {
         trailingIcon: trailingIcon,
         badgeLabel: badgeLabel,
         size: size,
-        variant: variant,
+        variant: variant.toBaseVariant(),
         child: child,
       );
 }
