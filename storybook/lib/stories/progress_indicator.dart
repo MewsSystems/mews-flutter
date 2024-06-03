@@ -4,18 +4,13 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story stepBarStory = Story(
-  name: 'Navigation/Step Bar',
+final Story progressIndicatorStory = Story(
+  name: 'Navigation/Progress Indicator',
   builder: (context) {
     final k = context.knobs;
 
     return SingleChildScrollView(
-      child: OptimusStepBar(
-        type: k.options(
-          label: 'Type',
-          initial: OptimusStepBarType.icon,
-          options: OptimusStepBarType.values.toOptions(),
-        ),
+      child: OptimusProgressIndicator(
         layout: k.options(
           label: 'Layout',
           initial: Axis.horizontal,
@@ -37,22 +32,22 @@ final Story stepBarStory = Story(
   },
 );
 
-const List<OptimusStepBarItem> _items = [
-  OptimusStepBarItem(
+const List<OptimusProgressIndicatorItem> _items = [
+  OptimusProgressIndicatorItem(
     label: Text('Step with long title'),
     description: Text('Some description goes here'),
     icon: OptimusIcons.edit,
   ),
-  OptimusStepBarItem(
+  OptimusProgressIndicatorItem(
     label: Text('Step 2'),
     icon: OptimusIcons.connect,
   ),
-  OptimusStepBarItem(
+  OptimusProgressIndicatorItem(
     label: Text('Step 3'),
     description: Text('Description'),
     icon: OptimusIcons.delete,
   ),
-  OptimusStepBarItem(
+  OptimusProgressIndicatorItem(
     label: Text('Step 4'),
     description: Text('Description'),
     icon: OptimusIcons.magic,
