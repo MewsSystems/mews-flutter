@@ -207,7 +207,9 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
           children: <Widget>[
             if (widget.leadingIcon case final leadingIcon?)
               Padding(
-                padding: EdgeInsets.only(right: insideHorizontalPadding),
+                padding: widget.child != null
+                    ? EdgeInsets.only(right: insideHorizontalPadding)
+                    : EdgeInsets.zero,
                 child: Icon(
                   leadingIcon,
                   size: _iconSize,
@@ -215,9 +217,12 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                 ),
               ),
             if (widget.child case final child?)
-              DefaultTextStyle.merge(
-                style: _textStyle.copyWith(color: foregroundColor),
-                child: child,
+              IconTheme(
+                data: IconThemeData(color: foregroundColor, size: _iconSize),
+                child: DefaultTextStyle.merge(
+                  style: _textStyle.copyWith(color: foregroundColor),
+                  child: child,
+                ),
               ),
             if (badgeLabel != null && badgeLabel.isNotEmpty)
               Padding(
