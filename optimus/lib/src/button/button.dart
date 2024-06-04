@@ -21,7 +21,10 @@ class OptimusButton extends StatelessWidget {
     this.isLoading = false,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.primary,
-  });
+  }) : assert(
+          counter == null || counter >= 0,
+          'Counter must be null or a non-negative integer',
+        );
 
   /// Called when the button is tapped or otherwise activated.
   ///
@@ -42,8 +45,9 @@ class OptimusButton extends StatelessWidget {
 
   /// Badge counter.
   ///
-  /// If more than 99 will be displayed as 99+.
-  final num? counter;
+  /// If more than 99 will be displayed as 99+. If null or 0, the badge will not
+  /// be displayed. Must be a non-negative integer.
+  final int? counter;
 
   /// Size of the button widget.
   final OptimusWidgetSize size;
@@ -82,7 +86,11 @@ class OptimusButton extends StatelessWidget {
         leadingIcon: leadingIcon,
         trailingIcon: trailingIcon,
         badgeLabel: counter?.let(
-          (v) => v.abs() > 99 ? '${v < 0 ? '-' : ''}99+' : v.toString(),
+          (v) => switch (v) {
+            0 => null,
+            > 99 => '99+',
+            _ => v.toString(),
+          },
         ),
         size: size,
         isLoading: isLoading,

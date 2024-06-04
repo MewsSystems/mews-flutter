@@ -21,7 +21,7 @@ final Story button = Story(
 
     final showBadge = k.boolean(label: 'Show Badge', initial: false);
     final counter =
-        k.sliderInt(label: 'Badge Count', initial: 0, max: 110, min: -110);
+        k.sliderInt(label: 'Badge Count', initial: 0, max: 110, min: 0);
 
     return SingleChildScrollView(
       child: Column(
