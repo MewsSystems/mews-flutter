@@ -1,12 +1,14 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/progress_indicator/progress_indicator_item.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// The compact version of the OptimusProgressIndicator that is using a modified
 /// vertical layout that can be expanded and collapsed.
-class OptimusCompactProgressIndicator extends StatefulWidget {
-  const OptimusCompactProgressIndicator({
+class VerticalProgressIndicator extends StatefulWidget {
+  const VerticalProgressIndicator({
     super.key,
     required this.items,
     required this.currentItem,
@@ -20,12 +22,11 @@ class OptimusCompactProgressIndicator extends StatefulWidget {
   final bool rootOverlay;
 
   @override
-  State<OptimusCompactProgressIndicator> createState() =>
-      _OptimusCompactProgressIndicatorState();
+  State<VerticalProgressIndicator> createState() =>
+      _VerticalProgressIndicatorState();
 }
 
-class _OptimusCompactProgressIndicatorState
-    extends State<OptimusCompactProgressIndicator>
+class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
     with SingleTickerProviderStateMixin {
   final LayerLink _layerLink = LayerLink();
   final GlobalKey _anchorKey = GlobalKey();
@@ -46,7 +47,7 @@ class _OptimusCompactProgressIndicatorState
   }
 
   @override
-  void didUpdateWidget(OptimusCompactProgressIndicator oldWidget) {
+  void didUpdateWidget(VerticalProgressIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -86,7 +87,7 @@ class _OptimusCompactProgressIndicatorState
               color: Colors.transparent,
               child: _ProgressIndicatorData(
                 items: widget.items,
-                currentItem: widget.currentItem,
+                currentItemIndex: widget.currentItem,
                 maxItem: widget.maxItem,
                 child: _ExpandedCompactProgressIndicator(
                   controller: _animationController,
@@ -103,7 +104,7 @@ class _OptimusCompactProgressIndicatorState
   @override
   Widget build(BuildContext context) => _ProgressIndicatorData(
         items: widget.items,
-        currentItem: widget.currentItem,
+        currentItemIndex: widget.currentItem,
         maxItem: widget.maxItem,
         child: GestureDetector(
           onTap: _handleExpand,
@@ -135,26 +136,29 @@ class _CollapsedCompactProgressIndicator extends StatelessWidget {
     final tokens = context.tokens;
 
     return data != null
-        ? Container(
+        ? SizedBox(
             height: _itemHeight,
-            constraints: const BoxConstraints(minHeight: _itemHeight),
-            decoration: BoxDecoration(
-              color: tokens.borderStaticInverse,
-              boxShadow: _getShadow(context.tokens),
-              borderRadius: BorderRadius.all(tokens.borderRadius50),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: _CompactProgressIndicatorItem(
-                    indicatorText: (data.currentItem + 1).toString(),
+            child: Container(
+              height: _itemHeight,
+              constraints: const BoxConstraints(minHeight: _itemHeight),
+              decoration: BoxDecoration(
+                color: tokens.borderStaticInverse,
+                boxShadow: _getShadow(context.tokens),
+                borderRadius: BorderRadius.all(tokens.borderRadius50),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _CompactProgressIndicatorItem(
+                      indicatorText: (data.currentItemIndex + 1).toString(),
+                    ),
                   ),
-                ),
-                _CompactProgressIndicatorEntry(
-                  currentStep: data.currentItem,
-                  maxSteps: data.maxItem,
-                ),
-              ],
+                  _CompactProgressIndicatorEntry(
+                    currentStep: data.currentItemIndex,
+                    maxSteps: data.maxItem,
+                  ),
+                ],
+              ),
             ),
           )
         : const SizedBox.shrink();
@@ -179,14 +183,120 @@ class _CompactProgressIndicatorItem extends StatelessWidget {
               horizontal: tokens.spacing100,
               vertical: tokens.spacing100,
             ),
-            child: ProgressIndicatorItem(
-              item: data.items[data.currentItem],
-              maxWidth: double.infinity,
+            child: _CompactItem(
               state: OptimusProgressIndicatorItemState.active,
-              indicatorText: indicatorText,
+              text: indicatorText,
+              label: data.currentItem.label,
+              description: data.currentItem.description,
             ),
           )
         : const SizedBox.shrink();
+  }
+}
+
+class _CompactItem extends StatefulWidget {
+  const _CompactItem({
+    required this.state,
+    required this.text,
+    required this.label,
+    this.description,
+  });
+
+  final OptimusProgressIndicatorItemState state;
+  final String text;
+  final Widget label;
+  final Widget? description;
+
+  @override
+  State<_CompactItem> createState() => _CompactItemState();
+}
+
+class _CompactItemState extends State<_CompactItem> {
+  bool _isHovered = false;
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return GestureWrapper(
+      onHoverChanged: (value) => setState(() => _isHovered = value),
+      onPressedChanged: (value) => setState(() => _isPressed = value),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(width: tokens.spacing100),
+          _ActiveCollapsedItem(
+            state: widget.state,
+            text: widget.text,
+            foregroundColor: widget.state.getForegroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+            backgroundColor: widget.state.getBackgroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+          ),
+          SizedBox(width: tokens.spacing100),
+          Flexible(
+            child: ProgressIndicatorDescription(
+              label: widget.label,
+              description: widget.description,
+              state: widget.state,
+            ),
+          ),
+          SizedBox(width: tokens.spacing200),
+        ],
+      ),
+    );
+  }
+}
+
+class _ActiveCollapsedItem extends StatelessWidget {
+  const _ActiveCollapsedItem({
+    required this.state,
+    this.foregroundColor,
+    this.backgroundColor,
+    required this.text,
+  });
+
+  final OptimusProgressIndicatorItemState state;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
+  final String text;
+
+  bool get isCompleted => state == OptimusProgressIndicatorItemState.completed;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final size = tokens.sizing300;
+
+    final child = isCompleted
+        ? Icon(
+            OptimusIcons.done,
+            color: foregroundColor,
+            size: tokens.sizing200,
+          )
+        : Text(
+            text,
+            style: tokens.bodySmallStrong.merge(
+              TextStyle(color: foregroundColor),
+            ),
+          );
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: backgroundColor,
+      ),
+      child: Center(child: child),
+    );
   }
 }
 
@@ -438,10 +548,9 @@ class _AnimatedProgressIndicatorState
                 ),
                 child: Stack(
                   children: [
-                    OptimusProgressIndicator(
-                      layout: Axis.vertical,
+                    ProgressIndicator(
                       items: data.items,
-                      currentItem: data.currentItem,
+                      currentItem: data.currentItemIndex,
                       maxItem: data.maxItem,
                     ),
                     Positioned(
@@ -466,20 +575,88 @@ class _AnimatedProgressIndicatorState
 class _ProgressIndicatorData extends InheritedWidget {
   const _ProgressIndicatorData({
     required this.items,
-    required this.currentItem,
+    required this.currentItemIndex,
     required this.maxItem,
     required super.child,
   });
 
   final List<OptimusProgressIndicatorItem> items;
-  final int currentItem;
+  final int currentItemIndex;
   final int? maxItem;
+
+  OptimusProgressIndicatorItem get currentItem => items[currentItemIndex];
 
   static _ProgressIndicatorData? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_ProgressIndicatorData>();
 
   @override
   bool updateShouldNotify(_ProgressIndicatorData oldWidget) => true;
+}
+
+class ProgressIndicator extends StatefulWidget {
+  const ProgressIndicator({
+    super.key,
+    required this.items,
+    this.currentItem = 0,
+    this.maxItem,
+  });
+
+  final List<OptimusProgressIndicatorItem> items;
+  final int currentItem;
+  final int? maxItem;
+
+  @override
+  State<ProgressIndicator> createState() => _ProgressIndicatorState();
+}
+
+class _ProgressIndicatorState extends State<ProgressIndicator>
+    with ThemeGetter {
+  OptimusProgressIndicatorItemState _getItemState(
+    OptimusProgressIndicatorItem item,
+  ) {
+    final position = widget.items.indexOf(item);
+    if (position == widget.currentItem) {
+      return OptimusProgressIndicatorItemState.active;
+    }
+    if (position < widget.currentItem) {
+      return OptimusProgressIndicatorItemState.completed;
+    }
+
+    final maxItem = widget.maxItem;
+
+    return maxItem == null || position <= maxItem
+        ? OptimusProgressIndicatorItemState.enabled
+        : OptimusProgressIndicatorItemState.disabled;
+  }
+
+  String _indicatorText(OptimusProgressIndicatorItem item) =>
+      (widget.items.indexOf(item) + 1).toString();
+
+  List<Widget> _buildItems(List<OptimusProgressIndicatorItem> items) => items
+      .intersperseWith(
+        itemBuilder: (item) => ProgressIndicatorItem(
+          state: _getItemState(item),
+          text: _indicatorText(item),
+          label: item.label,
+          description: item.description,
+          axis: Axis.vertical,
+        ),
+        separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
+          nextItemState: _getItemState(nextItem),
+          layout: Axis.vertical,
+        ),
+      )
+      .toList();
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) => OptimusStack(
+          mainAxisSize: MainAxisSize.min,
+          direction: Axis.vertical,
+          crossAxisAlignment: OptimusStackAlignment.start,
+          children: _buildItems(widget.items),
+        ),
+      );
 }
 
 const double _itemHeight = 66;

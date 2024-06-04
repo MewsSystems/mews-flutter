@@ -9,13 +9,20 @@ final Story progressIndicatorStory = Story(
   builder: (context) {
     final k = context.knobs;
 
-    return SingleChildScrollView(
+    final layout = k.options(
+      label: 'Layout',
+      initial: Axis.vertical,
+      options: Axis.values.toOptions(),
+    );
+
+    final width = layout == Axis.horizontal ? 400.0 : null;
+    final height = layout == Axis.horizontal ? 100.0 : null;
+
+    return SizedBox(
+      width: width,
+      height: height,
       child: OptimusProgressIndicator(
-        layout: k.options(
-          label: 'Layout',
-          initial: Axis.horizontal,
-          options: Axis.values.toOptions(),
-        ),
+        layout: layout,
         items: _items,
         currentItem: k
             .slider(

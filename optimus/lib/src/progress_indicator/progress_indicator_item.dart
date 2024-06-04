@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/progress_indicator/common.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Both types of step have dedicated states. State is shown through a visual
@@ -33,130 +33,220 @@ class OptimusProgressIndicatorItem {
   final IconData icon;
 }
 
-class ProgressIndicatorItem extends StatelessWidget {
+class ProgressIndicatorItem extends StatefulWidget {
   const ProgressIndicatorItem({
     super.key,
-    required this.maxWidth,
-    required this.item,
     required this.state,
-    required this.indicatorText,
+    required this.text,
+    required this.label,
+    this.description,
+    this.axis = Axis.horizontal,
   });
 
-  final double maxWidth;
-  final OptimusProgressIndicatorItem item;
   final OptimusProgressIndicatorItemState state;
-  final String indicatorText;
+  final String text;
+  final Widget label;
+  final Widget? description;
+  final Axis axis;
+
+  @override
+  State<ProgressIndicatorItem> createState() => _ProgressIndicatorItemState();
+}
+
+class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
+    with ThemeGetter {
+  bool _isHovered = false;
+  bool _isPressed = false;
+
+  bool get _isEnabled =>
+      widget.state != OptimusProgressIndicatorItemState.disabled;
+
+  bool get _isCompleted =>
+      widget.state == OptimusProgressIndicatorItemState.completed;
+
+  @override
+  Widget build(BuildContext context) {
+    final indicator = _isEnabled
+        ? _EnabledIndicatorItem(
+            text: widget.text,
+            isCompleted: _isCompleted,
+            foregroundColor: widget.state.getForegroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+            backgroundColor: widget.state.getBackgroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+          )
+        : const _DisabledIndicatorItem();
+
+    return GestureWrapper(
+      onHoverChanged: (value) => setState(() => _isHovered = value),
+      onPressedChanged: (value) => setState(() => _isPressed = value),
+      child: widget.axis == Axis.horizontal
+          ? _HorizontalItem(
+              indicator: indicator,
+              label: widget.label,
+              state: widget.state,
+              description: widget.description,
+            )
+          : _VerticalItem(
+              indicator: indicator,
+              label: widget.label,
+              state: widget.state,
+              description: widget.description,
+            ),
+    );
+  }
+}
+
+class _HorizontalItem extends StatelessWidget {
+  const _HorizontalItem({
+    required this.indicator,
+    required this.label,
+    required this.state,
+    this.description,
+  });
+
+  final Widget indicator;
+  final Widget label;
+  final Widget? description;
+  final OptimusProgressIndicatorItemState state;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final description = item.description;
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: itemMinWidth),
-      child: OptimusEnabled(
-        isEnabled: state != OptimusProgressIndicatorItemState.disabled,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(width: tokens.spacing100),
-            _Indicator(
+    return Padding(
+      padding: EdgeInsets.only(top: tokens.spacing50),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          indicator,
+          Padding(
+            padding: EdgeInsets.only(top: tokens.spacing100),
+            child: ProgressIndicatorDescription(
+              label: label, // TODO(witwash): wrap before
+              description: description,
               state: state,
-              text: indicatorText,
             ),
-            SizedBox(width: tokens.spacing100),
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OptimusTypography(
-                    resolveStyle: (_) => tokens.bodyMedium.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    maxLines: 1,
-                    child: item.label,
-                  ),
-                  if (description != null)
-                    OptimusTypography(
-                      resolveStyle: (_) => tokens.bodyMediumStrong.copyWith(
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      color: OptimusTypographyColor.secondary,
-                      maxLines: 1,
-                      child: description,
-                    ),
-                ],
-              ),
-            ),
-            SizedBox(width: tokens.spacing200),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class _Indicator extends StatelessWidget {
-  const _Indicator({
-    required this.state,
-    required this.text,
-  });
+class _VerticalItem extends StatelessWidget {
+  const _VerticalItem(
+      {super.key,
+      required this.indicator,
+      required this.label,
+      this.description,
+      required this.state});
 
+  final Widget indicator;
+  final Widget label;
+  final Widget? description;
   final OptimusProgressIndicatorItemState state;
-  final String text;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final theme = OptimusTheme.of(context);
-    final iconSize = tokens.sizing300;
 
-    return state == OptimusProgressIndicatorItemState.completed
-        ? SizedBox(
-            width: tokens.sizing500,
-            height: tokens.sizing500,
-            child: const OptimusIcon(
-              iconData: OptimusIcons.done,
-              colorOption: OptimusIconColorOption.primary,
-            ),
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          indicator,
+          SizedBox(width: tokens.spacing200),
+          ProgressIndicatorDescription(
+            label: label, // TODO(witwash): wrap before
+            description: description,
+            state: state,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _EnabledIndicatorItem extends StatelessWidget {
+  const _EnabledIndicatorItem({
+    // required this.state,
+    required this.text,
+    this.backgroundColor,
+    this.foregroundColor,
+    required this.isCompleted,
+  });
+
+  final String text;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final bool isCompleted;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final size = tokens.sizing300;
+
+    final child = isCompleted
+        ? Icon(
+            OptimusIcons.done,
+            color: foregroundColor,
+            size: tokens.sizing200,
           )
-        : Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: tokens.sizing500,
-                height: tokens.sizing500,
-                decoration: state == OptimusProgressIndicatorItemState.active
-                    ? BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: theme.colors.primary500t8,
-                      )
-                    : null,
-              ),
-              Container(
-                width: iconSize,
-                height: iconSize,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: state.iconBackgroundColor(theme),
-                ),
-                child: Center(
-                  child: Text(
-                    text,
-                    style: tokens.bodyMedium.merge(
-                      TextStyle(
-                        height: 1,
-                        color: state.textColor(theme),
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+        : Text(
+            text,
+            style: tokens.bodySmallStrong.merge(
+              TextStyle(color: foregroundColor),
+            ),
           );
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: backgroundColor,
+      ),
+      child: Center(child: child),
+    );
+  }
+}
+
+class _DisabledIndicatorItem extends StatelessWidget {
+  const _DisabledIndicatorItem();
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final size = tokens.sizing300;
+
+    return SizedBox(
+      height: size,
+      width: size,
+      child: Center(
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: tokens.sizing100,
+            maxWidth: tokens.sizing100,
+          ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              width: tokens.borderWidth150,
+              color: tokens.borderStaticPrimary,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -172,29 +262,30 @@ class ProgressIndicatorSpacer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
     final enabled = nextItemState.isAccessible;
-    final color = enabled ? theme.colors.primary : theme.colors.neutral1000t32;
+    final color = enabled
+        ? tokens.borderInteractivePrimaryDefault
+        : tokens.borderStaticPrimary;
     final verticalSpacerLeftPadding = tokens.sizing500 / 2 + tokens.spacing100;
 
     return switch (layout) {
-      Axis.horizontal => Flexible(
-          child: Container(
-            constraints: BoxConstraints(minWidth: tokens.sizing200),
-            height: _spacerThickness,
-            color: color,
+      Axis.horizontal => Padding(
+          padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+          child: SizedBox(
+            height: tokens.borderWidth150,
+            child: ColoredBox(color: color),
           ),
         ),
       Axis.vertical => Padding(
           padding: EdgeInsets.only(
-            left: verticalSpacerLeftPadding,
+            left: tokens.spacing150,
             bottom: tokens.spacing100,
             top: tokens.spacing100,
           ),
           child: SizedBox(
             height: tokens.sizing200,
-            width: _spacerThickness,
+            width: tokens.borderWidth150,
             child: Container(color: color),
           ),
         ),
@@ -202,30 +293,110 @@ class ProgressIndicatorSpacer extends StatelessWidget {
   }
 }
 
+class ProgressIndicatorDescription extends StatelessWidget {
+  const ProgressIndicatorDescription({
+    super.key,
+    required this.label,
+    this.description,
+    required this.state,
+  });
+
+  final Widget label;
+  final Widget? description;
+  final OptimusProgressIndicatorItemState state;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: DefaultTextStyle.merge(
+            style: tokens.bodyMediumStrong.copyWith(
+              overflow: TextOverflow.ellipsis,
+              color: state == OptimusProgressIndicatorItemState.disabled
+                  ? tokens.textStaticTertiary
+                  : tokens.textStaticPrimary,
+            ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            child: label,
+          ),
+        ),
+        if (description case final description?)
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.only(top: tokens.spacing25),
+              child: OptimusTypography(
+                resolveStyle: (_) => tokens.bodySmall.copyWith(
+                  overflow: TextOverflow.ellipsis,
+                ),
+                align: TextAlign.center,
+                color: OptimusTypographyColor.secondary,
+                maxLines: 2,
+                child: description,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
 extension OptimusProgressIndicatorItemTheme
     on OptimusProgressIndicatorItemState {
-  Color iconBackgroundColor(OptimusThemeData theme) => switch (this) {
-        OptimusProgressIndicatorItemState.completed ||
-        OptimusProgressIndicatorItemState.active =>
-          theme.colors.primary,
-        OptimusProgressIndicatorItemState.enabled ||
-        OptimusProgressIndicatorItemState.disabled =>
-          theme.isDark ? theme.colors.neutral500t40 : theme.colors.neutral50,
-      };
+  Color? getBackgroundColor({
+    required OptimusTokens tokens,
+    required bool isHovered,
+    required bool isPressed,
+  }) {
+    switch (this) {
+      case OptimusProgressIndicatorItemState.completed:
+        if (isPressed) return tokens.backgroundInteractiveSecondaryActive;
+        if (isHovered) return tokens.backgroundInteractiveSecondaryHover;
 
-  Color textColor(OptimusThemeData theme) => switch (this) {
-        OptimusProgressIndicatorItemState.completed => theme.colors.primary,
-        OptimusProgressIndicatorItemState.active =>
-          theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
-        OptimusProgressIndicatorItemState.enabled ||
-        OptimusProgressIndicatorItemState.disabled =>
-          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
-      };
+        return tokens.backgroundInteractiveSecondaryDefault;
+      case OptimusProgressIndicatorItemState.active:
+        return tokens.backgroundInteractivePrimaryDefault;
+      case OptimusProgressIndicatorItemState.enabled:
+        if (isPressed) return tokens.backgroundInteractiveNeutralActive;
+        if (isHovered) return tokens.backgroundInteractiveNeutralHover;
+
+        return tokens.backgroundInteractiveNeutralDefault;
+      case OptimusProgressIndicatorItemState.disabled:
+        return null;
+    }
+  }
+
+  Color getForegroundColor({
+    required OptimusTokens tokens,
+    required bool isHovered,
+    required bool isPressed,
+  }) {
+    switch (this) {
+      case OptimusProgressIndicatorItemState.completed:
+        if (isHovered) return tokens.textInteractiveHover;
+        if (isPressed) return tokens.textInteractiveActive;
+
+        return tokens.textInteractiveDefault;
+      case OptimusProgressIndicatorItemState.active:
+        return tokens.textStaticInverse;
+      case OptimusProgressIndicatorItemState.enabled:
+        return tokens.textStaticPrimary;
+      case OptimusProgressIndicatorItemState.disabled:
+        return Colors.transparent;
+    }
+  }
 
   OptimusIconColorOption get iconColor => switch (this) {
-        OptimusProgressIndicatorItemState.completed ||
-        OptimusProgressIndicatorItemState.active =>
+        OptimusProgressIndicatorItemState.completed =>
           OptimusIconColorOption.primary,
+        OptimusProgressIndicatorItemState.active =>
+          OptimusIconColorOption.inverse,
         OptimusProgressIndicatorItemState.enabled ||
         OptimusProgressIndicatorItemState.disabled =>
           OptimusIconColorOption.basic,
@@ -235,5 +406,3 @@ extension OptimusProgressIndicatorItemTheme
       this == OptimusProgressIndicatorItemState.completed ||
       this == OptimusProgressIndicatorItemState.active;
 }
-
-const double _spacerThickness = 1;
