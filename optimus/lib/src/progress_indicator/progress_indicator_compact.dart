@@ -3,29 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/typography/typography.dart';
 
-/// The compact version of the OptimusStepBar that is using a modified vertical
-/// layout that can be expanded and collapsed.
-class OptimusCompactStepBar extends StatefulWidget {
-  const OptimusCompactStepBar({
+/// The compact version of the OptimusProgressIndicator that is using a modified
+/// vertical layout that can be expanded and collapsed.
+class OptimusCompactProgressIndicator extends StatefulWidget {
+  const OptimusCompactProgressIndicator({
     super.key,
-    required this.type,
     required this.items,
     required this.currentItem,
     this.maxItem,
     this.rootOverlay = false,
   });
 
-  final OptimusStepBarType type;
-  final List<OptimusStepBarItem> items;
+  final List<OptimusProgressIndicatorItem> items;
   final int currentItem;
   final int? maxItem;
   final bool rootOverlay;
 
   @override
-  State<OptimusCompactStepBar> createState() => _OptimusCompactStepBarState();
+  State<OptimusCompactProgressIndicator> createState() =>
+      _OptimusCompactProgressIndicatorState();
 }
 
-class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
+class _OptimusCompactProgressIndicatorState
+    extends State<OptimusCompactProgressIndicator>
     with SingleTickerProviderStateMixin {
   final LayerLink _layerLink = LayerLink();
   final GlobalKey _anchorKey = GlobalKey();
@@ -46,7 +46,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
   }
 
   @override
-  void didUpdateWidget(OptimusCompactStepBar oldWidget) {
+  void didUpdateWidget(OptimusCompactProgressIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -84,12 +84,11 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
             onTap: _handleCollapse,
             child: Material(
               color: Colors.transparent,
-              child: _StepBarData(
-                type: widget.type,
+              child: _ProgressIndicatorData(
                 items: widget.items,
                 currentItem: widget.currentItem,
                 maxItem: widget.maxItem,
-                child: _ExpandedCompactStepBar(
+                child: _ExpandedCompactProgressIndicator(
                   controller: _animationController,
                   targetKey: _anchorKey,
                   layerLink: _layerLink,
@@ -102,8 +101,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
       );
 
   @override
-  Widget build(BuildContext context) => _StepBarData(
-        type: widget.type,
+  Widget build(BuildContext context) => _ProgressIndicatorData(
         items: widget.items,
         currentItem: widget.currentItem,
         maxItem: widget.maxItem,
@@ -111,7 +109,7 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
           onTap: _handleExpand,
           child: CompositedTransformTarget(
             link: _layerLink,
-            child: _CollapsedCompactStepBar(
+            child: _CollapsedCompactProgressIndicator(
               key: _anchorKey,
               showShadow: !_expanded,
             ),
@@ -120,8 +118,8 @@ class _OptimusCompactStepBarState extends State<OptimusCompactStepBar>
       );
 }
 
-class _CollapsedCompactStepBar extends StatelessWidget {
-  const _CollapsedCompactStepBar({
+class _CollapsedCompactProgressIndicator extends StatelessWidget {
+  const _CollapsedCompactProgressIndicator({
     super.key,
     this.showShadow = true,
   });
@@ -133,7 +131,7 @@ class _CollapsedCompactStepBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = _StepBarData.of(context);
+    final data = _ProgressIndicatorData.of(context);
     final tokens = context.tokens;
 
     return data != null
@@ -148,11 +146,11 @@ class _CollapsedCompactStepBar extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: _CompactStepBarItem(
+                  child: _CompactProgressIndicatorItem(
                     indicatorText: (data.currentItem + 1).toString(),
                   ),
                 ),
-                _CompactStepBarIndicator(
+                _CompactProgressIndicatorEntry(
                   currentStep: data.currentItem,
                   maxSteps: data.maxItem,
                 ),
@@ -163,8 +161,8 @@ class _CollapsedCompactStepBar extends StatelessWidget {
   }
 }
 
-class _CompactStepBarItem extends StatelessWidget {
-  const _CompactStepBarItem({
+class _CompactProgressIndicatorItem extends StatelessWidget {
+  const _CompactProgressIndicatorItem({
     required this.indicatorText,
   });
 
@@ -173,7 +171,7 @@ class _CompactStepBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final data = _StepBarData.of(context);
+    final data = _ProgressIndicatorData.of(context);
 
     return data != null
         ? Padding(
@@ -181,11 +179,10 @@ class _CompactStepBarItem extends StatelessWidget {
               horizontal: tokens.spacing100,
               vertical: tokens.spacing100,
             ),
-            child: StepBarItem(
+            child: ProgressIndicatorItem(
               item: data.items[data.currentItem],
               maxWidth: double.infinity,
-              state: OptimusStepBarItemState.active,
-              type: data.type,
+              state: OptimusProgressIndicatorItemState.active,
               indicatorText: indicatorText,
             ),
           )
@@ -193,8 +190,8 @@ class _CompactStepBarItem extends StatelessWidget {
   }
 }
 
-class _CompactStepBarIndicator extends StatelessWidget {
-  const _CompactStepBarIndicator({
+class _CompactProgressIndicatorEntry extends StatelessWidget {
+  const _CompactProgressIndicatorEntry({
     required this.currentStep,
     required this.maxSteps,
   });
@@ -231,8 +228,8 @@ class _CompactStepBarIndicator extends StatelessWidget {
   }
 }
 
-class _ExpandedCompactStepBar extends StatefulWidget {
-  const _ExpandedCompactStepBar({
+class _ExpandedCompactProgressIndicator extends StatefulWidget {
+  const _ExpandedCompactProgressIndicator({
     required this.layerLink,
     required this.controller,
     required this.targetKey,
@@ -246,12 +243,12 @@ class _ExpandedCompactStepBar extends StatefulWidget {
   final bool rootOverlay;
 
   @override
-  State<_ExpandedCompactStepBar> createState() =>
-      _ExpandedCompactStepBarState();
+  State<_ExpandedCompactProgressIndicator> createState() =>
+      _ExpandedCompactProgressIndicatorState();
 }
 
-class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
-    with ThemeGetter {
+class _ExpandedCompactProgressIndicatorState
+    extends State<_ExpandedCompactProgressIndicator> with ThemeGetter {
   late Rect _targetRect;
   late Size? _overlaySize;
 
@@ -264,7 +261,7 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
   }
 
   @override
-  void didUpdateWidget(covariant _ExpandedCompactStepBar oldWidget) {
+  void didUpdateWidget(covariant _ExpandedCompactProgressIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback(_updateRect);
   }
@@ -312,7 +309,7 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
 
   @override
   Widget build(BuildContext context) {
-    final data = _StepBarData.of(context);
+    final data = _ProgressIndicatorData.of(context);
 
     return data != null
         ? CompositedTransformFollower(
@@ -321,12 +318,12 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
             child: Stack(
               children: [
                 if (_expandToTop)
-                  _ReverseAnimatedStepBar(
+                  _ReverseAnimatedProgressIndicator(
                     controller: widget.controller,
                     width: _targetWidth,
                   )
                 else
-                  _AnimatedStepBar(
+                  _AnimatedProgressIndicator(
                     controller: widget.controller,
                     itemsCount: data.items.length,
                     width: _targetWidth,
@@ -338,8 +335,8 @@ class _ExpandedCompactStepBarState extends State<_ExpandedCompactStepBar>
   }
 }
 
-class _ReverseAnimatedStepBar extends StatefulWidget {
-  const _ReverseAnimatedStepBar({
+class _ReverseAnimatedProgressIndicator extends StatefulWidget {
+  const _ReverseAnimatedProgressIndicator({
     required this.controller,
     required this.width,
   });
@@ -348,11 +345,12 @@ class _ReverseAnimatedStepBar extends StatefulWidget {
   final double width;
 
   @override
-  State<_ReverseAnimatedStepBar> createState() =>
-      _ReverseAnimatedStepBarState();
+  State<_ReverseAnimatedProgressIndicator> createState() =>
+      _ReverseAnimatedProgressIndicatorState();
 }
 
-class _ReverseAnimatedStepBarState extends State<_ReverseAnimatedStepBar> {
+class _ReverseAnimatedProgressIndicatorState
+    extends State<_ReverseAnimatedProgressIndicator> {
   late final Animation<double> _reversedAnimation;
 
   late final Animatable<Offset> _slideAnimation;
@@ -367,12 +365,12 @@ class _ReverseAnimatedStepBarState extends State<_ReverseAnimatedStepBar> {
 
   @override
   Widget build(BuildContext context) {
-    final data = _StepBarData.of(context);
+    final data = _ProgressIndicatorData.of(context);
 
     return data != null
         ? SlideTransition(
             position: _reversedAnimation.drive(_slideAnimation),
-            child: _AnimatedStepBar(
+            child: _AnimatedProgressIndicator(
               controller: widget.controller,
               itemsCount: data.items.length,
               width: widget.width,
@@ -382,8 +380,8 @@ class _ReverseAnimatedStepBarState extends State<_ReverseAnimatedStepBar> {
   }
 }
 
-class _AnimatedStepBar extends StatefulWidget {
-  const _AnimatedStepBar({
+class _AnimatedProgressIndicator extends StatefulWidget {
+  const _AnimatedProgressIndicator({
     required this.controller,
     required this.itemsCount,
     required this.width,
@@ -394,10 +392,12 @@ class _AnimatedStepBar extends StatefulWidget {
   final double width;
 
   @override
-  State<_AnimatedStepBar> createState() => _AnimatedStepBarState();
+  State<_AnimatedProgressIndicator> createState() =>
+      _AnimatedProgressIndicatorState();
 }
 
-class _AnimatedStepBarState extends State<_AnimatedStepBar> {
+class _AnimatedProgressIndicatorState
+    extends State<_AnimatedProgressIndicator> {
   final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.fastOutSlowIn);
   final Animatable<double> _halfTween = Tween<double>(begin: 0, end: 0.5);
@@ -418,7 +418,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final data = _StepBarData.of(context);
+    final data = _ProgressIndicatorData.of(context);
 
     return data != null
         ? SizeTransition(
@@ -438,8 +438,7 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
                 ),
                 child: Stack(
                   children: [
-                    OptimusStepBar(
-                      type: data.type,
+                    OptimusProgressIndicator(
                       layout: Axis.vertical,
                       items: data.items,
                       currentItem: data.currentItem,
@@ -464,25 +463,23 @@ class _AnimatedStepBarState extends State<_AnimatedStepBar> {
   }
 }
 
-class _StepBarData extends InheritedWidget {
-  const _StepBarData({
-    required this.type,
+class _ProgressIndicatorData extends InheritedWidget {
+  const _ProgressIndicatorData({
     required this.items,
     required this.currentItem,
     required this.maxItem,
     required super.child,
   });
 
-  final OptimusStepBarType type;
-  final List<OptimusStepBarItem> items;
+  final List<OptimusProgressIndicatorItem> items;
   final int currentItem;
   final int? maxItem;
 
-  static _StepBarData? of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_StepBarData>();
+  static _ProgressIndicatorData? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_ProgressIndicatorData>();
 
   @override
-  bool updateShouldNotify(_StepBarData oldWidget) => true;
+  bool updateShouldNotify(_ProgressIndicatorData oldWidget) => true;
 }
 
 const double _itemHeight = 66;

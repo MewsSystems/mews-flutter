@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/step_bar/common.dart';
+import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Both types of step have dedicated states. State is shown through a visual
 /// change in the step indicator and in the divider between steps.
 /// All of this forms a visual distinction between the finished and unfinished
 /// part of a process.
-enum OptimusStepBarItemState {
+enum OptimusProgressIndicatorItemState {
   /// The step is finished. The icon is always changed to a check icon.
   completed,
 
@@ -21,8 +21,8 @@ enum OptimusStepBarItemState {
   disabled,
 }
 
-class OptimusStepBarItem {
-  const OptimusStepBarItem({
+class OptimusProgressIndicatorItem {
+  const OptimusProgressIndicatorItem({
     required this.label,
     this.description,
     required this.icon,
@@ -33,31 +33,19 @@ class OptimusStepBarItem {
   final IconData icon;
 }
 
-class StepBarItem extends StatelessWidget {
-  const StepBarItem({
+class ProgressIndicatorItem extends StatelessWidget {
+  const ProgressIndicatorItem({
     super.key,
     required this.maxWidth,
     required this.item,
     required this.state,
-    required this.type,
     required this.indicatorText,
   });
 
   final double maxWidth;
-  final OptimusStepBarItem item;
-  final OptimusStepBarItemState state;
-  final OptimusStepBarType type;
+  final OptimusProgressIndicatorItem item;
+  final OptimusProgressIndicatorItemState state;
   final String indicatorText;
-
-  Widget get _icon => switch (type) {
-        OptimusStepBarType.icon => StepBarItemIconIndicator(
-            icon: item.icon,
-            state: state,
-            type: type,
-          ),
-        OptimusStepBarType.numbered =>
-          StepBarItemNumberIndicator(state: state, text: indicatorText),
-      };
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +55,15 @@ class StepBarItem extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(minWidth: itemMinWidth),
       child: OptimusEnabled(
-        isEnabled: state != OptimusStepBarItemState.disabled,
+        isEnabled: state != OptimusProgressIndicatorItemState.disabled,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(width: tokens.spacing100),
-            _icon,
+            _Indicator(
+              state: state,
+              text: indicatorText,
+            ),
             SizedBox(width: tokens.spacing100),
             Flexible(
               child: Column(
@@ -107,47 +98,13 @@ class StepBarItem extends StatelessWidget {
   }
 }
 
-class StepBarItemIconIndicator extends StatelessWidget {
-  const StepBarItemIconIndicator({
-    super.key,
-    required this.icon,
-    required this.state,
-    required this.type,
-  });
-
-  final IconData icon;
-  final OptimusStepBarItemState state;
-  final OptimusStepBarType type;
-
-  Color _color(OptimusThemeData theme) =>
-      state == OptimusStepBarItemState.active
-          ? theme.colors.primary500t8 // TODO(witwash): replace with tokens
-          : Colors.transparent;
-
-  IconData get _icon =>
-      state == OptimusStepBarItemState.completed ? OptimusIcons.done : icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
-
-    return Container(
-      width: context.tokens.sizing500,
-      height: context.tokens.sizing500,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: _color(theme)),
-      child: OptimusIcon(iconData: _icon, colorOption: state.iconColor),
-    );
-  }
-}
-
-class StepBarItemNumberIndicator extends StatelessWidget {
-  const StepBarItemNumberIndicator({
-    super.key,
+class _Indicator extends StatelessWidget {
+  const _Indicator({
     required this.state,
     required this.text,
   });
 
-  final OptimusStepBarItemState state;
+  final OptimusProgressIndicatorItemState state;
   final String text;
 
   @override
@@ -156,7 +113,7 @@ class StepBarItemNumberIndicator extends StatelessWidget {
     final theme = OptimusTheme.of(context);
     final iconSize = tokens.sizing300;
 
-    return state == OptimusStepBarItemState.completed
+    return state == OptimusProgressIndicatorItemState.completed
         ? SizedBox(
             width: tokens.sizing500,
             height: tokens.sizing500,
@@ -171,7 +128,7 @@ class StepBarItemNumberIndicator extends StatelessWidget {
               Container(
                 width: tokens.sizing500,
                 height: tokens.sizing500,
-                decoration: state == OptimusStepBarItemState.active
+                decoration: state == OptimusProgressIndicatorItemState.active
                     ? BoxDecoration(
                         shape: BoxShape.circle,
                         color: theme.colors.primary500t8,
@@ -203,14 +160,14 @@ class StepBarItemNumberIndicator extends StatelessWidget {
   }
 }
 
-class StepBarSpacer extends StatelessWidget {
-  const StepBarSpacer({
+class ProgressIndicatorSpacer extends StatelessWidget {
+  const ProgressIndicatorSpacer({
     super.key,
     required this.nextItemState,
     required this.layout,
   });
 
-  final OptimusStepBarItemState nextItemState;
+  final OptimusProgressIndicatorItemState nextItemState;
   final Axis layout;
 
   @override
@@ -245,37 +202,38 @@ class StepBarSpacer extends StatelessWidget {
   }
 }
 
-extension OptimusStepBarItemTheme on OptimusStepBarItemState {
+extension OptimusProgressIndicatorItemTheme
+    on OptimusProgressIndicatorItemState {
   Color iconBackgroundColor(OptimusThemeData theme) => switch (this) {
-        OptimusStepBarItemState.completed ||
-        OptimusStepBarItemState.active =>
+        OptimusProgressIndicatorItemState.completed ||
+        OptimusProgressIndicatorItemState.active =>
           theme.colors.primary,
-        OptimusStepBarItemState.enabled ||
-        OptimusStepBarItemState.disabled =>
+        OptimusProgressIndicatorItemState.enabled ||
+        OptimusProgressIndicatorItemState.disabled =>
           theme.isDark ? theme.colors.neutral500t40 : theme.colors.neutral50,
       };
 
   Color textColor(OptimusThemeData theme) => switch (this) {
-        OptimusStepBarItemState.completed => theme.colors.primary,
-        OptimusStepBarItemState.active =>
+        OptimusProgressIndicatorItemState.completed => theme.colors.primary,
+        OptimusProgressIndicatorItemState.active =>
           theme.isDark ? theme.colors.neutral1000 : theme.colors.neutral0,
-        OptimusStepBarItemState.enabled ||
-        OptimusStepBarItemState.disabled =>
+        OptimusProgressIndicatorItemState.enabled ||
+        OptimusProgressIndicatorItemState.disabled =>
           theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
       };
 
   OptimusIconColorOption get iconColor => switch (this) {
-        OptimusStepBarItemState.completed ||
-        OptimusStepBarItemState.active =>
+        OptimusProgressIndicatorItemState.completed ||
+        OptimusProgressIndicatorItemState.active =>
           OptimusIconColorOption.primary,
-        OptimusStepBarItemState.enabled ||
-        OptimusStepBarItemState.disabled =>
+        OptimusProgressIndicatorItemState.enabled ||
+        OptimusProgressIndicatorItemState.disabled =>
           OptimusIconColorOption.basic,
       };
 
   bool get isAccessible =>
-      this == OptimusStepBarItemState.completed ||
-      this == OptimusStepBarItemState.active;
+      this == OptimusProgressIndicatorItemState.completed ||
+      this == OptimusProgressIndicatorItemState.active;
 }
 
 const double _spacerThickness = 1;
