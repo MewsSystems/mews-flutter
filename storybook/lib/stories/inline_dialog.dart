@@ -97,7 +97,7 @@ class _NumberRow extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            OptimusNumberPickerFormField(
+            OptimusStepperFormField(
               initialValue: 8,
               size: OptimusWidgetSize.small,
             ),
