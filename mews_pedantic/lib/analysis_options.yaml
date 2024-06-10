@@ -324,6 +324,7 @@ dart_code_metrics:
     - avoid-nullable-parameters-with-default-values
     - avoid-nullable-tostring
     - avoid-one-field-records
+    - avoid-only-rethrow
     # - avoid-passing-async-when-sync-expected
     # - avoid-passing-default-values
     # - avoid-passing-self-as-argument
@@ -335,6 +336,7 @@ dart_code_metrics:
     # - avoid-redundant-pragma-inline
     # - avoid-referencing-discarded-variables
     # - avoid-renaming-representation-getters
+    - avoid-returning-cascades
     - avoid-returning-void
     - avoid-self-assignment
     - avoid-self-compare
@@ -368,6 +370,7 @@ dart_code_metrics:
     - avoid-unrelated-type-assertions
     - avoid-unrelated-type-casts
     # - avoid-unsafe-collection-methods
+    - avoid-unsafe-reduce
     - avoid-unused-after-null-check
     - avoid-unused-generics
     # - avoid-unused-instances
@@ -409,6 +412,7 @@ dart_code_metrics:
     # - no-magic-string
     - no-object-declaration
     # - parameters-ordering
+    - prefer-abstract-final-static-class
     # - prefer-addition-subtraction-assignments
     - prefer-any-or-every
     # - prefer-async-await
@@ -446,6 +450,8 @@ dart_code_metrics:
     - prefer-named-boolean-parameters:
         ignore-single: true
     # - prefer-named-imports
+    - prefer-named-parameters:
+        max-number: 2
     - prefer-null-aware-spread
     - prefer-overriding-parent-equality
     - prefer-parentheses-with-if-null

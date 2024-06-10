@@ -39,7 +39,7 @@ import 'package:flutter/material.dart';
 ///
 /// One of the "alert" colors, its purpose is to communicate and convey a
 /// sense of danger, error, or destructive action.
-abstract class OptimusSemanticColors {
+abstract final class OptimusSemanticColors {
   const OptimusSemanticColors._();
 
   static const white = Color(0xFFFFFFFF);
@@ -214,7 +214,7 @@ abstract class OptimusSemanticColors {
   static const red600t48 = Color(0x7AD62F29);
 }
 
-abstract class OptimusLightColors {
+abstract final class OptimusLightColors {
   const OptimusLightColors._();
 
   static const neutral0 = OptimusSemanticColors.white;
@@ -335,7 +335,7 @@ abstract class OptimusLightColors {
   static const danger = danger500;
 }
 
-abstract class OptimusDarkColors {
+abstract final class OptimusDarkColors {
   const OptimusDarkColors._();
 
   static const neutral0 = OptimusSemanticColors.white;
