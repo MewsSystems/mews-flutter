@@ -1,8 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/common/gesture_wrapper.dart';
-import 'package:optimus/src/progress_indicator/progress_indicator_item.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// The compact version of the OptimusProgressIndicator that is using a modified
