@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/number_picker/button.dart';
 
-class OptimusNumberPickerFormField extends FormField<int> {
+class OptimusStepperFormField extends FormField<int> {
   /// When a [controller] is specified, [initialValue] must be null (the
   /// default). If [controller] is null, then a [TextEditingController]
   /// will be constructed automatically and its `text` will be initialized
   /// to [initialValue].
-  OptimusNumberPickerFormField({
+  OptimusStepperFormField({
     super.key,
     int? initialValue,
     int min = 0,
@@ -34,7 +33,7 @@ class OptimusNumberPickerFormField extends FormField<int> {
           validator: (value) => value != null && (value >= min && value <= max)
               ? null
               : validationError,
-          builder: (FormFieldState<int> field) => _OptimusNumberPicker(
+          builder: (FormFieldState<int> field) => _Stepper(
             initialValue: initialValue,
             min: min,
             max: max,
@@ -51,8 +50,8 @@ class OptimusNumberPickerFormField extends FormField<int> {
         );
 }
 
-class _OptimusNumberPicker extends StatefulWidget {
-  const _OptimusNumberPicker({
+class _Stepper extends StatefulWidget {
+  const _Stepper({
     required this.onChanged,
     this.initialValue,
     this.min = 0,
@@ -75,10 +74,10 @@ class _OptimusNumberPicker extends StatefulWidget {
   final OptimusWidgetSize size;
 
   @override
-  _OptimusNumberPickerState createState() => _OptimusNumberPickerState();
+  _StepperState createState() => _StepperState();
 }
 
-class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
+class _StepperState extends State<_Stepper> {
   int? _value;
 
   TextEditingController? _controller;
@@ -171,9 +170,8 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         textAlign: TextAlign.center,
         error: widget.error,
         isEnabled: widget.enabled,
-        keyboardType: TextInputType.number,
         controller: _effectiveController,
-        leading: NumberPickerButton(
+        leading: _StepperButton(
           iconData: OptimusIcons.minus_simple,
           onPressed: widget.enabled
               ? value == null || value > widget.min
@@ -181,7 +179,7 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
                   : null
               : null,
         ),
-        trailing: NumberPickerButton(
+        trailing: _StepperButton(
           iconData: OptimusIcons.plus_simple,
           onPressed: widget.enabled
               ? value == null || value < widget.max
@@ -193,6 +191,35 @@ class _OptimusNumberPickerState extends State<_OptimusNumberPicker> {
         inputFormatters: [
           FilteringTextInputFormatter.allow(_integersOrEmptyString),
         ],
+      ),
+    );
+  }
+}
+
+class _StepperButton extends StatelessWidget {
+  const _StepperButton({
+    required this.iconData,
+    this.onPressed,
+  });
+
+  final IconData iconData;
+  final VoidCallback? onPressed;
+
+  bool get _isEnabled => onPressed != null;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return OptimusEnabled(
+      isEnabled: _isEnabled,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Icon(
+          iconData,
+          color: _isEnabled ? tokens.textStaticPrimary : tokens.textDisabled,
+          size: tokens.sizing300,
+        ),
       ),
     );
   }

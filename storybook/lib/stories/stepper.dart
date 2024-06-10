@@ -3,8 +3,8 @@ import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
-final Story numberPickerStory = Story(
-  name: 'Forms/Number Picker',
+final Story stepperStory = Story(
+  name: 'Forms/Stepper',
   builder: (context) {
     final k = context.knobs;
 
@@ -46,7 +46,7 @@ class _ContentState extends State<_Content> {
         children: [
           Text('Current value: ${_value ?? 0}'),
           const SizedBox(height: 16),
-          OptimusNumberPickerFormField(
+          OptimusStepperFormField(
             enabled: widget.isEnabled,
             size: widget.size,
             onChanged: _handleChanged,

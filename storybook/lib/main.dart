@@ -40,7 +40,6 @@ import 'package:storybook/stories/list/nav_list_tile.dart';
 import 'package:storybook/stories/logo.dart';
 import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
-import 'package:storybook/stories/number_picker.dart';
 import 'package:storybook/stories/progress_indicator.dart';
 import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
@@ -49,6 +48,7 @@ import 'package:storybook/stories/select_input.dart';
 import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/stack.dart';
+import 'package:storybook/stories/stepper.dart';
 import 'package:storybook/stories/tab/tab.dart';
 import 'package:storybook/stories/tab/tabs.dart';
 import 'package:storybook/stories/toggle.dart';
@@ -123,7 +123,7 @@ class _MyAppState extends State<MyApp> {
                 searchFieldStory,
                 dateInputStory,
                 dateInputFormFieldStory,
-                numberPickerStory,
+                stepperStory,
                 spacingStory,
                 tagStory,
                 bannerStory,
