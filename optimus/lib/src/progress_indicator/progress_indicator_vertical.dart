@@ -127,9 +127,6 @@ class _CollapsedCompactProgressIndicator extends StatelessWidget {
 
   final bool showShadow;
 
-  List<BoxShadow>? _getShadow(OptimusTokens tokens) =>
-      showShadow ? tokens.shadow100 : null;
-
   @override
   Widget build(BuildContext context) {
     final data = _ProgressIndicatorData.of(context);
@@ -143,7 +140,6 @@ class _CollapsedCompactProgressIndicator extends StatelessWidget {
               constraints: const BoxConstraints(minHeight: _itemHeight),
               decoration: BoxDecoration(
                 color: tokens.borderStaticInverse,
-                boxShadow: _getShadow(context.tokens),
                 borderRadius: BorderRadius.all(tokens.borderRadius50),
               ),
               child: Row(
