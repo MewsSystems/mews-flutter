@@ -190,7 +190,7 @@ class _CompactProgressIndicatorItem extends StatelessWidget {
   }
 }
 
-class _CompactItem extends StatefulWidget {
+class _CompactItem extends StatelessWidget {
   const _CompactItem({
     required this.state,
     required this.text,
@@ -204,49 +204,37 @@ class _CompactItem extends StatefulWidget {
   final Widget? description;
 
   @override
-  State<_CompactItem> createState() => _CompactItemState();
-}
-
-class _CompactItemState extends State<_CompactItem> {
-  bool _isHovered = false;
-  bool _isPressed = false;
-
-  @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return GestureWrapper(
-      onHoverChanged: (value) => setState(() => _isHovered = value),
-      onPressedChanged: (value) => setState(() => _isPressed = value),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(width: tokens.spacing100),
-          _ActiveCollapsedItem(
-            state: widget.state,
-            text: widget.text,
-            foregroundColor: widget.state.getForegroundColor(
-              tokens: tokens,
-              isHovered: _isHovered,
-              isPressed: _isPressed,
-            ),
-            backgroundColor: widget.state.getBackgroundColor(
-              tokens: tokens,
-              isHovered: _isHovered,
-              isPressed: _isPressed,
-            ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(width: tokens.spacing100),
+        _ActiveCollapsedItem(
+          state: state,
+          text: text,
+          foregroundColor: state.getForegroundColor(
+            tokens: tokens,
+            isHovered: false,
+            isPressed: false,
           ),
-          SizedBox(width: tokens.spacing100),
-          Flexible(
-            child: ProgressIndicatorDescription(
-              label: widget.label,
-              description: widget.description,
-              state: widget.state,
-            ),
+          backgroundColor: state.getBackgroundColor(
+            tokens: tokens,
+            isHovered: false,
+            isPressed: false,
           ),
-          SizedBox(width: tokens.spacing200),
-        ],
-      ),
+        ),
+        SizedBox(width: tokens.spacing100),
+        Flexible(
+          child: ProgressIndicatorDescription(
+            label: label,
+            description: description,
+            state: state,
+          ),
+        ),
+        SizedBox(width: tokens.spacing200),
+      ],
     );
   }
 }
