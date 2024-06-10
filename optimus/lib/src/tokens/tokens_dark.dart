@@ -7,7 +7,7 @@
 
 import 'package:flutter/widgets.dart';
 
-class DesignTokensDark {
+abstract final class DesignTokensDark {
   const DesignTokensDark._();
 
   static const Color backgroundAccentBrand = Color(0xFFAEACFA);

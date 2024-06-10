@@ -17,7 +17,7 @@
 
 import 'package:flutter/widgets.dart';
 
-class OptimusIcons {
+abstract final class OptimusIcons {
   const OptimusIcons._();
 
   static const _kFontFam = 'OptimusIcons';

@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 /// The brand secondary colors are the most versatile and can be used for
 /// brand-specific components, system backgrounds, and other neutral
 /// elements like cards.
-abstract class OptimusBrandColors {
+abstract final class OptimusBrandColors {
   const OptimusBrandColors._();
 
   static const coral500 = Color(0xFFFF5E64);
