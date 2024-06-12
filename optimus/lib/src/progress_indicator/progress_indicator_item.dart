@@ -141,12 +141,12 @@ class _HorizontalItem extends StatelessWidget {
 }
 
 class _VerticalItem extends StatelessWidget {
-  const _VerticalItem(
-      {super.key,
-      required this.indicator,
-      required this.label,
-      this.description,
-      required this.state});
+  const _VerticalItem({
+    required this.indicator,
+    required this.label,
+    this.description,
+    required this.state,
+  });
 
   final Widget indicator;
   final Widget label;
@@ -267,7 +267,6 @@ class ProgressIndicatorSpacer extends StatelessWidget {
     final color = enabled
         ? tokens.borderInteractivePrimaryDefault
         : tokens.borderStaticPrimary;
-    final verticalSpacerLeftPadding = tokens.sizing500 / 2 + tokens.spacing100;
 
     return switch (layout) {
       Axis.horizontal => Padding(
