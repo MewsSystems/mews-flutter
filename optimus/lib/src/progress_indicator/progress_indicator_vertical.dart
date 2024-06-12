@@ -59,6 +59,26 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
         : OptimusProgressIndicatorItemState.disabled;
   }
 
+  void _handleTap() {
+    setState(() {
+      _isExpanded = !_isExpanded;
+      if (_isExpanded) {
+        _animationController.forward();
+      } else {
+        _animationController.reverse().then<void>((void value) {
+          if (!mounted) {
+            return;
+          }
+          setState(() {
+            // Rebuild without widget.children.
+          });
+        });
+      }
+      PageStorage.maybeOf(context)?.writeState(context, _isExpanded);
+    });
+    // widget.onExpansionChanged?.call(_isExpanded);
+  }
+
   OptimusProgressIndicatorItem get _currentItem =>
       widget.items[widget.currentItem];
 
@@ -70,11 +90,22 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
       offstage: closed,
       child: TickerMode(
         enabled: !closed,
-        child: Padding(
+        child: const Padding(
           padding: EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [], // TODO(witwash): hidden part
+            children: [
+              Text('Hidden'),
+              Text('spacer'),
+              Text('Item'),
+              Text('spacer'),
+              Text('Item'),
+              Text('spacer'),
+              Text('Item'),
+              Text('spacer'),
+              Text('Item'),
+              Text('spacer'),
+            ], // TODO(witwash): hidden part
           ),
         ),
       ),
@@ -94,7 +125,7 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            // TODO(witwash): add progress inidicator
+            GestureDetector(onTap: _handleTap, child: const Text('Item')),
             ClipRect(
               child: Align(
                 alignment: Alignment.center,
@@ -105,12 +136,7 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
           ],
         ),
       ),
-      child: ExpansionTile(
-        title: ProgressIndicatorDescription(
-          label: _currentItem.label,
-          state: _getItemState(_currentItem),
-        ),
-      ),
+      child: result,
     );
   }
 }
