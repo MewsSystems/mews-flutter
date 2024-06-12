@@ -15,7 +15,7 @@ final Story progressIndicatorStory = Story(
       options: Axis.values.toOptions(),
     );
 
-    final width = layout == Axis.horizontal ? 400.0 : null;
+    const width = 400.0;
     final height = layout == Axis.horizontal ? 100.0 : null;
 
     return SizedBox(

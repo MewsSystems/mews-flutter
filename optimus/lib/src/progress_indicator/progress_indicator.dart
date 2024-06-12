@@ -52,6 +52,7 @@ class OptimusProgressIndicator extends StatelessWidget {
           maxItem: maxItem,
         ),
       Axis.vertical => VerticalProgressIndicator(
+          layout: Axis.vertical,
           items: items,
           currentItem: currentItem,
           maxItem: maxItem,
