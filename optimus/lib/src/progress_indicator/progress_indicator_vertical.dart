@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/progress_indicator/progress_indicator_item.dart';
 
 class VerticalProgressIndicator extends StatefulWidget {
@@ -82,6 +83,9 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
   OptimusProgressIndicatorItem get _currentItem =>
       widget.items[widget.currentItem];
 
+  String _getIndicatorText(OptimusProgressIndicatorItem item) =>
+      (widget.items.indexOf(item) + 1).toString();
+
   @override
   Widget build(BuildContext context) {
     final bool closed = !_isExpanded && _animationController.isDismissed;
@@ -93,7 +97,7 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
         child: const Padding(
           padding: EdgeInsets.zero,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Hidden'),
               Text('spacer'),
@@ -125,10 +129,19 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            GestureDetector(onTap: _handleTap, child: const Text('Item')),
+            CustomRawGestureDetector(
+              onTap: _handleTap,
+              child: ProgressIndicatorItem(
+                state: _getItemState(_currentItem),
+                text: _getIndicatorText(_currentItem),
+                label: _currentItem.label,
+                description: _currentItem.description,
+                axis: Axis.vertical,
+              ),
+            ),
             ClipRect(
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 heightFactor: _heightFactor.value,
                 child: child,
               ),
