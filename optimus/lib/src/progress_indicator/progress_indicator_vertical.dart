@@ -20,7 +20,27 @@ class VerticalProgressIndicator extends StatefulWidget {
       _VerticalProgressIndicatorState();
 }
 
-class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator> {
+class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _heightFactor;
+  final CurveTween _heightFactorTween = CurveTween(curve: Curves.easeIn);
+
+  bool _isExpanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(duration: _kExpand, vsync: this);
+    _heightFactor = _animationController.drive(_heightFactorTween);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   OptimusProgressIndicatorItemState _getItemState(
     OptimusProgressIndicatorItem item,
   ) {
@@ -43,10 +63,56 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator> {
       widget.items[widget.currentItem];
 
   @override
-  Widget build(BuildContext context) => ExpansionTile(
+  Widget build(BuildContext context) {
+    final bool closed = !_isExpanded && _animationController.isDismissed;
+
+    final Widget result = Offstage(
+      offstage: closed,
+      child: TickerMode(
+        enabled: !closed,
+        child: Padding(
+          padding: EdgeInsets.zero,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [], // TODO(witwash): hidden part
+          ),
+        ),
+      ),
+    );
+
+    return AnimatedBuilder(
+      animation: _animationController.view,
+      builder: (context, child) => Container(
+        clipBehavior: Clip.none,
+        decoration: const ShapeDecoration(
+          shape: Border(
+            top: BorderSide(color: Colors.transparent),
+            bottom: BorderSide(color: Colors.transparent),
+          ),
+          color: Colors.transparent,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            // TODO(witwash): add progress inidicator
+            ClipRect(
+              child: Align(
+                alignment: Alignment.center,
+                heightFactor: _heightFactor.value,
+                child: child,
+              ),
+            ),
+          ],
+        ),
+      ),
+      child: ExpansionTile(
         title: ProgressIndicatorDescription(
           label: _currentItem.label,
           state: _getItemState(_currentItem),
         ),
-      );
+      ),
+    );
+  }
 }
+
+const Duration _kExpand = Duration(milliseconds: 200);
