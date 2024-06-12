@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/progress_indicator/progress_indicator_item.dart';
@@ -94,48 +95,51 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
       offstage: closed,
       child: TickerMode(
         enabled: !closed,
-        child: const Padding(
+        child: Padding(
           padding: EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Hidden'),
-              Text('spacer'),
-              Text('Item'),
-              Text('spacer'),
-              Text('Item'),
-              Text('spacer'),
-              Text('Item'),
-              Text('spacer'),
-              Text('Item'),
-              Text('spacer'),
-            ], // TODO(witwash): hidden part
+            children: widget.items
+                .skip(1)
+                .intersperseWith(
+                  itemBuilder: (item) => ProgressIndicatorItem(
+                    state: _getItemState(item),
+                    text: _getIndicatorText(item),
+                    label: item.label,
+                    description: item.description,
+                    axis: Axis.vertical,
+                  ),
+                  separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
+                    nextItemState: _getItemState(nextItem),
+                    layout: Axis.vertical,
+                  ),
+                  beforeFirst: (nextItem) => ProgressIndicatorSpacer(
+                    nextItemState: _getItemState(nextItem),
+                    layout: Axis.vertical,
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),
     );
 
+    final headerItem = _isExpanded ? widget.items.first : _currentItem;
+
     return AnimatedBuilder(
       animation: _animationController.view,
       builder: (context, child) => Container(
         clipBehavior: Clip.none,
-        decoration: const ShapeDecoration(
-          shape: Border(
-            top: BorderSide(color: Colors.transparent),
-            bottom: BorderSide(color: Colors.transparent),
-          ),
-          color: Colors.transparent,
-        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             CustomRawGestureDetector(
               onTap: _handleTap,
               child: ProgressIndicatorItem(
-                state: _getItemState(_currentItem),
-                text: _getIndicatorText(_currentItem),
-                label: _currentItem.label,
-                description: _currentItem.description,
+                state: _getItemState(headerItem),
+                text: _getIndicatorText(headerItem),
+                label: headerItem.label,
+                description: headerItem.description,
                 axis: Axis.vertical,
               ),
             ),
