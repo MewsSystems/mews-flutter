@@ -58,18 +58,12 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
   bool _isHovered = false;
   bool _isPressed = false;
 
-  bool get _isEnabled =>
-      widget.state != OptimusProgressIndicatorItemState.disabled;
-
-  bool get _isCompleted =>
-      widget.state == OptimusProgressIndicatorItemState.completed;
-
   @override
   Widget build(BuildContext context) {
-    final indicator = _isEnabled
+    final indicator = widget.state.isEnabled
         ? _EnabledIndicatorItem(
             text: widget.text,
-            isCompleted: _isCompleted,
+            isCompleted: widget.state.isCompleted,
             foregroundColor: widget.state.getForegroundColor(
               tokens: tokens,
               isHovered: _isHovered,
@@ -98,6 +92,12 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
               label: widget.label,
               state: widget.state,
               description: widget.description,
+              trailing: widget.state.isActive
+                  ? OptimusCaption(
+                      variation: Variation.variationSecondary,
+                      child: Text('${widget.text}/4'),
+                    )
+                  : null,
             ),
     );
   }
@@ -144,13 +144,15 @@ class _VerticalItem extends StatelessWidget {
   const _VerticalItem({
     required this.indicator,
     required this.label,
-    this.description,
     required this.state,
+    this.description,
+    this.trailing,
   });
 
   final Widget indicator;
   final Widget label;
   final Widget? description;
+  final Widget? trailing;
   final OptimusProgressIndicatorItemState state;
 
   @override
@@ -170,6 +172,8 @@ class _VerticalItem extends StatelessWidget {
             description: description,
             state: state,
           ),
+          const Spacer(),
+          if (trailing case final trailing?) trailing,
         ],
       ),
     );
@@ -317,9 +321,9 @@ class ProgressIndicatorDescription extends StatelessWidget {
           child: DefaultTextStyle.merge(
             style: tokens.bodyMediumStrong.copyWith(
               overflow: TextOverflow.ellipsis,
-              color: state == OptimusProgressIndicatorItemState.disabled
-                  ? tokens.textStaticTertiary
-                  : tokens.textStaticPrimary,
+              color: state.isEnabled
+                  ? tokens.textStaticPrimary
+                  : tokens.textStaticTertiary,
             ),
             textAlign: TextAlign.center,
             maxLines: 1,
@@ -346,7 +350,7 @@ class ProgressIndicatorDescription extends StatelessWidget {
   }
 }
 
-extension ProgressIndicatorItemTheme on OptimusProgressIndicatorItemState {
+extension on OptimusProgressIndicatorItemState {
   Color? getBackgroundColor({
     required OptimusTokens tokens,
     required bool isHovered,
@@ -390,40 +394,13 @@ extension ProgressIndicatorItemTheme on OptimusProgressIndicatorItemState {
     }
   }
 
-  OptimusIconColorOption get iconColor => switch (this) {
-        OptimusProgressIndicatorItemState.completed =>
-          OptimusIconColorOption.primary,
-        OptimusProgressIndicatorItemState.active =>
-          OptimusIconColorOption.inverse,
-        OptimusProgressIndicatorItemState.enabled ||
-        OptimusProgressIndicatorItemState.disabled =>
-          OptimusIconColorOption.basic,
-      };
+  bool get isEnabled => this != OptimusProgressIndicatorItemState.disabled;
+
+  bool get isCompleted => this == OptimusProgressIndicatorItemState.completed;
+
+  bool get isActive => this == OptimusProgressIndicatorItemState.active;
 
   bool get isAccessible =>
       this == OptimusProgressIndicatorItemState.completed ||
       this == OptimusProgressIndicatorItemState.active;
-}
-
-extension ProgressIndicatorData on List<OptimusProgressIndicatorItem> {
-  String getIndicatorText(OptimusProgressIndicatorItem item) =>
-      (indexOf(item) + 1).toString();
-
-  OptimusProgressIndicatorItemState getIndicatorState({
-    required OptimusProgressIndicatorItem item,
-    required int currentItem,
-    int? maxItem,
-  }) {
-    final position = indexOf(item);
-    if (position == currentItem) {
-      return OptimusProgressIndicatorItemState.active;
-    }
-    if (position < currentItem) {
-      return OptimusProgressIndicatorItemState.completed;
-    }
-
-    return maxItem == null || position <= maxItem
-        ? OptimusProgressIndicatorItemState.enabled
-        : OptimusProgressIndicatorItemState.disabled;
-  }
 }
