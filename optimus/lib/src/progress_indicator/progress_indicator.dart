@@ -15,7 +15,7 @@ class OptimusProgressIndicator extends StatelessWidget {
     super.key,
     required this.layout,
     required this.items,
-    required this.currentItem,
+    this.currentItem = 0,
     this.maxItem,
   });
 
@@ -46,13 +46,11 @@ class OptimusProgressIndicator extends StatelessWidget {
 
     return switch (effectiveLayout) {
       Axis.horizontal => HorizontalProgressIndicator(
-          layout: Axis.horizontal,
           items: items,
           currentItem: currentItem,
           maxItem: maxItem,
         ),
       Axis.vertical => VerticalProgressIndicator(
-          layout: Axis.vertical,
           items: items,
           currentItem: currentItem,
           maxItem: maxItem,
