@@ -24,27 +24,6 @@ class HorizontalProgressIndicator extends StatefulWidget {
 
 class _HorizontalProgressIndicatorState
     extends State<HorizontalProgressIndicator> with ThemeGetter {
-  OptimusProgressIndicatorItemState _getItemState(
-    OptimusProgressIndicatorItem item,
-  ) {
-    final position = widget.items.indexOf(item);
-    if (position == widget.currentItem) {
-      return OptimusProgressIndicatorItemState.active;
-    }
-    if (position < widget.currentItem) {
-      return OptimusProgressIndicatorItemState.completed;
-    }
-
-    final maxItem = widget.maxItem;
-
-    return maxItem == null || position <= maxItem
-        ? OptimusProgressIndicatorItemState.enabled
-        : OptimusProgressIndicatorItemState.disabled;
-  }
-
-  String _getIndicatorText(OptimusProgressIndicatorItem item) =>
-      (widget.items.indexOf(item) + 1).toString();
-
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
@@ -74,7 +53,11 @@ class _HorizontalProgressIndicatorState
                                   SizedBox(width: firstRowItemSize),
                               separatorBuilder: (_, nextItem) => Expanded(
                                 child: ProgressIndicatorSpacer(
-                                  nextItemState: _getItemState(nextItem),
+                                  nextItemState: widget.items.getIndicatorState(
+                                    item: nextItem,
+                                    currentItem: widget.currentItem,
+                                    maxItem: widget.maxItem,
+                                  ),
                                   layout: Axis.horizontal,
                                 ),
                               ),
@@ -90,8 +73,12 @@ class _HorizontalProgressIndicatorState
                         width: itemWidth,
                         height: constraints.maxHeight,
                         child: ProgressIndicatorItem(
-                          state: _getItemState(item),
-                          text: _getIndicatorText(item),
+                          state: widget.items.getIndicatorState(
+                            item: item,
+                            currentItem: widget.currentItem,
+                            maxItem: widget.maxItem,
+                          ),
+                          text: widget.items.getIndicatorText(item),
                           label: item.label,
                           description: item.description,
                         ),

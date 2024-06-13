@@ -346,8 +346,7 @@ class ProgressIndicatorDescription extends StatelessWidget {
   }
 }
 
-extension OptimusProgressIndicatorItemTheme
-    on OptimusProgressIndicatorItemState {
+extension ProgressIndicatorItemTheme on OptimusProgressIndicatorItemState {
   Color? getBackgroundColor({
     required OptimusTokens tokens,
     required bool isHovered,
@@ -404,4 +403,27 @@ extension OptimusProgressIndicatorItemTheme
   bool get isAccessible =>
       this == OptimusProgressIndicatorItemState.completed ||
       this == OptimusProgressIndicatorItemState.active;
+}
+
+extension ProgressIndicatorData on List<OptimusProgressIndicatorItem> {
+  String getIndicatorText(OptimusProgressIndicatorItem item) =>
+      (indexOf(item) + 1).toString();
+
+  OptimusProgressIndicatorItemState getIndicatorState({
+    required OptimusProgressIndicatorItem item,
+    required int currentItem,
+    int? maxItem,
+  }) {
+    final position = indexOf(item);
+    if (position == currentItem) {
+      return OptimusProgressIndicatorItemState.active;
+    }
+    if (position < currentItem) {
+      return OptimusProgressIndicatorItemState.completed;
+    }
+
+    return maxItem == null || position <= maxItem
+        ? OptimusProgressIndicatorItemState.enabled
+        : OptimusProgressIndicatorItemState.disabled;
+  }
 }

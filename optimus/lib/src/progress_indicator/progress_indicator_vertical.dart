@@ -43,24 +43,6 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
     super.dispose();
   }
 
-  OptimusProgressIndicatorItemState _getItemState(
-    OptimusProgressIndicatorItem item,
-  ) {
-    final position = widget.items.indexOf(item);
-    if (position == widget.currentItem) {
-      return OptimusProgressIndicatorItemState.active;
-    }
-    if (position < widget.currentItem) {
-      return OptimusProgressIndicatorItemState.completed;
-    }
-
-    final maxItem = widget.maxItem;
-
-    return maxItem == null || position <= maxItem
-        ? OptimusProgressIndicatorItemState.enabled
-        : OptimusProgressIndicatorItemState.disabled;
-  }
-
   void _handleTap() {
     setState(() {
       _isExpanded = !_isExpanded;
@@ -76,20 +58,20 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
           });
         });
       }
-      PageStorage.maybeOf(context)?.writeState(context, _isExpanded);
+      PageStorage.maybeOf(context)?.writeState(
+        context,
+        _isExpanded,
+      ); // TODO(witwash): add loading from the saved state
     });
-    // widget.onExpansionChanged?.call(_isExpanded);
   }
 
   OptimusProgressIndicatorItem get _currentItem =>
       widget.items[widget.currentItem];
 
-  String _getIndicatorText(OptimusProgressIndicatorItem item) =>
-      (widget.items.indexOf(item) + 1).toString();
-
   @override
   Widget build(BuildContext context) {
     final bool closed = !_isExpanded && _animationController.isDismissed;
+    final items = widget.items;
 
     final Widget result = Offstage(
       offstage: closed,
@@ -99,25 +81,29 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
           padding: EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: widget.items
-                .skip(1)
+            children: items
                 .intersperseWith(
                   itemBuilder: (item) => ProgressIndicatorItem(
-                    state: _getItemState(item),
-                    text: _getIndicatorText(item),
+                    state: items.getIndicatorState(
+                      item: item,
+                      currentItem: widget.currentItem,
+                      maxItem: widget.maxItem,
+                    ),
+                    text: items.getIndicatorText(item),
                     label: item.label,
                     description: item.description,
                     axis: Axis.vertical,
                   ),
                   separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
-                    nextItemState: _getItemState(nextItem),
-                    layout: Axis.vertical,
-                  ),
-                  beforeFirst: (nextItem) => ProgressIndicatorSpacer(
-                    nextItemState: _getItemState(nextItem),
+                    nextItemState: items.getIndicatorState(
+                      item: nextItem,
+                      currentItem: widget.currentItem,
+                      maxItem: widget.maxItem,
+                    ),
                     layout: Axis.vertical,
                   ),
                 )
+                .skip(1) // the first one is already in the header
                 .toList(),
           ),
         ),
@@ -136,8 +122,12 @@ class _VerticalProgressIndicatorState extends State<VerticalProgressIndicator>
             CustomRawGestureDetector(
               onTap: _handleTap,
               child: ProgressIndicatorItem(
-                state: _getItemState(headerItem),
-                text: _getIndicatorText(headerItem),
+                state: widget.items.getIndicatorState(
+                  item: headerItem,
+                  currentItem: widget.currentItem,
+                  maxItem: widget.maxItem,
+                ),
+                text: widget.items.getIndicatorText(headerItem),
                 label: headerItem.label,
                 description: headerItem.description,
                 axis: Axis.vertical,
