@@ -6,13 +6,11 @@ import 'package:optimus/src/progress_indicator/progress_indicator_item.dart';
 class VerticalProgressIndicator extends StatefulWidget {
   const VerticalProgressIndicator({
     super.key,
-    required this.layout,
     required this.items,
     required this.currentItem,
     this.maxItem,
   });
 
-  final Axis layout;
   final List<OptimusProgressIndicatorItem> items;
   final int currentItem;
   final int? maxItem;

@@ -3,32 +3,24 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/src/progress_indicator/progress_indicator_item.dart';
 import 'package:optimus/src/theme/theme.dart';
 
-class HorizontalProgressIndicator extends StatefulWidget {
+class HorizontalProgressIndicator extends StatelessWidget {
   const HorizontalProgressIndicator({
     super.key,
-    required this.layout,
     required this.items,
     required this.currentItem,
     this.maxItem,
   });
 
-  final Axis layout;
   final List<OptimusProgressIndicatorItem> items;
   final int currentItem;
   final int? maxItem;
 
   @override
-  State<HorizontalProgressIndicator> createState() =>
-      _HorizontalProgressIndicatorState();
-}
-
-class _HorizontalProgressIndicatorState
-    extends State<HorizontalProgressIndicator> with ThemeGetter {
-  @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
+          final tokens = context.tokens;
           final effectiveWidth = constraints.maxWidth;
-          final itemWidth = effectiveWidth / widget.items.length;
+          final itemWidth = effectiveWidth / items.length;
           final firstRowHeight = tokens.sizing400;
           final firstRowItemSize = tokens.sizing300;
           final firstRowHorizontalPadding =
@@ -38,7 +30,7 @@ class _HorizontalProgressIndicatorState
             width: effectiveWidth,
             child: Stack(
               children: [
-                if (widget.items.length > 1)
+                if (items.length > 1)
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: firstRowHorizontalPadding,
@@ -47,16 +39,16 @@ class _HorizontalProgressIndicatorState
                       height: firstRowHeight,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: widget.items
+                        children: items
                             .intersperseWith(
                               itemBuilder: (_) =>
                                   SizedBox(width: firstRowItemSize),
                               separatorBuilder: (_, nextItem) => Expanded(
                                 child: ProgressIndicatorSpacer(
-                                  nextItemState: widget.items.getIndicatorState(
+                                  nextItemState: items.getIndicatorState(
                                     item: nextItem,
-                                    currentItem: widget.currentItem,
-                                    maxItem: widget.maxItem,
+                                    currentItem: currentItem,
+                                    maxItem: maxItem,
                                   ),
                                   layout: Axis.horizontal,
                                 ),
@@ -68,17 +60,17 @@ class _HorizontalProgressIndicatorState
                   ),
                 Row(
                   children: [
-                    for (final item in widget.items)
+                    for (final item in items)
                       SizedBox(
                         width: itemWidth,
                         height: constraints.maxHeight,
                         child: ProgressIndicatorItem(
-                          state: widget.items.getIndicatorState(
+                          state: items.getIndicatorState(
                             item: item,
-                            currentItem: widget.currentItem,
-                            maxItem: widget.maxItem,
+                            currentItem: currentItem,
+                            maxItem: maxItem,
                           ),
-                          text: widget.items.getIndicatorText(item),
+                          text: items.getIndicatorText(item),
                           label: item.label,
                           description: item.description,
                         ),
