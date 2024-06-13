@@ -191,10 +191,6 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
           });
         });
       }
-      PageStorage.maybeOf(context)?.writeState(
-        context,
-        _isExpanded,
-      ); // TODO(witwash): add loading from the saved state
     });
   }
 
