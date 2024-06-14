@@ -1,6 +1,6 @@
 import 'package:flutter/rendering.dart';
 
-abstract class OpacityValue {
+abstract final class OpacityValue {
   static const double enabled = 1;
   static const double disabled = .32;
 }
