@@ -9,18 +9,18 @@ class AllowMultipleRawGestureDetector extends RawGestureDetector {
   }) : super(
           behavior: HitTestBehavior.opaque,
           gestures: <Type, GestureRecognizerFactory>{
-            _AllowMultipleGestureRecognizer:
+            AllowMultipleGestureRecognizer:
                 GestureRecognizerFactoryWithHandlers<
-                    _AllowMultipleGestureRecognizer>(
-              _AllowMultipleGestureRecognizer.new,
-              (_AllowMultipleGestureRecognizer instance) =>
+                    AllowMultipleGestureRecognizer>(
+              AllowMultipleGestureRecognizer.new,
+              (AllowMultipleGestureRecognizer instance) =>
                   instance.onTap = onTap,
             ),
           },
         );
 }
 
-class _AllowMultipleGestureRecognizer extends TapGestureRecognizer {
+class AllowMultipleGestureRecognizer extends TapGestureRecognizer {
   @override
   void rejectGesture(int pointer) => acceptGesture(pointer);
 }
