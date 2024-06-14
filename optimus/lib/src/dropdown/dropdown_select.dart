@@ -422,7 +422,7 @@ class _ClearAllButton extends StatelessWidget {
   final GestureTapCallback? onTap;
 
   @override
-  Widget build(BuildContext context) => CustomRawGestureDetector(
+  Widget build(BuildContext context) => AllowMultipleRawGestureDetector(
         onTap: onTap,
         child: Icon(
           OptimusIcons.cross_close,

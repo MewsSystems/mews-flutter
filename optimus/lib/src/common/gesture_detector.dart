@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 
-class CustomRawGestureDetector extends RawGestureDetector {
-  CustomRawGestureDetector({
+class AllowMultipleRawGestureDetector extends RawGestureDetector {
+  AllowMultipleRawGestureDetector({
     super.key,
     GestureTapCallback? onTap,
     super.child,

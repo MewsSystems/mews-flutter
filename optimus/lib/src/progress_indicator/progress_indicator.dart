@@ -248,7 +248,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            CustomRawGestureDetector(
+            AllowMultipleRawGestureDetector(
               onTap: _handleTap,
               child: ProgressIndicatorItem(
                 state: widget.items.getIndicatorState(
