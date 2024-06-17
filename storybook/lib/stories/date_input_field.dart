@@ -44,7 +44,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
         isEnabled: enabled,
         format: DateFormat(format),
         isClearAllEnabled: isClearEnabled,
-        onSubmitted: (newValue) => setState(() => _value = newValue),
+        onSubmitted: (value) => setState(() => _value = value),
       ),
     );
   }
