@@ -4,7 +4,7 @@ import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 
 class BaseButton extends StatefulWidget {
-  const BaseButton({
+  BaseButton({
     super.key,
     this.onPressed,
     required this.child,
