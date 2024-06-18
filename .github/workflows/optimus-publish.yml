@@ -12,3 +12,4 @@ jobs:
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
     with:
       working-directory: optimus/
+      environment: pub.dev
