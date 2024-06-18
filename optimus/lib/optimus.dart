@@ -72,7 +72,6 @@ export 'src/lists/nav_list_tile.dart';
 export 'src/loader/spinner.dart';
 export 'src/logo.dart';
 export 'src/progress_indicator/progress_indicator.dart';
-export 'src/progress_indicator/progress_indicator_compact.dart';
 export 'src/progress_indicator/progress_indicator_item.dart';
 export 'src/radio/radio.dart';
 export 'src/radio/radio_group.dart';
