@@ -104,7 +104,7 @@ class _MyAppState extends State<MyApp> {
                 debugShowCheckedModeBanner: false,
                 home: Scaffold(body: Center(child: child)),
               ),
-              initialStory: 'Navigation/Progress Indicator',
+              initialStory: 'Welcome',
               stories: [
                 welcomeStory,
                 formStory,

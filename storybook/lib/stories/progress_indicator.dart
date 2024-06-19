@@ -24,16 +24,12 @@ final Story progressIndicatorStory = Story(
       child: OptimusProgressIndicator(
         layout: layout,
         items: _items,
-        currentItem: k
-            .slider(
-              label: 'Current',
-              initial: 0,
-              max: _items.length.toDouble() - 1,
-            )
-            .toInt(),
-        maxItem: k
-            .slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1)
-            .toInt(),
+        currentItem: k.sliderInt(
+          label: 'Current',
+          initial: 0,
+          max: _items.length - 1,
+        ),
+        maxItem: k.sliderInt(label: 'Max', initial: 2, max: _items.length - 1),
       ),
     );
   },

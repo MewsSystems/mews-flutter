@@ -78,6 +78,7 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
             ),
           )
         : const _DisabledIndicatorItem();
+    final itemsCount = widget.itemsCount;
 
     return GestureWrapper(
       onHoverChanged: (value) => setState(() => _isHovered = value),
@@ -94,10 +95,10 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
             label: widget.label,
             state: widget.state,
             description: widget.description,
-            trailing: widget.itemsCount != null && widget.state.isActive
+            trailing: itemsCount != null && widget.state.isActive
                 ? OptimusCaption(
                     variation: Variation.variationSecondary,
-                    child: Text('${widget.text}/${widget.itemsCount}'),
+                    child: Text('${widget.text}/${itemsCount + 1}'),
                   )
                 : null,
           )
