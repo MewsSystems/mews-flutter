@@ -115,6 +115,7 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                           text: items.getIndicatorText(item),
                           label: item.label,
                           description: item.description,
+                          itemsCount: maxItem ?? items.length,
                           state: items.getIndicatorState(
                             item: item,
                             currentItem: currentItem,
@@ -225,6 +226,8 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
         maxItem: widget.maxItem,
       );
 
+  int get _itemsCount => widget.maxItem ?? widget.items.length;
+
   @override
   Widget build(BuildContext context) {
     final bool closed = !_isExpanded && _animationController.isDismissed;
@@ -246,6 +249,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
                     text: items.getIndicatorText(item),
                     label: item.label,
                     description: item.description,
+                    itemsCount: _itemsCount,
                     axis: Axis.vertical,
                   ),
                   separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
@@ -274,6 +278,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
                 text: items.getIndicatorText(headerItem),
                 label: headerItem.label,
                 description: headerItem.description,
+                itemsCount: _itemsCount,
                 axis: Axis.vertical,
               ),
             ),
