@@ -39,7 +39,7 @@ class ProgressIndicatorItem extends StatefulWidget {
     required this.state,
     required this.text,
     required this.label,
-    required this.itemsCount,
+    this.itemsCount,
     this.description,
     this.axis = Axis.horizontal,
   });
@@ -49,7 +49,7 @@ class ProgressIndicatorItem extends StatefulWidget {
   final Widget label;
   final Widget? description;
   final Axis axis;
-  final int itemsCount;
+  final int? itemsCount;
 
   @override
   State<ProgressIndicatorItem> createState() => _ProgressIndicatorItemState();
@@ -94,13 +94,13 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
             label: widget.label,
             state: widget.state,
             description: widget.description,
-            trailing: widget.state.isActive
+            trailing: widget.itemsCount != null && widget.state.isActive
                 ? OptimusCaption(
                     variation: Variation.variationSecondary,
                     child: Text('${widget.text}/${widget.itemsCount}'),
                   )
                 : null,
-          ),
+          )
       },
     );
   }

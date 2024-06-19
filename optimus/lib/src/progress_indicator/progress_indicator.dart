@@ -115,7 +115,6 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                           text: items.getIndicatorText(item),
                           label: item.label,
                           description: item.description,
-                          itemsCount: maxItem ?? items.length,
                           state: items.getIndicatorState(
                             item: item,
                             currentItem: currentItem,
