@@ -6,7 +6,7 @@ import 'package:optimus/src/form/styled_input_controller.dart';
 
 typedef _SymbolConverter = String Function(_SupportedSymbol symbol);
 
-/// A [FormField] meant to be used for the user to enter a date.
+/// A [TextField] meant to be used for the user to enter a date.
 ///
 /// The input is defined by the mask. The mask
 /// and placeholder will be generated from the [format]. Input is limited to

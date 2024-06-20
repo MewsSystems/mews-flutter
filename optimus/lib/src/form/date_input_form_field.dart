@@ -20,6 +20,7 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
     Widget? helperMessage,
   }) : super(
           enabled: isEnabled,
+          initialValue: value,
           builder: (FormFieldState<DateTime?> field) => OptimusDateInputField(
             onChanged: field.didChange,
             isEnabled: isEnabled,
