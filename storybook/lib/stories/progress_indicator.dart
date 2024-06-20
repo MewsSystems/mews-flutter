@@ -15,22 +15,15 @@ final Story progressIndicatorStory = Story(
       options: Axis.values.toOptions(),
     );
 
-    const width = 400.0;
-    final height = layout == Axis.horizontal ? 100.0 : null;
-
-    return SizedBox(
-      width: width,
-      height: height,
-      child: OptimusProgressIndicator(
-        layout: layout,
-        items: _items,
-        currentItem: k.sliderInt(
-          label: 'Current',
-          initial: 0,
-          max: _items.length - 1,
-        ),
-        maxItem: k.sliderInt(label: 'Max', initial: 2, max: _items.length - 1),
+    return OptimusProgressIndicator(
+      layout: layout,
+      items: _items,
+      currentItem: k.sliderInt(
+        label: 'Current',
+        initial: 0,
+        max: _items.length - 1,
       ),
+      maxItem: k.sliderInt(label: 'Max', initial: 2, max: _items.length - 1),
     );
   },
 );

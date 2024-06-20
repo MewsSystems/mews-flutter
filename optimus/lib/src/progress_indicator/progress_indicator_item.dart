@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
 
 /// Both types of step have dedicated states. State is shown through a visual
@@ -199,8 +200,7 @@ class _EnabledIndicatorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokens = context.tokens;
-    final size = tokens.sizing300;
+    final size = context.indicatorWidth;
 
     final child = isCompleted
         ? _DoneIndicator(foregroundColor: foregroundColor)
