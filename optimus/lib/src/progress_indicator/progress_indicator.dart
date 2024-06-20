@@ -243,8 +243,8 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
       offstage: closed,
       child: TickerMode(
         enabled: !closed,
-        child: Padding(
-          padding: EdgeInsets.zero,
+        child: AllowMultipleRawGestureDetector(
+          onTap: _handleTap,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: items
