@@ -25,7 +25,7 @@ extension Theming on OptimusFeedbackVariant {
         OptimusFeedbackVariant.info => OptimusIcons.info,
         OptimusFeedbackVariant.success => OptimusIcons.done_circle,
         OptimusFeedbackVariant.warning => OptimusIcons.problematic,
-        OptimusFeedbackVariant.danger => OptimusIcons.error_circle,
+        OptimusFeedbackVariant.danger => OptimusIcons.alert_circle,
       };
 
   Color getIconColor(OptimusTokens tokens) => switch (this) {
