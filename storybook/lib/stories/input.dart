@@ -43,6 +43,8 @@ final Story inputStory = Story(
       maxChars =
           k.sliderInt(label: 'Max Characters', max: 100, min: 1, initial: 30);
     }
+    final minLines =
+        k.sliderInt(label: 'Min lines', initial: 1, min: 1, max: 10);
     final inline = k.boolean(label: 'Inline', initial: false);
 
     final statusBar = k.options(
@@ -60,6 +62,8 @@ final Story inputStory = Story(
           isRequired: k.boolean(label: 'Required'),
           isPasswordField: k.boolean(label: 'Password'),
           maxCharacters: maxChars,
+          minLines: minLines,
+          maxLines: minLines,
           prefix: prefix.isNotEmpty ? Text(prefix) : null,
           suffix: suffix.isNotEmpty ? Text(suffix) : null,
           leading: leadingIcon == null ? null : Icon(leadingIcon),

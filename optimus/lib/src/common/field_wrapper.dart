@@ -24,6 +24,7 @@ class FieldWrapper extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.inputCounter,
     this.inline = false,
+    this.multiline = false,
     this.statusBarState,
   });
 
@@ -45,6 +46,7 @@ class FieldWrapper extends StatefulWidget {
   final OptimusWidgetSize size;
   final Widget? inputCounter;
   final bool inline;
+  final bool multiline;
   final OptimusStatusBarState? statusBarState;
 
   bool get hasError {
@@ -104,20 +106,22 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _hasFooterError => _normalizedError.isNotEmpty && _isUsingBottomHint;
 
+  double get _verticalPadding => widget.multiline
+      ? widget.size.getVerticalPadding(tokens)
+      : tokens.spacing0;
+
   Color get _borderColor {
     if (!widget.isEnabled) return tokens.borderDisabled;
     if (widget.hasError) return tokens.borderAlertDanger;
     if (_isFocused) return tokens.borderInteractiveFocus;
     if (_isHovered) return tokens.borderInteractiveSecondaryHover;
 
-    return theme.tokens.borderInteractiveSecondaryDefault;
+    return tokens.borderInteractiveSecondaryDefault;
   }
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final prefix = widget.prefix;
-    final suffix = widget.suffix;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,10 +163,11 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: widget.size.getContentPadding(tokens),
+                    vertical: _verticalPadding,
                   ),
                   child: Row(
                     children: [
-                      if (prefix != null)
+                      if (widget.prefix case final prefix?)
                         Padding(
                           padding: EdgeInsets.only(right: tokens.spacing100),
                           child: _Styled(
@@ -171,7 +176,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                           ),
                         ),
                       ...widget.children,
-                      if (suffix != null)
+                      if (widget.suffix case final suffix?)
                         Padding(
                           padding: EdgeInsets.only(left: tokens.spacing50),
                           child: _Styled(
@@ -498,6 +503,15 @@ extension on OptimusWidgetSize {
       };
   EdgeInsets getErrorPadding(OptimusTokens tokens) =>
       EdgeInsets.only(top: tokens.spacing50);
+
+  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
+        OptimusWidgetSize.small ||
+        OptimusWidgetSize.medium =>
+          tokens.spacing100,
+        OptimusWidgetSize.large ||
+        OptimusWidgetSize.extraLarge =>
+          tokens.spacing150,
+      };
 
   double getContentPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small => tokens.spacing150,
