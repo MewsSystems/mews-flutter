@@ -44,6 +44,7 @@ final Story inputStory = Story(
           k.sliderInt(label: 'Max Characters', max: 100, min: 1, initial: 30);
     }
     final inline = k.boolean(label: 'Inline', initial: false);
+    final autoCollapse = k.boolean(label: 'Auto Collapse', initial: true);
 
     final statusBar = k.options(
       label: 'Status Bar',
@@ -74,6 +75,7 @@ final Story inputStory = Story(
             options: sizeOptions,
           ),
           inline: inline,
+          autoCollapse: autoCollapse,
           label: k.text(label: 'Label', initial: 'Optimus input field'),
           placeholder:
               k.text(label: 'Placeholder', initial: 'Put some hint here...'),

@@ -52,6 +52,7 @@ class OptimusInputField extends StatefulWidget {
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
     this.inline = false,
+    this.autoCollapse = false,
     this.statusBarState,
   });
 
@@ -160,6 +161,8 @@ class OptimusInputField extends StatefulWidget {
   /// outside, wrapping it. The inline variant is more dense and is smaller in
   /// the vertical direction.
   final bool inline;
+
+  final bool autoCollapse;
 
   final OptimusStatusBarState? statusBarState;
 
