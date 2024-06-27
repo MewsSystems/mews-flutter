@@ -209,7 +209,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void didUpdateWidget(OptimusInputField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.autoCollapse != oldWidget.autoCollapse) {
+    if (widget.autoCollapse != oldWidget.autoCollapse ||
+        widget.minLines != oldWidget.minLines ||
+        widget.maxLines != oldWidget.maxLines) {
       _updateLines();
     }
   }
