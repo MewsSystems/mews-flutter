@@ -22,6 +22,7 @@ class OptimusBanner extends StatelessWidget {
     this.variant = OptimusFeedbackVariant.info,
     this.hasIcon = false,
     this.description,
+    this.onPressed,
     this.isDismissible = false,
     this.onDismiss,
   });
@@ -53,59 +54,66 @@ class OptimusBanner extends StatelessWidget {
   /// Called when close button is pressed (if [isDismissible] == true).
   final VoidCallback? onDismiss;
 
+  /// An optional callback when the banner is pressed.
+  final VoidCallback? onPressed;
+
   bool get _isExpanded => description != null;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: variant.backgroundColor(tokens),
-        borderRadius: BorderRadius.all(tokens.borderRadius100),
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(tokens.spacing200),
-            child: Row(
-              crossAxisAlignment: _isExpanded
-                  ? CrossAxisAlignment.start
-                  : CrossAxisAlignment.center,
-              children: [
-                if (hasIcon)
-                  Padding(
-                    padding: EdgeInsets.only(right: tokens.spacing200),
-                    child: FeedbackIcon(variant: variant),
-                  ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: isDismissible
-                            ? EdgeInsets.only(right: tokens.spacing200)
-                            : EdgeInsets.zero,
-                        child: FeedbackTitle(title: title),
-                      ),
-                      if (description case final description?)
+    return GestureDetector(
+      onTap: onPressed,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: variant.backgroundColor(tokens),
+          borderRadius: BorderRadius.all(tokens.borderRadius100),
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(tokens.spacing200),
+              child: Row(
+                crossAxisAlignment: _isExpanded
+                    ? CrossAxisAlignment.start
+                    : CrossAxisAlignment.center,
+                children: [
+                  if (hasIcon)
+                    Padding(
+                      padding: EdgeInsets.only(right: tokens.spacing200),
+                      child: FeedbackIcon(variant: variant),
+                    ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
-                          child: FeedbackDescription(description: description),
+                          padding: isDismissible
+                              ? EdgeInsets.only(right: tokens.spacing200)
+                              : EdgeInsets.zero,
+                          child: FeedbackTitle(title: title),
                         ),
-                    ],
+                        if (description case final description?)
+                          Padding(
+                            padding: EdgeInsets.only(top: tokens.spacing50),
+                            child:
+                                FeedbackDescription(description: description),
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          if (isDismissible)
-            Positioned(
-              top: tokens.spacing200,
-              right: tokens.spacing200,
-              child: FeedbackDismissButton(onDismissed: onDismiss),
-            ),
-        ],
+            if (isDismissible)
+              Positioned(
+                top: tokens.spacing200,
+                right: tokens.spacing200,
+                child: FeedbackDismissButton(onDismissed: onDismiss),
+              ),
+          ],
+        ),
       ),
     );
   }
