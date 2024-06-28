@@ -166,6 +166,8 @@ class OptimusInputField extends StatefulWidget {
   /// the vertical direction.
   final bool inline;
 
+  /// Controls whether the input should collapse to one line height if not
+  /// focused.
   final bool autoCollapse;
 
   final OptimusStatusBarState? statusBarState;
