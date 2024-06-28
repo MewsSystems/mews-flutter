@@ -52,6 +52,7 @@ class OptimusInputField extends StatefulWidget {
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
     this.inline = false,
+    this.autoCollapse = false,
     this.statusBarState,
   });
 
@@ -82,6 +83,10 @@ class OptimusInputField extends StatefulWidget {
   final int? maxCharacters;
 
   /// {@macro flutter.widgets.editableText.minLines}
+  ///
+  /// If the input is multi-lined we recommend you to set the [keyboardType] to
+  /// [TextInputType.multiline] otherwise the move to the next line won't work
+  /// properly.
   final int? minLines;
   final TextEditingController? controller;
   final String? error;
@@ -161,6 +166,10 @@ class OptimusInputField extends StatefulWidget {
   /// the vertical direction.
   final bool inline;
 
+  /// Controls whether the input should collapse to one line height if not
+  /// focused.
+  final bool autoCollapse;
+
   final OptimusStatusBarState? statusBarState;
 
   bool get hasError {
@@ -178,6 +187,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   FocusNode? _focusNode;
   bool _isShowPasswordEnabled = false;
   TextEditingController? _controller;
+  late int? _minLines = widget.minLines;
+  late int _maxLines = widget.maxLines;
 
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
@@ -188,17 +199,27 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_handleStateUpdate);
+    _effectiveFocusNode.addListener(_handleFocusUpdate);
     _effectiveController.addListener(_handleStateUpdate);
   }
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_handleStateUpdate);
+    _effectiveFocusNode.removeListener(_handleFocusUpdate);
     _effectiveController.removeListener(_handleStateUpdate);
     _focusNode?.dispose();
     _controller?.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(OptimusInputField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.autoCollapse != oldWidget.autoCollapse ||
+        widget.minLines != oldWidget.minLines ||
+        widget.maxLines != oldWidget.maxLines) {
+      _updateLines();
+    }
   }
 
   bool get _shouldShowInlineError =>
@@ -227,6 +248,19 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   bool get _isPasswordToggleVisible =>
       widget.isPasswordField && !widget.showLoader;
+
+  bool get _shouldCollapse =>
+      widget.autoCollapse && !_effectiveFocusNode.hasFocus;
+
+  void _handleFocusUpdate() => setState(() {
+        if (!widget.autoCollapse) return;
+        _updateLines();
+      });
+
+  void _updateLines() {
+    _maxLines = _shouldCollapse ? 1 : widget.maxLines;
+    _minLines = _shouldCollapse ? 1 : widget.minLines;
+  }
 
   void _handleStateUpdate() => setState(() {});
 
@@ -303,8 +337,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             autofocus: widget.autofocus,
             enableInteractiveSelection: widget.enableInteractiveSelection,
             controller: _effectiveController,
-            maxLines: widget.maxLines,
-            minLines: widget.minLines,
+            maxLines: _maxLines,
+            minLines: _minLines,
             onSubmitted: widget.onSubmitted,
             textInputAction: widget.textInputAction,
             placeholder: widget.placeholder,
