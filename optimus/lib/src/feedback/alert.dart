@@ -14,6 +14,7 @@ class OptimusAlert extends StatelessWidget {
     this.icon,
     this.link,
     this.onDismissed,
+    this.onPressed,
     this.variant = OptimusFeedbackVariant.info,
   });
 
@@ -38,6 +39,9 @@ class OptimusAlert extends StatelessWidget {
   /// icon.
   final OptimusFeedbackVariant variant;
 
+  /// An optional callback to be called when the alert is pressed.
+  final VoidCallback? onPressed;
+
   bool get _isExpanded => description != null || link != null;
 
   double _getPadding(BuildContext context) =>
@@ -58,35 +62,38 @@ class OptimusAlert extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.all(padding),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: alertWidth),
-        child: Stack(
-          children: [
-            _AlertContent(
-              icon: icon,
-              variant: variant,
-              title: title,
-              description: description,
-              linkText: link?.text,
-              onLinkPressed: () {
-                link?.onPressed();
-                OptimusAlertOverlay.of(context)?.remove(this);
-              },
-              dismissible: onDismissed != null,
-            ),
-            if (onDismissed != null)
-              Positioned(
-                top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
-                right: tokens.spacing200,
-                bottom: _isExpanded ? null : tokens.spacing0,
-                child: FeedbackDismissButton(
-                  onDismissed: () {
-                    onDismissed?.call();
-                    OptimusAlertOverlay.of(context)?.remove(this);
-                  },
-                ),
+      child: GestureDetector(
+        onTap: onPressed,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: alertWidth),
+          child: Stack(
+            children: [
+              _AlertContent(
+                icon: icon,
+                variant: variant,
+                title: title,
+                description: description,
+                linkText: link?.text,
+                onLinkPressed: () {
+                  link?.onPressed();
+                  OptimusAlertOverlay.of(context)?.remove(this);
+                },
+                dismissible: onDismissed != null,
               ),
-          ],
+              if (onDismissed != null)
+                Positioned(
+                  top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
+                  right: tokens.spacing200,
+                  bottom: _isExpanded ? null : tokens.spacing0,
+                  child: FeedbackDismissButton(
+                    onDismissed: () {
+                      onDismissed?.call();
+                      OptimusAlertOverlay.of(context)?.remove(this);
+                    },
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

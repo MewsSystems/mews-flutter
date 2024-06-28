@@ -24,6 +24,7 @@ class OptimusSystemWideBanner extends StatelessWidget {
     this.link,
     this.description,
     this.variant = OptimusFeedbackVariant.info,
+    this.onPressed,
   });
 
   /// Content of the banner.
@@ -42,50 +43,56 @@ class OptimusSystemWideBanner extends StatelessWidget {
   /// Controls background color.
   final OptimusFeedbackVariant variant;
 
+  /// An optional callback to be called when the banner is pressed.
+  final VoidCallback? onPressed;
+
   bool get _isExpanded => description != null || link != null;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(color: variant.backgroundColor(tokens)),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: tokens.spacing100,
-          vertical: tokens.spacing200,
-        ),
-        child: Row(
-          crossAxisAlignment: _isExpanded
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.center,
-          children: [
-            FeedbackIcon(variant: variant),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(left: tokens.spacing150),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FeedbackTitle(title: title),
-                    if (description case final description?)
-                      Padding(
-                        padding: EdgeInsets.only(top: tokens.spacing50),
-                        child: FeedbackDescription(description: description),
-                      ),
-                    if (link case final link?)
-                      Padding(
-                        padding: EdgeInsets.only(top: tokens.spacing50),
-                        child: FeedbackLink(
-                          text: link.text,
-                          onPressed: link.onPressed,
+    return GestureDetector(
+      onTap: onPressed,
+      child: DecoratedBox(
+        decoration: BoxDecoration(color: variant.backgroundColor(tokens)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: tokens.spacing100,
+            vertical: tokens.spacing200,
+          ),
+          child: Row(
+            crossAxisAlignment: _isExpanded
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.center,
+            children: [
+              FeedbackIcon(variant: variant),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: tokens.spacing150),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FeedbackTitle(title: title),
+                      if (description case final description?)
+                        Padding(
+                          padding: EdgeInsets.only(top: tokens.spacing50),
+                          child: FeedbackDescription(description: description),
                         ),
-                      ),
-                  ],
+                      if (link case final link?)
+                        Padding(
+                          padding: EdgeInsets.only(top: tokens.spacing50),
+                          child: FeedbackLink(
+                            text: link.text,
+                            onPressed: link.onPressed,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
