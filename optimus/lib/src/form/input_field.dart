@@ -83,6 +83,10 @@ class OptimusInputField extends StatefulWidget {
   final int? maxCharacters;
 
   /// {@macro flutter.widgets.editableText.minLines}
+  ///
+  /// If the input is multi-lined we recommend you to set the [keyboardType] to
+  /// [TextInputType.multiline] otherwise the move to the next line won't work
+  /// properly.
   final int? minLines;
   final TextEditingController? controller;
   final String? error;
