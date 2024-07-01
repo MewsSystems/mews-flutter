@@ -112,23 +112,24 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                         .toList(),
                   ),
                 Row(
-                  children: [
-                    for (final item in items)
-                      SizedBox(
-                        width: itemWidth,
-                        height: constraints.maxHeight,
-                        child: ProgressIndicatorItem(
-                          text: items.getIndicatorText(item),
-                          label: item.label,
-                          description: item.description,
-                          state: items.getIndicatorState(
-                            item: item,
-                            currentItem: currentItem,
-                            maxItem: maxItem,
+                  children: items
+                      .map(
+                        (item) => SizedBox(
+                          width: itemWidth,
+                          height: constraints.maxHeight,
+                          child: ProgressIndicatorItem(
+                            text: items.getIndicatorText(item),
+                            label: item.label,
+                            description: item.description,
+                            state: items.getIndicatorState(
+                              item: item,
+                              currentItem: currentItem,
+                              maxItem: maxItem,
+                            ),
                           ),
                         ),
-                      ),
-                  ],
+                      )
+                      .toList(),
                 ),
               ],
             ),
@@ -241,30 +242,27 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
 
     final Widget result = Offstage(
       offstage: closed,
-      child: TickerMode(
-        enabled: !closed,
-        child: AllowMultipleRawGestureDetector(
-          onTap: _handleTap,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: items
-                .intersperseWith(
-                  itemBuilder: (item) => ProgressIndicatorItem(
-                    state: _getIndicatorState(item),
-                    text: items.getIndicatorText(item),
-                    label: item.label,
-                    description: item.description,
-                    itemsCount: _itemsCount,
-                    axis: Axis.vertical,
-                  ),
-                  separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
-                    nextItemState: _getIndicatorState(nextItem),
-                    layout: Axis.vertical,
-                  ),
-                )
-                .skip(1) // the first one is already in the header
-                .toList(),
-          ),
+      child: AllowMultipleRawGestureDetector(
+        onTap: _handleTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: items
+              .intersperseWith(
+                itemBuilder: (item) => ProgressIndicatorItem(
+                  state: _getIndicatorState(item),
+                  text: items.getIndicatorText(item),
+                  label: item.label,
+                  description: item.description,
+                  itemsCount: _itemsCount,
+                  axis: Axis.vertical,
+                ),
+                separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
+                  nextItemState: _getIndicatorState(nextItem),
+                  layout: Axis.vertical,
+                ),
+              )
+              .skip(1) // the first one is already in the header
+              .toList(),
         ),
       ),
     );
