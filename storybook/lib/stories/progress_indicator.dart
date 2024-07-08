@@ -9,25 +9,21 @@ final Story progressIndicatorStory = Story(
   builder: (context) {
     final k = context.knobs;
 
-    return SingleChildScrollView(
-      child: OptimusProgressIndicator(
-        layout: k.options(
-          label: 'Layout',
-          initial: Axis.horizontal,
-          options: Axis.values.toOptions(),
-        ),
-        items: _items,
-        currentItem: k
-            .slider(
-              label: 'Current',
-              initial: 0,
-              max: _items.length.toDouble() - 1,
-            )
-            .toInt(),
-        maxItem: k
-            .slider(label: 'Max', initial: 2, max: _items.length.toDouble() - 1)
-            .toInt(),
+    final layout = k.options(
+      label: 'Layout',
+      initial: Axis.vertical,
+      options: Axis.values.toOptions(),
+    );
+
+    return OptimusProgressIndicator(
+      layout: layout,
+      items: _items,
+      currentItem: k.sliderInt(
+        label: 'Current',
+        initial: 0,
+        max: _items.length - 1,
       ),
+      maxItem: k.sliderInt(label: 'Max', initial: 2, max: _items.length - 1),
     );
   },
 );

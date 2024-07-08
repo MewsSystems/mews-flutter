@@ -36,8 +36,8 @@ class BaseButton extends StatefulWidget {
 }
 
 class _BaseButtonState extends State<BaseButton> with ThemeGetter {
-  late final MaterialStatesController _statesController =
-      MaterialStatesController();
+  late final WidgetStatesController _statesController =
+      WidgetStatesController();
 
   @override
   void dispose() {
@@ -61,16 +61,16 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
       ignoring: widget.isLoading,
       child: TextButton(
         style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all<Size>(
+          minimumSize: WidgetStateProperty.all<Size>(
             Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
           ),
-          maximumSize: MaterialStateProperty.all<Size>(
+          maximumSize: WidgetStateProperty.all<Size>(
             Size(double.infinity, widget.size.getValue(tokens)),
           ),
-          padding: MaterialStateProperty.all<EdgeInsets>(
+          padding: WidgetStateProperty.all<EdgeInsets>(
             _padding,
           ),
-          shape: MaterialStateProperty.resolveWith(
+          shape: WidgetStateProperty.resolveWith(
             (states) {
               final color = widget.variant.getBorderColor(
                 tokens,
@@ -88,10 +88,10 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
             },
           ),
           animationDuration: buttonAnimationDuration,
-          elevation: MaterialStateProperty.all<double>(0),
+          elevation: WidgetStateProperty.all<double>(0),
           visualDensity: VisualDensity.standard,
           splashFactory: NoSplash.splashFactory,
-          backgroundColor: MaterialStateProperty.resolveWith(
+          backgroundColor: WidgetStateProperty.resolveWith(
             (states) => widget.variant.getBackgroundColor(
               tokens,
               isEnabled: !_statesController.value.isDisabled,
@@ -99,7 +99,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
               isHovered: _statesController.value.isHovered,
             ),
           ),
-          overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+          overlayColor: const WidgetStatePropertyAll(Colors.transparent),
         ),
         statesController: _statesController,
         onPressed: widget.onPressed,
@@ -145,7 +145,7 @@ class _ButtonContent extends StatefulWidget {
   final OptimusWidgetSize size;
   final BaseButtonVariant variant;
   final BorderRadius borderRadius;
-  final MaterialStatesController statesController;
+  final WidgetStatesController statesController;
   final bool isLoading;
 
   @override
@@ -362,10 +362,10 @@ class _SpinningIconState extends State<_SpinningIcon>
       );
 }
 
-extension on Set<MaterialState> {
-  bool get isPressed => contains(MaterialState.pressed);
-  bool get isHovered => contains(MaterialState.hovered);
-  bool get isDisabled => contains(MaterialState.disabled);
+extension on Set<WidgetState> {
+  bool get isPressed => contains(WidgetState.pressed);
+  bool get isHovered => contains(WidgetState.hovered);
+  bool get isDisabled => contains(WidgetState.disabled);
 }
 
 extension on OptimusWidgetSize {

@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -43,7 +43,15 @@ final Story inputStory = Story(
       maxChars =
           k.sliderInt(label: 'Max Characters', max: 100, min: 1, initial: 30);
     }
+    final minLines =
+        k.sliderInt(label: 'Min lines', initial: 1, min: 1, max: 10);
+    final keyboardType = k.options(
+      label: 'Keyboard Type:',
+      initial: null,
+      options: KeyboardType.values.toOptions().withEmpty(),
+    );
     final inline = k.boolean(label: 'Inline', initial: false);
+    final autoCollapse = k.boolean(label: 'Auto Collapse', initial: true);
 
     final statusBar = k.options(
       label: 'Status Bar',
@@ -60,6 +68,9 @@ final Story inputStory = Story(
           isRequired: k.boolean(label: 'Required'),
           isPasswordField: k.boolean(label: 'Password'),
           maxCharacters: maxChars,
+          minLines: minLines,
+          maxLines: minLines,
+          keyboardType: keyboardType?.inputType,
           prefix: prefix.isNotEmpty ? Text(prefix) : null,
           suffix: suffix.isNotEmpty ? Text(suffix) : null,
           leading: leadingIcon == null ? null : Icon(leadingIcon),
@@ -74,6 +85,7 @@ final Story inputStory = Story(
             options: sizeOptions,
           ),
           inline: inline,
+          autoCollapse: autoCollapse,
           label: k.text(label: 'Label', initial: 'Optimus input field'),
           placeholder:
               k.text(label: 'Placeholder', initial: 'Put some hint here...'),
@@ -86,3 +98,16 @@ final Story inputStory = Story(
     );
   },
 );
+
+enum KeyboardType {
+  text(TextInputType.text),
+  multiline(TextInputType.multiline),
+  number(TextInputType.number),
+  phone(TextInputType.phone),
+  datetime(TextInputType.datetime),
+  emailAddress(TextInputType.emailAddress),
+  url(TextInputType.url);
+
+  const KeyboardType(this.inputType);
+  final TextInputType inputType;
+}
