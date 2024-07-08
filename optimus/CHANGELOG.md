@@ -1,3 +1,31 @@
+## 0.35.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Move custom gesture detector to common (#625).
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: [DX-1247] Refactor token reference notation (#607).
+ - **FIX**: [DX-1843] Fix onSaved in DateFormField (#627).
+ - **FIX**: [DX-1656] Fix ListTile highlight color (#612).
+ - **FEAT**: [DX-1920] Add auto collapse option (#635).
+ - **FEAT**: [DX-1919] Add padding to multiline input (#633).
+ - **FEAT**: [DX-1901] Add onPressed to Alert and Banners (#634).
+ - **FEAT**: [DX-1740] Update feedback alert icon (#631).
+ - **FEAT**: [DX-1395] Add ToggleButton (#619).
+ - **FEAT**: [DX-1694] Add button loading state (#618).
+ - **FEAT**: Add success button variant (#617).
+ - **FEAT**: [DX-1787] Update button inside padding (#616).
+ - **FEAT**: [DX-1623] Add PasswordFormField component (#613).
+ - **FEAT**: Add size property to InlineDialog (#605).
+ - **BREAKING** **REFACTOR**: Remove CompactProgressIndicator (#626).
+ - **BREAKING** **REFACTOR**: [DX-1742] Rename NumberPicker to Stepper (#622).
+ - **BREAKING** **REFACTOR**: [DX-1547] Rename Notification and Alert (#606).
+ - **BREAKING** **FEAT**: [DX-1478] Rework Progress Indicator (#621).
+ - **BREAKING** **FEAT**: Upgrade to Flutter 3.22 (#629).
+ - **BREAKING** **FEAT**: [DX-1695] Limit button badge to numbers only (#615).
+ - **BREAKING** **FEAT**: Update Progress Indicator (#620).
+
 ## 0.34.0
 
 > Note: This release has breaking changes.
