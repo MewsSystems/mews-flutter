@@ -385,6 +385,7 @@ dart_code_metrics:
     # - format-comment
     # - format-test-name
     - function-always-returns-null
+    # - handle-throwing-invocations
     # - map-keys-ordering
     # - match-class-name-pattern
     - match-getter-setter-field-names
@@ -432,6 +433,7 @@ dart_code_metrics:
     # - prefer-correct-switch-length
     - prefer-correct-test-file-name:
         exclude: ["lib/**", "bin/**"]
+    # - prefer-correct-throws
     # - prefer-correct-type-name
     - prefer-declaring-const-constructor:
         ignore-abstract: false
@@ -440,6 +442,7 @@ dart_code_metrics:
     - prefer-explicit-function-type
     - prefer-explicit-parameter-names
     - prefer-explicit-type-arguments
+    # - prefer-extracting-function-callbacks
     # - prefer-first
     # - prefer-getter-over-method
     - prefer-immediate-return
@@ -486,6 +489,7 @@ dart_code_metrics:
     # - avoid-empty-setstate
     - avoid-expanded-as-spacer
     # - avoid-incomplete-copy-with
+    - avoid-incorrect-image-opacity
     # - avoid-inherited-widget-in-initstate
     - avoid-late-context
     - avoid-missing-controller
