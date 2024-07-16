@@ -72,7 +72,7 @@ class _AlertStoryContent extends StatelessWidget {
                       description.isNotEmpty ? Text(description) : null,
                   variant: variant,
                   link: _link,
-                  onDismissed: dismissible ? () {} : null,
+                  isDismissible: dismissible,
                 ),
               ),
               OptimusButton(
@@ -83,7 +83,7 @@ class _AlertStoryContent extends StatelessWidget {
                       description:
                           description.isNotEmpty ? Text(description) : null,
                       link: _link,
-                      onDismissed: dismissible ? () {} : null,
+                      isDismissible: dismissible,
                     ),
                   );
                 },
