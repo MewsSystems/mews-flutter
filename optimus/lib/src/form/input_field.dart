@@ -293,7 +293,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
       inline: widget.inline,
-      multiline: (widget.minLines ?? 1) > 1,
+      multiline: widget.minLines != null,
       inputCounter: widget.inline ? null : counter,
       statusBarState: widget.statusBarState,
       prefix: _shouldShowPrefix
