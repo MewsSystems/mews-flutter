@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Mon, 29 Apr 2024 23:33:29 GMT
+// Generated on Tue, 23 Jul 2024 22:41:40 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -300,9 +300,12 @@ abstract final class DesignTokensLight {
   static const Color textAlertSuccess = Color(0xFF356B2A);
   static const Color textAlertWarning = Color(0xFF6B4B00);
   static const Color textDisabled = Color(0xFFC1C1D5);
-  static const Color textInteractiveActive = Color(0xFF0A08AD);
-  static const Color textInteractiveDefault = Color(0xFF3B37F2);
-  static const Color textInteractiveHover = Color(0xFF1613D7);
+  static const Color textInteractivePrimaryActive = Color(0xFF0A08AD);
+  static const Color textInteractivePrimaryDefault = Color(0xFF3B37F2);
+  static const Color textInteractivePrimaryHover = Color(0xFF1613D7);
+  static const Color textInteractiveSecondaryActive = Color(0xFF414158);
+  static const Color textInteractiveSecondaryDefault = Color(0xFF21212E);
+  static const Color textInteractiveSecondaryHover = Color(0xFF313143);
   static const Color textStaticInverse = Color(0xFFFFFFFF);
   static const Color textStaticOnColor = Color(0xFFFFFFFF);
   static const Color textStaticPrimary = Color(0xFF21212E);
