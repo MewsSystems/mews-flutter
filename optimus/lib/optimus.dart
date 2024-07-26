@@ -61,6 +61,7 @@ export 'src/form/password_form_field.dart';
 export 'src/form/select_form_field.dart';
 export 'src/form/select_input_form_field.dart';
 export 'src/form/stepper_form_field.dart';
+export 'src/form/text_area.dart';
 export 'src/icon.dart';
 export 'src/icon_list.dart';
 export 'src/link/inline_link.dart';
