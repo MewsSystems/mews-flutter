@@ -295,9 +295,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get textAlertSuccess;
   Color get textAlertWarning;
   Color get textDisabled;
-  Color get textInteractiveActive;
-  Color get textInteractiveDefault;
-  Color get textInteractiveHover;
+  Color get textInteractivePrimaryActive;
+  Color get textInteractivePrimaryDefault;
+  Color get textInteractivePrimaryHover;
+  Color get textInteractiveSecondaryActive;
+  Color get textInteractiveSecondaryDefault;
+  Color get textInteractiveSecondaryHover;
   Color get textStaticInverse;
   Color get textStaticOnColor;
   Color get textStaticPrimary;
@@ -694,9 +697,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? textAlertSuccess,
     Color? textAlertWarning,
     Color? textDisabled,
-    Color? textInteractiveActive,
-    Color? textInteractiveDefault,
-    Color? textInteractiveHover,
+    Color? textInteractivePrimaryActive,
+    Color? textInteractivePrimaryDefault,
+    Color? textInteractivePrimaryHover,
+    Color? textInteractiveSecondaryActive,
+    Color? textInteractiveSecondaryDefault,
+    Color? textInteractiveSecondaryHover,
     Color? textStaticInverse,
     Color? textStaticOnColor,
     Color? textStaticPrimary,
@@ -1285,11 +1291,18 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       textAlertSuccess: textAlertSuccess ?? this.textAlertSuccess,
       textAlertWarning: textAlertWarning ?? this.textAlertWarning,
       textDisabled: textDisabled ?? this.textDisabled,
-      textInteractiveActive:
-          textInteractiveActive ?? this.textInteractiveActive,
-      textInteractiveDefault:
-          textInteractiveDefault ?? this.textInteractiveDefault,
-      textInteractiveHover: textInteractiveHover ?? this.textInteractiveHover,
+      textInteractivePrimaryActive:
+          textInteractivePrimaryActive ?? this.textInteractivePrimaryActive,
+      textInteractivePrimaryDefault:
+          textInteractivePrimaryDefault ?? this.textInteractivePrimaryDefault,
+      textInteractivePrimaryHover:
+          textInteractivePrimaryHover ?? this.textInteractivePrimaryHover,
+      textInteractiveSecondaryActive:
+          textInteractiveSecondaryActive ?? this.textInteractiveSecondaryActive,
+      textInteractiveSecondaryDefault: textInteractiveSecondaryDefault ??
+          this.textInteractiveSecondaryDefault,
+      textInteractiveSecondaryHover:
+          textInteractiveSecondaryHover ?? this.textInteractiveSecondaryHover,
       textStaticInverse: textStaticInverse ?? this.textStaticInverse,
       textStaticOnColor: textStaticOnColor ?? this.textStaticOnColor,
       textStaticPrimary: textStaticPrimary ?? this.textStaticPrimary,
@@ -2024,12 +2037,20 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       textAlertWarning:
           Color.lerp(textAlertWarning, other.textAlertWarning, t)!,
       textDisabled: Color.lerp(textDisabled, other.textDisabled, t)!,
-      textInteractiveActive:
-          Color.lerp(textInteractiveActive, other.textInteractiveActive, t)!,
-      textInteractiveDefault:
-          Color.lerp(textInteractiveDefault, other.textInteractiveDefault, t)!,
-      textInteractiveHover:
-          Color.lerp(textInteractiveHover, other.textInteractiveHover, t)!,
+      textInteractivePrimaryActive: Color.lerp(
+          textInteractivePrimaryActive, other.textInteractivePrimaryActive, t)!,
+      textInteractivePrimaryDefault: Color.lerp(textInteractivePrimaryDefault,
+          other.textInteractivePrimaryDefault, t)!,
+      textInteractivePrimaryHover: Color.lerp(
+          textInteractivePrimaryHover, other.textInteractivePrimaryHover, t)!,
+      textInteractiveSecondaryActive: Color.lerp(textInteractiveSecondaryActive,
+          other.textInteractiveSecondaryActive, t)!,
+      textInteractiveSecondaryDefault: Color.lerp(
+          textInteractiveSecondaryDefault,
+          other.textInteractiveSecondaryDefault,
+          t)!,
+      textInteractiveSecondaryHover: Color.lerp(textInteractiveSecondaryHover,
+          other.textInteractiveSecondaryHover, t)!,
       textStaticInverse:
           Color.lerp(textStaticInverse, other.textStaticInverse, t)!,
       textStaticOnColor:
@@ -2475,9 +2496,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(textAlertSuccess, other.textAlertSuccess) &&
             const DeepCollectionEquality().equals(textAlertWarning, other.textAlertWarning) &&
             const DeepCollectionEquality().equals(textDisabled, other.textDisabled) &&
-            const DeepCollectionEquality().equals(textInteractiveActive, other.textInteractiveActive) &&
-            const DeepCollectionEquality().equals(textInteractiveDefault, other.textInteractiveDefault) &&
-            const DeepCollectionEquality().equals(textInteractiveHover, other.textInteractiveHover) &&
+            const DeepCollectionEquality().equals(textInteractivePrimaryActive, other.textInteractivePrimaryActive) &&
+            const DeepCollectionEquality().equals(textInteractivePrimaryDefault, other.textInteractivePrimaryDefault) &&
+            const DeepCollectionEquality().equals(textInteractivePrimaryHover, other.textInteractivePrimaryHover) &&
+            const DeepCollectionEquality().equals(textInteractiveSecondaryActive, other.textInteractiveSecondaryActive) &&
+            const DeepCollectionEquality().equals(textInteractiveSecondaryDefault, other.textInteractiveSecondaryDefault) &&
+            const DeepCollectionEquality().equals(textInteractiveSecondaryHover, other.textInteractiveSecondaryHover) &&
             const DeepCollectionEquality().equals(textStaticInverse, other.textStaticInverse) &&
             const DeepCollectionEquality().equals(textStaticOnColor, other.textStaticOnColor) &&
             const DeepCollectionEquality().equals(textStaticPrimary, other.textStaticPrimary) &&
@@ -2884,9 +2908,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(textAlertSuccess),
       const DeepCollectionEquality().hash(textAlertWarning),
       const DeepCollectionEquality().hash(textDisabled),
-      const DeepCollectionEquality().hash(textInteractiveActive),
-      const DeepCollectionEquality().hash(textInteractiveDefault),
-      const DeepCollectionEquality().hash(textInteractiveHover),
+      const DeepCollectionEquality().hash(textInteractivePrimaryActive),
+      const DeepCollectionEquality().hash(textInteractivePrimaryDefault),
+      const DeepCollectionEquality().hash(textInteractivePrimaryHover),
+      const DeepCollectionEquality().hash(textInteractiveSecondaryActive),
+      const DeepCollectionEquality().hash(textInteractiveSecondaryDefault),
+      const DeepCollectionEquality().hash(textInteractiveSecondaryHover),
       const DeepCollectionEquality().hash(textStaticInverse),
       const DeepCollectionEquality().hash(textStaticOnColor),
       const DeepCollectionEquality().hash(textStaticPrimary),

@@ -405,10 +405,10 @@ extension on OptimusProgressIndicatorItemState {
   }) {
     switch (this) {
       case OptimusProgressIndicatorItemState.completed:
-        if (isHovered) return tokens.textInteractiveHover;
-        if (isPressed) return tokens.textInteractiveActive;
+        if (isHovered) return tokens.textInteractivePrimaryHover;
+        if (isPressed) return tokens.textInteractivePrimaryActive;
 
-        return tokens.textInteractiveDefault;
+        return tokens.textInteractivePrimaryDefault;
       case OptimusProgressIndicatorItemState.active:
         return tokens.textStaticInverse;
       case OptimusProgressIndicatorItemState.enabled:

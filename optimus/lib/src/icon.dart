@@ -81,7 +81,7 @@ class OptimusIcon extends StatelessWidget {
 extension on OptimusIconColorOption {
   Color toIconColor(OptimusTokens tokens) => switch (this) {
         OptimusIconColorOption.basic => tokens.textStaticPrimary,
-        OptimusIconColorOption.primary => tokens.textInteractiveDefault,
+        OptimusIconColorOption.primary => tokens.textInteractivePrimaryDefault,
         OptimusIconColorOption.success => tokens.textAlertSuccess,
         OptimusIconColorOption.info => tokens.textAlertInfo,
         OptimusIconColorOption.warning => tokens.textAlertWarning,

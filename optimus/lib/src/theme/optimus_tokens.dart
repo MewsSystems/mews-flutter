@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Mon, 29 Apr 2024 23:33:30 GMT
+// Generated on Tue, 23 Jul 2024 22:41:41 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -304,9 +304,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.textAlertSuccess,
     required this.textAlertWarning,
     required this.textDisabled,
-    required this.textInteractiveActive,
-    required this.textInteractiveDefault,
-    required this.textInteractiveHover,
+    required this.textInteractivePrimaryActive,
+    required this.textInteractivePrimaryDefault,
+    required this.textInteractivePrimaryHover,
+    required this.textInteractiveSecondaryActive,
+    required this.textInteractiveSecondaryDefault,
+    required this.textInteractiveSecondaryHover,
     required this.textStaticInverse,
     required this.textStaticOnColor,
     required this.textStaticPrimary,
@@ -989,11 +992,17 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final Color textDisabled;
   @override
-  final Color textInteractiveActive;
+  final Color textInteractivePrimaryActive;
   @override
-  final Color textInteractiveDefault;
+  final Color textInteractivePrimaryDefault;
   @override
-  final Color textInteractiveHover;
+  final Color textInteractivePrimaryHover;
+  @override
+  final Color textInteractiveSecondaryActive;
+  @override
+  final Color textInteractiveSecondaryDefault;
+  @override
+  final Color textInteractiveSecondaryHover;
   @override
   final Color textStaticInverse;
   @override
@@ -1542,9 +1551,17 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     textAlertSuccess: DesignTokensLight.textAlertSuccess,
     textAlertWarning: DesignTokensLight.textAlertWarning,
     textDisabled: DesignTokensLight.textDisabled,
-    textInteractiveActive: DesignTokensLight.textInteractiveActive,
-    textInteractiveDefault: DesignTokensLight.textInteractiveDefault,
-    textInteractiveHover: DesignTokensLight.textInteractiveHover,
+    textInteractivePrimaryActive:
+        DesignTokensLight.textInteractivePrimaryActive,
+    textInteractivePrimaryDefault:
+        DesignTokensLight.textInteractivePrimaryDefault,
+    textInteractivePrimaryHover: DesignTokensLight.textInteractivePrimaryHover,
+    textInteractiveSecondaryActive:
+        DesignTokensLight.textInteractiveSecondaryActive,
+    textInteractiveSecondaryDefault:
+        DesignTokensLight.textInteractiveSecondaryDefault,
+    textInteractiveSecondaryHover:
+        DesignTokensLight.textInteractiveSecondaryHover,
     textStaticInverse: DesignTokensLight.textStaticInverse,
     textStaticOnColor: DesignTokensLight.textStaticOnColor,
     textStaticPrimary: DesignTokensLight.textStaticPrimary,
@@ -1975,9 +1992,16 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     textAlertSuccess: DesignTokensDark.textAlertSuccess,
     textAlertWarning: DesignTokensDark.textAlertWarning,
     textDisabled: DesignTokensDark.textDisabled,
-    textInteractiveActive: DesignTokensDark.textInteractiveActive,
-    textInteractiveDefault: DesignTokensDark.textInteractiveDefault,
-    textInteractiveHover: DesignTokensDark.textInteractiveHover,
+    textInteractivePrimaryActive: DesignTokensDark.textInteractivePrimaryActive,
+    textInteractivePrimaryDefault:
+        DesignTokensDark.textInteractivePrimaryDefault,
+    textInteractivePrimaryHover: DesignTokensDark.textInteractivePrimaryHover,
+    textInteractiveSecondaryActive:
+        DesignTokensDark.textInteractiveSecondaryActive,
+    textInteractiveSecondaryDefault:
+        DesignTokensDark.textInteractiveSecondaryDefault,
+    textInteractiveSecondaryHover:
+        DesignTokensDark.textInteractiveSecondaryHover,
     textStaticInverse: DesignTokensDark.textStaticInverse,
     textStaticOnColor: DesignTokensDark.textStaticOnColor,
     textStaticPrimary: DesignTokensDark.textStaticPrimary,
