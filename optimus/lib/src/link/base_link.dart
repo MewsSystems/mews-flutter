@@ -102,15 +102,15 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
 
 extension on OptimusLinkVariant {
   Color getDefaultColor(OptimusTokens tokens) => switch (this) {
-        OptimusLinkVariant.primary => tokens.textInteractiveDefault,
+        OptimusLinkVariant.primary => tokens.textInteractivePrimaryDefault,
         OptimusLinkVariant.basic => tokens.textStaticPrimary,
       };
   Color getHoveredColor(OptimusTokens tokens) => switch (this) {
-        OptimusLinkVariant.primary => tokens.textInteractiveHover,
+        OptimusLinkVariant.primary => tokens.textInteractivePrimaryHover,
         OptimusLinkVariant.basic => tokens.textStaticTertiary,
       };
   Color getTappedColor(OptimusTokens tokens) => switch (this) {
-        OptimusLinkVariant.primary => tokens.textInteractiveActive,
+        OptimusLinkVariant.primary => tokens.textInteractivePrimaryActive,
         OptimusLinkVariant.basic => tokens.textStaticPrimary,
       };
   Color getDisabledColor(OptimusTokens tokens) => tokens.textDisabled;

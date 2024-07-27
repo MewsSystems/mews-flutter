@@ -64,7 +64,7 @@ extension ColorScheme on BaseButtonVariant {
           return tokens.textStaticInverse;
         }
 
-        return tokens.textInteractiveDefault;
+        return tokens.textInteractivePrimaryDefault;
       case BaseButtonVariant.tertiary:
         if (!isEnabled) return tokens.textDisabled;
 
@@ -93,7 +93,7 @@ extension ColorScheme on BaseButtonVariant {
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed || isHovered) return tokens.backgroundStaticFlat;
 
-        return tokens.textInteractiveDefault;
+        return tokens.textInteractivePrimaryDefault;
       case BaseButtonVariant.tertiary:
         if (!isEnabled) return tokens.backgroundDisabled;
 
