@@ -26,6 +26,7 @@ class FieldWrapper extends StatefulWidget {
     this.inline = false,
     this.multiline = false,
     this.statusBarState,
+    this.placeholder,
   });
 
   final bool isEnabled;
@@ -48,6 +49,7 @@ class FieldWrapper extends StatefulWidget {
   final bool inline;
   final bool multiline;
   final OptimusStatusBarState? statusBarState;
+  final Widget? placeholder;
 
   bool get hasError {
     final error = this.error;
@@ -165,25 +167,37 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     horizontal: widget.size.getContentPadding(tokens),
                     vertical: _verticalPadding,
                   ),
-                  child: Row(
+                  child: Stack(
                     children: [
-                      if (widget.prefix case final prefix?)
-                        Padding(
-                          padding: EdgeInsets.only(right: tokens.spacing100),
-                          child: _Styled(
-                            isEnabled: widget.isEnabled,
-                            child: prefix,
-                          ),
+                      if (widget.placeholder case final placeholder?)
+                        Align(
+                          alignment: widget.multiline
+                              ? Alignment.topLeft
+                              : Alignment.centerLeft,
+                          child: placeholder,
                         ),
-                      ...widget.children,
-                      if (widget.suffix case final suffix?)
-                        Padding(
-                          padding: EdgeInsets.only(left: tokens.spacing50),
-                          child: _Styled(
-                            isEnabled: widget.isEnabled,
-                            child: suffix,
-                          ),
-                        ),
+                      Row(
+                        children: [
+                          if (widget.prefix case final prefix?)
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(right: tokens.spacing100),
+                              child: _Styled(
+                                isEnabled: widget.isEnabled,
+                                child: prefix,
+                              ),
+                            ),
+                          ...widget.children,
+                          if (widget.suffix case final suffix?)
+                            Padding(
+                              padding: EdgeInsets.only(left: tokens.spacing50),
+                              child: _Styled(
+                                isEnabled: widget.isEnabled,
+                                child: suffix,
+                              ),
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
