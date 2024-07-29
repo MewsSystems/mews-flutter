@@ -110,7 +110,7 @@ class OptimusBanner extends StatelessWidget {
               Positioned(
                 top: tokens.spacing200,
                 right: tokens.spacing200,
-                child: FeedbackDismissButton(onDismissed: onDismiss),
+                child: FeedbackDismissButton(onDismiss: onDismiss),
               ),
           ],
         ),

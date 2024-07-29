@@ -13,7 +13,8 @@ class OptimusAlert extends StatelessWidget {
     this.description,
     this.icon,
     this.link,
-    this.onDismissed,
+    this.onDismiss,
+    this.isDismissible = false,
     this.onPressed,
     this.variant = OptimusFeedbackVariant.info,
   });
@@ -30,7 +31,10 @@ class OptimusAlert extends StatelessWidget {
 
   /// The dismissible callback that will be executed after a click on the close
   /// button.
-  final VoidCallback? onDismissed;
+  final VoidCallback? onDismiss;
+
+  /// If `true` the close button will be displayed.
+  final bool isDismissible;
 
   /// The link with custom action.
   final OptimusFeedbackLink? link;
@@ -78,16 +82,16 @@ class OptimusAlert extends StatelessWidget {
                   link?.onPressed();
                   OptimusAlertOverlay.of(context)?.remove(this);
                 },
-                dismissible: onDismissed != null,
+                dismissible: isDismissible,
               ),
-              if (onDismissed != null)
+              if (isDismissible)
                 Positioned(
                   top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
                   right: tokens.spacing200,
                   bottom: _isExpanded ? null : tokens.spacing0,
                   child: FeedbackDismissButton(
-                    onDismissed: () {
-                      onDismissed?.call();
+                    onDismiss: () {
+                      onDismiss?.call();
                       OptimusAlertOverlay.of(context)?.remove(this);
                     },
                   ),

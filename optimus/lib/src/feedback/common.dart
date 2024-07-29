@@ -24,16 +24,16 @@ class FeedbackIcon extends StatelessWidget {
 }
 
 class FeedbackDismissButton extends StatelessWidget {
-  const FeedbackDismissButton({super.key, required this.onDismissed});
+  const FeedbackDismissButton({super.key, required this.onDismiss});
 
-  final VoidCallback? onDismissed;
+  final VoidCallback? onDismiss;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return GestureDetector(
-      onTap: onDismissed,
+      onTap: onDismiss,
       child: Icon(
         OptimusIcons.cross_close,
         size: tokens.sizing200,
