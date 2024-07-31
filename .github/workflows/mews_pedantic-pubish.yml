@@ -1,0 +1,31 @@
+name: Publish mews_pedantic to pub.dev
+
+on:
+  push:
+    tags:
+      - "mews_pedantic-v[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  publish:
+    name: Publish to pub.dev
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: Publish to pub.dev
+        run: flutter pub publish --directory=mews_pedantic --force
