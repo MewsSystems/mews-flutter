@@ -1,3 +1,11 @@
+## 0.36.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: [DX-1801] Add TextArea component (#632).
+ - **BREAKING** **REFACTOR**: [DX-1925] Align the naming of the feedback components (#642).
+ - **BREAKING** **FEAT**: Design Tokens Update 7.0.0 (#644).
+
 ## 0.35.0
 
 > Note: This release has breaking changes.
