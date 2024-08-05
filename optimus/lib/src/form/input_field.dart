@@ -278,10 +278,13 @@ class _OptimusInputFieldState extends State<OptimusInputField>
     if (placeholder != null &&
         _effectiveController.text.isEmpty &&
         !_effectiveFocusNode.hasFocus) {
-      return Text(
-        placeholder,
-        style: widget.placeholderStyle ??
-            theme.getTextInputStyle(isEnabled: widget.isEnabled),
+      return GestureDetector(
+        onTap: _effectiveFocusNode.requestFocus,
+        child: Text(
+          placeholder,
+          style: widget.placeholderStyle ??
+              theme.getTextInputStyle(isEnabled: widget.isEnabled),
+        ),
       );
     }
   }

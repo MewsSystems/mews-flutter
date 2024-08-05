@@ -167,37 +167,27 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     horizontal: widget.size.getContentPadding(tokens),
                     vertical: _verticalPadding,
                   ),
-                  child: Stack(
+                  child: Row(
                     children: [
-                      if (widget.placeholder case final placeholder?)
-                        Align(
-                          alignment: widget.multiline
-                              ? Alignment.topLeft
-                              : Alignment.centerLeft,
-                          child: placeholder,
+                      if (widget.prefix case final prefix?)
+                        Padding(
+                          padding: EdgeInsets.only(right: tokens.spacing100),
+                          child: _Styled(
+                            isEnabled: widget.isEnabled,
+                            child: prefix,
+                          ),
                         ),
-                      Row(
-                        children: [
-                          if (widget.prefix case final prefix?)
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: tokens.spacing100),
-                              child: _Styled(
-                                isEnabled: widget.isEnabled,
-                                child: prefix,
-                              ),
-                            ),
-                          ...widget.children,
-                          if (widget.suffix case final suffix?)
-                            Padding(
-                              padding: EdgeInsets.only(left: tokens.spacing50),
-                              child: _Styled(
-                                isEnabled: widget.isEnabled,
-                                child: suffix,
-                              ),
-                            ),
-                        ],
-                      ),
+                      if (widget.placeholder case final placeholder?)
+                        placeholder,
+                      ...widget.children,
+                      if (widget.suffix case final suffix?)
+                        Padding(
+                          padding: EdgeInsets.only(left: tokens.spacing50),
+                          child: _Styled(
+                            isEnabled: widget.isEnabled,
+                            child: suffix,
+                          ),
+                        ),
                     ],
                   ),
                 ),
