@@ -1,0 +1,44 @@
+name: Publish Flutter package to pub.dev
+description: Publish your Flutter package to pub.dev
+
+inputs:
+  working-directory:
+    description: A directory with package to publish
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Git Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 3.22.3
+
+    - name: Get ID Token
+      uses: actions/github-script@v6
+      with:
+        script: |
+          let pub_token = await core.getIDToken('https://pub.dev')
+          core.exportVariable('PUB_TOKEN', pub_token)
+
+    - name: Authenticate
+      shell: bash
+      run: flutter pub pub token add https://pub.dev --env-var PUB_TOKEN
+
+    - name: Install dependencies
+      shell: bash
+      run: flutter pub get
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Dry Run
+      shell: bash
+      run: flutter pub publish --dry-run
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Publish
+      shell: bash
+      run: flutter pub publish -f
+      working-directory: ${{ inputs.working-directory }}

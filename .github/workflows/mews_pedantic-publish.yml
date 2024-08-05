@@ -10,24 +10,12 @@ jobs:
     name: Publish to pub.dev
     runs-on: ubuntu-latest
     environment: pub.dev
-
     permissions:
       id-token: write
-
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
+      - uses: ./.github/actions/publish
         with:
-          flutter-version: 3.22.2
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Publish Dry Run
-        run: flutter pub publish --directory=mews_pedantic --dry-run
-
-      - name: Publish to pub.dev
-        run: flutter pub publish --directory=mews_pedantic --force
+          working-directory: mews_pedantic
