@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                 debugShowCheckedModeBanner: false,
                 home: Scaffold(body: Center(child: child)),
               ),
-              initialStory: 'Welcome',
+              initialStory: 'Forms/SelectionCard',
               stories: [
                 welcomeStory,
                 formStory,

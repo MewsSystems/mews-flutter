@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/radio/circle.dart';
+import 'package:optimus/src/radio/state.dart';
 
 enum OptimusSelectionCardVariant { vertical, horizontal }
 
@@ -16,8 +18,8 @@ class OptimusSelectionCard extends StatefulWidget {
     this.isEnabled = true,
   });
 
-  final String title;
-  final String? description;
+  final Widget title;
+  final Widget? description;
   final Widget? trailing;
   final bool isSelected;
   final bool isEnabled;
@@ -42,13 +44,22 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard> {
             _isPressed = isPressed;
           });
         },
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border.all(
               color: context.tokens
                   .borderInteractiveSecondaryDefault, // TODO(witwash): replace
               width: context.tokens.borderWidth150,
             ),
+          ),
+          child: Row(
+            children: [
+              RadioCircle(
+                state: RadioState.basic,
+                isSelected: widget.isSelected,
+              ),
+              OptimusTitleMedium(child: widget.title),
+            ],
           ),
         ),
       );
