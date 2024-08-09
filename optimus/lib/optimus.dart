@@ -80,6 +80,7 @@ export 'src/search/search_field.dart';
 export 'src/segmented_control/segmented_control.dart';
 export 'src/select.dart';
 export 'src/select_input.dart';
+export 'src/selection_card.dart';
 export 'src/slidable/slidable.dart';
 export 'src/slidable/slide_action.dart';
 export 'src/stack.dart';
