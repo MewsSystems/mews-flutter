@@ -14,6 +14,8 @@ class OptimusSelectionCard extends StatefulWidget {
     required this.title,
     this.description,
     this.trailing,
+    this.variant = OptimusSelectionCardVariant.horizontal,
+    this.borderRadius = OptimusSelectionCardBorderRadius.medium,
     this.isSelected = false,
     this.isEnabled = true,
   });
@@ -21,6 +23,8 @@ class OptimusSelectionCard extends StatefulWidget {
   final Widget title;
   final Widget? description;
   final Widget? trailing;
+  final OptimusSelectionCardVariant variant;
+  final OptimusSelectionCardBorderRadius borderRadius;
   final bool isSelected;
   final bool isEnabled;
 
@@ -28,7 +32,8 @@ class OptimusSelectionCard extends StatefulWidget {
   State<OptimusSelectionCard> createState() => _OptimusSelectionCardState();
 }
 
-class _OptimusSelectionCardState extends State<OptimusSelectionCard> {
+class _OptimusSelectionCardState extends State<OptimusSelectionCard>
+    with ThemeGetter {
   bool _isHovered = false;
   bool _isPressed = false;
 
@@ -46,6 +51,8 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard> {
         },
         child: DecoratedBox(
           decoration: BoxDecoration(
+            borderRadius:
+                BorderRadius.all(widget.borderRadius.getBorderRadius(tokens)),
             border: Border.all(
               color: context.tokens
                   .borderInteractiveSecondaryDefault, // TODO(witwash): replace
@@ -53,14 +60,36 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard> {
             ),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               RadioCircle(
                 state: RadioState.basic,
                 isSelected: widget.isSelected,
               ),
-              OptimusTitleMedium(child: widget.title),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OptimusTitleMedium(child: widget.title),
+                  if (widget.description case final description?)
+                    OptimusSubtitle(child: description),
+                ],
+              ),
+              const Spacer(),
+              if (widget.trailing case final trailing?) trailing,
             ],
           ),
         ),
       );
+}
+
+extension on OptimusSelectionCardBorderRadius {
+  Radius getBorderRadius(OptimusTokens tokens) {
+    switch (this) {
+      case OptimusSelectionCardBorderRadius.small:
+        return tokens.borderRadius100;
+      case OptimusSelectionCardBorderRadius.medium:
+        return tokens.borderRadius200;
+    }
+  }
 }
