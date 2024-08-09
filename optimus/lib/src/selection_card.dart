@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
+import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 
 enum OptimusSelectionCardVariant { vertical, horizontal }
 
 enum OptimusSelectionCardBorderRadius { small, medium }
 
-class OptimusSelectionCard extends StatelessWidget {
+class OptimusSelectionCard extends StatefulWidget {
   const OptimusSelectionCard({
     super.key,
     required this.title,
@@ -21,5 +23,33 @@ class OptimusSelectionCard extends StatelessWidget {
   final bool isEnabled;
 
   @override
-  Widget build(BuildContext context) => Container();
+  State<OptimusSelectionCard> createState() => _OptimusSelectionCardState();
+}
+
+class _OptimusSelectionCardState extends State<OptimusSelectionCard> {
+  bool _isHovered = false;
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) => GestureWrapper(
+        onHoverChanged: (isHovered) {
+          setState(() {
+            _isHovered = isHovered;
+          });
+        },
+        onPressedChanged: (isPressed) {
+          setState(() {
+            _isPressed = isPressed;
+          });
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: context.tokens
+                  .borderInteractiveSecondaryDefault, // TODO(witwash): replace
+              width: context.tokens.borderWidth150,
+            ),
+          ),
+        ),
+      );
 }
