@@ -5,7 +5,21 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final selectionCardStory = Story(
   name: 'Forms/SelectionCard',
-  builder: (context) {
+  builder: (context) => const _SelectionCardExample(),
+);
+
+class _SelectionCardExample extends StatefulWidget {
+  const _SelectionCardExample();
+
+  @override
+  State<_SelectionCardExample> createState() => _SelectionCardExampleState();
+}
+
+class _SelectionCardExampleState extends State<_SelectionCardExample> {
+  bool _isSelected = false;
+
+  @override
+  Widget build(BuildContext context) {
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');
     final description = k.text(label: 'Description', initial: 'Description');
@@ -15,14 +29,14 @@ final selectionCardStory = Story(
       initial: exampleIcons.first,
     );
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
-    final isSelected = k.boolean(label: 'Selected', initial: false);
 
     return OptimusSelectionCard(
       title: Text(title),
       description: description.isNotEmpty ? Text(description) : null,
       trailing: trailing != null ? const Icon(OptimusIcons.add) : null,
-      isSelected: isSelected,
+      isSelected: _isSelected,
       isEnabled: isEnabled,
+      onPressed: () => setState(() => _isSelected = !_isSelected),
     );
-  },
-);
+  }
+}

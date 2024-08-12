@@ -18,6 +18,7 @@ class OptimusSelectionCard extends StatefulWidget {
     this.borderRadius = OptimusSelectionCardBorderRadius.medium,
     this.isSelected = false,
     this.isEnabled = true,
+    this.onPressed,
   });
 
   final Widget title;
@@ -27,6 +28,7 @@ class OptimusSelectionCard extends StatefulWidget {
   final OptimusSelectionCardBorderRadius borderRadius;
   final bool isSelected;
   final bool isEnabled;
+  final VoidCallback? onPressed;
 
   @override
   State<OptimusSelectionCard> createState() => _OptimusSelectionCardState();
@@ -45,31 +47,31 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
   }
 
   _InteractiveStateColor get _backgroundColor => _InteractiveStateColor(
-        context.tokens.backgroundStaticFlat.value,
-        disabled: context.tokens.backgroundStaticFlat,
-        pressed: context.tokens.backgroundStaticFlat,
-        hovered: context.tokens.backgroundStaticFlat,
+        tokens.backgroundStaticFlat.value,
+        disabled: tokens.backgroundStaticFlat,
+        pressed: tokens.backgroundStaticFlat,
+        hovered: tokens.backgroundStaticFlat,
       );
 
   _InteractiveStateColor get _borderColor => _InteractiveStateColor(
-        context.tokens.borderInteractiveSecondaryDefault.value,
-        disabled: context.tokens.borderDisabled,
-        pressed: context.tokens.borderInteractiveSecondaryActive,
-        hovered: context.tokens.borderInteractiveSecondaryHover,
+        tokens.borderInteractiveSecondaryDefault.value,
+        disabled: tokens.borderDisabled,
+        pressed: tokens.borderInteractiveSecondaryActive,
+        hovered: tokens.borderInteractiveSecondaryHover,
       );
 
   _InteractiveStateColor get _titleColor => _InteractiveStateColor(
-        context.tokens.textStaticPrimary.value,
-        disabled: context.tokens.textDisabled,
-        pressed: context.tokens.textStaticPrimary,
-        hovered: context.tokens.textStaticPrimary,
+        tokens.textStaticPrimary.value,
+        disabled: tokens.textDisabled,
+        pressed: tokens.textStaticPrimary,
+        hovered: tokens.textStaticPrimary,
       );
 
   _InteractiveStateColor get _descriptionColor => _InteractiveStateColor(
-        context.tokens.textStaticTertiary.value,
-        disabled: context.tokens.textDisabled,
-        pressed: context.tokens.textStaticTertiary,
-        hovered: context.tokens.textStaticTertiary,
+        tokens.textStaticTertiary.value,
+        disabled: tokens.textDisabled,
+        pressed: tokens.textStaticTertiary,
+        hovered: tokens.textStaticTertiary,
       );
 
   @override
@@ -94,6 +96,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                 _controller.update(WidgetState.hovered, isHovered),
             onPressedChanged: (isPressed) =>
                 _controller.update(WidgetState.pressed, isPressed),
+            onTap: widget.onPressed,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: backgroundColor,
@@ -101,36 +104,44 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                   widget.borderRadius.getBorderRadius(tokens),
                 ),
                 border: Border.all(
-                  color: borderColor, // TODO(witwash): replace
-                  width: context.tokens.borderWidth150,
+                  color: borderColor,
+                  width: tokens.borderWidth150,
                 ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  RadioCircle(
-                    state: RadioState.basic,
-                    isSelected: widget.isSelected,
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DefaultTextStyle.merge(
-                        child: widget.title,
-                        style:
-                            tokens.bodyLargeStrong.copyWith(color: titleColor),
+              child: Padding(
+                padding: EdgeInsets.all(tokens.spacing200),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RadioCircle(
+                      state: RadioState.basic,
+                      isSelected: widget.isSelected,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: tokens.spacing200),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DefaultTextStyle.merge(
+                            child: widget.title,
+                            style: tokens.bodyLargeStrong
+                                .copyWith(color: titleColor),
+                          ),
+                          if (widget.description case final description?)
+                            DefaultTextStyle.merge(
+                              child: description,
+                              style: tokens.bodyMedium
+                                  .copyWith(color: descriptionColor),
+                            ),
+                        ],
                       ),
-                      if (widget.description case final description?)
-                        DefaultTextStyle.merge(
-                            child: description,
-                            style: tokens.bodyMedium
-                                .copyWith(color: descriptionColor)),
-                    ],
-                  ),
-                  const Spacer(),
-                  if (widget.trailing case final trailing?) trailing,
-                ],
+                    ),
+                    const Spacer(),
+                    if (widget.trailing case final trailing?) trailing,
+                  ],
+                ),
               ),
             ),
           );

@@ -18,6 +18,7 @@ class RadioCircle extends StatelessWidget {
     final size = tokens.sizing200;
 
     return Padding(
+      // TODO(witwash): remove padding and move it up
       padding: EdgeInsets.only(
         top: tokens.spacing100,
         bottom: tokens.spacing100,
