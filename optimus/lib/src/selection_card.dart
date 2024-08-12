@@ -12,6 +12,10 @@ enum OptimusSelectionCardBorderRadius { small, medium }
 
 enum OptimusSelectionCardSelectionVariant { radio, checkbox }
 
+/// A card that represents a choice. Depending on the [selectionVariant], it can
+/// be a radio button or a checkbox, hence single or multiple selection.
+/// The card consists of a title, an optional description, and an optional
+/// trailing widget.
 class OptimusSelectionCard extends StatefulWidget {
   const OptimusSelectionCard({
     super.key,
