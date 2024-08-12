@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
@@ -132,30 +133,39 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
           final titleColor = _titleColor.resolve(_controller.value);
           final descriptionColor = _descriptionColor.resolve(_controller.value);
 
-          final selector = widget.selectionVariant ==
-                  OptimusSelectionCardSelectionVariant.radio
-              ? RadioCircle(
-                  state: RadioState.basic,
-                  isSelected: widget.isSelected,
-                )
-              : CheckboxTick(
-                  isEnabled: widget.isEnabled,
-                  isChecked: widget.isSelected,
-                  onChanged: (_) {},
-                  onTap: () {},
-                );
+          final selector = widget.isSelectorVisible
+              ? switch (widget.selectionVariant) {
+                  OptimusSelectionCardSelectionVariant.radio => RadioCircle(
+                      state: RadioState.basic,
+                      isSelected: widget.isSelected,
+                    ),
+                  OptimusSelectionCardSelectionVariant.checkbox => CheckboxTick(
+                      isEnabled: widget.isEnabled,
+                      isChecked: widget.isSelected,
+                      onChanged: (_) {},
+                      onTap: () {},
+                    )
+                }
+              : null;
 
           final title = DefaultTextStyle.merge(
             child: widget.title,
             style: tokens.bodyLargeStrong.copyWith(color: titleColor),
           );
 
-          final description = widget.description != null
-              ? DefaultTextStyle.merge(
-                  child: widget.description!,
-                  style: tokens.bodyMedium.copyWith(color: descriptionColor),
-                )
-              : null;
+          final Widget? description = widget.description?.let(
+            (it) => DefaultTextStyle.merge(
+              child: it,
+              style: tokens.bodyMedium.copyWith(color: descriptionColor),
+            ),
+          );
+
+          final Widget? trailing = widget.trailing?.let(
+            (it) => IconTheme.merge(
+              child: it,
+              data: IconThemeData(color: titleColor),
+            ),
+          );
 
           return GestureWrapper(
             onHoverChanged: (isHovered) =>
@@ -178,16 +188,16 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                 OptimusSelectionCardVariant.horizontal => _HorizontalCard(
                     title: title,
                     description: description,
-                    trailing: widget.trailing,
+                    trailing: trailing,
                     isSelected: widget.isSelected,
-                    selector: widget.isSelectorVisible ? selector : null,
+                    selector: selector,
                   ),
                 OptimusSelectionCardVariant.vertical => _VerticalCard(
-                    title: widget.title,
-                    description: widget.description,
-                    trailing: widget.trailing,
+                    title: title,
+                    description: description,
+                    trailing: trailing,
                     isSelected: widget.isSelected,
-                    selector: widget.isSelectorVisible ? selector : null,
+                    selector: selector,
                   )
               },
             ),
@@ -219,21 +229,24 @@ class _HorizontalCard extends StatelessWidget {
       padding: EdgeInsets.all(tokens.spacing200),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (selector case final selector?) selector,
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                title,
-                SizedBox(height: tokens.spacing25),
-                if (description case final description?) description,
-              ],
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(child: title),
+                  SizedBox(height: tokens.spacing25),
+                  if (description case final description?)
+                    Flexible(child: description),
+                ],
+              ),
             ),
           ),
-          const Spacer(),
           if (trailing case final trailing?) trailing,
         ],
       ),
@@ -258,15 +271,34 @@ class _VerticalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
+        alignment: Alignment.center,
         children: [
           if (selector case final selector?)
-            Align(alignment: Alignment.topRight, child: selector),
-          Row(
-            children: [
-              if (trailing case final trailing?) trailing,
-              title,
-              if (description case final description?) description,
-            ],
+            Positioned(
+              right: context
+                  .tokens.spacing0, // TODO(witwash): fix after radio is fixed
+              top: context.tokens.spacing100,
+              child: selector,
+            ),
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.tokens.spacing200,
+              vertical: context.tokens.spacing400,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (trailing case final trailing?) trailing,
+                SizedBox(
+                  height: context.tokens.spacing200,
+                  width: context.tokens.sizing1300,
+                ),
+                Flexible(child: title),
+                SizedBox(height: context.tokens.spacing50),
+                if (description case final description?)
+                  Flexible(child: description),
+              ],
+            ),
           ),
         ],
       );

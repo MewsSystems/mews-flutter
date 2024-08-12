@@ -4,7 +4,7 @@ import 'package:storybook/utils.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final selectionCardStory = Story(
-  name: 'Forms/SelectionCard',
+  name: 'Forms/Selection Card',
   builder: (context) => const _SelectionCardExample(),
 );
 
@@ -30,7 +30,7 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
     );
     final variant = k.options(
       label: 'Variant',
-      initial: OptimusSelectionCardVariant.horizontal,
+      initial: OptimusSelectionCardVariant.vertical,
       options: OptimusSelectionCardVariant.values.toOptions(),
     );
     final borderRadius = k.options(
@@ -47,17 +47,20 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
         k.boolean(label: 'Selector visible', initial: true);
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
-    return OptimusSelectionCard(
-      title: Text(title),
-      description: description.isNotEmpty ? Text(description) : null,
-      trailing: trailing != null ? Icon(trailing) : null,
-      variant: variant,
-      isSelected: _isSelected,
-      isSelectorVisible: isSelectorVisible,
-      selectionVariant: selectorVariant,
-      borderRadius: borderRadius,
-      isEnabled: isEnabled,
-      onPressed: () => setState(() => _isSelected = !_isSelected),
+    return SizedBox(
+      width: 500,
+      child: OptimusSelectionCard(
+        title: Text(title),
+        description: description.isNotEmpty ? Text(description) : null,
+        trailing: trailing != null ? Icon(trailing) : null,
+        variant: variant,
+        isSelected: _isSelected,
+        isSelectorVisible: isSelectorVisible,
+        selectionVariant: selectorVariant,
+        borderRadius: borderRadius,
+        isEnabled: isEnabled,
+        onPressed: () => setState(() => _isSelected = !_isSelected),
+      ),
     );
   }
 }
