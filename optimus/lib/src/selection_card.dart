@@ -26,15 +26,34 @@ class OptimusSelectionCard extends StatefulWidget {
     this.onPressed,
   });
 
+  /// The title of the card.
   final Widget title;
+
+  /// The description of the card.
   final Widget? description;
+
+  /// The trailing widget of the card.
   final Widget? trailing;
+
+  /// The variant of the card. Default is [OptimusSelectionCardVariant.horizontal].
   final OptimusSelectionCardVariant variant;
+
+  /// The border radius of the card. Default is [OptimusSelectionCardBorderRadius.medium].
   final OptimusSelectionCardBorderRadius borderRadius;
+
+  /// The selection variant of the card. Default is [OptimusSelectionCardSelectionVariant.radio].
   final OptimusSelectionCardSelectionVariant selectionVariant;
+
+  /// Whether the card is selected. Default is false.
   final bool isSelected;
+
+  /// Whether the selector is shown. Default is true.
   final bool showSelector;
+
+  /// Whether the card is enabled. Default is true.
   final bool isEnabled;
+
+  /// The callback that is called when the card is pressed.
   final VoidCallback? onPressed;
 
   @override
