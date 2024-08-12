@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/state_property.dart';
 import 'package:optimus/src/radio/circle.dart';
 import 'package:optimus/src/radio/state.dart';
 
@@ -70,7 +71,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
     super.dispose();
   }
 
-  _InteractiveStateColor get _backgroundColor => _InteractiveStateColor(
+  InteractiveStateColor get _backgroundColor => InteractiveStateColor(
         defaultColor: widget.isSelected
             ? tokens.backgroundInteractiveSecondaryDefault
             : tokens.backgroundStaticFlat,
@@ -83,7 +84,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
             : tokens.backgroundStaticFlat,
       );
 
-  _InteractiveStateColor get _borderColor => _InteractiveStateColor(
+  InteractiveStateColor get _borderColor => InteractiveStateColor(
         defaultColor: widget.isSelected
             ? tokens.borderInteractivePrimaryDefault
             : tokens.borderInteractiveSecondaryDefault,
@@ -96,14 +97,14 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
             : tokens.borderInteractiveSecondaryHover,
       );
 
-  _InteractiveStateColor get _titleColor => _InteractiveStateColor(
+  InteractiveStateColor get _titleColor => InteractiveStateColor(
         defaultColor: tokens.textStaticPrimary,
         disabled: tokens.textDisabled,
         pressed: tokens.textStaticPrimary,
         hovered: tokens.textStaticPrimary,
       );
 
-  _InteractiveStateColor get _descriptionColor => _InteractiveStateColor(
+  InteractiveStateColor get _descriptionColor => InteractiveStateColor(
         defaultColor: tokens.textStaticTertiary,
         disabled: tokens.textDisabled,
         pressed: tokens.textStaticTertiary,
@@ -198,35 +199,6 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
           );
         },
       );
-}
-
-class _InteractiveStateColor extends WidgetStateProperty<Color> {
-  _InteractiveStateColor({
-    required this.defaultColor,
-    required this.disabled,
-    required this.pressed,
-    required this.hovered,
-  });
-
-  final Color disabled;
-  final Color pressed;
-  final Color hovered;
-  final Color defaultColor;
-
-  @override
-  Color resolve(Set<WidgetState> states) {
-    if (states.isDisabled) return disabled;
-    if (states.isPressed) return pressed;
-    if (states.isHovered) return hovered;
-
-    return defaultColor;
-  }
-}
-
-extension on Set<WidgetState> {
-  bool get isDisabled => contains(WidgetState.disabled);
-  bool get isPressed => contains(WidgetState.pressed);
-  bool get isHovered => contains(WidgetState.hovered);
 }
 
 extension on OptimusSelectionCardBorderRadius {

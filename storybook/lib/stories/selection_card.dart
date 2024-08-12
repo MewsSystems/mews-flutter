@@ -26,7 +26,17 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
     final trailing = k.options(
       label: 'Trailing',
       options: exampleIcons,
-      initial: exampleIcons.first,
+      initial: OptimusIcons.chevron_right,
+    );
+    final variant = k.options(
+      label: 'Variant',
+      initial: OptimusSelectionCardVariant.horizontal,
+      options: OptimusSelectionCardVariant.values.toOptions(),
+    );
+    final borderRadius = k.options(
+      label: 'Border radius',
+      initial: OptimusSelectionCardBorderRadius.medium,
+      options: OptimusSelectionCardBorderRadius.values.toOptions(),
     );
     final selectorVariant = k.options(
       label: 'Selector variant',
@@ -39,10 +49,12 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
     return OptimusSelectionCard(
       title: Text(title),
       description: description.isNotEmpty ? Text(description) : null,
-      trailing: trailing != null ? const Icon(OptimusIcons.add) : null,
+      trailing: trailing != null ? Icon(trailing) : null,
+      variant: variant,
       isSelected: _isSelected,
       showSelector: showSelector,
       selectionVariant: selectorVariant,
+      borderRadius: borderRadius,
       isEnabled: isEnabled,
       onPressed: () => setState(() => _isSelected = !_isSelected),
     );
