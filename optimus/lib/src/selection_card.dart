@@ -26,7 +26,7 @@ class OptimusSelectionCard extends StatefulWidget {
     this.borderRadius = OptimusSelectionCardBorderRadius.medium,
     this.selectionVariant = OptimusSelectionCardSelectionVariant.radio,
     this.isSelected = false,
-    this.showSelector = true,
+    this.isSelectorVisible = true,
     this.isEnabled = true,
     this.onPressed,
   });
@@ -53,7 +53,7 @@ class OptimusSelectionCard extends StatefulWidget {
   final bool isSelected;
 
   /// Whether the selector is shown. Default is true.
-  final bool showSelector;
+  final bool isSelectorVisible;
 
   /// Whether the card is enabled. Default is true.
   final bool isEnabled;
@@ -145,6 +145,18 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                   onTap: () {},
                 );
 
+          final title = DefaultTextStyle.merge(
+            child: widget.title,
+            style: tokens.bodyLargeStrong.copyWith(color: titleColor),
+          );
+
+          final description = widget.description != null
+              ? DefaultTextStyle.merge(
+                  child: widget.description!,
+                  style: tokens.bodyMedium.copyWith(color: descriptionColor),
+                )
+              : null;
+
           return GestureWrapper(
             onHoverChanged: (isHovered) =>
                 _controller.update(WidgetState.hovered, isHovered),
@@ -162,46 +174,101 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                   width: tokens.borderWidth150,
                 ),
               ),
-              child: Padding(
-                padding: EdgeInsets.all(tokens.spacing200),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    if (widget.showSelector) selector,
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: tokens.spacing200),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          DefaultTextStyle.merge(
-                            child: widget.title,
-                            style: tokens.bodyLargeStrong
-                                .copyWith(color: titleColor),
-                          ),
-                          SizedBox(height: tokens.spacing25),
-                          if (widget.description case final description?)
-                            DefaultTextStyle.merge(
-                              child: description,
-                              style: tokens.bodyMedium
-                                  .copyWith(color: descriptionColor),
-                            ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    if (widget.trailing case final trailing?)
-                      IconTheme.merge(
-                        child: trailing,
-                        data: IconThemeData(color: titleColor),
-                      ),
-                  ],
-                ),
-              ),
+              child: switch (widget.variant) {
+                OptimusSelectionCardVariant.horizontal => _HorizontalCard(
+                    title: title,
+                    description: description,
+                    trailing: widget.trailing,
+                    isSelected: widget.isSelected,
+                    selector: widget.isSelectorVisible ? selector : null,
+                  ),
+                OptimusSelectionCardVariant.vertical => _VerticalCard(
+                    title: widget.title,
+                    description: widget.description,
+                    trailing: widget.trailing,
+                    isSelected: widget.isSelected,
+                    selector: widget.isSelectorVisible ? selector : null,
+                  )
+              },
             ),
           );
         },
+      );
+}
+
+class _HorizontalCard extends StatelessWidget {
+  const _HorizontalCard({
+    required this.title,
+    this.description,
+    this.trailing,
+    required this.isSelected,
+    this.selector,
+  });
+
+  final Widget title;
+  final Widget? description;
+  final Widget? trailing;
+  final Widget? selector;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.all(tokens.spacing200),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if (selector case final selector?) selector,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                title,
+                SizedBox(height: tokens.spacing25),
+                if (description case final description?) description,
+              ],
+            ),
+          ),
+          const Spacer(),
+          if (trailing case final trailing?) trailing,
+        ],
+      ),
+    );
+  }
+}
+
+class _VerticalCard extends StatelessWidget {
+  const _VerticalCard({
+    required this.title,
+    this.description,
+    this.trailing,
+    required this.isSelected,
+    this.selector,
+  });
+
+  final Widget title;
+  final Widget? description;
+  final Widget? trailing;
+  final bool isSelected;
+  final Widget? selector;
+
+  @override
+  Widget build(BuildContext context) => Stack(
+        children: [
+          if (selector case final selector?)
+            Align(alignment: Alignment.topRight, child: selector),
+          Row(
+            children: [
+              if (trailing case final trailing?) trailing,
+              title,
+              if (description case final description?) description,
+            ],
+          ),
+        ],
       );
 }
 

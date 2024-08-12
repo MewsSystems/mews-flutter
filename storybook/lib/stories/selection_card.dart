@@ -43,7 +43,8 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
       initial: OptimusSelectionCardSelectionVariant.radio,
       options: OptimusSelectionCardSelectionVariant.values.toOptions(),
     );
-    final showSelector = k.boolean(label: 'Show selector', initial: true);
+    final isSelectorVisible =
+        k.boolean(label: 'Selector visible', initial: true);
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return OptimusSelectionCard(
@@ -52,7 +53,7 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
       trailing: trailing != null ? Icon(trailing) : null,
       variant: variant,
       isSelected: _isSelected,
-      showSelector: showSelector,
+      isSelectorVisible: isSelectorVisible,
       selectionVariant: selectorVariant,
       borderRadius: borderRadius,
       isEnabled: isEnabled,
