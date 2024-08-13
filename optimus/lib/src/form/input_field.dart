@@ -115,7 +115,10 @@ class OptimusInputField extends StatefulWidget {
   /// An optional text to display before the input.
   final Widget? prefix;
 
+  /// The [Key] for the input field.
   final Key? inputKey;
+
+  /// The [Key] for the field box.
   final Key? fieldBoxKey;
 
   /// An optional text to display after the text.
@@ -128,8 +131,10 @@ class OptimusInputField extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.readOnly}
   final bool readOnly;
 
+  /// The callback to be called when the field is tapped.
   final VoidCallback? onTap;
 
+  /// The horizontal alignment of the text.
   final TextAlign textAlign;
 
   /// {@macro flutter.widgets.editableText.textCapitalization}
@@ -268,6 +273,22 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         () => _isShowPasswordEnabled = !_isShowPasswordEnabled,
       );
 
+  Widget? get _placeholder {
+    final placeholder = widget.placeholder;
+    if (placeholder != null &&
+        _effectiveController.text.isEmpty &&
+        !_effectiveFocusNode.hasFocus) {
+      return GestureDetector(
+        onTap: _effectiveFocusNode.requestFocus,
+        child: Text(
+          placeholder,
+          style: widget.placeholderStyle ??
+              theme.getTextInputStyle(isEnabled: widget.isEnabled),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final error = widget.error;
@@ -324,6 +345,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
+      placeholder:
+          _placeholder, // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
       children: [
         Expanded(
           child: CupertinoTextField(
@@ -341,9 +364,6 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             minLines: _minLines,
             onSubmitted: widget.onSubmitted,
             textInputAction: widget.textInputAction,
-            placeholder: widget.placeholder,
-            placeholderStyle: widget.placeholderStyle ??
-                theme.getPlaceholderStyle(isEnabled: widget.isEnabled),
             focusNode: _effectiveFocusNode,
             enabled: widget.isEnabled,
             padding: EdgeInsets.zero,

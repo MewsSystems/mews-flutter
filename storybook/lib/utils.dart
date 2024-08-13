@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_single_quotes
+
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
@@ -33,6 +35,15 @@ final List<Option<OptimusWidgetSize>> sizeOptions = OptimusWidgetSize.values
 
 final List<Option<Variation>> variationOptions =
     Variation.values.map((e) => Option(label: e.name, value: e)).toList();
+
+const longText = """
+Nascetur nec convallis tempor sagittis ligula. Mauris aenean curae vestibulum 
+aenean fames posuere consequat turpis. Cursus lectus rutrum dolor condimentum 
+rhoncus tincidunt rutrum. Hac amet class vivamus rhoncus condimentum; penatibus 
+risus magnis. Penatibus nulla venenatis nulla praesent mauris. Morbi feugiat 
+rhoncus ridiculus varius faucibus commodo tincidunt ipsum molestie. Volutpat 
+semper aptent viverra facilisi nam nibh suscipit purus himenaeos. Himenaeos 
+quisque ultrices condimentum mauris a diam.""";
 
 extension EnumsToOptions<T extends Enum> on List<T> {
   List<Option<T>> toOptions() =>

@@ -26,6 +26,7 @@ class FieldWrapper extends StatefulWidget {
     this.inline = false,
     this.multiline = false,
     this.statusBarState,
+    this.placeholder,
   });
 
   final bool isEnabled;
@@ -48,6 +49,7 @@ class FieldWrapper extends StatefulWidget {
   final bool inline;
   final bool multiline;
   final OptimusStatusBarState? statusBarState;
+  final Widget? placeholder;
 
   bool get hasError {
     final error = this.error;
@@ -175,6 +177,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                             child: prefix,
                           ),
                         ),
+                      if (widget.placeholder case final placeholder?)
+                        placeholder,
                       ...widget.children,
                       if (widget.suffix case final suffix?)
                         Padding(
