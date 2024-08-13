@@ -25,6 +25,12 @@ final Story cardStory = Story(
         initial: OptimusCardAttachment.none,
         options: _attachments,
       ),
+      radius: k.options(
+        label: 'Radius',
+        initial: OptimusCardCornerRadius.medium,
+        options: OptimusCardCornerRadius.values.toOptions(),
+      ),
+      outline: k.boolean(label: 'Outline', initial: true),
       child: const _Content(),
     );
   },
@@ -51,6 +57,12 @@ final Story nestedCardStory = Story(
         initial: OptimusCardAttachment.none,
         options: _attachments,
       ),
+      radius: k.options(
+        label: 'Radius',
+        initial: OptimusCardCornerRadius.medium,
+        options: OptimusCardCornerRadius.values.toOptions(),
+      ),
+      outline: k.boolean(label: 'Outline', initial: false),
       child: const _Content(),
     );
   },
