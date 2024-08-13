@@ -34,6 +34,8 @@ enum OptimusCardSpacing {
 
 enum OptimusCardAttachment { none, top, right, bottom, left }
 
+enum OptimusCardCornerRadius { small, medium }
+
 /// A card is a container that groups related pieces of information.
 /// It is intended as a short, linked representation of a conceptual unit.
 ///
@@ -48,6 +50,8 @@ class OptimusCard extends StatelessWidget {
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
     this.variant = OptimusBasicCardVariant.normal,
+    this.outline = true,
+    this.radius = OptimusCardCornerRadius.medium,
   });
 
   final Widget child;
@@ -66,6 +70,29 @@ class OptimusCard extends StatelessWidget {
   /// Controls card variant.
   final OptimusBasicCardVariant variant;
 
+  /// Whether card should be outlined;
+  final bool outline;
+
+  /// Controls the radius of the card.
+  final OptimusCardCornerRadius radius;
+
+  Border? _border(BuildContext context) => outline
+      ? Border.all(
+          width: context.tokens.borderWidth150,
+          color: context.tokens.borderStaticPrimary,
+        )
+      : null;
+
+  List<BoxShadow> _getShadows(OptimusTokens tokens) => switch (variant) {
+        OptimusBasicCardVariant.normal => tokens.shadow100,
+        OptimusBasicCardVariant.overlay => tokens.shadow300,
+      };
+
+  Radius _radius(BuildContext context) => switch (radius) {
+        OptimusCardCornerRadius.small => context.tokens.borderRadius100,
+        OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
+      };
+
   @override
   Widget build(BuildContext context) {
     final theme = OptimusTheme.of(context);
@@ -74,21 +101,14 @@ class OptimusCard extends StatelessWidget {
     return _Card(
       spacing: padding,
       attachment: attachment,
+      border: _border(context),
       shadows: _getShadows(tokens),
       contentWrapperBuilder: contentWrapperBuilder,
-      color: _color(theme),
+      color: tokens.backgroundStaticFlat,
+      radius: _radius(context),
       child: child,
     );
   }
-
-  List<BoxShadow> _getShadows(OptimusTokens tokens) => switch (variant) {
-        OptimusBasicCardVariant.normal => tokens.shadow100,
-        OptimusBasicCardVariant.overlay => tokens.shadow300,
-      };
-
-  // TODO(VG): can be changed when final dark theme design is ready.
-  Color _color(OptimusThemeData theme) =>
-      theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0;
 }
 
 /// A card is a container that groups related pieces of information.
@@ -104,6 +124,8 @@ class OptimusNestedCard extends StatelessWidget {
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
     this.variant = OptimusNestedCardVariant.normal,
+    this.outline = false,
+    this.radius = OptimusCardCornerRadius.medium,
   });
 
   final Widget child;
@@ -122,24 +144,30 @@ class OptimusNestedCard extends StatelessWidget {
   /// Controls card variant.
   final OptimusNestedCardVariant variant;
 
-  Border? _border(BuildContext context) =>
-      variant == OptimusNestedCardVariant.normal
-          ? Border.all(
-              width: context.tokens.borderWidth100,
-              // TODO(VG): can be changed when final dark theme design is ready.
-              color: context.theme.isDark
-                  ? context.theme.colors.neutral0t32
-                  : context.theme.colors.neutral500t16,
-            )
-          : null;
+  /// Whether card should be outlined.
+  final bool outline;
 
-  // TODO(VG): can be changed when final dark theme design is ready.
-  Color _color(OptimusThemeData theme) => switch (variant) {
+  /// The radius of the card.
+  final OptimusCardCornerRadius radius;
+
+  Radius _radius(BuildContext context) => switch (radius) {
+        OptimusCardCornerRadius.small => context.tokens.borderRadius100,
+        OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
+      };
+
+  Border? _border(BuildContext context) => outline
+      ? Border.all(
+          width: context.tokens.borderWidth150,
+          color: context.tokens.borderStaticPrimary,
+        )
+      : null;
+
+  Color _color(BuildContext context) => switch (variant) {
         OptimusNestedCardVariant.emphasized =>
-          theme.isDark ? theme.colors.neutral400t24 : theme.colors.neutral500t8,
-        OptimusNestedCardVariant.highlighted => theme.colors.primary500t8,
-        OptimusNestedCardVariant.normal =>
-          theme.isDark ? theme.colors.neutral500 : theme.colors.neutral0,
+          context.tokens.backgroundInteractiveNeutralDefault,
+        OptimusNestedCardVariant.highlighted =>
+          context.tokens.backgroundInteractiveSecondaryDefault,
+        OptimusNestedCardVariant.normal => context.tokens.backgroundStaticFlat,
       };
 
   @override
@@ -147,7 +175,8 @@ class OptimusNestedCard extends StatelessWidget {
         spacing: padding,
         attachment: attachment,
         border: _border(context),
-        color: _color(context.theme),
+        color: _color(context),
+        radius: _radius(context),
         contentWrapperBuilder: contentWrapperBuilder,
         child: child,
       );
@@ -159,6 +188,7 @@ class _Card extends StatelessWidget {
     this.contentWrapperBuilder,
     required this.spacing,
     required this.attachment,
+    required this.radius,
     this.shadows = const [],
     this.border,
     this.color,
@@ -171,30 +201,27 @@ class _Card extends StatelessWidget {
   final List<BoxShadow> shadows;
   final Border? border;
   final Color? color;
+  final Radius radius;
 
-  BorderRadius _getBorderRadius(OptimusTokens tokens) {
-    final radius = tokens.borderRadius200;
-
-    return switch (attachment) {
-      OptimusCardAttachment.none => BorderRadius.all(radius),
-      OptimusCardAttachment.left => BorderRadius.only(
-          topRight: radius,
-          bottomRight: radius,
-        ),
-      OptimusCardAttachment.right => BorderRadius.only(
-          topLeft: radius,
-          bottomLeft: radius,
-        ),
-      OptimusCardAttachment.top => BorderRadius.only(
-          bottomLeft: radius,
-          bottomRight: radius,
-        ),
-      OptimusCardAttachment.bottom => BorderRadius.only(
-          topLeft: radius,
-          topRight: radius,
-        ),
-    };
-  }
+  BorderRadius get _borderRadius => switch (attachment) {
+        OptimusCardAttachment.none => BorderRadius.all(radius),
+        OptimusCardAttachment.left => BorderRadius.only(
+            topRight: radius,
+            bottomRight: radius,
+          ),
+        OptimusCardAttachment.right => BorderRadius.only(
+            topLeft: radius,
+            bottomLeft: radius,
+          ),
+        OptimusCardAttachment.top => BorderRadius.only(
+            bottomLeft: radius,
+            bottomRight: radius,
+          ),
+        OptimusCardAttachment.bottom => BorderRadius.only(
+            topLeft: radius,
+            topRight: radius,
+          ),
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +233,7 @@ class _Card extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        borderRadius: _getBorderRadius(context.tokens),
+        borderRadius: _borderRadius,
         border: border,
         color: color,
         boxShadow: shadows,
