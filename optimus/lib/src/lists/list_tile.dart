@@ -82,44 +82,60 @@ class OptimusListTile extends StatelessWidget {
       onTap: onTap,
       content: Padding(
         padding: _getContentPadding(tokens),
-        child: Row(
-          children: <Widget>[
-            if (prefix case final prefix?) _Prefix(prefix: prefix),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(right: tokens.spacing100),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: _Title(
-                            title: title,
-                            fontVariant: fontVariant,
-                          ),
-                        ),
-                        if (info != null) _Info(info: info),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: subtitle != null
-                              ? _Subtitle(
-                                  subtitle: subtitle,
-                                  fontVariant: fontVariant,
-                                )
-                              : const SizedBox.shrink(),
-                        ),
-                        if (infoWidget case final infoWidget?) infoWidget,
-                      ],
-                    ),
-                  ],
+        child: Stack(
+          children: [
+            if (prefix case final prefix?)
+              Padding(
+                padding: EdgeInsetsDirectional.only(
+                  top: subtitle != null ? tokens.spacing100 : tokens.spacing25,
                 ),
+                child: _Prefix(prefix: prefix),
               ),
+            Row(
+              children: <Widget>[
+                if (prefix != null) SizedBox(width: context.prefixWidth),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: tokens.spacing100),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Flexible(
+                              flex: 8,
+                              child: _Title(
+                                title: title,
+                                fontVariant: fontVariant,
+                              ),
+                            ),
+                            if (info != null)
+                              Flexible(flex: 2, child: _Info(info: info)),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: subtitle != null
+                                  ? _Subtitle(
+                                      subtitle: subtitle,
+                                      fontVariant: fontVariant,
+                                    )
+                                  : const SizedBox.shrink(),
+                            ),
+                            if (infoWidget case final infoWidget?) infoWidget,
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                if (suffix case final suffix?) _Suffix(suffix: suffix),
+              ],
             ),
-            if (suffix case final suffix?) _Suffix(suffix: suffix),
           ],
         ),
       ),
@@ -136,12 +152,15 @@ class _Prefix extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Padding(
-      padding: EdgeInsets.only(right: tokens.spacing100),
-      child: OptimusTypography(
-        color: OptimusTypographyColor.secondary,
-        resolveStyle: (_) => tokens.bodyMediumStrong,
-        child: prefix,
+    return SizedBox(
+      width: context.prefixWidth,
+      child: Padding(
+        padding: EdgeInsets.only(right: tokens.spacing100),
+        child: OptimusTypography(
+          color: OptimusTypographyColor.secondary,
+          resolveStyle: (_) => tokens.bodyMediumStrong,
+          child: prefix,
+        ),
       ),
     );
   }
@@ -183,7 +202,8 @@ class _Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodySmallStrong,
+        resolveStyle: (_) => context.tokens.bodySmallStrong
+            .copyWith(overflow: TextOverflow.ellipsis),
         color: OptimusTypographyColor.secondary,
         child: info,
       );
@@ -201,4 +221,8 @@ class _Subtitle extends StatelessWidget {
         color: fontVariant.secondaryColor,
         child: subtitle,
       );
+}
+
+extension on BuildContext {
+  double get prefixWidth => tokens.spacing400;
 }
