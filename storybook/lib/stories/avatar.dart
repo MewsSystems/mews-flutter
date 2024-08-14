@@ -15,7 +15,7 @@ final avatarStory = Story(
 
     final hasIndicator = k.boolean(label: 'Has indicator', initial: false);
     final useImage = k.boolean(label: 'Use image', initial: false);
-    final errorLoading = k.boolean(label: 'Error loading', initial: false);
+    final isErrorLoading = k.boolean(label: 'Error loading', initial: false);
     final title = k.text(label: 'Title', initial: 'User');
     final useBadge = k.boolean(label: 'Use badge', initial: false);
 
@@ -23,7 +23,7 @@ final avatarStory = Story(
       child: OptimusAvatar(
         title: title,
         imageUrl: useImage
-            ? errorLoading
+            ? isErrorLoading
                 ? _badUrl
                 : _avatarUrl
             : null,

@@ -13,8 +13,8 @@ class BaseLink extends StatefulWidget {
     this.icon,
     this.onPressed,
     this.overflow,
-    this.inherit = false,
-    this.strong = false,
+    this.shouldInherit = false,
+    this.useStrong = false,
     this.variant = OptimusLinkVariant.primary,
   });
 
@@ -22,8 +22,8 @@ class BaseLink extends StatefulWidget {
   final TextStyle? textStyle;
   final Widget text;
   final Widget? icon;
-  final bool strong;
-  final bool inherit;
+  final bool useStrong;
+  final bool shouldInherit;
   final TextOverflow? overflow;
   final OptimusLinkVariant variant;
 
@@ -41,7 +41,7 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
   void _handlePressedChange(bool isPressed) =>
       setState(() => _isPressed = isPressed);
 
-  Color get _effectiveColor => widget.inherit ? _inheritedColor : _color;
+  Color get _effectiveColor => widget.shouldInherit ? _inheritedColor : _color;
 
   Color get _color {
     if (!_isEnabled) return widget.variant.getDisabledColor(tokens);
@@ -66,7 +66,7 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
       style: _textStyle.copyWith(
         color: _effectiveColor,
         overflow: widget.overflow,
-        fontWeight: widget.strong ? FontWeight.w500 : FontWeight.w400,
+        fontWeight: widget.useStrong ? FontWeight.w500 : FontWeight.w400,
         decoration: _isHovering ? null : TextDecoration.underline,
       ),
       child: widget.text,
@@ -105,13 +105,16 @@ extension on OptimusLinkVariant {
         OptimusLinkVariant.primary => tokens.textInteractivePrimaryDefault,
         OptimusLinkVariant.basic => tokens.textStaticPrimary,
       };
+
   Color getHoveredColor(OptimusTokens tokens) => switch (this) {
         OptimusLinkVariant.primary => tokens.textInteractivePrimaryHover,
         OptimusLinkVariant.basic => tokens.textStaticTertiary,
       };
+
   Color getTappedColor(OptimusTokens tokens) => switch (this) {
         OptimusLinkVariant.primary => tokens.textInteractivePrimaryActive,
         OptimusLinkVariant.basic => tokens.textStaticPrimary,
       };
+
   Color getDisabledColor(OptimusTokens tokens) => tokens.textDisabled;
 }

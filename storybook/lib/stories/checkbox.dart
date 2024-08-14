@@ -18,9 +18,9 @@ class _CheckboxStory extends StatefulWidget {
 }
 
 class _CheckboxStoryState extends State<_CheckboxStory> {
-  bool _checked = false;
+  bool _isChecked = false;
 
-  void _handleChanged(bool isChecked) => setState(() => _checked = isChecked);
+  void _handleChanged(bool isChecked) => setState(() => _isChecked = isChecked);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _CheckboxStoryState extends State<_CheckboxStory> {
             options: OptimusCheckboxSize.values.toOptions(),
             initial: OptimusCheckboxSize.large,
           ),
-          isChecked: _checked,
+          isChecked: _isChecked,
           onChanged: _handleChanged,
         ),
       ),

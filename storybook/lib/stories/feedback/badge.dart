@@ -7,9 +7,9 @@ final Story badgeStory = Story(
   name: 'Feedback/Badge',
   builder: (context) {
     final knobs = context.knobs;
-    final grayBackground =
+    final useGrayBackground =
         knobs.boolean(label: 'Grey background', initial: true);
-    final outline = knobs.boolean(label: 'Outline', initial: true);
+    final isOutlined = knobs.boolean(label: 'Outline', initial: true);
     final variant = knobs.options(
       label: 'Variant',
       initial: OptimusBadgeVariant.values.first,
@@ -19,12 +19,12 @@ final Story badgeStory = Story(
     return Container(
       width: 600,
       height: 400,
-      color: grayBackground ? Colors.grey : null,
+      color: useGrayBackground ? Colors.grey : null,
       child: Center(
         child: OptimusBadge(
           text: knobs.text(label: 'Content', initial: 'Info Text'),
           variant: variant,
-          outline: outline,
+          isOutlined: isOutlined,
         ),
       ),
     );

@@ -376,6 +376,7 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.extraLarge =>
           tokens.spacing150,
       };
+
   double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small => tokens.spacing150,
         OptimusWidgetSize.medium => tokens.spacing200,
@@ -383,6 +384,7 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.extraLarge =>
           tokens.spacing300,
       };
+
   double getInsideHorizontalPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small => tokens.spacing100,
         OptimusWidgetSize.medium ||

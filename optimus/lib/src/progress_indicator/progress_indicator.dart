@@ -236,12 +236,12 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
 
   @override
   Widget build(BuildContext context) {
-    final bool closed = !_isExpanded && _animationController.isDismissed;
+    final bool isClosed = !_isExpanded && _animationController.isDismissed;
     final items = widget.items;
     final headerItem = _isExpanded ? widget.items.first : _currentItem;
 
     final Widget result = Offstage(
-      offstage: closed,
+      offstage: isClosed,
       child: AllowMultipleRawGestureDetector(
         onTap: _handleTap,
         child: Column(

@@ -10,7 +10,7 @@ abstract class DialogController {
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
-    bool rootOverlay = false,
+    bool useRootOverlay = false,
   });
 
   void showInline({
@@ -18,7 +18,7 @@ abstract class DialogController {
     required Widget content,
     OptimusDialogSize size = OptimusDialogSize.small,
     List<OptimusDialogAction> actions = const [],
-    bool rootOverlay = false,
+    bool useRootOverlay = false,
   });
 
   void hide();
@@ -67,7 +67,7 @@ class _DialogWrapperState extends State<DialogWrapper>
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.regular,
-    bool rootOverlay = false,
+    bool useRootOverlay = false,
   }) {
     hide();
     final entry = OverlayEntry(
@@ -81,7 +81,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       ),
     );
     _entry = entry;
-    Overlay.of(context, rootOverlay: rootOverlay).insert(entry);
+    Overlay.of(context, rootOverlay: useRootOverlay).insert(entry);
   }
 
   @override
@@ -90,7 +90,7 @@ class _DialogWrapperState extends State<DialogWrapper>
     required Widget content,
     List<OptimusDialogAction> actions = const [],
     OptimusDialogSize size = OptimusDialogSize.small,
-    bool rootOverlay = false,
+    bool useRootOverlay = false,
   }) {
     hide();
     final entry = OverlayEntry(
@@ -112,7 +112,7 @@ class _DialogWrapperState extends State<DialogWrapper>
       ),
     );
     _entry = entry;
-    Overlay.of(context, rootOverlay: rootOverlay).insert(entry);
+    Overlay.of(context, rootOverlay: useRootOverlay).insert(entry);
   }
 
   @override

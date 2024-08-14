@@ -10,7 +10,7 @@ final Story listTileStory = Story(
     final k = context.knobs;
     final title = k.text(label: 'Title', initial: 'Title');
     final subtitle = k.text(label: 'Subtitle', initial: 'Subtitle');
-    final longSubtitle = k.boolean(label: 'Long subtitle', initial: false);
+    final useLongSubtitle = k.boolean(label: 'Long subtitle', initial: false);
     final prefix = k.options(
       label: 'Prefix',
       initial: null,
@@ -40,7 +40,7 @@ final Story listTileStory = Story(
               (i) => OptimusListTile(
                 title: Text(title),
                 subtitle: subtitle.isNotEmpty
-                    ? Text(longSubtitle ? longText : subtitle)
+                    ? Text(useLongSubtitle ? longText : subtitle)
                     : null,
                 info: info.isNotEmpty ? Text(info) : null,
                 fontVariant: fontVariant,

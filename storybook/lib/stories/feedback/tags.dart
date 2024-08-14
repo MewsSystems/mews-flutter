@@ -8,7 +8,7 @@ final Story tagStory = Story(
   builder: (context) {
     final k = context.knobs;
 
-    final outline = k.boolean(label: 'Outlined', initial: false);
+    final isOutlined = k.boolean(label: 'Outlined', initial: false);
     final leadingIcon = k.options(
       label: 'Leading icon',
       initial: null,
@@ -35,7 +35,7 @@ final Story tagStory = Story(
                     leadingIcon: leadingIcon,
                     trailingIcon: trailingIcon,
                     colorOption: c,
-                    outline: outline,
+                    isOutlined: isOutlined,
                   ),
                 ),
               )
@@ -53,7 +53,7 @@ final Story tagStory = Story(
                     leadingIcon: leadingIcon,
                     trailingIcon: trailingIcon,
                     colorOption: c,
-                    outline: outline,
+                    isOutlined: isOutlined,
                   ),
                 ),
               )

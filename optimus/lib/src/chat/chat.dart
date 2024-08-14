@@ -36,27 +36,27 @@ class OptimusChat extends StatelessWidget {
   final ValueChanged<String> onSendPressed;
   final Predicate<OptimusMessage> isFromCurrentUser;
 
-  bool _previousMessageIsFromSameUser(int index) =>
+  bool _isPreviousMessageFromSameUser(int index) =>
       index - 1 >= 0 &&
       _messages[index - 1].author.id == _messages[index].author.id;
 
   bool _showAvatar(int index) =>
-      _lastMessageOfDay(index) ||
-      _moreThanOneMinuteDifferenceForward(index) ||
-      _latestMessage(index) ||
-      !_previousMessageIsFromSameUser(index);
+      _isLastMessageOfDay(index) ||
+      _isMoreThanOneMinuteDifferenceForward(index) ||
+      _isLatestMessage(index) ||
+      !_isPreviousMessageFromSameUser(index);
 
   bool _showStatus(int index) =>
-      _lastMessageOfDay(index) ||
-      _moreThanOneMinuteDifferenceForward(index) ||
+      _isLastMessageOfDay(index) ||
+      _isMoreThanOneMinuteDifferenceForward(index) ||
       _messages[index].state != MessageState.sent ||
-      _latestMessage(index) ||
-      !_previousMessageIsFromSameUser(index);
+      _isLatestMessage(index) ||
+      !_isPreviousMessageFromSameUser(index);
 
   bool _showUserName(int index) =>
       !isFromCurrentUser(_messages[index]) &&
-      (_moreThanOneMinuteDifferenceBack(index) ||
-          _oldestMessage(index) ||
+      (_isMoreThanOneMinuteDifferenceBack(index) ||
+          _isOldestMessage(index) ||
           _messages[index < _messages.length ? index + 1 : index].author.id !=
               _messages[index].author.id);
 
@@ -67,7 +67,7 @@ class OptimusChat extends StatelessWidget {
         _currentMessageTime(index).difference(previousMessageTime).inDays >= 1;
   }
 
-  bool _moreThanOneMinuteDifferenceBack(int index) {
+  bool _isMoreThanOneMinuteDifferenceBack(int index) {
     final previousMessageTime = _previousMessageTime(index);
 
     return previousMessageTime != null &&
@@ -78,7 +78,7 @@ class OptimusChat extends StatelessWidget {
             1;
   }
 
-  bool _moreThanOneMinuteDifferenceForward(int index) {
+  bool _isMoreThanOneMinuteDifferenceForward(int index) {
     final nextMessageTime = _nextMessageTime(index);
 
     return nextMessageTime != null &&
@@ -97,16 +97,16 @@ class OptimusChat extends StatelessWidget {
   DateTime? _nextMessageTime(int index) =>
       index - 1 > 0 ? _messages[index - 1].time : null;
 
-  bool _lastMessageOfDay(int index) {
+  bool _isLastMessageOfDay(int index) {
     final nextMessageTime = _nextMessageTime(index);
 
     return nextMessageTime == null ||
         nextMessageTime.difference(_currentMessageTime(index)).inDays > 1;
   }
 
-  bool _latestMessage(int index) => index == 0;
+  bool _isLatestMessage(int index) => index == 0;
 
-  bool _oldestMessage(int index) => index + 1 == _messages.length;
+  bool _isOldestMessage(int index) => index + 1 == _messages.length;
 
   int _byTime(OptimusMessage m1, OptimusMessage m2) =>
       m2.time.compareTo(m1.time);
@@ -157,7 +157,7 @@ class OptimusChat extends StatelessWidget {
                       sending: sending,
                       sent: sent,
                       isFromCurrentUser: isFromCurrentUser(_messages[index]),
-                      isLatestMessage: _latestMessage(index),
+                      isLatestMessage: _isLatestMessage(index),
                       alignment: _messages[index].alignment,
                     ),
                 ],

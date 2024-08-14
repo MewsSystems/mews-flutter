@@ -34,12 +34,12 @@ final Story inputStory = Story(
       initial: OptimusInputErrorVariant.bottomHint,
       options: OptimusInputErrorVariant.values.toOptions(),
     );
-    final limitChars = k.boolean(
+    final hasCharsLimit = k.boolean(
       label: 'Limit characters',
       initial: true,
     );
     int? maxChars;
-    if (limitChars) {
+    if (hasCharsLimit) {
       maxChars =
           k.sliderInt(label: 'Max Characters', max: 100, min: 1, initial: 30);
     }
@@ -50,8 +50,8 @@ final Story inputStory = Story(
       initial: null,
       options: KeyboardType.values.toOptions().withEmpty(),
     );
-    final inline = k.boolean(label: 'Inline', initial: false);
-    final autoCollapse = k.boolean(label: 'Auto Collapse', initial: true);
+    final isInlined = k.boolean(label: 'Inline', initial: false);
+    final enableAutoCollapse = k.boolean(label: 'Auto Collapse', initial: true);
 
     final statusBar = k.options(
       label: 'Status Bar',
@@ -84,8 +84,8 @@ final Story inputStory = Story(
             initial: OptimusWidgetSize.large,
             options: sizeOptions,
           ),
-          inline: inline,
-          autoCollapse: autoCollapse,
+          isInlined: isInlined,
+          enableAutoCollapse: enableAutoCollapse,
           label: k.text(label: 'Label', initial: 'Optimus input field'),
           placeholder:
               k.text(label: 'Placeholder', initial: 'Put some hint here...'),

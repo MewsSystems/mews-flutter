@@ -41,7 +41,7 @@ class OptimusStepperFormField extends FormField<int> {
               field.didChange(value);
               onChanged?.call(value);
             },
-            enabled: enabled,
+            isEnabled: enabled,
             error: field.errorText,
             focusNode: focusNode,
             controller: controller,
@@ -57,7 +57,7 @@ class _Stepper extends StatefulWidget {
     this.min = 0,
     this.max = 100,
     this.focusNode,
-    this.enabled = true,
+    this.isEnabled = true,
     this.error,
     this.controller,
     this.size = OptimusWidgetSize.large,
@@ -68,7 +68,7 @@ class _Stepper extends StatefulWidget {
   final int min;
   final int max;
   final FocusNode? focusNode;
-  final bool enabled;
+  final bool isEnabled;
   final String? error;
   final TextEditingController? controller;
   final OptimusWidgetSize size;
@@ -169,11 +169,11 @@ class _StepperState extends State<_Stepper> {
         size: widget.size,
         textAlign: TextAlign.center,
         error: widget.error,
-        isEnabled: widget.enabled,
+        isEnabled: widget.isEnabled,
         controller: _effectiveController,
         leading: _StepperButton(
           iconData: OptimusIcons.minus_simple,
-          onPressed: widget.enabled
+          onPressed: widget.isEnabled
               ? value == null || value > widget.min
                   ? _handleMinusTap
                   : null
@@ -181,7 +181,7 @@ class _StepperState extends State<_Stepper> {
         ),
         trailing: _StepperButton(
           iconData: OptimusIcons.plus_simple,
-          onPressed: widget.enabled
+          onPressed: widget.isEnabled
               ? value == null || value < widget.max
                   ? _handlePlusTap
                   : null

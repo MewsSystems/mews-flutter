@@ -31,13 +31,13 @@ class AnchoredOverlay extends StatefulWidget {
     required this.anchorKey,
     required this.child,
     required this.width,
-    this.rootOverlay = false,
+    this.useRootOverlay = false,
   });
 
   final GlobalKey anchorKey;
   final double? width;
   final Widget child;
-  final bool rootOverlay;
+  final bool useRootOverlay;
 
   static AnchoredOverlayController? of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<AnchoredOverlayData>()
@@ -129,7 +129,7 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   }
 
   RenderBox? _getOverlay() =>
-      Overlay.of(context, rootOverlay: widget.rootOverlay)
+      Overlay.of(context, rootOverlay: widget.useRootOverlay)
           .context
           .findRenderObject() as RenderBox?;
 

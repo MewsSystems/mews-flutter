@@ -26,9 +26,9 @@ class OptimusStandaloneLink extends StatelessWidget {
     required this.text,
     this.size,
     this.overflow,
-    this.inherit = false,
+    this.shouldInherit = false,
     this.isExternal = false,
-    this.strong = false,
+    this.useStrong = false,
     this.variant = OptimusLinkVariant.primary,
   });
 
@@ -41,7 +41,7 @@ class OptimusStandaloneLink extends StatelessWidget {
   final Widget text;
 
   /// Controls if link should inherit parent style.
-  final bool inherit;
+  final bool shouldInherit;
 
   /// Controls if link is external and icon should be displayed.
   final bool isExternal;
@@ -50,20 +50,21 @@ class OptimusStandaloneLink extends StatelessWidget {
   final TextOverflow? overflow;
 
   ///  Weight of the font.
-  final bool strong;
+  final bool useStrong;
 
   /// Link size.
   final OptimusStandaloneLinkSize? size;
 
   // Link color variant.
   final OptimusLinkVariant variant;
+
   @override
   Widget build(BuildContext context) => BaseLink(
         text: text,
         textStyle: DefaultTextStyle.of(context).style.copyWith(
               fontSize: size?.getFontSize(context.tokens),
             ),
-        inherit: inherit,
+        shouldInherit: shouldInherit,
         onPressed: onPressed,
         overflow: overflow,
         icon: isExternal
@@ -73,7 +74,7 @@ class OptimusStandaloneLink extends StatelessWidget {
               )
             : null,
         variant: variant,
-        strong: strong,
+        useStrong: useStrong,
       );
 }
 

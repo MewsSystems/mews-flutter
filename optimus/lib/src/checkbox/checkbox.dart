@@ -17,7 +17,7 @@ enum OptimusCheckboxSize {
 
 /// A checkbox is a binary form of input and is used to let a user select one
 /// or more options for a limited number of choices. Each selection is
-/// independent (with exceptions). If [tristate] is enabled, checkbox can be in
+/// independent (with exceptions). If [isTristate] is enabled, checkbox can be in
 /// three states: checked, unchecked and indeterminate.
 class OptimusCheckbox extends StatelessWidget {
   const OptimusCheckbox({
@@ -27,10 +27,10 @@ class OptimusCheckbox extends StatelessWidget {
     this.error,
     this.isEnabled = true,
     this.size = OptimusCheckboxSize.large,
-    this.tristate = false,
+    this.isTristate = false,
     required this.onChanged,
   }) : assert(
-          tristate || isChecked != null,
+          isTristate || isChecked != null,
           'isChecked must be set if tristate is false',
         );
 
@@ -49,7 +49,7 @@ class OptimusCheckbox extends StatelessWidget {
   /// {@template optimus.checkbox.tristate}
   /// Whether this checkbox has 3 states.
   /// {@endtemplate}
-  final bool tristate;
+  final bool isTristate;
 
   /// {@template optimus.checkbox.error}
   /// Controls error that appears below checkbox.
@@ -112,10 +112,7 @@ class OptimusCheckbox extends StatelessWidget {
     return false;
   }
 
-  void _handleTap() {
-    final newValue = isChecked ?? false;
-    onChanged(!newValue);
-  }
+  void _handleTap() => onChanged(!(isChecked ?? false));
 
   @override
   Widget build(BuildContext context) {

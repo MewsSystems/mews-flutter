@@ -19,7 +19,7 @@ class OptimusTag extends StatelessWidget {
     this.colorOption = OptimusColorOption.basic,
     this.leadingIcon,
     this.trailingIcon,
-    this.outline = false,
+    this.isOutlined = false,
   });
 
   /// The text to display in the tag.
@@ -37,7 +37,7 @@ class OptimusTag extends StatelessWidget {
   final OptimusColorOption colorOption;
 
   /// Whether the tag should use the outlined style.
-  final bool outline;
+  final bool isOutlined;
 
   /// Optional leading icon of the tag.
   final IconData? leadingIcon;
@@ -56,7 +56,7 @@ class OptimusTag extends StatelessWidget {
       borderColor: colorOption.borderColor(tokens),
       leadingIcon: leadingIcon,
       trailingIcon: trailingIcon,
-      outline: outline,
+      isOutlined: isOutlined,
     );
   }
 }
@@ -89,7 +89,7 @@ class OptimusCategoricalTag extends StatelessWidget {
     required this.colorOption,
     this.leadingIcon,
     this.trailingIcon,
-    this.outline = false,
+    this.isOutlined = false,
   });
 
   /// Text of the tag.
@@ -105,7 +105,7 @@ class OptimusCategoricalTag extends StatelessWidget {
   final IconData? trailingIcon;
 
   /// Whether to use outlined tag style.
-  final bool outline;
+  final bool isOutlined;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ class OptimusCategoricalTag extends StatelessWidget {
       borderColor: colorOption.borderColor(tokens),
       leadingIcon: leadingIcon,
       trailingIcon: trailingIcon,
-      outline: outline,
+      isOutlined: isOutlined,
     );
   }
 }
@@ -131,7 +131,7 @@ class _Tag extends StatelessWidget {
     required this.borderColor,
     this.leadingIcon,
     this.trailingIcon,
-    this.outline = false,
+    this.isOutlined = false,
   });
 
   final String text;
@@ -140,7 +140,7 @@ class _Tag extends StatelessWidget {
   final Color borderColor;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
-  final bool outline;
+  final bool isOutlined;
 
   @override
   Widget build(BuildContext context) {
@@ -148,8 +148,8 @@ class _Tag extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: outline ? null : backgroundColor,
-        border: outline
+        color: isOutlined ? null : backgroundColor,
+        border: isOutlined
             ? Border.all(
                 color: borderColor,
                 width: tokens.borderWidth150,

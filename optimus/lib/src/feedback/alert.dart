@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/feedback/common.dart';
@@ -82,7 +83,7 @@ class OptimusAlert extends StatelessWidget {
                   link?.onPressed();
                   OptimusAlertOverlay.of(context)?.remove(this);
                 },
-                dismissible: isDismissible,
+                isDismissible: isDismissible,
               ),
               if (isDismissible)
                 Positioned(
@@ -110,7 +111,7 @@ class _AlertContent extends StatelessWidget {
     required this.variant,
     required this.title,
     required this.description,
-    required this.dismissible,
+    required this.isDismissible,
     this.onLinkPressed,
     this.linkText,
   });
@@ -121,11 +122,11 @@ class _AlertContent extends StatelessWidget {
   final Widget? description;
   final Widget? linkText;
   final VoidCallback? onLinkPressed;
-  final bool dismissible;
+  final bool isDismissible;
 
   bool get _isExpanded => description != null || linkText != null;
 
-  EdgeInsets _getContentPadding(OptimusTokens tokens) => dismissible
+  EdgeInsets _getContentPadding(OptimusTokens tokens) => isDismissible
       ? EdgeInsets.fromLTRB(
           tokens.spacing200,
           tokens.spacing200,

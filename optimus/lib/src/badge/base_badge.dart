@@ -5,7 +5,7 @@ class BaseBadge extends StatelessWidget {
   const BaseBadge({
     super.key,
     required this.text,
-    required this.outline,
+    required this.isOutlined,
     this.overflow = TextOverflow.ellipsis,
     this.backgroundColor,
     this.textColor,
@@ -13,7 +13,7 @@ class BaseBadge extends StatelessWidget {
   });
 
   final String text;
-  final bool outline;
+  final bool isOutlined;
   final TextOverflow overflow;
   final Color? backgroundColor;
   final Color? textColor;
@@ -31,13 +31,14 @@ class BaseBadge extends StatelessWidget {
     final badgeHeight = tokens.sizing200;
     final bareHeight = text.isEmpty ? tokens.spacing100 : badgeHeight;
     final outlinedHeight = bareHeight + outlineSize * 2;
-    final height = outline ? outlinedHeight : bareHeight;
+    final height = isOutlined ? outlinedHeight : bareHeight;
 
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(50)),
       color: backgroundColor,
-      border:
-          outline ? Border.all(width: outlineSize, color: outlineColor) : null,
+      border: isOutlined
+          ? Border.all(width: outlineSize, color: outlineColor)
+          : null,
     );
 
     final child = hasText

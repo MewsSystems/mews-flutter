@@ -10,7 +10,7 @@ final Story inlineLink = Story(
     final k = context.knobs;
 
     final size = k.sliderInt(label: 'Text size', initial: 16, min: 12, max: 20);
-    final inherit = k.boolean(label: 'Inherit', initial: false);
+    final allowInherit = k.boolean(label: 'Inherit', initial: false);
     final color = k.options(label: 'Colors', initial: null, options: _colors);
     final onPressed = k.boolean(label: 'Enabled', initial: true) ? () {} : null;
 
@@ -26,10 +26,10 @@ final Story inlineLink = Story(
             Text('Some text before inline link. Inline ', style: style),
             OptimusInlineLink(
               text: const Text('Link'),
-              inherit: inherit,
+              shouldInherit: allowInherit,
               onPressed: onPressed,
-              strong: k.boolean(label: 'Strong', initial: false),
-              textStyle: inherit ? style : null,
+              useStrong: k.boolean(label: 'Strong', initial: false),
+              textStyle: allowInherit ? style : null,
               variant: k.options(
                 label: 'Variant',
                 initial: OptimusLinkVariant.primary,

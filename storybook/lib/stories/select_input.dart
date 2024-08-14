@@ -45,9 +45,11 @@ class _SelectInputStoryState extends State<SelectInputStory> {
     final trailing =
         k.options(label: 'Trailing Icon', options: exampleIcons, initial: null);
     final showLoader = k.boolean(label: 'Show loader', initial: false);
-    final embeddedSearch = k.boolean(label: 'Embedded search', initial: false);
+    final isSearchEmbedded =
+        k.boolean(label: 'Embedded search', initial: false);
     final enableGrouping = k.boolean(label: 'Grouped', initial: true);
-    final multiselect = k.boolean(label: 'Multiselect', initial: true);
+    final allowMultipleSelection =
+        k.boolean(label: 'Multiselect', initial: true);
 
     return Align(
       alignment: k.options(
@@ -70,7 +72,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           suffix: suffix.isNotEmpty ? Text(suffix) : null,
           trailing: trailing != null ? Icon(trailing) : null,
           showLoader: showLoader,
-          onChanged: (value) => _handleChanged(multiselect, value),
+          onChanged: (value) => _handleChanged(allowMultipleSelection, value),
           size: k.options(
             label: 'Size',
             initial: OptimusWidgetSize.large,
@@ -89,7 +91,9 @@ class _SelectInputStoryState extends State<SelectInputStory> {
                   value: e,
                   title: Text(e),
                   subtitle: Text(e.toUpperCase()),
-                  isSelected: multiselect ? _selectedValues.contains(e) : null,
+                  isSelected: allowMultipleSelection
+                      ? _selectedValues.contains(e)
+                      : null,
                 ),
               )
               .toList(),
@@ -98,9 +102,9 @@ class _SelectInputStoryState extends State<SelectInputStory> {
             padding: EdgeInsets.all(8),
             child: OptimusLabel(child: Text('No results found')),
           ),
-          multiselect: multiselect,
-          selectedValues: multiselect ? _selectedValues : null,
-          embeddedSearch: embeddedSearch
+          allowMultipleSelection: allowMultipleSelection,
+          selectedValues: allowMultipleSelection ? _selectedValues : null,
+          embeddedSearch: isSearchEmbedded
               ? OptimusDropdownEmbeddedSearch(
                   initialValue: _searchToken,
                   onTextChanged: _handleTextChanged,

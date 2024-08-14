@@ -9,12 +9,12 @@ final chipStory = Story(
 
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final text = k.text(label: 'Chip text', initial: 'Chip');
-    final error = k.boolean(label: 'Error', initial: false);
+    final hasError = k.boolean(label: 'Error', initial: false);
 
     return OptimusChip(
       isEnabled: isEnabled,
       onRemoved: () {},
-      hasError: error,
+      hasError: hasError,
       child: Text(text),
     );
   },

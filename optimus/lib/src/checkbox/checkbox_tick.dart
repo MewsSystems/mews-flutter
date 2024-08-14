@@ -38,11 +38,11 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
     return _InteractionState.basic;
   }
 
-  void _handleHoverChanged(bool hovered) =>
-      setState(() => _isHovering = hovered);
+  void _handleHoverChanged(bool isHovered) =>
+      setState(() => _isHovering = isHovered);
 
-  void _handlePressedChanged(bool pressed) =>
-      setState(() => _isPressed = pressed);
+  void _handlePressedChanged(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
 
   @override
   Widget build(BuildContext context) => GestureWrapper(

@@ -9,6 +9,7 @@ final Story dateInputStory = Story(
 
 class _DateFieldExample extends StatefulWidget {
   const _DateFieldExample();
+
   @override
   State<_DateFieldExample> createState() => _DateFieldExampleState();
 }
@@ -26,7 +27,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
   Widget build(BuildContext context) {
     final k = context.knobs;
 
-    final enabled = k.boolean(label: 'Enabled', initial: true);
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final error = k.text(label: 'Error');
     final isClearEnabled = k.boolean(label: 'Clear all', initial: false);
     final String format = k.options(
@@ -41,7 +42,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
         label: 'Date',
         value: _value,
         error: error.isNotEmpty ? error : null,
-        isEnabled: enabled,
+        isEnabled: isEnabled,
         format: DateFormat(format),
         isClearAllEnabled: isClearEnabled,
         onSubmitted: (value) => setState(() => _value = value),
