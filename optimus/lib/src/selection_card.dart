@@ -4,8 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/state_property.dart';
-import 'package:optimus/src/radio/circle.dart';
-import 'package:optimus/src/radio/state.dart';
+import 'package:optimus/src/radio/radio_circle.dart';
 
 enum OptimusSelectionCardVariant { vertical, horizontal }
 
@@ -136,7 +135,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
           final selector = widget.isSelectorVisible
               ? switch (widget.selectionVariant) {
                   OptimusSelectionCardSelectionVariant.radio => RadioCircle(
-                      state: RadioState.basic,
+                      controller: _controller,
                       isSelected: widget.isSelected,
                     ),
                   OptimusSelectionCardSelectionVariant.checkbox => CheckboxTick(
@@ -275,8 +274,7 @@ class _VerticalCard extends StatelessWidget {
         children: [
           if (selector case final selector?)
             Positioned(
-              right: context
-                  .tokens.spacing0, // TODO(witwash): fix after radio is fixed
+              right: context.tokens.spacing100,
               top: context.tokens.spacing100,
               child: selector,
             ),
