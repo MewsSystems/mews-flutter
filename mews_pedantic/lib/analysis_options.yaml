@@ -250,6 +250,8 @@ dart_code_metrics:
     # - avoid-async-call-in-sync-function
     # - avoid-banned-annotations
     # - avoid-banned-file-names
+    # - avoid-banned-imports
+    # - avoid-banned-names
     # - avoid-banned-types
     - avoid-barrel-files
     - avoid-bottom-type-in-patterns
@@ -305,6 +307,7 @@ dart_code_metrics:
     - avoid-missing-interpolation
     # - avoid-missing-test-files
     - avoid-misused-test-matchers
+    - avoid-misused-set-literals
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     - avoid-multi-assignment
@@ -345,6 +348,7 @@ dart_code_metrics:
     # - avoid-similar-names
     # - avoid-slow-collection-methods
     # - avoid-substring
+    - avoid-suspicious-super-overrides
     # - avoid-throw-in-catch-block
     # - avoid-throw-objects-without-tostring
     # - avoid-top-level-members-in-tests
@@ -380,6 +384,7 @@ dart_code_metrics:
     # - ban-name
     # - banned-usage
     # - binary-expression-operand-order
+    - dispose-class-fields
     # - double-literal-format
     # - enum-constants-ordering
     # - format-comment
@@ -400,6 +405,7 @@ dart_code_metrics:
     - move-variable-closer-to-its-usage
     - move-variable-outside-iteration
     # - newline-before-case
+    - newline-before-method
     - newline-before-return
     - no-boolean-literal-compare
     # - no-empty-block
@@ -417,6 +423,8 @@ dart_code_metrics:
     # - prefer-addition-subtraction-assignments
     - prefer-any-or-every
     # - prefer-async-await
+    - prefer-boolean-prefixes:
+        prefixes: [is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
     - prefer-commenting-analyzer-ignores
