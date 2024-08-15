@@ -45,6 +45,7 @@ import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
 import 'package:storybook/stories/segmented_control.dart';
 import 'package:storybook/stories/select_input.dart';
+import 'package:storybook/stories/selection_card.dart';
 import 'package:storybook/stories/slidable.dart';
 import 'package:storybook/stories/spacing.dart';
 import 'package:storybook/stories/stack.dart';
@@ -171,6 +172,7 @@ class _MyAppState extends State<MyApp> {
                 passwordStory,
                 toggleButtonStory,
                 textAreaStory,
+                selectionCardStory,
               ],
             ),
         },
