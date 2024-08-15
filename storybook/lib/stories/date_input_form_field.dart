@@ -7,7 +7,7 @@ final Story dateInputFormFieldStory = Story(
   builder: (context) {
     final k = context.knobs;
 
-    final enabled = k.boolean(label: 'Enabled', initial: true);
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final isClearEnabled = k.boolean(label: 'Clear all', initial: false);
     final String format = k.options(
       label: 'Format',
@@ -20,7 +20,7 @@ final Story dateInputFormFieldStory = Story(
       child: OptimusDateInputFormField(
         label: 'Date',
         value: DateTime.now(),
-        isEnabled: enabled,
+        isEnabled: isEnabled,
         format: DateFormat(format),
         isClearAllEnabled: isClearEnabled,
       ),

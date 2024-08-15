@@ -63,12 +63,12 @@ class _TooltipControllerState extends State<TooltipController> {
         ),
       );
 
-  void _handleShow({bool autoHide = true}) {
+  void _handleShow({bool enableAutoHide = true}) {
     if (_entry != null) return;
 
     _entry = _createEntry().also((it) {
       Overlay.of(context).insert(it);
-      if (autoHide) Future.delayed(widget.autoHideDuration, _handleHide);
+      if (enableAutoHide) Future.delayed(widget.autoHideDuration, _handleHide);
     });
   }
 
@@ -80,7 +80,7 @@ class _TooltipControllerState extends State<TooltipController> {
 
   @override
   Widget build(BuildContext context) => MouseRegion(
-        onEnter: (_) => _handleShow(autoHide: false),
+        onEnter: (_) => _handleShow(enableAutoHide: false),
         onExit: (_) => _handleHide(),
         child: GestureDetector(
           onTap: _handleShow,

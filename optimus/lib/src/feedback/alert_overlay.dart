@@ -120,7 +120,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
                   child: AnimatedList(
                     key: _listKey,
                     shrinkWrap: true,
-                    reverse: widget.position.reverse,
+                    reverse: widget.position.isReversed,
                     itemBuilder: (context, index, animation) => _AnimatedAlert(
                       animation: animation,
                       alert: _alerts[index],
@@ -141,6 +141,7 @@ abstract class OptimusAlertManager {
   const OptimusAlertManager();
 
   void show(OptimusAlert alert);
+
   void remove(OptimusAlert alert);
 }
 
@@ -263,7 +264,7 @@ extension on OptimusAlertPosition {
           Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero),
       };
 
-  bool get reverse => switch (this) {
+  bool get isReversed => switch (this) {
         OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => false,
         OptimusAlertPosition.bottomLeft ||
         OptimusAlertPosition.bottomRight =>

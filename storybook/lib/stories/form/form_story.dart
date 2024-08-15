@@ -37,7 +37,8 @@ class _ContentState extends State<_Content> {
         ),
       ],
     );
-    final multiselect = k.boolean(label: 'Multiselect', initial: false);
+    final allowMultipleSelection =
+        k.boolean(label: 'Multiselect', initial: false);
 
     return Form(
       key: _formKey,
@@ -60,7 +61,8 @@ class _ContentState extends State<_Content> {
                   (e) => ListDropdownTile<String>(
                     value: e,
                     title: Text(e),
-                    isSelected: multiselect ? _values.contains(e) : null,
+                    isSelected:
+                        allowMultipleSelection ? _values.contains(e) : null,
                   ),
                 )
                 .toList(),
@@ -75,7 +77,7 @@ class _ContentState extends State<_Content> {
             },
             validator: (String? v) => v?.isNotEmpty != true ? error : null,
             autovalidateMode: autovalidateMode,
-            multiselect: multiselect,
+            allowMultipleSelection: allowMultipleSelection,
             values: _values,
           ),
           OptimusButton(

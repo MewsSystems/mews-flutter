@@ -13,22 +13,23 @@ final toggleButtonStory = Story(
       initial: OptimusToggleButtonSizeVariant.large,
       options: OptimusToggleButtonSizeVariant.values.toOptions(),
     );
-    final label = k.boolean(label: 'Label', initial: true);
+    final hasLabel = k.boolean(label: 'Label', initial: true);
 
     return Center(
-      child: _ToggleExample(label: label, isEnabled: isEnabled, size: size),
+      child:
+          _ToggleExample(hasLabel: hasLabel, isEnabled: isEnabled, size: size),
     );
   },
 );
 
 class _ToggleExample extends StatefulWidget {
   const _ToggleExample({
-    required this.label,
+    required this.hasLabel,
     required this.isEnabled,
     required this.size,
   });
 
-  final bool label;
+  final bool hasLabel;
   final bool isEnabled;
   final OptimusToggleButtonSizeVariant size;
 
@@ -43,7 +44,7 @@ class _ToggleExampleState extends State<_ToggleExample> {
 
   @override
   Widget build(BuildContext context) => OptimusToggleButton(
-        label: widget.label ? Text(_label) : null,
+        label: widget.hasLabel ? Text(_label) : null,
         isToggled: _isToggled,
         isLoading: _isLoading,
         onPressed: widget.isEnabled

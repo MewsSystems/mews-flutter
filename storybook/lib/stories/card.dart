@@ -30,7 +30,7 @@ final Story cardStory = Story(
         initial: OptimusCardCornerRadius.medium,
         options: OptimusCardCornerRadius.values.toOptions(),
       ),
-      outline: k.boolean(label: 'Outline', initial: true),
+      isOutlined: k.boolean(label: 'Outline', initial: true),
       child: const _Content(),
     );
   },
@@ -62,7 +62,7 @@ final Story nestedCardStory = Story(
         initial: OptimusCardCornerRadius.medium,
         options: OptimusCardCornerRadius.values.toOptions(),
       ),
-      outline: k.boolean(label: 'Outline', initial: false),
+      isOutlined: k.boolean(label: 'Outline', initial: false),
       child: const _Content(),
     );
   },

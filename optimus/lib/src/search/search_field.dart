@@ -24,7 +24,7 @@ class OptimusSearch<T> extends StatelessWidget {
     this.helperMessage,
     this.error,
     this.size = OptimusWidgetSize.large,
-    this.readOnly = false,
+    this.isReadOnly = false,
     this.showCursor,
     this.prefix,
     this.suffix,
@@ -110,7 +110,7 @@ class OptimusSearch<T> extends StatelessWidget {
   final bool? showCursor;
 
   /// {@macro flutter.widgets.editableText.readOnly}
-  final bool readOnly;
+  final bool isReadOnly;
 
   /// {@macro optimus.select.groupBy}
   final Grouper<T>? groupBy;
@@ -138,7 +138,7 @@ class OptimusSearch<T> extends StatelessWidget {
         helperMessage: helperMessage,
         error: error,
         size: size,
-        readOnly: readOnly,
+        isReadOnly: isReadOnly,
         showCursor: showCursor,
         prefix: prefix,
         suffix: suffix,

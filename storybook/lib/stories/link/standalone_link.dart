@@ -22,7 +22,7 @@ final Story standaloneLink = Story(
                   text: Text(k.text(label: 'Text', initial: 'Link')),
                   size: size,
                   isExternal: k.boolean(label: 'External', initial: false),
-                  strong: k.boolean(label: 'Strong', initial: false),
+                  useStrong: k.boolean(label: 'Strong', initial: false),
                   variant: k.options(
                     label: 'Variant',
                     initial: OptimusLinkVariant.primary,

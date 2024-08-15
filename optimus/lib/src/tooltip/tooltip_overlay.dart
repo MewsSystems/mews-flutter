@@ -26,7 +26,7 @@ class TooltipOverlay extends StatefulWidget {
     super.key,
     required this.anchorKey,
     required this.tooltip,
-    this.rootOverlay = false,
+    this.useRootOverlay = false,
     required this.tooltipKey,
     this.position,
   });
@@ -41,7 +41,7 @@ class TooltipOverlay extends StatefulWidget {
   final OptimusTooltip tooltip;
 
   /// Whether the tooltip should use the root overlay.
-  final bool rootOverlay;
+  final bool useRootOverlay;
 
   /// Position of the tooltip relative to the child widget. If not specified,
   /// the tooltip will be positioned automatically. Depending on the space
@@ -281,7 +281,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
   }
 
   RenderBox? _getOverlay() =>
-      Overlay.of(context, rootOverlay: widget.rootOverlay)
+      Overlay.of(context, rootOverlay: widget.useRootOverlay)
           .context
           .findRenderObject() as RenderBox?;
 

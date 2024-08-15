@@ -45,8 +45,8 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   /// Controls whether the whole group is enabled.
   final bool isEnabled;
 
-  void _handleChanged(OptimusGroupItem<T> v, bool checked) {
-    if (checked) {
+  void _handleChanged(OptimusGroupItem<T> v, bool isChecked) {
+    if (isChecked) {
       _values.add(v.value);
     } else {
       _values.remove(v.value);
@@ -70,7 +70,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
                     size: size,
                     label: v.label,
                     isEnabled: isEnabled,
-                    onChanged: (checked) => _handleChanged(v, checked),
+                    onChanged: (isChecked) => _handleChanged(v, isChecked),
                   ),
                 )
                 .toList(),

@@ -16,8 +16,8 @@ class OptimusInlineLink extends StatelessWidget {
     this.textStyle,
     this.onPressed,
     this.overflow,
-    this.inherit = false,
-    this.strong = false,
+    this.shouldInherit = false,
+    this.useStrong = false,
     this.variant = OptimusLinkVariant.primary,
   });
 
@@ -30,7 +30,7 @@ class OptimusInlineLink extends StatelessWidget {
   final Widget text;
 
   /// Controls if link should inherit parent style.
-  final bool inherit;
+  final bool shouldInherit;
 
   /// Controls the link's text overflowing.
   final TextOverflow? overflow;
@@ -39,7 +39,7 @@ class OptimusInlineLink extends StatelessWidget {
   final TextStyle? textStyle;
 
   /// Defines the weight of the font.
-  final bool strong;
+  final bool useStrong;
 
   /// Link color variant.
   final OptimusLinkVariant variant;
@@ -48,10 +48,10 @@ class OptimusInlineLink extends StatelessWidget {
   Widget build(BuildContext context) => BaseLink(
         text: text,
         textStyle: textStyle,
-        inherit: inherit,
+        shouldInherit: shouldInherit,
         onPressed: onPressed,
         overflow: overflow,
         variant: variant,
-        strong: strong,
+        useStrong: useStrong,
       );
 }

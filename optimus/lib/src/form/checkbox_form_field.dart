@@ -15,6 +15,7 @@ class OptimusCheckBoxFormField extends StatelessWidget {
 
   final Widget label;
   final ValueChanged<bool?>? onSaved;
+  // ignore: prefer-boolean-prefixes, valid naming
   final bool initialValue;
   final bool isEnabled;
   final OptimusCheckboxSize size;

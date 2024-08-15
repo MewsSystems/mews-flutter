@@ -62,6 +62,7 @@ class RemoteLogger {
   final GetHeaders _getHeaders;
   Duration _currentTimeout = _initialTimeout;
 
+  // ignore: dispose-class-fields, we don't want to dispose a user-provided client.
   final Client? _client;
   Client? _internalClient;
 
@@ -84,6 +85,7 @@ class RemoteLogger {
   ///
   /// `true` means either the record was posted or the error was not retriable,
   /// in any case we can move to the next record.
+  // ignore: prefer-boolean-prefixes, a valid name with a bool result
   Future<bool> _processRecord(String record) async {
     try {
       final headers = await _getHeaders(_defaultHeaders);

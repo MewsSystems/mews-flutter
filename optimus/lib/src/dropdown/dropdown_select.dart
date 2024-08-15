@@ -28,7 +28,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.helperMessage,
     this.error,
     this.size = OptimusWidgetSize.large,
-    this.readOnly = false,
+    this.isReadOnly = false,
     this.showCursor,
     this.prefix,
     this.suffix,
@@ -36,14 +36,14 @@ class DropdownSelect<T> extends StatefulWidget {
     this.shouldCloseOnInputTap = false,
     this.showLoader = false,
     this.isClearEnabled = false,
-    this.rootOverlay = false,
+    this.useRootOverlay = false,
     this.emptyResultPlaceholder,
     this.embeddedSearch,
     this.onDropdownShow,
     this.onDropdownHide,
     this.groupBy,
     this.groupBuilder,
-    this.multiselect = false,
+    this.allowMultipleSelection = false,
     this.selectedValues,
     this.builder,
   });
@@ -72,7 +72,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final bool isClearEnabled;
   final FocusNode? focusNode;
   final bool shouldCloseOnInputTap;
-  final bool rootOverlay;
+  final bool useRootOverlay;
   final OptimusDropdownEmbeddedSearch? embeddedSearch;
   final Widget? emptyResultPlaceholder;
   final VoidCallback? onDropdownShow;
@@ -84,9 +84,9 @@ class DropdownSelect<T> extends StatefulWidget {
   final bool? showCursor;
 
   /// {@macro flutter.widgets.editableText.readOnly}
-  final bool readOnly;
+  final bool isReadOnly;
 
-  final bool multiselect;
+  final bool allowMultipleSelection;
   final List<T>? selectedValues;
   final ValueBuilder<T>? builder;
 
@@ -165,7 +165,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   void _showOverlay() {
     if (_overlayEntry != null) return;
     _overlayEntry = _createOverlayEntry().also((it) {
-      Overlay.of(context, rootOverlay: widget.rootOverlay).insert(it);
+      Overlay.of(context, rootOverlay: widget.useRootOverlay).insert(it);
       widget.onDropdownShow?.call();
     });
     setState(() {});
@@ -242,7 +242,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   OverlayEntry _createOverlayEntry() => OverlayEntry(
         builder: (context) {
           void handleTapDown(TapDownDetails details) {
-            bool hitTest(RenderBox box) => box.hitTest(
+            bool didHit(RenderBox box) => box.hitTest(
                   BoxHitTestResult(),
                   position: box.globalToLocal(details.globalPosition),
                 );
@@ -252,10 +252,10 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
             final RenderObject? dropdownRenderObject =
                 context.findRenderObject();
             if (dropdownRenderObject is RenderBox &&
-                hitTest(dropdownRenderObject)) {
+                didHit(dropdownRenderObject)) {
               // Touch on dropdown shouldn't close overlay
             } else if (inputFieldRenderObject is RenderBox &&
-                hitTest(inputFieldRenderObject)) {
+                didHit(inputFieldRenderObject)) {
               if (widget.shouldCloseOnInputTap) _removeOverlay();
             } else {
               _removeOverlay();
@@ -267,7 +267,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
             behavior: HitTestBehavior.translucent,
             onTapDown: handleTapDown,
             child: DropdownTapInterceptor(
-              onTap: widget.multiselect ? () {} : _handleClose,
+              onTap: widget.allowMultipleSelection ? () {} : _handleClose,
               child: OptimusDropdown(
                 items: widget.items,
                 size: widget.size,
@@ -308,7 +308,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     return PopScope(
       canPop: _canPop,
       onPopInvoked: _handleOnBackPressed,
-      child: widget.multiselect && _hasValues
+      child: widget.allowMultipleSelection && _hasValues
           ? MultiSelectInputField(
               values: _values ?? [],
               leading: leading,
@@ -347,7 +347,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
               helperMessage: widget.helperMessage,
               error: widget.error,
               size: widget.size,
-              readOnly: widget.readOnly,
+              isReadOnly: widget.isReadOnly,
               showCursor: widget.showCursor,
               showLoader: widget.showLoader,
             ),

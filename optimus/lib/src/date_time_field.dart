@@ -87,7 +87,7 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
   @override
   Widget build(BuildContext context) => OptimusInputField(
         controller: _controller,
-        readOnly: true,
+        isReadOnly: true,
         onTap: _handleTap,
         error: widget.error,
         label: widget.label,

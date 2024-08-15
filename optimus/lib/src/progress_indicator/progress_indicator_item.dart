@@ -82,8 +82,8 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
     final itemsCount = widget.itemsCount;
 
     return GestureWrapper(
-      onHoverChanged: (value) => setState(() => _isHovered = value),
-      onPressedChanged: (value) => setState(() => _isPressed = value),
+      onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
+      onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
       child: switch (widget.axis) {
         Axis.horizontal => _HorizontalItem(
             indicator: indicator,
@@ -292,8 +292,8 @@ class ProgressIndicatorSpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final enabled = nextItemState.isAccessible;
-    final color = enabled
+    final isEnabled = nextItemState.isAccessible;
+    final color = isEnabled
         ? tokens.borderInteractivePrimaryDefault
         : tokens.borderStaticPrimary;
 

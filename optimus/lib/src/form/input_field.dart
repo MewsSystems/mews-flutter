@@ -28,8 +28,8 @@ class OptimusInputField extends StatefulWidget {
     this.error,
     this.errorVariant = OptimusInputErrorVariant.bottomHint,
     this.enableInteractiveSelection = true,
-    this.autofocus = false,
-    this.autocorrect = true,
+    this.enableAutoFocus = false,
+    this.enableAutoCorrect = true,
     this.hasBorders = true,
     this.isRequired = false,
     this.isFocused,
@@ -40,7 +40,7 @@ class OptimusInputField extends StatefulWidget {
     this.trailing,
     this.inputKey,
     this.fieldBoxKey,
-    this.readOnly = false,
+    this.isReadOnly = false,
     this.onTap,
     this.textAlign = TextAlign.start,
     this.textCapitalization = TextCapitalization.none,
@@ -51,8 +51,8 @@ class OptimusInputField extends StatefulWidget {
     this.keyboardAppearance,
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
-    this.inline = false,
-    this.autoCollapse = false,
+    this.isInlined = false,
+    this.enableAutoCollapse = false,
     this.statusBarState,
   });
 
@@ -98,11 +98,11 @@ class OptimusInputField extends StatefulWidget {
   final bool enableInteractiveSelection;
 
   /// {@macro flutter.widgets.editableText.autofocus}
-  final bool autofocus;
+  final bool enableAutoFocus;
   final bool? isFocused;
 
   /// {@macro flutter.widgets.editableText.autocorrect}
-  final bool autocorrect;
+  final bool enableAutoCorrect;
   final bool hasBorders;
   final bool isRequired;
 
@@ -129,7 +129,7 @@ class OptimusInputField extends StatefulWidget {
   final Widget? trailing;
 
   /// {@macro flutter.widgets.editableText.readOnly}
-  final bool readOnly;
+  final bool isReadOnly;
 
   /// The callback to be called when the field is tapped.
   final VoidCallback? onTap;
@@ -169,11 +169,11 @@ class OptimusInputField extends StatefulWidget {
   /// Controls whether the components should be inside the input field or
   /// outside, wrapping it. The inline variant is more dense and is smaller in
   /// the vertical direction.
-  final bool inline;
+  final bool isInlined;
 
   /// Controls whether the input should collapse to one line height if not
   /// focused.
-  final bool autoCollapse;
+  final bool enableAutoCollapse;
 
   final OptimusStatusBarState? statusBarState;
 
@@ -220,7 +220,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   @override
   void didUpdateWidget(OptimusInputField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.autoCollapse != oldWidget.autoCollapse ||
+    if (widget.enableAutoCollapse != oldWidget.enableAutoCollapse ||
         widget.minLines != oldWidget.minLines ||
         widget.maxLines != oldWidget.maxLines) {
       _updateLines();
@@ -229,7 +229,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   bool get _shouldShowInlineError =>
       (widget.errorVariant == OptimusInputErrorVariant.inlineTooltip ||
-          widget.inline) &&
+          widget.isInlined) &&
       widget.hasError;
 
   void _handleClearAllTap() {
@@ -243,7 +243,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   bool get _shouldShowSuffix =>
       widget.suffix != null ||
       widget.trailing != null ||
-      (widget.inline && widget.maxCharacters != null) ||
+      (widget.isInlined && widget.maxCharacters != null) ||
       widget.showLoader ||
       widget.isPasswordField ||
       _shouldShowClearAllButton ||
@@ -255,10 +255,10 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       widget.isPasswordField && !widget.showLoader;
 
   bool get _shouldCollapse =>
-      widget.autoCollapse && !_effectiveFocusNode.hasFocus;
+      widget.enableAutoCollapse && !_effectiveFocusNode.hasFocus;
 
   void _handleFocusUpdate() => setState(() {
-        if (!widget.autoCollapse) return;
+        if (!widget.enableAutoCollapse) return;
         _updateLines();
       });
 
@@ -313,9 +313,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       errorVariant: widget.errorVariant,
       hasBorders: widget.hasBorders,
       isRequired: widget.isRequired,
-      inline: widget.inline,
-      multiline: widget.minLines != null,
-      inputCounter: widget.inline ? null : counter,
+      isInlined: widget.isInlined,
+      hasMultipleLines: widget.minLines != null,
+      inputCounter: widget.isInlined ? null : counter,
       statusBarState: widget.statusBarState,
       prefix: _shouldShowPrefix
           ? Prefix(prefix: widget.prefix, leading: widget.leading)
@@ -324,7 +324,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           ? Suffix(
               suffix: widget.suffix,
               trailing: widget.trailing,
-              counter: widget.inline ? counter : null,
+              counter: widget.isInlined ? counter : null,
               passwordButton: _isPasswordToggleVisible
                   ? _PasswordButton(
                       onTap: _handlePasswordTap,
@@ -356,8 +356,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             enableSuggestions: widget.enableSuggestions,
             textCapitalization: widget.textCapitalization,
             cursorColor: theme.tokens.textStaticSecondary,
-            autocorrect: widget.autocorrect,
-            autofocus: widget.autofocus,
+            autocorrect: widget.enableAutoCorrect,
+            autofocus: widget.enableAutoFocus,
             enableInteractiveSelection: widget.enableInteractiveSelection,
             controller: _effectiveController,
             maxLines: _maxLines,
@@ -379,7 +379,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             keyboardType: widget.keyboardType,
             obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
             onTap: widget.onTap,
-            readOnly: widget.readOnly,
+            readOnly: widget.isReadOnly,
             showCursor: widget.showCursor,
             inputFormatters: widget.inputFormatters,
             keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,

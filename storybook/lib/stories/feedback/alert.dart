@@ -20,7 +20,7 @@ class AlertStory extends StatelessWidget {
     final title = knobsBuilder.text(label: 'Title', initial: 'Title');
     final description = knobsBuilder.text(label: 'Description', initial: '');
     final link = knobsBuilder.text(label: 'Link text', initial: '');
-    final dismissible = knobsBuilder.boolean(label: 'Is Dismissible');
+    final isDismissible = knobsBuilder.boolean(label: 'Is Dismissible');
     final position = knobsBuilder.options(
       label: 'Position',
       initial: OptimusAlertPosition.topRight,
@@ -33,7 +33,7 @@ class AlertStory extends StatelessWidget {
         title: title,
         description: description,
         link: link,
-        dismissible: dismissible,
+        isDismissible: isDismissible,
       ),
     );
   }
@@ -44,13 +44,13 @@ class _AlertStoryContent extends StatelessWidget {
     required this.title,
     required this.description,
     required this.link,
-    required this.dismissible,
+    required this.isDismissible,
   });
 
   final String title;
   final String description;
   final String link;
-  final bool dismissible;
+  final bool isDismissible;
 
   OptimusFeedbackLink? get _link => link.isNotEmpty
       ? OptimusFeedbackLink(
@@ -72,7 +72,7 @@ class _AlertStoryContent extends StatelessWidget {
                       description.isNotEmpty ? Text(description) : null,
                   variant: variant,
                   link: _link,
-                  isDismissible: dismissible,
+                  isDismissible: isDismissible,
                 ),
               ),
               OptimusButton(
@@ -83,7 +83,7 @@ class _AlertStoryContent extends StatelessWidget {
                       description:
                           description.isNotEmpty ? Text(description) : null,
                       link: _link,
-                      isDismissible: dismissible,
+                      isDismissible: isDismissible,
                     ),
                   );
                 },

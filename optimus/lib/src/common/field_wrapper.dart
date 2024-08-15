@@ -23,8 +23,8 @@ class FieldWrapper extends StatefulWidget {
     this.children = const <Widget>[],
     this.size = OptimusWidgetSize.large,
     this.inputCounter,
-    this.inline = false,
-    this.multiline = false,
+    this.isInlined = false,
+    this.hasMultipleLines = false,
     this.statusBarState,
     this.placeholder,
   });
@@ -46,8 +46,8 @@ class FieldWrapper extends StatefulWidget {
   final Key? fieldBoxKey;
   final OptimusWidgetSize size;
   final Widget? inputCounter;
-  final bool inline;
-  final bool multiline;
+  final bool isInlined;
+  final bool hasMultipleLines;
   final OptimusStatusBarState? statusBarState;
   final Widget? placeholder;
 
@@ -95,11 +95,11 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   bool get _isFocused => widget.isFocused ?? widget.focusNode.hasFocus;
 
   bool get _hasHeader =>
-      (widget.label != null || widget.caption != null) && !widget.inline;
+      (widget.label != null || widget.caption != null) && !widget.isInlined;
 
   bool get _hasFooter =>
       widget.isEnabled &&
-      !widget.inline &&
+      !widget.isInlined &&
       (widget.helperMessage != null ||
           widget.inputCounter != null ||
           _normalizedError.isNotEmpty);
@@ -108,7 +108,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _hasFooterError => _normalizedError.isNotEmpty && _isUsingBottomHint;
 
-  double get _verticalPadding => widget.multiline
+  double get _verticalPadding => widget.hasMultipleLines
       ? widget.size.getVerticalPadding(tokens)
       : tokens.spacing0;
 
@@ -497,6 +497,7 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.extraLarge =>
           EdgeInsets.only(bottom: tokens.spacing100),
       };
+
   EdgeInsets getHelperPadding(OptimusTokens tokens) => switch (this) {
         OptimusWidgetSize.small ||
         OptimusWidgetSize.medium =>
@@ -505,6 +506,7 @@ extension on OptimusWidgetSize {
         OptimusWidgetSize.extraLarge =>
           EdgeInsets.only(top: tokens.spacing100),
       };
+
   EdgeInsets getErrorPadding(OptimusTokens tokens) =>
       EdgeInsets.only(top: tokens.spacing50);
 
