@@ -30,9 +30,10 @@ enum KioskMode {
 ///
 /// [1]: https://developer.android.com/reference/android/app/Activity#startLockTask()
 /// [2]: https://developer.apple.com/documentation/uikit/uiaccessibility/1615186-requestguidedaccesssession/
+// ignore: prefer-boolean-prefixes, a valid name with bool result
 Future<bool> startKioskMode() => _channel
     .invokeMethod<bool>('startKioskMode')
-    .then((value) => value ?? false);
+    .then((didStartKioskMode) => didStartKioskMode ?? false);
 
 /// On Android, stops the current task from being locked. On iOS, exits the Single App mode.
 ///
@@ -42,6 +43,7 @@ Future<bool> startKioskMode() => _channel
 /// On iOS, the result will be `true` if the request was fulfilled, `false` - otherwise.
 ///
 /// [1]: https://developer.android.com/reference/android/app/Activity#stopLockTask()
+// ignore: prefer-boolean-prefixes, a valid name with a bool result
 Future<bool?> stopKioskMode() => _channel.invokeMethod<bool>('stopKioskMode');
 
 /// Returns the current [KioskMode].
@@ -49,9 +51,11 @@ Future<bool?> stopKioskMode() => _channel.invokeMethod<bool>('stopKioskMode');
 /// On Android, it calls `isInLockTaskMode`.
 ///
 /// On iOS, it returns result of `UIAccessibility.isGuidedAccessEnabled`.
-Future<KioskMode> getKioskMode() => _channel
-    .invokeMethod<bool>('isInKioskMode')
-    .then((value) => value == true ? KioskMode.enabled : KioskMode.disabled);
+Future<KioskMode> getKioskMode() =>
+    _channel.invokeMethod<bool>('isInKioskMode').then(
+          (isInKioskMode) =>
+              isInKioskMode == true ? KioskMode.enabled : KioskMode.disabled,
+        );
 
 /// Returns `true`, if app is in a proper managed kiosk mode.
 ///
@@ -64,7 +68,7 @@ Future<KioskMode> getKioskMode() => _channel
 /// detection of Apple Business Manager yet.
 Future<bool> isManagedKiosk() => _channel
     .invokeMethod<bool>('isManagedKiosk')
-    .then((value) => value == true);
+    .then((isManagedKiosk) => isManagedKiosk == true);
 
 /// Returns the stream with [KioskMode].
 ///

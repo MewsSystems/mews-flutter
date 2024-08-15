@@ -37,19 +37,16 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
       alignment: position,
       child: OptimusButton(
         key: _anchor,
-        onPressed: () => {
-          DialogWrapper.of(context)?.showInline(
-            anchorKey: _anchor,
-            size: OptimusDialogSize.regular,
-            content: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: _InlineContentExample(),
-            ),
-            actions: hasActions
-                ? [const OptimusDialogAction(title: Text('OK'))]
-                : [],
+        onPressed: () => DialogWrapper.of(context)?.showInline(
+          anchorKey: _anchor,
+          size: OptimusDialogSize.regular,
+          content: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: _InlineContentExample(),
           ),
-        },
+          actions:
+              hasActions ? [const OptimusDialogAction(title: Text('OK'))] : [],
+        ),
         child: const Text('show'),
       ),
     );

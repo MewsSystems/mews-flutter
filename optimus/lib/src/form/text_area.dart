@@ -23,13 +23,13 @@ class OptimusTextArea extends StatelessWidget {
     this.error,
     this.errorVariant = OptimusInputErrorVariant.bottomHint,
     this.enableInteractiveSelection = true,
-    this.autofocus = false,
+    this.enableAutoFocus = false,
     this.isFocused,
-    this.autocorrect = true,
+    this.enableAutoCorrect = true,
     this.isRequired = false,
     this.inputKey,
     this.fieldBoxKey,
-    this.readOnly = false,
+    this.isReadOnly = false,
     this.onTap,
     this.textAlign = TextAlign.start,
     this.textCapitalization = TextCapitalization.none,
@@ -39,9 +39,9 @@ class OptimusTextArea extends StatelessWidget {
     this.keyboardAppearance,
     this.enableIMEPersonalizedLearning = true,
     this.enableSuggestions = true,
-    this.inline = false,
-    this.autoSize = true,
-    this.autoCollapse = true,
+    this.isInlined = false,
+    this.enableAutoSize = true,
+    this.enableAutoCollapse = true,
   });
 
   /// {@macro flutter.widgets.editableText.onChanged}
@@ -103,13 +103,13 @@ class OptimusTextArea extends StatelessWidget {
   final bool enableInteractiveSelection;
 
   /// {@macro flutter.widgets.editableText.autofocus}
-  final bool autofocus;
+  final bool enableAutoFocus;
 
   /// Controls whether the field is focused. Overrides [focusNode] focus.
   final bool? isFocused;
 
   /// {@macro flutter.widgets.editableText.autocorrect}
-  final bool autocorrect;
+  final bool enableAutoCorrect;
 
   /// Defines whether the field is required.
   final bool isRequired;
@@ -121,7 +121,7 @@ class OptimusTextArea extends StatelessWidget {
   final Key? fieldBoxKey;
 
   /// {@macro flutter.widgets.editableText.readOnly}
-  final bool readOnly;
+  final bool isReadOnly;
 
   /// The callback that will be called when the field is tapped.
   final VoidCallback? onTap;
@@ -159,15 +159,15 @@ class OptimusTextArea extends StatelessWidget {
   /// Controls whether the components should be inside the input field or
   /// outside, wrapping it. The inline variant is more dense and is smaller in
   /// the vertical direction.
-  final bool inline;
+  final bool isInlined;
 
   /// Controls whether the text area should automatically adjust its height to
   /// fit the content. Defaults to true.
-  final bool autoSize;
+  final bool enableAutoSize;
 
   /// Controls whether the input should collapse to one line height if not
   /// focused.
-  final bool autoCollapse;
+  final bool enableAutoCollapse;
 
   @override
   Widget build(BuildContext context) => OptimusInputField(
@@ -185,18 +185,18 @@ class OptimusTextArea extends StatelessWidget {
         helperMessage: helperMessage,
         maxLines: rows,
         maxCharacters: maxCharacters,
-        minLines: autoSize ? 1 : rows,
+        minLines: enableAutoSize ? 1 : rows,
         controller: controller,
         error: error,
         errorVariant: errorVariant,
         enableInteractiveSelection: enableInteractiveSelection,
-        autofocus: autofocus,
+        enableAutoFocus: enableAutoFocus,
         isFocused: isFocused,
-        autocorrect: autocorrect,
+        enableAutoCorrect: enableAutoCorrect,
         isRequired: isRequired,
         inputKey: inputKey,
         fieldBoxKey: fieldBoxKey,
-        readOnly: readOnly,
+        isReadOnly: isReadOnly,
         onTap: onTap,
         textAlign: textAlign,
         textCapitalization: textCapitalization,
@@ -206,7 +206,7 @@ class OptimusTextArea extends StatelessWidget {
         keyboardAppearance: keyboardAppearance,
         enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
         enableSuggestions: enableSuggestions,
-        inline: inline,
-        autoCollapse: autoCollapse,
+        isInlined: isInlined,
+        enableAutoCollapse: enableAutoCollapse,
       );
 }

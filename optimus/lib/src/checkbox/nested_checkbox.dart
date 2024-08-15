@@ -58,13 +58,13 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OptimusCheckbox(
-                  tristate: true,
+                  isTristate: true,
                   isEnabled: isEnabled,
                   isChecked: _isParentChecked,
                   label: parent,
-                  onChanged: (bool value) {
+                  onChanged: (bool isChecked) {
                     for (final child in children) {
-                      child.onChanged(value);
+                      child.onChanged(isChecked);
                     }
                   },
                 ),
@@ -120,7 +120,7 @@ class OptimusNestedCheckbox extends StatelessWidget {
     return OptimusCheckbox(
       label: label,
       size: size,
-      tristate: false,
+      isTristate: false,
       isEnabled: isEnabled,
       isChecked: isChecked,
       onChanged: onChanged,

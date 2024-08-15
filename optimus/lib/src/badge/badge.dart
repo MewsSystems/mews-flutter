@@ -9,7 +9,7 @@ class OptimusBadge extends StatelessWidget {
   const OptimusBadge({
     super.key,
     this.text = '',
-    this.outline = true,
+    this.isOutlined = true,
     this.overflow = TextOverflow.ellipsis,
     this.variant = OptimusBadgeVariant.primary,
   });
@@ -19,7 +19,7 @@ class OptimusBadge extends StatelessWidget {
 
   /// Whether to use the outline. Outlined version could be more accessible,
   /// depending on the underlying component.
-  final bool outline;
+  final bool isOutlined;
 
   /// Define how to display the overflowing text. Defaults to
   /// [TextOverflow.ellipsis]. Due to small height of the badge, the
@@ -35,7 +35,7 @@ class OptimusBadge extends StatelessWidget {
 
     return BaseBadge(
       text: text,
-      outline: outline,
+      isOutlined: isOutlined,
       textColor: variant.getTextColor(tokens),
       backgroundColor: variant.getBackgroundColor(tokens),
     );

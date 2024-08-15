@@ -14,7 +14,7 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
     required ValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
     ValueChanged<T>? onChanged,
-    bool multiselect = false,
+    bool allowMultipleSelection = false,
     List<T>? values,
   }) : super(
           builder: (FormFieldState<T> field) => OptimusSelectInput<T>(
@@ -29,8 +29,8 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
               field.didChange(v);
               onChanged?.call(v);
             },
-            multiselect: multiselect,
-            selectedValues: multiselect ? values : null,
+            allowMultipleSelection: allowMultipleSelection,
+            selectedValues: allowMultipleSelection ? values : null,
           ),
         );
 }

@@ -54,7 +54,7 @@ class OptimusTab extends StatelessWidget {
                 constraints: BoxConstraints(maxWidth: tokens.sizing400),
                 child: BaseBadge(
                   text: badge,
-                  outline: false,
+                  isOutlined: false,
                   textColor: badgeVariant.getTextColor(tokens),
                   backgroundColor: badgeVariant.getBackgroundColor(tokens),
                 ),

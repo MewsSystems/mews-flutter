@@ -33,13 +33,13 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.controller,
     this.onTextChanged,
     this.focusNode,
-    this.readOnly,
+    this.isReadOnly,
     this.showLoader = false,
     this.emptyResultPlaceholder,
     this.embeddedSearch,
     this.groupBy,
     this.groupBuilder,
-    this.multiselect = false,
+    this.allowMultipleSelection = false,
     this.selectedValues,
   });
 
@@ -68,7 +68,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final ValueSetter<T> onChanged;
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
-  final bool? readOnly;
+  final bool? isReadOnly;
 
   /// An embedded search field that can be used to filter the list of items.
   /// Will be displayed as a part of the dropdown menu. If the [controller] or
@@ -94,7 +94,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
   /// If enabled, you can select multiple items at the same time.
   /// State of the selected items is managed outside this widget and has to be
   /// set in [selectedValues].
-  final bool multiselect;
+  final bool allowMultipleSelection;
 
   /// List of selected values. Would be omitted if the multiselect is disabled.
   final List<T>? selectedValues;
@@ -189,7 +189,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
           : tokens.textStaticPrimary
       : tokens.textDisabled;
 
-  T? get _value => widget.multiselect ? null : widget.value;
+  T? get _value => widget.allowMultipleSelection ? null : widget.value;
 
   @override
   Widget build(BuildContext context) => DropdownSelect<T>(
@@ -214,10 +214,11 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         focusNode: _effectiveFocusNode,
         placeholderStyle: _textStyle,
         controller: _effectiveController,
-        readOnly: widget.readOnly ?? !_isUsingInlineSearch,
+        isReadOnly: widget.isReadOnly ?? !_isUsingInlineSearch,
         showCursor: _isUsingInlineSearch,
         showLoader: widget.showLoader,
-        shouldCloseOnInputTap: !widget.multiselect || !_isUsingInlineSearch,
+        shouldCloseOnInputTap:
+            !widget.allowMultipleSelection || !_isUsingInlineSearch,
         emptyResultPlaceholder: widget.emptyResultPlaceholder,
         embeddedSearch: _isUsingEmbeddedSearch ? widget.embeddedSearch : null,
         onDropdownShow:
@@ -226,7 +227,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
             _isUsingEmbeddedSearch ? _animationController.reverse : null,
         groupBy: widget.groupBy,
         groupBuilder: widget.groupBuilder,
-        multiselect: widget.multiselect,
+        allowMultipleSelection: widget.allowMultipleSelection,
         selectedValues: widget.selectedValues,
         builder: widget.builder,
       );

@@ -22,16 +22,14 @@ class NonModalDialogStory extends StatelessWidget {
     final title = k.text(label: 'Title', initial: 'Dialog title');
 
     return OptimusButton(
-      onPressed: () => {
-        DialogWrapper.of(context)?.show(
-          title: Text(title),
-          content: const Text('Content'),
-          isDismissible: isDismissible,
-          actions:
-              hasActions ? [const OptimusDialogAction(title: Text('OK'))] : [],
-          size: OptimusDialogSize.small,
-        ),
-      },
+      onPressed: () => DialogWrapper.of(context)?.show(
+        title: Text(title),
+        content: const Text('Content'),
+        isDismissible: isDismissible,
+        actions:
+            hasActions ? [const OptimusDialogAction(title: Text('OK'))] : [],
+        size: OptimusDialogSize.small,
+      ),
       child: const Text('show'),
     );
   }

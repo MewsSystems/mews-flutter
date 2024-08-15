@@ -13,8 +13,8 @@ final textAreaStory = Story(
     final isEnabled = k.boolean(label: 'Enabled', initial: true);
     final isRequired = k.boolean(label: 'Required', initial: false);
     final rows = k.sliderInt(label: 'Rows', initial: 1, min: 1, max: 10);
-    final autoCollapse = k.boolean(label: 'Auto collapse', initial: true);
-    final autoSize = k.boolean(label: 'Auto size', initial: true);
+    final enableAutoCollapse = k.boolean(label: 'Auto collapse', initial: true);
+    final enableAutoSize = k.boolean(label: 'Auto size', initial: true);
     final maxCharacters =
         k.sliderInt(label: 'Max characters', initial: 100, min: 0, max: 100);
 
@@ -26,8 +26,8 @@ final textAreaStory = Story(
         isEnabled: isEnabled,
         isRequired: isRequired,
         rows: rows,
-        autoCollapse: autoCollapse,
-        autoSize: autoSize,
+        enableAutoCollapse: enableAutoCollapse,
+        enableAutoSize: enableAutoSize,
         error: error.isNotEmpty ? error : null,
         maxCharacters: maxCharacters == 0 ? null : maxCharacters,
       ),

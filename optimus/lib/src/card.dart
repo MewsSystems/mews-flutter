@@ -50,7 +50,7 @@ class OptimusCard extends StatelessWidget {
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
     this.variant = OptimusBasicCardVariant.normal,
-    this.outline = true,
+    this.isOutlined = true,
     this.radius = OptimusCardCornerRadius.medium,
   });
 
@@ -71,12 +71,12 @@ class OptimusCard extends StatelessWidget {
   final OptimusBasicCardVariant variant;
 
   /// Whether card should be outlined;
-  final bool outline;
+  final bool isOutlined;
 
   /// Controls the radius of the card.
   final OptimusCardCornerRadius radius;
 
-  Border? _border(BuildContext context) => outline
+  Border? _border(BuildContext context) => isOutlined
       ? Border.all(
           width: context.tokens.borderWidth150,
           color: context.tokens.borderStaticPrimary,
@@ -124,7 +124,7 @@ class OptimusNestedCard extends StatelessWidget {
     this.padding = OptimusCardSpacing.spacing200,
     this.attachment = OptimusCardAttachment.none,
     this.variant = OptimusNestedCardVariant.normal,
-    this.outline = false,
+    this.isOutlined = false,
     this.radius = OptimusCardCornerRadius.medium,
   });
 
@@ -145,7 +145,7 @@ class OptimusNestedCard extends StatelessWidget {
   final OptimusNestedCardVariant variant;
 
   /// Whether card should be outlined.
-  final bool outline;
+  final bool isOutlined;
 
   /// The radius of the card.
   final OptimusCardCornerRadius radius;
@@ -155,7 +155,7 @@ class OptimusNestedCard extends StatelessWidget {
         OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
       };
 
-  Border? _border(BuildContext context) => outline
+  Border? _border(BuildContext context) => isOutlined
       ? Border.all(
           width: context.tokens.borderWidth150,
           color: context.tokens.borderStaticPrimary,

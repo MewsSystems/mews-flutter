@@ -10,7 +10,7 @@ const Duration _kExpand = Duration(milliseconds: 200);
 class OptimusExpansionTile extends StatefulWidget {
   /// Creates a single-line [OptimusListTile] with a trailing button that expands or
   /// collapses the tile to reveal or hide the [children]. The
-  /// [initiallyExpanded] property must be non-null.
+  /// [isInitiallyExpanded] property must be non-null.
   const OptimusExpansionTile({
     super.key,
     this.leading,
@@ -20,7 +20,7 @@ class OptimusExpansionTile extends StatefulWidget {
     this.onExpansionChanged,
     this.children = const <Widget>[],
     this.trailing,
-    this.initiallyExpanded = false,
+    this.isInitiallyExpanded = false,
     this.hasBorders = true,
     this.actionsWidth = 0,
     this.slidableActions = const <Widget>[],
@@ -62,7 +62,7 @@ class OptimusExpansionTile extends StatefulWidget {
 
   /// Specifies if the list tile is initially expanded (true)
   /// or collapsed (false, the default).
-  final bool initiallyExpanded;
+  final bool isInitiallyExpanded;
 
   /// Borders of the inner [OptimusSlidable] widget
   final bool hasBorders;
@@ -104,7 +104,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
 
     _isExpanded = (PageStorage.of(context).readState(context) ??
-        widget.initiallyExpanded) as bool;
+        widget.isInitiallyExpanded) as bool;
     if (_isExpanded) _controller.value = 1.0;
   }
 
@@ -141,7 +141,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
 
   @override
   Widget build(BuildContext context) {
-    final bool closed = !_isExpanded && _controller.isDismissed;
+    final bool isClosed = !_isExpanded && _controller.isDismissed;
 
     return AnimatedBuilder(
       animation: _controller.view,
@@ -178,7 +178,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
           ],
         );
       },
-      child: closed ? null : Column(children: widget.children),
+      child: isClosed ? null : Column(children: widget.children),
     );
   }
 }

@@ -23,11 +23,11 @@ class OptimusPasswordFormField extends StatelessWidget {
     this.minLines,
     this.maxCharacters,
     this.enableInteractiveSelection = true,
-    this.autofocus = false,
+    this.enableAutoFocus = false,
     this.hasBorders = true,
     this.isRequired = false,
     this.inputKey,
-    this.readOnly = false,
+    this.isReadOnly = false,
     this.showCursor,
     this.showLoader = false,
     this.onTap,
@@ -90,7 +90,7 @@ class OptimusPasswordFormField extends StatelessWidget {
   final bool enableInteractiveSelection;
 
   /// Whether the form field has to be autofocused. Defaults to false.
-  final bool autofocus;
+  final bool enableAutoFocus;
 
   /// Whether the form field has borders. Defaults to true.
   final bool hasBorders;
@@ -102,7 +102,7 @@ class OptimusPasswordFormField extends StatelessWidget {
   final Key? inputKey;
 
   /// Whether the form field is read-only. Defaults to false.
-  final bool readOnly;
+  final bool isReadOnly;
 
   /// Whether the cursor is shown.
   final bool? showCursor;
@@ -157,11 +157,11 @@ class OptimusPasswordFormField extends StatelessWidget {
         minLines: minLines,
         maxCharacters: maxCharacters,
         enableInteractiveSelection: enableInteractiveSelection,
-        autofocus: autofocus,
+        autofocus: enableAutoFocus,
         hasBorders: hasBorders,
         isRequired: isRequired,
         inputKey: inputKey,
-        readOnly: readOnly,
+        readOnly: isReadOnly,
         showCursor: showCursor,
         onTap: onTap,
         textAlign: textAlign,

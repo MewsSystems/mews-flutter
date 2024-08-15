@@ -22,19 +22,19 @@ class _CheckboxGroupStory extends StatefulWidget {
 class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
   // ignore: avoid-duplicate-collection-elements, duplicity is intentional
   final List<bool> _values = [false, true, false, false, false];
-  bool _outsideCheckbox = false;
+  bool _isRootChecked = false;
 
-  void _handleChanged(int position, bool value) =>
-      setState(() => _values[position] = value);
+  void _handleChanged(int position, bool isChecked) =>
+      setState(() => _values[position] = isChecked);
 
-  void _handleOutsideChanged(bool value) =>
-      setState(() => _outsideCheckbox = value);
+  void _handleRootChanged(bool isRootChecked) =>
+      setState(() => _isRootChecked = isRootChecked);
 
   @override
   Widget build(BuildContext context) {
     final k = widget.knobs;
 
-    final enabled = k.boolean(label: 'Enabled', initial: true);
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
 
     return Center(
       child: Column(
@@ -42,40 +42,40 @@ class _CheckboxGroupStoryState extends State<_CheckboxGroupStory> {
         children: [
           OptimusCheckbox(
             label: const Text('Outside Checkbox'),
-            isChecked: _outsideCheckbox,
-            isEnabled: enabled,
-            onChanged: _handleOutsideChanged,
+            isChecked: _isRootChecked,
+            isEnabled: isEnabled,
+            onChanged: _handleRootChanged,
           ),
           OptimusNestedCheckboxGroup(
             parent: const Text('Parent'),
             label: k.text(label: 'Label'),
             error: k.text(label: 'Error'),
-            isEnabled: enabled,
+            isEnabled: isEnabled,
             children: [
               OptimusNestedCheckbox(
                 label: const Text('Checkbox 1'),
                 isChecked: _values.first,
-                onChanged: (bool value) => _handleChanged(0, value),
+                onChanged: (bool isChecked) => _handleChanged(0, isChecked),
               ),
               OptimusNestedCheckbox(
                 label: const Text('Checkbox 2'),
                 isChecked: _values[1],
-                onChanged: (bool value) => _handleChanged(1, value),
+                onChanged: (bool isChecked) => _handleChanged(1, isChecked),
               ),
               OptimusNestedCheckbox(
                 isChecked: _values[2],
                 label: const Text('Checkbox 3'),
-                onChanged: (bool value) => _handleChanged(2, value),
+                onChanged: (bool isChecked) => _handleChanged(2, isChecked),
               ),
               OptimusNestedCheckbox(
                 isChecked: _values[3],
                 label: const Text('Checkbox 4'),
-                onChanged: (bool value) => _handleChanged(3, value),
+                onChanged: (bool isChecked) => _handleChanged(3, isChecked),
               ),
               OptimusNestedCheckbox(
                 isChecked: _values.last,
                 label: const Text('Checkbox 5'),
-                onChanged: (bool value) => _handleChanged(4, value),
+                onChanged: (bool isChecked) => _handleChanged(4, isChecked),
               ),
             ],
           ),
