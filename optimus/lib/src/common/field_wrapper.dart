@@ -125,93 +125,95 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (_hasHeader)
-          _InputHeader(
-            size: widget.size,
-            label: widget.label,
-            isRequired: widget.isRequired,
-            isEnabled: widget.isEnabled,
-            caption: widget.caption,
-            captionIcon: widget.captionIcon,
-          ),
-        IgnorePointer(
-          ignoring: !widget.isEnabled,
-          child:
-              // Decoration is nullable, cannot use DecoratedBox
-              // ignore: use_decorated_box
-              Container(
-            key: widget.fieldBoxKey,
-            decoration: widget.hasBorders
-                ? BoxDecoration(
-                    color: _background,
-                    borderRadius: BorderRadius.all(tokens.borderRadius100),
-                    border: Border.all(
-                      color: _borderColor,
-                      width: tokens.borderWidth150,
+    return IgnorePointer(
+      ignoring: !widget.isEnabled,
+      child: GestureDetector(
+        onTap: widget.focusNode.requestFocus,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_hasHeader)
+              _InputHeader(
+                size: widget.size,
+                label: widget.label,
+                isRequired: widget.isRequired,
+                isEnabled: widget.isEnabled,
+                caption: widget.caption,
+                captionIcon: widget.captionIcon,
+              ),
+            // Decoration is nullable, cannot use DecoratedBox
+            // ignore: use_decorated_box
+            Container(
+              key: widget.fieldBoxKey,
+              decoration: widget.hasBorders
+                  ? BoxDecoration(
+                      color: _background,
+                      borderRadius: BorderRadius.all(tokens.borderRadius100),
+                      border: Border.all(
+                        color: _borderColor,
+                        width: tokens.borderWidth150,
+                      ),
+                    )
+                  : null,
+              child: MouseRegion(
+                onEnter: (_) => _handleHoverChanged(true),
+                onExit: (_) => _handleHoverChanged(false),
+                child: AnimatedContainer(
+                  duration: _kAnimationDuration,
+                  constraints:
+                      BoxConstraints(minHeight: widget.size.getHeight(tokens)),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: widget.size.getContentPadding(tokens),
+                      vertical: _verticalPadding,
                     ),
-                  )
-                : null,
-            child: MouseRegion(
-              onEnter: (_) => _handleHoverChanged(true),
-              onExit: (_) => _handleHoverChanged(false),
-              child: AnimatedContainer(
-                duration: _kAnimationDuration,
-                constraints:
-                    BoxConstraints(minHeight: widget.size.getHeight(tokens)),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: widget.size.getContentPadding(tokens),
-                    vertical: _verticalPadding,
-                  ),
-                  child: Row(
-                    children: [
-                      if (widget.prefix case final prefix?)
-                        Padding(
-                          padding: EdgeInsets.only(right: tokens.spacing100),
-                          child: _Styled(
-                            isEnabled: widget.isEnabled,
-                            child: prefix,
+                    child: Row(
+                      children: [
+                        if (widget.prefix case final prefix?)
+                          Padding(
+                            padding: EdgeInsets.only(right: tokens.spacing100),
+                            child: _Styled(
+                              isEnabled: widget.isEnabled,
+                              child: prefix,
+                            ),
                           ),
-                        ),
-                      if (widget.placeholder case final placeholder?)
-                        placeholder,
-                      ...widget.children,
-                      if (widget.suffix case final suffix?)
-                        Padding(
-                          padding: EdgeInsets.only(left: tokens.spacing50),
-                          child: _Styled(
-                            isEnabled: widget.isEnabled,
-                            child: suffix,
+                        if (widget.placeholder case final placeholder?)
+                          placeholder,
+                        ...widget.children,
+                        if (widget.suffix case final suffix?)
+                          Padding(
+                            padding: EdgeInsets.only(left: tokens.spacing50),
+                            child: _Styled(
+                              isEnabled: widget.isEnabled,
+                              child: suffix,
+                            ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+            if (widget.statusBarState case final inputState?)
+              _StatusBar(state: inputState),
+            if (_hasFooter)
+              _InputFooter(
+                size: widget.size,
+                isEnabled: widget.isEnabled,
+                inputCounter: widget.inputCounter,
+                helperMessage: widget.helperMessage,
+                error: _hasFooterError
+                    ? _InputError(
+                        error: _normalizedError,
+                        isEnabled: widget.isEnabled,
+                        size: widget.size,
+                      )
+                    : null,
+              ),
+          ],
         ),
-        if (widget.statusBarState case final inputState?)
-          _StatusBar(state: inputState),
-        if (_hasFooter)
-          _InputFooter(
-            size: widget.size,
-            isEnabled: widget.isEnabled,
-            inputCounter: widget.inputCounter,
-            helperMessage: widget.helperMessage,
-            error: _hasFooterError
-                ? _InputError(
-                    error: _normalizedError,
-                    isEnabled: widget.isEnabled,
-                    size: widget.size,
-                  )
-                : null,
-          ),
-      ],
+      ),
     );
   }
 }
