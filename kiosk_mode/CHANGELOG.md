@@ -1,3 +1,7 @@
+## 0.5.0+5
+
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.5.0+4
 
  - **REFACTOR**: Fix linter issues.
