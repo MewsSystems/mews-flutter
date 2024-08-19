@@ -145,7 +145,6 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                       CheckboxTick(
                         isEnabled: widget.isEnabled,
                         isChecked: widget.isSelected,
-                        // ignore: prefer-boolean-prefixes, DCM bug
                         onChanged: (_) {},
                         onTap: () {},
                       )
