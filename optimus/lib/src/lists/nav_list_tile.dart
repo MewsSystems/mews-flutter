@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/state_property.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
-import 'package:optimus/src/typography/typography.dart';
 
 /// Lists are vertically organized groups of data. Optimized for reading
 /// comprehension, a list consists of a single continuous column of rows, with
@@ -15,229 +16,149 @@ import 'package:optimus/src/typography/typography.dart';
 /// (such as supporting visuals and headlines) are placed in consistent
 /// locations across list items. It's not recommended to mix tiles with icon,
 /// avatar or without any leading widget in the same list.
-class OptimusNavListTile extends StatelessWidget {
+class OptimusNavListTile extends StatefulWidget {
   const OptimusNavListTile({
     super.key,
-    required this.headline,
-    this.description,
-    this.leadingIcon,
-    this.leadingAvatar,
-    this.trailingIcon,
-    this.metadata,
+    required this.label,
+    this.leading,
+    this.rightDetail,
+    this.isToggleVisible = false,
+    this.isToggled = false,
+    this.isChevronVisible = false,
+    this.useHorizontalPadding = false,
     this.onTap,
-    this.fontVariant = FontVariant.normal,
-    this.tileSize = TileSize.normal,
+    this.isEnabled = true,
+    this.onTogglePressed,
   });
 
-  /// Communicates the subject of the list item.
-  /// The primary content of the list item.
-  ///
-  /// Typically a [Text] widget.
-  final Widget headline;
+  /// The label of the list tile.
+  final Widget label;
 
-  /// Additional content displayed below the [headline].
-  /// Can provide extra information needed for the user to make a choice.
-  ///
-  /// Typically a [Text] widget.
-  final Widget? description;
+  /// The leading widget of the list tile.
+  final Widget? leading;
 
-  /// Icons can help with scanning and speed up the user's decision. Remember
-  /// to use icons that can be easily recognized by the users. If
-  /// [leadingAvatar] is provided, the [leadingIcon] will be hidden.
-  final Widget? leadingIcon;
-
-  /// An image that would be displayed on the leading position. Used for better
-  /// recognition. Will replace [leadingIcon] if provided.
-  final Widget? leadingAvatar;
-
-  /// Additional cue to indicate the interactive character of the list item.
-  final Widget? trailingIcon;
-
-  /// Can be used in addition to Additional Description, to communicate
-  /// meta-information about the list item, such as price, content count, or
-  /// other details.
-  final Widget? metadata;
-
-  /// Action to be called on the tap gesture.
+  /// The callback that is called when the list tile is tapped.
   final VoidCallback? onTap;
 
-  /// Font variant, which will determine the text style. See [FontVariant] for
-  /// more details.
-  final FontVariant fontVariant;
+  /// Whether to use horizontal padding.
+  final bool useHorizontalPadding;
 
-  /// Depending on the screen size and list context you might need to use small
-  /// variant. Will be set to [TileSize.normal], if not provided.
-  /// - [TileSize.normal] - This variant should be used always when there is no
-  /// space constraint
-  /// - [TileSize.small] - Uses smaller font sizes and has less padding on top
-  /// and bottom than the default variant. This variant should only be used
-  /// when vertical space is scarce and showing more items on the list without
-  /// the need to scroll is important for the user's task completion.
-  final TileSize tileSize;
+  /// Whether the toggle is visible.
+  final bool isToggleVisible;
 
-  double _getContentSpacing(OptimusTokens tokens) => switch (tileSize) {
-        TileSize.normal => tokens.spacing200,
-        TileSize.small => tokens.spacing100,
-      };
+  /// Whether the chevron is visible.
+  final bool isChevronVisible;
+
+  /// The right detail widget of the list tile.
+  final Widget? rightDetail;
+
+  /// Whether the toggle is toggled.
+  final bool isToggled;
+
+  /// The callback that is called when the toggle is pressed.
+  final ValueChanged<bool>? onTogglePressed;
+
+  /// Whether the tile is enabled.
+  final bool isEnabled;
+
+  @override
+  State<OptimusNavListTile> createState() => _OptimusNavListTileState();
+}
+
+class _OptimusNavListTileState extends State<OptimusNavListTile>
+    with ThemeGetter {
+  final WidgetStatesController _controller = WidgetStatesController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  InteractiveStateColor get _backgroundColor => InteractiveStateColor(
+        defaultColor: tokens.backgroundInteractiveNeutralSubtleDefault,
+        disabled: Colors.transparent,
+        pressed: tokens.backgroundInteractiveNeutralSubtleActive,
+        hovered: tokens.backgroundInteractiveNeutralSubtleHover,
+      );
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final leadingIcon = this.leadingIcon;
-    final leadingAvatar = this.leadingAvatar;
+    final foregroundColor =
+        widget.isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
+    final iconTheme = IconThemeData(color: foregroundColor);
+    final contentPadding = EdgeInsets.only(right: tokens.spacing200);
 
-    return BaseListTile(
-      onTap: onTap,
-      content: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: _getContentSpacing(tokens),
-          horizontal: tokens.spacing200,
-        ),
-        child: Row(
-          children: <Widget>[
-            if (leadingAvatar != null) _Avatar(avatar: leadingAvatar),
-            if (leadingAvatar == null && leadingIcon != null)
-              _LeadingIcon(icon: leadingIcon),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _Headline(fontVariant: fontVariant, headline: headline),
-                  if (description case final description?)
-                    _Description(
-                      description: description,
-                      fontVariant: fontVariant,
+    return IgnorePointer(
+      ignoring: !widget.isEnabled,
+      child: GestureWrapper(
+        onHoverChanged: (isHovered) =>
+            setState(() => _controller.update(WidgetState.hovered, isHovered)),
+        onPressedChanged: (isPressed) =>
+            setState(() => _controller.update(WidgetState.pressed, isPressed)),
+        child: DecoratedBox(
+          decoration:
+              BoxDecoration(color: _backgroundColor.resolve(_controller.value)),
+          child: BaseListTile(
+            onTap: widget.onTap,
+            content: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: widget.useHorizontalPadding
+                    ? tokens.spacing200
+                    : tokens.spacing0,
+              ),
+              child: Row(
+                children: [
+                  //leading
+                  if (widget.leading case final leading?)
+                    Padding(
+                      padding: contentPadding,
+                      child: DefaultTextStyle.merge(
+                        style: TextStyle(color: foregroundColor),
+                        child: IconTheme.merge(data: iconTheme, child: leading),
+                      ),
                     ),
+                  Expanded(
+                    child: Padding(
+                      padding: contentPadding,
+                      child: DefaultTextStyle.merge(
+                        child: widget.label,
+                        style: tokens.bodyLarge.copyWith(
+                          color: widget.isEnabled
+                              ? tokens.textStaticPrimary
+                              : tokens.textDisabled,
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (widget.rightDetail case final rightDetail?)
+                    Padding(
+                      padding: contentPadding,
+                      child:
+                          IconTheme.merge(data: iconTheme, child: rightDetail),
+                    ),
+                  if (widget.isToggleVisible)
+                    Padding(
+                      padding: contentPadding,
+                      child: OptimusToggle(
+                        onChanged:
+                            widget.isEnabled ? widget.onTogglePressed : null,
+                        isChecked: widget.isToggled,
+                      ),
+                    ),
+                  if (widget.isChevronVisible)
+                    Icon(
+                      OptimusIcons.chevron_right,
+                      color: foregroundColor,
+                      size: tokens.sizing300,
+                    )
                 ],
               ),
             ),
-            if (metadata case final metadata?) _Metadata(metadata: metadata),
-            if (trailingIcon case final trailingIcon?)
-              _TrailingIcon(icon: trailingIcon),
-          ],
+          ),
         ),
       ),
     );
   }
 }
-
-class _Description extends StatelessWidget {
-  const _Description({
-    required this.description,
-    required this.fontVariant,
-  });
-
-  final Widget description;
-  final FontVariant fontVariant;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return Padding(
-      padding: EdgeInsets.only(right: tokens.spacing100),
-      child: OptimusTypography(
-        resolveStyle: (_) => tokens.bodyMediumStrong,
-        color: fontVariant.secondaryColor,
-        child: DefaultTextStyle.merge(
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          child: description,
-        ),
-      ),
-    );
-  }
-}
-
-class _LeadingIcon extends StatelessWidget {
-  const _LeadingIcon({required this.icon});
-
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return Padding(
-      padding: EdgeInsets.only(right: tokens.spacing200),
-      child: IconTheme.merge(
-        data: IconThemeData(size: tokens.sizing300),
-        child: icon,
-      ),
-    );
-  }
-}
-
-class _Avatar extends StatelessWidget {
-  const _Avatar({required this.avatar});
-
-  final Widget avatar;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return Padding(
-      padding: EdgeInsets.only(right: tokens.spacing200),
-      child: SizedBox(width: tokens.sizing500, child: avatar),
-    );
-  }
-}
-
-class _Headline extends StatelessWidget {
-  const _Headline({required this.fontVariant, required this.headline});
-
-  final FontVariant fontVariant;
-  final Widget headline;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return Padding(
-      padding: EdgeInsets.only(right: tokens.spacing100),
-      child: OptimusTypography(
-        resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
-        child: DefaultTextStyle.merge(
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          child: headline,
-        ),
-      ),
-    );
-  }
-}
-
-class _Metadata extends StatelessWidget {
-  const _Metadata({required this.metadata});
-
-  final Widget metadata;
-
-  @override
-  Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodySmallStrong,
-        color: OptimusTypographyColor.secondary,
-        child: metadata,
-      );
-}
-
-class _TrailingIcon extends StatelessWidget {
-  const _TrailingIcon({required this.icon});
-
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return Padding(
-      padding: EdgeInsets.only(left: tokens.spacing200),
-      child: IconTheme.merge(
-        data: IconThemeData(size: tokens.sizing300),
-        child: icon,
-      ),
-    );
-  }
-}
-
-enum TileSize { normal, small }
