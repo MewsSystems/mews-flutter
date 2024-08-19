@@ -1,6 +1,6 @@
 name: optimus
 description: Optimus is a design system for mobile platforms (and web in future) used internally in Mews.
-version: 0.36.0
+version: 0.37.0
 repository: https://github.com/MewsSystems/mews-flutter
 
 environment:
@@ -22,7 +22,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ">=1.0.0 <3.0.0"
-  mews_pedantic: ^0.29.0
+  mews_pedantic: ^0.30.0
   theme_tailor: "^3.0.0"
 flutter:
   assets:
