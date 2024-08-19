@@ -1,3 +1,15 @@
+## 0.37.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: [DX-1926] Fix placeholder alignment in the multiline input (#646).
+ - **FEAT**: [DX-2097] Expand Input touch zone (#659).
+ - **FEAT**: [DX-1203] Add OptimusSelectionCard component (#656).
+ - **FEAT**: [DX-1642] Update Card component (#647).
+ - **FEAT**: [DX-2116] Refactor Radio Circle (#657).
+ - **FEAT**: [DX-2052] Update ListTile alignment (#655).
+ - **BREAKING** **REFACTOR**: Refactor naming.
+
 ## 0.36.0
 
 > Note: This release has breaking changes.
