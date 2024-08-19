@@ -1,0 +1,21 @@
+name: Publish kiosk_mode to pub.dev
+
+on:
+  push:
+    tags:
+      - "kiosk_mode-v[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  publish:
+    name: Publish to pub.dev
+    runs-on: ubuntu-latest
+    environment: pub.dev
+    permissions:
+      id-token: write
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/publish
+        with:
+          working-directory: kiosk_mode
