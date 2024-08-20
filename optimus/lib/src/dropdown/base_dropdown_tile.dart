@@ -54,7 +54,6 @@ class BaseDropdownTile extends StatelessWidget {
                     padding: EdgeInsets.only(right: tokens.spacing200),
                     child: CheckboxTick(
                       isEnabled: true,
-                      // ignore: prefer-boolean-prefixes, DCM bug
                       onChanged: (_) {},
                       onTap: () {},
                       isChecked: isSelected,
