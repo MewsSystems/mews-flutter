@@ -75,6 +75,14 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
     super.dispose();
   }
 
+  @override
+  void didUpdateWidget(OptimusNavListTile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isEnabled != oldWidget.isEnabled) {
+      _controller.update(WidgetState.disabled, !widget.isEnabled);
+    }
+  }
+
   InteractiveStateColor get _backgroundColor => InteractiveStateColor(
         defaultColor: tokens.backgroundInteractiveNeutralSubtleDefault,
         disabled: Colors.transparent,
