@@ -160,7 +160,7 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
                       OptimusIcons.chevron_right,
                       color: foregroundColor,
                       size: tokens.sizing300,
-                    )
+                    ),
                 ],
               ),
             ),
