@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/optimus_icons.dart';
+import 'package:optimus/optimus.dart';
 
 // NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart
 

@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/loader/spinner.dart';
 import 'package:optimus/src/stack.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/tooltip/tooltip_wrapper.dart';
+import 'package:optimus_icons/optimus_icons.dart';
 
 class Suffix extends StatelessWidget {
   const Suffix({

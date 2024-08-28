@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
+import 'package:optimus_icons/optimus_icons.dart';
 
 /// Describes a certain type of feedback with its semantical meaning.
 ///

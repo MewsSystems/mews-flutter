@@ -4,8 +4,8 @@ import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 
 export 'package:intl/intl.dart' show DateFormat;
+export 'package:optimus_icons/optimus_icons.dart';
 
-export 'optimus_icons.dart';
 export 'src/avatar/avatar.dart';
 export 'src/badge/badge.dart';
 export 'src/badge/badge_variant.dart';
