@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus_icons/optimus_icons.dart';
 
 class CheckboxTick extends StatefulWidget {
   const CheckboxTick({

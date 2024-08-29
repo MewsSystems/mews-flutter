@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:optimus/optimus_icons.dart';
 import 'package:optimus/src/feedback/feedback_variant.dart';
 import 'package:optimus/src/theme/theme.dart';
+import 'package:optimus_icons/optimus_icons.dart';
 
 class FeedbackIcon extends StatelessWidget {
   const FeedbackIcon({super.key, required this.variant, this.icon});
