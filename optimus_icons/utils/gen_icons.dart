@@ -25,7 +25,7 @@
 /// DAMAGE.
 
 /// Generates icons list from fluttericon config
-/// dart ./gen_examples.dart ../../optimus/lib/ ../lib
+/// dart ./gen_examples.dart ../../optimus_icons/lib/ ../lib
 
 import 'dart:convert';
 import 'dart:io';
@@ -50,7 +50,7 @@ void main(List<String> arguments) {
           [
             '',
             "import 'package:flutter/widgets.dart';",
-            "import 'package:optimus/optimus_icons.dart';",
+            "import 'package:optimus_icons/src/optimus_icons.dart';",
             '',
             '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
             '',
@@ -65,8 +65,8 @@ void main(List<String> arguments) {
         ..writeln('const optimusIcons = <IconDetails>[');
 
       for (int i = 0; i < icons.length; i++) {
-        final Map<String, dynamic> glyps = icons[i] as Map<String, dynamic>;
-        final glyphName = convertGlyphName(glyps['css'].toString());
+        final Map<String, dynamic> glyphs = icons[i] as Map<String, dynamic>;
+        final glyphName = convertGlyphName(glyphs['css'].toString());
         buffer.writeln(
           "    IconDetails($fontFamilyName.$glyphName, '$glyphName'),",
         );
