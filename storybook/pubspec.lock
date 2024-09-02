@@ -231,13 +231,12 @@ packages:
     source: path
     version: "0.37.0"
   optimus_icons:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
-      name: optimus_icons
-      sha256: e79dba5ca6574be6de22f3c9863da45f03ac5679c507eb91e1b671765ec0f8dd
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0+1"
+      path: "../optimus_icons"
+      relative: true
+    source: path
+    version: "0.1.0+2"
   path:
     dependency: "direct dev"
     description:
