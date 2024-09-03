@@ -15,6 +15,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mews_pedantic: ^0.30.0
+  path: ^1.9.0
 
 flutter:
   fonts:
