@@ -12,6 +12,8 @@
 import 'package:optimus_widgetbook/components/chip.dart' as _i2;
 import 'package:optimus_widgetbook/components/forms/checkbox.dart' as _i3;
 import 'package:optimus_widgetbook/components/forms/checkbox_group.dart' as _i4;
+import 'package:optimus_widgetbook/components/forms/checkbox_nested.dart'
+    as _i5;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -48,7 +50,19 @@ final directories = <_i1.WidgetbookNode>[
             ),
           ),
         ],
-      )
+      ),
+      _i1.WidgetbookFolder(
+        name: 'Nested Group',
+        children: [
+          _i1.WidgetbookLeafComponent(
+            name: 'OptimusNestedCheckboxGroup',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Nested Checkbox Group',
+              builder: _i5.defaultStyle,
+            ),
+          )
+        ],
+      ),
     ],
   ),
 ];
