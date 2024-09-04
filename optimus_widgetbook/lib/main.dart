@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/main.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -19,6 +20,12 @@ class WidgetbookApp extends StatelessWidget {
           GridAddon(100),
           AlignmentAddon(),
           ZoomAddon(),
+          BuilderAddon(
+            name: 'OptimusTheme Builder',
+            builder: (BuildContext context, Widget widget) => OptimusTheme(
+              child: Center(child: widget),
+            ),
+          ),
         ],
         directories: directories,
       );
