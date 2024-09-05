@@ -6,25 +6,37 @@ import 'package:storybook_flutter/storybook_flutter.dart';
 
 final Story navListTileStory = Story(
   name: 'Data Display/List/Navigation List Tile',
-  builder: (context) {
+  builder: (context) => const _NavListExample(),
+);
+
+class _NavListExample extends StatefulWidget {
+  const _NavListExample();
+
+  @override
+  State<_NavListExample> createState() => _NavListExampleState();
+}
+
+class _NavListExampleState extends State<_NavListExample> {
+  bool _isToggled = false;
+
+  @override
+  Widget build(BuildContext context) {
     final k = context.knobs;
-    final headline = k.text(label: 'Headline', initial: 'Headline');
-    final description = k.text(label: 'Description', initial: 'Description');
+    final label = k.text(label: 'Label', initial: 'Label');
     final leading = k.options(
-      label: 'Leading Icon',
-      initial: null,
+      label: 'Leading',
+      initial: OptimusIcons.magic,
       options: exampleIcons,
     );
-    final trailing = k.options(
-      label: 'Trailing Icon',
-      initial: null,
-      options: exampleIcons,
+    final rightDetail =
+        k.options(label: 'Right Detail', initial: null, options: exampleIcons);
+    final isToggleVisible = k.boolean(
+      label: 'Toggle',
+      initial: false,
     );
-    final fontVariant = k.options(
-      label: 'Font variant',
-      initial: FontVariant.normal,
-      options: FontVariant.values.toOptions(),
-    );
+    final isChevronVisible = k.boolean(label: 'Chevron', initial: false);
+    final isEnabled = k.boolean(label: 'Enabled', initial: true);
+    final useHorizontalPadding = k.boolean(label: 'Use Padding', initial: true);
 
     return SingleChildScrollView(
       child: Center(
@@ -32,11 +44,16 @@ final Story navListTileStory = Story(
           children: Iterable<int>.generate(10)
               .map(
                 (i) => OptimusNavListTile(
-                  headline: Text(headline),
-                  description: Text(description),
-                  fontVariant: fontVariant,
-                  leadingIcon: leading != null ? Icon(leading) : null,
-                  trailingIcon: trailing != null ? Icon(trailing) : null,
+                  label: Text(label),
+                  rightDetail: rightDetail != null ? Icon(rightDetail) : null,
+                  isChevronVisible: isChevronVisible,
+                  isToggleVisible: isToggleVisible,
+                  onTogglePressed: (isToggled) =>
+                      setState(() => _isToggled = isToggled),
+                  isToggled: _isToggled,
+                  isEnabled: isEnabled,
+                  leading: leading != null ? Icon(leading) : null,
+                  useHorizontalPadding: useHorizontalPadding,
                   onTap: () {},
                 ),
               )
@@ -44,5 +61,5 @@ final Story navListTileStory = Story(
         ),
       ),
     );
-  },
-);
+  }
+}
