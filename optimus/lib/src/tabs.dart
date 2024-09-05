@@ -36,7 +36,7 @@ class OptimusTab extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: tokens.spacing150),
-      height: 48,
+      height: tokens.sizing600,
       constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -46,7 +46,7 @@ class OptimusTab extends StatelessWidget {
               padding: EdgeInsets.only(right: tokens.spacing50),
               child: Icon(icon, size: tokens.sizing200),
             ),
-          Text(label, overflow: TextOverflow.ellipsis),
+          Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
           if (badge case final badge?)
             Padding(
               padding: EdgeInsets.only(left: tokens.spacing50),
