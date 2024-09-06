@@ -106,7 +106,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   @override
   Widget build(BuildContext context) => PopScope(
         canPop: !widget.focusNode.hasFocus,
-        onPopInvoked: (bool didPop) {
+        onPopInvokedWithResult: (bool didPop, _) {
           if (didPop) return;
           widget.focusNode.unfocus();
         },

@@ -151,7 +151,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     });
   }
 
-  void _handleOnBackPressed(bool didPop) {
+  void _handleOnBackPressed(bool didPop, _) {
     if (didPop) return;
     if (_effectiveFocusNode.hasFocus) {
       _effectiveFocusNode.unfocus();
@@ -307,7 +307,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
 
     return PopScope(
       canPop: _canPop,
-      onPopInvoked: _handleOnBackPressed,
+      onPopInvokedWithResult: _handleOnBackPressed,
       child: widget.allowMultipleSelection && _hasValues
           ? MultiSelectInputField(
               values: _values ?? [],
