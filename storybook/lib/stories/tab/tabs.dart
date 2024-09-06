@@ -22,7 +22,7 @@ final Story tabsStory = Story(
         tabs: _items
             .map(
               (i) => OptimusTab(
-                label: 'Tab ${i + 1}',
+                label: i.isEven ? 'Tab with long name' : 'Tab ${i + 1}',
                 icon: i.isOdd ? icon : null,
                 badge: i.isOdd ? badge : null,
                 maxWidth: _tabBarWidth / _items.length,

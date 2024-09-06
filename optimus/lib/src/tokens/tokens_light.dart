@@ -3,7 +3,7 @@
 //
 
 // Do not edit directly
-// Generated on Tue, 23 Jul 2024 22:41:40 GMT
+// Generated on Mon, 02 Sep 2024 13:49:22 GMT
 
 import 'package:flutter/widgets.dart';
 
