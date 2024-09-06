@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusCheckboxGroup<int>,
   path: '[Forms]/Checkbox/',
 )
-CheckboxGroupUseCase defaultStyle(_) => const CheckboxGroupUseCase();
+Widget defaultStyle(BuildContext _) => const CheckboxGroupUseCase();
 
 class CheckboxGroupUseCase extends StatefulWidget {
   const CheckboxGroupUseCase({super.key});

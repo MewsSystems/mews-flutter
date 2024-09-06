@@ -4,9 +4,7 @@ import 'package:optimus_widgetbook/main.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-void main() {
-  runApp(const WidgetbookApp());
-}
+void main() => runApp(const WidgetbookApp());
 
 @widgetbook.App()
 class WidgetbookApp extends StatelessWidget {
@@ -14,8 +12,16 @@ class WidgetbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Widgetbook.material(
-        addons: [
-          DeviceFrameAddon(devices: Devices.all),
+        addons: <WidgetbookAddon>[
+          DeviceFrameAddon(
+            devices: [
+              Devices.ios.iPhone13Mini,
+              Devices.ios.iPhone13,
+              Devices.ios.iPhone13ProMax,
+              Devices.ios.iPadAir4,
+              Devices.ios.iPad12InchesGen4,
+            ],
+          ),
           InspectorAddon(),
           AlignmentAddon(),
           ThemeAddon<OptimusThemeData>(
@@ -37,12 +43,7 @@ class WidgetbookApp extends StatelessWidget {
                 ),
               ),
             ],
-            themeBuilder: (
-              context,
-              theme,
-              child,
-            ) =>
-                OptimusTheme(
+            themeBuilder: (context, theme, child) => OptimusTheme(
               themeMode: theme.brightness == Brightness.light
                   ? ThemeMode.light
                   : ThemeMode.dark,
@@ -50,21 +51,13 @@ class WidgetbookApp extends StatelessWidget {
             ),
           ),
           BuilderAddon(
-              name: 'Background Builder',
-              builder: (BuildContext context, Widget widget) {
-                return Theme(
-                  data: ThemeData(scaffoldBackgroundColor: Colors.white),
-                  child: widget,
-                );
-              })
+            name: 'Background builder',
+            builder: (BuildContext context, Widget widget) => ColoredBox(
+              color: context.tokens.backgroundStaticFlat,
+              child: Center(child: widget),
+            ),
+          ),
         ],
         directories: directories,
       );
 }
-
-extension on String? {
-  ThemeMode toThemeMode() => ThemeMode.values
-      .firstWhere((e) => e.name == this, orElse: () => ThemeMode.system);
-}
-
-const _keyTheme = 'themeMode';
