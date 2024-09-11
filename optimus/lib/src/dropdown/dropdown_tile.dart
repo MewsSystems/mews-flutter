@@ -5,9 +5,6 @@ abstract class OptimusDropdownTile<T> extends StatelessWidget {
   const OptimusDropdownTile({super.key, required this.value});
 
   final T value;
-
-  @override
-  Widget build(BuildContext context);
 }
 
 class ListDropdownTile<T> extends OptimusDropdownTile<T> {

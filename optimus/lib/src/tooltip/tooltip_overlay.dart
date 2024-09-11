@@ -62,7 +62,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
   late Rect _savedRect = _calculateRect(widget.anchorKey);
   late Rect _tooltipRect = _calculateRect(widget.tooltipKey);
   late Size? _overlaySize = _getOverlaySize();
-  late OptimusTooltipPosition _position = _getPreferredPosition;
+  late OptimusTooltipPosition _position = _preferredPosition;
 
   double _opacity = 0.0;
 
@@ -112,7 +112,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
   double get _verticalCenterBottom =>
       _savedRect.top - _savedRect.height / 2 + _tooltipRect.height / 2;
 
-  OptimusTooltipPosition get _getPreferredPosition =>
+  OptimusTooltipPosition get _preferredPosition =>
       widget.position ?? _fallbackPosition;
 
   OptimusTooltipPosition get _fallbackPosition =>
@@ -280,10 +280,12 @@ class TooltipOverlayState extends State<TooltipOverlay>
         size;
   }
 
-  RenderBox? _getOverlay() =>
-      Overlay.of(context, rootOverlay: widget.useRootOverlay)
-          .context
-          .findRenderObject() as RenderBox?;
+  RenderBox? _getOverlay() {
+    final renderObject = Overlay.of(context, rootOverlay: widget.useRootOverlay)
+        .context
+        .findRenderObject();
+    if (renderObject is RenderBox) return renderObject;
+  }
 
   Size? _getOverlaySize() => _getOverlay()?.size;
 

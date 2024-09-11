@@ -7,8 +7,11 @@ abstract class AnchoredOverlayController {
   const AnchoredOverlayController();
 
   double get maxHeight;
+
   double get width;
+
   double get top;
+
   double get bottom;
 }
 
@@ -128,10 +131,12 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
         size;
   }
 
-  RenderBox? _getOverlay() =>
-      Overlay.of(context, rootOverlay: widget.useRootOverlay)
-          .context
-          .findRenderObject() as RenderBox?;
+  RenderBox? _getOverlay() {
+    final renderBox = Overlay.of(context, rootOverlay: widget.useRootOverlay)
+        .context
+        .findRenderObject();
+    if (renderBox is RenderBox) return renderBox;
+  }
 
   Size? _getOverlaySize() => _getOverlay()?.size;
 

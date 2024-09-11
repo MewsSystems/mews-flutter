@@ -2,6 +2,8 @@
 // tokens_dark.dart
 //
 
+// ignore_for_file: avoid-duplicate-constant-values
+
 // Do not edit directly
 // Generated on Mon, 02 Sep 2024 13:49:23 GMT
 

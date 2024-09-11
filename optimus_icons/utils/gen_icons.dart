@@ -1,6 +1,8 @@
 /// Copyright (c) 2020, Mike Hoolehan, StarHeight Media
 /// All rights reserved.
 
+// ignore_for_file: avoid-type-casts, utility script
+
 /// Redistribution and use in source and binary forms, with or without
 /// modification, are permitted provided that the following conditions are met:
 ///     * Redistributions of source code must retain the above copyright

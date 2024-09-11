@@ -45,5 +45,6 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
 class _DateInputFormFieldState extends FormFieldState<DateTime?> {
   @override
   OptimusDateInputFormField get widget =>
+      // ignore: avoid-type-casts, no need to check, can't be anything else
       super.widget as OptimusDateInputFormField;
 }
