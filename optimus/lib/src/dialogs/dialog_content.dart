@@ -50,6 +50,7 @@ class DialogContent extends StatelessWidget {
           child: OptimusCard(
             variant: OptimusBasicCardVariant.overlay,
             padding: OptimusCardSpacing.spacing0,
+            isOutlined: false,
             child: Material(
               color: tokens.backgroundStaticFloating,
               child: Column(
