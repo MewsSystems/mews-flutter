@@ -7,8 +7,8 @@ final pictogramsStory = Story(
   builder: (context) => OptimusPictogram(
     size: context.knobs.options(
       label: 'Size',
-      initial: OptimusWidgetSize.large,
-      options: OptimusWidgetSize.values.toOptions(),
+      initial: OptimusPictogramSize.large,
+      options: OptimusPictogramSize.values.toOptions(),
     ),
     variant: context.knobs.options(
       label: 'Variant',

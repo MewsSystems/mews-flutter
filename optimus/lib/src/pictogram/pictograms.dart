@@ -26,6 +26,7 @@ enum OptimusPictogramVariant {
   settings,
   success,
   system_error,
+  tada,
   target,
   upload;
 
