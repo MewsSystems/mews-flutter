@@ -1,0 +1,25 @@
+name: optimus_widgetbook
+description: "Widgetbook for Optimus Design System by Mews"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  dfunc: 0.10.0
+  flutter:
+    sdk: flutter
+  optimus:
+    path: ../optimus
+  widgetbook: ^3.8.1
+  widgetbook_annotation: ^3.1.0
+
+dev_dependencies:
+  build_runner: ^2.4.11
+  flutter_test:
+    sdk: flutter
+  mews_pedantic: ^0.30.0
+  widgetbook_generator: ^3.8.0
+flutter:
+  uses-material-design: true
