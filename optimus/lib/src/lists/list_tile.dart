@@ -159,7 +159,10 @@ class _Prefix extends StatelessWidget {
         child: OptimusTypography(
           color: OptimusTypographyColor.secondary,
           resolveStyle: (_) => tokens.bodyMediumStrong,
-          child: prefix,
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: prefix,
+          ),
         ),
       ),
     );
