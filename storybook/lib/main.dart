@@ -40,6 +40,7 @@ import 'package:storybook/stories/list/nav_list_tile.dart';
 import 'package:storybook/stories/logo.dart';
 import 'package:storybook/stories/nested_overlays.dart';
 import 'package:storybook/stories/nonmodal_wrapper.dart';
+import 'package:storybook/stories/pictogram.dart';
 import 'package:storybook/stories/progress_indicator.dart';
 import 'package:storybook/stories/radio.dart';
 import 'package:storybook/stories/search_field.dart';
@@ -173,6 +174,7 @@ class _MyAppState extends State<MyApp> {
                 toggleButtonStory,
                 textAreaStory,
                 selectionCardStory,
+                pictogramsStory,
               ],
             ),
         },
