@@ -287,8 +287,8 @@ class _GroupedDropdownListViewState<T>
 
         int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
         if (result == 0) {
-          if (value1 is Comparable) {
-            result = value1.compareTo(value2 as Comparable);
+          if (value1 is Comparable && value2 is Comparable) {
+            result = value1.compareTo(value2);
           }
         } else {
           groupsCount++;

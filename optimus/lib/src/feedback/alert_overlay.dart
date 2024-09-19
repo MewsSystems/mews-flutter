@@ -203,6 +203,7 @@ class _NoClipSizeTransition extends AnimatedWidget {
 
   final Widget? child;
 
+  // ignore: avoid-type-casts, no need to check, can't be anything else
   Animation<double> get sizeFactor => listenable as Animation<double>;
 
   @override

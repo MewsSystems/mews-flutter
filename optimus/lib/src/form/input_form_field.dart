@@ -54,6 +54,7 @@ class OptimusInputFormField extends FormField<String> {
               controller != null ? controller.text : (initialValue ?? ''),
           enabled: isEnabled,
           builder: (FormFieldState<String> field) {
+            // ignore: avoid-type-casts, can't be anything else. No need to check
             final _InputFormFieldState state = field as _InputFormFieldState;
 
             return OptimusInputField(
@@ -114,6 +115,7 @@ class _InputFormFieldState extends FormFieldState<String> {
   // initialized at this point
 
   @override
+  // ignore: avoid-type-casts, can't be anything else. No need to check.
   OptimusInputFormField get widget => super.widget as OptimusInputFormField;
 
   @override

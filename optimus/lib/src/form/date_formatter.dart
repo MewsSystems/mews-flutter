@@ -158,6 +158,11 @@ class DateFormatter extends TextInputFormatter {
           newText[oldSelectionStart],
         );
         resultSelection = _getNextInputIndex(newSelectionStart);
+
+        return TextEditingValue(
+          text: resultText,
+          selection: TextSelection.collapsed(offset: resultSelection),
+        );
       }
     } else if (newText.length < oldText.length) {
       if (_isValidDigit(oldText[newSelectionStart])) {
@@ -180,9 +185,10 @@ class DateFormatter extends TextInputFormatter {
           placeholder.substring(start, end),
         );
 
-        if (_inputLength(resultText) == 0) resultText = '';
-
-        resultSelection = selectionPosition;
+        return TextEditingValue(
+          text: _inputLength(resultText) == 0 ? '' : resultText,
+          selection: TextSelection.collapsed(offset: selectionPosition),
+        );
       } else if (_isDesignatedSpace(newSelectionStart)) {
         final prevInputSpace = _getPreviousInputIndex(newSelectionStart);
         if (_isValidDigit(oldText[prevInputSpace])) {
