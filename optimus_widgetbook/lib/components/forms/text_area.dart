@@ -13,16 +13,20 @@ Widget createDefaultStyle(BuildContext context) {
 
   final label = k.string(label: 'Label', initialValue: 'Label');
   final placeholder =
-  k.string(label: 'Placeholder', initialValue: 'Placeholder');
+      k.string(label: 'Placeholder', initialValue: 'Placeholder');
   final error = k.string(label: 'Error', initialValue: '');
   final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
   final isRequired = k.boolean(label: 'Required', initialValue: false);
   final rows = k.int.slider(label: 'Rows', initialValue: 1, min: 1, max: 10);
   final enableAutoCollapse =
-  k.boolean(label: 'Auto collapse', initialValue: true);
+      k.boolean(label: 'Auto collapse', initialValue: true);
   final enableAutoSize = k.boolean(label: 'Auto size', initialValue: true);
   final maxCharacters = k.int.slider(
-    label: 'Max characters', initialValue: 100, min: 0, max: 100,);
+    label: 'Max characters',
+    initialValue: 100,
+    min: 0,
+    max: 100,
+  );
 
   return Padding(
     padding: EdgeInsets.all(context.tokens.spacing100),
