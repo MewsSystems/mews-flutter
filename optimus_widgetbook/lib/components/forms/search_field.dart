@@ -9,7 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusSearch,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext context) => ConstrainedBox(
+Widget createDefaultStyle(BuildContext _) => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
       child: const _SearchStory(),
     );
@@ -19,12 +19,12 @@ Widget createDefaultStyle(BuildContext context) => ConstrainedBox(
   type: OptimusSearch,
   path: '[Forms]',
 )
-Widget createNestedStyle(BuildContext context) => NestedWrapper(
+Widget createNestedStyle(BuildContext _) => NestedWrapper(
       (context) => const _SearchStory(),
     );
 
 class _SearchStory extends StatefulWidget {
-  const _SearchStory({super.key});
+  const _SearchStory();
 
   @override
   State<_SearchStory> createState() => _SearchStoryState();

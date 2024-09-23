@@ -3,7 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-//TODO(witwash): add nested use case
+// TODO(witwash): add nested use case
 @widgetbook.UseCase(
   name: 'Modal Dialog',
   type: OptimusDialog,
@@ -258,7 +258,7 @@ Future<void> _handleShowCustomContentDialog({
     title: Text(title),
     content: Container(
       color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
-      //TODO(witwash): tokens
+      // TODO(witwash): tokens
       padding: const EdgeInsets.all(8),
       child: const Column(
         children: [

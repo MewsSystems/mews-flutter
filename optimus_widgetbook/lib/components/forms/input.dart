@@ -45,7 +45,11 @@ Widget createDefaultStyle(BuildContext context) {
   int? maxChars;
   if (hasCharsLimit) {
     maxChars = k.int.slider(
-        label: 'Max Characters', max: 100, min: 1, initialValue: 30);
+      label: 'Max Characters',
+      max: 100,
+      min: 1,
+      initialValue: 30,
+    );
   }
   final minLines =
       k.int.slider(label: 'Min lines', initialValue: 1, min: 1, max: 10);
@@ -93,7 +97,9 @@ Widget createDefaultStyle(BuildContext context) {
         enableAutoCollapse: enableAutoCollapse,
         label: k.string(label: 'Label', initialValue: 'Optimus input field'),
         placeholder: k.string(
-            label: 'Placeholder', initialValue: 'Put some hint here...'),
+          label: 'Placeholder',
+          initialValue: 'Put some hint here...',
+        ),
         caption: caption.isNotEmpty ? Text(caption) : null,
         captionIcon: captionIcon,
         helperMessage: helperMessage.isNotEmpty ? Text(helperMessage) : null,
