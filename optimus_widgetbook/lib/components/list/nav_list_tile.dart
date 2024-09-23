@@ -9,7 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusNavListTile,
   path: '[Data Display]/List',
 )
-Widget createDefaultStyle(BuildContext context) => const _NavListExample();
+Widget createDefaultStyle(BuildContext _) => const _NavListExample();
 
 class _NavListExample extends StatefulWidget {
   const _NavListExample();

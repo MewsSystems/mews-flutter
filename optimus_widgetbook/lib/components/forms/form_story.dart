@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: Form,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext context) => const _Content();
+Widget createDefaultStyle(BuildContext _) => const _Content();
 
 class _Content extends StatefulWidget {
   const _Content();

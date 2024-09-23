@@ -22,6 +22,7 @@ Widget createLabel(BuildContext context) {
     initialOption: null,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
+
   return OptimusLabel(
     align: align,
     variation: variation,
@@ -48,6 +49,7 @@ Widget createSmallLabel(BuildContext context) {
     initialOption: null,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
+
   return OptimusLabelSmall(
     align: align,
     variation: variation,

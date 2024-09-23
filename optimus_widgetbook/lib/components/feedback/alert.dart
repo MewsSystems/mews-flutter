@@ -9,7 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusAlert,
   path: '[Feedback]',
 )
-Widget createDefaultStyle(BuildContext context) => const AlertStory();
+Widget createDefaultStyle(BuildContext _) => const AlertStory();
 
 class AlertStory extends StatelessWidget {
   const AlertStory({

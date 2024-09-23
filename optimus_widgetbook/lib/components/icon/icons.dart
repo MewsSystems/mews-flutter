@@ -7,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: GridView,
   path: '[Media]/Icons',
 )
-Widget createDefaultStyle(BuildContext context) => GridView.builder(
+Widget createDefaultStyle(BuildContext _) => GridView.builder(
       itemCount: optimusIcons.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 5,

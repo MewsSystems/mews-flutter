@@ -10,14 +10,14 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusSelectInput,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext context) => const SelectInputStory();
+Widget createDefaultStyle(BuildContext _) => const SelectInputStory();
 
 @widgetbook.UseCase(
   name: 'Nested Select',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
-Widget createNestedStyle(BuildContext context) => NestedWrapper(
+Widget createNestedStyle(BuildContext _) => NestedWrapper(
       (context) => const SelectInputStory(),
     );
 

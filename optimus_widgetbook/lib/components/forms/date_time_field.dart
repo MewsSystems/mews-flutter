@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusDateTimeField,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext context) => const _Content();
+Widget createDefaultStyle(BuildContext _) => const _Content();
 
 class _Content extends StatefulWidget {
   const _Content();
@@ -32,6 +32,7 @@ class _ContentState extends State<_Content> {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
+
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400),
       child: OptimusDateTimeField(

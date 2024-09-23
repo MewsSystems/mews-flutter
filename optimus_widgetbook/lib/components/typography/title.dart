@@ -17,6 +17,7 @@ Widget createLabel(BuildContext context) {
     initialOption: null,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
+
   return OptimusSubtitle(
     align: align,
     child: Text(label),
@@ -37,6 +38,7 @@ Widget createTitleLarge(BuildContext context) {
     initialOption: null,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
+
   return OptimusTitleLarge(
     align: align,
     child: Text(label),
@@ -57,6 +59,7 @@ Widget createTitleMedium(BuildContext context) {
     initialOption: null,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
+
   return OptimusTitleMedium(
     align: align,
     child: Text(label),
@@ -77,6 +80,7 @@ Widget createTitleSmall(BuildContext context) {
     initialOption: null,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
+
   return OptimusTitleSmall(
     align: align,
     child: Text(label),

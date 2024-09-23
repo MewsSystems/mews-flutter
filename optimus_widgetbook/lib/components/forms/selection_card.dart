@@ -9,8 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusSelectionCard,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext context) =>
-    const _SelectionCardExample();
+Widget createDefaultStyle(BuildContext _) => const _SelectionCardExample();
 
 class _SelectionCardExample extends StatefulWidget {
   const _SelectionCardExample();
