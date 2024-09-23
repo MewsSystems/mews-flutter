@@ -72,6 +72,8 @@ export 'src/lists/list_tile.dart';
 export 'src/lists/nav_list_tile.dart';
 export 'src/loader/spinner.dart';
 export 'src/logo.dart';
+export 'src/pictogram/pictogram.dart';
+export 'src/pictogram/pictograms.dart';
 export 'src/progress_indicator/progress_indicator.dart';
 export 'src/progress_indicator/progress_indicator_item.dart';
 export 'src/radio/radio.dart';

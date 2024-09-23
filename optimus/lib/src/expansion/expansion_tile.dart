@@ -103,8 +103,8 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
 
-    _isExpanded = (PageStorage.of(context).readState(context) ??
-        widget.isInitiallyExpanded) as bool;
+    final stateValue = PageStorage.of(context).readState(context);
+    _isExpanded = stateValue is bool ? stateValue : widget.isInitiallyExpanded;
     if (_isExpanded) _controller.value = 1.0;
   }
 

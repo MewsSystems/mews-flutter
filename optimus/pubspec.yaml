@@ -28,6 +28,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
+    - assets/light/
+    - assets/dark/
   fonts:
     - family: Inter
       fonts:
