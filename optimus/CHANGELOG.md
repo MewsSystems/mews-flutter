@@ -1,3 +1,16 @@
+## 0.38.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter issues.
+ - **FIX**: [DX-2180] Fix dialog border (#679).
+ - **FIX**: [DX-2181] Fix prefix aspect ratio being wrong (#680).
+ - **FIX**: [DX-2051] Fix OptimusTab title overflow (#666).
+ - **FEAT**: [DX-1641] Add Pictogram component (#676).
+ - **FEAT**: Design Tokens Update 7.1.0 (#670).
+ - **BREAKING** **FEAT**: [DX-2054] Update NavListTile design (#665).
+ - **BREAKING** **BUILD**: Upgrade to Flutter 3.24 (#674).
+
 ## 0.37.0+1
 
  - Update a dependency to the latest release.
