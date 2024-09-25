@@ -6,7 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Nested Checkbox Group',
   type: OptimusNestedCheckboxGroup,
-  path: '[Forms]/Nested Group',
+  path: '[Forms]/Checkbox',
 )
 Widget defaultStyle(BuildContext _) => const CheckboxGroupExample();
 

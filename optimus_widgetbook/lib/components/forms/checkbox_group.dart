@@ -6,7 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Default Style',
   type: OptimusCheckboxGroup<int>,
-  path: '[Forms]/Checkbox/',
+  path: '[Forms]/Checkbox',
 )
 Widget defaultStyle(BuildContext _) => const CheckboxGroupUseCase();
 
