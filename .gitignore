@@ -4,6 +4,5 @@
 .dart_tool/
 
 pubspec.lock
-!storybook/pubspec.lock
 !/pubspec.lock
 pubspec_overrides.yaml

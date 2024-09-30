@@ -9,7 +9,7 @@ on:
       - optimus/**
 
 jobs:
-  deploy_storybook:
+  deploy_widgetbook:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

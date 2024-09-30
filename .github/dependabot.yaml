@@ -22,6 +22,6 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "pub"
-    directory: "/storybook/"
+    directory: "/optimus_widgetbook/"
     schedule:
       interval: "monthly"
