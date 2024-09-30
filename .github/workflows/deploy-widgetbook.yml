@@ -1,11 +1,11 @@
-name: Deploy Storybook
+name: Deploy Widgetbook
 on:
   workflow_dispatch:
   push:
     branches:
       - master
     paths:
-      - storybook/**
+      - optimus_widgetbook/**
       - optimus/**
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Build Web
         run: |
-          melos exec --scope="storybook" -- "flutter build web"
+          melos exec --scope="optimus_widgetbook" -- "flutter build web"
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -28,4 +28,4 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_WEB_DEPLOY }}"
           channelId: live
           projectId: mews-optimus
-          entryPoint: storybook/
+          entryPoint: optimus_widgetbook/
