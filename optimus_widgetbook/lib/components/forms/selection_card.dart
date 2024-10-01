@@ -21,6 +21,8 @@ class _SelectionCardExample extends StatefulWidget {
 class _SelectionCardExampleState extends State<_SelectionCardExample> {
   bool _isSelected = false;
 
+  void _handlePress() => setState(() => _isSelected = !_isSelected);
+
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
@@ -63,7 +65,7 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
         selectionVariant: selectorVariant,
         borderRadius: borderRadius,
         isEnabled: isEnabled,
-        onPressed: () => setState(() => _isSelected = !_isSelected),
+        onPressed: _handlePress,
       ),
     );
   }

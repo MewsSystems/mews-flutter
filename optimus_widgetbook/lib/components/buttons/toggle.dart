@@ -44,26 +44,25 @@ class _ToggleExampleState extends State<_ToggleExample> {
   bool _isLoading = false;
   String _label = 'Claim';
 
+  void _handlePressed() {
+    setState(() => _isLoading = true);
+    Future.delayed(const Duration(seconds: 2), _handleToggleBack);
+  }
+
+  void _handleToggleBack() {
+    setState(() {
+      _isToggled = !_isToggled;
+      _label = _isToggled ? 'Claimed' : 'Claim';
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => OptimusToggleButton(
         label: widget.hasLabel ? Text(_label) : null,
         isToggled: _isToggled,
         isLoading: _isLoading,
-        onPressed: widget.isEnabled
-            ? () {
-                setState(() {
-                  _isLoading = true;
-                });
-                Future.delayed(
-                  const Duration(seconds: 2),
-                  () => setState(() {
-                    _isToggled = !_isToggled;
-                    _label = _isToggled ? 'Claimed' : 'Claim';
-                    _isLoading = false;
-                  }),
-                );
-              }
-            : null,
+        onPressed: widget.isEnabled ? _handlePressed : null,
         size: widget.size,
       );
 }

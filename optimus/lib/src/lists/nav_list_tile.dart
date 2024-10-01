@@ -90,6 +90,14 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
         hovered: tokens.backgroundInteractiveNeutralSubtleHover,
       );
 
+  void _handleHoverChanged(bool isHovered) {
+    setState(() => _controller.update(WidgetState.hovered, isHovered));
+  }
+
+  void _handlePressedChanged(bool isPressed) {
+    setState(() => _controller.update(WidgetState.pressed, isPressed));
+  }
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -101,10 +109,8 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
     return IgnorePointer(
       ignoring: !widget.isEnabled,
       child: GestureWrapper(
-        onHoverChanged: (isHovered) =>
-            setState(() => _controller.update(WidgetState.hovered, isHovered)),
-        onPressedChanged: (isPressed) =>
-            setState(() => _controller.update(WidgetState.pressed, isPressed)),
+        onHoverChanged: _handleHoverChanged,
+        onPressedChanged: _handlePressedChanged,
         child: DecoratedBox(
           decoration:
               BoxDecoration(color: _backgroundColor.resolve(_controller.value)),
