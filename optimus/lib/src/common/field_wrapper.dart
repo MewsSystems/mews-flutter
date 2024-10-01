@@ -460,17 +460,53 @@ class _StatusBar extends StatelessWidget {
       padding: EdgeInsets.only(top: tokens.spacing50),
       child: SizedBox(
         height: tokens.sizing50,
-        child: AnimatedFractionallySizedBox(
-          duration: _kAnimationDuration,
-          alignment: Alignment.centerLeft,
-          heightFactor: 1,
-          widthFactor: state.progress,
-          curve: Curves.fastOutSlowIn,
-          child: ColoredBox(color: state.getStatusBarColor(tokens)),
-        ),
+        child: _ColoredTransition(state),
       ),
     );
   }
+}
+
+class _ColoredTransition extends StatefulWidget {
+  const _ColoredTransition(this.state);
+
+  final OptimusStatusBarState state;
+
+  @override
+  State<_ColoredTransition> createState() => _ColoredTransitionState();
+}
+
+class _ColoredTransitionState extends State<_ColoredTransition> {
+  late OptimusStatusBarState _previousState;
+
+  @override
+  void initState() {
+    super.initState();
+    _previousState = widget.state;
+  }
+
+  @override
+  void didUpdateWidget(covariant _ColoredTransition oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.state != oldWidget.state) {
+      _previousState = oldWidget.state;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedFractionallySizedBox(
+        duration: _kAnimationDuration,
+        alignment: Alignment.centerLeft,
+        heightFactor: 1,
+        widthFactor: widget.state.progress,
+        curve: Curves.fastOutSlowIn,
+        child: ColoredBox(
+          color: widget.state == OptimusStatusBarState.empty
+              ? _previousState
+                  .getStatusBarColor(context.tokens)
+                  .withOpacity(0.5)
+              : widget.state.getStatusBarColor(context.tokens),
+        ),
+      );
 }
 
 extension on OptimusStatusBarState {
@@ -537,4 +573,4 @@ extension on OptimusWidgetSize {
       };
 }
 
-const _kAnimationDuration = Duration(milliseconds: 200);
+const Duration _kAnimationDuration = Duration(milliseconds: 200);
