@@ -1,3 +1,8 @@
+## 0.38.0+1
+
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: Remove storybook and update references (#688).
+
 ## 0.38.0
 
 > Note: This release has breaking changes.
