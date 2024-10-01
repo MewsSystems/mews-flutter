@@ -26,6 +26,8 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
     _value = DateTime.now();
   }
 
+  void _handleSubmit(DateTime? value) => setState(() => _value = value);
+
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
@@ -48,7 +50,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
         isEnabled: isEnabled,
         format: DateFormat(format),
         isClearAllEnabled: isClearEnabled,
-        onSubmitted: (value) => setState(() => _value = value),
+        onSubmitted: _handleSubmit,
       ),
     );
   }

@@ -61,6 +61,12 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
   bool _isHovered = false;
   bool _isPressed = false;
 
+  void _handleHoverChange(bool isHovered) =>
+      setState(() => _isHovered = isHovered);
+
+  void _handlePressChange(bool isPressed) =>
+      setState(() => _isPressed = isPressed);
+
   @override
   Widget build(BuildContext context) {
     final indicator = widget.state.isEnabled
@@ -82,8 +88,8 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
     final itemsCount = widget.itemsCount;
 
     return GestureWrapper(
-      onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
-      onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
+      onHoverChanged: _handleHoverChange,
+      onPressedChanged: _handlePressChange,
       child: switch (widget.axis) {
         Axis.horizontal => _HorizontalItem(
             indicator: indicator,

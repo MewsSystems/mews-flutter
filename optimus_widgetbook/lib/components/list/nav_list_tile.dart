@@ -21,6 +21,8 @@ class _NavListExample extends StatefulWidget {
 class _NavListExampleState extends State<_NavListExample> {
   bool _isToggled = false;
 
+  void _handleToggle(bool isToggled) => setState(() => _isToggled = isToggled);
+
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
@@ -54,8 +56,7 @@ class _NavListExampleState extends State<_NavListExample> {
                   rightDetail: rightDetail != null ? Icon(rightDetail) : null,
                   isChevronVisible: isChevronVisible,
                   isToggleVisible: isToggleVisible,
-                  onTogglePressed: (isToggled) =>
-                      setState(() => _isToggled = isToggled),
+                  onTogglePressed: _handleToggle,
                   isToggled: _isToggled,
                   isEnabled: isEnabled,
                   leading: leading != null ? Icon(leading) : null,
