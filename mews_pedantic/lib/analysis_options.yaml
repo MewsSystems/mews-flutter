@@ -446,7 +446,7 @@ dart_code_metrics:
     - prefer-correct-error-name
     - prefer-correct-for-loop-increment
     - prefer-correct-future-return-type
-    # - prefer-correct-handler-name
+    - prefer-correct-handler-name
     # - prefer-correct-identifier-length
     - prefer-correct-json-casts
     - prefer-correct-setter-parameter-name
@@ -568,7 +568,9 @@ dart_code_metrics:
   pubspec-rules:
   #    - avoid-any-version
   #    - avoid-dependency-overrides
-  #    - banned-dependencies
+    - banned-dependencies:
+        banned:
+          - get
   #    - prefer-caret-version-syntax
   #    - prefer-correct-package-name
   #    - prefer-correct-screenshots
