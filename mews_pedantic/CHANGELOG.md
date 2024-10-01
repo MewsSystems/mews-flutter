@@ -1,3 +1,7 @@
+## 0.31.1
+
+ - **FEAT**: [DX-2293] Update rules.
+
 ## 0.31.0
 
 > Note: This release has breaking changes.
