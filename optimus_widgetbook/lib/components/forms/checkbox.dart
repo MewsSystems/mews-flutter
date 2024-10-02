@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -29,7 +30,7 @@ class CheckboxStoryState extends State<CheckboxStory> {
     return OptimusCheckbox(
       label: Text(k.string(label: 'Label', initialValue: 'Checkbox Label')),
       error: k.string(label: 'Error'),
-      isEnabled: k.boolean(label: 'Enabled', initialValue: true),
+      isEnabled: k.isEnabledKnob,
       size: k.list(
         label: 'Size',
         options: OptimusCheckboxSize.values,

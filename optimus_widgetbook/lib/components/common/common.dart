@@ -1,27 +1,17 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
-final List<IconData> allIcons = optimusIcons.map((e) => e.data).toList();
-
-final List<IconData> exampleIcons = [
-  OptimusIcons.chevron_left,
-  OptimusIcons.chevron_right,
-  OptimusIcons.delete,
-  OptimusIcons.add_customer,
-  OptimusIcons.calendar,
-  OptimusIcons.assign,
-];
-final List<Alignment> alignments = [
-  Alignment.center,
-  Alignment.centerLeft,
-  Alignment.centerRight,
-  Alignment.topLeft,
-  Alignment.topRight,
-  Alignment.bottomLeft,
-  Alignment.bottomRight,
+final List<IconDetails> exampleIcons = optimusIcons.take(10).toList();
+final List<(Alignment, String)> alignments = [
+  (Alignment.center, 'Center'),
+  (Alignment.centerLeft, 'Center Left'),
+  (Alignment.centerRight, 'Center Right'),
+  (Alignment.topLeft, 'Top Left'),
+  (Alignment.topRight, 'Top Right'),
+  (Alignment.bottomLeft, 'Bottom Left'),
+  (Alignment.bottomRight, 'Bottom Right'),
 ];
 
-final List<IconData?> exampleIconsWithNull = [...exampleIcons, null];
 const longText = '''
 Nascetur nec convallis tempor sagittis ligula. Mauris aenean curae vestibulum 
 aenean fames posuere consequat turpis. Cursus lectus rutrum dolor condimentum 

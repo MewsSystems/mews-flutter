@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -20,27 +21,24 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Position',
     initialOption: OptimusTooltipPosition.top,
     options: OptimusTooltipPosition.values,
+    labelBuilder: (value) => value.name,
   );
   final size = knobs.list(
     label: 'Size',
     initialOption: OptimusToolTipSize.small,
     options: OptimusToolTipSize.values,
+    labelBuilder: (value) => value.name,
   );
   final duration =
       knobs.int.slider(label: 'Duration', initialValue: 1, min: 0, max: 5);
-  final contentAlign = knobs.list(
-    label: 'Alert icon align:',
-    description: 'Will replace the input field if set to the center',
-    options: alignments,
-    initialOption: Alignment.bottomRight,
-  );
+  final contentAlign = knobs.alignmentKnob;
 
   return Padding(
     padding: const EdgeInsets.all(16),
     child: Stack(
       children: [
         Align(
-          alignment: contentAlign,
+          alignment: contentAlign.$1,
           child: OptimusTooltipWrapper(
             text: Text(text),
             autoHideDuration: Duration(seconds: duration),
@@ -49,7 +47,7 @@ Widget createDefaultStyle(BuildContext context) {
             child: const Icon(OptimusIcons.alert_circle),
           ),
         ),
-        if (contentAlign != Alignment.center)
+        if (contentAlign.$1 != Alignment.center)
           Center(
             child: SizedBox(
               width: 400,

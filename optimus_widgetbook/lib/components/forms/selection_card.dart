@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -29,36 +30,35 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
     final title = k.string(label: 'Title', initialValue: 'Title');
     final description =
         k.string(label: 'Description', initialValue: 'Description');
-    final trailing = k.listOrNull(
-      label: 'Trailing',
-      options: exampleIcons,
-      initialOption: OptimusIcons.chevron_right,
-    );
+    final trailing = k.optimusIconOrNullKnob(label: 'Trailing Icon');
     final variant = k.list(
       label: 'Variant',
       initialOption: OptimusSelectionCardVariant.vertical,
       options: OptimusSelectionCardVariant.values,
+      labelBuilder: (value) => value.name,
     );
     final borderRadius = k.list(
       label: 'Border radius',
       initialOption: OptimusSelectionCardBorderRadius.medium,
       options: OptimusSelectionCardBorderRadius.values,
+      labelBuilder: (value) => value.name,
     );
     final selectorVariant = k.list(
       label: 'Selector variant',
       initialOption: OptimusSelectionCardSelectionVariant.radio,
       options: OptimusSelectionCardSelectionVariant.values,
+      labelBuilder: (value) => value.name,
     );
     final isSelectorVisible =
         k.boolean(label: 'Selector visible', initialValue: true);
-    final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+    final isEnabled = k.isEnabledKnob;
 
     return SizedBox(
       width: 500,
       child: OptimusSelectionCard(
         title: Text(title),
         description: description.isNotEmpty ? Text(description) : null,
-        trailing: trailing != null ? Icon(trailing) : null,
+        trailing: trailing != null ? Icon(trailing.data) : null,
         variant: variant,
         isSelected: _isSelected,
         isSelectorVisible: isSelectorVisible,

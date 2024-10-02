@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -16,6 +17,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Direction',
     initialOption: Axis.horizontal,
     options: Axis.values,
+    labelBuilder: (value) => value.name,
   );
   final maxLines = k.int.slider(
     label: 'Max Lines:',
@@ -25,12 +27,8 @@ Widget createDefaultStyle(BuildContext context) {
     min: 1,
     max: 3,
   );
-  final size = k.list(
-    label: 'Size',
-    initialOption: OptimusWidgetSize.large,
-    options: OptimusWidgetSize.values,
-  );
-  final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+  final size = k.widgetSizeKnob;
+  final isEnabled = k.isEnabledKnob;
   final isRequired = k.boolean(label: 'Required', initialValue: false);
   final width =
       k.double.slider(label: 'Width', min: 200, initialValue: 600, max: 800);

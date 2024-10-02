@@ -15,6 +15,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Layout',
     initialOption: Axis.vertical,
     options: Axis.values,
+    labelBuilder: (value) => value.name,
   );
 
   return OptimusProgressIndicator(

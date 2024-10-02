@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -11,32 +12,19 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
-  final leadingIcon = k.listOrNull(
-    label: 'Leading Icon',
-    description: 'Visual hint about this field',
-    initialOption: null,
-    options: exampleIcons,
-  );
+  final leadingIcon = k.optimusIconOrNullKnob(label: 'Leading Icon');
   final prefix = k.string(label: 'Prefix');
   final suffix = k.string(label: 'Suffix');
-  final trailingIcon = k.listOrNull(
-    label: 'Trailing Icon',
-    description: 'Widget with some action for this particular field',
-    initialOption: null,
-    options: exampleIcons,
-  );
+  final trailingIcon = k.optimusIconOrNullKnob(label: 'Trailing Icon');
   final caption = k.string(label: 'Caption', initialValue: '');
-  final captionIcon = k.list(
-    label: 'Caption Icon',
-    initialOption: OptimusIcons.info,
-    options: exampleIcons,
-  );
+  final captionIcon = k.optimusIconOrNullKnob(label: 'Caption Icon');
   final helperMessage = k.string(label: 'Helper Message', initialValue: '');
   final error = k.string(label: 'Error', initialValue: '');
   final errorVariant = k.list(
     label: 'Error variant',
     initialOption: OptimusInputErrorVariant.bottomHint,
     options: OptimusInputErrorVariant.values,
+    labelBuilder: (value) => value.name,
   );
   final hasCharsLimit = k.boolean(
     label: 'Limit characters',
@@ -57,6 +45,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Keyboard Type:',
     initialOption: null,
     options: KeyboardType.values,
+    labelBuilder: (value) => value?.name ?? 'Name',
   );
   final isInlined = k.boolean(label: 'Inline', initialValue: false);
   final enableAutoCollapse =
@@ -66,6 +55,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Status Bar',
     options: OptimusStatusBarState.values,
     initialOption: null,
+    labelBuilder: (value) => value?.name ?? 'Name',
   );
 
   return Align(
@@ -73,7 +63,7 @@ Widget createDefaultStyle(BuildContext context) {
     child: ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 400, maxHeight: 300),
       child: OptimusInputField(
-        isEnabled: k.boolean(label: 'Enabled', initialValue: true),
+        isEnabled: k.isEnabledKnob,
         isRequired: k.boolean(label: 'Required'),
         isPasswordField: k.boolean(label: 'Password'),
         maxCharacters: maxChars,
@@ -82,17 +72,13 @@ Widget createDefaultStyle(BuildContext context) {
         keyboardType: keyboardType?.inputType,
         prefix: prefix.isNotEmpty ? Text(prefix) : null,
         suffix: suffix.isNotEmpty ? Text(suffix) : null,
-        leading: leadingIcon == null ? null : Icon(leadingIcon),
-        trailing: trailingIcon == null ? null : Icon(trailingIcon),
+        leading: leadingIcon == null ? null : Icon(leadingIcon.data),
+        trailing: trailingIcon == null ? null : Icon(trailingIcon.data),
         isClearEnabled: k.boolean(label: 'Clear all', initialValue: false),
         showLoader: k.boolean(label: 'Show loader', initialValue: false),
         errorVariant: errorVariant,
         statusBarState: statusBar,
-        size: k.list(
-          label: 'Size',
-          initialOption: OptimusWidgetSize.large,
-          options: OptimusWidgetSize.values,
-        ),
+        size: k.widgetSizeKnob,
         isInlined: isInlined,
         enableAutoCollapse: enableAutoCollapse,
         label: k.string(label: 'Label', initialValue: 'Optimus input field'),
@@ -101,7 +87,7 @@ Widget createDefaultStyle(BuildContext context) {
           initialValue: 'Put some hint here...',
         ),
         caption: caption.isNotEmpty ? Text(caption) : null,
-        captionIcon: captionIcon,
+        captionIcon: captionIcon?.data,
         helperMessage: helperMessage.isNotEmpty ? Text(helperMessage) : null,
         error: error,
       ),
