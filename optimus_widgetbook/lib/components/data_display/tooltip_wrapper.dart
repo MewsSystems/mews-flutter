@@ -30,14 +30,14 @@ Widget createDefaultStyle(BuildContext context) {
   );
   final duration =
       knobs.int.slider(label: 'Duration', initialValue: 1, min: 0, max: 5);
-  final contentAlign = knobs.alignmentKnob;
+  final contentAlign = knobs.alignmentKnob();
 
   return Padding(
     padding: const EdgeInsets.all(16),
     child: Stack(
       children: [
         Align(
-          alignment: contentAlign.$1,
+          alignment: contentAlign,
           child: OptimusTooltipWrapper(
             text: Text(text),
             autoHideDuration: Duration(seconds: duration),
@@ -46,7 +46,7 @@ Widget createDefaultStyle(BuildContext context) {
             child: const Icon(OptimusIcons.alert_circle),
           ),
         ),
-        if (contentAlign.$1 != Alignment.center)
+        if (contentAlign != Alignment.center)
           Center(
             child: SizedBox(
               width: 400,

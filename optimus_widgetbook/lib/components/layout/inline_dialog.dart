@@ -28,10 +28,10 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final hasActions = k.boolean(label: 'Has actions', initialValue: false);
-    final position = k.alignmentKnob;
+    final position = k.alignmentKnob();
 
     return Align(
-      alignment: position.$1,
+      alignment: position,
       child: OptimusButton(
         key: _anchor,
         onPressed: () => DialogWrapper.of(context)?.showInline(

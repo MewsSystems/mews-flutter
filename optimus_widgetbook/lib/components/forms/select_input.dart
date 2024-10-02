@@ -61,10 +61,10 @@ class _SelectInputStoryState extends State<SelectInputStory> {
     final allowMultipleSelection =
         k.boolean(label: 'Multiselect', initialValue: true);
 
-    final alignment = k.alignmentKnob;
+    final alignment = k.alignmentKnob();
 
     return Align(
-      alignment: alignment.$1,
+      alignment: alignment,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),
         child: OptimusSelectInput<String>(
