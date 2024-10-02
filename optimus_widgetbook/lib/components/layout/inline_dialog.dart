@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
 import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -10,8 +9,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusInlineDialog,
   path: '[Layout]/Dialog',
 )
-Widget createDefaultStyle(BuildContext context) =>
-    const DialogWrapper(child: const InlineDialogStory());
+Widget createDefaultStyle(BuildContext _) =>
+    const DialogWrapper(child: InlineDialogStory());
 
 class InlineDialogStory extends StatefulWidget {
   const InlineDialogStory({
