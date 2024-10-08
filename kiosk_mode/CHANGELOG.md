@@ -1,3 +1,7 @@
+## 0.5.1
+
+ - **FEAT**: Upgrade `kiosk_mode` (#695).
+
 ## 0.5.0+5
 
  - **REFACTOR**: Fix linter issues.

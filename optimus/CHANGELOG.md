@@ -1,3 +1,7 @@
+## 0.38.1
+
+ - **FEAT**: [DX-2168] Improve password StatusBar transition animation (#677).
+
 ## 0.38.0+1
 
  - **REFACTOR**: Fix linter issues.
