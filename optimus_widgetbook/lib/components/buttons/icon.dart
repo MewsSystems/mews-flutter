@@ -1,7 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -13,11 +13,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
-  final icon = k.list(
-    label: 'Icon',
-    initialOption: OptimusIcons.calendar,
-    options: exampleIcons,
-  );
+  final icon = k.optimusIconKnob(label: 'Icon');
 
   return SingleChildScrollView(
     child: Column(
@@ -26,15 +22,9 @@ Widget createDefaultStyle(BuildContext context) {
             (v) => Padding(
               padding: const EdgeInsets.all(8),
               child: OptimusIconButton(
-                onPressed: k.boolean(label: 'Enabled', initialValue: true)
-                    ? ignore
-                    : null,
-                icon: Icon(icon),
-                size: k.list(
-                  label: 'Size',
-                  initialOption: OptimusWidgetSize.large,
-                  options: OptimusWidgetSize.values,
-                ),
+                onPressed: k.isEnabledKnob ? ignore : null,
+                icon: Icon(icon.data),
+                size: k.widgetSizeKnob,
                 variant: v,
               ),
             ),

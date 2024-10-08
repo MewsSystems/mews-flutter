@@ -13,7 +13,8 @@ Widget createDefaultStyle(BuildContext context) => OptimusIconList(
       listSize: context.knobs.listOrNull(
         label: 'Size',
         initialOption: null,
-        options: [...OptimusIconListSize.values, null],
+        options: OptimusIconListSize.values,
+        labelBuilder: (value) => value?.name ?? 'Not set',
       ),
     );
 

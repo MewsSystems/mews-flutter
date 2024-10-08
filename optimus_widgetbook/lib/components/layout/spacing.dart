@@ -4,7 +4,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(
   name: 'Spacing',
-  type: double,
+  type: Column,
   path: '[Layout]',
 )
 Widget createDefaultStyle(BuildContext context) {

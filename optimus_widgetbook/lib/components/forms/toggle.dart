@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -25,7 +26,7 @@ class _ToggleStoryState extends State<_ToggleStory> {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
-    final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+    final isEnabled = k.isEnabledKnob;
     final useIcons = k.boolean(label: 'Use Icons', initialValue: true);
 
     return OptimusToggle(

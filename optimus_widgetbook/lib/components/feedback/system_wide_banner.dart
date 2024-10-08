@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -35,7 +36,7 @@ Widget createDefaultStyle(BuildContext context) {
                 link: link.isNotEmpty
                     ? OptimusFeedbackLink(
                         text: Text(link),
-                        onPressed: () {},
+                        onPressed: ignore,
                       )
                     : null,
                 variant: v,

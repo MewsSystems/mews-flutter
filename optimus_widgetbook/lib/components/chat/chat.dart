@@ -231,5 +231,5 @@ const _user1 = OptimusMessageAuthor(
 final _user3 = OptimusMessageAuthor(
   id: 'user3',
   username: 'User 3',
-  avatar: organisationAvatar,
+  avatar: organizationAvatar,
 );

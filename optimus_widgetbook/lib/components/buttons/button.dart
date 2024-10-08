@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -12,16 +12,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
-  final leadingIcon = k.listOrNull(
-    label: 'Leading icon',
-    initialOption: null,
-    options: exampleIcons,
-  );
-  final trailingIcon = k.listOrNull(
-    label: 'Trailing icon',
-    initialOption: null,
-    options: exampleIcons,
-  );
+  final leadingIcon = k.optimusIconOrNullKnob(label: 'Leading Icon');
+  final trailingIcon = k.optimusIconOrNullKnob(label: 'Trailing Icon');
 
   final showBadge = k.boolean(label: 'Show Badge', initialValue: false);
   final counter =
@@ -37,15 +29,11 @@ Widget createDefaultStyle(BuildContext context) {
                 onPressed: k.boolean(label: 'Enabled', initialValue: true)
                     ? () {}
                     : null,
-                size: k.list(
-                  label: 'Size',
-                  initialOption: OptimusWidgetSize.large,
-                  options: OptimusWidgetSize.values,
-                ),
+                size: k.widgetSizeKnob,
                 isLoading: k.boolean(label: 'Loading', initialValue: false),
                 variant: v,
-                leadingIcon: leadingIcon,
-                trailingIcon: trailingIcon,
+                leadingIcon: leadingIcon?.data,
+                trailingIcon: trailingIcon?.data,
                 counter: showBadge ? counter : null,
                 child: Text(k.string(label: 'Text', initialValue: 'Button')),
               ),

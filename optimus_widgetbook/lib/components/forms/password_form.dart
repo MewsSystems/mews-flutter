@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -11,17 +12,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
-  final size = k.list(
-    label: 'Size',
-    initialOption: OptimusWidgetSize.medium,
-    options: OptimusWidgetSize.values,
-  );
+  final size = k.widgetSizeKnob;
   final placeholder = k.string(label: 'Placeholder', initialValue: 'Password');
   final label = k.string(label: 'Label', initialValue: 'Password');
-  final isEnabled = k.boolean(
-    label: 'Enabled',
-    initialValue: true,
-  );
+  final isEnabled = k.isEnabledKnob;
   final isRequired = k.boolean(
     label: 'Required',
     initialValue: false,
@@ -32,6 +26,7 @@ Widget createDefaultStyle(BuildContext context) {
   final statusBarState = k.list(
     label: 'Status bar state',
     initialOption: OptimusStatusBarState.empty,
+    labelBuilder: (value) => value.name,
     options: OptimusStatusBarState.values,
   );
   final isClearEnabled = k.boolean(

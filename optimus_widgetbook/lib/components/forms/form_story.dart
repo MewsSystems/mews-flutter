@@ -30,6 +30,7 @@ class _ContentState extends State<_Content> {
       label: 'autovalidateMode',
       initialOption: AutovalidateMode.onUserInteraction,
       options: AutovalidateMode.values,
+      labelBuilder: (value) => value.name,
     );
     final allowMultipleSelection =
         k.boolean(label: 'Multiselect', initialValue: false);

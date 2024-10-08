@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -11,15 +11,12 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
-  final icon = k.list(
-    label: 'Icon',
-    initialOption: OptimusIcons.plus,
-    options: exampleIcons,
-  );
+  final icon = k.optimusIconKnob(label: 'Icon');
   final size = k.list(
     label: 'Size',
     initialOption: OptimusIconSize.medium,
     options: OptimusIconSize.values,
+    labelBuilder: (value) => value.name,
   );
 
   return ListView(
@@ -30,7 +27,7 @@ Widget createDefaultStyle(BuildContext context) {
               child: Text(c != null ? c.name.toUpperCase() : 'EMPTY'),
             ),
             prefix: OptimusIcon(
-              iconData: icon,
+              iconData: icon.data,
               colorOption: c,
               iconSize: size,
             ),

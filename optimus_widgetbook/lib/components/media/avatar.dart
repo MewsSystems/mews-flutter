@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -10,12 +11,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
-  final size = k.list(
-    label: 'Size',
-    initialOption: OptimusWidgetSize.medium,
-    options: OptimusWidgetSize.values,
-  );
-
+  final size = k.widgetSizeKnob;
   final hasIndicator = k.boolean(label: 'Has indicator', initialValue: false);
   final useImage = k.boolean(label: 'Use image', initialValue: false);
   final isErrorLoading = k.boolean(label: 'Error loading', initialValue: false);

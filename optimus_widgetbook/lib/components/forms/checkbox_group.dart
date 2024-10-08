@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -30,7 +31,7 @@ class CheckboxGroupUseCaseState extends State<CheckboxGroupUseCase> {
       label: k.string(label: 'Label', initialValue: 'Checkbox Group Label'),
       error: k.string(label: 'Error'),
       onChanged: _handleChanged,
-      isEnabled: k.boolean(label: 'Enabled', initialValue: true),
+      isEnabled: k.isEnabledKnob,
       values: _checks,
       items: const [
         OptimusGroupItem(label: Text('Checkbox 1'), value: 0),

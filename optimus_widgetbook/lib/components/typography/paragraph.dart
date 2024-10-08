@@ -14,12 +14,14 @@ Widget createLabel(BuildContext context) {
     label: 'Variation',
     initialOption: Variation.variationNormal,
     options: Variation.values,
+    labelBuilder: (value) => value.name,
   );
 
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
     initialOption: null,
+    labelBuilder: (value) => value?.name ?? 'Name',
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
@@ -41,12 +43,14 @@ Widget createParagraphSmall(BuildContext context) {
     label: 'Variation',
     initialOption: Variation.variationNormal,
     options: Variation.values,
+    labelBuilder: (value) => value.name,
   );
 
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
     initialOption: null,
+    labelBuilder: (value) => value?.name ?? 'Name',
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -15,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
   final placeholder =
       k.string(label: 'Placeholder', initialValue: 'Placeholder');
   final error = k.string(label: 'Error', initialValue: '');
-  final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+  final isEnabled = k.isEnabledKnob;
   final isRequired = k.boolean(label: 'Required', initialValue: false);
   final rows = k.int.slider(label: 'Rows', initialValue: 1, min: 1, max: 10);
   final enableAutoCollapse =

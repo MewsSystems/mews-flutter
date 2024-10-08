@@ -16,31 +16,37 @@ Widget createDefaultStyle(BuildContext context) {
       label: 'Direction',
       initialOption: Axis.vertical,
       options: Axis.values,
+      labelBuilder: (value) => value.name,
     ),
     mainAxisAlignment: k.list(
       label: 'Main axis',
       initialOption: OptimusStackAlignment.center,
       options: OptimusStackAlignment.values,
+      labelBuilder: (value) => value.name,
     ),
     crossAxisAlignment: k.list(
       label: 'Cross axis',
       initialOption: OptimusStackAlignment.center,
       options: OptimusStackAlignment.values,
+      labelBuilder: (value) => value.name,
     ),
     distribution: k.list(
       label: 'Distribution',
       initialOption: OptimusStackDistribution.basic,
       options: OptimusStackDistribution.values,
+      labelBuilder: (value) => value.name,
     ),
     breakpoint: k.listOrNull(
       label: 'Breakpoint',
       initialOption: null,
       options: Breakpoint.values,
+      labelBuilder: (value) => value?.name ?? 'Not set',
     ),
     spacing: k.list(
       label: 'Spacing',
       initialOption: OptimusStackSpacing.spacing100,
       options: OptimusStackSpacing.values,
+      labelBuilder: (value) => value.name,
     ),
     children: _items,
   );

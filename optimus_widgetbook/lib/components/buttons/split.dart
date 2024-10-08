@@ -23,6 +23,7 @@ Widget createDefaultStyle(BuildContext context) {
                   label: 'Size',
                   initialOption: OptimusWidgetSize.large,
                   options: OptimusWidgetSize.values,
+                  labelBuilder: (value) => value.name,
                 ),
                 items: Iterable<int>.generate(10)
                     .map(

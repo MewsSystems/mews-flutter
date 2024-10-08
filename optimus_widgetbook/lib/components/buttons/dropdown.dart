@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -10,7 +11,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
-  final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+  final isEnabled = k.isEnabledKnob;
 
   return SingleChildScrollView(
     child: Column(
@@ -19,11 +20,7 @@ Widget createDefaultStyle(BuildContext context) {
             (v) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: OptimusDropDownButton<int>(
-                size: k.list(
-                  label: 'Size',
-                  initialOption: OptimusWidgetSize.large,
-                  options: OptimusWidgetSize.values,
-                ),
+                size: k.widgetSizeKnob,
                 items: Iterable<int>.generate(10)
                     .map(
                       (i) => ListDropdownTile<int>(

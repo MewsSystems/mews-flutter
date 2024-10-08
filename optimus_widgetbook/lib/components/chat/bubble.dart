@@ -27,12 +27,14 @@ Widget createDefaultStyle(BuildContext context) {
       label: 'Alignment',
       initialOption: MessageAlignment.left,
       options: MessageAlignment.values,
+      labelBuilder: (value) => value.name,
     ),
     state: MessageState.sent,
     color: k.list(
       label: 'Color',
       initialOption: MessageColor.dark,
       options: MessageColor.values,
+      labelBuilder: (value) => value.name,
     ),
   );
 

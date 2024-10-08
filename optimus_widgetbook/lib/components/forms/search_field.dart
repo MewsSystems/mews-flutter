@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/components/common/nesting.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -73,16 +74,12 @@ class _SearchStoryState extends State<_SearchStory> {
         label: 'Placeholder',
         initialValue: 'Start typing something',
       ),
-      isEnabled: k.boolean(label: 'Enabled', initialValue: true),
+      isEnabled: k.isEnabledKnob,
       isRequired: k.boolean(label: 'Required'),
       caption: Text(k.string(label: 'Caption', initialValue: '')),
       helperMessage:
           Text(k.string(label: 'Secondary caption', initialValue: '')),
-      size: k.list(
-        label: 'Size',
-        initialOption: OptimusWidgetSize.large,
-        options: OptimusWidgetSize.values,
-      ),
+      size: k.widgetSizeKnob,
       isUpdating: k.boolean(label: 'Updating', initialValue: false),
       isClearEnabled: k.boolean(label: 'Clear enabled', initialValue: false),
       error: k.string(label: 'Error', initialValue: ''),
