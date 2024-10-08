@@ -23,7 +23,6 @@ class WidgetbookApp extends StatelessWidget {
             ],
           ),
           InspectorAddon(),
-          AlignmentAddon(),
           ThemeAddon<OptimusThemeData>(
             themes: [
               const WidgetbookTheme(
@@ -54,9 +53,10 @@ class WidgetbookApp extends StatelessWidget {
             name: 'Background builder',
             builder: (BuildContext context, Widget widget) => ColoredBox(
               color: context.tokens.backgroundStaticFlat,
-              child: Center(child: widget),
+              child: SafeArea(child: widget),
             ),
           ),
+          AlignmentAddon(),
         ],
         directories: directories,
       );
