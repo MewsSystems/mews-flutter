@@ -1,0 +1,7 @@
+[versions]
+java = "21"
+ndk = "27.0.12077973"
+
+[libraries]
+
+[plugins]

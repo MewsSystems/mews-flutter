@@ -2,15 +2,14 @@ group 'com.mews.kiosk_mode'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = "1.9.24"
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.4")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath(libs.gradle)
+        classpath(libs.kotlin)
     }
 }
 
@@ -31,13 +30,15 @@ android {
 
     compileSdk = 34
 
+    def javaVersion = JavaVersion.toVersion(libs.versions.java.get())
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = javaVersion
     }
 
     sourceSets {
@@ -47,8 +48,4 @@ android {
     defaultConfig {
         minSdk = 23
     }
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
