@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -11,11 +11,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) {
   final knobs = context.knobs;
-  final icon = knobs.listOrNull(
-    label: 'Icon',
-    options: exampleIconsWithNull,
-    initialOption: null,
-  );
+  final icon = knobs.optimusIconOrNullKnob(label: 'Icon');
   final badge = knobs.string(label: 'Badge');
 
   return Container(
@@ -26,7 +22,7 @@ Widget createDefaultStyle(BuildContext context) {
           .map(
             (i) => OptimusTab(
               label: i.isEven ? 'Tab with long name' : 'Tab ${i + 1}',
-              icon: i.isOdd ? icon : null,
+              icon: i.isOdd ? icon?.data : null,
               badge: i.isOdd ? badge : null,
               maxWidth: _tabBarWidth / _items.length,
             ),

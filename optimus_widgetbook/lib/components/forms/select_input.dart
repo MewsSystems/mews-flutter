@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
 import 'package:optimus_widgetbook/components/common/nesting.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -53,11 +53,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
 
     final prefix = k.string(label: 'Prefix');
     final suffix = k.string(label: 'Suffix');
-    final trailing = k.listOrNull(
-      label: 'Trailing Icon',
-      options: exampleIcons,
-      initialOption: null,
-    );
+    final trailing = k.optimusIconOrNullKnob(label: 'Trailing Icon');
     final showLoader = k.boolean(label: 'Show loader', initialValue: false);
     final isSearchEmbedded =
         k.boolean(label: 'Embedded search', initialValue: false);
@@ -65,17 +61,15 @@ class _SelectInputStoryState extends State<SelectInputStory> {
     final allowMultipleSelection =
         k.boolean(label: 'Multiselect', initialValue: true);
 
+    final alignment = k.alignmentKnob();
+
     return Align(
-      alignment: k.list(
-        label: 'Align',
-        options: alignments,
-        initialOption: Alignment.center,
-      ),
+      alignment: alignment,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),
         child: OptimusSelectInput<String>(
           value: _selectedValue,
-          isEnabled: k.boolean(label: 'Enabled', initialValue: true),
+          isEnabled: k.isEnabledKnob,
           isRequired: k.boolean(label: 'Required'),
           leading: k.boolean(label: 'Leading Icon')
               ? const Icon(OptimusIcons.search)
@@ -84,14 +78,10 @@ class _SelectInputStoryState extends State<SelectInputStory> {
               k.boolean(label: 'Searchable') ? _handleTextChanged : null,
           prefix: prefix.isNotEmpty ? Text(prefix) : null,
           suffix: suffix.isNotEmpty ? Text(suffix) : null,
-          trailing: trailing != null ? Icon(trailing) : null,
+          trailing: trailing != null ? Icon(trailing.data) : null,
           showLoader: showLoader,
           onChanged: (value) => _handleChanged(allowMultipleSelection, value),
-          size: k.list(
-            label: 'Size',
-            initialOption: OptimusWidgetSize.large,
-            options: OptimusWidgetSize.values,
-          ),
+          size: k.widgetSizeKnob,
           label: k.string(label: 'Label', initialValue: 'Optimus input field'),
           placeholder: k.string(label: 'Placeholder', initialValue: 'Hint'),
           caption: Text(k.string(label: 'Caption', initialValue: '')),

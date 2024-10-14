@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -31,7 +32,7 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
-    final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+    final isEnabled = k.isEnabledKnob;
 
     return Center(
       child: Column(

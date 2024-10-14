@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -14,9 +15,10 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Size',
     initialOption: OptimusRadioSize.large,
     options: OptimusRadioSize.values,
+    labelBuilder: (value) => value.name,
   );
   final error = k.string(label: 'Error', initialValue: '');
-  final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+  final isEnabled = k.isEnabledKnob;
 
   return RadioExample(size: size, error: error, isEnabled: isEnabled);
 }
@@ -80,10 +82,11 @@ Widget createRadioGroup(BuildContext context) {
     label: 'Size',
     initialOption: OptimusRadioSize.large,
     options: OptimusRadioSize.values,
+    labelBuilder: (value) => value.name,
   );
   final label = k.string(label: 'Label', initialValue: '');
   final error = k.string(label: 'Error', initialValue: '');
-  final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+  final isEnabled = k.isEnabledKnob;
 
   return _RadioGroupExample(
     size: size,

@@ -20,7 +20,6 @@ class AlertStory extends StatelessWidget {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final title = k.string(label: 'Title', initialValue: 'Title');
-
     final description = k.string(label: 'Description', initialValue: '');
     final link = k.string(label: 'Link.string', initialValue: '');
     final isDismissible = k.boolean(label: 'Is Dismissible');

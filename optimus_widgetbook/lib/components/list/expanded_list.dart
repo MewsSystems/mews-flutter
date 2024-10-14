@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -15,16 +15,8 @@ Widget createDefaultStyle(BuildContext context) {
   final subtitle = k.string(label: 'Subtitle', initialValue: 'Subtitle');
   final useLongSubtitle =
       k.boolean(label: 'Long subtitle', initialValue: false);
-  final trailing = k.listOrNull(
-    label: 'Trailing',
-    initialOption: null,
-    options: exampleIcons,
-  );
-  final leading = k.listOrNull(
-    label: 'Leading',
-    initialOption: null,
-    options: exampleIcons,
-  );
+  final trailing = k.optimusIconOrNullKnob(label: 'Trailing Icon');
+  final leading = k.optimusIconOrNullKnob(label: 'Leading Icon');
 
   return SingleChildScrollView(
     child: Column(
@@ -35,8 +27,8 @@ Widget createDefaultStyle(BuildContext context) {
               subtitle: subtitle.isNotEmpty
                   ? Text(useLongSubtitle ? longText : subtitle)
                   : null,
-              trailing: trailing != null ? Icon(trailing) : null,
-              leading: leading != null ? Icon(leading) : null,
+              trailing: trailing != null ? Icon(trailing.data) : null,
+              leading: leading != null ? Icon(leading.data) : null,
               children: Iterable<int>.generate(3)
                   .map((e) => OptimusListTile(title: Text('Children of $i')))
                   .toList(),

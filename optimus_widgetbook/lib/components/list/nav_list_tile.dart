@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -27,22 +27,14 @@ class _NavListExampleState extends State<_NavListExample> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final label = k.string(label: 'Label', initialValue: 'Label');
-    final leading = k.listOrNull(
-      label: 'Leading',
-      initialOption: OptimusIcons.magic,
-      options: exampleIconsWithNull,
-    );
-    final rightDetail = k.listOrNull(
-      label: 'Right Detail',
-      initialOption: null,
-      options: exampleIconsWithNull,
-    );
+    final leading = k.optimusIconOrNullKnob(label: 'Leading Icon');
+    final rightDetail = k.optimusIconOrNullKnob(label: 'Right Detail');
     final isToggleVisible = k.boolean(
       label: 'Toggle',
       initialValue: false,
     );
     final isChevronVisible = k.boolean(label: 'Chevron', initialValue: false);
-    final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
+    final isEnabled = k.isEnabledKnob;
     final useHorizontalPadding =
         k.boolean(label: 'Use Padding', initialValue: true);
 
@@ -53,13 +45,14 @@ class _NavListExampleState extends State<_NavListExample> {
               .map(
                 (i) => OptimusNavListTile(
                   label: Text(label),
-                  rightDetail: rightDetail != null ? Icon(rightDetail) : null,
+                  rightDetail:
+                      rightDetail != null ? Icon(rightDetail.data) : null,
                   isChevronVisible: isChevronVisible,
                   isToggleVisible: isToggleVisible,
                   onTogglePressed: _handleToggle,
                   isToggled: _isToggled,
                   isEnabled: isEnabled,
-                  leading: leading != null ? Icon(leading) : null,
+                  leading: leading != null ? Icon(leading.data) : null,
                   useHorizontalPadding: useHorizontalPadding,
                   onTap: () {},
                 ),

@@ -14,21 +14,25 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Variant',
     initialOption: OptimusMewsLogoVariant.wordmark,
     options: OptimusMewsLogoVariant.values,
+    labelBuilder: (value) => value.name,
   );
   final size = knobs.list(
     label: 'Size',
     initialOption: OptimusMewsLogoSizeVariant.medium,
     options: OptimusMewsLogoSizeVariant.values,
+    labelBuilder: (value) => value.name,
   );
   final color = knobs.list(
     label: 'Color',
     initialOption: OptimusMewsLogoColorVariant.black,
     options: OptimusMewsLogoColorVariant.values,
+    labelBuilder: (value) => value.name,
   );
   final align = knobs.list(
     label: 'Align',
     initialOption: OptimusMewsLogoAlignVariant.topCenter,
     options: OptimusMewsLogoAlignVariant.values,
+    labelBuilder: (value) => value.name,
   );
 
   return Container(

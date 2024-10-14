@@ -15,7 +15,7 @@ const avatar3 = OptimusAvatar(
   imageUrl: _avatar2Url,
 );
 
-final organisationAvatar = Stack(
+final organizationAvatar = Stack(
   children: [
     avatar3,
     Positioned(
@@ -27,7 +27,7 @@ final organisationAvatar = Stack(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           image: DecorationImage(
-            image: NetworkImage(_organisationAvatarUrl),
+            image: NetworkImage(_organizationAvatarUrl),
             fit: BoxFit.cover,
           ),
         ),
@@ -41,5 +41,5 @@ const _avatarUrl =
 const _avatar2Url =
     'https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80';
 
-const _organisationAvatarUrl =
+const _organizationAvatarUrl =
     'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80';

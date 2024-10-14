@@ -1,7 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -16,26 +16,15 @@ Widget createDefaultStyle(BuildContext context) {
   final subtitle = k.string(label: 'Subtitle', initialValue: 'Subtitle');
   final useLongSubtitle =
       k.boolean(label: 'Long subtitle', initialValue: false);
-  final prefix = k.listOrNull(
-    label: 'Prefix',
-    initialOption: null,
-    options: exampleIcons,
-  );
-  final suffix = k.listOrNull(
-    label: 'Suffix',
-    initialOption: null,
-    options: exampleIcons,
-  );
+  final prefix = k.optimusIconOrNullKnob(label: 'Prefix Icon');
+  final suffix = k.optimusIconOrNullKnob(label: 'Suffix Icon');
   final info = k.string(label: 'Info', initialValue: 'Info');
-  final infoWidget = k.listOrNull(
-    label: 'Info widget',
-    initialOption: null,
-    options: exampleIcons,
-  );
+  final infoWidget = k.optimusIconOrNullKnob(label: 'Info Icon');
   final fontVariant = k.list(
     label: 'Font variant',
     initialOption: FontVariant.normal,
     options: FontVariant.values,
+    labelBuilder: (value) => value.name,
   );
 
   return SingleChildScrollView(
@@ -49,9 +38,9 @@ Widget createDefaultStyle(BuildContext context) {
                   : null,
               info: info.isNotEmpty ? Text(info) : null,
               fontVariant: fontVariant,
-              prefix: prefix != null ? Icon(prefix) : null,
-              suffix: suffix != null ? Icon(suffix) : null,
-              infoWidget: infoWidget != null ? Icon(infoWidget) : null,
+              prefix: prefix != null ? Icon(prefix.data) : null,
+              suffix: suffix != null ? Icon(suffix.data) : null,
+              infoWidget: infoWidget != null ? Icon(infoWidget.data) : null,
               onTap: ignore,
             ),
           )

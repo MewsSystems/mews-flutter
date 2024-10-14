@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/common/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -9,16 +9,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusInlineDialog,
   path: '[Layout]/Dialog',
 )
-Widget createDefaultStyle(BuildContext context) =>
-    DialogWrapper(child: InlineDialogStory(context.knobs));
+Widget createDefaultStyle(BuildContext _) =>
+    const DialogWrapper(child: InlineDialogStory());
 
 class InlineDialogStory extends StatefulWidget {
-  const InlineDialogStory(
-    this.k, {
+  const InlineDialogStory({
     super.key,
   });
-
-  final KnobsBuilder k;
 
   @override
   State<InlineDialogStory> createState() => _InlineDialogStoryState();
@@ -29,13 +26,9 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
 
   @override
   Widget build(BuildContext context) {
-    final hasActions =
-        widget.k.boolean(label: 'Has actions', initialValue: false);
-    final position = widget.k.list(
-      label: 'Button Position',
-      options: alignments,
-      initialOption: Alignment.center,
-    );
+    final k = context.knobs;
+    final hasActions = k.boolean(label: 'Has actions', initialValue: false);
+    final position = k.alignmentKnob();
 
     return Align(
       alignment: position,

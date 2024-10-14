@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -32,7 +33,6 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
   Widget build(BuildContext context) {
     final k = context.knobs;
 
-    final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
     final error = k.string(label: 'Error');
     final isClearEnabled = k.boolean(label: 'Clear all', initialValue: false);
     final String format = k.list(
@@ -47,7 +47,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
         label: 'Date',
         value: _value,
         error: error.isNotEmpty ? error : null,
-        isEnabled: isEnabled,
+        isEnabled: k.isEnabledKnob,
         format: DateFormat(format),
         isClearAllEnabled: isClearEnabled,
         onSubmitted: _handleSubmit,
