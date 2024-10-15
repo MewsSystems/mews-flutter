@@ -244,7 +244,7 @@ class _Chevron extends StatelessWidget {
 
     return Icon(
       OptimusIcons.chevron_down,
-      size: context.tokens.sizing300,
+      size: tokens.sizing300,
       color: isEnabled ? tokens.textStaticPrimary : tokens.textDisabled,
     );
   }

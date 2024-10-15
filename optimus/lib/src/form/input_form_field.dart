@@ -139,13 +139,13 @@ class _InputFormFieldState extends FormFieldState<String> {
       final oldWidgetController = oldWidget.controller;
       final widgetController = widget.controller;
 
-      if (oldWidgetController != null && widget.controller == null) {
+      if (oldWidgetController != null && widgetController == null) {
         _controller =
             TextEditingController.fromValue(oldWidgetController.value);
       }
       if (widgetController != null) {
         setValue(widgetController.text);
-        if (oldWidget.controller == null) _controller = null;
+        if (oldWidgetController == null) _controller = null;
       }
     }
   }

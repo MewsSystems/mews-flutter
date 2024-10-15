@@ -115,7 +115,7 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
           caption: widget.caption,
           captionIcon: widget.captionIcon,
           helperMessage: widget.helperMessage,
-          error: widget.error,
+          error: error,
           errorVariant: widget.errorVariant,
           isRequired: widget.isRequired,
           prefix: prefix,
