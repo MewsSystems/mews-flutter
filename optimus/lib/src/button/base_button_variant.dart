@@ -4,6 +4,8 @@ import 'package:optimus/src/theme/optimus_tokens.dart';
 enum BaseButtonVariant { primary, secondary, tertiary, ghost, danger, success }
 
 extension ColorScheme on BaseButtonVariant {
+  // TODO(witwash): split and rework, possibly using WidgetStates
+  // ignore: avoid-high-cyclomatic-complexity, ignore until reworked
   Color? getBackgroundColor(
     OptimusTokens tokens, {
     required bool isEnabled,
@@ -105,6 +107,8 @@ extension ColorScheme on BaseButtonVariant {
     }
   }
 
+  // TODO(witwash): split and rewrite, possibly using WidgetState
+  // ignore: avoid-high-cyclomatic-complexity, ignore until reworked
   Color getBadgeTextColor(
     OptimusTokens tokens, {
     required bool isEnabled,
