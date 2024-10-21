@@ -1,3 +1,9 @@
+## 0.32.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-3266] Upgrade to DCM 1.23.
+
 ## 0.31.1
 
  - **FEAT**: [DX-2293] Update rules.
