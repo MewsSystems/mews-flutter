@@ -262,6 +262,7 @@ dart_code_metrics:
     - avoid-collection-equality-checks
     - avoid-collection-methods-with-unrelated-types
     # - avoid-collection-mutating-methods
+    - avoid-complex-loop-conditions
     - avoid-conditions-with-boolean-literals
     - avoid-contradictory-expressions
     # - avoid-declaring-call-method
@@ -291,6 +292,7 @@ dart_code_metrics:
     - avoid-getter-prefix:
         prefix: '^get'
     - avoid-global-state
+    # - avoid-high-cyclomatic-complexity
     # - avoid-identical-exception-handling-blocks
     # - avoid-ignoring-return-values
     - avoid-implicitly-nullable-extension-types
@@ -298,6 +300,7 @@ dart_code_metrics:
     # - avoid-inferrable-type-arguments
     - avoid-inverted-boolean-checks
     - avoid-keywords-in-wildcard-pattern
+    - avoid-late-final-reassignment
     # - avoid-late-keyword
     # - avoid-local-functions
     # - avoid-long-functions
@@ -325,6 +328,7 @@ dart_code_metrics:
     # - avoid-nested-switch-expressions
     - avoid-nested-switches
     # - avoid-non-ascii-symbols
+    # - avoid-non-empty-constructor-bodies
     - avoid-non-final-exception-class-fields
     - avoid-non-null-assertion
     - avoid-not-encodable-in-to-json
@@ -343,6 +347,7 @@ dart_code_metrics:
     - avoid-redundant-positional-field-name
     # - avoid-redundant-pragma-inline
     # - avoid-referencing-discarded-variables
+    - avoid-referencing-subclasses
     # - avoid-renaming-representation-getters
     - avoid-returning-cascades
     - avoid-returning-void
@@ -484,6 +489,7 @@ dart_code_metrics:
     - prefer-public-exception-classes
     - prefer-return-await
     - prefer-returning-conditional-expressions
+    - prefer-simpler-boolean-expressions
     - prefer-simpler-patterns-null-check
     # - prefer-single-declaration-per-file
     - prefer-specific-cases-first
@@ -501,6 +507,7 @@ dart_code_metrics:
     - prefer-wildcard-pattern
     # - tag-name
     # - unnecessary-trailing-comma
+    - use-existing-variable
 
     # Flutter
 
@@ -560,6 +567,7 @@ dart_code_metrics:
 
     - avoid-bloc-public-methods
     - avoid-cubits
+    # - avoid-empty-build-when
     - avoid-passing-bloc-to-bloc
     # - check-is-not-closed-after-async-gap
     - prefer-correct-bloc-provider

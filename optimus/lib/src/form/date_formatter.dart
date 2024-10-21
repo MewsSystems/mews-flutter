@@ -105,6 +105,7 @@ class DateFormatter extends TextInputFormatter {
   /// empty space will be filled with the placeholder
   /// result = '23-05-201Y'
   @override
+  // TODO(witwash): rewrite and split in chunks
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
@@ -112,22 +113,22 @@ class DateFormatter extends TextInputFormatter {
     final oldSelection = oldValue.selection;
     final oldText = oldValue.text;
     final newText = newValue.text;
-    final oldSelectionStart = oldValue.selection.start;
+    final oldSelectionStart = oldSelection.start;
     final newSelectionStart = newValue.selection.start;
 
     String resultText = oldText;
     int resultSelection = oldSelectionStart;
 
-    if (oldValue.text.isEmpty) {
+    if (oldText.isEmpty) {
       if (newText.clean().isEmpty) return oldValue;
 
       return _pasteStarting(placeholder, 0, placeholder.length, newText);
-    } else if (oldSelection.end - oldSelection.start >= 1) {
+    } else if (oldSelection.end - oldSelectionStart >= 1) {
       return _pasteStarting(
         oldText,
         oldSelectionStart,
         oldSelection.end,
-        newText.substring(oldSelection.start, newValue.selection.end),
+        newText.substring(oldSelectionStart, newValue.selection.end),
       );
     }
 

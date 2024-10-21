@@ -238,7 +238,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
   Widget build(BuildContext context) {
     final bool isClosed = !_isExpanded && _animationController.isDismissed;
     final items = widget.items;
-    final headerItem = _isExpanded ? widget.items.first : _currentItem;
+    final headerItem = _isExpanded ? items.first : _currentItem;
 
     final Widget result = Offstage(
       offstage: isClosed,
