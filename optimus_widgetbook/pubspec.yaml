@@ -19,7 +19,7 @@ dev_dependencies:
   build_runner: ^2.4.12
   flutter_test:
     sdk: flutter
-  mews_pedantic: ^0.31.1
+  mews_pedantic: ^0.32.0
   widgetbook_generator: ^3.9.0
 flutter:
   uses-material-design: true
