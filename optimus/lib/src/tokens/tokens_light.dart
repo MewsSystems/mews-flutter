@@ -2,10 +2,8 @@
 // tokens_light.dart
 //
 
-// ignore_for_file: avoid-duplicate-constant-values
-
 // Do not edit directly
-// Generated on Mon, 02 Sep 2024 13:49:22 GMT
+// Generated on Wed, 23 Oct 2024 14:40:39 GMT
 
 import 'package:flutter/widgets.dart';
 
