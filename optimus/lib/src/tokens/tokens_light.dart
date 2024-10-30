@@ -2,6 +2,8 @@
 // tokens_light.dart
 //
 
+// ignore_for_file: avoid-duplicate-constant-values
+
 // Do not edit directly
 // Generated on Wed, 23 Oct 2024 14:40:39 GMT
 
