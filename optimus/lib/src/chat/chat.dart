@@ -125,6 +125,7 @@ class OptimusChat extends StatelessWidget {
       child: OptimusStack(
         spacing: OptimusStackSpacing.spacing200,
         children: [
+          // ignore: avoid-flexible-outside-flex, it is wrapped in Flex later
           Expanded(
             child: ListView.builder(
               itemCount: _messages.length,

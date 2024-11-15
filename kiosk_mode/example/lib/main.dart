@@ -36,11 +36,7 @@ class _HomeState extends State<_Home> {
 
   void _handleStart(bool didStart) {
     if (!didStart && Platform.isIOS) {
-      _showSnackBar(
-        'Single App mode is supported only for devices that are supervised'
-        ' using Mobile Device Management (MDM) and the app itself must'
-        ' be enabled for this mode by MDM.',
-      );
+      _showSnackBar(_unsupportedMessage);
     }
   }
 
@@ -97,3 +93,9 @@ class _HomeState extends State<_Home> {
         },
       );
 }
+
+const _unsupportedMessage = '''
+Single App mode is supported only for devices that are supervised 
+using Mobile Device Management (MDM) and the app itself must 
+be enabled for this mode by MDM.
+''';

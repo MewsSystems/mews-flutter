@@ -99,9 +99,8 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
   }
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        width: widget.size.getSize(tokens),
-        height: widget.size.getSize(tokens),
+  Widget build(BuildContext context) => SizedBox.square(
+        dimension: widget.size.getSize(tokens),
         child: AnimatedBuilder(
           animation: _controller,
           builder: (context, child) => Stack(

@@ -72,8 +72,10 @@ class _Date extends StatelessWidget {
       direction: Axis.horizontal,
       spacing: OptimusStackSpacing.spacing100,
       children: [
+        // ignore: avoid-flexible-outside-flex, it is wrapped in Flex latter
         Expanded(child: horizontalLine),
         Text(date, style: tokens.bodySmallStrong),
+        // ignore: avoid-flexible-outside-flex, it is wrapped in Flex latter
         Expanded(child: horizontalLine),
       ],
     );

@@ -66,8 +66,8 @@ void main(List<String> arguments) {
         )
         ..writeln('const optimusIcons = <IconDetails>[');
 
-      for (int i = 0; i < icons.length; i++) {
-        final Map<String, dynamic> glyphs = icons[i] as Map<String, dynamic>;
+      for (final icon in icons) {
+        final Map<String, dynamic> glyphs = icon as Map<String, dynamic>;
         final glyphName = convertGlyphName(glyphs['css'].toString());
         buffer.writeln(
           "    IconDetails($fontFamilyName.$glyphName, '$glyphName'),",

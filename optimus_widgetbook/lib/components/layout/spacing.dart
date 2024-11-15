@@ -36,9 +36,8 @@ Widget _buildSpacing(OptimusTokens tokens, double spacing, String label) =>
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Row(
         children: [
-          SizedBox(
-            width: spacing,
-            height: spacing,
+          SizedBox.square(
+            dimension: spacing,
             child: Container(color: Colors.black),
           ),
           Padding(

@@ -126,9 +126,8 @@ class _Knob extends StatelessWidget {
     final tokens = context.tokens;
     final knobSize = tokens.sizing200;
 
-    return SizedBox(
-      width: knobSize,
-      height: knobSize,
+    return SizedBox.square(
+      dimension: knobSize,
       child: DecoratedBox(
         decoration: ShapeDecoration(
           color: tokens.backgroundStaticFlat,

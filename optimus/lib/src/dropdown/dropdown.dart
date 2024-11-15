@@ -163,7 +163,7 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
                 child: _buildList(isOnTop, listMaxHeight),
               ),
             )
-          : widget.emptyResultPlaceholder ?? const SizedBox.shrink();
+          : (widget.emptyResultPlaceholder ?? const SizedBox.shrink());
       final children = [
         Material(color: Colors.transparent, child: content),
         if (widget.embeddedSearch case final embeddedSearch?)
