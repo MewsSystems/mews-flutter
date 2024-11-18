@@ -123,6 +123,7 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
           fieldBoxKey: widget.fieldBoxKey,
           size: widget.size,
           children: [
+            // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
             Flexible(
               child: Focus(
                 focusNode: _effectiveFocusNode,

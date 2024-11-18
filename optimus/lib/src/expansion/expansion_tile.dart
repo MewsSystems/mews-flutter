@@ -173,7 +173,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
                 child: listTile,
               ),
             ClipRect(
-              child: Align(heightFactor: _heightFactor.value, child: child),
+              child: Center(heightFactor: _heightFactor.value, child: child),
             ),
           ],
         );

@@ -348,6 +348,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       placeholder:
           _placeholder, // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
       children: [
+        // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
         Expanded(
           child: CupertinoTextField(
             key: widget.inputKey,

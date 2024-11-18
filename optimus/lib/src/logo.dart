@@ -92,8 +92,8 @@ class OptimusMewsLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Container(
-      margin: _getMargin(tokens),
+    return Padding(
+      padding: _getMargin(tokens),
       child: switch (logoVariant) {
         OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
             OptimusIcons.mews_logo,

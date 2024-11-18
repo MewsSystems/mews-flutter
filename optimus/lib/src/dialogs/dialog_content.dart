@@ -41,8 +41,8 @@ class DialogContent extends StatelessWidget {
     final title = this.title;
     final content = this.content;
 
-    return Container(
-      margin: margin,
+    return Padding(
+      padding: margin ?? EdgeInsets.zero,
       child: Padding(
         padding: EdgeInsets.all(spacing ?? tokens.spacing0),
         child: ConstrainedBox(

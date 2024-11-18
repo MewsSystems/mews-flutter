@@ -263,9 +263,8 @@ class _DisabledIndicatorItem extends StatelessWidget {
     final tokens = context.tokens;
     final size = tokens.sizing300;
 
-    return SizedBox(
-      height: size,
-      width: size,
+    return SizedBox.square(
+      dimension: size,
       child: Center(
         child: Container(
           constraints: BoxConstraints(

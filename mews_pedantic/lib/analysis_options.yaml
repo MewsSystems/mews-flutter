@@ -63,7 +63,6 @@ linter:
     - avoid_init_to_null
     - avoid_js_rounded_ints
     # - avoid_multiple_declarations_per_line
-    - avoid_null_checks_in_equality_operators
     - avoid_positional_boolean_parameters
     # - avoid_private_typedef_functions
     # - avoid_redundant_argument_values
@@ -99,6 +98,7 @@ linter:
     - flutter_style_todos
     - implementation_imports
     - implicit_call_tearoffs
+    - invalid_runtime_check_with_js_interop_types
     - join_return_with_assignment
     - leading_newlines_in_multiline_strings
     - library_annotations
@@ -186,6 +186,7 @@ linter:
     - unnecessary_lambdas
     - unnecessary_late
     - unnecessary_library_directive
+    - unnecessary_library_name
     - unnecessary_new
     - unnecessary_null_aware_assignments
     - unnecessary_null_aware_operator_on_extension_on_nullable
@@ -247,6 +248,9 @@ dart_code_metrics:
     # - arguments-ordering
     - avoid-accessing-collections-by-constant-index
     # - avoid-accessing-other-classes-private-members
+    - avoid-adjacent-strings
+    # - avoid-assigning-to-static-field
+    - avoid-assignments-as-conditions
     # - avoid-async-call-in-sync-function
     # - avoid-banned-annotations
     # - avoid-banned-file-names
@@ -297,6 +301,7 @@ dart_code_metrics:
     # - avoid-ignoring-return-values
     - avoid-implicitly-nullable-extension-types
     # - avoid-importing-entrypoint-exports
+    - avoid-incorrect-uri
     # - avoid-inferrable-type-arguments
     - avoid-inverted-boolean-checks
     - avoid-keywords-in-wildcard-pattern
@@ -320,6 +325,7 @@ dart_code_metrics:
     - avoid-multi-assignment
     # - avoid-mutating-parameters
     # - avoid-negated-conditions
+    - avoid-negations-in-equality-checks
     # - avoid-nested-conditional-expressions
     - avoid-nested-extension-types
     - avoid-nested-futures
@@ -407,6 +413,7 @@ dart_code_metrics:
     # - format-comment
     # - format-test-name
     - function-always-returns-null
+    - function-always-returns-same-value
     # - handle-throwing-invocations
     # - map-keys-ordering
     # - match-class-name-pattern
@@ -416,8 +423,7 @@ dart_code_metrics:
     # - member-ordering
     # - missing-test-assertion
     - missing-use-result-annotation:
-        types:
-          - Either
+        type-pattern: ^Either<
     - move-records-to-typedefs
     - move-variable-closer-to-its-usage
     - move-variable-outside-iteration
@@ -437,6 +443,7 @@ dart_code_metrics:
     - no-object-declaration
     # - parameters-ordering
     - prefer-abstract-final-static-class
+    - prefer-add-all
     # - prefer-addition-subtraction-assignments
     - prefer-any-or-every
     # - prefer-async-await
@@ -470,6 +477,7 @@ dart_code_metrics:
     - prefer-explicit-type-arguments
     # - prefer-extracting-function-callbacks
     # - prefer-first
+    - prefer-for-in
     # - prefer-getter-over-method
     - prefer-immediate-return
     - prefer-iterable-of
@@ -516,6 +524,7 @@ dart_code_metrics:
     # - avoid-border-all
     # - avoid-empty-setstate
     - avoid-expanded-as-spacer
+    - avoid-flexible-outside-flex
     # - avoid-incomplete-copy-with
     - avoid-incorrect-image-opacity
     # - avoid-inherited-widget-in-initstate
@@ -527,9 +536,9 @@ dart_code_metrics:
     - avoid-shrink-wrap-in-lists
     - avoid-single-child-column-or-row
     - avoid-state-constructors
+    - avoid-stateless-widget-initialized-fields
     # - avoid-undisposed-instances
     - avoid-unnecessary-gesture-detector
-    - avoid-stateless-widget-initialized-fields
     - avoid-unnecessary-overrides-in-state
     - avoid-unnecessary-setstate
     - avoid-unnecessary-stateful-widgets
@@ -538,20 +547,21 @@ dart_code_metrics:
     - consistent-update-render-object
     - dispose-fields
     # - prefer-action-button-tooltip
+    - prefer-center-over-align
     - prefer-const-border-radius
     - prefer-correct-edge-insets-constructor
     - prefer-dedicated-media-query-methods
     - prefer-define-hero-tag
     # - prefer-extracting-callbacks
     # - prefer-for-loop-in-children
+    - prefer-padding-over-container
     # - prefer-single-widget-per-file
+    - prefer-sized-box-square
     - prefer-sliver-prefix
     - prefer-text-rich
     # - prefer-using-list-view
     - prefer-widget-private-members:
         ignore-static: true
-    #    - avoid-assigning-to-static-field
-    - avoid-assignments-as-conditions
     - proper-super-calls
     - use-setstate-synchronously
 
@@ -562,16 +572,23 @@ dart_code_metrics:
     # - avoid-watch-outside-build
     - dispose-providers
     - prefer-multi-provider
+    - prefer-provider-extensions
 
     # Bloc
 
     - avoid-bloc-public-methods
     - avoid-cubits
+    # - avoid-duplicate-bloc-event-handlers
     # - avoid-empty-build-when
     - avoid-passing-bloc-to-bloc
+    - avoid-passing-build-context-to-blocs
     # - check-is-not-closed-after-async-gap
+    - handle-bloc-event-subclasses
+    - prefer-bloc-extensions
     - prefer-correct-bloc-provider
     - prefer-multi-bloc-provider
+    - prefer-sealed-bloc-events
+    - prefer-sealed-bloc-state
 
   pubspec-rules:
   #    - avoid-any-version

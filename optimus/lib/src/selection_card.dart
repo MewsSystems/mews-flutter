@@ -283,7 +283,7 @@ class _VerticalCard extends StatelessWidget {
               top: context.tokens.spacing100,
               child: selector,
             ),
-          Container(
+          Padding(
             padding: EdgeInsets.symmetric(
               horizontal: context.tokens.spacing200,
               vertical: context.tokens.spacing400,

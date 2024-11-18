@@ -32,8 +32,8 @@ class OptimusTheme extends StatelessWidget {
     final bool isDark = themeMode == ThemeMode.dark ||
         (themeMode == ThemeMode.system && brightness == Brightness.dark);
     final theme = isDark
-        ? darkTheme ?? _defaultDarkTheme
-        : lightTheme ?? _defaultLightTheme;
+        ? (darkTheme ?? _defaultDarkTheme)
+        : (lightTheme ?? _defaultLightTheme);
 
     return _OptimusTheme(
       theme: theme,
