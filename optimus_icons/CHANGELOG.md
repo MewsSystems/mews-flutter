@@ -1,3 +1,7 @@
+## 0.1.1+2
+
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.1.1+1
 
  - **REFACTOR**: Fix linter issues.

@@ -1,3 +1,9 @@
+## 0.33.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-3397] Upgrade to DCM 1.24.2.
+
 ## 0.32.0
 
 > Note: This release has breaking changes.

@@ -1,3 +1,9 @@
+## 0.38.2
+
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: Fix linter issues.
+ - **FEAT**: Design Tokens Update 7.2.0 (#700).
+
 ## 0.38.1
 
  - **FEAT**: [DX-2168] Improve password StatusBar transition animation (#677).
