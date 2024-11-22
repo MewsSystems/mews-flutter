@@ -22,6 +22,8 @@ rhoncus ridiculus varius faucibus commodo tincidunt ipsum molestie. Volutpat
 semper aptent viverra facilisi nam nibh suscipit purus himenaeos. Himenaeos 
 quisque ultrices condimentum mauris a diam.''';
 
+final stubDate = DateTime(2012, 4, 3);
+
 extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
         label: 'Size',
@@ -47,4 +49,8 @@ extension KnobsBuilderExt on KnobsBuilder {
       );
 
   bool get isEnabledKnob => boolean(label: 'Enabled', initialValue: true);
+}
+
+extension WidgetbookContext on BuildContext {
+  bool get isInWidgetbookCloud => WidgetbookState.of(this).previewMode;
 }

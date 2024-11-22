@@ -23,7 +23,7 @@ Widget createDefaultStyle(BuildContext context) {
     constraints: const BoxConstraints(maxWidth: 400),
     child: OptimusDateInputFormField(
       label: 'Date',
-      value: DateTime.now(),
+      value: stubDate,
       isEnabled: k.isEnabledKnob,
       format: DateFormat(format),
       isClearAllEnabled: isClearEnabled,

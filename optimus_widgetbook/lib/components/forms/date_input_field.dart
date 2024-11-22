@@ -24,7 +24,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
   @override
   void initState() {
     super.initState();
-    _value = DateTime.now();
+    _value = stubDate;
   }
 
   void _handleSubmit(DateTime? value) => setState(() => _value = value);

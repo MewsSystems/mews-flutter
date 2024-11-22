@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/components/chat/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -22,7 +23,7 @@ Widget createDefaultStyle(BuildContext context) {
       initialValue:
           'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.',
     ),
-    time: DateTime.now().subtract(const Duration(seconds: 30)),
+    time: stubDate,
     alignment: k.list(
       label: 'Alignment',
       initialOption: MessageAlignment.left,

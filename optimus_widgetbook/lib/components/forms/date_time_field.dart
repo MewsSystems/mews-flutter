@@ -24,7 +24,7 @@ class _ContentState extends State<_Content> {
   @override
   void initState() {
     super.initState();
-    _dateTime = DateTime.now();
+    _dateTime = stubDate;
   }
 
   void _handleChanged(DateTime? dateTime) =>
