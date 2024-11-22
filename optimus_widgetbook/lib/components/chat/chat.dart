@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/components/chat/common.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -38,7 +39,7 @@ final messages = <OptimusMessage>[
     message: 'Old message',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(days: 365)),
+    time: stubDate.subtract(const Duration(days: 365)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -46,7 +47,7 @@ final messages = <OptimusMessage>[
     message: 'Hey you!',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(days: 6, minutes: 2)),
+    time: stubDate.subtract(const Duration(days: 6, minutes: 2)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -54,7 +55,7 @@ final messages = <OptimusMessage>[
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(days: 6)),
+    time: stubDate.subtract(const Duration(days: 6)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -62,7 +63,7 @@ final messages = <OptimusMessage>[
     message: 'Hello',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(days: 5, minutes: 15)),
+    time: stubDate.subtract(const Duration(days: 5, minutes: 15)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -70,7 +71,7 @@ final messages = <OptimusMessage>[
     message: 'consectetur adipiscing elit',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(days: 5)),
+    time: stubDate.subtract(const Duration(days: 5)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -78,7 +79,7 @@ final messages = <OptimusMessage>[
     message: 'Suspendisse diam ante, condimentum ut interdum sit amets',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(days: 5)),
+    time: stubDate.subtract(const Duration(days: 5)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -86,7 +87,7 @@ final messages = <OptimusMessage>[
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(hours: 2)),
+    time: stubDate.subtract(const Duration(hours: 2)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -95,7 +96,7 @@ final messages = <OptimusMessage>[
         'Donec eget elit et massa rhoncus ullamcorper a non ex. Nulla vulputate condimentum libero, non congue ligula auctor ac. Pellentesque vel dui a turpis ultricies accumsan non sed nulla. Aenean interdum tempus scelerisque.',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 45)),
+    time: stubDate.subtract(const Duration(minutes: 45)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -103,7 +104,7 @@ final messages = <OptimusMessage>[
     message: 'Quisque arcu turpis',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(minutes: 30)),
+    time: stubDate.subtract(const Duration(minutes: 30)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -111,7 +112,7 @@ final messages = <OptimusMessage>[
     message: 'euismod quis maximus sit amet',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 27)),
+    time: stubDate.subtract(const Duration(minutes: 5, seconds: 27)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -119,7 +120,7 @@ final messages = <OptimusMessage>[
     message: 'convallis eleifend ante.',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 26)),
+    time: stubDate.subtract(const Duration(minutes: 5, seconds: 26)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -127,7 +128,7 @@ final messages = <OptimusMessage>[
     message: '😁',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 25)),
+    time: stubDate.subtract(const Duration(minutes: 5, seconds: 25)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -136,7 +137,7 @@ final messages = <OptimusMessage>[
         'Suspendisse diam ante, condimentum ut interdum sit amet, suscipit non massa.',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 5, seconds: 20)),
+    time: stubDate.subtract(const Duration(minutes: 5, seconds: 20)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -144,7 +145,7 @@ final messages = <OptimusMessage>[
     message: 'sdf sfsdfdsfsh fdf sdf',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 3, seconds: 19)),
+    time: stubDate.subtract(const Duration(minutes: 3, seconds: 19)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -152,7 +153,7 @@ final messages = <OptimusMessage>[
     message: 'Maecenas pellentesque',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 55)),
+    time: stubDate.subtract(const Duration(minutes: 2, seconds: 55)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -160,7 +161,7 @@ final messages = <OptimusMessage>[
     message: 'quam sed viverra ornare',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 35)),
+    time: stubDate.subtract(const Duration(minutes: 2, seconds: 35)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -168,7 +169,7 @@ final messages = <OptimusMessage>[
     message: 'tellus orci placerat purus',
     alignment: MessageAlignment.left,
     color: MessageColor.neutral,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 28)),
+    time: stubDate.subtract(const Duration(minutes: 2, seconds: 28)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -177,7 +178,7 @@ final messages = <OptimusMessage>[
         'ut consectetur orci metus sed nibh. Praesent in tellus facilisis, sagittis odio eget, maximus turpis',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(minutes: 2, seconds: 27)),
+    time: stubDate.subtract(const Duration(minutes: 2, seconds: 27)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -185,7 +186,7 @@ final messages = <OptimusMessage>[
     message: 'orci metus sed nibh. Praesent in tellus facilisis,',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 25)),
+    time: stubDate.subtract(const Duration(minutes: 1, seconds: 25)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -193,7 +194,7 @@ final messages = <OptimusMessage>[
     message: 'Aliquam porttitor quis eros pharetra blandit.',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(minutes: 1, seconds: 20)),
+    time: stubDate.subtract(const Duration(minutes: 1, seconds: 20)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -201,7 +202,7 @@ final messages = <OptimusMessage>[
     message: 'Test',
     alignment: MessageAlignment.right,
     color: MessageColor.light,
-    time: DateTime.now().subtract(const Duration(seconds: 15)),
+    time: stubDate.subtract(const Duration(seconds: 15)),
     state: MessageState.sent,
   ),
   OptimusMessage(
@@ -209,7 +210,7 @@ final messages = <OptimusMessage>[
     message: '🤔',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(seconds: 14)),
+    time: stubDate.subtract(const Duration(seconds: 14)),
     state: MessageState.sending,
   ),
   OptimusMessage(
@@ -217,7 +218,7 @@ final messages = <OptimusMessage>[
     message: '😫',
     alignment: MessageAlignment.right,
     color: MessageColor.dark,
-    time: DateTime.now().subtract(const Duration(seconds: 12)),
+    time: stubDate.subtract(const Duration(seconds: 12)),
     state: MessageState.error,
   ),
 ];
