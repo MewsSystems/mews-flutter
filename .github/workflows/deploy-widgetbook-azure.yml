@@ -1,12 +1,6 @@
 name: deploy-widgetbook-azure
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - master
-    paths:
-      - optimus_widgetbook/**
-      - optimus/**
 
 permissions:
   id-token: write # This is required for requesting the JWT
