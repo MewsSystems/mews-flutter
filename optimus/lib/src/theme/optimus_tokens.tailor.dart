@@ -70,6 +70,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get borderAlertInfo;
   Color get borderAlertSuccess;
   Color get borderAlertWarning;
+  Color get borderBrand;
   Color get borderDisabled;
   Color get borderInteractiveBoldActive;
   Color get borderInteractiveBoldDefault;
@@ -472,6 +473,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? borderAlertInfo,
     Color? borderAlertSuccess,
     Color? borderAlertWarning,
+    Color? borderBrand,
     Color? borderDisabled,
     Color? borderInteractiveBoldActive,
     Color? borderInteractiveBoldDefault,
@@ -934,6 +936,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       borderAlertInfo: borderAlertInfo ?? this.borderAlertInfo,
       borderAlertSuccess: borderAlertSuccess ?? this.borderAlertSuccess,
       borderAlertWarning: borderAlertWarning ?? this.borderAlertWarning,
+      borderBrand: borderBrand ?? this.borderBrand,
       borderDisabled: borderDisabled ?? this.borderDisabled,
       borderInteractiveBoldActive:
           borderInteractiveBoldActive ?? this.borderInteractiveBoldActive,
@@ -1584,6 +1587,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(borderAlertSuccess, other.borderAlertSuccess, t)!,
       borderAlertWarning:
           Color.lerp(borderAlertWarning, other.borderAlertWarning, t)!,
+      borderBrand: Color.lerp(borderBrand, other.borderBrand, t)!,
       borderDisabled: Color.lerp(borderDisabled, other.borderDisabled, t)!,
       borderInteractiveBoldActive: Color.lerp(
           borderInteractiveBoldActive, other.borderInteractiveBoldActive, t)!,
@@ -2271,6 +2275,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(borderAlertInfo, other.borderAlertInfo) &&
             const DeepCollectionEquality().equals(borderAlertSuccess, other.borderAlertSuccess) &&
             const DeepCollectionEquality().equals(borderAlertWarning, other.borderAlertWarning) &&
+            const DeepCollectionEquality().equals(borderBrand, other.borderBrand) &&
             const DeepCollectionEquality().equals(borderDisabled, other.borderDisabled) &&
             const DeepCollectionEquality().equals(borderInteractiveBoldActive, other.borderInteractiveBoldActive) &&
             const DeepCollectionEquality().equals(borderInteractiveBoldDefault, other.borderInteractiveBoldDefault) &&
@@ -2683,6 +2688,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(borderAlertInfo),
       const DeepCollectionEquality().hash(borderAlertSuccess),
       const DeepCollectionEquality().hash(borderAlertWarning),
+      const DeepCollectionEquality().hash(borderBrand),
       const DeepCollectionEquality().hash(borderDisabled),
       const DeepCollectionEquality().hash(borderInteractiveBoldActive),
       const DeepCollectionEquality().hash(borderInteractiveBoldDefault),
