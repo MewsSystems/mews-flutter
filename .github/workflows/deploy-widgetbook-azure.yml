@@ -1,0 +1,40 @@
+name: deploy-widgetbook-azure
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - optimus_widgetbook/**
+      - optimus/**
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  deploy_widgetbook_azure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup
+
+      - name: Build Web
+        run: |
+          melos exec --scope="optimus_widgetbook" -- "flutter build web"
+
+      - uses: actions/checkout@v4
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Upload to blob storage
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az storage file upload --enable-file-backup-request-intent -s mews-ui-widgetbook --source optimus_widgetbook/build/web --auth-mode login --account-name ${{ secrets.AZURE_ACCOUNT_NAME }}
