@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Wed, 23 Oct 2024 14:40:40 GMT
+// Generated on Mon, 25 Nov 2024 17:43:45 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -79,6 +79,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderAlertInfo,
     required this.borderAlertSuccess,
     required this.borderAlertWarning,
+    required this.borderBrand,
     required this.borderDisabled,
     required this.borderInteractiveBoldActive,
     required this.borderInteractiveBoldDefault,
@@ -541,6 +542,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderAlertSuccess;
   @override
   final Color borderAlertWarning;
+  @override
+  final Color borderBrand;
   @override
   final Color borderDisabled;
   @override
@@ -1317,6 +1320,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderAlertInfo: DesignTokensLight.borderAlertInfo,
     borderAlertSuccess: DesignTokensLight.borderAlertSuccess,
     borderAlertWarning: DesignTokensLight.borderAlertWarning,
+    borderBrand: DesignTokensLight.borderBrand,
     borderDisabled: DesignTokensLight.borderDisabled,
     borderInteractiveBoldActive: DesignTokensLight.borderInteractiveBoldActive,
     borderInteractiveBoldDefault:
@@ -1761,6 +1765,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderAlertInfo: DesignTokensDark.borderAlertInfo,
     borderAlertSuccess: DesignTokensDark.borderAlertSuccess,
     borderAlertWarning: DesignTokensDark.borderAlertWarning,
+    borderBrand: DesignTokensDark.borderBrand,
     borderDisabled: DesignTokensDark.borderDisabled,
     borderInteractiveBoldActive: DesignTokensDark.borderInteractiveBoldActive,
     borderInteractiveBoldDefault: DesignTokensDark.borderInteractiveBoldDefault,

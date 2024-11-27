@@ -1,11 +1,10 @@
 //
 // tokens_dark.dart
 //
-
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Wed, 23 Oct 2024 14:40:39 GMT
+// Generated on Mon, 25 Nov 2024 17:43:45 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -77,6 +76,7 @@ abstract final class DesignTokensDark {
   static const Color borderAlertInfo = Color(0xFF1F69D7);
   static const Color borderAlertSuccess = Color(0xFF539F44);
   static const Color borderAlertWarning = Color(0xFFBF8600);
+  static const Color borderBrand = Color(0xFFC4C4D5);
   static const Color borderDisabled = Color(0xFF323243);
   static const Color borderInteractiveBoldActive = Color(0xFFC4C4D5);
   static const Color borderInteractiveBoldDefault = Color(0xFF8D8DAC);
