@@ -1,11 +1,10 @@
 //
 // tokens_light.dart
 //
-
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Wed, 23 Oct 2024 14:40:39 GMT
+// Generated on Mon, 25 Nov 2024 17:43:45 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -31,7 +30,7 @@ abstract final class DesignTokensLight {
   static const Color backgroundAlertWarningPrimary = Color(0xFFE9A504);
   static const Color backgroundAlertWarningSecondary = Color(0xFFFFF6E3);
   static const Color backgroundBackdrop = Color(0x14121219);
-  static const Color backgroundBrand = Color(0xFF121219);
+  static const Color backgroundBrand = Color(0xFF21212E);
   static const Color backgroundDatavizBlue = Color(0xFF297AF2);
   static const Color backgroundDatavizGreen = Color(0xFF009BA5);
   static const Color backgroundDatavizOrange = Color(0xFFFF5C00);
@@ -77,6 +76,7 @@ abstract final class DesignTokensLight {
   static const Color borderAlertInfo = Color(0xFF3782F2);
   static const Color borderAlertSuccess = Color(0xFF92F27E);
   static const Color borderAlertWarning = Color(0xFFF2B21B);
+  static const Color borderBrand = Color(0xFF313143);
   static const Color borderDisabled = Color(0xFFEFEFF5);
   static const Color borderInteractiveBoldActive = Color(0xFF313143);
   static const Color borderInteractiveBoldDefault = Color(0xFF52526D);
