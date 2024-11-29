@@ -36,4 +36,4 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload-batch --destination mews-ui-widgetbook --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }}
+            az storage blob upload-batch --destination mews-ui-widgetbook --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode key
