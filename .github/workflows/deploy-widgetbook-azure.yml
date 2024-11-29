@@ -28,6 +28,10 @@ jobs:
         run: |
           melos exec --scope="optimus_widgetbook" -- "flutter build web"
 
+      - name: Check build folder
+        run: |
+          ls -s optimus_widgetbook/build/web/
+
       - name: Upload to blob storage
         uses: azure/CLI@v2
         with:
