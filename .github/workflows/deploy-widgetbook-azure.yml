@@ -36,4 +36,4 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage file upload --enable-file-backup-request-intent -s mews-ui-widgetbook --source optimus_widgetbook/build/web --auth-mode login --account-name ${{ secrets.AZURE_ACCOUNT_NAME }}
+            az storage file upload-batch --enable-file-backup-request-intent -s mews-ui-widgetbook --source optimus_widgetbook/build/web --auth-mode login --account-name ${{ secrets.AZURE_ACCOUNT_NAME }}
