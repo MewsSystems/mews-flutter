@@ -14,7 +14,7 @@ dependencies:
   flutter_slidable: ">=1.2.0 <4.0.0"
   flutter_svg: ^2.0.7
   freezed_annotation: ">=1.0.0 <3.0.0"
-  intl: ">=0.17.0 <0.20.0"
+  intl: ">=0.17.0 <0.21.0"
   optimus_icons: ^0.1.1+2
   theme_tailor_annotation: "^3.0.0"
 
