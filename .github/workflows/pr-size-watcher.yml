@@ -8,7 +8,7 @@ on:
       - labeled
       - unlabeled
     branches:
-      - master
+      - main
 
 jobs:
   build:

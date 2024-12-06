@@ -2,7 +2,7 @@ name: DCM
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   dcm:

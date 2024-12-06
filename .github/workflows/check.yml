@@ -1,8 +1,8 @@
-name: Check PR to master
+name: Check PR to main
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   check:
