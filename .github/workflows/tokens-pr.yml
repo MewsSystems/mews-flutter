@@ -53,7 +53,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr create \
-            --base master \
+            --base main \
             --head ${{ github.ref_name }} \
             --title '${{ env.PR_TYPE }}: Design Tokens Update ${{ env.TOKENS_VERSION }}' \
             --body 'Design Tokens were updated! This PR was created to update the code.'
