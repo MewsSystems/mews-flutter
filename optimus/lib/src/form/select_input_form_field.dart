@@ -15,6 +15,8 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
     required List<OptimusDropdownTile<T>> items,
     ValueChanged<T>? onChanged,
     bool allowMultipleSelection = false,
+    Grouper<T>? grouper,
+    GroupBuilder? groupBuilder,
     List<T>? values,
   }) : super(
           builder: (FormFieldState<T> field) => OptimusSelectInput<T>(
@@ -31,6 +33,8 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
             },
             allowMultipleSelection: allowMultipleSelection,
             selectedValues: allowMultipleSelection ? values : null,
+            groupBy: grouper,
+            groupBuilder: groupBuilder,
           ),
         );
 }
