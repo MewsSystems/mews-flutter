@@ -1,3 +1,8 @@
+## 0.38.3
+
+ - **FEAT**: [DX-3575] Add groups support to OptimusSelectInputFormField (#715).
+ - **FEAT**: Design Tokens Update 7.3.0 (#708).
+
 ## 0.38.2
 
  - **REFACTOR**: Fix linter issues.
