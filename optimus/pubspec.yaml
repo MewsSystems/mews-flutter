@@ -23,7 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ">=1.0.0 <3.0.0"
-  mews_pedantic: ^0.33.0
+  mews_pedantic: ^0.34.0
   theme_tailor: "^3.0.0"
 flutter:
   assets:
