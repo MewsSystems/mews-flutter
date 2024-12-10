@@ -362,6 +362,7 @@ dart_code_metrics:
     - avoid-shadowed-extension-methods
     # - avoid-shadowing
     # - avoid-similar-names
+    # - avoid-single-field-destructuring
     # - avoid-slow-collection-methods
     # - avoid-substring
     - avoid-suspicious-super-overrides
@@ -388,6 +389,7 @@ dart_code_metrics:
     - avoid-unnecessary-negations
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-overrides
+    - avoid-unnecessary-patterns
     - avoid-unnecessary-reassignment
     - avoid-unnecessary-return
     - avoid-unnecessary-super
@@ -446,6 +448,7 @@ dart_code_metrics:
     - prefer-add-all
     # - prefer-addition-subtraction-assignments
     - prefer-any-or-every
+    # - prefer-assigning-await-expressions
     # - prefer-async-await
     - prefer-boolean-prefixes:
         prefixes: [ is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable ]
@@ -513,6 +516,7 @@ dart_code_metrics:
     # - prefer-unwrapping-future-or
     # - prefer-visible-for-testing-on-members
     - prefer-wildcard-pattern
+    # - record-fields-ordering
     # - tag-name
     # - unnecessary-trailing-comma
     - use-existing-variable
@@ -549,6 +553,7 @@ dart_code_metrics:
     # - prefer-action-button-tooltip
     - prefer-center-over-align
     - prefer-const-border-radius
+    - prefer-container
     - prefer-correct-edge-insets-constructor
     - prefer-dedicated-media-query-methods
     - prefer-define-hero-tag
@@ -576,16 +581,25 @@ dart_code_metrics:
 
     # Bloc
 
+    - avoid-bloc-public-fields
     - avoid-bloc-public-methods
     - avoid-cubits
     # - avoid-duplicate-bloc-event-handlers
     # - avoid-empty-build-when
+    - avoid-existing-instances-in-bloc-provider
+    - avoid-instantiating-in-bloc-value-provider
     - avoid-passing-bloc-to-bloc
     - avoid-passing-build-context-to-blocs
+    # - avoid-returning-value-from-cubit-methods
     # - check-is-not-closed-after-async-gap
+    - emit-new-bloc-state-instances
     - handle-bloc-event-subclasses
+    - prefer-bloc-event-suffix
     - prefer-bloc-extensions
+    - prefer-bloc-state-suffix
     - prefer-correct-bloc-provider
+    # - prefer-immutable-bloc-events
+    # - prefer-immutable-bloc-state
     - prefer-multi-bloc-provider
     - prefer-sealed-bloc-events
     - prefer-sealed-bloc-state
