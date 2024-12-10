@@ -1,3 +1,9 @@
+## 0.34.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-3563] Upgrade to DCM 1.25.0.
+
 ## 0.33.0
 
 > Note: This release has breaking changes.
