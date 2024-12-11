@@ -94,7 +94,8 @@ class DropdownSelect<T> extends StatefulWidget {
   State<DropdownSelect<T>> createState() => _DropdownSelectState<T>();
 }
 
-class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
+class _DropdownSelectState<T> extends State<DropdownSelect<T>>
+    with WidgetsBindingObserver {
   final _fieldBoxKey = GlobalKey();
 
   FocusNode? _focusNode;
@@ -118,6 +119,12 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
     if (widget.embeddedSearch == null && _effectiveFocusNode.hasFocus) {
       _showOverlay();
     }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    _removeOverlay();
   }
 
   @override
