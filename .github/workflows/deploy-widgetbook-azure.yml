@@ -1,4 +1,4 @@
-name: deploy-widgetbook-azure
+name: Deploy optimus_widgetbook to Microsoft Azure
 on:
   workflow_dispatch:
   push:
@@ -34,12 +34,18 @@ jobs:
         run: |
           melos exec --scope="optimus_widgetbook" -- "flutter build web"
 
-      - name: Check build folder
+      - name: Modify manifest.json
         run: |
-          ls -s optimus_widgetbook/build/web/
+          sed -i 's|^{|{"latest": "release", |' optimus_widgetbook/build/web/manifest.json
 
-      - name: Upload to blob storage
+      - name: Upload manifest.json to blob storage root
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload-batch --destination mews-ui-widgetbook --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+            az storage blob upload --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/manifest.json --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+
+      - name: Upload to blob storage release folder
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az storage blob upload-batch --destination mews-ui-widgetbook/release --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
