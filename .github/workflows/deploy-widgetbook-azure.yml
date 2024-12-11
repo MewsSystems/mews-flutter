@@ -42,10 +42,10 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/manifest.json --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+            az storage blob upload --overwrite true --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/manifest.json --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
 
       - name: Upload to blob storage release folder
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload-batch --destination mews-ui-widgetbook/release --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+            az storage blob upload-batch --overwrite true --destination mews-ui-widgetbook/release --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
