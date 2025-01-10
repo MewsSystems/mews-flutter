@@ -1,3 +1,9 @@
+## 0.6.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **BUILD**: Downgrade Java to Java 8 (#722).
+
 ## 0.5.1+1
 
  - **REFACTOR**: Fix linter issues.
