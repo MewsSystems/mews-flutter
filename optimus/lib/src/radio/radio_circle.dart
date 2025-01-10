@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/common/state_property.dart';
 
 class RadioCircle extends StatelessWidget {
   const RadioCircle({
@@ -13,28 +12,28 @@ class RadioCircle extends StatelessWidget {
   final bool isSelected;
   final WidgetStatesController controller;
 
-  InteractiveStateColor _getBorderColor(OptimusTokens tokens) =>
-      InteractiveStateColor(
-        defaultColor: isSelected
-            ? tokens.backgroundInteractivePrimaryDefault
-            : tokens.borderInteractiveSecondaryDefault,
-        disabled:
+  WidgetStateColor _getBorderColor(OptimusTokens tokens) =>
+      WidgetStateColor.fromMap({
+        WidgetState.disabled:
             isSelected ? tokens.backgroundDisabled : tokens.borderDisabled,
-        pressed: isSelected
+        WidgetState.pressed: isSelected
             ? tokens.backgroundInteractivePrimaryActive
             : tokens.borderInteractiveSecondaryActive,
-        hovered: isSelected
+        WidgetState.hovered: isSelected
             ? tokens.backgroundInteractivePrimaryHover
             : tokens.borderInteractiveSecondaryHover,
-      );
+        WidgetState.any: isSelected
+            ? tokens.backgroundInteractivePrimaryDefault
+            : tokens.borderInteractiveSecondaryDefault,
+      });
 
-  InteractiveStateColor _getFillColor(OptimusTokens tokens) =>
-      InteractiveStateColor(
-        defaultColor: tokens.backgroundInteractiveNeutralSubtleDefault,
-        disabled: tokens.backgroundInteractiveNeutralSubtleDefault,
-        pressed: tokens.backgroundInteractiveNeutralSubtleActive,
-        hovered: tokens.backgroundInteractiveNeutralSubtleHover,
-      );
+  WidgetStateColor _getFillColor(OptimusTokens tokens) =>
+      WidgetStateColor.fromMap({
+        WidgetState.disabled: tokens.backgroundInteractiveNeutralSubtleDefault,
+        WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
+        WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
+        WidgetState.any: tokens.backgroundInteractiveNeutralSubtleDefault,
+      });
 
   @override
   Widget build(BuildContext context) {

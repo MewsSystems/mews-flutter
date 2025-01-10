@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
-import 'package:optimus/src/common/state_property.dart';
 import 'package:optimus/src/radio/radio_circle.dart';
 
 enum OptimusSelectionCardVariant { vertical, horizontal }
@@ -75,45 +74,41 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
     super.dispose();
   }
 
-  InteractiveStateColor get _backgroundColor => InteractiveStateColor(
-        defaultColor: widget.isSelected
-            ? tokens.backgroundInteractiveSecondaryDefault
-            : tokens.backgroundStaticFlat,
-        disabled: tokens.backgroundStaticFlat,
-        pressed: widget.isSelected
+  WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
+        WidgetState.disabled: tokens.backgroundStaticFlat,
+        WidgetState.pressed: widget.isSelected
             ? tokens.backgroundInteractiveSecondaryActive
             : tokens.backgroundStaticFlat,
-        hovered: widget.isSelected
+        WidgetState.hovered: widget.isSelected
             ? tokens.backgroundInteractiveSecondaryHover
             : tokens.backgroundStaticFlat,
-      );
+        WidgetState.any: widget.isSelected
+            ? tokens.backgroundInteractiveSecondaryDefault
+            : tokens.backgroundStaticFlat,
+      });
 
-  InteractiveStateColor get _borderColor => InteractiveStateColor(
-        defaultColor: widget.isSelected
-            ? tokens.borderInteractivePrimaryDefault
-            : tokens.borderInteractiveSecondaryDefault,
-        disabled: tokens.borderDisabled,
-        pressed: widget.isSelected
+  WidgetStateColor get _borderColor => WidgetStateColor.fromMap({
+        WidgetState.disabled: tokens.borderDisabled,
+        WidgetState.pressed: widget.isSelected
             ? tokens.borderInteractivePrimaryActive
             : tokens.borderInteractiveSecondaryActive,
-        hovered: widget.isSelected
+        WidgetState.hovered: widget.isSelected
             ? tokens.borderInteractivePrimaryHover
             : tokens.borderInteractiveSecondaryHover,
-      );
+        WidgetState.any: widget.isSelected
+            ? tokens.borderInteractivePrimaryDefault
+            : tokens.borderInteractiveSecondaryDefault,
+      });
 
-  InteractiveStateColor get _titleColor => InteractiveStateColor(
-        defaultColor: tokens.textStaticPrimary,
-        disabled: tokens.textDisabled,
-        pressed: tokens.textStaticPrimary,
-        hovered: tokens.textStaticPrimary,
-      );
+  WidgetStateColor get _titleColor => WidgetStateColor.fromMap({
+        WidgetState.disabled: tokens.textDisabled,
+        WidgetState.any: tokens.textStaticPrimary,
+      });
 
-  InteractiveStateColor get _descriptionColor => InteractiveStateColor(
-        defaultColor: tokens.textStaticTertiary,
-        disabled: tokens.textDisabled,
-        pressed: tokens.textStaticTertiary,
-        hovered: tokens.textStaticTertiary,
-      );
+  WidgetStateColor get _descriptionColor => WidgetStateColor.fromMap({
+        WidgetState.disabled: tokens.textDisabled,
+        WidgetState.any: tokens.textStaticTertiary,
+      });
 
   @override
   void didUpdateWidget(covariant OptimusSelectionCard oldWidget) {
