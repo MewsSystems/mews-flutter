@@ -112,6 +112,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _effectiveFocusNode.addListener(_onFocusChanged);
   }
 
@@ -124,11 +125,19 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    _removeOverlay();
+    switch (state) {
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        _removeOverlay();
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.hidden:
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _effectiveFocusNode.removeListener(_onFocusChanged);
     _focusNode?.dispose();
     _controller?.dispose();
