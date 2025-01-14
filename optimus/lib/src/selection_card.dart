@@ -308,12 +308,8 @@ class _VerticalCard extends StatelessWidget {
 }
 
 extension on OptimusSelectionCardBorderRadius {
-  Radius getBorderRadius(OptimusTokens tokens) {
-    switch (this) {
-      case OptimusSelectionCardBorderRadius.small:
-        return tokens.borderRadius100;
-      case OptimusSelectionCardBorderRadius.medium:
-        return tokens.borderRadius200;
-    }
-  }
+  Radius getBorderRadius(OptimusTokens tokens) => switch (this) {
+        OptimusSelectionCardBorderRadius.small => tokens.borderRadius100,
+        OptimusSelectionCardBorderRadius.medium => tokens.borderRadius200
+      };
 }

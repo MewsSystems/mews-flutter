@@ -266,8 +266,11 @@ dart_code_metrics:
     - avoid-collection-equality-checks
     - avoid-collection-methods-with-unrelated-types
     # - avoid-collection-mutating-methods
+    - avoid-commented-out-code
+    # - avoid-complex-arithmetic-expressions
     - avoid-complex-loop-conditions
     - avoid-conditions-with-boolean-literals
+    # - avoid-continue
     - avoid-contradictory-expressions
     # - avoid-declaring-call-method
     - avoid-double-slash-imports
@@ -291,6 +294,7 @@ dart_code_metrics:
     # - avoid-explicit-type-declaration
     # - avoid-extensions-on-records
     - avoid-function-type-in-records
+    - avoid-future-ignore
     - avoid-future-tostring
     - avoid-generics-shadowing
     - avoid-getter-prefix:
@@ -298,6 +302,7 @@ dart_code_metrics:
     - avoid-global-state
     # - avoid-high-cyclomatic-complexity
     # - avoid-identical-exception-handling-blocks
+    # - avoid-if-with-many-branches
     # - avoid-ignoring-return-values
     - avoid-implicitly-nullable-extension-types
     # - avoid-importing-entrypoint-exports
@@ -379,6 +384,7 @@ dart_code_metrics:
     - avoid-unnecessary-collections
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-constructor
+    - avoid-unnecessary-continue
     - avoid-unnecessary-enum-arguments
     - avoid-unnecessary-enum-prefix
     - avoid-unnecessary-extends
@@ -434,6 +440,7 @@ dart_code_metrics:
     - newline-before-return
     - no-boolean-literal-compare
     # - no-empty-block
+    # - no-empty-string
     # - no-equal-arguments
     - no-equal-conditions
     - no-equal-nested-conditions
@@ -444,6 +451,7 @@ dart_code_metrics:
     # - no-magic-string
     - no-object-declaration
     # - parameters-ordering
+    # - pattern-fields-ordering
     - prefer-abstract-final-static-class
     - prefer-add-all
     # - prefer-addition-subtraction-assignments
@@ -454,7 +462,9 @@ dart_code_metrics:
         prefixes: [ is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable ]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
+    # - prefer-class-destructuring
     - prefer-commenting-analyzer-ignores
+    # - prefer-commenting-future-delayed
     # - prefer-conditional-expressions
     - prefer-contains
     # - prefer-correct-callback-field-name
@@ -505,6 +515,8 @@ dart_code_metrics:
     # - prefer-single-declaration-per-file
     - prefer-specific-cases-first
     # - prefer-static-class
+    # - prefer-static-method
+    - prefer-switch-expression
     - prefer-switch-with-enums
     - prefer-switch-with-sealed-classes
     # - prefer-test-matchers
@@ -519,6 +531,7 @@ dart_code_metrics:
     # - record-fields-ordering
     # - tag-name
     # - unnecessary-trailing-comma
+    - use-existing-destructuring
     - use-existing-variable
 
     # Flutter
@@ -551,6 +564,7 @@ dart_code_metrics:
     - consistent-update-render-object
     - dispose-fields
     # - prefer-action-button-tooltip
+    - prefer-align-over-container
     - prefer-center-over-align
     - prefer-const-border-radius
     - prefer-container
@@ -563,11 +577,14 @@ dart_code_metrics:
     # - prefer-single-widget-per-file
     - prefer-sized-box-square
     - prefer-sliver-prefix
+    # - prefer-spacing
     - prefer-text-rich
+    - prefer-transform-over-container
     # - prefer-using-list-view
     - prefer-widget-private-members:
         ignore-static: true
     - proper-super-calls
+    - use-closest-build-context
     - use-setstate-synchronously
 
     # Provider
@@ -598,8 +615,8 @@ dart_code_metrics:
     - prefer-bloc-extensions
     - prefer-bloc-state-suffix
     - prefer-correct-bloc-provider
-    # - prefer-immutable-bloc-events
-    # - prefer-immutable-bloc-state
+    - prefer-immutable-bloc-events
+    - prefer-immutable-bloc-state
     - prefer-multi-bloc-provider
     - prefer-sealed-bloc-events
     - prefer-sealed-bloc-state
