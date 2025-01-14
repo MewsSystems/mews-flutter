@@ -269,7 +269,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
             }
           }
 
-          return GestureDetector(
+          return AllowMultipleRawGestureDetector(
             key: const Key('OptimusDropdownOverlay'),
             behavior: HitTestBehavior.translucent,
             onTapDown: handleTapDown,
