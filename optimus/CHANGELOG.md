@@ -1,3 +1,7 @@
+## 0.38.3+1
+
+ - **FIX**: Fix linter issues.
+
 ## 0.38.3
 
  - **FEAT**: [DX-3575] Add groups support to OptimusSelectInputFormField (#715).

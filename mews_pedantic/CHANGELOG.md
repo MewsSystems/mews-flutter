@@ -1,3 +1,9 @@
+## 0.35.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-3716] Upgrade to DCM 1.26.0.
+
 ## 0.34.0
 
 > Note: This release has breaking changes.
