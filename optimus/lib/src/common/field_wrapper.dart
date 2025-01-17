@@ -503,7 +503,7 @@ class _ColoredTransitionState extends State<_ColoredTransition> {
           color: widget.state == OptimusStatusBarState.empty
               ? _previousState
                   .getStatusBarColor(context.tokens)
-                  .withOpacity(0.5)
+                  .withValues(alpha: 0.5)
               : widget.state.getStatusBarColor(context.tokens),
         ),
       );
