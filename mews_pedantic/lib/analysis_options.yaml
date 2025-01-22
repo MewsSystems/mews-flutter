@@ -459,7 +459,7 @@ dart_code_metrics:
     # - prefer-assigning-await-expressions
     # - prefer-async-await
     - prefer-boolean-prefixes:
-        prefixes: [ is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable ]
+        prefixes: [ is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable, contains ]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
     # - prefer-class-destructuring
@@ -515,7 +515,7 @@ dart_code_metrics:
     # - prefer-single-declaration-per-file
     - prefer-specific-cases-first
     # - prefer-static-class
-    # - prefer-static-method
+    - prefer-static-method
     - prefer-switch-expression
     - prefer-switch-with-enums
     - prefer-switch-with-sealed-classes
