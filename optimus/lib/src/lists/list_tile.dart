@@ -26,6 +26,7 @@ class OptimusListTile extends StatelessWidget {
     this.onTap,
     this.fontVariant = FontVariant.normal,
     this.contentPadding,
+    this.prefixSize = OptimusPrefixSize.medium,
   });
 
   /// Communicates the subject of the list item.
@@ -42,6 +43,8 @@ class OptimusListTile extends StatelessWidget {
 
   /// The Widget to be displayed on the leading position. Typically an [Icon].
   final Widget? prefix;
+
+  final OptimusPrefixSize prefixSize;
 
   /// The Widget to be displayed on the tailoring position. Typically an [Icon].
   final Widget? suffix;
@@ -89,11 +92,12 @@ class OptimusListTile extends StatelessWidget {
                 padding: EdgeInsetsDirectional.only(
                   top: subtitle != null ? tokens.spacing100 : tokens.spacing25,
                 ),
-                child: _Prefix(prefix: prefix),
+                child: _Prefix(prefix: prefix, size: prefixSize),
               ),
             Row(
               children: <Widget>[
-                if (prefix != null) SizedBox(width: context.prefixWidth),
+                if (prefix != null)
+                  SizedBox(width: prefixSize.getWidth(tokens)),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(right: tokens.spacing100),
@@ -144,16 +148,20 @@ class OptimusListTile extends StatelessWidget {
 }
 
 class _Prefix extends StatelessWidget {
-  const _Prefix({required this.prefix});
+  const _Prefix({
+    required this.prefix,
+    this.size = OptimusPrefixSize.medium,
+  });
 
   final Widget prefix;
+  final OptimusPrefixSize size;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return SizedBox(
-      width: context.prefixWidth,
+      width: size.getWidth(tokens),
       child: Padding(
         padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
@@ -226,6 +234,11 @@ class _Subtitle extends StatelessWidget {
       );
 }
 
-extension on BuildContext {
-  double get prefixWidth => tokens.spacing400;
+enum OptimusPrefixSize { medium, large }
+
+extension on OptimusPrefixSize {
+  double getWidth(OptimusTokens tokens) => switch (this) {
+        OptimusPrefixSize.medium => tokens.sizing400,
+        OptimusPrefixSize.large => tokens.sizing600,
+      };
 }
