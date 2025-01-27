@@ -85,19 +85,15 @@ class OptimusListTile extends StatelessWidget {
       onTap: onTap,
       content: Padding(
         padding: _getContentPadding(tokens),
-        child: Stack(
+        child: Row(
           children: [
             if (prefix case final prefix?)
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  top: subtitle != null ? tokens.spacing100 : tokens.spacing25,
-                ),
-                child: _Prefix(prefix: prefix, size: prefixSize),
-              ),
+              _Prefix(
+                prefix: prefix,
+                size: prefixSize,
+              ), // add vertical padding to make it centered if there is no subtitle
             Row(
-              children: <Widget>[
-                if (prefix != null)
-                  SizedBox(width: prefixSize.getWidth(tokens)),
+              children: [
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(right: tokens.spacing100),
