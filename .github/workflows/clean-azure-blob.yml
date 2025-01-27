@@ -25,4 +25,4 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob delete-batch --source mews-ui-widgetbook --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+            az storage blob delete-batch --source mews-ui-widgetbook --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login --pattern "*" --dryrun
