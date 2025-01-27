@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Web
         run: |
-          melos exec --scope="optimus_widgetbook" -- "flutter build web"
+          melos exec --scope="optimus_widgetbook" -- "flutter build web --base-href '/./'"
 
       - name: Modify manifest.json
         run: |
