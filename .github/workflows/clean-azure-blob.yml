@@ -1,13 +1,13 @@
-name: clean-azure-blob
+name: Clean Widgetbook Azure Blob
 on:
   workflow_dispatch:
 
 permissions:
-  id-token: write # This is required for requesting the JWT
-  contents: read # This is required for actions/checkout
+  id-token: write
+  contents: read
 
 jobs:
-  deploy_widgetbook_azure:
+  clean-azure-blob:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Clean widgetbook blob folder
+      - name: Clean Widgetbook blob folder
         uses: azure/CLI@v2
         with:
           inlineScript: |
