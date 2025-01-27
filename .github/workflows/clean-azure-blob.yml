@@ -25,7 +25,7 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob list --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --container-name mews-ui-widgetbook --output table
+            az storage blob list --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login --container-name mews-ui-widgetbook --output table
 
       - name: Clean Widgetbook blob folder
         uses: azure/CLI@v2
@@ -37,4 +37,4 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob list --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --container-name mews-ui-widgetbook --output table
+            az storage blob list --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login --container-name mews-ui-widgetbook --output table
