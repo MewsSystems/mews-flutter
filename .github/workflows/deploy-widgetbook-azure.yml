@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   deploy_widgetbook_azure:
+    name: Build and deploy optimus_widgetbook to Azure
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +33,7 @@ jobs:
 
       - name: Build Web
         run: |
-          melos exec --scope="optimus_widgetbook" -- "flutter build web"
+          melos exec --scope="optimus_widgetbook" -- "flutter build web --base-href '/./'"
 
       - name: Modify manifest.json
         run: |
