@@ -91,50 +91,51 @@ class OptimusListTile extends StatelessWidget {
               _Prefix(
                 prefix: prefix,
                 size: prefixSize,
-              ), // add vertical padding to make it centered if there is no subtitle
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: tokens.spacing100),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Flexible(
-                              flex: 8,
-                              child: _Title(
-                                title: title,
-                                fontVariant: fontVariant,
+              ), // TODO(witwash): add vertical padding to make it centered if there is no subtitle
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: tokens.spacing100),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: _Title(
+                                  title: title,
+                                  fontVariant: fontVariant,
+                                ),
                               ),
-                            ),
-                            if (info != null)
-                              Flexible(flex: 2, child: _Info(info: info)),
-                          ],
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: subtitle != null
-                                  ? _Subtitle(
-                                      subtitle: subtitle,
-                                      fontVariant: fontVariant,
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
-                            if (infoWidget case final infoWidget?) infoWidget,
-                          ],
-                        ),
-                      ],
+                              if (info != null)
+                                Flexible(child: _Info(info: info)),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: subtitle != null
+                                    ? _Subtitle(
+                                        subtitle: subtitle,
+                                        fontVariant: fontVariant,
+                                      )
+                                    : const SizedBox.shrink(),
+                              ),
+                              if (infoWidget case final infoWidget?) infoWidget,
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                if (suffix case final suffix?) _Suffix(suffix: suffix),
-              ],
+                  if (suffix case final suffix?) _Suffix(suffix: suffix),
+                ],
+              ),
             ),
           ],
         ),

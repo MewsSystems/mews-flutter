@@ -26,6 +26,11 @@ Widget createDefaultStyle(BuildContext context) {
     options: FontVariant.values,
     labelBuilder: (value) => value.name,
   );
+  final prefixSize = k.list(
+    label: 'Prefix Size',
+    options: OptimusPrefixSize.values,
+    initialOption: OptimusPrefixSize.medium,
+  );
 
   return SingleChildScrollView(
     child: Column(
@@ -42,6 +47,7 @@ Widget createDefaultStyle(BuildContext context) {
               suffix: suffix != null ? Icon(suffix.data) : null,
               infoWidget: infoWidget != null ? Icon(infoWidget.data) : null,
               onTap: ignore,
+              prefixSize: prefixSize,
             ),
           )
           .toList(),
