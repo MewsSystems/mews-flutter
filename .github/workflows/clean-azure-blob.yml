@@ -31,7 +31,7 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob delete-batch --source mews-ui-widgetbook --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login --pattern "*" --dryrun
+            az storage blob delete-batch --source mews-ui-widgetbook --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login --pattern "*"
 
       - name: List blobs after cleanup
         uses: azure/CLI@v2
