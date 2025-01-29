@@ -49,7 +49,7 @@ jobs:
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload --overwrite true --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/index.html --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+            az storage blob upload --overwrite true --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/index.html --name release/index.html --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
 
       - name: Upload assets to the app folder
         uses: azure/CLI@v2
