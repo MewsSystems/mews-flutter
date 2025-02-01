@@ -27,6 +27,7 @@ class RadioCircle extends StatelessWidget {
             : tokens.borderInteractiveSecondaryDefault,
       });
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   WidgetStateColor _getFillColor(OptimusTokens tokens) =>
       WidgetStateColor.fromMap({
         WidgetState.disabled: tokens.backgroundInteractiveNeutralSubtleDefault,

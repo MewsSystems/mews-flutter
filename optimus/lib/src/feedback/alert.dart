@@ -49,6 +49,7 @@ class OptimusAlert extends StatelessWidget {
 
   bool get _isExpanded => description != null || link != null;
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   double _getPadding(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
         Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,

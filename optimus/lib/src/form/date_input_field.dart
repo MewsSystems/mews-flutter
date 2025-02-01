@@ -120,6 +120,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     _previousValue = _controller.text;
   }
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   DateTime? _getDateTime(DateFormat format, String value) {
     if (value.isEmpty) return null;
 
@@ -157,6 +158,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     }
   }
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   String _replaceSupported(
     String? value,
     _SymbolConverter input,

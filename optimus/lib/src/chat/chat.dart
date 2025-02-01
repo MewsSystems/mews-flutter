@@ -104,10 +104,12 @@ class OptimusChat extends StatelessWidget {
         nextMessageTime.difference(_currentMessageTime(index)).inDays > 1;
   }
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   bool _isLatestMessage(int index) => index == 0;
 
   bool _isOldestMessage(int index) => index + 1 == _messages.length;
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   int _byTime(OptimusMessage m1, OptimusMessage m2) =>
       m2.time.compareTo(m1.time);
 

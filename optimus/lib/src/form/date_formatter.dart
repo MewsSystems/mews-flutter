@@ -47,6 +47,7 @@ class DateFormatter extends TextInputFormatter {
     return index;
   }
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   String _replaceCharAt(String value, int index, String replacement) =>
       value.substring(0, index) +
       replacement +

@@ -78,6 +78,7 @@ class OptimusTabBar extends StatelessWidget {
   final List<Widget> pages;
   final TabController? tabController;
 
+  // ignore: prefer-static-method, ignore until private methods could be ignored in the DCM rule
   Decoration _buildIndicator(OptimusTokens tokens) => UnderlineTabIndicator(
         borderSide: BorderSide(
           color: tokens.borderInteractivePrimaryDefault,
