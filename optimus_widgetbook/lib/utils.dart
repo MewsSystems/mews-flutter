@@ -24,6 +24,10 @@ quisque ultrices condimentum mauris a diam.''';
 
 final stubDate = DateTime(2012, 4, 3);
 
+String enumOrNullLabelBuilder<T extends Enum>(T? value) => value?.name ?? '';
+
+String enumLabelBuilder<T extends Enum>(T value) => value.name;
+
 extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
         label: 'Size',

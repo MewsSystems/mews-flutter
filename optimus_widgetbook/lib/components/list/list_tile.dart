@@ -24,12 +24,18 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Font variant',
     initialOption: FontVariant.normal,
     options: FontVariant.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final prefixSize = k.list(
     label: 'Prefix Size',
     options: OptimusPrefixSize.values,
     initialOption: OptimusPrefixSize.medium,
+    labelBuilder: enumLabelBuilder,
+  );
+  final prefixAlignment = k.listOrNull(
+    label: 'Prefix Alignment',
+    options: OptimusPrefixVerticalAlignment.values,
+    labelBuilder: enumOrNullLabelBuilder,
   );
 
   return SingleChildScrollView(
@@ -48,6 +54,7 @@ Widget createDefaultStyle(BuildContext context) {
               infoWidget: infoWidget != null ? Icon(infoWidget.data) : null,
               onTap: ignore,
               prefixSize: prefixSize,
+              prefixVerticalAlignment: prefixAlignment,
             ),
           )
           .toList(),
