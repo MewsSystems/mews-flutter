@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -27,6 +28,9 @@ final stubDate = DateTime(2012, 4, 3);
 String enumOrNullLabelBuilder<T extends Enum>(T? value) => value?.name ?? '';
 
 String enumLabelBuilder<T extends Enum>(T value) => value.name;
+
+Icon? iconOrNull(IconDetails? details) =>
+    details?.let((details) => Icon(details.data));
 
 extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
