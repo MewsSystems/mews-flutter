@@ -398,16 +398,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   double get spacing800;
   double get spacing900;
   double get spacingBase;
-  List<BoxShadow> get focusOffset;
-  List<BoxShadow> get shadow0;
-  List<BoxShadow> get shadow100;
-  List<BoxShadow> get shadow200;
-  List<BoxShadow> get shadow300;
   String get fontFamilyUi;
   FontWeight get fontWeight300;
   FontWeight get fontWeight400;
   FontWeight get fontWeight500;
   FontWeight get fontWeight600;
+  List<BoxShadow> get shadow0;
+  List<BoxShadow> get shadow100;
+  List<BoxShadow> get shadow200;
+  List<BoxShadow> get shadow300;
   TextDecoration get textDecorationUnderline;
 
   @override
@@ -801,16 +800,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     double? spacing800,
     double? spacing900,
     double? spacingBase,
-    List<BoxShadow>? focusOffset,
-    List<BoxShadow>? shadow0,
-    List<BoxShadow>? shadow100,
-    List<BoxShadow>? shadow200,
-    List<BoxShadow>? shadow300,
     String? fontFamilyUi,
     FontWeight? fontWeight300,
     FontWeight? fontWeight400,
     FontWeight? fontWeight500,
     FontWeight? fontWeight600,
+    List<BoxShadow>? shadow0,
+    List<BoxShadow>? shadow100,
+    List<BoxShadow>? shadow200,
+    List<BoxShadow>? shadow300,
     TextDecoration? textDecorationUnderline,
   }) {
     return OptimusTokens(
@@ -1403,16 +1401,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       spacing800: spacing800 ?? this.spacing800,
       spacing900: spacing900 ?? this.spacing900,
       spacingBase: spacingBase ?? this.spacingBase,
-      focusOffset: focusOffset ?? this.focusOffset,
-      shadow0: shadow0 ?? this.shadow0,
-      shadow100: shadow100 ?? this.shadow100,
-      shadow200: shadow200 ?? this.shadow200,
-      shadow300: shadow300 ?? this.shadow300,
       fontFamilyUi: fontFamilyUi ?? this.fontFamilyUi,
       fontWeight300: fontWeight300 ?? this.fontWeight300,
       fontWeight400: fontWeight400 ?? this.fontWeight400,
       fontWeight500: fontWeight500 ?? this.fontWeight500,
       fontWeight600: fontWeight600 ?? this.fontWeight600,
+      shadow0: shadow0 ?? this.shadow0,
+      shadow100: shadow100 ?? this.shadow100,
+      shadow200: shadow200 ?? this.shadow200,
+      shadow300: shadow300 ?? this.shadow300,
       textDecorationUnderline:
           textDecorationUnderline ?? this.textDecorationUnderline,
     );
@@ -2166,16 +2163,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       spacing800: t < 0.5 ? spacing800 : other.spacing800,
       spacing900: t < 0.5 ? spacing900 : other.spacing900,
       spacingBase: t < 0.5 ? spacingBase : other.spacingBase,
-      focusOffset: t < 0.5 ? focusOffset : other.focusOffset,
-      shadow0: t < 0.5 ? shadow0 : other.shadow0,
-      shadow100: t < 0.5 ? shadow100 : other.shadow100,
-      shadow200: t < 0.5 ? shadow200 : other.shadow200,
-      shadow300: t < 0.5 ? shadow300 : other.shadow300,
       fontFamilyUi: t < 0.5 ? fontFamilyUi : other.fontFamilyUi,
       fontWeight300: t < 0.5 ? fontWeight300 : other.fontWeight300,
       fontWeight400: t < 0.5 ? fontWeight400 : other.fontWeight400,
       fontWeight500: t < 0.5 ? fontWeight500 : other.fontWeight500,
       fontWeight600: t < 0.5 ? fontWeight600 : other.fontWeight600,
+      shadow0: t < 0.5 ? shadow0 : other.shadow0,
+      shadow100: t < 0.5 ? shadow100 : other.shadow100,
+      shadow200: t < 0.5 ? shadow200 : other.shadow200,
+      shadow300: t < 0.5 ? shadow300 : other.shadow300,
       textDecorationUnderline:
           t < 0.5 ? textDecorationUnderline : other.textDecorationUnderline,
     );
@@ -2603,16 +2599,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(spacing800, other.spacing800) &&
             const DeepCollectionEquality().equals(spacing900, other.spacing900) &&
             const DeepCollectionEquality().equals(spacingBase, other.spacingBase) &&
-            const DeepCollectionEquality().equals(focusOffset, other.focusOffset) &&
-            const DeepCollectionEquality().equals(shadow0, other.shadow0) &&
-            const DeepCollectionEquality().equals(shadow100, other.shadow100) &&
-            const DeepCollectionEquality().equals(shadow200, other.shadow200) &&
-            const DeepCollectionEquality().equals(shadow300, other.shadow300) &&
             const DeepCollectionEquality().equals(fontFamilyUi, other.fontFamilyUi) &&
             const DeepCollectionEquality().equals(fontWeight300, other.fontWeight300) &&
             const DeepCollectionEquality().equals(fontWeight400, other.fontWeight400) &&
             const DeepCollectionEquality().equals(fontWeight500, other.fontWeight500) &&
             const DeepCollectionEquality().equals(fontWeight600, other.fontWeight600) &&
+            const DeepCollectionEquality().equals(shadow0, other.shadow0) &&
+            const DeepCollectionEquality().equals(shadow100, other.shadow100) &&
+            const DeepCollectionEquality().equals(shadow200, other.shadow200) &&
+            const DeepCollectionEquality().equals(shadow300, other.shadow300) &&
             const DeepCollectionEquality().equals(textDecorationUnderline, other.textDecorationUnderline));
   }
 
@@ -3016,16 +3011,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(spacing800),
       const DeepCollectionEquality().hash(spacing900),
       const DeepCollectionEquality().hash(spacingBase),
-      const DeepCollectionEquality().hash(focusOffset),
-      const DeepCollectionEquality().hash(shadow0),
-      const DeepCollectionEquality().hash(shadow100),
-      const DeepCollectionEquality().hash(shadow200),
-      const DeepCollectionEquality().hash(shadow300),
       const DeepCollectionEquality().hash(fontFamilyUi),
       const DeepCollectionEquality().hash(fontWeight300),
       const DeepCollectionEquality().hash(fontWeight400),
       const DeepCollectionEquality().hash(fontWeight500),
       const DeepCollectionEquality().hash(fontWeight600),
+      const DeepCollectionEquality().hash(shadow0),
+      const DeepCollectionEquality().hash(shadow100),
+      const DeepCollectionEquality().hash(shadow200),
+      const DeepCollectionEquality().hash(shadow300),
       const DeepCollectionEquality().hash(textDecorationUnderline),
     ]);
   }
