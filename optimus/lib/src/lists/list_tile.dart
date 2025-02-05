@@ -97,8 +97,7 @@ class OptimusListTile extends StatelessWidget {
           children: [
             if (prefix case final prefix?)
               Positioned(
-                left: tokens.spacing100,
-                top: _prefixVerticalAlignment.getTop(tokens),
+                top: tokens.spacing0,
                 bottom: _prefixVerticalAlignment.getBottom(tokens),
                 child: SizedBox(
                   width: prefixSize.getWidth(tokens),
@@ -259,11 +258,6 @@ extension on OptimusPrefixSize {
 }
 
 extension on OptimusPrefixVerticalAlignment {
-  double getTop(OptimusTokens tokens) => switch (this) {
-        OptimusPrefixVerticalAlignment.center => tokens.spacing0,
-        OptimusPrefixVerticalAlignment.start => tokens.spacing100,
-      };
-
   double? getBottom(OptimusTokens tokens) => switch (this) {
         OptimusPrefixVerticalAlignment.center => tokens.spacing0,
         OptimusPrefixVerticalAlignment.start => null,
