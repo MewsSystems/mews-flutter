@@ -15,6 +15,7 @@ class OptimusAvatar extends StatelessWidget {
     this.badgeUrl,
     this.isIndicatorVisible = false,
     this.size = OptimusWidgetSize.medium,
+    this.alignment = AlignmentDirectional.center,
   });
 
   /// The title of the avatar. The title is displayed when the image is not
@@ -38,6 +39,10 @@ class OptimusAvatar extends StatelessWidget {
   /// The size of the avatar.
   final OptimusWidgetSize size;
 
+  /// The alignment of th Avatar inside its Stack. Defaults to
+  /// [AlignmentDirectional.center].
+  final AlignmentDirectional alignment;
+
   bool get _isVisibleForSize =>
       size == OptimusWidgetSize.medium || size == OptimusWidgetSize.large;
 
@@ -57,6 +62,7 @@ class OptimusAvatar extends StatelessWidget {
 
     return Stack(
       clipBehavior: Clip.none,
+      alignment: alignment,
       children: <Widget>[
         _CircleImage(
           imageUrl: imageUrl,
