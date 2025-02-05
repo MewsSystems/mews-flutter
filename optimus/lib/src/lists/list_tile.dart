@@ -91,8 +91,6 @@ class OptimusListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final info = this.info;
-    final subtitle = this.subtitle;
 
     return BaseListTile(
       onTap: onTap,
@@ -104,10 +102,7 @@ class OptimusListTile extends StatelessWidget {
               Positioned(
                 top: tokens.spacing0,
                 bottom: _prefixVerticalAlignment.getBottom(tokens),
-                child: _Prefix(
-                  prefix: prefix,
-                  size: prefixSize,
-                ),
+                child: _Prefix(prefix: prefix, size: prefixSize),
               ),
             Row(
               children: [
@@ -118,32 +113,33 @@ class OptimusListTile extends StatelessWidget {
                     padding: EdgeInsets.only(right: tokens.spacing100),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
+                      children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
+                          children: [
                             Flexible(
                               child: _Title(
                                 title: title,
                                 fontVariant: fontVariant,
                               ),
                             ),
-                            if (info != null)
+                            if (info case final info?)
                               Flexible(child: _Info(info: info)),
                           ],
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: subtitle != null
-                                  ? _Subtitle(
-                                      subtitle: subtitle,
-                                      fontVariant: fontVariant,
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
+                          children: [
+                            if (subtitle case final subtitle?)
+                              Expanded(
+                                child: _Subtitle(
+                                  subtitle: subtitle,
+                                  fontVariant: fontVariant,
+                                ),
+                              )
+                            else
+                              const Spacer(),
                             if (infoWidget case final infoWidget?) infoWidget,
                           ],
                         ),
@@ -162,6 +158,8 @@ class OptimusListTile extends StatelessWidget {
 }
 
 enum OptimusPrefixVerticalAlignment { center, start }
+
+enum OptimusPrefixSize { medium, large }
 
 class _Prefix extends StatelessWidget {
   const _Prefix({
@@ -212,14 +210,10 @@ class _Title extends StatelessWidget {
   final FontVariant fontVariant;
 
   @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return OptimusTypography(
-      resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
-      child: title,
-    );
-  }
+  Widget build(BuildContext context) => OptimusTypography(
+        resolveStyle: (_) => fontVariant.getPrimaryStyle(context.tokens),
+        child: title,
+      );
 }
 
 class _Info extends StatelessWidget {
@@ -249,8 +243,6 @@ class _Subtitle extends StatelessWidget {
         child: subtitle,
       );
 }
-
-enum OptimusPrefixSize { medium, large }
 
 extension on OptimusPrefixSize {
   double getWidth(OptimusTokens tokens) => switch (this) {
