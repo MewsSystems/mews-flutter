@@ -99,12 +99,9 @@ class OptimusListTile extends StatelessWidget {
               Positioned(
                 top: tokens.spacing0,
                 bottom: _prefixVerticalAlignment.getBottom(tokens),
-                child: SizedBox(
-                  width: prefixSize.getWidth(tokens),
-                  child: _Prefix(
-                    prefix: prefix,
-                    size: prefixSize,
-                  ),
+                child: _Prefix(
+                  prefix: prefix,
+                  size: prefixSize,
                 ),
               ),
             Row(
