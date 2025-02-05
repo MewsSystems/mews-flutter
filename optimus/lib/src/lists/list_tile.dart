@@ -45,7 +45,12 @@ class OptimusListTile extends StatelessWidget {
   /// The Widget to be displayed on the leading position. Typically an [Icon].
   final Widget? prefix;
 
+  /// The size of the prefix widget. Defaults to [OptimusPrefixSize.medium].
   final OptimusPrefixSize prefixSize;
+
+  /// The vertical alignment of the prefix. By default it would align to the top,
+  /// but if there is a [suffix] is would align to the center. Providing
+  /// prefixVerticalAlignment will override the alignment.
   final OptimusPrefixVerticalAlignment? prefixVerticalAlignment;
 
   /// The Widget to be displayed on the tailoring position. Typically an [Icon].

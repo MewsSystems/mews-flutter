@@ -14,14 +14,8 @@ final List<AlignmentGeometry> alignments = [
   Alignment.bottomRight,
 ];
 
-const longText = '''
-Nascetur nec convallis tempor sagittis ligula. Mauris aenean curae vestibulum 
-aenean fames posuere consequat turpis. Cursus lectus rutrum dolor condimentum 
-rhoncus tincidunt rutrum. Hac amet class vivamus rhoncus condimentum; penatibus 
-risus magnis. Penatibus nulla venenatis nulla praesent mauris. Morbi feugiat 
-rhoncus ridiculus varius faucibus commodo tincidunt ipsum molestie. Volutpat 
-semper aptent viverra facilisi nam nibh suscipit purus himenaeos. Himenaeos 
-quisque ultrices condimentum mauris a diam.''';
+const longText =
+    'Nascetur nec convallis tempor sagittis ligula. Mauris aenean curae vestibulum aenean fames posuere consequat turpis. Cursus lectus rutrumdolor condimentum rhoncus tincidunt rutrum. Hac amet class vivamus rhoncus condimentum; penatibus risus magnis. Penatibus nulla venenatis nulla praesent mauris. Morbi feugiat rhoncus ridiculus varius faucibus commodo tincidunt ipsum molestie. Volutpat semper aptent viverra facilisi nam nibh suscipit purus himenaeos. Himenaeos quisque ultrices condimentum mauris a diam.';
 
 final stubDate = DateTime(2012, 4, 3);
 
