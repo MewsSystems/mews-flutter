@@ -26,6 +26,8 @@ class OptimusListTile extends StatelessWidget {
     this.onTap,
     this.fontVariant = FontVariant.normal,
     this.contentPadding,
+    this.prefixSize = OptimusPrefixSize.medium,
+    this.prefixVerticalAlignment,
   });
 
   /// Communicates the subject of the list item.
@@ -42,6 +44,14 @@ class OptimusListTile extends StatelessWidget {
 
   /// The Widget to be displayed on the leading position. Typically an [Icon].
   final Widget? prefix;
+
+  /// The size of the prefix widget. Defaults to [OptimusPrefixSize.medium].
+  final OptimusPrefixSize prefixSize;
+
+  /// The vertical alignment of the prefix. By default it would align to the top,
+  /// but if there is a [suffix] is would align to the center. Providing
+  /// prefixVerticalAlignment will override the alignment.
+  final OptimusPrefixVerticalAlignment? prefixVerticalAlignment;
 
   /// The Widget to be displayed on the tailoring position. Typically an [Icon].
   final Widget? suffix;
@@ -65,6 +75,12 @@ class OptimusListTile extends StatelessWidget {
   /// will be used.
   final EdgeInsets? contentPadding;
 
+  OptimusPrefixVerticalAlignment get _prefixVerticalAlignment =>
+      prefixVerticalAlignment ??
+      (subtitle != null
+          ? OptimusPrefixVerticalAlignment.start
+          : OptimusPrefixVerticalAlignment.center);
+
   EdgeInsets _getContentPadding(OptimusTokens tokens) =>
       contentPadding ??
       EdgeInsets.symmetric(
@@ -75,8 +91,6 @@ class OptimusListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final info = this.info;
-    final subtitle = this.subtitle;
 
     return BaseListTile(
       onTap: onTap,
@@ -85,47 +99,47 @@ class OptimusListTile extends StatelessWidget {
         child: Stack(
           children: [
             if (prefix case final prefix?)
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  top: subtitle != null ? tokens.spacing100 : tokens.spacing25,
-                ),
-                child: _Prefix(prefix: prefix),
+              Positioned(
+                top: tokens.spacing0,
+                bottom: _prefixVerticalAlignment.getBottom(tokens),
+                child: _Prefix(prefix: prefix, size: prefixSize),
               ),
             Row(
-              children: <Widget>[
-                if (prefix != null) SizedBox(width: context.prefixWidth),
+              children: [
+                if (prefix != null)
+                  SizedBox(width: prefixSize.getWidth(tokens)),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(right: tokens.spacing100),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
+                      children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
+                          children: [
                             Flexible(
-                              flex: 8,
                               child: _Title(
                                 title: title,
                                 fontVariant: fontVariant,
                               ),
                             ),
-                            if (info != null)
-                              Flexible(flex: 2, child: _Info(info: info)),
+                            if (info case final info?)
+                              Flexible(child: _Info(info: info)),
                           ],
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: subtitle != null
-                                  ? _Subtitle(
-                                      subtitle: subtitle,
-                                      fontVariant: fontVariant,
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
+                          children: [
+                            if (subtitle case final subtitle?)
+                              Expanded(
+                                child: _Subtitle(
+                                  subtitle: subtitle,
+                                  fontVariant: fontVariant,
+                                ),
+                              )
+                            else
+                              const Spacer(),
                             if (infoWidget case final infoWidget?) infoWidget,
                           ],
                         ),
@@ -143,17 +157,25 @@ class OptimusListTile extends StatelessWidget {
   }
 }
 
+enum OptimusPrefixVerticalAlignment { center, start }
+
+enum OptimusPrefixSize { medium, large }
+
 class _Prefix extends StatelessWidget {
-  const _Prefix({required this.prefix});
+  const _Prefix({
+    required this.prefix,
+    this.size = OptimusPrefixSize.medium,
+  });
 
   final Widget prefix;
+  final OptimusPrefixSize size;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return SizedBox(
-      width: context.prefixWidth,
+      width: size.getWidth(tokens),
       child: Padding(
         padding: EdgeInsets.only(right: tokens.spacing100),
         child: OptimusTypography(
@@ -188,14 +210,10 @@ class _Title extends StatelessWidget {
   final FontVariant fontVariant;
 
   @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return OptimusTypography(
-      resolveStyle: (_) => fontVariant.getPrimaryStyle(tokens),
-      child: title,
-    );
-  }
+  Widget build(BuildContext context) => OptimusTypography(
+        resolveStyle: (_) => fontVariant.getPrimaryStyle(context.tokens),
+        child: title,
+      );
 }
 
 class _Info extends StatelessWidget {
@@ -226,6 +244,16 @@ class _Subtitle extends StatelessWidget {
       );
 }
 
-extension on BuildContext {
-  double get prefixWidth => tokens.spacing400;
+extension on OptimusPrefixSize {
+  double getWidth(OptimusTokens tokens) => switch (this) {
+        OptimusPrefixSize.medium => tokens.sizing400,
+        OptimusPrefixSize.large => tokens.sizing600,
+      };
+}
+
+extension on OptimusPrefixVerticalAlignment {
+  double? getBottom(OptimusTokens tokens) => switch (this) {
+        OptimusPrefixVerticalAlignment.center => tokens.spacing0,
+        OptimusPrefixVerticalAlignment.start => null,
+      };
 }
