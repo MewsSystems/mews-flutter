@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -17,8 +17,26 @@ Widget createDefaultStyle(BuildContext context) {
   final isErrorLoading = k.boolean(label: 'Error loading', initialValue: false);
   final title = k.string(label: 'Title', initialValue: 'User');
   final useBadge = k.boolean(label: 'Use badge', initialValue: false);
+  final alignment = k.list(
+    label: 'Alignment',
+    initialOption: AlignmentDirectional.center,
+    options: [
+      AlignmentDirectional.center,
+      AlignmentDirectional.bottomCenter,
+      AlignmentDirectional.bottomEnd,
+      AlignmentDirectional.bottomStart,
+      AlignmentDirectional.centerEnd,
+      AlignmentDirectional.centerStart,
+      AlignmentDirectional.topCenter,
+      AlignmentDirectional.topEnd,
+      AlignmentDirectional.topStart,
+    ],
+  );
 
-  return Center(
+  return Container(
+    width: context.tokens.sizing800,
+    height: context.tokens.sizing800,
+    color: Colors.blueGrey,
     child: OptimusAvatar(
       title: title,
       imageUrl: useImage
@@ -29,6 +47,7 @@ Widget createDefaultStyle(BuildContext context) {
       isIndicatorVisible: hasIndicator,
       size: size,
       badgeUrl: useBadge ? _badgeUrl : null,
+      alignment: alignment,
     ),
   );
 }
