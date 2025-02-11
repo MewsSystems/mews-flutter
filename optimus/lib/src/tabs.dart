@@ -87,7 +87,7 @@ class OptimusTabBar extends StatelessWidget {
   /// Defines if the [OptimusTabBar] is scrollable. The scroll is enabled in the horizontal axis only.
   final bool isScrollable;
 
-  /// A padding between tabs. Defaults to the horizontal padding with [tokens.spacing150].
+  /// A padding between tabs. If not provided, the default padding will be used.
   final EdgeInsets? tabPadding;
 
   Decoration _buildIndicator(OptimusTokens tokens) => UnderlineTabIndicator(
