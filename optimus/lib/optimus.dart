@@ -57,6 +57,7 @@ export 'src/form/date_time_form_field.dart';
 export 'src/form/error_variant.dart';
 export 'src/form/input_field.dart';
 export 'src/form/input_form_field.dart';
+export 'src/form/number_input.dart';
 export 'src/form/password_form_field.dart';
 export 'src/form/select_form_field.dart';
 export 'src/form/select_input_form_field.dart';
