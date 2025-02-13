@@ -35,7 +35,6 @@ class OptimusTab extends StatelessWidget {
     final tokens = context.tokens;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: tokens.spacing150),
       height: tokens.sizing600,
       constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
       child: Row(
@@ -72,11 +71,24 @@ class OptimusTabBar extends StatelessWidget {
     required this.tabs,
     required this.pages,
     this.tabController,
+    this.isScrollable = false,
+    this.tabPadding,
   });
 
+  /// The list of child tabs.
   final List<Widget> tabs;
+
+  /// The list of child pages.
   final List<Widget> pages;
+
+  /// The optional tab controller, for adding listeners and control the tab flow.
   final TabController? tabController;
+
+  /// Defines if the [OptimusTabBar] is scrollable. The scroll is enabled in the horizontal axis only.
+  final bool isScrollable;
+
+  /// A padding between tabs. If not provided, the default padding will be used.
+  final EdgeInsets? tabPadding;
 
   Decoration _buildIndicator(OptimusTokens tokens) => UnderlineTabIndicator(
         borderSide: BorderSide(
@@ -86,6 +98,11 @@ class OptimusTabBar extends StatelessWidget {
         insets: const EdgeInsets.only(bottom: -1),
       );
 
+  TabAlignment? get _tabAlignment => isScrollable ? null : TabAlignment.fill;
+
+  EdgeInsets _getLabelPadding(OptimusTokens tokens) =>
+      tabPadding ?? EdgeInsets.symmetric(horizontal: tokens.spacing150);
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -94,7 +111,7 @@ class OptimusTabBar extends StatelessWidget {
     return DefaultTabController(
       length: tabs.length,
       child: Column(
-        children: <Widget>[
+        children: [
           DecoratedBox(
             decoration: BoxDecoration(
               border: Border(
@@ -115,8 +132,10 @@ class OptimusTabBar extends StatelessWidget {
                 unselectedLabelStyle: textStyle,
                 labelStyle: textStyle,
                 splashBorderRadius: null,
+                isScrollable: isScrollable,
                 splashFactory: NoSplash.splashFactory,
-                labelPadding: EdgeInsets.zero,
+                labelPadding: _getLabelPadding(tokens),
+                tabAlignment: _tabAlignment,
               ),
             ),
           ),
