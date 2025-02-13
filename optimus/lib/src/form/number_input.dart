@@ -19,7 +19,6 @@ class OptimusNumberInput extends StatefulWidget {
     required this.placeholder,
     this.precision = 2,
     this.prefix,
-    this.isReadOnly = false,
     this.isRequired = false,
     this.thousandSeparator = OptimusNumberSeparatorVariant.comma,
     this.decimalSeparator = OptimusNumberSeparatorVariant.stop,
@@ -28,6 +27,7 @@ class OptimusNumberInput extends StatefulWidget {
     required this.onChanged,
     this.focusNode,
     this.controller,
+    this.step = 1,
   });
 
   /// Whether negative values are allowed.
@@ -72,9 +72,6 @@ class OptimusNumberInput extends StatefulWidget {
   /// Prefix widget to be displayed before the input.
   final Widget? prefix;
 
-  /// Whether the input is read-only.
-  final bool isReadOnly;
-
   /// Whether the input is required.
   final bool isRequired;
 
@@ -96,6 +93,8 @@ class OptimusNumberInput extends StatefulWidget {
 
   final TextEditingController? controller;
 
+  final num step;
+
   @override
   State<OptimusNumberInput> createState() => _OptimusNumberInputState();
 }
@@ -103,39 +102,92 @@ class OptimusNumberInput extends StatefulWidget {
 class _OptimusNumberInputState extends State<OptimusNumberInput> {
   late final _formatter = const _NumberInputFormatter();
 
+  late TextEditingController? _controller;
+
+  TextEditingController get _effectiveController =>
+      widget.controller ?? (_controller ??= TextEditingController());
+
+  void _handleIncrease() {
+    final value = num.parse(_effectiveController.text);
+    widget.onChanged((value + widget.step).toString());
+  }
+
+  void _handleDecrease() {
+    final value = num.parse(_effectiveController.text);
+    final result = ((value - widget.step) < 0 && !widget.allowNegate)
+        ? 0
+        : value - widget.step;
+    widget.onChanged(result.toString());
+  }
+
   @override
-  Widget build(BuildContext context) => OptimusInputField(
-        placeholder: widget.placeholder,
-        prefix: widget.prefix,
-        inputFormatters: [_formatter],
-        onChanged: widget.onChanged,
-        isEnabled: widget.isEnabled,
-        isInlined: widget.isInlined,
-        showLoader: widget.isLoading,
-        label: widget.label,
-        helperMessage: widget.helper,
-        suffix: Row(
-          children: [
-            if (widget.suffix case final suffix?) suffix,
-            GestureDetector(
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return OptimusInputField(
+      placeholder: widget.placeholder,
+      prefix: widget.prefix,
+      inputFormatters: [_formatter],
+      onChanged: widget.onChanged,
+      isEnabled: widget.isEnabled,
+      isInlined: widget.isInlined,
+      showLoader: widget.isLoading,
+      label: widget.label,
+      helperMessage: widget.helper,
+      error: widget.error,
+      suffix: Row(
+        children: [
+          if (widget.suffix case final suffix?)
+            Padding(
+              padding: EdgeInsets.only(right: tokens.spacing150),
+              child: suffix,
+            ),
+          Padding(
+            padding: EdgeInsets.only(right: tokens.spacing100),
+            child: GestureDetector(
               onTap: _handleDecrease,
               child: const OptimusIcon(
                 iconData: OptimusIcons.minus_simple,
+                colorOption: OptimusIconColorOption.basic,
               ),
             ),
-            GestureDetector(
+          ),
+          _Divider(isEnabled: widget.isEnabled),
+          Padding(
+            padding: EdgeInsets.only(left: tokens.spacing100),
+            child: GestureDetector(
               onTap: _handleIncrease,
               child: const OptimusIcon(
                 iconData: OptimusIcons.plus_simple,
+                colorOption: OptimusIconColorOption.basic,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Divider extends StatelessWidget {
+  const _Divider({required this.isEnabled});
+
+  final bool isEnabled;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        height: context.tokens.sizing200,
+        width: 1.5,
+        child: isEnabled
+            ? ColoredBox(color: context.tokens.borderStaticSecondary)
+            : null,
       );
-
-  void _handleIncrease() {}
-
-  void _handleDecrease() {}
 }
 
 class _NumberInputFormatter extends TextInputFormatter {
