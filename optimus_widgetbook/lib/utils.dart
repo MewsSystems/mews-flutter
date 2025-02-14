@@ -23,9 +23,6 @@ String enumOrNullLabelBuilder<T extends Enum>(T? value) => value?.name ?? '';
 
 String enumLabelBuilder<T extends Enum>(T value) => value.name;
 
-Icon? iconOrNull(IconDetails? details) =>
-    details?.let((details) => Icon(details.data));
-
 extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
         label: 'Size',
@@ -55,4 +52,12 @@ extension KnobsBuilderExt on KnobsBuilder {
 
 extension WidgetbookContext on BuildContext {
   bool get isInWidgetbookCloud => WidgetbookState.of(this).previewMode;
+}
+
+extension OptionalTextWidget on String {
+  Widget? toWidget() => let((value) => value.isNotEmpty ? Text(value) : null);
+}
+
+extension OptionalIconWidget on IconDetails {
+  Widget? toWidget() => let((details) => Icon(details.data));
 }
