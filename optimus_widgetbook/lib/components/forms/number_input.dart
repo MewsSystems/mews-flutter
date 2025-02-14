@@ -17,16 +17,23 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
-    final error = k.stringOrNull(label: 'Error', initialValue: 'Error');
+    final error = k.stringOrNull(label: 'Error');
     final label = k.string(label: 'Label', initialValue: 'Number input');
     final placeholder =
         k.string(label: 'Placeholder', initialValue: 'Placeholder');
+    final min = k.double.input(label: 'Min', initialValue: 0);
+    final max = k.double.input(label: 'Max', initialValue: 12);
+    final allowNegative =
+        k.boolean(label: 'Allow negative', initialValue: false);
 
     return OptimusNumberInput(
       label: label,
       placeholder: placeholder,
       error: error,
       onChanged: ignore,
+      min: min,
+      max: max,
+      allowNegate: allowNegative,
     );
   }
 }

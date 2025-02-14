@@ -11,7 +11,6 @@ class OptimusNumberInput extends StatefulWidget {
     this.hasFixedDecimalScale = true,
     this.helper,
     this.isInlined = false,
-    this.allowInput = true,
     required this.label,
     this.isLoading = false,
     this.max = 12,
@@ -28,7 +27,19 @@ class OptimusNumberInput extends StatefulWidget {
     this.focusNode,
     this.controller,
     this.step = 1,
-  });
+    this.initialValue = 1.0,
+  })  : assert(
+          (min < 0 && allowNegate) || min >= 0,
+          'Negative values should be allowed if the minimum is less than 0',
+        ),
+        assert(
+          ((min < 0 || max < 0) && allowNegate) || (max > 0 && min >= 0),
+          'Negative values should be allowed if min or max are less than 0',
+        ),
+        assert(
+          min < max,
+          'The minimal allowed value should be lesser then max value',
+        );
 
   /// Whether negative values are allowed.
   final bool allowNegate;
@@ -48,9 +59,6 @@ class OptimusNumberInput extends StatefulWidget {
   /// Whether the input is inlined.
   final bool isInlined;
 
-  /// Whether input is allowed.
-  final bool allowInput;
-
   /// Label widget to be displayed above the input.
   final String label;
 
@@ -58,10 +66,10 @@ class OptimusNumberInput extends StatefulWidget {
   final bool isLoading;
 
   /// Maximum value allowed.
-  final int max;
+  final double max;
 
   /// Minimum value allowed.
-  final int min;
+  final double min;
 
   /// Placeholder text to be displayed when the input is empty.
   final String placeholder;
@@ -93,7 +101,9 @@ class OptimusNumberInput extends StatefulWidget {
 
   final TextEditingController? controller;
 
-  final num step;
+  final double step;
+
+  final double initialValue;
 
   @override
   State<OptimusNumberInput> createState() => _OptimusNumberInputState();
@@ -102,22 +112,50 @@ class OptimusNumberInput extends StatefulWidget {
 class _OptimusNumberInputState extends State<OptimusNumberInput> {
   late final _formatter = const _NumberInputFormatter();
 
-  late TextEditingController? _controller;
+  TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
 
+  @override
+  void initState() {
+    super.initState();
+    _effectiveController.text = widget.initialValue.toString();
+  }
+
   void _handleIncrease() {
-    final value = num.parse(_effectiveController.text);
-    widget.onChanged((value + widget.step).toString());
+    final newValue = _currentValue + widget.step;
+    final result = newValue > widget.max ? widget.max : newValue;
+    _updateCurrentValue(result);
   }
 
   void _handleDecrease() {
-    final value = num.parse(_effectiveController.text);
-    final result = ((value - widget.step) < 0 && !widget.allowNegate)
-        ? 0
-        : value - widget.step;
-    widget.onChanged(result.toString());
+    final newValue = _currentValue - widget.step;
+    final double result = newValue < widget.min
+        ? widget.min
+        : (newValue < 0 && !widget.allowNegate)
+            ? 0
+            : newValue;
+    _updateCurrentValue(result);
+  }
+
+  double get _currentValue => double.parse(_effectiveController.text);
+
+  void _updateCurrentValue(double value) {
+    setState(() => _effectiveController.text = value.toString());
+    widget.onChanged(value.toString());
+  }
+
+  @override
+  void didUpdateWidget(OptimusNumberInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.min != widget.min && _currentValue < widget.min) {
+      _effectiveController.text = widget.min.toString();
+      widget.onChanged(_currentValue.toString());
+    } else if (oldWidget.max != widget.max && _currentValue > widget.max) {
+      _effectiveController.text = widget.max.toString();
+      widget.onChanged(_currentValue.toString());
+    }
   }
 
   @override
@@ -133,14 +171,18 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     return OptimusInputField(
       placeholder: widget.placeholder,
       prefix: widget.prefix,
-      inputFormatters: [_formatter],
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly, _formatter],
       onChanged: widget.onChanged,
       isEnabled: widget.isEnabled,
       isInlined: widget.isInlined,
       showLoader: widget.isLoading,
+      isRequired: widget.isRequired,
+      controller: _effectiveController,
+      size: widget.size,
       label: widget.label,
       helperMessage: widget.helper,
       error: widget.error,
+      keyboardType: TextInputType.number,
       suffix: Row(
         children: [
           if (widget.suffix case final suffix?)
