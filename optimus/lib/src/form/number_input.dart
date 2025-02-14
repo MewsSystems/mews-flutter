@@ -143,7 +143,13 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   double get _currentValue => double.parse(_effectiveController.text);
 
   void _updateCurrentValue(double value) {
-    setState(() => _effectiveController.text = value.toString());
+    setState(
+      () => _effectiveController.text = value.toString().format(
+            precision: widget.precision,
+            thousandSeparator: widget.thousandSeparator,
+            decimalSeparator: widget.decimalSeparator,
+          ),
+    );
     widget.onChanged(value.toString());
   }
 
@@ -151,10 +157,18 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   void didUpdateWidget(OptimusNumberInput oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.min != widget.min && _currentValue < widget.min) {
-      _effectiveController.text = widget.min.toString();
+      _effectiveController.text = widget.min.toString().format(
+            precision: widget.precision,
+            thousandSeparator: widget.thousandSeparator,
+            decimalSeparator: widget.decimalSeparator,
+          );
       widget.onChanged(_currentValue.toString());
     } else if (oldWidget.max != widget.max && _currentValue > widget.max) {
-      _effectiveController.text = widget.max.toString();
+      _effectiveController.text = widget.max.toString().format(
+            precision: widget.precision,
+            thousandSeparator: widget.thousandSeparator,
+            decimalSeparator: widget.decimalSeparator,
+          );
       widget.onChanged(_currentValue.toString());
     }
   }
@@ -250,7 +264,11 @@ class _NumberInputFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     final newText = newValue.text;
-    final newTextNumber = num.parse(newText).toStringAsFixed(precision);
+    final newTextNumber = newText.format(
+      precision: precision,
+      thousandSeparator: thousandSeparator,
+      decimalSeparator: decimalSeparator,
+    );
 
     return newValue.copyWith(text: newTextNumber);
   }
@@ -265,4 +283,13 @@ enum OptimusNumberSeparatorVariant {
   const OptimusNumberSeparatorVariant(this.separator);
 
   final String separator;
+}
+
+extension on String {
+  String format({
+    required int precision,
+    required OptimusNumberSeparatorVariant thousandSeparator,
+    required OptimusNumberSeparatorVariant decimalSeparator,
+  }) =>
+      num.parse(this).toStringAsFixed(precision);
 }
