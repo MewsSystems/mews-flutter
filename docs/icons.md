@@ -13,5 +13,5 @@
 - Check if the naming of the newly generated file is consistent and is not breaking old conventions
 - Generate a new story with all icons running `melos gen_icons`
 - Double-check for errors
-- Check **All icons** story for any icons misplacement
+- Check **All icons** story for any icon misplacement
 - Push and create a PR (don't forget to mark it as **breaking** if any icon was removed/renamed)
