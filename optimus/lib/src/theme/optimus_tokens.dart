@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Mon, 25 Nov 2024 17:43:45 GMT
+// Generated on Tue, 04 Feb 2025 11:35:50 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -407,16 +407,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.spacing800,
     required this.spacing900,
     required this.spacingBase,
-    required this.focusOffset,
-    required this.shadow0,
-    required this.shadow100,
-    required this.shadow200,
-    required this.shadow300,
     required this.fontFamilyUi,
     required this.fontWeight300,
     required this.fontWeight400,
     required this.fontWeight500,
     required this.fontWeight600,
+    required this.shadow0,
+    required this.shadow100,
+    required this.shadow200,
+    required this.shadow300,
     required this.textDecorationUnderline,
   });
 
@@ -1203,17 +1202,6 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final double spacingBase;
 
   @override
-  final List<BoxShadow> focusOffset;
-  @override
-  final List<BoxShadow> shadow0;
-  @override
-  final List<BoxShadow> shadow100;
-  @override
-  final List<BoxShadow> shadow200;
-  @override
-  final List<BoxShadow> shadow300;
-
-  @override
   final String fontFamilyUi;
 
   @override
@@ -1224,6 +1212,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final FontWeight fontWeight500;
   @override
   final FontWeight fontWeight600;
+
+  @override
+  final List<BoxShadow> shadow0;
+  @override
+  final List<BoxShadow> shadow100;
+  @override
+  final List<BoxShadow> shadow200;
+  @override
+  final List<BoxShadow> shadow300;
 
   @override
   final TextDecoration textDecorationUnderline;
@@ -1662,16 +1659,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     spacing800: DesignTokensLight.spacing800,
     spacing900: DesignTokensLight.spacing900,
     spacingBase: DesignTokensLight.spacingBase,
-    focusOffset: DesignTokensLight.focusOffset,
-    shadow0: DesignTokensLight.shadow0,
-    shadow100: DesignTokensLight.shadow100,
-    shadow200: DesignTokensLight.shadow200,
-    shadow300: DesignTokensLight.shadow300,
     fontFamilyUi: DesignTokensLight.fontFamilyUi,
     fontWeight300: DesignTokensLight.fontWeight300,
     fontWeight400: DesignTokensLight.fontWeight400,
     fontWeight500: DesignTokensLight.fontWeight500,
     fontWeight600: DesignTokensLight.fontWeight600,
+    shadow0: DesignTokensLight.shadow0,
+    shadow100: DesignTokensLight.shadow100,
+    shadow200: DesignTokensLight.shadow200,
+    shadow300: DesignTokensLight.shadow300,
     textDecorationUnderline: DesignTokensLight.textDecorationUnderline,
   );
 
@@ -2103,16 +2099,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     spacing800: DesignTokensDark.spacing800,
     spacing900: DesignTokensDark.spacing900,
     spacingBase: DesignTokensDark.spacingBase,
-    focusOffset: DesignTokensDark.focusOffset,
-    shadow0: DesignTokensDark.shadow0,
-    shadow100: DesignTokensDark.shadow100,
-    shadow200: DesignTokensDark.shadow200,
-    shadow300: DesignTokensDark.shadow300,
     fontFamilyUi: DesignTokensDark.fontFamilyUi,
     fontWeight300: DesignTokensDark.fontWeight300,
     fontWeight400: DesignTokensDark.fontWeight400,
     fontWeight500: DesignTokensDark.fontWeight500,
     fontWeight600: DesignTokensDark.fontWeight600,
+    shadow0: DesignTokensDark.shadow0,
+    shadow100: DesignTokensDark.shadow100,
+    shadow200: DesignTokensDark.shadow200,
+    shadow300: DesignTokensDark.shadow300,
     textDecorationUnderline: DesignTokensDark.textDecorationUnderline,
   );
 }

@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   deploy_widgetbook_azure:
+    name: Build and deploy optimus_widgetbook to Azure
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +33,7 @@ jobs:
 
       - name: Build Web
         run: |
-          melos exec --scope="optimus_widgetbook" -- "flutter build web"
+          melos exec --scope="optimus_widgetbook" -- "flutter build web --base-href '/app/'"
 
       - name: Modify manifest.json
         run: |
@@ -44,8 +45,19 @@ jobs:
           inlineScript: |
             az storage blob upload --overwrite true --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/manifest.json --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
 
-      - name: Upload to blob storage release folder
+      - name: Upload index.html to the release folder
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload-batch --overwrite true --destination mews-ui-widgetbook/release --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+            az storage blob upload --overwrite true --container-name mews-ui-widgetbook --file optimus_widgetbook/build/web/index.html --name release/index.html --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login
+
+      - name: Remove uploaded files before the batch upload
+        run: |
+          rm optimus_widgetbook/build/web/manifest.json
+          rm optimus_widgetbook/build/web/index.html
+
+      - name: Upload assets to the app folder
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az storage blob upload-batch --overwrite true --destination mews-ui-widgetbook/release/app --source optimus_widgetbook/build/web --account-name ${{ secrets.AZURE_ACCOUNT_NAME }} --auth-mode login

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
-import 'package:optimus/src/common/state_property.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
 
 /// Lists are vertically organized groups of data. Optimized for reading
@@ -83,12 +82,12 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
     }
   }
 
-  InteractiveStateColor get _backgroundColor => InteractiveStateColor(
-        defaultColor: tokens.backgroundInteractiveNeutralSubtleDefault,
-        disabled: Colors.transparent,
-        pressed: tokens.backgroundInteractiveNeutralSubtleActive,
-        hovered: tokens.backgroundInteractiveNeutralSubtleHover,
-      );
+  WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
+        WidgetState.disabled: Colors.transparent,
+        WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
+        WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
+        WidgetState.any: tokens.backgroundInteractiveNeutralSubtleDefault,
+      });
 
   void _handleHoverChanged(bool isHovered) {
     setState(() => _controller.update(WidgetState.hovered, isHovered));

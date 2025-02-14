@@ -94,7 +94,8 @@ class DropdownSelect<T> extends StatefulWidget {
   State<DropdownSelect<T>> createState() => _DropdownSelectState<T>();
 }
 
-class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
+class _DropdownSelectState<T> extends State<DropdownSelect<T>>
+    with WidgetsBindingObserver {
   final _fieldBoxKey = GlobalKey();
 
   FocusNode? _focusNode;
@@ -111,6 +112,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _effectiveFocusNode.addListener(_onFocusChanged);
   }
 
@@ -121,7 +123,21 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        _removeOverlay();
+      case AppLifecycleState.resumed:
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.hidden:
+    }
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _effectiveFocusNode.removeListener(_onFocusChanged);
     _focusNode?.dispose();
     _controller?.dispose();
@@ -262,7 +278,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>> {
             }
           }
 
-          return GestureDetector(
+          return AllowMultipleRawGestureDetector(
             key: const Key('OptimusDropdownOverlay'),
             behavior: HitTestBehavior.translucent,
             onTapDown: handleTapDown,

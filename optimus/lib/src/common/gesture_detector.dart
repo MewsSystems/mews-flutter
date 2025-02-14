@@ -5,16 +5,20 @@ class AllowMultipleRawGestureDetector extends RawGestureDetector {
   AllowMultipleRawGestureDetector({
     super.key,
     GestureTapCallback? onTap,
+    GestureTapDownCallback? onTapDown,
+    super.behavior = HitTestBehavior.opaque,
     super.child,
   }) : super(
-          behavior: HitTestBehavior.opaque,
           gestures: <Type, GestureRecognizerFactory>{
             AllowMultipleGestureRecognizer:
                 GestureRecognizerFactoryWithHandlers<
                     AllowMultipleGestureRecognizer>(
               AllowMultipleGestureRecognizer.new,
-              (AllowMultipleGestureRecognizer instance) =>
-                  instance.onTap = onTap,
+              (AllowMultipleGestureRecognizer instance) {
+                instance
+                  ..onTap = onTap
+                  ..onTapDown = onTapDown;
+              },
             ),
           },
         );

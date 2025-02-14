@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Mon, 25 Nov 2024 17:43:45 GMT
+// Generated on Tue, 04 Feb 2025 11:35:50 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -531,18 +531,13 @@ abstract final class DesignTokensLight {
   static const double spacing900 = 72;
   static const double spacingBase = 8;
 
-  static const List<BoxShadow> focusOffset = [
-    BoxShadow(
-      offset: Offset.zero,
-      spreadRadius: 2,
-      color: Color(0xFFFFFFFF),
-    ),
-    BoxShadow(
-      offset: Offset.zero,
-      spreadRadius: 4,
-      color: Color(0xFF1613D7),
-    ),
-  ];
+  static const String fontFamilyUi = 'Inter';
+
+  static const FontWeight fontWeight300 = FontWeight.w300;
+  static const FontWeight fontWeight400 = FontWeight.w400;
+  static const FontWeight fontWeight500 = FontWeight.w500;
+  static const FontWeight fontWeight600 = FontWeight.w600;
+
   static const List<BoxShadow> shadow0 = [
     BoxShadow(
       offset: Offset.zero,
@@ -591,13 +586,6 @@ abstract final class DesignTokensLight {
       color: Color(0x1F121219),
     ),
   ];
-
-  static const String fontFamilyUi = 'Inter';
-
-  static const FontWeight fontWeight300 = FontWeight.w300;
-  static const FontWeight fontWeight400 = FontWeight.w400;
-  static const FontWeight fontWeight500 = FontWeight.w500;
-  static const FontWeight fontWeight600 = FontWeight.w600;
 
   static const TextDecoration textDecorationUnderline =
       TextDecoration.underline;
