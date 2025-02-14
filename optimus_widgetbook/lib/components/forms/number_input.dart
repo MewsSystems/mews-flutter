@@ -76,7 +76,7 @@ class _ContentState extends State<_Content> {
         initialOption: OptimusNumberSeparatorVariant.stop,
       ),
       suffix: suffix?.toWidget(),
-      step: k.double.slider(label: 'Step', initialValue: 1),
+      step: k.double.input(label: 'Step', initialValue: 1),
     );
   }
 }

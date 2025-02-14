@@ -121,7 +121,11 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   @override
   void initState() {
     super.initState();
-    _effectiveController.text = widget.initialValue.toString();
+    _effectiveController.text = widget.initialValue.toString().format(
+          precision: widget.precision,
+          thousandSeparator: widget.thousandSeparator,
+          decimalSeparator: widget.decimalSeparator,
+        );
   }
 
   void _handleIncrease() {
@@ -140,7 +144,23 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     _updateCurrentValue(result);
   }
 
-  double get _currentValue => double.parse(_effectiveController.text);
+  double get _currentValue {
+    final text = _effectiveController.text;
+    String cleanedText = text;
+
+    if (widget.precision > 0) {
+      final lastIndex =
+          cleanedText.lastIndexOf(widget.decimalSeparator.separator);
+      if (lastIndex != -1) {
+        cleanedText = cleanedText.replaceRange(lastIndex, lastIndex + 1, '.');
+      }
+    }
+
+    cleanedText =
+        cleanedText.replaceAll(widget.thousandSeparator.separator, '');
+
+    return double.parse(cleanedText);
+  }
 
   void _updateCurrentValue(double value) {
     setState(
@@ -155,6 +175,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
 
   @override
   void didUpdateWidget(OptimusNumberInput oldWidget) {
+    // TODO(witwash): fix value reset on widget prop change
     super.didUpdateWidget(oldWidget);
     if (oldWidget.min != widget.min && _currentValue < widget.min) {
       _effectiveController.text = widget.min.toString().format(
@@ -290,6 +311,26 @@ extension on String {
     required int precision,
     required OptimusNumberSeparatorVariant thousandSeparator,
     required OptimusNumberSeparatorVariant decimalSeparator,
-  }) =>
-      num.parse(this).toStringAsFixed(precision);
+  }) {
+    final fixedLength = num.parse(this).toStringAsFixed(precision);
+    final parts = fixedLength.split('.');
+    final wholePart = parts.first;
+    final decimalPart = parts.length > 1 ? parts.last : '';
+
+    final buffer = StringBuffer();
+    for (int i = 0; i < wholePart.length; i++) {
+      if (i > 0 && (wholePart.length - i) % 3 == 0) {
+        buffer.write(thousandSeparator.separator);
+      }
+      buffer.write(wholePart[i]);
+    }
+
+    if (decimalPart.isNotEmpty) {
+      buffer
+        ..write(decimalSeparator.separator)
+        ..write(decimalPart);
+    }
+
+    return buffer.toString();
+  }
 }
