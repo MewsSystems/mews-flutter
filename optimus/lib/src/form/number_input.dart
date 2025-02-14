@@ -8,7 +8,6 @@ class OptimusNumberInput extends StatefulWidget {
     this.allowNegate = false,
     this.isEnabled = true,
     this.error,
-    this.hasFixedDecimalScale = true,
     this.helper,
     this.isInlined = false,
     required this.label,
@@ -39,7 +38,8 @@ class OptimusNumberInput extends StatefulWidget {
         assert(
           min < max,
           'The minimal allowed value should be lesser then max value',
-        );
+        ),
+        assert(precision >= 0, 'Precision can be negative');
 
   /// Whether negative values are allowed.
   final bool allowNegate;
@@ -49,9 +49,6 @@ class OptimusNumberInput extends StatefulWidget {
 
   /// Error message to be displayed.
   final String? error;
-
-  /// Whether the decimal scale is fixed.
-  final bool hasFixedDecimalScale;
 
   /// Helper widget to be displayed below the input.
   final Widget? helper;
@@ -110,7 +107,11 @@ class OptimusNumberInput extends StatefulWidget {
 }
 
 class _OptimusNumberInputState extends State<OptimusNumberInput> {
-  late final _formatter = const _NumberInputFormatter();
+  late final _formatter = _NumberInputFormatter(
+    precision: widget.precision,
+    thousandSeparator: widget.thousandSeparator,
+    decimalSeparator: widget.decimalSeparator,
+  );
 
   TextEditingController? _controller;
 
@@ -233,16 +234,35 @@ class _Divider extends StatelessWidget {
 }
 
 class _NumberInputFormatter extends TextInputFormatter {
-  const _NumberInputFormatter();
+  const _NumberInputFormatter({
+    required this.precision,
+    required this.thousandSeparator,
+    required this.decimalSeparator,
+  });
+
+  final int precision;
+  final OptimusNumberSeparatorVariant thousandSeparator;
+  final OptimusNumberSeparatorVariant decimalSeparator;
 
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    // TODO(witwash): implement formatEditUpdate
-    throw UnimplementedError();
+    final newText = newValue.text;
+    final newTextNumber = num.parse(newText).toStringAsFixed(precision);
+
+    return newValue.copyWith(text: newTextNumber);
   }
 }
 
-enum OptimusNumberSeparatorVariant { comma, stop, none, empty }
+enum OptimusNumberSeparatorVariant {
+  comma(','),
+  stop('.'),
+  none(' '),
+  empty('');
+
+  const OptimusNumberSeparatorVariant(this.separator);
+
+  final String separator;
+}

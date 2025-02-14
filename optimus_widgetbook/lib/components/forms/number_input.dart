@@ -12,8 +12,23 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext _) => const _Content();
 
-class _Content extends StatelessWidget {
+class _Content extends StatefulWidget {
   const _Content();
+
+  @override
+  State<_Content> createState() => _ContentState();
+}
+
+class _ContentState extends State<_Content> {
+  final double _initialValue = 0;
+
+  late double _value;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = _initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +58,11 @@ class _Content extends StatelessWidget {
       size: k.widgetSizeKnob,
       helper: helper?.toWidget(),
       isInlined: k.boolean(label: 'Inlined'),
-      hasFixedDecimalScale: k.boolean(label: 'Has fixed decimal scale'),
       isLoading: k.boolean(label: 'Is loading'),
       precision: k.int.slider(label: 'Precision'),
       prefix: prefix?.toWidget(),
       isRequired: k.boolean(label: 'Required'),
-      initialValue: k.double.slider(label: 'Initial', max: max, min: min),
+      initialValue: _value,
       thousandSeparator: k.list(
         label: 'Thousand Separator',
         options: OptimusNumberSeparatorVariant.values,
