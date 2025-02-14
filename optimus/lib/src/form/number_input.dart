@@ -225,7 +225,7 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SizedBox(
         height: context.tokens.sizing200,
-        width: 1.5,
+        width: context.tokens.borderWidth150,
         child: isEnabled
             ? ColoredBox(color: context.tokens.borderStaticSecondary)
             : null,
