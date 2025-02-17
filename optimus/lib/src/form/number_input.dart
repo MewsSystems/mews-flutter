@@ -18,8 +18,8 @@ class OptimusNumberInput extends StatefulWidget {
     this.precision = 2,
     this.prefix,
     this.isRequired = false,
-    this.thousandSeparator = OptimusNumberSeparatorVariant.comma,
-    this.decimalSeparator = OptimusNumberSeparatorVariant.stop,
+    this.thousandSeparator = OptimusGroupSeparatorVariant.comma,
+    this.decimalSeparator = OptimusDecimalSeparatorVariant.stop,
     this.size = OptimusWidgetSize.large,
     this.suffix,
     required this.onChanged,
@@ -81,10 +81,10 @@ class OptimusNumberInput extends StatefulWidget {
   final bool isRequired;
 
   /// Thousand separator variant.
-  final OptimusNumberSeparatorVariant thousandSeparator;
+  final OptimusGroupSeparatorVariant thousandSeparator;
 
   /// Decimal separator variant.
-  final OptimusNumberSeparatorVariant decimalSeparator;
+  final OptimusDecimalSeparatorVariant decimalSeparator;
 
   /// Size of the input widget.
   final OptimusWidgetSize size;
@@ -276,8 +276,8 @@ class _NumberInputFormatter extends TextInputFormatter {
   });
 
   final int precision;
-  final OptimusNumberSeparatorVariant thousandSeparator;
-  final OptimusNumberSeparatorVariant decimalSeparator;
+  final OptimusGroupSeparatorVariant thousandSeparator;
+  final OptimusDecimalSeparatorVariant decimalSeparator;
 
   @override
   TextEditingValue formatEditUpdate(
@@ -295,13 +295,22 @@ class _NumberInputFormatter extends TextInputFormatter {
   }
 }
 
-enum OptimusNumberSeparatorVariant {
+enum OptimusGroupSeparatorVariant {
   comma(','),
   stop('.'),
   none(' '),
   empty('');
 
-  const OptimusNumberSeparatorVariant(this.separator);
+  const OptimusGroupSeparatorVariant(this.separator);
+
+  final String separator;
+}
+
+enum OptimusDecimalSeparatorVariant {
+  comma(','),
+  stop('.');
+
+  const OptimusDecimalSeparatorVariant(this.separator);
 
   final String separator;
 }
@@ -309,8 +318,8 @@ enum OptimusNumberSeparatorVariant {
 extension on String {
   String format({
     required int precision,
-    required OptimusNumberSeparatorVariant thousandSeparator,
-    required OptimusNumberSeparatorVariant decimalSeparator,
+    required OptimusGroupSeparatorVariant thousandSeparator,
+    required OptimusDecimalSeparatorVariant decimalSeparator,
   }) {
     final fixedLength = num.parse(this).toStringAsFixed(precision);
     final parts = fixedLength.split('.');
