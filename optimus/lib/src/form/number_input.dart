@@ -18,8 +18,7 @@ class OptimusNumberInput extends StatefulWidget {
     this.precision = 2,
     this.prefix,
     this.isRequired = false,
-    this.thousandSeparator = OptimusGroupSeparatorVariant.comma,
-    this.decimalSeparator = OptimusDecimalSeparatorVariant.stop,
+    this.separatorVariant = OptimusNumberSeparatorVariant.commaAndStop,
     this.size = OptimusWidgetSize.large,
     this.suffix,
     required this.onChanged,
@@ -79,11 +78,9 @@ class OptimusNumberInput extends StatefulWidget {
   /// Whether the input is required.
   final bool isRequired;
 
-  /// Thousand separator variant.
-  final OptimusGroupSeparatorVariant thousandSeparator;
-
-  /// Decimal separator variant.
-  final OptimusDecimalSeparatorVariant decimalSeparator;
+  /// Separator variant to be used.
+  /// Default is [OptimusNumberSeparatorVariant.commaAndStop].
+  final OptimusNumberSeparatorVariant separatorVariant;
 
   /// Size of the input widget.
   final OptimusWidgetSize size;
@@ -106,8 +103,7 @@ class OptimusNumberInput extends StatefulWidget {
 class _OptimusNumberInputState extends State<OptimusNumberInput> {
   late final _formatter = _NumberInputFormatter(
     precision: widget.precision,
-    thousandSeparator: widget.thousandSeparator,
-    decimalSeparator: widget.decimalSeparator,
+    separatorVariant: widget.separatorVariant,
   );
 
   TextEditingController? _controller;
@@ -136,21 +132,19 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
         ? _effectiveController.text
         : _initialValue.format(
             precision: widget.precision,
-            thousandSeparator: widget.thousandSeparator,
-            decimalSeparator: widget.decimalSeparator,
+            separatorVariant: widget.separatorVariant,
           );
     String cleanedText = text;
 
     if (widget.precision > 0) {
-      final lastIndex =
-          cleanedText.lastIndexOf(widget.decimalSeparator.separator);
-      if (lastIndex != -1) {
-        cleanedText = cleanedText.replaceRange(lastIndex, lastIndex + 1, '.');
-      }
+      cleanedText = cleanedText.replaceAll(
+        widget.separatorVariant.decimalSeparator,
+        _stopSeparator,
+      );
     }
 
     cleanedText =
-        cleanedText.replaceAll(widget.thousandSeparator.separator, '');
+        cleanedText.replaceAll(widget.separatorVariant.groupSeparator, '');
 
     return double.parse(cleanedText);
   }
@@ -159,8 +153,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     setState(
       () => _effectiveController.text = value.toString().format(
             precision: widget.precision,
-            thousandSeparator: widget.thousandSeparator,
-            decimalSeparator: widget.decimalSeparator,
+            separatorVariant: widget.separatorVariant,
           ),
     );
     widget.onChanged(value.toString());
@@ -172,15 +165,13 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     if (oldWidget.min != widget.min && _currentValue < widget.min) {
       _effectiveController.text = widget.min.toString().format(
             precision: widget.precision,
-            thousandSeparator: widget.thousandSeparator,
-            decimalSeparator: widget.decimalSeparator,
+            separatorVariant: widget.separatorVariant,
           );
       widget.onChanged(_currentValue.toString());
     } else if (oldWidget.max != widget.max && _currentValue > widget.max) {
       _effectiveController.text = widget.max.toString().format(
             precision: widget.precision,
-            thousandSeparator: widget.thousandSeparator,
-            decimalSeparator: widget.decimalSeparator,
+            separatorVariant: widget.separatorVariant,
           );
       widget.onChanged(_currentValue.toString());
     }
@@ -264,13 +255,11 @@ class _Divider extends StatelessWidget {
 class _NumberInputFormatter extends TextInputFormatter {
   const _NumberInputFormatter({
     required this.precision,
-    required this.thousandSeparator,
-    required this.decimalSeparator,
+    required this.separatorVariant,
   });
 
   final int precision;
-  final OptimusGroupSeparatorVariant thousandSeparator;
-  final OptimusDecimalSeparatorVariant decimalSeparator;
+  final OptimusNumberSeparatorVariant separatorVariant;
 
   @override
   TextEditingValue formatEditUpdate(
@@ -280,39 +269,34 @@ class _NumberInputFormatter extends TextInputFormatter {
     final newText = newValue.text;
     final newTextNumber = newText.format(
       precision: precision,
-      thousandSeparator: thousandSeparator,
-      decimalSeparator: decimalSeparator,
+      separatorVariant: separatorVariant,
     );
 
     return newValue.copyWith(text: newTextNumber);
   }
 }
 
-enum OptimusGroupSeparatorVariant {
-  comma(','),
-  stop('.'),
-  none(' '),
-  empty('');
+enum OptimusNumberSeparatorVariant {
+  commaAndStop(_commaSeparator, _stopSeparator),
+  stopAndComma(_stopSeparator, _commaSeparator),
+  noneAndComma(_spaceSeparator, _commaSeparator),
+  noneAndStop(_spaceSeparator, _stopSeparator),
+  emptyAndComma(_emptySeparator, _commaSeparator),
+  emptyAndStop(_emptySeparator, _stopSeparator);
 
-  const OptimusGroupSeparatorVariant(this.separator);
+  const OptimusNumberSeparatorVariant(
+    this.groupSeparator,
+    this.decimalSeparator,
+  );
 
-  final String separator;
-}
-
-enum OptimusDecimalSeparatorVariant {
-  comma(','),
-  stop('.');
-
-  const OptimusDecimalSeparatorVariant(this.separator);
-
-  final String separator;
+  final String groupSeparator;
+  final String decimalSeparator;
 }
 
 extension on String {
   String format({
     required int precision,
-    required OptimusGroupSeparatorVariant thousandSeparator,
-    required OptimusDecimalSeparatorVariant decimalSeparator,
+    required OptimusNumberSeparatorVariant separatorVariant,
   }) {
     final fixedLength = num.parse(this).toStringAsFixed(precision);
     final parts = fixedLength.split('.');
@@ -322,14 +306,14 @@ extension on String {
     final buffer = StringBuffer();
     for (int i = 0; i < wholePart.length; i++) {
       if (i > 0 && (wholePart.length - i) % 3 == 0) {
-        buffer.write(thousandSeparator.separator);
+        buffer.write(separatorVariant.groupSeparator);
       }
       buffer.write(wholePart[i]);
     }
 
     if (decimalPart.isNotEmpty) {
       buffer
-        ..write(decimalSeparator.separator)
+        ..write(separatorVariant.decimalSeparator)
         ..write(decimalPart);
     }
 
@@ -338,3 +322,7 @@ extension on String {
 }
 
 const _initialValue = '0';
+const _commaSeparator = ',';
+const _stopSeparator = '.';
+const _emptySeparator = '';
+const _spaceSeparator = ' ';

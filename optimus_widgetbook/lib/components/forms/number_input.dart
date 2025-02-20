@@ -65,17 +65,11 @@ class _ContentState extends State<_Content> {
           precision: k.int.slider(label: 'Precision', initialValue: 2),
           prefix: prefix?.toWidget(),
           isRequired: k.boolean(label: 'Required'),
-          thousandSeparator: k.list(
-            label: 'Thousand Separator',
-            options: OptimusGroupSeparatorVariant.values,
+          separatorVariant: k.list(
+            label: 'Separator Variant',
+            options: OptimusNumberSeparatorVariant.values,
             labelBuilder: enumLabelBuilder,
-            initialOption: OptimusGroupSeparatorVariant.comma,
-          ),
-          decimalSeparator: k.list(
-            label: 'Decimal Separator',
-            options: OptimusDecimalSeparatorVariant.values,
-            labelBuilder: enumLabelBuilder,
-            initialOption: OptimusDecimalSeparatorVariant.stop,
+            initialOption: OptimusNumberSeparatorVariant.commaAndStop,
           ),
           suffix: suffix?.toWidget(),
           step: k.double.input(label: 'Step', initialValue: 1),
