@@ -23,10 +23,9 @@ class OptimusNumberInput extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.suffix,
     required this.onChanged,
-    this.focusNode,
     this.controller,
+    this.focusNode,
     this.step = 1,
-    this.initialValue = 1.0,
   })  : assert(
           (min < 0 && allowNegate) || min >= 0,
           'Negative values should be allowed if the minimum is less than 0',
@@ -100,8 +99,6 @@ class OptimusNumberInput extends StatefulWidget {
 
   final double step;
 
-  final double initialValue;
-
   @override
   State<OptimusNumberInput> createState() => _OptimusNumberInputState();
 }
@@ -117,16 +114,6 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
 
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
-
-  @override
-  void initState() {
-    super.initState();
-    _effectiveController.text = widget.initialValue.toString().format(
-          precision: widget.precision,
-          thousandSeparator: widget.thousandSeparator,
-          decimalSeparator: widget.decimalSeparator,
-        );
-  }
 
   void _handleIncrease() {
     final newValue = _currentValue + widget.step;
@@ -145,7 +132,13 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   }
 
   double get _currentValue {
-    final text = _effectiveController.text;
+    final text = _effectiveController.text.isNotEmpty
+        ? _effectiveController.text
+        : _initialValue.format(
+            precision: widget.precision,
+            thousandSeparator: widget.thousandSeparator,
+            decimalSeparator: widget.decimalSeparator,
+          );
     String cleanedText = text;
 
     if (widget.precision > 0) {
@@ -175,7 +168,6 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
 
   @override
   void didUpdateWidget(OptimusNumberInput oldWidget) {
-    // TODO(witwash): fix value reset on widget prop change
     super.didUpdateWidget(oldWidget);
     if (oldWidget.min != widget.min && _currentValue < widget.min) {
       _effectiveController.text = widget.min.toString().format(
@@ -219,6 +211,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
       helperMessage: widget.helper,
       error: widget.error,
       keyboardType: TextInputType.number,
+      isReadOnly: true,
       suffix: Row(
         children: [
           if (widget.suffix case final suffix?)
@@ -343,3 +336,5 @@ extension on String {
     return buffer.toString();
   }
 }
+
+const _initialValue = '0';

@@ -20,14 +20,12 @@ class _Content extends StatefulWidget {
 }
 
 class _ContentState extends State<_Content> {
-  final double _initialValue = 0;
-
-  late double _value;
+  late final _controller = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _value = _initialValue;
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -46,37 +44,43 @@ class _ContentState extends State<_Content> {
     final prefix = k.stringOrNull(label: 'Prefix');
     final suffix = k.stringOrNull(label: 'Suffix');
 
-    return OptimusNumberInput(
-      label: label,
-      placeholder: placeholder,
-      error: error,
-      onChanged: ignore,
-      min: min,
-      max: max,
-      allowNegate: allowNegative,
-      isEnabled: k.isEnabledKnob,
-      size: k.widgetSizeKnob,
-      helper: helper?.toWidget(),
-      isInlined: k.boolean(label: 'Inlined'),
-      isLoading: k.boolean(label: 'Is loading'),
-      precision: k.int.slider(label: 'Precision'),
-      prefix: prefix?.toWidget(),
-      isRequired: k.boolean(label: 'Required'),
-      initialValue: _value,
-      thousandSeparator: k.list(
-        label: 'Thousand Separator',
-        options: OptimusGroupSeparatorVariant.values,
-        labelBuilder: enumLabelBuilder,
-        initialOption: OptimusGroupSeparatorVariant.comma,
+    return Center(
+      child: SizedBox(
+        width: 300,
+        height: 200,
+        child: OptimusNumberInput(
+          label: label,
+          placeholder: placeholder,
+          controller: _controller,
+          error: error,
+          onChanged: ignore,
+          min: min,
+          max: max,
+          allowNegate: allowNegative,
+          isEnabled: k.isEnabledKnob,
+          size: k.widgetSizeKnob,
+          helper: helper?.toWidget(),
+          isInlined: k.boolean(label: 'Inlined'),
+          isLoading: k.boolean(label: 'Is loading'),
+          precision: k.int.slider(label: 'Precision', initialValue: 2),
+          prefix: prefix?.toWidget(),
+          isRequired: k.boolean(label: 'Required'),
+          thousandSeparator: k.list(
+            label: 'Thousand Separator',
+            options: OptimusGroupSeparatorVariant.values,
+            labelBuilder: enumLabelBuilder,
+            initialOption: OptimusGroupSeparatorVariant.comma,
+          ),
+          decimalSeparator: k.list(
+            label: 'Decimal Separator',
+            options: OptimusDecimalSeparatorVariant.values,
+            labelBuilder: enumLabelBuilder,
+            initialOption: OptimusDecimalSeparatorVariant.stop,
+          ),
+          suffix: suffix?.toWidget(),
+          step: k.double.input(label: 'Step', initialValue: 1),
+        ),
       ),
-      decimalSeparator: k.list(
-        label: 'Decimal Separator',
-        options: OptimusDecimalSeparatorVariant.values,
-        labelBuilder: enumLabelBuilder,
-        initialOption: OptimusDecimalSeparatorVariant.stop,
-      ),
-      suffix: suffix?.toWidget(),
-      step: k.double.input(label: 'Step', initialValue: 1),
     );
   }
 }
