@@ -88,12 +88,16 @@ class OptimusNumberInput extends StatefulWidget {
   /// Suffix widget to be displayed after the input.
   final Widget? suffix;
 
+  /// Callback that is called when the value changes.
   final ValueChanged<String> onChanged;
 
+  /// An optional focus node to be used.
   final FocusNode? focusNode;
 
+  /// An optional controller to be used.
   final TextEditingController? controller;
 
+  /// The step by which the value is increased or decreased.
   final double step;
 
   @override
@@ -276,6 +280,21 @@ class _NumberInputFormatter extends TextInputFormatter {
   }
 }
 
+/// The separator variant to be used in the number input.
+///
+/// The default value is [OptimusNumberSeparatorVariant.commaAndStop].
+/// [OptimusNumberSeparatorVariant.commaAndStop] - uses comma as a group separator
+/// and stop as a decimal separator. For example, 1,000.00.
+/// [OptimusNumberSeparatorVariant.stopAndComma] - uses stop as a group separator
+/// and comma as a decimal separator. For example, 1.000,00.
+/// [OptimusNumberSeparatorVariant.noneAndComma] - uses space as a group separator
+/// and comma as a decimal separator. For example, 1 000,00.
+/// [OptimusNumberSeparatorVariant.noneAndStop] - uses space as a group separator
+/// and stop as a decimal separator. For example, 1 000.00.
+/// [OptimusNumberSeparatorVariant.emptyAndComma] - uses empty string as a group separator
+/// and comma as a decimal separator. For example, 1000,00.
+/// [OptimusNumberSeparatorVariant.emptyAndStop] - uses empty string as a group separator
+/// and stop as a decimal separator. For example, 1000.00.
 enum OptimusNumberSeparatorVariant {
   commaAndStop(_commaSeparator, _stopSeparator),
   stopAndComma(_stopSeparator, _commaSeparator),
