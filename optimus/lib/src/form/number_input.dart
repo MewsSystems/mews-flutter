@@ -13,7 +13,7 @@ class OptimusNumberInput extends StatefulWidget {
     required this.label,
     this.isLoading = false,
     this.max = 12,
-    this.min = -12,
+    this.min = 0,
     required this.placeholder,
     this.precision = 2,
     this.prefix,
@@ -39,7 +39,7 @@ class OptimusNumberInput extends StatefulWidget {
         ),
         assert(precision >= 0, 'Precision can be negative');
 
-  /// Whether negative values are allowed.
+  /// Whether negative values are allowed. Disabled by default.
   final bool allowNegate;
 
   /// Whether the input is enabled.
