@@ -5,21 +5,23 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+final _numberKey = GlobalKey();
+
 @widgetbook.UseCase(
   name: 'NumberInput',
   type: OptimusNumberInput,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext _) => const _Content();
+Widget createDefaultStyle(BuildContext _) => NumberUserCase(key: _numberKey);
 
-class _Content extends StatefulWidget {
-  const _Content();
+class NumberUserCase extends StatefulWidget {
+  const NumberUserCase({super.key});
 
   @override
-  State<_Content> createState() => _ContentState();
+  State<NumberUserCase> createState() => NumberUseCaseState();
 }
 
-class _ContentState extends State<_Content> {
+class NumberUseCaseState extends State<NumberUserCase> {
   late final _controller = TextEditingController();
 
   @override
@@ -31,6 +33,7 @@ class _ContentState extends State<_Content> {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
+
     final error = k.stringOrNull(label: 'Error');
     final label = k.string(label: 'Label', initialValue: 'Number input');
     final placeholder =
@@ -39,10 +42,20 @@ class _ContentState extends State<_Content> {
     final max = k.double.input(label: 'Max', initialValue: 12);
     final allowNegative =
         k.boolean(label: 'Allow negative', initialValue: false);
-
     final helper = k.stringOrNull(label: 'Helper Message');
     final prefix = k.stringOrNull(label: 'Prefix');
     final suffix = k.stringOrNull(label: 'Suffix');
+    final isInlined = k.boolean(label: 'Inlined');
+    final isLoading = k.boolean(label: 'Is loading');
+    final precision = k.int.slider(label: 'Precision', initialValue: 2);
+    final isRequired = k.boolean(label: 'Required');
+    final separatorVariant = k.list(
+      label: 'Separator Variant',
+      options: OptimusNumberSeparatorVariant.values,
+      labelBuilder: enumLabelBuilder,
+      initialOption: OptimusNumberSeparatorVariant.commaAndStop,
+    );
+    final step = k.double.input(label: 'Step', initialValue: 1);
 
     return Center(
       child: SizedBox(
@@ -60,19 +73,14 @@ class _ContentState extends State<_Content> {
           isEnabled: k.isEnabledKnob,
           size: k.widgetSizeKnob,
           helper: helper?.toWidget(),
-          isInlined: k.boolean(label: 'Inlined'),
-          isLoading: k.boolean(label: 'Is loading'),
-          precision: k.int.slider(label: 'Precision', initialValue: 2),
+          isInlined: isInlined,
+          isLoading: isLoading,
+          precision: precision,
           prefix: prefix?.toWidget(),
-          isRequired: k.boolean(label: 'Required'),
-          separatorVariant: k.list(
-            label: 'Separator Variant',
-            options: OptimusNumberSeparatorVariant.values,
-            labelBuilder: enumLabelBuilder,
-            initialOption: OptimusNumberSeparatorVariant.commaAndStop,
-          ),
+          isRequired: isRequired,
+          separatorVariant: separatorVariant,
           suffix: suffix?.toWidget(),
-          step: k.double.input(label: 'Step', initialValue: 1),
+          step: step,
         ),
       ),
     );
