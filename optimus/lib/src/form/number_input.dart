@@ -1,6 +1,6 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/form/number_formatter.dart';
 
 class OptimusNumberInput extends StatefulWidget {
   const OptimusNumberInput({
@@ -105,11 +105,6 @@ class OptimusNumberInput extends StatefulWidget {
 }
 
 class _OptimusNumberInputState extends State<OptimusNumberInput> {
-  late final _formatter = _NumberInputFormatter(
-    precision: widget.precision,
-    separatorVariant: widget.separatorVariant,
-  );
-
   TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
@@ -154,6 +149,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   }
 
   void _updateCurrentValue(double value) {
+    print('Value updated');
     setState(
       () => _effectiveController.text = value.toString().format(
             precision: widget.precision,
@@ -194,7 +190,6 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     return OptimusInputField(
       placeholder: widget.placeholder,
       prefix: widget.prefix,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly, _formatter],
       onChanged: widget.onChanged,
       isEnabled: widget.isEnabled,
       isInlined: widget.isInlined,
@@ -205,8 +200,11 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
       label: widget.label,
       helperMessage: widget.helper,
       error: widget.error,
-      keyboardType: TextInputType.number,
-      isReadOnly: true,
+      keyboardType: TextInputType.numberWithOptions(
+        signed: widget.allowNegate,
+        decimal: widget.precision > 0,
+      ),
+      isReadOnly: false,
       suffix: Row(
         children: [
           if (widget.suffix case final suffix?)
@@ -256,30 +254,6 @@ class _Divider extends StatelessWidget {
       );
 }
 
-class _NumberInputFormatter extends TextInputFormatter {
-  const _NumberInputFormatter({
-    required this.precision,
-    required this.separatorVariant,
-  });
-
-  final int precision;
-  final OptimusNumberSeparatorVariant separatorVariant;
-
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    final newText = newValue.text;
-    final newTextNumber = newText.format(
-      precision: precision,
-      separatorVariant: separatorVariant,
-    );
-
-    return newValue.copyWith(text: newTextNumber);
-  }
-}
-
 /// The separator variant to be used in the number input.
 ///
 /// The default value is [OptimusNumberSeparatorVariant.commaAndStop].
@@ -310,34 +284,6 @@ enum OptimusNumberSeparatorVariant {
 
   final String groupSeparator;
   final String decimalSeparator;
-}
-
-extension on String {
-  String format({
-    required int precision,
-    required OptimusNumberSeparatorVariant separatorVariant,
-  }) {
-    final fixedLength = num.parse(this).toStringAsFixed(precision);
-    final parts = fixedLength.split('.');
-    final wholePart = parts.first;
-    final decimalPart = parts.length > 1 ? parts.last : '';
-
-    final buffer = StringBuffer();
-    for (int i = 0; i < wholePart.length; i++) {
-      if (i > 0 && (wholePart.length - i) % 3 == 0) {
-        buffer.write(separatorVariant.groupSeparator);
-      }
-      buffer.write(wholePart[i]);
-    }
-
-    if (decimalPart.isNotEmpty) {
-      buffer
-        ..write(separatorVariant.decimalSeparator)
-        ..write(decimalPart);
-    }
-
-    return buffer.toString();
-  }
 }
 
 const _initialValue = '0';
