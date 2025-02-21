@@ -204,7 +204,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
         signed: widget.allowNegate,
         decimal: widget.precision > 0,
       ),
-      isReadOnly: false,
+      isReadOnly: true,
       suffix: Row(
         children: [
           if (widget.suffix case final suffix?)
