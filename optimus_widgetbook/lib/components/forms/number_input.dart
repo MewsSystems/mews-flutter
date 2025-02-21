@@ -46,7 +46,7 @@ class _ContentState extends State<_Content> {
 
     return Center(
       child: SizedBox(
-        width: 300,
+        width: 400,
         height: 200,
         child: OptimusNumberInput(
           label: label,

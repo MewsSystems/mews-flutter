@@ -31,7 +31,7 @@ void main() {
     });
 
     test('formats number with space and comma separators', () {
-      const separatorVariant = OptimusNumberSeparatorVariant.noneAndComma;
+      const separatorVariant = OptimusNumberSeparatorVariant.spaceAndComma;
       const input = '1234567.89';
       const expectedOutput = '1 234 567,89';
 
@@ -44,7 +44,7 @@ void main() {
     });
 
     test('formats number with space and stop separators', () {
-      const separatorVariant = OptimusNumberSeparatorVariant.noneAndStop;
+      const separatorVariant = OptimusNumberSeparatorVariant.spaceAndStop;
       const input = '1234567.89';
       const expectedOutput = '1 234 567.89';
 

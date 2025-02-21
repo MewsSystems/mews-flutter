@@ -261,9 +261,9 @@ class _Divider extends StatelessWidget {
 /// and stop as a decimal separator. For example, 1,000.00.
 /// [OptimusNumberSeparatorVariant.stopAndComma] - uses stop as a group separator
 /// and comma as a decimal separator. For example, 1.000,00.
-/// [OptimusNumberSeparatorVariant.noneAndComma] - uses space as a group separator
+/// [OptimusNumberSeparatorVariant.spaceAndComma] - uses space as a group separator
 /// and comma as a decimal separator. For example, 1 000,00.
-/// [OptimusNumberSeparatorVariant.noneAndStop] - uses space as a group separator
+/// [OptimusNumberSeparatorVariant.spaceAndStop] - uses space as a group separator
 /// and stop as a decimal separator. For example, 1 000.00.
 /// [OptimusNumberSeparatorVariant.emptyAndComma] - uses empty string as a group separator
 /// and comma as a decimal separator. For example, 1000,00.
@@ -272,8 +272,8 @@ class _Divider extends StatelessWidget {
 enum OptimusNumberSeparatorVariant {
   commaAndStop(_commaSeparator, _stopSeparator),
   stopAndComma(_stopSeparator, _commaSeparator),
-  noneAndComma(_spaceSeparator, _commaSeparator),
-  noneAndStop(_spaceSeparator, _stopSeparator),
+  spaceAndComma(_spaceSeparator, _commaSeparator),
+  spaceAndStop(_spaceSeparator, _stopSeparator),
   emptyAndComma(_emptySeparator, _commaSeparator),
   emptyAndStop(_emptySeparator, _stopSeparator);
 
