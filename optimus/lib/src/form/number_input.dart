@@ -149,7 +149,6 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   }
 
   void _updateCurrentValue(double value) {
-    print('Value updated');
     setState(
       () => _effectiveController.text = value.toString().format(
             precision: widget.precision,
