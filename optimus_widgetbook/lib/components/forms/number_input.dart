@@ -56,6 +56,7 @@ class NumberUseCaseState extends State<NumberUserCase> {
       initialOption: OptimusNumberSeparatorVariant.commaAndStop,
     );
     final step = k.double.input(label: 'Step', initialValue: 1);
+    final isReadOnly = k.boolean(label: 'Read only');
 
     return Center(
       child: SizedBox(
@@ -81,6 +82,7 @@ class NumberUseCaseState extends State<NumberUserCase> {
           separatorVariant: separatorVariant,
           suffix: suffix?.toWidget(),
           step: step,
+          isReadOnly: isReadOnly,
         ),
       ),
     );

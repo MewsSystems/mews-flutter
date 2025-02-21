@@ -26,6 +26,7 @@ class OptimusNumberInput extends StatefulWidget {
     this.controller,
     this.focusNode,
     this.step = 1,
+    this.isReadOnly = false,
   })  : assert(
           (min < 0 && allowNegate) || min >= 0,
           'Negative values should be allowed if the minimum is less than 0',
@@ -100,6 +101,9 @@ class OptimusNumberInput extends StatefulWidget {
 
   /// The step by which the value is increased or decreased.
   final double step;
+
+  /// Whether the input is read-only.
+  final bool isReadOnly;
 
   @override
   State<OptimusNumberInput> createState() => _OptimusNumberInputState();
@@ -232,7 +236,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
         signed: widget.allowNegate,
         decimal: widget.precision > 0,
       ),
-      isReadOnly: false,
+      isReadOnly: widget.isReadOnly,
       onSubmitted: (_) => _handleFormat(),
       suffix: Row(
         children: [
