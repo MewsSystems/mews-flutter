@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:optimus/src/form/number_formatter.dart';
-import 'package:optimus/src/form/number_input.dart';
+import 'package:optimus/src/form/number_input/number_input.dart';
+import 'package:optimus/src/form/number_input/string_formatter.dart';
 
 void main() {
-  group('Number Formatter', () {
+  group('String Formatter', () {
     test('formats number with comma and stop separators', () {
       const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
       const input = '1234567.89';

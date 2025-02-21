@@ -1,4 +1,4 @@
-import 'package:optimus/src/form/number_input.dart';
+import 'package:optimus/src/form/number_input/number_input.dart';
 
 extension NumberFormatter on String {
   String format({

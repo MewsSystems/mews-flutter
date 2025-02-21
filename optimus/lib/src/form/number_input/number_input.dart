@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/form/number_formatter.dart';
+import 'package:optimus/src/form/number_input/filtering_input_formatter.dart';
+import 'package:optimus/src/form/number_input/string_formatter.dart';
 
 class OptimusNumberInput extends StatefulWidget {
   const OptimusNumberInput({
@@ -106,9 +107,19 @@ class OptimusNumberInput extends StatefulWidget {
 
 class _OptimusNumberInputState extends State<OptimusNumberInput> {
   TextEditingController? _controller;
+  FocusNode? _focusNode;
 
   TextEditingController get _effectiveController =>
       widget.controller ?? (_controller ??= TextEditingController());
+
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
+
+  @override
+  void initState() {
+    super.initState();
+    _effectiveFocusNode.addListener(_handleFormat);
+  }
 
   void _handleIncrease() {
     final newValue = _currentValue + widget.step;
@@ -149,12 +160,11 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   }
 
   void _updateCurrentValue(double value) {
-    setState(
-      () => _effectiveController.text = value.toString().format(
-            precision: widget.precision,
-            separatorVariant: widget.separatorVariant,
-          ),
-    );
+    _effectiveController.text = value.toString().format(
+          precision: widget.precision,
+          separatorVariant: widget.separatorVariant,
+        );
+
     widget.onChanged(value.toString());
   }
 
@@ -176,9 +186,22 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     }
   }
 
+  void _handleFormat() {
+    final text = _effectiveController.text;
+    final formatted = text.format(
+      precision: widget.precision,
+      separatorVariant: widget.separatorVariant,
+    );
+    if (text != formatted) {
+      _effectiveController.text = formatted;
+    }
+  }
+
   @override
   void dispose() {
+    _effectiveFocusNode.removeListener(_handleFormat);
     _controller?.dispose();
+    _focusNode?.dispose();
     super.dispose();
   }
 
@@ -199,11 +222,18 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
       label: widget.label,
       helperMessage: widget.helper,
       error: widget.error,
+      inputFormatters: [
+        NumberInputFilteringTextInputFormatter(
+          precision: widget.precision,
+          separatorVariant: widget.separatorVariant,
+        ),
+      ],
       keyboardType: TextInputType.numberWithOptions(
         signed: widget.allowNegate,
         decimal: widget.precision > 0,
       ),
-      isReadOnly: true,
+      isReadOnly: false,
+      onSubmitted: (_) => _handleFormat(),
       suffix: Row(
         children: [
           if (widget.suffix case final suffix?)
