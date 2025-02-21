@@ -4,9 +4,9 @@ import 'package:optimus/src/form/number_input/number_input.dart';
 
 void main() {
   group('NumberInputAllowFormatter', () {
-    test('allows valid number input with comma and stop separators', () {
+    test('allows valid number input with stop separators', () {
       const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -19,9 +19,54 @@ void main() {
       expect(result.text, '1234.56');
     });
 
-    test('disallows invalid number input with comma and stop separators', () {
+    test('disallows comma when is expecting stop', () {
       const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
+        precision: 2,
+        separatorVariant: separatorVariant,
+      );
+
+      const oldValue = TextEditingValue.empty;
+      const newValue = TextEditingValue(text: '1234,56');
+
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+
+      expect(result.text, '');
+    });
+
+    test('disallows stop when is expecting comma', () {
+      const separatorVariant = OptimusNumberSeparatorVariant.stopAndComma;
+      const formatter = NumberInputFilteringTextInputFormatter(
+        precision: 2,
+        separatorVariant: separatorVariant,
+      );
+
+      const oldValue = TextEditingValue.empty;
+      const newValue = TextEditingValue(text: '1234.56');
+
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+
+      expect(result.text, '');
+    });
+
+    test('allows valid number input with comma separators', () {
+      const separatorVariant = OptimusNumberSeparatorVariant.stopAndComma;
+      const formatter = NumberInputFilteringTextInputFormatter(
+        precision: 2,
+        separatorVariant: separatorVariant,
+      );
+
+      const oldValue = TextEditingValue.empty;
+      const newValue = TextEditingValue(text: '1234,56');
+
+      final result = formatter.formatEditUpdate(oldValue, newValue);
+
+      expect(result.text, '1234,56');
+    });
+
+    test('rejects input after the precision is met', () {
+      const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -37,7 +82,7 @@ void main() {
     test('allows valid negative number input with comma and stop separators',
         () {
       const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -54,7 +99,7 @@ void main() {
         'disallows invalid negative number input with comma and stop separators',
         () {
       const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -69,7 +114,7 @@ void main() {
 
     test('allows valid number input with stop and comma separators', () {
       const separatorVariant = OptimusNumberSeparatorVariant.stopAndComma;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -82,9 +127,9 @@ void main() {
       expect(result.text, '1234,56');
     });
 
-    test('disallows invalid number input with stop and comma separators', () {
+    test('rejects negative input after the precision is met', () {
       const separatorVariant = OptimusNumberSeparatorVariant.stopAndComma;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -97,9 +142,9 @@ void main() {
       expect(result.text, '1234,56');
     });
 
-    test('allows valid number input with space and comma separators', () {
+    test('disallows spaces input', () {
       const separatorVariant = OptimusNumberSeparatorVariant.spaceAndComma;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
@@ -109,12 +154,12 @@ void main() {
 
       final result = formatter.formatEditUpdate(oldValue, newValue);
 
-      expect(result.text, '1234 56');
+      expect(result.text, '');
     });
 
     test('disallows invalid number input with space and comma separators', () {
       const separatorVariant = OptimusNumberSeparatorVariant.spaceAndComma;
-      final formatter = NumberInputFilteringTextInputFormatter(
+      const formatter = NumberInputFilteringTextInputFormatter(
         precision: 2,
         separatorVariant: separatorVariant,
       );
