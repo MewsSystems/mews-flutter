@@ -95,13 +95,51 @@ void main() {
       expect(formatted, expectedOutput);
     });
 
-    test('formats number with different precision', () {
+    test('formats number with different precision: 4 -> 2 precision', () {
+      const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
+      const input = '1234567.8921';
+      const expectedOutput = '1,234,567.89';
+
+      final formatted = input.format(
+        precision: 2,
+        separatorVariant: separatorVariant,
+      );
+
+      expect(formatted, expectedOutput);
+    });
+
+    test('formats number with different precision: 2 -> 4 prevision', () {
       const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
       const input = '1234567.89';
       const expectedOutput = '1,234,567.8900';
 
       final formatted = input.format(
         precision: 4,
+        separatorVariant: separatorVariant,
+      );
+
+      expect(formatted, expectedOutput);
+    });
+    test('formats number with no digits', () {
+      const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
+      const input = 'abcdef';
+      const expectedOutput = '';
+
+      final formatted = input.format(
+        precision: 2,
+        separatorVariant: separatorVariant,
+      );
+
+      expect(formatted, expectedOutput);
+    });
+
+    test('formats number with symbols', () {
+      const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
+      const input = '1234!@#567.89';
+      const expectedOutput = '1,234,567.89';
+
+      final formatted = input.format(
+        precision: 2,
         separatorVariant: separatorVariant,
       );
 
