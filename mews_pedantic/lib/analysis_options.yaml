@@ -338,6 +338,7 @@ dart_code_metrics:
     - avoid-nested-streams-and-futures
     # - avoid-nested-switch-expressions
     - avoid-nested-switches
+    - avoid-nested-try-statements
     # - avoid-non-ascii-symbols
     # - avoid-non-empty-constructor-bodies
     - avoid-non-final-exception-class-fields
@@ -380,6 +381,7 @@ dart_code_metrics:
     - avoid-uncaught-future-errors
     - avoid-unconditional-break
     # - avoid-unknown-pragma
+    - avoid-unnecessary-block
     - avoid-unnecessary-call
     - avoid-unnecessary-collections
     - avoid-unnecessary-conditionals
@@ -485,6 +487,7 @@ dart_code_metrics:
         ignore-abstract: false
     - prefer-early-return
     # - prefer-enums-by-name
+    - prefer-expect-later
     - prefer-explicit-function-type
     - prefer-explicit-parameter-names
     - prefer-explicit-type-arguments
@@ -508,6 +511,7 @@ dart_code_metrics:
     # - prefer-prefixed-global-constants
     # - prefer-private-extension-type-field
     - prefer-public-exception-classes
+    # - prefer-redirecting-superclass-constructor
     - prefer-return-await
     - prefer-returning-conditional-expressions
     - prefer-simpler-boolean-expressions
@@ -515,7 +519,8 @@ dart_code_metrics:
     # - prefer-single-declaration-per-file
     - prefer-specific-cases-first
     # - prefer-static-class
-    # - prefer-static-method
+    - prefer-static-method:
+        ignore-private: true
     - prefer-switch-expression
     - prefer-switch-with-enums
     - prefer-switch-with-sealed-classes
