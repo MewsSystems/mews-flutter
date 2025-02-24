@@ -9,10 +9,10 @@ class OptimusNumberInput extends StatefulWidget {
     this.allowNegate = false,
     this.isEnabled = true,
     this.error,
-    this.helper,
+    this.helperMessage,
     this.isInlined = false,
     required this.label,
-    this.isLoading = false,
+    this.showLoader = false,
     this.max = 12,
     this.min = 0,
     required this.placeholder,
@@ -27,6 +27,7 @@ class OptimusNumberInput extends StatefulWidget {
     this.focusNode,
     this.step = 1,
     this.isReadOnly = false,
+    this.onSubmitted,
   })  : assert(
           (min < 0 && allowNegate) || min >= 0,
           'Negative values should be allowed if the minimum is less than 0',
@@ -47,16 +48,16 @@ class OptimusNumberInput extends StatefulWidget {
   final String? error;
 
   /// Helper widget to be displayed below the input.
-  final Widget? helper;
+  final Widget? helperMessage;
 
   /// Whether the input is inlined.
   final bool isInlined;
 
   /// Label widget to be displayed above the input.
-  final String label;
+  final String? label;
 
   /// Whether a loading indicator is displayed.
-  final bool isLoading;
+  final bool showLoader;
 
   /// Maximum value allowed.
   final double max;
@@ -66,7 +67,7 @@ class OptimusNumberInput extends StatefulWidget {
   final double min;
 
   /// Placeholder text to be displayed when the input is empty.
-  final String placeholder;
+  final String? placeholder;
 
   /// Number of decimal places allowed.
   final int precision;
@@ -101,6 +102,9 @@ class OptimusNumberInput extends StatefulWidget {
 
   /// Whether the input is read-only.
   final bool isReadOnly;
+
+  /// Callback that is called when the input is submitted.
+  final ValueChanged<String>? onSubmitted;
 
   @override
   State<OptimusNumberInput> createState() => _OptimusNumberInputState();
@@ -235,12 +239,12 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
       onChanged: widget.onChanged,
       isEnabled: widget.isEnabled,
       isInlined: widget.isInlined,
-      showLoader: widget.isLoading,
+      showLoader: widget.showLoader,
       isRequired: widget.isRequired,
       controller: _effectiveController,
       size: widget.size,
       label: widget.label,
-      helperMessage: widget.helper,
+      helperMessage: widget.helperMessage,
       error: widget.error,
       inputFormatters: [
         NumberInputFilteringTextInputFormatter(
@@ -253,7 +257,10 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
         decimal: widget.precision > 0,
       ),
       isReadOnly: widget.isReadOnly,
-      onSubmitted: (_) => _handleFormat(),
+      onSubmitted: (value) {
+        _handleFormat();
+        widget.onSubmitted(_effectiveController.text);
+      },
       suffix: Row(
         children: [
           if (widget.suffix case final suffix?)

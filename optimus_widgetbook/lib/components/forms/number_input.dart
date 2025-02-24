@@ -46,7 +46,7 @@ class NumberUseCaseState extends State<NumberUserCase> {
     final prefix = k.stringOrNull(label: 'Prefix');
     final suffix = k.stringOrNull(label: 'Suffix');
     final isInlined = k.boolean(label: 'Inlined');
-    final isLoading = k.boolean(label: 'Is loading');
+    final showLoader = k.boolean(label: 'Show Loader');
     final precision = k.int.slider(label: 'Precision', initialValue: 2);
     final isRequired = k.boolean(label: 'Required');
     final separatorVariant = k.list(
@@ -73,9 +73,9 @@ class NumberUseCaseState extends State<NumberUserCase> {
           allowNegate: allowNegative,
           isEnabled: k.isEnabledKnob,
           size: k.widgetSizeKnob,
-          helper: helper?.toWidget(),
+          helperMessage: helper?.toWidget(),
           isInlined: isInlined,
-          isLoading: isLoading,
+          showLoader: showLoader,
           precision: precision,
           prefix: prefix?.toWidget(),
           isRequired: isRequired,
