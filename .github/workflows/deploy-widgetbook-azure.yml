@@ -53,7 +53,7 @@ jobs:
 
       - name: Remove uploaded files before the batch upload
         run: |
-          rm optimus_widgetbook/build/web/index.html
+          rm optimus_widgetbook/build/web/manifest.json
 
       - name: Upload assets to the app folder
         uses: azure/CLI@v2
