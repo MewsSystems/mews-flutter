@@ -259,7 +259,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
       isReadOnly: widget.isReadOnly,
       onSubmitted: (value) {
         _handleFormat();
-        widget.onSubmitted(_effectiveController.text);
+        widget.onSubmitted?.call(_effectiveController.text);
       },
       suffix: Row(
         children: [
