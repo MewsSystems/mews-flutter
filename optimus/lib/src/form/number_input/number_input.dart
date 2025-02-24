@@ -32,14 +32,10 @@ class OptimusNumberInput extends StatefulWidget {
           'Negative values should be allowed if the minimum is less than 0',
         ),
         assert(
-          ((min < 0 || max < 0) && allowNegate) || (max > 0 && min >= 0),
-          'Negative values should be allowed if min or max are less than 0',
-        ),
-        assert(
           min < max,
           'The minimal allowed value should be lesser then max value',
         ),
-        assert(precision >= 0, 'Precision can be negative');
+        assert(precision >= 0, 'Precision can\'t be negative');
 
   /// Whether negative values are allowed. Disabled by default.
   final bool allowNegate;
@@ -65,7 +61,8 @@ class OptimusNumberInput extends StatefulWidget {
   /// Maximum value allowed.
   final double max;
 
-  /// Minimum value allowed.
+  /// Minimum value allowed. In case of an error, the input will be set to this
+  /// value. Default is 0.
   final double min;
 
   /// Placeholder text to be displayed when the input is empty.
@@ -122,7 +119,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode.addListener(_handleFormat);
+    _effectiveFocusNode.addListener(_handleFocusLost);
   }
 
   void _handleIncrease() {
@@ -144,7 +141,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   double get _currentValue {
     final text = _effectiveController.text.isNotEmpty
         ? _effectiveController.text
-        : _initialValue.format(
+        : widget.min.toFormattedString(
             precision: widget.precision,
             separatorVariant: widget.separatorVariant,
           );
@@ -164,10 +161,10 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   }
 
   void _updateCurrentValue(double value) {
-    _effectiveController.text = value.toString().format(
-          precision: widget.precision,
-          separatorVariant: widget.separatorVariant,
-        );
+    _effectiveController.text = value.toFormattedString(
+      precision: widget.precision,
+      separatorVariant: widget.separatorVariant,
+    );
 
     widget.onChanged(value.toString());
   }
@@ -175,24 +172,43 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   @override
   void didUpdateWidget(OptimusNumberInput oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.min != widget.min && _currentValue < widget.min) {
-      _effectiveController.text = widget.min.toString().format(
+    String newValue = _effectiveController.text;
+    if (oldWidget.min != widget.min || oldWidget.max != widget.max) {
+      newValue = _currentValue.clamp(widget.min, widget.max).toFormattedString(
             precision: widget.precision,
             separatorVariant: widget.separatorVariant,
           );
-      widget.onChanged(_currentValue.toString());
-    } else if (oldWidget.max != widget.max && _currentValue > widget.max) {
-      _effectiveController.text = widget.max.toString().format(
-            precision: widget.precision,
-            separatorVariant: widget.separatorVariant,
-          );
-      widget.onChanged(_currentValue.toString());
+    }
+    if (oldWidget.precision != widget.precision) {
+      newValue = _currentValue.toFormattedString(
+        precision: widget.precision,
+        separatorVariant: widget.separatorVariant,
+      );
+    }
+    if (!widget.allowNegate && _currentValue < 0) {
+      newValue = widget.min.toFormattedString(
+        precision: widget.precision,
+        separatorVariant: widget.separatorVariant,
+      );
+    }
+
+    if (newValue != _effectiveController.text) {
+      _effectiveController.text = newValue;
+      widget.onChanged(newValue);
+    }
+  }
+
+  void _handleFocusLost() {
+    if (!_effectiveFocusNode.hasFocus) {
+      _handleFormat();
     }
   }
 
   void _handleFormat() {
     final text = _effectiveController.text;
-    final formatted = text.format(
+    final number =
+        double.tryParse(text)?.clamp(widget.min, widget.max) ?? widget.min;
+    final formatted = number.toFormattedString(
       precision: widget.precision,
       separatorVariant: widget.separatorVariant,
     );
@@ -203,7 +219,7 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
 
   @override
   void dispose() {
-    _effectiveFocusNode.removeListener(_handleFormat);
+    _effectiveFocusNode.removeListener(_handleFocusLost);
     _controller?.dispose();
     _focusNode?.dispose();
     super.dispose();
@@ -319,7 +335,17 @@ enum OptimusNumberSeparatorVariant {
   final String decimalSeparator;
 }
 
-const _initialValue = '0';
+extension on double {
+  String toFormattedString({
+    required int precision,
+    required OptimusNumberSeparatorVariant separatorVariant,
+  }) =>
+      toString().format(
+        precision: precision,
+        separatorVariant: separatorVariant,
+      );
+}
+
 const _commaSeparator = ',';
 const _stopSeparator = '.';
 const _emptySeparator = '';
