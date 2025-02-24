@@ -182,15 +182,10 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
             precision: widget.precision,
             separatorVariant: widget.separatorVariant,
           );
-    }
-    if (oldWidget.precision != widget.precision) {
+    } else if (oldWidget.precision != widget.precision ||
+        oldWidget.separatorVariant != widget.separatorVariant ||
+        (!widget.allowNegate && _currentValue < 0)) {
       newValue = _currentValue.toFormattedString(
-        precision: widget.precision,
-        separatorVariant: widget.separatorVariant,
-      );
-    }
-    if (!widget.allowNegate && _currentValue < 0) {
-      newValue = widget.min.toFormattedString(
         precision: widget.precision,
         separatorVariant: widget.separatorVariant,
       );
