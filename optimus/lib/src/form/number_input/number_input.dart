@@ -184,8 +184,25 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
           );
     } else if (oldWidget.precision != widget.precision ||
         oldWidget.separatorVariant != widget.separatorVariant ||
-        (!widget.allowNegate && _currentValue < 0)) {
-      newValue = _currentValue.toFormattedString(
+        (oldWidget.allowNegate != widget.allowNegate)) {
+      final text = _effectiveController.text.isNotEmpty
+          ? _effectiveController.text
+          : widget.min.toFormattedString(
+              precision: widget.precision,
+              separatorVariant: widget.separatorVariant,
+            );
+
+      String clearedText =
+          text.replaceAll(oldWidget.separatorVariant.groupSeparator, '');
+
+      if (oldWidget.precision > 0) {
+        clearedText = clearedText.replaceAll(
+          oldWidget.separatorVariant.decimalSeparator,
+          _stopSeparator,
+        );
+      }
+
+      newValue = double.parse(clearedText).toFormattedString(
         precision: widget.precision,
         separatorVariant: widget.separatorVariant,
       );
