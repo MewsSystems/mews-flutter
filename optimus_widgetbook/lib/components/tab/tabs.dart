@@ -13,11 +13,13 @@ Widget createDefaultStyle(BuildContext context) {
   final knobs = context.knobs;
   final icon = knobs.optimusIconOrNullKnob(label: 'Icon');
   final badge = knobs.string(label: 'Badge');
+  final isScrollable = knobs.boolean(label: 'Scrollable', initialValue: false);
 
   return Container(
     color: OptimusTheme.of(context).colors.success500t16,
     constraints: const BoxConstraints(maxWidth: _tabBarWidth, maxHeight: 200),
     child: OptimusTabBar(
+      isScrollable: isScrollable,
       tabs: _items
           .map(
             (i) => OptimusTab(
