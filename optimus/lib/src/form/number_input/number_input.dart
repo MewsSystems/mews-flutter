@@ -143,13 +143,12 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   }
 
   double get _currentValue {
-    final text = _effectiveController.text.isNotEmpty
-        ? _effectiveController.text
-        : widget.min.toFormattedString(
-            precision: widget.precision,
-            separatorVariant: widget.separatorVariant,
-          );
-    String cleanedText = text;
+    if (_effectiveController.text.isEmpty) {
+      return widget.min;
+    }
+
+    String cleanedText = _effectiveController.text
+        .replaceAll(widget.separatorVariant.groupSeparator, '');
 
     if (widget.precision > 0) {
       cleanedText = cleanedText.replaceAll(
@@ -157,9 +156,6 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
         _stopSeparator,
       );
     }
-
-    cleanedText =
-        cleanedText.replaceAll(widget.separatorVariant.groupSeparator, '');
 
     return double.parse(cleanedText);
   }
