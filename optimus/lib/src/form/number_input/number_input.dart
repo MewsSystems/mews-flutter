@@ -142,23 +142,10 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     _updateCurrentValue(result);
   }
 
-  double get _currentValue {
-    if (_effectiveController.text.isEmpty) {
-      return widget.min;
-    }
-
-    String cleanedText = _effectiveController.text
-        .replaceAll(widget.separatorVariant.groupSeparator, '');
-
-    if (widget.precision > 0) {
-      cleanedText = cleanedText.replaceAll(
-        widget.separatorVariant.decimalSeparator,
-        _stopSeparator,
-      );
-    }
-
-    return double.parse(cleanedText);
-  }
+  double get _currentValue => _effectiveController.text.isEmpty
+      ? widget.min
+      : _effectiveController.text
+          .toDouble(widget.separatorVariant, widget.precision);
 
   void _updateCurrentValue(double value) {
     _effectiveController.text = value.toFormattedString(
@@ -172,41 +159,31 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   @override
   void didUpdateWidget(OptimusNumberInput oldWidget) {
     super.didUpdateWidget(oldWidget);
-    String newValue = _effectiveController.text;
+    String formattedValue = _effectiveController.text;
     if (oldWidget.min != widget.min || oldWidget.max != widget.max) {
-      newValue = _currentValue.clamp(widget.min, widget.max).toFormattedString(
-            precision: widget.precision,
-            separatorVariant: widget.separatorVariant,
-          );
+      formattedValue =
+          _currentValue.clamp(widget.min, widget.max).toFormattedString(
+                precision: widget.precision,
+                separatorVariant: widget.separatorVariant,
+              );
     } else if (oldWidget.precision != widget.precision ||
         oldWidget.separatorVariant != widget.separatorVariant ||
         (oldWidget.allowNegate != widget.allowNegate)) {
-      final text = _effectiveController.text.isNotEmpty
-          ? _effectiveController.text
-          : widget.min.toFormattedString(
-              precision: widget.precision,
-              separatorVariant: widget.separatorVariant,
-            );
-
-      String clearedText =
-          text.replaceAll(oldWidget.separatorVariant.groupSeparator, '');
-
-      if (oldWidget.precision > 0) {
-        clearedText = clearedText.replaceAll(
-          oldWidget.separatorVariant.decimalSeparator,
-          _stopSeparator,
-        );
-      }
-
-      newValue = double.parse(clearedText).toFormattedString(
+      final doubleValue = formattedValue.isNotEmpty
+          ? formattedValue.toDouble(
+              oldWidget.separatorVariant,
+              oldWidget.precision,
+            )
+          : widget.min;
+      formattedValue = doubleValue.toFormattedString(
         precision: widget.precision,
         separatorVariant: widget.separatorVariant,
       );
     }
 
-    if (newValue != _effectiveController.text) {
-      _effectiveController.text = newValue;
-      widget.onChanged(newValue);
+    if (formattedValue != _effectiveController.text) {
+      _effectiveController.text = formattedValue;
+      widget.onChanged(formattedValue);
     }
   }
 
@@ -359,6 +336,23 @@ extension on double {
         precision: precision,
         separatorVariant: separatorVariant,
       );
+}
+
+extension on String {
+  double toDouble(
+    OptimusNumberSeparatorVariant separatorVariant,
+    int precision,
+  ) {
+    String cleanedText = replaceAll(separatorVariant.groupSeparator, '');
+    if (precision > 0) {
+      cleanedText = cleanedText.replaceAll(
+        separatorVariant.decimalSeparator,
+        _stopSeparator,
+      );
+    }
+
+    return double.parse(cleanedText);
+  }
 }
 
 const _commaSeparator = ',';
