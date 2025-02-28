@@ -1,3 +1,9 @@
+## 0.36.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-4059] Upgrade to DCM 1.27.1 (#748).
+
 ## 0.35.0
 
 > Note: This release has breaking changes.
