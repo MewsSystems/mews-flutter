@@ -1,3 +1,15 @@
+## 0.39.0
+
+> Note: This release has breaking changes.
+
+ - **FIX**: [DX-3581] Fix dropdown not closing on scroll (#726).
+ - **FEAT**: [DX-3779] Add OptimusNumberInput component (#747).
+ - **FEAT**: [DX-3474] Update OptimusTabBar (#746).
+ - **FEAT**: Design Tokens Update 7.4.0  (#744).
+ - **FEAT**: [DX-4025] Add alignment property to OptimusAvatar (#743).
+ - **FEAT**: [DX-3360] Add size and align variant for prefix in ListTile (#741).
+ - **BREAKING** **REFACTOR**: [DX-3717] Upgrade to Flutter 3.27.1 (#724).
+
 ## 0.38.3+1
 
  - **FIX**: Fix linter issues.
