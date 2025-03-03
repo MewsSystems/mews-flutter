@@ -41,6 +41,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
     this.groupBuilder,
     this.allowMultipleSelection = false,
     this.selectedValues,
+    this.isCompact = false,
   });
 
   /// Describes the purpose of the select field.
@@ -69,6 +70,7 @@ class OptimusSelectInput<T> extends StatefulWidget {
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
   final bool? isReadOnly;
+  final bool isCompact;
 
   /// An embedded search field that can be used to filter the list of items.
   /// Will be displayed as a part of the dropdown menu. If the [controller] or
@@ -230,6 +232,7 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         allowMultipleSelection: widget.allowMultipleSelection,
         selectedValues: widget.selectedValues,
         builder: widget.builder,
+        isCompact: widget.isCompact,
       );
 }
 

@@ -85,6 +85,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           label: k.string(label: 'Label', initialValue: 'Optimus input field'),
           placeholder: k.string(label: 'Placeholder', initialValue: 'Hint'),
           caption: Text(k.string(label: 'Caption', initialValue: '')),
+          isCompact: k.boolean(label: 'Compact', initialValue: false),
           secondaryCaption:
               Text(k.string(label: 'Secondary caption', initialValue: '')),
           error: k.string(label: 'Error', initialValue: ''),

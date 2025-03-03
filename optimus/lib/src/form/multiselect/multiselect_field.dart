@@ -24,6 +24,7 @@ class MultiSelectInputField extends StatefulWidget {
     this.fieldBoxKey,
     this.size = OptimusWidgetSize.large,
     this.showLoader = false,
+    this.isCompact = false,
     required this.values,
   });
 
@@ -45,6 +46,7 @@ class MultiSelectInputField extends StatefulWidget {
   final OptimusWidgetSize size;
   final bool showLoader;
   final List<Widget> values;
+  final bool isCompact;
 
   bool get hasError {
     final error = this.error;
