@@ -218,44 +218,34 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   }
 
   List<Widget>? get _values {
-    if (widget.builder == null) return null;
+    final builder = widget.builder;
+    final selectedValues = widget.selectedValues;
 
-    if (widget.builder case final builder?) {
-      final selectedValues = widget.selectedValues;
-      if (widget.isCompact &&
-          selectedValues != null &&
-          selectedValues.length > 2) {
-        return selectedValues
-            .take(2)
-            .map(
-              (e) => MultiselectChip(
-                onRemoved: () => widget.onChanged(e),
+    if (builder == null || selectedValues == null) return null;
+
+    return widget.isCompact && selectedValues.length > 2
+        ? [
+            for (final element in selectedValues.take(2))
+              MultiselectChip(
+                onRemoved: () => widget.onChanged(element),
                 onTap: _handleChipTap,
                 isEnabled: widget.isEnabled,
-                text: builder(e),
+                text: builder(element),
               ),
-            )
-            .toList()
-          ..add(
             MultiselectChip(
               text: '+${selectedValues.length - 2}',
               onTap: _handleChipTap,
               isEnabled: widget.isEnabled,
             ),
-          );
-      }
-
-      return selectedValues
-          ?.map(
-            (e) => MultiselectChip(
-              onRemoved: () => widget.onChanged(e),
-              onTap: _handleChipTap,
-              isEnabled: widget.isEnabled,
-              text: builder(e),
-            ),
-          )
-          .toList();
-    }
+          ]
+        : selectedValues
+            .map((element) => MultiselectChip(
+                  onRemoved: () => widget.onChanged(element),
+                  onTap: _handleChipTap,
+                  isEnabled: widget.isEnabled,
+                  text: builder(element),
+                ))
+            .toList();
   }
 
   bool? get _isFocused =>
