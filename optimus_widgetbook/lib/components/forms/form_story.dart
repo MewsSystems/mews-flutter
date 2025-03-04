@@ -56,8 +56,8 @@ class _ContentState extends State<_Content> {
                   (e) => ListDropdownTile<String>(
                     value: e,
                     title: Text(e),
-                    isSelected:
-                        allowMultipleSelection ? _values.contains(e) : null,
+                    isSelected: _values.contains(e),
+                    hasCheckbox: allowMultipleSelection,
                   ),
                 )
                 .toList(),

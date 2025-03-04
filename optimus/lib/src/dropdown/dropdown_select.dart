@@ -239,12 +239,14 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
             ),
           ]
         : selectedValues
-            .map((element) => MultiselectChip(
-                  onRemoved: () => widget.onChanged(element),
-                  onTap: _handleChipTap,
-                  isEnabled: widget.isEnabled,
-                  text: builder(element),
-                ))
+            .map(
+              (element) => MultiselectChip(
+                onRemoved: () => widget.onChanged(element),
+                onTap: _handleChipTap,
+                isEnabled: widget.isEnabled,
+                text: builder(element),
+              ),
+            )
             .toList();
   }
 

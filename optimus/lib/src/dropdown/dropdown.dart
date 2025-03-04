@@ -186,9 +186,12 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
           decoration: decoration,
           child: SizeTransition(
             sizeFactor: _sizeAnimation,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: isOnTop ? children : children.reversed.toList(),
+            child: Padding(
+              padding: EdgeInsets.all(tokens.spacing100),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: isOnTop ? children : children.reversed.toList(),
+              ),
             ),
           ),
         ),

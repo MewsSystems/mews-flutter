@@ -32,6 +32,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
   String? _selectedValue;
   final List<String> _selectedValues = [];
   String _searchToken = '';
+  final GlobalKey _selectKey = GlobalKey();
 
   void _handleTextChanged(String text) =>
       setState(() => _searchToken = text.toLowerCase());
@@ -68,6 +69,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),
         child: OptimusSelectInput<String>(
+          key: _selectKey,
           value: _selectedValue,
           isEnabled: k.isEnabledKnob,
           isRequired: k.boolean(label: 'Required'),
@@ -76,9 +78,9 @@ class _SelectInputStoryState extends State<SelectInputStory> {
               : null,
           onTextChanged:
               k.boolean(label: 'Searchable') ? _handleTextChanged : null,
-          prefix: prefix.isNotEmpty ? Text(prefix) : null,
-          suffix: suffix.isNotEmpty ? Text(suffix) : null,
-          trailing: trailing != null ? Icon(trailing.data) : null,
+          prefix: prefix.toWidget(),
+          suffix: suffix.toWidget(),
+          trailing: trailing?.toWidget(),
           showLoader: showLoader,
           onChanged: (value) => _handleChanged(allowMultipleSelection, value),
           size: k.widgetSizeKnob,
@@ -96,9 +98,9 @@ class _SelectInputStoryState extends State<SelectInputStory> {
                   value: e,
                   title: Text(e),
                   subtitle: Text(e.toUpperCase()),
-                  isSelected: allowMultipleSelection
-                      ? _selectedValues.contains(e)
-                      : null,
+                  isSelected:
+                      e == _selectedValue || _selectedValues.contains(e),
+                  hasCheckbox: allowMultipleSelection,
                 ),
               )
               .toList(),
