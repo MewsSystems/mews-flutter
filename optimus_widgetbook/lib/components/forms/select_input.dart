@@ -5,12 +5,17 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+final GlobalKey _selectUseCaseKey = GlobalKey();
+final GlobalKey _nestedSelectUseCaseKey = GlobalKey();
+
 @widgetbook.UseCase(
   name: 'Select Input',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext _) => const SelectInputStory();
+Widget createDefaultStyle(BuildContext _) => SelectInputStory(
+      key: _selectUseCaseKey,
+    );
 
 @widgetbook.UseCase(
   name: 'Nested Select',
@@ -18,7 +23,7 @@ Widget createDefaultStyle(BuildContext _) => const SelectInputStory();
   path: '[Forms]',
 )
 Widget createNestedStyle(BuildContext _) => NestedWrapper(
-      (context) => const SelectInputStory(),
+      (context) => SelectInputStory(key: _nestedSelectUseCaseKey),
     );
 
 class SelectInputStory extends StatefulWidget {
@@ -32,7 +37,6 @@ class _SelectInputStoryState extends State<SelectInputStory> {
   String? _selectedValue;
   final List<String> _selectedValues = [];
   String _searchToken = '';
-  final GlobalKey _selectKey = GlobalKey();
 
   void _handleTextChanged(String text) =>
       setState(() => _searchToken = text.toLowerCase());
@@ -69,7 +73,6 @@ class _SelectInputStoryState extends State<SelectInputStory> {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),
         child: OptimusSelectInput<String>(
-          key: _selectKey,
           value: _selectedValue,
           isEnabled: k.isEnabledKnob,
           isRequired: k.boolean(label: 'Required'),
@@ -98,8 +101,9 @@ class _SelectInputStoryState extends State<SelectInputStory> {
                   value: e,
                   title: Text(e),
                   subtitle: Text(e.toUpperCase()),
-                  isSelected:
-                      e == _selectedValue || _selectedValues.contains(e),
+                  isSelected: allowMultipleSelection
+                      ? _selectedValues.contains(e)
+                      : e == _selectedValue,
                   hasCheckbox: allowMultipleSelection,
                 ),
               )
