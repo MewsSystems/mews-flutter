@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
@@ -8,7 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(
   name: 'Form',
-  type: Form,
+  type: OptimusSelectInputFormField,
   path: '[Forms]',
 )
 Widget createDefaultStyle(BuildContext _) => const _Content();

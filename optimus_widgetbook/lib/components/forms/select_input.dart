@@ -6,19 +6,19 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(
-  name: 'Select Input',
+  name: 'Default',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
 Widget createDefaultStyle(BuildContext _) => const SelectInputStory();
 
 @widgetbook.UseCase(
-  name: 'Nested Select',
+  name: 'Nested',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
 Widget createNestedStyle(BuildContext _) => NestedWrapper(
-      (context) => const SelectInputStory(),
+      (_) => const SelectInputStory(),
     );
 
 class SelectInputStory extends StatefulWidget {
