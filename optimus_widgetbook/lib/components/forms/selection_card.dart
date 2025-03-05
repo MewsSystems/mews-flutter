@@ -34,19 +34,19 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
       label: 'Variant',
       initialOption: OptimusSelectionCardVariant.vertical,
       options: OptimusSelectionCardVariant.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
     final borderRadius = k.list(
       label: 'Border radius',
       initialOption: OptimusSelectionCardBorderRadius.medium,
       options: OptimusSelectionCardBorderRadius.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
     final selectorVariant = k.list(
       label: 'Selector variant',
       initialOption: OptimusSelectionCardSelectionVariant.radio,
       options: OptimusSelectionCardSelectionVariant.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
     final isSelectorVisible =
         k.boolean(label: 'Selector visible', initialValue: true);
@@ -56,8 +56,8 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
       width: 500,
       child: OptimusSelectionCard(
         title: Text(title),
-        description: description.isNotEmpty ? Text(description) : null,
-        trailing: trailing != null ? Icon(trailing.data) : null,
+        description: description.maybeToWidget(),
+        trailing: trailing?.toWidget(),
         variant: variant,
         isSelected: _isSelected,
         isSelectorVisible: isSelectorVisible,

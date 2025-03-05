@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -30,7 +33,7 @@ class _ContentState extends State<_Content> {
       label: 'autovalidateMode',
       initialOption: AutovalidateMode.onUserInteraction,
       options: AutovalidateMode.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
     final allowMultipleSelection =
         k.boolean(label: 'Multiselect', initialValue: false);

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -11,10 +12,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final text = k.string(label: 'Divider Text', initialValue: 'Divider Text');
-  final direction = k.list<Axis>(
+  final direction = k.list(
     label: 'Direction',
     initialOption: Axis.horizontal,
     options: Axis.values,
+    labelBuilder: enumLabelBuilder,
   );
 
   return Center(

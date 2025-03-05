@@ -76,9 +76,9 @@ class _SelectInputStoryState extends State<SelectInputStory> {
               : null,
           onTextChanged:
               k.boolean(label: 'Searchable') ? _handleTextChanged : null,
-          prefix: prefix.isNotEmpty ? Text(prefix) : null,
-          suffix: suffix.isNotEmpty ? Text(suffix) : null,
-          trailing: trailing != null ? Icon(trailing.data) : null,
+          prefix: prefix.maybeToWidget(),
+          suffix: suffix.maybeToWidget(),
+          trailing: trailing?.toWidget(),
           showLoader: showLoader,
           onChanged: (value) => _handleChanged(allowMultipleSelection, value),
           size: k.widgetSizeKnob,

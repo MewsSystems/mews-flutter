@@ -1,6 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -32,7 +33,7 @@ Widget createDefaultStyle(BuildContext context) {
               padding: const EdgeInsets.all(8),
               child: OptimusSystemWideBanner(
                 title: Text(title),
-                description: description.isNotEmpty ? Text(description) : null,
+                description: description.maybeToWidget(),
                 link: link.isNotEmpty
                     ? OptimusFeedbackLink(
                         text: Text(link),

@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
@@ -30,7 +31,7 @@ Widget createDefaultStyle(BuildContext context) {
                       ),
                     )
                     .toList(),
-                onItemSelected: isEnabled ? (_) => () {} : null,
+                onItemSelected: isEnabled ? ignore : null,
                 variant: v,
                 child: Text(
                   k.string(label: 'Label', initialValue: 'Dropdown button'),

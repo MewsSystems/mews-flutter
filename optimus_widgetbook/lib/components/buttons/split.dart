@@ -1,5 +1,7 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -23,7 +25,7 @@ Widget createDefaultStyle(BuildContext context) {
                   label: 'Size',
                   initialOption: OptimusWidgetSize.large,
                   options: OptimusWidgetSize.values,
-                  labelBuilder: (value) => value.name,
+                  labelBuilder: enumLabelBuilder,
                 ),
                 items: Iterable<int>.generate(10)
                     .map(
@@ -34,8 +36,8 @@ Widget createDefaultStyle(BuildContext context) {
                       ),
                     )
                     .toList(),
-                onPressed: isEnabled ? () {} : null,
-                onItemSelected: isEnabled ? (_) => () {} : null,
+                onPressed: isEnabled ? ignore : null,
+                onItemSelected: isEnabled ? ignore : null,
                 variant: v,
                 child: Text(
                   k.string(label: 'Label', initialValue: 'Split button'),

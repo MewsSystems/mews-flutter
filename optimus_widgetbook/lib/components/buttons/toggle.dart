@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
@@ -14,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
   final isEnabled = k.isEnabledKnob;
   final size = k.list(
     label: 'Size',
-    labelBuilder: (option) => option.name,
+    labelBuilder: enumLabelBuilder,
     initialOption: OptimusToggleButtonSizeVariant.large,
     options: OptimusToggleButtonSizeVariant.values,
   );

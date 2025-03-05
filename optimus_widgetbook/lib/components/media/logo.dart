@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -14,25 +15,25 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Variant',
     initialOption: OptimusMewsLogoVariant.wordmark,
     options: OptimusMewsLogoVariant.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final size = knobs.list(
     label: 'Size',
     initialOption: OptimusMewsLogoSizeVariant.medium,
     options: OptimusMewsLogoSizeVariant.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final color = knobs.list(
     label: 'Color',
     initialOption: OptimusMewsLogoColorVariant.black,
     options: OptimusMewsLogoColorVariant.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final align = knobs.list(
     label: 'Align',
     initialOption: OptimusMewsLogoAlignVariant.topCenter,
     options: OptimusMewsLogoAlignVariant.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
 
   return Container(

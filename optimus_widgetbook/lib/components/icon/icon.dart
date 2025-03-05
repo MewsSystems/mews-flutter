@@ -16,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Size',
     initialOption: OptimusIconSize.medium,
     options: OptimusIconSize.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
 
   return ListView(
