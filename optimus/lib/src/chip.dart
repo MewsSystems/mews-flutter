@@ -9,7 +9,7 @@ class OptimusChip extends StatefulWidget {
   const OptimusChip({
     super.key,
     required this.child,
-    required this.onRemoved,
+    this.onRemoved,
     this.onTap,
     this.hasError = false,
     this.isEnabled = true,
@@ -89,14 +89,15 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
                         child: widget.child,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: widget.onRemoved,
-                      child: Icon(
-                        OptimusIcons.cross_close,
-                        size: tokens.sizing200,
-                        color: _foregroundColor,
+                    if (widget.onRemoved != null)
+                      GestureDetector(
+                        onTap: widget.onRemoved,
+                        child: Icon(
+                          OptimusIcons.cross_close,
+                          size: tokens.sizing200,
+                          color: _foregroundColor,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
