@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,12 +12,14 @@ class BaseDropdownTile extends StatelessWidget {
     super.key,
     required this.title,
     this.subtitle,
-    this.isSelected,
+    this.isSelected = false,
+    this.hasCheckbox = false,
   });
 
   final Widget title;
   final Widget? subtitle;
-  final bool? isSelected;
+  final bool isSelected;
+  final bool hasCheckbox;
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +31,28 @@ class BaseDropdownTile extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         OptimusTypography(
-          resolveStyle: (_) => tokens.bodyLargeStrong,
+          resolveStyle: (_) => tokens.bodyMediumStrong,
           child: title,
         ),
         if (subtitle case final subtitle?)
           OptimusTypography(
-            resolveStyle: (_) => tokens.bodyMediumStrong,
+            resolveStyle: (_) => tokens.bodySmall,
             color: OptimusTypographyColor.secondary,
             child: subtitle,
           ),
       ],
     );
 
-    return Padding(
+    return Container(
       padding: EdgeInsets.symmetric(
         horizontal: tokens.spacing200,
         vertical: size.getVerticalPadding(tokens),
       ),
-      child: isSelected != null
+      decoration: BoxDecoration(
+        color: isSelected ? tokens.backgroundInteractiveSecondaryDefault : null,
+        borderRadius: BorderRadius.all(tokens.borderRadius100),
+      ),
+      child: hasCheckbox
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -54,8 +61,8 @@ class BaseDropdownTile extends StatelessWidget {
                     padding: EdgeInsets.only(right: tokens.spacing200),
                     child: CheckboxTick(
                       isEnabled: true,
-                      onChanged: (_) {},
-                      onTap: () {},
+                      onChanged: ignore,
+                      onTap: ignore,
                       isChecked: isSelected,
                     ),
                   ),

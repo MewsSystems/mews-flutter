@@ -5,7 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/form/multiselect_field.dart';
+import 'package:optimus/src/form/multiselect/multiselect_field.dart';
+import 'package:optimus/src/form/multiselect/select_chip.dart';
 
 class DropdownSelect<T> extends StatefulWidget {
   const DropdownSelect({
@@ -46,6 +47,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.allowMultipleSelection = false,
     this.selectedValues,
     this.builder,
+    this.isCompact = false,
   });
 
   final String? label;
@@ -79,6 +81,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final VoidCallback? onDropdownHide;
   final Grouper<T>? groupBy;
   final GroupBuilder? groupBuilder;
+  final bool isCompact;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -215,21 +218,36 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   }
 
   List<Widget>? get _values {
-    if (widget.builder case final builder?) {
-      return widget.selectedValues
-          ?.map(
-            (e) => OptimusChip(
-              onRemoved: () => widget.onChanged(e),
+    final builder = widget.builder;
+    final selectedValues = widget.selectedValues;
+
+    if (builder == null || selectedValues == null) return null;
+
+    return widget.isCompact && selectedValues.length > 2
+        ? [
+            for (final element in selectedValues.take(2))
+              MultiselectChip(
+                onRemoved: () => widget.onChanged(element),
+                onTap: _handleChipTap,
+                isEnabled: widget.isEnabled,
+                text: builder(element),
+              ),
+            MultiselectChip(
+              text: '+${selectedValues.length - 2}',
               onTap: _handleChipTap,
               isEnabled: widget.isEnabled,
-              child: Text(
-                builder(e),
-                style: const TextStyle(decoration: TextDecoration.underline),
-              ),
             ),
-          )
-          .toList();
-    }
+          ]
+        : selectedValues
+            .map(
+              (element) => MultiselectChip(
+                onRemoved: () => widget.onChanged(element),
+                onTap: _handleChipTap,
+                isEnabled: widget.isEnabled,
+                text: builder(element),
+              ),
+            )
+            .toList();
   }
 
   bool? get _isFocused =>

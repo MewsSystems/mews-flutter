@@ -24,6 +24,7 @@ class BaseListTile extends StatelessWidget {
         highlightColor: tokens.backgroundInteractiveNeutralSubtleActive,
         hoverColor: tokens.backgroundInteractiveNeutralSubtleHover,
         onTap: onTap,
+        borderRadius: BorderRadius.all(tokens.borderRadius100),
         splashColor: Colors.transparent,
         child: content,
       ),

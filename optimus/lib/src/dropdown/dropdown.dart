@@ -186,9 +186,13 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
           decoration: decoration,
           child: SizeTransition(
             sizeFactor: _sizeAnimation,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: isOnTop ? children : children.reversed.toList(),
+            child: Padding(
+              padding: EdgeInsets.all(tokens.spacing100),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: tokens.spacing50,
+                children: isOnTop ? children : children.reversed.toList(),
+              ),
             ),
           ),
         ),
@@ -338,7 +342,10 @@ class _GroupedDropdownListViewState<T>
           final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
 
           return _isSameGroup(current, previous)
-              ? child
+              ? Padding(
+                  padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                  child: child,
+                )
               : _GroupWrapper(
                   group: _effectiveGroupBuilder(widget.groupBy(current.value)),
                   child: child,
@@ -361,25 +368,30 @@ class _GroupWrapper extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: AnchoredOverlay.of(context)?.width,
-            decoration: useBorder
-                ? BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: context.tokens.borderStaticSecondary,
+  Widget build(BuildContext context) => Padding(
+        padding: EdgeInsets.only(
+          top: useBorder ? context.tokens.spacing50 : context.tokens.spacing0,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: AnchoredOverlay.of(context)?.width,
+              decoration: useBorder
+                  ? BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: context.tokens.borderStaticSecondary,
+                        ),
                       ),
-                    ),
-                  )
-                : null,
-            child: group,
-          ),
-          child,
-        ],
+                    )
+                  : null,
+              child: group,
+            ),
+            child,
+          ],
+        ),
       );
 }
 
@@ -408,6 +420,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
         width: AnchoredOverlay.of(context)?.width,
         height: _itemMinHeight,
         child: InkWell(
+          borderRadius: BorderRadius.all(tokens.borderRadius100),
           onTap: _handleItemTap,
           child: widget.child,
         ),

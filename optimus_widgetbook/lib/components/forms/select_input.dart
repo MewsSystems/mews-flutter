@@ -5,12 +5,17 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+final GlobalKey _selectUseCaseKey = GlobalKey();
+final GlobalKey _nestedSelectUseCaseKey = GlobalKey();
+
 @widgetbook.UseCase(
   name: 'Default',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext _) => const SelectInputStory();
+Widget createDefaultStyle(BuildContext _) => SelectInputStory(
+      key: _selectUseCaseKey,
+    );
 
 @widgetbook.UseCase(
   name: 'Nested',
@@ -18,7 +23,7 @@ Widget createDefaultStyle(BuildContext _) => const SelectInputStory();
   path: '[Forms]',
 )
 Widget createNestedStyle(BuildContext _) => NestedWrapper(
-      (_) => const SelectInputStory(),
+      (_) => SelectInputStory(key: _nestedSelectUseCaseKey),
     );
 
 class SelectInputStory extends StatefulWidget {
@@ -85,6 +90,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           label: k.string(label: 'Label', initialValue: 'Optimus input field'),
           placeholder: k.string(label: 'Placeholder', initialValue: 'Hint'),
           caption: Text(k.string(label: 'Caption', initialValue: '')),
+          isCompact: k.boolean(label: 'Compact', initialValue: false),
           secondaryCaption:
               Text(k.string(label: 'Secondary caption', initialValue: '')),
           error: k.string(label: 'Error', initialValue: ''),
@@ -97,7 +103,8 @@ class _SelectInputStoryState extends State<SelectInputStory> {
                   subtitle: Text(e.toUpperCase()),
                   isSelected: allowMultipleSelection
                       ? _selectedValues.contains(e)
-                      : null,
+                      : e == _selectedValue,
+                  hasCheckbox: allowMultipleSelection,
                 ),
               )
               .toList(),
