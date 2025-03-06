@@ -6,7 +6,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Non-modal Dialog',
   type: OptimusDialog,
-  path: '[Data Display]/Dialog',
+  path: '[Data Display]',
 )
 Widget createDefaultStyle(BuildContext context) => DialogWrapper(
       child: NonModalDialogStory(context.knobs),

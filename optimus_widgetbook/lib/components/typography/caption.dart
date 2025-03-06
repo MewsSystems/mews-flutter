@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -14,12 +15,13 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Variation',
     initialOption: Variation.variationNormal,
     options: Variation.values,
+    labelBuilder: enumLabelBuilder,
   );
 
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
 
   return OptimusCaption(

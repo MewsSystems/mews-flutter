@@ -27,7 +27,7 @@ extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
         label: 'Size',
         options: OptimusWidgetSize.values,
-        labelBuilder: (value) => value.name,
+        labelBuilder: enumLabelBuilder,
       );
 
   IconDetails optimusIconKnob({String label = 'Icon'}) => list(
@@ -55,9 +55,10 @@ extension WidgetbookContext on BuildContext {
 }
 
 extension OptionalTextWidget on String {
-  Widget? toWidget() => let((value) => value.isNotEmpty ? Text(value) : null);
+  Widget? maybeToWidget() =>
+      let((value) => value.isNotEmpty ? Text(value) : null);
 }
 
 extension OptionalIconWidget on IconDetails {
-  Widget? toWidget() => let((details) => Icon(details.data));
+  Widget toWidget() => let((details) => Icon(details.data));
 }

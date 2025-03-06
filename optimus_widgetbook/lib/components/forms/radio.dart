@@ -15,7 +15,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Size',
     initialOption: OptimusRadioSize.large,
     options: OptimusRadioSize.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final error = k.string(label: 'Error', initialValue: '');
   final isEnabled = k.isEnabledKnob;
@@ -82,7 +82,7 @@ Widget createRadioGroup(BuildContext context) {
     label: 'Size',
     initialOption: OptimusRadioSize.large,
     options: OptimusRadioSize.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: '');
   final error = k.string(label: 'Error', initialValue: '');

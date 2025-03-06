@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -19,6 +20,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Type',
     initialOption: OptimusDialogType.common,
     options: OptimusDialogType.values,
+    labelBuilder: enumLabelBuilder,
   );
   final title = k.string(label: 'Title', initialValue: 'Dialog title');
 

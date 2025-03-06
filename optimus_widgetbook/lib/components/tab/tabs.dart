@@ -16,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
   final isScrollable = knobs.boolean(label: 'Scrollable', initialValue: false);
 
   return Container(
-    color: OptimusTheme.of(context).colors.success500t16,
+    color: context.tokens.paletteSemanticGreen500,
     constraints: const BoxConstraints(maxWidth: _tabBarWidth, maxHeight: 200),
     child: OptimusTabBar(
       isScrollable: isScrollable,

@@ -31,6 +31,7 @@ Widget createDefaultStyle(BuildContext context) {
       AlignmentDirectional.topEnd,
       AlignmentDirectional.topStart,
     ],
+    labelBuilder: (value) => value.toString(),
   );
 
   return Container(

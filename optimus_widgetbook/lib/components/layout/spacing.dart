@@ -4,8 +4,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(
   name: 'Spacing',
-  type: Column,
-  path: '[Layout]',
+  type: Padding,
+  path: '[Layout]/Spacing',
 )
 Widget createDefaultStyle(BuildContext context) {
   final tokens = context.tokens;

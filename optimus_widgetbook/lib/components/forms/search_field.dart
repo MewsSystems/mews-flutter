@@ -6,7 +6,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(
-  name: 'Search Field',
+  name: 'Default',
   type: OptimusSearch,
   path: '[Forms]',
 )
@@ -16,7 +16,7 @@ Widget createDefaultStyle(BuildContext _) => ConstrainedBox(
     );
 
 @widgetbook.UseCase(
-  name: 'Nested Search Field',
+  name: 'Nested',
   type: OptimusSearch,
   path: '[Forms]',
 )

@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Icon Button',
   type: OptimusIconButton,
-  path: '[Buttons]/Icon Button',
+  path: '[Buttons]',
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;

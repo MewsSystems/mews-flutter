@@ -34,6 +34,7 @@ class CheckboxStoryState extends State<CheckboxStory> {
       size: k.list(
         label: 'Size',
         options: OptimusCheckboxSize.values,
+        labelBuilder: enumLabelBuilder,
       ),
       isChecked: _isChecked,
       onChanged: _handleChanged,

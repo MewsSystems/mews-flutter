@@ -26,7 +26,7 @@ Widget createDefaultStyle(BuildContext context) {
   final statusBarState = k.list(
     label: 'Status bar state',
     initialOption: OptimusStatusBarState.empty,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
     options: OptimusStatusBarState.values,
   );
   final isClearEnabled = k.boolean(
@@ -54,8 +54,8 @@ Widget createDefaultStyle(BuildContext context) {
         label: label,
         isEnabled: isEnabled,
         isRequired: isRequired,
-        helperMessage: helpMessage.isNotEmpty ? Text(helpMessage) : null,
-        caption: caption.isNotEmpty ? Text(caption) : null,
+        helperMessage: helpMessage.maybeToWidget(),
+        caption: caption.maybeToWidget(),
         statusBarState: statusBarState,
         isClearEnabled: isClearEnabled,
         showLoader: showLoader,
