@@ -9,7 +9,7 @@ final GlobalKey _selectUseCaseKey = GlobalKey();
 final GlobalKey _nestedSelectUseCaseKey = GlobalKey();
 
 @widgetbook.UseCase(
-  name: 'Select Input',
+  name: 'Default',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
@@ -18,12 +18,12 @@ Widget createDefaultStyle(BuildContext _) => SelectInputStory(
     );
 
 @widgetbook.UseCase(
-  name: 'Nested Select',
+  name: 'Nested',
   type: OptimusSelectInput,
   path: '[Forms]',
 )
 Widget createNestedStyle(BuildContext _) => NestedWrapper(
-      (context) => SelectInputStory(key: _nestedSelectUseCaseKey),
+      (_) => SelectInputStory(key: _nestedSelectUseCaseKey),
     );
 
 class SelectInputStory extends StatefulWidget {
@@ -81,8 +81,8 @@ class _SelectInputStoryState extends State<SelectInputStory> {
               : null,
           onTextChanged:
               k.boolean(label: 'Searchable') ? _handleTextChanged : null,
-          prefix: prefix.toWidget(),
-          suffix: suffix.toWidget(),
+          prefix: prefix.maybeToWidget(),
+          suffix: suffix.maybeToWidget(),
           trailing: trailing?.toWidget(),
           showLoader: showLoader,
           onChanged: (value) => _handleChanged(allowMultipleSelection, value),

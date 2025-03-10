@@ -30,6 +30,7 @@ Widget createDefaultStyle(BuildContext context) {
                   label: 'Variant',
                   initialOption: OptimusLinkVariant.primary,
                   options: OptimusLinkVariant.values,
+                  labelBuilder: enumLabelBuilder,
                 ),
               ),
             ),

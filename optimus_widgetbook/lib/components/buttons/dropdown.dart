@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
@@ -7,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Dropdown Button',
   type: OptimusDropDownButton,
-  path: '[Buttons]/Dropdown Button',
+  path: '[Buttons]',
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
@@ -30,7 +31,7 @@ Widget createDefaultStyle(BuildContext context) {
                       ),
                     )
                     .toList(),
-                onItemSelected: isEnabled ? (_) => () {} : null,
+                onItemSelected: isEnabled ? ignore : null,
                 variant: v,
                 child: Text(
                   k.string(label: 'Label', initialValue: 'Dropdown button'),

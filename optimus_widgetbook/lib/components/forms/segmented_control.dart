@@ -17,7 +17,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Direction',
     initialOption: Axis.horizontal,
     options: Axis.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final maxLines = k.int.slider(
     label: 'Max Lines:',

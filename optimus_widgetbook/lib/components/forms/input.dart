@@ -23,7 +23,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Error variant',
     initialOption: OptimusInputErrorVariant.bottomHint,
     options: OptimusInputErrorVariant.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
   final hasCharsLimit = k.boolean(
     label: 'Limit characters',
@@ -42,9 +42,8 @@ Widget createDefaultStyle(BuildContext context) {
       k.int.slider(label: 'Min lines', initialValue: 1, min: 1, max: 10);
   final keyboardType = k.listOrNull(
     label: 'Keyboard Type:',
-    initialOption: null,
     options: KeyboardType.values,
-    labelBuilder: (value) => value?.name ?? 'Name',
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final isInlined = k.boolean(label: 'Inline', initialValue: false);
   final enableAutoCollapse =
@@ -53,8 +52,7 @@ Widget createDefaultStyle(BuildContext context) {
   final statusBar = k.listOrNull(
     label: 'Status Bar',
     options: OptimusStatusBarState.values,
-    initialOption: null,
-    labelBuilder: (value) => value?.name ?? 'Name',
+    labelBuilder: enumOrNullLabelBuilder,
   );
 
   return Align(
@@ -69,10 +67,10 @@ Widget createDefaultStyle(BuildContext context) {
         minLines: minLines,
         maxLines: minLines,
         keyboardType: keyboardType?.inputType,
-        prefix: prefix.isNotEmpty ? Text(prefix) : null,
-        suffix: suffix.isNotEmpty ? Text(suffix) : null,
-        leading: leadingIcon == null ? null : Icon(leadingIcon.data),
-        trailing: trailingIcon == null ? null : Icon(trailingIcon.data),
+        prefix: prefix.maybeToWidget(),
+        suffix: suffix.maybeToWidget(),
+        leading: leadingIcon?.toWidget(),
+        trailing: trailingIcon?.toWidget(),
         isClearEnabled: k.boolean(label: 'Clear all', initialValue: false),
         showLoader: k.boolean(label: 'Show loader', initialValue: false),
         errorVariant: errorVariant,
@@ -85,9 +83,9 @@ Widget createDefaultStyle(BuildContext context) {
           label: 'Placeholder',
           initialValue: 'Put some hint here...',
         ),
-        caption: caption.isNotEmpty ? Text(caption) : null,
+        caption: caption.maybeToWidget(),
         captionIcon: captionIcon?.data,
-        helperMessage: helperMessage.isNotEmpty ? Text(helperMessage) : null,
+        helperMessage: helperMessage.maybeToWidget(),
         error: error,
       ),
     ),

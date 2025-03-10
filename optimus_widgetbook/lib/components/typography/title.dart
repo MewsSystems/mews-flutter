@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -14,7 +15,7 @@ Widget createLabel(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
@@ -35,7 +36,7 @@ Widget createTitleLarge(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
@@ -56,7 +57,7 @@ Widget createTitleMedium(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
@@ -77,7 +78,7 @@ Widget createTitleSmall(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 

@@ -7,14 +7,14 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Toggle',
   type: OptimusToggleButton,
-  path: '[Buttons]/Toggle',
+  path: '[Buttons]',
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final isEnabled = k.isEnabledKnob;
   final size = k.list(
     label: 'Size',
-    labelBuilder: (option) => option.name,
+    labelBuilder: enumLabelBuilder,
     initialOption: OptimusToggleButtonSizeVariant.large,
     options: OptimusToggleButtonSizeVariant.values,
   );
