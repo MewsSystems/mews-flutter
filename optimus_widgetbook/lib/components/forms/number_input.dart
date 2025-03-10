@@ -36,12 +36,16 @@ class NumberUseCaseState extends State<NumberUserCase> {
 
     final error = k.string(label: 'Error');
     final label = k.string(label: 'Label', initialValue: 'Number input');
-    final placeholder =
-        k.string(label: 'Placeholder', initialValue: 'Placeholder');
+    final placeholder = k.string(
+      label: 'Placeholder',
+      initialValue: 'Placeholder',
+    );
     final min = k.double.input(label: 'Min', initialValue: 0);
     final max = k.double.input(label: 'Max', initialValue: 12);
-    final allowNegative =
-        k.boolean(label: 'Allow negative', initialValue: false);
+    final allowNegative = k.boolean(
+      label: 'Allow negative',
+      initialValue: false,
+    );
     final helper = k.string(label: 'Helper Message');
     final prefix = k.string(label: 'Prefix');
     final suffix = k.string(label: 'Suffix');

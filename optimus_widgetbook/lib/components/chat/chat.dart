@@ -5,11 +5,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: '',
-  type: OptimusChat,
-  path: '[Forms]/Chat',
-)
+@widgetbook.UseCase(name: '', type: OptimusChat, path: '[Forms]/Chat')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
@@ -17,16 +13,15 @@ Widget createDefaultStyle(BuildContext context) {
     messages: messages,
     isFromCurrentUser: (m) => m.author.id == 'you',
     hasAvatars: k.boolean(label: 'Enable avatar', initialValue: true),
-    formatTime: (DateTime input) =>
-        '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
-    formatDate: (DateTime input) =>
-        '${input.day}. ${input.month}. ${input.year}',
+    formatTime:
+        (DateTime input) =>
+            '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
+    formatDate:
+        (DateTime input) => '${input.day}. ${input.month}. ${input.year}',
     sending: const Text('Sending...'),
     sent: const Text('Sent'),
     error: DefaultTextStyle.merge(
-      style: const TextStyle(
-        decoration: TextDecoration.underline,
-      ),
+      style: const TextStyle(decoration: TextDecoration.underline),
       child: const Text('Error, try sending again'),
     ),
     onSendPressed: (message) {},

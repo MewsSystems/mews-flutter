@@ -82,10 +82,13 @@ class OptimusExpansionTile extends StatefulWidget {
 
 class _OptimusExpansionTileState extends State<OptimusExpansionTile>
     with SingleTickerProviderStateMixin, ThemeGetter {
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0, end: 0.5);
+  static final Animatable<double> _easeInTween = CurveTween(
+    curve: Curves.easeIn,
+  );
+  static final Animatable<double> _halfTween = Tween<double>(
+    begin: 0,
+    end: 0.5,
+  );
 
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _backgroundColorTween = ColorTween();
@@ -152,7 +155,8 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
           title: widget.title,
           contentPadding: widget.contentPadding,
           subtitle: widget.subtitle,
-          suffix: widget.trailing ??
+          suffix:
+              widget.trailing ??
               RotationTransition(
                 turns: _iconTurns,
                 child: const Icon(Icons.expand_more),

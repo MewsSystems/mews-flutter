@@ -31,10 +31,13 @@ class BaseDropDownButton<T> extends StatefulWidget {
 
 class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     with ThemeGetter, SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.fastOutSlowIn);
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0, end: 0.5);
+  static final Animatable<double> _easeInTween = CurveTween(
+    curve: Curves.fastOutSlowIn,
+  );
+  static final Animatable<double> _halfTween = Tween<double>(
+    begin: 0,
+    end: 0.5,
+  );
 
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
@@ -75,29 +78,30 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   BaseButtonVariant get _variant => widget.variant.toBaseVariant();
 
   Color get _textColor => _variant.getForegroundColor(
-        tokens,
-        isEnabled: _isEnabled,
-        isPressed: _isPressed,
-        isHovered: _isHovered,
-      );
+    tokens,
+    isEnabled: _isEnabled,
+    isPressed: _isPressed,
+    isHovered: _isHovered,
+  );
 
   Color? get _borderColor => _variant.getBorderColor(
-        tokens,
-        isHovered: _isHovered,
-        isPressed: _isPressed,
-        isEnabled: _isEnabled,
-      );
+    tokens,
+    isHovered: _isHovered,
+    isPressed: _isPressed,
+    isEnabled: _isEnabled,
+  );
 
-  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
-      ? tokens.bodyMediumStrong.copyWith(color: _textColor)
-      : tokens.bodyLargeStrong.copyWith(color: _textColor);
+  TextStyle get _labelStyle =>
+      widget.size == OptimusWidgetSize.small
+          ? tokens.bodyMediumStrong.copyWith(color: _textColor)
+          : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
   Color? get _color => _variant.getBackgroundColor(
-        tokens,
-        isEnabled: _isEnabled,
-        isPressed: _isPressed,
-        isHovered: _isHovered,
-      );
+    tokens,
+    isEnabled: _isEnabled,
+    isPressed: _isPressed,
+    isHovered: _isHovered,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -131,12 +135,13 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                 decoration: BoxDecoration(
                   color: _color,
                   borderRadius: borderRadius,
-                  border: borderColor != null
-                      ? Border.all(
-                          color: borderColor,
-                          width: tokens.borderWidth150,
-                        )
-                      : null,
+                  border:
+                      borderColor != null
+                          ? Border.all(
+                            color: borderColor,
+                            width: tokens.borderWidth150,
+                          )
+                          : null,
                 ),
                 duration: buttonAnimationDuration,
                 curve: buttonAnimationCurve,

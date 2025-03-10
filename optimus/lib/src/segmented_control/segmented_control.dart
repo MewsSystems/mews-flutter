@@ -18,11 +18,11 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
     this.isRequired = false,
     this.maxLines,
     this.direction = Axis.horizontal,
-  })  : assert(
-          items.map((i) => i.value).contains(value),
-          'Segmented control should always have some existing value',
-        ),
-        items = List.unmodifiable(items);
+  }) : assert(
+         items.map((i) => i.value).contains(value),
+         'Segmented control should always have some existing value',
+       ),
+       items = List.unmodifiable(items);
 
   /// Size of the segmented control.
   final OptimusWidgetSize size;
@@ -57,13 +57,15 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
 
   int? get _maxLines => direction == Axis.horizontal ? 1 : maxLines;
 
-  OptimusStackDistribution get _distribution => direction == Axis.horizontal
-      ? OptimusStackDistribution.stretch
-      : OptimusStackDistribution.basic;
+  OptimusStackDistribution get _distribution =>
+      direction == Axis.horizontal
+          ? OptimusStackDistribution.stretch
+          : OptimusStackDistribution.basic;
 
-  OptimusStackSpacing get _spacing => direction == Axis.horizontal
-      ? OptimusStackSpacing.spacing0
-      : OptimusStackSpacing.spacing50;
+  OptimusStackSpacing get _spacing =>
+      direction == Axis.horizontal
+          ? OptimusStackSpacing.spacing0
+          : OptimusStackSpacing.spacing50;
 
   @override
   Widget build(BuildContext context) {
@@ -77,29 +79,31 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
       child: OptimusEnabled(
         isEnabled: isEnabled,
         child: DecoratedBox(
-          decoration: direction == Axis.horizontal
-              ? BoxDecoration(
-                  color: tokens.backgroundInteractiveNeutralDefault,
-                  borderRadius: BorderRadius.all(tokens.borderRadius100),
-                )
-              : const BoxDecoration(),
+          decoration:
+              direction == Axis.horizontal
+                  ? BoxDecoration(
+                    color: tokens.backgroundInteractiveNeutralDefault,
+                    borderRadius: BorderRadius.all(tokens.borderRadius100),
+                  )
+                  : const BoxDecoration(),
           child: OptimusStack(
             direction: direction,
             distribution: _distribution,
             spacing: _spacing,
-            children: items
-                .map(
-                  (item) => _OptimusSegmentedControlItem<T>(
-                    value: item.value,
-                    size: size,
-                    groupValue: value,
-                    onItemSelected: onItemSelected,
-                    isEnabled: isEnabled,
-                    maxLines: _maxLines,
-                    child: item.label,
-                  ),
-                )
-                .toList(),
+            children:
+                items
+                    .map(
+                      (item) => _OptimusSegmentedControlItem<T>(
+                        value: item.value,
+                        size: size,
+                        groupValue: value,
+                        onItemSelected: onItemSelected,
+                        isEnabled: isEnabled,
+                        maxLines: _maxLines,
+                        child: item.label,
+                      ),
+                    )
+                    .toList(),
           ),
         ),
       ),
@@ -133,7 +137,8 @@ class _OptimusSegmentedControlItem<T> extends StatefulWidget {
 }
 
 class _OptimusSegmentedControlItemState<T>
-    extends State<_OptimusSegmentedControlItem<T>> with ThemeGetter {
+    extends State<_OptimusSegmentedControlItem<T>>
+    with ThemeGetter {
   bool _isHovering = false;
   bool _isPressed = false;
 
@@ -174,39 +179,42 @@ class _OptimusSegmentedControlItemState<T>
     final tokens = context.tokens;
 
     return LayoutBuilder(
-      builder: (context, constrains) => GestureWrapper(
-        onTap: _handleChanged,
-        onHoverChanged: _handleHoverChanged,
-        onPressedChanged: _handlePressedChanged,
-        child: Padding(
-          padding: EdgeInsets.all(tokens.spacing25),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 100),
-            curve: Curves.easeOut,
-            constraints:
-                BoxConstraints(minHeight: widget.size.getValue(tokens)),
-            padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-            decoration: BoxDecoration(
-              color: _color(tokens),
-              borderRadius: BorderRadius.all(tokens.borderRadius100),
-            ),
-            alignment: Alignment.center,
-            child: DefaultTextStyle.merge(
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              maxLines: widget.maxLines,
-              style: tokens.bodyMediumStrong
-                  .copyWith(color: _foregroundColor(tokens)),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: constrains.getAdaptivePadding(tokens),
+      builder:
+          (context, constrains) => GestureWrapper(
+            onTap: _handleChanged,
+            onHoverChanged: _handleHoverChanged,
+            onPressedChanged: _handlePressedChanged,
+            child: Padding(
+              padding: EdgeInsets.all(tokens.spacing25),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 100),
+                curve: Curves.easeOut,
+                constraints: BoxConstraints(
+                  minHeight: widget.size.getValue(tokens),
                 ),
-                child: widget.child,
+                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                decoration: BoxDecoration(
+                  color: _color(tokens),
+                  borderRadius: BorderRadius.all(tokens.borderRadius100),
+                ),
+                alignment: Alignment.center,
+                child: DefaultTextStyle.merge(
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  maxLines: widget.maxLines,
+                  style: tokens.bodyMediumStrong.copyWith(
+                    color: _foregroundColor(tokens),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: constrains.getAdaptivePadding(tokens),
+                    ),
+                    child: widget.child,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 }

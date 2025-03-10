@@ -9,13 +9,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   path: '[Helpers]',
 )
 Widget createDefaultStyle(BuildContext context) {
-  final double actionsWidth = context.knobs.int
-      .slider(
-        label: 'Actions Width',
-        initialValue: 0,
-        max: 500,
-      )
-      .toDouble();
+  final double actionsWidth =
+      context.knobs.int
+          .slider(label: 'Actions Width', initialValue: 0, max: 500)
+          .toDouble();
 
   return _Content(actionsWidth: actionsWidth);
 }
@@ -27,7 +24,8 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.builder(
-        itemBuilder: (context, i) => OptimusSlidable(
+    itemBuilder:
+        (context, i) => OptimusSlidable(
           actionsWidth: actionsWidth,
           actions: const [
             OptimusSlideAction(
@@ -41,6 +39,6 @@ class _Content extends StatelessWidget {
             isThreeLine: i % 3 == 0,
           ),
         ),
-        itemCount: 1000,
-      );
+    itemCount: 1000,
+  );
 }

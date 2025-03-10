@@ -14,8 +14,8 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
     this.label,
     this.error,
     this.isEnabled = true,
-  })  : _values = values.toSet(),
-        _items = items.toSet();
+  }) : _values = values.toSet(),
+       _items = items.toSet();
 
   final Set<OptimusGroupItem<T>> _items;
 
@@ -56,14 +56,15 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GroupWrapper(
-        label: label,
-        error: error,
-        isEnabled: isEnabled,
-        child: IgnorePointer(
-          ignoring: !isEnabled,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: _items
+    label: label,
+    error: error,
+    isEnabled: isEnabled,
+    child: IgnorePointer(
+      ignoring: !isEnabled,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:
+            _items
                 .mapIndexed(
                   (i, v) => OptimusCheckbox(
                     isChecked: _values.contains(v.value),
@@ -74,7 +75,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
                   ),
                 )
                 .toList(),
-          ),
-        ),
-      );
+      ),
+    ),
+  );
 }

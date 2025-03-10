@@ -13,10 +13,7 @@ class OptimusEnabled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Opacity(
-        opacity: isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
-        child: IgnorePointer(
-          ignoring: !isEnabled,
-          child: child,
-        ),
-      );
+    opacity: isEnabled ? OpacityValue.enabled : OpacityValue.disabled,
+    child: IgnorePointer(ignoring: !isEnabled, child: child),
+  );
 }

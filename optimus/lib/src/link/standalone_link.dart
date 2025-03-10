@@ -60,27 +60,28 @@ class OptimusStandaloneLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BaseLink(
-        text: text,
-        textStyle: DefaultTextStyle.of(context).style.copyWith(
-              fontSize: size?.getFontSize(context.tokens),
-            ),
-        shouldInherit: shouldInherit,
-        onPressed: onPressed,
-        overflow: overflow,
-        icon: isExternal
+    text: text,
+    textStyle: DefaultTextStyle.of(
+      context,
+    ).style.copyWith(fontSize: size?.getFontSize(context.tokens)),
+    shouldInherit: shouldInherit,
+    onPressed: onPressed,
+    overflow: overflow,
+    icon:
+        isExternal
             ? Icon(
-                OptimusIcons.external_link,
-                size: size?.getFontSize(context.tokens),
-              )
+              OptimusIcons.external_link,
+              size: size?.getFontSize(context.tokens),
+            )
             : null,
-        variant: variant,
-        useStrong: useStrong,
-      );
+    variant: variant,
+    useStrong: useStrong,
+  );
 }
 
 extension on OptimusStandaloneLinkSize {
   double getFontSize(OptimusTokens tokens) => switch (this) {
-        OptimusStandaloneLinkSize.medium => tokens.fontSize100,
-        OptimusStandaloneLinkSize.large => tokens.fontSize200,
-      };
+    OptimusStandaloneLinkSize.medium => tokens.fontSize100,
+    OptimusStandaloneLinkSize.large => tokens.fontSize200,
+  };
 }

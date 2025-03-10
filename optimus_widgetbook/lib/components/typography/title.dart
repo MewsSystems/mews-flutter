@@ -19,10 +19,7 @@ Widget createLabel(BuildContext context) {
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusSubtitle(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusSubtitle(align: align, child: Text(label));
 }
 
 @widgetbook.UseCase(
@@ -40,10 +37,7 @@ Widget createTitleLarge(BuildContext context) {
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusTitleLarge(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusTitleLarge(align: align, child: Text(label));
 }
 
 @widgetbook.UseCase(
@@ -61,10 +55,7 @@ Widget createTitleMedium(BuildContext context) {
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusTitleMedium(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusTitleMedium(align: align, child: Text(label));
 }
 
 @widgetbook.UseCase(
@@ -82,8 +73,5 @@ Widget createTitleSmall(BuildContext context) {
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusTitleSmall(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusTitleSmall(align: align, child: Text(label));
 }

@@ -67,26 +67,23 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
           maximumSize: WidgetStateProperty.all<Size>(
             Size(double.infinity, widget.size.getValue(tokens)),
           ),
-          padding: WidgetStateProperty.all<EdgeInsets>(
-            _padding,
-          ),
-          shape: WidgetStateProperty.resolveWith(
-            (states) {
-              final color = widget.variant.getBorderColor(
-                tokens,
-                isEnabled: !_statesController.value.isDisabled,
-                isPressed: _statesController.value.isPressed,
-                isHovered: _statesController.value.isHovered,
-              );
+          padding: WidgetStateProperty.all<EdgeInsets>(_padding),
+          shape: WidgetStateProperty.resolveWith((states) {
+            final color = widget.variant.getBorderColor(
+              tokens,
+              isEnabled: !_statesController.value.isDisabled,
+              isPressed: _statesController.value.isPressed,
+              isHovered: _statesController.value.isHovered,
+            );
 
-              return RoundedRectangleBorder(
-                borderRadius: borderRadius,
-                side: color != null
-                    ? BorderSide(color: color, width: tokens.borderWidth150)
-                    : BorderSide.none,
-              );
-            },
-          ),
+            return RoundedRectangleBorder(
+              borderRadius: borderRadius,
+              side:
+                  color != null
+                      ? BorderSide(color: color, width: tokens.borderWidth150)
+                      : BorderSide.none,
+            );
+          }),
           animationDuration: buttonAnimationDuration,
           elevation: WidgetStateProperty.all<double>(0),
           visualDensity: VisualDensity.standard,
@@ -153,13 +150,15 @@ class _ButtonContent extends StatefulWidget {
 }
 
 class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
-  TextStyle get _textStyle => widget.size == OptimusWidgetSize.small
-      ? tokens.bodyMediumStrong
-      : tokens.bodyLargeStrong;
+  TextStyle get _textStyle =>
+      widget.size == OptimusWidgetSize.small
+          ? tokens.bodyMediumStrong
+          : tokens.bodyLargeStrong;
 
-  double get _iconSize => widget.size == OptimusWidgetSize.small
-      ? tokens.sizing200
-      : tokens.sizing300;
+  double get _iconSize =>
+      widget.size == OptimusWidgetSize.small
+          ? tokens.sizing200
+          : tokens.sizing300;
 
   @override
   void initState() {
@@ -185,8 +184,9 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
   @override
   Widget build(BuildContext context) {
     final badgeLabel = widget.badgeLabel;
-    final insideHorizontalPadding =
-        widget.size.getInsideHorizontalPadding(tokens);
+    final insideHorizontalPadding = widget.size.getInsideHorizontalPadding(
+      tokens,
+    );
 
     final foregroundColor = widget.variant.getForegroundColor(
       tokens,
@@ -207,9 +207,10 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
           children: <Widget>[
             if (widget.leadingIcon case final leadingIcon?)
               Padding(
-                padding: widget.child != null
-                    ? EdgeInsets.only(right: insideHorizontalPadding)
-                    : EdgeInsets.zero,
+                padding:
+                    widget.child != null
+                        ? EdgeInsets.only(right: insideHorizontalPadding)
+                        : EdgeInsets.zero,
                 child: Icon(
                   leadingIcon,
                   size: _iconSize,
@@ -309,16 +310,13 @@ class _LoaderStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
-        alignment: Alignment.center,
-        children: [
-          if (child case final child?)
-            Opacity(
-              opacity: isLoading ? 0 : 1,
-              child: child,
-            ),
-          if (isLoading) loaderWidget,
-        ],
-      );
+    alignment: Alignment.center,
+    children: [
+      if (child case final child?)
+        Opacity(opacity: isLoading ? 0 : 1, child: child),
+      if (isLoading) loaderWidget,
+    ],
+  );
 }
 
 class _SpinningIcon extends StatefulWidget {
@@ -353,13 +351,13 @@ class _SpinningIconState extends State<_SpinningIcon>
 
   @override
   Widget build(BuildContext context) => RotationTransition(
-        turns: _turns,
-        child: Icon(
-          OptimusIcons.spinner,
-          size: context.tokens.sizing200,
-          color: widget.color,
-        ),
-      );
+    turns: _turns,
+    child: Icon(
+      OptimusIcons.spinner,
+      size: context.tokens.sizing200,
+      color: widget.color,
+    ),
+  );
 }
 
 extension on Set<WidgetState> {
@@ -370,26 +368,23 @@ extension on Set<WidgetState> {
 
 extension on OptimusWidgetSize {
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.spacing50,
-        OptimusWidgetSize.medium => tokens.spacing100,
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing150,
-      };
+    OptimusWidgetSize.small => tokens.spacing50,
+    OptimusWidgetSize.medium => tokens.spacing100,
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => tokens.spacing150,
+  };
 
   double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.spacing150,
-        OptimusWidgetSize.medium => tokens.spacing200,
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing300,
-      };
+    OptimusWidgetSize.small => tokens.spacing150,
+    OptimusWidgetSize.medium => tokens.spacing200,
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => tokens.spacing300,
+  };
 
   double getInsideHorizontalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.spacing100,
-        OptimusWidgetSize.medium ||
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing150,
-      };
+    OptimusWidgetSize.small => tokens.spacing100,
+    OptimusWidgetSize.medium ||
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => tokens.spacing150,
+  };
 }

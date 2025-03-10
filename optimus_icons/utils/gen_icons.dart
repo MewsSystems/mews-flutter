@@ -47,24 +47,23 @@ void main(List<String> arguments) {
       final fontFamilyName = fontConfig['name'].toString();
 
       final List<dynamic> icons = fontConfig['glyphs'] as List<dynamic>;
-      final buffer = StringBuffer()
-        ..writeAll(
-          [
-            '',
-            "import 'package:flutter/widgets.dart';",
-            "import 'package:optimus_icons/src/optimus_icons.dart';",
-            '',
-            '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
-            '',
-            'class IconDetails {',
-            'const IconDetails(this.data, this.name);',
-            'final IconData data;',
-            'final String name;',
-            '}',
-          ],
-          '\n',
-        )
-        ..writeln('const optimusIcons = <IconDetails>[');
+      final buffer =
+          StringBuffer()
+            ..writeAll([
+              '',
+              "import 'package:flutter/widgets.dart';",
+              "import 'package:optimus_icons/src/optimus_icons.dart';",
+              '',
+              '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
+              '',
+              'class IconDetails {',
+              'const IconDetails(this.data, this.name);',
+              'final IconData data;',
+              'final String name;',
+              '}',
+              // ignore: require_trailing_commas, formatter bug
+            ], '\n')
+            ..writeln('const optimusIcons = <IconDetails>[');
 
       for (final icon in icons) {
         final Map<String, dynamic> glyphs = icon as Map<String, dynamic>;
@@ -76,8 +75,9 @@ void main(List<String> arguments) {
 
       buffer.writeln('];');
 
-      File(join(outputDir.path, dartFileName))
-          .writeAsStringSync(buffer.toString());
+      File(
+        join(outputDir.path, dartFileName),
+      ).writeAsStringSync(buffer.toString());
     }
   }
 }

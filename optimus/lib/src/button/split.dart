@@ -4,11 +4,7 @@ import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
-enum OptimusSplitButtonVariant {
-  primary,
-  secondary,
-  tertiary,
-}
+enum OptimusSplitButtonVariant { primary, secondary, tertiary }
 
 /// Split buttons have a main action and a dropdown action. The main action is
 /// on the left. An arrow on the right opens a dropdown menu with more actions
@@ -82,17 +78,15 @@ class OptimusSplitButton<T> extends StatelessWidget {
 
 extension on OptimusSplitButtonVariant {
   BaseButtonVariant toButtonVariant() => switch (this) {
-        OptimusSplitButtonVariant.primary => BaseButtonVariant.primary,
-        OptimusSplitButtonVariant.secondary => BaseButtonVariant.secondary,
-        OptimusSplitButtonVariant.tertiary => BaseButtonVariant.tertiary,
-      };
+    OptimusSplitButtonVariant.primary => BaseButtonVariant.primary,
+    OptimusSplitButtonVariant.secondary => BaseButtonVariant.secondary,
+    OptimusSplitButtonVariant.tertiary => BaseButtonVariant.tertiary,
+  };
 
   OptimusDropdownButtonVariant toDropdownButtonVariant() => switch (this) {
-        OptimusSplitButtonVariant.primary =>
-          OptimusDropdownButtonVariant.primary,
-        OptimusSplitButtonVariant.secondary =>
-          OptimusDropdownButtonVariant.secondary,
-        OptimusSplitButtonVariant.tertiary =>
-          OptimusDropdownButtonVariant.tertiary,
-      };
+    OptimusSplitButtonVariant.primary => OptimusDropdownButtonVariant.primary,
+    OptimusSplitButtonVariant.secondary =>
+      OptimusDropdownButtonVariant.secondary,
+    OptimusSplitButtonVariant.tertiary => OptimusDropdownButtonVariant.tertiary,
+  };
 }

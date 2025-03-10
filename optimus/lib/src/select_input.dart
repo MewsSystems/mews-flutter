@@ -107,10 +107,13 @@ class OptimusSelectInput<T> extends StatefulWidget {
 
 class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     with ThemeGetter, SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.fastOutSlowIn);
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0, end: 0.5);
+  static final Animatable<double> _easeInTween = CurveTween(
+    curve: Curves.fastOutSlowIn,
+  );
+  static final Animatable<double> _halfTween = Tween<double>(
+    begin: 0,
+    end: 0.5,
+  );
 
   late final AnimationController _animationController;
   late final Animation<double> _iconTurns;
@@ -177,63 +180,65 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
       widget.embeddedSearch != null && !_isUsingInlineSearch;
 
   TextStyle get _textStyle => switch (widget.size) {
-        OptimusWidgetSize.small =>
-          tokens.bodyMediumStrong.copyWith(color: _textColor),
-        OptimusWidgetSize.medium ||
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.bodyLargeStrong.copyWith(color: _textColor),
-      };
+    OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(
+      color: _textColor,
+    ),
+    OptimusWidgetSize.medium ||
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize
+        .extraLarge => tokens.bodyLargeStrong.copyWith(color: _textColor),
+  };
 
-  Color get _textColor => widget.isEnabled
-      ? _value == null
-          ? tokens.textStaticSecondary
-          : tokens.textStaticPrimary
-      : tokens.textDisabled;
+  Color get _textColor =>
+      widget.isEnabled
+          ? _value == null
+              ? tokens.textStaticSecondary
+              : tokens.textStaticPrimary
+          : tokens.textDisabled;
 
   T? get _value => widget.allowMultipleSelection ? null : widget.value;
 
   @override
   Widget build(BuildContext context) => DropdownSelect<T>(
-        label: widget.label,
-        placeholder: _value?.let(widget.builder) ?? widget.placeholder,
-        items: widget.items,
-        isEnabled: widget.isEnabled,
-        isRequired: widget.isRequired,
-        caption: widget.caption,
-        helperMessage: widget.secondaryCaption,
-        error: widget.error,
-        size: widget.size,
-        onChanged: widget.onChanged,
-        prefix: widget.prefix,
-        leading: widget.leading,
-        suffix: widget.suffix,
-        trailing: widget.trailing,
-        trailingImplicit: RotationTransition(
-          turns: _iconTurns,
-          child: _Chevron(isEnabled: widget.isEnabled),
-        ),
-        focusNode: _effectiveFocusNode,
-        placeholderStyle: _textStyle,
-        controller: _effectiveController,
-        isReadOnly: widget.isReadOnly ?? !_isUsingInlineSearch,
-        showCursor: _isUsingInlineSearch,
-        showLoader: widget.showLoader,
-        shouldCloseOnInputTap:
-            !widget.allowMultipleSelection || !_isUsingInlineSearch,
-        emptyResultPlaceholder: widget.emptyResultPlaceholder,
-        embeddedSearch: _isUsingEmbeddedSearch ? widget.embeddedSearch : null,
-        onDropdownShow:
-            _isUsingEmbeddedSearch ? _animationController.forward : null,
-        onDropdownHide:
-            _isUsingEmbeddedSearch ? _animationController.reverse : null,
-        groupBy: widget.groupBy,
-        groupBuilder: widget.groupBuilder,
-        allowMultipleSelection: widget.allowMultipleSelection,
-        selectedValues: widget.selectedValues,
-        builder: widget.builder,
-        isCompact: widget.isCompact,
-      );
+    label: widget.label,
+    placeholder: _value?.let(widget.builder) ?? widget.placeholder,
+    items: widget.items,
+    isEnabled: widget.isEnabled,
+    isRequired: widget.isRequired,
+    caption: widget.caption,
+    helperMessage: widget.secondaryCaption,
+    error: widget.error,
+    size: widget.size,
+    onChanged: widget.onChanged,
+    prefix: widget.prefix,
+    leading: widget.leading,
+    suffix: widget.suffix,
+    trailing: widget.trailing,
+    trailingImplicit: RotationTransition(
+      turns: _iconTurns,
+      child: _Chevron(isEnabled: widget.isEnabled),
+    ),
+    focusNode: _effectiveFocusNode,
+    placeholderStyle: _textStyle,
+    controller: _effectiveController,
+    isReadOnly: widget.isReadOnly ?? !_isUsingInlineSearch,
+    showCursor: _isUsingInlineSearch,
+    showLoader: widget.showLoader,
+    shouldCloseOnInputTap:
+        !widget.allowMultipleSelection || !_isUsingInlineSearch,
+    emptyResultPlaceholder: widget.emptyResultPlaceholder,
+    embeddedSearch: _isUsingEmbeddedSearch ? widget.embeddedSearch : null,
+    onDropdownShow:
+        _isUsingEmbeddedSearch ? _animationController.forward : null,
+    onDropdownHide:
+        _isUsingEmbeddedSearch ? _animationController.reverse : null,
+    groupBy: widget.groupBy,
+    groupBuilder: widget.groupBuilder,
+    allowMultipleSelection: widget.allowMultipleSelection,
+    selectedValues: widget.selectedValues,
+    builder: widget.builder,
+    isCompact: widget.isCompact,
+  );
 }
 
 class _Chevron extends StatelessWidget {

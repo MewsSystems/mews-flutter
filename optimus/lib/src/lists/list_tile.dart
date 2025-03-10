@@ -162,10 +162,7 @@ enum OptimusPrefixVerticalAlignment { center, start }
 enum OptimusPrefixSize { medium, large }
 
 class _Prefix extends StatelessWidget {
-  const _Prefix({
-    required this.prefix,
-    this.size = OptimusPrefixSize.medium,
-  });
+  const _Prefix({required this.prefix, this.size = OptimusPrefixSize.medium});
 
   final Widget prefix;
   final OptimusPrefixSize size;
@@ -181,10 +178,7 @@ class _Prefix extends StatelessWidget {
         child: OptimusTypography(
           color: OptimusTypographyColor.secondary,
           resolveStyle: (_) => tokens.bodyMediumStrong,
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: prefix,
-          ),
+          child: AspectRatio(aspectRatio: 1, child: prefix),
         ),
       ),
     );
@@ -198,9 +192,9 @@ class _Suffix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodyMediumStrong,
-        child: suffix,
-      );
+    resolveStyle: (_) => context.tokens.bodyMediumStrong,
+    child: suffix,
+  );
 }
 
 class _Title extends StatelessWidget {
@@ -211,9 +205,9 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => fontVariant.getPrimaryStyle(context.tokens),
-        child: title,
-      );
+    resolveStyle: (_) => fontVariant.getPrimaryStyle(context.tokens),
+    child: title,
+  );
 }
 
 class _Info extends StatelessWidget {
@@ -223,11 +217,13 @@ class _Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodySmallStrong
-            .copyWith(overflow: TextOverflow.ellipsis),
-        color: OptimusTypographyColor.secondary,
-        child: info,
-      );
+    resolveStyle:
+        (_) => context.tokens.bodySmallStrong.copyWith(
+          overflow: TextOverflow.ellipsis,
+        ),
+    color: OptimusTypographyColor.secondary,
+    child: info,
+  );
 }
 
 class _Subtitle extends StatelessWidget {
@@ -238,22 +234,22 @@ class _Subtitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodyMediumStrong,
-        color: fontVariant.secondaryColor,
-        child: subtitle,
-      );
+    resolveStyle: (_) => context.tokens.bodyMediumStrong,
+    color: fontVariant.secondaryColor,
+    child: subtitle,
+  );
 }
 
 extension on OptimusPrefixSize {
   double getWidth(OptimusTokens tokens) => switch (this) {
-        OptimusPrefixSize.medium => tokens.sizing400,
-        OptimusPrefixSize.large => tokens.sizing600,
-      };
+    OptimusPrefixSize.medium => tokens.sizing400,
+    OptimusPrefixSize.large => tokens.sizing600,
+  };
 }
 
 extension on OptimusPrefixVerticalAlignment {
   double? getBottom(OptimusTokens tokens) => switch (this) {
-        OptimusPrefixVerticalAlignment.center => tokens.spacing0,
-        OptimusPrefixVerticalAlignment.start => null,
-      };
+    OptimusPrefixVerticalAlignment.center => tokens.spacing0,
+    OptimusPrefixVerticalAlignment.start => null,
+  };
 }

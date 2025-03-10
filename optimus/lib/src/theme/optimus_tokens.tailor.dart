@@ -841,11 +841,13 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           backgroundAlertInfoSecondary ?? this.backgroundAlertInfoSecondary,
       backgroundAlertSuccessPrimary:
           backgroundAlertSuccessPrimary ?? this.backgroundAlertSuccessPrimary,
-      backgroundAlertSuccessSecondary: backgroundAlertSuccessSecondary ??
+      backgroundAlertSuccessSecondary:
+          backgroundAlertSuccessSecondary ??
           this.backgroundAlertSuccessSecondary,
       backgroundAlertWarningPrimary:
           backgroundAlertWarningPrimary ?? this.backgroundAlertWarningPrimary,
-      backgroundAlertWarningSecondary: backgroundAlertWarningSecondary ??
+      backgroundAlertWarningSecondary:
+          backgroundAlertWarningSecondary ??
           this.backgroundAlertWarningSecondary,
       backgroundBackdrop: backgroundBackdrop ?? this.backgroundBackdrop,
       backgroundBrand: backgroundBrand ?? this.backgroundBrand,
@@ -861,59 +863,68 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           backgroundDatavizPurple ?? this.backgroundDatavizPurple,
       backgroundDatavizRed: backgroundDatavizRed ?? this.backgroundDatavizRed,
       backgroundDisabled: backgroundDisabled ?? this.backgroundDisabled,
-      backgroundInteractiveDangerActive: backgroundInteractiveDangerActive ??
+      backgroundInteractiveDangerActive:
+          backgroundInteractiveDangerActive ??
           this.backgroundInteractiveDangerActive,
-      backgroundInteractiveDangerDefault: backgroundInteractiveDangerDefault ??
+      backgroundInteractiveDangerDefault:
+          backgroundInteractiveDangerDefault ??
           this.backgroundInteractiveDangerDefault,
-      backgroundInteractiveDangerHover: backgroundInteractiveDangerHover ??
+      backgroundInteractiveDangerHover:
+          backgroundInteractiveDangerHover ??
           this.backgroundInteractiveDangerHover,
-      backgroundInteractiveNeutralActive: backgroundInteractiveNeutralActive ??
+      backgroundInteractiveNeutralActive:
+          backgroundInteractiveNeutralActive ??
           this.backgroundInteractiveNeutralActive,
       backgroundInteractiveNeutralBoldActive:
           backgroundInteractiveNeutralBoldActive ??
-              this.backgroundInteractiveNeutralBoldActive,
+          this.backgroundInteractiveNeutralBoldActive,
       backgroundInteractiveNeutralBoldDefault:
           backgroundInteractiveNeutralBoldDefault ??
-              this.backgroundInteractiveNeutralBoldDefault,
+          this.backgroundInteractiveNeutralBoldDefault,
       backgroundInteractiveNeutralBoldHover:
           backgroundInteractiveNeutralBoldHover ??
-              this.backgroundInteractiveNeutralBoldHover,
+          this.backgroundInteractiveNeutralBoldHover,
       backgroundInteractiveNeutralDefault:
           backgroundInteractiveNeutralDefault ??
-              this.backgroundInteractiveNeutralDefault,
-      backgroundInteractiveNeutralHover: backgroundInteractiveNeutralHover ??
+          this.backgroundInteractiveNeutralDefault,
+      backgroundInteractiveNeutralHover:
+          backgroundInteractiveNeutralHover ??
           this.backgroundInteractiveNeutralHover,
       backgroundInteractiveNeutralSubtleActive:
           backgroundInteractiveNeutralSubtleActive ??
-              this.backgroundInteractiveNeutralSubtleActive,
+          this.backgroundInteractiveNeutralSubtleActive,
       backgroundInteractiveNeutralSubtleDefault:
           backgroundInteractiveNeutralSubtleDefault ??
-              this.backgroundInteractiveNeutralSubtleDefault,
+          this.backgroundInteractiveNeutralSubtleDefault,
       backgroundInteractiveNeutralSubtleHover:
           backgroundInteractiveNeutralSubtleHover ??
-              this.backgroundInteractiveNeutralSubtleHover,
-      backgroundInteractivePrimaryActive: backgroundInteractivePrimaryActive ??
+          this.backgroundInteractiveNeutralSubtleHover,
+      backgroundInteractivePrimaryActive:
+          backgroundInteractivePrimaryActive ??
           this.backgroundInteractivePrimaryActive,
       backgroundInteractivePrimaryDefault:
           backgroundInteractivePrimaryDefault ??
-              this.backgroundInteractivePrimaryDefault,
-      backgroundInteractivePrimaryHover: backgroundInteractivePrimaryHover ??
+          this.backgroundInteractivePrimaryDefault,
+      backgroundInteractivePrimaryHover:
+          backgroundInteractivePrimaryHover ??
           this.backgroundInteractivePrimaryHover,
       backgroundInteractiveSecondaryActive:
           backgroundInteractiveSecondaryActive ??
-              this.backgroundInteractiveSecondaryActive,
+          this.backgroundInteractiveSecondaryActive,
       backgroundInteractiveSecondaryDefault:
           backgroundInteractiveSecondaryDefault ??
-              this.backgroundInteractiveSecondaryDefault,
+          this.backgroundInteractiveSecondaryDefault,
       backgroundInteractiveSecondaryHover:
           backgroundInteractiveSecondaryHover ??
-              this.backgroundInteractiveSecondaryHover,
-      backgroundInteractiveSuccessActive: backgroundInteractiveSuccessActive ??
+          this.backgroundInteractiveSecondaryHover,
+      backgroundInteractiveSuccessActive:
+          backgroundInteractiveSuccessActive ??
           this.backgroundInteractiveSuccessActive,
       backgroundInteractiveSuccessDefault:
           backgroundInteractiveSuccessDefault ??
-              this.backgroundInteractiveSuccessDefault,
-      backgroundInteractiveSuccessHover: backgroundInteractiveSuccessHover ??
+          this.backgroundInteractiveSuccessDefault,
+      backgroundInteractiveSuccessHover:
+          backgroundInteractiveSuccessHover ??
           this.backgroundInteractiveSuccessHover,
       backgroundStaticFlat: backgroundStaticFlat ?? this.backgroundStaticFlat,
       backgroundStaticFloating:
@@ -946,15 +957,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           borderInteractiveFocus ?? this.borderInteractiveFocus,
       borderInteractivePrimaryActive:
           borderInteractivePrimaryActive ?? this.borderInteractivePrimaryActive,
-      borderInteractivePrimaryDefault: borderInteractivePrimaryDefault ??
+      borderInteractivePrimaryDefault:
+          borderInteractivePrimaryDefault ??
           this.borderInteractivePrimaryDefault,
       borderInteractivePrimaryHover:
           borderInteractivePrimaryHover ?? this.borderInteractivePrimaryHover,
-      borderInteractiveSecondaryActive: borderInteractiveSecondaryActive ??
+      borderInteractiveSecondaryActive:
+          borderInteractiveSecondaryActive ??
           this.borderInteractiveSecondaryActive,
-      borderInteractiveSecondaryDefault: borderInteractiveSecondaryDefault ??
+      borderInteractiveSecondaryDefault:
+          borderInteractiveSecondaryDefault ??
           this.borderInteractiveSecondaryDefault,
-      borderInteractiveSecondaryHover: borderInteractiveSecondaryHover ??
+      borderInteractiveSecondaryHover:
+          borderInteractiveSecondaryHover ??
           this.borderInteractiveSecondaryHover,
       borderStaticInverse: borderStaticInverse ?? this.borderStaticInverse,
       borderStaticOnColor: borderStaticOnColor ?? this.borderStaticOnColor,
@@ -1300,7 +1315,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           textInteractivePrimaryHover ?? this.textInteractivePrimaryHover,
       textInteractiveSecondaryActive:
           textInteractiveSecondaryActive ?? this.textInteractiveSecondaryActive,
-      textInteractiveSecondaryDefault: textInteractiveSecondaryDefault ??
+      textInteractiveSecondaryDefault:
+          textInteractiveSecondaryDefault ??
           this.textInteractiveSecondaryDefault,
       textInteractiveSecondaryHover:
           textInteractiveSecondaryHover ?? this.textInteractiveSecondaryHover,
@@ -1423,42 +1439,98 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(backgroundAccentBrand, other.backgroundAccentBrand, t)!,
       backgroundAccentDanger:
           Color.lerp(backgroundAccentDanger, other.backgroundAccentDanger, t)!,
-      backgroundAccentGradient: Color.lerp(
-          backgroundAccentGradient, other.backgroundAccentGradient, t)!,
+      backgroundAccentGradient:
+          Color.lerp(
+            backgroundAccentGradient,
+            other.backgroundAccentGradient,
+            t,
+          )!,
       backgroundAccentInfo:
           Color.lerp(backgroundAccentInfo, other.backgroundAccentInfo, t)!,
-      backgroundAccentPrimary: Color.lerp(
-          backgroundAccentPrimary, other.backgroundAccentPrimary, t)!,
-      backgroundAccentSecondary: Color.lerp(
-          backgroundAccentSecondary, other.backgroundAccentSecondary, t)!,
-      backgroundAccentSuccess: Color.lerp(
-          backgroundAccentSuccess, other.backgroundAccentSuccess, t)!,
-      backgroundAccentWarning: Color.lerp(
-          backgroundAccentWarning, other.backgroundAccentWarning, t)!,
-      backgroundAlertBasicPrimary: Color.lerp(
-          backgroundAlertBasicPrimary, other.backgroundAlertBasicPrimary, t)!,
-      backgroundAlertBasicSecondary: Color.lerp(backgroundAlertBasicSecondary,
-          other.backgroundAlertBasicSecondary, t)!,
-      backgroundAlertDangerPrimary: Color.lerp(
-          backgroundAlertDangerPrimary, other.backgroundAlertDangerPrimary, t)!,
-      backgroundAlertDangerSecondary: Color.lerp(backgroundAlertDangerSecondary,
-          other.backgroundAlertDangerSecondary, t)!,
-      backgroundAlertInfoPrimary: Color.lerp(
-          backgroundAlertInfoPrimary, other.backgroundAlertInfoPrimary, t)!,
-      backgroundAlertInfoSecondary: Color.lerp(
-          backgroundAlertInfoSecondary, other.backgroundAlertInfoSecondary, t)!,
-      backgroundAlertSuccessPrimary: Color.lerp(backgroundAlertSuccessPrimary,
-          other.backgroundAlertSuccessPrimary, t)!,
-      backgroundAlertSuccessSecondary: Color.lerp(
-          backgroundAlertSuccessSecondary,
-          other.backgroundAlertSuccessSecondary,
-          t)!,
-      backgroundAlertWarningPrimary: Color.lerp(backgroundAlertWarningPrimary,
-          other.backgroundAlertWarningPrimary, t)!,
-      backgroundAlertWarningSecondary: Color.lerp(
-          backgroundAlertWarningSecondary,
-          other.backgroundAlertWarningSecondary,
-          t)!,
+      backgroundAccentPrimary:
+          Color.lerp(
+            backgroundAccentPrimary,
+            other.backgroundAccentPrimary,
+            t,
+          )!,
+      backgroundAccentSecondary:
+          Color.lerp(
+            backgroundAccentSecondary,
+            other.backgroundAccentSecondary,
+            t,
+          )!,
+      backgroundAccentSuccess:
+          Color.lerp(
+            backgroundAccentSuccess,
+            other.backgroundAccentSuccess,
+            t,
+          )!,
+      backgroundAccentWarning:
+          Color.lerp(
+            backgroundAccentWarning,
+            other.backgroundAccentWarning,
+            t,
+          )!,
+      backgroundAlertBasicPrimary:
+          Color.lerp(
+            backgroundAlertBasicPrimary,
+            other.backgroundAlertBasicPrimary,
+            t,
+          )!,
+      backgroundAlertBasicSecondary:
+          Color.lerp(
+            backgroundAlertBasicSecondary,
+            other.backgroundAlertBasicSecondary,
+            t,
+          )!,
+      backgroundAlertDangerPrimary:
+          Color.lerp(
+            backgroundAlertDangerPrimary,
+            other.backgroundAlertDangerPrimary,
+            t,
+          )!,
+      backgroundAlertDangerSecondary:
+          Color.lerp(
+            backgroundAlertDangerSecondary,
+            other.backgroundAlertDangerSecondary,
+            t,
+          )!,
+      backgroundAlertInfoPrimary:
+          Color.lerp(
+            backgroundAlertInfoPrimary,
+            other.backgroundAlertInfoPrimary,
+            t,
+          )!,
+      backgroundAlertInfoSecondary:
+          Color.lerp(
+            backgroundAlertInfoSecondary,
+            other.backgroundAlertInfoSecondary,
+            t,
+          )!,
+      backgroundAlertSuccessPrimary:
+          Color.lerp(
+            backgroundAlertSuccessPrimary,
+            other.backgroundAlertSuccessPrimary,
+            t,
+          )!,
+      backgroundAlertSuccessSecondary:
+          Color.lerp(
+            backgroundAlertSuccessSecondary,
+            other.backgroundAlertSuccessSecondary,
+            t,
+          )!,
+      backgroundAlertWarningPrimary:
+          Color.lerp(
+            backgroundAlertWarningPrimary,
+            other.backgroundAlertWarningPrimary,
+            t,
+          )!,
+      backgroundAlertWarningSecondary:
+          Color.lerp(
+            backgroundAlertWarningSecondary,
+            other.backgroundAlertWarningSecondary,
+            t,
+          )!,
       backgroundBackdrop:
           Color.lerp(backgroundBackdrop, other.backgroundBackdrop, t)!,
       backgroundBrand: Color.lerp(backgroundBrand, other.backgroundBrand, t)!,
@@ -1466,110 +1538,176 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(backgroundDatavizBlue, other.backgroundDatavizBlue, t)!,
       backgroundDatavizGreen:
           Color.lerp(backgroundDatavizGreen, other.backgroundDatavizGreen, t)!,
-      backgroundDatavizOrange: Color.lerp(
-          backgroundDatavizOrange, other.backgroundDatavizOrange, t)!,
+      backgroundDatavizOrange:
+          Color.lerp(
+            backgroundDatavizOrange,
+            other.backgroundDatavizOrange,
+            t,
+          )!,
       backgroundDatavizPink:
           Color.lerp(backgroundDatavizPink, other.backgroundDatavizPink, t)!,
-      backgroundDatavizPurple: Color.lerp(
-          backgroundDatavizPurple, other.backgroundDatavizPurple, t)!,
+      backgroundDatavizPurple:
+          Color.lerp(
+            backgroundDatavizPurple,
+            other.backgroundDatavizPurple,
+            t,
+          )!,
       backgroundDatavizRed:
           Color.lerp(backgroundDatavizRed, other.backgroundDatavizRed, t)!,
       backgroundDisabled:
           Color.lerp(backgroundDisabled, other.backgroundDisabled, t)!,
-      backgroundInteractiveDangerActive: Color.lerp(
-          backgroundInteractiveDangerActive,
-          other.backgroundInteractiveDangerActive,
-          t)!,
-      backgroundInteractiveDangerDefault: Color.lerp(
-          backgroundInteractiveDangerDefault,
-          other.backgroundInteractiveDangerDefault,
-          t)!,
-      backgroundInteractiveDangerHover: Color.lerp(
-          backgroundInteractiveDangerHover,
-          other.backgroundInteractiveDangerHover,
-          t)!,
-      backgroundInteractiveNeutralActive: Color.lerp(
-          backgroundInteractiveNeutralActive,
-          other.backgroundInteractiveNeutralActive,
-          t)!,
-      backgroundInteractiveNeutralBoldActive: Color.lerp(
-          backgroundInteractiveNeutralBoldActive,
-          other.backgroundInteractiveNeutralBoldActive,
-          t)!,
-      backgroundInteractiveNeutralBoldDefault: Color.lerp(
-          backgroundInteractiveNeutralBoldDefault,
-          other.backgroundInteractiveNeutralBoldDefault,
-          t)!,
-      backgroundInteractiveNeutralBoldHover: Color.lerp(
-          backgroundInteractiveNeutralBoldHover,
-          other.backgroundInteractiveNeutralBoldHover,
-          t)!,
-      backgroundInteractiveNeutralDefault: Color.lerp(
-          backgroundInteractiveNeutralDefault,
-          other.backgroundInteractiveNeutralDefault,
-          t)!,
-      backgroundInteractiveNeutralHover: Color.lerp(
-          backgroundInteractiveNeutralHover,
-          other.backgroundInteractiveNeutralHover,
-          t)!,
-      backgroundInteractiveNeutralSubtleActive: Color.lerp(
-          backgroundInteractiveNeutralSubtleActive,
-          other.backgroundInteractiveNeutralSubtleActive,
-          t)!,
-      backgroundInteractiveNeutralSubtleDefault: Color.lerp(
-          backgroundInteractiveNeutralSubtleDefault,
-          other.backgroundInteractiveNeutralSubtleDefault,
-          t)!,
-      backgroundInteractiveNeutralSubtleHover: Color.lerp(
-          backgroundInteractiveNeutralSubtleHover,
-          other.backgroundInteractiveNeutralSubtleHover,
-          t)!,
-      backgroundInteractivePrimaryActive: Color.lerp(
-          backgroundInteractivePrimaryActive,
-          other.backgroundInteractivePrimaryActive,
-          t)!,
-      backgroundInteractivePrimaryDefault: Color.lerp(
-          backgroundInteractivePrimaryDefault,
-          other.backgroundInteractivePrimaryDefault,
-          t)!,
-      backgroundInteractivePrimaryHover: Color.lerp(
-          backgroundInteractivePrimaryHover,
-          other.backgroundInteractivePrimaryHover,
-          t)!,
-      backgroundInteractiveSecondaryActive: Color.lerp(
-          backgroundInteractiveSecondaryActive,
-          other.backgroundInteractiveSecondaryActive,
-          t)!,
-      backgroundInteractiveSecondaryDefault: Color.lerp(
-          backgroundInteractiveSecondaryDefault,
-          other.backgroundInteractiveSecondaryDefault,
-          t)!,
-      backgroundInteractiveSecondaryHover: Color.lerp(
-          backgroundInteractiveSecondaryHover,
-          other.backgroundInteractiveSecondaryHover,
-          t)!,
-      backgroundInteractiveSuccessActive: Color.lerp(
-          backgroundInteractiveSuccessActive,
-          other.backgroundInteractiveSuccessActive,
-          t)!,
-      backgroundInteractiveSuccessDefault: Color.lerp(
-          backgroundInteractiveSuccessDefault,
-          other.backgroundInteractiveSuccessDefault,
-          t)!,
-      backgroundInteractiveSuccessHover: Color.lerp(
-          backgroundInteractiveSuccessHover,
-          other.backgroundInteractiveSuccessHover,
-          t)!,
+      backgroundInteractiveDangerActive:
+          Color.lerp(
+            backgroundInteractiveDangerActive,
+            other.backgroundInteractiveDangerActive,
+            t,
+          )!,
+      backgroundInteractiveDangerDefault:
+          Color.lerp(
+            backgroundInteractiveDangerDefault,
+            other.backgroundInteractiveDangerDefault,
+            t,
+          )!,
+      backgroundInteractiveDangerHover:
+          Color.lerp(
+            backgroundInteractiveDangerHover,
+            other.backgroundInteractiveDangerHover,
+            t,
+          )!,
+      backgroundInteractiveNeutralActive:
+          Color.lerp(
+            backgroundInteractiveNeutralActive,
+            other.backgroundInteractiveNeutralActive,
+            t,
+          )!,
+      backgroundInteractiveNeutralBoldActive:
+          Color.lerp(
+            backgroundInteractiveNeutralBoldActive,
+            other.backgroundInteractiveNeutralBoldActive,
+            t,
+          )!,
+      backgroundInteractiveNeutralBoldDefault:
+          Color.lerp(
+            backgroundInteractiveNeutralBoldDefault,
+            other.backgroundInteractiveNeutralBoldDefault,
+            t,
+          )!,
+      backgroundInteractiveNeutralBoldHover:
+          Color.lerp(
+            backgroundInteractiveNeutralBoldHover,
+            other.backgroundInteractiveNeutralBoldHover,
+            t,
+          )!,
+      backgroundInteractiveNeutralDefault:
+          Color.lerp(
+            backgroundInteractiveNeutralDefault,
+            other.backgroundInteractiveNeutralDefault,
+            t,
+          )!,
+      backgroundInteractiveNeutralHover:
+          Color.lerp(
+            backgroundInteractiveNeutralHover,
+            other.backgroundInteractiveNeutralHover,
+            t,
+          )!,
+      backgroundInteractiveNeutralSubtleActive:
+          Color.lerp(
+            backgroundInteractiveNeutralSubtleActive,
+            other.backgroundInteractiveNeutralSubtleActive,
+            t,
+          )!,
+      backgroundInteractiveNeutralSubtleDefault:
+          Color.lerp(
+            backgroundInteractiveNeutralSubtleDefault,
+            other.backgroundInteractiveNeutralSubtleDefault,
+            t,
+          )!,
+      backgroundInteractiveNeutralSubtleHover:
+          Color.lerp(
+            backgroundInteractiveNeutralSubtleHover,
+            other.backgroundInteractiveNeutralSubtleHover,
+            t,
+          )!,
+      backgroundInteractivePrimaryActive:
+          Color.lerp(
+            backgroundInteractivePrimaryActive,
+            other.backgroundInteractivePrimaryActive,
+            t,
+          )!,
+      backgroundInteractivePrimaryDefault:
+          Color.lerp(
+            backgroundInteractivePrimaryDefault,
+            other.backgroundInteractivePrimaryDefault,
+            t,
+          )!,
+      backgroundInteractivePrimaryHover:
+          Color.lerp(
+            backgroundInteractivePrimaryHover,
+            other.backgroundInteractivePrimaryHover,
+            t,
+          )!,
+      backgroundInteractiveSecondaryActive:
+          Color.lerp(
+            backgroundInteractiveSecondaryActive,
+            other.backgroundInteractiveSecondaryActive,
+            t,
+          )!,
+      backgroundInteractiveSecondaryDefault:
+          Color.lerp(
+            backgroundInteractiveSecondaryDefault,
+            other.backgroundInteractiveSecondaryDefault,
+            t,
+          )!,
+      backgroundInteractiveSecondaryHover:
+          Color.lerp(
+            backgroundInteractiveSecondaryHover,
+            other.backgroundInteractiveSecondaryHover,
+            t,
+          )!,
+      backgroundInteractiveSuccessActive:
+          Color.lerp(
+            backgroundInteractiveSuccessActive,
+            other.backgroundInteractiveSuccessActive,
+            t,
+          )!,
+      backgroundInteractiveSuccessDefault:
+          Color.lerp(
+            backgroundInteractiveSuccessDefault,
+            other.backgroundInteractiveSuccessDefault,
+            t,
+          )!,
+      backgroundInteractiveSuccessHover:
+          Color.lerp(
+            backgroundInteractiveSuccessHover,
+            other.backgroundInteractiveSuccessHover,
+            t,
+          )!,
       backgroundStaticFlat:
           Color.lerp(backgroundStaticFlat, other.backgroundStaticFlat, t)!,
-      backgroundStaticFloating: Color.lerp(
-          backgroundStaticFloating, other.backgroundStaticFloating, t)!,
-      backgroundStaticInverse: Color.lerp(
-          backgroundStaticInverse, other.backgroundStaticInverse, t)!,
-      backgroundStaticInverseOnColor: Color.lerp(backgroundStaticInverseOnColor,
-          other.backgroundStaticInverseOnColor, t)!,
-      backgroundStaticOnColor: Color.lerp(
-          backgroundStaticOnColor, other.backgroundStaticOnColor, t)!,
+      backgroundStaticFloating:
+          Color.lerp(
+            backgroundStaticFloating,
+            other.backgroundStaticFloating,
+            t,
+          )!,
+      backgroundStaticInverse:
+          Color.lerp(
+            backgroundStaticInverse,
+            other.backgroundStaticInverse,
+            t,
+          )!,
+      backgroundStaticInverseOnColor:
+          Color.lerp(
+            backgroundStaticInverseOnColor,
+            other.backgroundStaticInverseOnColor,
+            t,
+          )!,
+      backgroundStaticOnColor:
+          Color.lerp(
+            backgroundStaticOnColor,
+            other.backgroundStaticOnColor,
+            t,
+          )!,
       backgroundStaticRaised:
           Color.lerp(backgroundStaticRaised, other.backgroundStaticRaised, t)!,
       backgroundStaticSunken:
@@ -1586,34 +1724,62 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(borderAlertWarning, other.borderAlertWarning, t)!,
       borderBrand: Color.lerp(borderBrand, other.borderBrand, t)!,
       borderDisabled: Color.lerp(borderDisabled, other.borderDisabled, t)!,
-      borderInteractiveBoldActive: Color.lerp(
-          borderInteractiveBoldActive, other.borderInteractiveBoldActive, t)!,
-      borderInteractiveBoldDefault: Color.lerp(
-          borderInteractiveBoldDefault, other.borderInteractiveBoldDefault, t)!,
-      borderInteractiveBoldHover: Color.lerp(
-          borderInteractiveBoldHover, other.borderInteractiveBoldHover, t)!,
+      borderInteractiveBoldActive:
+          Color.lerp(
+            borderInteractiveBoldActive,
+            other.borderInteractiveBoldActive,
+            t,
+          )!,
+      borderInteractiveBoldDefault:
+          Color.lerp(
+            borderInteractiveBoldDefault,
+            other.borderInteractiveBoldDefault,
+            t,
+          )!,
+      borderInteractiveBoldHover:
+          Color.lerp(
+            borderInteractiveBoldHover,
+            other.borderInteractiveBoldHover,
+            t,
+          )!,
       borderInteractiveFocus:
           Color.lerp(borderInteractiveFocus, other.borderInteractiveFocus, t)!,
-      borderInteractivePrimaryActive: Color.lerp(borderInteractivePrimaryActive,
-          other.borderInteractivePrimaryActive, t)!,
-      borderInteractivePrimaryDefault: Color.lerp(
-          borderInteractivePrimaryDefault,
-          other.borderInteractivePrimaryDefault,
-          t)!,
-      borderInteractivePrimaryHover: Color.lerp(borderInteractivePrimaryHover,
-          other.borderInteractivePrimaryHover, t)!,
-      borderInteractiveSecondaryActive: Color.lerp(
-          borderInteractiveSecondaryActive,
-          other.borderInteractiveSecondaryActive,
-          t)!,
-      borderInteractiveSecondaryDefault: Color.lerp(
-          borderInteractiveSecondaryDefault,
-          other.borderInteractiveSecondaryDefault,
-          t)!,
-      borderInteractiveSecondaryHover: Color.lerp(
-          borderInteractiveSecondaryHover,
-          other.borderInteractiveSecondaryHover,
-          t)!,
+      borderInteractivePrimaryActive:
+          Color.lerp(
+            borderInteractivePrimaryActive,
+            other.borderInteractivePrimaryActive,
+            t,
+          )!,
+      borderInteractivePrimaryDefault:
+          Color.lerp(
+            borderInteractivePrimaryDefault,
+            other.borderInteractivePrimaryDefault,
+            t,
+          )!,
+      borderInteractivePrimaryHover:
+          Color.lerp(
+            borderInteractivePrimaryHover,
+            other.borderInteractivePrimaryHover,
+            t,
+          )!,
+      borderInteractiveSecondaryActive:
+          Color.lerp(
+            borderInteractiveSecondaryActive,
+            other.borderInteractiveSecondaryActive,
+            t,
+          )!,
+      borderInteractiveSecondaryDefault:
+          Color.lerp(
+            borderInteractiveSecondaryDefault,
+            other.borderInteractiveSecondaryDefault,
+            t,
+          )!,
+      borderInteractiveSecondaryHover:
+          Color.lerp(
+            borderInteractiveSecondaryHover,
+            other.borderInteractiveSecondaryHover,
+            t,
+          )!,
       borderStaticInverse:
           Color.lerp(borderStaticInverse, other.borderStaticInverse, t)!,
       borderStaticOnColor:
@@ -1644,26 +1810,66 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(legacyDatavizDenim800, other.legacyDatavizDenim800, t)!,
       legacyDatavizDenim900:
           Color.lerp(legacyDatavizDenim900, other.legacyDatavizDenim900, t)!,
-      legacyDatavizLavender100: Color.lerp(
-          legacyDatavizLavender100, other.legacyDatavizLavender100, t)!,
-      legacyDatavizLavender200: Color.lerp(
-          legacyDatavizLavender200, other.legacyDatavizLavender200, t)!,
-      legacyDatavizLavender300: Color.lerp(
-          legacyDatavizLavender300, other.legacyDatavizLavender300, t)!,
-      legacyDatavizLavender400: Color.lerp(
-          legacyDatavizLavender400, other.legacyDatavizLavender400, t)!,
-      legacyDatavizLavender50: Color.lerp(
-          legacyDatavizLavender50, other.legacyDatavizLavender50, t)!,
-      legacyDatavizLavender500: Color.lerp(
-          legacyDatavizLavender500, other.legacyDatavizLavender500, t)!,
-      legacyDatavizLavender600: Color.lerp(
-          legacyDatavizLavender600, other.legacyDatavizLavender600, t)!,
-      legacyDatavizLavender700: Color.lerp(
-          legacyDatavizLavender700, other.legacyDatavizLavender700, t)!,
-      legacyDatavizLavender800: Color.lerp(
-          legacyDatavizLavender800, other.legacyDatavizLavender800, t)!,
-      legacyDatavizLavender900: Color.lerp(
-          legacyDatavizLavender900, other.legacyDatavizLavender900, t)!,
+      legacyDatavizLavender100:
+          Color.lerp(
+            legacyDatavizLavender100,
+            other.legacyDatavizLavender100,
+            t,
+          )!,
+      legacyDatavizLavender200:
+          Color.lerp(
+            legacyDatavizLavender200,
+            other.legacyDatavizLavender200,
+            t,
+          )!,
+      legacyDatavizLavender300:
+          Color.lerp(
+            legacyDatavizLavender300,
+            other.legacyDatavizLavender300,
+            t,
+          )!,
+      legacyDatavizLavender400:
+          Color.lerp(
+            legacyDatavizLavender400,
+            other.legacyDatavizLavender400,
+            t,
+          )!,
+      legacyDatavizLavender50:
+          Color.lerp(
+            legacyDatavizLavender50,
+            other.legacyDatavizLavender50,
+            t,
+          )!,
+      legacyDatavizLavender500:
+          Color.lerp(
+            legacyDatavizLavender500,
+            other.legacyDatavizLavender500,
+            t,
+          )!,
+      legacyDatavizLavender600:
+          Color.lerp(
+            legacyDatavizLavender600,
+            other.legacyDatavizLavender600,
+            t,
+          )!,
+      legacyDatavizLavender700:
+          Color.lerp(
+            legacyDatavizLavender700,
+            other.legacyDatavizLavender700,
+            t,
+          )!,
+      legacyDatavizLavender800:
+          Color.lerp(
+            legacyDatavizLavender800,
+            other.legacyDatavizLavender800,
+            t,
+          )!,
+      legacyDatavizLavender900:
+          Color.lerp(
+            legacyDatavizLavender900,
+            other.legacyDatavizLavender900,
+            t,
+          )!,
       legacyDatavizLime100:
           Color.lerp(legacyDatavizLime100, other.legacyDatavizLime100, t)!,
       legacyDatavizLime200:
@@ -1684,26 +1890,62 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(legacyDatavizLime800, other.legacyDatavizLime800, t)!,
       legacyDatavizLime900:
           Color.lerp(legacyDatavizLime900, other.legacyDatavizLime900, t)!,
-      legacyDatavizMustard100: Color.lerp(
-          legacyDatavizMustard100, other.legacyDatavizMustard100, t)!,
-      legacyDatavizMustard200: Color.lerp(
-          legacyDatavizMustard200, other.legacyDatavizMustard200, t)!,
-      legacyDatavizMustard300: Color.lerp(
-          legacyDatavizMustard300, other.legacyDatavizMustard300, t)!,
-      legacyDatavizMustard400: Color.lerp(
-          legacyDatavizMustard400, other.legacyDatavizMustard400, t)!,
+      legacyDatavizMustard100:
+          Color.lerp(
+            legacyDatavizMustard100,
+            other.legacyDatavizMustard100,
+            t,
+          )!,
+      legacyDatavizMustard200:
+          Color.lerp(
+            legacyDatavizMustard200,
+            other.legacyDatavizMustard200,
+            t,
+          )!,
+      legacyDatavizMustard300:
+          Color.lerp(
+            legacyDatavizMustard300,
+            other.legacyDatavizMustard300,
+            t,
+          )!,
+      legacyDatavizMustard400:
+          Color.lerp(
+            legacyDatavizMustard400,
+            other.legacyDatavizMustard400,
+            t,
+          )!,
       legacyDatavizMustard50:
           Color.lerp(legacyDatavizMustard50, other.legacyDatavizMustard50, t)!,
-      legacyDatavizMustard500: Color.lerp(
-          legacyDatavizMustard500, other.legacyDatavizMustard500, t)!,
-      legacyDatavizMustard600: Color.lerp(
-          legacyDatavizMustard600, other.legacyDatavizMustard600, t)!,
-      legacyDatavizMustard700: Color.lerp(
-          legacyDatavizMustard700, other.legacyDatavizMustard700, t)!,
-      legacyDatavizMustard800: Color.lerp(
-          legacyDatavizMustard800, other.legacyDatavizMustard800, t)!,
-      legacyDatavizMustard900: Color.lerp(
-          legacyDatavizMustard900, other.legacyDatavizMustard900, t)!,
+      legacyDatavizMustard500:
+          Color.lerp(
+            legacyDatavizMustard500,
+            other.legacyDatavizMustard500,
+            t,
+          )!,
+      legacyDatavizMustard600:
+          Color.lerp(
+            legacyDatavizMustard600,
+            other.legacyDatavizMustard600,
+            t,
+          )!,
+      legacyDatavizMustard700:
+          Color.lerp(
+            legacyDatavizMustard700,
+            other.legacyDatavizMustard700,
+            t,
+          )!,
+      legacyDatavizMustard800:
+          Color.lerp(
+            legacyDatavizMustard800,
+            other.legacyDatavizMustard800,
+            t,
+          )!,
+      legacyDatavizMustard900:
+          Color.lerp(
+            legacyDatavizMustard900,
+            other.legacyDatavizMustard900,
+            t,
+          )!,
       legacyDatavizRuby100:
           Color.lerp(legacyDatavizRuby100, other.legacyDatavizRuby100, t)!,
       legacyDatavizRuby200:
@@ -1724,48 +1966,128 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(legacyDatavizRuby800, other.legacyDatavizRuby800, t)!,
       legacyDatavizRuby900:
           Color.lerp(legacyDatavizRuby900, other.legacyDatavizRuby900, t)!,
-      legacyDatavizTangerine100: Color.lerp(
-          legacyDatavizTangerine100, other.legacyDatavizTangerine100, t)!,
-      legacyDatavizTangerine200: Color.lerp(
-          legacyDatavizTangerine200, other.legacyDatavizTangerine200, t)!,
-      legacyDatavizTangerine300: Color.lerp(
-          legacyDatavizTangerine300, other.legacyDatavizTangerine300, t)!,
-      legacyDatavizTangerine400: Color.lerp(
-          legacyDatavizTangerine400, other.legacyDatavizTangerine400, t)!,
-      legacyDatavizTangerine50: Color.lerp(
-          legacyDatavizTangerine50, other.legacyDatavizTangerine50, t)!,
-      legacyDatavizTangerine500: Color.lerp(
-          legacyDatavizTangerine500, other.legacyDatavizTangerine500, t)!,
-      legacyDatavizTangerine600: Color.lerp(
-          legacyDatavizTangerine600, other.legacyDatavizTangerine600, t)!,
-      legacyDatavizTangerine700: Color.lerp(
-          legacyDatavizTangerine700, other.legacyDatavizTangerine700, t)!,
-      legacyDatavizTangerine800: Color.lerp(
-          legacyDatavizTangerine800, other.legacyDatavizTangerine800, t)!,
-      legacyDatavizTangerine900: Color.lerp(
-          legacyDatavizTangerine900, other.legacyDatavizTangerine900, t)!,
-      legacyTagBackgroundBasicBold: Color.lerp(
-          legacyTagBackgroundBasicBold, other.legacyTagBackgroundBasicBold, t)!,
-      legacyTagBackgroundDenim: Color.lerp(
-          legacyTagBackgroundDenim, other.legacyTagBackgroundDenim, t)!,
-      legacyTagBackgroundLavender: Color.lerp(
-          legacyTagBackgroundLavender, other.legacyTagBackgroundLavender, t)!,
-      legacyTagBackgroundLime: Color.lerp(
-          legacyTagBackgroundLime, other.legacyTagBackgroundLime, t)!,
-      legacyTagBackgroundMustard: Color.lerp(
-          legacyTagBackgroundMustard, other.legacyTagBackgroundMustard, t)!,
-      legacyTagBackgroundPrimary: Color.lerp(
-          legacyTagBackgroundPrimary, other.legacyTagBackgroundPrimary, t)!,
-      legacyTagBackgroundRuby: Color.lerp(
-          legacyTagBackgroundRuby, other.legacyTagBackgroundRuby, t)!,
-      legacyTagBackgroundTangerine: Color.lerp(
-          legacyTagBackgroundTangerine, other.legacyTagBackgroundTangerine, t)!,
-      legacyTagBorderBasicBold: Color.lerp(
-          legacyTagBorderBasicBold, other.legacyTagBorderBasicBold, t)!,
+      legacyDatavizTangerine100:
+          Color.lerp(
+            legacyDatavizTangerine100,
+            other.legacyDatavizTangerine100,
+            t,
+          )!,
+      legacyDatavizTangerine200:
+          Color.lerp(
+            legacyDatavizTangerine200,
+            other.legacyDatavizTangerine200,
+            t,
+          )!,
+      legacyDatavizTangerine300:
+          Color.lerp(
+            legacyDatavizTangerine300,
+            other.legacyDatavizTangerine300,
+            t,
+          )!,
+      legacyDatavizTangerine400:
+          Color.lerp(
+            legacyDatavizTangerine400,
+            other.legacyDatavizTangerine400,
+            t,
+          )!,
+      legacyDatavizTangerine50:
+          Color.lerp(
+            legacyDatavizTangerine50,
+            other.legacyDatavizTangerine50,
+            t,
+          )!,
+      legacyDatavizTangerine500:
+          Color.lerp(
+            legacyDatavizTangerine500,
+            other.legacyDatavizTangerine500,
+            t,
+          )!,
+      legacyDatavizTangerine600:
+          Color.lerp(
+            legacyDatavizTangerine600,
+            other.legacyDatavizTangerine600,
+            t,
+          )!,
+      legacyDatavizTangerine700:
+          Color.lerp(
+            legacyDatavizTangerine700,
+            other.legacyDatavizTangerine700,
+            t,
+          )!,
+      legacyDatavizTangerine800:
+          Color.lerp(
+            legacyDatavizTangerine800,
+            other.legacyDatavizTangerine800,
+            t,
+          )!,
+      legacyDatavizTangerine900:
+          Color.lerp(
+            legacyDatavizTangerine900,
+            other.legacyDatavizTangerine900,
+            t,
+          )!,
+      legacyTagBackgroundBasicBold:
+          Color.lerp(
+            legacyTagBackgroundBasicBold,
+            other.legacyTagBackgroundBasicBold,
+            t,
+          )!,
+      legacyTagBackgroundDenim:
+          Color.lerp(
+            legacyTagBackgroundDenim,
+            other.legacyTagBackgroundDenim,
+            t,
+          )!,
+      legacyTagBackgroundLavender:
+          Color.lerp(
+            legacyTagBackgroundLavender,
+            other.legacyTagBackgroundLavender,
+            t,
+          )!,
+      legacyTagBackgroundLime:
+          Color.lerp(
+            legacyTagBackgroundLime,
+            other.legacyTagBackgroundLime,
+            t,
+          )!,
+      legacyTagBackgroundMustard:
+          Color.lerp(
+            legacyTagBackgroundMustard,
+            other.legacyTagBackgroundMustard,
+            t,
+          )!,
+      legacyTagBackgroundPrimary:
+          Color.lerp(
+            legacyTagBackgroundPrimary,
+            other.legacyTagBackgroundPrimary,
+            t,
+          )!,
+      legacyTagBackgroundRuby:
+          Color.lerp(
+            legacyTagBackgroundRuby,
+            other.legacyTagBackgroundRuby,
+            t,
+          )!,
+      legacyTagBackgroundTangerine:
+          Color.lerp(
+            legacyTagBackgroundTangerine,
+            other.legacyTagBackgroundTangerine,
+            t,
+          )!,
+      legacyTagBorderBasicBold:
+          Color.lerp(
+            legacyTagBorderBasicBold,
+            other.legacyTagBorderBasicBold,
+            t,
+          )!,
       legacyTagBorderDenim:
           Color.lerp(legacyTagBorderDenim, other.legacyTagBorderDenim, t)!,
-      legacyTagBorderLavender: Color.lerp(
-          legacyTagBorderLavender, other.legacyTagBorderLavender, t)!,
+      legacyTagBorderLavender:
+          Color.lerp(
+            legacyTagBorderLavender,
+            other.legacyTagBorderLavender,
+            t,
+          )!,
       legacyTagBorderLime:
           Color.lerp(legacyTagBorderLime, other.legacyTagBorderLime, t)!,
       legacyTagBorderMustard:
@@ -1774,8 +2096,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(legacyTagBorderPrimary, other.legacyTagBorderPrimary, t)!,
       legacyTagBorderRuby:
           Color.lerp(legacyTagBorderRuby, other.legacyTagBorderRuby, t)!,
-      legacyTagBorderTangerine: Color.lerp(
-          legacyTagBorderTangerine, other.legacyTagBorderTangerine, t)!,
+      legacyTagBorderTangerine:
+          Color.lerp(
+            legacyTagBorderTangerine,
+            other.legacyTagBorderTangerine,
+            t,
+          )!,
       legacyTagTextBasicBold:
           Color.lerp(legacyTagTextBasicBold, other.legacyTagTextBasicBold, t)!,
       legacyTagTextDenim:
@@ -1886,10 +2212,18 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteBrandNight100, other.paletteBrandNight100, t)!,
       paletteBrandNight1000:
           Color.lerp(paletteBrandNight1000, other.paletteBrandNight1000, t)!,
-      paletteBrandNight100012: Color.lerp(
-          paletteBrandNight100012, other.paletteBrandNight100012, t)!,
-      paletteBrandNight100016: Color.lerp(
-          paletteBrandNight100016, other.paletteBrandNight100016, t)!,
+      paletteBrandNight100012:
+          Color.lerp(
+            paletteBrandNight100012,
+            other.paletteBrandNight100012,
+            t,
+          )!,
+      paletteBrandNight100016:
+          Color.lerp(
+            paletteBrandNight100016,
+            other.paletteBrandNight100016,
+            t,
+          )!,
       paletteBrandNight10008:
           Color.lerp(paletteBrandNight10008, other.paletteBrandNight10008, t)!,
       paletteBrandNight150:
@@ -1928,8 +2262,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteDatavizRed, other.paletteDatavizRed, t)!,
       paletteSemanticBlue100:
           Color.lerp(paletteSemanticBlue100, other.paletteSemanticBlue100, t)!,
-      paletteSemanticBlue1000: Color.lerp(
-          paletteSemanticBlue1000, other.paletteSemanticBlue1000, t)!,
+      paletteSemanticBlue1000:
+          Color.lerp(
+            paletteSemanticBlue1000,
+            other.paletteSemanticBlue1000,
+            t,
+          )!,
       paletteSemanticBlue150:
           Color.lerp(paletteSemanticBlue150, other.paletteSemanticBlue150, t)!,
       paletteSemanticBlue200:
@@ -1952,58 +2290,154 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteSemanticBlue800, other.paletteSemanticBlue800, t)!,
       paletteSemanticBlue900:
           Color.lerp(paletteSemanticBlue900, other.paletteSemanticBlue900, t)!,
-      paletteSemanticGreen100: Color.lerp(
-          paletteSemanticGreen100, other.paletteSemanticGreen100, t)!,
-      paletteSemanticGreen1000: Color.lerp(
-          paletteSemanticGreen1000, other.paletteSemanticGreen1000, t)!,
-      paletteSemanticGreen150: Color.lerp(
-          paletteSemanticGreen150, other.paletteSemanticGreen150, t)!,
-      paletteSemanticGreen200: Color.lerp(
-          paletteSemanticGreen200, other.paletteSemanticGreen200, t)!,
+      paletteSemanticGreen100:
+          Color.lerp(
+            paletteSemanticGreen100,
+            other.paletteSemanticGreen100,
+            t,
+          )!,
+      paletteSemanticGreen1000:
+          Color.lerp(
+            paletteSemanticGreen1000,
+            other.paletteSemanticGreen1000,
+            t,
+          )!,
+      paletteSemanticGreen150:
+          Color.lerp(
+            paletteSemanticGreen150,
+            other.paletteSemanticGreen150,
+            t,
+          )!,
+      paletteSemanticGreen200:
+          Color.lerp(
+            paletteSemanticGreen200,
+            other.paletteSemanticGreen200,
+            t,
+          )!,
       paletteSemanticGreen25:
           Color.lerp(paletteSemanticGreen25, other.paletteSemanticGreen25, t)!,
-      paletteSemanticGreen300: Color.lerp(
-          paletteSemanticGreen300, other.paletteSemanticGreen300, t)!,
-      paletteSemanticGreen400: Color.lerp(
-          paletteSemanticGreen400, other.paletteSemanticGreen400, t)!,
+      paletteSemanticGreen300:
+          Color.lerp(
+            paletteSemanticGreen300,
+            other.paletteSemanticGreen300,
+            t,
+          )!,
+      paletteSemanticGreen400:
+          Color.lerp(
+            paletteSemanticGreen400,
+            other.paletteSemanticGreen400,
+            t,
+          )!,
       paletteSemanticGreen50:
           Color.lerp(paletteSemanticGreen50, other.paletteSemanticGreen50, t)!,
-      paletteSemanticGreen500: Color.lerp(
-          paletteSemanticGreen500, other.paletteSemanticGreen500, t)!,
-      paletteSemanticGreen600: Color.lerp(
-          paletteSemanticGreen600, other.paletteSemanticGreen600, t)!,
-      paletteSemanticGreen700: Color.lerp(
-          paletteSemanticGreen700, other.paletteSemanticGreen700, t)!,
-      paletteSemanticGreen800: Color.lerp(
-          paletteSemanticGreen800, other.paletteSemanticGreen800, t)!,
-      paletteSemanticGreen900: Color.lerp(
-          paletteSemanticGreen900, other.paletteSemanticGreen900, t)!,
-      paletteSemanticOrange100: Color.lerp(
-          paletteSemanticOrange100, other.paletteSemanticOrange100, t)!,
-      paletteSemanticOrange1000: Color.lerp(
-          paletteSemanticOrange1000, other.paletteSemanticOrange1000, t)!,
-      paletteSemanticOrange150: Color.lerp(
-          paletteSemanticOrange150, other.paletteSemanticOrange150, t)!,
-      paletteSemanticOrange200: Color.lerp(
-          paletteSemanticOrange200, other.paletteSemanticOrange200, t)!,
-      paletteSemanticOrange25: Color.lerp(
-          paletteSemanticOrange25, other.paletteSemanticOrange25, t)!,
-      paletteSemanticOrange300: Color.lerp(
-          paletteSemanticOrange300, other.paletteSemanticOrange300, t)!,
-      paletteSemanticOrange400: Color.lerp(
-          paletteSemanticOrange400, other.paletteSemanticOrange400, t)!,
-      paletteSemanticOrange50: Color.lerp(
-          paletteSemanticOrange50, other.paletteSemanticOrange50, t)!,
-      paletteSemanticOrange500: Color.lerp(
-          paletteSemanticOrange500, other.paletteSemanticOrange500, t)!,
-      paletteSemanticOrange600: Color.lerp(
-          paletteSemanticOrange600, other.paletteSemanticOrange600, t)!,
-      paletteSemanticOrange700: Color.lerp(
-          paletteSemanticOrange700, other.paletteSemanticOrange700, t)!,
-      paletteSemanticOrange800: Color.lerp(
-          paletteSemanticOrange800, other.paletteSemanticOrange800, t)!,
-      paletteSemanticOrange900: Color.lerp(
-          paletteSemanticOrange900, other.paletteSemanticOrange900, t)!,
+      paletteSemanticGreen500:
+          Color.lerp(
+            paletteSemanticGreen500,
+            other.paletteSemanticGreen500,
+            t,
+          )!,
+      paletteSemanticGreen600:
+          Color.lerp(
+            paletteSemanticGreen600,
+            other.paletteSemanticGreen600,
+            t,
+          )!,
+      paletteSemanticGreen700:
+          Color.lerp(
+            paletteSemanticGreen700,
+            other.paletteSemanticGreen700,
+            t,
+          )!,
+      paletteSemanticGreen800:
+          Color.lerp(
+            paletteSemanticGreen800,
+            other.paletteSemanticGreen800,
+            t,
+          )!,
+      paletteSemanticGreen900:
+          Color.lerp(
+            paletteSemanticGreen900,
+            other.paletteSemanticGreen900,
+            t,
+          )!,
+      paletteSemanticOrange100:
+          Color.lerp(
+            paletteSemanticOrange100,
+            other.paletteSemanticOrange100,
+            t,
+          )!,
+      paletteSemanticOrange1000:
+          Color.lerp(
+            paletteSemanticOrange1000,
+            other.paletteSemanticOrange1000,
+            t,
+          )!,
+      paletteSemanticOrange150:
+          Color.lerp(
+            paletteSemanticOrange150,
+            other.paletteSemanticOrange150,
+            t,
+          )!,
+      paletteSemanticOrange200:
+          Color.lerp(
+            paletteSemanticOrange200,
+            other.paletteSemanticOrange200,
+            t,
+          )!,
+      paletteSemanticOrange25:
+          Color.lerp(
+            paletteSemanticOrange25,
+            other.paletteSemanticOrange25,
+            t,
+          )!,
+      paletteSemanticOrange300:
+          Color.lerp(
+            paletteSemanticOrange300,
+            other.paletteSemanticOrange300,
+            t,
+          )!,
+      paletteSemanticOrange400:
+          Color.lerp(
+            paletteSemanticOrange400,
+            other.paletteSemanticOrange400,
+            t,
+          )!,
+      paletteSemanticOrange50:
+          Color.lerp(
+            paletteSemanticOrange50,
+            other.paletteSemanticOrange50,
+            t,
+          )!,
+      paletteSemanticOrange500:
+          Color.lerp(
+            paletteSemanticOrange500,
+            other.paletteSemanticOrange500,
+            t,
+          )!,
+      paletteSemanticOrange600:
+          Color.lerp(
+            paletteSemanticOrange600,
+            other.paletteSemanticOrange600,
+            t,
+          )!,
+      paletteSemanticOrange700:
+          Color.lerp(
+            paletteSemanticOrange700,
+            other.paletteSemanticOrange700,
+            t,
+          )!,
+      paletteSemanticOrange800:
+          Color.lerp(
+            paletteSemanticOrange800,
+            other.paletteSemanticOrange800,
+            t,
+          )!,
+      paletteSemanticOrange900:
+          Color.lerp(
+            paletteSemanticOrange900,
+            other.paletteSemanticOrange900,
+            t,
+          )!,
       paletteSemanticRed100:
           Color.lerp(paletteSemanticRed100, other.paletteSemanticRed100, t)!,
       paletteSemanticRed1000:
@@ -2038,20 +2472,42 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       textAlertWarning:
           Color.lerp(textAlertWarning, other.textAlertWarning, t)!,
       textDisabled: Color.lerp(textDisabled, other.textDisabled, t)!,
-      textInteractivePrimaryActive: Color.lerp(
-          textInteractivePrimaryActive, other.textInteractivePrimaryActive, t)!,
-      textInteractivePrimaryDefault: Color.lerp(textInteractivePrimaryDefault,
-          other.textInteractivePrimaryDefault, t)!,
-      textInteractivePrimaryHover: Color.lerp(
-          textInteractivePrimaryHover, other.textInteractivePrimaryHover, t)!,
-      textInteractiveSecondaryActive: Color.lerp(textInteractiveSecondaryActive,
-          other.textInteractiveSecondaryActive, t)!,
-      textInteractiveSecondaryDefault: Color.lerp(
-          textInteractiveSecondaryDefault,
-          other.textInteractiveSecondaryDefault,
-          t)!,
-      textInteractiveSecondaryHover: Color.lerp(textInteractiveSecondaryHover,
-          other.textInteractiveSecondaryHover, t)!,
+      textInteractivePrimaryActive:
+          Color.lerp(
+            textInteractivePrimaryActive,
+            other.textInteractivePrimaryActive,
+            t,
+          )!,
+      textInteractivePrimaryDefault:
+          Color.lerp(
+            textInteractivePrimaryDefault,
+            other.textInteractivePrimaryDefault,
+            t,
+          )!,
+      textInteractivePrimaryHover:
+          Color.lerp(
+            textInteractivePrimaryHover,
+            other.textInteractivePrimaryHover,
+            t,
+          )!,
+      textInteractiveSecondaryActive:
+          Color.lerp(
+            textInteractiveSecondaryActive,
+            other.textInteractiveSecondaryActive,
+            t,
+          )!,
+      textInteractiveSecondaryDefault:
+          Color.lerp(
+            textInteractiveSecondaryDefault,
+            other.textInteractiveSecondaryDefault,
+            t,
+          )!,
+      textInteractiveSecondaryHover:
+          Color.lerp(
+            textInteractiveSecondaryHover,
+            other.textInteractiveSecondaryHover,
+            t,
+          )!,
       textStaticInverse:
           Color.lerp(textStaticInverse, other.textStaticInverse, t)!,
       textStaticOnColor:
@@ -2182,394 +2638,1434 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is OptimusTokens &&
-            const DeepCollectionEquality()
-                .equals(backgroundAccentBrand, other.backgroundAccentBrand) &&
-            const DeepCollectionEquality()
-                .equals(backgroundAccentDanger, other.backgroundAccentDanger) &&
             const DeepCollectionEquality().equals(
-                backgroundAccentGradient, other.backgroundAccentGradient) &&
-            const DeepCollectionEquality()
-                .equals(backgroundAccentInfo, other.backgroundAccentInfo) &&
+              backgroundAccentBrand,
+              other.backgroundAccentBrand,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAccentPrimary, other.backgroundAccentPrimary) &&
+              backgroundAccentDanger,
+              other.backgroundAccentDanger,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAccentSecondary, other.backgroundAccentSecondary) &&
+              backgroundAccentGradient,
+              other.backgroundAccentGradient,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAccentSuccess, other.backgroundAccentSuccess) &&
+              backgroundAccentInfo,
+              other.backgroundAccentInfo,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAccentWarning, other.backgroundAccentWarning) &&
-            const DeepCollectionEquality().equals(backgroundAlertBasicPrimary,
-                other.backgroundAlertBasicPrimary) &&
-            const DeepCollectionEquality().equals(backgroundAlertBasicSecondary,
-                other.backgroundAlertBasicSecondary) &&
-            const DeepCollectionEquality().equals(backgroundAlertDangerPrimary,
-                other.backgroundAlertDangerPrimary) &&
+              backgroundAccentPrimary,
+              other.backgroundAccentPrimary,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAlertDangerSecondary,
-                other.backgroundAlertDangerSecondary) &&
+              backgroundAccentSecondary,
+              other.backgroundAccentSecondary,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAlertInfoPrimary, other.backgroundAlertInfoPrimary) &&
-            const DeepCollectionEquality().equals(backgroundAlertInfoSecondary,
-                other.backgroundAlertInfoSecondary) &&
-            const DeepCollectionEquality().equals(backgroundAlertSuccessPrimary,
-                other.backgroundAlertSuccessPrimary) &&
+              backgroundAccentSuccess,
+              other.backgroundAccentSuccess,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAlertSuccessSecondary,
-                other.backgroundAlertSuccessSecondary) &&
-            const DeepCollectionEquality().equals(backgroundAlertWarningPrimary,
-                other.backgroundAlertWarningPrimary) &&
+              backgroundAccentWarning,
+              other.backgroundAccentWarning,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundAlertWarningSecondary,
-                other.backgroundAlertWarningSecondary) &&
-            const DeepCollectionEquality()
-                .equals(backgroundBackdrop, other.backgroundBackdrop) &&
-            const DeepCollectionEquality()
-                .equals(backgroundBrand, other.backgroundBrand) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDatavizBlue, other.backgroundDatavizBlue) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDatavizGreen, other.backgroundDatavizGreen) &&
+              backgroundAlertBasicPrimary,
+              other.backgroundAlertBasicPrimary,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundDatavizOrange, other.backgroundDatavizOrange) &&
-            const DeepCollectionEquality()
-                .equals(backgroundDatavizPink, other.backgroundDatavizPink) &&
+              backgroundAlertBasicSecondary,
+              other.backgroundAlertBasicSecondary,
+            ) &&
             const DeepCollectionEquality().equals(
-                backgroundDatavizPurple, other.backgroundDatavizPurple) &&
-            const DeepCollectionEquality().equals(backgroundDatavizRed, other.backgroundDatavizRed) &&
-            const DeepCollectionEquality().equals(backgroundDisabled, other.backgroundDisabled) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveDangerActive, other.backgroundInteractiveDangerActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveDangerDefault, other.backgroundInteractiveDangerDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveDangerHover, other.backgroundInteractiveDangerHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralActive, other.backgroundInteractiveNeutralActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldActive, other.backgroundInteractiveNeutralBoldActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldDefault, other.backgroundInteractiveNeutralBoldDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralBoldHover, other.backgroundInteractiveNeutralBoldHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralDefault, other.backgroundInteractiveNeutralDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralHover, other.backgroundInteractiveNeutralHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralSubtleActive, other.backgroundInteractiveNeutralSubtleActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralSubtleDefault, other.backgroundInteractiveNeutralSubtleDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveNeutralSubtleHover, other.backgroundInteractiveNeutralSubtleHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractivePrimaryActive, other.backgroundInteractivePrimaryActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractivePrimaryDefault, other.backgroundInteractivePrimaryDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractivePrimaryHover, other.backgroundInteractivePrimaryHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSecondaryActive, other.backgroundInteractiveSecondaryActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSecondaryDefault, other.backgroundInteractiveSecondaryDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSecondaryHover, other.backgroundInteractiveSecondaryHover) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSuccessActive, other.backgroundInteractiveSuccessActive) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSuccessDefault, other.backgroundInteractiveSuccessDefault) &&
-            const DeepCollectionEquality().equals(backgroundInteractiveSuccessHover, other.backgroundInteractiveSuccessHover) &&
-            const DeepCollectionEquality().equals(backgroundStaticFlat, other.backgroundStaticFlat) &&
-            const DeepCollectionEquality().equals(backgroundStaticFloating, other.backgroundStaticFloating) &&
-            const DeepCollectionEquality().equals(backgroundStaticInverse, other.backgroundStaticInverse) &&
-            const DeepCollectionEquality().equals(backgroundStaticInverseOnColor, other.backgroundStaticInverseOnColor) &&
-            const DeepCollectionEquality().equals(backgroundStaticOnColor, other.backgroundStaticOnColor) &&
-            const DeepCollectionEquality().equals(backgroundStaticRaised, other.backgroundStaticRaised) &&
-            const DeepCollectionEquality().equals(backgroundStaticSunken, other.backgroundStaticSunken) &&
-            const DeepCollectionEquality().equals(borderAccent, other.borderAccent) &&
-            const DeepCollectionEquality().equals(borderAlertBasic, other.borderAlertBasic) &&
-            const DeepCollectionEquality().equals(borderAlertDanger, other.borderAlertDanger) &&
-            const DeepCollectionEquality().equals(borderAlertInfo, other.borderAlertInfo) &&
-            const DeepCollectionEquality().equals(borderAlertSuccess, other.borderAlertSuccess) &&
-            const DeepCollectionEquality().equals(borderAlertWarning, other.borderAlertWarning) &&
-            const DeepCollectionEquality().equals(borderBrand, other.borderBrand) &&
-            const DeepCollectionEquality().equals(borderDisabled, other.borderDisabled) &&
-            const DeepCollectionEquality().equals(borderInteractiveBoldActive, other.borderInteractiveBoldActive) &&
-            const DeepCollectionEquality().equals(borderInteractiveBoldDefault, other.borderInteractiveBoldDefault) &&
-            const DeepCollectionEquality().equals(borderInteractiveBoldHover, other.borderInteractiveBoldHover) &&
-            const DeepCollectionEquality().equals(borderInteractiveFocus, other.borderInteractiveFocus) &&
-            const DeepCollectionEquality().equals(borderInteractivePrimaryActive, other.borderInteractivePrimaryActive) &&
-            const DeepCollectionEquality().equals(borderInteractivePrimaryDefault, other.borderInteractivePrimaryDefault) &&
-            const DeepCollectionEquality().equals(borderInteractivePrimaryHover, other.borderInteractivePrimaryHover) &&
-            const DeepCollectionEquality().equals(borderInteractiveSecondaryActive, other.borderInteractiveSecondaryActive) &&
-            const DeepCollectionEquality().equals(borderInteractiveSecondaryDefault, other.borderInteractiveSecondaryDefault) &&
-            const DeepCollectionEquality().equals(borderInteractiveSecondaryHover, other.borderInteractiveSecondaryHover) &&
-            const DeepCollectionEquality().equals(borderStaticInverse, other.borderStaticInverse) &&
-            const DeepCollectionEquality().equals(borderStaticOnColor, other.borderStaticOnColor) &&
-            const DeepCollectionEquality().equals(borderStaticPrimary, other.borderStaticPrimary) &&
-            const DeepCollectionEquality().equals(borderStaticSecondary, other.borderStaticSecondary) &&
-            const DeepCollectionEquality().equals(borderStaticTertiary, other.borderStaticTertiary) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim100, other.legacyDatavizDenim100) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim200, other.legacyDatavizDenim200) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim300, other.legacyDatavizDenim300) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim400, other.legacyDatavizDenim400) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim50, other.legacyDatavizDenim50) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim500, other.legacyDatavizDenim500) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim600, other.legacyDatavizDenim600) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim700, other.legacyDatavizDenim700) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim800, other.legacyDatavizDenim800) &&
-            const DeepCollectionEquality().equals(legacyDatavizDenim900, other.legacyDatavizDenim900) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender100, other.legacyDatavizLavender100) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender200, other.legacyDatavizLavender200) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender300, other.legacyDatavizLavender300) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender400, other.legacyDatavizLavender400) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender50, other.legacyDatavizLavender50) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender500, other.legacyDatavizLavender500) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender600, other.legacyDatavizLavender600) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender700, other.legacyDatavizLavender700) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender800, other.legacyDatavizLavender800) &&
-            const DeepCollectionEquality().equals(legacyDatavizLavender900, other.legacyDatavizLavender900) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime100, other.legacyDatavizLime100) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime200, other.legacyDatavizLime200) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime300, other.legacyDatavizLime300) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime400, other.legacyDatavizLime400) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime50, other.legacyDatavizLime50) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime500, other.legacyDatavizLime500) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime600, other.legacyDatavizLime600) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime700, other.legacyDatavizLime700) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime800, other.legacyDatavizLime800) &&
-            const DeepCollectionEquality().equals(legacyDatavizLime900, other.legacyDatavizLime900) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard100, other.legacyDatavizMustard100) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard200, other.legacyDatavizMustard200) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard300, other.legacyDatavizMustard300) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard400, other.legacyDatavizMustard400) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard50, other.legacyDatavizMustard50) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard500, other.legacyDatavizMustard500) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard600, other.legacyDatavizMustard600) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard700, other.legacyDatavizMustard700) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard800, other.legacyDatavizMustard800) &&
-            const DeepCollectionEquality().equals(legacyDatavizMustard900, other.legacyDatavizMustard900) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby100, other.legacyDatavizRuby100) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby200, other.legacyDatavizRuby200) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby300, other.legacyDatavizRuby300) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby400, other.legacyDatavizRuby400) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby50, other.legacyDatavizRuby50) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby500, other.legacyDatavizRuby500) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby600, other.legacyDatavizRuby600) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby700, other.legacyDatavizRuby700) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby800, other.legacyDatavizRuby800) &&
-            const DeepCollectionEquality().equals(legacyDatavizRuby900, other.legacyDatavizRuby900) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine100, other.legacyDatavizTangerine100) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine200, other.legacyDatavizTangerine200) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine300, other.legacyDatavizTangerine300) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine400, other.legacyDatavizTangerine400) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine50, other.legacyDatavizTangerine50) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine500, other.legacyDatavizTangerine500) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine600, other.legacyDatavizTangerine600) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine700, other.legacyDatavizTangerine700) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine800, other.legacyDatavizTangerine800) &&
-            const DeepCollectionEquality().equals(legacyDatavizTangerine900, other.legacyDatavizTangerine900) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundBasicBold, other.legacyTagBackgroundBasicBold) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundDenim, other.legacyTagBackgroundDenim) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundLavender, other.legacyTagBackgroundLavender) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundLime, other.legacyTagBackgroundLime) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundMustard, other.legacyTagBackgroundMustard) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundPrimary, other.legacyTagBackgroundPrimary) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundRuby, other.legacyTagBackgroundRuby) &&
-            const DeepCollectionEquality().equals(legacyTagBackgroundTangerine, other.legacyTagBackgroundTangerine) &&
-            const DeepCollectionEquality().equals(legacyTagBorderBasicBold, other.legacyTagBorderBasicBold) &&
-            const DeepCollectionEquality().equals(legacyTagBorderDenim, other.legacyTagBorderDenim) &&
-            const DeepCollectionEquality().equals(legacyTagBorderLavender, other.legacyTagBorderLavender) &&
-            const DeepCollectionEquality().equals(legacyTagBorderLime, other.legacyTagBorderLime) &&
-            const DeepCollectionEquality().equals(legacyTagBorderMustard, other.legacyTagBorderMustard) &&
-            const DeepCollectionEquality().equals(legacyTagBorderPrimary, other.legacyTagBorderPrimary) &&
-            const DeepCollectionEquality().equals(legacyTagBorderRuby, other.legacyTagBorderRuby) &&
-            const DeepCollectionEquality().equals(legacyTagBorderTangerine, other.legacyTagBorderTangerine) &&
-            const DeepCollectionEquality().equals(legacyTagTextBasicBold, other.legacyTagTextBasicBold) &&
-            const DeepCollectionEquality().equals(legacyTagTextDenim, other.legacyTagTextDenim) &&
-            const DeepCollectionEquality().equals(legacyTagTextLavender, other.legacyTagTextLavender) &&
-            const DeepCollectionEquality().equals(legacyTagTextLime, other.legacyTagTextLime) &&
-            const DeepCollectionEquality().equals(legacyTagTextMustard, other.legacyTagTextMustard) &&
-            const DeepCollectionEquality().equals(legacyTagTextPrimary, other.legacyTagTextPrimary) &&
-            const DeepCollectionEquality().equals(legacyTagTextRuby, other.legacyTagTextRuby) &&
-            const DeepCollectionEquality().equals(legacyTagTextTangerine, other.legacyTagTextTangerine) &&
-            const DeepCollectionEquality().equals(paletteBasicsBlack, other.paletteBasicsBlack) &&
-            const DeepCollectionEquality().equals(paletteBasicsWhite, other.paletteBasicsWhite) &&
-            const DeepCollectionEquality().equals(paletteBasicsWhite64, other.paletteBasicsWhite64) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral100, other.paletteBrandCoral100) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral1000, other.paletteBrandCoral1000) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral150, other.paletteBrandCoral150) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral200, other.paletteBrandCoral200) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral25, other.paletteBrandCoral25) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral300, other.paletteBrandCoral300) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral400, other.paletteBrandCoral400) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral50, other.paletteBrandCoral50) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral500, other.paletteBrandCoral500) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral600, other.paletteBrandCoral600) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral700, other.paletteBrandCoral700) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral800, other.paletteBrandCoral800) &&
-            const DeepCollectionEquality().equals(paletteBrandCoral900, other.paletteBrandCoral900) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey0, other.paletteBrandGrey0) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey100, other.paletteBrandGrey100) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey1000, other.paletteBrandGrey1000) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey150, other.paletteBrandGrey150) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey200, other.paletteBrandGrey200) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey25, other.paletteBrandGrey25) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey300, other.paletteBrandGrey300) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey400, other.paletteBrandGrey400) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey50, other.paletteBrandGrey50) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey500, other.paletteBrandGrey500) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey600, other.paletteBrandGrey600) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey700, other.paletteBrandGrey700) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey800, other.paletteBrandGrey800) &&
-            const DeepCollectionEquality().equals(paletteBrandGrey900, other.paletteBrandGrey900) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo100, other.paletteBrandIndigo100) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo1000, other.paletteBrandIndigo1000) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo150, other.paletteBrandIndigo150) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo200, other.paletteBrandIndigo200) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo25, other.paletteBrandIndigo25) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo300, other.paletteBrandIndigo300) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo400, other.paletteBrandIndigo400) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo50, other.paletteBrandIndigo50) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo500, other.paletteBrandIndigo500) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo600, other.paletteBrandIndigo600) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo700, other.paletteBrandIndigo700) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo800, other.paletteBrandIndigo800) &&
-            const DeepCollectionEquality().equals(paletteBrandIndigo900, other.paletteBrandIndigo900) &&
-            const DeepCollectionEquality().equals(paletteBrandNight0, other.paletteBrandNight0) &&
-            const DeepCollectionEquality().equals(paletteBrandNight064, other.paletteBrandNight064) &&
-            const DeepCollectionEquality().equals(paletteBrandNight100, other.paletteBrandNight100) &&
-            const DeepCollectionEquality().equals(paletteBrandNight1000, other.paletteBrandNight1000) &&
-            const DeepCollectionEquality().equals(paletteBrandNight100012, other.paletteBrandNight100012) &&
-            const DeepCollectionEquality().equals(paletteBrandNight100016, other.paletteBrandNight100016) &&
-            const DeepCollectionEquality().equals(paletteBrandNight10008, other.paletteBrandNight10008) &&
-            const DeepCollectionEquality().equals(paletteBrandNight150, other.paletteBrandNight150) &&
-            const DeepCollectionEquality().equals(paletteBrandNight200, other.paletteBrandNight200) &&
-            const DeepCollectionEquality().equals(paletteBrandNight25, other.paletteBrandNight25) &&
-            const DeepCollectionEquality().equals(paletteBrandNight300, other.paletteBrandNight300) &&
-            const DeepCollectionEquality().equals(paletteBrandNight400, other.paletteBrandNight400) &&
-            const DeepCollectionEquality().equals(paletteBrandNight50, other.paletteBrandNight50) &&
-            const DeepCollectionEquality().equals(paletteBrandNight500, other.paletteBrandNight500) &&
-            const DeepCollectionEquality().equals(paletteBrandNight600, other.paletteBrandNight600) &&
-            const DeepCollectionEquality().equals(paletteBrandNight700, other.paletteBrandNight700) &&
-            const DeepCollectionEquality().equals(paletteBrandNight800, other.paletteBrandNight800) &&
-            const DeepCollectionEquality().equals(paletteBrandNight900, other.paletteBrandNight900) &&
-            const DeepCollectionEquality().equals(paletteDatavizBlue, other.paletteDatavizBlue) &&
-            const DeepCollectionEquality().equals(paletteDatavizGreen, other.paletteDatavizGreen) &&
-            const DeepCollectionEquality().equals(paletteDatavizOrange, other.paletteDatavizOrange) &&
-            const DeepCollectionEquality().equals(paletteDatavizPink, other.paletteDatavizPink) &&
-            const DeepCollectionEquality().equals(paletteDatavizPurple, other.paletteDatavizPurple) &&
-            const DeepCollectionEquality().equals(paletteDatavizRed, other.paletteDatavizRed) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue100, other.paletteSemanticBlue100) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue1000, other.paletteSemanticBlue1000) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue150, other.paletteSemanticBlue150) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue200, other.paletteSemanticBlue200) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue25, other.paletteSemanticBlue25) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue300, other.paletteSemanticBlue300) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue400, other.paletteSemanticBlue400) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue50, other.paletteSemanticBlue50) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue500, other.paletteSemanticBlue500) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue600, other.paletteSemanticBlue600) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue700, other.paletteSemanticBlue700) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue800, other.paletteSemanticBlue800) &&
-            const DeepCollectionEquality().equals(paletteSemanticBlue900, other.paletteSemanticBlue900) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen100, other.paletteSemanticGreen100) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen1000, other.paletteSemanticGreen1000) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen150, other.paletteSemanticGreen150) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen200, other.paletteSemanticGreen200) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen25, other.paletteSemanticGreen25) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen300, other.paletteSemanticGreen300) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen400, other.paletteSemanticGreen400) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen50, other.paletteSemanticGreen50) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen500, other.paletteSemanticGreen500) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen600, other.paletteSemanticGreen600) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen700, other.paletteSemanticGreen700) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen800, other.paletteSemanticGreen800) &&
-            const DeepCollectionEquality().equals(paletteSemanticGreen900, other.paletteSemanticGreen900) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange100, other.paletteSemanticOrange100) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange1000, other.paletteSemanticOrange1000) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange150, other.paletteSemanticOrange150) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange200, other.paletteSemanticOrange200) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange25, other.paletteSemanticOrange25) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange300, other.paletteSemanticOrange300) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange400, other.paletteSemanticOrange400) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange50, other.paletteSemanticOrange50) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange500, other.paletteSemanticOrange500) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange600, other.paletteSemanticOrange600) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange700, other.paletteSemanticOrange700) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange800, other.paletteSemanticOrange800) &&
-            const DeepCollectionEquality().equals(paletteSemanticOrange900, other.paletteSemanticOrange900) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed100, other.paletteSemanticRed100) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed1000, other.paletteSemanticRed1000) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed150, other.paletteSemanticRed150) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed200, other.paletteSemanticRed200) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed25, other.paletteSemanticRed25) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed300, other.paletteSemanticRed300) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed400, other.paletteSemanticRed400) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed50, other.paletteSemanticRed50) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed500, other.paletteSemanticRed500) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed600, other.paletteSemanticRed600) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed700, other.paletteSemanticRed700) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed800, other.paletteSemanticRed800) &&
-            const DeepCollectionEquality().equals(paletteSemanticRed900, other.paletteSemanticRed900) &&
-            const DeepCollectionEquality().equals(textAlertBasic, other.textAlertBasic) &&
-            const DeepCollectionEquality().equals(textAlertDanger, other.textAlertDanger) &&
-            const DeepCollectionEquality().equals(textAlertInfo, other.textAlertInfo) &&
-            const DeepCollectionEquality().equals(textAlertSuccess, other.textAlertSuccess) &&
-            const DeepCollectionEquality().equals(textAlertWarning, other.textAlertWarning) &&
-            const DeepCollectionEquality().equals(textDisabled, other.textDisabled) &&
-            const DeepCollectionEquality().equals(textInteractivePrimaryActive, other.textInteractivePrimaryActive) &&
-            const DeepCollectionEquality().equals(textInteractivePrimaryDefault, other.textInteractivePrimaryDefault) &&
-            const DeepCollectionEquality().equals(textInteractivePrimaryHover, other.textInteractivePrimaryHover) &&
-            const DeepCollectionEquality().equals(textInteractiveSecondaryActive, other.textInteractiveSecondaryActive) &&
-            const DeepCollectionEquality().equals(textInteractiveSecondaryDefault, other.textInteractiveSecondaryDefault) &&
-            const DeepCollectionEquality().equals(textInteractiveSecondaryHover, other.textInteractiveSecondaryHover) &&
-            const DeepCollectionEquality().equals(textStaticInverse, other.textStaticInverse) &&
-            const DeepCollectionEquality().equals(textStaticOnColor, other.textStaticOnColor) &&
-            const DeepCollectionEquality().equals(textStaticPrimary, other.textStaticPrimary) &&
-            const DeepCollectionEquality().equals(textStaticSecondary, other.textStaticSecondary) &&
-            const DeepCollectionEquality().equals(textStaticTertiary, other.textStaticTertiary) &&
-            const DeepCollectionEquality().equals(bodyExtraSmall, other.bodyExtraSmall) &&
-            const DeepCollectionEquality().equals(bodyExtraSmallStrong, other.bodyExtraSmallStrong) &&
+              backgroundAlertDangerPrimary,
+              other.backgroundAlertDangerPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertDangerSecondary,
+              other.backgroundAlertDangerSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertInfoPrimary,
+              other.backgroundAlertInfoPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertInfoSecondary,
+              other.backgroundAlertInfoSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertSuccessPrimary,
+              other.backgroundAlertSuccessPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertSuccessSecondary,
+              other.backgroundAlertSuccessSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertWarningPrimary,
+              other.backgroundAlertWarningPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertWarningSecondary,
+              other.backgroundAlertWarningSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundBackdrop,
+              other.backgroundBackdrop,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundBrand,
+              other.backgroundBrand,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizBlue,
+              other.backgroundDatavizBlue,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizGreen,
+              other.backgroundDatavizGreen,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizOrange,
+              other.backgroundDatavizOrange,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizPink,
+              other.backgroundDatavizPink,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizPurple,
+              other.backgroundDatavizPurple,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizRed,
+              other.backgroundDatavizRed,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDisabled,
+              other.backgroundDisabled,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveDangerActive,
+              other.backgroundInteractiveDangerActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveDangerDefault,
+              other.backgroundInteractiveDangerDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveDangerHover,
+              other.backgroundInteractiveDangerHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralActive,
+              other.backgroundInteractiveNeutralActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralBoldActive,
+              other.backgroundInteractiveNeutralBoldActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralBoldDefault,
+              other.backgroundInteractiveNeutralBoldDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralBoldHover,
+              other.backgroundInteractiveNeutralBoldHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralDefault,
+              other.backgroundInteractiveNeutralDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralHover,
+              other.backgroundInteractiveNeutralHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralSubtleActive,
+              other.backgroundInteractiveNeutralSubtleActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralSubtleDefault,
+              other.backgroundInteractiveNeutralSubtleDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveNeutralSubtleHover,
+              other.backgroundInteractiveNeutralSubtleHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractivePrimaryActive,
+              other.backgroundInteractivePrimaryActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractivePrimaryDefault,
+              other.backgroundInteractivePrimaryDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractivePrimaryHover,
+              other.backgroundInteractivePrimaryHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveSecondaryActive,
+              other.backgroundInteractiveSecondaryActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveSecondaryDefault,
+              other.backgroundInteractiveSecondaryDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveSecondaryHover,
+              other.backgroundInteractiveSecondaryHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveSuccessActive,
+              other.backgroundInteractiveSuccessActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveSuccessDefault,
+              other.backgroundInteractiveSuccessDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundInteractiveSuccessHover,
+              other.backgroundInteractiveSuccessHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticFlat,
+              other.backgroundStaticFlat,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticFloating,
+              other.backgroundStaticFloating,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticInverse,
+              other.backgroundStaticInverse,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticInverseOnColor,
+              other.backgroundStaticInverseOnColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticOnColor,
+              other.backgroundStaticOnColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticRaised,
+              other.backgroundStaticRaised,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundStaticSunken,
+              other.backgroundStaticSunken,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderAccent,
+              other.borderAccent,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderAlertBasic,
+              other.borderAlertBasic,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderAlertDanger,
+              other.borderAlertDanger,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderAlertInfo,
+              other.borderAlertInfo,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderAlertSuccess,
+              other.borderAlertSuccess,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderAlertWarning,
+              other.borderAlertWarning,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderBrand,
+              other.borderBrand,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderDisabled,
+              other.borderDisabled,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveBoldActive,
+              other.borderInteractiveBoldActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveBoldDefault,
+              other.borderInteractiveBoldDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveBoldHover,
+              other.borderInteractiveBoldHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveFocus,
+              other.borderInteractiveFocus,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractivePrimaryActive,
+              other.borderInteractivePrimaryActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractivePrimaryDefault,
+              other.borderInteractivePrimaryDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractivePrimaryHover,
+              other.borderInteractivePrimaryHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveSecondaryActive,
+              other.borderInteractiveSecondaryActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveSecondaryDefault,
+              other.borderInteractiveSecondaryDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveSecondaryHover,
+              other.borderInteractiveSecondaryHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderStaticInverse,
+              other.borderStaticInverse,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderStaticOnColor,
+              other.borderStaticOnColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderStaticPrimary,
+              other.borderStaticPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderStaticSecondary,
+              other.borderStaticSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderStaticTertiary,
+              other.borderStaticTertiary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim100,
+              other.legacyDatavizDenim100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim200,
+              other.legacyDatavizDenim200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim300,
+              other.legacyDatavizDenim300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim400,
+              other.legacyDatavizDenim400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim50,
+              other.legacyDatavizDenim50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim500,
+              other.legacyDatavizDenim500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim600,
+              other.legacyDatavizDenim600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim700,
+              other.legacyDatavizDenim700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim800,
+              other.legacyDatavizDenim800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizDenim900,
+              other.legacyDatavizDenim900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender100,
+              other.legacyDatavizLavender100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender200,
+              other.legacyDatavizLavender200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender300,
+              other.legacyDatavizLavender300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender400,
+              other.legacyDatavizLavender400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender50,
+              other.legacyDatavizLavender50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender500,
+              other.legacyDatavizLavender500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender600,
+              other.legacyDatavizLavender600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender700,
+              other.legacyDatavizLavender700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender800,
+              other.legacyDatavizLavender800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLavender900,
+              other.legacyDatavizLavender900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime100,
+              other.legacyDatavizLime100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime200,
+              other.legacyDatavizLime200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime300,
+              other.legacyDatavizLime300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime400,
+              other.legacyDatavizLime400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime50,
+              other.legacyDatavizLime50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime500,
+              other.legacyDatavizLime500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime600,
+              other.legacyDatavizLime600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime700,
+              other.legacyDatavizLime700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime800,
+              other.legacyDatavizLime800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizLime900,
+              other.legacyDatavizLime900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard100,
+              other.legacyDatavizMustard100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard200,
+              other.legacyDatavizMustard200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard300,
+              other.legacyDatavizMustard300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard400,
+              other.legacyDatavizMustard400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard50,
+              other.legacyDatavizMustard50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard500,
+              other.legacyDatavizMustard500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard600,
+              other.legacyDatavizMustard600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard700,
+              other.legacyDatavizMustard700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard800,
+              other.legacyDatavizMustard800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizMustard900,
+              other.legacyDatavizMustard900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby100,
+              other.legacyDatavizRuby100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby200,
+              other.legacyDatavizRuby200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby300,
+              other.legacyDatavizRuby300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby400,
+              other.legacyDatavizRuby400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby50,
+              other.legacyDatavizRuby50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby500,
+              other.legacyDatavizRuby500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby600,
+              other.legacyDatavizRuby600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby700,
+              other.legacyDatavizRuby700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby800,
+              other.legacyDatavizRuby800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizRuby900,
+              other.legacyDatavizRuby900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine100,
+              other.legacyDatavizTangerine100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine200,
+              other.legacyDatavizTangerine200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine300,
+              other.legacyDatavizTangerine300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine400,
+              other.legacyDatavizTangerine400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine50,
+              other.legacyDatavizTangerine50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine500,
+              other.legacyDatavizTangerine500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine600,
+              other.legacyDatavizTangerine600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine700,
+              other.legacyDatavizTangerine700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine800,
+              other.legacyDatavizTangerine800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyDatavizTangerine900,
+              other.legacyDatavizTangerine900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundBasicBold,
+              other.legacyTagBackgroundBasicBold,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundDenim,
+              other.legacyTagBackgroundDenim,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundLavender,
+              other.legacyTagBackgroundLavender,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundLime,
+              other.legacyTagBackgroundLime,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundMustard,
+              other.legacyTagBackgroundMustard,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundPrimary,
+              other.legacyTagBackgroundPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundRuby,
+              other.legacyTagBackgroundRuby,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBackgroundTangerine,
+              other.legacyTagBackgroundTangerine,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderBasicBold,
+              other.legacyTagBorderBasicBold,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderDenim,
+              other.legacyTagBorderDenim,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderLavender,
+              other.legacyTagBorderLavender,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderLime,
+              other.legacyTagBorderLime,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderMustard,
+              other.legacyTagBorderMustard,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderPrimary,
+              other.legacyTagBorderPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderRuby,
+              other.legacyTagBorderRuby,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagBorderTangerine,
+              other.legacyTagBorderTangerine,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextBasicBold,
+              other.legacyTagTextBasicBold,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextDenim,
+              other.legacyTagTextDenim,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextLavender,
+              other.legacyTagTextLavender,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextLime,
+              other.legacyTagTextLime,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextMustard,
+              other.legacyTagTextMustard,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextPrimary,
+              other.legacyTagTextPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextRuby,
+              other.legacyTagTextRuby,
+            ) &&
+            const DeepCollectionEquality().equals(
+              legacyTagTextTangerine,
+              other.legacyTagTextTangerine,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBasicsBlack,
+              other.paletteBasicsBlack,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBasicsWhite,
+              other.paletteBasicsWhite,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBasicsWhite64,
+              other.paletteBasicsWhite64,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral100,
+              other.paletteBrandCoral100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral1000,
+              other.paletteBrandCoral1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral150,
+              other.paletteBrandCoral150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral200,
+              other.paletteBrandCoral200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral25,
+              other.paletteBrandCoral25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral300,
+              other.paletteBrandCoral300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral400,
+              other.paletteBrandCoral400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral50,
+              other.paletteBrandCoral50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral500,
+              other.paletteBrandCoral500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral600,
+              other.paletteBrandCoral600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral700,
+              other.paletteBrandCoral700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral800,
+              other.paletteBrandCoral800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandCoral900,
+              other.paletteBrandCoral900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey0,
+              other.paletteBrandGrey0,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey100,
+              other.paletteBrandGrey100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey1000,
+              other.paletteBrandGrey1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey150,
+              other.paletteBrandGrey150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey200,
+              other.paletteBrandGrey200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey25,
+              other.paletteBrandGrey25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey300,
+              other.paletteBrandGrey300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey400,
+              other.paletteBrandGrey400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey50,
+              other.paletteBrandGrey50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey500,
+              other.paletteBrandGrey500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey600,
+              other.paletteBrandGrey600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey700,
+              other.paletteBrandGrey700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey800,
+              other.paletteBrandGrey800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandGrey900,
+              other.paletteBrandGrey900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo100,
+              other.paletteBrandIndigo100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo1000,
+              other.paletteBrandIndigo1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo150,
+              other.paletteBrandIndigo150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo200,
+              other.paletteBrandIndigo200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo25,
+              other.paletteBrandIndigo25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo300,
+              other.paletteBrandIndigo300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo400,
+              other.paletteBrandIndigo400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo50,
+              other.paletteBrandIndigo50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo500,
+              other.paletteBrandIndigo500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo600,
+              other.paletteBrandIndigo600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo700,
+              other.paletteBrandIndigo700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo800,
+              other.paletteBrandIndigo800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo900,
+              other.paletteBrandIndigo900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight0,
+              other.paletteBrandNight0,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight064,
+              other.paletteBrandNight064,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight100,
+              other.paletteBrandNight100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight1000,
+              other.paletteBrandNight1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight100012,
+              other.paletteBrandNight100012,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight100016,
+              other.paletteBrandNight100016,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight10008,
+              other.paletteBrandNight10008,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight150,
+              other.paletteBrandNight150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight200,
+              other.paletteBrandNight200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight25,
+              other.paletteBrandNight25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight300,
+              other.paletteBrandNight300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight400,
+              other.paletteBrandNight400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight50,
+              other.paletteBrandNight50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight500,
+              other.paletteBrandNight500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight600,
+              other.paletteBrandNight600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight700,
+              other.paletteBrandNight700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight800,
+              other.paletteBrandNight800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandNight900,
+              other.paletteBrandNight900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizBlue,
+              other.paletteDatavizBlue,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizGreen,
+              other.paletteDatavizGreen,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizOrange,
+              other.paletteDatavizOrange,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizPink,
+              other.paletteDatavizPink,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizPurple,
+              other.paletteDatavizPurple,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizRed,
+              other.paletteDatavizRed,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue100,
+              other.paletteSemanticBlue100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue1000,
+              other.paletteSemanticBlue1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue150,
+              other.paletteSemanticBlue150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue200,
+              other.paletteSemanticBlue200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue25,
+              other.paletteSemanticBlue25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue300,
+              other.paletteSemanticBlue300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue400,
+              other.paletteSemanticBlue400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue50,
+              other.paletteSemanticBlue50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue500,
+              other.paletteSemanticBlue500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue600,
+              other.paletteSemanticBlue600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue700,
+              other.paletteSemanticBlue700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue800,
+              other.paletteSemanticBlue800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticBlue900,
+              other.paletteSemanticBlue900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen100,
+              other.paletteSemanticGreen100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen1000,
+              other.paletteSemanticGreen1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen150,
+              other.paletteSemanticGreen150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen200,
+              other.paletteSemanticGreen200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen25,
+              other.paletteSemanticGreen25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen300,
+              other.paletteSemanticGreen300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen400,
+              other.paletteSemanticGreen400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen50,
+              other.paletteSemanticGreen50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen500,
+              other.paletteSemanticGreen500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen600,
+              other.paletteSemanticGreen600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen700,
+              other.paletteSemanticGreen700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen800,
+              other.paletteSemanticGreen800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen900,
+              other.paletteSemanticGreen900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange100,
+              other.paletteSemanticOrange100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange1000,
+              other.paletteSemanticOrange1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange150,
+              other.paletteSemanticOrange150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange200,
+              other.paletteSemanticOrange200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange25,
+              other.paletteSemanticOrange25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange300,
+              other.paletteSemanticOrange300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange400,
+              other.paletteSemanticOrange400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange50,
+              other.paletteSemanticOrange50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange500,
+              other.paletteSemanticOrange500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange600,
+              other.paletteSemanticOrange600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange700,
+              other.paletteSemanticOrange700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange800,
+              other.paletteSemanticOrange800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticOrange900,
+              other.paletteSemanticOrange900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed100,
+              other.paletteSemanticRed100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed1000,
+              other.paletteSemanticRed1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed150,
+              other.paletteSemanticRed150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed200,
+              other.paletteSemanticRed200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed25,
+              other.paletteSemanticRed25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed300,
+              other.paletteSemanticRed300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed400,
+              other.paletteSemanticRed400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed50,
+              other.paletteSemanticRed50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed500,
+              other.paletteSemanticRed500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed600,
+              other.paletteSemanticRed600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed700,
+              other.paletteSemanticRed700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed800,
+              other.paletteSemanticRed800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed900,
+              other.paletteSemanticRed900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textAlertBasic,
+              other.textAlertBasic,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textAlertDanger,
+              other.textAlertDanger,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textAlertInfo,
+              other.textAlertInfo,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textAlertSuccess,
+              other.textAlertSuccess,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textAlertWarning,
+              other.textAlertWarning,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textDisabled,
+              other.textDisabled,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textInteractivePrimaryActive,
+              other.textInteractivePrimaryActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textInteractivePrimaryDefault,
+              other.textInteractivePrimaryDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textInteractivePrimaryHover,
+              other.textInteractivePrimaryHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textInteractiveSecondaryActive,
+              other.textInteractiveSecondaryActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textInteractiveSecondaryDefault,
+              other.textInteractiveSecondaryDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textInteractiveSecondaryHover,
+              other.textInteractiveSecondaryHover,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textStaticInverse,
+              other.textStaticInverse,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textStaticOnColor,
+              other.textStaticOnColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textStaticPrimary,
+              other.textStaticPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textStaticSecondary,
+              other.textStaticSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              textStaticTertiary,
+              other.textStaticTertiary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              bodyExtraSmall,
+              other.bodyExtraSmall,
+            ) &&
+            const DeepCollectionEquality().equals(
+              bodyExtraSmallStrong,
+              other.bodyExtraSmallStrong,
+            ) &&
             const DeepCollectionEquality().equals(bodyLarge, other.bodyLarge) &&
-            const DeepCollectionEquality().equals(bodyLargeStrong, other.bodyLargeStrong) &&
-            const DeepCollectionEquality().equals(bodyMedium, other.bodyMedium) &&
-            const DeepCollectionEquality().equals(bodyMediumStrong, other.bodyMediumStrong) &&
+            const DeepCollectionEquality().equals(
+              bodyLargeStrong,
+              other.bodyLargeStrong,
+            ) &&
+            const DeepCollectionEquality().equals(
+              bodyMedium,
+              other.bodyMedium,
+            ) &&
+            const DeepCollectionEquality().equals(
+              bodyMediumStrong,
+              other.bodyMediumStrong,
+            ) &&
             const DeepCollectionEquality().equals(bodySmall, other.bodySmall) &&
-            const DeepCollectionEquality().equals(bodySmallStrong, other.bodySmallStrong) &&
-            const DeepCollectionEquality().equals(highlightLarge, other.highlightLarge) &&
-            const DeepCollectionEquality().equals(highlightMedium, other.highlightMedium) &&
-            const DeepCollectionEquality().equals(highlightSmall, other.highlightSmall) &&
-            const DeepCollectionEquality().equals(titleLarge, other.titleLarge) &&
-            const DeepCollectionEquality().equals(titleLargeStrong, other.titleLargeStrong) &&
-            const DeepCollectionEquality().equals(titleMedium, other.titleMedium) &&
-            const DeepCollectionEquality().equals(titleMediumStrong, other.titleMediumStrong) &&
-            const DeepCollectionEquality().equals(titleSmall, other.titleSmall) &&
-            const DeepCollectionEquality().equals(titleSmallStrong, other.titleSmallStrong) &&
-            const DeepCollectionEquality().equals(borderRadius0, other.borderRadius0) &&
-            const DeepCollectionEquality().equals(borderRadius100, other.borderRadius100) &&
-            const DeepCollectionEquality().equals(borderRadius150, other.borderRadius150) &&
-            const DeepCollectionEquality().equals(borderRadius200, other.borderRadius200) &&
-            const DeepCollectionEquality().equals(borderRadius25, other.borderRadius25) &&
-            const DeepCollectionEquality().equals(borderRadius300, other.borderRadius300) &&
-            const DeepCollectionEquality().equals(borderRadius50, other.borderRadius50) &&
-            const DeepCollectionEquality().equals(borderRadiusBase, other.borderRadiusBase) &&
-            const DeepCollectionEquality().equals(borderRadiusRound, other.borderRadiusRound) &&
-            const DeepCollectionEquality().equals(borderWidth0, other.borderWidth0) &&
-            const DeepCollectionEquality().equals(borderWidth100, other.borderWidth100) &&
-            const DeepCollectionEquality().equals(borderWidth150, other.borderWidth150) &&
-            const DeepCollectionEquality().equals(borderWidth200, other.borderWidth200) &&
-            const DeepCollectionEquality().equals(borderWidth250, other.borderWidth250) &&
-            const DeepCollectionEquality().equals(borderWidth300, other.borderWidth300) &&
-            const DeepCollectionEquality().equals(borderWidth800, other.borderWidth800) &&
-            const DeepCollectionEquality().equals(fontSize100, other.fontSize100) &&
-            const DeepCollectionEquality().equals(fontSize200, other.fontSize200) &&
-            const DeepCollectionEquality().equals(fontSize300, other.fontSize300) &&
-            const DeepCollectionEquality().equals(fontSize400, other.fontSize400) &&
-            const DeepCollectionEquality().equals(fontSize50, other.fontSize50) &&
-            const DeepCollectionEquality().equals(fontSize500, other.fontSize500) &&
-            const DeepCollectionEquality().equals(fontSize600, other.fontSize600) &&
-            const DeepCollectionEquality().equals(fontSize700, other.fontSize700) &&
-            const DeepCollectionEquality().equals(fontSize75, other.fontSize75) &&
-            const DeepCollectionEquality().equals(fontSize800, other.fontSize800) &&
-            const DeepCollectionEquality().equals(fontSize900, other.fontSize900) &&
-            const DeepCollectionEquality().equals(fontSizeBase, other.fontSizeBase) &&
-            const DeepCollectionEquality().equals(fontSizeRatio, other.fontSizeRatio) &&
-            const DeepCollectionEquality().equals(letterSpacingCondensed, other.letterSpacingCondensed) &&
-            const DeepCollectionEquality().equals(letterSpacingDefault, other.letterSpacingDefault) &&
-            const DeepCollectionEquality().equals(letterSpacingWide, other.letterSpacingWide) &&
-            const DeepCollectionEquality().equals(lineHeight100, other.lineHeight100) &&
-            const DeepCollectionEquality().equals(lineHeight200, other.lineHeight200) &&
-            const DeepCollectionEquality().equals(lineHeight300, other.lineHeight300) &&
+            const DeepCollectionEquality().equals(
+              bodySmallStrong,
+              other.bodySmallStrong,
+            ) &&
+            const DeepCollectionEquality().equals(
+              highlightLarge,
+              other.highlightLarge,
+            ) &&
+            const DeepCollectionEquality().equals(
+              highlightMedium,
+              other.highlightMedium,
+            ) &&
+            const DeepCollectionEquality().equals(
+              highlightSmall,
+              other.highlightSmall,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleLarge,
+              other.titleLarge,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleLargeStrong,
+              other.titleLargeStrong,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleMedium,
+              other.titleMedium,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleMediumStrong,
+              other.titleMediumStrong,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleSmall,
+              other.titleSmall,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleSmallStrong,
+              other.titleSmallStrong,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius0,
+              other.borderRadius0,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius100,
+              other.borderRadius100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius150,
+              other.borderRadius150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius200,
+              other.borderRadius200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius25,
+              other.borderRadius25,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius300,
+              other.borderRadius300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadius50,
+              other.borderRadius50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadiusBase,
+              other.borderRadiusBase,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderRadiusRound,
+              other.borderRadiusRound,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth0,
+              other.borderWidth0,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth100,
+              other.borderWidth100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth150,
+              other.borderWidth150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth200,
+              other.borderWidth200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth250,
+              other.borderWidth250,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth300,
+              other.borderWidth300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderWidth800,
+              other.borderWidth800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize100,
+              other.fontSize100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize200,
+              other.fontSize200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize300,
+              other.fontSize300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize400,
+              other.fontSize400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize50,
+              other.fontSize50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize500,
+              other.fontSize500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize600,
+              other.fontSize600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize700,
+              other.fontSize700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize75,
+              other.fontSize75,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize800,
+              other.fontSize800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSize900,
+              other.fontSize900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSizeBase,
+              other.fontSizeBase,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontSizeRatio,
+              other.fontSizeRatio,
+            ) &&
+            const DeepCollectionEquality().equals(
+              letterSpacingCondensed,
+              other.letterSpacingCondensed,
+            ) &&
+            const DeepCollectionEquality().equals(
+              letterSpacingDefault,
+              other.letterSpacingDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              letterSpacingWide,
+              other.letterSpacingWide,
+            ) &&
+            const DeepCollectionEquality().equals(
+              lineHeight100,
+              other.lineHeight100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              lineHeight200,
+              other.lineHeight200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              lineHeight300,
+              other.lineHeight300,
+            ) &&
             const DeepCollectionEquality().equals(opacity0, other.opacity0) &&
-            const DeepCollectionEquality().equals(opacity100, other.opacity100) &&
-            const DeepCollectionEquality().equals(opacity1000, other.opacity1000) &&
-            const DeepCollectionEquality().equals(opacity150, other.opacity150) &&
-            const DeepCollectionEquality().equals(opacity200, other.opacity200) &&
-            const DeepCollectionEquality().equals(opacity400, other.opacity400) &&
-            const DeepCollectionEquality().equals(opacity600, other.opacity600) &&
-            const DeepCollectionEquality().equals(opacity800, other.opacity800) &&
+            const DeepCollectionEquality().equals(
+              opacity100,
+              other.opacity100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              opacity1000,
+              other.opacity1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              opacity150,
+              other.opacity150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              opacity200,
+              other.opacity200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              opacity400,
+              other.opacity400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              opacity600,
+              other.opacity600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              opacity800,
+              other.opacity800,
+            ) &&
             const DeepCollectionEquality().equals(sizing100, other.sizing100) &&
-            const DeepCollectionEquality().equals(sizing1300, other.sizing1300) &&
+            const DeepCollectionEquality().equals(
+              sizing1300,
+              other.sizing1300,
+            ) &&
             const DeepCollectionEquality().equals(sizing200, other.sizing200) &&
             const DeepCollectionEquality().equals(sizing300, other.sizing300) &&
             const DeepCollectionEquality().equals(sizing400, other.sizing400) &&
@@ -2580,35 +4076,101 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(sizing700, other.sizing700) &&
             const DeepCollectionEquality().equals(sizing800, other.sizing800) &&
             const DeepCollectionEquality().equals(sizing900, other.sizing900) &&
-            const DeepCollectionEquality().equals(sizingBase, other.sizingBase) &&
+            const DeepCollectionEquality().equals(
+              sizingBase,
+              other.sizingBase,
+            ) &&
             const DeepCollectionEquality().equals(spacing0, other.spacing0) &&
-            const DeepCollectionEquality().equals(spacing100, other.spacing100) &&
-            const DeepCollectionEquality().equals(spacing1000, other.spacing1000) &&
-            const DeepCollectionEquality().equals(spacing1200, other.spacing1200) &&
-            const DeepCollectionEquality().equals(spacing150, other.spacing150) &&
-            const DeepCollectionEquality().equals(spacing200, other.spacing200) &&
+            const DeepCollectionEquality().equals(
+              spacing100,
+              other.spacing100,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing1000,
+              other.spacing1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing1200,
+              other.spacing1200,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing150,
+              other.spacing150,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing200,
+              other.spacing200,
+            ) &&
             const DeepCollectionEquality().equals(spacing25, other.spacing25) &&
-            const DeepCollectionEquality().equals(spacing250, other.spacing250) &&
-            const DeepCollectionEquality().equals(spacing300, other.spacing300) &&
-            const DeepCollectionEquality().equals(spacing400, other.spacing400) &&
-            const DeepCollectionEquality().equals(spacing450, other.spacing450) &&
+            const DeepCollectionEquality().equals(
+              spacing250,
+              other.spacing250,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing300,
+              other.spacing300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing400,
+              other.spacing400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing450,
+              other.spacing450,
+            ) &&
             const DeepCollectionEquality().equals(spacing50, other.spacing50) &&
-            const DeepCollectionEquality().equals(spacing500, other.spacing500) &&
-            const DeepCollectionEquality().equals(spacing600, other.spacing600) &&
-            const DeepCollectionEquality().equals(spacing700, other.spacing700) &&
-            const DeepCollectionEquality().equals(spacing800, other.spacing800) &&
-            const DeepCollectionEquality().equals(spacing900, other.spacing900) &&
-            const DeepCollectionEquality().equals(spacingBase, other.spacingBase) &&
-            const DeepCollectionEquality().equals(fontFamilyUi, other.fontFamilyUi) &&
-            const DeepCollectionEquality().equals(fontWeight300, other.fontWeight300) &&
-            const DeepCollectionEquality().equals(fontWeight400, other.fontWeight400) &&
-            const DeepCollectionEquality().equals(fontWeight500, other.fontWeight500) &&
-            const DeepCollectionEquality().equals(fontWeight600, other.fontWeight600) &&
+            const DeepCollectionEquality().equals(
+              spacing500,
+              other.spacing500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing600,
+              other.spacing600,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing700,
+              other.spacing700,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing800,
+              other.spacing800,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacing900,
+              other.spacing900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              spacingBase,
+              other.spacingBase,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontFamilyUi,
+              other.fontFamilyUi,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontWeight300,
+              other.fontWeight300,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontWeight400,
+              other.fontWeight400,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontWeight500,
+              other.fontWeight500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fontWeight600,
+              other.fontWeight600,
+            ) &&
             const DeepCollectionEquality().equals(shadow0, other.shadow0) &&
             const DeepCollectionEquality().equals(shadow100, other.shadow100) &&
             const DeepCollectionEquality().equals(shadow200, other.shadow200) &&
             const DeepCollectionEquality().equals(shadow300, other.shadow300) &&
-            const DeepCollectionEquality().equals(textDecorationUnderline, other.textDecorationUnderline));
+            const DeepCollectionEquality().equals(
+              textDecorationUnderline,
+              other.textDecorationUnderline,
+            ));
   }
 
   @override
@@ -2646,26 +4208,33 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(backgroundInteractiveDangerDefault),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerHover),
       const DeepCollectionEquality().hash(backgroundInteractiveNeutralActive),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveNeutralBoldActive),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveNeutralBoldDefault),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveNeutralBoldHover),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveNeutralBoldActive,
+      ),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveNeutralBoldDefault,
+      ),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveNeutralBoldHover,
+      ),
       const DeepCollectionEquality().hash(backgroundInteractiveNeutralDefault),
       const DeepCollectionEquality().hash(backgroundInteractiveNeutralHover),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveNeutralSubtleActive),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveNeutralSubtleDefault),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveNeutralSubtleHover),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveNeutralSubtleActive,
+      ),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveNeutralSubtleDefault,
+      ),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveNeutralSubtleHover,
+      ),
       const DeepCollectionEquality().hash(backgroundInteractivePrimaryActive),
       const DeepCollectionEquality().hash(backgroundInteractivePrimaryDefault),
       const DeepCollectionEquality().hash(backgroundInteractivePrimaryHover),
       const DeepCollectionEquality().hash(backgroundInteractiveSecondaryActive),
-      const DeepCollectionEquality()
-          .hash(backgroundInteractiveSecondaryDefault),
+      const DeepCollectionEquality().hash(
+        backgroundInteractiveSecondaryDefault,
+      ),
       const DeepCollectionEquality().hash(backgroundInteractiveSecondaryHover),
       const DeepCollectionEquality().hash(backgroundInteractiveSuccessActive),
       const DeepCollectionEquality().hash(backgroundInteractiveSuccessDefault),

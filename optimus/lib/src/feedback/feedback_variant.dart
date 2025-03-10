@@ -13,34 +13,27 @@ import 'package:optimus_icons/optimus_icons.dart';
 /// warnings, problems, or matters that require the user's attention.
 ///  - [OptimusFeedbackVariant.danger] - Used for notifying about the
 /// dangerous matter. Could be error, destructive action or negative feedback.
-enum OptimusFeedbackVariant {
-  info,
-  success,
-  warning,
-  danger,
-}
+enum OptimusFeedbackVariant { info, success, warning, danger }
 
 extension Theming on OptimusFeedbackVariant {
   IconData get icon => switch (this) {
-        OptimusFeedbackVariant.info => OptimusIcons.info,
-        OptimusFeedbackVariant.success => OptimusIcons.done_circle,
-        OptimusFeedbackVariant.warning => OptimusIcons.problematic,
-        OptimusFeedbackVariant.danger => OptimusIcons.alert_circle,
-      };
+    OptimusFeedbackVariant.info => OptimusIcons.info,
+    OptimusFeedbackVariant.success => OptimusIcons.done_circle,
+    OptimusFeedbackVariant.warning => OptimusIcons.problematic,
+    OptimusFeedbackVariant.danger => OptimusIcons.alert_circle,
+  };
 
   Color getIconColor(OptimusTokens tokens) => switch (this) {
-        OptimusFeedbackVariant.info => tokens.textAlertInfo,
-        OptimusFeedbackVariant.success => tokens.textAlertSuccess,
-        OptimusFeedbackVariant.warning => tokens.textAlertWarning,
-        OptimusFeedbackVariant.danger => tokens.textAlertDanger,
-      };
+    OptimusFeedbackVariant.info => tokens.textAlertInfo,
+    OptimusFeedbackVariant.success => tokens.textAlertSuccess,
+    OptimusFeedbackVariant.warning => tokens.textAlertWarning,
+    OptimusFeedbackVariant.danger => tokens.textAlertDanger,
+  };
 
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
-        OptimusFeedbackVariant.info => tokens.backgroundAlertInfoSecondary,
-        OptimusFeedbackVariant.success =>
-          tokens.backgroundAlertSuccessSecondary,
-        OptimusFeedbackVariant.warning =>
-          tokens.backgroundAlertWarningSecondary,
-        OptimusFeedbackVariant.danger => tokens.backgroundAlertDangerSecondary,
-      };
+    OptimusFeedbackVariant.info => tokens.backgroundAlertInfoSecondary,
+    OptimusFeedbackVariant.success => tokens.backgroundAlertSuccessSecondary,
+    OptimusFeedbackVariant.warning => tokens.backgroundAlertWarningSecondary,
+    OptimusFeedbackVariant.danger => tokens.backgroundAlertDangerSecondary,
+  };
 }

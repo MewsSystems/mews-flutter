@@ -69,12 +69,13 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     FocusScope.of(context).requestFocus(FocusNode());
     showModalBottomSheet<void>(
       context: context,
-      builder: (context) => CupertinoDatePicker(
-        onDateTimeChanged: widget.onChanged,
-        initialDateTime: widget.value,
-        minimumDate: widget.minDate,
-        maximumDate: widget.maxDate,
-      ),
+      builder:
+          (context) => CupertinoDatePicker(
+            onDateTimeChanged: widget.onChanged,
+            initialDateTime: widget.value,
+            minimumDate: widget.minDate,
+            maximumDate: widget.maxDate,
+          ),
     );
   }
 
@@ -86,22 +87,22 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
 
   @override
   Widget build(BuildContext context) => OptimusInputField(
-        controller: _controller,
-        isReadOnly: true,
-        onTap: _handleTap,
-        error: widget.error,
-        label: widget.label,
-        isClearEnabled: _isClearVisible,
-        isEnabled: widget.isEnabled,
-        trailing: GestureDetector(
-          onTap: _handleTap,
-          child: Icon(
-            OptimusIcons.calendar,
-            size: tokens.sizing300,
-            color: tokens.textStaticPrimary,
-          ),
-        ),
-        placeholder: widget.placeholder,
-        onChanged: _handleInputChanged,
-      );
+    controller: _controller,
+    isReadOnly: true,
+    onTap: _handleTap,
+    error: widget.error,
+    label: widget.label,
+    isClearEnabled: _isClearVisible,
+    isEnabled: widget.isEnabled,
+    trailing: GestureDetector(
+      onTap: _handleTap,
+      child: Icon(
+        OptimusIcons.calendar,
+        size: tokens.sizing300,
+        color: tokens.textStaticPrimary,
+      ),
+    ),
+    placeholder: widget.placeholder,
+    onChanged: _handleInputChanged,
+  );
 }

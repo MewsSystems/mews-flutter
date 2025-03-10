@@ -13,9 +13,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final isDismissible = k.boolean(label: 'Dismissible', initialValue: true);
-  final content = k.boolean(label: 'Scrollable', initialValue: false)
-      ? _scrollableContent
-      : _content(context);
+  final content =
+      k.boolean(label: 'Scrollable', initialValue: false)
+          ? _scrollableContent
+          : _content(context);
   final type = k.list(
     label: 'Type',
     initialOption: OptimusDialogType.common,
@@ -37,38 +38,41 @@ Widget createDefaultStyle(BuildContext context) {
             children: [
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowOneActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.small,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('1 button'),
               ),
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowTwoActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowTwoActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.small,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('2 buttons'),
               ),
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowThreeActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowThreeActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.small,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('3 buttons'),
               ),
             ],
@@ -82,38 +86,41 @@ Widget createDefaultStyle(BuildContext context) {
             children: [
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowOneActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.regular,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('1 button'),
               ),
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowTwoActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowTwoActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.regular,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('2 buttons'),
               ),
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowThreeActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowThreeActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.regular,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('3 buttons'),
               ),
             ],
@@ -127,38 +134,41 @@ Widget createDefaultStyle(BuildContext context) {
             children: [
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowOneActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowOneActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.large,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('1 button'),
               ),
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowTwoActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowTwoActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.large,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('2 buttons'),
               ),
               OptimusButton(
                 variant: OptimusButtonVariant.primary,
-                onPressed: () => _handleShowThreeActionDialog(
-                  context: context,
-                  isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
-                  content: content,
-                  type: type,
-                  title: title,
-                ),
+                onPressed:
+                    () => _handleShowThreeActionDialog(
+                      context: context,
+                      isDismissible: isDismissible,
+                      size: OptimusDialogSize.large,
+                      content: content,
+                      type: type,
+                      title: title,
+                    ),
                 child: const Text('3 buttons'),
               ),
             ],
@@ -169,13 +179,14 @@ Widget createDefaultStyle(BuildContext context) {
           ),
           OptimusButton(
             variant: OptimusButtonVariant.primary,
-            onPressed: () => _handleShowCustomContentDialog(
-              context: context,
-              isDismissible: isDismissible,
-              size: OptimusDialogSize.large,
-              type: type,
-              title: title,
-            ),
+            onPressed:
+                () => _handleShowCustomContentDialog(
+                  context: context,
+                  isDismissible: isDismissible,
+                  size: OptimusDialogSize.large,
+                  type: type,
+                  title: title,
+                ),
             child: const Text('Custom content'),
           ),
         ],
@@ -191,20 +202,19 @@ Future<void> _handleShowThreeActionDialog({
   required Widget content,
   required OptimusDialogType type,
   required String title,
-}) =>
-    showOptimusDialog(
-      context: context,
-      isDismissible: isDismissible,
-      title: Text(title),
-      content: content,
-      size: size,
-      type: type,
-      actions: const [
-        OptimusDialogAction(title: Text('Next')),
-        OptimusDialogAction(title: Text('Back')),
-        OptimusDialogAction(title: Text('Cancel')),
-      ],
-    );
+}) => showOptimusDialog(
+  context: context,
+  isDismissible: isDismissible,
+  title: Text(title),
+  content: content,
+  size: size,
+  type: type,
+  actions: const [
+    OptimusDialogAction(title: Text('Next')),
+    OptimusDialogAction(title: Text('Back')),
+    OptimusDialogAction(title: Text('Cancel')),
+  ],
+);
 
 Future<void> _handleShowTwoActionDialog({
   required BuildContext context,
@@ -213,19 +223,18 @@ Future<void> _handleShowTwoActionDialog({
   required Widget content,
   required OptimusDialogType type,
   required String title,
-}) =>
-    showOptimusDialog(
-      context: context,
-      isDismissible: isDismissible,
-      title: Text(title),
-      content: content,
-      size: size,
-      type: type,
-      actions: const [
-        OptimusDialogAction(title: Text('Submit')),
-        OptimusDialogAction(title: Text('Cancel')),
-      ],
-    );
+}) => showOptimusDialog(
+  context: context,
+  isDismissible: isDismissible,
+  title: Text(title),
+  content: content,
+  size: size,
+  type: type,
+  actions: const [
+    OptimusDialogAction(title: Text('Submit')),
+    OptimusDialogAction(title: Text('Cancel')),
+  ],
+);
 
 Future<void> _handleShowOneActionDialog({
   required BuildContext context,
@@ -234,16 +243,15 @@ Future<void> _handleShowOneActionDialog({
   required Widget content,
   required OptimusDialogType type,
   required String title,
-}) =>
-    showOptimusDialog(
-      context: context,
-      isDismissible: isDismissible,
-      title: Text(title),
-      content: content,
-      size: size,
-      type: type,
-      actions: const [OptimusDialogAction(title: Text('Close'))],
-    );
+}) => showOptimusDialog(
+  context: context,
+  isDismissible: isDismissible,
+  title: Text(title),
+  content: content,
+  size: size,
+  type: type,
+  actions: const [OptimusDialogAction(title: Text('Close'))],
+);
 
 Future<void> _handleShowCustomContentDialog({
   required BuildContext context,
@@ -289,9 +297,9 @@ Widget _content(BuildContext context) {
 }
 
 Widget get _scrollableContent => Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children:
-          _iterable.map((i) => ListTile(title: Text('List tile #$i'))).toList(),
-    );
+  crossAxisAlignment: CrossAxisAlignment.stretch,
+  children:
+      _iterable.map((i) => ListTile(title: Text('List tile #$i'))).toList(),
+);
 
 final _iterable = Iterable<int>.generate(50);

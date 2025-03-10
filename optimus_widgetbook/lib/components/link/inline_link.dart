@@ -13,16 +13,25 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
-  final size =
-      k.int.slider(label: 'Text size', initialValue: 16, min: 12, max: 20);
+  final size = k.int.slider(
+    label: 'Text size',
+    initialValue: 16,
+    min: 12,
+    max: 20,
+  );
   final allowInherit = k.boolean(label: 'Inherit', initialValue: false);
-  final color =
-      k.listOrNull(label: 'Colors', initialOption: null, options: _colors);
+  final color = k.listOrNull(
+    label: 'Colors',
+    initialOption: null,
+    options: _colors,
+  );
   final onPressed =
       k.boolean(label: 'Enabled', initialValue: true) ? ignore : null;
 
-  final TextStyle style =
-      TextStyle(fontSize: size.toDouble(), color: color?.value);
+  final TextStyle style = TextStyle(
+    fontSize: size.toDouble(),
+    color: color?.value,
+  );
 
   return Padding(
     padding: const EdgeInsets.all(20.0),

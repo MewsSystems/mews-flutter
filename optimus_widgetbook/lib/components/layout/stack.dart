@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Stack',
-  type: OptimusStack,
-  path: '[Layout]',
-)
+@widgetbook.UseCase(name: 'Stack', type: OptimusStack, path: '[Layout]')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
@@ -54,19 +50,7 @@ Widget createDefaultStyle(BuildContext context) {
 }
 
 final _items = [
-  Container(
-    height: 40,
-    width: 40,
-    color: Colors.red,
-  ),
-  Container(
-    height: 10,
-    width: 10,
-    color: Colors.green,
-  ),
-  Container(
-    height: 20,
-    width: 20,
-    color: Colors.blue,
-  ),
+  Container(height: 40, width: 40, color: Colors.red),
+  Container(height: 10, width: 10, color: Colors.green),
+  Container(height: 20, width: 20, color: Colors.blue),
 ];

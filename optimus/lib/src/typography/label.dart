@@ -33,11 +33,11 @@ class OptimusLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodyMediumStrong,
-        color: variation.color,
-        align: align,
-        child: child,
-      );
+    resolveStyle: (_) => context.tokens.bodyMediumStrong,
+    color: variation.color,
+    align: align,
+    child: child,
+  );
 }
 
 /// {@macro optimus.typography.label}
@@ -66,9 +66,9 @@ class OptimusLabelSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodySmallStrong,
-        color: variation.color,
-        align: align,
-        child: child,
-      );
+    resolveStyle: (_) => context.tokens.bodySmallStrong,
+    color: variation.color,
+    align: align,
+    child: child,
+  );
 }

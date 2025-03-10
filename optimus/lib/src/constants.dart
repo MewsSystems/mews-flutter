@@ -6,5 +6,6 @@ abstract final class OpacityValue {
 }
 
 const double _cornerRadiusValue = 4;
-const BorderRadius borderRadius =
-    BorderRadius.all(Radius.circular(_cornerRadiusValue));
+const BorderRadius borderRadius = BorderRadius.all(
+  Radius.circular(_cornerRadiusValue),
+);

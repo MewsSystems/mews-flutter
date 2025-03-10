@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Caption',
-  type: OptimusCaption,
-  path: '[Typography]',
-)
+@widgetbook.UseCase(name: 'Caption', type: OptimusCaption, path: '[Typography]')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final variation = k.list(
@@ -27,8 +23,6 @@ Widget createDefaultStyle(BuildContext context) {
   return OptimusCaption(
     variation: variation,
     align: align,
-    child: Text(
-      k.string(label: 'Caption', initialValue: 'Caption'),
-    ),
+    child: Text(k.string(label: 'Caption', initialValue: 'Caption')),
   );
 }

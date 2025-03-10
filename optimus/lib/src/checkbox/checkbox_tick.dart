@@ -46,37 +46,38 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) => GestureWrapper(
-        onHoverChanged: _handleHoverChanged,
-        onPressedChanged: _handlePressedChanged,
-        onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
-          decoration: BoxDecoration(
-            color: _interactionState.fillColor(
-              tokens: tokens,
-              state: _state,
-              isError: widget.isError,
-            ),
-            border: _state.isUnchecked
-                ? Border.all(
-                    color: _interactionState.borderColor(
-                      tokens: tokens,
-                      isError: widget.isError,
-                    ),
-                    width: tokens.borderWidth150,
-                  )
-                : null,
-            borderRadius: BorderRadius.all(tokens.borderRadius25),
-          ),
-          width: tokens.sizing200,
-          height: tokens.sizing200,
-          child: _CheckboxIcon(
-            icon: _state.icon,
-            isEnabled: widget.isEnabled,
-            isError: widget.isError,
-          ),
+    onHoverChanged: _handleHoverChanged,
+    onPressedChanged: _handlePressedChanged,
+    onTap: widget.onTap,
+    child: AnimatedContainer(
+      duration: const Duration(milliseconds: 100),
+      decoration: BoxDecoration(
+        color: _interactionState.fillColor(
+          tokens: tokens,
+          state: _state,
+          isError: widget.isError,
         ),
-      );
+        border:
+            _state.isUnchecked
+                ? Border.all(
+                  color: _interactionState.borderColor(
+                    tokens: tokens,
+                    isError: widget.isError,
+                  ),
+                  width: tokens.borderWidth150,
+                )
+                : null,
+        borderRadius: BorderRadius.all(tokens.borderRadius25),
+      ),
+      width: tokens.sizing200,
+      height: tokens.sizing200,
+      child: _CheckboxIcon(
+        icon: _state.icon,
+        isEnabled: widget.isEnabled,
+        isError: widget.isError,
+      ),
+    ),
+  );
 }
 
 class _CheckboxIcon extends StatelessWidget {
@@ -91,27 +92,29 @@ class _CheckboxIcon extends StatelessWidget {
   final bool isError;
 
   @override
-  Widget build(BuildContext context) => icon == null
-      ? const SizedBox.shrink()
-      : Center(
-          child: Icon(
-            icon,
-            size: context.tokens.sizing100,
-            color: isEnabled
-                ? context.tokens.textStaticInverse
-                : context.tokens.textDisabled,
-          ),
-        );
+  Widget build(BuildContext context) =>
+      icon == null
+          ? const SizedBox.shrink()
+          : Center(
+            child: Icon(
+              icon,
+              size: context.tokens.sizing100,
+              color:
+                  isEnabled
+                      ? context.tokens.textStaticInverse
+                      : context.tokens.textDisabled,
+            ),
+          );
 }
 
 enum _TickState { checked, unchecked, undetermined }
 
 extension on _TickState {
   IconData? get icon => switch (this) {
-        _TickState.checked => OptimusIcons.done,
-        _TickState.unchecked => null,
-        _TickState.undetermined => OptimusIcons.minus_simple,
-      };
+    _TickState.checked => OptimusIcons.done,
+    _TickState.unchecked => null,
+    _TickState.undetermined => OptimusIcons.minus_simple,
+  };
 
   bool get isUnchecked => this == _TickState.unchecked;
 }
@@ -123,44 +126,44 @@ extension on _InteractionState {
     required OptimusTokens tokens,
     required _TickState state,
     required bool isError,
-  }) =>
-      switch (this) {
-        _InteractionState.basic => state.isUnchecked
-            ? null
-            : isError
-                ? tokens.backgroundInteractiveDangerDefault
-                : tokens.backgroundInteractivePrimaryDefault,
-        _InteractionState.hover => state.isUnchecked
-            ? tokens.backgroundInteractiveNeutralSubtleHover
-            : isError
-                ? tokens.backgroundInteractiveDangerHover
-                : tokens.backgroundInteractivePrimaryHover,
-        _InteractionState.active => state.isUnchecked
-            ? tokens.backgroundInteractiveNeutralSubtleActive
-            : isError
-                ? tokens.backgroundInteractiveDangerActive
-                : tokens.backgroundInteractivePrimaryActive,
-        _InteractionState.disabled =>
-          state.isUnchecked ? null : tokens.backgroundDisabled,
-      };
+  }) => switch (this) {
+    _InteractionState.basic =>
+      state.isUnchecked
+          ? null
+          : isError
+          ? tokens.backgroundInteractiveDangerDefault
+          : tokens.backgroundInteractivePrimaryDefault,
+    _InteractionState.hover =>
+      state.isUnchecked
+          ? tokens.backgroundInteractiveNeutralSubtleHover
+          : isError
+          ? tokens.backgroundInteractiveDangerHover
+          : tokens.backgroundInteractivePrimaryHover,
+    _InteractionState.active =>
+      state.isUnchecked
+          ? tokens.backgroundInteractiveNeutralSubtleActive
+          : isError
+          ? tokens.backgroundInteractiveDangerActive
+          : tokens.backgroundInteractivePrimaryActive,
+    _InteractionState.disabled =>
+      state.isUnchecked ? null : tokens.backgroundDisabled,
+  };
 
   Color borderColor({required OptimusTokens tokens, required bool isError}) =>
       (isError && this != _InteractionState.disabled)
           ? tokens.borderAlertDanger
           : switch (this) {
-              _InteractionState.basic =>
-                tokens.borderInteractiveSecondaryDefault,
-              _InteractionState.hover => tokens.borderInteractiveSecondaryHover,
-              _InteractionState.active =>
-                tokens.borderInteractiveSecondaryActive,
-              _InteractionState.disabled => tokens.borderDisabled,
-            };
+            _InteractionState.basic => tokens.borderInteractiveSecondaryDefault,
+            _InteractionState.hover => tokens.borderInteractiveSecondaryHover,
+            _InteractionState.active => tokens.borderInteractiveSecondaryActive,
+            _InteractionState.disabled => tokens.borderDisabled,
+          };
 }
 
 extension on bool? {
   _TickState get toState => switch (this) {
-        true => _TickState.checked,
-        false => _TickState.unchecked,
-        null => _TickState.undetermined,
-      };
+    true => _TickState.checked,
+    false => _TickState.unchecked,
+    null => _TickState.undetermined,
+  };
 }

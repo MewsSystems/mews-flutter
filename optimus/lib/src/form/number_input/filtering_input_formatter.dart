@@ -28,6 +28,5 @@ class NumberInputFilteringTextInputFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
-  ) =>
-      _pattern.hasMatch(newValue.text) ? newValue : oldValue;
+  ) => _pattern.hasMatch(newValue.text) ? newValue : oldValue;
 }

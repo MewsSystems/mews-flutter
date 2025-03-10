@@ -78,11 +78,7 @@ class FeedbackDescription extends StatelessWidget {
 }
 
 class FeedbackLink extends StatelessWidget {
-  const FeedbackLink({
-    super.key,
-    required this.text,
-    required this.onPressed,
-  });
+  const FeedbackLink({super.key, required this.text, required this.onPressed});
 
   final Widget text;
   final VoidCallback onPressed;

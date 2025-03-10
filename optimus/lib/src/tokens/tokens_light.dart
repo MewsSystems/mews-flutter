@@ -43,17 +43,21 @@ abstract final class DesignTokensLight {
   static const Color backgroundInteractiveDangerHover = Color(0xFFCF0F0F);
   static const Color backgroundInteractiveNeutralActive = Color(0xFFC1C1D5);
   static const Color backgroundInteractiveNeutralBoldActive = Color(0xFF52526D);
-  static const Color backgroundInteractiveNeutralBoldDefault =
-      Color(0xFF777797);
+  static const Color backgroundInteractiveNeutralBoldDefault = Color(
+    0xFF777797,
+  );
   static const Color backgroundInteractiveNeutralBoldHover = Color(0xFF646482);
   static const Color backgroundInteractiveNeutralDefault = Color(0xFFEFEFF5);
   static const Color backgroundInteractiveNeutralHover = Color(0xFFDFDFEA);
-  static const Color backgroundInteractiveNeutralSubtleActive =
-      Color(0xFFEFEFF5);
-  static const Color backgroundInteractiveNeutralSubtleDefault =
-      Color(0xFFFFFFFF);
-  static const Color backgroundInteractiveNeutralSubtleHover =
-      Color(0xFFF7F7FA);
+  static const Color backgroundInteractiveNeutralSubtleActive = Color(
+    0xFFEFEFF5,
+  );
+  static const Color backgroundInteractiveNeutralSubtleDefault = Color(
+    0xFFFFFFFF,
+  );
+  static const Color backgroundInteractiveNeutralSubtleHover = Color(
+    0xFFF7F7FA,
+  );
   static const Color backgroundInteractivePrimaryActive = Color(0xFF0A08AD);
   static const Color backgroundInteractivePrimaryDefault = Color(0xFF3B37F2);
   static const Color backgroundInteractivePrimaryHover = Color(0xFF1613D7);
@@ -539,10 +543,7 @@ abstract final class DesignTokensLight {
   static const FontWeight fontWeight600 = FontWeight.w600;
 
   static const List<BoxShadow> shadow0 = [
-    BoxShadow(
-      offset: Offset.zero,
-      color: Color(0xFF000000),
-    ),
+    BoxShadow(offset: Offset.zero, color: Color(0xFF000000)),
   ];
   static const List<BoxShadow> shadow100 = [
     BoxShadow(

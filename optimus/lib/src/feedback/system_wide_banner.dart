@@ -62,9 +62,10 @@ class OptimusSystemWideBanner extends StatelessWidget {
             vertical: tokens.spacing200,
           ),
           child: Row(
-            crossAxisAlignment: _isExpanded
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.center,
+            crossAxisAlignment:
+                _isExpanded
+                    ? CrossAxisAlignment.start
+                    : CrossAxisAlignment.center,
             children: [
               FeedbackIcon(variant: variant),
               Expanded(

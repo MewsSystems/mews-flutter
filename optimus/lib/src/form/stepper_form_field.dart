@@ -20,34 +20,37 @@ class OptimusStepperFormField extends FormField<int> {
     FocusNode? focusNode,
     TextEditingController? controller,
     OptimusWidgetSize size = OptimusWidgetSize.large,
-  })  : assert(
-          initialValue == null || controller == null,
-          'initialValue or controller must be null',
-        ),
-        assert(
-          initialValue == null || initialValue >= min && initialValue <= max,
-          'initial value should be null or in [min, max] range',
-        ),
-        super(
-          initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
-          validator: (value) => value != null && (value >= min && value <= max)
-              ? null
-              : validationError,
-          builder: (FormFieldState<int> field) => _Stepper(
-            initialValue: initialValue,
-            min: min,
-            max: max,
-            onChanged: (value) {
-              field.didChange(value);
-              onChanged?.call(value);
-            },
-            isEnabled: enabled,
-            error: field.errorText,
-            focusNode: focusNode,
-            controller: controller,
-            size: size,
-          ),
-        );
+  }) : assert(
+         initialValue == null || controller == null,
+         'initialValue or controller must be null',
+       ),
+       assert(
+         initialValue == null || initialValue >= min && initialValue <= max,
+         'initial value should be null or in [min, max] range',
+       ),
+       super(
+         initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
+         validator:
+             (value) =>
+                 value != null && (value >= min && value <= max)
+                     ? null
+                     : validationError,
+         builder:
+             (FormFieldState<int> field) => _Stepper(
+               initialValue: initialValue,
+               min: min,
+               max: max,
+               onChanged: (value) {
+                 field.didChange(value);
+                 onChanged?.call(value);
+               },
+               isEnabled: enabled,
+               error: field.errorText,
+               focusNode: focusNode,
+               controller: controller,
+               size: size,
+             ),
+       );
 }
 
 class _Stepper extends StatefulWidget {
@@ -114,9 +117,10 @@ class _StepperState extends State<_Stepper> {
     final value = _value;
     final int newValue;
     if (value != null) {
-      newValue = value < widget.min + 1
-          ? widget.min
-          : value > widget.max
+      newValue =
+          value < widget.min + 1
+              ? widget.min
+              : value > widget.max
               ? widget.max
               : value - 1;
     } else {
@@ -129,9 +133,10 @@ class _StepperState extends State<_Stepper> {
     final value = _value;
     final int newValue;
     if (value != null) {
-      newValue = value < widget.min
-          ? widget.min
-          : value > widget.max - 1
+      newValue =
+          value < widget.min
+              ? widget.min
+              : value > widget.max - 1
               ? widget.max
               : value + 1;
     } else {
@@ -173,19 +178,21 @@ class _StepperState extends State<_Stepper> {
         controller: _effectiveController,
         leading: _StepperButton(
           iconData: OptimusIcons.minus_simple,
-          onPressed: widget.isEnabled
-              ? value == null || value > widget.min
-                  ? _handleMinusTap
-                  : null
-              : null,
+          onPressed:
+              widget.isEnabled
+                  ? value == null || value > widget.min
+                      ? _handleMinusTap
+                      : null
+                  : null,
         ),
         trailing: _StepperButton(
           iconData: OptimusIcons.plus_simple,
-          onPressed: widget.isEnabled
-              ? value == null || value < widget.max
-                  ? _handlePlusTap
-                  : null
-              : null,
+          onPressed:
+              widget.isEnabled
+                  ? value == null || value < widget.max
+                      ? _handlePlusTap
+                      : null
+                  : null,
         ),
         focusNode: _effectiveFocusNode,
         inputFormatters: [
@@ -197,10 +204,7 @@ class _StepperState extends State<_Stepper> {
 }
 
 class _StepperButton extends StatelessWidget {
-  const _StepperButton({
-    required this.iconData,
-    this.onPressed,
-  });
+  const _StepperButton({required this.iconData, this.onPressed});
 
   final IconData iconData;
   final VoidCallback? onPressed;

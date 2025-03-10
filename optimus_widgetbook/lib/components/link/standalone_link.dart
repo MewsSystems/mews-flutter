@@ -16,26 +16,30 @@ Widget createDefaultStyle(BuildContext context) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: OptimusStandaloneLinkSize.values
-          .map(
-            (size) => Padding(
-              padding: const EdgeInsets.all(8),
-              child: OptimusStandaloneLink(
-                onPressed: k.isEnabledKnob ? ignore : null,
-                text: Text(k.string(label: 'Text', initialValue: 'Link')),
-                size: size,
-                isExternal: k.boolean(label: 'External', initialValue: false),
-                useStrong: k.boolean(label: 'Strong', initialValue: false),
-                variant: k.list(
-                  label: 'Variant',
-                  initialOption: OptimusLinkVariant.primary,
-                  options: OptimusLinkVariant.values,
-                  labelBuilder: enumLabelBuilder,
+      children:
+          OptimusStandaloneLinkSize.values
+              .map(
+                (size) => Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: OptimusStandaloneLink(
+                    onPressed: k.isEnabledKnob ? ignore : null,
+                    text: Text(k.string(label: 'Text', initialValue: 'Link')),
+                    size: size,
+                    isExternal: k.boolean(
+                      label: 'External',
+                      initialValue: false,
+                    ),
+                    useStrong: k.boolean(label: 'Strong', initialValue: false),
+                    variant: k.list(
+                      label: 'Variant',
+                      initialOption: OptimusLinkVariant.primary,
+                      options: OptimusLinkVariant.values,
+                      labelBuilder: enumLabelBuilder,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
-          .toList(),
+              )
+              .toList(),
     ),
   );
 }

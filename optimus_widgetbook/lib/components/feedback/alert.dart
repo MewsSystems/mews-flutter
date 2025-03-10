@@ -5,17 +5,11 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Alert',
-  type: OptimusAlert,
-  path: '[Feedback]',
-)
+@widgetbook.UseCase(name: 'Alert', type: OptimusAlert, path: '[Feedback]')
 Widget createDefaultStyle(BuildContext _) => const AlertStory();
 
 class AlertStory extends StatelessWidget {
-  const AlertStory({
-    super.key,
-  });
+  const AlertStory({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,44 +50,42 @@ class _AlertStoryContent extends StatelessWidget {
   final String link;
   final bool isDismissible;
 
-  OptimusFeedbackLink? get _link => link.isNotEmpty
-      ? OptimusFeedbackLink(
-          text: Text(link),
-          onPressed: ignore,
-        )
-      : null;
+  OptimusFeedbackLink? get _link =>
+      link.isNotEmpty
+          ? OptimusFeedbackLink(text: Text(link), onPressed: ignore)
+          : null;
 
   @override
   Widget build(BuildContext context) => Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ...OptimusFeedbackVariant.values.map(
-                (variant) => OptimusAlert(
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ...OptimusFeedbackVariant.values.map(
+            (variant) => OptimusAlert(
+              title: Text(title),
+              description: description.maybeToWidget(),
+              variant: variant,
+              link: _link,
+              isDismissible: isDismissible,
+            ),
+          ),
+          OptimusButton(
+            onPressed: () {
+              OptimusAlertOverlay.of(context)?.show(
+                OptimusAlert(
                   title: Text(title),
-                  description: description.maybeToWidget(),
-                  variant: variant,
+                  description:
+                      description.isNotEmpty ? Text(description) : null,
                   link: _link,
                   isDismissible: isDismissible,
                 ),
-              ),
-              OptimusButton(
-                onPressed: () {
-                  OptimusAlertOverlay.of(context)?.show(
-                    OptimusAlert(
-                      title: Text(title),
-                      description:
-                          description.isNotEmpty ? Text(description) : null,
-                      link: _link,
-                      isDismissible: isDismissible,
-                    ),
-                  );
-                },
-                child: const Text('Show alert'),
-              ),
-            ],
+              );
+            },
+            child: const Text('Show alert'),
           ),
-        ),
-      );
+        ],
+      ),
+    ),
+  );
 }

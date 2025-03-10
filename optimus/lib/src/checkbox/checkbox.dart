@@ -30,9 +30,9 @@ class OptimusCheckbox extends StatelessWidget {
     this.isTristate = false,
     required this.onChanged,
   }) : assert(
-          isTristate || isChecked != null,
-          'isChecked must be set if tristate is false',
-        );
+         isTristate || isChecked != null,
+         'isChecked must be set if tristate is false',
+       );
 
   /// {@template optimus.checkbox.label}
   /// Label displayed next to checkbox.
@@ -97,10 +97,12 @@ class OptimusCheckbox extends StatelessWidget {
     final color = _labelColor(tokens);
 
     return switch (size) {
-      OptimusCheckboxSize.large =>
-        tokens.bodyLargeStrong.copyWith(color: color),
-      OptimusCheckboxSize.small =>
-        tokens.bodyMediumStrong.copyWith(color: color),
+      OptimusCheckboxSize.large => tokens.bodyLargeStrong.copyWith(
+        color: color,
+      ),
+      OptimusCheckboxSize.small => tokens.bodyMediumStrong.copyWith(
+        color: color,
+      ),
     };
   }
 

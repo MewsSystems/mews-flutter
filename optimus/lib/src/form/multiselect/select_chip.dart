@@ -17,12 +17,12 @@ class MultiselectChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusChip(
-        onRemoved: onRemoved,
-        onTap: onTap,
-        isEnabled: isEnabled,
-        child: Text(
-          text,
-          style: const TextStyle(decoration: TextDecoration.underline),
-        ),
-      );
+    onRemoved: onRemoved,
+    onTap: onTap,
+    isEnabled: isEnabled,
+    child: Text(
+      text,
+      style: const TextStyle(decoration: TextDecoration.underline),
+    ),
+  );
 }

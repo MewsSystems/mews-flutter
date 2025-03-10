@@ -17,19 +17,20 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children: OptimusButtonVariant.values
-          .map(
-            (v) => Padding(
-              padding: const EdgeInsets.all(8),
-              child: OptimusIconButton(
-                onPressed: k.isEnabledKnob ? ignore : null,
-                icon: Icon(icon.data),
-                size: k.widgetSizeKnob,
-                variant: v,
-              ),
-            ),
-          )
-          .toList(),
+      children:
+          OptimusButtonVariant.values
+              .map(
+                (v) => Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: OptimusIconButton(
+                    onPressed: k.isEnabledKnob ? ignore : null,
+                    icon: Icon(icon.data),
+                    size: k.widgetSizeKnob,
+                    variant: v,
+                  ),
+                ),
+              )
+              .toList(),
     ),
   );
 }

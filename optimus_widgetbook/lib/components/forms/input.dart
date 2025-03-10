@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Input',
-  type: OptimusInputField,
-  path: '[Forms]',
-)
+@widgetbook.UseCase(name: 'Input', type: OptimusInputField, path: '[Forms]')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final leadingIcon = k.optimusIconOrNullKnob(label: 'Leading Icon');
@@ -38,16 +34,22 @@ Widget createDefaultStyle(BuildContext context) {
       initialValue: 30,
     );
   }
-  final minLines =
-      k.int.slider(label: 'Min lines', initialValue: 1, min: 1, max: 10);
+  final minLines = k.int.slider(
+    label: 'Min lines',
+    initialValue: 1,
+    min: 1,
+    max: 10,
+  );
   final keyboardType = k.listOrNull(
     label: 'Keyboard Type:',
     options: KeyboardType.values,
     labelBuilder: enumOrNullLabelBuilder,
   );
   final isInlined = k.boolean(label: 'Inline', initialValue: false);
-  final enableAutoCollapse =
-      k.boolean(label: 'Auto Collapse', initialValue: true);
+  final enableAutoCollapse = k.boolean(
+    label: 'Auto Collapse',
+    initialValue: true,
+  );
 
   final statusBar = k.listOrNull(
     label: 'Status Bar',
