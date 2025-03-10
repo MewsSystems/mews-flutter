@@ -5,9 +5,7 @@ import 'package:flutter/services.dart';
 /// DateFormatter will force the input to follow the mask and will fill the
 /// empty spaces with the placeholder.
 class DateFormatter extends TextInputFormatter {
-  DateFormatter({
-    required this.placeholder,
-  });
+  DateFormatter({required this.placeholder});
 
   /// The placeholder to fill the empty spaces in the mask.
   ///
@@ -29,22 +27,24 @@ class DateFormatter extends TextInputFormatter {
 
   /// Returns the next index that should be filled by the user.
   int _getNextInputIndex(int index) {
-    while (_isDesignatedSpace(index)) {
-      if (index == _maxLength) return _maxLength;
-      index++;
+    int newIndex = index;
+    while (_isDesignatedSpace(newIndex)) {
+      if (newIndex == _maxLength) return _maxLength;
+      newIndex++;
     }
 
-    return index;
+    return newIndex;
   }
 
   /// Returns the previous index that should be filled by the user.
   int _getPreviousInputIndex(int index) {
-    while (_isDesignatedSpace(index)) {
-      if (index == 0) return -1;
-      index--;
+    int newIndex = index;
+    while (_isDesignatedSpace(newIndex)) {
+      if (newIndex == 0) return -1;
+      newIndex--;
     }
 
-    return index;
+    return newIndex;
   }
 
   String _replaceCharAt(String value, int index, String replacement) =>
@@ -69,10 +69,12 @@ class DateFormatter extends TextInputFormatter {
       while (newInputPosition < cleanInput.length) {
         if (resultIndex >= placeholder.length) break;
         if (!_isDesignatedSpace(resultIndex)) {
-          final post = resultIndex >= selectionEnd
-              ? newValue.substring(resultIndex, newValue.length - 1)
-              : newValue.substring(resultIndex + 1);
-          newValue = newValue.substring(0, resultIndex) +
+          final post =
+              resultIndex >= selectionEnd
+                  ? newValue.substring(resultIndex, newValue.length - 1)
+                  : newValue.substring(resultIndex + 1);
+          newValue =
+              newValue.substring(0, resultIndex) +
               cleanInput[newInputPosition] +
               post;
           newInputPosition++;
@@ -82,7 +84,8 @@ class DateFormatter extends TextInputFormatter {
     }
 
     if (resultIndex < selectionEnd) {
-      newValue = newValue.substring(0, resultIndex) +
+      newValue =
+          newValue.substring(0, resultIndex) +
           placeholder.substring(resultIndex, selectionEnd) +
           newValue.substring(selectionEnd);
     }
@@ -167,12 +170,14 @@ class DateFormatter extends TextInputFormatter {
       }
     } else if (newText.length < oldText.length) {
       if (_isValidDigit(oldText[newSelectionStart])) {
-        final start = oldSelectionStart == oldSelection.end
-            ? newSelectionStart
-            : oldSelectionStart;
-        final end = oldSelectionStart == oldSelection.end
-            ? newSelectionStart + 1
-            : oldSelection.end;
+        final start =
+            oldSelectionStart == oldSelection.end
+                ? newSelectionStart
+                : oldSelectionStart;
+        final end =
+            oldSelectionStart == oldSelection.end
+                ? newSelectionStart + 1
+                : oldSelection.end;
 
         int selectionPosition = _getPreviousInputIndex(start);
 

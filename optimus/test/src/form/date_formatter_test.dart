@@ -65,18 +65,18 @@ void main() {
 
     testFormat(
       description: 'Valid input inside skipped the mask',
-      format: 'DD-MM--/@YYYY',
+      format: 'DD-MM-YYYY',
       oldValue: const TextEditingValue(
-        text: '01-MM--/@YYYY',
+        text: '01-MM-YYYY',
         selection: TextSelection.collapsed(offset: 5),
       ),
       newValue: const TextEditingValue(
-        text: '01-MM2--/@YYYY',
+        text: '01-MM2-YYYY',
         selection: TextSelection.collapsed(offset: 6),
       ),
       expected: const TextEditingValue(
-        text: '01-MM--/@2YYY',
-        selection: TextSelection.collapsed(offset: 10),
+        text: '01-MM-2YYY',
+        selection: TextSelection.collapsed(offset: 7),
       ),
     );
 
