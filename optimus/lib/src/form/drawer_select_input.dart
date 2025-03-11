@@ -107,33 +107,42 @@ class _OptimusDrawerSelectInputState<T>
         showModalBottomSheet(
           useSafeArea: true,
           constraints: BoxConstraints(
-            maxHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
-            minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
-            maxWidth: MediaQuery.sizeOf(context).width,
-            minWidth: MediaQuery.sizeOf(context).width,
+            maxHeight: MediaQuery
+                .sizeOf(context)
+                .height - tokens.spacing300,
+            minHeight: MediaQuery
+                .sizeOf(context)
+                .height - tokens.spacing300,
+            maxWidth: MediaQuery
+                .sizeOf(context)
+                .width,
+            minWidth: MediaQuery
+                .sizeOf(context)
+                .width,
           ),
           context: context,
           isScrollControlled: true,
           elevation: 2,
-          builder: (context) => Material(
-            color: Colors.transparent,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: tokens.backgroundStaticFloating,
-                borderRadius:
+          builder: (context) =>
+              Material(
+                color: Colors.transparent,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: tokens.backgroundStaticFloating,
+                    borderRadius:
                     BorderRadius.vertical(top: tokens.borderRadius300),
+                  ),
+                  child: const Column(
+                    children: [
+                      _DrawerHeader(),
+                      OptimusInputField(),
+                      Text('Item 1'),
+                      Text('Item 2'),
+                      Text('Item 3'),
+                    ],
+                  ),
+                ),
               ),
-              child: const Column(
-                children: [
-                  _DrawerHeader(),
-                  OptimusInputField(),
-                  Text('Item 1'),
-                  Text('Item 2'),
-                  Text('Item 3'),
-                ],
-              ),
-            ),
-          ),
         );
       },
     );
@@ -144,7 +153,8 @@ class _DrawerHeader extends StatelessWidget {
   const _DrawerHeader();
 
   @override
-  Widget build(BuildContext context) => Padding(
+  Widget build(BuildContext context) =>
+      Padding(
         padding: EdgeInsets.only(
           top: context.tokens.spacing150,
           bottom: context.tokens.spacing400,
