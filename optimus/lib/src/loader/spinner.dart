@@ -8,10 +8,7 @@ enum OptimusSpinnerSize { small, medium, large }
 /// rotate in a loop. The spinner comes in three sizes: small, medium, and large.
 /// The default size is medium.
 class OptimusSpinner extends StatefulWidget {
-  const OptimusSpinner({
-    super.key,
-    this.size = OptimusSpinnerSize.medium,
-  });
+  const OptimusSpinner({super.key, this.size = OptimusSpinnerSize.medium});
 
   /// The size of the spinner.
   final OptimusSpinnerSize size;
@@ -37,12 +34,10 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
     _controller = AnimationController(duration: _duration, vsync: this)
       ..repeat();
 
-    _firstProgressAnimation = TweenSequence<double>(
-      [
-        TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
-        TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
-      ],
-    ).animate(
+    _firstProgressAnimation = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
+      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
+    ]).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(_firstStart, _firstEnd, curve: _animationCurve),
@@ -55,12 +50,10 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
       ),
     );
 
-    _secondProgressAnimation = TweenSequence(
-      [
-        TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
-        TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
-      ],
-    ).animate(
+    _secondProgressAnimation = TweenSequence([
+      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
+      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
+    ]).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(_secondStart, _secondEnd, curve: _animationCurve),
@@ -73,12 +66,10 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
       ),
     );
 
-    _thirdProgressAnimation = TweenSequence(
-      [
-        TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
-        TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
-      ],
-    ).animate(
+    _thirdProgressAnimation = TweenSequence([
+      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
+      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
+    ]).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(_thirdStart, _thirdEnd, curve: _animationCurve),
@@ -100,10 +91,11 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
 
   @override
   Widget build(BuildContext context) => SizedBox.square(
-        dimension: widget.size.getSize(tokens),
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) => Stack(
+    dimension: widget.size.getSize(tokens),
+    child: AnimatedBuilder(
+      animation: _controller,
+      builder:
+          (context, child) => Stack(
             alignment: Alignment.center,
             children: [
               CustomPaint(
@@ -136,21 +128,21 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
               ),
             ],
           ),
-        ),
-      );
+    ),
+  );
 }
 
 extension on OptimusSpinnerSize {
   double getSize(OptimusTokens tokens) => switch (this) {
-        OptimusSpinnerSize.small => tokens.sizing300,
-        OptimusSpinnerSize.medium => tokens.sizing500,
-        OptimusSpinnerSize.large => tokens.sizing700,
-      };
+    OptimusSpinnerSize.small => tokens.sizing300,
+    OptimusSpinnerSize.medium => tokens.sizing500,
+    OptimusSpinnerSize.large => tokens.sizing700,
+  };
 
   double get strokeWidth => switch (this) {
-        OptimusSpinnerSize.small => 2,
-        OptimusSpinnerSize.medium || OptimusSpinnerSize.large => 4,
-      };
+    OptimusSpinnerSize.small => 2,
+    OptimusSpinnerSize.medium || OptimusSpinnerSize.large => 4,
+  };
 }
 
 const _duration = Duration(seconds: 2);

@@ -34,7 +34,8 @@ class OptimusTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final alignment = TooltipOverlay.of(context)?.alignment ??
+    final alignment =
+        TooltipOverlay.of(context)?.alignment ??
         _fallbackPosition.toTooltipAlignment();
     final foregroundColor = tokens.textStaticInverse;
     final backgroundColor = tokens.backgroundStaticInverse;
@@ -80,9 +81,10 @@ class _TooltipPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
+    final paint =
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.fill;
 
     final width = size.width;
     final height = size.height;
@@ -167,19 +169,19 @@ enum OptimusTooltipPosition { top, bottom, left, right }
 
 extension on OptimusToolTipSize {
   double get maxWidth => switch (this) {
-        OptimusToolTipSize.small => 100,
-        OptimusToolTipSize.medium => 200,
-        OptimusToolTipSize.large => 300,
-      };
+    OptimusToolTipSize.small => 100,
+    OptimusToolTipSize.medium => 200,
+    OptimusToolTipSize.large => 300,
+  };
 }
 
 extension on OptimusTooltipPosition {
   TooltipAlignment toTooltipAlignment() => switch (this) {
-        OptimusTooltipPosition.left => TooltipAlignment.leftCenter,
-        OptimusTooltipPosition.top => TooltipAlignment.topCenter,
-        OptimusTooltipPosition.right => TooltipAlignment.rightCenter,
-        OptimusTooltipPosition.bottom => TooltipAlignment.bottomCenter,
-      };
+    OptimusTooltipPosition.left => TooltipAlignment.leftCenter,
+    OptimusTooltipPosition.top => TooltipAlignment.topCenter,
+    OptimusTooltipPosition.right => TooltipAlignment.rightCenter,
+    OptimusTooltipPosition.bottom => TooltipAlignment.bottomCenter,
+  };
 }
 
 const double _arrowHeight = 4;

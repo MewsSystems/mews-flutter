@@ -16,15 +16,18 @@ class RadioCircle extends StatelessWidget {
       WidgetStateColor.fromMap({
         WidgetState.disabled:
             isSelected ? tokens.backgroundDisabled : tokens.borderDisabled,
-        WidgetState.pressed: isSelected
-            ? tokens.backgroundInteractivePrimaryActive
-            : tokens.borderInteractiveSecondaryActive,
-        WidgetState.hovered: isSelected
-            ? tokens.backgroundInteractivePrimaryHover
-            : tokens.borderInteractiveSecondaryHover,
-        WidgetState.any: isSelected
-            ? tokens.backgroundInteractivePrimaryDefault
-            : tokens.borderInteractiveSecondaryDefault,
+        WidgetState.pressed:
+            isSelected
+                ? tokens.backgroundInteractivePrimaryActive
+                : tokens.borderInteractiveSecondaryActive,
+        WidgetState.hovered:
+            isSelected
+                ? tokens.backgroundInteractivePrimaryHover
+                : tokens.borderInteractiveSecondaryHover,
+        WidgetState.any:
+            isSelected
+                ? tokens.backgroundInteractivePrimaryDefault
+                : tokens.borderInteractiveSecondaryDefault,
       });
 
   WidgetStateColor _getFillColor(OptimusTokens tokens) =>

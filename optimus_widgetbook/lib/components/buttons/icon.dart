@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(
   name: 'Icon Button',
   type: OptimusIconButton,
-  path: '[Buttons]/Icon Button',
+  path: '[Buttons]',
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
@@ -17,19 +17,20 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children: OptimusButtonVariant.values
-          .map(
-            (v) => Padding(
-              padding: const EdgeInsets.all(8),
-              child: OptimusIconButton(
-                onPressed: k.isEnabledKnob ? ignore : null,
-                icon: Icon(icon.data),
-                size: k.widgetSizeKnob,
-                variant: v,
-              ),
-            ),
-          )
-          .toList(),
+      children:
+          OptimusButtonVariant.values
+              .map(
+                (v) => Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: OptimusIconButton(
+                    onPressed: k.isEnabledKnob ? ignore : null,
+                    icon: Icon(icon.data),
+                    size: k.widgetSizeKnob,
+                    variant: v,
+                  ),
+                ),
+              )
+              .toList(),
     ),
   );
 }

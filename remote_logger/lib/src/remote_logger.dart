@@ -6,13 +6,13 @@ import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
 
-typedef GetBody = FutureOr<Map<String, dynamic>> Function(
-  LogRecord record,
-  Map<String, dynamic> body,
-);
-typedef GetHeaders = FutureOr<Map<String, String>> Function(
-  Map<String, String> headers,
-);
+typedef GetBody =
+    FutureOr<Map<String, dynamic>> Function(
+      LogRecord record,
+      Map<String, dynamic> body,
+    );
+typedef GetHeaders =
+    FutureOr<Map<String, String>> Function(Map<String, String> headers);
 
 class RemoteLogger {
   /// Creates a new [RemoteLogger] that will post each log message to [url].
@@ -27,10 +27,10 @@ class RemoteLogger {
     GetBody? getBody,
     GetHeaders? getHeaders,
     Client? client,
-  })  : _url = url,
-        _client = client,
-        _getHeaders = getHeaders ?? _defaultGetHeaders,
-        _getBody = getBody ?? _defaultGetBody {
+  }) : _url = url,
+       _client = client,
+       _getHeaders = getHeaders ?? _defaultGetHeaders,
+       _getBody = getBody ?? _defaultGetBody {
     _process();
   }
 
@@ -90,11 +90,7 @@ class RemoteLogger {
     try {
       final headers = await _getHeaders(_defaultHeaders);
       final response = await _effectiveClient
-          .post(
-            _url,
-            headers: headers,
-            body: record,
-          )
+          .post(_url, headers: headers, body: record)
           .timeout(_requestTimeout);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -123,9 +119,7 @@ const Duration _requestTimeout = Duration(seconds: 30);
 const Duration _initialTimeout = Duration(seconds: 2);
 const Duration _maxTimeout = Duration(minutes: 2);
 const int _timeoutMultiplier = 2;
-const _defaultHeaders = <String, String>{
-  'ContentType': 'application/json',
-};
+const _defaultHeaders = <String, String>{'ContentType': 'application/json'};
 
 Map<String, String> _defaultGetHeaders(Map<String, String> headers) => headers;
 

@@ -17,9 +17,9 @@ class DialogContent extends StatelessWidget {
     this.spacing,
     this.margin,
   }) : assert(
-          title != null || content != null,
-          'Either title or content need to be provided',
-        );
+         title != null || content != null,
+         'Either title or content need to be provided',
+       );
 
   final List<OptimusDialogAction> actions;
   final Widget? title;
@@ -61,7 +61,8 @@ class DialogContent extends StatelessWidget {
                     _Title(
                       title: title,
                       close: close ?? () => Navigator.pop(context),
-                      isDismissible: isDismissible ??
+                      isDismissible:
+                          isDismissible ??
                           ModalRoute.of(context)?.barrierDismissible ??
                           true,
                     ),
@@ -90,10 +91,7 @@ class DialogContent extends StatelessWidget {
 }
 
 class _Content extends StatelessWidget {
-  const _Content({
-    required this.content,
-    this.contentWrapperBuilder,
-  });
+  const _Content({required this.content, this.contentWrapperBuilder});
 
   final Widget content;
   final ContentWrapperBuilder? contentWrapperBuilder;
@@ -101,13 +99,14 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contentWrapperBuilder = this.contentWrapperBuilder;
-    final wrappedContent = contentWrapperBuilder == null
-        ? OptimusScrollConfiguration(
-            child: SingleChildScrollView(
-              child: OptimusDialogContentPadding(child: content),
-            ),
-          )
-        : contentWrapperBuilder(context, content);
+    final wrappedContent =
+        contentWrapperBuilder == null
+            ? OptimusScrollConfiguration(
+              child: SingleChildScrollView(
+                child: OptimusDialogContentPadding(child: content),
+              ),
+            )
+            : contentWrapperBuilder(context, content);
 
     return Flexible(fit: FlexFit.loose, child: wrappedContent);
   }
@@ -183,23 +182,24 @@ class _Actions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final children = actions
-        .mapIndexed<Widget>(
-          (i, e) => Padding(
-            padding: EdgeInsets.only(
-              bottom: _isVertical ? tokens.spacing200 : tokens.spacing0,
-              left: _isVertical ? tokens.spacing0 : tokens.spacing200,
-            ),
-            child: OptimusButton(
-              onPressed: e.onPressed ?? close,
-              minWidth: _isVertical ? double.infinity : null,
-              variant: _getVariant(i),
-              key: e.key,
-              child: e.title,
-            ),
-          ),
-        )
-        .toList();
+    final children =
+        actions
+            .mapIndexed<Widget>(
+              (i, e) => Padding(
+                padding: EdgeInsets.only(
+                  bottom: _isVertical ? tokens.spacing200 : tokens.spacing0,
+                  left: _isVertical ? tokens.spacing0 : tokens.spacing200,
+                ),
+                child: OptimusButton(
+                  onPressed: e.onPressed ?? close,
+                  minWidth: _isVertical ? double.infinity : null,
+                  variant: _getVariant(i),
+                  key: e.key,
+                  child: e.title,
+                ),
+              ),
+            )
+            .toList();
     if (children.length > 2 && !_isVertical) {
       children.insert(2, const Spacer());
     }

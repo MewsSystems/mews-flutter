@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Avatar',
-  type: OptimusAvatar,
-  path: '[Media]',
-)
+@widgetbook.UseCase(name: 'Avatar', type: OptimusAvatar, path: '[Media]')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final size = k.widgetSizeKnob;
@@ -31,6 +27,7 @@ Widget createDefaultStyle(BuildContext context) {
       AlignmentDirectional.topEnd,
       AlignmentDirectional.topStart,
     ],
+    labelBuilder: (value) => value.toString(),
   );
 
   return Container(
@@ -39,11 +36,12 @@ Widget createDefaultStyle(BuildContext context) {
     color: Colors.blueGrey,
     child: OptimusAvatar(
       title: title,
-      imageUrl: useImage
-          ? isErrorLoading
-              ? _badUrl
-              : _avatarUrl
-          : null,
+      imageUrl:
+          useImage
+              ? isErrorLoading
+                  ? _badUrl
+                  : _avatarUrl
+              : null,
       isIndicatorVisible: hasIndicator,
       size: size,
       badgeUrl: useBadge ? _badgeUrl : null,

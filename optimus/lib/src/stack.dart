@@ -97,15 +97,14 @@ class OptimusStack extends StatelessWidget {
   }
 
   List<Widget> _children(BuildContext context) => switch (distribution) {
-        OptimusStackDistribution.basic =>
-          _childrenWithSpacing(context, children),
-        OptimusStackDistribution.spaceBetween =>
-          children.intersperse(const Spacer()).toList(),
-        OptimusStackDistribution.stretch => _childrenWithSpacing(
-            context,
-            children.map((c) => Expanded(child: c)).toList(),
-          ),
-      };
+    OptimusStackDistribution.basic => _childrenWithSpacing(context, children),
+    OptimusStackDistribution.spaceBetween =>
+      children.intersperse(const Spacer()).toList(),
+    OptimusStackDistribution.stretch => _childrenWithSpacing(
+      context,
+      children.map((c) => Expanded(child: c)).toList(),
+    ),
+  };
 
   List<Widget> _childrenWithSpacing(
     BuildContext context,
@@ -124,37 +123,37 @@ class OptimusStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Flex(
-        direction: _direction(context),
-        mainAxisAlignment: mainAxisAlignment.mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment.crossAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        children: _children(context),
-      );
+    direction: _direction(context),
+    mainAxisAlignment: mainAxisAlignment.mainAxisAlignment,
+    crossAxisAlignment: crossAxisAlignment.crossAxisAlignment,
+    mainAxisSize: mainAxisSize,
+    children: _children(context),
+  );
 }
 
 extension on OptimusStackSpacing {
   double getSize(OptimusTokens tokens) => switch (this) {
-        OptimusStackSpacing.spacing0 => tokens.spacing0,
-        OptimusStackSpacing.spacing25 => tokens.spacing25,
-        OptimusStackSpacing.spacing50 => tokens.spacing50,
-        OptimusStackSpacing.spacing100 => tokens.spacing100,
-        OptimusStackSpacing.spacing200 => tokens.spacing200,
-        OptimusStackSpacing.spacing300 => tokens.spacing300,
-        OptimusStackSpacing.spacing400 => tokens.spacing400,
-        OptimusStackSpacing.spacing500 => tokens.spacing500,
-      };
+    OptimusStackSpacing.spacing0 => tokens.spacing0,
+    OptimusStackSpacing.spacing25 => tokens.spacing25,
+    OptimusStackSpacing.spacing50 => tokens.spacing50,
+    OptimusStackSpacing.spacing100 => tokens.spacing100,
+    OptimusStackSpacing.spacing200 => tokens.spacing200,
+    OptimusStackSpacing.spacing300 => tokens.spacing300,
+    OptimusStackSpacing.spacing400 => tokens.spacing400,
+    OptimusStackSpacing.spacing500 => tokens.spacing500,
+  };
 }
 
 extension on OptimusStackAlignment {
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
-        OptimusStackAlignment.start => CrossAxisAlignment.start,
-        OptimusStackAlignment.center => CrossAxisAlignment.center,
-        OptimusStackAlignment.end => CrossAxisAlignment.end,
-      };
+    OptimusStackAlignment.start => CrossAxisAlignment.start,
+    OptimusStackAlignment.center => CrossAxisAlignment.center,
+    OptimusStackAlignment.end => CrossAxisAlignment.end,
+  };
 
   MainAxisAlignment get mainAxisAlignment => switch (this) {
-        OptimusStackAlignment.start => MainAxisAlignment.start,
-        OptimusStackAlignment.center => MainAxisAlignment.center,
-        OptimusStackAlignment.end => MainAxisAlignment.end,
-      };
+    OptimusStackAlignment.start => MainAxisAlignment.start,
+    OptimusStackAlignment.center => MainAxisAlignment.center,
+    OptimusStackAlignment.end => MainAxisAlignment.end,
+  };
 }

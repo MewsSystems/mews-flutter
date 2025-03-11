@@ -37,15 +37,19 @@ class NumberInputFormFieldUseCaseState
     final k = context.knobs;
 
     final label = k.string(label: 'Label', initialValue: 'Number input');
-    final placeholder =
-        k.string(label: 'Placeholder', initialValue: 'Placeholder');
+    final placeholder = k.string(
+      label: 'Placeholder',
+      initialValue: 'Placeholder',
+    );
     final min = k.double.input(label: 'Min', initialValue: 0);
     final max = k.double.input(label: 'Max', initialValue: 12);
-    final allowNegative =
-        k.boolean(label: 'Allow negative', initialValue: false);
-    final helper = k.stringOrNull(label: 'Helper Message');
-    final prefix = k.stringOrNull(label: 'Prefix');
-    final suffix = k.stringOrNull(label: 'Suffix');
+    final allowNegative = k.boolean(
+      label: 'Allow negative',
+      initialValue: false,
+    );
+    final helper = k.string(label: 'Helper Message');
+    final prefix = k.string(label: 'Prefix');
+    final suffix = k.string(label: 'Suffix');
     final isInlined = k.boolean(label: 'Inlined');
     final showLoader = k.boolean(label: 'Show Loader');
     final precision = k.int.slider(label: 'Precision', initialValue: 2);
@@ -71,14 +75,14 @@ class NumberInputFormFieldUseCaseState
           allowNegate: allowNegative,
           isEnabled: k.isEnabledKnob,
           size: k.widgetSizeKnob,
-          helperMessage: helper?.toWidget(),
+          helperMessage: helper.maybeToWidget(),
           isInlined: isInlined,
           showLoader: showLoader,
           precision: precision,
-          prefix: prefix?.toWidget(),
+          prefix: prefix.maybeToWidget(),
           isRequired: isRequired,
           separatorVariant: separatorVariant,
-          suffix: suffix?.toWidget(),
+          suffix: suffix.maybeToWidget(),
           step: step,
         ),
       ),

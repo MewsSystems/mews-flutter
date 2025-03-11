@@ -9,7 +9,7 @@ class OptimusChip extends StatefulWidget {
   const OptimusChip({
     super.key,
     required this.child,
-    required this.onRemoved,
+    this.onRemoved,
     this.onTap,
     this.hasError = false,
     this.isEnabled = true,
@@ -38,19 +38,21 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
   bool _isHovered = false;
   bool _isPressed = false;
 
-  Color get _backgroundColor => !widget.isEnabled
-      ? theme.tokens.backgroundDisabled
-      : widget.hasError
+  Color get _backgroundColor =>
+      !widget.isEnabled
+          ? theme.tokens.backgroundDisabled
+          : widget.hasError
           ? theme.tokens.backgroundAlertDangerSecondary
           : _isPressed
-              ? theme.tokens.backgroundInteractiveNeutralActive
-              : _isHovered
-                  ? theme.tokens.backgroundInteractiveNeutralHover
-                  : theme.tokens.backgroundInteractiveNeutralDefault;
+          ? theme.tokens.backgroundInteractiveNeutralActive
+          : _isHovered
+          ? theme.tokens.backgroundInteractiveNeutralHover
+          : theme.tokens.backgroundInteractiveNeutralDefault;
 
-  Color get _foregroundColor => !widget.isEnabled
-      ? theme.tokens.textDisabled
-      : widget.hasError
+  Color get _foregroundColor =>
+      !widget.isEnabled
+          ? theme.tokens.textDisabled
+          : widget.hasError
           ? theme.tokens.textAlertDanger
           : theme.tokens.textStaticPrimary;
 
@@ -62,46 +64,45 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) => IgnorePointer(
-        ignoring: !widget.isEnabled,
-        child: GestureWrapper(
-          onHoverChanged: _handleHoverChanged,
-          onPressedChanged: _handlePressedChanged,
-          onTap: widget.onTap,
-          child: SizedBox(
-            height: tokens.sizing300,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 100),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(tokens.borderRadius100),
-                color: _backgroundColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: tokens.spacing50),
-                      child: DefaultTextStyle.merge(
-                        style:
-                            tokens.bodyMedium.copyWith(color: _foregroundColor),
-                        child: widget.child,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: widget.onRemoved,
-                      child: Icon(
-                        OptimusIcons.cross_close,
-                        size: tokens.sizing200,
-                        color: _foregroundColor,
-                      ),
-                    ),
-                  ],
+    ignoring: !widget.isEnabled,
+    child: GestureWrapper(
+      onHoverChanged: _handleHoverChanged,
+      onPressedChanged: _handlePressedChanged,
+      onTap: widget.onTap,
+      child: SizedBox(
+        height: tokens.sizing300,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(tokens.borderRadius100),
+            color: _backgroundColor,
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
+                  child: DefaultTextStyle.merge(
+                    style: tokens.bodyMedium.copyWith(color: _foregroundColor),
+                    child: widget.child,
+                  ),
                 ),
-              ),
+                if (widget.onRemoved != null)
+                  GestureDetector(
+                    onTap: widget.onRemoved,
+                    child: Icon(
+                      OptimusIcons.cross_close,
+                      size: tokens.sizing200,
+                      color: _foregroundColor,
+                    ),
+                  ),
+              ],
             ),
           ),
         ),
-      );
+      ),
+    ),
+  );
 }

@@ -83,11 +83,11 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
   }
 
   WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
-        WidgetState.disabled: Colors.transparent,
-        WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
-        WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
-        WidgetState.any: tokens.backgroundInteractiveNeutralSubtleDefault,
-      });
+    WidgetState.disabled: Colors.transparent,
+    WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
+    WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
+    WidgetState.any: tokens.backgroundInteractiveNeutralSubtleDefault,
+  });
 
   void _handleHoverChanged(bool isHovered) {
     setState(() => _controller.update(WidgetState.hovered, isHovered));
@@ -111,15 +111,17 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
         onHoverChanged: _handleHoverChanged,
         onPressedChanged: _handlePressedChanged,
         child: DecoratedBox(
-          decoration:
-              BoxDecoration(color: _backgroundColor.resolve(_controller.value)),
+          decoration: BoxDecoration(
+            color: _backgroundColor.resolve(_controller.value),
+          ),
           child: BaseListTile(
             onTap: widget.onTap,
             content: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: widget.useHorizontalPadding
-                    ? tokens.spacing200
-                    : tokens.spacing0,
+                horizontal:
+                    widget.useHorizontalPadding
+                        ? tokens.spacing200
+                        : tokens.spacing0,
               ),
               child: Row(
                 children: [
@@ -138,9 +140,10 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
                       child: DefaultTextStyle.merge(
                         child: widget.label,
                         style: tokens.bodyLarge.copyWith(
-                          color: widget.isEnabled
-                              ? tokens.textStaticPrimary
-                              : tokens.textDisabled,
+                          color:
+                              widget.isEnabled
+                                  ? tokens.textStaticPrimary
+                                  : tokens.textDisabled,
                         ),
                       ),
                     ),
@@ -148,8 +151,10 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
                   if (widget.rightDetail case final rightDetail?)
                     Padding(
                       padding: contentPadding,
-                      child:
-                          IconTheme.merge(data: iconTheme, child: rightDetail),
+                      child: IconTheme.merge(
+                        data: iconTheme,
+                        child: rightDetail,
+                      ),
                     ),
                   if (widget.isToggleVisible)
                     Padding(

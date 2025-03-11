@@ -9,19 +9,18 @@ class AllowMultipleRawGestureDetector extends RawGestureDetector {
     super.behavior = HitTestBehavior.opaque,
     super.child,
   }) : super(
-          gestures: <Type, GestureRecognizerFactory>{
-            AllowMultipleGestureRecognizer:
-                GestureRecognizerFactoryWithHandlers<
-                    AllowMultipleGestureRecognizer>(
-              AllowMultipleGestureRecognizer.new,
-              (AllowMultipleGestureRecognizer instance) {
-                instance
-                  ..onTap = onTap
-                  ..onTapDown = onTapDown;
-              },
-            ),
-          },
-        );
+         gestures: <Type, GestureRecognizerFactory>{
+           AllowMultipleGestureRecognizer: GestureRecognizerFactoryWithHandlers<
+             AllowMultipleGestureRecognizer
+           >(AllowMultipleGestureRecognizer.new, (
+             AllowMultipleGestureRecognizer instance,
+           ) {
+             instance
+               ..onTap = onTap
+               ..onTapDown = onTapDown;
+           }),
+         },
+       );
 }
 
 class AllowMultipleGestureRecognizer extends TapGestureRecognizer {

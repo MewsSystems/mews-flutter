@@ -71,10 +71,9 @@ class OptimusChat extends StatelessWidget {
     final previousMessageTime = _previousMessageTime(index);
 
     return previousMessageTime != null &&
-        _currentMessageTime(index)
-                .difference(previousMessageTime)
-                .abs()
-                .inMinutes >=
+        _currentMessageTime(
+              index,
+            ).difference(previousMessageTime).abs().inMinutes >=
             1;
   }
 
@@ -82,10 +81,9 @@ class OptimusChat extends StatelessWidget {
     final nextMessageTime = _nextMessageTime(index);
 
     return nextMessageTime != null &&
-        _currentMessageTime(index)
-                .difference(nextMessageTime)
-                .abs()
-                .inMinutes >=
+        _currentMessageTime(
+              index,
+            ).difference(nextMessageTime).abs().inMinutes >=
             1;
   }
 
@@ -130,39 +128,42 @@ class OptimusChat extends StatelessWidget {
             child: ListView.builder(
               itemCount: _messages.length,
               reverse: true,
-              itemBuilder: (_, index) => Column(
-                children: [
-                  _Bubble(
-                    hasAvatars: hasAvatars,
-                    avatar: _Avatar(
-                      avatarWidth: avatarWidth,
-                      isAvatarVisible: _showAvatar(index),
-                      avatar: _messages[index].author.avatar,
-                    ),
-                    message: _messages[index],
-                    isUserNameVisible: _showUserName(index),
-                    isDateVisible: _showDate(index),
-                    formatTime: formatDate,
-                    formatDate: formatTime,
-                    sending: sending,
-                    sent: sent,
-                    error: error,
-                    alignment: _messages[index].alignment,
+              itemBuilder:
+                  (_, index) => Column(
+                    children: [
+                      _Bubble(
+                        hasAvatars: hasAvatars,
+                        avatar: _Avatar(
+                          avatarWidth: avatarWidth,
+                          isAvatarVisible: _showAvatar(index),
+                          avatar: _messages[index].author.avatar,
+                        ),
+                        message: _messages[index],
+                        isUserNameVisible: _showUserName(index),
+                        isDateVisible: _showDate(index),
+                        formatTime: formatDate,
+                        formatDate: formatTime,
+                        sending: sending,
+                        sent: sent,
+                        error: error,
+                        alignment: _messages[index].alignment,
+                      ),
+                      if (_showStatus(index))
+                        _StatusEnd(
+                          avatarWidth: avatarWidth,
+                          error: error,
+                          formatTime: formatTime,
+                          message: _messages[index],
+                          sending: sending,
+                          sent: sent,
+                          isFromCurrentUser: isFromCurrentUser(
+                            _messages[index],
+                          ),
+                          isLatestMessage: _isLatestMessage(index),
+                          alignment: _messages[index].alignment,
+                        ),
+                    ],
                   ),
-                  if (_showStatus(index))
-                    _StatusEnd(
-                      avatarWidth: avatarWidth,
-                      error: error,
-                      formatTime: formatTime,
-                      message: _messages[index],
-                      sending: sending,
-                      sent: sent,
-                      isFromCurrentUser: isFromCurrentUser(_messages[index]),
-                      isLatestMessage: _isLatestMessage(index),
-                      alignment: _messages[index].alignment,
-                    ),
-                ],
-              ),
             ),
           ),
           OptimusChatInput(onSendPressed: onSendPressed),
@@ -239,10 +240,8 @@ class _Avatar extends StatelessWidget {
   final Widget? avatar;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        width: avatarWidth,
-        child: isAvatarVisible ? avatar : null,
-      );
+  Widget build(BuildContext context) =>
+      SizedBox(width: avatarWidth, child: isAvatarVisible ? avatar : null);
 }
 
 class _StatusText extends StatelessWidget {
@@ -264,38 +263,38 @@ class _StatusText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-        mainAxisAlignment: message.alignment.stackAlignment,
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing50,
-        children: switch (message.state) {
-          MessageState.sending => [
-              _Status(child: Text(formatTime(message.time))),
-              _Status(child: sending),
-              const _StatusCircle(),
-            ],
-          MessageState.sent => [
-              _Status(child: Text(formatTime(message.time))),
-              if (isFromCurrentUser) ...[
-                _Status(child: sent),
-                const Opacity(
-                  opacity: 0.6,
-                  child: OptimusIcon(
-                    iconData: OptimusIcons.done_circle,
-                    iconSize: OptimusIconSize.small,
-                  ),
-                ),
-              ],
-            ],
-          MessageState.error => [
-              _Status(child: error),
-              const OptimusIcon(
-                iconData: OptimusIcons.disable,
-                iconSize: OptimusIconSize.small,
-                colorOption: OptimusIconColorOption.danger,
-              ),
-            ],
-        },
-      );
+    mainAxisAlignment: message.alignment.stackAlignment,
+    direction: Axis.horizontal,
+    spacing: OptimusStackSpacing.spacing50,
+    children: switch (message.state) {
+      MessageState.sending => [
+        _Status(child: Text(formatTime(message.time))),
+        _Status(child: sending),
+        const _StatusCircle(),
+      ],
+      MessageState.sent => [
+        _Status(child: Text(formatTime(message.time))),
+        if (isFromCurrentUser) ...[
+          _Status(child: sent),
+          const Opacity(
+            opacity: 0.6,
+            child: OptimusIcon(
+              iconData: OptimusIcons.done_circle,
+              iconSize: OptimusIconSize.small,
+            ),
+          ),
+        ],
+      ],
+      MessageState.error => [
+        _Status(child: error),
+        const OptimusIcon(
+          iconData: OptimusIcons.disable,
+          iconSize: OptimusIconSize.small,
+          colorOption: OptimusIconColorOption.danger,
+        ),
+      ],
+    },
+  );
 }
 
 class _Bubble extends StatelessWidget {
@@ -394,14 +393,14 @@ class _StatusCircle extends StatelessWidget {
 
 extension on MessageAlignment {
   OptimusStackAlignment get stackAlignment => switch (this) {
-        MessageAlignment.left => OptimusStackAlignment.start,
-        MessageAlignment.right => OptimusStackAlignment.end,
-      };
+    MessageAlignment.left => OptimusStackAlignment.start,
+    MessageAlignment.right => OptimusStackAlignment.end,
+  };
 
   MainAxisAlignment get mainAxisAlignment => switch (this) {
-        MessageAlignment.left => MainAxisAlignment.start,
-        MessageAlignment.right => MainAxisAlignment.end
-      };
+    MessageAlignment.left => MainAxisAlignment.start,
+    MessageAlignment.right => MainAxisAlignment.end,
+  };
 
   bool get isStart => this == MessageAlignment.left;
   bool get isEnd => this == MessageAlignment.right;

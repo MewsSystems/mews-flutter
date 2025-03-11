@@ -1,19 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
-const avatar1 = OptimusAvatar(
-  title: 'User 1',
-  imageUrl: _avatarUrl,
-);
+const avatar1 = OptimusAvatar(title: 'User 1', imageUrl: _avatarUrl);
 
-const avatar2 = OptimusAvatar(
-  title: 'You',
-);
+const avatar2 = OptimusAvatar(title: 'You');
 
-const avatar3 = OptimusAvatar(
-  title: 'User 3',
-  imageUrl: _avatar2Url,
-);
+const avatar3 = OptimusAvatar(title: 'User 3', imageUrl: _avatar2Url);
 
 final organizationAvatar = Stack(
   children: [

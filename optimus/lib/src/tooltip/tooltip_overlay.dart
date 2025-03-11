@@ -49,9 +49,10 @@ class TooltipOverlay extends StatefulWidget {
   /// [OptimusTooltipPosition.bottom].
   final OptimusTooltipPosition? position;
 
-  static TooltipOverlayController? of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<TooltipOverlayData>()
-      ?.controller;
+  static TooltipOverlayController? of(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<TooltipOverlayData>()
+          ?.controller;
 
   @override
   State<TooltipOverlay> createState() => TooltipOverlayState();
@@ -69,8 +70,9 @@ class TooltipOverlayState extends State<TooltipOverlay>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _afterInitialLayoutCallback());
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _afterInitialLayoutCallback(),
+    );
   }
 
   @override
@@ -129,95 +131,86 @@ class TooltipOverlayState extends State<TooltipOverlay>
   }
 
   bool _isOverflowing(OptimusTooltipPosition position) => switch (position) {
-        OptimusTooltipPosition.top => _tooltipRect.top < _screenPadding,
-        OptimusTooltipPosition.bottom =>
-          _tooltipRect.bottom > _overlayHeight - _screenPadding,
-        OptimusTooltipPosition.left => _tooltipRect.left < _screenPadding,
-        OptimusTooltipPosition.right =>
-          _tooltipRect.right > _overlayWidth - _screenPadding,
-      };
+    OptimusTooltipPosition.top => _tooltipRect.top < _screenPadding,
+    OptimusTooltipPosition.bottom =>
+      _tooltipRect.bottom > _overlayHeight - _screenPadding,
+    OptimusTooltipPosition.left => _tooltipRect.left < _screenPadding,
+    OptimusTooltipPosition.right =>
+      _tooltipRect.right > _overlayWidth - _screenPadding,
+  };
 
   double get _leftOffset => switch (alignment) {
-        TooltipAlignment.leftTop ||
-        TooltipAlignment.leftCenter ||
-        TooltipAlignment.leftBottom =>
-          _savedRect.left - _tooltipRect.width - _sideAlignOffset,
-        TooltipAlignment.rightTop ||
-        TooltipAlignment.rightCenter ||
-        TooltipAlignment.rightBottom =>
-          _savedRect.right + _widgetPadding,
-        TooltipAlignment.topLeft ||
-        TooltipAlignment.bottomLeft =>
-          _savedRect.right - _tooltipRect.width + _sideAlignOffset,
-        TooltipAlignment.topCenter ||
-        TooltipAlignment.bottomCenter =>
-          _savedRect.left + (_savedRect.width / 2 - _tooltipRect.width / 2),
-        TooltipAlignment.topRight ||
-        TooltipAlignment.bottomRight =>
-          _savedRect.left - _sideAlignOffset,
-      };
+    TooltipAlignment.leftTop ||
+    TooltipAlignment.leftCenter ||
+    TooltipAlignment
+        .leftBottom => _savedRect.left - _tooltipRect.width - _sideAlignOffset,
+    TooltipAlignment.rightTop ||
+    TooltipAlignment.rightCenter ||
+    TooltipAlignment.rightBottom => _savedRect.right + _widgetPadding,
+    TooltipAlignment.topLeft || TooltipAlignment.bottomLeft =>
+      _savedRect.right - _tooltipRect.width + _sideAlignOffset,
+    TooltipAlignment.topCenter || TooltipAlignment.bottomCenter =>
+      _savedRect.left + (_savedRect.width / 2 - _tooltipRect.width / 2),
+    TooltipAlignment.topRight ||
+    TooltipAlignment.bottomRight => _savedRect.left - _sideAlignOffset,
+  };
 
   double? get _topOffset => switch (alignment) {
-        TooltipAlignment.rightTop || TooltipAlignment.leftTop => null,
-        TooltipAlignment.leftBottom ||
-        TooltipAlignment.rightBottom =>
-          _savedRect.top + _savedRect.height / 2 - _tooltipAlignOffset,
-        TooltipAlignment.rightCenter ||
-        TooltipAlignment.leftCenter =>
-          _savedRect.top + (_savedRect.height / 2 - _tooltipRect.height / 2),
-        TooltipAlignment.topCenter ||
-        TooltipAlignment.topLeft ||
-        TooltipAlignment.topRight =>
-          _savedRect.top - _tooltipRect.height - _widgetPadding,
-        TooltipAlignment.bottomLeft ||
-        TooltipAlignment.bottomCenter ||
-        TooltipAlignment.bottomRight =>
-          _savedRect.bottom + _widgetPadding,
-      };
+    TooltipAlignment.rightTop || TooltipAlignment.leftTop => null,
+    TooltipAlignment.leftBottom || TooltipAlignment.rightBottom =>
+      _savedRect.top + _savedRect.height / 2 - _tooltipAlignOffset,
+    TooltipAlignment.rightCenter || TooltipAlignment.leftCenter =>
+      _savedRect.top + (_savedRect.height / 2 - _tooltipRect.height / 2),
+    TooltipAlignment.topCenter ||
+    TooltipAlignment.topLeft ||
+    TooltipAlignment
+        .topRight => _savedRect.top - _tooltipRect.height - _widgetPadding,
+    TooltipAlignment.bottomLeft ||
+    TooltipAlignment.bottomCenter ||
+    TooltipAlignment.bottomRight => _savedRect.bottom + _widgetPadding,
+  };
 
   double? get _bottomOffset => switch (alignment) {
-        TooltipAlignment.rightTop ||
-        TooltipAlignment.leftTop =>
-          _overlayHeight -
-              _savedRect.top -
-              _savedRect.height / 2 -
-              _tooltipAlignOffset,
-        TooltipAlignment.leftBottom ||
-        TooltipAlignment.rightBottom ||
-        TooltipAlignment.rightCenter ||
-        TooltipAlignment.leftCenter ||
-        TooltipAlignment.topCenter ||
-        TooltipAlignment.topLeft ||
-        TooltipAlignment.topRight ||
-        TooltipAlignment.bottomLeft ||
-        TooltipAlignment.bottomCenter ||
-        TooltipAlignment.bottomRight =>
-          null,
-      };
+    TooltipAlignment.rightTop || TooltipAlignment.leftTop =>
+      _overlayHeight -
+          _savedRect.top -
+          _savedRect.height / 2 -
+          _tooltipAlignOffset,
+    TooltipAlignment.leftBottom ||
+    TooltipAlignment.rightBottom ||
+    TooltipAlignment.rightCenter ||
+    TooltipAlignment.leftCenter ||
+    TooltipAlignment.topCenter ||
+    TooltipAlignment.topLeft ||
+    TooltipAlignment.topRight ||
+    TooltipAlignment.bottomLeft ||
+    TooltipAlignment.bottomCenter ||
+    TooltipAlignment.bottomRight => null,
+  };
 
   @override
   TooltipAlignment get alignment => switch (_position) {
-        OptimusTooltipPosition.top => _calculateHorizontalAlignment(
-            TooltipAlignment.topLeft,
-            TooltipAlignment.topCenter,
-            TooltipAlignment.topRight,
-          ),
-        OptimusTooltipPosition.bottom => _calculateHorizontalAlignment(
-            TooltipAlignment.bottomLeft,
-            TooltipAlignment.bottomCenter,
-            TooltipAlignment.bottomRight,
-          ),
-        OptimusTooltipPosition.left => _calculateVerticalAlignment(
-            TooltipAlignment.leftTop,
-            TooltipAlignment.leftCenter,
-            TooltipAlignment.leftBottom,
-          ),
-        OptimusTooltipPosition.right => _calculateVerticalAlignment(
-            TooltipAlignment.rightTop,
-            TooltipAlignment.rightCenter,
-            TooltipAlignment.rightBottom,
-          ),
-      };
+    OptimusTooltipPosition.top => _calculateHorizontalAlignment(
+      TooltipAlignment.topLeft,
+      TooltipAlignment.topCenter,
+      TooltipAlignment.topRight,
+    ),
+    OptimusTooltipPosition.bottom => _calculateHorizontalAlignment(
+      TooltipAlignment.bottomLeft,
+      TooltipAlignment.bottomCenter,
+      TooltipAlignment.bottomRight,
+    ),
+    OptimusTooltipPosition.left => _calculateVerticalAlignment(
+      TooltipAlignment.leftTop,
+      TooltipAlignment.leftCenter,
+      TooltipAlignment.leftBottom,
+    ),
+    OptimusTooltipPosition.right => _calculateVerticalAlignment(
+      TooltipAlignment.rightTop,
+      TooltipAlignment.rightCenter,
+      TooltipAlignment.rightBottom,
+    ),
+  };
 
   TooltipAlignment _calculateHorizontalAlignment(
     TooltipAlignment start,
@@ -245,8 +238,9 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
   void _afterInitialLayoutCallback() {
     _updateRect();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => _afterFirstLayoutCallback());
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _afterFirstLayoutCallback(),
+    );
   }
 
   void _afterFirstLayoutCallback() {
@@ -281,9 +275,11 @@ class TooltipOverlayState extends State<TooltipOverlay>
   }
 
   RenderBox? _getOverlay() {
-    final renderObject = Overlay.of(context, rootOverlay: widget.useRootOverlay)
-        .context
-        .findRenderObject();
+    final renderObject =
+        Overlay.of(
+          context,
+          rootOverlay: widget.useRootOverlay,
+        ).context.findRenderObject();
     if (renderObject is RenderBox) return renderObject;
   }
 
@@ -291,9 +287,10 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
   @override
   Widget build(BuildContext context) => TooltipOverlayData(
-        controller: this,
-        child: Builder(
-          builder: (context) => Positioned(
+    controller: this,
+    child: Builder(
+      builder:
+          (context) => Positioned(
             left: _leftOffset,
             top: _topOffset,
             bottom: _bottomOffset,
@@ -304,8 +301,8 @@ class TooltipOverlayState extends State<TooltipOverlay>
               child: widget.tooltip,
             ),
           ),
-        ),
-      );
+    ),
+  );
 }
 
 const double _tooltipAlignOffset = 20.0;

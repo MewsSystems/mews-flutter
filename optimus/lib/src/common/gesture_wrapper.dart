@@ -16,14 +16,14 @@ class GestureWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: onTap,
-        onTapDown: (_) => onPressedChanged(true),
-        onTapUp: (_) => onPressedChanged(false),
-        onTapCancel: () => onPressedChanged(false),
-        child: MouseRegion(
-          onEnter: (_) => onHoverChanged(true),
-          onExit: (_) => onHoverChanged(false),
-          child: child,
-        ),
-      );
+    onTap: onTap,
+    onTapDown: (_) => onPressedChanged(true),
+    onTapUp: (_) => onPressedChanged(false),
+    onTapCancel: () => onPressedChanged(false),
+    child: MouseRegion(
+      onEnter: (_) => onHoverChanged(true),
+      onExit: (_) => onHoverChanged(false),
+      child: child,
+    ),
+  );
 }

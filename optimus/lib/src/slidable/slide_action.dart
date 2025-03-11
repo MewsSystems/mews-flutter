@@ -15,8 +15,8 @@ class OptimusSlideAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CustomSlidableAction(
-        backgroundColor: color,
-        onPressed: onTap == null ? null : (_) => onTap?.call(),
-        child: child,
-      );
+    backgroundColor: color,
+    onPressed: onTap == null ? null : (_) => onTap?.call(),
+    child: child,
+  );
 }

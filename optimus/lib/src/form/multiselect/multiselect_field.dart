@@ -24,6 +24,7 @@ class MultiSelectInputField extends StatefulWidget {
     this.fieldBoxKey,
     this.size = OptimusWidgetSize.large,
     this.showLoader = false,
+    this.isCompact = false,
     required this.values,
   });
 
@@ -45,6 +46,7 @@ class MultiSelectInputField extends StatefulWidget {
   final OptimusWidgetSize size;
   final bool showLoader;
   final List<Widget> values;
+  final bool isCompact;
 
   bool get hasError {
     final error = this.error;
@@ -85,23 +87,26 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
   @override
   Widget build(BuildContext context) {
     final error = widget.error;
-    final inlineError = _isUsingInlineError && error != null && error.isNotEmpty
-        ? InlineErrorTooltip(error: error)
-        : null;
-    final suffix = widget.suffix != null ||
-            widget.trailing != null ||
-            widget.showLoader ||
-            inlineError != null
-        ? Suffix(
-            suffix: widget.suffix,
-            trailing: widget.trailing,
-            showLoader: widget.showLoader,
-            inlineError: inlineError,
-          )
-        : null;
-    final prefix = widget.leading != null || widget.prefix != null
-        ? Prefix(prefix: widget.prefix, leading: widget.leading)
-        : null;
+    final inlineError =
+        _isUsingInlineError && error != null && error.isNotEmpty
+            ? InlineErrorTooltip(error: error)
+            : null;
+    final suffix =
+        widget.suffix != null ||
+                widget.trailing != null ||
+                widget.showLoader ||
+                inlineError != null
+            ? Suffix(
+              suffix: widget.suffix,
+              trailing: widget.trailing,
+              showLoader: widget.showLoader,
+              inlineError: inlineError,
+            )
+            : null;
+    final prefix =
+        widget.leading != null || widget.prefix != null
+            ? Prefix(prefix: widget.prefix, leading: widget.leading)
+            : null;
 
     return IgnorePointer(
       ignoring: !widget.isEnabled,
@@ -155,17 +160,16 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 
 extension on OptimusWidgetSize {
   double getMinHeight(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.sizing400,
-        OptimusWidgetSize.medium => tokens.sizing500,
-        OptimusWidgetSize.large => tokens.sizing600,
-        OptimusWidgetSize.extraLarge => tokens.sizing700,
-      };
+    OptimusWidgetSize.small => tokens.sizing400,
+    OptimusWidgetSize.medium => tokens.sizing500,
+    OptimusWidgetSize.large => tokens.sizing600,
+    OptimusWidgetSize.extraLarge => tokens.sizing700,
+  };
 
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.spacing50,
-        OptimusWidgetSize.medium => tokens.spacing100,
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing150,
-      };
+    OptimusWidgetSize.small => tokens.spacing50,
+    OptimusWidgetSize.medium => tokens.spacing100,
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => tokens.spacing150,
+  };
 }

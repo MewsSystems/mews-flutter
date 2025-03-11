@@ -91,12 +91,12 @@ class OptimusTabBar extends StatelessWidget {
   final EdgeInsets? tabPadding;
 
   Decoration _buildIndicator(OptimusTokens tokens) => UnderlineTabIndicator(
-        borderSide: BorderSide(
-          color: tokens.borderInteractivePrimaryDefault,
-          width: tokens.borderWidth250,
-        ),
-        insets: const EdgeInsets.only(bottom: -1),
-      );
+    borderSide: BorderSide(
+      color: tokens.borderInteractivePrimaryDefault,
+      width: tokens.borderWidth250,
+    ),
+    insets: const EdgeInsets.only(bottom: -1),
+  );
 
   TabAlignment? get _tabAlignment => isScrollable ? null : TabAlignment.fill;
 

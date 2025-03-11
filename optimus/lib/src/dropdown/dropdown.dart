@@ -36,25 +36,25 @@ class OptimusDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DropdownSizeData(
-        size: size,
-        child: Stack(
-          alignment: AlignmentDirectional.topCenter,
-          children: <Widget>[
-            AnchoredOverlay(
-              anchorKey: anchorKey,
-              width: width,
-              child: _DropdownContent(
-                items: items,
-                onChanged: onChanged,
-                embeddedSearch: embeddedSearch,
-                emptyResultPlaceholder: emptyResultPlaceholder,
-                groupBy: groupBy,
-                groupBuilder: groupBuilder,
-              ),
-            ),
-          ],
+    size: size,
+    child: Stack(
+      alignment: AlignmentDirectional.topCenter,
+      children: <Widget>[
+        AnchoredOverlay(
+          anchorKey: anchorKey,
+          width: width,
+          child: _DropdownContent(
+            items: items,
+            onChanged: onChanged,
+            embeddedSearch: embeddedSearch,
+            emptyResultPlaceholder: emptyResultPlaceholder,
+            groupBy: groupBy,
+            groupBuilder: groupBuilder,
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }
 
 class _DropdownContent<T> extends StatefulWidget {
@@ -116,13 +116,12 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     AnchoredOverlayController controller,
     bool isOnTop,
     Widget embeddedSearch,
-  ) =>
-      _SearchWrapper(
-        width: controller.width,
-        showDivider: widget.items.isNotEmpty,
-        isOnTop: isOnTop,
-        child: embeddedSearch,
-      );
+  ) => _SearchWrapper(
+    width: controller.width,
+    showDivider: widget.items.isNotEmpty,
+    isOnTop: isOnTop,
+    child: embeddedSearch,
+  );
 
   Widget _buildList(bool isOnTop, double maxHeight) {
     if (widget.groupBy case final groupBy?) {
@@ -149,21 +148,23 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
-      final listMaxHeight = widget.embeddedSearch != null
-          ? controller.maxHeight - _embeddedSearchHeight
-          : controller.maxHeight;
+      final listMaxHeight =
+          widget.embeddedSearch != null
+              ? controller.maxHeight - _embeddedSearchHeight
+              : controller.maxHeight;
 
-      final content = widget.items.isNotEmpty
-          ? Container(
-              constraints: BoxConstraints(
-                maxHeight: listMaxHeight,
-                maxWidth: controller.width,
-              ),
-              child: OptimusScrollConfiguration(
-                child: _buildList(isOnTop, listMaxHeight),
-              ),
-            )
-          : (widget.emptyResultPlaceholder ?? const SizedBox.shrink());
+      final content =
+          widget.items.isNotEmpty
+              ? Container(
+                constraints: BoxConstraints(
+                  maxHeight: listMaxHeight,
+                  maxWidth: controller.width,
+                ),
+                child: OptimusScrollConfiguration(
+                  child: _buildList(isOnTop, listMaxHeight),
+                ),
+              )
+              : (widget.emptyResultPlaceholder ?? const SizedBox.shrink());
       final children = [
         Material(color: Colors.transparent, child: content),
         if (widget.embeddedSearch case final embeddedSearch?)
@@ -172,10 +173,10 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
       final decoration =
           widget.items.isNotEmpty || widget.emptyResultPlaceholder != null
               ? BoxDecoration(
-                  borderRadius: BorderRadius.all(tokens.borderRadius100),
-                  color: tokens.backgroundStaticFloating,
-                  boxShadow: tokens.shadow200,
-                )
+                borderRadius: BorderRadius.all(tokens.borderRadius100),
+                color: tokens.backgroundStaticFloating,
+                boxShadow: tokens.shadow200,
+              )
               : null;
 
       return FadeTransition(
@@ -186,9 +187,13 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
           decoration: decoration,
           child: SizeTransition(
             sizeFactor: _sizeAnimation,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: isOnTop ? children : children.reversed.toList(),
+            child: Padding(
+              padding: EdgeInsets.all(tokens.spacing100),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: tokens.spacing50,
+                children: isOnTop ? children : children.reversed.toList(),
+              ),
             ),
           ),
         ),
@@ -224,8 +229,9 @@ class _DropdownListView<T> extends StatelessWidget {
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: items.length,
-        itemBuilder: (context, index) =>
-            _DropdownItem(onChanged: onChanged, child: items[index]),
+        itemBuilder:
+            (context, index) =>
+                _DropdownItem(onChanged: onChanged, child: items[index]),
       ),
     );
   }
@@ -255,7 +261,8 @@ class _GroupedDropdownListView<T> extends StatefulWidget {
 }
 
 class _GroupedDropdownListViewState<T>
-    extends State<_GroupedDropdownListView<T>> with ThemeGetter {
+    extends State<_GroupedDropdownListView<T>>
+    with ThemeGetter {
   late List<OptimusDropdownTile<T>> _sortedItems;
   late int _groupsCount;
 
@@ -282,20 +289,20 @@ class _GroupedDropdownListViewState<T>
     int groupsCount = 1;
 
     final sorted = [...widget.items]..sort((e1, e2) {
-        final value1 = e1.value;
-        final value2 = e2.value;
+      final value1 = e1.value;
+      final value2 = e2.value;
 
-        int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
-        if (result == 0) {
-          if (value1 is Comparable && value2 is Comparable) {
-            result = value1.compareTo(value2);
-          }
-        } else {
-          groupsCount++;
+      int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
+      if (result == 0) {
+        if (value1 is Comparable && value2 is Comparable) {
+          result = value1.compareTo(value2);
         }
+      } else {
+        groupsCount++;
+      }
 
-        return result;
-      });
+      return result;
+    });
     _groupsCount = groupsCount;
 
     return sorted;
@@ -306,13 +313,13 @@ class _GroupedDropdownListViewState<T>
   bool _isSameGroup(
     OptimusDropdownTile<T> first,
     OptimusDropdownTile<T> second,
-  ) =>
-      widget.groupBy(second.value) == widget.groupBy(first.value);
+  ) => widget.groupBy(second.value) == widget.groupBy(first.value);
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final minListHeight = _groupsCount * _groupMinHeight +
+    final minListHeight =
+        _groupsCount * _groupMinHeight +
         widget.items.length * _itemMinHeight +
         tokens.spacing100 * 2;
 
@@ -324,8 +331,10 @@ class _GroupedDropdownListViewState<T>
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
           final current = _sortedItems[index];
-          final child =
-              _DropdownItem(onChanged: widget.onChanged, child: current);
+          final child = _DropdownItem(
+            onChanged: widget.onChanged,
+            child: current,
+          );
 
           if (index == _leadingIndex) {
             return _GroupWrapper(
@@ -338,11 +347,14 @@ class _GroupedDropdownListViewState<T>
           final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
 
           return _isSameGroup(current, previous)
-              ? child
+              ? Padding(
+                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                child: child,
+              )
               : _GroupWrapper(
-                  group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-                  child: child,
-                );
+                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                child: child,
+              );
         },
       ),
     );
@@ -361,26 +373,32 @@ class _GroupWrapper extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: AnchoredOverlay.of(context)?.width,
-            decoration: useBorder
-                ? BoxDecoration(
+  Widget build(BuildContext context) => Padding(
+    padding: EdgeInsets.only(
+      top: useBorder ? context.tokens.spacing50 : context.tokens.spacing0,
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: AnchoredOverlay.of(context)?.width,
+          decoration:
+              useBorder
+                  ? BoxDecoration(
                     border: Border(
                       top: BorderSide(
                         color: context.tokens.borderStaticSecondary,
                       ),
                     ),
                   )
-                : null,
-            child: group,
-          ),
-          child,
-        ],
-      );
+                  : null,
+          child: group,
+        ),
+        child,
+      ],
+    ),
+  );
 }
 
 class _DropdownItem<T> extends StatefulWidget {
@@ -405,13 +423,14 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        width: AnchoredOverlay.of(context)?.width,
-        height: _itemMinHeight,
-        child: InkWell(
-          onTap: _handleItemTap,
-          child: widget.child,
-        ),
-      );
+    width: AnchoredOverlay.of(context)?.width,
+    height: _itemMinHeight,
+    child: InkWell(
+      borderRadius: BorderRadius.all(tokens.borderRadius100),
+      onTap: _handleItemTap,
+      child: widget.child,
+    ),
+  );
 }
 
 class _SearchWrapper extends StatefulWidget {

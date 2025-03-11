@@ -45,60 +45,60 @@ class OptimusInputFormField extends FormField<String> {
     OptimusWidgetSize size = OptimusWidgetSize.large,
     bool isClearEnabled = false,
     bool showLoader = false,
-  })  : assert(
-          initialValue == null || controller == null,
-          'Provide either initial value or controller',
-        ),
-        super(
-          initialValue:
-              controller != null ? controller.text : (initialValue ?? ''),
-          enabled: isEnabled,
-          builder: (FormFieldState<String> field) {
-            // ignore: avoid-type-casts, can't be anything else. No need to check
-            final _InputFormFieldState state = field as _InputFormFieldState;
+  }) : assert(
+         initialValue == null || controller == null,
+         'Provide either initial value or controller',
+       ),
+       super(
+         initialValue:
+             controller != null ? controller.text : (initialValue ?? ''),
+         enabled: isEnabled,
+         builder: (FormFieldState<String> field) {
+           // ignore: avoid-type-casts, can't be anything else. No need to check
+           final _InputFormFieldState state = field as _InputFormFieldState;
 
-            return OptimusInputField(
-              onChanged: field.didChange,
-              placeholder: placeholder,
-              keyboardType: keyboardType,
-              isPasswordField: isPasswordField,
-              isEnabled: isEnabled,
-              textInputAction: textInputAction,
-              onSubmitted: onSubmitted,
-              focusNode: focusNode,
-              label: label,
-              maxLines: maxLines,
-              minLines: minLines,
-              maxCharacters: maxCharacters,
-              controller: state._effectiveController,
-              error: field.errorText,
-              enableInteractiveSelection: enableInteractiveSelection,
-              enableAutoFocus: autofocus,
-              enableAutoCorrect: autocorrect,
-              hasBorders: hasBorders,
-              isRequired: isRequired,
-              leading: leading,
-              prefix: prefix,
-              suffix: suffix,
-              trailing: trailing,
-              inputKey: inputKey,
-              isReadOnly: readOnly,
-              showCursor: showCursor,
-              onTap: onTap,
-              textAlign: textAlign,
-              textCapitalization: textCapitalization,
-              caption: caption,
-              helperMessage: helperMessage,
-              keyboardAppearance: keyboardAppearance,
-              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
-              enableSuggestions: enableSuggestions,
-              statusBarState: statusBarState,
-              size: size,
-              isClearEnabled: isClearEnabled,
-              showLoader: showLoader,
-            );
-          },
-        );
+           return OptimusInputField(
+             onChanged: field.didChange,
+             placeholder: placeholder,
+             keyboardType: keyboardType,
+             isPasswordField: isPasswordField,
+             isEnabled: isEnabled,
+             textInputAction: textInputAction,
+             onSubmitted: onSubmitted,
+             focusNode: focusNode,
+             label: label,
+             maxLines: maxLines,
+             minLines: minLines,
+             maxCharacters: maxCharacters,
+             controller: state._effectiveController,
+             error: field.errorText,
+             enableInteractiveSelection: enableInteractiveSelection,
+             enableAutoFocus: autofocus,
+             enableAutoCorrect: autocorrect,
+             hasBorders: hasBorders,
+             isRequired: isRequired,
+             leading: leading,
+             prefix: prefix,
+             suffix: suffix,
+             trailing: trailing,
+             inputKey: inputKey,
+             isReadOnly: readOnly,
+             showCursor: showCursor,
+             onTap: onTap,
+             textAlign: textAlign,
+             textCapitalization: textCapitalization,
+             caption: caption,
+             helperMessage: helperMessage,
+             keyboardAppearance: keyboardAppearance,
+             enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+             enableSuggestions: enableSuggestions,
+             statusBarState: statusBarState,
+             size: size,
+             isClearEnabled: isClearEnabled,
+             showLoader: showLoader,
+           );
+         },
+       );
 
   final TextEditingController? controller;
 
@@ -140,8 +140,9 @@ class _InputFormFieldState extends FormFieldState<String> {
       final widgetController = widget.controller;
 
       if (oldWidgetController != null && widgetController == null) {
-        _controller =
-            TextEditingController.fromValue(oldWidgetController.value);
+        _controller = TextEditingController.fromValue(
+          oldWidgetController.value,
+        );
       }
       if (widgetController != null) {
         setValue(widgetController.text);

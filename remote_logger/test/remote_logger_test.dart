@@ -46,11 +46,7 @@ void main() {
   test('retries after timeout on error', () async {
     final responses = [Response('', 500), Response('', 200)];
     when(
-      client.post(
-        any,
-        headers: anyNamed('headers'),
-        body: anyNamed('body'),
-      ),
+      client.post(any, headers: anyNamed('headers'), body: anyNamed('body')),
     ).thenAnswer((_) async => responses.removeAt(0));
 
     logger.info('message');

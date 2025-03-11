@@ -4,7 +4,7 @@ enum Variation { variationNormal, variationSecondary }
 
 extension VariationToColor on Variation {
   OptimusTypographyColor get color => switch (this) {
-        Variation.variationNormal => OptimusTypographyColor.primary,
-        Variation.variationSecondary => OptimusTypographyColor.secondary,
-      };
+    Variation.variationNormal => OptimusTypographyColor.primary,
+    Variation.variationSecondary => OptimusTypographyColor.secondary,
+  };
 }

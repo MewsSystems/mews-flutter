@@ -3,3 +3,6 @@ include: package:mews_pedantic/analysis_options.yaml
 analyzer:
   exclude:
     - "**/optimus_icons.dart"
+
+formatter:
+  page_width: 80

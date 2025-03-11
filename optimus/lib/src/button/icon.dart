@@ -50,11 +50,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
   @override
   Widget build(BuildContext context) {
     final borderColor = widget.variant.toBaseVariant().getBorderColor(
-          tokens,
-          isEnabled: _isEnabled,
-          isPressed: _isPressed,
-          isHovered: _isHovered,
-        );
+      tokens,
+      isEnabled: _isEnabled,
+      isPressed: _isPressed,
+      isHovered: _isHovered,
+    );
     final isEnabled = widget.onPressed != null;
 
     return IgnorePointer(
@@ -74,12 +74,13 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
               isPressed: _isPressed,
               isHovered: _isHovered,
             ),
-            border: borderColor != null
-                ? Border.all(
-                    color: borderColor,
-                    width: tokens.borderWidth150,
-                  )
-                : null,
+            border:
+                borderColor != null
+                    ? Border.all(
+                      color: borderColor,
+                      width: tokens.borderWidth150,
+                    )
+                    : null,
             borderRadius: BorderRadius.all(tokens.borderRadius100),
           ),
           duration: buttonAnimationDuration,
@@ -103,11 +104,11 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
 extension on OptimusWidgetSize {
   double getContainerSize(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.sizing400,
-        OptimusWidgetSize.medium => tokens.sizing500,
-        OptimusWidgetSize.large => tokens.sizing600,
-        OptimusWidgetSize.extraLarge => tokens.sizing700,
-      };
+    OptimusWidgetSize.small => tokens.sizing400,
+    OptimusWidgetSize.medium => tokens.sizing500,
+    OptimusWidgetSize.large => tokens.sizing600,
+    OptimusWidgetSize.extraLarge => tokens.sizing700,
+  };
 
   double getIconSize(OptimusTokens tokens) =>
       this == OptimusWidgetSize.small ? tokens.sizing200 : tokens.sizing300;

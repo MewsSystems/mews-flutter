@@ -5,11 +5,7 @@ import 'package:optimus/optimus.dart';
 /// The icon list component serves as a static, non-interactable option and is
 /// used when you need to show an icon with a label and/or optional description.
 class OptimusIconList extends StatelessWidget {
-  const OptimusIconList({
-    super.key,
-    this.items = const [],
-    this.listSize,
-  });
+  const OptimusIconList({super.key, this.items = const [], this.listSize});
 
   /// Controls the content of tiles.
   final List<OptimusIconListItem> items;
@@ -32,8 +28,8 @@ class OptimusIconList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: items.length,
       itemBuilder: (_, index) => _ListTile(item: items[index], size: size),
-      separatorBuilder: (context, index) =>
-          SizedBox(height: context.tokens.spacing200),
+      separatorBuilder:
+          (context, index) => SizedBox(height: context.tokens.spacing200),
     );
   }
 
@@ -42,8 +38,7 @@ class OptimusIconList extends StatelessWidget {
         Breakpoint.extraSmall || Breakpoint.small => OptimusIconListSize.small,
         Breakpoint.medium ||
         Breakpoint.large ||
-        Breakpoint.extraLarge =>
-          OptimusIconListSize.large,
+        Breakpoint.extraLarge => OptimusIconListSize.large,
       };
 }
 
@@ -90,23 +85,20 @@ class OptimusIconListItem {
 }
 
 class _ListTile extends StatelessWidget {
-  const _ListTile({
-    required this.item,
-    required this.size,
-  });
+  const _ListTile({required this.item, required this.size});
 
   final OptimusIconListItem item;
   final OptimusIconListSize size;
 
   TextStyle _getLabelStyle(OptimusTokens tokens) => switch (size) {
-        OptimusIconListSize.large => tokens.bodyLargeStrong,
-        OptimusIconListSize.small => tokens.bodyMediumStrong,
-      };
+    OptimusIconListSize.large => tokens.bodyLargeStrong,
+    OptimusIconListSize.small => tokens.bodyMediumStrong,
+  };
 
   TextStyle _getDescriptionStyle(OptimusTokens tokens) => switch (size) {
-        OptimusIconListSize.large => tokens.bodyMediumStrong,
-        OptimusIconListSize.small => tokens.bodySmallStrong,
-      };
+    OptimusIconListSize.large => tokens.bodyMediumStrong,
+    OptimusIconListSize.small => tokens.bodySmallStrong,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +117,9 @@ class _ListTile extends StatelessWidget {
               if (description != null && description.isNotEmpty)
                 Text(
                   description.capitalize(),
-                  style: _getDescriptionStyle(tokens).copyWith(
-                    color: tokens.textStaticSecondary,
-                  ),
+                  style: _getDescriptionStyle(
+                    tokens,
+                  ).copyWith(color: tokens.textStaticSecondary),
                 ),
             ],
           ),

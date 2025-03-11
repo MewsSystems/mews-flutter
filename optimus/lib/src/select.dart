@@ -63,68 +63,69 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
     return value == null
         ? Text(widget.placeholder, style: _textStyle)
         : DefaultTextStyle.merge(
-            style: tokens.bodyLargeStrong,
-            child: widget.builder(context, value),
-          );
+          style: tokens.bodyLargeStrong,
+          child: widget.builder(context, value),
+        );
   }
 
   Icon get _icon => Icon(
-        _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
-        size: tokens.sizing300,
-        color: tokens.textStaticPrimary,
-      );
+    _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
+    size: tokens.sizing300,
+    color: tokens.textStaticPrimary,
+  );
 
   TextStyle get _textStyle {
-    final color = widget.isEnabled
-        ? widget.value == null
-            ? tokens.textStaticSecondary
-            : tokens.textStaticPrimary
-        : tokens.textDisabled;
+    final color =
+        widget.isEnabled
+            ? widget.value == null
+                ? tokens.textStaticSecondary
+                : tokens.textStaticPrimary
+            : tokens.textDisabled;
 
     return switch (widget.size) {
       OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(color: color),
       OptimusWidgetSize.medium ||
       OptimusWidgetSize.large ||
-      OptimusWidgetSize.extraLarge =>
-        tokens.bodyLargeStrong.copyWith(color: color),
+      OptimusWidgetSize
+          .extraLarge => tokens.bodyLargeStrong.copyWith(color: color),
     };
   }
 
   @override
   Widget build(BuildContext context) => OverlayController(
-        onItemSelected: widget.onItemSelected,
+    onItemSelected: widget.onItemSelected,
+    focusNode: _node,
+    anchorKey: _selectFieldKey,
+    items: widget.items,
+    size: widget.size,
+    onShown: () => _handleOpenedChanged(true),
+    onHidden: () => _handleOpenedChanged(false),
+    child: GestureDetector(
+      onTap: () => widget.isEnabled ? _node.requestFocus() : null,
+      child: Focus(
         focusNode: _node,
-        anchorKey: _selectFieldKey,
-        items: widget.items,
-        size: widget.size,
-        onShown: () => _handleOpenedChanged(true),
-        onHidden: () => _handleOpenedChanged(false),
-        child: GestureDetector(
-          onTap: () => widget.isEnabled ? _node.requestFocus() : null,
-          child: Focus(
-            focusNode: _node,
-            child: FieldWrapper(
-              fieldBoxKey: _selectFieldKey,
-              focusNode: _node,
-              label: widget.label,
-              error: widget.error,
-              isEnabled: widget.isEnabled,
-              isRequired: widget.isRequired,
-              prefix: widget.prefix,
-              suffix: _icon,
-              caption: widget.caption,
-              helperMessage: widget.secondaryCaption,
-              children: [
-                _SelectedValue(
-                  size: widget.size,
-                  textStyle: _textStyle,
-                  child: _fieldContent,
-                ),
-              ],
+        child: FieldWrapper(
+          fieldBoxKey: _selectFieldKey,
+          focusNode: _node,
+          label: widget.label,
+          error: widget.error,
+          isEnabled: widget.isEnabled,
+          isRequired: widget.isRequired,
+          prefix: widget.prefix,
+          suffix: _icon,
+          caption: widget.caption,
+          helperMessage: widget.secondaryCaption,
+          children: [
+            _SelectedValue(
+              size: widget.size,
+              textStyle: _textStyle,
+              child: _fieldContent,
             ),
-          ),
+          ],
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class _SelectedValue extends StatelessWidget {
@@ -144,8 +145,10 @@ class _SelectedValue extends StatelessWidget {
 
     return Expanded(
       child: Padding(
-        padding:
-            EdgeInsets.only(left: tokens.spacing200, right: tokens.spacing100),
+        padding: EdgeInsets.only(
+          left: tokens.spacing200,
+          right: tokens.spacing100,
+        ),
         child: SizedBox(
           height: size.getValue(tokens),
           child: DefaultTextStyle(style: textStyle, child: child),

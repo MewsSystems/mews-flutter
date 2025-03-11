@@ -41,9 +41,9 @@ class OptimusCaption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodySmallStrong,
-        color: variation.color,
-        align: align,
-        child: child,
-      );
+    resolveStyle: (_) => context.tokens.bodySmallStrong,
+    color: variation.color,
+    align: align,
+    child: child,
+  );
 }

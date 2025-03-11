@@ -36,20 +36,22 @@ class BaseBadge extends StatelessWidget {
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(50)),
       color: backgroundColor,
-      border: isOutlined
-          ? Border.all(width: outlineSize, color: outlineColor)
-          : null,
+      border:
+          isOutlined
+              ? Border.all(width: outlineSize, color: outlineColor)
+              : null,
     );
 
-    final child = hasText
-        ? Text(
-            text,
-            maxLines: 1,
-            overflow: overflow,
-            textAlign: TextAlign.center,
-            style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
-          )
-        : null;
+    final child =
+        hasText
+            ? Text(
+              text,
+              maxLines: 1,
+              overflow: overflow,
+              textAlign: TextAlign.center,
+              style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
+            )
+            : null;
 
     return Container(
       constraints: BoxConstraints(

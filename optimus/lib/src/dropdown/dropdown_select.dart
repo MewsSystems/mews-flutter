@@ -5,7 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
-import 'package:optimus/src/form/multiselect_field.dart';
+import 'package:optimus/src/form/multiselect/multiselect_field.dart';
+import 'package:optimus/src/form/multiselect/select_chip.dart';
 
 class DropdownSelect<T> extends StatefulWidget {
   const DropdownSelect({
@@ -46,6 +47,7 @@ class DropdownSelect<T> extends StatefulWidget {
     this.allowMultipleSelection = false,
     this.selectedValues,
     this.builder,
+    this.isCompact = false,
   });
 
   final String? label;
@@ -79,6 +81,7 @@ class DropdownSelect<T> extends StatefulWidget {
   final VoidCallback? onDropdownHide;
   final Grouper<T>? groupBy;
   final GroupBuilder? groupBuilder;
+  final bool isCompact;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -215,21 +218,36 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   }
 
   List<Widget>? get _values {
-    if (widget.builder case final builder?) {
-      return widget.selectedValues
-          ?.map(
-            (e) => OptimusChip(
-              onRemoved: () => widget.onChanged(e),
+    final builder = widget.builder;
+    final selectedValues = widget.selectedValues;
+
+    if (builder == null || selectedValues == null) return null;
+
+    return widget.isCompact && selectedValues.length > 2
+        ? [
+          for (final element in selectedValues.take(2))
+            MultiselectChip(
+              onRemoved: () => widget.onChanged(element),
               onTap: _handleChipTap,
               isEnabled: widget.isEnabled,
-              child: Text(
-                builder(e),
-                style: const TextStyle(decoration: TextDecoration.underline),
-              ),
+              text: builder(element),
             ),
-          )
-          .toList();
-    }
+          MultiselectChip(
+            text: '+${selectedValues.length - 2}',
+            onTap: _handleChipTap,
+            isEnabled: widget.isEnabled,
+          ),
+        ]
+        : selectedValues
+            .map(
+              (element) => MultiselectChip(
+                onRemoved: () => widget.onChanged(element),
+                onTap: _handleChipTap,
+                isEnabled: widget.isEnabled,
+                text: builder(element),
+              ),
+            )
+            .toList();
   }
 
   bool? get _isFocused =>
@@ -256,117 +274,119 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
       widget.leading != null || widget.leadingImplicit != null;
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-        builder: (context) {
-          void handleTapDown(TapDownDetails details) {
-            bool didHit(RenderBox box) => box.hitTest(
-                  BoxHitTestResult(),
-                  position: box.globalToLocal(details.globalPosition),
-                );
+    builder: (context) {
+      void handleTapDown(TapDownDetails details) {
+        bool didHit(RenderBox box) => box.hitTest(
+          BoxHitTestResult(),
+          position: box.globalToLocal(details.globalPosition),
+        );
 
-            final RenderObject? inputFieldRenderObject =
-                _fieldBoxKey.currentContext?.findRenderObject();
-            final RenderObject? dropdownRenderObject =
-                context.findRenderObject();
-            if (dropdownRenderObject is RenderBox &&
-                didHit(dropdownRenderObject)) {
-              // Touch on dropdown shouldn't close overlay
-            } else if (inputFieldRenderObject is RenderBox &&
-                didHit(inputFieldRenderObject)) {
-              if (widget.shouldCloseOnInputTap) _removeOverlay();
-            } else {
-              _removeOverlay();
-            }
-          }
+        final RenderObject? inputFieldRenderObject =
+            _fieldBoxKey.currentContext?.findRenderObject();
+        final RenderObject? dropdownRenderObject = context.findRenderObject();
+        if (dropdownRenderObject is RenderBox && didHit(dropdownRenderObject)) {
+          // Touch on dropdown shouldn't close overlay
+        } else if (inputFieldRenderObject is RenderBox &&
+            didHit(inputFieldRenderObject)) {
+          if (widget.shouldCloseOnInputTap) _removeOverlay();
+        } else {
+          _removeOverlay();
+        }
+      }
 
-          return AllowMultipleRawGestureDetector(
-            key: const Key('OptimusDropdownOverlay'),
-            behavior: HitTestBehavior.translucent,
-            onTapDown: handleTapDown,
-            child: DropdownTapInterceptor(
-              onTap: widget.allowMultipleSelection ? () {} : _handleClose,
-              child: OptimusDropdown(
-                items: widget.items,
-                size: widget.size,
-                anchorKey: _fieldBoxKey,
-                onChanged: widget.onChanged,
-                embeddedSearch: widget.embeddedSearch,
-                emptyResultPlaceholder: widget.emptyResultPlaceholder,
-                groupBy: widget.groupBy,
-                groupBuilder: widget.groupBuilder,
-              ),
-            ),
-          );
-        },
+      return AllowMultipleRawGestureDetector(
+        key: const Key('OptimusDropdownOverlay'),
+        behavior: HitTestBehavior.translucent,
+        onTapDown: handleTapDown,
+        child: DropdownTapInterceptor(
+          onTap: widget.allowMultipleSelection ? () {} : _handleClose,
+          child: OptimusDropdown(
+            items: widget.items,
+            size: widget.size,
+            anchorKey: _fieldBoxKey,
+            onChanged: widget.onChanged,
+            embeddedSearch: widget.embeddedSearch,
+            emptyResultPlaceholder: widget.emptyResultPlaceholder,
+            groupBy: widget.groupBy,
+            groupBuilder: widget.groupBuilder,
+          ),
+        ),
       );
+    },
+  );
 
   @override
   Widget build(BuildContext context) {
-    final clearAll = _isClearAllButtonVisible
-        ? _ClearAllButton(onTap: _handleClearAllTap)
-        : null;
-    final trailing = _hasTrailing
-        ? _Trailing(
-            focusNode: _effectiveFocusNode,
-            clearAllButton: clearAll,
-            trailing: widget.trailing,
-            trailingImplicit: widget.trailingImplicit,
-            isUpdating: widget.isUpdating,
-          )
-        : null;
-    final leading = _hasLeading
-        ? _Leading(
-            leading: widget.leading,
-            leadingImplicit: widget.leadingImplicit,
-            focusNode: _effectiveFocusNode,
-          )
-        : null;
+    final clearAll =
+        _isClearAllButtonVisible
+            ? _ClearAllButton(onTap: _handleClearAllTap)
+            : null;
+    final trailing =
+        _hasTrailing
+            ? _Trailing(
+              focusNode: _effectiveFocusNode,
+              clearAllButton: clearAll,
+              trailing: widget.trailing,
+              trailingImplicit: widget.trailingImplicit,
+              isUpdating: widget.isUpdating,
+            )
+            : null;
+    final leading =
+        _hasLeading
+            ? _Leading(
+              leading: widget.leading,
+              leadingImplicit: widget.leadingImplicit,
+              focusNode: _effectiveFocusNode,
+            )
+            : null;
 
     return PopScope(
       canPop: _canPop,
       onPopInvokedWithResult: _handleOnBackPressed,
-      child: widget.allowMultipleSelection && _hasValues
-          ? MultiSelectInputField(
-              values: _values ?? [],
-              leading: leading,
-              prefix: widget.prefix,
-              isRequired: widget.isRequired,
-              label: widget.label,
-              focusNode: _effectiveFocusNode,
-              isFocused: _isFocused,
-              fieldBoxKey: _fieldBoxKey,
-              suffix: widget.suffix,
-              trailing: trailing,
-              isEnabled: widget.isEnabled,
-              caption: widget.caption,
-              helperMessage: widget.helperMessage,
-              error: widget.error,
-              size: widget.size,
-              showLoader: widget.showLoader,
-            )
-          : OptimusInputField(
-              leading: leading,
-              prefix: widget.prefix,
-              controller: _effectiveController,
-              onChanged: widget.onTextChanged,
-              isRequired: widget.isRequired,
-              label: widget.label,
-              placeholder: widget.placeholder,
-              placeholderStyle: widget.placeholderStyle,
-              focusNode: _effectiveFocusNode,
-              isFocused: _isFocused,
-              onTap: _onTap,
-              fieldBoxKey: _fieldBoxKey,
-              suffix: widget.suffix,
-              trailing: trailing,
-              isEnabled: widget.isEnabled,
-              caption: widget.caption,
-              helperMessage: widget.helperMessage,
-              error: widget.error,
-              size: widget.size,
-              isReadOnly: widget.isReadOnly,
-              showCursor: widget.showCursor,
-              showLoader: widget.showLoader,
-            ),
+      child:
+          widget.allowMultipleSelection && _hasValues
+              ? MultiSelectInputField(
+                values: _values ?? [],
+                leading: leading,
+                prefix: widget.prefix,
+                isRequired: widget.isRequired,
+                label: widget.label,
+                focusNode: _effectiveFocusNode,
+                isFocused: _isFocused,
+                fieldBoxKey: _fieldBoxKey,
+                suffix: widget.suffix,
+                trailing: trailing,
+                isEnabled: widget.isEnabled,
+                caption: widget.caption,
+                helperMessage: widget.helperMessage,
+                error: widget.error,
+                size: widget.size,
+                showLoader: widget.showLoader,
+              )
+              : OptimusInputField(
+                leading: leading,
+                prefix: widget.prefix,
+                controller: _effectiveController,
+                onChanged: widget.onTextChanged,
+                isRequired: widget.isRequired,
+                label: widget.label,
+                placeholder: widget.placeholder,
+                placeholderStyle: widget.placeholderStyle,
+                focusNode: _effectiveFocusNode,
+                isFocused: _isFocused,
+                onTap: _onTap,
+                fieldBoxKey: _fieldBoxKey,
+                suffix: widget.suffix,
+                trailing: trailing,
+                isEnabled: widget.isEnabled,
+                caption: widget.caption,
+                helperMessage: widget.helperMessage,
+                error: widget.error,
+                size: widget.size,
+                isReadOnly: widget.isReadOnly,
+                showCursor: widget.showCursor,
+                showLoader: widget.showLoader,
+              ),
     );
   }
 }
@@ -380,17 +400,17 @@ class _Leading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTapDown: (_) => focusNode.requestFocus(),
-        child: OptimusStack(
-          direction: Axis.horizontal,
-          spacing: OptimusStackSpacing.spacing100,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (leadingImplicit case final leadingImplicit?) leadingImplicit,
-            if (leading case final leading?) leading,
-          ],
-        ),
-      );
+    onTapDown: (_) => focusNode.requestFocus(),
+    child: OptimusStack(
+      direction: Axis.horizontal,
+      spacing: OptimusStackSpacing.spacing100,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (leadingImplicit case final leadingImplicit?) leadingImplicit,
+        if (leading case final leading?) leading,
+      ],
+    ),
+  );
 }
 
 class _Trailing extends StatelessWidget {
@@ -410,12 +430,14 @@ class _Trailing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final children = isUpdating
-        ? [const OptimusSpinner(size: OptimusSpinnerSize.small)]
-        : [
-            if (trailing case final trailing?) trailing,
-            if (trailingImplicit case final trailingImplicit?) trailingImplicit,
-          ];
+    final children =
+        isUpdating
+            ? [const OptimusSpinner(size: OptimusSpinnerSize.small)]
+            : [
+              if (trailing case final trailing?) trailing,
+              if (trailingImplicit case final trailingImplicit?)
+                trailingImplicit,
+            ];
 
     return GestureDetector(
       onTapDown: (_) => focusNode.requestFocus(),
@@ -439,11 +461,11 @@ class _ClearAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AllowMultipleRawGestureDetector(
-        onTap: onTap,
-        child: Icon(
-          OptimusIcons.cross_close,
-          size: context.tokens.sizing200,
-          color: context.tokens.textStaticPrimary,
-        ),
-      );
+    onTap: onTap,
+    child: Icon(
+      OptimusIcons.cross_close,
+      size: context.tokens.sizing200,
+      color: context.tokens.textStaticPrimary,
+    ),
+  );
 }

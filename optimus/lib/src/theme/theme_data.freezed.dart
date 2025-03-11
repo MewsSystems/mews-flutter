@@ -12,7 +12,8 @@ part of 'theme_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$OptimusThemeData {
@@ -28,11 +29,15 @@ mixin _$OptimusThemeData {
 /// @nodoc
 abstract class $OptimusThemeDataCopyWith<$Res> {
   factory $OptimusThemeDataCopyWith(
-          OptimusThemeData value, $Res Function(OptimusThemeData) then) =
-      _$OptimusThemeDataCopyWithImpl<$Res, OptimusThemeData>;
+    OptimusThemeData value,
+    $Res Function(OptimusThemeData) then,
+  ) = _$OptimusThemeDataCopyWithImpl<$Res, OptimusThemeData>;
   @useResult
-  $Res call(
-      {Brightness brightness, OptimusColors colors, OptimusTokens tokens});
+  $Res call({
+    Brightness brightness,
+    OptimusColors colors,
+    OptimusTokens tokens,
+  });
 }
 
 /// @nodoc
@@ -52,42 +57,53 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
     Object? colors = null,
     Object? tokens = null,
   }) {
-    return _then(_value.copyWith(
-      brightness: null == brightness
-          ? _value.brightness
-          : brightness // ignore: cast_nullable_to_non_nullable
-              as Brightness,
-      colors: null == colors
-          ? _value.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as OptimusColors,
-      tokens: null == tokens
-          ? _value.tokens
-          : tokens // ignore: cast_nullable_to_non_nullable
-              as OptimusTokens,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            brightness:
+                null == brightness
+                    ? _value.brightness
+                    : brightness // ignore: cast_nullable_to_non_nullable
+                        as Brightness,
+            colors:
+                null == colors
+                    ? _value.colors
+                    : colors // ignore: cast_nullable_to_non_nullable
+                        as OptimusColors,
+            tokens:
+                null == tokens
+                    ? _value.tokens
+                    : tokens // ignore: cast_nullable_to_non_nullable
+                        as OptimusTokens,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$OptimusThemeDataImplCopyWith<$Res>
     implements $OptimusThemeDataCopyWith<$Res> {
-  factory _$$OptimusThemeDataImplCopyWith(_$OptimusThemeDataImpl value,
-          $Res Function(_$OptimusThemeDataImpl) then) =
-      __$$OptimusThemeDataImplCopyWithImpl<$Res>;
+  factory _$$OptimusThemeDataImplCopyWith(
+    _$OptimusThemeDataImpl value,
+    $Res Function(_$OptimusThemeDataImpl) then,
+  ) = __$$OptimusThemeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Brightness brightness, OptimusColors colors, OptimusTokens tokens});
+  $Res call({
+    Brightness brightness,
+    OptimusColors colors,
+    OptimusTokens tokens,
+  });
 }
 
 /// @nodoc
 class __$$OptimusThemeDataImplCopyWithImpl<$Res>
     extends _$OptimusThemeDataCopyWithImpl<$Res, _$OptimusThemeDataImpl>
     implements _$$OptimusThemeDataImplCopyWith<$Res> {
-  __$$OptimusThemeDataImplCopyWithImpl(_$OptimusThemeDataImpl _value,
-      $Res Function(_$OptimusThemeDataImpl) _then)
-      : super(_value, _then);
+  __$$OptimusThemeDataImplCopyWithImpl(
+    _$OptimusThemeDataImpl _value,
+    $Res Function(_$OptimusThemeDataImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -96,29 +112,36 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
     Object? colors = null,
     Object? tokens = null,
   }) {
-    return _then(_$OptimusThemeDataImpl(
-      brightness: null == brightness
-          ? _value.brightness
-          : brightness // ignore: cast_nullable_to_non_nullable
-              as Brightness,
-      colors: null == colors
-          ? _value.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as OptimusColors,
-      tokens: null == tokens
-          ? _value.tokens
-          : tokens // ignore: cast_nullable_to_non_nullable
-              as OptimusTokens,
-    ));
+    return _then(
+      _$OptimusThemeDataImpl(
+        brightness:
+            null == brightness
+                ? _value.brightness
+                : brightness // ignore: cast_nullable_to_non_nullable
+                    as Brightness,
+        colors:
+            null == colors
+                ? _value.colors
+                : colors // ignore: cast_nullable_to_non_nullable
+                    as OptimusColors,
+        tokens:
+            null == tokens
+                ? _value.tokens
+                : tokens // ignore: cast_nullable_to_non_nullable
+                    as OptimusTokens,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$OptimusThemeDataImpl extends _OptimusThemeData {
-  const _$OptimusThemeDataImpl(
-      {required this.brightness, required this.colors, required this.tokens})
-      : super._();
+  const _$OptimusThemeDataImpl({
+    required this.brightness,
+    required this.colors,
+    required this.tokens,
+  }) : super._();
 
   @override
   final Brightness brightness;
@@ -151,14 +174,17 @@ class _$OptimusThemeDataImpl extends _OptimusThemeData {
   @pragma('vm:prefer-inline')
   _$$OptimusThemeDataImplCopyWith<_$OptimusThemeDataImpl> get copyWith =>
       __$$OptimusThemeDataImplCopyWithImpl<_$OptimusThemeDataImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _OptimusThemeData extends OptimusThemeData {
-  const factory _OptimusThemeData(
-      {required final Brightness brightness,
-      required final OptimusColors colors,
-      required final OptimusTokens tokens}) = _$OptimusThemeDataImpl;
+  const factory _OptimusThemeData({
+    required final Brightness brightness,
+    required final OptimusColors colors,
+    required final OptimusTokens tokens,
+  }) = _$OptimusThemeDataImpl;
   const _OptimusThemeData._() : super._();
 
   @override

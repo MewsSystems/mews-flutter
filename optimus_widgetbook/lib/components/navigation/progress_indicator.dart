@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -15,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Layout',
     initialOption: Axis.vertical,
     options: Axis.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
 
   return OptimusProgressIndicator(
@@ -26,8 +27,11 @@ Widget createDefaultStyle(BuildContext context) {
       initialValue: 0,
       max: _items.length - 1,
     ),
-    maxItem:
-        k.int.slider(label: 'Max', initialValue: 2, max: _items.length - 1),
+    maxItem: k.int.slider(
+      label: 'Max',
+      initialValue: 2,
+      max: _items.length - 1,
+    ),
   );
 }
 

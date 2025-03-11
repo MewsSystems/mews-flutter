@@ -16,20 +16,21 @@ Widget createDefaultStyle(BuildContext context) {
   final isScrollable = knobs.boolean(label: 'Scrollable', initialValue: false);
 
   return Container(
-    color: OptimusTheme.of(context).colors.success500t16,
+    color: context.tokens.paletteSemanticGreen500,
     constraints: const BoxConstraints(maxWidth: _tabBarWidth, maxHeight: 200),
     child: OptimusTabBar(
       isScrollable: isScrollable,
-      tabs: _items
-          .map(
-            (i) => OptimusTab(
-              label: i.isEven ? 'Tab with long name' : 'Tab ${i + 1}',
-              icon: i.isOdd ? icon?.data : null,
-              badge: i.isOdd ? badge : null,
-              maxWidth: _tabBarWidth / _items.length,
-            ),
-          )
-          .toList(),
+      tabs:
+          _items
+              .map(
+                (i) => OptimusTab(
+                  label: i.isEven ? 'Tab with long name' : 'Tab ${i + 1}',
+                  icon: i.isOdd ? icon?.data : null,
+                  badge: i.isOdd ? badge : null,
+                  maxWidth: _tabBarWidth / _items.length,
+                ),
+              )
+              .toList(),
       pages: _items.map((i) => Center(child: Text('Page ${i + 1}'))).toList(),
     ),
   );

@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Toggle',
-  type: OptimusToggle,
-  path: '[Forms]',
-)
+@widgetbook.UseCase(name: 'Toggle', type: OptimusToggle, path: '[Forms]')
 Widget createDefaultStyle(BuildContext _) => const _ToggleStory();
 
 class _ToggleStory extends StatefulWidget {

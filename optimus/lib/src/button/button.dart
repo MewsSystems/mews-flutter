@@ -22,9 +22,9 @@ class OptimusButton extends StatelessWidget {
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.primary,
   }) : assert(
-          counter == null || counter >= 0,
-          'Counter must be null or a non-negative integer',
-        );
+         counter == null || counter >= 0,
+         'Counter must be null or a non-negative integer',
+       );
 
   /// Called when the button is tapped or otherwise activated.
   ///
@@ -81,20 +81,20 @@ class OptimusButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BaseButton(
-        onPressed: onPressed,
-        minWidth: minWidth,
-        leadingIcon: leadingIcon,
-        trailingIcon: trailingIcon,
-        badgeLabel: counter?.let(
-          (v) => switch (v) {
-            0 => null,
-            > 99 => '99+',
-            _ => v.toString(),
-          },
-        ),
-        size: size,
-        isLoading: isLoading,
-        variant: variant.toBaseVariant(),
-        child: child,
-      );
+    onPressed: onPressed,
+    minWidth: minWidth,
+    leadingIcon: leadingIcon,
+    trailingIcon: trailingIcon,
+    badgeLabel: counter?.let(
+      (v) => switch (v) {
+        0 => null,
+        > 99 => '99+',
+        _ => v.toString(),
+      },
+    ),
+    size: size,
+    isLoading: isLoading,
+    variant: variant.toBaseVariant(),
+    child: child,
+  );
 }

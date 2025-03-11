@@ -44,19 +44,16 @@ class _OptimusTooltipWrapperState extends State<OptimusTooltipWrapper> {
 
   @override
   Widget build(BuildContext context) => TooltipController(
-        anchorKey: _anchorKey,
-        tooltipKey: _tooltipKey,
-        tooltipPosition: widget.tooltipPosition,
-        autoHideDuration: widget.autoHideDuration,
-        tooltip: OptimusTooltip(
-          key: _tooltipKey,
-          size: widget.size,
-          tooltipPosition: widget.tooltipPosition,
-          content: widget.text,
-        ),
-        child: KeyedSubtree(
-          key: _anchorKey,
-          child: widget.child,
-        ),
-      );
+    anchorKey: _anchorKey,
+    tooltipKey: _tooltipKey,
+    tooltipPosition: widget.tooltipPosition,
+    autoHideDuration: widget.autoHideDuration,
+    tooltip: OptimusTooltip(
+      key: _tooltipKey,
+      size: widget.size,
+      tooltipPosition: widget.tooltipPosition,
+      content: widget.text,
+    ),
+    child: KeyedSubtree(key: _anchorKey, child: widget.child),
+  );
 }

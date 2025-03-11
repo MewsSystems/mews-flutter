@@ -138,9 +138,10 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   String _handleChanged(String value) {
     if (_previousValue != value || value.isEmpty) {
-      final result = _controller.isInputComplete
-          ? _getDateTime(widget.format, value)
-          : null;
+      final result =
+          _controller.isInputComplete
+              ? _getDateTime(widget.format, value)
+              : null;
       widget.onChanged?.call(result);
       _previousValue = value;
     }
@@ -184,21 +185,21 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   ///
   /// For example, the pattern "d/M/y" will be transformed to "DD/MM/YYYY".
   String get _placeholder => _replaceSupported(
-        widget.format.pattern,
-        (symbol) => symbol.pattern,
-        (symbol) => symbol.placeholder,
-      );
+    widget.format.pattern,
+    (symbol) => symbol.pattern,
+    (symbol) => symbol.placeholder,
+  );
 
   /// Retrieve the format of the pattern that was generated for the placeholder.
   ///
   /// Fof example, the pattern "DD/MM/YYYY" will be transformed to "dd/MM/yyyy".
   DateFormat get _placeholderFormat => DateFormat(
-        _replaceSupported(
-          widget.format.pattern,
-          (symbol) => symbol.pattern,
-          (symbol) => symbol.format,
-        ),
-      );
+    _replaceSupported(
+      widget.format.pattern,
+      (symbol) => symbol.pattern,
+      (symbol) => symbol.format,
+    ),
+  );
 
   @override
   void dispose() {
@@ -209,52 +210,52 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   @override
   Widget build(BuildContext context) => OptimusInputField(
-        label: widget.label,
-        caption: widget.caption,
-        isEnabled: widget.isEnabled,
-        isClearEnabled: widget.isClearAllEnabled,
-        textInputAction: widget.textInputAction,
-        helperMessage: widget.helperMessage,
-        placeholder: _placeholder,
-        controller: _controller,
-        error: widget.error,
-        onSubmitted: _handleSubmitted,
-        onChanged: _handleChanged,
-        keyboardType: TextInputType.number,
-        isRequired: widget.isRequired,
-        onTap: widget.onTap,
-        focusNode: widget.focusNode,
-        inputFormatters: [DateFormatter(placeholder: _placeholder)],
-      );
+    label: widget.label,
+    caption: widget.caption,
+    isEnabled: widget.isEnabled,
+    isClearEnabled: widget.isClearAllEnabled,
+    textInputAction: widget.textInputAction,
+    helperMessage: widget.helperMessage,
+    placeholder: _placeholder,
+    controller: _controller,
+    error: widget.error,
+    onSubmitted: _handleSubmitted,
+    onChanged: _handleChanged,
+    keyboardType: TextInputType.number,
+    isRequired: widget.isRequired,
+    onTap: widget.onTap,
+    focusNode: widget.focusNode,
+    inputFormatters: [DateFormatter(placeholder: _placeholder)],
+  );
 }
 
 enum _SupportedSymbol { day, month, year, hour, minute, second }
 
 extension on _SupportedSymbol {
   String get pattern => switch (this) {
-        _SupportedSymbol.day => 'd',
-        _SupportedSymbol.month => 'M',
-        _SupportedSymbol.year => 'y',
-        _SupportedSymbol.hour => 'H',
-        _SupportedSymbol.minute => 'm',
-        _SupportedSymbol.second => 's',
-      };
+    _SupportedSymbol.day => 'd',
+    _SupportedSymbol.month => 'M',
+    _SupportedSymbol.year => 'y',
+    _SupportedSymbol.hour => 'H',
+    _SupportedSymbol.minute => 'm',
+    _SupportedSymbol.second => 's',
+  };
 
   String get format => switch (this) {
-        _SupportedSymbol.day => 'dd',
-        _SupportedSymbol.month => 'MM',
-        _SupportedSymbol.year => 'yyyy',
-        _SupportedSymbol.hour => 'HH',
-        _SupportedSymbol.minute => 'mm',
-        _SupportedSymbol.second => 'ss',
-      };
+    _SupportedSymbol.day => 'dd',
+    _SupportedSymbol.month => 'MM',
+    _SupportedSymbol.year => 'yyyy',
+    _SupportedSymbol.hour => 'HH',
+    _SupportedSymbol.minute => 'mm',
+    _SupportedSymbol.second => 'ss',
+  };
 
   String get placeholder => switch (this) {
-        _SupportedSymbol.day => 'DD',
-        _SupportedSymbol.month => 'MM',
-        _SupportedSymbol.year => 'YYYY',
-        _SupportedSymbol.hour => 'HH',
-        _SupportedSymbol.minute => 'mm',
-        _SupportedSymbol.second => 'ss',
-      };
+    _SupportedSymbol.day => 'DD',
+    _SupportedSymbol.month => 'MM',
+    _SupportedSymbol.year => 'YYYY',
+    _SupportedSymbol.hour => 'HH',
+    _SupportedSymbol.minute => 'mm',
+    _SupportedSymbol.second => 'ss',
+  };
 }
