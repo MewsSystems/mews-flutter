@@ -9,14 +9,14 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   path: '[Media]/Icons',
 )
 Widget createDefaultStyle(BuildContext context) => OptimusIconList(
-      items: _items,
-      listSize: context.knobs.listOrNull(
-        label: 'Size',
-        initialOption: null,
-        options: OptimusIconListSize.values,
-        labelBuilder: (value) => value?.name ?? 'Not set',
-      ),
-    );
+  items: _items,
+  listSize: context.knobs.listOrNull(
+    label: 'Size',
+    initialOption: null,
+    options: OptimusIconListSize.values,
+    labelBuilder: (value) => value?.name ?? 'Not set',
+  ),
+);
 
 final List<OptimusIconListItem> _items = [
   const OptimusIconListItem(

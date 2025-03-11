@@ -28,15 +28,15 @@ class OptimusNumberInput extends StatefulWidget {
     this.step = 1,
     this.isReadOnly = false,
     this.onSubmitted,
-  })  : assert(
-          (min < 0 && allowNegate) || min >= 0,
-          'Negative values should be allowed if the minimum is less than 0',
-        ),
-        assert(
-          min < max,
-          'The minimal allowed value should be lesser then max value',
-        ),
-        assert(precision >= 0, 'Precision can\'t be negative');
+  }) : assert(
+         (min < 0 && allowNegate) || min >= 0,
+         'Negative values should be allowed if the minimum is less than 0',
+       ),
+       assert(
+         min < max,
+         'The minimal allowed value should be lesser then max value',
+       ),
+       assert(precision >= 0, 'Precision can\'t be negative');
 
   /// Whether negative values are allowed. Disabled by default.
   final bool allowNegate;
@@ -134,18 +134,22 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
 
   void _handleDecrease() {
     final newValue = _currentValue - widget.step;
-    final double result = newValue < widget.min
-        ? widget.min
-        : (newValue < 0 && !widget.allowNegate)
+    final double result =
+        newValue < widget.min
+            ? widget.min
+            : (newValue < 0 && !widget.allowNegate)
             ? 0
             : newValue;
     _updateCurrentValue(result);
   }
 
-  double get _currentValue => _effectiveController.text.isEmpty
-      ? widget.min
-      : _effectiveController.text
-          .toDouble(widget.separatorVariant, widget.precision);
+  double get _currentValue =>
+      _effectiveController.text.isEmpty
+          ? widget.min
+          : _effectiveController.text.toDouble(
+            widget.separatorVariant,
+            widget.precision,
+          );
 
   void _updateCurrentValue(double value) {
     _effectiveController.text = value.toFormattedString(
@@ -161,20 +165,22 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     super.didUpdateWidget(oldWidget);
     String formattedValue = _effectiveController.text;
     if (oldWidget.min != widget.min || oldWidget.max != widget.max) {
-      formattedValue =
-          _currentValue.clamp(widget.min, widget.max).toFormattedString(
-                precision: widget.precision,
-                separatorVariant: widget.separatorVariant,
-              );
+      formattedValue = _currentValue
+          .clamp(widget.min, widget.max)
+          .toFormattedString(
+            precision: widget.precision,
+            separatorVariant: widget.separatorVariant,
+          );
     } else if (oldWidget.precision != widget.precision ||
         oldWidget.separatorVariant != widget.separatorVariant ||
         (oldWidget.allowNegate != widget.allowNegate)) {
-      final doubleValue = formattedValue.isNotEmpty
-          ? formattedValue.toDouble(
-              oldWidget.separatorVariant,
-              oldWidget.precision,
-            )
-          : widget.min;
+      final doubleValue =
+          formattedValue.isNotEmpty
+              ? formattedValue.toDouble(
+                oldWidget.separatorVariant,
+                oldWidget.precision,
+              )
+              : widget.min;
       formattedValue = doubleValue.toFormattedString(
         precision: widget.precision,
         separatorVariant: widget.separatorVariant,
@@ -287,12 +293,13 @@ class _Divider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: context.tokens.sizing200,
-        width: context.tokens.borderWidth150,
-        child: isEnabled
+    height: context.tokens.sizing200,
+    width: context.tokens.borderWidth150,
+    child:
+        isEnabled
             ? ColoredBox(color: context.tokens.borderStaticSecondary)
             : null,
-      );
+  );
 }
 
 /// The separator variant to be used in the number input.
@@ -331,11 +338,10 @@ extension on double {
   String toFormattedString({
     required int precision,
     required OptimusNumberSeparatorVariant separatorVariant,
-  }) =>
-      toString().format(
-        precision: precision,
-        separatorVariant: separatorVariant,
-      );
+  }) => toString().format(
+    precision: precision,
+    separatorVariant: separatorVariant,
+  );
 }
 
 extension on String {

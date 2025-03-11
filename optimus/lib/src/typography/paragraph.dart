@@ -32,11 +32,11 @@ class OptimusParagraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodyLarge,
-        color: variation.color,
-        align: align,
-        child: child,
-      );
+    resolveStyle: (_) => context.tokens.bodyLarge,
+    color: variation.color,
+    align: align,
+    child: child,
+  );
 }
 
 /// {@macro optimus.typography.paragraph}
@@ -65,9 +65,9 @@ class OptimusParagraphSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-        resolveStyle: (_) => context.tokens.bodyMedium,
-        color: variation.color,
-        align: align,
-        child: child,
-      );
+    resolveStyle: (_) => context.tokens.bodyMedium,
+    color: variation.color,
+    align: align,
+    child: child,
+  );
 }

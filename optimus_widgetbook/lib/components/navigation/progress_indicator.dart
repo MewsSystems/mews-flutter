@@ -27,8 +27,11 @@ Widget createDefaultStyle(BuildContext context) {
       initialValue: 0,
       max: _items.length - 1,
     ),
-    maxItem:
-        k.int.slider(label: 'Max', initialValue: 2, max: _items.length - 1),
+    maxItem: k.int.slider(
+      label: 'Max',
+      initialValue: 2,
+      max: _items.length - 1,
+    ),
   );
 }
 

@@ -258,9 +258,9 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       widget.enableAutoCollapse && !_effectiveFocusNode.hasFocus;
 
   void _handleFocusUpdate() => setState(() {
-        if (!widget.enableAutoCollapse) return;
-        _updateLines();
-      });
+    if (!widget.enableAutoCollapse) return;
+    _updateLines();
+  });
 
   void _updateLines() {
     _maxLines = _shouldCollapse ? 1 : widget.maxLines;
@@ -269,9 +269,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 
   void _handleStateUpdate() => setState(() {});
 
-  void _handlePasswordTap() => setState(
-        () => _isShowPasswordEnabled = !_isShowPasswordEnabled,
-      );
+  void _handlePasswordTap() =>
+      setState(() => _isShowPasswordEnabled = !_isShowPasswordEnabled);
 
   Widget? get _placeholder {
     final placeholder = widget.placeholder;
@@ -282,7 +281,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         onTap: _effectiveFocusNode.requestFocus,
         child: Text(
           placeholder,
-          style: widget.placeholderStyle ??
+          style:
+              widget.placeholderStyle ??
               theme.getTextInputStyle(isEnabled: widget.isEnabled),
         ),
       );
@@ -293,13 +293,14 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   Widget build(BuildContext context) {
     final error = widget.error;
     final maxCharacters = widget.maxCharacters;
-    final counter = maxCharacters != null
-        ? _CharacterCounter(
-            current: _effectiveController.text.length,
-            max: maxCharacters,
-            isEnabled: widget.isEnabled,
-          )
-        : null;
+    final counter =
+        maxCharacters != null
+            ? _CharacterCounter(
+              current: _effectiveController.text.length,
+              max: maxCharacters,
+              isEnabled: widget.isEnabled,
+            )
+            : null;
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
@@ -317,32 +318,37 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       hasMultipleLines: widget.minLines != null,
       inputCounter: widget.isInlined ? null : counter,
       statusBarState: widget.statusBarState,
-      prefix: _shouldShowPrefix
-          ? Prefix(prefix: widget.prefix, leading: widget.leading)
-          : null,
-      suffix: _shouldShowSuffix
-          ? Suffix(
-              suffix: widget.suffix,
-              trailing: widget.trailing,
-              counter: widget.isInlined ? counter : null,
-              passwordButton: _isPasswordToggleVisible
-                  ? _PasswordButton(
-                      onTap: _handlePasswordTap,
-                      isEnabled: _isShowPasswordEnabled,
-                    )
-                  : null,
-              showLoader: widget.isEnabled ? widget.showLoader : false,
-              clearAllButton: _shouldShowClearAllButton
-                  ? _ClearAllButton(
-                      onTap: _handleClearAllTap,
-                      isEnabled: widget.isEnabled,
-                    )
-                  : null,
-              inlineError: _shouldShowInlineError && error != null
-                  ? InlineErrorTooltip(error: error)
-                  : null,
-            )
-          : null,
+      prefix:
+          _shouldShowPrefix
+              ? Prefix(prefix: widget.prefix, leading: widget.leading)
+              : null,
+      suffix:
+          _shouldShowSuffix
+              ? Suffix(
+                suffix: widget.suffix,
+                trailing: widget.trailing,
+                counter: widget.isInlined ? counter : null,
+                passwordButton:
+                    _isPasswordToggleVisible
+                        ? _PasswordButton(
+                          onTap: _handlePasswordTap,
+                          isEnabled: _isShowPasswordEnabled,
+                        )
+                        : null,
+                showLoader: widget.isEnabled ? widget.showLoader : false,
+                clearAllButton:
+                    _shouldShowClearAllButton
+                        ? _ClearAllButton(
+                          onTap: _handleClearAllTap,
+                          isEnabled: widget.isEnabled,
+                        )
+                        : null,
+                inlineError:
+                    _shouldShowInlineError && error != null
+                        ? InlineErrorTooltip(error: error)
+                        : null,
+              )
+              : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
       placeholder:
@@ -392,19 +398,16 @@ class _OptimusInputFieldState extends State<OptimusInputField>
 }
 
 class _PasswordButton extends StatelessWidget {
-  const _PasswordButton({
-    required this.onTap,
-    required this.isEnabled,
-  });
+  const _PasswordButton({required this.onTap, required this.isEnabled});
 
   final VoidCallback onTap;
   final bool isEnabled;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: onTap,
-        child: Icon(isEnabled ? OptimusIcons.hide : OptimusIcons.show),
-      );
+    onTap: onTap,
+    child: Icon(isEnabled ? OptimusIcons.hide : OptimusIcons.show),
+  );
 }
 
 class _ClearAllButton extends StatelessWidget {
@@ -415,15 +418,16 @@ class _ClearAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: onTap,
-        child: Icon(
-          OptimusIcons.cross_close,
-          size: context.tokens.sizing200,
-          color: isEnabled
+    onTap: onTap,
+    child: Icon(
+      OptimusIcons.cross_close,
+      size: context.tokens.sizing200,
+      color:
+          isEnabled
               ? context.tokens.textStaticPrimary
               : context.tokens.textDisabled,
-        ),
-      );
+    ),
+  );
 }
 
 class _CharacterCounter extends StatelessWidget {
@@ -440,37 +444,36 @@ class _CharacterCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final color = isEnabled
-        ? max < current
-            ? tokens.textAlertDanger
-            : tokens.textStaticSecondary
-        : tokens.textDisabled;
+    final color =
+        isEnabled
+            ? max < current
+                ? tokens.textAlertDanger
+                : tokens.textStaticSecondary
+            : tokens.textDisabled;
 
     final child = Text(
       '$current/$max',
-      style: tokens.bodyMedium.copyWith(
-        color: color,
-      ),
+      style: tokens.bodyMedium.copyWith(color: color),
     );
 
     return current > max
         ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: tokens.spacing200,
-                  right: tokens.spacing25,
-                ),
-                child: const OptimusIcon(
-                  iconData: OptimusIcons.error_circle,
-                  iconSize: OptimusIconSize.small,
-                  colorOption: OptimusIconColorOption.danger,
-                ),
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: tokens.spacing200,
+                right: tokens.spacing25,
               ),
-              child,
-            ],
-          )
+              child: const OptimusIcon(
+                iconData: OptimusIcons.error_circle,
+                iconSize: OptimusIconSize.small,
+                colorOption: OptimusIconColorOption.danger,
+              ),
+            ),
+            child,
+          ],
+        )
         : child;
   }
 }

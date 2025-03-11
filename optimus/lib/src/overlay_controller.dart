@@ -45,9 +45,10 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
     widget.focusNode.addListener(_onFocusChanged);
   }
 
-  void _onFocusChanged() => widget.focusNode.hasFocus
-      ? setState(_showOverlay)
-      : setState(_removeOverlay);
+  void _onFocusChanged() =>
+      widget.focusNode.hasFocus
+          ? setState(_showOverlay)
+          : setState(_removeOverlay);
 
   @override
   void didUpdateWidget(OverlayController<T> oldWidget) {
@@ -75,7 +76,8 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-        builder: (context) => Stack(
+    builder:
+        (context) => Stack(
           key: const Key('OptimusSelectOverlay'),
           children: <Widget>[
             GestureDetector(
@@ -94,7 +96,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
             ),
           ],
         ),
-      );
+  );
 
   @override
   void dispose() {
@@ -105,11 +107,11 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
 
   @override
   Widget build(BuildContext context) => PopScope(
-        canPop: !widget.focusNode.hasFocus,
-        onPopInvokedWithResult: (bool didPop, _) {
-          if (didPop) return;
-          widget.focusNode.unfocus();
-        },
-        child: widget.child,
-      );
+    canPop: !widget.focusNode.hasFocus,
+    onPopInvokedWithResult: (bool didPop, _) {
+      if (didPop) return;
+      widget.focusNode.unfocus();
+    },
+    child: widget.child,
+  );
 }

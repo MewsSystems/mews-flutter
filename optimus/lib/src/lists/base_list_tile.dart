@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
 class BaseListTile extends StatelessWidget {
-  const BaseListTile({
-    super.key,
-    required this.content,
-    this.onTap,
-  });
+  const BaseListTile({super.key, required this.content, this.onTap});
 
   final Widget content;
   final VoidCallback? onTap;

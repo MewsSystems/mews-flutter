@@ -5,10 +5,7 @@ import 'package:flutter/widgets.dart';
 /// This link is defined by the [text] widget, usually [Text] and the
 /// function that will be executed after a click.
 class OptimusFeedbackLink {
-  const OptimusFeedbackLink({
-    required this.text,
-    required this.onPressed,
-  });
+  const OptimusFeedbackLink({required this.text, required this.onPressed});
 
   /// The text widget that will be displayed as a link.
   final Widget text;

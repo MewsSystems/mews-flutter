@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Logo',
-  type: OptimusMewsLogo,
-  path: '[Media]',
-)
+@widgetbook.UseCase(name: 'Logo', type: OptimusMewsLogo, path: '[Media]')
 Widget createDefaultStyle(BuildContext context) {
   final knobs = context.knobs;
   final variant = knobs.list(

@@ -25,27 +25,25 @@ String enumLabelBuilder<T extends Enum>(T value) => value.name;
 
 extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
-        label: 'Size',
-        options: OptimusWidgetSize.values,
-        labelBuilder: enumLabelBuilder,
-      );
+    label: 'Size',
+    options: OptimusWidgetSize.values,
+    labelBuilder: enumLabelBuilder,
+  );
 
   IconDetails optimusIconKnob({String label = 'Icon'}) => list(
-        label: label,
-        options: exampleIcons,
-        labelBuilder: (value) => value.name,
-      );
+    label: label,
+    options: exampleIcons,
+    labelBuilder: (value) => value.name,
+  );
 
   IconDetails? optimusIconOrNullKnob({String label = 'Icon'}) => listOrNull(
-        label: label,
-        options: exampleIcons,
-        labelBuilder: (value) => value?.name ?? 'None',
-      );
+    label: label,
+    options: exampleIcons,
+    labelBuilder: (value) => value?.name ?? 'None',
+  );
 
-  AlignmentGeometry alignmentKnob({String label = 'Alignment'}) => list(
-        label: label,
-        options: alignments,
-      );
+  AlignmentGeometry alignmentKnob({String label = 'Alignment'}) =>
+      list(label: label, options: alignments);
 
   bool get isEnabledKnob => boolean(label: 'Enabled', initialValue: true);
 }

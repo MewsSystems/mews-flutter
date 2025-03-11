@@ -15,11 +15,7 @@ enum OptimusDialogPosition {
 }
 
 class OptimusDialogAction {
-  const OptimusDialogAction({
-    required this.title,
-    this.onPressed,
-    this.key,
-  });
+  const OptimusDialogAction({required this.title, this.onPressed, this.key});
 
   final Widget title;
   final VoidCallback? onPressed;
@@ -38,11 +34,10 @@ Future<T?> showOptimusDialog<T>({
   OptimusDialogType type = OptimusDialogType.common,
   bool isDismissible = true,
   bool useRootNavigator = true,
-}) =>
-    showGeneralDialog<T>(
-      context: context,
-      pageBuilder: (buildContext, animation, secondaryAnimation) =>
-          OptimusDialog.modal(
+}) => showGeneralDialog<T>(
+  context: context,
+  pageBuilder:
+      (buildContext, animation, secondaryAnimation) => OptimusDialog.modal(
         title: title,
         content: content,
         contentWrapperBuilder: contentWrapperBuilder,
@@ -50,16 +45,17 @@ Future<T?> showOptimusDialog<T>({
         size: size,
         type: type,
       ),
-      barrierDismissible: isDismissible,
-      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      barrierColor: context.tokens.borderStaticPrimary,
-      transitionDuration: const Duration(milliseconds: 150),
-      transitionBuilder: (_, animation, __, child) => FadeTransition(
+  barrierDismissible: isDismissible,
+  barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+  barrierColor: context.tokens.borderStaticPrimary,
+  transitionDuration: const Duration(milliseconds: 150),
+  transitionBuilder:
+      (_, animation, _, child) => FadeTransition(
         opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
         child: child,
       ),
-      useRootNavigator: useRootNavigator,
-    );
+  useRootNavigator: useRootNavigator,
+);
 
 /// A dialog is an overlay on top of a main page which lets a user perform
 /// a short term task without losing the context of the underlying page.
@@ -87,15 +83,15 @@ class OptimusDialog extends StatelessWidget {
     OptimusDialogType type = OptimusDialogType.common,
     bool? isDismissible,
   }) : this._(
-          key: key,
-          title: title,
-          content: content,
-          contentWrapperBuilder: contentWrapperBuilder,
-          actions: actions,
-          size: size,
-          type: type,
-          isDismissible: isDismissible,
-        );
+         key: key,
+         title: title,
+         content: content,
+         contentWrapperBuilder: contentWrapperBuilder,
+         actions: actions,
+         size: size,
+         type: type,
+         isDismissible: isDismissible,
+       );
 
   const OptimusDialog.nonModal({
     Key? key,
@@ -107,18 +103,17 @@ class OptimusDialog extends StatelessWidget {
     bool? isDismissible,
     required VoidCallback close,
   }) : this._(
-          key: key,
-          title: title,
-          content: content,
-          contentWrapperBuilder: contentWrapperBuilder,
-          actions: actions,
-          size: size == OptimusDialogSize.large
-              ? OptimusDialogSize.regular
-              : size,
-          isDismissible: isDismissible,
-          close: close,
-          position: OptimusDialogPosition.corner,
-        );
+         key: key,
+         title: title,
+         content: content,
+         contentWrapperBuilder: contentWrapperBuilder,
+         actions: actions,
+         size:
+             size == OptimusDialogSize.large ? OptimusDialogSize.regular : size,
+         isDismissible: isDismissible,
+         close: close,
+         position: OptimusDialogPosition.corner,
+       );
 
   final VoidCallback? close;
   final bool? isDismissible;
@@ -167,24 +162,24 @@ class OptimusDialog extends StatelessWidget {
         Breakpoint.medium || Breakpoint.large || Breakpoint.extraLarge => size,
       };
 
-  Alignment _alignment(BuildContext context) =>
-      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
-        Breakpoint.medium ||
-        Breakpoint.large ||
-        Breakpoint.extraLarge =>
-          _largeScreenAlignment,
-      };
+  Alignment _alignment(BuildContext context) => switch (MediaQuery.sizeOf(
+    context,
+  ).screenBreakpoint) {
+    Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
+    Breakpoint.medium ||
+    Breakpoint.large ||
+    Breakpoint.extraLarge => _largeScreenAlignment,
+  };
 
   Alignment get _smallScreenAlignment => switch (position) {
-        OptimusDialogPosition.center => Alignment.center,
-        OptimusDialogPosition.corner => Alignment.topCenter,
-      };
+    OptimusDialogPosition.center => Alignment.center,
+    OptimusDialogPosition.corner => Alignment.topCenter,
+  };
 
   Alignment get _largeScreenAlignment => switch (position) {
-        OptimusDialogPosition.center => Alignment.center,
-        OptimusDialogPosition.corner => Alignment.bottomRight,
-      };
+    OptimusDialogPosition.center => Alignment.center,
+    OptimusDialogPosition.corner => Alignment.bottomRight,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -213,10 +208,7 @@ class OptimusDialog extends StatelessWidget {
 }
 
 class OptimusDialogContentPadding extends StatelessWidget {
-  const OptimusDialogContentPadding({
-    super.key,
-    this.child,
-  });
+  const OptimusDialogContentPadding({super.key, this.child});
 
   final Widget? child;
 

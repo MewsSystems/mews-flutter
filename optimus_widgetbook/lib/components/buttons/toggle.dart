@@ -60,10 +60,10 @@ class _ToggleExampleState extends State<_ToggleExample> {
 
   @override
   Widget build(BuildContext context) => OptimusToggleButton(
-        label: widget.hasLabel ? Text(_label) : null,
-        isToggled: _isToggled,
-        isLoading: _isLoading,
-        onPressed: widget.isEnabled ? _handlePressed : null,
-        size: widget.size,
-      );
+    label: widget.hasLabel ? Text(_label) : null,
+    isToggled: _isToggled,
+    isLoading: _isLoading,
+    onPressed: widget.isEnabled ? _handlePressed : null,
+    size: widget.size,
+  );
 }

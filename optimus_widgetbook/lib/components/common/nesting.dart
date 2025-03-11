@@ -8,7 +8,8 @@ class NestedWrapper extends StatelessWidget {
   Route<dynamic> _handleGenerateRoute(RouteSettings settings) {
     late WidgetBuilder builder;
     if (settings.name case 'initialRoute') {
-      builder = (context) => ConstrainedBox(
+      builder =
+          (context) => ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 400),
             child: contentBuilder(context),
           );
@@ -23,18 +24,18 @@ class NestedWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const _Bar(),
-          Expanded(
-            child: Navigator(
-              initialRoute: 'initialRoute',
-              onGenerateRoute: _handleGenerateRoute,
-            ),
-          ),
-          const _Bar(),
-        ],
-      );
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      const _Bar(),
+      Expanded(
+        child: Navigator(
+          initialRoute: 'initialRoute',
+          onGenerateRoute: _handleGenerateRoute,
+        ),
+      ),
+      const _Bar(),
+    ],
+  );
 }
 
 class _Bar extends StatelessWidget {
@@ -42,13 +43,10 @@ class _Bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        height: 100,
-        color: Colors.lightBlue,
-        child: const Center(
-          child: Text(
-            'Widget outside of Navigator',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
+    height: 100,
+    color: Colors.lightBlue,
+    child: const Center(
+      child: Text('Widget outside of Navigator', textAlign: TextAlign.center),
+    ),
+  );
 }

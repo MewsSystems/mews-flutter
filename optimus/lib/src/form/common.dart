@@ -27,19 +27,19 @@ class Suffix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (counter case final counter?) counter,
-          if (suffix case final suffix?) suffix,
-          if (clearAllButton case final clearAllButton?) clearAllButton,
-          if (showLoader) const OptimusSpinner(size: OptimusSpinnerSize.small),
-          if (passwordButton case final passwordButton?) passwordButton,
-          if (trailing case final trailing?) trailing,
-          if (inlineError case final inlineError?) inlineError,
-        ],
-      );
+    direction: Axis.horizontal,
+    spacing: OptimusStackSpacing.spacing100,
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      if (counter case final counter?) counter,
+      if (suffix case final suffix?) suffix,
+      if (clearAllButton case final clearAllButton?) clearAllButton,
+      if (showLoader) const OptimusSpinner(size: OptimusSpinnerSize.small),
+      if (passwordButton case final passwordButton?) passwordButton,
+      if (trailing case final trailing?) trailing,
+      if (inlineError case final inlineError?) inlineError,
+    ],
+  );
 }
 
 class Prefix extends StatelessWidget {
@@ -50,14 +50,14 @@ class Prefix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (leading case final leading?) leading,
-          if (prefix case final prefix?) prefix,
-        ],
-      );
+    direction: Axis.horizontal,
+    spacing: OptimusStackSpacing.spacing100,
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      if (leading case final leading?) leading,
+      if (prefix case final prefix?) prefix,
+    ],
+  );
 }
 
 class InlineErrorTooltip extends StatelessWidget {
@@ -67,10 +67,10 @@ class InlineErrorTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTooltipWrapper(
-        text: Text(error),
-        child: Icon(
-          OptimusIcons.error_circle,
-          color: context.tokens.textAlertDanger,
-        ),
-      );
+    text: Text(error),
+    child: Icon(
+      OptimusIcons.error_circle,
+      color: context.tokens.textAlertDanger,
+    ),
+  );
 }

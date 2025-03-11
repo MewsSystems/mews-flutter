@@ -13,9 +13,7 @@ Widget createDefaultStyle(BuildContext _) =>
     const DialogWrapper(child: InlineDialogStory());
 
 class InlineDialogStory extends StatefulWidget {
-  const InlineDialogStory({
-    super.key,
-  });
+  const InlineDialogStory({super.key});
 
   @override
   State<InlineDialogStory> createState() => _InlineDialogStoryState();
@@ -34,16 +32,19 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
       alignment: position,
       child: OptimusButton(
         key: _anchor,
-        onPressed: () => DialogWrapper.of(context)?.showInline(
-          anchorKey: _anchor,
-          size: OptimusDialogSize.regular,
-          content: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: _InlineContentExample(),
-          ),
-          actions:
-              hasActions ? [const OptimusDialogAction(title: Text('OK'))] : [],
-        ),
+        onPressed:
+            () => DialogWrapper.of(context)?.showInline(
+              anchorKey: _anchor,
+              size: OptimusDialogSize.regular,
+              content: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: _InlineContentExample(),
+              ),
+              actions:
+                  hasActions
+                      ? [const OptimusDialogAction(title: Text('OK'))]
+                      : [],
+            ),
         child: const Text('show'),
       ),
     );
@@ -55,21 +56,12 @@ class _InlineContentExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Column(
-        children: [
-          _NumberRow(
-            title: 'Adults',
-            description: 'From 13 to 100',
-          ),
-          _NumberRow(
-            title: 'Children',
-            description: 'From 3 to 12',
-          ),
-          _NumberRow(
-            title: 'Toddlers',
-            description: 'From 0 to 3',
-          ),
-        ],
-      );
+    children: [
+      _NumberRow(title: 'Adults', description: 'From 13 to 100'),
+      _NumberRow(title: 'Children', description: 'From 3 to 12'),
+      _NumberRow(title: 'Toddlers', description: 'From 0 to 3'),
+    ],
+  );
 }
 
 class _NumberRow extends StatelessWidget {
@@ -80,24 +72,21 @@ class _NumberRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _Title(title: title),
-                _Description(description: description),
-              ],
-            ),
-            const Spacer(),
-            OptimusStepperFormField(
-              initialValue: 8,
-              size: OptimusWidgetSize.small,
-            ),
+            _Title(title: title),
+            _Description(description: description),
           ],
         ),
-      );
+        const Spacer(),
+        OptimusStepperFormField(initialValue: 8, size: OptimusWidgetSize.small),
+      ],
+    ),
+  );
 }
 
 class _Description extends StatelessWidget {

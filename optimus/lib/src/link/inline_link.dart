@@ -46,12 +46,12 @@ class OptimusInlineLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BaseLink(
-        text: text,
-        textStyle: textStyle,
-        shouldInherit: shouldInherit,
-        onPressed: onPressed,
-        overflow: overflow,
-        variant: variant,
-        useStrong: useStrong,
-      );
+    text: text,
+    textStyle: textStyle,
+    shouldInherit: shouldInherit,
+    onPressed: onPressed,
+    overflow: overflow,
+    variant: variant,
+    useStrong: useStrong,
+  );
 }

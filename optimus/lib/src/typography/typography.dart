@@ -22,9 +22,9 @@ class OptimusTypography extends StatelessWidget {
   final TextAlign? align;
 
   Color _color(OptimusTokens tokens) => switch (color) {
-        OptimusTypographyColor.primary => tokens.textStaticPrimary,
-        OptimusTypographyColor.secondary => tokens.textStaticSecondary,
-      };
+    OptimusTypographyColor.primary => tokens.textStaticPrimary,
+    OptimusTypographyColor.secondary => tokens.textStaticSecondary,
+  };
 
   @override
   Widget build(BuildContext context) {

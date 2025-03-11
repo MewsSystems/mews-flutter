@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Pictogram',
-  type: OptimusPictogram,
-  path: '[Media]',
-)
+@widgetbook.UseCase(name: 'Pictogram', type: OptimusPictogram, path: '[Media]')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 

@@ -49,21 +49,23 @@ class OptimusAlert extends StatelessWidget {
 
   bool get _isExpanded => description != null || link != null;
 
-  double _getPadding(BuildContext context) =>
-      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
-        Breakpoint.medium ||
-        Breakpoint.large ||
-        Breakpoint.extraLarge =>
-          context.tokens.spacing200,
-      };
+  double _getPadding(BuildContext context) => switch (MediaQuery.sizeOf(
+    context,
+  ).screenBreakpoint) {
+    Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
+    Breakpoint.medium ||
+    Breakpoint.large ||
+    Breakpoint.extraLarge => context.tokens.spacing200,
+  };
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final padding = _getPadding(context);
-    final double alertWidth =
-        min(MediaQuery.sizeOf(context).width - padding * 2, _maxWidth);
+    final double alertWidth = min(
+      MediaQuery.sizeOf(context).width - padding * 2,
+      _maxWidth,
+    );
 
     return Padding(
       padding: EdgeInsets.all(padding),
@@ -126,14 +128,15 @@ class _AlertContent extends StatelessWidget {
 
   bool get _isExpanded => description != null || linkText != null;
 
-  EdgeInsets _getContentPadding(OptimusTokens tokens) => isDismissible
-      ? EdgeInsets.fromLTRB(
-          tokens.spacing200,
-          tokens.spacing200,
-          tokens.spacing400,
-          tokens.spacing200,
-        )
-      : EdgeInsets.all(tokens.spacing200);
+  EdgeInsets _getContentPadding(OptimusTokens tokens) =>
+      isDismissible
+          ? EdgeInsets.fromLTRB(
+            tokens.spacing200,
+            tokens.spacing200,
+            tokens.spacing400,
+            tokens.spacing200,
+          )
+          : EdgeInsets.all(tokens.spacing200);
 
   @override
   Widget build(BuildContext context) {

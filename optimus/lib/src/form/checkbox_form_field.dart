@@ -24,12 +24,13 @@ class OptimusCheckBoxFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FormField<bool>(
-        initialValue: initialValue,
-        onSaved: onSaved,
-        enabled: isEnabled,
-        validator: validator,
-        autovalidateMode: autovalidateMode,
-        builder: (state) => OptimusCheckbox(
+    initialValue: initialValue,
+    onSaved: onSaved,
+    enabled: isEnabled,
+    validator: validator,
+    autovalidateMode: autovalidateMode,
+    builder:
+        (state) => OptimusCheckbox(
           label: label,
           size: size,
           isEnabled: isEnabled,
@@ -37,5 +38,5 @@ class OptimusCheckBoxFormField extends StatelessWidget {
           error: state.errorText,
           onChanged: state.didChange,
         ),
-      );
+  );
 }

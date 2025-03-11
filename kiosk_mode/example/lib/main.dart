@@ -12,13 +12,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Plugin example app'),
-          ),
-          body: const Center(child: _Home()),
-        ),
-      );
+    home: Scaffold(
+      appBar: AppBar(title: const Text('Plugin example app')),
+      body: const Center(child: _Home()),
+    ),
+  );
 }
 
 class _Home extends StatefulWidget {
@@ -31,8 +29,9 @@ class _Home extends StatefulWidget {
 class _HomeState extends State<_Home> {
   late final Stream<KioskMode> _currentMode = watchKioskMode();
 
-  void _showSnackBar(String message) => ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(message)));
+  void _showSnackBar(String message) => ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(SnackBar(content: Text(message)));
 
   void _handleStart(bool didStart) {
     if (!didStart && Platform.isIOS) {
@@ -50,48 +49,48 @@ class _HomeState extends State<_Home> {
 
   @override
   Widget build(BuildContext context) => StreamBuilder(
-        stream: _currentMode,
-        builder: (context, snapshot) {
-          final mode = snapshot.data;
-          final message = mode == null
-              ? 'Can\'t determine the mode'
-              : 'Current mode: $mode';
+    stream: _currentMode,
+    builder: (context, snapshot) {
+      final mode = snapshot.data;
+      final message =
+          mode == null ? 'Can\'t determine the mode' : 'Current mode: $mode';
 
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MaterialButton(
-                onPressed: switch (mode) {
-                  null || KioskMode.enabled => null,
-                  KioskMode.disabled => () =>
-                      startKioskMode().then(_handleStart)
-                },
-                child: const Text('Start Kiosk Mode'),
-              ),
-              MaterialButton(
-                onPressed: switch (mode) {
-                  null || KioskMode.disabled => null,
-                  KioskMode.enabled => () => stopKioskMode().then(_handleStop),
-                },
-                child: const Text('Stop Kiosk Mode'),
-              ),
-              MaterialButton(
-                onPressed: () => isManagedKiosk()
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MaterialButton(
+            onPressed: switch (mode) {
+              null || KioskMode.enabled => null,
+              KioskMode.disabled => () => startKioskMode().then(_handleStart),
+            },
+            child: const Text('Start Kiosk Mode'),
+          ),
+          MaterialButton(
+            onPressed: switch (mode) {
+              null || KioskMode.disabled => null,
+              KioskMode.enabled => () => stopKioskMode().then(_handleStop),
+            },
+            child: const Text('Stop Kiosk Mode'),
+          ),
+          MaterialButton(
+            onPressed:
+                () => isManagedKiosk()
                     .then((isManaged) => 'Kiosk is managed: $isManaged')
                     .then(_showSnackBar),
-                child: const Text('Check if managed'),
-              ),
-              MaterialButton(
-                onPressed: () => getKioskMode()
+            child: const Text('Check if managed'),
+          ),
+          MaterialButton(
+            onPressed:
+                () => getKioskMode()
                     .then((mode) => 'Kiosk mode: $mode')
                     .then(_showSnackBar),
-                child: const Text('Check mode'),
-              ),
-              Text(message),
-            ],
-          );
-        },
+            child: const Text('Check mode'),
+          ),
+          Text(message),
+        ],
       );
+    },
+  );
 }
 
 const _unsupportedMessage = '''

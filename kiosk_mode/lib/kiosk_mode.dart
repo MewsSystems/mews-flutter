@@ -51,11 +51,12 @@ Future<bool?> stopKioskMode() => _channel.invokeMethod<bool>('stopKioskMode');
 /// On Android, it calls `isInLockTaskMode`.
 ///
 /// On iOS, it returns result of `UIAccessibility.isGuidedAccessEnabled`.
-Future<KioskMode> getKioskMode() =>
-    _channel.invokeMethod<bool>('isInKioskMode').then(
-          (isInKioskMode) =>
-              isInKioskMode == true ? KioskMode.enabled : KioskMode.disabled,
-        );
+Future<KioskMode> getKioskMode() => _channel
+    .invokeMethod<bool>('isInKioskMode')
+    .then(
+      (isInKioskMode) =>
+          isInKioskMode == true ? KioskMode.enabled : KioskMode.disabled,
+    );
 
 /// Returns `true`, if app is in a proper managed kiosk mode.
 ///
@@ -78,13 +79,16 @@ Future<bool> isManagedKiosk() => _channel
 /// a mode is queried every time with a period of [androidQueryPeriod].
 Stream<KioskMode> watchKioskMode({
   Duration androidQueryPeriod = const Duration(seconds: 5),
-}) =>
-    Stream.fromFuture(getKioskMode())
-        .merge(_getKioskModeStream(androidQueryPeriod));
+}) => Stream.fromFuture(
+  getKioskMode(),
+).merge(_getKioskModeStream(androidQueryPeriod));
 
 Stream<KioskMode> _getKioskModeStream(Duration androidQueryPeriod) =>
-    _eventChannel.receiveBroadcastStream(
-      {'androidQueryPeriod': androidQueryPeriod.inMilliseconds},
-    ).map(
-      (dynamic value) => value == true ? KioskMode.enabled : KioskMode.disabled,
-    );
+    _eventChannel
+        .receiveBroadcastStream({
+          'androidQueryPeriod': androidQueryPeriod.inMilliseconds,
+        })
+        .map(
+          (dynamic value) =>
+              value == true ? KioskMode.enabled : KioskMode.disabled,
+        );

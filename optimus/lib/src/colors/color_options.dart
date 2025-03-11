@@ -5,5 +5,5 @@ enum OptimusColorOption {
   success,
   info,
   warning,
-  danger
+  danger,
 }

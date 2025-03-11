@@ -79,38 +79,41 @@ void main() {
       expect(result.text, '1234.56');
     });
 
-    test('allows valid negative number input with comma and stop separators',
-        () {
-      const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
-      const formatter = NumberInputFilteringTextInputFormatter(
-        precision: 2,
-        separatorVariant: separatorVariant,
-      );
+    test(
+      'allows valid negative number input with comma and stop separators',
+      () {
+        const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
+        const formatter = NumberInputFilteringTextInputFormatter(
+          precision: 2,
+          separatorVariant: separatorVariant,
+        );
 
-      const oldValue = TextEditingValue.empty;
-      const newValue = TextEditingValue(text: '-1234.56');
+        const oldValue = TextEditingValue.empty;
+        const newValue = TextEditingValue(text: '-1234.56');
 
-      final result = formatter.formatEditUpdate(oldValue, newValue);
+        final result = formatter.formatEditUpdate(oldValue, newValue);
 
-      expect(result.text, '-1234.56');
-    });
+        expect(result.text, '-1234.56');
+      },
+    );
 
     test(
-        'disallows invalid negative number input with comma and stop separators',
-        () {
-      const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
-      const formatter = NumberInputFilteringTextInputFormatter(
-        precision: 2,
-        separatorVariant: separatorVariant,
-      );
+      'disallows invalid negative number input with comma and stop separators',
+      () {
+        const separatorVariant = OptimusNumberSeparatorVariant.commaAndStop;
+        const formatter = NumberInputFilteringTextInputFormatter(
+          precision: 2,
+          separatorVariant: separatorVariant,
+        );
 
-      const oldValue = TextEditingValue(text: '-1234.56');
-      const newValue = TextEditingValue(text: '-1234.567');
+        const oldValue = TextEditingValue(text: '-1234.56');
+        const newValue = TextEditingValue(text: '-1234.567');
 
-      final result = formatter.formatEditUpdate(oldValue, newValue);
+        final result = formatter.formatEditUpdate(oldValue, newValue);
 
-      expect(result.text, '-1234.56');
-    });
+        expect(result.text, '-1234.56');
+      },
+    );
 
     test('allows valid number input with stop and comma separators', () {
       const separatorVariant = OptimusNumberSeparatorVariant.stopAndComma;

@@ -30,8 +30,12 @@ Widget createDefaultStyle(BuildContext context) {
   final size = k.widgetSizeKnob;
   final isEnabled = k.isEnabledKnob;
   final isRequired = k.boolean(label: 'Required', initialValue: false);
-  final width =
-      k.double.slider(label: 'Width', min: 200, initialValue: 600, max: 800);
+  final width = k.double.slider(
+    label: 'Width',
+    min: 200,
+    initialValue: 600,
+    max: 800,
+  );
 
   return Center(
     child: ConstrainedBox(
@@ -132,31 +136,25 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
 
   @override
   Widget build(BuildContext context) => OptimusSegmentedControl<String>(
-        value: _value,
-        label: widget.label,
-        size: widget.size,
-        maxLines: widget.maxLines,
-        isRequired: widget.isRequired,
-        error: widget.error,
-        isEnabled: widget.isEnabled,
-        direction: widget.direction,
-        onItemSelected: _handleItemSelected,
-        items: widget.options
+    value: _value,
+    label: widget.label,
+    size: widget.size,
+    maxLines: widget.maxLines,
+    isRequired: widget.isRequired,
+    error: widget.error,
+    isEnabled: widget.isEnabled,
+    direction: widget.direction,
+    onItemSelected: _handleItemSelected,
+    items:
+        widget.options
             .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
             .toList(),
-      );
+  );
 }
 
-const _options2 = [
-  'Another long option',
-  'B',
-];
+const _options2 = ['Another long option', 'B'];
 
-const _options3 = [
-  'Another long option',
-  'B',
-  'C',
-];
+const _options3 = ['Another long option', 'B', 'C'];
 
 const _options4 = [
   'Another long option',

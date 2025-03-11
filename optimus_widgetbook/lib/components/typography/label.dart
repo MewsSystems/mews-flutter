@@ -25,11 +25,7 @@ Widget createLabel(BuildContext context) {
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusLabel(
-    align: align,
-    variation: variation,
-    child: Text(label),
-  );
+  return OptimusLabel(align: align, variation: variation, child: Text(label));
 }
 
 @widgetbook.UseCase(

@@ -29,24 +29,20 @@ class OptimusTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Brightness brightness = MediaQuery.platformBrightnessOf(context);
-    final bool isDark = themeMode == ThemeMode.dark ||
+    final bool isDark =
+        themeMode == ThemeMode.dark ||
         (themeMode == ThemeMode.system && brightness == Brightness.dark);
-    final theme = isDark
-        ? (darkTheme ?? _defaultDarkTheme)
-        : (lightTheme ?? _defaultLightTheme);
+    final theme =
+        isDark
+            ? (darkTheme ?? _defaultDarkTheme)
+            : (lightTheme ?? _defaultLightTheme);
 
-    return _OptimusTheme(
-      theme: theme,
-      child: child,
-    );
+    return _OptimusTheme(theme: theme, child: child);
   }
 }
 
 class _OptimusTheme extends InheritedWidget {
-  const _OptimusTheme({
-    required this.theme,
-    required super.child,
-  });
+  const _OptimusTheme({required this.theme, required super.child});
 
   final OptimusThemeData theme;
 

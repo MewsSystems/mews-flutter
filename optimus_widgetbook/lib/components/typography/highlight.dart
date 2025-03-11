@@ -9,10 +9,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   path: '[Typography]/Highlight',
 )
 Widget createHighLightSmall(BuildContext context) => OptimusHighlightSmall(
-      child: Text(
-        context.knobs.string(label: 'Text', initialValue: 'Highlight Small'),
-      ),
-    );
+  child: Text(
+    context.knobs.string(label: 'Text', initialValue: 'Highlight Small'),
+  ),
+);
 
 @widgetbook.UseCase(
   name: 'Highlight Medium',
@@ -20,10 +20,10 @@ Widget createHighLightSmall(BuildContext context) => OptimusHighlightSmall(
   path: '[Typography]/Highlight',
 )
 Widget createHighlightMedium(BuildContext context) => OptimusHighlightMedium(
-      child: Text(
-        context.knobs.string(label: 'Text', initialValue: 'Highlight Medium'),
-      ),
-    );
+  child: Text(
+    context.knobs.string(label: 'Text', initialValue: 'Highlight Medium'),
+  ),
+);
 
 @widgetbook.UseCase(
   name: 'Highlight Large',
@@ -31,7 +31,7 @@ Widget createHighlightMedium(BuildContext context) => OptimusHighlightMedium(
   path: '[Typography]/Highlight',
 )
 Widget createHighlightLarge(BuildContext context) => OptimusHighlightLarge(
-      child: Text(
-        context.knobs.string(label: 'Text', initialValue: 'Highlight Large'),
-      ),
-    );
+  child: Text(
+    context.knobs.string(label: 'Text', initialValue: 'Highlight Large'),
+  ),
+);

@@ -13,14 +13,15 @@ class OptimusDateTimeFormField extends FormField<DateTime> {
     DateTime? minDate,
     DateTime? maxDate,
   }) : super(
-          builder: (FormFieldState<DateTime> field) => OptimusDateTimeField(
-            value: field.value,
-            label: label,
-            onChanged: (v) => field.didChange(v),
-            minDate: minDate,
-            maxDate: maxDate,
-            error: field.errorText,
-            formatDateTime: formatDateTime,
-          ),
-        );
+         builder:
+             (FormFieldState<DateTime> field) => OptimusDateTimeField(
+               value: field.value,
+               label: label,
+               onChanged: (v) => field.didChange(v),
+               minDate: minDate,
+               maxDate: maxDate,
+               error: field.errorText,
+               formatDateTime: formatDateTime,
+             ),
+       );
 }

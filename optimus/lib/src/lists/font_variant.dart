@@ -10,13 +10,14 @@ enum FontVariant { normal, bold }
 
 extension FontStyles on FontVariant {
   TextStyle getPrimaryStyle(OptimusTokens tokens) => switch (this) {
-        FontVariant.normal => tokens.bodyLargeStrong,
-        FontVariant.bold =>
-          tokens.bodyLargeStrong.copyWith(fontWeight: FontWeight.w700),
-      };
+    FontVariant.normal => tokens.bodyLargeStrong,
+    FontVariant.bold => tokens.bodyLargeStrong.copyWith(
+      fontWeight: FontWeight.w700,
+    ),
+  };
 
   OptimusTypographyColor get secondaryColor => switch (this) {
-        FontVariant.normal => OptimusTypographyColor.secondary,
-        FontVariant.bold => OptimusTypographyColor.primary,
-      };
+    FontVariant.normal => OptimusTypographyColor.secondary,
+    FontVariant.bold => OptimusTypographyColor.primary,
+  };
 }

@@ -36,12 +36,13 @@ class OptimusToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final contentPadding = label != null
-        ? EdgeInsets.symmetric(
-            vertical: size.getLabelVerticalPadding(tokens),
-            horizontal: tokens.spacing100,
-          )
-        : EdgeInsets.all(size.getCompactPadding(tokens));
+    final contentPadding =
+        label != null
+            ? EdgeInsets.symmetric(
+              vertical: size.getLabelVerticalPadding(tokens),
+              horizontal: tokens.spacing100,
+            )
+            : EdgeInsets.all(size.getCompactPadding(tokens));
 
     return BaseButton(
       variant:
@@ -68,27 +69,26 @@ class OptimusToggleButton extends StatelessWidget {
 
 extension on OptimusToggleButtonSizeVariant {
   OptimusWidgetSize toWidgetSize() => switch (this) {
-        OptimusToggleButtonSizeVariant.small => OptimusWidgetSize.small,
-        OptimusToggleButtonSizeVariant.medium => OptimusWidgetSize.medium,
-        OptimusToggleButtonSizeVariant.large => OptimusWidgetSize.large,
-      };
+    OptimusToggleButtonSizeVariant.small => OptimusWidgetSize.small,
+    OptimusToggleButtonSizeVariant.medium => OptimusWidgetSize.medium,
+    OptimusToggleButtonSizeVariant.large => OptimusWidgetSize.large,
+  };
 
   double getLabelVerticalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusToggleButtonSizeVariant.small => tokens.spacing50,
-        OptimusToggleButtonSizeVariant.medium => tokens.spacing100,
-        OptimusToggleButtonSizeVariant.large => tokens.spacing150,
-      };
+    OptimusToggleButtonSizeVariant.small => tokens.spacing50,
+    OptimusToggleButtonSizeVariant.medium => tokens.spacing100,
+    OptimusToggleButtonSizeVariant.large => tokens.spacing150,
+  };
 
   double getPaddingInsidePadding(OptimusTokens tokens) => switch (this) {
-        OptimusToggleButtonSizeVariant.small => tokens.spacing100,
-        OptimusToggleButtonSizeVariant.medium ||
-        OptimusToggleButtonSizeVariant.large =>
-          tokens.spacing150
-      };
+    OptimusToggleButtonSizeVariant.small => tokens.spacing100,
+    OptimusToggleButtonSizeVariant.medium ||
+    OptimusToggleButtonSizeVariant.large => tokens.spacing150,
+  };
 
   double getCompactPadding(OptimusTokens tokens) => switch (this) {
-        OptimusToggleButtonSizeVariant.small => tokens.spacing100,
-        OptimusToggleButtonSizeVariant.medium => tokens.spacing150,
-        OptimusToggleButtonSizeVariant.large => tokens.spacing200
-      };
+    OptimusToggleButtonSizeVariant.small => tokens.spacing100,
+    OptimusToggleButtonSizeVariant.medium => tokens.spacing150,
+    OptimusToggleButtonSizeVariant.large => tokens.spacing200,
+  };
 }

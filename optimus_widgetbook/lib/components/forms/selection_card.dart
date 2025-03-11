@@ -27,8 +27,10 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final title = k.string(label: 'Title', initialValue: 'Title');
-    final description =
-        k.string(label: 'Description', initialValue: 'Description');
+    final description = k.string(
+      label: 'Description',
+      initialValue: 'Description',
+    );
     final trailing = k.optimusIconOrNullKnob(label: 'Trailing Icon');
     final variant = k.list(
       label: 'Variant',
@@ -48,8 +50,10 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
       options: OptimusSelectionCardSelectionVariant.values,
       labelBuilder: enumLabelBuilder,
     );
-    final isSelectorVisible =
-        k.boolean(label: 'Selector visible', initialValue: true);
+    final isSelectorVisible = k.boolean(
+      label: 'Selector visible',
+      initialValue: true,
+    );
     final isEnabled = k.isEnabledKnob;
 
     return SizedBox(

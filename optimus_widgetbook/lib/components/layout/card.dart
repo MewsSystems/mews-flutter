@@ -4,11 +4,7 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Card',
-  type: OptimusCard,
-  path: '[Layout]/Cards',
-)
+@widgetbook.UseCase(name: 'Card', type: OptimusCard, path: '[Layout]/Cards')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
@@ -85,10 +81,10 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-        color: context.tokens.paletteSemanticGreen500,
-        child: const Text('Content'),
-      );
+    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+    color: context.tokens.paletteSemanticGreen500,
+    child: const Text('Content'),
+  );
 }
 
 const _paddings = OptimusCardSpacing.values;

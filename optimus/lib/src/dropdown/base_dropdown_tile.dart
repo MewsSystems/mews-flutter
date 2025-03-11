@@ -52,36 +52,36 @@ class BaseDropdownTile extends StatelessWidget {
         color: isSelected ? tokens.backgroundInteractiveSecondaryDefault : null,
         borderRadius: BorderRadius.all(tokens.borderRadius100),
       ),
-      child: hasCheckbox
-          ? Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IgnorePointer(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: tokens.spacing200),
-                    child: CheckboxTick(
-                      isEnabled: true,
-                      onChanged: ignore,
-                      onTap: ignore,
-                      isChecked: isSelected,
+      child:
+          hasCheckbox
+              ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IgnorePointer(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: tokens.spacing200),
+                      child: CheckboxTick(
+                        isEnabled: true,
+                        onChanged: ignore,
+                        onTap: ignore,
+                        isChecked: isSelected,
+                      ),
                     ),
                   ),
-                ),
-                Flexible(fit: FlexFit.loose, child: tile),
-              ],
-            )
-          : tile,
+                  Flexible(fit: FlexFit.loose, child: tile),
+                ],
+              )
+              : tile,
     );
   }
 }
 
 extension on OptimusWidgetSize {
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small =>
-          6, // TODO(witwash): replace with token when added
-        OptimusWidgetSize.medium => tokens.spacing100,
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing150,
-      };
+    OptimusWidgetSize.small =>
+      6, // TODO(witwash): replace with token when added
+    OptimusWidgetSize.medium => tokens.spacing100,
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => tokens.spacing150,
+  };
 }

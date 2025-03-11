@@ -35,17 +35,17 @@ class OptimusInlineDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnchoredOverlay(
-        anchorKey: anchorKey,
-        width: size.width,
-        child: DialogContent(
-          content: content,
-          actions: actions,
-          type: OptimusDialogType.common,
-          size: size,
-          maxWidth: size.width,
-          contentWrapperBuilder: contentWrapperBuilder,
-          isDismissible: true,
-          close: close,
-        ),
-      );
+    anchorKey: anchorKey,
+    width: size.width,
+    child: DialogContent(
+      content: content,
+      actions: actions,
+      type: OptimusDialogType.common,
+      size: size,
+      maxWidth: size.width,
+      contentWrapperBuilder: contentWrapperBuilder,
+      isDismissible: true,
+      close: close,
+    ),
+  );
 }

@@ -24,9 +24,9 @@ class ListDropdownTile<T> extends OptimusDropdownTile<T> {
 
   @override
   Widget build(BuildContext context) => BaseDropdownTile(
-        title: title,
-        subtitle: subtitle,
-        isSelected: isSelected,
-        hasCheckbox: hasCheckbox,
-      );
+    title: title,
+    subtitle: subtitle,
+    isSelected: isSelected,
+    hasCheckbox: hasCheckbox,
+  );
 }

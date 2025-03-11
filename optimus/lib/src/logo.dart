@@ -60,30 +60,36 @@ class OptimusMewsLogo extends StatelessWidget {
   final OptimusMewsLogoAlignVariant alignVariant;
 
   double _getSize(OptimusTokens tokens) => switch (sizeVariant) {
-        OptimusMewsLogoSizeVariant.large => tokens.sizing300,
-        OptimusMewsLogoSizeVariant.medium => tokens.sizing200,
-        OptimusMewsLogoSizeVariant.small => tokens.sizing100,
-      };
+    OptimusMewsLogoSizeVariant.large => tokens.sizing300,
+    OptimusMewsLogoSizeVariant.medium => tokens.sizing200,
+    OptimusMewsLogoSizeVariant.small => tokens.sizing100,
+  };
 
   double _getPadding(OptimusTokens tokens) => switch (sizeVariant) {
-        OptimusMewsLogoSizeVariant.large => tokens.spacing300,
-        OptimusMewsLogoSizeVariant.medium => tokens.spacing200,
-        OptimusMewsLogoSizeVariant.small => tokens.spacing100,
-      };
+    OptimusMewsLogoSizeVariant.large => tokens.spacing300,
+    OptimusMewsLogoSizeVariant.medium => tokens.spacing200,
+    OptimusMewsLogoSizeVariant.small => tokens.spacing100,
+  };
 
   Color get _color => switch (colorVariant) {
-        OptimusMewsLogoColorVariant.black => Colors.black,
-        OptimusMewsLogoColorVariant.white => Colors.white,
-      };
+    OptimusMewsLogoColorVariant.black => Colors.black,
+    OptimusMewsLogoColorVariant.white => Colors.white,
+  };
 
   EdgeInsets _getMargin(OptimusTokens tokens) {
     final padding = _getPadding(tokens);
 
     return switch (alignVariant) {
-      OptimusMewsLogoAlignVariant.topLeft =>
-        EdgeInsets.only(bottom: padding, right: padding),
-      OptimusMewsLogoAlignVariant.topCenter =>
-        EdgeInsets.fromLTRB(padding, 0, padding, padding),
+      OptimusMewsLogoAlignVariant.topLeft => EdgeInsets.only(
+        bottom: padding,
+        right: padding,
+      ),
+      OptimusMewsLogoAlignVariant.topCenter => EdgeInsets.fromLTRB(
+        padding,
+        0,
+        padding,
+        padding,
+      ),
       OptimusMewsLogoAlignVariant.center => EdgeInsets.all(padding),
     };
   }
@@ -96,18 +102,18 @@ class OptimusMewsLogo extends StatelessWidget {
       padding: _getMargin(tokens),
       child: switch (logoVariant) {
         OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
-            OptimusIcons.mews_logo,
-            size: _getSize(tokens),
-            color: _color,
-          ),
+          OptimusIcons.mews_logo,
+          size: _getSize(tokens),
+          color: _color,
+        ),
         OptimusMewsLogoVariant.wordmark => SizedBox(
-            height: _getSize(tokens),
-            child: SvgPicture.asset(
-              _logoPath,
-              package: _packageName,
-              colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
-            ),
+          height: _getSize(tokens),
+          child: SvgPicture.asset(
+            _logoPath,
+            package: _packageName,
+            colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
           ),
+        ),
       },
     );
   }
@@ -115,11 +121,7 @@ class OptimusMewsLogo extends StatelessWidget {
 
 /// Copy of Flutter Icon, but it does not limit icon shape to square.
 class _NonSquaredIcon extends StatelessWidget {
-  const _NonSquaredIcon(
-    this.icon, {
-    required this.size,
-    required this.color,
-  });
+  const _NonSquaredIcon(this.icon, {required this.size, required this.color});
 
   final IconData icon;
   final double size;
@@ -127,18 +129,18 @@ class _NonSquaredIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text.rich(
-        overflow: TextOverflow.visible,
-        TextSpan(
-          text: String.fromCharCode(icon.codePoint),
-          style: TextStyle(
-            inherit: false,
-            color: color,
-            fontSize: size,
-            fontFamily: icon.fontFamily,
-            package: icon.fontPackage,
-          ),
-        ),
-      );
+    overflow: TextOverflow.visible,
+    TextSpan(
+      text: String.fromCharCode(icon.codePoint),
+      style: TextStyle(
+        inherit: false,
+        color: color,
+        fontSize: size,
+        fontFamily: icon.fontFamily,
+        package: icon.fontPackage,
+      ),
+    ),
+  );
 }
 
 const _packageName = 'optimus';

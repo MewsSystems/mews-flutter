@@ -75,40 +75,46 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
   }
 
   WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
-        WidgetState.disabled: tokens.backgroundStaticFlat,
-        WidgetState.pressed: widget.isSelected
+    WidgetState.disabled: tokens.backgroundStaticFlat,
+    WidgetState.pressed:
+        widget.isSelected
             ? tokens.backgroundInteractiveSecondaryActive
             : tokens.backgroundStaticFlat,
-        WidgetState.hovered: widget.isSelected
+    WidgetState.hovered:
+        widget.isSelected
             ? tokens.backgroundInteractiveSecondaryHover
             : tokens.backgroundStaticFlat,
-        WidgetState.any: widget.isSelected
+    WidgetState.any:
+        widget.isSelected
             ? tokens.backgroundInteractiveSecondaryDefault
             : tokens.backgroundStaticFlat,
-      });
+  });
 
   WidgetStateColor get _borderColor => WidgetStateColor.fromMap({
-        WidgetState.disabled: tokens.borderDisabled,
-        WidgetState.pressed: widget.isSelected
+    WidgetState.disabled: tokens.borderDisabled,
+    WidgetState.pressed:
+        widget.isSelected
             ? tokens.borderInteractivePrimaryActive
             : tokens.borderInteractiveSecondaryActive,
-        WidgetState.hovered: widget.isSelected
+    WidgetState.hovered:
+        widget.isSelected
             ? tokens.borderInteractivePrimaryHover
             : tokens.borderInteractiveSecondaryHover,
-        WidgetState.any: widget.isSelected
+    WidgetState.any:
+        widget.isSelected
             ? tokens.borderInteractivePrimaryDefault
             : tokens.borderInteractiveSecondaryDefault,
-      });
+  });
 
   WidgetStateColor get _titleColor => WidgetStateColor.fromMap({
-        WidgetState.disabled: tokens.textDisabled,
-        WidgetState.any: tokens.textStaticPrimary,
-      });
+    WidgetState.disabled: tokens.textDisabled,
+    WidgetState.any: tokens.textStaticPrimary,
+  });
 
   WidgetStateColor get _descriptionColor => WidgetStateColor.fromMap({
-        WidgetState.disabled: tokens.textDisabled,
-        WidgetState.any: tokens.textStaticTertiary,
-      });
+    WidgetState.disabled: tokens.textDisabled,
+    WidgetState.any: tokens.textStaticTertiary,
+  });
 
   @override
   void didUpdateWidget(covariant OptimusSelectionCard oldWidget) {
@@ -120,89 +126,88 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
 
   @override
   Widget build(BuildContext context) => IgnorePointer(
-        ignoring: !widget.isEnabled,
-        child: ListenableBuilder(
-          listenable: _controller,
-          builder: (context, _) {
-            final backgroundColor = _backgroundColor.resolve(_controller.value);
-            final borderColor = _borderColor.resolve(_controller.value);
-            final titleColor = _titleColor.resolve(_controller.value);
-            final descriptionColor =
-                _descriptionColor.resolve(_controller.value);
+    ignoring: !widget.isEnabled,
+    child: ListenableBuilder(
+      listenable: _controller,
+      builder: (context, _) {
+        final backgroundColor = _backgroundColor.resolve(_controller.value);
+        final borderColor = _borderColor.resolve(_controller.value);
+        final titleColor = _titleColor.resolve(_controller.value);
+        final descriptionColor = _descriptionColor.resolve(_controller.value);
 
-            final selector = widget.isSelectorVisible
+        final selector =
+            widget.isSelectorVisible
                 ? switch (widget.selectionVariant) {
-                    OptimusSelectionCardSelectionVariant.radio => RadioCircle(
-                        controller: _controller,
-                        isSelected: widget.isSelected,
-                      ),
-                    OptimusSelectionCardSelectionVariant.checkbox =>
-                      CheckboxTick(
-                        isEnabled: widget.isEnabled,
-                        isChecked: widget.isSelected,
-                        onChanged: (_) {},
-                        onTap: () {},
-                      )
-                  }
+                  OptimusSelectionCardSelectionVariant.radio => RadioCircle(
+                    controller: _controller,
+                    isSelected: widget.isSelected,
+                  ),
+                  OptimusSelectionCardSelectionVariant.checkbox => CheckboxTick(
+                    isEnabled: widget.isEnabled,
+                    isChecked: widget.isSelected,
+                    onChanged: (_) {},
+                    onTap: () {},
+                  ),
+                }
                 : null;
 
-            final title = DefaultTextStyle.merge(
-              child: widget.title,
-              style: tokens.bodyLargeStrong.copyWith(color: titleColor),
-            );
+        final title = DefaultTextStyle.merge(
+          child: widget.title,
+          style: tokens.bodyLargeStrong.copyWith(color: titleColor),
+        );
 
-            final Widget? description = widget.description?.let(
-              (it) => DefaultTextStyle.merge(
-                child: it,
-                style: tokens.bodyMedium.copyWith(color: descriptionColor),
-              ),
-            );
+        final Widget? description = widget.description?.let(
+          (it) => DefaultTextStyle.merge(
+            child: it,
+            style: tokens.bodyMedium.copyWith(color: descriptionColor),
+          ),
+        );
 
-            final Widget? trailing = widget.trailing?.let(
-              (it) => IconTheme.merge(
-                child: it,
-                data: IconThemeData(color: titleColor),
-              ),
-            );
+        final Widget? trailing = widget.trailing?.let(
+          (it) => IconTheme.merge(
+            child: it,
+            data: IconThemeData(color: titleColor),
+          ),
+        );
 
-            return GestureWrapper(
-              onHoverChanged: (isHovered) =>
-                  _controller.update(WidgetState.hovered, isHovered),
-              onPressedChanged: (isPressed) =>
-                  _controller.update(WidgetState.pressed, isPressed),
-              onTap: widget.onPressed,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.all(
-                    widget.borderRadius.getBorderRadius(tokens),
-                  ),
-                  border: Border.all(
-                    color: borderColor,
-                    width: tokens.borderWidth150,
-                  ),
-                ),
-                child: switch (widget.variant) {
-                  OptimusSelectionCardVariant.horizontal => _HorizontalCard(
-                      title: title,
-                      description: description,
-                      trailing: trailing,
-                      isSelected: widget.isSelected,
-                      selector: selector,
-                    ),
-                  OptimusSelectionCardVariant.vertical => _VerticalCard(
-                      title: title,
-                      description: description,
-                      trailing: trailing,
-                      isSelected: widget.isSelected,
-                      selector: selector,
-                    )
-                },
+        return GestureWrapper(
+          onHoverChanged:
+              (isHovered) => _controller.update(WidgetState.hovered, isHovered),
+          onPressedChanged:
+              (isPressed) => _controller.update(WidgetState.pressed, isPressed),
+          onTap: widget.onPressed,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.all(
+                widget.borderRadius.getBorderRadius(tokens),
               ),
-            );
-          },
-        ),
-      );
+              border: Border.all(
+                color: borderColor,
+                width: tokens.borderWidth150,
+              ),
+            ),
+            child: switch (widget.variant) {
+              OptimusSelectionCardVariant.horizontal => _HorizontalCard(
+                title: title,
+                description: description,
+                trailing: trailing,
+                isSelected: widget.isSelected,
+                selector: selector,
+              ),
+              OptimusSelectionCardVariant.vertical => _VerticalCard(
+                title: title,
+                description: description,
+                trailing: trailing,
+                isSelected: widget.isSelected,
+                selector: selector,
+              ),
+            },
+          ),
+        );
+      },
+    ),
+  );
 }
 
 class _HorizontalCard extends StatelessWidget {
@@ -270,41 +275,41 @@ class _VerticalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
-        alignment: Alignment.center,
-        children: [
-          if (selector case final selector?)
-            Positioned(
-              right: context.tokens.spacing100,
-              top: context.tokens.spacing100,
-              child: selector,
+    alignment: Alignment.center,
+    children: [
+      if (selector case final selector?)
+        Positioned(
+          right: context.tokens.spacing100,
+          top: context.tokens.spacing100,
+          child: selector,
+        ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.tokens.spacing200,
+          vertical: context.tokens.spacing400,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (trailing case final trailing?) trailing,
+            SizedBox(
+              height: context.tokens.spacing200,
+              width: context.tokens.sizing1300,
             ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: context.tokens.spacing200,
-              vertical: context.tokens.spacing400,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (trailing case final trailing?) trailing,
-                SizedBox(
-                  height: context.tokens.spacing200,
-                  width: context.tokens.sizing1300,
-                ),
-                Flexible(child: title),
-                SizedBox(height: context.tokens.spacing50),
-                if (description case final description?)
-                  Flexible(child: description),
-              ],
-            ),
-          ),
-        ],
-      );
+            Flexible(child: title),
+            SizedBox(height: context.tokens.spacing50),
+            if (description case final description?)
+              Flexible(child: description),
+          ],
+        ),
+      ),
+    ],
+  );
 }
 
 extension on OptimusSelectionCardBorderRadius {
   Radius getBorderRadius(OptimusTokens tokens) => switch (this) {
-        OptimusSelectionCardBorderRadius.small => tokens.borderRadius100,
-        OptimusSelectionCardBorderRadius.medium => tokens.borderRadius200
-      };
+    OptimusSelectionCardBorderRadius.small => tokens.borderRadius100,
+    OptimusSelectionCardBorderRadius.medium => tokens.borderRadius200,
+  };
 }
