@@ -401,7 +401,7 @@ class _GroupWrapper extends StatelessWidget {
   );
 }
 
-class _DropdownItem<T> extends StatefulWidget {
+class _DropdownItem<T> extends StatelessWidget {
   const _DropdownItem({
     super.key,
     required this.child,
@@ -412,23 +412,16 @@ class _DropdownItem<T> extends StatefulWidget {
   final ValueSetter<T> onChanged;
 
   @override
-  _DropdownItemState<T> createState() => _DropdownItemState();
-}
-
-class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
-  void _handleItemTap() {
-    widget.onChanged(widget.child.value);
-    DropdownTapInterceptor.of(context)?.onTap();
-  }
-
-  @override
   Widget build(BuildContext context) => SizedBox(
     width: AnchoredOverlay.of(context)?.width,
     height: _itemMinHeight,
     child: InkWell(
-      borderRadius: BorderRadius.all(tokens.borderRadius100),
-      onTap: _handleItemTap,
-      child: widget.child,
+      borderRadius: BorderRadius.all(context.tokens.borderRadius100),
+      onTap: () {
+        onChanged(child.value);
+        DropdownTapInterceptor.of(context)?.onTap();
+      },
+      child: child,
     ),
   );
 }
