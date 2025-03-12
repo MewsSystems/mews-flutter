@@ -116,7 +116,9 @@ class _OptimusDrawerSelectInputState<T>
       trailing: widget.trailing,
       leading: widget.leading,
       isReadOnly: true,
-      placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
+      placeholder:
+          widget.value?.let(widget.builder) ??
+          widget.placeholder, // TODO(witwash): update on select
       onTap: () {
         showModalBottomSheet<T>(
           useSafeArea: true,

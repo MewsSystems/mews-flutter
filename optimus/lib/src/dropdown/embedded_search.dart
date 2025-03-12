@@ -62,3 +62,44 @@ class _OptimusDropdownEmbeddedSearchState
     hasBorders: false,
   );
 }
+
+class DropdownSearchWrapper extends StatefulWidget {
+  const DropdownSearchWrapper({
+    super.key,
+    required this.width,
+    required this.showDivider,
+    required this.isOnTop,
+    required this.child,
+  });
+
+  final double width;
+  final Widget child;
+  final bool showDivider;
+  final bool isOnTop;
+
+  @override
+  State<DropdownSearchWrapper> createState() => _DropdownSearchWrapperState();
+}
+
+class _DropdownSearchWrapperState extends State<DropdownSearchWrapper>
+    with ThemeGetter {
+  final GlobalKey _searchKey = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    final children = [
+      if (widget.showDivider)
+        Divider(
+          thickness: 1,
+          height: 1,
+          color: context.tokens.borderStaticPrimary,
+        ),
+      KeyedSubtree(key: _searchKey, child: widget.child),
+    ];
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: widget.isOnTop ? children : children.reversed.toList(),
+    );
+  }
+}
