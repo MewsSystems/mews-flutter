@@ -1,5 +1,6 @@
 // ignore_for_file: avoid-unnecessary-stateful-widgets
 
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 
@@ -115,6 +116,7 @@ class _OptimusDrawerSelectInputState<T>
       trailing: widget.trailing,
       leading: widget.leading,
       isReadOnly: true,
+      placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
       onTap: () {
         showModalBottomSheet<T>(
           useSafeArea: true,
@@ -128,7 +130,7 @@ class _OptimusDrawerSelectInputState<T>
           isScrollControlled: true,
           elevation: 2,
           builder:
-              (context) => _DrawerSelect(
+              (_) => _DrawerSelect(
                 items: widget.items,
                 builder: widget.builder,
                 onChanged: widget.onChanged,
