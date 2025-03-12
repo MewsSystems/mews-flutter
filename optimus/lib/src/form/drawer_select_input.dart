@@ -3,6 +3,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_wrapper.dart';
 
 class OptimusDrawerSelectInput<T> extends StatefulWidget {
   const OptimusDrawerSelectInput({
@@ -148,12 +149,15 @@ class _OptimusDrawerSelectInputState<T>
           isScrollControlled: true,
           elevation: 2,
           builder:
-              (_) => _DrawerSelect(
-                items: widget.items,
-                builder: widget.builder,
-                onChanged: widget.onChanged,
-                placeholder: widget.placeholder,
-                onClosed: _handleClose,
+              (_) => Material(
+                color: Colors.transparent,
+                child: _DrawerSelect(
+                  items: widget.items,
+                  builder: widget.builder,
+                  onChanged: widget.onChanged,
+                  placeholder: widget.placeholder,
+                  onClosed: _handleClose,
+                ),
               ),
         );
       },
@@ -170,6 +174,7 @@ class _DrawerSelect<T> extends StatelessWidget {
     required this.onChanged,
     this.placeholder = '',
     this.onClosed,
+    this.value,
   });
 
   final String? label;
@@ -178,41 +183,91 @@ class _DrawerSelect<T> extends StatelessWidget {
   final ValueSetter<T> onChanged;
   final String placeholder;
   final VoidCallback? onClosed;
+  final T? value;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Material(
-      color: Colors.transparent,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: tokens.backgroundStaticFloating,
-          borderRadius: BorderRadius.vertical(top: tokens.borderRadius300),
-        ),
-        child: Column(
-          children: [
-            const _DrawerHeader(),
-            if (label case final label?) _DrawerLabel(label: label),
-            const OptimusInputField(),
-            Expanded(
-              child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder:
-                    (context, index) => InkWell(
-                      borderRadius: BorderRadius.all(
-                        context.tokens.borderRadius100,
-                      ),
-                      onTap: () {
-                        onChanged(items[index].value);
-                        Navigator.of(context).pop(items[index].value);
-                        onClosed?.call();
-                      },
-                      child: items[index],
-                    ),
-              ),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: tokens.backgroundStaticFloating,
+        borderRadius: BorderRadius.vertical(top: tokens.borderRadius300),
+      ),
+      child: Column(
+        children: [
+          const _DrawerHeader(),
+          if (label case final label?) _DrawerLabel(label: label),
+          const OptimusInputField(),
+          SizedBox(height: tokens.spacing200),
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: tokens.spacing25),
+              itemCount: items.length,
+              itemBuilder:
+                  (context, index) => _DrawerItem(
+                    item: items[index],
+                    isSelected: value == items[index].value,
+                    onTap: () {
+                      onChanged(items[index].value);
+                      Navigator.of(context).pop(items[index].value);
+                      onClosed?.call();
+                    },
+                  ),
             ),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DrawerItem<T> extends StatefulWidget {
+  const _DrawerItem({
+    required this.item,
+    this.isEnabled = true,
+    this.isSelected = false,
+    this.isCheckboxVisible = false,
+    required this.onTap,
+  });
+
+  final OptimusDropdownTile<T> item;
+  final bool isEnabled;
+  final bool isSelected;
+  final bool isCheckboxVisible;
+  final VoidCallback onTap;
+
+  @override
+  State<_DrawerItem<T>> createState() => _DrawerItemState();
+}
+
+class _DrawerItemState<T> extends State<_DrawerItem<T>> {
+  bool _isHovered = false;
+  bool _isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Padding(
+      padding: EdgeInsets.all(tokens.spacing50),
+      child: GestureWrapper(
+        onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
+        onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
+        onTap: widget.onTap,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(tokens.borderRadius100),
+            color:
+                widget.isSelected
+                    ? tokens.backgroundInteractiveSecondaryDefault
+                    : _isPressed
+                    ? tokens.backgroundInteractiveNeutralSubtleActive
+                    : _isHovered
+                    ? tokens.backgroundInteractiveNeutralSubtleHover
+                    : null,
+          ),
+          child: widget.item,
         ),
       ),
     );

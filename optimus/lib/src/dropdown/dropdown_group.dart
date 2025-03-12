@@ -7,7 +7,6 @@ import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/dropdown/common.dart';
 import 'package:optimus/src/dropdown/dropdown_item.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
-// import 'package:optimus/src/dropdown/dropdown_list.dart';
 
 class DropdownGroupedListView<T> extends StatefulWidget {
   const DropdownGroupedListView({
