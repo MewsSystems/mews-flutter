@@ -99,6 +99,21 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
 
 class _OptimusDrawerSelectInputState<T>
     extends State<OptimusDrawerSelectInput<T>> {
+  FocusNode? _focusNode;
+
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
+
+  void _handleClose() {
+    _effectiveFocusNode.unfocus();
+  }
+
+  @override
+  void dispose() {
+    _focusNode?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -115,6 +130,7 @@ class _OptimusDrawerSelectInputState<T>
       helperMessage: widget.secondaryCaption,
       trailing: widget.trailing,
       leading: widget.leading,
+      focusNode: _effectiveFocusNode,
       isReadOnly: true,
       placeholder:
           widget.value?.let(widget.builder) ??
@@ -137,6 +153,7 @@ class _OptimusDrawerSelectInputState<T>
                 builder: widget.builder,
                 onChanged: widget.onChanged,
                 placeholder: widget.placeholder,
+                onClosed: _handleClose,
               ),
         );
       },
@@ -152,6 +169,7 @@ class _DrawerSelect<T> extends StatelessWidget {
     required this.builder,
     required this.onChanged,
     this.placeholder = '',
+    this.onClosed,
   });
 
   final String? label;
@@ -159,6 +177,7 @@ class _DrawerSelect<T> extends StatelessWidget {
   final ValueBuilder<T> builder;
   final ValueSetter<T> onChanged;
   final String placeholder;
+  final VoidCallback? onClosed;
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +206,7 @@ class _DrawerSelect<T> extends StatelessWidget {
                       onTap: () {
                         onChanged(items[index].value);
                         Navigator.of(context).pop(items[index].value);
+                        onClosed?.call();
                       },
                       child: items[index],
                     ),
