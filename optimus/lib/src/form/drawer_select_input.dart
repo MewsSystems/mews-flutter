@@ -112,9 +112,9 @@ class _OptimusDrawerSelectInputState<T>
       size: widget.size,
       caption: widget.caption,
       helperMessage: widget.secondaryCaption,
-      isReadOnly: widget.isReadOnly,
       trailing: widget.trailing,
       leading: widget.leading,
+      isReadOnly: true,
       onTap: () {
         showModalBottomSheet<void>(
           useSafeArea: true,
@@ -128,30 +128,69 @@ class _OptimusDrawerSelectInputState<T>
           isScrollControlled: true,
           elevation: 2,
           builder:
-              (context) => Material(
-                color: Colors.transparent,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: tokens.backgroundStaticFloating,
-                    borderRadius: BorderRadius.vertical(
-                      top: tokens.borderRadius300,
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      const _DrawerHeader(),
-                      if (widget.label case final label?)
-                        _DrawerLabel(label: label),
-                      const OptimusInputField(),
-                      const Text('Item 1'),
-                      const Text('Item 2'),
-                      const Text('Item 3'),
-                    ],
-                  ),
-                ),
+              (context) => _DrawerSelect(
+                items: widget.items,
+                builder: widget.builder,
+                onChanged: widget.onChanged,
+                placeholder: widget.placeholder,
               ),
         );
       },
+    );
+  }
+}
+
+class _DrawerSelect<T> extends StatelessWidget {
+  const _DrawerSelect({
+    super.key,
+    this.label,
+    required this.items,
+    required this.builder,
+    required this.onChanged,
+    this.placeholder = '',
+  });
+
+  final String? label;
+  final List<OptimusDropdownTile<T>> items;
+  final ValueBuilder<T> builder;
+  final ValueSetter<T> onChanged;
+  final String placeholder;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Material(
+      color: Colors.transparent,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: tokens.backgroundStaticFloating,
+          borderRadius: BorderRadius.vertical(top: tokens.borderRadius300),
+        ),
+        child: Column(
+          children: [
+            const _DrawerHeader(),
+            if (label case final label?) _DrawerLabel(label: label),
+            const OptimusInputField(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder:
+                    (context, index) => InkWell(
+                      borderRadius: BorderRadius.all(
+                        context.tokens.borderRadius100,
+                      ),
+                      onTap: () {
+                        onChanged(items[index].value);
+                        Navigator.of(context).pop();
+                      },
+                      child: items[index],
+                    ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -171,7 +210,8 @@ class _DrawerHeader extends StatelessWidget {
         children: [
           const Spacer(),
           Container(
-            width: context.tokens.sizing100 * 12,
+            width:
+                context.tokens.sizing100 * 12, // TODO(witwash): missing tokens
             decoration: BoxDecoration(
               color: context.tokens.borderStaticPrimary,
               borderRadius: BorderRadius.all(context.tokens.borderRadius50),
