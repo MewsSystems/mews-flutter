@@ -116,7 +116,7 @@ class _OptimusDrawerSelectInputState<T>
       trailing: widget.trailing,
       leading: widget.leading,
       onTap: () {
-        showModalBottomSheet(
+        showModalBottomSheet<void>(
           useSafeArea: true,
           constraints: BoxConstraints(
             maxHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
