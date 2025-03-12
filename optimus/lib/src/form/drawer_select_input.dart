@@ -116,7 +116,7 @@ class _OptimusDrawerSelectInputState<T>
       leading: widget.leading,
       isReadOnly: true,
       onTap: () {
-        showModalBottomSheet<void>(
+        showModalBottomSheet<T>(
           useSafeArea: true,
           constraints: BoxConstraints(
             maxHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
@@ -182,7 +182,7 @@ class _DrawerSelect<T> extends StatelessWidget {
                       ),
                       onTap: () {
                         onChanged(items[index].value);
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pop(items[index].value);
                       },
                       child: items[index],
                     ),
