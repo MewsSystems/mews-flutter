@@ -160,25 +160,25 @@ class _DrawerHeader extends StatelessWidget {
   const _DrawerHeader();
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    width: double.infinity,
-    child: Padding(
-      padding: EdgeInsets.only(
-        top: context.tokens.spacing150,
-        bottom: context.tokens.spacing400,
-      ),
-      child: Container(
-        width: context.tokens.sizingBase * 12,
-        constraints: BoxConstraints(
-          maxWidth: context.tokens.sizingBase * 12,
-          minWidth: context.tokens.sizingBase * 12,
-        ),
-        // TODO(witwash): replace with tokens
-        height: context.tokens.sizing50,
-        decoration: BoxDecoration(
-          color: context.tokens.borderStaticPrimary,
-          borderRadius: BorderRadius.all(context.tokens.borderRadius50),
-        ),
+  Widget build(BuildContext context) => Padding(
+    padding: EdgeInsets.only(
+      top: context.tokens.spacing150,
+      bottom: context.tokens.spacing400,
+    ),
+    child: SizedBox(
+      height: context.tokens.spacing50,
+      child: Row(
+        children: [
+          const Spacer(),
+          Container(
+            width: context.tokens.sizing100 * 12,
+            decoration: BoxDecoration(
+              color: context.tokens.borderStaticPrimary,
+              borderRadius: BorderRadius.all(context.tokens.borderRadius50),
+            ),
+          ),
+          const Spacer(),
+        ],
       ),
     ),
   );
