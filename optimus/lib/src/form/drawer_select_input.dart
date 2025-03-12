@@ -26,7 +26,7 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
     required this.onChanged,
     this.controller,
     this.onTextChanged,
-    this.isReadOnly,
+    this.isReadOnly = false,
     this.embeddedSearch,
     this.emptyResultPlaceholder,
     this.groupBy,
@@ -60,7 +60,7 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
   final ValueSetter<T> onChanged;
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
-  final bool? isReadOnly;
+  final bool isReadOnly;
 
   /// An embedded search field that can be used to filter the list of items.
   /// Will be displayed as a part of the dropdown menu. If the [controller] or
@@ -103,42 +103,49 @@ class _OptimusDrawerSelectInputState<T>
     final tokens = context.tokens;
 
     return OptimusInputField(
+      label: widget.label,
+      error: widget.error,
+      prefix: widget.prefix,
+      suffix: widget.suffix,
+      isEnabled: widget.isEnabled,
+      showLoader: widget.showLoader,
+      size: widget.size,
+      caption: widget.caption,
+      helperMessage: widget.secondaryCaption,
+      isReadOnly: widget.isReadOnly,
+      trailing: widget.trailing,
+      leading: widget.leading,
       onTap: () {
         showModalBottomSheet(
           useSafeArea: true,
           constraints: BoxConstraints(
-            maxHeight: MediaQuery
-                .sizeOf(context)
-                .height - tokens.spacing300,
-            minHeight: MediaQuery
-                .sizeOf(context)
-                .height - tokens.spacing300,
-            maxWidth: MediaQuery
-                .sizeOf(context)
-                .width,
-            minWidth: MediaQuery
-                .sizeOf(context)
-                .width,
+            maxHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
+            minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
+            maxWidth: MediaQuery.sizeOf(context).width,
+            minWidth: MediaQuery.sizeOf(context).width,
           ),
           context: context,
           isScrollControlled: true,
           elevation: 2,
-          builder: (context) =>
-              Material(
+          builder:
+              (context) => Material(
                 color: Colors.transparent,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: tokens.backgroundStaticFloating,
-                    borderRadius:
-                    BorderRadius.vertical(top: tokens.borderRadius300),
+                    borderRadius: BorderRadius.vertical(
+                      top: tokens.borderRadius300,
+                    ),
                   ),
-                  child: const Column(
+                  child: Column(
                     children: [
-                      _DrawerHeader(),
-                      OptimusInputField(),
-                      Text('Item 1'),
-                      Text('Item 2'),
-                      Text('Item 3'),
+                      const _DrawerHeader(),
+                      if (widget.label case final label?)
+                        _DrawerLabel(label: label),
+                      const OptimusInputField(),
+                      const Text('Item 1'),
+                      const Text('Item 2'),
+                      const Text('Item 3'),
                     ],
                   ),
                 ),
@@ -153,20 +160,40 @@ class _DrawerHeader extends StatelessWidget {
   const _DrawerHeader();
 
   @override
-  Widget build(BuildContext context) =>
-      Padding(
-        padding: EdgeInsets.only(
-          top: context.tokens.spacing150,
-          bottom: context.tokens.spacing400,
+  Widget build(BuildContext context) => SizedBox(
+    width: double.infinity,
+    child: Padding(
+      padding: EdgeInsets.only(
+        top: context.tokens.spacing150,
+        bottom: context.tokens.spacing400,
+      ),
+      child: Container(
+        width: context.tokens.sizingBase * 12,
+        constraints: BoxConstraints(
+          maxWidth: context.tokens.sizingBase * 12,
+          minWidth: context.tokens.sizingBase * 12,
         ),
-        child: Container(
-          width: context.tokens.sizingBase * 12,
-          // TODO(witwash): replace with tokens
-          height: context.tokens.sizing50,
-          decoration: BoxDecoration(
-            color: context.tokens.borderStaticPrimary,
-            borderRadius: BorderRadius.all(context.tokens.borderRadius50),
-          ),
+        // TODO(witwash): replace with tokens
+        height: context.tokens.sizing50,
+        decoration: BoxDecoration(
+          color: context.tokens.borderStaticPrimary,
+          borderRadius: BorderRadius.all(context.tokens.borderRadius50),
         ),
-      );
+      ),
+    ),
+  );
+}
+
+class _DrawerLabel extends StatelessWidget {
+  const _DrawerLabel({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) => Text(
+    label,
+    style: context.tokens.titleMediumStrong.copyWith(
+      color: context.tokens.textStaticPrimary,
+    ),
+  );
 }

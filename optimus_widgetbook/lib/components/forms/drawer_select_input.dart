@@ -9,8 +9,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusDrawerSelectInput,
   path: '[Forms]',
 )
-Widget createDefaultStyle(BuildContext _) {
+Widget createDefaultStyle(BuildContext context) {
+  final k = context.knobs;
+
   return OptimusDrawerSelectInput(
+    label: k.string(label: 'Label'),
     items: const [
       ListDropdownTile<String>(value: '1', title: Text('Option 1')),
       ListDropdownTile<String>(value: '2', title: Text('Option 2')),
