@@ -30,11 +30,18 @@ class _DrawerExampleState extends State<_DrawerExample> {
     return OptimusDrawerSelectInput(
       label: k.string(label: 'Label', initialValue: 'Label'),
       value: _selectedValue,
-      items: const [
-        ListDropdownTile<String>(value: '1', title: Text('Option 1')),
-        ListDropdownTile<String>(value: '2', title: Text('Option 2')),
-        ListDropdownTile<String>(value: '3', title: Text('Option 3')),
-      ],
+      items:
+          _characters
+              .map(
+                (e) => ListDropdownTile<String>(
+                  value: e,
+                  title: Text(e),
+                  subtitle: Text(e.toUpperCase()),
+                  isSelected: e == _selectedValue,
+                  hasCheckbox: false,
+                ),
+              )
+              .toList(),
       builder: (value) => value,
       onChanged: (value) {
         setState(() {
@@ -44,3 +51,11 @@ class _DrawerExampleState extends State<_DrawerExample> {
     );
   }
 }
+
+const _characters = [
+  'Jon Snow',
+  'Ned Stark',
+  'Robb Stark',
+  'Sansa Stark',
+  'Daenerys Targaryen',
+];
