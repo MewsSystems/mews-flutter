@@ -1,6 +1,7 @@
 // ignore_for_file: avoid-unnecessary-stateful-widgets
 
 import 'package:dfunc/dfunc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
@@ -133,9 +134,7 @@ class _OptimusDrawerSelectInputState<T>
       leading: widget.leading,
       focusNode: _effectiveFocusNode,
       isReadOnly: true,
-      placeholder:
-          widget.value?.let(widget.builder) ??
-          widget.placeholder, // TODO(witwash): update on select
+      placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
       onTap: () {
         showModalBottomSheet<T>(
           useSafeArea: true,
@@ -157,6 +156,7 @@ class _OptimusDrawerSelectInputState<T>
                   onChanged: widget.onChanged,
                   placeholder: widget.placeholder,
                   onClosed: _handleClose,
+                  value: widget.value,
                 ),
               ),
         );
@@ -198,11 +198,14 @@ class _DrawerSelect<T> extends StatelessWidget {
         children: [
           const _DrawerHeader(),
           if (label case final label?) _DrawerLabel(label: label),
-          const OptimusInputField(),
+          OptimusInputField(placeholder: value?.let(builder) ?? placeholder),
           SizedBox(height: tokens.spacing200),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: tokens.spacing25),
+              padding: EdgeInsets.symmetric(
+                vertical: tokens.spacing25,
+                horizontal: tokens.spacing200,
+              ),
               itemCount: items.length,
               itemBuilder:
                   (context, index) => _DrawerItem(
