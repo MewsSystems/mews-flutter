@@ -22,6 +22,13 @@ class _DrawerExample extends StatefulWidget {
 
 class _DrawerExampleState extends State<_DrawerExample> {
   String? _selectedValue;
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,23 +37,28 @@ class _DrawerExampleState extends State<_DrawerExample> {
     return OptimusDrawerSelectInput(
       label: k.string(label: 'Label', initialValue: 'Label'),
       value: _selectedValue,
-      items:
-          _characters
-              .map(
-                (e) => ListDropdownTile<String>(
-                  value: e,
-                  title: Text(e),
-                  subtitle: Text(e.toUpperCase()),
-                  isSelected: e == _selectedValue,
-                  hasCheckbox: false,
-                ),
-              )
-              .toList(),
+      controller: _controller,
+      listBuilder:
+          (String? query) =>
+              _characters
+                  .where(
+                    (e) => e.toLowerCase().contains(
+                      _controller.text.toLowerCase(),
+                    ),
+                  )
+                  .map(
+                    (e) => ListDropdownTile<String>(
+                      value: e,
+                      title: Text(e),
+                      subtitle: Text(e.toUpperCase()),
+                      isSelected: e == _selectedValue,
+                      hasCheckbox: false,
+                    ),
+                  )
+                  .toList(),
       builder: (value) => value,
       onChanged: (value) {
-        setState(() {
-          _selectedValue = value;
-        });
+        setState(() => _selectedValue = value);
       },
     );
   }

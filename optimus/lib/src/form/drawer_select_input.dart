@@ -1,10 +1,10 @@
-// ignore_for_file: avoid-unnecessary-stateful-widgets
-
 import 'package:dfunc/dfunc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+
+typedef OptimusDrawerListBuilder<T> =
+    List<OptimusDropdownTile<T>> Function(String? query);
 
 class OptimusDrawerSelectInput<T> extends StatefulWidget {
   const OptimusDrawerSelectInput({
@@ -12,7 +12,6 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
     this.label,
     this.placeholder = '',
     this.value,
-    required this.items,
     this.isEnabled = true,
     this.isRequired = false,
     this.leading,
@@ -36,6 +35,7 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
     this.groupBuilder,
     this.allowMultipleSelection = false,
     this.selectedValues,
+    required this.listBuilder,
   });
 
   /// Describes the purpose of the select field.
@@ -44,7 +44,6 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
   final String? label;
   final String placeholder;
   final T? value;
-  final List<OptimusDropdownTile<T>> items;
   final bool isEnabled;
   final bool isRequired;
   final Widget? leading;
@@ -64,6 +63,7 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
   final bool isReadOnly;
+  final OptimusDrawerListBuilder<T> listBuilder;
 
   /// An embedded search field that can be used to filter the list of items.
   /// Will be displayed as a part of the dropdown menu. If the [controller] or
@@ -151,12 +151,13 @@ class _OptimusDrawerSelectInputState<T>
               (_) => Material(
                 color: Colors.transparent,
                 child: _DrawerSelect(
-                  items: widget.items,
                   builder: widget.builder,
                   onChanged: widget.onChanged,
                   placeholder: widget.placeholder,
                   onClosed: _handleClose,
                   value: widget.value,
+                  controller: widget.controller,
+                  listBuilder: widget.listBuilder,
                 ),
               ),
         );
@@ -165,29 +166,64 @@ class _OptimusDrawerSelectInputState<T>
   }
 }
 
-class _DrawerSelect<T> extends StatelessWidget {
+class _DrawerSelect<T> extends StatefulWidget {
   const _DrawerSelect({
     super.key,
     this.label,
-    required this.items,
     required this.builder,
     required this.onChanged,
     this.placeholder = '',
     this.onClosed,
     this.value,
+    this.controller,
+    required this.listBuilder,
   });
 
   final String? label;
-  final List<OptimusDropdownTile<T>> items;
   final ValueBuilder<T> builder;
   final ValueSetter<T> onChanged;
   final String placeholder;
   final VoidCallback? onClosed;
+  final TextEditingController? controller;
   final T? value;
+  final OptimusDrawerListBuilder<T> listBuilder;
+
+  @override
+  State<_DrawerSelect<T>> createState() => _DrawerSelectState<T>();
+}
+
+class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
+  TextEditingController? _controller;
+
+  TextEditingController get _effectiveController =>
+      widget.controller ?? (_controller ??= TextEditingController());
+
+  @override
+  void initState() {
+    super.initState();
+    _effectiveController.addListener(_handleChange);
+  }
+
+  void _handleChange() => setState(() {});
+
+  @override
+  void dispose() {
+    _effectiveController.removeListener(_handleChange);
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant _DrawerSelect<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget');
+  }
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+
+    final items = widget.listBuilder(_controller?.text);
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -197,8 +233,12 @@ class _DrawerSelect<T> extends StatelessWidget {
       child: Column(
         children: [
           const _DrawerHeader(),
-          if (label case final label?) _DrawerLabel(label: label),
-          OptimusInputField(placeholder: value?.let(builder) ?? placeholder),
+          if (widget.label case final label?) _DrawerLabel(label: label),
+          OptimusInputField(
+            placeholder:
+                widget.value?.let(widget.builder) ?? widget.placeholder,
+            controller: _effectiveController,
+          ),
           SizedBox(height: tokens.spacing200),
           Expanded(
             child: ListView.builder(
@@ -210,11 +250,11 @@ class _DrawerSelect<T> extends StatelessWidget {
               itemBuilder:
                   (context, index) => _DrawerItem(
                     item: items[index],
-                    isSelected: value == items[index].value,
+                    isSelected: widget.value == items[index].value,
                     onTap: () {
-                      onChanged(items[index].value);
+                      widget.onChanged(items[index].value);
                       Navigator.of(context).pop(items[index].value);
-                      onClosed?.call();
+                      widget.onClosed?.call();
                     },
                   ),
             ),
