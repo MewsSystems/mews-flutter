@@ -4,7 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 
 typedef OptimusDrawerListBuilder<T> =
-    List<OptimusDropdownTile<T>> Function(String? query);
+    List<OptimusDropdownTile<T>> Function(String query);
 
 class OptimusDrawerSelectInput<T> extends StatefulWidget {
   const OptimusDrawerSelectInput({
@@ -35,6 +35,7 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
     this.groupBuilder,
     this.allowMultipleSelection = false,
     this.selectedValues,
+    this.isSearchable = false,
     required this.listBuilder,
   });
 
@@ -51,6 +52,7 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
   final Widget? trailing;
   final Widget? suffix;
   final bool showLoader;
+  final bool isSearchable;
   final FocusNode? focusNode;
 
   /// Serves as a helper text for informative or descriptive purposes.
@@ -158,6 +160,7 @@ class _OptimusDrawerSelectInputState<T>
                   value: widget.value,
                   controller: widget.controller,
                   listBuilder: widget.listBuilder,
+                  isSearchable: widget.isSearchable,
                 ),
               ),
         );
@@ -177,6 +180,7 @@ class _DrawerSelect<T> extends StatefulWidget {
     this.value,
     this.controller,
     required this.listBuilder,
+    this.isSearchable = false,
   });
 
   final String? label;
@@ -187,6 +191,7 @@ class _DrawerSelect<T> extends StatefulWidget {
   final TextEditingController? controller;
   final T? value;
   final OptimusDrawerListBuilder<T> listBuilder;
+  final bool isSearchable;
 
   @override
   State<_DrawerSelect<T>> createState() => _DrawerSelectState<T>();
@@ -216,14 +221,22 @@ class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
   @override
   void didUpdateWidget(covariant _DrawerSelect<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('didUpdateWidget');
+    if (oldWidget.isSearchable != widget.isSearchable) {
+      _effectiveController.clear();
+    }
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller?.removeListener(_handleChange);
+      widget.controller?.addListener(_handleChange);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    final items = widget.listBuilder(_controller?.text);
+    final items = widget.listBuilder(
+      widget.isSearchable ? '' : _effectiveController.text,
+    );
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -234,11 +247,12 @@ class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
         children: [
           const _DrawerHeader(),
           if (widget.label case final label?) _DrawerLabel(label: label),
-          OptimusInputField(
-            placeholder:
-                widget.value?.let(widget.builder) ?? widget.placeholder,
-            controller: _effectiveController,
-          ),
+          if (widget.isSearchable)
+            OptimusInputField(
+              placeholder:
+                  widget.value?.let(widget.builder) ?? widget.placeholder,
+              controller: _effectiveController,
+            ),
           SizedBox(height: tokens.spacing200),
           Expanded(
             child: ListView.builder(

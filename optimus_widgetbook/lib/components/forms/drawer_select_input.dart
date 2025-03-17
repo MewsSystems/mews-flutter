@@ -39,13 +39,9 @@ class _DrawerExampleState extends State<_DrawerExample> {
       value: _selectedValue,
       controller: _controller,
       listBuilder:
-          (String? query) =>
+          (query) =>
               _characters
-                  .where(
-                    (e) => e.toLowerCase().contains(
-                      _controller.text.toLowerCase(),
-                    ),
-                  )
+                  .where((e) => e.toLowerCase().contains(query))
                   .map(
                     (e) => ListDropdownTile<String>(
                       value: e,
@@ -57,6 +53,7 @@ class _DrawerExampleState extends State<_DrawerExample> {
                   )
                   .toList(),
       builder: (value) => value,
+      isSearchable: k.boolean(label: 'Is searchable', initialValue: true),
       onChanged: (value) {
         setState(() => _selectedValue = value);
       },
