@@ -4,25 +4,25 @@ class GestureWrapper extends StatelessWidget {
   const GestureWrapper({
     super.key,
     required this.child,
-    required this.onHoverChanged,
-    required this.onPressedChanged,
+    this.onHoverChanged,
+    this.onPressedChanged,
     this.onTap,
   });
 
   final Widget child;
-  final ValueChanged<bool> onHoverChanged;
-  final ValueChanged<bool> onPressedChanged;
+  final ValueChanged<bool>? onHoverChanged;
+  final ValueChanged<bool>? onPressedChanged;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
     onTap: onTap,
-    onTapDown: (_) => onPressedChanged(true),
-    onTapUp: (_) => onPressedChanged(false),
-    onTapCancel: () => onPressedChanged(false),
+    onTapDown: (_) => onPressedChanged?.call(true),
+    onTapUp: (_) => onPressedChanged?.call(false),
+    onTapCancel: () => onPressedChanged?.call(false),
     child: MouseRegion(
-      onEnter: (_) => onHoverChanged(true),
-      onExit: (_) => onHoverChanged(false),
+      onEnter: (_) => onHoverChanged?.call(true),
+      onExit: (_) => onHoverChanged?.call(false),
       child: child,
     ),
   );
