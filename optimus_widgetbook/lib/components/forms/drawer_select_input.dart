@@ -23,7 +23,7 @@ class _DrawerExample extends StatefulWidget {
 
 class _DrawerExampleState extends State<_DrawerExample> {
   final _controller = TextEditingController();
-  final List<String> _selectedValues = [];
+  String? _value;
 
   @override
   void dispose() {
@@ -49,9 +49,9 @@ class _DrawerExampleState extends State<_DrawerExample> {
       secondaryCaption: k.string(label: 'Secondary caption').maybeToWidget(),
       size: k.widgetSizeKnob,
       isReadOnly: k.boolean(label: 'Read only'),
-
+      placeholder: k.string(label: 'Placeholder'),
+      value: _value,
       controller: _controller,
-      allowMultipleSelection: k.boolean(label: 'Multiselect'),
       listBuilder:
           (query) =>
               _characters
@@ -61,22 +61,14 @@ class _DrawerExampleState extends State<_DrawerExample> {
                       value: e,
                       title: Text(e),
                       subtitle: Text(e.toUpperCase()),
-                      isSelected: _selectedValues.contains(e),
+                      isSelected: _value == e,
                       hasCheckbox: false,
                     ),
                   )
                   .toList(),
       builder: (value) => value,
       isSearchable: k.boolean(label: 'Is searchable', initialValue: true),
-      onChanged: (value) {
-        setState(() {
-          if (_selectedValues.contains(value)) {
-            _selectedValues.remove(value);
-          } else {
-            _selectedValues.add(value);
-          }
-        });
-      },
+      onChanged: (value) => setState(() => _value = value),
     );
   }
 }

@@ -6,8 +6,90 @@ import 'package:optimus/src/common/gesture_wrapper.dart';
 typedef OptimusDrawerListBuilder<T> =
     List<OptimusDropdownTile<T>> Function(String query);
 
-class OptimusDrawerSelectInput<T> extends StatefulWidget {
+class OptimusDrawerSelectInput<T> extends DrawerSelectInput<T> {
   const OptimusDrawerSelectInput({
+    super.key,
+    super.label,
+    super.placeholder = '',
+    super.isEnabled = true,
+    super.isRequired = false,
+    super.leading,
+    super.prefix,
+    super.trailing,
+    super.suffix,
+    super.showLoader = false,
+    super.focusNode,
+    super.caption,
+    super.secondaryCaption,
+    super.error,
+    super.size = OptimusWidgetSize.large,
+    required super.builder,
+    required super.onChanged,
+    super.controller,
+    super.onTextChanged,
+    super.isReadOnly = false,
+    super.embeddedSearch,
+    super.emptyResultPlaceholder,
+    super.groupBy,
+    super.groupBuilder,
+    super.allowMultipleSelection = true,
+    super.isSearchable = false,
+    required super.listBuilder,
+    this.value,
+  });
+
+  final T? value;
+
+  @override
+  String get effectivePlaceholder => value?.let(builder) ?? placeholder;
+}
+
+class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
+  const OptimusDrawerMultiSelectInput({
+    super.key,
+    super.label,
+    super.placeholder = '',
+    super.isEnabled = true,
+    super.isRequired = false,
+    super.leading,
+    super.prefix,
+    super.trailing,
+    super.suffix,
+    super.showLoader = false,
+    super.focusNode,
+    super.caption,
+    super.secondaryCaption,
+    super.error,
+    super.size = OptimusWidgetSize.large,
+    required super.builder,
+    required super.onChanged,
+    super.controller,
+    super.onTextChanged,
+    super.isReadOnly = false,
+    super.embeddedSearch,
+    super.emptyResultPlaceholder,
+    super.groupBy,
+    super.groupBuilder,
+    super.allowMultipleSelection = false,
+    super.isSearchable = false,
+    required super.listBuilder,
+    this.values,
+  });
+
+  final List<T>? values;
+
+  @override
+  String get effectivePlaceholder =>
+      values?.let((values) {
+        if (values.isEmpty) return placeholder;
+
+        return values.first.let(builder);
+      }) ??
+      placeholder;
+}
+
+abstract class DrawerSelectInput<T> extends StatefulWidget {
+  const DrawerSelectInput({
     super.key,
     this.label,
     this.placeholder = '',
@@ -33,7 +115,6 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
     this.groupBy,
     this.groupBuilder,
     this.allowMultipleSelection = false,
-    this.selectedValues,
     this.isSearchable = false,
     required this.listBuilder,
   });
@@ -87,20 +168,15 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
   final GroupBuilder? groupBuilder;
 
   /// If enabled, you can select multiple items at the same time.
-  /// State of the selected items is managed outside this widget and has to be
-  /// set in [selectedValues].
   final bool allowMultipleSelection;
 
-  /// List of selected values. Would be omitted if the multiselect is disabled.
-  final List<T>? selectedValues;
-
   @override
-  State<OptimusDrawerSelectInput<T>> createState() =>
-      _OptimusDrawerSelectInputState<T>();
+  State<DrawerSelectInput<T>> createState() => _DrawerSelectInputState<T>();
+
+  String get effectivePlaceholder;
 }
 
-class _OptimusDrawerSelectInputState<T>
-    extends State<OptimusDrawerSelectInput<T>> {
+class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
   FocusNode? _focusNode;
 
   FocusNode get _effectiveFocusNode =>
@@ -134,9 +210,8 @@ class _OptimusDrawerSelectInputState<T>
       leading: widget.leading,
       focusNode: _effectiveFocusNode,
       isReadOnly: true,
-      placeholder:
-          widget.selectedValues?.first?.let(widget.builder) ??
-          widget.placeholder,
+      isRequired: widget.isRequired,
+      placeholder: widget.effectivePlaceholder,
       onTap: () {
         showModalBottomSheet<T>(
           useSafeArea: true,
@@ -152,12 +227,11 @@ class _OptimusDrawerSelectInputState<T>
           builder:
               (_) => Material(
                 color: Colors.transparent,
-                child: _DrawerSelect(
+                child: _BottomSheet(
                   builder: widget.builder,
                   onChanged: widget.onChanged,
-                  placeholder: widget.placeholder,
+                  placeholder: widget.effectivePlaceholder,
                   onClosed: _handleClose,
-                  selectedValues: widget.selectedValues,
                   controller: widget.controller,
                   listBuilder: widget.listBuilder,
                   isSearchable: widget.isSearchable,
@@ -169,9 +243,8 @@ class _OptimusDrawerSelectInputState<T>
   }
 }
 
-class _DrawerSelect<T> extends StatefulWidget {
-  const _DrawerSelect({
-    super.key,
+class _BottomSheet<T> extends StatefulWidget {
+  const _BottomSheet({
     this.label,
     required this.builder,
     required this.onChanged,
@@ -180,7 +253,6 @@ class _DrawerSelect<T> extends StatefulWidget {
     this.controller,
     required this.listBuilder,
     this.isSearchable = false,
-    this.selectedValues,
   });
 
   final String? label;
@@ -191,13 +263,12 @@ class _DrawerSelect<T> extends StatefulWidget {
   final TextEditingController? controller;
   final OptimusDrawerListBuilder<T> listBuilder;
   final bool isSearchable;
-  final List<T>? selectedValues;
 
   @override
-  State<_DrawerSelect<T>> createState() => _DrawerSelectState<T>();
+  State<_BottomSheet<T>> createState() => _BottomSheetState<T>();
 }
 
-class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
+class _BottomSheetState<T> extends State<_BottomSheet<T>> {
   TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
@@ -219,7 +290,7 @@ class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
   }
 
   @override
-  void didUpdateWidget(covariant _DrawerSelect<T> oldWidget) {
+  void didUpdateWidget(covariant _BottomSheet<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isSearchable != widget.isSearchable) {
       _effectiveController.clear();
