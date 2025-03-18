@@ -52,6 +52,8 @@ class _DrawerExampleState extends State<_DrawerExample> {
       searchInputSize: k.widgetSizeKnob,
       isReadOnly: k.boolean(label: 'Read only'),
       placeholder: k.string(label: 'Placeholder'),
+      searchLabel: k.string(label: 'Search label'),
+      searchPlaceholder: k.string(label: 'Search placeholder'),
       value: _value,
       controller: _controller,
       listBuilder:
@@ -119,6 +121,8 @@ class _DrawerMultiselectExampleState extends State<_DrawerMultiselectExample> {
       secondaryCaption: k.string(label: 'Secondary caption').maybeToWidget(),
       size: k.widgetSizeKnob,
       searchInputSize: k.widgetSizeKnob,
+      searchLabel: k.string(label: 'Search label'),
+      searchPlaceholder: k.string(label: 'Search placeholder'),
       isReadOnly: k.boolean(label: 'Read only'),
       placeholder: k.string(label: 'Placeholder'),
       values: _values,

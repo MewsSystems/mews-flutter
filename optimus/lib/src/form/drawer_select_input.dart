@@ -36,6 +36,9 @@ class OptimusDrawerSelectInput<T> extends DrawerSelectInput<T> {
     super.allowMultipleSelection = true,
     super.isSearchable = false,
     required super.listBuilder,
+    super.useRootNavigator = false,
+    super.searchPlaceholder = '',
+    super.searchLabel,
     this.value,
   });
 
@@ -46,6 +49,12 @@ class OptimusDrawerSelectInput<T> extends DrawerSelectInput<T> {
 
   @override
   bool get shouldCloseOnSelection => true;
+
+  @override
+  // TODO: implement inputBuilder
+  WidgetBuilder get inputBuilder {
+    throw UnimplementedError();
+  }
 }
 
 class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
@@ -78,6 +87,9 @@ class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
     super.allowMultipleSelection = false,
     super.isSearchable = false,
     required super.listBuilder,
+    super.useRootNavigator = false,
+    super.searchLabel,
+    super.searchPlaceholder,
     this.values,
   });
 
@@ -94,6 +106,10 @@ class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
 
   @override
   bool get shouldCloseOnSelection => false;
+
+  @override
+  // TODO: implement inputBuilder
+  WidgetBuilder get inputBuilder => throw UnimplementedError();
 }
 
 abstract class DrawerSelectInput<T> extends StatefulWidget {
@@ -101,6 +117,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
     super.key,
     this.label,
     this.placeholder = '',
+    this.searchPlaceholder = '',
     this.isEnabled = true,
     this.isRequired = false,
     this.leading,
@@ -126,13 +143,17 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
     this.allowMultipleSelection = false,
     this.isSearchable = false,
     required this.listBuilder,
+    this.useRootNavigator = false,
+    this.searchLabel,
   });
 
   /// Describes the purpose of the select field.
   ///
   /// The input should always include this description (with exceptions).
   final String? label;
+  final String? searchLabel;
   final String placeholder;
+  final String searchPlaceholder;
   final bool isEnabled;
   final bool isRequired;
   final Widget? leading;
@@ -142,6 +163,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
   final bool showLoader;
   final bool isSearchable;
   final FocusNode? focusNode;
+  final bool useRootNavigator;
 
   /// Serves as a helper text for informative or descriptive purposes.
   final Widget? caption;
@@ -185,6 +207,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
 
   String get effectivePlaceholder;
   bool get shouldCloseOnSelection;
+  WidgetBuilder get inputBuilder;
 }
 
 class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
@@ -234,7 +257,7 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
       placeholder: widget.effectivePlaceholder,
       onTap: () {
         showModalBottomSheet<T>(
-          useSafeArea: true,
+          useRootNavigator: widget.useRootNavigator,
           constraints: BoxConstraints(
             maxHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
             minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
@@ -253,13 +276,14 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
                     _controller.text = value.let(widget.builder);
                     widget.onChanged(value);
                   },
-                  placeholder: widget.effectivePlaceholder,
+                  placeholder: widget.searchPlaceholder,
                   onClosed: _handleClose,
                   controller: widget.controller,
                   listBuilder: widget.listBuilder,
                   isSearchable: widget.isSearchable,
                   searchInputSize: widget.searchInputSize,
                   shouldCloseOnSelection: widget.shouldCloseOnSelection,
+                  label: widget.searchLabel,
                 ),
               ),
         );
