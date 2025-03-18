@@ -56,7 +56,7 @@ class _DrawerExampleState extends State<_DrawerExample> {
       listBuilder:
           (query) =>
               _characters
-                  .where((e) => e.toLowerCase().contains(query))
+                  .where((e) => e.toLowerCase().contains(query.toLowerCase()))
                   .map(
                     (e) => ListDropdownTile<String>(
                       value: e,
@@ -124,7 +124,7 @@ class _DrawerMultiselectExampleState extends State<_DrawerMultiselectExample> {
       listBuilder:
           (query) =>
               _characters
-                  .where((e) => e.toLowerCase().contains(query))
+                  .where((e) => e.toLowerCase().contains(query.toLowerCase()))
                   .map(
                     (e) => ListDropdownTile<String>(
                       value: e,

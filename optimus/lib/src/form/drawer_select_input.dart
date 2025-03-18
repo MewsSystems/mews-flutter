@@ -185,6 +185,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
 
 class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
   FocusNode? _focusNode;
+  late TextEditingController _controller;
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ??= FocusNode());
@@ -194,8 +195,15 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
   void dispose() {
     _focusNode?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -216,6 +224,7 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
       trailing: widget.trailing,
       leading: widget.leading,
       focusNode: _effectiveFocusNode,
+      controller: _controller,
       isReadOnly: true,
       isRequired: widget.isRequired,
       placeholder: widget.effectivePlaceholder,
@@ -236,7 +245,10 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
                 color: Colors.transparent,
                 child: _BottomSheet(
                   builder: widget.builder,
-                  onChanged: widget.onChanged,
+                  onChanged: (value) {
+                    _controller.text = value.let(widget.builder);
+                    widget.onChanged(value);
+                  },
                   placeholder: widget.effectivePlaceholder,
                   onClosed: _handleClose,
                   controller: widget.controller,
@@ -316,7 +328,7 @@ class _BottomSheetState<T> extends State<_BottomSheet<T>> {
     final tokens = context.tokens;
 
     final items = widget.listBuilder(
-      widget.isSearchable ? '' : _effectiveController.text,
+      widget.isSearchable ? _effectiveController.text : '',
     );
 
     return DecoratedBox(
