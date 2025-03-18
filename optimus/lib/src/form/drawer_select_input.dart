@@ -381,7 +381,7 @@ class _BottomSheetState<T> extends State<_BottomSheet<T>> {
   }
 }
 
-class _DrawerItem<T> extends StatelessWidget {
+class _DrawerItem<T> extends StatefulWidget {
   const _DrawerItem({
     required this.item,
     this.isEnabled = true,
@@ -393,18 +393,34 @@ class _DrawerItem<T> extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<_DrawerItem<T>> createState() => _DrawerItemState<T>();
+}
+
+class _DrawerItemState<T> extends State<_DrawerItem<T>> {
+  bool _isHovered = false;
+  bool _isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return Padding(
       padding: EdgeInsets.all(tokens.spacing50),
       child: GestureWrapper(
-        onTap: onTap,
+        onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
+        onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
+        onTap: widget.onTap,
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(tokens.borderRadius100),
+            color:
+                _isPressed
+                    ? tokens.backgroundInteractiveNeutralSubtleActive
+                    : _isHovered
+                    ? tokens.backgroundInteractiveNeutralSubtleHover
+                    : null,
           ),
-          child: item,
+          child: widget.item,
         ),
       ),
     );
