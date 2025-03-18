@@ -36,13 +36,13 @@ import 'package:optimus_widgetbook/components/forms/checkbox_group.dart'
 import 'package:optimus_widgetbook/components/forms/checkbox_nested.dart'
     as _i26;
 import 'package:optimus_widgetbook/components/forms/date_input_field.dart'
-    as _i27;
-import 'package:optimus_widgetbook/components/forms/date_input_form_field.dart'
     as _i28;
-import 'package:optimus_widgetbook/components/forms/date_time_field.dart'
+import 'package:optimus_widgetbook/components/forms/date_input_form_field.dart'
     as _i29;
-import 'package:optimus_widgetbook/components/forms/drawer_select_input.dart'
+import 'package:optimus_widgetbook/components/forms/date_time_field.dart'
     as _i30;
+import 'package:optimus_widgetbook/components/forms/drawer_select_input.dart'
+    as _i27;
 import 'package:optimus_widgetbook/components/forms/form_story.dart' as _i39;
 import 'package:optimus_widgetbook/components/forms/input.dart' as _i31;
 import 'package:optimus_widgetbook/components/forms/number_input.dart' as _i32;
@@ -301,31 +301,43 @@ final directories = <_i1.WidgetbookNode>[
           ),
         ],
       ),
+      _i1.WidgetbookFolder(
+        name: 'Drawer Select Input',
+        children: [
+          _i1.WidgetbookLeafComponent(
+            name: 'OptimusDrawerMultiSelectInput',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Drawer Multi Select Input',
+              builder: _i27.createMultiselectExample,
+            ),
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'OptimusDrawerSelectInput',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Drawer Select Input',
+              builder: _i27.createDefaultStyle,
+            ),
+          ),
+        ],
+      ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusDateInputField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Date Input Field',
-          builder: _i27.createDefaultStyle,
+          builder: _i28.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusDateInputFormField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Date Input Form Field',
-          builder: _i28.createDefaultStyle,
+          builder: _i29.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusDateTimeField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Date Time Field',
-          builder: _i29.createDefaultStyle,
-        ),
-      ),
-      _i1.WidgetbookLeafComponent(
-        name: 'OptimusDrawerSelectInput',
-        useCase: _i1.WidgetbookUseCase(
-          name: 'Drawer Select Input',
           builder: _i30.createDefaultStyle,
         ),
       ),

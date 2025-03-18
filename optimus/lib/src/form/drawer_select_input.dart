@@ -42,6 +42,9 @@ class OptimusDrawerSelectInput<T> extends DrawerSelectInput<T> {
 
   @override
   String get effectivePlaceholder => value?.let(builder) ?? placeholder;
+
+  @override
+  bool get shouldCloseOnSelection => true;
 }
 
 class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
@@ -86,6 +89,9 @@ class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
         return values.first.let(builder);
       }) ??
       placeholder;
+
+  @override
+  bool get shouldCloseOnSelection => false;
 }
 
 abstract class DrawerSelectInput<T> extends StatefulWidget {
@@ -174,6 +180,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
   State<DrawerSelectInput<T>> createState() => _DrawerSelectInputState<T>();
 
   String get effectivePlaceholder;
+  bool get shouldCloseOnSelection;
 }
 
 class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
@@ -235,6 +242,7 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
                   controller: widget.controller,
                   listBuilder: widget.listBuilder,
                   isSearchable: widget.isSearchable,
+                  shouldCloseOnSelection: widget.shouldCloseOnSelection,
                 ),
               ),
         );
@@ -253,6 +261,7 @@ class _BottomSheet<T> extends StatefulWidget {
     this.controller,
     required this.listBuilder,
     this.isSearchable = false,
+    this.shouldCloseOnSelection = true,
   });
 
   final String? label;
@@ -263,6 +272,7 @@ class _BottomSheet<T> extends StatefulWidget {
   final TextEditingController? controller;
   final OptimusDrawerListBuilder<T> listBuilder;
   final bool isSearchable;
+  final bool shouldCloseOnSelection;
 
   @override
   State<_BottomSheet<T>> createState() => _BottomSheetState<T>();
@@ -336,8 +346,11 @@ class _BottomSheetState<T> extends State<_BottomSheet<T>> {
                     item: items[index],
                     onTap: () {
                       widget.onChanged(items[index].value);
-                      Navigator.of(context).pop(items[index].value);
-                      widget.onClosed?.call();
+                      setState(() {});
+                      if (widget.shouldCloseOnSelection) {
+                        Navigator.of(context).pop();
+                        widget.onClosed?.call();
+                      }
                     },
                   ),
             ),
