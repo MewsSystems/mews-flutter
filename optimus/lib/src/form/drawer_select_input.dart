@@ -130,7 +130,6 @@ class _OptimusDrawerSelectInputState<T>
       placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
       onTap: () {
         showModalBottomSheet<T>(
-          // TODO(witwash): change
           useRootNavigator: widget.useRootNavigator,
           constraints: BoxConstraints(
             maxHeight:
@@ -319,11 +318,11 @@ class _OptimusDrawerMultiSelectInputState<T>
       trailing: widget.trailing,
       leading: widget.leading,
       focusNode: _effectiveFocusNode,
-      isRequired: widget.isRequired, // TODO(witwash): missing placeholder
+      isRequired: widget.isRequired,
       values: _selectedValues,
+      placeholder: widget.placeholder,
       onTap: () {
         showModalBottomSheet<T>(
-          // TODO(witwash): change
           useRootNavigator: widget.useRootNavigator,
           constraints: BoxConstraints(
             maxHeight:
