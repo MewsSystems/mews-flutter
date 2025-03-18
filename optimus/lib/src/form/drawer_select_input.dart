@@ -23,6 +23,7 @@ class OptimusDrawerSelectInput<T> extends DrawerSelectInput<T> {
     super.secondaryCaption,
     super.error,
     super.size = OptimusWidgetSize.large,
+    super.searchInputSize = OptimusWidgetSize.large,
     required super.builder,
     required super.onChanged,
     super.controller,
@@ -64,6 +65,7 @@ class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
     super.secondaryCaption,
     super.error,
     super.size = OptimusWidgetSize.large,
+    super.searchInputSize = OptimusWidgetSize.large,
     required super.builder,
     required super.onChanged,
     super.controller,
@@ -111,6 +113,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
     this.secondaryCaption,
     this.error,
     this.size = OptimusWidgetSize.large,
+    this.searchInputSize = OptimusWidgetSize.large,
     required this.builder,
     required this.onChanged,
     this.controller,
@@ -145,6 +148,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
   final Widget? secondaryCaption;
   final String? error;
   final OptimusWidgetSize size;
+  final OptimusWidgetSize searchInputSize;
   final ValueBuilder<T> builder;
   final ValueSetter<T> onChanged;
   final TextEditingController? controller;
@@ -254,6 +258,7 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
                   controller: widget.controller,
                   listBuilder: widget.listBuilder,
                   isSearchable: widget.isSearchable,
+                  searchInputSize: widget.searchInputSize,
                   shouldCloseOnSelection: widget.shouldCloseOnSelection,
                 ),
               ),
@@ -274,6 +279,7 @@ class _BottomSheet<T> extends StatefulWidget {
     required this.listBuilder,
     this.isSearchable = false,
     this.shouldCloseOnSelection = true,
+    this.searchInputSize = OptimusWidgetSize.large,
   });
 
   final String? label;
@@ -285,6 +291,7 @@ class _BottomSheet<T> extends StatefulWidget {
   final OptimusDrawerListBuilder<T> listBuilder;
   final bool isSearchable;
   final bool shouldCloseOnSelection;
+  final OptimusWidgetSize searchInputSize;
 
   @override
   State<_BottomSheet<T>> createState() => _BottomSheetState<T>();
@@ -342,6 +349,7 @@ class _BottomSheetState<T> extends State<_BottomSheet<T>> {
           if (widget.label case final label?) _DrawerLabel(label: label),
           if (widget.isSearchable)
             OptimusInputField(
+              size: widget.searchInputSize,
               placeholder: widget.placeholder,
               controller: _effectiveController,
             ),
