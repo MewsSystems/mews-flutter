@@ -42,6 +42,9 @@ extension KnobsBuilderExt on KnobsBuilder {
     labelBuilder: (value) => value?.name ?? 'None',
   );
 
+  Widget? optimusIconWidgetOrNullKnob({String label = 'Icon'}) =>
+      optimusIconOrNullKnob(label: label)?.toWidget();
+
   AlignmentGeometry alignmentKnob({String label = 'Alignment'}) =>
       list(label: label, options: alignments);
 

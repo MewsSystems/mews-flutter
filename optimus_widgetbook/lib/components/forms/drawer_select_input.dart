@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -21,8 +22,8 @@ class _DrawerExample extends StatefulWidget {
 }
 
 class _DrawerExampleState extends State<_DrawerExample> {
-  String? _selectedValue;
   final _controller = TextEditingController();
+  final List<String> _selectedValues = [];
 
   @override
   void dispose() {
@@ -36,8 +37,21 @@ class _DrawerExampleState extends State<_DrawerExample> {
 
     return OptimusDrawerSelectInput(
       label: k.string(label: 'Label', initialValue: 'Label'),
-      value: _selectedValue,
+      error: k.string(label: 'Error'),
+      isEnabled: k.isEnabledKnob,
+      isRequired: k.boolean(label: 'Required'),
+      leading: k.optimusIconWidgetOrNullKnob(label: 'Leading'),
+      trailing: k.optimusIconWidgetOrNullKnob(label: 'Trailing'),
+      prefix: k.string(label: 'Prefix').maybeToWidget(),
+      suffix: k.string(label: 'Suffix').maybeToWidget(),
+      showLoader: k.boolean(label: 'Show loader'),
+      caption: k.string(label: 'Caption').maybeToWidget(),
+      secondaryCaption: k.string(label: 'Secondary caption').maybeToWidget(),
+      size: k.widgetSizeKnob,
+      isReadOnly: k.boolean(label: 'Read only'),
+
       controller: _controller,
+      allowMultipleSelection: k.boolean(label: 'Multiselect'),
       listBuilder:
           (query) =>
               _characters
@@ -47,7 +61,7 @@ class _DrawerExampleState extends State<_DrawerExample> {
                       value: e,
                       title: Text(e),
                       subtitle: Text(e.toUpperCase()),
-                      isSelected: e == _selectedValue,
+                      isSelected: _selectedValues.contains(e),
                       hasCheckbox: false,
                     ),
                   )
@@ -55,7 +69,13 @@ class _DrawerExampleState extends State<_DrawerExample> {
       builder: (value) => value,
       isSearchable: k.boolean(label: 'Is searchable', initialValue: true),
       onChanged: (value) {
-        setState(() => _selectedValue = value);
+        setState(() {
+          if (_selectedValues.contains(value)) {
+            _selectedValues.remove(value);
+          } else {
+            _selectedValues.add(value);
+          }
+        });
       },
     );
   }

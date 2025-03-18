@@ -11,7 +11,6 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
     super.key,
     this.label,
     this.placeholder = '',
-    this.value,
     this.isEnabled = true,
     this.isRequired = false,
     this.leading,
@@ -44,7 +43,6 @@ class OptimusDrawerSelectInput<T> extends StatefulWidget {
   /// The input should always include this description (with exceptions).
   final String? label;
   final String placeholder;
-  final T? value;
   final bool isEnabled;
   final bool isRequired;
   final Widget? leading;
@@ -136,7 +134,9 @@ class _OptimusDrawerSelectInputState<T>
       leading: widget.leading,
       focusNode: _effectiveFocusNode,
       isReadOnly: true,
-      placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
+      placeholder:
+          widget.selectedValues?.first?.let(widget.builder) ??
+          widget.placeholder,
       onTap: () {
         showModalBottomSheet<T>(
           useSafeArea: true,
@@ -157,7 +157,7 @@ class _OptimusDrawerSelectInputState<T>
                   onChanged: widget.onChanged,
                   placeholder: widget.placeholder,
                   onClosed: _handleClose,
-                  value: widget.value,
+                  selectedValues: widget.selectedValues,
                   controller: widget.controller,
                   listBuilder: widget.listBuilder,
                   isSearchable: widget.isSearchable,
@@ -177,10 +177,10 @@ class _DrawerSelect<T> extends StatefulWidget {
     required this.onChanged,
     this.placeholder = '',
     this.onClosed,
-    this.value,
     this.controller,
     required this.listBuilder,
     this.isSearchable = false,
+    this.selectedValues,
   });
 
   final String? label;
@@ -189,9 +189,9 @@ class _DrawerSelect<T> extends StatefulWidget {
   final String placeholder;
   final VoidCallback? onClosed;
   final TextEditingController? controller;
-  final T? value;
   final OptimusDrawerListBuilder<T> listBuilder;
   final bool isSearchable;
+  final List<T>? selectedValues;
 
   @override
   State<_DrawerSelect<T>> createState() => _DrawerSelectState<T>();
@@ -249,8 +249,7 @@ class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
           if (widget.label case final label?) _DrawerLabel(label: label),
           if (widget.isSearchable)
             OptimusInputField(
-              placeholder:
-                  widget.value?.let(widget.builder) ?? widget.placeholder,
+              placeholder: widget.placeholder,
               controller: _effectiveController,
             ),
           SizedBox(height: tokens.spacing200),
@@ -264,7 +263,6 @@ class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
               itemBuilder:
                   (context, index) => _DrawerItem(
                     item: items[index],
-                    isSelected: widget.value == items[index].value,
                     onTap: () {
                       widget.onChanged(items[index].value);
                       Navigator.of(context).pop(items[index].value);
@@ -279,28 +277,16 @@ class _DrawerSelectState<T> extends State<_DrawerSelect<T>> {
   }
 }
 
-class _DrawerItem<T> extends StatefulWidget {
+class _DrawerItem<T> extends StatelessWidget {
   const _DrawerItem({
     required this.item,
     this.isEnabled = true,
-    this.isSelected = false,
-    this.isCheckboxVisible = false,
     required this.onTap,
   });
 
   final OptimusDropdownTile<T> item;
   final bool isEnabled;
-  final bool isSelected;
-  final bool isCheckboxVisible;
   final VoidCallback onTap;
-
-  @override
-  State<_DrawerItem<T>> createState() => _DrawerItemState();
-}
-
-class _DrawerItemState<T> extends State<_DrawerItem<T>> {
-  bool _isHovered = false;
-  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -309,22 +295,12 @@ class _DrawerItemState<T> extends State<_DrawerItem<T>> {
     return Padding(
       padding: EdgeInsets.all(tokens.spacing50),
       child: GestureWrapper(
-        onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
-        onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
-        onTap: widget.onTap,
+        onTap: onTap,
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(tokens.borderRadius100),
-            color:
-                widget.isSelected
-                    ? tokens.backgroundInteractiveSecondaryDefault
-                    : _isPressed
-                    ? tokens.backgroundInteractiveNeutralSubtleActive
-                    : _isHovered
-                    ? tokens.backgroundInteractiveNeutralSubtleHover
-                    : null,
           ),
-          child: widget.item,
+          child: item,
         ),
       ),
     );
