@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/form/common.dart';
+import 'package:optimus/src/form/form_style.dart';
 
 /// Field to display several selected values.
 class MultiSelectInputField extends StatefulWidget {
@@ -26,6 +28,8 @@ class MultiSelectInputField extends StatefulWidget {
     this.showLoader = false,
     this.isCompact = false,
     required this.values,
+    this.onTap,
+    this.placeholder = '',
   });
 
   final bool isEnabled;
@@ -47,6 +51,8 @@ class MultiSelectInputField extends StatefulWidget {
   final bool showLoader;
   final List<Widget> values;
   final bool isCompact;
+  final VoidCallback? onTap;
+  final String placeholder;
 
   bool get hasError {
     final error = this.error;
@@ -110,8 +116,8 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 
     return IgnorePointer(
       ignoring: !widget.isEnabled,
-      child: GestureDetector(
-        onTap: _effectiveFocusNode.requestFocus,
+      child: AllowMultipleRawGestureDetector(
+        onTap: widget.onTap ?? _effectiveFocusNode.requestFocus,
         child: FieldWrapper(
           focusNode: _effectiveFocusNode,
           isFocused: widget.isFocused,
@@ -146,7 +152,15 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
                     spacing: tokens.spacing50,
                     runSpacing: tokens.spacing50,
                     clipBehavior: Clip.antiAlias,
-                    children: widget.values,
+                    children:
+                        widget.values.isEmpty
+                            ? [
+                              _Placeholder(
+                                widget.placeholder,
+                                isEnabled: widget.isEnabled,
+                              ),
+                            ]
+                            : widget.values,
                   ),
                 ),
               ),
@@ -156,6 +170,19 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
       ),
     );
   }
+}
+
+class _Placeholder extends StatelessWidget {
+  const _Placeholder(this.text, {this.isEnabled = true});
+
+  final String text;
+  final bool isEnabled;
+
+  @override
+  Widget build(BuildContext context) => Text(
+    text,
+    style: context.theme.getPlaceholderStyle(isEnabled: isEnabled),
+  );
 }
 
 extension on OptimusWidgetSize {

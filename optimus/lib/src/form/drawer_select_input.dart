@@ -2,122 +2,17 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/form/multiselect/multiselect_field.dart';
+import 'package:optimus/src/form/multiselect/select_chip.dart';
 
 typedef OptimusDrawerListBuilder<T> =
     List<OptimusDropdownTile<T>> Function(String query);
 
-class OptimusDrawerSelectInput<T> extends DrawerSelectInput<T> {
+class OptimusDrawerSelectInput<T> extends StatefulWidget {
   const OptimusDrawerSelectInput({
-    super.key,
-    super.label,
-    super.placeholder = '',
-    super.isEnabled = true,
-    super.isRequired = false,
-    super.leading,
-    super.prefix,
-    super.trailing,
-    super.suffix,
-    super.showLoader = false,
-    super.focusNode,
-    super.caption,
-    super.secondaryCaption,
-    super.error,
-    super.size = OptimusWidgetSize.large,
-    super.searchInputSize = OptimusWidgetSize.large,
-    required super.builder,
-    required super.onChanged,
-    super.controller,
-    super.onTextChanged,
-    super.isReadOnly = false,
-    super.embeddedSearch,
-    super.emptyResultPlaceholder,
-    super.groupBy,
-    super.groupBuilder,
-    super.allowMultipleSelection = true,
-    super.isSearchable = false,
-    required super.listBuilder,
-    super.useRootNavigator = false,
-    super.searchPlaceholder = '',
-    super.searchLabel,
-    this.value,
-  });
-
-  final T? value;
-
-  @override
-  String get effectivePlaceholder => value?.let(builder) ?? placeholder;
-
-  @override
-  bool get shouldCloseOnSelection => true;
-
-  @override
-  // TODO: implement inputBuilder
-  WidgetBuilder get inputBuilder {
-    throw UnimplementedError();
-  }
-}
-
-class OptimusDrawerMultiSelectInput<T> extends DrawerSelectInput<T> {
-  const OptimusDrawerMultiSelectInput({
-    super.key,
-    super.label,
-    super.placeholder = '',
-    super.isEnabled = true,
-    super.isRequired = false,
-    super.leading,
-    super.prefix,
-    super.trailing,
-    super.suffix,
-    super.showLoader = false,
-    super.focusNode,
-    super.caption,
-    super.secondaryCaption,
-    super.error,
-    super.size = OptimusWidgetSize.large,
-    super.searchInputSize = OptimusWidgetSize.large,
-    required super.builder,
-    required super.onChanged,
-    super.controller,
-    super.onTextChanged,
-    super.isReadOnly = false,
-    super.embeddedSearch,
-    super.emptyResultPlaceholder,
-    super.groupBy,
-    super.groupBuilder,
-    super.allowMultipleSelection = false,
-    super.isSearchable = false,
-    required super.listBuilder,
-    super.useRootNavigator = false,
-    super.searchLabel,
-    super.searchPlaceholder,
-    this.values,
-  });
-
-  final List<T>? values;
-
-  @override
-  String get effectivePlaceholder =>
-      values?.let((values) {
-        if (values.isEmpty) return placeholder;
-
-        return values.first.let(builder);
-      }) ??
-      placeholder;
-
-  @override
-  bool get shouldCloseOnSelection => false;
-
-  @override
-  // TODO: implement inputBuilder
-  WidgetBuilder get inputBuilder => throw UnimplementedError();
-}
-
-abstract class DrawerSelectInput<T> extends StatefulWidget {
-  const DrawerSelectInput({
     super.key,
     this.label,
     this.placeholder = '',
-    this.searchPlaceholder = '',
     this.isEnabled = true,
     this.isRequired = false,
     this.leading,
@@ -140,18 +35,18 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
     this.emptyResultPlaceholder,
     this.groupBy,
     this.groupBuilder,
-    this.allowMultipleSelection = false,
+    this.allowMultipleSelection = true,
     this.isSearchable = false,
     required this.listBuilder,
     this.useRootNavigator = false,
+    this.searchPlaceholder = '',
     this.searchLabel,
+    this.value,
   });
 
-  /// Describes the purpose of the select field.
-  ///
-  /// The input should always include this description (with exceptions).
+  final T? value;
+
   final String? label;
-  final String? searchLabel;
   final String placeholder;
   final String searchPlaceholder;
   final bool isEnabled;
@@ -161,11 +56,7 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
   final Widget? trailing;
   final Widget? suffix;
   final bool showLoader;
-  final bool isSearchable;
   final FocusNode? focusNode;
-  final bool useRootNavigator;
-
-  /// Serves as a helper text for informative or descriptive purposes.
   final Widget? caption;
   final Widget? secondaryCaption;
   final String? error;
@@ -176,41 +67,23 @@ abstract class DrawerSelectInput<T> extends StatefulWidget {
   final TextEditingController? controller;
   final ValueSetter<String>? onTextChanged;
   final bool isReadOnly;
-  final OptimusDrawerListBuilder<T> listBuilder;
-
-  /// An embedded search field that can be used to filter the list of items.
-  /// Will be displayed as a part of the dropdown menu. If the [controller] or
-  /// [onTextChanged] is provided, the embedded search will not be used. Instead
-  /// the search will be a part of the input field.
   final OptimusDropdownEmbeddedSearch? embeddedSearch;
-
-  /// A widget that is displayed when the list of items is empty. If not
-  /// provided the dropdown will not be displayed.
   final Widget? emptyResultPlaceholder;
-
-  /// {@template optimus.select.groupBy}
-  /// A function that would retrieve value for the grouping.
-  /// {@endtemplate}
   final Grouper<T>? groupBy;
-
-  /// {@template optimus.select.groupBuilder}
-  /// A builder that would create a group header. If not provided the
-  /// [OptimusDropdownGroupSeparator] widget will be used.
-  /// {@endtemplate}
   final GroupBuilder? groupBuilder;
 
-  /// If enabled, you can select multiple items at the same time.
   final bool allowMultipleSelection;
+  final bool isSearchable;
+  final OptimusDrawerListBuilder<T> listBuilder;
+  final bool useRootNavigator;
+  final String? searchLabel;
 
   @override
-  State<DrawerSelectInput<T>> createState() => _DrawerSelectInputState<T>();
-
-  String get effectivePlaceholder;
-  bool get shouldCloseOnSelection;
-  WidgetBuilder get inputBuilder;
+  State<StatefulWidget> createState() => _OptimusDrawerSelectInputState<T>();
 }
 
-class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
+class _OptimusDrawerSelectInputState<T>
+    extends State<OptimusDrawerSelectInput<T>> {
   FocusNode? _focusNode;
   late TextEditingController _controller;
 
@@ -250,16 +123,19 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
       helperMessage: widget.secondaryCaption,
       trailing: widget.trailing,
       leading: widget.leading,
-      focusNode: _effectiveFocusNode,
+      focusNode: widget.focusNode,
       controller: _controller,
       isReadOnly: true,
       isRequired: widget.isRequired,
-      placeholder: widget.effectivePlaceholder,
+      placeholder: widget.value?.let(widget.builder) ?? widget.placeholder,
       onTap: () {
         showModalBottomSheet<T>(
+          // TODO(witwash): change
           useRootNavigator: widget.useRootNavigator,
           constraints: BoxConstraints(
-            maxHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
+            maxHeight:
+                MediaQuery.sizeOf(context).height -
+                tokens.spacing300, // TODO(witwash): check with design
             minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
             maxWidth: MediaQuery.sizeOf(context).width,
             minWidth: MediaQuery.sizeOf(context).width,
@@ -282,7 +158,200 @@ class _DrawerSelectInputState<T> extends State<DrawerSelectInput<T>> {
                   listBuilder: widget.listBuilder,
                   isSearchable: widget.isSearchable,
                   searchInputSize: widget.searchInputSize,
-                  shouldCloseOnSelection: widget.shouldCloseOnSelection,
+                  shouldCloseOnSelection: true,
+                  label: widget.searchLabel,
+                ),
+              ),
+        );
+      },
+    );
+  }
+}
+
+class OptimusDrawerMultiSelectInput<T> extends StatefulWidget {
+  const OptimusDrawerMultiSelectInput({
+    super.key,
+    this.label,
+    this.placeholder = '',
+    this.isEnabled = true,
+    this.isRequired = false,
+    this.leading,
+    this.prefix,
+    this.trailing,
+    this.suffix,
+    this.showLoader = false,
+    this.focusNode,
+    this.caption,
+    this.secondaryCaption,
+    this.error,
+    this.size = OptimusWidgetSize.large,
+    this.searchInputSize = OptimusWidgetSize.large,
+    required this.builder,
+    required this.onChanged,
+    this.controller,
+    this.onTextChanged,
+    this.isReadOnly = false,
+    this.embeddedSearch,
+    this.emptyResultPlaceholder,
+    this.groupBy,
+    this.groupBuilder,
+    this.allowMultipleSelection = false,
+    this.isSearchable = false,
+    required this.listBuilder,
+    this.useRootNavigator = false,
+    this.searchLabel,
+    this.searchPlaceholder = '',
+    this.values,
+    this.isCompact = false,
+  });
+
+  final String? label;
+  final String placeholder;
+  final String searchPlaceholder;
+  final bool isEnabled;
+  final bool isRequired;
+  final Widget? leading;
+  final Widget? prefix;
+  final Widget? trailing;
+  final Widget? suffix;
+  final bool showLoader;
+  final FocusNode? focusNode;
+  final Widget? caption;
+  final Widget? secondaryCaption;
+  final String? error;
+  final OptimusWidgetSize size;
+  final OptimusWidgetSize searchInputSize;
+  final ValueBuilder<T> builder;
+  final ValueSetter<T> onChanged;
+  final TextEditingController? controller;
+  final ValueSetter<String>? onTextChanged;
+  final bool isReadOnly;
+  final OptimusDropdownEmbeddedSearch? embeddedSearch;
+  final Widget? emptyResultPlaceholder;
+  final Grouper<T>? groupBy;
+  final GroupBuilder? groupBuilder;
+
+  final bool allowMultipleSelection;
+  final bool isSearchable;
+  final OptimusDrawerListBuilder<T> listBuilder;
+  final bool useRootNavigator;
+  final String? searchLabel;
+
+  final List<T>? values;
+  final bool isCompact;
+
+  @override
+  State<StatefulWidget> createState() =>
+      _OptimusDrawerMultiSelectInputState<T>();
+}
+
+class _OptimusDrawerMultiSelectInputState<T>
+    extends State<OptimusDrawerMultiSelectInput<T>> {
+  FocusNode? _focusNode;
+  late TextEditingController _controller;
+
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
+
+  void _handleClose() {
+    _effectiveFocusNode.unfocus();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _focusNode?.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  List<Widget> get _selectedValues {
+    final selectedValues = widget.values;
+
+    if (selectedValues == null) return [];
+
+    return widget.isCompact && selectedValues.length > 2
+        ? [
+          for (final element in selectedValues.take(2))
+            MultiselectChip(
+              onRemoved: () => widget.onChanged(element),
+              onTap: () {},
+              isEnabled: widget.isEnabled,
+              text: widget.builder(element),
+            ),
+          MultiselectChip(
+            text: '+${selectedValues.length - 2}',
+            onTap: () {},
+            isEnabled: widget.isEnabled,
+          ),
+        ]
+        : selectedValues
+            .map(
+              (element) => MultiselectChip(
+                onRemoved: () => widget.onChanged(element),
+                onTap: () {},
+                isEnabled: widget.isEnabled,
+                text: widget.builder(element),
+              ),
+            )
+            .toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return MultiSelectInputField(
+      label: widget.label,
+      error: widget.error,
+      prefix: widget.prefix,
+      suffix: widget.suffix,
+      isEnabled: widget.isEnabled,
+      showLoader: widget.showLoader,
+      size: widget.size,
+      caption: widget.caption,
+      helperMessage: widget.secondaryCaption,
+      trailing: widget.trailing,
+      leading: widget.leading,
+      focusNode: _effectiveFocusNode,
+      isRequired: widget.isRequired, // TODO(witwash): missing placeholder
+      values: _selectedValues,
+      onTap: () {
+        showModalBottomSheet<T>(
+          // TODO(witwash): change
+          useRootNavigator: widget.useRootNavigator,
+          constraints: BoxConstraints(
+            maxHeight:
+                MediaQuery.sizeOf(context).height -
+                tokens.spacing300, // TODO(witwash): check with design
+            minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
+            maxWidth: MediaQuery.sizeOf(context).width,
+            minWidth: MediaQuery.sizeOf(context).width,
+          ),
+          context: context,
+          isScrollControlled: true,
+          elevation: 2,
+          builder:
+              (_) => Material(
+                color: Colors.transparent,
+                child: _BottomSheet(
+                  builder: widget.builder,
+                  onChanged: (value) {
+                    _controller.text = value.let(widget.builder);
+                    widget.onChanged(value);
+                  },
+                  placeholder: widget.searchPlaceholder,
+                  onClosed: _handleClose,
+                  controller: widget.controller,
+                  listBuilder: widget.listBuilder,
+                  isSearchable: widget.isSearchable,
+                  searchInputSize: widget.searchInputSize,
+                  shouldCloseOnSelection: false,
                   label: widget.searchLabel,
                 ),
               ),
