@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/group.dart';
 import 'package:optimus/src/dropdown/dropdown_select.dart';
 
 /// An input field with a dropdown menu. [items] are displayed in the dropdown

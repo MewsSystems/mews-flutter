@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
+import 'package:optimus/src/common/group.dart';
 import 'package:optimus/src/dropdown/common.dart';
 import 'package:optimus/src/dropdown/dropdown_item.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';

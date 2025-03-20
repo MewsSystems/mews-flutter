@@ -2,9 +2,9 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/group.dart';
+import 'package:optimus/src/common/value_builder.dart';
 import 'package:optimus/src/dropdown/dropdown_select.dart';
-
-typedef ValueBuilder<T> = String Function(T value);
 
 /// Select allows users to enter or select one or multiple options from
 /// the list of available options.

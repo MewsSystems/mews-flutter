@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
+import 'package:optimus/src/common/group.dart';
 import 'package:optimus/src/dropdown/dropdown_group.dart';
 import 'package:optimus/src/dropdown/dropdown_list.dart';
 import 'package:optimus/src/dropdown/dropdown_size_data.dart';
-
-typedef Grouper<T> = String Function(T item);
-typedef GroupBuilder = Widget Function(String value);
 
 class OptimusDropdown<T> extends StatelessWidget {
   const OptimusDropdown({
