@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/form/common.dart';
 import 'package:optimus/src/form/form_style.dart';
 
@@ -28,7 +27,6 @@ class MultiSelectInputField extends StatefulWidget {
     this.showLoader = false,
     this.isCompact = false,
     required this.values,
-    this.onTap,
     this.placeholder = '',
   });
 
@@ -51,7 +49,6 @@ class MultiSelectInputField extends StatefulWidget {
   final bool showLoader;
   final List<Widget> values;
   final bool isCompact;
-  final VoidCallback? onTap;
   final String placeholder;
 
   bool get hasError {
@@ -116,8 +113,8 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 
     return IgnorePointer(
       ignoring: !widget.isEnabled,
-      child: AllowMultipleRawGestureDetector(
-        onTap: widget.onTap ?? _effectiveFocusNode.requestFocus,
+      child: GestureDetector(
+        onTap: _effectiveFocusNode.requestFocus,
         child: FieldWrapper(
           focusNode: _effectiveFocusNode,
           isFocused: widget.isFocused,

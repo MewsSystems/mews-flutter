@@ -245,7 +245,8 @@ class OptimusDrawerMultiSelectInput<T> extends StatefulWidget {
 }
 
 class _OptimusDrawerMultiSelectInputState<T>
-    extends State<OptimusDrawerMultiSelectInput<T>> {
+    extends State<OptimusDrawerMultiSelectInput<T>>
+    with ThemeGetter {
   FocusNode? _focusNode;
   late TextEditingController _controller;
 
@@ -260,10 +261,12 @@ class _OptimusDrawerMultiSelectInputState<T>
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _effectiveFocusNode.addListener(_handleFocusChange);
   }
 
   @override
   void dispose() {
+    _effectiveFocusNode.removeListener(_handleFocusChange);
     _focusNode?.dispose();
     _controller.dispose();
     super.dispose();
@@ -301,63 +304,62 @@ class _OptimusDrawerMultiSelectInputState<T>
             .toList();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final tokens = context.tokens;
-
-    return MultiSelectInputField(
-      label: widget.label,
-      error: widget.error,
-      prefix: widget.prefix,
-      suffix: widget.suffix,
-      isEnabled: widget.isEnabled,
-      showLoader: widget.showLoader,
-      size: widget.size,
-      caption: widget.caption,
-      helperMessage: widget.secondaryCaption,
-      trailing: widget.trailing,
-      leading: widget.leading,
-      focusNode: _effectiveFocusNode,
-      isRequired: widget.isRequired,
-      values: _selectedValues,
-      placeholder: widget.placeholder,
-      onTap: () {
-        showModalBottomSheet<T>(
-          useRootNavigator: widget.useRootNavigator,
-          constraints: BoxConstraints(
-            maxHeight:
-                MediaQuery.sizeOf(context).height -
-                tokens.spacing300, // TODO(witwash): check with design
-            minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
-            maxWidth: MediaQuery.sizeOf(context).width,
-            minWidth: MediaQuery.sizeOf(context).width,
-          ),
-          context: context,
-          isScrollControlled: true,
-          elevation: 2,
-          builder:
-              (_) => Material(
-                color: Colors.transparent,
-                child: _BottomSheet(
-                  builder: widget.builder,
-                  onChanged: (value) {
-                    _controller.text = value.let(widget.builder);
-                    widget.onChanged(value);
-                  },
-                  placeholder: widget.searchPlaceholder,
-                  onClosed: _handleClose,
-                  controller: widget.controller,
-                  listBuilder: widget.listBuilder,
-                  isSearchable: widget.isSearchable,
-                  searchInputSize: widget.searchInputSize,
-                  shouldCloseOnSelection: false,
-                  label: widget.searchLabel,
-                ),
+  void _handleFocusChange() {
+    if (!_effectiveFocusNode.hasFocus) {
+      showModalBottomSheet<T>(
+        useRootNavigator: widget.useRootNavigator,
+        constraints: BoxConstraints(
+          maxHeight:
+              MediaQuery.sizeOf(context).height -
+              tokens.spacing300, // TODO(witwash): check with design
+          minHeight: MediaQuery.sizeOf(context).height - tokens.spacing300,
+          maxWidth: MediaQuery.sizeOf(context).width,
+          minWidth: MediaQuery.sizeOf(context).width,
+        ),
+        context: context,
+        isScrollControlled: true,
+        elevation: 2,
+        builder:
+            (_) => Material(
+              color: Colors.transparent,
+              child: _BottomSheet(
+                builder: widget.builder,
+                onChanged: (value) {
+                  _controller.text = value.let(widget.builder);
+                  widget.onChanged(value);
+                },
+                placeholder: widget.searchPlaceholder,
+                onClosed: _handleClose,
+                controller: widget.controller,
+                listBuilder: widget.listBuilder,
+                isSearchable: widget.isSearchable,
+                searchInputSize: widget.searchInputSize,
+                shouldCloseOnSelection: false,
+                label: widget.searchLabel,
               ),
-        );
-      },
-    );
+            ),
+      );
+    }
   }
+
+  @override
+  Widget build(BuildContext context) => MultiSelectInputField(
+    label: widget.label,
+    error: widget.error,
+    prefix: widget.prefix,
+    suffix: widget.suffix,
+    isEnabled: widget.isEnabled,
+    showLoader: widget.showLoader,
+    size: widget.size,
+    caption: widget.caption,
+    helperMessage: widget.secondaryCaption,
+    trailing: widget.trailing,
+    leading: widget.leading,
+    focusNode: _effectiveFocusNode,
+    isRequired: widget.isRequired,
+    values: _selectedValues,
+    placeholder: widget.placeholder,
+  );
 }
 
 class _BottomSheet<T> extends StatefulWidget {
