@@ -5,11 +5,11 @@ import 'package:optimus/src/form/common.dart';
 import 'package:optimus/src/form/form_style.dart';
 
 /// Field to display several selected values.
-class MultiSelectInputField extends StatefulWidget {
+class MultiSelectInputField extends StatelessWidget {
   const MultiSelectInputField({
     super.key,
     this.isEnabled = true,
-    this.focusNode,
+    required this.focusNode,
     this.label,
     this.caption,
     this.captionIcon = OptimusIcons.info,
@@ -31,7 +31,7 @@ class MultiSelectInputField extends StatefulWidget {
   });
 
   final bool isEnabled;
-  final FocusNode? focusNode;
+  final FocusNode focusNode;
   final String? label;
   final Widget? caption;
   final IconData? captionIcon;
@@ -57,114 +57,75 @@ class MultiSelectInputField extends StatefulWidget {
     return error != null && error.isNotEmpty;
   }
 
-  @override
-  State<MultiSelectInputField> createState() =>
-      _OptimusMultiSelectInputFieldState();
-}
-
-class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
-    with ThemeGetter {
-  FocusNode? _focusNode;
-
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
-
-  @override
-  void initState() {
-    super.initState();
-    _effectiveFocusNode.addListener(_handleStateUpdate);
-  }
-
-  @override
-  void dispose() {
-    _effectiveFocusNode.removeListener(_handleStateUpdate);
-    _focusNode?.dispose();
-    super.dispose();
-  }
-
   bool get _isUsingInlineError =>
-      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
-
-  void _handleStateUpdate() => setState(() {});
+      errorVariant == OptimusInputErrorVariant.inlineTooltip;
 
   @override
   Widget build(BuildContext context) {
-    final error = widget.error;
+    final tokens = context.tokens;
+    final error = this.error;
     final inlineError =
         _isUsingInlineError && error != null && error.isNotEmpty
             ? InlineErrorTooltip(error: error)
             : null;
     final suffix =
-        widget.suffix != null ||
-                widget.trailing != null ||
-                widget.showLoader ||
+        this.suffix != null ||
+                trailing != null ||
+                showLoader ||
                 inlineError != null
             ? Suffix(
-              suffix: widget.suffix,
-              trailing: widget.trailing,
-              showLoader: widget.showLoader,
+              suffix: this.suffix,
+              trailing: trailing,
+              showLoader: showLoader,
               inlineError: inlineError,
             )
             : null;
     final prefix =
-        widget.leading != null || widget.prefix != null
-            ? Prefix(prefix: widget.prefix, leading: widget.leading)
+        leading != null || this.prefix != null
+            ? Prefix(prefix: this.prefix, leading: leading)
             : null;
 
-    return IgnorePointer(
-      ignoring: !widget.isEnabled,
-      child: GestureDetector(
-        onTap: _effectiveFocusNode.requestFocus,
-        child: FieldWrapper(
-          focusNode: _effectiveFocusNode,
-          isFocused: widget.isFocused,
-          isEnabled: widget.isEnabled,
-          label: widget.label,
-          caption: widget.caption,
-          captionIcon: widget.captionIcon,
-          helperMessage: widget.helperMessage,
-          error: error,
-          errorVariant: widget.errorVariant,
-          isRequired: widget.isRequired,
-          prefix: prefix,
-          suffix: suffix,
-          fieldBoxKey: widget.fieldBoxKey,
-          size: widget.size,
-          children: [
-            // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
-            Flexible(
-              child: Focus(
-                focusNode: _effectiveFocusNode,
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: widget.size.getVerticalPadding(tokens),
-                  ),
-                  constraints: BoxConstraints(
-                    minHeight: widget.size.getMinHeight(tokens),
-                  ),
-                  width: double.infinity,
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: tokens.spacing50,
-                    runSpacing: tokens.spacing50,
-                    clipBehavior: Clip.antiAlias,
-                    children:
-                        widget.values.isEmpty
-                            ? [
-                              _Placeholder(
-                                widget.placeholder,
-                                isEnabled: widget.isEnabled,
-                              ),
-                            ]
-                            : widget.values,
-                  ),
-                ),
+    return FieldWrapper(
+      focusNode: focusNode,
+      isFocused: isFocused,
+      isEnabled: isEnabled,
+      label: label,
+      caption: caption,
+      captionIcon: captionIcon,
+      helperMessage: helperMessage,
+      error: error,
+      errorVariant: errorVariant,
+      isRequired: isRequired,
+      prefix: prefix,
+      suffix: suffix,
+      fieldBoxKey: fieldBoxKey,
+      size: size,
+      children: [
+        // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
+        Flexible(
+          child: Focus(
+            focusNode: focusNode,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                vertical: size.getVerticalPadding(tokens),
+              ),
+              constraints: BoxConstraints(minHeight: size.getMinHeight(tokens)),
+              width: double.infinity,
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.center,
+                spacing: tokens.spacing50,
+                runSpacing: tokens.spacing50,
+                clipBehavior: Clip.antiAlias,
+                children:
+                    values.isEmpty
+                        ? [_Placeholder(placeholder, isEnabled: isEnabled)]
+                        : values,
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

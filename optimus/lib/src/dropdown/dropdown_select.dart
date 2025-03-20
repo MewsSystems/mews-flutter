@@ -345,23 +345,26 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
       onPopInvokedWithResult: _handleOnBackPressed,
       child:
           widget.allowMultipleSelection && _hasValues
-              ? MultiSelectInputField(
-                values: _values ?? [],
-                leading: leading,
-                prefix: widget.prefix,
-                isRequired: widget.isRequired,
-                label: widget.label,
-                focusNode: _effectiveFocusNode,
-                isFocused: _isFocused,
-                fieldBoxKey: _fieldBoxKey,
-                suffix: widget.suffix,
-                trailing: trailing,
-                isEnabled: widget.isEnabled,
-                caption: widget.caption,
-                helperMessage: widget.helperMessage,
-                error: widget.error,
-                size: widget.size,
-                showLoader: widget.showLoader,
+              ? GestureDetector(
+                onTap: () => _effectiveFocusNode.requestFocus(),
+                child: MultiSelectInputField(
+                  values: _values ?? [],
+                  leading: leading,
+                  prefix: widget.prefix,
+                  isRequired: widget.isRequired,
+                  label: widget.label,
+                  focusNode: _effectiveFocusNode,
+                  isFocused: _isFocused,
+                  fieldBoxKey: _fieldBoxKey,
+                  suffix: widget.suffix,
+                  trailing: trailing,
+                  isEnabled: widget.isEnabled,
+                  caption: widget.caption,
+                  helperMessage: widget.helperMessage,
+                  error: widget.error,
+                  size: widget.size,
+                  showLoader: widget.showLoader,
+                ),
               )
               : OptimusInputField(
                 leading: leading,
