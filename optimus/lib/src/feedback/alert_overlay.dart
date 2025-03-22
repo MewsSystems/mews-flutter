@@ -34,12 +34,12 @@ class OptimusAlertOverlay extends StatefulWidget {
 class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     with ThemeGetter
     implements OptimusAlertManager {
-  final List<OptimusAlert> _alerts = [];
-  final List<OptimusAlert> _queue = [];
+  final List<Widget> _alerts = [];
+  final List<Widget> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
-  void show(OptimusAlert alert) {
+  void show(Widget alert) {
     if (_alerts.length < widget.maxVisible) {
       _addAlert(alert);
     } else {
@@ -48,7 +48,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
   }
 
   @override
-  void remove(OptimusAlert alert) {
+  void remove(Widget alert) {
     final index = _alerts.indexOf(alert);
     if (index != -1) {
       _alerts.removeAt(index);
@@ -60,7 +60,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     }
   }
 
-  void _addAlert(OptimusAlert alert, {int index = 0}) {
+  void _addAlert(Widget alert, {int index = 0}) {
     _alerts.insert(index, alert);
     _listKey.currentState?.insertItem(index, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
@@ -76,10 +76,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     }
   }
 
-  _AnimatedAlert _buildRemovedAlert(
-    Animation<double> animation,
-    OptimusAlert alert,
-  ) {
+  _AnimatedAlert _buildRemovedAlert(Animation<double> animation, Widget alert) {
     animation.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {
         _handleAlertDismiss();
@@ -151,9 +148,9 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
 abstract class OptimusAlertManager {
   const OptimusAlertManager();
 
-  void show(OptimusAlert alert);
+  void show(Widget alert);
 
-  void remove(OptimusAlert alert);
+  void remove(Widget alert);
 }
 
 class _OptimusAlertData extends InheritedWidget {
@@ -174,7 +171,7 @@ class _AnimatedAlert extends StatelessWidget {
   });
 
   final Animation<double> animation;
-  final OptimusAlert alert;
+  final Widget alert;
   final Tween<Offset> slideTween;
   final bool isOutgoing;
 
