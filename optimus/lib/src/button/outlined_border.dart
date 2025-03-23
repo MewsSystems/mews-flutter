@@ -53,12 +53,12 @@ class CustomOutlinedBorder extends OutlinedBorder {
         .toRRect(rect)
         .deflate(borderSide.width / 2);
 
+    // have to add an offset because of the deflation if the connecting side is not present, otherwise there will be a gap
+    final double pixelOffset = borderSide.width / 2;
+
     if (hasTop) {
-      final double leftOffset =
-          hasLeft
-              ? 0
-              : _pixelOffset; // have to add an offset because of the deflation if the connecting side is not present
-      final double rightOffset = hasRight ? 0 : _pixelOffset;
+      final double leftOffset = hasLeft ? 0 : pixelOffset;
+      final double rightOffset = hasRight ? 0 : pixelOffset;
       canvas.drawLine(
         Offset(
           borderRect.left + borderRect.tlRadiusX - leftOffset,
@@ -72,8 +72,8 @@ class CustomOutlinedBorder extends OutlinedBorder {
       );
     }
     if (hasRight) {
-      final double topOffset = hasTop ? 0 : _pixelOffset;
-      final double bottomOffset = hasBottom ? 0 : _pixelOffset;
+      final double topOffset = hasTop ? 0 : pixelOffset;
+      final double bottomOffset = hasBottom ? 0 : pixelOffset;
       canvas.drawLine(
         Offset(
           borderRect.right,
@@ -87,8 +87,8 @@ class CustomOutlinedBorder extends OutlinedBorder {
       );
     }
     if (hasBottom) {
-      final double leftOffset = hasLeft ? 0 : _pixelOffset;
-      final double rightOffset = hasRight ? 0 : _pixelOffset;
+      final double leftOffset = hasLeft ? 0 : pixelOffset;
+      final double rightOffset = hasRight ? 0 : pixelOffset;
       canvas.drawLine(
         Offset(
           borderRect.right - borderRect.brRadiusX + rightOffset,
@@ -102,8 +102,8 @@ class CustomOutlinedBorder extends OutlinedBorder {
       );
     }
     if (hasLeft) {
-      final double topOffset = hasTop ? 0 : _pixelOffset;
-      final double bottomOffset = hasBottom ? 0 : _pixelOffset;
+      final double topOffset = hasTop ? 0 : pixelOffset;
+      final double bottomOffset = hasBottom ? 0 : pixelOffset;
       canvas.drawLine(
         Offset(
           borderRect.left,
@@ -222,5 +222,3 @@ class CustomOutlinedBorder extends OutlinedBorder {
   String toString() =>
       'CustomOutlinedBorder($borderRadius, $borderSide, top: $hasTop, right: $hasRight, bottom: $hasBottom, left: $hasLeft)';
 }
-
-const _pixelOffset = 0.5;
