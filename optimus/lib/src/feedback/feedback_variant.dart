@@ -17,10 +17,10 @@ enum OptimusFeedbackVariant { info, success, warning, danger }
 
 extension Theming on OptimusFeedbackVariant {
   IconData get icon => switch (this) {
-    OptimusFeedbackVariant.info => OptimusIcons.info,
-    OptimusFeedbackVariant.success => OptimusIcons.done_circle,
-    OptimusFeedbackVariant.warning => OptimusIcons.problematic,
-    OptimusFeedbackVariant.danger => OptimusIcons.alert_circle,
+    OptimusFeedbackVariant.info => OptimusIcons.info_24,
+    OptimusFeedbackVariant.success => OptimusIcons.done_circle_24,
+    OptimusFeedbackVariant.warning => OptimusIcons.problematic_24,
+    OptimusFeedbackVariant.danger => OptimusIcons.alert_circle_24,
   };
 
   Color getIconColor(OptimusTokens tokens) => switch (this) {
