@@ -49,26 +49,28 @@ class OptimusAlert extends StatelessWidget {
 
   bool get _isExpanded => description != null || link != null;
 
-  double _getPadding(BuildContext context) => switch (MediaQuery.sizeOf(
-    context,
-  ).screenBreakpoint) {
-    Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
-    Breakpoint.medium ||
-    Breakpoint.large ||
-    Breakpoint.extraLarge => context.tokens.spacing200,
-  };
+  double _getHorizontalPadding(BuildContext context) =>
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
+        Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
+        Breakpoint.medium ||
+        Breakpoint.large ||
+        Breakpoint.extraLarge => context.tokens.spacing200,
+      };
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final padding = _getPadding(context);
+    final horizontalPadding = _getHorizontalPadding(context);
     final double alertWidth = min(
-      MediaQuery.sizeOf(context).width - padding * 2,
+      MediaQuery.sizeOf(context).width - horizontalPadding * 2,
       _maxWidth,
     );
 
     return Padding(
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: tokens.spacing50,
+      ),
       child: GestureDetector(
         onTap: onPressed,
         child: ConstrainedBox(
