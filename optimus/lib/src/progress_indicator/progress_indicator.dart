@@ -121,8 +121,8 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                           width: itemWidth,
                           height: constraints.maxHeight,
                           child: ProgressIndicatorItem(
-                            text: items.getIndicatorText(item),
-                            label: item.label,
+                            index: items.getIndex(item),
+                            text: item.text,
                             description: item.description,
                             state: items.getIndicatorState(
                               item: item,
@@ -254,8 +254,8 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
                     itemBuilder:
                         (item) => ProgressIndicatorItem(
                           state: _getIndicatorState(item),
-                          text: items.getIndicatorText(item),
-                          label: item.label,
+                          index: items.getIndex(item),
+                          text: item.text,
                           description: item.description,
                           itemsCount: _itemsCount,
                           axis: Axis.vertical,
@@ -284,8 +284,8 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
                   onTap: _handleTap,
                   child: ProgressIndicatorItem(
                     state: _getIndicatorState(headerItem),
-                    text: items.getIndicatorText(headerItem),
-                    label: headerItem.label,
+                    index: items.getIndex(headerItem),
+                    text: headerItem.text,
                     description: headerItem.description,
                     itemsCount: _itemsCount,
                     axis: Axis.vertical,
@@ -307,7 +307,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
 }
 
 extension on List<OptimusProgressIndicatorItem> {
-  String getIndicatorText(OptimusProgressIndicatorItem item) =>
+  String getIndex(OptimusProgressIndicatorItem item) =>
       (indexOf(item) + 1).toString();
 
   OptimusProgressIndicatorItemState getIndicatorState({

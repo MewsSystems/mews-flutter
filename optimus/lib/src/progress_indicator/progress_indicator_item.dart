@@ -23,33 +23,46 @@ enum OptimusProgressIndicatorItemState {
 }
 
 class OptimusProgressIndicatorItem {
-  const OptimusProgressIndicatorItem({
-    required this.label,
-    this.description,
-    required this.icon,
-  });
+  const OptimusProgressIndicatorItem({required this.text, this.description});
 
-  final Widget label;
+  /// The label of the step. It is displayed below the step indicator.
+  final Widget text;
+
+  /// The description of the step. It is displayed below the label. It is
+  /// optional.
   final Widget? description;
-  final IconData icon;
 }
 
 class ProgressIndicatorItem extends StatefulWidget {
   const ProgressIndicatorItem({
     super.key,
     required this.state,
+    required this.index,
     required this.text,
-    required this.label,
     this.itemsCount,
     this.description,
     this.axis = Axis.horizontal,
   });
 
+  /// The state of the step. It determines the visual appearance of the step.
   final OptimusProgressIndicatorItemState state;
-  final String text;
-  final Widget label;
+
+  /// The index of the step. It is displayed in the step indicator (inside the
+  /// circle).
+  final String index;
+
+  /// The label of the step. It is displayed below the step indicator.
+  final Widget text;
+
+  /// The description of the step. It is displayed below the label.
   final Widget? description;
+
+  /// The axis of the progress indicator. It determines the layout of the
+  /// progress indicator.
   final Axis axis;
+
+  /// The number of items in the progress indicator. If provided, the vertical
+  /// layout will display the current step number and the total number of steps.
   final int? itemsCount;
 
   @override
@@ -72,7 +85,7 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
     final indicator =
         widget.state.isEnabled
             ? _EnabledIndicatorItem(
-              text: widget.text,
+              text: widget.index,
               isCompleted: widget.state.isCompleted,
               foregroundColor: widget.state.getForegroundColor(
                 tokens: tokens,
@@ -94,20 +107,20 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
       child: switch (widget.axis) {
         Axis.horizontal => _HorizontalItem(
           indicator: indicator,
-          label: widget.label,
+          text: widget.text,
           state: widget.state,
           description: widget.description,
         ),
         Axis.vertical => _VerticalItem(
           indicator: indicator,
-          label: widget.label,
+          label: widget.text,
           state: widget.state,
           description: widget.description,
           trailing:
               itemsCount != null && widget.state.isActive
                   ? OptimusCaption(
                     variation: Variation.variationSecondary,
-                    child: Text('${widget.text}/${itemsCount + 1}'),
+                    child: Text('${widget.index}/${itemsCount + 1}'),
                   )
                   : null,
         ),
@@ -119,13 +132,13 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
 class _HorizontalItem extends StatelessWidget {
   const _HorizontalItem({
     required this.indicator,
-    required this.label,
+    required this.text,
     required this.state,
     this.description,
   });
 
   final Widget indicator;
-  final Widget label;
+  final Widget text;
   final Widget? description;
   final OptimusProgressIndicatorItemState state;
 
@@ -142,7 +155,7 @@ class _HorizontalItem extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: tokens.spacing100),
             child: _ProgressIndicatorDescription(
-              label: label,
+              text: text,
               description: description,
               state: state,
             ),
@@ -181,7 +194,7 @@ class _VerticalItem extends StatelessWidget {
           indicator,
           SizedBox(width: tokens.spacing200),
           _ProgressIndicatorDescription(
-            label: label,
+            text: label,
             description: description,
             state: state,
           ),
@@ -326,12 +339,12 @@ class ProgressIndicatorSpacer extends StatelessWidget {
 
 class _ProgressIndicatorDescription extends StatelessWidget {
   const _ProgressIndicatorDescription({
-    required this.label,
+    required this.text,
     this.description,
     required this.state,
   });
 
-  final Widget label;
+  final Widget text;
   final Widget? description;
   final OptimusProgressIndicatorItemState state;
 
@@ -355,7 +368,7 @@ class _ProgressIndicatorDescription extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
             maxLines: 1,
-            child: label,
+            child: text,
           ),
         ),
         if (description case final description?)
