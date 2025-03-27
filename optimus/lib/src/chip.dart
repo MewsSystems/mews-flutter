@@ -38,23 +38,24 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
   bool _isHovered = false;
   bool _isPressed = false;
 
-  Color get _backgroundColor =>
-      !widget.isEnabled
-          ? theme.tokens.backgroundDisabled
-          : widget.hasError
-          ? theme.tokens.backgroundAlertDangerSecondary
-          : _isPressed
-          ? theme.tokens.backgroundInteractiveNeutralActive
-          : _isHovered
-          ? theme.tokens.backgroundInteractiveNeutralHover
-          : theme.tokens.backgroundInteractiveNeutralDefault;
+  Color get _backgroundColor => switch ((
+    widget.isEnabled,
+    widget.hasError,
+    _isPressed,
+    _isHovered,
+  )) {
+    (false, _, _, _) => tokens.backgroundDisabled,
+    (true, true, _, _) => tokens.backgroundAlertDangerSecondary,
+    (true, false, true, _) => theme.tokens.backgroundInteractiveNeutralActive,
+    (true, false, false, true) => tokens.backgroundInteractiveNeutralHover,
+    (_) => tokens.backgroundInteractiveNeutralDefault,
+  };
 
-  Color get _foregroundColor =>
-      !widget.isEnabled
-          ? theme.tokens.textDisabled
-          : widget.hasError
-          ? theme.tokens.textAlertDanger
-          : theme.tokens.textStaticPrimary;
+  Color get _foregroundColor => switch ((widget.isEnabled, widget.hasError)) {
+    (false, _) => tokens.textDisabled,
+    (true, true) => tokens.textAlertDanger,
+    (true, false) => tokens.textStaticPrimary,
+  };
 
   void _handleHoverChanged(bool isHovered) =>
       setState(() => _isHovered = isHovered);

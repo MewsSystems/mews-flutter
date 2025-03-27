@@ -11,10 +11,11 @@ Widget createDefaultStyle(BuildContext context) {
 
   final text = k.string(label: 'Chip text', initialValue: 'Chip');
   final hasError = k.boolean(label: 'Error', initialValue: false);
+  final isRemovable = k.boolean(label: 'Removable', initialValue: false);
 
   return OptimusChip(
     isEnabled: k.isEnabledKnob,
-    onRemoved: ignore,
+    onRemoved: isRemovable ? ignore : null,
     hasError: hasError,
     child: Text(text),
   );
