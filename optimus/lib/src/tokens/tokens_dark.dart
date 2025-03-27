@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Tue, 04 Feb 2025 11:35:50 GMT
+// Generated on Wed, 26 Mar 2025 17:40:45 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -504,6 +504,8 @@ abstract final class DesignTokensDark {
   static const double opacity600 = 0.48;
   static const double opacity800 = 0.64;
   static const double sizing100 = 8;
+  static const double sizing1000 = 80;
+  static const double sizing1200 = 96;
   static const double sizing1300 = 104;
   static const double sizing200 = 16;
   static const double sizing300 = 24;

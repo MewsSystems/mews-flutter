@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Tue, 04 Feb 2025 11:35:50 GMT
+// Generated on Wed, 26 Mar 2025 17:40:45 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -377,6 +377,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.opacity600,
     required this.opacity800,
     required this.sizing100,
+    required this.sizing1000,
+    required this.sizing1200,
     required this.sizing1300,
     required this.sizing200,
     required this.sizing300,
@@ -1141,6 +1143,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final double sizing100;
   @override
+  final double sizing1000;
+  @override
+  final double sizing1200;
+  @override
   final double sizing1300;
   @override
   final double sizing200;
@@ -1629,6 +1635,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     opacity600: DesignTokensLight.opacity600,
     opacity800: DesignTokensLight.opacity800,
     sizing100: DesignTokensLight.sizing100,
+    sizing1000: DesignTokensLight.sizing1000,
+    sizing1200: DesignTokensLight.sizing1200,
     sizing1300: DesignTokensLight.sizing1300,
     sizing200: DesignTokensLight.sizing200,
     sizing300: DesignTokensLight.sizing300,
@@ -2069,6 +2077,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     opacity600: DesignTokensDark.opacity600,
     opacity800: DesignTokensDark.opacity800,
     sizing100: DesignTokensDark.sizing100,
+    sizing1000: DesignTokensDark.sizing1000,
+    sizing1200: DesignTokensDark.sizing1200,
     sizing1300: DesignTokensDark.sizing1300,
     sizing200: DesignTokensDark.sizing200,
     sizing300: DesignTokensDark.sizing300,
