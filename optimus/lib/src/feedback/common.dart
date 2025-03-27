@@ -72,7 +72,7 @@ class FeedbackDescription extends StatelessWidget {
       child: description,
       maxLines: _maxLinesDescription,
       overflow: overflowStyle,
-      style: tokens.bodyMedium.copyWith(color: tokens.textStaticSecondary),
+      style: tokens.bodyMedium.copyWith(color: tokens.textStaticPrimary),
     );
   }
 }
