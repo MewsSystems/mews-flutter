@@ -27,6 +27,7 @@ extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
     label: 'Size',
     options: OptimusWidgetSize.values,
+    initialOption: OptimusWidgetSize.large,
     labelBuilder: enumLabelBuilder,
   );
 
