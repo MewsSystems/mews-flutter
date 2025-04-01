@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint, unused_element, unnecessary_cast
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'optimus_tokens.dart';
 
@@ -368,6 +369,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   double get opacity600;
   double get opacity800;
   double get sizing100;
+  double get sizing1000;
+  double get sizing1200;
   double get sizing1300;
   double get sizing200;
   double get sizing300;
@@ -770,6 +773,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     double? opacity600,
     double? opacity800,
     double? sizing100,
+    double? sizing1000,
+    double? sizing1200,
     double? sizing1300,
     double? sizing200,
     double? sizing300,
@@ -1387,6 +1392,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       opacity600: opacity600 ?? this.opacity600,
       opacity800: opacity800 ?? this.opacity800,
       sizing100: sizing100 ?? this.sizing100,
+      sizing1000: sizing1000 ?? this.sizing1000,
+      sizing1200: sizing1200 ?? this.sizing1200,
       sizing1300: sizing1300 ?? this.sizing1300,
       sizing200: sizing200 ?? this.sizing200,
       sizing300: sizing300 ?? this.sizing300,
@@ -2589,6 +2596,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       opacity600: t < 0.5 ? opacity600 : other.opacity600,
       opacity800: t < 0.5 ? opacity800 : other.opacity800,
       sizing100: t < 0.5 ? sizing100 : other.sizing100,
+      sizing1000: t < 0.5 ? sizing1000 : other.sizing1000,
+      sizing1200: t < 0.5 ? sizing1200 : other.sizing1200,
       sizing1300: t < 0.5 ? sizing1300 : other.sizing1300,
       sizing200: t < 0.5 ? sizing200 : other.sizing200,
       sizing300: t < 0.5 ? sizing300 : other.sizing300,
@@ -4063,6 +4072,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             ) &&
             const DeepCollectionEquality().equals(sizing100, other.sizing100) &&
             const DeepCollectionEquality().equals(
+              sizing1000,
+              other.sizing1000,
+            ) &&
+            const DeepCollectionEquality().equals(
+              sizing1200,
+              other.sizing1200,
+            ) &&
+            const DeepCollectionEquality().equals(
               sizing1300,
               other.sizing1300,
             ) &&
@@ -4550,6 +4567,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(opacity600),
       const DeepCollectionEquality().hash(opacity800),
       const DeepCollectionEquality().hash(sizing100),
+      const DeepCollectionEquality().hash(sizing1000),
+      const DeepCollectionEquality().hash(sizing1200),
       const DeepCollectionEquality().hash(sizing1300),
       const DeepCollectionEquality().hash(sizing200),
       const DeepCollectionEquality().hash(sizing300),
