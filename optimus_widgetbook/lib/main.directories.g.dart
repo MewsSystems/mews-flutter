@@ -441,7 +441,7 @@ final directories = <_i1.WidgetbookNode>[
           name: 'Slidable',
           builder: _i43.createDefaultStyle,
         ),
-      ),
+      )
     ],
   ),
   _i1.WidgetbookCategory(
@@ -508,7 +508,7 @@ final directories = <_i1.WidgetbookNode>[
               name: 'Spacing',
               builder: _i49.createDefaultStyle,
             ),
-          ),
+          )
         ],
       ),
     ],
