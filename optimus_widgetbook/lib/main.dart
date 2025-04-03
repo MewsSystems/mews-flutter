@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/addons/accessibility.dart';
 import 'package:optimus_widgetbook/main.directories.g.dart';
-import 'package:widgetbook/widgetbook.dart';
+import 'package:widgetbook/widgetbook.dart' hide AccessibilityAddon;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 void main() => runApp(const WidgetbookApp());
@@ -23,6 +24,7 @@ class WidgetbookApp extends StatelessWidget {
         ],
       ),
       InspectorAddon(),
+      AccessibilityAddon(),
       ThemeAddon<OptimusThemeData>(
         themes: [
           const WidgetbookTheme(
