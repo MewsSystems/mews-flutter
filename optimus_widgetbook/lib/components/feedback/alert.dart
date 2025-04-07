@@ -14,10 +14,10 @@ class AlertStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
-    final title = k.string(label: 'Title', initialValue: 'Title');
-    final description = k.string(label: 'Description', initialValue: '');
-    final link = k.string(label: 'Link.string', initialValue: '');
-    final isDismissible = k.boolean(label: 'Is Dismissible');
+    final title = k.stringOrNull(label: 'Title', initialValue: 'Title');
+    final description = k.stringOrNull(label: 'Description', initialValue: '');
+    final link = k.stringOrNull(label: 'Action', initialValue: '');
+    final isDismissible = k.boolean(label: 'Dismissible');
     final position = k.list(
       label: 'Position',
       initialOption: OptimusAlertPosition.topRight,
@@ -45,15 +45,10 @@ class _AlertStoryContent extends StatelessWidget {
     required this.isDismissible,
   });
 
-  final String title;
-  final String description;
-  final String link;
+  final String? title;
+  final String? description;
+  final String? link;
   final bool isDismissible;
-
-  OptimusFeedbackLink? get _link =>
-      link.isNotEmpty
-          ? OptimusFeedbackLink(text: Text(link), onPressed: ignore)
-          : null;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -63,10 +58,17 @@ class _AlertStoryContent extends StatelessWidget {
         children: [
           ...OptimusFeedbackVariant.values.map(
             (variant) => OptimusAlert(
-              title: Text(title),
-              description: description.maybeToWidget(),
+              title: title?.maybeToWidget(),
+              description: description?.maybeToWidget(),
               variant: variant,
-              link: _link,
+              action: link?.let((link) {
+                if (link.isNotEmpty) {
+                  return OptimusFeedbackLink(
+                    text: Text(link),
+                    onPressed: ignore,
+                  );
+                }
+              }),
               isDismissible: isDismissible,
             ),
           ),
@@ -74,10 +76,16 @@ class _AlertStoryContent extends StatelessWidget {
             onPressed: () {
               OptimusAlertOverlay.of(context)?.show(
                 OptimusAlert(
-                  title: Text(title),
-                  description:
-                      description.isNotEmpty ? Text(description) : null,
-                  link: _link,
+                  title: title?.maybeToWidget(),
+                  description: description?.maybeToWidget(),
+                  action: link?.let((link) {
+                    if (link.isNotEmpty) {
+                      return OptimusFeedbackLink(
+                        text: Text(link),
+                        onPressed: ignore,
+                      );
+                    }
+                  }),
                   isDismissible: isDismissible,
                 ),
               );
