@@ -29,6 +29,7 @@ class WidgetbookApp extends StatelessWidget {
             name: 'Light',
             data: OptimusThemeData(
               brightness: Brightness.light,
+              // ignore: deprecated_member_use, to be removed alongside with the OptimusColors
               colors: OptimusColors(Brightness.light),
               tokens: OptimusTokens.light,
             ),
@@ -37,6 +38,7 @@ class WidgetbookApp extends StatelessWidget {
             name: 'Dark',
             data: OptimusThemeData(
               brightness: Brightness.dark,
+              // ignore: deprecated_member_use, to be removed alongside with the OptimusColors
               colors: OptimusColors(Brightness.dark),
               tokens: OptimusTokens.dark,
             ),
