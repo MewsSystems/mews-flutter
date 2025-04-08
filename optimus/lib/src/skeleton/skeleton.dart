@@ -2,12 +2,11 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/src/theme/theme.dart';
 
 class OptimusSkeleton extends StatefulWidget {
-  const OptimusSkeleton({super.key, required this.linearGradient, this.child});
+  const OptimusSkeleton({super.key, this.child});
 
   static OptimusSkeletonState? of(BuildContext context) =>
       context.findAncestorStateOfType<OptimusSkeletonState>();
 
-  final LinearGradient linearGradient;
   final Widget? child;
 
   @override
@@ -34,10 +33,10 @@ class OptimusSkeletonState extends State<OptimusSkeleton>
 
   // ignore: prefer-widget-private-members, has to be public for the sync
   LinearGradient get gradient => LinearGradient(
-    colors: widget.linearGradient.colors,
-    stops: widget.linearGradient.stops,
-    begin: widget.linearGradient.begin,
-    end: widget.linearGradient.end,
+    colors: context.linearGradient.colors,
+    stops: context.linearGradient.stops,
+    begin: context.linearGradient.begin,
+    end: context.linearGradient.end,
     transform: _SlidingGradientTransform(
       slidePercent: _shimmerController.value,
     ),
@@ -168,7 +167,7 @@ class _OptimusBoneState extends State<OptimusBone> {
 }
 
 extension on BuildContext {
-  LinearGradient get gradient => LinearGradient(
+  LinearGradient get linearGradient => LinearGradient(
     colors: [
       tokens.backgroundStaticFlat.withValues(alpha: tokens.opacity100),
       tokens.backgroundStaticFlat.withValues(alpha: tokens.opacity400),
