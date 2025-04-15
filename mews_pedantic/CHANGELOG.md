@@ -1,3 +1,9 @@
+## 0.37.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-5992] Upgrade to Dart 3.7.
+
 ## 0.36.0
 
 > Note: This release has breaking changes.
