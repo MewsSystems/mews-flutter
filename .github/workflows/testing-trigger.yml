@@ -1,0 +1,12 @@
+name: Test tag trigger
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo 'This is a test job that runs on every tag push.'
