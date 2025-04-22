@@ -78,8 +78,7 @@ class BaseDropdownTile extends StatelessWidget {
 
 extension on OptimusWidgetSize {
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small =>
-      6, // TODO(witwash): replace with token when added
+    OptimusWidgetSize.small => tokens.spacing75,
     OptimusWidgetSize.medium => tokens.spacing100,
     OptimusWidgetSize.large ||
     OptimusWidgetSize.extraLarge => tokens.spacing150,
