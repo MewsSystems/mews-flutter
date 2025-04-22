@@ -12,6 +12,8 @@ jobs:
     environment: pub.dev
     permissions:
       id-token: write
+      contents: read
+      deployments: write
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
