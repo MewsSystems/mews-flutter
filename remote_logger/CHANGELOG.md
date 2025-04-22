@@ -1,3 +1,9 @@
+## 0.4.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade to Dart 3.7.
+
 ## 0.3.0+2
 
  - **REFACTOR**: Fix linter issues.
