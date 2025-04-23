@@ -84,17 +84,21 @@ class _StepperState extends State<_Stepper> {
   int? _value;
 
   TextEditingController? _controller;
-
-  TextEditingController get _effectiveController =>
-      widget.controller ??
-      (_controller ??= TextEditingController(
-        text: widget.initialValue?.toString() ?? '',
-      ));
-
   FocusNode? _focusNode;
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode {
+    if (widget.focusNode case final focusNode?) return focusNode;
+
+    return _focusNode ??= FocusNode();
+  }
+
+  TextEditingController get _effectiveController {
+    if (widget.controller case final controller?) return controller;
+
+    return _controller ??= TextEditingController(
+      text: widget.initialValue?.toString() ?? '',
+    );
+  }
 
   void _controllerListener() => _onChanged(_effectiveController.text);
 

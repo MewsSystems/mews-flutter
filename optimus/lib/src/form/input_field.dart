@@ -195,11 +195,17 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   late int? _minLines = widget.minLines;
   late int _maxLines = widget.maxLines;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? (_controller ??= TextEditingController());
+  FocusNode get _effectiveFocusNode {
+    if (widget.focusNode case final focusNode?) return focusNode;
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+    return _focusNode ??= FocusNode();
+  }
+
+  TextEditingController get _effectiveController {
+    if (widget.controller case final controller?) return controller;
+
+    return _controller ??= TextEditingController();
+  }
 
   @override
   void initState() {
@@ -351,8 +357,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
-      placeholder:
-          _placeholder, // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
+      placeholder: _placeholder,
+      // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
       children: [
         // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
         Expanded(
