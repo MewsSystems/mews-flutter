@@ -13,7 +13,7 @@ class OptimusSlidable extends StatefulWidget {
   });
 
   final Widget child;
-  final List<Widget> actions;
+  final List<Widget>? actions;
   final bool isEnabled;
   final bool hasBorders;
   final double actionsWidth;
@@ -53,7 +53,7 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
         extentRatio: _extentRatio,
-        children: widget.actions,
+        children: widget.actions ?? [],
       ),
       enabled: widget.isEnabled,
       child:
