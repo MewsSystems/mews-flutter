@@ -31,7 +31,7 @@ class OptimusSkeletonState extends State<OptimusSkeleton>
     super.dispose();
   }
 
-  // ignore: prefer-widget-private-members, has to be public for the sync
+  // ignore: prefer-widget-private-members, required for the sync
   LinearGradient get gradient => LinearGradient(
     colors: context.linearGradient.colors,
     stops: context.linearGradient.stops,
@@ -120,9 +120,7 @@ class _OptimusBoneState extends State<OptimusBone> {
 
   void _onShimmerChange() {
     if (widget.isLoading) {
-      setState(() {
-        // Update the shimmer painting.
-      });
+      setState(() {});
     }
   }
 
@@ -149,7 +147,7 @@ class _OptimusBoneState extends State<OptimusBone> {
         return ShaderMask(
           blendMode: BlendMode.srcATop,
           shaderCallback:
-              (bounds) => gradient.createShader(
+              (_) => gradient.createShader(
                 Rect.fromLTWH(
                   -offset.dx,
                   -offset.dy,
@@ -168,14 +166,12 @@ class _OptimusBoneState extends State<OptimusBone> {
 
 extension on BuildContext {
   LinearGradient get linearGradient => LinearGradient(
-    colors: [
-      tokens.backgroundStaticFlat.withValues(alpha: tokens.opacity100),
-      tokens.backgroundStaticFlat.withValues(alpha: tokens.opacity400),
-      tokens.backgroundStaticFlat.withValues(alpha: tokens.opacity100),
-    ],
+    colors: [backgroundColor, tokens.backgroundStaticFlat, backgroundColor],
     stops: const [0.1, 0.3, 0.4],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
     tileMode: TileMode.clamp,
   );
+
+  Color get backgroundColor => tokens.backgroundInteractiveNeutralDefault;
 }

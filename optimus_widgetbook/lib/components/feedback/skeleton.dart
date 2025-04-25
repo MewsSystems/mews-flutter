@@ -9,9 +9,19 @@ Widget createDefaultStyle(BuildContext context) {
   final isLoading = k.boolean(label: 'Loading', initialValue: true);
 
   return OptimusSkeleton(
-    child: OptimusBone(
-      isLoading: isLoading,
-      child: const OptimusChip(child: Text('Skeleton')),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: context.tokens.spacing200,
+      children: [
+        OptimusBone(
+          isLoading: isLoading,
+          child: const OptimusAvatar(title: 'Avatar'),
+        ),
+        OptimusBone(
+          isLoading: isLoading,
+          child: const OptimusChip(child: Text('Skeleton Chip')),
+        ),
+      ],
     ),
   );
 }
