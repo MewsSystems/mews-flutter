@@ -33,6 +33,6 @@ extension on OptimusPictogramSize {
   double getSize(OptimusTokens tokens) => switch (this) {
     OptimusPictogramSize.small => tokens.sizing600,
     OptimusPictogramSize.medium => tokens.sizing800,
-    OptimusPictogramSize.large => 80, // TODO(witwash): add token
+    OptimusPictogramSize.large => tokens.sizing1000,
   };
 }

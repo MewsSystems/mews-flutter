@@ -457,6 +457,7 @@ abstract final class OptimusDarkColors {
 }
 
 class OptimusColors {
+  @Deprecated('Use OptimusTokens instead. This will be removed on 01.07.2025')
   const OptimusColors(this.brightness);
 
   final Brightness brightness;

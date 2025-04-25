@@ -1,7 +1,11 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
+
+typedef ShapeBuilder =
+    OutlinedBorder Function(BorderRadius borderRadius, BorderSide borderSide);
 
 class BaseButton extends StatefulWidget {
   const BaseButton({
@@ -17,6 +21,7 @@ class BaseButton extends StatefulWidget {
     this.variant = BaseButtonVariant.primary,
     this.borderRadius,
     this.padding,
+    this.shapeBuilder,
   });
 
   final VoidCallback? onPressed;
@@ -30,6 +35,7 @@ class BaseButton extends StatefulWidget {
   final BaseButtonVariant variant;
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
+  final ShapeBuilder? shapeBuilder;
 
   @override
   State<BaseButton> createState() => _BaseButtonState();
@@ -75,14 +81,15 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
               isPressed: _statesController.value.isPressed,
               isHovered: _statesController.value.isHovered,
             );
+            final side =
+                color != null
+                    ? BorderSide(color: color, width: tokens.borderWidth150)
+                    : BorderSide.none;
 
-            return RoundedRectangleBorder(
-              borderRadius: borderRadius,
-              side:
-                  color != null
-                      ? BorderSide(color: color, width: tokens.borderWidth150)
-                      : BorderSide.none,
-            );
+            return widget.shapeBuilder?.let(
+                  (builder) => builder(borderRadius, side),
+                ) ??
+                RoundedRectangleBorder(borderRadius: borderRadius, side: side);
           }),
           animationDuration: buttonAnimationDuration,
           elevation: WidgetStateProperty.all<double>(0),

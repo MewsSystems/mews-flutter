@@ -75,3 +75,13 @@ mixin ThemeGetter<T extends StatefulWidget> on State<T> {
   OptimusThemeData get theme => OptimusTheme.of(context);
   OptimusTokens get tokens => OptimusTheme.of(context).tokens;
 }
+
+/// Extension to add derived tokens to the OptimusTokens class.
+/// This allows for easy access to commonly used derived tokens until we
+/// add a proper value.
+extension DerivedTokens on OptimusTokens {
+  double get spacing75 =>
+      spacing50 + spacing25; // TODO(witwash): replace with tokens
+  double get sizing150 =>
+      sizing100 + sizing50; // TODO(witwash): replace with tokens
+}

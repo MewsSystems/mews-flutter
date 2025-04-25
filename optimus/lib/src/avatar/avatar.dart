@@ -151,7 +151,7 @@ class _Indicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final outlineSize = tokens.borderWidth200;
-    final height = indicatorSize + outlineSize * 2;
+    final height = context.avatarSize + outlineSize * 2;
     final url = this.url;
 
     final decoration = BoxDecoration(
@@ -177,7 +177,7 @@ class _BadgeImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _CircleImage(
     imageUrl: url,
-    diameter: indicatorSize,
+    diameter: context.avatarSize,
     fallbackWidget: const SizedBox.shrink(),
   );
 }
@@ -218,4 +218,6 @@ extension on OptimusWidgetSize {
 
 final Uint8List _transparentImage = Uint8List.fromList(transparentImageData);
 
-const indicatorSize = 12.0; // TODO(witwash): change to sizing150, when added
+extension on BuildContext {
+  double get avatarSize => tokens.sizing150;
+}
