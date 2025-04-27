@@ -90,8 +90,22 @@ class _SlidingGradientTransform extends GradientTransform {
       Matrix4.translationValues(bounds.width * slidePercent, 0.0, 0.0);
 }
 
-class OptimusBone extends StatefulWidget {
+abstract class OptimusBone extends StatefulWidget {
   const OptimusBone({super.key, required this.isLoading, required this.child});
+
+  OptimusBone.square({
+    super.key,
+    required this.isLoading,
+    required double width,
+    required double height,
+  }) : child = _SquareBone.square(width: width, height: height);
+
+  OptimusBone.textLine({
+    super.key,
+    required this.isLoading,
+    required double width,
+    required double height,
+  }) : child = _SquareBone.textLine(width: width, height: height);
 
   final bool isLoading;
   final Widget child;
@@ -165,6 +179,52 @@ class _OptimusBoneState extends State<OptimusBone> {
 
     return const SizedBox();
   }
+}
+
+enum _SquareRadiusVariant { square, rounded }
+
+class _SquareBone extends StatelessWidget {
+  const _SquareBone({
+    required this.width,
+    required this.height,
+    required this.radiusVariant,
+  });
+
+  const _SquareBone.square({required double width, required double height})
+    : this(
+        width: width,
+        height: height,
+        radiusVariant: _SquareRadiusVariant.square,
+      );
+
+  const _SquareBone.textLine({required double width, required double height})
+    : this(
+        width: width,
+        height: height,
+        radiusVariant: _SquareRadiusVariant.rounded,
+      );
+
+  final double width;
+  final double height;
+  final _SquareRadiusVariant radiusVariant;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    width: width,
+    height: height,
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(radiusVariant.toRadius(context)),
+      ),
+    ),
+  );
+}
+
+extension on _SquareRadiusVariant {
+  Radius toRadius(BuildContext context) => switch (this) {
+    _SquareRadiusVariant.square => context.tokens.borderRadius150,
+    _SquareRadiusVariant.rounded => context.tokens.borderRadiusRound,
+  };
 }
 
 extension on BuildContext {
