@@ -1,6 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/theme/theme.dart';
 
+/// A widget that provides a shimmer effect for loading states.
+/// [OptimusSkeleton] will ensure that the shimmer effect is applied to its
+/// descendants and is synchronized with the shimmer controller.
 class OptimusSkeleton extends StatefulWidget {
   const OptimusSkeleton({super.key, this.child});
 
@@ -22,7 +25,7 @@ class OptimusSkeletonState extends State<OptimusSkeleton>
     super.initState();
 
     _shimmerController = AnimationController.unbounded(vsync: this)
-      ..repeat(min: -0.5, max: 1.5, period: const Duration(milliseconds: 1000));
+      ..repeat(min: -0.5, max: 2.5, period: const Duration(milliseconds: 1600));
   }
 
   @override
@@ -166,6 +169,7 @@ class _OptimusBoneState extends State<OptimusBone> {
 
 extension on BuildContext {
   LinearGradient get linearGradient => LinearGradient(
+    // ignore: avoid-duplicate-collection-elements, gradient colors
     colors: [backgroundColor, tokens.backgroundStaticFlat, backgroundColor],
     stops: const [0.1, 0.3, 0.4],
     begin: Alignment.centerLeft,
