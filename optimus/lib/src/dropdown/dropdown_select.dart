@@ -104,11 +104,17 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   FocusNode? _focusNode;
   TextEditingController? _controller;
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode {
+    if (widget.focusNode case final focusNode?) return focusNode;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? (_controller ??= TextEditingController());
+    return _focusNode ??= FocusNode();
+  }
+
+  TextEditingController get _effectiveController {
+    if (widget.controller case final controller?) return controller;
+
+    return _controller ??= TextEditingController();
+  }
 
   OverlayEntry? _overlayEntry;
 
