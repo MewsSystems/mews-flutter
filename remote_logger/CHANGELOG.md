@@ -1,3 +1,7 @@
+## 0.4.0+1
+
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.4.0
 
 > Note: This release has breaking changes.
