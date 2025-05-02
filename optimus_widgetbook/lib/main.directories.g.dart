@@ -22,10 +22,10 @@ import 'package:optimus_widgetbook/components/data_display/tooltip.dart'
     as _i13;
 import 'package:optimus_widgetbook/components/data_display/tooltip_wrapper.dart'
     as _i14;
-import 'package:optimus_widgetbook/components/feedback/alert.dart' as _i16;
-import 'package:optimus_widgetbook/components/feedback/badge.dart' as _i17;
-import 'package:optimus_widgetbook/components/feedback/banner.dart' as _i18;
-import 'package:optimus_widgetbook/components/feedback/bone.dart' as _i15;
+import 'package:optimus_widgetbook/components/feedback/alert.dart' as _i15;
+import 'package:optimus_widgetbook/components/feedback/badge.dart' as _i16;
+import 'package:optimus_widgetbook/components/feedback/banner.dart' as _i17;
+import 'package:optimus_widgetbook/components/feedback/bone.dart' as _i18;
 import 'package:optimus_widgetbook/components/feedback/chip.dart' as _i19;
 import 'package:optimus_widgetbook/components/feedback/skeleton.dart' as _i20;
 import 'package:optimus_widgetbook/components/feedback/spinner.dart' as _i21;
@@ -202,48 +202,43 @@ final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookCategory(
     name: 'Feedback',
     children: [
-      _i1.WidgetbookFolder(
-        name: 'Bone',
-        children: [
-          _i1.WidgetbookComponent(
-            name: 'OptimusBone',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Card',
-                builder: _i15.createSquareStyle,
-              ),
-              _i1.WidgetbookUseCase(
-                name: 'Circle',
-                builder: _i15.createCircleStyle,
-              ),
-              _i1.WidgetbookUseCase(
-                name: 'Text',
-                builder: _i15.createTextBone,
-              ),
-            ],
-          )
-        ],
-      ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusAlert',
         useCase: _i1.WidgetbookUseCase(
           name: 'Alert',
-          builder: _i16.createDefaultStyle,
+          builder: _i15.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusBadge',
         useCase: _i1.WidgetbookUseCase(
           name: 'Badge',
-          builder: _i17.createDefaultStyle,
+          builder: _i16.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusBanner',
         useCase: _i1.WidgetbookUseCase(
           name: 'Banner',
-          builder: _i18.createDefaultStyle,
+          builder: _i17.createDefaultStyle,
         ),
+      ),
+      _i1.WidgetbookComponent(
+        name: 'OptimusBone',
+        useCases: [
+          _i1.WidgetbookUseCase(
+            name: 'Card',
+            builder: _i18.createSquareStyle,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Circle',
+            builder: _i18.createCircleStyle,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Text',
+            builder: _i18.createTextBone,
+          ),
+        ],
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusChip',
