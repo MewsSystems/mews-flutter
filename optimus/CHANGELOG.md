@@ -1,3 +1,8 @@
+## 0.40.0+1
+
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: [DX-6474] Update OptimusSlidable (#782).
+
 ## 0.40.0
 
 > Note: This release has breaking changes.
