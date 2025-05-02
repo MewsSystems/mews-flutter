@@ -205,27 +205,23 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'Bone',
         children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusBoneCard',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Card',
-              builder: _i15.createSquareStyle,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusBoneCircle',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Circle',
-              builder: _i15.createCircleStyle,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusBoneText',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Text',
-              builder: _i15.createTextBone,
-            ),
-          ),
+          _i1.WidgetbookComponent(
+            name: 'OptimusBone',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Card',
+                builder: _i15.createSquareStyle,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Circle',
+                builder: _i15.createCircleStyle,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Text',
+                builder: _i15.createTextBone,
+              ),
+            ],
+          )
         ],
       ),
       _i1.WidgetbookLeafComponent(
