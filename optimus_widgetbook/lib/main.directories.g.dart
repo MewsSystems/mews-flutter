@@ -226,18 +226,12 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookComponent(
         name: 'OptimusBone',
         useCases: [
-          _i1.WidgetbookUseCase(
-            name: 'Card',
-            builder: _i18.createSquareStyle,
-          ),
+          _i1.WidgetbookUseCase(name: 'Card', builder: _i18.createSquareStyle),
           _i1.WidgetbookUseCase(
             name: 'Circle',
             builder: _i18.createCircleStyle,
           ),
-          _i1.WidgetbookUseCase(
-            name: 'Text',
-            builder: _i18.createTextBone,
-          ),
+          _i1.WidgetbookUseCase(name: 'Text', builder: _i18.createTextBone),
         ],
       ),
       _i1.WidgetbookLeafComponent(
@@ -467,7 +461,7 @@ final directories = <_i1.WidgetbookNode>[
           name: 'Slidable',
           builder: _i45.createDefaultStyle,
         ),
-      )
+      ),
     ],
   ),
   _i1.WidgetbookCategory(
@@ -534,7 +528,7 @@ final directories = <_i1.WidgetbookNode>[
               name: 'Spacing',
               builder: _i51.createDefaultStyle,
             ),
-          )
+          ),
         ],
       ),
     ],
