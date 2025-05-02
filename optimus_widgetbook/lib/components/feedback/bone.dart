@@ -4,12 +4,12 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 final GlobalKey _circleKey = GlobalKey();
-final GlobalKey _squareKey = GlobalKey();
+final GlobalKey _cardKey = GlobalKey();
 final GlobalKey _textKey = GlobalKey();
 
 @widgetbook.UseCase(
-  name: 'Square',
-  type: OptimusBoneSquare,
+  name: 'Card',
+  type: OptimusBoneCard,
   path: '[Feedback]/Bone',
 )
 Widget createSquareStyle(BuildContext context) {
@@ -19,12 +19,8 @@ Widget createSquareStyle(BuildContext context) {
   final height = k.double.slider(label: 'Height', initialValue: 80, max: 200);
 
   return OptimusSkeleton(
-    key: _squareKey,
-    child: OptimusBoneSquare(
-      isLoading: isLoading,
-      width: width,
-      height: height,
-    ),
+    key: _cardKey,
+    child: OptimusBoneCard(isLoading: isLoading, width: width, height: height),
   );
 }
 

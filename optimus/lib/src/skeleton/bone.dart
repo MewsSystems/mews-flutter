@@ -30,8 +30,8 @@ class OptimusBoneCircle extends StatelessWidget {
       _CircleBone(isLoading: isLoading, size: size);
 }
 
-class OptimusBoneSquare extends StatelessWidget {
-  const OptimusBoneSquare({
+class OptimusBoneCard extends StatelessWidget {
+  const OptimusBoneCard({
     super.key,
     required this.isLoading,
     required this.width,
@@ -43,11 +43,11 @@ class OptimusBoneSquare extends StatelessWidget {
   final bool isLoading;
 
   @override
-  Widget build(BuildContext context) => _SquareBone(
+  Widget build(BuildContext context) => _CardBone(
     width: width,
     height: height,
     isLoading: isLoading,
-    radiusVariant: _SquareRadiusVariant.square,
+    radiusVariant: _CardRadiusVariant.square,
   );
 }
 
@@ -64,11 +64,11 @@ class OptimusBoneText extends StatelessWidget {
   final double height;
 
   @override
-  Widget build(BuildContext context) => _SquareBone(
+  Widget build(BuildContext context) => _CardBone(
     width: width,
     height: height,
     isLoading: isLoading,
-    radiusVariant: _SquareRadiusVariant.rounded,
+    radiusVariant: _CardRadiusVariant.rounded,
   );
 }
 
@@ -170,8 +170,8 @@ class _CircleBone extends StatelessWidget {
   );
 }
 
-class _SquareBone extends StatelessWidget {
-  const _SquareBone({
+class _CardBone extends StatelessWidget {
+  const _CardBone({
     required this.width,
     required this.height,
     required this.isLoading,
@@ -181,7 +181,7 @@ class _SquareBone extends StatelessWidget {
   final double width;
   final double height;
   final bool isLoading;
-  final _SquareRadiusVariant radiusVariant;
+  final _CardRadiusVariant radiusVariant;
 
   @override
   Widget build(BuildContext context) => _Bone(
@@ -199,11 +199,11 @@ class _SquareBone extends StatelessWidget {
   );
 }
 
-enum _SquareRadiusVariant { square, rounded }
+enum _CardRadiusVariant { square, rounded }
 
-extension on _SquareRadiusVariant {
+extension on _CardRadiusVariant {
   Radius toRadius(BuildContext context) => switch (this) {
-    _SquareRadiusVariant.square => context.tokens.borderRadius150,
-    _SquareRadiusVariant.rounded => context.tokens.borderRadius300,
+    _CardRadiusVariant.square => context.tokens.borderRadius150,
+    _CardRadiusVariant.rounded => context.tokens.borderRadius300,
   };
 }
