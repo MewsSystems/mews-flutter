@@ -3,6 +3,10 @@ import 'package:optimus/optimus.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+final GlobalKey _circleKey = GlobalKey();
+final GlobalKey _squareKey = GlobalKey();
+final GlobalKey _textKey = GlobalKey();
+
 @widgetbook.UseCase(
   name: 'Square',
   type: OptimusBoneSquare,
@@ -15,6 +19,7 @@ Widget createSquareStyle(BuildContext context) {
   final height = k.double.slider(label: 'Height', initialValue: 80, max: 200);
 
   return OptimusSkeleton(
+    key: _squareKey,
     child: OptimusBoneSquare(
       isLoading: isLoading,
       width: width,
@@ -34,6 +39,7 @@ Widget createCircleStyle(BuildContext context) {
   final size = k.double.slider(label: 'Size', initialValue: 80, max: 200);
 
   return OptimusSkeleton(
+    key: _circleKey,
     child: OptimusBoneCircle(isLoading: isLoading, size: size),
   );
 }
@@ -50,6 +56,7 @@ Widget createTextBone(BuildContext context) {
   final height = k.double.slider(label: 'Height', initialValue: 20, max: 100);
 
   return OptimusSkeleton(
+    key: _textKey,
     child: OptimusBoneText(isLoading: isLoading, width: width, height: height),
   );
 }

@@ -158,9 +158,8 @@ class _CircleBone extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _Bone(
     isLoading: isLoading,
-    child: SizedBox(
-      width: size,
-      height: size,
+    child: SizedBox.square(
+      dimension: size,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.tokens.backgroundStaticFlat,
@@ -205,6 +204,6 @@ enum _SquareRadiusVariant { square, rounded }
 extension on _SquareRadiusVariant {
   Radius toRadius(BuildContext context) => switch (this) {
     _SquareRadiusVariant.square => context.tokens.borderRadius150,
-    _SquareRadiusVariant.rounded => context.tokens.borderRadiusRound,
+    _SquareRadiusVariant.rounded => context.tokens.borderRadius300,
   };
 }
