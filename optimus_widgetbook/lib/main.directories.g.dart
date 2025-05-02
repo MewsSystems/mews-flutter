@@ -206,17 +206,17 @@ final directories = <_i1.WidgetbookNode>[
         name: 'Bone',
         children: [
           _i1.WidgetbookLeafComponent(
+            name: 'OptimusBoneCard',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Card',
+              builder: _i15.createSquareStyle,
+            ),
+          ),
+          _i1.WidgetbookLeafComponent(
             name: 'OptimusBoneCircle',
             useCase: _i1.WidgetbookUseCase(
               name: 'Circle',
               builder: _i15.createCircleStyle,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusBoneSquare',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Square',
-              builder: _i15.createSquareStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
