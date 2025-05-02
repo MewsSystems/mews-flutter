@@ -63,8 +63,11 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
     with ThemeGetter {
   FocusNode? _focusNode;
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode {
+    if (widget.focusNode case final focusNode?) return focusNode;
+
+    return _focusNode ??= FocusNode();
+  }
 
   @override
   void initState() {

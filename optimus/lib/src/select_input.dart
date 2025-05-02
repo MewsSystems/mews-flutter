@@ -121,11 +121,17 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
   TextEditingController? _controller;
   FocusNode? _focusNode;
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get _effectiveFocusNode {
+    if (widget.focusNode case final focusNode?) return focusNode;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? (_controller ??= TextEditingController());
+    return _focusNode ??= FocusNode();
+  }
+
+  TextEditingController get _effectiveController {
+    if (widget.controller case final controller?) return controller;
+
+    return _controller ??= TextEditingController();
+  }
 
   void _handleFocusChange() {
     if (!_isUsingEmbeddedSearch) {

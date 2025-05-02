@@ -66,7 +66,11 @@ class RemoteLogger {
   final Client? _client;
   Client? _internalClient;
 
-  Client get _effectiveClient => _client ?? (_internalClient ??= Client());
+  Client get _effectiveClient {
+    if (_client case final client?) return client;
+
+    return _internalClient ??= Client();
+  }
 
   Future<void> _process() async {
     while (await _messages.hasNext) {

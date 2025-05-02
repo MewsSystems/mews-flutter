@@ -1,3 +1,25 @@
+## 0.40.0+1
+
+ - **REFACTOR**: Fix linter issues.
+ - **REFACTOR**: [DX-6474] Update OptimusSlidable (#782).
+
+## 0.40.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: [DX-6138] Refactor missing tokens (#774).
+ - **REFACTOR**: [DX-5156] Refactor OptimusChip (#764).
+ - **REFACTOR**: Fix linter issues.
+ - **FEAT**: [DX-6152] Updated OptimusSplitButton design (#760).
+ - **FEAT**: Design Tokens Update 7.5.0 (#762).
+ - **FEAT**: [DX-6155] Update OptimusBanner design (#765).
+ - **FEAT**: [DX-6095] Update OptimusAlert design (#759).
+ - **FEAT**: [DX-3777] Update SelectInput component (#754).
+ - **BREAKING** **REFACTOR**: [DX-6157] Update OptimusProgressIndicator (#761).
+ - **BREAKING** **FEAT**: [DX-6300] Clean badge variants (#768).
+ - **BREAKING** **FEAT**: [DX-6302] Update OptimusAlert component (#769).
+ - **BREAKING** **FEAT**: Upgrade to Dart 3.7.
+
 ## 0.39.0
 
 > Note: This release has breaking changes.
