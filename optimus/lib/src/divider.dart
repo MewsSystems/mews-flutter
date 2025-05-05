@@ -30,9 +30,10 @@ class OptimusDivider extends StatelessWidget {
     final child = this.child;
     final color = theme.tokens.borderStaticSecondary;
 
-    final divider = direction == Axis.horizontal
-        ? Divider(color: color, thickness: 1)
-        : VerticalDivider(color: color, thickness: 1);
+    final divider =
+        direction == Axis.horizontal
+            ? Divider(color: color, thickness: 1)
+            : VerticalDivider(color: color, thickness: 1);
     final animatedDivider = AnimatedContainer(
       duration: themeChangeAnimationDuration,
       child: divider,

@@ -16,9 +16,7 @@ class OptimusDropdownGroupSeparator extends StatelessWidget {
         horizontal: tokens.spacing200,
       ),
       child: DefaultTextStyle.merge(
-        style: tokens.bodyLarge.copyWith(
-          color: tokens.textStaticTertiary,
-        ),
+        style: tokens.bodyLarge.copyWith(color: tokens.textStaticTertiary),
         child: child,
       ),
     );

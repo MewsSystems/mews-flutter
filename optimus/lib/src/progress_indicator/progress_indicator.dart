@@ -40,22 +40,23 @@ class OptimusProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveLayout = MediaQuery.sizeOf(context).screenBreakpoint.index >
-            Breakpoint.small.index
-        ? layout
-        : Axis.vertical;
+    final effectiveLayout =
+        MediaQuery.sizeOf(context).screenBreakpoint.index >
+                Breakpoint.small.index
+            ? layout
+            : Axis.vertical;
 
     return switch (effectiveLayout) {
       Axis.horizontal => _HorizontalProgressIndicator(
-          items: items,
-          currentItem: currentItem,
-          maxItem: maxItem,
-        ),
+        items: items,
+        currentItem: currentItem,
+        maxItem: maxItem,
+      ),
       Axis.vertical => _VerticalProgressIndicator(
-          items: items,
-          currentItem: currentItem,
-          maxItem: maxItem,
-        )
+        items: items,
+        currentItem: currentItem,
+        maxItem: maxItem,
+      ),
     };
   }
 }
@@ -73,53 +74,55 @@ class _HorizontalProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, constraints) {
-          final effectiveWidth = constraints.maxWidth;
-          final itemWidth = effectiveWidth / items.length;
-          final indicatorHeight = context.indicatorHeight;
-          final indicatorWidth = context.indicatorWidth;
-          final textRowHeight =
-              items.any((element) => element.description != null)
-                  ? context.titleSize + context.descriptionSize
-                  : context.titleSize;
-          final indicatorRowHorizontalPadding =
-              itemWidth / 2 - indicatorWidth / 2;
-          final height = indicatorHeight + textRowHeight;
+    builder: (context, constraints) {
+      final effectiveWidth = constraints.maxWidth;
+      final itemWidth = effectiveWidth / items.length;
+      final indicatorHeight = context.indicatorHeight;
+      final indicatorWidth = context.indicatorWidth;
+      final textRowHeight =
+          items.any((element) => element.description != null)
+              ? context.titleSize + context.descriptionSize
+              : context.titleSize;
+      final indicatorRowHorizontalPadding = itemWidth / 2 - indicatorWidth / 2;
+      final height = indicatorHeight + textRowHeight;
 
-          return SizedBox(
-            width: effectiveWidth,
-            height: height,
-            child: Stack(
-              children: [
-                if (items.length > 1)
-                  _SpacerLayer(
-                    horizontalPadding: indicatorRowHorizontalPadding,
-                    itemHeight: indicatorHeight,
-                    children: items
+      return SizedBox(
+        width: effectiveWidth,
+        height: height,
+        child: Stack(
+          children: [
+            if (items.length > 1)
+              _SpacerLayer(
+                horizontalPadding: indicatorRowHorizontalPadding,
+                itemHeight: indicatorHeight,
+                children:
+                    items
                         .intersperseWith(
                           itemBuilder: (_) => SizedBox(width: indicatorWidth),
-                          separatorBuilder: (_, nextItem) => Expanded(
-                            child: ProgressIndicatorSpacer(
-                              layout: Axis.horizontal,
-                              nextItemState: items.getIndicatorState(
-                                item: nextItem,
-                                currentItem: currentItem,
-                                maxItem: maxItem,
+                          separatorBuilder:
+                              (_, nextItem) => Expanded(
+                                child: ProgressIndicatorSpacer(
+                                  layout: Axis.horizontal,
+                                  nextItemState: items.getIndicatorState(
+                                    item: nextItem,
+                                    currentItem: currentItem,
+                                    maxItem: maxItem,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
                         )
                         .toList(),
-                  ),
-                Row(
-                  children: items
+              ),
+            Row(
+              children:
+                  items
                       .map(
                         (item) => SizedBox(
                           width: itemWidth,
                           height: constraints.maxHeight,
                           child: ProgressIndicatorItem(
-                            text: items.getIndicatorText(item),
-                            label: item.label,
+                            index: items.getIndex(item),
+                            text: item.text,
                             description: item.description,
                             state: items.getIndicatorState(
                               item: item,
@@ -130,12 +133,12 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                         ),
                       )
                       .toList(),
-                ),
-              ],
             ),
-          );
-        },
+          ],
+        ),
       );
+    },
+  );
 }
 
 class _SpacerLayer extends StatelessWidget {
@@ -151,15 +154,15 @@ class _SpacerLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-        child: SizedBox(
-          height: itemHeight,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: children,
-          ),
-        ),
-      );
+    padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+    child: SizedBox(
+      height: itemHeight,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: children,
+      ),
+    ),
+  );
 }
 
 class _VerticalProgressIndicator extends StatefulWidget {
@@ -225,12 +228,11 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
 
   OptimusProgressIndicatorItemState _getIndicatorState(
     OptimusProgressIndicatorItem item,
-  ) =>
-      widget.items.getIndicatorState(
-        item: item,
-        currentItem: widget.currentItem,
-        maxItem: widget.maxItem,
-      );
+  ) => widget.items.getIndicatorState(
+    item: item,
+    currentItem: widget.currentItem,
+    maxItem: widget.maxItem,
+  );
 
   int get _itemsCount => widget.maxItem ?? widget.items.length;
 
@@ -246,62 +248,66 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
         onTap: _handleTap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: items
-              .intersperseWith(
-                itemBuilder: (item) => ProgressIndicatorItem(
-                  state: _getIndicatorState(item),
-                  text: items.getIndicatorText(item),
-                  label: item.label,
-                  description: item.description,
-                  itemsCount: _itemsCount,
-                  axis: Axis.vertical,
-                ),
-                separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
-                  nextItemState: _getIndicatorState(nextItem),
-                  layout: Axis.vertical,
-                ),
-              )
-              .skip(1) // the first one is already in the header
-              .toList(),
+          children:
+              items
+                  .intersperseWith(
+                    itemBuilder:
+                        (item) => ProgressIndicatorItem(
+                          state: _getIndicatorState(item),
+                          index: items.getIndex(item),
+                          text: item.text,
+                          description: item.description,
+                          itemsCount: _itemsCount,
+                          axis: Axis.vertical,
+                        ),
+                    separatorBuilder:
+                        (_, nextItem) => ProgressIndicatorSpacer(
+                          nextItemState: _getIndicatorState(nextItem),
+                          layout: Axis.vertical,
+                        ),
+                  )
+                  .skip(1) // the first one is already in the header
+                  .toList(),
         ),
       ),
     );
 
     return AnimatedBuilder(
       animation: _animationController.view,
-      builder: (_, child) => Container(
-        clipBehavior: Clip.none,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            AllowMultipleRawGestureDetector(
-              onTap: _handleTap,
-              child: ProgressIndicatorItem(
-                state: _getIndicatorState(headerItem),
-                text: items.getIndicatorText(headerItem),
-                label: headerItem.label,
-                description: headerItem.description,
-                itemsCount: _itemsCount,
-                axis: Axis.vertical,
-              ),
+      builder:
+          (_, child) => Container(
+            clipBehavior: Clip.none,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                AllowMultipleRawGestureDetector(
+                  onTap: _handleTap,
+                  child: ProgressIndicatorItem(
+                    state: _getIndicatorState(headerItem),
+                    index: items.getIndex(headerItem),
+                    text: headerItem.text,
+                    description: headerItem.description,
+                    itemsCount: _itemsCount,
+                    axis: Axis.vertical,
+                  ),
+                ),
+                ClipRect(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    heightFactor: _heightFactor.value,
+                    child: child,
+                  ),
+                ),
+              ],
             ),
-            ClipRect(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                heightFactor: _heightFactor.value,
-                child: child,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
       child: result,
     );
   }
 }
 
 extension on List<OptimusProgressIndicatorItem> {
-  String getIndicatorText(OptimusProgressIndicatorItem item) =>
+  String getIndex(OptimusProgressIndicatorItem item) =>
       (indexOf(item) + 1).toString();
 
   OptimusProgressIndicatorItemState getIndicatorState({

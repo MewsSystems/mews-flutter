@@ -10,18 +10,21 @@ import 'package:optimus/src/feedback/common.dart';
 class OptimusAlert extends StatelessWidget {
   const OptimusAlert({
     super.key,
-    required this.title,
+    this.title,
     this.description,
     this.icon,
-    this.link,
+    this.action,
     this.onDismiss,
     this.isDismissible = false,
     this.onPressed,
     this.variant = OptimusFeedbackVariant.info,
-  });
+  }) : assert(
+         title != null || description != null,
+         'At least one of title or description must be provided.',
+       );
 
   /// The title of the alert.
-  final Widget title;
+  final Widget? title;
 
   /// The main content or description which should be as brief and straight
   /// to the point.
@@ -34,11 +37,11 @@ class OptimusAlert extends StatelessWidget {
   /// button.
   final VoidCallback? onDismiss;
 
-  /// If `true` the close button will be displayed.
+  /// If `true` the close button will be displayed. Default is `false`.
   final bool isDismissible;
 
-  /// The link with custom action.
-  final OptimusFeedbackLink? link;
+  /// The custom action.
+  final OptimusFeedbackLink? action;
 
   /// The variant of the alert which determines the background color and
   /// icon.
@@ -47,26 +50,30 @@ class OptimusAlert extends StatelessWidget {
   /// An optional callback to be called when the alert is pressed.
   final VoidCallback? onPressed;
 
-  bool get _isExpanded => description != null || link != null;
+  bool get _isExpanded => description != null || action != null;
 
-  double _getPadding(BuildContext context) =>
+  double _getHorizontalPadding(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
         Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
         Breakpoint.medium ||
         Breakpoint.large ||
-        Breakpoint.extraLarge =>
-          context.tokens.spacing200,
+        Breakpoint.extraLarge => context.tokens.spacing200,
       };
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final padding = _getPadding(context);
-    final double alertWidth =
-        min(MediaQuery.sizeOf(context).width - padding * 2, _maxWidth);
+    final horizontalPadding = _getHorizontalPadding(context);
+    final double alertWidth = min(
+      MediaQuery.sizeOf(context).width - horizontalPadding * 2,
+      _maxWidth,
+    );
 
     return Padding(
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: tokens.spacing50,
+      ),
       child: GestureDetector(
         onTap: onPressed,
         child: ConstrainedBox(
@@ -78,9 +85,9 @@ class OptimusAlert extends StatelessWidget {
                 variant: variant,
                 title: title,
                 description: description,
-                linkText: link?.text,
+                linkText: action?.text,
                 onLinkPressed: () {
-                  link?.onPressed();
+                  action?.onPressed();
                   OptimusAlertOverlay.of(context)?.remove(this);
                 },
                 isDismissible: isDismissible,
@@ -107,18 +114,18 @@ class OptimusAlert extends StatelessWidget {
 
 class _AlertContent extends StatelessWidget {
   const _AlertContent({
-    required this.icon,
-    required this.variant,
-    required this.title,
-    required this.description,
-    required this.isDismissible,
+    this.icon,
+    this.variant = OptimusFeedbackVariant.info,
+    this.title,
+    this.description,
+    this.isDismissible = false,
     this.onLinkPressed,
     this.linkText,
   });
 
   final IconData? icon;
   final OptimusFeedbackVariant variant;
-  final Widget title;
+  final Widget? title;
   final Widget? description;
   final Widget? linkText;
   final VoidCallback? onLinkPressed;
@@ -126,14 +133,15 @@ class _AlertContent extends StatelessWidget {
 
   bool get _isExpanded => description != null || linkText != null;
 
-  EdgeInsets _getContentPadding(OptimusTokens tokens) => isDismissible
-      ? EdgeInsets.fromLTRB(
-          tokens.spacing200,
-          tokens.spacing200,
-          tokens.spacing400,
-          tokens.spacing200,
-        )
-      : EdgeInsets.all(tokens.spacing200);
+  EdgeInsets _getContentPadding(OptimusTokens tokens) =>
+      isDismissible
+          ? EdgeInsets.fromLTRB(
+            tokens.spacing200,
+            tokens.spacing200,
+            tokens.spacing400,
+            tokens.spacing200,
+          )
+          : EdgeInsets.all(tokens.spacing200);
 
   @override
   Widget build(BuildContext context) {
@@ -186,21 +194,13 @@ class _AlertContent extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
+                    spacing: tokens.spacing50,
                     children: [
-                      FeedbackTitle(title: title),
+                      if (title case final title?) FeedbackTitle(title: title),
                       if (description case final description?)
-                        Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
-                          child: FeedbackDescription(description: description),
-                        ),
+                        FeedbackDescription(description: description),
                       if (linkText != null && onLinkPressed != null)
-                        Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
-                          child: FeedbackLink(
-                            text: linkText,
-                            onPressed: onLinkPressed,
-                          ),
-                        ),
+                        FeedbackLink(text: linkText, onPressed: onLinkPressed),
                     ],
                   ),
                 ),

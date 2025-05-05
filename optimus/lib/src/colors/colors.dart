@@ -457,6 +457,7 @@ abstract final class OptimusDarkColors {
 }
 
 class OptimusColors {
+  @Deprecated('Use OptimusTokens instead. This will be removed on 01.07.2025')
   const OptimusColors(this.brightness);
 
   final Brightness brightness;
@@ -475,9 +476,10 @@ class OptimusColors {
   Color get selectedTabItemColor =>
       _isLight ? OptimusLightColors.neutral1000 : OptimusDarkColors.neutral0;
 
-  Color get unselectedTabItemColor => _isLight
-      ? OptimusLightColors.neutral1000t64
-      : OptimusDarkColors.neutral0t64;
+  Color get unselectedTabItemColor =>
+      _isLight
+          ? OptimusLightColors.neutral1000t64
+          : OptimusDarkColors.neutral0t64;
 
   Color get bottomTabBarBackground =>
       _isLight ? OptimusLightColors.neutral0 : OptimusDarkColors.neutral800;
@@ -530,41 +532,50 @@ class OptimusColors {
   Color get neutral0t64 =>
       _isLight ? OptimusLightColors.neutral0t64 : OptimusDarkColors.neutral0t64;
 
-  Color get neutral400t24 => _isLight
-      ? OptimusLightColors.neutral400t24
-      : OptimusDarkColors.neutral400t24;
+  Color get neutral400t24 =>
+      _isLight
+          ? OptimusLightColors.neutral400t24
+          : OptimusDarkColors.neutral400t24;
 
-  Color get neutral500t8 => _isLight
-      ? OptimusLightColors.neutral500t8
-      : OptimusDarkColors.neutral500t8;
+  Color get neutral500t8 =>
+      _isLight
+          ? OptimusLightColors.neutral500t8
+          : OptimusDarkColors.neutral500t8;
 
-  Color get neutral500t16 => _isLight
-      ? OptimusLightColors.neutral500t16
-      : OptimusDarkColors.neutral500t16;
+  Color get neutral500t16 =>
+      _isLight
+          ? OptimusLightColors.neutral500t16
+          : OptimusDarkColors.neutral500t16;
 
-  Color get neutral500t24 => _isLight
-      ? OptimusLightColors.neutral500t24
-      : OptimusDarkColors.neutral500t24;
+  Color get neutral500t24 =>
+      _isLight
+          ? OptimusLightColors.neutral500t24
+          : OptimusDarkColors.neutral500t24;
 
-  Color get neutral500t32 => _isLight
-      ? OptimusLightColors.neutral500t32
-      : OptimusDarkColors.neutral500t32;
+  Color get neutral500t32 =>
+      _isLight
+          ? OptimusLightColors.neutral500t32
+          : OptimusDarkColors.neutral500t32;
 
-  Color get neutral500t40 => _isLight
-      ? OptimusLightColors.neutral500t40
-      : OptimusDarkColors.neutral500t40;
+  Color get neutral500t40 =>
+      _isLight
+          ? OptimusLightColors.neutral500t40
+          : OptimusDarkColors.neutral500t40;
 
-  Color get neutral500t48 => _isLight
-      ? OptimusLightColors.neutral500t48
-      : OptimusDarkColors.neutral500t48;
+  Color get neutral500t48 =>
+      _isLight
+          ? OptimusLightColors.neutral500t48
+          : OptimusDarkColors.neutral500t48;
 
-  Color get neutral1000t32 => _isLight
-      ? OptimusLightColors.neutral1000t32
-      : OptimusDarkColors.neutral1000t32;
+  Color get neutral1000t32 =>
+      _isLight
+          ? OptimusLightColors.neutral1000t32
+          : OptimusDarkColors.neutral1000t32;
 
-  Color get neutral1000t64 => _isLight
-      ? OptimusLightColors.neutral1000t64
-      : OptimusDarkColors.neutral1000t64;
+  Color get neutral1000t64 =>
+      _isLight
+          ? OptimusLightColors.neutral1000t64
+          : OptimusDarkColors.neutral1000t64;
 
   Color get primary50 =>
       _isLight ? OptimusLightColors.primary50 : OptimusDarkColors.primary50;
@@ -593,29 +604,35 @@ class OptimusColors {
   Color get primary900 =>
       _isLight ? OptimusLightColors.primary900 : OptimusDarkColors.primary900;
 
-  Color get primary500t8 => _isLight
-      ? OptimusLightColors.primary500t8
-      : OptimusDarkColors.primary500t8;
+  Color get primary500t8 =>
+      _isLight
+          ? OptimusLightColors.primary500t8
+          : OptimusDarkColors.primary500t8;
 
-  Color get primary500t16 => _isLight
-      ? OptimusLightColors.primary500t16
-      : OptimusDarkColors.primary500t16;
+  Color get primary500t16 =>
+      _isLight
+          ? OptimusLightColors.primary500t16
+          : OptimusDarkColors.primary500t16;
 
-  Color get primary500t24 => _isLight
-      ? OptimusLightColors.primary500t24
-      : OptimusDarkColors.primary500t24;
+  Color get primary500t24 =>
+      _isLight
+          ? OptimusLightColors.primary500t24
+          : OptimusDarkColors.primary500t24;
 
-  Color get primary500t32 => _isLight
-      ? OptimusLightColors.primary500t32
-      : OptimusDarkColors.primary500t32;
+  Color get primary500t32 =>
+      _isLight
+          ? OptimusLightColors.primary500t32
+          : OptimusDarkColors.primary500t32;
 
-  Color get primary500t40 => _isLight
-      ? OptimusLightColors.primary500t40
-      : OptimusDarkColors.primary500t40;
+  Color get primary500t40 =>
+      _isLight
+          ? OptimusLightColors.primary500t40
+          : OptimusDarkColors.primary500t40;
 
-  Color get primary500t48 => _isLight
-      ? OptimusLightColors.primary500t48
-      : OptimusDarkColors.primary500t48;
+  Color get primary500t48 =>
+      _isLight
+          ? OptimusLightColors.primary500t48
+          : OptimusDarkColors.primary500t48;
 
   Color get success50 =>
       _isLight ? OptimusLightColors.success50 : OptimusDarkColors.success50;
@@ -644,29 +661,35 @@ class OptimusColors {
   Color get success900 =>
       _isLight ? OptimusLightColors.success900 : OptimusDarkColors.success900;
 
-  Color get success500t8 => _isLight
-      ? OptimusLightColors.success500t8
-      : OptimusDarkColors.success500t8;
+  Color get success500t8 =>
+      _isLight
+          ? OptimusLightColors.success500t8
+          : OptimusDarkColors.success500t8;
 
-  Color get success500t16 => _isLight
-      ? OptimusLightColors.success500t16
-      : OptimusDarkColors.success500t16;
+  Color get success500t16 =>
+      _isLight
+          ? OptimusLightColors.success500t16
+          : OptimusDarkColors.success500t16;
 
-  Color get success500t24 => _isLight
-      ? OptimusLightColors.success500t24
-      : OptimusDarkColors.success500t24;
+  Color get success500t24 =>
+      _isLight
+          ? OptimusLightColors.success500t24
+          : OptimusDarkColors.success500t24;
 
-  Color get success500t32 => _isLight
-      ? OptimusLightColors.success500t32
-      : OptimusDarkColors.success500t32;
+  Color get success500t32 =>
+      _isLight
+          ? OptimusLightColors.success500t32
+          : OptimusDarkColors.success500t32;
 
-  Color get success500t40 => _isLight
-      ? OptimusLightColors.success500t40
-      : OptimusDarkColors.success500t40;
+  Color get success500t40 =>
+      _isLight
+          ? OptimusLightColors.success500t40
+          : OptimusDarkColors.success500t40;
 
-  Color get success500t48 => _isLight
-      ? OptimusLightColors.success500t48
-      : OptimusDarkColors.success500t48;
+  Color get success500t48 =>
+      _isLight
+          ? OptimusLightColors.success500t48
+          : OptimusDarkColors.success500t48;
 
   Color get info50 =>
       _isLight ? OptimusLightColors.info50 : OptimusDarkColors.info50;
@@ -740,29 +763,35 @@ class OptimusColors {
   Color get warning900 =>
       _isLight ? OptimusLightColors.warning900 : OptimusDarkColors.warning900;
 
-  Color get warning500t8 => _isLight
-      ? OptimusLightColors.warning500t8
-      : OptimusDarkColors.warning500t8;
+  Color get warning500t8 =>
+      _isLight
+          ? OptimusLightColors.warning500t8
+          : OptimusDarkColors.warning500t8;
 
-  Color get warning500t16 => _isLight
-      ? OptimusLightColors.warning500t16
-      : OptimusDarkColors.warning500t16;
+  Color get warning500t16 =>
+      _isLight
+          ? OptimusLightColors.warning500t16
+          : OptimusDarkColors.warning500t16;
 
-  Color get warning500t24 => _isLight
-      ? OptimusLightColors.warning500t24
-      : OptimusDarkColors.warning500t24;
+  Color get warning500t24 =>
+      _isLight
+          ? OptimusLightColors.warning500t24
+          : OptimusDarkColors.warning500t24;
 
-  Color get warning500t32 => _isLight
-      ? OptimusLightColors.warning500t32
-      : OptimusDarkColors.warning500t32;
+  Color get warning500t32 =>
+      _isLight
+          ? OptimusLightColors.warning500t32
+          : OptimusDarkColors.warning500t32;
 
-  Color get warning500t40 => _isLight
-      ? OptimusLightColors.warning500t40
-      : OptimusDarkColors.warning500t40;
+  Color get warning500t40 =>
+      _isLight
+          ? OptimusLightColors.warning500t40
+          : OptimusDarkColors.warning500t40;
 
-  Color get warning500t48 => _isLight
-      ? OptimusLightColors.warning500t48
-      : OptimusDarkColors.warning500t48;
+  Color get warning500t48 =>
+      _isLight
+          ? OptimusLightColors.warning500t48
+          : OptimusDarkColors.warning500t48;
 
   Color get danger50 =>
       _isLight ? OptimusLightColors.danger50 : OptimusDarkColors.danger50;
@@ -794,25 +823,30 @@ class OptimusColors {
   Color get danger500t8 =>
       _isLight ? OptimusLightColors.danger500t8 : OptimusDarkColors.danger500t8;
 
-  Color get danger500t16 => _isLight
-      ? OptimusLightColors.danger500t16
-      : OptimusDarkColors.danger500t16;
+  Color get danger500t16 =>
+      _isLight
+          ? OptimusLightColors.danger500t16
+          : OptimusDarkColors.danger500t16;
 
-  Color get danger500t24 => _isLight
-      ? OptimusLightColors.danger500t24
-      : OptimusDarkColors.danger500t24;
+  Color get danger500t24 =>
+      _isLight
+          ? OptimusLightColors.danger500t24
+          : OptimusDarkColors.danger500t24;
 
-  Color get danger500t32 => _isLight
-      ? OptimusLightColors.danger500t32
-      : OptimusDarkColors.danger500t32;
+  Color get danger500t32 =>
+      _isLight
+          ? OptimusLightColors.danger500t32
+          : OptimusDarkColors.danger500t32;
 
-  Color get danger500t40 => _isLight
-      ? OptimusLightColors.danger500t40
-      : OptimusDarkColors.danger500t40;
+  Color get danger500t40 =>
+      _isLight
+          ? OptimusLightColors.danger500t40
+          : OptimusDarkColors.danger500t40;
 
-  Color get danger500t48 => _isLight
-      ? OptimusLightColors.danger500t48
-      : OptimusDarkColors.danger500t48;
+  Color get danger500t48 =>
+      _isLight
+          ? OptimusLightColors.danger500t48
+          : OptimusDarkColors.danger500t48;
 
   Color get basic =>
       _isLight ? OptimusLightColors.basic : OptimusDarkColors.basic;

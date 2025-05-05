@@ -108,9 +108,10 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _hasFooterError => _normalizedError.isNotEmpty && _isUsingBottomHint;
 
-  double get _verticalPadding => widget.hasMultipleLines
-      ? widget.size.getVerticalPadding(tokens)
-      : tokens.spacing0;
+  double get _verticalPadding =>
+      widget.hasMultipleLines
+          ? widget.size.getVerticalPadding(tokens)
+          : tokens.spacing0;
 
   Color get _borderColor {
     if (!widget.isEnabled) return tokens.borderDisabled;
@@ -146,23 +147,25 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             // ignore: use_decorated_box
             Container(
               key: widget.fieldBoxKey,
-              decoration: widget.hasBorders
-                  ? BoxDecoration(
-                      color: _background,
-                      borderRadius: BorderRadius.all(tokens.borderRadius100),
-                      border: Border.all(
-                        color: _borderColor,
-                        width: tokens.borderWidth150,
-                      ),
-                    )
-                  : null,
+              decoration:
+                  widget.hasBorders
+                      ? BoxDecoration(
+                        color: _background,
+                        borderRadius: BorderRadius.all(tokens.borderRadius100),
+                        border: Border.all(
+                          color: _borderColor,
+                          width: tokens.borderWidth150,
+                        ),
+                      )
+                      : null,
               child: MouseRegion(
                 onEnter: (_) => _handleHoverChanged(true),
                 onExit: (_) => _handleHoverChanged(false),
                 child: AnimatedContainer(
                   duration: _kAnimationDuration,
-                  constraints:
-                      BoxConstraints(minHeight: widget.size.getHeight(tokens)),
+                  constraints: BoxConstraints(
+                    minHeight: widget.size.getHeight(tokens),
+                  ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: widget.size.getContentPadding(tokens),
@@ -203,13 +206,14 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                 isEnabled: widget.isEnabled,
                 inputCounter: widget.inputCounter,
                 helperMessage: widget.helperMessage,
-                error: _hasFooterError
-                    ? _InputError(
-                        error: _normalizedError,
-                        isEnabled: widget.isEnabled,
-                        size: widget.size,
-                      )
-                    : null,
+                error:
+                    _hasFooterError
+                        ? _InputError(
+                          error: _normalizedError,
+                          isEnabled: widget.isEnabled,
+                          size: widget.size,
+                        )
+                        : null,
               ),
           ],
         ),
@@ -283,9 +287,9 @@ class _InputError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: size.getErrorPadding(context.tokens),
-        child: OptimusFieldError(error: error, isEnabled: isEnabled),
-      );
+    padding: size.getErrorPadding(context.tokens),
+    child: OptimusFieldError(error: error, isEnabled: isEnabled),
+  );
 }
 
 class _InputFooter extends StatelessWidget {
@@ -308,15 +312,16 @@ class _InputFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final leading = _hasMessage
-        ? Expanded(
-            child: _FooterMessage(
-              helperMessage: helperMessage,
-              errorMessage: error,
-              isEnabled: isEnabled,
-            ),
-          )
-        : const Spacer();
+    final leading =
+        _hasMessage
+            ? Expanded(
+              child: _FooterMessage(
+                helperMessage: helperMessage,
+                errorMessage: error,
+                isEnabled: isEnabled,
+              ),
+            )
+            : const Spacer();
 
     return Padding(
       padding: size.getHelperPadding(tokens),
@@ -343,16 +348,13 @@ class _FooterMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (helperMessage case final helperMessage?)
-            _HelperMessage(
-              helperMessage: helperMessage,
-              isEnabled: isEnabled,
-            ),
-          if (errorMessage case final errorMessage?) errorMessage,
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      if (helperMessage case final helperMessage?)
+        _HelperMessage(helperMessage: helperMessage, isEnabled: isEnabled),
+      if (errorMessage case final errorMessage?) errorMessage,
+    ],
+  );
 }
 
 class _HelperMessage extends StatelessWidget {
@@ -494,83 +496,76 @@ class _ColoredTransitionState extends State<_ColoredTransition> {
 
   @override
   Widget build(BuildContext context) => AnimatedFractionallySizedBox(
-        duration: _kAnimationDuration,
-        alignment: Alignment.centerLeft,
-        heightFactor: 1,
-        widthFactor: widget.state.progress,
-        curve: Curves.fastOutSlowIn,
-        child: ColoredBox(
-          color: widget.state == OptimusStatusBarState.empty
+    duration: _kAnimationDuration,
+    alignment: Alignment.centerLeft,
+    heightFactor: 1,
+    widthFactor: widget.state.progress,
+    curve: Curves.fastOutSlowIn,
+    child: ColoredBox(
+      color:
+          widget.state == OptimusStatusBarState.empty
               ? _previousState
                   .getStatusBarColor(context.tokens)
                   .withValues(alpha: 0.5)
               : widget.state.getStatusBarColor(context.tokens),
-        ),
-      );
+    ),
+  );
 }
 
 extension on OptimusStatusBarState {
   Color getStatusBarColor(OptimusTokens tokens) => switch (this) {
-        OptimusStatusBarState.empty ||
-        OptimusStatusBarState.danger =>
-          tokens.backgroundAlertDangerPrimary,
-        OptimusStatusBarState.medium => tokens.backgroundAlertWarningPrimary,
-        OptimusStatusBarState.strong => tokens.backgroundAlertSuccessPrimary,
-      };
+    OptimusStatusBarState.empty ||
+    OptimusStatusBarState.danger => tokens.backgroundAlertDangerPrimary,
+    OptimusStatusBarState.medium => tokens.backgroundAlertWarningPrimary,
+    OptimusStatusBarState.strong => tokens.backgroundAlertSuccessPrimary,
+  };
 
   double get progress => switch (this) {
-        OptimusStatusBarState.empty => 0,
-        OptimusStatusBarState.danger => 0.33,
-        OptimusStatusBarState.medium => 0.66,
-        OptimusStatusBarState.strong => 1,
-      };
+    OptimusStatusBarState.empty => 0,
+    OptimusStatusBarState.danger => 0.33,
+    OptimusStatusBarState.medium => 0.66,
+    OptimusStatusBarState.strong => 1,
+  };
 }
 
 extension on OptimusWidgetSize {
   EdgeInsets getLabelPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small ||
-        OptimusWidgetSize.medium =>
-          EdgeInsets.only(bottom: tokens.spacing50),
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          EdgeInsets.only(bottom: tokens.spacing100),
-      };
+    OptimusWidgetSize.small ||
+    OptimusWidgetSize.medium => EdgeInsets.only(bottom: tokens.spacing50),
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => EdgeInsets.only(bottom: tokens.spacing100),
+  };
 
   EdgeInsets getHelperPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small ||
-        OptimusWidgetSize.medium =>
-          EdgeInsets.only(top: tokens.spacing50),
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          EdgeInsets.only(top: tokens.spacing100),
-      };
+    OptimusWidgetSize.small ||
+    OptimusWidgetSize.medium => EdgeInsets.only(top: tokens.spacing50),
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => EdgeInsets.only(top: tokens.spacing100),
+  };
 
   EdgeInsets getErrorPadding(OptimusTokens tokens) =>
       EdgeInsets.only(top: tokens.spacing50);
 
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small ||
-        OptimusWidgetSize.medium =>
-          tokens.spacing100,
-        OptimusWidgetSize.large ||
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing150,
-      };
+    OptimusWidgetSize.small || OptimusWidgetSize.medium => tokens.spacing100,
+    OptimusWidgetSize.large ||
+    OptimusWidgetSize.extraLarge => tokens.spacing150,
+  };
 
   double getContentPadding(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.spacing150,
-        OptimusWidgetSize.medium => tokens.spacing200,
-        OptimusWidgetSize.large => tokens.spacing250,
-        OptimusWidgetSize.extraLarge =>
-          tokens.spacing300, // TODO(witwash): check with design
-      };
+    OptimusWidgetSize.small => tokens.spacing150,
+    OptimusWidgetSize.medium => tokens.spacing200,
+    OptimusWidgetSize.large => tokens.spacing250,
+    OptimusWidgetSize.extraLarge =>
+      tokens.spacing300, // TODO(witwash): check with design
+  };
 
   double getHeight(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.sizing400,
-        OptimusWidgetSize.medium => tokens.sizing500,
-        OptimusWidgetSize.large => tokens.sizing600,
-        OptimusWidgetSize.extraLarge => tokens.sizing700,
-      };
+    OptimusWidgetSize.small => tokens.sizing400,
+    OptimusWidgetSize.medium => tokens.sizing500,
+    OptimusWidgetSize.large => tokens.sizing600,
+    OptimusWidgetSize.extraLarge => tokens.sizing700,
+  };
 }
 
 const Duration _kAnimationDuration = Duration(milliseconds: 200);

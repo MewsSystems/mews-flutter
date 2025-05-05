@@ -1,9 +1,12 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/overlay_controller.dart';
+
+typedef BorderBuilder = Border Function(Color color);
 
 class BaseDropDownButton<T> extends StatefulWidget {
   const BaseDropDownButton({
@@ -14,6 +17,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.tertiary,
     this.borderRadius,
+    this.borderBuilder,
   });
 
   /// Typically the button's label.
@@ -24,6 +28,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final OptimusWidgetSize size;
   final OptimusDropdownButtonVariant variant;
   final BorderRadius? borderRadius;
+  final BorderBuilder? borderBuilder;
 
   @override
   State<BaseDropDownButton<T>> createState() => _BaseDropDownButtonState<T>();
@@ -31,10 +36,13 @@ class BaseDropDownButton<T> extends StatefulWidget {
 
 class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     with ThemeGetter, SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.fastOutSlowIn);
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0, end: 0.5);
+  static final Animatable<double> _easeInTween = CurveTween(
+    curve: Curves.fastOutSlowIn,
+  );
+  static final Animatable<double> _halfTween = Tween<double>(
+    begin: 0,
+    end: 0.5,
+  );
 
   final _selectFieldKey = GlobalKey();
   final _node = FocusNode();
@@ -75,29 +83,30 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   BaseButtonVariant get _variant => widget.variant.toBaseVariant();
 
   Color get _textColor => _variant.getForegroundColor(
-        tokens,
-        isEnabled: _isEnabled,
-        isPressed: _isPressed,
-        isHovered: _isHovered,
-      );
+    tokens,
+    isEnabled: _isEnabled,
+    isPressed: _isPressed,
+    isHovered: _isHovered,
+  );
 
   Color? get _borderColor => _variant.getBorderColor(
-        tokens,
-        isHovered: _isHovered,
-        isPressed: _isPressed,
-        isEnabled: _isEnabled,
-      );
+    tokens,
+    isHovered: _isHovered,
+    isPressed: _isPressed,
+    isEnabled: _isEnabled,
+  );
 
-  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
-      ? tokens.bodyMediumStrong.copyWith(color: _textColor)
-      : tokens.bodyLargeStrong.copyWith(color: _textColor);
+  TextStyle get _labelStyle =>
+      widget.size == OptimusWidgetSize.small
+          ? tokens.bodyMediumStrong.copyWith(color: _textColor)
+          : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
   Color? get _color => _variant.getBackgroundColor(
-        tokens,
-        isEnabled: _isEnabled,
-        isPressed: _isPressed,
-        isHovered: _isHovered,
-      );
+    tokens,
+    isEnabled: _isEnabled,
+    isPressed: _isPressed,
+    isHovered: _isHovered,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +114,12 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     final borderColor = this._borderColor;
     final borderRadius =
         widget.borderRadius ?? BorderRadius.all(tokens.borderRadius100);
+
+    final border =
+        borderColor != null
+            ? (widget.borderBuilder?.let((it) => it(borderColor)) ??
+                Border.all(color: borderColor, width: tokens.borderWidth150))
+            : null;
 
     return OverlayController(
       items: widget.items,
@@ -131,12 +146,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                 decoration: BoxDecoration(
                   color: _color,
                   borderRadius: borderRadius,
-                  border: borderColor != null
-                      ? Border.all(
-                          color: borderColor,
-                          width: tokens.borderWidth150,
-                        )
-                      : null,
+                  border: border,
                 ),
                 duration: buttonAnimationDuration,
                 curve: buttonAnimationCurve,

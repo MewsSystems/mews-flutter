@@ -4,12 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 
-enum OptimusDropdownButtonVariant {
-  primary,
-  secondary,
-  tertiary,
-  text,
-}
+enum OptimusDropdownButtonVariant { primary, secondary, tertiary, text }
 
 /// Dropdown buttons trigger a dropdown menu with more actions related to the
 /// context of the button.
@@ -33,19 +28,19 @@ class OptimusDropDownButton<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BaseDropDownButton(
-        items: items,
-        onItemSelected: onItemSelected,
-        size: size,
-        variant: variant,
-        child: child,
-      );
+    items: items,
+    onItemSelected: onItemSelected,
+    size: size,
+    variant: variant,
+    child: child,
+  );
 }
 
 extension BaseButtonVariantResolve on OptimusDropdownButtonVariant {
   BaseButtonVariant toBaseVariant() => switch (this) {
-        OptimusDropdownButtonVariant.tertiary => BaseButtonVariant.tertiary,
-        OptimusDropdownButtonVariant.primary => BaseButtonVariant.primary,
-        OptimusDropdownButtonVariant.secondary => BaseButtonVariant.secondary,
-        OptimusDropdownButtonVariant.text => BaseButtonVariant.ghost,
-      };
+    OptimusDropdownButtonVariant.tertiary => BaseButtonVariant.tertiary,
+    OptimusDropdownButtonVariant.primary => BaseButtonVariant.primary,
+    OptimusDropdownButtonVariant.secondary => BaseButtonVariant.secondary,
+    OptimusDropdownButtonVariant.text => BaseButtonVariant.ghost,
+  };
 }

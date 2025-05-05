@@ -76,22 +76,23 @@ class OptimusCard extends StatelessWidget {
   /// Controls the radius of the card.
   final OptimusCardCornerRadius radius;
 
-  Border? _border(BuildContext context) => isOutlined
-      ? Border.all(
-          width: context.tokens.borderWidth150,
-          color: context.tokens.borderStaticPrimary,
-        )
-      : null;
+  Border? _border(BuildContext context) =>
+      isOutlined
+          ? Border.all(
+            width: context.tokens.borderWidth150,
+            color: context.tokens.borderStaticPrimary,
+          )
+          : null;
 
   List<BoxShadow> _getShadows(OptimusTokens tokens) => switch (variant) {
-        OptimusBasicCardVariant.normal => tokens.shadow100,
-        OptimusBasicCardVariant.overlay => tokens.shadow300,
-      };
+    OptimusBasicCardVariant.normal => tokens.shadow100,
+    OptimusBasicCardVariant.overlay => tokens.shadow300,
+  };
 
   Radius _radius(BuildContext context) => switch (radius) {
-        OptimusCardCornerRadius.small => context.tokens.borderRadius100,
-        OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
-      };
+    OptimusCardCornerRadius.small => context.tokens.borderRadius100,
+    OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -151,35 +152,36 @@ class OptimusNestedCard extends StatelessWidget {
   final OptimusCardCornerRadius radius;
 
   Radius _radius(BuildContext context) => switch (radius) {
-        OptimusCardCornerRadius.small => context.tokens.borderRadius100,
-        OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
-      };
+    OptimusCardCornerRadius.small => context.tokens.borderRadius100,
+    OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
+  };
 
-  Border? _border(BuildContext context) => isOutlined
-      ? Border.all(
-          width: context.tokens.borderWidth150,
-          color: context.tokens.borderStaticPrimary,
-        )
-      : null;
+  Border? _border(BuildContext context) =>
+      isOutlined
+          ? Border.all(
+            width: context.tokens.borderWidth150,
+            color: context.tokens.borderStaticPrimary,
+          )
+          : null;
 
   Color _color(BuildContext context) => switch (variant) {
-        OptimusNestedCardVariant.emphasized =>
-          context.tokens.backgroundInteractiveNeutralDefault,
-        OptimusNestedCardVariant.highlighted =>
-          context.tokens.backgroundInteractiveSecondaryDefault,
-        OptimusNestedCardVariant.normal => context.tokens.backgroundStaticFlat,
-      };
+    OptimusNestedCardVariant.emphasized =>
+      context.tokens.backgroundInteractiveNeutralDefault,
+    OptimusNestedCardVariant.highlighted =>
+      context.tokens.backgroundInteractiveSecondaryDefault,
+    OptimusNestedCardVariant.normal => context.tokens.backgroundStaticFlat,
+  };
 
   @override
   Widget build(BuildContext context) => _Card(
-        spacing: padding,
-        attachment: attachment,
-        border: _border(context),
-        color: _color(context),
-        radius: _radius(context),
-        contentWrapperBuilder: contentWrapperBuilder,
-        child: child,
-      );
+    spacing: padding,
+    attachment: attachment,
+    border: _border(context),
+    color: _color(context),
+    radius: _radius(context),
+    contentWrapperBuilder: contentWrapperBuilder,
+    child: child,
+  );
 }
 
 class _Card extends StatelessWidget {
@@ -204,31 +206,32 @@ class _Card extends StatelessWidget {
   final Radius radius;
 
   BorderRadius get _borderRadius => switch (attachment) {
-        OptimusCardAttachment.none => BorderRadius.all(radius),
-        OptimusCardAttachment.left => BorderRadius.only(
-            topRight: radius,
-            bottomRight: radius,
-          ),
-        OptimusCardAttachment.right => BorderRadius.only(
-            topLeft: radius,
-            bottomLeft: radius,
-          ),
-        OptimusCardAttachment.top => BorderRadius.only(
-            bottomLeft: radius,
-            bottomRight: radius,
-          ),
-        OptimusCardAttachment.bottom => BorderRadius.only(
-            topLeft: radius,
-            topRight: radius,
-          ),
-      };
+    OptimusCardAttachment.none => BorderRadius.all(radius),
+    OptimusCardAttachment.left => BorderRadius.only(
+      topRight: radius,
+      bottomRight: radius,
+    ),
+    OptimusCardAttachment.right => BorderRadius.only(
+      topLeft: radius,
+      bottomLeft: radius,
+    ),
+    OptimusCardAttachment.top => BorderRadius.only(
+      bottomLeft: radius,
+      bottomRight: radius,
+    ),
+    OptimusCardAttachment.bottom => BorderRadius.only(
+      topLeft: radius,
+      topRight: radius,
+    ),
+  };
 
   @override
   Widget build(BuildContext context) {
     final contentWrapperBuilder = this.contentWrapperBuilder;
-    final wrappedChild = contentWrapperBuilder == null
-        ? OptimusCardChildPadding(spacing: spacing, child: child)
-        : contentWrapperBuilder(context, child);
+    final wrappedChild =
+        contentWrapperBuilder == null
+            ? OptimusCardChildPadding(spacing: spacing, child: child)
+            : contentWrapperBuilder(context, child);
 
     return Container(
       clipBehavior: Clip.antiAlias,
@@ -254,12 +257,12 @@ class OptimusCardChildPadding extends StatelessWidget {
   final OptimusCardSpacing spacing;
 
   EdgeInsets _getPadding(OptimusTokens tokens) => switch (spacing) {
-        OptimusCardSpacing.spacing0 => EdgeInsets.zero,
-        OptimusCardSpacing.spacing100 => EdgeInsets.all(tokens.spacing100),
-        OptimusCardSpacing.spacing200 => EdgeInsets.all(tokens.spacing200),
-        OptimusCardSpacing.spacing300 => EdgeInsets.all(tokens.spacing300),
-        OptimusCardSpacing.spacing400 => EdgeInsets.all(tokens.spacing400),
-      };
+    OptimusCardSpacing.spacing0 => EdgeInsets.zero,
+    OptimusCardSpacing.spacing100 => EdgeInsets.all(tokens.spacing100),
+    OptimusCardSpacing.spacing200 => EdgeInsets.all(tokens.spacing200),
+    OptimusCardSpacing.spacing300 => EdgeInsets.all(tokens.spacing300),
+    OptimusCardSpacing.spacing400 => EdgeInsets.all(tokens.spacing400),
+  };
 
   @override
   Widget build(BuildContext context) =>

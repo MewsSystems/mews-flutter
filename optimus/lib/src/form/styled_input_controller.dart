@@ -7,15 +7,15 @@ class StyledInputController extends TextEditingController {
     required String text,
     required TextStyle inputStyle,
     required TextStyle placeholderStyle,
-  })  : _inputStyle = inputStyle,
-        _placeholderStyle = placeholderStyle,
-        super.fromValue(
-          // workaround for the issue with the cursor position on Android
-          TextEditingValue(
-            text: text,
-            selection: TextSelection.collapsed(offset: text.length),
-          ),
-        );
+  }) : _inputStyle = inputStyle,
+       _placeholderStyle = placeholderStyle,
+       super.fromValue(
+         // workaround for the issue with the cursor position on Android
+         TextEditingValue(
+           text: text,
+           selection: TextSelection.collapsed(offset: text.length),
+         ),
+       );
 
   TextStyle _inputStyle;
   TextStyle _placeholderStyle;

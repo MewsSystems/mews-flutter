@@ -12,9 +12,9 @@ class CirclePainter extends CustomPainter {
     this.strokeWidth,
     this.strokeCap = StrokeCap.square,
   }) : assert(
-          progress >= 0 && progress <= 100,
-          'progress should be in [0, 100] range',
-        );
+         progress >= 0 && progress <= 100,
+         'progress should be in [0, 100] range',
+       );
 
   final Color? trackColor;
   final Color indicatorColor;
@@ -35,19 +35,21 @@ class CirclePainter extends CustomPainter {
     final center = Offset(radius, radius);
 
     if (trackColor case final trackColor?) {
-      final trackCircle = Paint()
-        ..strokeWidth = strokeWidth
-        ..color = trackColor
-        ..style = PaintingStyle.stroke;
+      final trackCircle =
+          Paint()
+            ..strokeWidth = strokeWidth
+            ..color = trackColor
+            ..style = PaintingStyle.stroke;
 
       canvas.drawCircle(center, radius, trackCircle);
     }
 
-    final indicatorArc = Paint()
-      ..strokeWidth = strokeWidth
-      ..color = indicatorColor
-      ..style = PaintingStyle.stroke
-      ..strokeCap = strokeCap;
+    final indicatorArc =
+        Paint()
+          ..strokeWidth = strokeWidth
+          ..color = indicatorColor
+          ..style = PaintingStyle.stroke
+          ..strokeCap = strokeCap;
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),

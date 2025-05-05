@@ -72,21 +72,22 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
       child: widget.text,
     );
 
-    final child = icon != null
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              text,
-              Padding(
-                padding: EdgeInsets.only(left: tokens.spacing100),
-                child: IconTheme(
-                  data: IconThemeData(color: _effectiveColor),
-                  child: icon,
+    final child =
+        icon != null
+            ? Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                text,
+                Padding(
+                  padding: EdgeInsets.only(left: tokens.spacing100),
+                  child: IconTheme(
+                    data: IconThemeData(color: _effectiveColor),
+                    child: icon,
+                  ),
                 ),
-              ),
-            ],
-          )
-        : text;
+              ],
+            )
+            : text;
 
     return OptimusEnabled(
       isEnabled: _isEnabled,
@@ -102,19 +103,19 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
 
 extension on OptimusLinkVariant {
   Color getDefaultColor(OptimusTokens tokens) => switch (this) {
-        OptimusLinkVariant.primary => tokens.textInteractivePrimaryDefault,
-        OptimusLinkVariant.basic => tokens.textStaticPrimary,
-      };
+    OptimusLinkVariant.primary => tokens.textInteractivePrimaryDefault,
+    OptimusLinkVariant.basic => tokens.textStaticPrimary,
+  };
 
   Color getHoveredColor(OptimusTokens tokens) => switch (this) {
-        OptimusLinkVariant.primary => tokens.textInteractivePrimaryHover,
-        OptimusLinkVariant.basic => tokens.textStaticTertiary,
-      };
+    OptimusLinkVariant.primary => tokens.textInteractivePrimaryHover,
+    OptimusLinkVariant.basic => tokens.textStaticTertiary,
+  };
 
   Color getTappedColor(OptimusTokens tokens) => switch (this) {
-        OptimusLinkVariant.primary => tokens.textInteractivePrimaryActive,
-        OptimusLinkVariant.basic => tokens.textStaticPrimary,
-      };
+    OptimusLinkVariant.primary => tokens.textInteractivePrimaryActive,
+    OptimusLinkVariant.basic => tokens.textStaticPrimary,
+  };
 
   Color getDisabledColor(OptimusTokens tokens) => tokens.textDisabled;
 }

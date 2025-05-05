@@ -12,9 +12,9 @@ void main() {
     calls.clear();
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(
-      channel,
-      (call) async => calls.add(call.method),
-    );
+          channel,
+          (call) async => calls.add(call.method),
+        );
   });
 
   tearDown(() {

@@ -21,18 +21,18 @@ class OptimusPictogram extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox.square(
-        dimension: size.getSize(context.tokens),
-        child: SvgPicture.asset(
-          variant.path(context.theme.brightness),
-          package: 'optimus',
-        ),
-      );
+    dimension: size.getSize(context.tokens),
+    child: SvgPicture.asset(
+      variant.path(context.theme.brightness),
+      package: 'optimus',
+    ),
+  );
 }
 
 extension on OptimusPictogramSize {
   double getSize(OptimusTokens tokens) => switch (this) {
-        OptimusPictogramSize.small => tokens.sizing600,
-        OptimusPictogramSize.medium => tokens.sizing800,
-        OptimusPictogramSize.large => 80, // TODO(witwash): add token
-      };
+    OptimusPictogramSize.small => tokens.sizing600,
+    OptimusPictogramSize.medium => tokens.sizing800,
+    OptimusPictogramSize.large => tokens.sizing1000,
+  };
 }

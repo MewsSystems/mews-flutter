@@ -14,18 +14,16 @@ Widget createDefaultStyle(BuildContext context) {
 
   return _Content(
     isEnabled: k.isEnabledKnob,
-    error:
-        k.string(label: 'Validation error', initialValue: 'Validation error'),
+    error: k.string(
+      label: 'Validation error',
+      initialValue: 'Validation error',
+    ),
     size: k.widgetSizeKnob,
   );
 }
 
 class _Content extends StatefulWidget {
-  const _Content({
-    required this.isEnabled,
-    required this.size,
-    this.error,
-  });
+  const _Content({required this.isEnabled, required this.size, this.error});
 
   final bool isEnabled;
   final String? error;
@@ -42,19 +40,19 @@ class _ContentState extends State<_Content> {
 
   @override
   Widget build(BuildContext context) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Current value: ${_value ?? 0}'),
-          const SizedBox(height: 16),
-          OptimusStepperFormField(
-            enabled: widget.isEnabled,
-            size: widget.size,
-            onChanged: _handleChanged,
-            initialValue: 8,
-            min: 5,
-            max: 15,
-            validationError: widget.error,
-          ),
-        ],
-      );
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text('Current value: ${_value ?? 0}'),
+      const SizedBox(height: 16),
+      OptimusStepperFormField(
+        enabled: widget.isEnabled,
+        size: widget.size,
+        onChanged: _handleChanged,
+        initialValue: 8,
+        min: 5,
+        max: 15,
+        validationError: widget.error,
+      ),
+    ],
+  );
 }

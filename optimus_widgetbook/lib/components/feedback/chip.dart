@@ -5,20 +5,17 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Chip',
-  type: OptimusChip,
-  path: '[Feedback]',
-)
+@widgetbook.UseCase(name: 'Chip', type: OptimusChip, path: '[Feedback]')
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
   final text = k.string(label: 'Chip text', initialValue: 'Chip');
   final hasError = k.boolean(label: 'Error', initialValue: false);
+  final isRemovable = k.boolean(label: 'Removable', initialValue: false);
 
   return OptimusChip(
     isEnabled: k.isEnabledKnob,
-    onRemoved: ignore,
+    onRemoved: isRemovable ? ignore : null,
     hasError: hasError,
     child: Text(text),
   );

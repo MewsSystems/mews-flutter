@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Spacing',
-  type: Column,
-  path: '[Layout]',
-)
+@widgetbook.UseCase(name: 'Spacing', type: Padding, path: '[Layout]/Spacing')
 Widget createDefaultStyle(BuildContext context) {
   final tokens = context.tokens;
 

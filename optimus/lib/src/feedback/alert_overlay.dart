@@ -34,12 +34,12 @@ class OptimusAlertOverlay extends StatefulWidget {
 class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     with ThemeGetter
     implements OptimusAlertManager {
-  final List<OptimusAlert> _alerts = [];
-  final List<OptimusAlert> _queue = [];
+  final List<Widget> _alerts = [];
+  final List<Widget> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
-  void show(OptimusAlert alert) {
+  void show(Widget alert) {
     if (_alerts.length < widget.maxVisible) {
       _addAlert(alert);
     } else {
@@ -48,7 +48,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
   }
 
   @override
-  void remove(OptimusAlert alert) {
+  void remove(Widget alert) {
     final index = _alerts.indexOf(alert);
     if (index != -1) {
       _alerts.removeAt(index);
@@ -60,7 +60,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     }
   }
 
-  void _addAlert(OptimusAlert alert, {int index = 0}) {
+  void _addAlert(Widget alert, {int index = 0}) {
     _alerts.insert(index, alert);
     _listKey.currentState?.insertItem(index, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
@@ -76,17 +76,12 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     }
   }
 
-  _AnimatedAlert _buildRemovedAlert(
-    Animation<double> animation,
-    OptimusAlert alert,
-  ) {
-    animation.addStatusListener(
-      (status) {
-        if (status == AnimationStatus.dismissed) {
-          _handleAlertDismiss();
-        }
-      },
-    );
+  _AnimatedAlert _buildRemovedAlert(Animation<double> animation, Widget alert) {
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.dismissed) {
+        _handleAlertDismiss();
+      }
+    });
 
     return _AnimatedAlert(
       animation: animation,
@@ -98,41 +93,54 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final isCompact = MediaQuery.sizeOf(context).screenBreakpoint.index <=
+    final isCompact =
+        MediaQuery.sizeOf(context).screenBreakpoint.index <=
         Breakpoint.medium.index;
 
     return Builder(
-      builder: (context) => _OptimusAlertData(
-        this,
-        child: Stack(
-          children: [
-            widget.child,
-            Positioned(
-              left: widget.position.left(tokens: tokens, isCompact: isCompact),
-              top: widget.position.top(tokens: tokens, isCompact: isCompact),
-              right:
-                  widget.position.right(tokens: tokens, isCompact: isCompact),
-              bottom:
-                  widget.position.bottom(tokens: tokens, isCompact: isCompact),
-              child: SafeArea(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: _maxWidth),
-                  child: AnimatedList(
-                    key: _listKey,
-                    shrinkWrap: true,
-                    reverse: widget.position.isReversed,
-                    itemBuilder: (context, index, animation) => _AnimatedAlert(
-                      animation: animation,
-                      alert: _alerts[index],
-                      slideTween: widget.position.slideTween,
+      builder:
+          (context) => _OptimusAlertData(
+            this,
+            child: Stack(
+              children: [
+                widget.child,
+                Positioned(
+                  left: widget.position.left(
+                    tokens: tokens,
+                    isCompact: isCompact,
+                  ),
+                  top: widget.position.top(
+                    tokens: tokens,
+                    isCompact: isCompact,
+                  ),
+                  right: widget.position.right(
+                    tokens: tokens,
+                    isCompact: isCompact,
+                  ),
+                  bottom: widget.position.bottom(
+                    tokens: tokens,
+                    isCompact: isCompact,
+                  ),
+                  child: SafeArea(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: _maxWidth),
+                      child: AnimatedList(
+                        key: _listKey,
+                        shrinkWrap: true,
+                        reverse: widget.position.isReversed,
+                        itemBuilder:
+                            (context, index, animation) => _AnimatedAlert(
+                              animation: animation,
+                              alert: _alerts[index],
+                              slideTween: widget.position.slideTween,
+                            ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }
@@ -140,16 +148,13 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
 abstract class OptimusAlertManager {
   const OptimusAlertManager();
 
-  void show(OptimusAlert alert);
+  void show(Widget alert);
 
-  void remove(OptimusAlert alert);
+  void remove(Widget alert);
 }
 
 class _OptimusAlertData extends InheritedWidget {
-  const _OptimusAlertData(
-    this.manager, {
-    required super.child,
-  });
+  const _OptimusAlertData(this.manager, {required super.child});
 
   final OptimusAlertManager manager;
 
@@ -166,32 +171,30 @@ class _AnimatedAlert extends StatelessWidget {
   });
 
   final Animation<double> animation;
-  final OptimusAlert alert;
+  final Widget alert;
   final Tween<Offset> slideTween;
   final bool isOutgoing;
 
   @override
   Widget build(BuildContext context) => IgnorePointer(
-        ignoring: isOutgoing,
-        child: FadeTransition(
-          opacity: animation,
-          child: _NoClipSizeTransition(
-            sizeFactor: CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOutQuart,
-            ),
-            child: SlideTransition(
-              position: CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeInOutCubic,
-              ).drive(slideTween),
-              child: Center(
-                child: alert,
-              ),
-            ),
-          ),
+    ignoring: isOutgoing,
+    child: FadeTransition(
+      opacity: animation,
+      child: _NoClipSizeTransition(
+        sizeFactor: CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutQuart,
         ),
-      );
+        child: SlideTransition(
+          position: CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOutCubic,
+          ).drive(slideTween),
+          child: Center(child: alert),
+        ),
+      ),
+    ),
+  );
 }
 
 /// Similar to [ScaleTransition], but without clipping.
@@ -208,10 +211,10 @@ class _NoClipSizeTransition extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) => Align(
-        alignment: AlignmentDirectional.centerStart,
-        heightFactor: math.max(sizeFactor.value, 0.0),
-        child: child,
-      );
+    alignment: AlignmentDirectional.centerStart,
+    heightFactor: math.max(sizeFactor.value, 0.0),
+    child: child,
+  );
 }
 
 /// Position of the alert.
@@ -220,57 +223,47 @@ enum OptimusAlertPosition { topLeft, topRight, bottomRight, bottomLeft }
 extension on OptimusAlertPosition {
   double? left({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusAlertPosition.bottomLeft ||
-        OptimusAlertPosition.topLeft =>
+        OptimusAlertPosition.bottomLeft || OptimusAlertPosition.topLeft =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusAlertPosition.topRight ||
-        OptimusAlertPosition.bottomRight =>
+        OptimusAlertPosition.topRight || OptimusAlertPosition.bottomRight =>
           isCompact ? tokens.spacing100 : null,
       };
 
-  double? top({required OptimusTokens tokens, required bool isCompact}) =>
-      switch (this) {
-        OptimusAlertPosition.topLeft ||
-        OptimusAlertPosition.topRight =>
-          isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusAlertPosition.bottomRight ||
-        OptimusAlertPosition.bottomLeft =>
-          null,
-      };
+  double? top({
+    required OptimusTokens tokens,
+    required bool isCompact,
+  }) => switch (this) {
+    OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight =>
+      isCompact ? tokens.spacing100 : tokens.spacing200,
+    OptimusAlertPosition.bottomRight || OptimusAlertPosition.bottomLeft => null,
+  };
 
   double? right({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusAlertPosition.bottomRight ||
-        OptimusAlertPosition.topRight =>
+        OptimusAlertPosition.bottomRight || OptimusAlertPosition.topRight =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
         OptimusAlertPosition.topLeft ||
-        OptimusAlertPosition.bottomLeft =>
-          isCompact ? tokens.spacing100 : null,
+        OptimusAlertPosition.bottomLeft => isCompact ? tokens.spacing100 : null,
       };
 
   double? bottom({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
         OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => null,
-        OptimusAlertPosition.bottomRight ||
-        OptimusAlertPosition.bottomLeft =>
+        OptimusAlertPosition.bottomRight || OptimusAlertPosition.bottomLeft =>
           isCompact ? tokens.spacing100 : tokens.spacing200,
       };
 
   Tween<Offset> get slideTween => switch (this) {
-        OptimusAlertPosition.topLeft ||
-        OptimusAlertPosition.bottomLeft =>
-          Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero),
-        OptimusAlertPosition.topRight ||
-        OptimusAlertPosition.bottomRight =>
-          Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero),
-      };
+    OptimusAlertPosition.topLeft || OptimusAlertPosition.bottomLeft =>
+      Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero),
+    OptimusAlertPosition.topRight || OptimusAlertPosition.bottomRight =>
+      Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero),
+  };
 
   bool get isReversed => switch (this) {
-        OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => false,
-        OptimusAlertPosition.bottomLeft ||
-        OptimusAlertPosition.bottomRight =>
-          true,
-      };
+    OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => false,
+    OptimusAlertPosition.bottomLeft || OptimusAlertPosition.bottomRight => true,
+  };
 }
 
 const Duration _animationDuration = Duration(milliseconds: 300);

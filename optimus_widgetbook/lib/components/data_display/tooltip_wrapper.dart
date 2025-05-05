@@ -28,8 +28,12 @@ Widget createDefaultStyle(BuildContext context) {
     options: OptimusToolTipSize.values,
     labelBuilder: (value) => value.name,
   );
-  final duration =
-      knobs.int.slider(label: 'Duration', initialValue: 1, min: 0, max: 5);
+  final duration = knobs.int.slider(
+    label: 'Duration',
+    initialValue: 1,
+    min: 0,
+    max: 5,
+  );
   final contentAlign = knobs.alignmentKnob();
 
   return Padding(

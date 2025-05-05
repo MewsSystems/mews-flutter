@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -15,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Layout',
     initialOption: Axis.vertical,
     options: Axis.values,
-    labelBuilder: (value) => value.name,
+    labelBuilder: enumLabelBuilder,
   );
 
   return OptimusProgressIndicator(
@@ -26,29 +27,26 @@ Widget createDefaultStyle(BuildContext context) {
       initialValue: 0,
       max: _items.length - 1,
     ),
-    maxItem:
-        k.int.slider(label: 'Max', initialValue: 2, max: _items.length - 1),
+    maxItem: k.int.slider(
+      label: 'Max',
+      initialValue: 2,
+      max: _items.length - 1,
+    ),
   );
 }
 
 const List<OptimusProgressIndicatorItem> _items = [
   OptimusProgressIndicatorItem(
-    label: Text('Step with long title'),
+    text: Text('Step with long title'),
     description: Text('Some description goes here'),
-    icon: OptimusIcons.edit,
   ),
+  OptimusProgressIndicatorItem(text: Text('Step 2')),
   OptimusProgressIndicatorItem(
-    label: Text('Step 2'),
-    icon: OptimusIcons.connect,
-  ),
-  OptimusProgressIndicatorItem(
-    label: Text('Step 3'),
+    text: Text('Step 3'),
     description: Text('Description'),
-    icon: OptimusIcons.delete,
   ),
   OptimusProgressIndicatorItem(
-    label: Text('Step 4'),
+    text: Text('Step 4'),
     description: Text('Description'),
-    icon: OptimusIcons.magic,
   ),
 ];

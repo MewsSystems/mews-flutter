@@ -40,47 +40,47 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
     return checked.isEmpty
         ? false
         : checked.length == children.length
-            ? true
-            : null;
+        ? true
+        : null;
   }
 
   @override
   Widget build(BuildContext context) => GroupWrapper(
-        label: label,
-        error: error,
+    label: label,
+    error: error,
+    isEnabled: isEnabled,
+    child: IgnorePointer(
+      ignoring: !isEnabled,
+      child: NestedCheckboxData(
         isEnabled: isEnabled,
-        child: IgnorePointer(
-          ignoring: !isEnabled,
-          child: NestedCheckboxData(
-            isEnabled: isEnabled,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                OptimusCheckbox(
-                  isTristate: true,
-                  isEnabled: isEnabled,
-                  isChecked: _isParentChecked,
-                  label: parent,
-                  onChanged: (bool isChecked) {
-                    for (final child in children) {
-                      child.onChanged(isChecked);
-                    }
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: context.tokens.spacing200),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: children,
-                  ),
-                ),
-              ],
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            OptimusCheckbox(
+              isTristate: true,
+              isEnabled: isEnabled,
+              isChecked: _isParentChecked,
+              label: parent,
+              onChanged: (bool isChecked) {
+                for (final child in children) {
+                  child.onChanged(isChecked);
+                }
+              },
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.only(left: context.tokens.spacing200),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: children,
+              ),
+            ),
+          ],
         ),
-      );
+      ),
+    ),
+  );
 }
 
 /// A checkbox that is a part of a [OptimusNestedCheckboxGroup]. It is a wrapper

@@ -14,8 +14,10 @@ Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final title = k.string(label: 'Title', initialValue: 'Title');
   final subtitle = k.string(label: 'Subtitle', initialValue: 'Subtitle');
-  final useLongSubtitle =
-      k.boolean(label: 'Long subtitle', initialValue: false);
+  final useLongSubtitle = k.boolean(
+    label: 'Long subtitle',
+    initialValue: false,
+  );
   final prefix = k.optimusIconOrNullKnob(label: 'Prefix Icon');
   final suffix = k.optimusIconOrNullKnob(label: 'Suffix Icon');
   final info = k.string(label: 'Info', initialValue: 'Info');
@@ -40,24 +42,26 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children: Iterable<int>.generate(10)
-          .map(
-            (i) => OptimusListTile(
-              title: Text(title),
-              subtitle: subtitle.isNotEmpty
-                  ? Text(useLongSubtitle ? longText : subtitle)
-                  : null,
-              info: info.isNotEmpty ? Text(info) : null,
-              fontVariant: fontVariant,
-              prefix: iconOrNull(prefix),
-              suffix: iconOrNull(suffix),
-              infoWidget: iconOrNull(infoWidget),
-              onTap: ignore,
-              prefixSize: prefixSize,
-              prefixVerticalAlignment: prefixAlignment,
-            ),
-          )
-          .toList(),
+      children:
+          Iterable<int>.generate(10)
+              .map(
+                (i) => OptimusListTile(
+                  title: Text(title),
+                  subtitle:
+                      subtitle.isNotEmpty
+                          ? Text(useLongSubtitle ? longText : subtitle)
+                          : null,
+                  info: info.isNotEmpty ? Text(info) : null,
+                  fontVariant: fontVariant,
+                  prefix: prefix?.toWidget(),
+                  suffix: suffix?.toWidget(),
+                  infoWidget: infoWidget?.toWidget(),
+                  onTap: ignore,
+                  prefixSize: prefixSize,
+                  prefixVerticalAlignment: prefixAlignment,
+                ),
+              )
+              .toList(),
     ),
   );
 }

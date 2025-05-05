@@ -42,9 +42,10 @@ class AnchoredOverlay extends StatefulWidget {
   final Widget child;
   final bool useRootOverlay;
 
-  static AnchoredOverlayController? of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<AnchoredOverlayData>()
-      ?.controller;
+  static AnchoredOverlayController? of(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<AnchoredOverlayData>()
+          ?.controller;
 
   @override
   State<AnchoredOverlay> createState() => AnchoredOverlayState();
@@ -132,9 +133,11 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
   }
 
   RenderBox? _getOverlay() {
-    final renderBox = Overlay.of(context, rootOverlay: widget.useRootOverlay)
-        .context
-        .findRenderObject();
+    final renderBox =
+        Overlay.of(
+          context,
+          rootOverlay: widget.useRootOverlay,
+        ).context.findRenderObject();
     if (renderBox is RenderBox) return renderBox;
   }
 
@@ -164,14 +167,15 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
         // 'package:flutter/src/animation/tween.dart':
         // Failed assertion: line 258 pos 12: 'begin != null': is not true.
         // Switching to Positioned.
-        builder: (context) => Positioned(
-          width: _width,
-          left: left,
-          right: right,
-          top: _isOnTop ? null : _offsetTop,
-          bottom: _isOnTop ? _offsetBottom : null,
-          child: widget.child,
-        ),
+        builder:
+            (context) => Positioned(
+              width: _width,
+              left: left,
+              right: right,
+              top: _isOnTop ? null : _offsetTop,
+              bottom: _isOnTop ? _offsetBottom : null,
+              child: widget.child,
+            ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -14,14 +15,11 @@ Widget createLabel(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusSubtitle(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusSubtitle(align: align, child: Text(label));
 }
 
 @widgetbook.UseCase(
@@ -35,14 +33,11 @@ Widget createTitleLarge(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusTitleLarge(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusTitleLarge(align: align, child: Text(label));
 }
 
 @widgetbook.UseCase(
@@ -56,14 +51,11 @@ Widget createTitleMedium(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusTitleMedium(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusTitleMedium(align: align, child: Text(label));
 }
 
 @widgetbook.UseCase(
@@ -77,12 +69,9 @@ Widget createTitleSmall(BuildContext context) {
   final align = k.listOrNull(
     label: 'Align',
     options: TextAlign.values,
-    initialOption: null,
+    labelBuilder: enumOrNullLabelBuilder,
   );
   final label = k.string(label: 'Label', initialValue: 'Label');
 
-  return OptimusTitleSmall(
-    align: align,
-    child: Text(label),
-  );
+  return OptimusTitleSmall(align: align, child: Text(label));
 }

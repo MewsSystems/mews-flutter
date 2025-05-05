@@ -56,8 +56,4 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
   }
 }
 
-const List<String> _formats = [
-  'dd.MM.yyyy',
-  'MM/dd/yyyy',
-  'dd/MM/yyyy, HH:mm',
-];
+const List<String> _formats = ['dd.MM.yyyy', 'MM/dd/yyyy', 'dd/MM/yyyy, HH:mm'];

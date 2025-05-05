@@ -9,7 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusCheckbox,
   path: '[Forms]/Checkbox',
 )
-CheckboxStory defaultStyle(_) => const CheckboxStory();
+CheckboxStory defaultStyle(BuildContext _) => const CheckboxStory();
 
 class CheckboxStory extends StatefulWidget {
   const CheckboxStory({super.key});
@@ -34,6 +34,7 @@ class CheckboxStoryState extends State<CheckboxStory> {
       size: k.list(
         label: 'Size',
         options: OptimusCheckboxSize.values,
+        labelBuilder: enumLabelBuilder,
       ),
       isChecked: _isChecked,
       onChanged: _handleChanged,

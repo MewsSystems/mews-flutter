@@ -88,17 +88,17 @@ class _Bubble extends StatelessWidget {
   final OptimusMessage message;
 
   Color _getBackgroundColor(OptimusThemeData theme) => switch (message.color) {
-        MessageColor.neutral => theme.colors.neutral25,
-        MessageColor.dark => theme.colors.primary,
-        MessageColor.light => theme.colors.primary500t16,
-      };
+    MessageColor.neutral => theme.colors.neutral25,
+    MessageColor.dark => theme.colors.primary,
+    MessageColor.light => theme.colors.primary500t16,
+  };
 
   Color _getTextColor(OptimusThemeData theme) => switch (message.color) {
-        MessageColor.neutral => theme.colors.neutral1000,
-        MessageColor.light =>
-          theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
-        MessageColor.dark => theme.colors.neutral0,
-      };
+    MessageColor.neutral => theme.colors.neutral1000,
+    MessageColor.light =>
+      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
+    MessageColor.dark => theme.colors.neutral0,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -128,14 +128,18 @@ class _Bubble extends StatelessWidget {
 extension on MessageAlignment {
   EdgeInsetsGeometry getHorizontalPadding(OptimusTokens tokens) =>
       switch (this) {
-        MessageAlignment.left =>
-          EdgeInsets.only(left: tokens.spacing100, right: tokens.spacing0),
-        MessageAlignment.right =>
-          EdgeInsets.only(left: tokens.spacing0, right: tokens.spacing100),
+        MessageAlignment.left => EdgeInsets.only(
+          left: tokens.spacing100,
+          right: tokens.spacing0,
+        ),
+        MessageAlignment.right => EdgeInsets.only(
+          left: tokens.spacing0,
+          right: tokens.spacing100,
+        ),
       };
 
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
-        MessageAlignment.left => CrossAxisAlignment.start,
-        MessageAlignment.right => CrossAxisAlignment.end,
-      };
+    MessageAlignment.left => CrossAxisAlignment.start,
+    MessageAlignment.right => CrossAxisAlignment.end,
+  };
 }

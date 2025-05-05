@@ -17,7 +17,7 @@ import 'package:optimus_widgetbook/components/buttons/toggle.dart' as _i6;
 import 'package:optimus_widgetbook/components/chat/bubble.dart' as _i23;
 import 'package:optimus_widgetbook/components/chat/chat.dart' as _i22;
 import 'package:optimus_widgetbook/components/data_display/nonmodal_wrapper.dart'
-    as _i7;
+    as _i10;
 import 'package:optimus_widgetbook/components/data_display/tooltip.dart'
     as _i13;
 import 'package:optimus_widgetbook/components/data_display/tooltip_wrapper.dart'
@@ -36,119 +36,98 @@ import 'package:optimus_widgetbook/components/forms/checkbox_group.dart'
 import 'package:optimus_widgetbook/components/forms/checkbox_nested.dart'
     as _i26;
 import 'package:optimus_widgetbook/components/forms/date_input_field.dart'
-    as _i28;
+    as _i27;
 import 'package:optimus_widgetbook/components/forms/date_input_form_field.dart'
-    as _i29;
+    as _i28;
 import 'package:optimus_widgetbook/components/forms/date_time_field.dart'
-    as _i30;
-import 'package:optimus_widgetbook/components/forms/form_story.dart' as _i27;
-import 'package:optimus_widgetbook/components/forms/input.dart' as _i31;
-import 'package:optimus_widgetbook/components/forms/password_form.dart' as _i32;
-import 'package:optimus_widgetbook/components/forms/radio.dart' as _i33;
-import 'package:optimus_widgetbook/components/forms/search_field.dart' as _i34;
+    as _i29;
+import 'package:optimus_widgetbook/components/forms/form_story.dart' as _i38;
+import 'package:optimus_widgetbook/components/forms/input.dart' as _i30;
+import 'package:optimus_widgetbook/components/forms/number_input.dart' as _i31;
+import 'package:optimus_widgetbook/components/forms/number_input_form.dart'
+    as _i32;
+import 'package:optimus_widgetbook/components/forms/password_form.dart' as _i33;
+import 'package:optimus_widgetbook/components/forms/radio.dart' as _i34;
+import 'package:optimus_widgetbook/components/forms/search_field.dart' as _i35;
 import 'package:optimus_widgetbook/components/forms/segmented_control.dart'
-    as _i35;
-import 'package:optimus_widgetbook/components/forms/select_input.dart' as _i36;
+    as _i36;
+import 'package:optimus_widgetbook/components/forms/select_input.dart' as _i37;
 import 'package:optimus_widgetbook/components/forms/selection_card.dart'
-    as _i37;
-import 'package:optimus_widgetbook/components/forms/stepper.dart' as _i38;
-import 'package:optimus_widgetbook/components/forms/text_area.dart' as _i39;
-import 'package:optimus_widgetbook/components/forms/toggle.dart' as _i40;
-import 'package:optimus_widgetbook/components/helpers/slidable.dart' as _i41;
-import 'package:optimus_widgetbook/components/icon/icon.dart' as _i49;
-import 'package:optimus_widgetbook/components/icon/icon_list.dart' as _i50;
-import 'package:optimus_widgetbook/components/icon/icons.dart' as _i48;
-import 'package:optimus_widgetbook/components/layout/card.dart' as _i42;
-import 'package:optimus_widgetbook/components/layout/dialog.dart' as _i44;
-import 'package:optimus_widgetbook/components/layout/divider.dart' as _i46;
+    as _i39;
+import 'package:optimus_widgetbook/components/forms/stepper.dart' as _i40;
+import 'package:optimus_widgetbook/components/forms/text_area.dart' as _i41;
+import 'package:optimus_widgetbook/components/forms/toggle.dart' as _i42;
+import 'package:optimus_widgetbook/components/helpers/slidable.dart' as _i43;
+import 'package:optimus_widgetbook/components/icon/icon.dart' as _i51;
+import 'package:optimus_widgetbook/components/icon/icon_list.dart' as _i52;
+import 'package:optimus_widgetbook/components/icon/icons.dart' as _i50;
+import 'package:optimus_widgetbook/components/layout/card.dart' as _i44;
+import 'package:optimus_widgetbook/components/layout/dialog.dart' as _i45;
+import 'package:optimus_widgetbook/components/layout/divider.dart' as _i47;
 import 'package:optimus_widgetbook/components/layout/inline_dialog.dart'
-    as _i45;
-import 'package:optimus_widgetbook/components/layout/spacing.dart' as _i43;
-import 'package:optimus_widgetbook/components/layout/stack.dart' as _i47;
-import 'package:optimus_widgetbook/components/link/inline_link.dart' as _i53;
+    as _i46;
+import 'package:optimus_widgetbook/components/layout/spacing.dart' as _i49;
+import 'package:optimus_widgetbook/components/layout/stack.dart' as _i48;
+import 'package:optimus_widgetbook/components/link/inline_link.dart' as _i56;
 import 'package:optimus_widgetbook/components/link/standalone_link.dart'
-    as _i55;
-import 'package:optimus_widgetbook/components/list/expanded_list.dart' as _i8;
-import 'package:optimus_widgetbook/components/list/list_tile.dart' as _i9;
-import 'package:optimus_widgetbook/components/list/nav_list_tile.dart' as _i10;
-import 'package:optimus_widgetbook/components/media/avatar.dart' as _i51;
-import 'package:optimus_widgetbook/components/media/logo.dart' as _i52;
+    as _i58;
+import 'package:optimus_widgetbook/components/list/expanded_list.dart' as _i7;
+import 'package:optimus_widgetbook/components/list/list_tile.dart' as _i8;
+import 'package:optimus_widgetbook/components/list/nav_list_tile.dart' as _i9;
+import 'package:optimus_widgetbook/components/media/avatar.dart' as _i53;
+import 'package:optimus_widgetbook/components/media/logo.dart' as _i54;
+import 'package:optimus_widgetbook/components/media/pictogram.dart' as _i55;
 import 'package:optimus_widgetbook/components/navigation/progress_indicator.dart'
-    as _i54;
+    as _i57;
 import 'package:optimus_widgetbook/components/tab/tab.dart' as _i11;
 import 'package:optimus_widgetbook/components/tab/tabs.dart' as _i12;
-import 'package:optimus_widgetbook/components/typography/caption.dart' as _i58;
+import 'package:optimus_widgetbook/components/typography/caption.dart' as _i61;
 import 'package:optimus_widgetbook/components/typography/highlight.dart'
-    as _i56;
-import 'package:optimus_widgetbook/components/typography/label.dart' as _i57;
+    as _i59;
+import 'package:optimus_widgetbook/components/typography/label.dart' as _i60;
 import 'package:optimus_widgetbook/components/typography/paragraph.dart'
-    as _i60;
-import 'package:optimus_widgetbook/components/typography/title.dart' as _i59;
+    as _i63;
+import 'package:optimus_widgetbook/components/typography/title.dart' as _i62;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookCategory(
     name: 'Buttons',
     children: [
-      _i1.WidgetbookFolder(
-        name: 'Button',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Default Style',
-              builder: _i2.createDefaultStyle,
-            ),
-          )
-        ],
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusButton',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Default Style',
+          builder: _i2.createDefaultStyle,
+        ),
       ),
-      _i1.WidgetbookFolder(
-        name: 'Dropdown Button',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusDropDownButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Dropdown Button',
-              builder: _i3.createDefaultStyle,
-            ),
-          )
-        ],
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusDropDownButton',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Dropdown Button',
+          builder: _i3.createDefaultStyle,
+        ),
       ),
-      _i1.WidgetbookFolder(
-        name: 'Icon Button',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusIconButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Icon Button',
-              builder: _i4.createDefaultStyle,
-            ),
-          )
-        ],
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusIconButton',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Icon Button',
+          builder: _i4.createDefaultStyle,
+        ),
       ),
-      _i1.WidgetbookFolder(
-        name: 'Split Button',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusSplitButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Split Button',
-              builder: _i5.createDefaultStyle,
-            ),
-          )
-        ],
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusSplitButton',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Split Button',
+          builder: _i5.createDefaultStyle,
+        ),
       ),
-      _i1.WidgetbookFolder(
-        name: 'Toggle',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusToggleButton',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Toggle',
-              builder: _i6.createDefaultStyle,
-            ),
-          )
-        ],
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusToggleButton',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Toggle',
+          builder: _i6.createDefaultStyle,
+        ),
       ),
     ],
   ),
@@ -156,42 +135,37 @@ final directories = <_i1.WidgetbookNode>[
     name: 'Data Display',
     children: [
       _i1.WidgetbookFolder(
-        name: 'Dialog',
-        children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'OptimusDialog',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Non-modal Dialog',
-              builder: _i7.createDefaultStyle,
-            ),
-          )
-        ],
-      ),
-      _i1.WidgetbookFolder(
         name: 'List',
         children: [
           _i1.WidgetbookLeafComponent(
             name: 'OptimusExpansionTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'Expanded List Tile',
-              builder: _i8.createDefaultStyle,
+              builder: _i7.createDefaultStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusListTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'List Tile',
-              builder: _i9.createDefaultStyle,
+              builder: _i8.createDefaultStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusNavListTile',
             useCase: _i1.WidgetbookUseCase(
               name: 'Navigation List Tile',
-              builder: _i10.createDefaultStyle,
+              builder: _i9.createDefaultStyle,
             ),
           ),
         ],
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusDialog',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Non-modal Dialog',
+          builder: _i10.createDefaultStyle,
+        ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusTab',
@@ -326,71 +300,78 @@ final directories = <_i1.WidgetbookNode>[
         ],
       ),
       _i1.WidgetbookLeafComponent(
-        name: 'Form',
-        useCase: _i1.WidgetbookUseCase(
-          name: 'Form',
-          builder: _i27.createDefaultStyle,
-        ),
-      ),
-      _i1.WidgetbookLeafComponent(
         name: 'OptimusDateInputField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Date Input Field',
-          builder: _i28.createDefaultStyle,
+          builder: _i27.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusDateInputFormField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Date Input Form Field',
-          builder: _i29.createDefaultStyle,
+          builder: _i28.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusDateTimeField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Date Time Field',
-          builder: _i30.createDefaultStyle,
+          builder: _i29.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusInputField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Input',
+          builder: _i30.createDefaultStyle,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusNumberInput',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'NumberInput',
           builder: _i31.createDefaultStyle,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusNumberInputFormField',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'NumberInputForm',
+          builder: _i32.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusPasswordFormField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Password',
-          builder: _i32.createDefaultStyle,
+          builder: _i33.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusRadio',
         useCase: _i1.WidgetbookUseCase(
           name: 'Radio',
-          builder: _i33.createDefaultStyle,
+          builder: _i34.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusRadioGroup',
         useCase: _i1.WidgetbookUseCase(
           name: 'Radio Group',
-          builder: _i33.createRadioGroup,
+          builder: _i34.createRadioGroup,
         ),
       ),
       _i1.WidgetbookComponent(
         name: 'OptimusSearch',
         useCases: [
           _i1.WidgetbookUseCase(
-            name: 'Nested Search Field',
-            builder: _i34.createNestedStyle,
+            name: 'Default',
+            builder: _i35.createDefaultStyle,
           ),
           _i1.WidgetbookUseCase(
-            name: 'Search Field',
-            builder: _i34.createDefaultStyle,
+            name: 'Nested',
+            builder: _i35.createNestedStyle,
           ),
         ],
       ),
@@ -398,48 +379,55 @@ final directories = <_i1.WidgetbookNode>[
         name: 'OptimusSegmentedControl',
         useCase: _i1.WidgetbookUseCase(
           name: 'Segmented Control',
-          builder: _i35.createDefaultStyle,
+          builder: _i36.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookComponent(
         name: 'OptimusSelectInput',
         useCases: [
           _i1.WidgetbookUseCase(
-            name: 'Nested Select',
-            builder: _i36.createNestedStyle,
+            name: 'Default',
+            builder: _i37.createDefaultStyle,
           ),
           _i1.WidgetbookUseCase(
-            name: 'Select Input',
-            builder: _i36.createDefaultStyle,
+            name: 'Nested',
+            builder: _i37.createNestedStyle,
           ),
         ],
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusSelectInputFormField',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Form',
+          builder: _i38.createDefaultStyle,
+        ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusSelectionCard',
         useCase: _i1.WidgetbookUseCase(
           name: 'Selection Card',
-          builder: _i37.createDefaultStyle,
+          builder: _i39.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusStepperFormField',
         useCase: _i1.WidgetbookUseCase(
           name: 'Stepper',
-          builder: _i38.createDefaultStyle,
+          builder: _i40.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusTextArea',
         useCase: _i1.WidgetbookUseCase(
           name: 'Text Area',
-          builder: _i39.createDefaultStyle,
+          builder: _i41.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusToggle',
         useCase: _i1.WidgetbookUseCase(
           name: 'Toggle',
-          builder: _i40.createDefaultStyle,
+          builder: _i42.createDefaultStyle,
         ),
       ),
     ],
@@ -451,9 +439,9 @@ final directories = <_i1.WidgetbookNode>[
         name: 'OptimusSlideAction',
         useCase: _i1.WidgetbookUseCase(
           name: 'Slidable',
-          builder: _i41.createDefaultStyle,
+          builder: _i43.createDefaultStyle,
         ),
-      )
+      ),
     ],
   ),
   _i1.WidgetbookCategory(
@@ -466,24 +454,17 @@ final directories = <_i1.WidgetbookNode>[
             name: 'OptimusCard',
             useCase: _i1.WidgetbookUseCase(
               name: 'Card',
-              builder: _i42.createDefaultStyle,
+              builder: _i44.createDefaultStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusNestedCard',
             useCase: _i1.WidgetbookUseCase(
               name: 'Nested Card',
-              builder: _i42.createNestedCard,
+              builder: _i44.createNestedCard,
             ),
           ),
         ],
-      ),
-      _i1.WidgetbookLeafComponent(
-        name: 'Column',
-        useCase: _i1.WidgetbookUseCase(
-          name: 'Spacing',
-          builder: _i43.createDefaultStyle,
-        ),
       ),
       _i1.WidgetbookFolder(
         name: 'Dialog',
@@ -492,14 +473,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'OptimusDialog',
             useCase: _i1.WidgetbookUseCase(
               name: 'Modal Dialog',
-              builder: _i44.createDefaultStyle,
+              builder: _i45.createDefaultStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusInlineDialog',
             useCase: _i1.WidgetbookUseCase(
               name: 'Inline Dialog',
-              builder: _i45.createDefaultStyle,
+              builder: _i46.createDefaultStyle,
             ),
           ),
         ],
@@ -508,15 +489,27 @@ final directories = <_i1.WidgetbookNode>[
         name: 'OptimusDivider',
         useCase: _i1.WidgetbookUseCase(
           name: 'Divider',
-          builder: _i46.createDefaultStyle,
+          builder: _i47.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusStack',
         useCase: _i1.WidgetbookUseCase(
           name: 'Stack',
-          builder: _i47.createDefaultStyle,
+          builder: _i48.createDefaultStyle,
         ),
+      ),
+      _i1.WidgetbookFolder(
+        name: 'Spacing',
+        children: [
+          _i1.WidgetbookLeafComponent(
+            name: 'Padding',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Spacing',
+              builder: _i49.createDefaultStyle,
+            ),
+          ),
+        ],
       ),
     ],
   ),
@@ -530,21 +523,21 @@ final directories = <_i1.WidgetbookNode>[
             name: 'GridView',
             useCase: _i1.WidgetbookUseCase(
               name: 'All Icons',
-              builder: _i48.createDefaultStyle,
+              builder: _i50.createDefaultStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusIcon',
             useCase: _i1.WidgetbookUseCase(
               name: 'Icon',
-              builder: _i49.createDefaultStyle,
+              builder: _i51.createDefaultStyle,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusIconList',
             useCase: _i1.WidgetbookUseCase(
               name: 'Icon List',
-              builder: _i50.createDefaultStyle,
+              builder: _i52.createDefaultStyle,
             ),
           ),
         ],
@@ -553,14 +546,21 @@ final directories = <_i1.WidgetbookNode>[
         name: 'OptimusAvatar',
         useCase: _i1.WidgetbookUseCase(
           name: 'Avatar',
-          builder: _i51.createDefaultStyle,
+          builder: _i53.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusMewsLogo',
         useCase: _i1.WidgetbookUseCase(
           name: 'Logo',
-          builder: _i52.createDefaultStyle,
+          builder: _i54.createDefaultStyle,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'OptimusPictogram',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Pictogram',
+          builder: _i55.createDefaultStyle,
         ),
       ),
     ],
@@ -572,21 +572,21 @@ final directories = <_i1.WidgetbookNode>[
         name: 'OptimusInlineLink',
         useCase: _i1.WidgetbookUseCase(
           name: 'Inline Link',
-          builder: _i53.createDefaultStyle,
+          builder: _i56.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusProgressIndicator',
         useCase: _i1.WidgetbookUseCase(
           name: 'Progress Indicator',
-          builder: _i54.createDefaultStyle,
+          builder: _i57.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusStandaloneLink',
         useCase: _i1.WidgetbookUseCase(
           name: 'Standalone Link',
-          builder: _i55.createDefaultStyle,
+          builder: _i58.createDefaultStyle,
         ),
       ),
     ],
@@ -601,21 +601,21 @@ final directories = <_i1.WidgetbookNode>[
             name: 'OptimusHighlightLarge',
             useCase: _i1.WidgetbookUseCase(
               name: 'Highlight Large',
-              builder: _i56.createHighlightLarge,
+              builder: _i59.createHighlightLarge,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusHighlightMedium',
             useCase: _i1.WidgetbookUseCase(
               name: 'Highlight Medium',
-              builder: _i56.createHighlightMedium,
+              builder: _i59.createHighlightMedium,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusHighlightSmall',
             useCase: _i1.WidgetbookUseCase(
               name: 'Highlight Small',
-              builder: _i56.createHighLightSmall,
+              builder: _i59.createHighLightSmall,
             ),
           ),
         ],
@@ -627,14 +627,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'OptimusLabel',
             useCase: _i1.WidgetbookUseCase(
               name: 'Label',
-              builder: _i57.createLabel,
+              builder: _i60.createLabel,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusLabelSmall',
             useCase: _i1.WidgetbookUseCase(
               name: 'Label Small',
-              builder: _i57.createSmallLabel,
+              builder: _i60.createSmallLabel,
             ),
           ),
         ],
@@ -643,14 +643,14 @@ final directories = <_i1.WidgetbookNode>[
         name: 'OptimusCaption',
         useCase: _i1.WidgetbookUseCase(
           name: 'Caption',
-          builder: _i58.createDefaultStyle,
+          builder: _i61.createDefaultStyle,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'OptimusSubtitle',
         useCase: _i1.WidgetbookUseCase(
           name: 'Subtitle',
-          builder: _i59.createLabel,
+          builder: _i62.createLabel,
         ),
       ),
       _i1.WidgetbookFolder(
@@ -660,14 +660,14 @@ final directories = <_i1.WidgetbookNode>[
             name: 'OptimusParagraph',
             useCase: _i1.WidgetbookUseCase(
               name: 'Paragraph',
-              builder: _i60.createLabel,
+              builder: _i63.createLabel,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusParagraphSmall',
             useCase: _i1.WidgetbookUseCase(
               name: 'Paragraph Small',
-              builder: _i60.createParagraphSmall,
+              builder: _i63.createParagraphSmall,
             ),
           ),
         ],
@@ -679,21 +679,21 @@ final directories = <_i1.WidgetbookNode>[
             name: 'OptimusTitleLarge',
             useCase: _i1.WidgetbookUseCase(
               name: 'Title Large',
-              builder: _i59.createTitleLarge,
+              builder: _i62.createTitleLarge,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusTitleMedium',
             useCase: _i1.WidgetbookUseCase(
               name: 'Title Medium',
-              builder: _i59.createTitleMedium,
+              builder: _i62.createTitleMedium,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'OptimusTitleSmall',
             useCase: _i1.WidgetbookUseCase(
               name: 'Title Small',
-              builder: _i59.createTitleSmall,
+              builder: _i62.createTitleSmall,
             ),
           ),
         ],

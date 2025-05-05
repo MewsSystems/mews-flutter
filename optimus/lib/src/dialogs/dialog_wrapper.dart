@@ -25,16 +25,14 @@ abstract class DialogController {
 }
 
 class DialogWrapper extends StatefulWidget {
-  const DialogWrapper({
-    super.key,
-    required this.child,
-  });
+  const DialogWrapper({super.key, required this.child});
 
   final Widget child;
 
-  static DialogController? of(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<DialogWrapperData>()
-      ?.controller;
+  static DialogController? of(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<DialogWrapperData>()
+          ?.controller;
 
   @override
   State<DialogWrapper> createState() => _DialogWrapperState();
@@ -71,14 +69,15 @@ class _DialogWrapperState extends State<DialogWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-      builder: (context) => OptimusDialog.nonModal(
-        title: title,
-        content: content,
-        close: _handleClose,
-        isDismissible: isDismissible,
-        actions: actions,
-        size: size,
-      ),
+      builder:
+          (context) => OptimusDialog.nonModal(
+            title: title,
+            content: content,
+            close: _handleClose,
+            isDismissible: isDismissible,
+            actions: actions,
+            size: size,
+          ),
     );
     _entry = entry;
     Overlay.of(context, rootOverlay: useRootOverlay).insert(entry);
@@ -94,22 +93,23 @@ class _DialogWrapperState extends State<DialogWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-      builder: (context) => Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: _handleClose,
+      builder:
+          (context) => Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _handleClose,
+              ),
+              OptimusInlineDialog(
+                content: content,
+                close: _handleClose,
+                actions: actions,
+                anchorKey: anchorKey,
+                size: size,
+              ),
+            ],
           ),
-          OptimusInlineDialog(
-            content: content,
-            close: _handleClose,
-            actions: actions,
-            anchorKey: anchorKey,
-            size: size,
-          ),
-        ],
-      ),
     );
     _entry = entry;
     Overlay.of(context, rootOverlay: useRootOverlay).insert(entry);

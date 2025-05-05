@@ -3,26 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'message.freezed.dart';
 
-enum MessageAlignment {
-  left,
-  right,
-}
+enum MessageAlignment { left, right }
 
-enum MessageColor {
-  neutral,
-  light,
-  dark,
-}
+enum MessageColor { neutral, light, dark }
 
-enum MessageState {
-  sending,
-  sent,
-  error,
-}
+enum MessageState { sending, sent, error }
 
-typedef TryAgainCallback = Future<MessageState> Function(
-  OptimusMessage message,
-);
+typedef TryAgainCallback =
+    Future<MessageState> Function(OptimusMessage message);
 
 @freezed
 class OptimusMessage with _$OptimusMessage {

@@ -23,36 +23,41 @@ String enumOrNullLabelBuilder<T extends Enum>(T? value) => value?.name ?? '';
 
 String enumLabelBuilder<T extends Enum>(T value) => value.name;
 
-Icon? iconOrNull(IconDetails? details) =>
-    details?.let((details) => Icon(details.data));
-
 extension KnobsBuilderExt on KnobsBuilder {
   OptimusWidgetSize get widgetSizeKnob => list(
-        label: 'Size',
-        options: OptimusWidgetSize.values,
-        labelBuilder: (value) => value.name,
-      );
+    label: 'Size',
+    options: OptimusWidgetSize.values,
+    initialOption: OptimusWidgetSize.large,
+    labelBuilder: enumLabelBuilder,
+  );
 
   IconDetails optimusIconKnob({String label = 'Icon'}) => list(
-        label: label,
-        options: exampleIcons,
-        labelBuilder: (value) => value.name,
-      );
+    label: label,
+    options: exampleIcons,
+    labelBuilder: (value) => value.name,
+  );
 
   IconDetails? optimusIconOrNullKnob({String label = 'Icon'}) => listOrNull(
-        label: label,
-        options: exampleIcons,
-        labelBuilder: (value) => value?.name ?? 'None',
-      );
+    label: label,
+    options: exampleIcons,
+    labelBuilder: (value) => value?.name ?? 'None',
+  );
 
-  AlignmentGeometry alignmentKnob({String label = 'Alignment'}) => list(
-        label: label,
-        options: alignments,
-      );
+  AlignmentGeometry alignmentKnob({String label = 'Alignment'}) =>
+      list(label: label, options: alignments);
 
   bool get isEnabledKnob => boolean(label: 'Enabled', initialValue: true);
 }
 
 extension WidgetbookContext on BuildContext {
   bool get isInWidgetbookCloud => WidgetbookState.of(this).previewMode;
+}
+
+extension OptionalTextWidget on String {
+  Widget? maybeToWidget() =>
+      let((value) => value.isNotEmpty ? Text(value) : null);
+}
+
+extension OptionalIconWidget on IconDetails {
+  Widget toWidget() => let((details) => Icon(details.data));
 }

@@ -19,22 +19,23 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
     GroupBuilder? groupBuilder,
     List<T>? values,
   }) : super(
-          builder: (FormFieldState<T> field) => OptimusSelectInput<T>(
-            label: label,
-            placeholder: placeholder,
-            value: field.value,
-            error: field.errorText,
-            builder: builder,
-            items: items,
-            isEnabled: enabled,
-            onChanged: (v) {
-              field.didChange(v);
-              onChanged?.call(v);
-            },
-            allowMultipleSelection: allowMultipleSelection,
-            selectedValues: allowMultipleSelection ? values : null,
-            groupBy: grouper,
-            groupBuilder: groupBuilder,
-          ),
-        );
+         builder:
+             (FormFieldState<T> field) => OptimusSelectInput<T>(
+               label: label,
+               placeholder: placeholder,
+               value: field.value,
+               error: field.errorText,
+               builder: builder,
+               items: items,
+               isEnabled: enabled,
+               onChanged: (v) {
+                 field.didChange(v);
+                 onChanged?.call(v);
+               },
+               allowMultipleSelection: allowMultipleSelection,
+               selectedValues: allowMultipleSelection ? values : null,
+               groupBy: grouper,
+               groupBuilder: groupBuilder,
+             ),
+       );
 }

@@ -29,35 +29,35 @@ class _NavListExampleState extends State<_NavListExample> {
     final label = k.string(label: 'Label', initialValue: 'Label');
     final leading = k.optimusIconOrNullKnob(label: 'Leading Icon');
     final rightDetail = k.optimusIconOrNullKnob(label: 'Right Detail');
-    final isToggleVisible = k.boolean(
-      label: 'Toggle',
-      initialValue: false,
-    );
+    final isToggleVisible = k.boolean(label: 'Toggle', initialValue: false);
     final isChevronVisible = k.boolean(label: 'Chevron', initialValue: false);
     final isEnabled = k.isEnabledKnob;
-    final useHorizontalPadding =
-        k.boolean(label: 'Use Padding', initialValue: true);
+    final useHorizontalPadding = k.boolean(
+      label: 'Use Padding',
+      initialValue: true,
+    );
 
     return SingleChildScrollView(
       child: Center(
         child: Column(
-          children: Iterable<int>.generate(10)
-              .map(
-                (i) => OptimusNavListTile(
-                  label: Text(label),
-                  rightDetail:
-                      rightDetail != null ? Icon(rightDetail.data) : null,
-                  isChevronVisible: isChevronVisible,
-                  isToggleVisible: isToggleVisible,
-                  onTogglePressed: _handleToggle,
-                  isToggled: _isToggled,
-                  isEnabled: isEnabled,
-                  leading: leading != null ? Icon(leading.data) : null,
-                  useHorizontalPadding: useHorizontalPadding,
-                  onTap: () {},
-                ),
-              )
-              .toList(),
+          children:
+              Iterable<int>.generate(10)
+                  .map(
+                    (i) => OptimusNavListTile(
+                      label: Text(label),
+                      rightDetail:
+                          rightDetail != null ? Icon(rightDetail.data) : null,
+                      isChevronVisible: isChevronVisible,
+                      isToggleVisible: isToggleVisible,
+                      onTogglePressed: _handleToggle,
+                      isToggled: _isToggled,
+                      isEnabled: isEnabled,
+                      leading: leading != null ? Icon(leading.data) : null,
+                      useHorizontalPadding: useHorizontalPadding,
+                      onTap: () {},
+                    ),
+                  )
+                  .toList(),
         ),
       ),
     );

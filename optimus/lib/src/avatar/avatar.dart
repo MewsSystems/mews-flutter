@@ -115,23 +115,26 @@ class _CircleImage extends StatelessWidget {
         decoration: imageUrl == null ? decoration : null,
         child: Center(
           child: MediaQuery(
-            data: MediaQuery.of(context)
-                .copyWith(textScaler: TextScaler.noScaling),
-            child: imageUrl != null
-                ? FadeInImage.memoryNetwork(
-                    width: diameter,
-                    height: diameter,
-                    placeholder: _transparentImage,
-                    image: imageUrl,
-                    fit: BoxFit.cover,
-                    imageErrorBuilder: (_, __, ___) => Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: decoration,
-                      child: Center(child: fallbackWidget),
-                    ),
-                  )
-                : fallbackWidget,
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: TextScaler.noScaling),
+            child:
+                imageUrl != null
+                    ? FadeInImage.memoryNetwork(
+                      width: diameter,
+                      height: diameter,
+                      placeholder: _transparentImage,
+                      image: imageUrl,
+                      fit: BoxFit.cover,
+                      imageErrorBuilder:
+                          (_, _, _) => Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            decoration: decoration,
+                            child: Center(child: fallbackWidget),
+                          ),
+                    )
+                    : fallbackWidget,
           ),
         ),
       ),
@@ -148,7 +151,7 @@ class _Indicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final outlineSize = tokens.borderWidth200;
-    final height = indicatorSize + outlineSize * 2;
+    final height = context.avatarSize + outlineSize * 2;
     final url = this.url;
 
     final decoration = BoxDecoration(
@@ -173,10 +176,10 @@ class _BadgeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _CircleImage(
-        imageUrl: url,
-        diameter: indicatorSize,
-        fallbackWidget: const SizedBox.shrink(),
-      );
+    imageUrl: url,
+    diameter: context.avatarSize,
+    fallbackWidget: const SizedBox.shrink(),
+  );
 }
 
 class _FallbackText extends StatelessWidget {
@@ -190,29 +193,31 @@ class _FallbackText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text(
-        substring(title, 0, 2).toUpperCase(),
-        style: size.getTextStyle(context.tokens).copyWith(
-              color: context.tokens.textStaticSecondary,
-            ),
-      );
+    substring(title, 0, 2).toUpperCase(),
+    style: size
+        .getTextStyle(context.tokens)
+        .copyWith(color: context.tokens.textStaticSecondary),
+  );
 }
 
 extension on OptimusWidgetSize {
   double getSize(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.sizing400,
-        OptimusWidgetSize.medium => tokens.sizing500,
-        OptimusWidgetSize.large => tokens.sizing700,
-        OptimusWidgetSize.extraLarge => tokens.sizing1300,
-      };
+    OptimusWidgetSize.small => tokens.sizing400,
+    OptimusWidgetSize.medium => tokens.sizing500,
+    OptimusWidgetSize.large => tokens.sizing700,
+    OptimusWidgetSize.extraLarge => tokens.sizing1300,
+  };
 
   TextStyle getTextStyle(OptimusTokens tokens) => switch (this) {
-        OptimusWidgetSize.small => tokens.bodyExtraSmallStrong,
-        OptimusWidgetSize.medium => tokens.bodySmallStrong,
-        OptimusWidgetSize.large => tokens.bodyMediumStrong,
-        OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong,
-      };
+    OptimusWidgetSize.small => tokens.bodyExtraSmallStrong,
+    OptimusWidgetSize.medium => tokens.bodySmallStrong,
+    OptimusWidgetSize.large => tokens.bodyMediumStrong,
+    OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong,
+  };
 }
 
 final Uint8List _transparentImage = Uint8List.fromList(transparentImageData);
 
-const indicatorSize = 12.0; // TODO(witwash): change to sizing150, when added
+extension on BuildContext {
+  double get avatarSize => tokens.sizing150;
+}

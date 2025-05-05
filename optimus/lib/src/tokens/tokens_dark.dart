@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Tue, 04 Feb 2025 11:35:50 GMT
+// Generated on Wed, 26 Mar 2025 17:40:45 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -43,17 +43,21 @@ abstract final class DesignTokensDark {
   static const Color backgroundInteractiveDangerHover = Color(0xFFF26D6D);
   static const Color backgroundInteractiveNeutralActive = Color(0xFF424258);
   static const Color backgroundInteractiveNeutralBoldActive = Color(0xFFC4C4D5);
-  static const Color backgroundInteractiveNeutralBoldDefault =
-      Color(0xFF8D8DAC);
+  static const Color backgroundInteractiveNeutralBoldDefault = Color(
+    0xFF8D8DAC,
+  );
   static const Color backgroundInteractiveNeutralBoldHover = Color(0xFFA8A8C0);
   static const Color backgroundInteractiveNeutralDefault = Color(0xFF22222E);
   static const Color backgroundInteractiveNeutralHover = Color(0xFF323243);
-  static const Color backgroundInteractiveNeutralSubtleActive =
-      Color(0xFF1A1A24);
-  static const Color backgroundInteractiveNeutralSubtleDefault =
-      Color(0xFF12121A);
-  static const Color backgroundInteractiveNeutralSubtleHover =
-      Color(0xFF16161F);
+  static const Color backgroundInteractiveNeutralSubtleActive = Color(
+    0xFF1A1A24,
+  );
+  static const Color backgroundInteractiveNeutralSubtleDefault = Color(
+    0xFF12121A,
+  );
+  static const Color backgroundInteractiveNeutralSubtleHover = Color(
+    0xFF16161F,
+  );
   static const Color backgroundInteractivePrimaryActive = Color(0xFFD9D8FD);
   static const Color backgroundInteractivePrimaryDefault = Color(0xFF7A78F6);
   static const Color backgroundInteractivePrimaryHover = Color(0xFFAEACFA);
@@ -500,6 +504,8 @@ abstract final class DesignTokensDark {
   static const double opacity600 = 0.48;
   static const double opacity800 = 0.64;
   static const double sizing100 = 8;
+  static const double sizing1000 = 80;
+  static const double sizing1200 = 96;
   static const double sizing1300 = 104;
   static const double sizing200 = 16;
   static const double sizing300 = 24;
@@ -539,10 +545,7 @@ abstract final class DesignTokensDark {
   static const FontWeight fontWeight600 = FontWeight.w600;
 
   static const List<BoxShadow> shadow0 = [
-    BoxShadow(
-      offset: Offset.zero,
-      color: Color(0xFF000000),
-    ),
+    BoxShadow(offset: Offset.zero, color: Color(0xFF000000)),
   ];
   static const List<BoxShadow> shadow100 = [
     BoxShadow(

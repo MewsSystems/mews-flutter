@@ -27,37 +27,41 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final title = k.string(label: 'Title', initialValue: 'Title');
-    final description =
-        k.string(label: 'Description', initialValue: 'Description');
+    final description = k.string(
+      label: 'Description',
+      initialValue: 'Description',
+    );
     final trailing = k.optimusIconOrNullKnob(label: 'Trailing Icon');
     final variant = k.list(
       label: 'Variant',
       initialOption: OptimusSelectionCardVariant.vertical,
       options: OptimusSelectionCardVariant.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
     final borderRadius = k.list(
       label: 'Border radius',
       initialOption: OptimusSelectionCardBorderRadius.medium,
       options: OptimusSelectionCardBorderRadius.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
     final selectorVariant = k.list(
       label: 'Selector variant',
       initialOption: OptimusSelectionCardSelectionVariant.radio,
       options: OptimusSelectionCardSelectionVariant.values,
-      labelBuilder: (value) => value.name,
+      labelBuilder: enumLabelBuilder,
     );
-    final isSelectorVisible =
-        k.boolean(label: 'Selector visible', initialValue: true);
+    final isSelectorVisible = k.boolean(
+      label: 'Selector visible',
+      initialValue: true,
+    );
     final isEnabled = k.isEnabledKnob;
 
     return SizedBox(
       width: 500,
       child: OptimusSelectionCard(
         title: Text(title),
-        description: description.isNotEmpty ? Text(description) : null,
-        trailing: trailing != null ? Icon(trailing.data) : null,
+        description: description.maybeToWidget(),
+        trailing: trailing?.toWidget(),
         variant: variant,
         isSelected: _isSelected,
         isSelectorVisible: isSelectorVisible,
