@@ -30,23 +30,18 @@ Widget createDefaultStyle(BuildContext context) {
     labelBuilder: (value) => value.toString(),
   );
 
-  return Container(
-    width: context.tokens.sizing800,
-    height: context.tokens.sizing800,
-    color: Colors.blueGrey,
-    child: OptimusAvatar(
-      title: title,
-      imageUrl:
-          useImage
-              ? isErrorLoading
-                  ? _badUrl
-                  : _avatarUrl
-              : null,
-      isIndicatorVisible: hasIndicator,
-      size: size,
-      badgeUrl: useBadge ? _badgeUrl : null,
-      alignment: alignment,
-    ),
+  return OptimusAvatar(
+    title: title,
+    imageUrl:
+        useImage
+            ? isErrorLoading
+                ? _badUrl
+                : _avatarUrl
+            : null,
+    isIndicatorVisible: hasIndicator,
+    size: size,
+    badgeUrl: useBadge ? _badgeUrl : null,
+    alignment: alignment,
   );
 }
 

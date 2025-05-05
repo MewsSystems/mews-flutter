@@ -52,12 +52,14 @@ class OptimusMewsLogo extends StatelessWidget {
     this.sizeVariant = OptimusMewsLogoSizeVariant.medium,
     this.colorVariant = OptimusMewsLogoColorVariant.black,
     this.alignVariant = OptimusMewsLogoAlignVariant.topCenter,
+    this.semanticsLabel,
   });
 
   final OptimusMewsLogoVariant logoVariant;
   final OptimusMewsLogoSizeVariant sizeVariant;
   final OptimusMewsLogoColorVariant colorVariant;
   final OptimusMewsLogoAlignVariant alignVariant;
+  final String? semanticsLabel;
 
   double _getSize(OptimusTokens tokens) => switch (sizeVariant) {
     OptimusMewsLogoSizeVariant.large => tokens.sizing300,
@@ -98,23 +100,26 @@ class OptimusMewsLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Padding(
-      padding: _getMargin(tokens),
-      child: switch (logoVariant) {
-        OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
-          OptimusIcons.mews_logo,
-          size: _getSize(tokens),
-          color: _color,
-        ),
-        OptimusMewsLogoVariant.wordmark => SizedBox(
-          height: _getSize(tokens),
-          child: SvgPicture.asset(
-            _logoPath,
-            package: _packageName,
-            colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
+    return Semantics(
+      label: semanticsLabel ?? 'Mews Logo',
+      child: Padding(
+        padding: _getMargin(tokens),
+        child: switch (logoVariant) {
+          OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
+            OptimusIcons.mews_logo,
+            size: _getSize(tokens),
+            color: _color,
           ),
-        ),
-      },
+          OptimusMewsLogoVariant.wordmark => SizedBox(
+            height: _getSize(tokens),
+            child: SvgPicture.asset(
+              _logoPath,
+              package: _packageName,
+              colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
+            ),
+          ),
+        },
+      ),
     );
   }
 }
