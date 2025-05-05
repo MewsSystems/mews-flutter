@@ -54,7 +54,7 @@ class OptimusBone extends StatelessWidget {
   final double? width;
   final double? height;
   final OptimusBoneRadiusVariant? radiusVariant;
-  final BoxShape? boxShape;
+  final BoxShape boxShape;
   final Widget? child;
   final bool? isLoading;
 
@@ -68,7 +68,7 @@ class OptimusBone extends StatelessWidget {
           height: height,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              shape: boxShape ?? BoxShape.rectangle,
+              shape: boxShape,
               color: context.tokens.backgroundStaticFlat,
               borderRadius: radiusVariant?.let(
                 (variant) => BorderRadius.all(variant.toRadius(context)),
