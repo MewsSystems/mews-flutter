@@ -21,7 +21,8 @@ class OptimusPictogram extends StatelessWidget {
   final OptimusPictogramSize size;
 
   /// The semantics label for the pictogram. Defaults to the english name of
-  /// the pictogram variant.
+  /// the pictogram variant. We suggest using a localized string for better
+  /// accessibility.
   final String? semanticsLabel;
 
   @override

@@ -59,6 +59,9 @@ class OptimusMewsLogo extends StatelessWidget {
   final OptimusMewsLogoSizeVariant sizeVariant;
   final OptimusMewsLogoColorVariant colorVariant;
   final OptimusMewsLogoAlignVariant alignVariant;
+
+  /// The semantics label for the logo. Defaults to the 'Mews Logo'.
+  /// We suggest using a localized string for better accessibility.
   final String? semanticsLabel;
 
   double _getSize(OptimusTokens tokens) => switch (sizeVariant) {

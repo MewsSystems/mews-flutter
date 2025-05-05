@@ -44,7 +44,8 @@ class OptimusAvatar extends StatelessWidget {
   /// [AlignmentDirectional.center].
   final AlignmentDirectional alignment;
 
-  /// The semantic label of the avatar. Defaults to the "Avatar + title".
+  /// The semantic label of the avatar. Defaults to the "Avatar + title". We
+  /// suggest using a localized string for better accessibility.
   final String? semanticLabel;
 
   bool get _isVisibleForSize =>
