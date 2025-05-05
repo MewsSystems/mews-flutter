@@ -68,6 +68,7 @@ class OptimusBone extends StatelessWidget {
           height: height,
           child: DecoratedBox(
             decoration: BoxDecoration(
+              shape: boxShape ?? BoxShape.rectangle,
               color: context.tokens.backgroundStaticFlat,
               borderRadius: radiusVariant?.let(
                 (variant) => BorderRadius.all(variant.toRadius(context)),
