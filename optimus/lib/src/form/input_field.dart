@@ -314,61 +314,61 @@ class _OptimusInputFieldState extends State<OptimusInputField>
             )
             : null;
 
-    return MergeSemantics(
-      child: FieldWrapper(
-        focusNode: _effectiveFocusNode,
-        isFocused: widget.isFocused,
-        isEnabled: widget.isEnabled,
-        label: widget.label,
-        caption: widget.caption,
-        captionIcon: widget.captionIcon,
-        helperMessage: widget.helperMessage,
-        error: error,
-        errorVariant: widget.errorVariant,
-        hasBorders: widget.hasBorders,
-        isRequired: widget.isRequired,
-        isInlined: widget.isInlined,
-        hasMultipleLines: widget.minLines != null,
-        inputCounter: widget.isInlined ? null : counter,
-        statusBarState: widget.statusBarState,
-        prefix:
-            _shouldShowPrefix
-                ? Prefix(prefix: widget.prefix, leading: widget.leading)
-                : null,
-        suffix:
-            _shouldShowSuffix
-                ? Suffix(
-                  suffix: widget.suffix,
-                  trailing: widget.trailing,
-                  counter: widget.isInlined ? counter : null,
-                  passwordButton:
-                      _isPasswordToggleVisible
-                          ? _PasswordButton(
-                            onTap: _handlePasswordTap,
-                            isEnabled: _isShowPasswordEnabled,
-                          )
-                          : null,
-                  showLoader: widget.isEnabled ? widget.showLoader : false,
-                  clearAllButton:
-                      _shouldShowClearAllButton
-                          ? _ClearAllButton(
-                            onTap: _handleClearAllTap,
-                            isEnabled: widget.isEnabled,
-                          )
-                          : null,
-                  inlineError:
-                      _shouldShowInlineError && error != null
-                          ? InlineErrorTooltip(error: error)
-                          : null,
-                )
-                : null,
-        fieldBoxKey: widget.fieldBoxKey,
-        size: widget.size,
-        placeholder: _placeholder,
-        // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
-        children: [
-          // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
-          Expanded(
+    return FieldWrapper(
+      focusNode: _effectiveFocusNode,
+      isFocused: widget.isFocused,
+      isEnabled: widget.isEnabled,
+      label: widget.label,
+      caption: widget.caption,
+      captionIcon: widget.captionIcon,
+      helperMessage: widget.helperMessage,
+      error: error,
+      errorVariant: widget.errorVariant,
+      hasBorders: widget.hasBorders,
+      isRequired: widget.isRequired,
+      isInlined: widget.isInlined,
+      hasMultipleLines: widget.minLines != null,
+      inputCounter: widget.isInlined ? null : counter,
+      statusBarState: widget.statusBarState,
+      prefix:
+          _shouldShowPrefix
+              ? Prefix(prefix: widget.prefix, leading: widget.leading)
+              : null,
+      suffix:
+          _shouldShowSuffix
+              ? Suffix(
+                suffix: widget.suffix,
+                trailing: widget.trailing,
+                counter: widget.isInlined ? counter : null,
+                passwordButton:
+                    _isPasswordToggleVisible
+                        ? _PasswordButton(
+                          onTap: _handlePasswordTap,
+                          isEnabled: _isShowPasswordEnabled,
+                        )
+                        : null,
+                showLoader: widget.isEnabled ? widget.showLoader : false,
+                clearAllButton:
+                    _shouldShowClearAllButton
+                        ? _ClearAllButton(
+                          onTap: _handleClearAllTap,
+                          isEnabled: widget.isEnabled,
+                        )
+                        : null,
+                inlineError:
+                    _shouldShowInlineError && error != null
+                        ? InlineErrorTooltip(error: error)
+                        : null,
+              )
+              : null,
+      fieldBoxKey: widget.fieldBoxKey,
+      size: widget.size,
+      placeholder: _placeholder,
+      // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
+      children: [
+        // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
+        Expanded(
+          child: MergeSemantics(
             child: Semantics(
               textField: true,
               enabled: widget.isEnabled,
@@ -414,8 +414,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
