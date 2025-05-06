@@ -362,9 +362,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
       placeholder: _placeholder,
-      // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
       children: [
-        // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
         Expanded(
           child: Semantics(
             label:
