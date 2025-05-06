@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/form/common.dart';
@@ -364,48 +364,50 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       children: [
         // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
         Expanded(
-          child: Semantics(
-            label:
-                widget.semanticsLabel ??
-                widget.label ??
-                widget.placeholder ??
-                'Input',
-            enabled: widget.isEnabled,
-            readOnly: widget.isReadOnly,
-            textField: true,
-            child: TextField(
-              key: widget.inputKey,
-              textAlign: widget.textAlign,
-              enableIMEPersonalizedLearning:
-                  widget.enableIMEPersonalizedLearning,
-              enableSuggestions: widget.enableSuggestions,
-              textCapitalization: widget.textCapitalization,
-              cursorColor: theme.tokens.textStaticSecondary,
-              autocorrect: widget.enableAutoCorrect,
-              autofocus: widget.enableAutoFocus,
-              enableInteractiveSelection: widget.enableInteractiveSelection,
-              controller: _effectiveController,
-              maxLines: _maxLines,
-              minLines: _minLines,
-              onSubmitted: widget.onSubmitted,
-              textInputAction: widget.textInputAction,
-              focusNode: _effectiveFocusNode,
+          child: MergeSemantics(
+            child: Semantics(
+              label:
+                  widget.semanticsLabel ?? widget.label ?? widget.placeholder,
+              textField: true,
               enabled: widget.isEnabled,
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                isDense: true,
-                contentPadding: EdgeInsets.zero,
-              ),
-              expands: false,
-              style: theme.getTextInputStyle(isEnabled: widget.isEnabled),
-              onChanged: widget.onChanged,
-              keyboardType: widget.keyboardType,
-              obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
-              onTap: widget.onTap,
               readOnly: widget.isReadOnly,
-              showCursor: widget.showCursor,
-              inputFormatters: widget.inputFormatters,
-              keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,
+              child: CupertinoTextField(
+                key: widget.inputKey,
+                textAlign: widget.textAlign,
+                enableIMEPersonalizedLearning:
+                    widget.enableIMEPersonalizedLearning,
+                enableSuggestions: widget.enableSuggestions,
+                textCapitalization: widget.textCapitalization,
+                cursorColor: theme.tokens.textStaticSecondary,
+                autocorrect: widget.enableAutoCorrect,
+                autofocus: widget.enableAutoFocus,
+                enableInteractiveSelection: widget.enableInteractiveSelection,
+                controller: _effectiveController,
+                maxLines: _maxLines,
+                minLines: _minLines,
+                onSubmitted: widget.onSubmitted,
+                textInputAction: widget.textInputAction,
+                focusNode: _effectiveFocusNode,
+                enabled: widget.isEnabled,
+                padding: EdgeInsets.zero,
+                style: theme.getTextInputStyle(isEnabled: widget.isEnabled),
+                // [CupertinoTextField] will try to resolve colors to its own theme,
+                // this will ensure the visible [BoxDecoration] is from the
+                // [FieldWrapper] above.
+                decoration: const BoxDecoration(
+                  color: Color(0x00000000),
+                  backgroundBlendMode: BlendMode.dst,
+                ),
+                onChanged: widget.onChanged,
+                keyboardType: widget.keyboardType,
+                obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
+                onTap: widget.onTap,
+                readOnly: widget.isReadOnly,
+                showCursor: widget.showCursor,
+                inputFormatters: widget.inputFormatters,
+                keyboardAppearance:
+                    widget.keyboardAppearance ?? theme.brightness,
+              ),
             ),
           ),
         ),
