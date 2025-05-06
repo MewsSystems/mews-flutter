@@ -2,10 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 
+/// A chat input field that allows users to type and send messages.
+/// It includes a text input area and a send button.
+/// Send button is enabled only when there is text in the input field.
+/// The input field supports multiple lines and has a maximum height of 4 lines.
 class OptimusChatInput extends StatefulWidget {
-  const OptimusChatInput({super.key, required this.onSendPressed});
+  const OptimusChatInput({
+    super.key,
+    required this.onSendPressed,
+    this.semanticLabel,
+  });
 
+  /// Callback function that is called when the send button is pressed.
   final ValueChanged<String> onSendPressed;
+
+  /// Optional semantic label for the input field. It is recommended to
+  /// provide a semantic label for accessibility purposes. We suggest
+  /// using localized strings for the label.
+  final String? semanticLabel;
 
   @override
   State<OptimusChatInput> createState() => _OptimusChatInputState();
@@ -39,6 +53,7 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
 
   @override
   Widget build(BuildContext context) => OptimusInputField(
+    semanticsLabel: widget.semanticLabel,
     controller: _controller,
     maxLines: 4,
     minLines: 1,
