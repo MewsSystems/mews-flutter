@@ -64,6 +64,7 @@ class WidgetbookApp extends StatelessWidget {
             ),
       ),
       AlignmentAddon(),
+      SemanticsAddon(),
     ],
     directories: directories,
   );
