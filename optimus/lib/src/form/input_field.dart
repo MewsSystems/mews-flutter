@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:optimus/optimus.dart';
@@ -363,6 +362,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       size: widget.size,
       placeholder: _placeholder,
       children: [
+        // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
         Expanded(
           child: Semantics(
             label:
