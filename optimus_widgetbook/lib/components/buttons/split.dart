@@ -41,6 +41,8 @@ Widget createDefaultStyle(BuildContext context) {
                     onPressed: isEnabled ? ignore : null,
                     onItemSelected: isEnabled ? ignore : null,
                     variant: v,
+                    semanticLabel: 'Split Button: Primary',
+                    dropdownSemanticLabel: 'Split Button: Dropdown',
                     child: Text(
                       k.string(label: 'Label', initialValue: 'Split button'),
                     ),

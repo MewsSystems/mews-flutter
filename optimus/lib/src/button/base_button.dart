@@ -22,6 +22,7 @@ class BaseButton extends StatefulWidget {
     this.borderRadius,
     this.padding,
     this.shapeBuilder,
+    this.semanticLabel,
   });
 
   final VoidCallback? onPressed;
@@ -36,6 +37,7 @@ class BaseButton extends StatefulWidget {
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
   final ShapeBuilder? shapeBuilder;
+  final String? semanticLabel;
 
   @override
   State<BaseButton> createState() => _BaseButtonState();
@@ -65,60 +67,66 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
 
     return IgnorePointer(
       ignoring: widget.isLoading,
-      child: TextButton(
-        style: ButtonStyle(
-          minimumSize: WidgetStateProperty.all<Size>(
-            Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
-          ),
-          maximumSize: WidgetStateProperty.all<Size>(
-            Size(double.infinity, widget.size.getValue(tokens)),
-          ),
-          padding: WidgetStateProperty.all<EdgeInsets>(_padding),
-          shape: WidgetStateProperty.resolveWith((states) {
-            final color = widget.variant.getBorderColor(
-              tokens,
-              isEnabled: !_statesController.value.isDisabled,
-              isPressed: _statesController.value.isPressed,
-              isHovered: _statesController.value.isHovered,
-            );
-            final side =
-                color != null
-                    ? BorderSide(color: color, width: tokens.borderWidth150)
-                    : BorderSide.none;
-
-            return widget.shapeBuilder?.let(
-                  (builder) => builder(borderRadius, side),
-                ) ??
-                RoundedRectangleBorder(borderRadius: borderRadius, side: side);
-          }),
-          animationDuration: buttonAnimationDuration,
-          elevation: WidgetStateProperty.all<double>(0),
-          visualDensity: VisualDensity.standard,
-          splashFactory: NoSplash.splashFactory,
-          backgroundColor: WidgetStateProperty.resolveWith(
-            (states) => widget.variant.getBackgroundColor(
-              tokens,
-              isEnabled: !_statesController.value.isDisabled,
-              isPressed: _statesController.value.isPressed,
-              isHovered: _statesController.value.isHovered,
+      child: Semantics(
+        label: widget.semanticLabel,
+        child: TextButton(
+          style: ButtonStyle(
+            minimumSize: WidgetStateProperty.all<Size>(
+              Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
             ),
+            maximumSize: WidgetStateProperty.all<Size>(
+              Size(double.infinity, widget.size.getValue(tokens)),
+            ),
+            padding: WidgetStateProperty.all<EdgeInsets>(_padding),
+            shape: WidgetStateProperty.resolveWith((states) {
+              final color = widget.variant.getBorderColor(
+                tokens,
+                isEnabled: !_statesController.value.isDisabled,
+                isPressed: _statesController.value.isPressed,
+                isHovered: _statesController.value.isHovered,
+              );
+              final side =
+                  color != null
+                      ? BorderSide(color: color, width: tokens.borderWidth150)
+                      : BorderSide.none;
+
+              return widget.shapeBuilder?.let(
+                    (builder) => builder(borderRadius, side),
+                  ) ??
+                  RoundedRectangleBorder(
+                    borderRadius: borderRadius,
+                    side: side,
+                  );
+            }),
+            animationDuration: buttonAnimationDuration,
+            elevation: WidgetStateProperty.all<double>(0),
+            visualDensity: VisualDensity.standard,
+            splashFactory: NoSplash.splashFactory,
+            backgroundColor: WidgetStateProperty.resolveWith(
+              (states) => widget.variant.getBackgroundColor(
+                tokens,
+                isEnabled: !_statesController.value.isDisabled,
+                isPressed: _statesController.value.isPressed,
+                isHovered: _statesController.value.isHovered,
+              ),
+            ),
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
-          overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-        ),
-        statesController: _statesController,
-        onPressed: widget.onPressed,
-        child: _ButtonContent(
-          onPressed: widget.onPressed,
-          size: widget.size,
-          variant: widget.variant,
-          borderRadius: borderRadius,
           statesController: _statesController,
-          badgeLabel: widget.badgeLabel,
-          leadingIcon: widget.leadingIcon,
-          minWidth: widget.minWidth,
-          trailingIcon: widget.trailingIcon,
-          isLoading: widget.isLoading,
-          child: widget.child,
+          onPressed: widget.onPressed,
+          child: _ButtonContent(
+            onPressed: widget.onPressed,
+            size: widget.size,
+            variant: widget.variant,
+            borderRadius: borderRadius,
+            statesController: _statesController,
+            badgeLabel: widget.badgeLabel,
+            leadingIcon: widget.leadingIcon,
+            minWidth: widget.minWidth,
+            trailingIcon: widget.trailingIcon,
+            isLoading: widget.isLoading,
+            child: widget.child,
+          ),
         ),
       ),
     );

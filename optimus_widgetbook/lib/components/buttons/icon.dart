@@ -25,6 +25,7 @@ Widget createDefaultStyle(BuildContext context) {
                   child: OptimusIconButton(
                     onPressed: k.isEnabledKnob ? ignore : null,
                     icon: Icon(icon.data),
+                    semanticLabel: icon.semanticName,
                     size: k.widgetSizeKnob,
                     variant: v,
                   ),

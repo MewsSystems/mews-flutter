@@ -30,7 +30,11 @@ class _Content extends StatelessWidget {
           actions: const [
             OptimusSlideAction(
               color: Colors.red,
-              child: Icon(Icons.delete, color: Colors.white),
+              semanticLabel: 'Delete',
+              child: OptimusIcon(
+                iconData: OptimusIcons.delete,
+                colorOption: OptimusIconColorOption.inverse,
+              ),
             ),
           ],
           child: ListTile(
@@ -39,6 +43,6 @@ class _Content extends StatelessWidget {
             isThreeLine: i % 3 == 0,
           ),
         ),
-    itemCount: 1000,
+    itemCount: 10,
   );
 }

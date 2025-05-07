@@ -61,3 +61,7 @@ extension OptionalTextWidget on String {
 extension OptionalIconWidget on IconDetails {
   Widget toWidget() => let((details) => Icon(details.data));
 }
+
+extension IconNameFilter on IconDetails {
+  String get semanticName => name.replaceAll('_', ' ').replaceAll('24', '');
+}

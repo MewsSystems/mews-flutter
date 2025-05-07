@@ -20,6 +20,8 @@ class OptimusSplitButton<T> extends StatefulWidget {
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusSplitButtonVariant.tertiary,
+    this.semanticLabel,
+    this.dropdownSemanticLabel,
   });
 
   /// Typically the button's label.
@@ -42,6 +44,17 @@ class OptimusSplitButton<T> extends StatefulWidget {
 
   /// The variant of the button.
   final OptimusSplitButtonVariant variant;
+
+  /// The semantic label of the button. This label is used by screen readers to
+  /// provide a description of the button's purpose. We suggest using a concise
+  /// and descriptive label that accurately reflects the button's function.
+  final String? semanticLabel;
+
+  /// The semantic label of the dropdown button. This label is used by screen
+  /// readers to provide a description of the dropdown button's purpose. We
+  /// suggest using a concise and descriptive label that accurately reflects the
+  /// dropdown button's function.
+  final String? dropdownSemanticLabel;
 
   @override
   State<OptimusSplitButton<T>> createState() => _OptimusSplitButtonState<T>();
@@ -70,6 +83,7 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
         children: [
           BaseButton(
             onPressed: widget.onPressed,
+            semanticLabel: widget.semanticLabel,
             variant: widget.variant.toButtonVariant(),
             borderRadius: BorderRadius.only(
               topLeft: borderRadius,
@@ -93,6 +107,7 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
             items: widget.items,
             onItemSelected: widget.onItemSelected,
             variant: widget.variant.toDropdownButtonVariant(),
+            semanticLabel: widget.dropdownSemanticLabel,
             borderRadius: BorderRadius.only(
               topRight: borderRadius,
               bottomRight: borderRadius,
