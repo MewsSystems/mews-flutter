@@ -64,6 +64,8 @@ class _Stepper extends StatefulWidget {
     this.error,
     this.controller,
     this.size = OptimusWidgetSize.large,
+    this.decreaseSemanticLabel,
+    this.increaseSemanticLabel,
   });
 
   final int? initialValue;
@@ -75,6 +77,8 @@ class _Stepper extends StatefulWidget {
   final String? error;
   final TextEditingController? controller;
   final OptimusWidgetSize size;
+  final String? increaseSemanticLabel;
+  final String? decreaseSemanticLabel;
 
   @override
   _StepperState createState() => _StepperState();
@@ -118,34 +122,12 @@ class _StepperState extends State<_Stepper> {
   }
 
   void _handleMinusTap() {
-    final value = _value;
-    final int newValue;
-    if (value != null) {
-      newValue =
-          value < widget.min + 1
-              ? widget.min
-              : value > widget.max
-              ? widget.max
-              : value - 1;
-    } else {
-      newValue = widget.min;
-    }
+    final newValue = ((_value ?? widget.max) - 1).clamp(widget.min, widget.max);
     _updateController(newValue);
   }
 
   void _handlePlusTap() {
-    final value = _value;
-    final int newValue;
-    if (value != null) {
-      newValue =
-          value < widget.min
-              ? widget.min
-              : value > widget.max - 1
-              ? widget.max
-              : value + 1;
-    } else {
-      newValue = widget.min;
-    }
+    final newValue = ((_value ?? widget.min) + 1).clamp(widget.min, widget.max);
     _updateController(newValue);
   }
 
