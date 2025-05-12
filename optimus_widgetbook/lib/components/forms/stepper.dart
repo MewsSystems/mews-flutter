@@ -23,6 +23,8 @@ Widget createDefaultStyle(BuildContext context) {
     initialValue: 8,
     min: 5,
     max: 15,
+    decreaseSemanticLabel: 'Decrease',
+    increaseSemanticLabel: 'Increase',
     validationError: error,
   );
 }
