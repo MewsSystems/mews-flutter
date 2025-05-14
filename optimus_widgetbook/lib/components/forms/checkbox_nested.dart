@@ -61,8 +61,8 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
               children:
                   _values
                       .mapIndexed(
-                        (int index, bool value) => OptimusNestedCheckbox(
-                          isChecked: value,
+                        (int index, bool isChecked) => OptimusNestedCheckbox(
+                          isChecked: isChecked,
                           label: Text('Checkbox $index'),
                           semanticLabel: 'Checkbox $index',
                           onChanged:
