@@ -18,6 +18,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
     this.variant = OptimusDropdownButtonVariant.tertiary,
     this.borderRadius,
     this.borderBuilder,
+    this.semanticLabel,
   });
 
   /// Typically the button's label.
@@ -29,6 +30,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final OptimusDropdownButtonVariant variant;
   final BorderRadius? borderRadius;
   final BorderBuilder? borderBuilder;
+  final String? semanticLabel;
 
   @override
   State<BaseDropDownButton<T>> createState() => _BaseDropDownButtonState<T>();
@@ -132,44 +134,47 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       onHidden: _controller.reverse,
       child: IgnorePointer(
         ignoring: !_isEnabled,
-        child: GestureWrapper(
-          onHoverChanged: _handleHoverChanged,
-          onPressedChanged: _handlePressedChanged,
-          onTap: _node.requestFocus,
-          child: Focus(
-            focusNode: _node,
-            child: SizedBox(
-              height: widget.size.getValue(tokens),
-              child: AnimatedContainer(
-                padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
-                key: _selectFieldKey,
-                decoration: BoxDecoration(
-                  color: _color,
-                  borderRadius: borderRadius,
-                  border: border,
-                ),
-                duration: buttonAnimationDuration,
-                curve: buttonAnimationCurve,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (child != null)
-                      Padding(
-                        padding: EdgeInsets.only(right: tokens.spacing150),
-                        child: DefaultTextStyle.merge(
-                          style: _labelStyle,
-                          child: child,
+        child: Semantics(
+          label: widget.semanticLabel,
+          child: GestureWrapper(
+            onHoverChanged: _handleHoverChanged,
+            onPressedChanged: _handlePressedChanged,
+            onTap: _node.requestFocus,
+            child: Focus(
+              focusNode: _node,
+              child: SizedBox(
+                height: widget.size.getValue(tokens),
+                child: AnimatedContainer(
+                  padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
+                  key: _selectFieldKey,
+                  decoration: BoxDecoration(
+                    color: _color,
+                    borderRadius: borderRadius,
+                    border: border,
+                  ),
+                  duration: buttonAnimationDuration,
+                  curve: buttonAnimationCurve,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (child != null)
+                        Padding(
+                          padding: EdgeInsets.only(right: tokens.spacing150),
+                          child: DefaultTextStyle.merge(
+                            style: _labelStyle,
+                            child: child,
+                          ),
+                        ),
+                      RotationTransition(
+                        turns: _iconTurns,
+                        child: Icon(
+                          OptimusIcons.chevron_down,
+                          size: widget.size.getIconSize(tokens),
+                          color: _textColor,
                         ),
                       ),
-                    RotationTransition(
-                      turns: _iconTurns,
-                      child: Icon(
-                        OptimusIcons.chevron_down,
-                        size: widget.size.getIconSize(tokens),
-                        color: _textColor,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
