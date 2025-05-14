@@ -87,6 +87,8 @@ class NumberUseCaseState extends State<NumberUserCase> {
           suffix: suffix.maybeToWidget(),
           step: step,
           isReadOnly: isReadOnly,
+          increaseSemanticLabel: 'Increase',
+          decreaseSemanticLabel: 'Decrease',
         ),
       ),
     );

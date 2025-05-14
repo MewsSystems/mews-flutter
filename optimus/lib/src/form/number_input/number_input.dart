@@ -28,6 +28,8 @@ class OptimusNumberInput extends StatefulWidget {
     this.step = 1,
     this.isReadOnly = false,
     this.onSubmitted,
+    this.decreaseSemanticLabel,
+    this.increaseSemanticLabel,
   }) : assert(
          (min < 0 && allowNegate) || min >= 0,
          'Negative values should be allowed if the minimum is less than 0',
@@ -106,6 +108,14 @@ class OptimusNumberInput extends StatefulWidget {
   /// Callback that is called when the input is submitted.
   final ValueChanged<String>? onSubmitted;
 
+  /// Semantic label for marking the button as a decrease function button.
+  /// This will have enrish component for the screen reader.
+  final String? decreaseSemanticLabel;
+
+  /// Semantic label for marking the button as an increase function button.
+  /// This will have enrish component for the screen reader.
+  final String? increaseSemanticLabel;
+
   @override
   State<OptimusNumberInput> createState() => _OptimusNumberInputState();
 }
@@ -132,22 +142,9 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     _effectiveFocusNode.addListener(_handleFocusLost);
   }
 
-  void _handleIncrease() {
-    final newValue = _currentValue + widget.step;
-    final result = newValue > widget.max ? widget.max : newValue;
-    _updateCurrentValue(result);
-  }
+  void _handleIncrease() => _updateCurrentValue(_increasedValue);
 
-  void _handleDecrease() {
-    final newValue = _currentValue - widget.step;
-    final double result =
-        newValue < widget.min
-            ? widget.min
-            : (newValue < 0 && !widget.allowNegate)
-            ? 0
-            : newValue;
-    _updateCurrentValue(result);
-  }
+  void _handleDecrease() => _updateCurrentValue(_decreasedValue);
 
   double get _currentValue =>
       _effectiveController.text.isEmpty
@@ -156,6 +153,12 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
             widget.separatorVariant,
             widget.precision,
           );
+
+  double get _increasedValue =>
+      (_currentValue - widget.step).clamp(widget.min, widget.max);
+
+  double get _decreasedValue =>
+      (_currentValue + widget.step).clamp(widget.min, widget.max);
 
   void _updateCurrentValue(double value) {
     _effectiveController.text = value.toFormattedString(
@@ -230,63 +233,77 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return OptimusInputField(
-      placeholder: widget.placeholder,
-      prefix: widget.prefix,
-      onChanged: widget.onChanged,
-      isEnabled: widget.isEnabled,
-      isInlined: widget.isInlined,
-      showLoader: widget.showLoader,
-      isRequired: widget.isRequired,
-      controller: _effectiveController,
-      size: widget.size,
-      label: widget.label,
-      helperMessage: widget.helperMessage,
-      error: widget.error,
-      inputFormatters: [
-        NumberInputFilteringTextInputFormatter(
-          precision: widget.precision,
-          separatorVariant: widget.separatorVariant,
-        ),
-      ],
-      keyboardType: TextInputType.numberWithOptions(
-        signed: widget.allowNegate,
-        decimal: widget.precision > 0,
-      ),
-      isReadOnly: widget.isReadOnly,
-      onSubmitted: (value) {
-        _handleFormat();
-        widget.onSubmitted?.call(_effectiveController.text);
-      },
-      suffix: Row(
-        children: [
-          if (widget.suffix case final suffix?)
-            Padding(
-              padding: EdgeInsets.only(right: tokens.spacing150),
-              child: suffix,
-            ),
-          Padding(
-            padding: EdgeInsets.only(right: tokens.spacing100),
-            child: GestureDetector(
-              onTap: _handleDecrease,
-              child: const OptimusIcon(
-                iconData: OptimusIcons.minus_simple,
-                colorOption: OptimusIconColorOption.basic,
-              ),
-            ),
-          ),
-          _Divider(isEnabled: widget.isEnabled),
-          Padding(
-            padding: EdgeInsets.only(left: tokens.spacing100),
-            child: GestureDetector(
-              onTap: _handleIncrease,
-              child: const OptimusIcon(
-                iconData: OptimusIcons.plus_simple,
-                colorOption: OptimusIconColorOption.basic,
-              ),
-            ),
+    return Semantics(
+      value: _currentValue.toString(),
+      decreasedValue: _decreasedValue.toString(),
+      increasedValue: _increasedValue.toString(),
+      onIncrease: _handleIncrease,
+      onDecrease: _handleDecrease,
+
+      child: OptimusInputField(
+        placeholder: widget.placeholder,
+        prefix: widget.prefix,
+        onChanged: widget.onChanged,
+        isEnabled: widget.isEnabled,
+        isInlined: widget.isInlined,
+        showLoader: widget.showLoader,
+        isRequired: widget.isRequired,
+        controller: _effectiveController,
+        size: widget.size,
+        label: widget.label,
+        helperMessage: widget.helperMessage,
+        error: widget.error,
+        inputFormatters: [
+          NumberInputFilteringTextInputFormatter(
+            precision: widget.precision,
+            separatorVariant: widget.separatorVariant,
           ),
         ],
+        keyboardType: TextInputType.numberWithOptions(
+          signed: widget.allowNegate,
+          decimal: widget.precision > 0,
+        ),
+        isReadOnly: widget.isReadOnly,
+        onSubmitted: (value) {
+          _handleFormat();
+          widget.onSubmitted?.call(_effectiveController.text);
+        },
+        suffix: Row(
+          children: [
+            if (widget.suffix case final suffix?)
+              Padding(
+                padding: EdgeInsets.only(right: tokens.spacing150),
+                child: suffix,
+              ),
+            Padding(
+              padding: EdgeInsets.only(right: tokens.spacing100),
+              child: Semantics(
+                label: widget.decreaseSemanticLabel,
+                child: GestureDetector(
+                  onTap: _handleDecrease,
+                  child: const OptimusIcon(
+                    iconData: OptimusIcons.minus_simple,
+                    colorOption: OptimusIconColorOption.basic,
+                  ),
+                ),
+              ),
+            ),
+            _Divider(isEnabled: widget.isEnabled),
+            Padding(
+              padding: EdgeInsets.only(left: tokens.spacing100),
+              child: Semantics(
+                label: widget.increaseSemanticLabel,
+                child: GestureDetector(
+                  onTap: _handleIncrease,
+                  child: const OptimusIcon(
+                    iconData: OptimusIcons.plus_simple,
+                    colorOption: OptimusIconColorOption.basic,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
