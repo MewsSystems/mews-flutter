@@ -28,6 +28,7 @@ class _ToggleStoryState extends State<_ToggleStory> {
     return OptimusToggle(
       offIcon: useIcons ? OptimusIcons.lock : null,
       onIcon: useIcons ? OptimusIcons.unlock : null,
+      semanticLabel: 'Toggle',
       isChecked: _isChecked,
       onChanged: isEnabled ? _handleChanged : null,
     );
