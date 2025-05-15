@@ -29,6 +29,7 @@ class OptimusCheckbox extends StatelessWidget {
     this.size = OptimusCheckboxSize.large,
     this.isTristate = false,
     required this.onChanged,
+    this.semanticLabel,
   }) : assert(
          isTristate || isChecked != null,
          'isChecked must be set if tristate is false',
@@ -90,6 +91,9 @@ class OptimusCheckbox extends StatelessWidget {
   /// {@endtemplate}
   final ValueChanged<bool> onChanged;
 
+  /// The semantic label for the screen reader.
+  final String? semanticLabel;
+
   Color _labelColor(OptimusTokens tokens) =>
       isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
 
@@ -127,35 +131,42 @@ class OptimusCheckbox extends StatelessWidget {
       child: GroupWrapper(
         error: error,
         isEnabled: isEnabled,
-        child: GestureDetector(
-          onTap: _handleTap,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: topPadding),
-                child: CheckboxTick(
-                  isError: _isError,
-                  isChecked: isChecked,
-                  isEnabled: isEnabled,
-                  onChanged: onChanged,
-                  onTap: _handleTap,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: tokens.spacing150,
-                    bottom: tokens.spacing50,
-                  ),
-                  child: DefaultTextStyle.merge(
-                    style: _labelStyle(tokens),
-                    child: label,
+        child: MergeSemantics(
+          child: GestureDetector(
+            onTap: _handleTap,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: topPadding),
+                  child: Semantics(
+                    label: semanticLabel,
+                    checked: isChecked ?? false,
+                    mixed: isTristate ? isChecked == null : null,
+                    child: CheckboxTick(
+                      isError: _isError,
+                      isChecked: isChecked,
+                      isEnabled: isEnabled,
+                      onChanged: onChanged,
+                      onTap: _handleTap,
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: tokens.spacing150,
+                      bottom: tokens.spacing50,
+                    ),
+                    child: DefaultTextStyle.merge(
+                      style: _labelStyle(tokens),
+                      child: label,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

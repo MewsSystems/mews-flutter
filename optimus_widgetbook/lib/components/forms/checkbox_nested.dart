@@ -1,15 +1,18 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+final GlobalKey _key = GlobalKey();
+
 @widgetbook.UseCase(
   name: 'Nested Checkbox Group',
   type: OptimusNestedCheckboxGroup,
   path: '[Forms]/Checkbox',
 )
-Widget defaultStyle(BuildContext _) => const CheckboxGroupExample();
+Widget defaultStyle(BuildContext _) => CheckboxGroupExample(key: _key);
 
 class CheckboxGroupExample extends StatefulWidget {
   const CheckboxGroupExample({super.key});
@@ -33,51 +36,44 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final isEnabled = k.isEnabledKnob;
+    final groupLabel = k.string(label: 'Label');
 
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          OptimusCheckbox(
-            label: const Text('Outside Checkbox'),
-            isChecked: _isRootChecked,
-            isEnabled: isEnabled,
-            onChanged: _handleRootChanged,
-          ),
-          OptimusNestedCheckboxGroup(
-            parent: const Text('Parent'),
-            label: k.string(label: 'Label'),
-            error: k.string(label: 'Error'),
-            isEnabled: isEnabled,
-            children: [
-              OptimusNestedCheckbox(
-                label: const Text('Checkbox 1'),
-                isChecked: _values.first,
-                onChanged: (bool isChecked) => _handleChanged(0, isChecked),
-              ),
-              OptimusNestedCheckbox(
-                label: const Text('Checkbox 2'),
-                isChecked: _values[1],
-                onChanged: (bool isChecked) => _handleChanged(1, isChecked),
-              ),
-              OptimusNestedCheckbox(
-                isChecked: _values[2],
-                label: const Text('Checkbox 3'),
-                onChanged: (bool isChecked) => _handleChanged(2, isChecked),
-              ),
-              OptimusNestedCheckbox(
-                isChecked: _values[3],
-                label: const Text('Checkbox 4'),
-                onChanged: (bool isChecked) => _handleChanged(3, isChecked),
-              ),
-              OptimusNestedCheckbox(
-                isChecked: _values.last,
-                label: const Text('Checkbox 5'),
-                onChanged: (bool isChecked) => _handleChanged(4, isChecked),
-              ),
-            ],
-          ),
-        ],
+      child: SizedBox(
+        width: 300,
+        height: 400,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            OptimusCheckbox(
+              label: const Text('Outside Checkbox'),
+              semanticLabel: 'Outside Checkbox',
+              isChecked: _isRootChecked,
+              isEnabled: isEnabled,
+              onChanged: _handleRootChanged,
+            ),
+            OptimusNestedCheckboxGroup(
+              parent: const Text('Parent'),
+              label: groupLabel,
+              semanticLabel: groupLabel,
+              error: k.string(label: 'Error'),
+              isEnabled: isEnabled,
+              children:
+                  _values
+                      .mapIndexed(
+                        (int index, bool isChecked) => OptimusNestedCheckbox(
+                          isChecked: isChecked,
+                          label: Text('Checkbox $index'),
+                          semanticLabel: 'Checkbox $index',
+                          onChanged:
+                              (bool isChecked) =>
+                                  _handleChanged(index, isChecked),
+                        ),
+                      )
+                      .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
