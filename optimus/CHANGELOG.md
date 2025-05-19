@@ -1,3 +1,11 @@
+## 0.40.1
+
+ - **FEAT**: [DX-6580] Add semantics to inputs (#787).
+ - **FEAT**: [DX-6572] Update checkbox semantics (#792).
+ - **FEAT**: [DX-6567] Add semantic label to tap zones (#790).
+ - **FEAT**: [DX-6720] Add semantics to number inputs (#791).
+ - **FEAT**: [DX-6578] Add semantics to components containing images (#786).
+
 ## 0.40.0+1
 
  - **REFACTOR**: Fix linter issues.
