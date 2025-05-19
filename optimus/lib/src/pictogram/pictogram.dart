@@ -11,6 +11,7 @@ class OptimusPictogram extends StatelessWidget {
     super.key,
     required this.variant,
     this.size = OptimusPictogramSize.large,
+    this.semanticsLabel,
   });
 
   /// The variant of the pictogram.
@@ -19,12 +20,20 @@ class OptimusPictogram extends StatelessWidget {
   /// The size of the pictogram. Defaults to [OptimusPictogramSize.large]
   final OptimusPictogramSize size;
 
+  /// The semantics label for the pictogram. Defaults to the english name of
+  /// the pictogram variant. We suggest using a localized string for better
+  /// accessibility.
+  final String? semanticsLabel;
+
   @override
-  Widget build(BuildContext context) => SizedBox.square(
-    dimension: size.getSize(context.tokens),
-    child: SvgPicture.asset(
-      variant.path(context.theme.brightness),
-      package: 'optimus',
+  Widget build(BuildContext context) => Semantics(
+    label: semanticsLabel ?? variant.name.replaceAll('_', ' '),
+    child: SizedBox.square(
+      dimension: size.getSize(context.tokens),
+      child: SvgPicture.asset(
+        variant.path(context.theme.brightness),
+        package: 'optimus',
+      ),
     ),
   );
 }

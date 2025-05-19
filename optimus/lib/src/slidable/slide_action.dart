@@ -7,9 +7,11 @@ class OptimusSlideAction extends StatelessWidget {
     required this.child,
     required this.color,
     this.onTap,
+    this.semanticLabel,
   });
 
   final Widget child;
+  final String? semanticLabel;
   final Color color;
   final VoidCallback? onTap;
 
@@ -17,6 +19,6 @@ class OptimusSlideAction extends StatelessWidget {
   Widget build(BuildContext context) => CustomSlidableAction(
     backgroundColor: color,
     onPressed: onTap == null ? null : (_) => onTap?.call(),
-    child: child,
+    child: Semantics(label: semanticLabel, child: child),
   );
 }

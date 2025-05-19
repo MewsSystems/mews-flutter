@@ -13,6 +13,7 @@ class OptimusAvatar extends StatelessWidget {
     required this.title,
     this.imageUrl,
     this.badgeUrl,
+    this.semanticLabel,
     this.isIndicatorVisible = false,
     this.size = OptimusWidgetSize.medium,
     this.alignment = AlignmentDirectional.center,
@@ -43,6 +44,10 @@ class OptimusAvatar extends StatelessWidget {
   /// [AlignmentDirectional.center].
   final AlignmentDirectional alignment;
 
+  /// The semantic label of the avatar. Defaults to the "Avatar + title". We
+  /// suggest using a localized string for better accessibility.
+  final String? semanticLabel;
+
   bool get _isVisibleForSize =>
       size == OptimusWidgetSize.medium || size == OptimusWidgetSize.large;
 
@@ -60,29 +65,32 @@ class OptimusAvatar extends StatelessWidget {
       ),
     );
 
-    return Stack(
-      clipBehavior: Clip.none,
-      alignment: alignment,
-      children: <Widget>[
-        _CircleImage(
-          imageUrl: imageUrl,
-          decoration: decoration,
-          diameter: size.getSize(tokens),
-          fallbackWidget: _FallbackText(title: title, size: size),
-        ),
-        if (isIndicatorVisible && _isVisibleForSize)
-          Positioned(
-            right: tokens.spacing0,
-            top: tokens.spacing0,
-            child: const _Indicator(),
+    return Semantics(
+      label: semanticLabel ?? 'Avatar: $title',
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: alignment,
+        children: <Widget>[
+          _CircleImage(
+            imageUrl: imageUrl,
+            decoration: decoration,
+            diameter: size.getSize(tokens),
+            fallbackWidget: _FallbackText(title: title, size: size),
           ),
-        if (badgeUrl != null && _isVisibleForSize)
-          Positioned(
-            right: tokens.spacing0,
-            bottom: tokens.spacing0,
-            child: _Indicator(url: badgeUrl),
-          ),
-      ],
+          if (isIndicatorVisible && _isVisibleForSize)
+            Positioned(
+              right: tokens.spacing0,
+              top: tokens.spacing0,
+              child: const _Indicator(),
+            ),
+          if (badgeUrl != null && _isVisibleForSize)
+            Positioned(
+              right: tokens.spacing0,
+              bottom: tokens.spacing0,
+              child: _Indicator(url: badgeUrl),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -12,18 +12,19 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
+  final isEnabled = k.isEnabledKnob;
+  final size = k.widgetSizeKnob;
+  final error = k.stringOrNull(label: 'Error');
 
   return OptimusStepperFormField(
-    label: k.string(label: 'Label', initialValue: 'Label'),
-    enabled: k.isEnabledKnob,
-    size: k.widgetSizeKnob,
+    enabled: isEnabled,
+    size: size,
     onChanged: ignore,
     initialValue: 8,
     min: k.int.slider(label: 'Min', initialValue: 0, min: 0, max: 15),
     max: k.int.slider(label: 'Max', initialValue: 15, min: 15, max: 20),
-    validationError: k.string(
-      label: 'Validation error',
-      initialValue: 'Validation error',
-    ),
+    decreaseSemanticLabel: 'Decrease',
+    increaseSemanticLabel: 'Increase',
+    validationError: error,
   );
 }

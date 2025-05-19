@@ -14,6 +14,7 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
     this.isEnabled = true,
     required this.parent,
     required this.children,
+    this.semanticLabel,
   });
 
   /// Children of this nested checkbox group.
@@ -34,6 +35,9 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
   /// Controls whether the whole group is enabled.
   final bool isEnabled;
 
+  /// Semantic label for the checkbox group.
+  final String? semanticLabel;
+
   bool? get _isParentChecked {
     final checked = children.where((child) => child.isChecked == true).toList();
 
@@ -45,38 +49,41 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => GroupWrapper(
-    label: label,
-    error: error,
-    isEnabled: isEnabled,
-    child: IgnorePointer(
-      ignoring: !isEnabled,
-      child: NestedCheckboxData(
-        isEnabled: isEnabled,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            OptimusCheckbox(
-              isTristate: true,
-              isEnabled: isEnabled,
-              isChecked: _isParentChecked,
-              label: parent,
-              onChanged: (bool isChecked) {
-                for (final child in children) {
-                  child.onChanged(isChecked);
-                }
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: context.tokens.spacing200),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: children,
+  Widget build(BuildContext context) => Semantics(
+    label: semanticLabel,
+    child: GroupWrapper(
+      label: label,
+      error: error,
+      isEnabled: isEnabled,
+      child: IgnorePointer(
+        ignoring: !isEnabled,
+        child: NestedCheckboxData(
+          isEnabled: isEnabled,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              OptimusCheckbox(
+                isTristate: true,
+                isEnabled: isEnabled,
+                isChecked: _isParentChecked,
+                label: parent,
+                onChanged: (bool isChecked) {
+                  for (final child in children) {
+                    child.onChanged(isChecked);
+                  }
+                },
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(left: context.tokens.spacing200),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: children,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ),
@@ -94,6 +101,7 @@ class OptimusNestedCheckbox extends StatelessWidget {
     this.size = OptimusCheckboxSize.large,
     this.isEnabled = true,
     required this.onChanged,
+    this.semanticLabel,
   });
 
   /// {@macro optimus.checkbox.label}
@@ -112,6 +120,9 @@ class OptimusNestedCheckbox extends StatelessWidget {
   /// The value will be overridden by the parent of the checkbox group.
   final bool isEnabled;
 
+  /// The semantic label for the screen reader.
+  final String? semanticLabel;
+
   @override
   Widget build(BuildContext context) {
     final isEnabled =
@@ -119,6 +130,7 @@ class OptimusNestedCheckbox extends StatelessWidget {
 
     return OptimusCheckbox(
       label: label,
+      semanticLabel: semanticLabel,
       size: size,
       isTristate: false,
       isEnabled: isEnabled,

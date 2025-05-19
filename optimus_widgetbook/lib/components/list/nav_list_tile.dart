@@ -45,6 +45,7 @@ class _NavListExampleState extends State<_NavListExample> {
                   .map(
                     (i) => OptimusNavListTile(
                       label: Text(label),
+                      semanticLabel: label,
                       rightDetail:
                           rightDetail != null ? Icon(rightDetail.data) : null,
                       isChevronVisible: isChevronVisible,

@@ -13,6 +13,7 @@ class OptimusIconButton extends StatefulWidget {
     required this.icon,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.primary,
+    this.semanticLabel,
   });
 
   /// Called when the button is tapped or otherwise activated.
@@ -28,6 +29,11 @@ class OptimusIconButton extends StatefulWidget {
 
   /// {@macro optimus.button.variant}
   final OptimusButtonVariant variant;
+
+  /// A label for the button used by assistive technologies. We recommend using
+  /// a concise description of the action that will be performed when the button
+  /// is activated.
+  final String? semanticLabel;
 
   @override
   State<OptimusIconButton> createState() => _OptimusIconButtonState();
@@ -59,42 +65,46 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
     return IgnorePointer(
       ignoring: !isEnabled,
-      child: GestureWrapper(
-        onHoverChanged: _handleHoverChanged,
-        onPressedChanged: _handlePressedChanged,
-        onTap: widget.onPressed,
-        child: AnimatedContainer(
-          height: widget.size.getContainerSize(tokens),
-          width: widget.size.getContainerSize(tokens),
-          padding: EdgeInsets.zero,
-          decoration: BoxDecoration(
-            color: _variant.getBackgroundColor(
-              tokens,
-              isEnabled: _isEnabled,
-              isPressed: _isPressed,
-              isHovered: _isHovered,
-            ),
-            border:
-                borderColor != null
-                    ? Border.all(
-                      color: borderColor,
-                      width: tokens.borderWidth150,
-                    )
-                    : null,
-            borderRadius: BorderRadius.all(tokens.borderRadius100),
-          ),
-          duration: buttonAnimationDuration,
-          child: IconTheme.merge(
-            data: IconThemeData(
-              color: _variant.getForegroundColor(
+      child: Semantics(
+        label: widget.semanticLabel,
+        enabled: _isEnabled,
+        child: GestureWrapper(
+          onHoverChanged: _handleHoverChanged,
+          onPressedChanged: _handlePressedChanged,
+          onTap: widget.onPressed,
+          child: AnimatedContainer(
+            height: widget.size.getContainerSize(tokens),
+            width: widget.size.getContainerSize(tokens),
+            padding: EdgeInsets.zero,
+            decoration: BoxDecoration(
+              color: _variant.getBackgroundColor(
                 tokens,
                 isEnabled: _isEnabled,
                 isPressed: _isPressed,
                 isHovered: _isHovered,
               ),
-              size: widget.size.getIconSize(tokens),
+              border:
+                  borderColor != null
+                      ? Border.all(
+                        color: borderColor,
+                        width: tokens.borderWidth150,
+                      )
+                      : null,
+              borderRadius: BorderRadius.all(tokens.borderRadius100),
             ),
-            child: widget.icon,
+            duration: buttonAnimationDuration,
+            child: IconTheme.merge(
+              data: IconThemeData(
+                color: _variant.getForegroundColor(
+                  tokens,
+                  isEnabled: _isEnabled,
+                  isPressed: _isPressed,
+                  isHovered: _isHovered,
+                ),
+                size: widget.size.getIconSize(tokens),
+              ),
+              child: widget.icon,
+            ),
           ),
         ),
       ),

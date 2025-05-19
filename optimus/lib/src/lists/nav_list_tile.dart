@@ -28,6 +28,7 @@ class OptimusNavListTile extends StatefulWidget {
     this.onTap,
     this.isEnabled = true,
     this.onTogglePressed,
+    this.semanticLabel,
   });
 
   /// The label of the list tile.
@@ -59,6 +60,8 @@ class OptimusNavListTile extends StatefulWidget {
 
   /// Whether the tile is enabled.
   final bool isEnabled;
+
+  final String? semanticLabel;
 
   @override
   State<OptimusNavListTile> createState() => _OptimusNavListTileState();
@@ -107,71 +110,77 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
 
     return IgnorePointer(
       ignoring: !widget.isEnabled,
-      child: GestureWrapper(
-        onHoverChanged: _handleHoverChanged,
-        onPressedChanged: _handlePressedChanged,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: _backgroundColor.resolve(_controller.value),
-          ),
-          child: BaseListTile(
-            onTap: widget.onTap,
-            content: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal:
-                    widget.useHorizontalPadding
-                        ? tokens.spacing200
-                        : tokens.spacing0,
-              ),
-              child: Row(
-                children: [
-                  //leading
-                  if (widget.leading case final leading?)
-                    Padding(
-                      padding: contentPadding,
-                      child: DefaultTextStyle.merge(
-                        style: TextStyle(color: foregroundColor),
-                        child: IconTheme.merge(data: iconTheme, child: leading),
+      child: Semantics(
+        label: widget.semanticLabel,
+        child: GestureWrapper(
+          onHoverChanged: _handleHoverChanged,
+          onPressedChanged: _handlePressedChanged,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: _backgroundColor.resolve(_controller.value),
+            ),
+            child: BaseListTile(
+              onTap: widget.onTap,
+              content: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                      widget.useHorizontalPadding
+                          ? tokens.spacing200
+                          : tokens.spacing0,
+                ),
+                child: Row(
+                  children: [
+                    //leading
+                    if (widget.leading case final leading?)
+                      Padding(
+                        padding: contentPadding,
+                        child: DefaultTextStyle.merge(
+                          style: TextStyle(color: foregroundColor),
+                          child: IconTheme.merge(
+                            data: iconTheme,
+                            child: leading,
+                          ),
+                        ),
                       ),
-                    ),
-                  Expanded(
-                    child: Padding(
-                      padding: contentPadding,
-                      child: DefaultTextStyle.merge(
-                        child: widget.label,
-                        style: tokens.bodyLarge.copyWith(
-                          color:
-                              widget.isEnabled
-                                  ? tokens.textStaticPrimary
-                                  : tokens.textDisabled,
+                    Expanded(
+                      child: Padding(
+                        padding: contentPadding,
+                        child: DefaultTextStyle.merge(
+                          child: widget.label,
+                          style: tokens.bodyLarge.copyWith(
+                            color:
+                                widget.isEnabled
+                                    ? tokens.textStaticPrimary
+                                    : tokens.textDisabled,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  if (widget.rightDetail case final rightDetail?)
-                    Padding(
-                      padding: contentPadding,
-                      child: IconTheme.merge(
-                        data: iconTheme,
-                        child: rightDetail,
+                    if (widget.rightDetail case final rightDetail?)
+                      Padding(
+                        padding: contentPadding,
+                        child: IconTheme.merge(
+                          data: iconTheme,
+                          child: rightDetail,
+                        ),
                       ),
-                    ),
-                  if (widget.isToggleVisible)
-                    Padding(
-                      padding: contentPadding,
-                      child: OptimusToggle(
-                        onChanged:
-                            widget.isEnabled ? widget.onTogglePressed : null,
-                        isChecked: widget.isToggled,
+                    if (widget.isToggleVisible)
+                      Padding(
+                        padding: contentPadding,
+                        child: OptimusToggle(
+                          onChanged:
+                              widget.isEnabled ? widget.onTogglePressed : null,
+                          isChecked: widget.isToggled,
+                        ),
                       ),
-                    ),
-                  if (widget.isChevronVisible)
-                    Icon(
-                      OptimusIcons.chevron_right,
-                      color: foregroundColor,
-                      size: tokens.sizing300,
-                    ),
-                ],
+                    if (widget.isChevronVisible)
+                      Icon(
+                        OptimusIcons.chevron_right,
+                        color: foregroundColor,
+                        size: tokens.sizing300,
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

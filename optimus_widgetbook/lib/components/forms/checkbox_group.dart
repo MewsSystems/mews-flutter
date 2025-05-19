@@ -26,19 +26,30 @@ class CheckboxGroupUseCaseState extends State<CheckboxGroupUseCase> {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
+    final label = k.string(
+      label: 'Label',
+      initialValue: 'Checkbox Group Label',
+    );
 
-    return OptimusCheckboxGroup<int>(
-      label: k.string(label: 'Label', initialValue: 'Checkbox Group Label'),
-      error: k.string(label: 'Error'),
-      onChanged: _handleChanged,
-      isEnabled: k.isEnabledKnob,
-      values: _checks,
-      items: const [
-        OptimusGroupItem(label: Text('Checkbox 1'), value: 0),
-        OptimusGroupItem(label: Text('Checkbox 2'), value: 1),
-        OptimusGroupItem(label: Text('Checkbox 3'), value: 2),
-        OptimusGroupItem(label: Text('Checkbox with long label'), value: 3),
-      ],
+    return Center(
+      child: SizedBox(
+        width: 300,
+        height: 400,
+        child: OptimusCheckboxGroup<int>(
+          label: label,
+          semanticLabel: label,
+          error: k.string(label: 'Error'),
+          onChanged: _handleChanged,
+          isEnabled: k.isEnabledKnob,
+          values: _checks,
+          items: const [
+            OptimusGroupItem(label: Text('Checkbox 1'), value: 0),
+            OptimusGroupItem(label: Text('Checkbox 2'), value: 1),
+            OptimusGroupItem(label: Text('Checkbox 3'), value: 2),
+            OptimusGroupItem(label: Text('Checkbox with long label'), value: 3),
+          ],
+        ),
+      ),
     );
   }
 }
