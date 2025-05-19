@@ -9,6 +9,8 @@ class OptimusStepperFormField extends FormField<int> {
   /// to [initialValue].
   OptimusStepperFormField({
     super.key,
+    String? label,
+    String? semanticLabel,
     int? initialValue,
     int min = 0,
     int max = 100,
@@ -39,6 +41,8 @@ class OptimusStepperFormField extends FormField<int> {
                      : validationError,
          builder:
              (FormFieldState<int> field) => _Stepper(
+               label: label,
+               semanticLabel: semanticLabel,
                initialValue: initialValue,
                min: min,
                max: max,
@@ -60,6 +64,8 @@ class OptimusStepperFormField extends FormField<int> {
 class _Stepper extends StatefulWidget {
   const _Stepper({
     required this.onChanged,
+    this.label,
+    this.semanticLabel,
     this.initialValue,
     this.min = 0,
     this.max = 100,
@@ -72,6 +78,8 @@ class _Stepper extends StatefulWidget {
     this.increaseSemanticLabel,
   });
 
+  final String? label;
+  final String? semanticLabel;
   final int? initialValue;
   final ValueChanged<int?> onChanged;
   final int min;
@@ -167,6 +175,8 @@ class _StepperState extends State<_Stepper> {
         onIncrease: _handlePlusTap,
         onDecrease: _handleMinusTap,
         child: OptimusInputField(
+          label: widget.label,
+          semanticsLabel: widget.semanticLabel,
           size: widget.size,
           textAlign: TextAlign.center,
           error: widget.error,
