@@ -26,18 +26,24 @@ class CheckboxStoryState extends State<CheckboxStory> {
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
+    final label = k.string(label: 'Label', initialValue: 'Checkbox Label');
 
-    return OptimusCheckbox(
-      label: Text(k.string(label: 'Label', initialValue: 'Checkbox Label')),
-      error: k.string(label: 'Error'),
-      isEnabled: k.isEnabledKnob,
-      size: k.list(
-        label: 'Size',
-        options: OptimusCheckboxSize.values,
-        labelBuilder: enumLabelBuilder,
+    return SizedBox(
+      width: 300,
+      height: 120,
+      child: OptimusCheckbox(
+        label: Text(label),
+        semanticLabel: label,
+        error: k.stringOrNull(label: 'Error'),
+        isEnabled: k.isEnabledKnob,
+        size: k.list(
+          label: 'Size',
+          options: OptimusCheckboxSize.values,
+          labelBuilder: enumLabelBuilder,
+        ),
+        isChecked: _isChecked,
+        onChanged: _handleChanged,
       ),
-      isChecked: _isChecked,
-      onChanged: _handleChanged,
     );
   }
 }

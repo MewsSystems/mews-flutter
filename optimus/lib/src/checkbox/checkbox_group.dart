@@ -14,6 +14,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
     this.label,
     this.error,
     this.isEnabled = true,
+    this.semanticLabel,
   }) : _values = values.toSet(),
        _items = items.toSet();
 
@@ -39,6 +40,10 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   /// Controls the label of the group itself.
   final String? label;
 
+  /// The semantic label of the group itself. Will be used by screen readers.
+  /// If not provided, the label will be used as the semantic label.
+  final String? semanticLabel;
+
   /// Controls the error message for the whole group.
   final String? error;
 
@@ -55,26 +60,30 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => GroupWrapper(
-    label: label,
-    error: error,
-    isEnabled: isEnabled,
-    child: IgnorePointer(
-      ignoring: !isEnabled,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:
-            _items
-                .mapIndexed(
-                  (i, v) => OptimusCheckbox(
-                    isChecked: _values.contains(v.value),
-                    size: size,
-                    label: v.label,
-                    isEnabled: isEnabled,
-                    onChanged: (isChecked) => _handleChanged(v, isChecked),
-                  ),
-                )
-                .toList(),
+  Widget build(BuildContext context) => Semantics(
+    label: semanticLabel ?? label,
+    child: GroupWrapper(
+      label: label,
+      error: error,
+      isEnabled: isEnabled,
+      child: IgnorePointer(
+        ignoring: !isEnabled,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children:
+              _items
+                  .mapIndexed(
+                    (i, v) => OptimusCheckbox(
+                      isChecked: _values.contains(v.value),
+                      size: size,
+                      label: v.label,
+                      semanticLabel: v.semanticLabel,
+                      isEnabled: isEnabled,
+                      onChanged: (isChecked) => _handleChanged(v, isChecked),
+                    ),
+                  )
+                  .toList(),
+        ),
       ),
     ),
   );
