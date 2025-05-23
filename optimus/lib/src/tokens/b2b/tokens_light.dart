@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Wed, 26 Mar 2025 17:40:45 GMT
+// Generated on Thu, 22 May 2025 11:46:04 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -184,6 +184,7 @@ abstract final class DesignTokensLight {
   static const Color paletteBasicsBlack = Color(0xFF000000);
   static const Color paletteBasicsWhite = Color(0xFFFFFFFF);
   static const Color paletteBasicsWhite64 = Color(0xA3FFFFFF);
+  static const Color paletteBrandCoral0 = Color(0xFFFFF5F6);
   static const Color paletteBrandCoral100 = Color(0xFFFE9FA5);
   static const Color paletteBrandCoral1000 = Color(0xFF330003);
   static const Color paletteBrandCoral150 = Color(0xFFFD707A);
@@ -211,6 +212,7 @@ abstract final class DesignTokensLight {
   static const Color paletteBrandGrey700 = Color(0xFF595959);
   static const Color paletteBrandGrey800 = Color(0xFF414141);
   static const Color paletteBrandGrey900 = Color(0xFF2A2A2A);
+  static const Color paletteBrandIndigo0 = Color(0xFFFAFAFF);
   static const Color paletteBrandIndigo100 = Color(0xFFCFCFFE);
   static const Color paletteBrandIndigo1000 = Color(0xFF010033);
   static const Color paletteBrandIndigo150 = Color(0xFFB8B7FD);
@@ -248,6 +250,7 @@ abstract final class DesignTokensLight {
   static const Color paletteDatavizPink = Color(0xFFFF48B6);
   static const Color paletteDatavizPurple = Color(0xFF7023B7);
   static const Color paletteDatavizRed = Color(0xFFFC091A);
+  static const Color paletteSemanticBlue0 = Color(0xFFFAFCFF);
   static const Color paletteSemanticBlue100 = Color(0xFFCFE2FE);
   static const Color paletteSemanticBlue1000 = Color(0xFF001433);
   static const Color paletteSemanticBlue150 = Color(0xFFB7D3FD);
@@ -261,6 +264,7 @@ abstract final class DesignTokensLight {
   static const Color paletteSemanticBlue700 = Color(0xFF1361D7);
   static const Color paletteSemanticBlue800 = Color(0xFF084AAD);
   static const Color paletteSemanticBlue900 = Color(0xFF022C6B);
+  static const Color paletteSemanticGreen0 = Color(0xFFFCFFFB);
   static const Color paletteSemanticGreen100 = Color(0xFFE6FEE1);
   static const Color paletteSemanticGreen1000 = Color(0xFF193313);
   static const Color paletteSemanticGreen150 = Color(0xFFD9FDD2);
@@ -274,6 +278,7 @@ abstract final class DesignTokensLight {
   static const Color paletteSemanticGreen700 = Color(0xFF72D75D);
   static const Color paletteSemanticGreen800 = Color(0xFF58AD47);
   static const Color paletteSemanticGreen900 = Color(0xFF356B2A);
+  static const Color paletteSemanticOrange0 = Color(0xFFFFFDF7);
   static const Color paletteSemanticOrange100 = Color(0xFFFEEEC7);
   static const Color paletteSemanticOrange1000 = Color(0xFF332400);
   static const Color paletteSemanticOrange150 = Color(0xFFFDE5AC);
@@ -287,6 +292,7 @@ abstract final class DesignTokensLight {
   static const Color paletteSemanticOrange700 = Color(0xFFD79700);
   static const Color paletteSemanticOrange800 = Color(0xFFAD7900);
   static const Color paletteSemanticOrange900 = Color(0xFF6B4B00);
+  static const Color paletteSemanticRed0 = Color(0xFFFFF8F8);
   static const Color paletteSemanticRed100 = Color(0xFFFED3D3);
   static const Color paletteSemanticRed1000 = Color(0xFF330000);
   static const Color paletteSemanticRed150 = Color(0xFFFDA8A8);

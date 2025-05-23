@@ -175,6 +175,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteBasicsBlack;
   Color get paletteBasicsWhite;
   Color get paletteBasicsWhite64;
+  Color get paletteBrandCoral0;
   Color get paletteBrandCoral100;
   Color get paletteBrandCoral1000;
   Color get paletteBrandCoral150;
@@ -202,6 +203,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteBrandGrey700;
   Color get paletteBrandGrey800;
   Color get paletteBrandGrey900;
+  Color get paletteBrandIndigo0;
   Color get paletteBrandIndigo100;
   Color get paletteBrandIndigo1000;
   Color get paletteBrandIndigo150;
@@ -239,6 +241,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteDatavizPink;
   Color get paletteDatavizPurple;
   Color get paletteDatavizRed;
+  Color get paletteSemanticBlue0;
   Color get paletteSemanticBlue100;
   Color get paletteSemanticBlue1000;
   Color get paletteSemanticBlue150;
@@ -252,6 +255,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteSemanticBlue700;
   Color get paletteSemanticBlue800;
   Color get paletteSemanticBlue900;
+  Color get paletteSemanticGreen0;
   Color get paletteSemanticGreen100;
   Color get paletteSemanticGreen1000;
   Color get paletteSemanticGreen150;
@@ -265,6 +269,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteSemanticGreen700;
   Color get paletteSemanticGreen800;
   Color get paletteSemanticGreen900;
+  Color get paletteSemanticOrange0;
   Color get paletteSemanticOrange100;
   Color get paletteSemanticOrange1000;
   Color get paletteSemanticOrange150;
@@ -278,6 +283,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteSemanticOrange700;
   Color get paletteSemanticOrange800;
   Color get paletteSemanticOrange900;
+  Color get paletteSemanticRed0;
   Color get paletteSemanticRed100;
   Color get paletteSemanticRed1000;
   Color get paletteSemanticRed150;
@@ -579,6 +585,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteBasicsBlack,
     Color? paletteBasicsWhite,
     Color? paletteBasicsWhite64,
+    Color? paletteBrandCoral0,
     Color? paletteBrandCoral100,
     Color? paletteBrandCoral1000,
     Color? paletteBrandCoral150,
@@ -606,6 +613,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteBrandGrey700,
     Color? paletteBrandGrey800,
     Color? paletteBrandGrey900,
+    Color? paletteBrandIndigo0,
     Color? paletteBrandIndigo100,
     Color? paletteBrandIndigo1000,
     Color? paletteBrandIndigo150,
@@ -643,6 +651,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteDatavizPink,
     Color? paletteDatavizPurple,
     Color? paletteDatavizRed,
+    Color? paletteSemanticBlue0,
     Color? paletteSemanticBlue100,
     Color? paletteSemanticBlue1000,
     Color? paletteSemanticBlue150,
@@ -656,6 +665,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteSemanticBlue700,
     Color? paletteSemanticBlue800,
     Color? paletteSemanticBlue900,
+    Color? paletteSemanticGreen0,
     Color? paletteSemanticGreen100,
     Color? paletteSemanticGreen1000,
     Color? paletteSemanticGreen150,
@@ -669,6 +679,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteSemanticGreen700,
     Color? paletteSemanticGreen800,
     Color? paletteSemanticGreen900,
+    Color? paletteSemanticOrange0,
     Color? paletteSemanticOrange100,
     Color? paletteSemanticOrange1000,
     Color? paletteSemanticOrange150,
@@ -682,6 +693,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteSemanticOrange700,
     Color? paletteSemanticOrange800,
     Color? paletteSemanticOrange900,
+    Color? paletteSemanticRed0,
     Color? paletteSemanticRed100,
     Color? paletteSemanticRed1000,
     Color? paletteSemanticRed150,
@@ -1124,6 +1136,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       paletteBasicsBlack: paletteBasicsBlack ?? this.paletteBasicsBlack,
       paletteBasicsWhite: paletteBasicsWhite ?? this.paletteBasicsWhite,
       paletteBasicsWhite64: paletteBasicsWhite64 ?? this.paletteBasicsWhite64,
+      paletteBrandCoral0: paletteBrandCoral0 ?? this.paletteBrandCoral0,
       paletteBrandCoral100: paletteBrandCoral100 ?? this.paletteBrandCoral100,
       paletteBrandCoral1000:
           paletteBrandCoral1000 ?? this.paletteBrandCoral1000,
@@ -1152,6 +1165,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       paletteBrandGrey700: paletteBrandGrey700 ?? this.paletteBrandGrey700,
       paletteBrandGrey800: paletteBrandGrey800 ?? this.paletteBrandGrey800,
       paletteBrandGrey900: paletteBrandGrey900 ?? this.paletteBrandGrey900,
+      paletteBrandIndigo0: paletteBrandIndigo0 ?? this.paletteBrandIndigo0,
       paletteBrandIndigo100:
           paletteBrandIndigo100 ?? this.paletteBrandIndigo100,
       paletteBrandIndigo1000:
@@ -1204,6 +1218,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       paletteDatavizPink: paletteDatavizPink ?? this.paletteDatavizPink,
       paletteDatavizPurple: paletteDatavizPurple ?? this.paletteDatavizPurple,
       paletteDatavizRed: paletteDatavizRed ?? this.paletteDatavizRed,
+      paletteSemanticBlue0: paletteSemanticBlue0 ?? this.paletteSemanticBlue0,
       paletteSemanticBlue100:
           paletteSemanticBlue100 ?? this.paletteSemanticBlue100,
       paletteSemanticBlue1000:
@@ -1230,6 +1245,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           paletteSemanticBlue800 ?? this.paletteSemanticBlue800,
       paletteSemanticBlue900:
           paletteSemanticBlue900 ?? this.paletteSemanticBlue900,
+      paletteSemanticGreen0:
+          paletteSemanticGreen0 ?? this.paletteSemanticGreen0,
       paletteSemanticGreen100:
           paletteSemanticGreen100 ?? this.paletteSemanticGreen100,
       paletteSemanticGreen1000:
@@ -1256,6 +1273,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           paletteSemanticGreen800 ?? this.paletteSemanticGreen800,
       paletteSemanticGreen900:
           paletteSemanticGreen900 ?? this.paletteSemanticGreen900,
+      paletteSemanticOrange0:
+          paletteSemanticOrange0 ?? this.paletteSemanticOrange0,
       paletteSemanticOrange100:
           paletteSemanticOrange100 ?? this.paletteSemanticOrange100,
       paletteSemanticOrange1000:
@@ -1282,6 +1301,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           paletteSemanticOrange800 ?? this.paletteSemanticOrange800,
       paletteSemanticOrange900:
           paletteSemanticOrange900 ?? this.paletteSemanticOrange900,
+      paletteSemanticRed0: paletteSemanticRed0 ?? this.paletteSemanticRed0,
       paletteSemanticRed100:
           paletteSemanticRed100 ?? this.paletteSemanticRed100,
       paletteSemanticRed1000:
@@ -2131,6 +2151,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteBasicsWhite, other.paletteBasicsWhite, t)!,
       paletteBasicsWhite64:
           Color.lerp(paletteBasicsWhite64, other.paletteBasicsWhite64, t)!,
+      paletteBrandCoral0:
+          Color.lerp(paletteBrandCoral0, other.paletteBrandCoral0, t)!,
       paletteBrandCoral100:
           Color.lerp(paletteBrandCoral100, other.paletteBrandCoral100, t)!,
       paletteBrandCoral1000:
@@ -2185,6 +2207,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteBrandGrey800, other.paletteBrandGrey800, t)!,
       paletteBrandGrey900:
           Color.lerp(paletteBrandGrey900, other.paletteBrandGrey900, t)!,
+      paletteBrandIndigo0:
+          Color.lerp(paletteBrandIndigo0, other.paletteBrandIndigo0, t)!,
       paletteBrandIndigo100:
           Color.lerp(paletteBrandIndigo100, other.paletteBrandIndigo100, t)!,
       paletteBrandIndigo1000:
@@ -2267,6 +2291,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteDatavizPurple, other.paletteDatavizPurple, t)!,
       paletteDatavizRed:
           Color.lerp(paletteDatavizRed, other.paletteDatavizRed, t)!,
+      paletteSemanticBlue0:
+          Color.lerp(paletteSemanticBlue0, other.paletteSemanticBlue0, t)!,
       paletteSemanticBlue100:
           Color.lerp(paletteSemanticBlue100, other.paletteSemanticBlue100, t)!,
       paletteSemanticBlue1000:
@@ -2297,6 +2323,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(paletteSemanticBlue800, other.paletteSemanticBlue800, t)!,
       paletteSemanticBlue900:
           Color.lerp(paletteSemanticBlue900, other.paletteSemanticBlue900, t)!,
+      paletteSemanticGreen0:
+          Color.lerp(paletteSemanticGreen0, other.paletteSemanticGreen0, t)!,
       paletteSemanticGreen100:
           Color.lerp(
             paletteSemanticGreen100,
@@ -2367,6 +2395,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             other.paletteSemanticGreen900,
             t,
           )!,
+      paletteSemanticOrange0:
+          Color.lerp(paletteSemanticOrange0, other.paletteSemanticOrange0, t)!,
       paletteSemanticOrange100:
           Color.lerp(
             paletteSemanticOrange100,
@@ -2445,6 +2475,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             other.paletteSemanticOrange900,
             t,
           )!,
+      paletteSemanticRed0:
+          Color.lerp(paletteSemanticRed0, other.paletteSemanticRed0, t)!,
       paletteSemanticRed100:
           Color.lerp(paletteSemanticRed100, other.paletteSemanticRed100, t)!,
       paletteSemanticRed1000:
@@ -3308,6 +3340,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.paletteBasicsWhite64,
             ) &&
             const DeepCollectionEquality().equals(
+              paletteBrandCoral0,
+              other.paletteBrandCoral0,
+            ) &&
+            const DeepCollectionEquality().equals(
               paletteBrandCoral100,
               other.paletteBrandCoral100,
             ) &&
@@ -3414,6 +3450,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(
               paletteBrandGrey900,
               other.paletteBrandGrey900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteBrandIndigo0,
+              other.paletteBrandIndigo0,
             ) &&
             const DeepCollectionEquality().equals(
               paletteBrandIndigo100,
@@ -3564,6 +3604,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.paletteDatavizRed,
             ) &&
             const DeepCollectionEquality().equals(
+              paletteSemanticBlue0,
+              other.paletteSemanticBlue0,
+            ) &&
+            const DeepCollectionEquality().equals(
               paletteSemanticBlue100,
               other.paletteSemanticBlue100,
             ) &&
@@ -3614,6 +3658,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(
               paletteSemanticBlue900,
               other.paletteSemanticBlue900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticGreen0,
+              other.paletteSemanticGreen0,
             ) &&
             const DeepCollectionEquality().equals(
               paletteSemanticGreen100,
@@ -3668,6 +3716,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.paletteSemanticGreen900,
             ) &&
             const DeepCollectionEquality().equals(
+              paletteSemanticOrange0,
+              other.paletteSemanticOrange0,
+            ) &&
+            const DeepCollectionEquality().equals(
               paletteSemanticOrange100,
               other.paletteSemanticOrange100,
             ) &&
@@ -3718,6 +3770,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(
               paletteSemanticOrange900,
               other.paletteSemanticOrange900,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteSemanticRed0,
+              other.paletteSemanticRed0,
             ) &&
             const DeepCollectionEquality().equals(
               paletteSemanticRed100,
@@ -4373,6 +4429,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteBasicsBlack),
       const DeepCollectionEquality().hash(paletteBasicsWhite),
       const DeepCollectionEquality().hash(paletteBasicsWhite64),
+      const DeepCollectionEquality().hash(paletteBrandCoral0),
       const DeepCollectionEquality().hash(paletteBrandCoral100),
       const DeepCollectionEquality().hash(paletteBrandCoral1000),
       const DeepCollectionEquality().hash(paletteBrandCoral150),
@@ -4400,6 +4457,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteBrandGrey700),
       const DeepCollectionEquality().hash(paletteBrandGrey800),
       const DeepCollectionEquality().hash(paletteBrandGrey900),
+      const DeepCollectionEquality().hash(paletteBrandIndigo0),
       const DeepCollectionEquality().hash(paletteBrandIndigo100),
       const DeepCollectionEquality().hash(paletteBrandIndigo1000),
       const DeepCollectionEquality().hash(paletteBrandIndigo150),
@@ -4437,6 +4495,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteDatavizPink),
       const DeepCollectionEquality().hash(paletteDatavizPurple),
       const DeepCollectionEquality().hash(paletteDatavizRed),
+      const DeepCollectionEquality().hash(paletteSemanticBlue0),
       const DeepCollectionEquality().hash(paletteSemanticBlue100),
       const DeepCollectionEquality().hash(paletteSemanticBlue1000),
       const DeepCollectionEquality().hash(paletteSemanticBlue150),
@@ -4450,6 +4509,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteSemanticBlue700),
       const DeepCollectionEquality().hash(paletteSemanticBlue800),
       const DeepCollectionEquality().hash(paletteSemanticBlue900),
+      const DeepCollectionEquality().hash(paletteSemanticGreen0),
       const DeepCollectionEquality().hash(paletteSemanticGreen100),
       const DeepCollectionEquality().hash(paletteSemanticGreen1000),
       const DeepCollectionEquality().hash(paletteSemanticGreen150),
@@ -4463,6 +4523,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteSemanticGreen700),
       const DeepCollectionEquality().hash(paletteSemanticGreen800),
       const DeepCollectionEquality().hash(paletteSemanticGreen900),
+      const DeepCollectionEquality().hash(paletteSemanticOrange0),
       const DeepCollectionEquality().hash(paletteSemanticOrange100),
       const DeepCollectionEquality().hash(paletteSemanticOrange1000),
       const DeepCollectionEquality().hash(paletteSemanticOrange150),
@@ -4476,6 +4537,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteSemanticOrange700),
       const DeepCollectionEquality().hash(paletteSemanticOrange800),
       const DeepCollectionEquality().hash(paletteSemanticOrange900),
+      const DeepCollectionEquality().hash(paletteSemanticRed0),
       const DeepCollectionEquality().hash(paletteSemanticRed100),
       const DeepCollectionEquality().hash(paletteSemanticRed1000),
       const DeepCollectionEquality().hash(paletteSemanticRed150),
