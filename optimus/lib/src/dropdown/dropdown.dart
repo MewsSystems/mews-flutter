@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
@@ -164,7 +165,8 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
                   child: _buildList(isOnTop, listMaxHeight),
                 ),
               )
-              : (widget.emptyResultPlaceholder ?? const SizedBox.shrink());
+              : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
+                  .excludeSemantics();
       final children = [
         Material(color: Colors.transparent, child: content),
         if (widget.embeddedSearch case final embeddedSearch?)
@@ -200,7 +202,7 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
       );
     }
 
-    return const SizedBox.shrink();
+    return const SizedBox.shrink().excludeSemantics();
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/chat/optimus_chat_input.dart';
+import 'package:optimus/src/common/semantics.dart';
 
 typedef FormatDate = String Function(DateTime value);
 typedef FormatTime = String Function(DateTime value);
@@ -202,12 +203,14 @@ class _StatusEnd extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: tokens.spacing50),
+        SizedBox(height: tokens.spacing50).excludeSemantics(),
         Row(
           mainAxisAlignment: alignment.mainAxisAlignment,
           children: [
             if (alignment.isStart)
-              SizedBox(width: tokens.spacing100 + avatarWidth),
+              SizedBox(
+                width: tokens.spacing100 + avatarWidth,
+              ).excludeSemantics(),
             _StatusText(
               message: message,
               formatTime: formatTime,
@@ -219,10 +222,12 @@ class _StatusEnd extends StatelessWidget {
             if (alignment.isEnd)
               SizedBox(
                 height: isLatestMessage ? tokens.spacing0 : tokens.spacing100,
-              ),
+              ).excludeSemantics(),
           ],
         ),
-        SizedBox(height: isLatestMessage ? tokens.spacing0 : tokens.spacing100),
+        SizedBox(
+          height: isLatestMessage ? tokens.spacing0 : tokens.spacing100,
+        ).excludeSemantics(),
       ],
     );
   }
