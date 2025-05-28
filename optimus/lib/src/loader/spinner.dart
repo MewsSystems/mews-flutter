@@ -1,3 +1,4 @@
+import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/loader/painter.dart';
@@ -90,44 +91,47 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
   }
 
   @override
-  Widget build(BuildContext context) => SizedBox.square(
-    dimension: widget.size.getSize(tokens),
-    child: AnimatedBuilder(
-      animation: _controller,
-      builder:
-          (context, child) => Stack(
-            alignment: Alignment.center,
-            children: [
-              CustomPaint(
-                size: Size.square(widget.size.getSize(tokens)),
-                painter: CirclePainter(
-                  indicatorColor:
-                      tokens.backgroundInteractiveNeutralBoldDefault,
-                  strokeWidth: widget.size.strokeWidth,
-                  progress: _thirdProgressAnimation.value,
-                  baseAngle: _thirdBaseAnimation.value,
-                  strokeCap: StrokeCap.round,
+  Widget build(BuildContext context) => Semantics(
+    role: SemanticsRole.loadingSpinner,
+    child: SizedBox.square(
+      dimension: widget.size.getSize(tokens),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder:
+            (context, child) => Stack(
+              alignment: Alignment.center,
+              children: [
+                CustomPaint(
+                  size: Size.square(widget.size.getSize(tokens)),
+                  painter: CirclePainter(
+                    indicatorColor:
+                        tokens.backgroundInteractiveNeutralBoldDefault,
+                    strokeWidth: widget.size.strokeWidth,
+                    progress: _thirdProgressAnimation.value,
+                    baseAngle: _thirdBaseAnimation.value,
+                    strokeCap: StrokeCap.round,
+                  ),
+                  foregroundPainter: CirclePainter(
+                    indicatorColor: tokens.backgroundAccentSecondary,
+                    strokeWidth: widget.size.strokeWidth,
+                    progress: _secondProgressAnimation.value,
+                    baseAngle: _secondBaseAnimation.value,
+                    strokeCap: StrokeCap.round,
+                  ),
                 ),
-                foregroundPainter: CirclePainter(
-                  indicatorColor: tokens.backgroundAccentSecondary,
-                  strokeWidth: widget.size.strokeWidth,
-                  progress: _secondProgressAnimation.value,
-                  baseAngle: _secondBaseAnimation.value,
-                  strokeCap: StrokeCap.round,
+                CustomPaint(
+                  size: Size.square(widget.size.getSize(tokens)),
+                  painter: CirclePainter(
+                    indicatorColor: tokens.backgroundAccentPrimary,
+                    strokeWidth: widget.size.strokeWidth,
+                    progress: _firstProgressAnimation.value,
+                    baseAngle: _firstBaseAnimation.value,
+                    strokeCap: StrokeCap.round,
+                  ),
                 ),
-              ),
-              CustomPaint(
-                size: Size.square(widget.size.getSize(tokens)),
-                painter: CirclePainter(
-                  indicatorColor: tokens.backgroundAccentPrimary,
-                  strokeWidth: widget.size.strokeWidth,
-                  progress: _firstProgressAnimation.value,
-                  baseAngle: _firstBaseAnimation.value,
-                  strokeCap: StrokeCap.round,
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
+      ),
     ),
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/tooltip/tooltip_alignment.dart';
 import 'package:optimus/src/tooltip/tooltip_overlay.dart';
@@ -40,26 +41,29 @@ class OptimusTooltip extends StatelessWidget {
     final foregroundColor = tokens.textStaticInverse;
     final backgroundColor = tokens.backgroundStaticInverse;
 
-    return Padding(
-      padding: const EdgeInsets.all(_arrowHeight),
-      child: CustomPaint(
-        painter: _TooltipPainter(
-          color: backgroundColor,
-          alignment: alignment,
-          borderRadius: tokens.borderRadius50,
-        ),
-        child: Container(
-          width: size.maxWidth,
-          padding: EdgeInsets.symmetric(
-            vertical: tokens.spacing50,
-            horizontal: tokens.spacing150,
-          ),
-          child: Material(
+    return Semantics(
+      role: SemanticsRole.tooltip,
+      child: Padding(
+        padding: const EdgeInsets.all(_arrowHeight),
+        child: CustomPaint(
+          painter: _TooltipPainter(
             color: backgroundColor,
-            child: DefaultTextStyle.merge(
-              style: tokens.bodySmallStrong.copyWith(color: foregroundColor),
-              textAlign: TextAlign.center,
-              child: content,
+            alignment: alignment,
+            borderRadius: tokens.borderRadius50,
+          ),
+          child: Container(
+            width: size.maxWidth,
+            padding: EdgeInsets.symmetric(
+              vertical: tokens.spacing50,
+              horizontal: tokens.spacing150,
+            ),
+            child: Material(
+              color: backgroundColor,
+              child: DefaultTextStyle.merge(
+                style: tokens.bodySmallStrong.copyWith(color: foregroundColor),
+                textAlign: TextAlign.center,
+                child: content,
+              ),
             ),
           ),
         ),

@@ -290,7 +290,7 @@ class TooltipOverlayState extends State<TooltipOverlay>
     controller: this,
     child: Builder(
       builder:
-          (context) => Positioned(
+          (_) => Positioned(
             left: _leftOffset,
             top: _topOffset,
             bottom: _bottomOffset,
@@ -305,5 +305,5 @@ class TooltipOverlayState extends State<TooltipOverlay>
   );
 }
 
-const double _tooltipAlignOffset = 20.0;
+const double _tooltipAlignOffset = 20.0; // TODO(witwash): check with design
 const Duration _animationDuration = Duration(milliseconds: 100);
