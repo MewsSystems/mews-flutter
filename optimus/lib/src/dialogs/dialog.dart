@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/dialogs/dialog_content.dart';
 
@@ -186,7 +187,8 @@ class OptimusDialog extends StatelessWidget {
     final size = _autoSize(context);
     final tokens = context.tokens;
 
-    return SafeArea(
+    return Semantics(
+      role: SemanticsRole.dialog,
       child: Align(
         alignment: _alignment(context),
         child: DialogContent(

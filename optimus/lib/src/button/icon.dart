@@ -67,6 +67,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
       ignoring: !isEnabled,
       child: Semantics(
         label: widget.semanticLabel,
+        button: true,
         enabled: _isEnabled,
         child: GestureWrapper(
           onHoverChanged: _handleHoverChanged,

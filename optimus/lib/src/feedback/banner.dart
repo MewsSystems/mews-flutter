@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:optimus/src/feedback/common.dart';
 import 'package:optimus/src/feedback/feedback_variant.dart';
 import 'package:optimus/src/theme/theme.dart';
@@ -63,59 +64,62 @@ class OptimusBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return GestureDetector(
-      onTap: onPressed,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: variant.backgroundColor(tokens),
-          borderRadius: BorderRadius.all(tokens.borderRadius100),
-        ),
-        child: Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(tokens.spacing200),
-              child: Row(
-                crossAxisAlignment:
-                    _isExpanded
-                        ? CrossAxisAlignment.start
-                        : CrossAxisAlignment.center,
-                children: [
-                  if (hasIcon)
-                    Padding(
-                      padding: EdgeInsets.only(right: tokens.spacing200),
-                      child: FeedbackIcon(variant: variant),
-                    ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding:
-                              isDismissible
-                                  ? EdgeInsets.only(right: tokens.spacing200)
-                                  : EdgeInsets.zero,
-                          child: FeedbackTitle(title: title),
-                        ),
-                        if (description case final description?)
+    return Semantics(
+      role: SemanticsRole.alert,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: variant.backgroundColor(tokens),
+            borderRadius: BorderRadius.all(tokens.borderRadius100),
+          ),
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(tokens.spacing200),
+                child: Row(
+                  crossAxisAlignment:
+                      _isExpanded
+                          ? CrossAxisAlignment.start
+                          : CrossAxisAlignment.center,
+                  children: [
+                    if (hasIcon)
+                      Padding(
+                        padding: EdgeInsets.only(right: tokens.spacing200),
+                        child: FeedbackIcon(variant: variant),
+                      ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Padding(
-                            padding: EdgeInsets.only(top: tokens.spacing50),
-                            child: FeedbackDescription(
-                              description: description,
-                            ),
+                            padding:
+                                isDismissible
+                                    ? EdgeInsets.only(right: tokens.spacing200)
+                                    : EdgeInsets.zero,
+                            child: FeedbackTitle(title: title),
                           ),
-                      ],
+                          if (description case final description?)
+                            Padding(
+                              padding: EdgeInsets.only(top: tokens.spacing50),
+                              child: FeedbackDescription(
+                                description: description,
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (isDismissible)
-              Positioned(
-                top: tokens.spacing200,
-                right: tokens.spacing200,
-                child: FeedbackDismissButton(onDismiss: onDismiss),
-              ),
-          ],
+              if (isDismissible)
+                Positioned(
+                  top: tokens.spacing200,
+                  right: tokens.spacing200,
+                  child: FeedbackDismissButton(onDismiss: onDismiss),
+                ),
+            ],
+          ),
         ),
       ),
     );

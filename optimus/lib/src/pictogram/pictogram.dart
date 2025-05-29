@@ -28,6 +28,7 @@ class OptimusPictogram extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Semantics(
     label: semanticsLabel ?? variant.name.replaceAll('_', ' '),
+    image: true,
     child: SizedBox.square(
       dimension: size.getSize(context.tokens),
       child: SvgPicture.asset(

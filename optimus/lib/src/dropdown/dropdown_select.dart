@@ -346,53 +346,56 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
             )
             : null;
 
-    return PopScope(
-      canPop: _canPop,
-      onPopInvokedWithResult: _handleOnBackPressed,
-      child:
-          widget.allowMultipleSelection && _hasValues
-              ? MultiSelectInputField(
-                values: _values ?? [],
-                leading: leading,
-                prefix: widget.prefix,
-                isRequired: widget.isRequired,
-                label: widget.label,
-                focusNode: _effectiveFocusNode,
-                isFocused: _isFocused,
-                fieldBoxKey: _fieldBoxKey,
-                suffix: widget.suffix,
-                trailing: trailing,
-                isEnabled: widget.isEnabled,
-                caption: widget.caption,
-                helperMessage: widget.helperMessage,
-                error: widget.error,
-                size: widget.size,
-                showLoader: widget.showLoader,
-              )
-              : OptimusInputField(
-                leading: leading,
-                prefix: widget.prefix,
-                controller: _effectiveController,
-                onChanged: widget.onTextChanged,
-                isRequired: widget.isRequired,
-                label: widget.label,
-                placeholder: widget.placeholder,
-                placeholderStyle: widget.placeholderStyle,
-                focusNode: _effectiveFocusNode,
-                isFocused: _isFocused,
-                onTap: _onTap,
-                fieldBoxKey: _fieldBoxKey,
-                suffix: widget.suffix,
-                trailing: trailing,
-                isEnabled: widget.isEnabled,
-                caption: widget.caption,
-                helperMessage: widget.helperMessage,
-                error: widget.error,
-                size: widget.size,
-                isReadOnly: widget.isReadOnly,
-                showCursor: widget.showCursor,
-                showLoader: widget.showLoader,
-              ),
+    return Semantics(
+      role: widget.isReadOnly ? SemanticsRole.menu : SemanticsRole.comboBox,
+      child: PopScope(
+        canPop: _canPop,
+        onPopInvokedWithResult: _handleOnBackPressed,
+        child:
+            widget.allowMultipleSelection && _hasValues
+                ? MultiSelectInputField(
+                  values: _values ?? [],
+                  leading: leading,
+                  prefix: widget.prefix,
+                  isRequired: widget.isRequired,
+                  label: widget.label,
+                  focusNode: _effectiveFocusNode,
+                  isFocused: _isFocused,
+                  fieldBoxKey: _fieldBoxKey,
+                  suffix: widget.suffix,
+                  trailing: trailing,
+                  isEnabled: widget.isEnabled,
+                  caption: widget.caption,
+                  helperMessage: widget.helperMessage,
+                  error: widget.error,
+                  size: widget.size,
+                  showLoader: widget.showLoader,
+                )
+                : OptimusInputField(
+                  leading: leading,
+                  prefix: widget.prefix,
+                  controller: _effectiveController,
+                  onChanged: widget.onTextChanged,
+                  isRequired: widget.isRequired,
+                  label: widget.label,
+                  placeholder: widget.placeholder,
+                  placeholderStyle: widget.placeholderStyle,
+                  focusNode: _effectiveFocusNode,
+                  isFocused: _isFocused,
+                  onTap: _onTap,
+                  fieldBoxKey: _fieldBoxKey,
+                  suffix: widget.suffix,
+                  trailing: trailing,
+                  isEnabled: widget.isEnabled,
+                  caption: widget.caption,
+                  helperMessage: widget.helperMessage,
+                  error: widget.error,
+                  size: widget.size,
+                  isReadOnly: widget.isReadOnly,
+                  showCursor: widget.showCursor,
+                  showLoader: widget.showLoader,
+                ),
+      ),
     );
   }
 }

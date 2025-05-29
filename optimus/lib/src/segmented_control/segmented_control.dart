@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
@@ -71,39 +72,42 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return GroupWrapper(
-      label: label,
-      error: error,
-      isRequired: isRequired,
-      isEnabled: isEnabled,
-      child: OptimusEnabled(
+    return Semantics(
+      role: SemanticsRole.radioGroup,
+      child: GroupWrapper(
+        label: label,
+        error: error,
+        isRequired: isRequired,
         isEnabled: isEnabled,
-        child: DecoratedBox(
-          decoration:
-              direction == Axis.horizontal
-                  ? BoxDecoration(
-                    color: tokens.backgroundInteractiveNeutralDefault,
-                    borderRadius: BorderRadius.all(tokens.borderRadius100),
-                  )
-                  : const BoxDecoration(),
-          child: OptimusStack(
-            direction: direction,
-            distribution: _distribution,
-            spacing: _spacing,
-            children:
-                items
-                    .map(
-                      (item) => _OptimusSegmentedControlItem<T>(
-                        value: item.value,
-                        size: size,
-                        groupValue: value,
-                        onItemSelected: onItemSelected,
-                        isEnabled: isEnabled,
-                        maxLines: _maxLines,
-                        child: item.label,
-                      ),
+        child: OptimusEnabled(
+          isEnabled: isEnabled,
+          child: DecoratedBox(
+            decoration:
+                direction == Axis.horizontal
+                    ? BoxDecoration(
+                      color: tokens.backgroundInteractiveNeutralDefault,
+                      borderRadius: BorderRadius.all(tokens.borderRadius100),
                     )
-                    .toList(),
+                    : const BoxDecoration(),
+            child: OptimusStack(
+              direction: direction,
+              distribution: _distribution,
+              spacing: _spacing,
+              children:
+                  items
+                      .map(
+                        (item) => _OptimusSegmentedControlItem<T>(
+                          value: item.value,
+                          size: size,
+                          groupValue: value,
+                          onItemSelected: onItemSelected,
+                          isEnabled: isEnabled,
+                          maxLines: _maxLines,
+                          child: item.label,
+                        ),
+                      )
+                      .toList(),
+            ),
           ),
         ),
       ),
@@ -180,36 +184,39 @@ class _OptimusSegmentedControlItemState<T>
 
     return LayoutBuilder(
       builder:
-          (context, constrains) => GestureWrapper(
-            onTap: _handleChanged,
-            onHoverChanged: _handleHoverChanged,
-            onPressedChanged: _handlePressedChanged,
-            child: Padding(
-              padding: EdgeInsets.all(tokens.spacing25),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 100),
-                curve: Curves.easeOut,
-                constraints: BoxConstraints(
-                  minHeight: widget.size.getValue(tokens),
-                ),
-                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-                decoration: BoxDecoration(
-                  color: _color(tokens),
-                  borderRadius: BorderRadius.all(tokens.borderRadius100),
-                ),
-                alignment: Alignment.center,
-                child: DefaultTextStyle.merge(
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  maxLines: widget.maxLines,
-                  style: tokens.bodyMediumStrong.copyWith(
-                    color: _foregroundColor(tokens),
+          (context, constrains) => Semantics(
+            inMutuallyExclusiveGroup: true,
+            child: GestureWrapper(
+              onTap: _handleChanged,
+              onHoverChanged: _handleHoverChanged,
+              onPressedChanged: _handlePressedChanged,
+              child: Padding(
+                padding: EdgeInsets.all(tokens.spacing25),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.easeOut,
+                  constraints: BoxConstraints(
+                    minHeight: widget.size.getValue(tokens),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: constrains.getAdaptivePadding(tokens),
+                  padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                  decoration: BoxDecoration(
+                    color: _color(tokens),
+                    borderRadius: BorderRadius.all(tokens.borderRadius100),
+                  ),
+                  alignment: Alignment.center,
+                  child: DefaultTextStyle.merge(
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    maxLines: widget.maxLines,
+                    style: tokens.bodyMediumStrong.copyWith(
+                      color: _foregroundColor(tokens),
                     ),
-                    child: widget.child,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constrains.getAdaptivePadding(tokens),
+                      ),
+                      child: widget.child,
+                    ),
                   ),
                 ),
               ),

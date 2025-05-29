@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 
 /// An embedded search that is designed to be used inside the dropdown menu.
@@ -52,13 +53,16 @@ class _OptimusDropdownEmbeddedSearchState
   }
 
   @override
-  Widget build(BuildContext context) => OptimusInputField(
-    controller: _controller,
-    onChanged: widget.onTextChanged,
-    focusNode: _focusNode,
-    placeholder: widget.placeholder,
-    leading: const Icon(OptimusIcons.search),
-    isClearEnabled: widget.isClearEnabled,
-    hasBorders: false,
+  Widget build(BuildContext context) => Semantics(
+    role: SemanticsRole.searchBox,
+    child: OptimusInputField(
+      controller: _controller,
+      onChanged: widget.onTextChanged,
+      focusNode: _focusNode,
+      placeholder: widget.placeholder,
+      leading: const Icon(OptimusIcons.search),
+      isClearEnabled: widget.isClearEnabled,
+      hasBorders: false,
+    ),
   );
 }
