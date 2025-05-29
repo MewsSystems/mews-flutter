@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -192,7 +193,7 @@ class _VerticalItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           indicator,
-          SizedBox(width: tokens.spacing200),
+          SizedBox(width: tokens.spacing200).excludeSemantics(),
           _ProgressIndicatorDescription(
             text: label,
             description: description,
@@ -318,7 +319,7 @@ class ProgressIndicatorSpacer extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
         child: SizedBox(
           height: tokens.borderWidth150,
-          child: ColoredBox(color: color),
+          child: ColoredBox(color: color).excludeSemantics(),
         ),
       ),
       Axis.vertical => Padding(
@@ -330,7 +331,7 @@ class ProgressIndicatorSpacer extends StatelessWidget {
         child: SizedBox(
           height: tokens.sizing200,
           width: tokens.borderWidth150,
-          child: Container(color: color),
+          child: Container(color: color).excludeSemantics(),
         ),
       ),
     };

@@ -5,6 +5,7 @@ import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
 import 'package:optimus/src/button/outlined_border.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/semantics.dart';
 
 enum OptimusSplitButtonVariant { primary, secondary, tertiary }
 
@@ -102,7 +103,7 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
             width: tokens.borderWidth150,
             height: widget.size.getValue(tokens),
             child: ColoredBox(color: dividerColor ?? Colors.transparent),
-          ),
+          ).excludeSemantics(),
           BaseDropDownButton(
             items: widget.items,
             onItemSelected: widget.onItemSelected,
