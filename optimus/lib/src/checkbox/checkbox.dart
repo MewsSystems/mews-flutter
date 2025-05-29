@@ -134,16 +134,16 @@ class OptimusCheckbox extends StatelessWidget {
         child: MergeSemantics(
           child: GestureDetector(
             onTap: _handleTap,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: topPadding),
-                  child: Semantics(
-                    label: semanticLabel,
-                    checked: isChecked ?? false,
-                    mixed: isTristate ? isChecked == null : null,
+            child: Semantics(
+              label: semanticLabel,
+              checked: isChecked ?? false,
+              mixed: isTristate ? isChecked == null : null,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: topPadding),
                     child: CheckboxTick(
                       isError: _isError,
                       isChecked: isChecked,
@@ -152,20 +152,20 @@ class OptimusCheckbox extends StatelessWidget {
                       onTap: _handleTap,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: tokens.spacing150,
-                      bottom: tokens.spacing50,
-                    ),
-                    child: DefaultTextStyle.merge(
-                      style: _labelStyle(tokens),
-                      child: label,
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: tokens.spacing150,
+                        bottom: tokens.spacing50,
+                      ),
+                      child: DefaultTextStyle.merge(
+                        style: _labelStyle(tokens),
+                        child: label,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
