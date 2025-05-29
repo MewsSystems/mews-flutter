@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/feedback/common.dart';
 
 /// Alert is used for showing a brief and concise message that
@@ -181,7 +182,7 @@ class _AlertContent extends StatelessWidget {
           ),
           Row(
             children: [
-              SizedBox(width: leadingSectionWidth),
+              SizedBox(width: leadingSectionWidth).excludeSemantics(),
               Expanded(
                 child: Container(
                   padding: _getContentPadding(tokens),
