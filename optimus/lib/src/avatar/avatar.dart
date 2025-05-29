@@ -65,31 +65,33 @@ class OptimusAvatar extends StatelessWidget {
       ),
     );
 
-    return Semantics(
-      label: semanticLabel ?? 'Avatar: $title',
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: alignment,
-        children: <Widget>[
-          _CircleImage(
-            imageUrl: imageUrl,
-            decoration: decoration,
-            diameter: size.getSize(tokens),
-            fallbackWidget: _FallbackText(title: title, size: size),
-          ),
-          if (isIndicatorVisible && _isVisibleForSize)
-            Positioned(
-              right: tokens.spacing0,
-              top: tokens.spacing0,
-              child: const _Indicator(),
+    return MergeSemantics(
+      child: Semantics(
+        label: semanticLabel ?? 'Avatar: $title',
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: alignment,
+          children: <Widget>[
+            _CircleImage(
+              imageUrl: imageUrl,
+              decoration: decoration,
+              diameter: size.getSize(tokens),
+              fallbackWidget: _FallbackText(title: title, size: size),
             ),
-          if (badgeUrl != null && _isVisibleForSize)
-            Positioned(
-              right: tokens.spacing0,
-              bottom: tokens.spacing0,
-              child: _Indicator(url: badgeUrl),
-            ),
-        ],
+            if (isIndicatorVisible && _isVisibleForSize)
+              Positioned(
+                right: tokens.spacing0,
+                top: tokens.spacing0,
+                child: const _Indicator(),
+              ),
+            if (badgeUrl != null && _isVisibleForSize)
+              Positioned(
+                right: tokens.spacing0,
+                bottom: tokens.spacing0,
+                child: _Indicator(url: badgeUrl),
+              ),
+          ],
+        ),
       ),
     );
   }
