@@ -1,6 +1,7 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
@@ -43,35 +44,40 @@ class BaseDropdownTile extends StatelessWidget {
       ],
     );
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: tokens.spacing200,
-        vertical: size.getVerticalPadding(tokens),
-      ),
-      decoration: BoxDecoration(
-        color: isSelected ? tokens.backgroundInteractiveSecondaryDefault : null,
-        borderRadius: BorderRadius.all(tokens.borderRadius100),
-      ),
-      child:
-          hasCheckbox
-              ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IgnorePointer(
-                    child: Padding(
-                      padding: EdgeInsets.only(right: tokens.spacing200),
-                      child: CheckboxTick(
-                        isEnabled: true,
-                        onChanged: ignore,
-                        onTap: ignore,
-                        isChecked: isSelected,
+    return Semantics(
+      role:
+          hasCheckbox ? SemanticsRole.menuItemCheckbox : SemanticsRole.menuItem,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: tokens.spacing200,
+          vertical: size.getVerticalPadding(tokens),
+        ),
+        decoration: BoxDecoration(
+          color:
+              isSelected ? tokens.backgroundInteractiveSecondaryDefault : null,
+          borderRadius: BorderRadius.all(tokens.borderRadius100),
+        ),
+        child:
+            hasCheckbox
+                ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IgnorePointer(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: tokens.spacing200),
+                        child: CheckboxTick(
+                          isEnabled: true,
+                          onChanged: ignore,
+                          onTap: ignore,
+                          isChecked: isSelected,
+                        ),
                       ),
                     ),
-                  ),
-                  Flexible(fit: FlexFit.loose, child: tile),
-                ],
-              )
-              : tile,
+                    Flexible(fit: FlexFit.loose, child: tile),
+                  ],
+                )
+                : tile,
+      ),
     );
   }
 }
