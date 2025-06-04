@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/theme/theme.dart';
 
 /// A widget that provides a shimmer effect for loading states.
@@ -77,7 +78,8 @@ class OptimusSkeletonState extends State<OptimusSkeleton>
   Listenable get shimmerController => _shimmerController;
 
   @override
-  Widget build(BuildContext context) => widget.child ?? const SizedBox();
+  Widget build(BuildContext context) =>
+      widget.child ?? const SizedBox().excludeSemantics();
 }
 
 class _SlidingGradientTransform extends GradientTransform {

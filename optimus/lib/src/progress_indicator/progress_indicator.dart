@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide ProgressIndicator;
 import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_detector.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/progress_indicator/common.dart';
 
 /// Progress indicators are used to communicate a sense of progress visually
@@ -101,7 +102,11 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                   children:
                       items
                           .intersperseWith(
-                            itemBuilder: (_) => SizedBox(width: indicatorWidth),
+                            itemBuilder:
+                                (_) =>
+                                    SizedBox(
+                                      width: indicatorWidth,
+                                    ).excludeSemantics(),
                             separatorBuilder:
                                 (_, nextItem) => Expanded(
                                   child: ProgressIndicatorSpacer(

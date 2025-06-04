@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/radio/radio_circle.dart';
 
 enum OptimusSelectionCardVariant { vertical, horizontal }
@@ -253,7 +254,7 @@ class _HorizontalCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Flexible(child: title),
-                    SizedBox(height: tokens.spacing25),
+                    SizedBox(height: tokens.spacing25).excludeSemantics(),
                     if (description case final description?)
                       Flexible(child: description),
                   ],
@@ -307,9 +308,9 @@ class _VerticalCard extends StatelessWidget {
               SizedBox(
                 height: context.tokens.spacing200,
                 width: context.tokens.sizing1300,
-              ),
+              ).excludeSemantics(),
               Flexible(child: title),
-              SizedBox(height: context.tokens.spacing50),
+              SizedBox(height: context.tokens.spacing50).excludeSemantics(),
               if (description case final description?)
                 Flexible(child: description),
             ],

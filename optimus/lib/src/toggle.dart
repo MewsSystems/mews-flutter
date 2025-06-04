@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/semantics.dart';
 
 /// The toggle component serves as a visual representation of a binary choice,
 /// providing users with a clear way to control settings, preferences, or switch
@@ -107,7 +108,7 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
                       isVisible: widget.isChecked,
                       isEnabled: _isEnabled,
                     ),
-                    SizedBox(width: tokens.spacing50),
+                    SizedBox(width: tokens.spacing50).excludeSemantics(),
                     _Icon(
                       icon: widget.onIcon,
                       isVisible: !widget.isChecked,

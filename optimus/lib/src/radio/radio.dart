@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/radio/radio_circle.dart';
 
 /// The radio component is available in two size variants to accommodate
@@ -174,7 +175,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(width: leadingSize),
+                            SizedBox(width: leadingSize).excludeSemantics(),
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
+import 'package:optimus/src/common/semantics.dart';
 
 typedef ShapeBuilder =
     OutlinedBorder Function(BorderRadius borderRadius, BorderSide borderSide);
@@ -231,7 +232,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                   size: _iconSize,
                   color: foregroundColor,
                 ),
-              ),
+              ).excludeSemantics(),
             if (widget.child case final child?)
               IconTheme(
                 data: IconThemeData(color: foregroundColor, size: _iconSize),
@@ -267,7 +268,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                   size: _iconSize,
                   color: foregroundColor,
                 ),
-              ),
+              ).excludeSemantics(),
           ],
         ),
       ),

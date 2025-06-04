@@ -1,5 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/skeleton/skeleton.dart';
 import 'package:optimus/src/theme/theme.dart';
 
@@ -130,7 +131,7 @@ class _BoneState extends State<_Bone> {
       }
     }
 
-    return const SizedBox();
+    return const SizedBox().excludeSemantics();
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/semantics.dart';
 
 /// The icon list component serves as a static, non-interactable option and is
 /// used when you need to show an icon with a label and/or optional description.
@@ -29,7 +30,8 @@ class OptimusIconList extends StatelessWidget {
       itemCount: items.length,
       itemBuilder: (_, index) => _ListTile(item: items[index], size: size),
       separatorBuilder:
-          (context, index) => SizedBox(height: context.tokens.spacing200),
+          (context, index) =>
+              SizedBox(height: context.tokens.spacing200).excludeSemantics(),
     );
   }
 

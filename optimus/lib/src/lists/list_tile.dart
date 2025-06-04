@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -110,7 +111,9 @@ class OptimusListTile extends StatelessWidget {
               Row(
                 children: [
                   if (prefix != null)
-                    SizedBox(width: prefixSize.getWidth(tokens)),
+                    SizedBox(
+                      width: prefixSize.getWidth(tokens),
+                    ).excludeSemantics(),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: tokens.spacing100),
