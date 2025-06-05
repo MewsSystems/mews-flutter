@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/semantics.dart';
@@ -70,42 +71,45 @@ class OptimusAlert extends StatelessWidget {
       _maxWidth,
     );
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontalPadding,
-        vertical: tokens.spacing50,
-      ),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: alertWidth),
-          child: Stack(
-            children: [
-              _AlertContent(
-                icon: icon,
-                variant: variant,
-                title: title,
-                description: description,
-                linkText: action?.text,
-                onLinkPressed: () {
-                  action?.onPressed();
-                  OptimusAlertOverlay.of(context)?.remove(this);
-                },
-                isDismissible: isDismissible,
-              ),
-              if (isDismissible)
-                Positioned(
-                  top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
-                  right: tokens.spacing200,
-                  bottom: _isExpanded ? null : tokens.spacing0,
-                  child: FeedbackDismissButton(
-                    onDismiss: () {
-                      onDismiss?.call();
-                      OptimusAlertOverlay.of(context)?.remove(this);
-                    },
-                  ),
+    return Semantics(
+      role: SemanticsRole.alert,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding,
+          vertical: tokens.spacing50,
+        ),
+        child: GestureDetector(
+          onTap: onPressed,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: alertWidth),
+            child: Stack(
+              children: [
+                _AlertContent(
+                  icon: icon,
+                  variant: variant,
+                  title: title,
+                  description: description,
+                  linkText: action?.text,
+                  onLinkPressed: () {
+                    action?.onPressed();
+                    OptimusAlertOverlay.of(context)?.remove(this);
+                  },
+                  isDismissible: isDismissible,
                 ),
-            ],
+                if (isDismissible)
+                  Positioned(
+                    top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
+                    right: tokens.spacing200,
+                    bottom: _isExpanded ? null : tokens.spacing0,
+                    child: FeedbackDismissButton(
+                      onDismiss: () {
+                        onDismiss?.call();
+                        OptimusAlertOverlay.of(context)?.remove(this);
+                      },
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
