@@ -30,10 +30,14 @@ class OptimusRadio<T> extends StatefulWidget {
     this.size = OptimusRadioSize.large,
     this.error,
     this.isEnabled = true,
+    this.semanticLabel,
   });
 
   /// Controls label.
   final Widget label;
+
+  /// A semantic label for the radio choice.
+  final String? semanticLabel;
 
   /// Controls the value represented by this radio button.
   final T value;
@@ -129,68 +133,73 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
     return ListenableBuilder(
       listenable: _stateController,
       builder:
-          (context, _) => Semantics(
-            inMutuallyExclusiveGroup: true,
-            child: GroupWrapper(
-              error: widget.error,
-              isEnabled: widget.isEnabled,
-              child: IgnorePointer(
-                ignoring: !widget.isEnabled,
-                child: GestureWrapper(
-                  onHoverChanged:
-                      (isHovered) => _stateController.update(
-                        WidgetState.hovered,
-                        isHovered,
-                      ),
-                  onPressedChanged:
-                      (isPressed) => _stateController.update(
-                        WidgetState.pressed,
-                        isPressed,
-                      ),
-                  onTap: _handleChanged,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        width: leadingSize,
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: tokens.spacing100,
-                              bottom: tokens.spacing100,
-                              right: tokens.spacing200,
-                            ),
-                            child: RadioCircle(
-                              isSelected: _isSelected,
-                              controller: _stateController,
+          (context, _) => MergeSemantics(
+            child: Semantics(
+              inMutuallyExclusiveGroup: true,
+              label: widget.semanticLabel,
+              checked: _isSelected,
+              enabled: widget.isEnabled,
+              child: GroupWrapper(
+                error: widget.error,
+                isEnabled: widget.isEnabled,
+                child: IgnorePointer(
+                  ignoring: !widget.isEnabled,
+                  child: GestureWrapper(
+                    onHoverChanged:
+                        (isHovered) => _stateController.update(
+                          WidgetState.hovered,
+                          isHovered,
+                        ),
+                    onPressedChanged:
+                        (isPressed) => _stateController.update(
+                          WidgetState.pressed,
+                          isPressed,
+                        ),
+                    onTap: _handleChanged,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          width: leadingSize,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: tokens.spacing100,
+                                bottom: tokens.spacing100,
+                                right: tokens.spacing200,
+                              ),
+                              child: RadioCircle(
+                                isSelected: _isSelected,
+                                controller: _stateController,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      ConstrainedBox(
-                        constraints: BoxConstraints(minHeight: leadingSize),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(width: leadingSize).excludeSemantics(),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: tokens.spacing25,
-                                ),
-                                child: DefaultTextStyle.merge(
-                                  style: _labelStyle,
-                                  child: widget.label,
+                        ConstrainedBox(
+                          constraints: BoxConstraints(minHeight: leadingSize),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: leadingSize).excludeSemantics(),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: tokens.spacing25,
+                                  ),
+                                  child: DefaultTextStyle.merge(
+                                    style: _labelStyle,
+                                    child: widget.label,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
