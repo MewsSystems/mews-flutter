@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                             ),
                             title: Text('Web implementation'),
                             description: Text(
-                              'The repository with source code of our Flutter components',
+                              'The Storybook for web components',
                             ),
                           ),
                         ],
