@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/addons/accessibility.dart';
+import 'package:optimus_widgetbook/branding/header.dart';
+import 'package:optimus_widgetbook/branding/home_page.dart';
 import 'package:optimus_widgetbook/main.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart' hide AccessibilityAddon;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -67,5 +69,7 @@ class WidgetbookApp extends StatelessWidget {
       SemanticsAddon(),
     ],
     directories: directories,
+    header: const MewsHeader(),
+    home: const HomePage(),
   );
 }
