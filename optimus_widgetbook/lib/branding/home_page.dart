@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                             ),
                             title: Text('GitHub'),
                             description: Text(
-                              'The repository with source code of our Flutter components',
+                              'The repository with the source code of our Flutter components',
                             ),
                           ),
                           _Card(
@@ -73,10 +73,8 @@ class HomePage extends StatelessWidget {
                             image: _CardImage(
                               variant: _CardImageVariant.storybook,
                             ),
-                            title: Text('Web implementation'),
-                            description: Text(
-                              'The Storybook for web components',
-                            ),
+                            title: Text('Web Components'),
+                            description: Text('Storybook with web components'),
                           ),
                         ],
                       ),
