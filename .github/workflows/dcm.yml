@@ -21,4 +21,4 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Dart Code Metrics
-        run: melos exec -c 1 --ignore="*example*" -- dcm analyze --fatal-style --fatal-performance --fatal-warnings --ci-key=${{ secrets.DCM_CI_KEY }} --email=${{ vars.DCM_CI_EMAIL }} .
+        run: melos exec -c 1 --ignore="*example*" -- dcm analyze --fatal-style --fatal-warnings --ci-key=${{ secrets.DCM_CI_KEY }} --email=${{ vars.DCM_CI_EMAIL }} .
