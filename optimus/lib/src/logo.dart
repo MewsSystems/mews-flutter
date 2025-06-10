@@ -151,6 +151,7 @@ class OptimusMewsLogo extends StatelessWidget {
 }
 
 class _ProductBadge extends StatelessWidget {
+  // TODO(witwash): could be a reason for a refactor of BaseBadge and replace with it
   const _ProductBadge({
     required this.name,
     required this.colorVariant,
