@@ -54,6 +54,7 @@ class OptimusMewsLogo extends StatelessWidget {
     this.alignVariant = OptimusMewsLogoAlignVariant.topCenter,
     this.semanticsLabel,
     this.productName,
+    this.useMargin = true,
   });
 
   /// The variant of the logo to be displayed.
@@ -74,6 +75,9 @@ class OptimusMewsLogo extends StatelessWidget {
   /// The semantics label for the logo. Defaults to the 'Mews Logo'.
   /// We suggest using a localized string for better accessibility.
   final String? semanticsLabel;
+
+  /// Whether to use margin around the logo.
+  final bool useMargin;
 
   double _getSize(OptimusTokens tokens) => switch (sizeVariant) {
     OptimusMewsLogoSizeVariant.large => tokens.sizing300,
@@ -132,7 +136,7 @@ class OptimusMewsLogo extends StatelessWidget {
 
     return MergeSemantics(
       child: Padding(
-        padding: _getMargin(tokens),
+        padding: useMargin ? _getMargin(tokens) : EdgeInsetsGeometry.zero,
         child:
             productName != null
                 ? Row(
