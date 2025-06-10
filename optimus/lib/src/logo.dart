@@ -131,21 +131,27 @@ class OptimusMewsLogo extends StatelessWidget {
     };
 
     return MergeSemantics(
-      child:
-          productName != null
-              ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Semantics(label: semanticsLabel ?? 'Mews Logo', child: logo),
-                  SizedBox(width: sizeVariant.getProductPadding(tokens)),
-                  _ProductBadge(
-                    name: productName,
-                    colorVariant: colorVariant,
-                    sizeVariant: sizeVariant,
-                  ),
-                ],
-              )
-              : logo,
+      child: Padding(
+        padding: _getMargin(tokens),
+        child:
+            productName != null
+                ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Semantics(
+                      label: semanticsLabel ?? 'Mews Logo',
+                      child: logo,
+                    ),
+                    SizedBox(width: sizeVariant.getProductPadding(tokens)),
+                    _ProductBadge(
+                      name: productName,
+                      colorVariant: colorVariant,
+                      sizeVariant: sizeVariant,
+                    ),
+                  ],
+                )
+                : logo,
+      ),
     );
   }
 }
