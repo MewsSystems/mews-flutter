@@ -201,10 +201,15 @@ class _ProductBadge extends StatelessWidget {
                   leadingDistribution: TextLeadingDistribution.even,
                   textBaseline: TextBaseline.alphabetic,
                   fontWeight: FontWeight.w600,
+
                   height: 1,
                   color: colorVariant.getColor(tokens),
                 ),
-                child: Text(name.toUpperCase()),
+                child: Text(
+                  name.toUpperCase(),
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+                ),
               ),
             ),
           ),
