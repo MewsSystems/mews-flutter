@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/semantics.dart';
 
 /// Mews logo variant.
 ///
@@ -56,10 +57,19 @@ class OptimusMewsLogo extends StatelessWidget {
     this.productName,
   });
 
+  /// The variant of the logo to be displayed.
   final OptimusMewsLogoVariant logoVariant;
+
+  /// The size of the logo to be displayed.
   final OptimusMewsLogoSizeVariant sizeVariant;
+
+  /// The color variant of the logo.
   final OptimusMewsLogoColorVariant colorVariant;
+
+  /// The alignment of the logo.
   final OptimusMewsLogoAlignVariant alignVariant;
+
+  /// The name of the product to be displayed next to the logo.
   final String? productName;
 
   /// The semantics label for the logo. Defaults to the 'Mews Logo'.
@@ -121,18 +131,19 @@ class OptimusMewsLogo extends StatelessWidget {
       ),
     };
 
-    return Semantics(
-      label: semanticsLabel ?? 'Mews Logo',
+    return MergeSemantics(
       child:
           productName != null
               ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  logo,
-                  const SizedBox(
-                    width: 10,
-                  ), // TODO(witwash): replace with tokens
-                  _ProductBadge(productName, colorVariant),
+                  Semantics(label: semanticsLabel ?? 'Mews Logo', child: logo),
+                  SizedBox(width: sizeVariant.getProductPadding(tokens)),
+                  _ProductBadge(
+                    name: productName,
+                    colorVariant: colorVariant,
+                    sizeVariant: sizeVariant,
+                  ),
                 ],
               )
               : logo,
@@ -141,38 +152,55 @@ class OptimusMewsLogo extends StatelessWidget {
 }
 
 class _ProductBadge extends StatelessWidget {
-  const _ProductBadge(this.name, this.colorVariant);
+  const _ProductBadge({
+    required this.name,
+    required this.colorVariant,
+    required this.sizeVariant,
+  });
 
   final String name;
   final OptimusMewsLogoColorVariant colorVariant;
-  // TODO(witwash): add sizes
+  final OptimusMewsLogoSizeVariant sizeVariant;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    height: 20, // TODO(witwash): add token
-    child: DecoratedBox(
-      decoration: BoxDecoration(
-        border: Border.all(
-          // TODO(witwash): fix vertical alignment
-          width: context.tokens.borderWidth150,
-          color: colorVariant.getColor(context.tokens),
-        ),
-        borderRadius: BorderRadius.all(context.tokens.borderRadius100),
-      ),
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
 
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.tokens.spacing100),
-        child: DefaultTextStyle.merge(
-          style: TextStyle(
-            fontSize: 16, // TODO(witwash): add tokens
-            fontWeight: FontWeight.w600,
-            color: colorVariant.getColor(context.tokens),
+    return name.isNotEmpty
+        ? SizedBox(
+          height: sizeVariant.getHeight(tokens),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: sizeVariant.getBorderWidth(tokens),
+                color: colorVariant.getColor(tokens),
+              ),
+              borderRadius: BorderRadius.all(tokens.borderRadius150),
+            ),
+
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                sizeVariant.getHorizontalPadding(tokens),
+                sizeVariant.getVerticalPadding(tokens),
+                sizeVariant.getHorizontalPadding(tokens),
+                0,
+              ),
+              child: DefaultTextStyle.merge(
+                style: TextStyle(
+                  fontSize: sizeVariant.fontSize,
+                  leadingDistribution: TextLeadingDistribution.even,
+                  textBaseline: TextBaseline.alphabetic,
+                  fontWeight: FontWeight.w600,
+                  height: 1,
+                  color: colorVariant.getColor(tokens),
+                ),
+                child: Text(name.toUpperCase()),
+              ),
+            ),
           ),
-          child: Text(name),
-        ),
-      ),
-    ),
-  );
+        )
+        : const SizedBox.shrink();
+  }
 }
 
 // Copy of Flutter Icon, but it does not limit icon shape to square.
@@ -203,6 +231,45 @@ extension on OptimusMewsLogoColorVariant {
   Color getColor(OptimusTokens tokens) => switch (this) {
     OptimusMewsLogoColorVariant.black => tokens.backgroundBrand,
     OptimusMewsLogoColorVariant.white => Colors.white,
+  };
+}
+
+extension on OptimusMewsLogoSizeVariant {
+  double getHeight(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.sizing400,
+    OptimusMewsLogoSizeVariant.medium =>
+      20, // TODO(witwash): replace with tokens
+    OptimusMewsLogoSizeVariant.small => tokens.sizing150,
+  };
+
+  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.spacing100,
+    OptimusMewsLogoSizeVariant.medium ||
+    OptimusMewsLogoSizeVariant.small => tokens.spacing25,
+  };
+
+  double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.spacing150,
+    OptimusMewsLogoSizeVariant.medium => tokens.spacing100,
+    OptimusMewsLogoSizeVariant.small => tokens.spacing50,
+  };
+
+  double get fontSize => switch (this) {
+    OptimusMewsLogoSizeVariant.large => 18, // TODO(witwash): add tokens
+    OptimusMewsLogoSizeVariant.medium => 14,
+    OptimusMewsLogoSizeVariant.small => 10,
+  };
+
+  double getBorderWidth(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.borderWidth250,
+    OptimusMewsLogoSizeVariant.medium => tokens.borderWidth150,
+    OptimusMewsLogoSizeVariant.small => tokens.borderWidth100,
+  };
+
+  double getProductPadding(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.spacing150,
+    OptimusMewsLogoSizeVariant.medium => tokens.spacing100,
+    OptimusMewsLogoSizeVariant.small => tokens.spacing50,
   };
 }
 
