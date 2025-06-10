@@ -31,6 +31,7 @@ Widget createDefaultStyle(BuildContext context) {
     options: OptimusMewsLogoAlignVariant.values,
     labelBuilder: enumLabelBuilder,
   );
+  final product = knobs.stringOrNull(label: 'Product');
 
   return Container(
     alignment: Alignment.center,
@@ -40,6 +41,7 @@ Widget createDefaultStyle(BuildContext context) {
       sizeVariant: size,
       colorVariant: color,
       alignVariant: align,
+      productName: product,
     ),
   );
 }
