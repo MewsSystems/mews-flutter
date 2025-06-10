@@ -31,6 +31,7 @@ Widget createDefaultStyle(BuildContext context) {
     options: OptimusMewsLogoAlignVariant.values,
     labelBuilder: enumLabelBuilder,
   );
+  final useMargin = knobs.boolean(label: 'Margin');
   final product = knobs.stringOrNull(label: 'Product');
 
   return Container(
@@ -41,6 +42,7 @@ Widget createDefaultStyle(BuildContext context) {
       sizeVariant: size,
       colorVariant: color,
       alignVariant: align,
+      useMargin: useMargin,
       productName: product,
     ),
   );
