@@ -14,6 +14,7 @@ class OptimusIconButton extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusButtonVariant.primary,
     this.semanticLabel,
+    this.semanticOnTapHint,
   });
 
   /// Called when the button is tapped or otherwise activated.
@@ -34,6 +35,10 @@ class OptimusIconButton extends StatefulWidget {
   /// a concise description of the action that will be performed when the button
   /// is activated.
   final String? semanticLabel;
+
+  /// A hint for assistive technologies that describes the action that will
+  /// be performed when the button is tapped.
+  final String? semanticOnTapHint;
 
   @override
   State<OptimusIconButton> createState() => _OptimusIconButtonState();
@@ -69,6 +74,8 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
         label: widget.semanticLabel,
         button: true,
         enabled: _isEnabled,
+        onTap: widget.onPressed,
+        onTapHint: widget.semanticOnTapHint,
         child: GestureWrapper(
           onHoverChanged: _handleHoverChanged,
           onPressedChanged: _handlePressedChanged,
