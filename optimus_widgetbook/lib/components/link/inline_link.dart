@@ -33,6 +33,8 @@ Widget createDefaultStyle(BuildContext context) {
     color: color?.value,
   );
 
+  final linkText = k.string(label: 'Link name', initialValue: 'Link');
+
   return Padding(
     padding: const EdgeInsets.all(20.0),
     child: SingleChildScrollView(
@@ -42,7 +44,9 @@ Widget createDefaultStyle(BuildContext context) {
         children: [
           Text('Some text before inline link. Inline ', style: style),
           OptimusInlineLink(
-            text: const Text('Link'),
+            text: Text(linkText),
+            semanticLabel: linkText,
+            semanticLinkUrl: Uri.parse('https://example.com'),
             shouldInherit: allowInherit,
             onPressed: onPressed,
             useStrong: k.boolean(label: 'Strong', initialValue: false),

@@ -19,6 +19,8 @@ class OptimusInlineLink extends StatelessWidget {
     this.shouldInherit = false,
     this.useStrong = false,
     this.variant = OptimusLinkVariant.primary,
+    this.semanticLabel,
+    this.semanticLinkUrl,
   });
 
   /// Called when link is tapped.
@@ -44,6 +46,12 @@ class OptimusInlineLink extends StatelessWidget {
   /// Link color variant.
   final OptimusLinkVariant variant;
 
+  /// Optional semantic link for accessibility purposes.
+  final String? semanticLabel;
+
+  /// Optional semantic link for accessibility purposes.
+  final Uri? semanticLinkUrl;
+
   @override
   Widget build(BuildContext context) => BaseLink(
     text: text,
@@ -53,5 +61,7 @@ class OptimusInlineLink extends StatelessWidget {
     overflow: overflow,
     variant: variant,
     useStrong: useStrong,
+    semanticLabel: semanticLabel,
+    semanticLinkUrl: semanticLinkUrl,
   );
 }

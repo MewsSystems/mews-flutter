@@ -13,6 +13,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
+  final linkText = k.string(label: 'Link Name', initialValue: 'Link');
+
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,7 +25,9 @@ Widget createDefaultStyle(BuildContext context) {
                   padding: const EdgeInsets.all(8),
                   child: OptimusStandaloneLink(
                     onPressed: k.isEnabledKnob ? ignore : null,
-                    text: Text(k.string(label: 'Text', initialValue: 'Link')),
+                    text: Text(linkText),
+                    semanticLabel: linkText,
+                    semanticLinkUrl: Uri.parse('https://example.com'),
                     size: size,
                     isExternal: k.boolean(
                       label: 'External',
