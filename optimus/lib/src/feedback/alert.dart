@@ -95,6 +95,7 @@ class OptimusAlert extends StatelessWidget {
                     OptimusAlertOverlay.of(context)?.remove(this);
                   },
                   isDismissible: isDismissible,
+                  semanticLinkUri: action?.semanticUri,
                 ),
                 if (isDismissible)
                   Positioned(
@@ -126,6 +127,7 @@ class _AlertContent extends StatelessWidget {
     this.isDismissible = false,
     this.onLinkPressed,
     this.linkText,
+    this.semanticLinkUri,
   });
 
   final IconData? icon;
@@ -135,6 +137,7 @@ class _AlertContent extends StatelessWidget {
   final Widget? linkText;
   final VoidCallback? onLinkPressed;
   final bool isDismissible;
+  final Uri? semanticLinkUri;
 
   bool get _isExpanded => description != null || linkText != null;
 
@@ -205,7 +208,11 @@ class _AlertContent extends StatelessWidget {
                       if (description case final description?)
                         FeedbackDescription(description: description),
                       if (linkText != null && onLinkPressed != null)
-                        FeedbackLink(text: linkText, onPressed: onLinkPressed),
+                        FeedbackLink(
+                          text: linkText,
+                          onPressed: onLinkPressed,
+                          semanticLinkUri: semanticLinkUri,
+                        ),
                     ],
                   ),
                 ),

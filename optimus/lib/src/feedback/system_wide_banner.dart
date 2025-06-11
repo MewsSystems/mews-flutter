@@ -86,6 +86,7 @@ class OptimusSystemWideBanner extends StatelessWidget {
                           child: FeedbackLink(
                             text: link.text,
                             onPressed: link.onPressed,
+                            semanticLinkUri: link.semanticUri,
                           ),
                         ),
                     ],
