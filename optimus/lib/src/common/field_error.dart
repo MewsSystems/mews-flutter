@@ -29,8 +29,11 @@ class OptimusFieldError extends StatelessWidget {
           ),
         ),
         Flexible(
-          child: OptimusCaption(
-            child: Text(error, style: TextStyle(color: color)),
+          child: Semantics(
+            liveRegion: true,
+            child: OptimusCaption(
+              child: Text(error, style: TextStyle(color: color)),
+            ),
           ),
         ),
       ],
