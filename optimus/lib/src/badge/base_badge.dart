@@ -53,18 +53,21 @@ class BaseBadge extends StatelessWidget {
             )
             : null;
 
-    return Container(
-      constraints: BoxConstraints(
-        minWidth: hasText ? badgeHeight : height,
-        maxWidth: hasText ? double.infinity : height,
+    return Semantics(
+      label: text,
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: hasText ? badgeHeight : height,
+          maxWidth: hasText ? double.infinity : height,
+        ),
+        height: height,
+        decoration: decoration,
+        padding: EdgeInsets.symmetric(
+          horizontal: tokens.spacing50,
+          vertical: tokens.spacing25,
+        ),
+        child: child,
       ),
-      height: height,
-      decoration: decoration,
-      padding: EdgeInsets.symmetric(
-        horizontal: tokens.spacing50,
-        vertical: tokens.spacing25,
-      ),
-      child: child,
     );
   }
 }
