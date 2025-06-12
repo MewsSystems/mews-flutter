@@ -60,23 +60,26 @@ class OptimusBone extends StatelessWidget {
   final bool? isLoading;
 
   @override
-  Widget build(BuildContext context) => _Bone(
-    isLoading: isLoading ?? true,
-    child:
-        child ??
-        SizedBox(
-          width: width,
-          height: height,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              shape: boxShape,
-              color: context.tokens.backgroundStaticFlat,
-              borderRadius: radiusVariant?.let(
-                (variant) => BorderRadius.all(variant.toRadius(context)),
+  Widget build(BuildContext context) => Semantics(
+    liveRegion: true,
+    child: _Bone(
+      isLoading: isLoading ?? true,
+      child:
+          child ??
+          SizedBox(
+            width: width,
+            height: height,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                shape: boxShape,
+                color: context.tokens.backgroundStaticFlat,
+                borderRadius: radiusVariant?.let(
+                  (variant) => BorderRadius.all(variant.toRadius(context)),
+                ),
               ),
             ),
           ),
-        ),
+    ),
   );
 }
 
