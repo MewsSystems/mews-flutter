@@ -19,6 +19,8 @@ const longText =
 
 final stubDate = DateTime(2012, 4, 3);
 
+final exampleUri = Uri.parse('https://mews.design');
+
 String enumOrNullLabelBuilder<T extends Enum>(T? value) => value?.name ?? '';
 
 String enumLabelBuilder<T extends Enum>(T value) => value.name;

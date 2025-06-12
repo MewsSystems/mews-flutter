@@ -34,6 +34,7 @@ Widget createDefaultStyle(BuildContext context) {
                             ? OptimusFeedbackLink(
                               text: Text(link),
                               onPressed: ignore,
+                              semanticUri: exampleUri,
                             )
                             : null,
                     variant: v,

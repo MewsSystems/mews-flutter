@@ -16,6 +16,8 @@ class BaseLink extends StatefulWidget {
     this.shouldInherit = false,
     this.useStrong = false,
     this.variant = OptimusLinkVariant.primary,
+    this.semanticLabel,
+    this.semanticLinkUrl,
   });
 
   final VoidCallback? onPressed;
@@ -26,6 +28,8 @@ class BaseLink extends StatefulWidget {
   final bool shouldInherit;
   final TextOverflow? overflow;
   final OptimusLinkVariant variant;
+  final String? semanticLabel;
+  final Uri? semanticLinkUrl;
 
   @override
   State<BaseLink> createState() => _BaseLinkState();
@@ -89,13 +93,19 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
             )
             : text;
 
-    return OptimusEnabled(
-      isEnabled: _isEnabled,
-      child: GestureWrapper(
-        onHoverChanged: _handleHoverChange,
-        onPressedChanged: _handlePressedChange,
-        onTap: widget.onPressed,
-        child: child,
+    return Semantics(
+      link: true,
+      label: widget.semanticLabel,
+      linkUrl: widget.semanticLinkUrl,
+      enabled: _isEnabled,
+      child: OptimusEnabled(
+        isEnabled: _isEnabled,
+        child: GestureWrapper(
+          onHoverChanged: _handleHoverChange,
+          onPressedChanged: _handlePressedChange,
+          onTap: widget.onPressed,
+          child: child,
+        ),
       ),
     );
   }

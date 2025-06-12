@@ -66,6 +66,7 @@ class _AlertStoryContent extends StatelessWidget {
                   return OptimusFeedbackLink(
                     text: Text(link),
                     onPressed: ignore,
+                    semanticUri: exampleUri,
                   );
                 }
               }),

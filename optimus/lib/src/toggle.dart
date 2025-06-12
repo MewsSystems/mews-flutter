@@ -34,8 +34,8 @@ class OptimusToggle extends StatefulWidget {
   /// be disabled.
   final ValueChanged<bool>? onChanged;
 
-  /// The semantic label used for the screen reader. We recomment using
-  /// localized strings for better accesibility.
+  /// The semantic label used for the screen reader. We recommend using
+  /// localized strings for better accessibility.
   final String? semanticLabel;
 
   /// The semantic hint for the toggle. It is used to provide additional
