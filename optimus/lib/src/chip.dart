@@ -13,6 +13,8 @@ class OptimusChip extends StatefulWidget {
     this.onTap,
     this.hasError = false,
     this.isEnabled = true,
+    this.semanticOnTapHint,
+    this.semanticLabel,
   });
 
   /// The child of the chip. Typically a [Text] widget.
@@ -29,6 +31,15 @@ class OptimusChip extends StatefulWidget {
 
   /// Callback to be called on the chip body tap.
   final VoidCallback? onTap;
+
+  /// The semantic label for the chip. This will be read out by screen readers.
+  final String? semanticLabel;
+
+  /// The semantic hint for the chip. It is used to provide additional
+  /// semantic info. For example, if [semanticOnTapHint]
+  /// is provided, instead of saying `Tap to activate`, the screen reader
+  /// will say `Tap to <onTapHint>`.
+  final String? semanticOnTapHint;
 
   @override
   State<OptimusChip> createState() => _OptimusChipState();
@@ -64,42 +75,50 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
       setState(() => _isPressed = isPressed);
 
   @override
-  Widget build(BuildContext context) => IgnorePointer(
-    ignoring: !widget.isEnabled,
-    child: GestureWrapper(
-      onHoverChanged: _handleHoverChanged,
-      onPressedChanged: _handlePressedChanged,
-      onTap: widget.onTap,
-      child: SizedBox(
-        height: tokens.sizing300,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(tokens.borderRadius100),
-            color: _backgroundColor,
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
-                  child: DefaultTextStyle.merge(
-                    style: tokens.bodyMedium.copyWith(color: _foregroundColor),
-                    child: widget.child,
-                  ),
-                ),
-                if (widget.onRemoved != null)
-                  GestureDetector(
-                    onTap: widget.onRemoved,
-                    child: Icon(
-                      OptimusIcons.cross_close,
-                      size: tokens.sizing200,
-                      color: _foregroundColor,
+  Widget build(BuildContext context) => Semantics(
+    onTap: widget.onTap,
+    onTapHint: widget.semanticOnTapHint,
+    label: widget.semanticLabel,
+    enabled: widget.isEnabled,
+    child: IgnorePointer(
+      ignoring: !widget.isEnabled,
+      child: GestureWrapper(
+        onHoverChanged: _handleHoverChanged,
+        onPressedChanged: _handlePressedChanged,
+        onTap: widget.onTap,
+        child: SizedBox(
+          height: tokens.sizing300,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(tokens.borderRadius100),
+              color: _backgroundColor,
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
+                    child: DefaultTextStyle.merge(
+                      style: tokens.bodyMedium.copyWith(
+                        color: _foregroundColor,
+                      ),
+                      child: widget.child,
                     ),
                   ),
-              ],
+                  if (widget.onRemoved != null)
+                    GestureDetector(
+                      onTap: widget.onRemoved,
+                      child: Icon(
+                        OptimusIcons.cross_close,
+                        size: tokens.sizing200,
+                        color: _foregroundColor,
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
