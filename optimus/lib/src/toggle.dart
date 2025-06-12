@@ -17,6 +17,7 @@ class OptimusToggle extends StatefulWidget {
     this.isChecked = false,
     required this.onChanged,
     this.semanticLabel,
+    this.semanticOnTapHint,
   });
 
   /// An optional icon for the off state.
@@ -36,6 +37,12 @@ class OptimusToggle extends StatefulWidget {
   /// The semantic label used for the screen reader. We recomment using
   /// localized strings for better accesibility.
   final String? semanticLabel;
+
+  /// The semantic hint for the toggle. It is used to provide additional
+  /// semantic info. For example, if [semanticOnTapHint]
+  /// is provided, instead of saying `Tap to activate`, the screen reader
+  /// will say `Tap to <onTapHint>`.
+  final String? semanticOnTapHint;
 
   @override
   State<OptimusToggle> createState() => _OptimusToggleState();
@@ -77,16 +84,20 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
   void _handlePressedChanged(bool isPressed) =>
       setState(() => _isPressed = isPressed);
 
+  void _handleTap() => widget.onChanged?.call(!widget.isChecked);
+
   @override
   Widget build(BuildContext context) => IgnorePointer(
     ignoring: !_isEnabled,
     child: Semantics(
       label: widget.semanticLabel,
       toggled: widget.isChecked,
+      onTapHint: widget.semanticOnTapHint,
+      onTap: _handleTap,
       child: GestureWrapper(
         onHoverChanged: _handleHoveredChanged,
         onPressedChanged: _handlePressedChanged,
-        onTap: () => widget.onChanged?.call(!widget.isChecked),
+        onTap: _handleTap,
         child: AnimatedContainer(
           width: tokens.sizing550,
           height: tokens.sizing300,
