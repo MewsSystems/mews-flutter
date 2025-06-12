@@ -62,6 +62,7 @@ class OptimusRadioGroup<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Semantics(
     role: SemanticsRole.radioGroup,
+    enabled: isEnabled,
     child: GroupWrapper(
       label: label,
       error: error,

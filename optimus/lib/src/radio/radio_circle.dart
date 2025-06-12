@@ -59,4 +59,4 @@ class RadioCircle extends StatelessWidget {
   }
 }
 
-const double _selectedBorder = 6.0;
+const double _selectedBorder = 6.0; // TODO(witwash): rework to use tokens
