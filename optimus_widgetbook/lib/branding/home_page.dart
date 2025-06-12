@@ -114,8 +114,8 @@ class _Card extends StatelessWidget {
       child: GestureDetector(
         onTap: _handleTap,
         child: SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.2,
-          height: MediaQuery.sizeOf(context).height * 0.20,
+          width: 320,
+          height: 200,
           child: OptimusCard(
             child: Column(
               children: [
