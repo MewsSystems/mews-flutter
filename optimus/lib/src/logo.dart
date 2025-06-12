@@ -53,16 +53,31 @@ class OptimusMewsLogo extends StatelessWidget {
     this.colorVariant = OptimusMewsLogoColorVariant.black,
     this.alignVariant = OptimusMewsLogoAlignVariant.topCenter,
     this.semanticsLabel,
+    this.productName,
+    this.useMargin = true,
   });
 
+  /// The variant of the logo to be displayed.
   final OptimusMewsLogoVariant logoVariant;
+
+  /// The size of the logo to be displayed.
   final OptimusMewsLogoSizeVariant sizeVariant;
+
+  /// The color variant of the logo.
   final OptimusMewsLogoColorVariant colorVariant;
+
+  /// The alignment of the logo.
   final OptimusMewsLogoAlignVariant alignVariant;
+
+  /// The name of the product to be displayed next to the logo.
+  final String? productName;
 
   /// The semantics label for the logo. Defaults to the 'Mews Logo'.
   /// We suggest using a localized string for better accessibility.
   final String? semanticsLabel;
+
+  /// Whether to use margin around the logo.
+  final bool useMargin;
 
   double _getSize(OptimusTokens tokens) => switch (sizeVariant) {
     OptimusMewsLogoSizeVariant.large => tokens.sizing300,
@@ -74,11 +89,6 @@ class OptimusMewsLogo extends StatelessWidget {
     OptimusMewsLogoSizeVariant.large => tokens.spacing300,
     OptimusMewsLogoSizeVariant.medium => tokens.spacing200,
     OptimusMewsLogoSizeVariant.small => tokens.spacing100,
-  };
-
-  Color get _color => switch (colorVariant) {
-    OptimusMewsLogoColorVariant.black => Colors.black,
-    OptimusMewsLogoColorVariant.white => Colors.white,
   };
 
   EdgeInsets _getMargin(OptimusTokens tokens) {
@@ -102,32 +112,113 @@ class OptimusMewsLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final productName = this.productName;
 
-    return Semantics(
-      label: semanticsLabel ?? 'Mews Logo',
+    final logo = switch (logoVariant) {
+      OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
+        OptimusIcons.mews_logo,
+        size: _getSize(tokens),
+        color: colorVariant.getColor(tokens),
+      ),
+      OptimusMewsLogoVariant.wordmark => SizedBox(
+        width: _getSize(tokens) * _logoAspectRatio,
+        height: _getSize(tokens),
+        child: SvgPicture.asset(
+          _logoPath,
+          package: _packageName,
+          colorFilter: ColorFilter.mode(
+            colorVariant.getColor(tokens),
+            BlendMode.srcIn,
+          ),
+        ),
+      ),
+    };
+
+    return MergeSemantics(
       child: Padding(
-        padding: _getMargin(tokens),
-        child: switch (logoVariant) {
-          OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
-            OptimusIcons.mews_logo,
-            size: _getSize(tokens),
-            color: _color,
-          ),
-          OptimusMewsLogoVariant.wordmark => SizedBox(
-            height: _getSize(tokens),
-            child: SvgPicture.asset(
-              _logoPath,
-              package: _packageName,
-              colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
-            ),
-          ),
-        },
+        padding: useMargin ? _getMargin(tokens) : EdgeInsetsGeometry.zero,
+        child:
+            productName != null
+                ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Semantics(
+                      label: semanticsLabel ?? 'Mews Logo',
+                      child: logo,
+                    ),
+                    SizedBox(width: sizeVariant.getProductPadding(tokens)),
+                    _ProductBadge(
+                      name: productName,
+                      colorVariant: colorVariant,
+                      sizeVariant: sizeVariant,
+                    ),
+                  ],
+                )
+                : logo,
       ),
     );
   }
 }
 
-/// Copy of Flutter Icon, but it does not limit icon shape to square.
+class _ProductBadge extends StatelessWidget {
+  // TODO(witwash): could be a reason for a refactor of BaseBadge and replace with it
+  const _ProductBadge({
+    required this.name,
+    required this.colorVariant,
+    required this.sizeVariant,
+  });
+
+  final String name;
+  final OptimusMewsLogoColorVariant colorVariant;
+  final OptimusMewsLogoSizeVariant sizeVariant;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return name.isNotEmpty
+        ? SizedBox(
+          height: sizeVariant.getHeight(tokens),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: sizeVariant.getBorderWidth(tokens),
+                color: colorVariant.getColor(tokens),
+              ),
+              borderRadius: BorderRadius.all(tokens.borderRadius150),
+            ),
+
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                sizeVariant.getHorizontalPadding(tokens),
+                sizeVariant.getVerticalPadding(tokens),
+                sizeVariant.getHorizontalPadding(tokens),
+                0,
+              ),
+              child: DefaultTextStyle.merge(
+                style: TextStyle(
+                  fontSize: sizeVariant.fontSize,
+                  leadingDistribution: TextLeadingDistribution.even,
+                  textBaseline: TextBaseline.alphabetic,
+                  fontWeight: FontWeight.w600,
+
+                  height: 1,
+                  color: colorVariant.getColor(tokens),
+                ),
+                child: Text(
+                  name.toUpperCase(),
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+                ),
+              ),
+            ),
+          ),
+        )
+        : const SizedBox.shrink();
+  }
+}
+
+// Copy of Flutter Icon, but it does not limit icon shape to square.
 class _NonSquaredIcon extends StatelessWidget {
   const _NonSquaredIcon(this.icon, {required this.size, required this.color});
 
@@ -151,5 +242,52 @@ class _NonSquaredIcon extends StatelessWidget {
   );
 }
 
+extension on OptimusMewsLogoColorVariant {
+  Color getColor(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoColorVariant.black => tokens.backgroundBrand,
+    OptimusMewsLogoColorVariant.white => Colors.white,
+  };
+}
+
+extension on OptimusMewsLogoSizeVariant {
+  double getHeight(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.sizing400,
+    OptimusMewsLogoSizeVariant.medium =>
+      20, // TODO(witwash): replace with tokens
+    OptimusMewsLogoSizeVariant.small => tokens.sizing150,
+  };
+
+  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.spacing100,
+    OptimusMewsLogoSizeVariant.medium ||
+    OptimusMewsLogoSizeVariant.small => tokens.spacing25,
+  };
+
+  double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.spacing150,
+    OptimusMewsLogoSizeVariant.medium => tokens.spacing100,
+    OptimusMewsLogoSizeVariant.small => tokens.spacing50,
+  };
+
+  double get fontSize => switch (this) {
+    OptimusMewsLogoSizeVariant.large => 18, // TODO(witwash): add tokens
+    OptimusMewsLogoSizeVariant.medium => 14,
+    OptimusMewsLogoSizeVariant.small => 10,
+  };
+
+  double getBorderWidth(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.borderWidth250,
+    OptimusMewsLogoSizeVariant.medium => tokens.borderWidth150,
+    OptimusMewsLogoSizeVariant.small => tokens.borderWidth100,
+  };
+
+  double getProductPadding(OptimusTokens tokens) => switch (this) {
+    OptimusMewsLogoSizeVariant.large => tokens.spacing150,
+    OptimusMewsLogoSizeVariant.medium => tokens.spacing100,
+    OptimusMewsLogoSizeVariant.small => tokens.spacing50,
+  };
+}
+
 const _packageName = 'optimus';
 const _logoPath = 'assets/mews_logo.svg';
+const _logoAspectRatio = 7.958;
