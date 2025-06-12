@@ -8,8 +8,9 @@ class MewsHeader extends StatelessWidget {
   Widget build(BuildContext context) => OptimusTheme(
     child: OptimusMewsLogo(
       logoVariant: OptimusMewsLogoVariant.wordmark,
-      sizeVariant: OptimusMewsLogoSizeVariant.large,
+      sizeVariant: OptimusMewsLogoSizeVariant.medium,
       alignVariant: OptimusMewsLogoAlignVariant.center,
+      useMargin: false,
       colorVariant:
           OptimusTheme.of(context).isDark
               ? OptimusMewsLogoColorVariant.white
