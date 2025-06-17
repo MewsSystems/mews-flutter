@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 
 enum OptimusPictogramSize { small, medium, large }
 
@@ -30,7 +31,7 @@ class OptimusPictogram extends StatelessWidget {
     label: semanticsLabel ?? variant.name.replaceAll('_', ' '),
     image: true,
     child: SizedBox.square(
-      dimension: size.getSize(context.tokens),
+      dimension: size.getSize(context.tokens).toScaled(context),
       child: SvgPicture.asset(
         variant.path(context.theme.brightness),
         package: 'optimus',
