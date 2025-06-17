@@ -4,6 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 
 typedef ShapeBuilder =
     OutlinedBorder Function(BorderRadius borderRadius, BorderSide borderSide);
@@ -73,10 +74,16 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         child: TextButton(
           style: ButtonStyle(
             minimumSize: WidgetStateProperty.all<Size>(
-              Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
+              Size(
+                widget.minWidth ?? 0,
+                widget.size.getValue(tokens).toScaled(context),
+              ),
             ),
             maximumSize: WidgetStateProperty.all<Size>(
-              Size(double.infinity, widget.size.getValue(tokens)),
+              Size(
+                double.infinity,
+                widget.size.getValue(tokens).toScaled(context),
+              ),
             ),
             padding: WidgetStateProperty.all<EdgeInsets>(_padding),
             shape: WidgetStateProperty.resolveWith((states) {
