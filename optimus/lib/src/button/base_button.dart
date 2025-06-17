@@ -299,13 +299,16 @@ class _Badge extends StatelessWidget {
     final tokens = context.tokens;
 
     return SizedBox(
-      height: tokens.sizing200,
+      height: tokens.sizing200.toScaled(context),
       child: ClipRRect(
         borderRadius: BorderRadius.all(tokens.borderRadius200),
         child: ColoredBox(
           color: color,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
+            padding: EdgeInsets.symmetric(
+              horizontal: _horizontalPadding.toScaled(context),
+              vertical: _verticalPadding.toScaled(context),
+            ), // TODO(witwash): check with design
             child: Text(
               label,
               style: tokens.bodyExtraSmallStrong.copyWith(
@@ -411,3 +414,6 @@ extension on OptimusWidgetSize {
     OptimusWidgetSize.extraLarge => tokens.spacing150,
   };
 }
+
+const _verticalPadding = 3.0;
+const _horizontalPadding = 4.5;

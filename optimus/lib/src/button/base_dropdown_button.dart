@@ -5,6 +5,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/overlay_controller.dart';
 
 typedef BorderBuilder = Border Function(Color color);
@@ -146,7 +147,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
             child: Focus(
               focusNode: _node,
               child: SizedBox(
-                height: widget.size.getValue(tokens),
+                height: widget.size.getValue(tokens).toScaled(context),
                 child: AnimatedContainer(
                   padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
                   key: _selectFieldKey,
