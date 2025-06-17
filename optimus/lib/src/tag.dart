@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 
 /// Tags are used to highlight an item’s status or make it easier to recognize
 /// certain items in data-dense content.
@@ -160,7 +161,7 @@ class _Tag extends StatelessWidget {
         borderRadius: BorderRadius.all(tokens.borderRadius50),
       ),
       padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-      height: tokens.sizing300,
+      height: tokens.sizing300.toScaled(context),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,11 +172,13 @@ class _Tag extends StatelessWidget {
               child: Icon(
                 leadingIcon,
                 color: foregroundColor,
-                size: tokens.sizing200,
+                size: tokens.sizing200.toScaled(context),
               ),
             ),
           ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 200),
+            constraints: BoxConstraints(
+              maxWidth: tokens.sizing1300.toScaled(context),
+            ),
             child: Text(
               text,
               style: tokens.bodyMedium.copyWith(color: foregroundColor),
@@ -188,7 +191,7 @@ class _Tag extends StatelessWidget {
               child: Icon(
                 trailingIcon,
                 color: foregroundColor,
-                size: tokens.sizing200,
+                size: tokens.sizing200.toScaled(context),
               ),
             ),
         ],
