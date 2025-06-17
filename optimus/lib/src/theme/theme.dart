@@ -37,6 +37,11 @@ class OptimusTheme extends StatelessWidget {
             ? (darkTheme ?? _defaultDarkTheme)
             : (lightTheme ?? _defaultLightTheme);
 
+    final child = IconTheme(
+      data: IconTheme.of(context).copyWith(applyTextScaling: true),
+      child: this.child,
+    );
+
     return _OptimusTheme(theme: theme, child: child);
   }
 }
