@@ -439,7 +439,7 @@ class _Styled extends StatelessWidget {
 
     return DefaultTextStyle.merge(
       style: tokens.bodyMedium.copyWith(color: textColor),
-      child: IconTheme(
+      child: IconTheme.merge(
         data: IconThemeData(color: iconColor, size: tokens.sizing200),
         child: child,
       ),

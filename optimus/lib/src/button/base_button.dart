@@ -241,7 +241,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                 ),
               ).excludeSemantics(),
             if (widget.child case final child?)
-              IconTheme(
+              IconTheme.merge(
                 data: IconThemeData(color: foregroundColor, size: _iconSize),
                 child: DefaultTextStyle.merge(
                   style: _textStyle.copyWith(color: foregroundColor),

@@ -43,8 +43,8 @@ class OptimusTheme extends StatelessWidget {
           context,
         ).clamp(minScaleFactor: 0.8, maxScaleFactor: 2),
       ),
-      child: IconTheme(
-        data: IconTheme.of(context).copyWith(applyTextScaling: true),
+      child: IconTheme.merge(
+        data: const IconThemeData(applyTextScaling: true),
         child: this.child,
       ),
     );
