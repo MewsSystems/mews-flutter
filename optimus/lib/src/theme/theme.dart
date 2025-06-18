@@ -39,7 +39,9 @@ class OptimusTheme extends StatelessWidget {
 
     final child = MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 2),
+        textScaler: MediaQuery.textScalerOf(
+          context,
+        ).clamp(minScaleFactor: 0.8, maxScaleFactor: 2),
       ),
       child: IconTheme(
         data: IconTheme.of(context).copyWith(applyTextScaling: true),
