@@ -53,7 +53,12 @@ class OptimusToggleButton extends StatelessWidget {
       padding: contentPadding,
       child: Row(
         children: [
-          Icon(OptimusIcons.checkbox_plus, size: tokens.sizing200),
+          Icon(
+            OptimusIcons.checkbox_plus,
+            size: tokens.sizing200,
+            applyTextScaling:
+                true, // TODO(witwash): why IconTheme is not applied?
+          ),
           if (label case final label?)
             Padding(
               padding: EdgeInsets.only(
