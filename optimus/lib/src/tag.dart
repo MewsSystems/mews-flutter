@@ -172,7 +172,7 @@ class _Tag extends StatelessWidget {
               child: Icon(
                 leadingIcon,
                 color: foregroundColor,
-                size: tokens.sizing200.toScaled(context),
+                size: tokens.sizing200,
               ),
             ),
           ConstrainedBox(
@@ -191,7 +191,7 @@ class _Tag extends StatelessWidget {
               child: Icon(
                 trailingIcon,
                 color: foregroundColor,
-                size: tokens.sizing200.toScaled(context),
+                size: tokens.sizing200,
               ),
             ),
         ],
