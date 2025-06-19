@@ -4,6 +4,7 @@ import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/progress_indicator/common.dart';
 
 /// Progress indicators are used to communicate a sense of progress visually
@@ -285,7 +286,6 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
       animation: _animationController.view,
       builder:
           (_, child) => Semantics(
-            role: SemanticsRole.progressBar,
             child: Container(
               clipBehavior: Clip.none,
               child: Column(
