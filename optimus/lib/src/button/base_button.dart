@@ -4,6 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 
 typedef ShapeBuilder =
     OutlinedBorder Function(BorderRadius borderRadius, BorderSide borderSide);
@@ -73,10 +74,16 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         child: TextButton(
           style: ButtonStyle(
             minimumSize: WidgetStateProperty.all<Size>(
-              Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
+              Size(
+                widget.minWidth ?? 0,
+                widget.size.getValue(tokens).toScaled(context),
+              ),
             ),
             maximumSize: WidgetStateProperty.all<Size>(
-              Size(double.infinity, widget.size.getValue(tokens)),
+              Size(
+                double.infinity,
+                widget.size.getValue(tokens).toScaled(context),
+              ),
             ),
             padding: WidgetStateProperty.all<EdgeInsets>(_padding),
             shape: WidgetStateProperty.resolveWith((states) {
@@ -234,7 +241,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                 ),
               ).excludeSemantics(),
             if (widget.child case final child?)
-              IconTheme(
+              IconTheme.merge(
                 data: IconThemeData(color: foregroundColor, size: _iconSize),
                 child: DefaultTextStyle.merge(
                   style: _textStyle.copyWith(color: foregroundColor),
@@ -292,13 +299,16 @@ class _Badge extends StatelessWidget {
     final tokens = context.tokens;
 
     return SizedBox(
-      height: tokens.sizing200,
+      height: tokens.sizing200.toScaled(context),
       child: ClipRRect(
         borderRadius: BorderRadius.all(tokens.borderRadius200),
         child: ColoredBox(
           color: color,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
+            padding: EdgeInsets.symmetric(
+              horizontal: _horizontalPadding.toScaled(context),
+              vertical: _verticalPadding.toScaled(context),
+            ), // TODO(witwash): check with design
             child: Text(
               label,
               style: tokens.bodyExtraSmallStrong.copyWith(
@@ -404,3 +414,6 @@ extension on OptimusWidgetSize {
     OptimusWidgetSize.extraLarge => tokens.spacing150,
   };
 }
+
+const _verticalPadding = 3.0;
+const _horizontalPadding = 4.5;

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus_icons/optimus_icons.dart';
@@ -45,39 +46,43 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
       setState(() => _isPressed = isPressed);
 
   @override
-  Widget build(BuildContext context) => GestureWrapper(
-    onHoverChanged: _handleHoverChanged,
-    onPressedChanged: _handlePressedChanged,
-    onTap: widget.onTap,
-    child: AnimatedContainer(
-      duration: const Duration(milliseconds: 100),
-      decoration: BoxDecoration(
-        color: _interactionState.fillColor(
-          tokens: tokens,
-          state: _state,
+  Widget build(BuildContext context) {
+    final size = tokens.sizing200.toScaled(context);
+
+    return GestureWrapper(
+      onHoverChanged: _handleHoverChanged,
+      onPressedChanged: _handlePressedChanged,
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        decoration: BoxDecoration(
+          color: _interactionState.fillColor(
+            tokens: tokens,
+            state: _state,
+            isError: widget.isError,
+          ),
+          border:
+              _state.isUnchecked
+                  ? Border.all(
+                    color: _interactionState.borderColor(
+                      tokens: tokens,
+                      isError: widget.isError,
+                    ),
+                    width: tokens.borderWidth150,
+                  )
+                  : null,
+          borderRadius: BorderRadius.all(tokens.borderRadius25),
+        ),
+        width: size,
+        height: size,
+        child: _CheckboxIcon(
+          icon: _state.icon,
+          isEnabled: widget.isEnabled,
           isError: widget.isError,
         ),
-        border:
-            _state.isUnchecked
-                ? Border.all(
-                  color: _interactionState.borderColor(
-                    tokens: tokens,
-                    isError: widget.isError,
-                  ),
-                  width: tokens.borderWidth150,
-                )
-                : null,
-        borderRadius: BorderRadius.all(tokens.borderRadius25),
       ),
-      width: tokens.sizing200,
-      height: tokens.sizing200,
-      child: _CheckboxIcon(
-        icon: _state.icon,
-        isEnabled: widget.isEnabled,
-        isError: widget.isError,
-      ),
-    ),
-  );
+    );
+  }
 }
 
 class _CheckboxIcon extends StatelessWidget {
@@ -98,7 +103,7 @@ class _CheckboxIcon extends StatelessWidget {
           : Center(
             child: Icon(
               icon,
-              size: context.tokens.sizing100,
+              size: context.tokens.sizing100.toScaled(context),
               color:
                   isEnabled
                       ? context.tokens.textStaticInverse

@@ -163,15 +163,15 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
 
           final Widget? description = widget.description?.let(
             (it) => DefaultTextStyle.merge(
-              child: it,
               style: tokens.bodyMedium.copyWith(color: descriptionColor),
+              child: it,
             ),
           );
 
           final Widget? trailing = widget.trailing?.let(
             (it) => IconTheme.merge(
-              child: it,
               data: IconThemeData(color: titleColor),
+              child: it,
             ),
           );
 

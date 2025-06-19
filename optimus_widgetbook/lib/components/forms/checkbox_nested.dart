@@ -40,10 +40,12 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
 
     return Center(
       child: SizedBox(
-        width: 300,
-        height: 400,
+        width: 400,
+        height: 500,
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             OptimusCheckbox(
               label: const Text('Outside Checkbox'),

@@ -4,6 +4,7 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/feedback/common.dart';
 
 /// Alert is used for showing a brief and concise message that
@@ -155,7 +156,8 @@ class _AlertContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final leadingSectionWidth = tokens.sizing300 + tokens.spacing100 * 2;
+    final leadingSectionWidth =
+        context.leadingIconSize + context.leadingIconHorizontalPadding * 2;
     final linkText = this.linkText;
     final onLinkPressed = this.onLinkPressed;
 
@@ -170,7 +172,7 @@ class _AlertContent extends StatelessWidget {
             left: tokens.spacing0,
             bottom: tokens.spacing0,
             top: tokens.spacing0,
-            width: leadingSectionWidth,
+            width: leadingSectionWidth.toScaled(context),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: variant.backgroundColor(tokens),
@@ -190,7 +192,9 @@ class _AlertContent extends StatelessWidget {
           ),
           Row(
             children: [
-              SizedBox(width: leadingSectionWidth).excludeSemantics(),
+              SizedBox(
+                width: leadingSectionWidth.toScaled(context),
+              ).excludeSemantics(),
               Expanded(
                 child: Container(
                   padding: _getContentPadding(tokens),
@@ -224,6 +228,11 @@ class _AlertContent extends StatelessWidget {
       ),
     );
   }
+}
+
+extension on BuildContext {
+  double get leadingIconSize => tokens.sizing300;
+  double get leadingIconHorizontalPadding => tokens.sizing100;
 }
 
 const double _maxWidth = 360;

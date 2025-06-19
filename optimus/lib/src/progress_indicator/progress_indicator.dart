@@ -285,7 +285,6 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
       animation: _animationController.view,
       builder:
           (_, child) => Semantics(
-            role: SemanticsRole.progressBar,
             child: Container(
               clipBehavior: Clip.none,
               child: Column(

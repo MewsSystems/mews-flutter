@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/progress_indicator/common.dart';
 import 'package:optimus/src/typography/typography.dart';
 
@@ -273,14 +274,15 @@ class _DisabledIndicatorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final size = tokens.sizing300;
+    final circleSize = tokens.sizing100.toScaled(context);
 
     return SizedBox.square(
-      dimension: size,
+      dimension: size.toScaled(context),
       child: Center(
         child: Container(
           constraints: BoxConstraints(
-            maxHeight: tokens.sizing100,
-            maxWidth: tokens.sizing100,
+            maxHeight: circleSize,
+            maxWidth: circleSize,
           ),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -317,22 +319,24 @@ class ProgressIndicatorSpacer extends StatelessWidget {
     return switch (layout) {
       Axis.horizontal => Padding(
         padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-        child: SizedBox(
-          height: tokens.borderWidth150,
-          child: ColoredBox(color: color).excludeSemantics(),
-        ),
+        child:
+            SizedBox(
+              height: tokens.borderWidth150,
+              child: ColoredBox(color: color),
+            ).excludeSemantics(),
       ),
       Axis.vertical => Padding(
         padding: EdgeInsets.only(
-          left: tokens.spacing150,
+          left: tokens.spacing150.toScaled(context),
           bottom: tokens.spacing100,
           top: tokens.spacing100,
         ),
-        child: SizedBox(
-          height: tokens.sizing200,
-          width: tokens.borderWidth150,
-          child: Container(color: color).excludeSemantics(),
-        ),
+        child:
+            SizedBox(
+              height: tokens.sizing200,
+              width: tokens.borderWidth150,
+              child: Container(color: color),
+            ).excludeSemantics(),
       ),
     };
   }

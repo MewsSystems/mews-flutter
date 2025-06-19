@@ -31,10 +31,10 @@ class CheckboxGroupUseCaseState extends State<CheckboxGroupUseCase> {
       initialValue: 'Checkbox Group Label',
     );
 
-    return Center(
-      child: SizedBox(
-        width: 300,
-        height: 400,
+    return SizedBox(
+      width: 400,
+      height: 500,
+      child: Center(
         child: OptimusCheckboxGroup<int>(
           label: label,
           semanticLabel: label,
