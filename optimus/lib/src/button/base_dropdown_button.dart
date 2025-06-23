@@ -138,7 +138,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
         ignoring: !_isEnabled,
         child: Semantics(
           label: widget.semanticLabel,
-          role: SemanticsRole.menu,
           button: true,
           child: GestureWrapper(
             onHoverChanged: _handleHoverChanged,

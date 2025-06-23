@@ -45,8 +45,7 @@ class BaseDropdownTile extends StatelessWidget {
     );
 
     return Semantics(
-      role:
-          hasCheckbox ? SemanticsRole.menuItemCheckbox : SemanticsRole.menuItem,
+      checked: hasCheckbox ? isSelected : null,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: tokens.spacing200,
