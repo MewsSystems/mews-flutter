@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Thu, 22 May 2025 11:46:04 GMT
+// Generated on Mon, 23 Jun 2025 06:17:05 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -322,6 +322,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.textStaticPrimary,
     required this.textStaticSecondary,
     required this.textStaticTertiary,
+    required this.visualAssetsAccent,
+    required this.visualAssetsNeutralBold,
+    required this.visualAssetsNeutralBold0,
+    required this.visualAssetsNeutralSubtle,
+    required this.visualAssetsNeutralSubtle0,
+    required this.visualAssetsSemanticDanger,
+    required this.visualAssetsSemanticInfo,
+    required this.visualAssetsSemanticSuccess,
+    required this.visualAssetsSemanticWarning,
 
     required this.bodyExtraSmall,
     required this.bodyExtraSmallStrong,
@@ -1042,6 +1051,24 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color textStaticSecondary;
   @override
   final Color textStaticTertiary;
+  @override
+  final Color visualAssetsAccent;
+  @override
+  final Color visualAssetsNeutralBold;
+  @override
+  final Color visualAssetsNeutralBold0;
+  @override
+  final Color visualAssetsNeutralSubtle;
+  @override
+  final Color visualAssetsNeutralSubtle0;
+  @override
+  final Color visualAssetsSemanticDanger;
+  @override
+  final Color visualAssetsSemanticInfo;
+  @override
+  final Color visualAssetsSemanticSuccess;
+  @override
+  final Color visualAssetsSemanticWarning;
 
   @override
   final TextStyle bodyExtraSmall;
@@ -1605,6 +1632,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     textStaticPrimary: DesignTokensLight.textStaticPrimary,
     textStaticSecondary: DesignTokensLight.textStaticSecondary,
     textStaticTertiary: DesignTokensLight.textStaticTertiary,
+    visualAssetsAccent: DesignTokensLight.visualAssetsAccent,
+    visualAssetsNeutralBold: DesignTokensLight.visualAssetsNeutralBold,
+    visualAssetsNeutralBold0: DesignTokensLight.visualAssetsNeutralBold0,
+    visualAssetsNeutralSubtle: DesignTokensLight.visualAssetsNeutralSubtle,
+    visualAssetsNeutralSubtle0: DesignTokensLight.visualAssetsNeutralSubtle0,
+    visualAssetsSemanticDanger: DesignTokensLight.visualAssetsSemanticDanger,
+    visualAssetsSemanticInfo: DesignTokensLight.visualAssetsSemanticInfo,
+    visualAssetsSemanticSuccess: DesignTokensLight.visualAssetsSemanticSuccess,
+    visualAssetsSemanticWarning: DesignTokensLight.visualAssetsSemanticWarning,
 
     bodyExtraSmall: DesignTokensLight.bodyExtraSmall,
     bodyExtraSmallStrong: DesignTokensLight.bodyExtraSmallStrong,
@@ -2060,6 +2096,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     textStaticPrimary: DesignTokensDark.textStaticPrimary,
     textStaticSecondary: DesignTokensDark.textStaticSecondary,
     textStaticTertiary: DesignTokensDark.textStaticTertiary,
+    visualAssetsAccent: DesignTokensDark.visualAssetsAccent,
+    visualAssetsNeutralBold: DesignTokensDark.visualAssetsNeutralBold,
+    visualAssetsNeutralBold0: DesignTokensDark.visualAssetsNeutralBold0,
+    visualAssetsNeutralSubtle: DesignTokensDark.visualAssetsNeutralSubtle,
+    visualAssetsNeutralSubtle0: DesignTokensDark.visualAssetsNeutralSubtle0,
+    visualAssetsSemanticDanger: DesignTokensDark.visualAssetsSemanticDanger,
+    visualAssetsSemanticInfo: DesignTokensDark.visualAssetsSemanticInfo,
+    visualAssetsSemanticSuccess: DesignTokensDark.visualAssetsSemanticSuccess,
+    visualAssetsSemanticWarning: DesignTokensDark.visualAssetsSemanticWarning,
 
     bodyExtraSmall: DesignTokensDark.bodyExtraSmall,
     bodyExtraSmallStrong: DesignTokensDark.bodyExtraSmallStrong,
