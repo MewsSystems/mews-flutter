@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Thu, 22 May 2025 11:46:04 GMT
+// Generated on Mon, 23 Jun 2025 06:17:05 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -323,6 +323,15 @@ abstract final class DesignTokensDark {
   static const Color textStaticPrimary = Color(0xFFFFFFFF);
   static const Color textStaticSecondary = Color(0xFFA8A8C0);
   static const Color textStaticTertiary = Color(0xFF8D8DAC);
+  static const Color visualAssetsAccent = Color(0xFFAEACFA);
+  static const Color visualAssetsNeutralBold = Color(0xFFFFFFFF);
+  static const Color visualAssetsNeutralBold0 = Color(0x00FFFFFF);
+  static const Color visualAssetsNeutralSubtle = Color(0xFF323243);
+  static const Color visualAssetsNeutralSubtle0 = Color(0x00323243);
+  static const Color visualAssetsSemanticDanger = Color(0xFFE44E4E);
+  static const Color visualAssetsSemanticInfo = Color(0xFF4F90F2);
+  static const Color visualAssetsSemanticSuccess = Color(0xFF78D765);
+  static const Color visualAssetsSemanticWarning = Color(0xFFF2BA37);
 
   static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: 'Inter',
