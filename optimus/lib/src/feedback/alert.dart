@@ -158,6 +158,38 @@ class _AlertContent extends StatelessWidget {
     final linkText = this.linkText;
     final onLinkPressed = this.onLinkPressed;
 
+    final content = Row(
+      children: [
+        SizedBox(width: leadingSectionWidth).excludeSemantics(),
+        Expanded(
+          child: Container(
+            padding: _getContentPadding(tokens),
+            decoration: BoxDecoration(
+              color: tokens.backgroundStaticFlat,
+              borderRadius: BorderRadius.horizontal(
+                right: tokens.borderRadius100,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              spacing: tokens.spacing50,
+              children: [
+                if (title case final title?) FeedbackTitle(title: title),
+                if (description case final description?)
+                  FeedbackDescription(description: description),
+                if (linkText != null && onLinkPressed != null)
+                  FeedbackLink(
+                    text: linkText,
+                    semanticLinkUri: semanticLinkUri,
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(tokens.borderRadius100),
@@ -187,41 +219,10 @@ class _AlertContent extends StatelessWidget {
               child: FeedbackIcon(icon: icon, variant: variant),
             ),
           ),
-          GestureDetector(
-            onTap: onLinkPressed,
-            child: Row(
-              children: [
-                SizedBox(width: leadingSectionWidth).excludeSemantics(),
-                Expanded(
-                  child: Container(
-                    padding: _getContentPadding(tokens),
-                    decoration: BoxDecoration(
-                      color: tokens.backgroundStaticFlat,
-                      borderRadius: BorderRadius.horizontal(
-                        right: tokens.borderRadius100,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: tokens.spacing50,
-                      children: [
-                        if (title case final title?)
-                          FeedbackTitle(title: title),
-                        if (description case final description?)
-                          FeedbackDescription(description: description),
-                        if (linkText != null && onLinkPressed != null)
-                          FeedbackLink(
-                            text: linkText,
-                            semanticLinkUri: semanticLinkUri,
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          if (onLinkPressed != null)
+            GestureDetector(onTap: onLinkPressed, child: content)
+          else
+            content,
         ],
       ),
     );

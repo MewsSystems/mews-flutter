@@ -52,6 +52,27 @@ class OptimusSystemWideBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
+    final linkOnPressed = link?.onPressed;
+    final content = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FeedbackTitle(title: title),
+        if (description case final description?)
+          Padding(
+            padding: EdgeInsets.only(top: tokens.spacing50),
+            child: FeedbackDescription(description: description),
+          ),
+        if (link case final link?)
+          Padding(
+            padding: EdgeInsets.only(top: tokens.spacing50),
+            child: FeedbackLink(
+              text: link.text,
+              semanticLinkUri: link.semanticUri,
+            ),
+          ),
+      ],
+    );
+
     return GestureDetector(
       onTap: onPressed,
       child: DecoratedBox(
@@ -71,30 +92,13 @@ class OptimusSystemWideBanner extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(left: tokens.spacing150),
-                  child: GestureDetector(
-                    onTap: link?.onPressed,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FeedbackTitle(title: title),
-                        if (description case final description?)
-                          Padding(
-                            padding: EdgeInsets.only(top: tokens.spacing50),
-                            child: FeedbackDescription(
-                              description: description,
-                            ),
-                          ),
-                        if (link case final link?)
-                          Padding(
-                            padding: EdgeInsets.only(top: tokens.spacing50),
-                            child: FeedbackLink(
-                              text: link.text,
-                              semanticLinkUri: link.semanticUri,
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
+                  child:
+                      linkOnPressed != null
+                          ? GestureDetector(
+                            onTap: linkOnPressed,
+                            child: content,
+                          )
+                          : content,
                 ),
               ),
             ],

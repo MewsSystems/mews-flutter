@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/src/feedback/common.dart';
 import 'package:optimus/src/feedback/feedback_variant.dart';
 import 'package:optimus/src/theme/theme.dart';
