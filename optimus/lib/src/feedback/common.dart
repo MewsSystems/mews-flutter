@@ -78,15 +78,9 @@ class FeedbackDescription extends StatelessWidget {
 }
 
 class FeedbackLink extends StatelessWidget {
-  const FeedbackLink({
-    super.key,
-    required this.text,
-    required this.onPressed,
-    this.semanticLinkUri,
-  });
+  const FeedbackLink({super.key, required this.text, this.semanticLinkUri});
 
   final Widget text;
-  final VoidCallback onPressed;
   final Uri? semanticLinkUri;
 
   @override
@@ -96,16 +90,13 @@ class FeedbackLink extends StatelessWidget {
     return Semantics(
       link: true,
       linkUrl: semanticLinkUri,
-      child: GestureDetector(
-        onTap: onPressed,
-        child: DefaultTextStyle.merge(
-          child: text,
-          maxLines: _maxLinesLink,
-          overflow: overflowStyle,
-          style: tokens.bodyMediumStrong.copyWith(
-            color: tokens.textStaticSecondary,
-            decoration: TextDecoration.underline,
-          ),
+      child: DefaultTextStyle.merge(
+        child: text,
+        maxLines: _maxLinesLink,
+        overflow: overflowStyle,
+        style: tokens.bodyMediumStrong.copyWith(
+          color: tokens.textStaticSecondary,
+          decoration: TextDecoration.underline,
         ),
       ),
     );

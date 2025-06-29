@@ -71,25 +71,29 @@ class OptimusSystemWideBanner extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(left: tokens.spacing150),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FeedbackTitle(title: title),
-                      if (description case final description?)
-                        Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
-                          child: FeedbackDescription(description: description),
-                        ),
-                      if (link case final link?)
-                        Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
-                          child: FeedbackLink(
-                            text: link.text,
-                            onPressed: link.onPressed,
-                            semanticLinkUri: link.semanticUri,
+                  child: GestureDetector(
+                    onTap: link?.onPressed,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FeedbackTitle(title: title),
+                        if (description case final description?)
+                          Padding(
+                            padding: EdgeInsets.only(top: tokens.spacing50),
+                            child: FeedbackDescription(
+                              description: description,
+                            ),
                           ),
-                        ),
-                    ],
+                        if (link case final link?)
+                          Padding(
+                            padding: EdgeInsets.only(top: tokens.spacing50),
+                            child: FeedbackLink(
+                              text: link.text,
+                              semanticLinkUri: link.semanticUri,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),

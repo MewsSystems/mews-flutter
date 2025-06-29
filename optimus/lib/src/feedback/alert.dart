@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/semantics.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/semantics.dart';
@@ -187,37 +187,40 @@ class _AlertContent extends StatelessWidget {
               child: FeedbackIcon(icon: icon, variant: variant),
             ),
           ),
-          Row(
-            children: [
-              SizedBox(width: leadingSectionWidth).excludeSemantics(),
-              Expanded(
-                child: Container(
-                  padding: _getContentPadding(tokens),
-                  decoration: BoxDecoration(
-                    color: tokens.backgroundStaticFlat,
-                    borderRadius: BorderRadius.horizontal(
-                      right: tokens.borderRadius100,
+          GestureDetector(
+            onTap: onLinkPressed,
+            child: Row(
+              children: [
+                SizedBox(width: leadingSectionWidth).excludeSemantics(),
+                Expanded(
+                  child: Container(
+                    padding: _getContentPadding(tokens),
+                    decoration: BoxDecoration(
+                      color: tokens.backgroundStaticFlat,
+                      borderRadius: BorderRadius.horizontal(
+                        right: tokens.borderRadius100,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: tokens.spacing50,
+                      children: [
+                        if (title case final title?)
+                          FeedbackTitle(title: title),
+                        if (description case final description?)
+                          FeedbackDescription(description: description),
+                        if (linkText != null && onLinkPressed != null)
+                          FeedbackLink(
+                            text: linkText,
+                            semanticLinkUri: semanticLinkUri,
+                          ),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: tokens.spacing50,
-                    children: [
-                      if (title case final title?) FeedbackTitle(title: title),
-                      if (description case final description?)
-                        FeedbackDescription(description: description),
-                      if (linkText != null && onLinkPressed != null)
-                        FeedbackLink(
-                          text: linkText,
-                          onPressed: onLinkPressed,
-                          semanticLinkUri: semanticLinkUri,
-                        ),
-                    ],
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
