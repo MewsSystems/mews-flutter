@@ -65,7 +65,6 @@ class OptimusBanner extends StatelessWidget {
     final tokens = context.tokens;
 
     return Semantics(
-      role: SemanticsRole.alert,
       liveRegion: true,
       child: GestureDetector(
         onTap: onPressed,

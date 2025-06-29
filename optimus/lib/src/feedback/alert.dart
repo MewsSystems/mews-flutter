@@ -72,7 +72,6 @@ class OptimusAlert extends StatelessWidget {
     );
 
     return Semantics(
-      role: SemanticsRole.alert,
       liveRegion: true,
       child: Padding(
         padding: EdgeInsets.symmetric(
