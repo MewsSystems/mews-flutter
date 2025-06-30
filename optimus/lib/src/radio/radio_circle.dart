@@ -41,16 +41,19 @@ class RadioCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+
     final size = tokens.sizing200;
+    final scaledSize = MediaQuery.textScalerOf(context).scale(size);
+    final borderWidth = tokens.borderWidth150;
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 100),
-      width: size,
-      height: size,
+      duration: _duration,
+      width: scaledSize,
+      height: scaledSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          width: isSelected ? _selectedBorder : tokens.borderWidth150,
+          width: isSelected ? borderWidth / 2 : borderWidth,
           color: _getBorderColor(tokens).resolve(controller.value),
         ),
         color: _getFillColor(tokens).resolve(controller.value),
@@ -59,4 +62,4 @@ class RadioCircle extends StatelessWidget {
   }
 }
 
-const double _selectedBorder = 6.0; // TODO(witwash): rework to use tokens
+const _duration = Duration(milliseconds: 100);

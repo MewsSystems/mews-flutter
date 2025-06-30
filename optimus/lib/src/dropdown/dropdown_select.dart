@@ -347,7 +347,6 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
             : null;
 
     return Semantics(
-      role: widget.isReadOnly ? SemanticsRole.menu : SemanticsRole.comboBox,
       child: PopScope(
         canPop: _canPop,
         onPopInvokedWithResult: _handleOnBackPressed,

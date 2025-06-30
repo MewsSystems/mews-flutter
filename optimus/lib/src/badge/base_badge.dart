@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/theme/theme.dart';
 
 class BaseBadge extends StatelessWidget {
@@ -57,14 +58,14 @@ class BaseBadge extends StatelessWidget {
       label: text,
       child: Container(
         constraints: BoxConstraints(
-          minWidth: hasText ? badgeHeight : height,
-          maxWidth: hasText ? double.infinity : height,
+          minWidth: (hasText ? badgeHeight : height).toScaled(context),
+          maxWidth: hasText ? double.infinity : height.toScaled(context),
         ),
-        height: height,
+        height: height.toScaled(context),
         decoration: decoration,
         padding: EdgeInsets.symmetric(
-          horizontal: tokens.spacing50,
-          vertical: tokens.spacing25,
+          horizontal: tokens.spacing50.toScaled(context),
+          vertical: tokens.spacing25.toScaled(context),
         ),
         child: child,
       ),

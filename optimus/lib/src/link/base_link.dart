@@ -84,7 +84,7 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
                 text,
                 Padding(
                   padding: EdgeInsets.only(left: tokens.spacing100),
-                  child: IconTheme(
+                  child: IconTheme.merge(
                     data: IconThemeData(color: _effectiveColor),
                     child: icon,
                   ),

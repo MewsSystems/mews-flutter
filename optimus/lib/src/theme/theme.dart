@@ -37,6 +37,18 @@ class OptimusTheme extends StatelessWidget {
             ? (darkTheme ?? _defaultDarkTheme)
             : (lightTheme ?? _defaultLightTheme);
 
+    final child = MediaQuery(
+      data: MediaQuery.of(context).copyWith(
+        textScaler: MediaQuery.textScalerOf(
+          context,
+        ).clamp(minScaleFactor: 0.8, maxScaleFactor: 2),
+      ),
+      child: IconTheme.merge(
+        data: const IconThemeData(applyTextScaling: true),
+        child: this.child,
+      ),
+    );
+
     return _OptimusTheme(theme: theme, child: child);
   }
 }
