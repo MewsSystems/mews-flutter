@@ -29,10 +29,13 @@ class BaseBadge extends StatelessWidget {
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
     final outlineSize = tokens.borderWidth200;
-    final badgeHeight = tokens.sizing200;
-    final bareHeight = text.isEmpty ? tokens.spacing100 : badgeHeight;
-    final outlinedHeight = bareHeight + outlineSize * 2;
-    final height = isOutlined ? outlinedHeight : bareHeight;
+    final padding =
+        hasText
+            ? EdgeInsets.symmetric(
+              horizontal: tokens.spacing50.toScaled(context),
+              vertical: tokens.spacing25.toScaled(context),
+            )
+            : EdgeInsets.all(tokens.spacing25);
 
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(50)),
@@ -52,23 +55,11 @@ class BaseBadge extends StatelessWidget {
               textAlign: TextAlign.center,
               style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
             )
-            : null;
+            : SizedBox.square(dimension: tokens.sizing50);
 
     return Semantics(
       label: text,
-      child: Container(
-        constraints: BoxConstraints(
-          minWidth: (hasText ? badgeHeight : height).toScaled(context),
-          maxWidth: hasText ? double.infinity : height.toScaled(context),
-        ),
-        height: height.toScaled(context),
-        decoration: decoration,
-        padding: EdgeInsets.symmetric(
-          horizontal: tokens.spacing50.toScaled(context),
-          vertical: tokens.spacing25.toScaled(context),
-        ),
-        child: child,
-      ),
+      child: Container(decoration: decoration, padding: padding, child: child),
     );
   }
 }
