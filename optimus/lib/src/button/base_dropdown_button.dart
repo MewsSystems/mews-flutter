@@ -1,6 +1,5 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/common.dart';
