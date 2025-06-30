@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/widget_size.dart';
 
 const buttonAnimationDuration = Duration(milliseconds: 100);
@@ -26,4 +27,8 @@ extension ButtonStyleExt on OptimusWidgetSize {
     OptimusWidgetSize.large ||
     OptimusWidgetSize.extraLarge => tokens.spacing150,
   };
+}
+
+extension ButtonDimensionExt on BuildContext {
+  double get borderWidth => tokens.borderWidth150;
 }

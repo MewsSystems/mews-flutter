@@ -120,8 +120,10 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     final border =
         borderColor != null
             ? (widget.borderBuilder?.let((it) => it(borderColor)) ??
-                Border.all(color: borderColor, width: tokens.borderWidth150))
+                Border.all(color: borderColor, width: context.borderWidth))
             : null;
+
+    final paddingOffset = border != null ? context.borderWidth : 0;
 
     return OverlayController(
       items: widget.items,
@@ -146,7 +148,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
               child: AnimatedContainer(
                 padding: EdgeInsets.symmetric(
                   horizontal: widget.size.getHorizontalPadding(tokens),
-                  vertical: widget.size.getVerticalPadding(tokens),
+                  vertical:
+                      widget.size.getVerticalPadding(tokens) - paddingOffset,
                 ),
 
                 key: _selectFieldKey,

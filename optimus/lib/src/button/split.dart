@@ -3,6 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/button/outlined_border.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/semantics.dart';
@@ -100,7 +101,7 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
             child: widget.child,
           ),
           SizedBox(
-            width: tokens.borderWidth150,
+            width: context.borderWidth,
             height: widget.size.getWidgetHeight(tokens),
             child: ColoredBox(color: dividerColor ?? Colors.transparent),
           ).excludeSemantics(),
@@ -115,12 +116,9 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
             ),
             borderBuilder:
                 (color) => Border(
-                  top: BorderSide(color: color, width: tokens.borderWidth150),
-                  right: BorderSide(color: color, width: tokens.borderWidth150),
-                  bottom: BorderSide(
-                    color: color,
-                    width: tokens.borderWidth150,
-                  ),
+                  top: BorderSide(color: color, width: context.borderWidth),
+                  right: BorderSide(color: color, width: context.borderWidth),
+                  bottom: BorderSide(color: color, width: context.borderWidth),
                 ),
             size: widget.size,
           ),
