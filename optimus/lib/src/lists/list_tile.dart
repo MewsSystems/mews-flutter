@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/semantics.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
@@ -94,70 +93,67 @@ class OptimusListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Semantics(
-      role: SemanticsRole.listItem,
-      child: BaseListTile(
-        onTap: onTap,
-        content: Padding(
-          padding: _getContentPadding(tokens),
-          child: Stack(
-            children: [
-              if (prefix case final prefix?)
-                Positioned(
-                  top: tokens.spacing0,
-                  bottom: _prefixVerticalAlignment.getBottom(tokens),
-                  child: _Prefix(prefix: prefix, size: prefixSize),
-                ),
-              Row(
-                children: [
-                  if (prefix != null)
-                    SizedBox(
-                      width: prefixSize.getWidth(tokens),
-                    ).excludeSemantics(),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(right: tokens.spacing100),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: _Title(
-                                  title: title,
+    return BaseListTile(
+      onTap: onTap,
+      content: Padding(
+        padding: _getContentPadding(tokens),
+        child: Stack(
+          children: [
+            if (prefix case final prefix?)
+              Positioned(
+                top: tokens.spacing0,
+                bottom: _prefixVerticalAlignment.getBottom(tokens),
+                child: _Prefix(prefix: prefix, size: prefixSize),
+              ),
+            Row(
+              children: [
+                if (prefix != null)
+                  SizedBox(
+                    width: prefixSize.getWidth(tokens),
+                  ).excludeSemantics(),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: tokens.spacing100),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(
+                              child: _Title(
+                                title: title,
+                                fontVariant: fontVariant,
+                              ),
+                            ),
+                            if (info case final info?)
+                              Flexible(child: _Info(info: info)),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (subtitle case final subtitle?)
+                              Expanded(
+                                child: _Subtitle(
+                                  subtitle: subtitle,
                                   fontVariant: fontVariant,
                                 ),
-                              ),
-                              if (info case final info?)
-                                Flexible(child: _Info(info: info)),
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (subtitle case final subtitle?)
-                                Expanded(
-                                  child: _Subtitle(
-                                    subtitle: subtitle,
-                                    fontVariant: fontVariant,
-                                  ),
-                                )
-                              else
-                                const Spacer(),
-                              if (infoWidget case final infoWidget?) infoWidget,
-                            ],
-                          ),
-                        ],
-                      ),
+                              )
+                            else
+                              const Spacer(),
+                            if (infoWidget case final infoWidget?) infoWidget,
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  if (suffix case final suffix?) _Suffix(suffix: suffix),
-                ],
-              ),
-            ],
-          ),
+                ),
+                if (suffix case final suffix?) _Suffix(suffix: suffix),
+              ],
+            ),
+          ],
         ),
       ),
     );

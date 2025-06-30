@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/semantics.dart';
@@ -72,7 +71,6 @@ class OptimusAlert extends StatelessWidget {
     );
 
     return Semantics(
-      role: SemanticsRole.alert,
       liveRegion: true,
       child: Padding(
         padding: EdgeInsets.symmetric(
