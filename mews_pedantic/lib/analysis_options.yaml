@@ -524,7 +524,7 @@ dart_code_metrics:
     # - prefer-prefixed-global-constants
     # - prefer-private-extension-type-field
     - prefer-public-exception-classes
-    # - prefer-redirecting-superclass-constructor
+    - prefer-redirecting-superclass-constructor
     - prefer-return-await
     - prefer-returning-conditional-expressions
     - prefer-simpler-boolean-expressions

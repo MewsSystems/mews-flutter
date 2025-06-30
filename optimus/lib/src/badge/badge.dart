@@ -33,11 +33,14 @@ class OptimusBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return BaseBadge(
-      text: text,
-      isOutlined: isOutlined,
-      textColor: variant.getTextColor(tokens),
-      backgroundColor: variant.getBackgroundColor(tokens),
+    return Semantics(
+      liveRegion: true,
+      child: BaseBadge(
+        text: text,
+        isOutlined: isOutlined,
+        textColor: variant.getTextColor(tokens),
+        backgroundColor: variant.getBackgroundColor(tokens),
+      ),
     );
   }
 }

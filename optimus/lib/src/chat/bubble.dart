@@ -106,21 +106,26 @@ class _Bubble extends StatelessWidget {
     final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 480),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(tokens.borderRadius100),
-        color: _getBackgroundColor(theme), // TODO(witwash): check with design
-      ),
-      padding: EdgeInsets.only(
-        left: tokens.spacing100,
-        right: tokens.spacing100,
-        top: tokens.spacing50,
-        bottom: tokens.spacing100,
-      ),
-      child: Text(
-        message.message,
-        style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(theme)),
+    return Semantics(
+      liveRegion: true,
+      child: Container(
+        constraints: const BoxConstraints(
+          maxWidth: 480,
+        ), // TODO(witwash): replace with tokens
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(tokens.borderRadius100),
+          color: _getBackgroundColor(theme), // TODO(witwash): check with design
+        ),
+        padding: EdgeInsets.only(
+          left: tokens.spacing100,
+          right: tokens.spacing100,
+          top: tokens.spacing50,
+          bottom: tokens.spacing100,
+        ),
+        child: Text(
+          message.message,
+          style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(theme)),
+        ),
       ),
     );
   }

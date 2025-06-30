@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/lists/base_list_tile.dart';
@@ -113,7 +112,6 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
       ignoring: !widget.isEnabled,
       child: Semantics(
         label: widget.semanticLabel,
-        role: SemanticsRole.listItem,
         child: GestureWrapper(
           onHoverChanged: _handleHoverChanged,
           onPressedChanged: _handlePressedChanged,

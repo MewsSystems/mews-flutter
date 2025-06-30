@@ -93,6 +93,7 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
   @override
   Widget build(BuildContext context) => Semantics(
     role: SemanticsRole.loadingSpinner,
+    liveRegion: true,
     child: SizedBox.square(
       dimension: widget.size.getSize(tokens),
       child: AnimatedBuilder(
