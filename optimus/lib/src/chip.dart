@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
-import 'package:optimus/src/common/text_scaling.dart';
 
 /// Chips are a visual representation of a keyword or phrase that the user has
 /// used for purposes of filtering the scope of content displayed in the
