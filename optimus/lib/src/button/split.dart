@@ -101,7 +101,7 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
           ),
           SizedBox(
             width: tokens.borderWidth150,
-            height: widget.size.getValue(tokens),
+            height: widget.size.getWidgetHeight(tokens),
             child: ColoredBox(color: dividerColor ?? Colors.transparent),
           ).excludeSemantics(),
           BaseDropDownButton(
