@@ -1,7 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
@@ -45,8 +44,6 @@ class BaseDropdownTile extends StatelessWidget {
     );
 
     return Semantics(
-      role:
-          hasCheckbox ? SemanticsRole.menuItemCheckbox : SemanticsRole.menuItem,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: tokens.spacing200,
