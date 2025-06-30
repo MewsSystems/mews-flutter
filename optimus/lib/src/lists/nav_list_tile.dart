@@ -113,7 +113,6 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
       ignoring: !widget.isEnabled,
       child: Semantics(
         label: widget.semanticLabel,
-        role: SemanticsRole.listItem,
         child: GestureWrapper(
           onHoverChanged: _handleHoverChanged,
           onPressedChanged: _handlePressedChanged,
