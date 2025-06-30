@@ -686,4 +686,6 @@ const optimusIcons = <IconDetails>[
   IconDetails(OptimusIcons.wellness, 'wellness'),
   IconDetails(OptimusIcons.window_24, 'window_24'),
   IconDetails(OptimusIcons.window, 'window'),
+  IconDetails(OptimusIcons.layout_grid, 'layout_grid'),
+  IconDetails(OptimusIcons.layout_grid_24, 'layout_grid_24'),
 ];
