@@ -148,8 +148,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
               child: AnimatedContainer(
                 padding: EdgeInsets.symmetric(
                   horizontal: widget.size.getHorizontalPadding(tokens),
-                  vertical:
-                      widget.size.getVerticalPadding(tokens) - paddingOffset,
+                  vertical: widget.size.getVerticalPadding(tokens),
                 ),
 
                 key: _selectFieldKey,

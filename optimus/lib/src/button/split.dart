@@ -80,49 +80,53 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
     return GestureWrapper(
       onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
       onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          BaseButton(
-            onPressed: widget.onPressed,
-            semanticLabel: widget.semanticLabel,
-            variant: widget.variant.toButtonVariant(),
-            borderRadius: BorderRadius.only(
-              topLeft: borderRadius,
-              bottomLeft: borderRadius,
+      child: IntrinsicHeight(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BaseButton(
+              onPressed: widget.onPressed,
+              semanticLabel: widget.semanticLabel,
+              variant: widget.variant.toButtonVariant(),
+              borderRadius: BorderRadius.only(
+                topLeft: borderRadius,
+                bottomLeft: borderRadius,
+              ),
+              size: widget.size,
+              shapeBuilder:
+                  (borderRadius, borderSide) => CustomOutlinedBorder(
+                    borderRadius: borderRadius,
+                    borderSide: borderSide,
+                    hasRight: false,
+                  ),
+              child: widget.child,
             ),
-            size: widget.size,
-            shapeBuilder:
-                (borderRadius, borderSide) => CustomOutlinedBorder(
-                  borderRadius: borderRadius,
-                  borderSide: borderSide,
-                  hasRight: false,
-                ),
-            child: widget.child,
-          ),
-          SizedBox(
-            width: context.borderWidth,
-            height: widget.size.getWidgetHeight(tokens),
-            child: ColoredBox(color: dividerColor ?? Colors.transparent),
-          ).excludeSemantics(),
-          BaseDropDownButton(
-            items: widget.items,
-            onItemSelected: widget.onItemSelected,
-            variant: widget.variant.toDropdownButtonVariant(),
-            semanticLabel: widget.dropdownSemanticLabel,
-            borderRadius: BorderRadius.only(
-              topRight: borderRadius,
-              bottomRight: borderRadius,
+            Container(
+              width: context.borderWidth,
+              color: dividerColor ?? Colors.transparent,
+            ).excludeSemantics(),
+            BaseDropDownButton(
+              items: widget.items,
+              onItemSelected: widget.onItemSelected,
+              variant: widget.variant.toDropdownButtonVariant(),
+              semanticLabel: widget.dropdownSemanticLabel,
+              borderRadius: BorderRadius.only(
+                topRight: borderRadius,
+                bottomRight: borderRadius,
+              ),
+              borderBuilder:
+                  (color) => Border(
+                    top: BorderSide(color: color, width: context.borderWidth),
+                    right: BorderSide(color: color, width: context.borderWidth),
+                    bottom: BorderSide(
+                      color: color,
+                      width: context.borderWidth,
+                    ),
+                  ),
+              size: widget.size,
             ),
-            borderBuilder:
-                (color) => Border(
-                  top: BorderSide(color: color, width: context.borderWidth),
-                  right: BorderSide(color: color, width: context.borderWidth),
-                  bottom: BorderSide(color: color, width: context.borderWidth),
-                ),
-            size: widget.size,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
