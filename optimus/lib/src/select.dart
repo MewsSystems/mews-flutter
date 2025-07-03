@@ -150,7 +150,7 @@ class _SelectedValue extends StatelessWidget {
           right: tokens.spacing100,
         ),
         child: SizedBox(
-          height: size.getValue(tokens),
+          height: size.getWidgetHeight(tokens),
           child: DefaultTextStyle(style: textStyle, child: child),
         ),
       ),

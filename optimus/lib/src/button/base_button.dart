@@ -73,10 +73,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
         child: TextButton(
           style: ButtonStyle(
             minimumSize: WidgetStateProperty.all<Size>(
-              Size(widget.minWidth ?? 0, widget.size.getValue(tokens)),
-            ),
-            maximumSize: WidgetStateProperty.all<Size>(
-              Size(double.infinity, widget.size.getValue(tokens)),
+              Size(widget.minWidth ?? 0, 0),
             ),
             padding: WidgetStateProperty.all<EdgeInsets>(_padding),
             shape: WidgetStateProperty.resolveWith((states) {
@@ -234,7 +231,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
                 ),
               ).excludeSemantics(),
             if (widget.child case final child?)
-              IconTheme(
+              IconTheme.merge(
                 data: IconThemeData(color: foregroundColor, size: _iconSize),
                 child: DefaultTextStyle.merge(
                   style: _textStyle.copyWith(color: foregroundColor),
@@ -298,7 +295,10 @@ class _Badge extends StatelessWidget {
         child: ColoredBox(
           color: color,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.5, vertical: 3),
+            padding: const EdgeInsets.symmetric(
+              horizontal: _horizontalPadding,
+              vertical: _verticalPadding,
+            ), // TODO(witwash): check with design
             child: Text(
               label,
               style: tokens.bodyExtraSmallStrong.copyWith(
@@ -382,25 +382,5 @@ extension on Set<WidgetState> {
   bool get isDisabled => contains(WidgetState.disabled);
 }
 
-extension on OptimusWidgetSize {
-  double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing50,
-    OptimusWidgetSize.medium => tokens.spacing100,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
-  };
-
-  double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing150,
-    OptimusWidgetSize.medium => tokens.spacing200,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing300,
-  };
-
-  double getInsideHorizontalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing100,
-    OptimusWidgetSize.medium ||
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
-  };
-}
+const _verticalPadding = 3.0;
+const _horizontalPadding = 4.5;
