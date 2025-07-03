@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/addons/accessibility.dart';
 import 'package:optimus_widgetbook/branding/header.dart';
 import 'package:optimus_widgetbook/branding/home_page.dart';
 import 'package:optimus_widgetbook/main.directories.g.dart';
@@ -26,7 +25,6 @@ class WidgetbookApp extends StatelessWidget {
         ],
       ),
       InspectorAddon(),
-      AccessibilityAddon(),
       ThemeAddon<OptimusThemeData>(
         themes: [
           const WidgetbookTheme(
@@ -65,6 +63,7 @@ class WidgetbookApp extends StatelessWidget {
               child: SafeArea(child: widget),
             ),
       ),
+      TextScaleAddon(),
       AlignmentAddon(),
       SemanticsAddon(),
     ],
