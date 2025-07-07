@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
@@ -323,7 +324,7 @@ class _GroupedDropdownListViewState<T>
         tokens.spacing100 * 2;
 
     return SizedBox(
-      height: min(minListHeight, widget.maxHeight),
+      height: min(minListHeight, widget.maxHeight).toScaled(context),
       child: ListView.builder(
         reverse: widget.isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
@@ -423,7 +424,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   @override
   Widget build(BuildContext context) => SizedBox(
     width: AnchoredOverlay.of(context)?.width,
-    height: _itemMinHeight,
+    height: _itemMinHeight.toScaled(context),
     child: InkWell(
       borderRadius: BorderRadius.all(tokens.borderRadius100),
       onTap: _handleItemTap,
