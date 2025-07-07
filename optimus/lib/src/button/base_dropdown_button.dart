@@ -123,8 +123,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                 Border.all(color: borderColor, width: context.borderWidth))
             : null;
 
-    final paddingOffset = border != null ? context.borderWidth : 0;
-
     return OverlayController(
       items: widget.items,
       size: widget.size,
