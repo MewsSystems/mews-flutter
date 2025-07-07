@@ -68,11 +68,10 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
     bool useRootOverlay = false,
   }) {
     hide();
-    final mediaQuery = MediaQuery.of(context);
     final entry = OverlayEntry(
       builder:
-          (context) => MediaQuery(
-            data: mediaQuery,
+          (_) => MediaQuery(
+            data: MediaQuery.of(context),
             child: OptimusDialog.nonModal(
               title: title,
               content: content,
@@ -96,11 +95,10 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
     bool useRootOverlay = false,
   }) {
     hide();
-    final mediaQuery = MediaQuery.of(context);
     final entry = OverlayEntry(
       builder:
-          (context) => MediaQuery(
-            data: mediaQuery,
+          (_) => MediaQuery(
+            data: MediaQuery.of(context),
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
