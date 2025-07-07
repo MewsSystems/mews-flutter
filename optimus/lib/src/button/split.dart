@@ -3,6 +3,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
 import 'package:optimus/src/button/base_dropdown_button.dart';
+import 'package:optimus/src/button/common.dart';
 import 'package:optimus/src/button/outlined_border.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/semantics.dart';
@@ -79,52 +80,53 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
     return GestureWrapper(
       onHoverChanged: (isHovered) => setState(() => _isHovered = isHovered),
       onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          BaseButton(
-            onPressed: widget.onPressed,
-            semanticLabel: widget.semanticLabel,
-            variant: widget.variant.toButtonVariant(),
-            borderRadius: BorderRadius.only(
-              topLeft: borderRadius,
-              bottomLeft: borderRadius,
-            ),
-            size: widget.size,
-            shapeBuilder:
-                (borderRadius, borderSide) => CustomOutlinedBorder(
-                  borderRadius: borderRadius,
-                  borderSide: borderSide,
-                  hasRight: false,
-                ),
-            child: widget.child,
-          ),
-          SizedBox(
-            width: tokens.borderWidth150,
-            height: widget.size.getValue(tokens),
-            child: ColoredBox(color: dividerColor ?? Colors.transparent),
-          ).excludeSemantics(),
-          BaseDropDownButton(
-            items: widget.items,
-            onItemSelected: widget.onItemSelected,
-            variant: widget.variant.toDropdownButtonVariant(),
-            semanticLabel: widget.dropdownSemanticLabel,
-            borderRadius: BorderRadius.only(
-              topRight: borderRadius,
-              bottomRight: borderRadius,
-            ),
-            borderBuilder:
-                (color) => Border(
-                  top: BorderSide(color: color, width: tokens.borderWidth150),
-                  right: BorderSide(color: color, width: tokens.borderWidth150),
-                  bottom: BorderSide(
-                    color: color,
-                    width: tokens.borderWidth150,
+      child: IntrinsicHeight(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BaseButton(
+              onPressed: widget.onPressed,
+              semanticLabel: widget.semanticLabel,
+              variant: widget.variant.toButtonVariant(),
+              borderRadius: BorderRadius.only(
+                topLeft: borderRadius,
+                bottomLeft: borderRadius,
+              ),
+              size: widget.size,
+              shapeBuilder:
+                  (borderRadius, borderSide) => CustomOutlinedBorder(
+                    borderRadius: borderRadius,
+                    borderSide: borderSide,
+                    hasRight: false,
                   ),
-                ),
-            size: widget.size,
-          ),
-        ],
+              child: widget.child,
+            ),
+            Container(
+              width: context.borderWidth,
+              color: dividerColor ?? Colors.transparent,
+            ).excludeSemantics(),
+            BaseDropDownButton(
+              items: widget.items,
+              onItemSelected: widget.onItemSelected,
+              variant: widget.variant.toDropdownButtonVariant(),
+              semanticLabel: widget.dropdownSemanticLabel,
+              borderRadius: BorderRadius.only(
+                topRight: borderRadius,
+                bottomRight: borderRadius,
+              ),
+              borderBuilder:
+                  (color) => Border(
+                    top: BorderSide(color: color, width: context.borderWidth),
+                    right: BorderSide(color: color, width: context.borderWidth),
+                    bottom: BorderSide(
+                      color: color,
+                      width: context.borderWidth,
+                    ),
+                  ),
+              size: widget.size,
+            ),
+          ],
+        ),
       ),
     );
   }

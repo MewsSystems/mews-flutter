@@ -83,6 +83,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
             GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapDown: (_) => widget.focusNode.unfocus(),
+              excludeFromSemantics: true,
             ),
             DropdownTapInterceptor(
               onTap: widget.focusNode.unfocus,

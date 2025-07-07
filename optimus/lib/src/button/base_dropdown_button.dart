@@ -120,7 +120,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     final border =
         borderColor != null
             ? (widget.borderBuilder?.let((it) => it(borderColor)) ??
-                Border.all(color: borderColor, width: tokens.borderWidth150))
+                Border.all(color: borderColor, width: context.borderWidth))
             : null;
 
     return OverlayController(
@@ -143,39 +143,40 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
             onTap: _node.requestFocus,
             child: Focus(
               focusNode: _node,
-              child: SizedBox(
-                height: widget.size.getValue(tokens),
-                child: AnimatedContainer(
-                  padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
-                  key: _selectFieldKey,
-                  decoration: BoxDecoration(
-                    color: _color,
-                    borderRadius: borderRadius,
-                    border: border,
-                  ),
-                  duration: buttonAnimationDuration,
-                  curve: buttonAnimationCurve,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (child != null)
-                        Padding(
-                          padding: EdgeInsets.only(right: tokens.spacing150),
-                          child: DefaultTextStyle.merge(
-                            style: _labelStyle,
-                            child: child,
-                          ),
-                        ),
-                      RotationTransition(
-                        turns: _iconTurns,
-                        child: Icon(
-                          OptimusIcons.chevron_down,
-                          size: widget.size.getIconSize(tokens),
-                          color: _textColor,
+              child: AnimatedContainer(
+                padding: EdgeInsets.symmetric(
+                  horizontal: widget.size.getHorizontalPadding(tokens),
+                  vertical: widget.size.getVerticalPadding(tokens),
+                ),
+
+                key: _selectFieldKey,
+                decoration: BoxDecoration(
+                  color: _color,
+                  borderRadius: borderRadius,
+                  border: border,
+                ),
+                duration: buttonAnimationDuration,
+                curve: buttonAnimationCurve,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (child != null)
+                      Padding(
+                        padding: EdgeInsets.only(right: tokens.spacing150),
+                        child: DefaultTextStyle.merge(
+                          style: _labelStyle,
+                          child: child,
                         ),
                       ),
-                    ],
-                  ),
+                    RotationTransition(
+                      turns: _iconTurns,
+                      child: Icon(
+                        OptimusIcons.chevron_down,
+                        size: widget.size.getIconSize(tokens),
+                        color: _textColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

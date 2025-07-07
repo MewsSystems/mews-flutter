@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 
 /// The toggle component serves as a visual representation of a binary choice,
 /// providing users with a clear way to control settings, preferences, or switch
@@ -99,14 +100,16 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
         onPressedChanged: _handlePressedChanged,
         onTap: _handleTap,
         child: AnimatedContainer(
-          width: tokens.sizing550,
-          height: tokens.sizing300,
+          width: tokens.sizing550.toScaled(context),
+          height: tokens.sizing300.toScaled(context),
           duration: _animationDuration,
-          padding: EdgeInsets.all(tokens.spacing50),
+          padding: EdgeInsets.all(tokens.spacing50.toScaled(context)),
           decoration: ShapeDecoration(
             color: _color,
             shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(56)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(56),
+              ), // TODO(witwash): replace with tokens
             ),
           ),
           child: Stack(
@@ -130,7 +133,7 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
               AnimatedPositioned(
                 duration: _animationDuration,
                 curve: _animationCurve,
-                left: _leftPadding,
+                left: _leftPadding.toScaled(context),
                 child: const _Knob(),
               ),
             ],
@@ -147,7 +150,7 @@ class _Knob extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final knobSize = tokens.sizing200;
+    final knobSize = tokens.sizing200.toScaled(context);
 
     return SizedBox.square(
       dimension: knobSize,
