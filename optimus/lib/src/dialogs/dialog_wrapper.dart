@@ -24,8 +24,8 @@ abstract class DialogController {
   void hide();
 }
 
-class DialogWrapper extends StatefulWidget {
-  const DialogWrapper({super.key, required this.child});
+class OptimusDialogWrapper extends StatefulWidget {
+  const OptimusDialogWrapper({super.key, required this.child});
 
   final Widget child;
 
@@ -35,15 +35,15 @@ class DialogWrapper extends StatefulWidget {
           ?.controller;
 
   @override
-  State<DialogWrapper> createState() => _DialogWrapperState();
+  State<OptimusDialogWrapper> createState() => OptimusDialogWrapperState();
 }
 
-class _DialogWrapperState extends State<DialogWrapper>
+class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
     implements DialogController {
   OverlayEntry? _entry;
 
   @override
-  void didUpdateWidget(DialogWrapper oldWidget) {
+  void didUpdateWidget(OptimusDialogWrapper oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.child != oldWidget.child) {
       hide();
@@ -70,13 +70,16 @@ class _DialogWrapperState extends State<DialogWrapper>
     hide();
     final entry = OverlayEntry(
       builder:
-          (context) => OptimusDialog.nonModal(
-            title: title,
-            content: content,
-            close: _handleClose,
-            isDismissible: isDismissible,
-            actions: actions,
-            size: size,
+          (_) => MediaQuery(
+            data: MediaQuery.of(context),
+            child: OptimusDialog.nonModal(
+              title: title,
+              content: content,
+              close: _handleClose,
+              isDismissible: isDismissible,
+              actions: actions,
+              size: size,
+            ),
           ),
     );
     _entry = entry;
@@ -94,21 +97,24 @@ class _DialogWrapperState extends State<DialogWrapper>
     hide();
     final entry = OverlayEntry(
       builder:
-          (context) => Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: _handleClose,
-              ),
-              OptimusInlineDialog(
-                content: content,
-                close: _handleClose,
-                actions: actions,
-                anchorKey: anchorKey,
-                size: size,
-              ),
-            ],
+          (_) => MediaQuery(
+            data: MediaQuery.of(context),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: _handleClose,
+                ),
+                OptimusInlineDialog(
+                  content: content,
+                  close: _handleClose,
+                  actions: actions,
+                  anchorKey: anchorKey,
+                  size: size,
+                ),
+              ],
+            ),
           ),
     );
     _entry = entry;
