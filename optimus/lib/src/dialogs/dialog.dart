@@ -38,13 +38,16 @@ Future<T?> showOptimusDialog<T>({
 }) => showGeneralDialog<T>(
   context: context,
   pageBuilder:
-      (buildContext, animation, secondaryAnimation) => OptimusDialog.modal(
-        title: title,
-        content: content,
-        contentWrapperBuilder: contentWrapperBuilder,
-        actions: actions,
-        size: size,
-        type: type,
+      (buildContext, animation, secondaryAnimation) => MediaQuery(
+        data: MediaQuery.of(context),
+        child: OptimusDialog.modal(
+          title: title,
+          content: content,
+          contentWrapperBuilder: contentWrapperBuilder,
+          actions: actions,
+          size: size,
+          type: type,
+        ),
       ),
   barrierDismissible: isDismissible,
   barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
