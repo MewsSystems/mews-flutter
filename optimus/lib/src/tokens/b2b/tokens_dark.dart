@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Thu, 22 May 2025 11:46:04 GMT
+// Generated on Fri, 11 Jul 2025 08:18:52 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -15,7 +15,7 @@ abstract final class DesignTokensDark {
   static const Color backgroundAccentDanger = Color(0xFFEC5C5C);
   static const Color backgroundAccentGradient = Color(0xFF000000);
   static const Color backgroundAccentInfo = Color(0xFF4F90F2);
-  static const Color backgroundAccentPrimary = Color(0xFF7A78F6);
+  static const Color backgroundAccentPrimary = Color(0xFF8886FF);
   static const Color backgroundAccentSecondary = Color(0xFFFA5F69);
   static const Color backgroundAccentSuccess = Color(0xFF9EF28D);
   static const Color backgroundAccentWarning = Color(0xFFF6CB64);
@@ -50,16 +50,16 @@ abstract final class DesignTokensDark {
   static const Color backgroundInteractiveNeutralDefault = Color(0xFF22222E);
   static const Color backgroundInteractiveNeutralHover = Color(0xFF323243);
   static const Color backgroundInteractiveNeutralSubtleActive = Color(
-    0xFF1A1A24,
+    0x52A8A8C0,
   );
   static const Color backgroundInteractiveNeutralSubtleDefault = Color(
     0xFF12121A,
   );
   static const Color backgroundInteractiveNeutralSubtleHover = Color(
-    0xFF16161F,
+    0x29A8A8C0,
   );
   static const Color backgroundInteractivePrimaryActive = Color(0xFFD9D8FD);
-  static const Color backgroundInteractivePrimaryDefault = Color(0xFF7A78F6);
+  static const Color backgroundInteractivePrimaryDefault = Color(0xFF8886FF);
   static const Color backgroundInteractivePrimaryHover = Color(0xFFAEACFA);
   static const Color backgroundInteractiveSecondaryActive = Color(0xFF080680);
   static const Color backgroundInteractiveSecondaryDefault = Color(0xFF010045);
@@ -85,9 +85,9 @@ abstract final class DesignTokensDark {
   static const Color borderInteractiveBoldActive = Color(0xFFC4C4D5);
   static const Color borderInteractiveBoldDefault = Color(0xFF8D8DAC);
   static const Color borderInteractiveBoldHover = Color(0xFFA8A8C0);
-  static const Color borderInteractiveFocus = Color(0xFF524FF2);
+  static const Color borderInteractiveFocus = Color(0xFF6562F4);
   static const Color borderInteractivePrimaryActive = Color(0xFFD9D8FD);
-  static const Color borderInteractivePrimaryDefault = Color(0xFF7A78F6);
+  static const Color borderInteractivePrimaryDefault = Color(0xFF8886FF);
   static const Color borderInteractivePrimaryHover = Color(0xFFAEACFA);
   static const Color borderInteractiveSecondaryActive = Color(0xFF787897);
   static const Color borderInteractiveSecondaryDefault = Color(0xFF53536D);
@@ -170,7 +170,7 @@ abstract final class DesignTokensDark {
   static const Color legacyTagBorderLavender = Color(0xFF9180C4);
   static const Color legacyTagBorderLime = Color(0xFF4A9951);
   static const Color legacyTagBorderMustard = Color(0xFFEDC241);
-  static const Color legacyTagBorderPrimary = Color(0xFF524FF2);
+  static const Color legacyTagBorderPrimary = Color(0xFF6562F4);
   static const Color legacyTagBorderRuby = Color(0xFFDC596F);
   static const Color legacyTagBorderTangerine = Color(0xFFF0A782);
   static const Color legacyTagTextBasicBold = Color(0xFFC4C4D5);
@@ -207,7 +207,7 @@ abstract final class DesignTokensDark {
   static const Color paletteBrandGrey300 = Color(0xFF595959);
   static const Color paletteBrandGrey400 = Color(0xFF717171);
   static const Color paletteBrandGrey50 = Color(0xFF1E1E1E);
-  static const Color paletteBrandGrey500 = Color(0xFF888888);
+  static const Color paletteBrandGrey500 = Color(0xFF848484);
   static const Color paletteBrandGrey600 = Color(0xFFA0A0A0);
   static const Color paletteBrandGrey700 = Color(0xFFB8B8B8);
   static const Color paletteBrandGrey800 = Color(0xFFD0D0D0);
@@ -222,8 +222,8 @@ abstract final class DesignTokensDark {
   static const Color paletteBrandIndigo400 = Color(0xFF302DE4);
   static const Color paletteBrandIndigo50 = Color(0xFF040259);
   static const Color paletteBrandIndigo500 = Color(0xFF3F3CEC);
-  static const Color paletteBrandIndigo600 = Color(0xFF524FF2);
-  static const Color paletteBrandIndigo700 = Color(0xFF7A78F6);
+  static const Color paletteBrandIndigo600 = Color(0xFF6562F4);
+  static const Color paletteBrandIndigo700 = Color(0xFF8886FF);
   static const Color paletteBrandIndigo800 = Color(0xFFAEACFA);
   static const Color paletteBrandIndigo900 = Color(0xFFD9D8FD);
   static const Color paletteBrandNight0 = Color(0xFF12121A);
@@ -313,16 +313,25 @@ abstract final class DesignTokensDark {
   static const Color textAlertWarning = Color(0xFFFADFA1);
   static const Color textDisabled = Color(0xFF656582);
   static const Color textInteractivePrimaryActive = Color(0xFFD9D8FD);
-  static const Color textInteractivePrimaryDefault = Color(0xFF7A78F6);
+  static const Color textInteractivePrimaryDefault = Color(0xFF8886FF);
   static const Color textInteractivePrimaryHover = Color(0xFFAEACFA);
   static const Color textInteractiveSecondaryActive = Color(0xFFA8A8C0);
   static const Color textInteractiveSecondaryDefault = Color(0xFFE1E1EA);
   static const Color textInteractiveSecondaryHover = Color(0xFFC4C4D5);
   static const Color textStaticInverse = Color(0xFF16161F);
   static const Color textStaticOnColor = Color(0xFFFFFFFF);
-  static const Color textStaticPrimary = Color(0xFFFFFFFF);
-  static const Color textStaticSecondary = Color(0xFFA8A8C0);
-  static const Color textStaticTertiary = Color(0xFF8D8DAC);
+  static const Color textStaticPrimary = Color(0xFFE1E1EA);
+  static const Color textStaticSecondary = Color(0xFFC4C4D5);
+  static const Color textStaticTertiary = Color(0xFFA8A8C0);
+  static const Color visualAssetsAccent = Color(0xFFAEACFA);
+  static const Color visualAssetsNeutralBold = Color(0xFFFFFFFF);
+  static const Color visualAssetsNeutralBold0 = Color(0x00FFFFFF);
+  static const Color visualAssetsNeutralSubtle = Color(0xFF323243);
+  static const Color visualAssetsNeutralSubtle0 = Color(0x00323243);
+  static const Color visualAssetsSemanticDanger = Color(0xFFE44E4E);
+  static const Color visualAssetsSemanticInfo = Color(0xFF4F90F2);
+  static const Color visualAssetsSemanticSuccess = Color(0xFF78D765);
+  static const Color visualAssetsSemanticWarning = Color(0xFFF2BA37);
 
   static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: 'Inter',
@@ -558,13 +567,13 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 2),
       blurRadius: 6,
       spreadRadius: -1,
-      color: Color(0x1412121A),
+      color: Color(0x14FFFFFF),
     ),
     BoxShadow(
       offset: Offset(0, -1),
       blurRadius: 4,
       spreadRadius: -2,
-      color: Color(0x1412121A),
+      color: Color(0x14FFFFFF),
     ),
   ];
   static const List<BoxShadow> shadow200 = [
@@ -572,13 +581,13 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 8),
       blurRadius: 24,
       spreadRadius: -4,
-      color: Color(0x1412121A),
+      color: Color(0x14FFFFFF),
     ),
     BoxShadow(
       offset: Offset(0, 6),
       blurRadius: 12,
       spreadRadius: -6,
-      color: Color(0x1412121A),
+      color: Color(0x14FFFFFF),
     ),
   ];
   static const List<BoxShadow> shadow300 = [
@@ -586,16 +595,17 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 18),
       blurRadius: 88,
       spreadRadius: -4,
-      color: Color(0x1F12121A),
+      color: Color(0x1FFFFFFF),
     ),
     BoxShadow(
       offset: Offset(0, 12),
       blurRadius: 28,
       spreadRadius: -6,
-      color: Color(0x1F12121A),
+      color: Color(0x1FFFFFFF),
     ),
   ];
 
+  static const TextDecoration textDecorationNone = TextDecoration.none;
   static const TextDecoration textDecorationUnderline =
       TextDecoration.underline;
 
