@@ -44,6 +44,7 @@ class BaseDropdownTile extends StatelessWidget {
     );
 
     return Semantics(
+      checked: hasCheckbox ? isSelected : null,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: tokens.spacing200,

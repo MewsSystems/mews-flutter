@@ -10,7 +10,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   path: '[Layout]/Dialog',
 )
 Widget createDefaultStyle(BuildContext _) =>
-    const DialogWrapper(child: InlineDialogStory());
+    const OptimusDialogWrapper(child: InlineDialogStory());
 
 class InlineDialogStory extends StatefulWidget {
   const InlineDialogStory({super.key});
@@ -33,7 +33,7 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
       child: OptimusButton(
         key: _anchor,
         onPressed:
-            () => DialogWrapper.of(context)?.showInline(
+            () => OptimusDialogWrapper.of(context)?.showInline(
               anchorKey: _anchor,
               size: OptimusDialogSize.regular,
               content: const Padding(

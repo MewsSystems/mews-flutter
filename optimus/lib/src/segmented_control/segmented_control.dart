@@ -196,7 +196,7 @@ class _OptimusSegmentedControlItemState<T>
                   duration: const Duration(milliseconds: 100),
                   curve: Curves.easeOut,
                   constraints: BoxConstraints(
-                    minHeight: widget.size.getValue(tokens),
+                    minHeight: widget.size.getWidgetHeight(tokens),
                   ),
                   padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
                   decoration: BoxDecoration(

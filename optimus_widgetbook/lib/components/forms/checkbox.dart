@@ -29,20 +29,22 @@ class CheckboxStoryState extends State<CheckboxStory> {
     final label = k.string(label: 'Label', initialValue: 'Checkbox Label');
 
     return SizedBox(
-      width: 300,
-      height: 120,
-      child: OptimusCheckbox(
-        label: Text(label),
-        semanticLabel: label,
-        error: k.stringOrNull(label: 'Error'),
-        isEnabled: k.isEnabledKnob,
-        size: k.list(
-          label: 'Size',
-          options: OptimusCheckboxSize.values,
-          labelBuilder: enumLabelBuilder,
+      width: 400,
+      height: 500,
+      child: Center(
+        child: OptimusCheckbox(
+          label: Text(label),
+          semanticLabel: label,
+          error: k.stringOrNull(label: 'Error'),
+          isEnabled: k.isEnabledKnob,
+          size: k.list(
+            label: 'Size',
+            options: OptimusCheckboxSize.values,
+            labelBuilder: enumLabelBuilder,
+          ),
+          isChecked: _isChecked,
+          onChanged: _handleChanged,
         ),
-        isChecked: _isChecked,
-        onChanged: _handleChanged,
       ),
     );
   }
