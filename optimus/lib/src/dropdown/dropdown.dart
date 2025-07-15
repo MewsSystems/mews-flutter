@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
@@ -150,20 +148,16 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
-      final listMaxHeight =
-          widget.embeddedSearch != null
-              ? controller.maxHeight - _embeddedSearchHeight
-              : controller.maxHeight;
 
       final content =
           widget.items.isNotEmpty
               ? Container(
                 constraints: BoxConstraints(
-                  maxHeight: listMaxHeight,
+                  maxHeight: controller.maxHeight,
                   maxWidth: controller.width,
                 ),
                 child: OptimusScrollConfiguration(
-                  child: _buildList(isOnTop, listMaxHeight),
+                  child: _buildList(isOnTop, controller.maxHeight),
                 ),
               )
               : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
@@ -221,10 +215,9 @@ class _DropdownListView<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final minHeight = items.length * _itemMinHeight + tokens.spacing100 * 2;
 
     return SizedBox(
-      height: min(minHeight, maxHeight),
+      height: maxHeight,
       child: ListView.builder(
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
@@ -264,7 +257,6 @@ class _GroupedDropdownListViewState<T>
     extends State<_GroupedDropdownListView<T>>
     with ThemeGetter {
   late List<OptimusDropdownTile<T>> _sortedItems;
-  late int _groupsCount;
 
   @override
   void initState() {
@@ -285,28 +277,20 @@ class _GroupedDropdownListViewState<T>
       (value) =>
           OptimusDropdownGroupSeparator(child: Text(value.toUpperCase()));
 
-  List<OptimusDropdownTile<T>> _sortItems() {
-    int groupsCount = 1;
+  List<OptimusDropdownTile<T>> _sortItems() =>
+      [...widget.items]..sort((e1, e2) {
+        final value1 = e1.value;
+        final value2 = e2.value;
 
-    final sorted = [...widget.items]..sort((e1, e2) {
-      final value1 = e1.value;
-      final value2 = e2.value;
-
-      int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
-      if (result == 0) {
-        if (value1 is Comparable && value2 is Comparable) {
-          result = value1.compareTo(value2);
+        int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
+        if (result == 0) {
+          if (value1 is Comparable && value2 is Comparable) {
+            result = value1.compareTo(value2);
+          }
         }
-      } else {
-        groupsCount++;
-      }
 
-      return result;
-    });
-    _groupsCount = groupsCount;
-
-    return sorted;
-  }
+        return result;
+      });
 
   int get _leadingIndex => widget.isReversed ? _sortedItems.length - 1 : 0;
 
@@ -318,13 +302,9 @@ class _GroupedDropdownListViewState<T>
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final minListHeight =
-        _groupsCount * _groupMinHeight +
-        widget.items.length * _itemMinHeight +
-        tokens.spacing100 * 2;
 
     return SizedBox(
-      height: min(minListHeight, widget.maxHeight).toScaled(context),
+      height: widget.maxHeight.toScaled(context),
       child: ListView.builder(
         reverse: widget.isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
@@ -424,7 +404,6 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   @override
   Widget build(BuildContext context) => SizedBox(
     width: AnchoredOverlay.of(context)?.width,
-    height: _itemMinHeight.toScaled(context),
     child: InkWell(
       borderRadius: BorderRadius.all(tokens.borderRadius100),
       onTap: _handleItemTap,
@@ -471,8 +450,3 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
     );
   }
 }
-
-const _embeddedSearchHeight =
-    61.0; // TODO(witwash): calculate to avoid problems with tokens
-const _groupMinHeight = 28.0;
-const _itemMinHeight = 69.0;
