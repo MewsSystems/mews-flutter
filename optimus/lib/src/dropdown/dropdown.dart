@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/dropdown/common.dart';
 import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
@@ -215,8 +216,12 @@ class _DropdownListView<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
+    final itemHeight = context.dropdownItemHeight;
+    final totalHeight = (items.length * itemHeight) + (tokens.spacing100 * 2);
+    final listHeight = totalHeight.clamp(0.0, maxHeight);
+
     return SizedBox(
-      height: maxHeight,
+      height: listHeight,
       child: ListView.builder(
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
@@ -301,38 +306,89 @@ class _GroupedDropdownListViewState<T>
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
+    final listHeight = _calculateGroupedListHeight(tokens);
 
-    return ListView.builder(
-      reverse: widget.isReversed,
-      padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
-      itemCount: widget.items.length,
-      itemBuilder: (context, index) {
-        final current = _sortedItems[index];
-        final child = _DropdownItem(
-          onChanged: widget.onChanged,
-          child: current,
-        );
-
-        if (index == _leadingIndex) {
-          return _GroupWrapper(
-            useBorder: false,
-            group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-            child: child,
+    return SizedBox(
+      height: listHeight,
+      child: ListView.builder(
+        reverse: widget.isReversed,
+        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+        itemCount: widget.items.length,
+        prototypeItem:
+            widget.items.isNotEmpty
+                ? _buildPrototypeItem(widget.items.first)
+                : null,
+        itemBuilder: (context, index) {
+          final current = _sortedItems[index];
+          final child = _DropdownItem(
+            onChanged: widget.onChanged,
+            child: current,
           );
-        }
 
-        final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
-
-        return _isSameGroup(current, previous)
-            ? Padding(
-              padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-              child: child,
-            )
-            : _GroupWrapper(
+          if (index == _leadingIndex) {
+            return _GroupWrapper(
+              useBorder: false,
               group: _effectiveGroupBuilder(widget.groupBy(current.value)),
               child: child,
             );
-      },
+          }
+
+          final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+
+          return _isSameGroup(current, previous)
+              ? Padding(
+                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                child: child,
+              )
+              : _GroupWrapper(
+                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                child: child,
+              );
+        },
+      ),
+    );
+  }
+
+  double _calculateGroupedListHeight(OptimusTokens tokens) {
+    final itemHeight = context.dropdownItemHeight;
+    final groupSeparatorHeight = context.dropdownGroupSeparatorHeight;
+    final spacingBetweenItems = tokens.spacing50;
+
+    double totalHeight = tokens.spacing100 * 2; // Padding
+
+    String? currentGroup;
+    for (final item in _sortedItems) {
+      final itemGroup = widget.groupBy(item.value);
+
+      // Add group separator if it's a new group
+      if (currentGroup != itemGroup) {
+        if (currentGroup != null) {
+          totalHeight += groupSeparatorHeight;
+        }
+        currentGroup = itemGroup;
+      }
+
+      totalHeight += itemHeight;
+
+      // Add spacing between items in the same group
+      if (_sortedItems.indexOf(item) < _sortedItems.length - 1) {
+        final nextItem = _sortedItems[_sortedItems.indexOf(item) + 1];
+        if (widget.groupBy(nextItem.value) == itemGroup) {
+          totalHeight += spacingBetweenItems;
+        }
+      }
+    }
+
+    return totalHeight.clamp(0.0, widget.maxHeight);
+  }
+
+  Widget _buildPrototypeItem(OptimusDropdownTile<T> item) {
+    final child = _DropdownItem(onChanged: widget.onChanged, child: item);
+
+    return _GroupWrapper(
+      useBorder: false,
+      group: _effectiveGroupBuilder(widget.groupBy(item.value)),
+      child: child,
     );
   }
 }
