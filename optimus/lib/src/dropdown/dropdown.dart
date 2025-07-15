@@ -178,16 +178,18 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
 
       return FadeTransition(
         opacity: _fadeAnimation,
-        child: Container(
-          constraints: BoxConstraints(maxHeight: controller.maxHeight),
-          width: controller.width,
-          decoration: decoration,
-          child: SizeTransition(
-            sizeFactor: _sizeAnimation,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: tokens.spacing50,
-              children: isOnTop ? children : children.reversed.toList(),
+        child: SafeArea(
+          child: Container(
+            constraints: BoxConstraints(maxHeight: controller.maxHeight),
+            width: controller.width,
+            decoration: decoration,
+            child: SizeTransition(
+              sizeFactor: _sizeAnimation,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: tokens.spacing50,
+                children: isOnTop ? children : children.reversed.toList(),
+              ),
             ),
           ),
         ),
