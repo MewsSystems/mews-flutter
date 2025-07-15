@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/common/semantics.dart';
-import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
@@ -39,7 +38,7 @@ class OptimusDropdown<T> extends StatelessWidget {
     size: size,
     child: Stack(
       alignment: AlignmentDirectional.topCenter,
-      children: <Widget>[
+      children: [
         AnchoredOverlay(
           anchorKey: anchorKey,
           width: width,
@@ -303,40 +302,37 @@ class _GroupedDropdownListViewState<T>
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return SizedBox(
-      height: widget.maxHeight.toScaled(context),
-      child: ListView.builder(
-        reverse: widget.isReversed,
-        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
-        itemCount: widget.items.length,
-        itemBuilder: (context, index) {
-          final current = _sortedItems[index];
-          final child = _DropdownItem(
-            onChanged: widget.onChanged,
-            child: current,
-          );
+    return ListView.builder(
+      reverse: widget.isReversed,
+      padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+      itemCount: widget.items.length,
+      itemBuilder: (context, index) {
+        final current = _sortedItems[index];
+        final child = _DropdownItem(
+          onChanged: widget.onChanged,
+          child: current,
+        );
 
-          if (index == _leadingIndex) {
-            return _GroupWrapper(
-              useBorder: false,
+        if (index == _leadingIndex) {
+          return _GroupWrapper(
+            useBorder: false,
+            group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+            child: child,
+          );
+        }
+
+        final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+
+        return _isSameGroup(current, previous)
+            ? Padding(
+              padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+              child: child,
+            )
+            : _GroupWrapper(
               group: _effectiveGroupBuilder(widget.groupBy(current.value)),
               child: child,
             );
-          }
-
-          final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
-
-          return _isSameGroup(current, previous)
-              ? Padding(
-                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-                child: child,
-              )
-              : _GroupWrapper(
-                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-                child: child,
-              );
-        },
-      ),
+      },
     );
   }
 }

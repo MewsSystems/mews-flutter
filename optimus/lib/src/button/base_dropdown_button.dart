@@ -19,6 +19,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
     this.borderRadius,
     this.borderBuilder,
     this.semanticLabel,
+    this.dropdownWidth,
   });
 
   /// Typically the button's label.
@@ -31,6 +32,7 @@ class BaseDropDownButton<T> extends StatefulWidget {
   final BorderRadius? borderRadius;
   final BorderBuilder? borderBuilder;
   final String? semanticLabel;
+  final double? dropdownWidth;
 
   @override
   State<BaseDropDownButton<T>> createState() => _BaseDropDownButtonState<T>();
@@ -129,7 +131,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
       anchorKey: _selectFieldKey,
       onItemSelected: widget.onItemSelected ?? (_) {},
       focusNode: _node,
-      width: _dropdownWidth,
+      width: widget.dropdownWidth,
       onShown: _controller.forward,
       onHidden: _controller.reverse,
       child: IgnorePointer(
@@ -186,8 +188,6 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     );
   }
 }
-
-const double _dropdownWidth = 280;
 
 extension on OptimusWidgetSize {
   double getIconSize(OptimusTokens tokens) =>
