@@ -314,6 +314,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get textStaticPrimary;
   Color get textStaticSecondary;
   Color get textStaticTertiary;
+  Color get visualAssetsAccent;
+  Color get visualAssetsNeutralBold;
+  Color get visualAssetsNeutralBold0;
+  Color get visualAssetsNeutralSubtle;
+  Color get visualAssetsNeutralSubtle0;
+  Color get visualAssetsSemanticDanger;
+  Color get visualAssetsSemanticInfo;
+  Color get visualAssetsSemanticSuccess;
+  Color get visualAssetsSemanticWarning;
   TextStyle get bodyExtraSmall;
   TextStyle get bodyExtraSmallStrong;
   TextStyle get bodyLarge;
@@ -416,6 +425,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   List<BoxShadow> get shadow100;
   List<BoxShadow> get shadow200;
   List<BoxShadow> get shadow300;
+  TextDecoration get textDecorationNone;
   TextDecoration get textDecorationUnderline;
 
   @override
@@ -724,6 +734,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? textStaticPrimary,
     Color? textStaticSecondary,
     Color? textStaticTertiary,
+    Color? visualAssetsAccent,
+    Color? visualAssetsNeutralBold,
+    Color? visualAssetsNeutralBold0,
+    Color? visualAssetsNeutralSubtle,
+    Color? visualAssetsNeutralSubtle0,
+    Color? visualAssetsSemanticDanger,
+    Color? visualAssetsSemanticInfo,
+    Color? visualAssetsSemanticSuccess,
+    Color? visualAssetsSemanticWarning,
     TextStyle? bodyExtraSmall,
     TextStyle? bodyExtraSmallStrong,
     TextStyle? bodyLarge,
@@ -826,6 +845,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     List<BoxShadow>? shadow100,
     List<BoxShadow>? shadow200,
     List<BoxShadow>? shadow300,
+    TextDecoration? textDecorationNone,
     TextDecoration? textDecorationUnderline,
   }) {
     return OptimusTokens(
@@ -1350,6 +1370,23 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       textStaticPrimary: textStaticPrimary ?? this.textStaticPrimary,
       textStaticSecondary: textStaticSecondary ?? this.textStaticSecondary,
       textStaticTertiary: textStaticTertiary ?? this.textStaticTertiary,
+      visualAssetsAccent: visualAssetsAccent ?? this.visualAssetsAccent,
+      visualAssetsNeutralBold:
+          visualAssetsNeutralBold ?? this.visualAssetsNeutralBold,
+      visualAssetsNeutralBold0:
+          visualAssetsNeutralBold0 ?? this.visualAssetsNeutralBold0,
+      visualAssetsNeutralSubtle:
+          visualAssetsNeutralSubtle ?? this.visualAssetsNeutralSubtle,
+      visualAssetsNeutralSubtle0:
+          visualAssetsNeutralSubtle0 ?? this.visualAssetsNeutralSubtle0,
+      visualAssetsSemanticDanger:
+          visualAssetsSemanticDanger ?? this.visualAssetsSemanticDanger,
+      visualAssetsSemanticInfo:
+          visualAssetsSemanticInfo ?? this.visualAssetsSemanticInfo,
+      visualAssetsSemanticSuccess:
+          visualAssetsSemanticSuccess ?? this.visualAssetsSemanticSuccess,
+      visualAssetsSemanticWarning:
+          visualAssetsSemanticWarning ?? this.visualAssetsSemanticWarning,
       bodyExtraSmall: bodyExtraSmall ?? this.bodyExtraSmall,
       bodyExtraSmallStrong: bodyExtraSmallStrong ?? this.bodyExtraSmallStrong,
       bodyLarge: bodyLarge ?? this.bodyLarge,
@@ -1453,6 +1490,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       shadow100: shadow100 ?? this.shadow100,
       shadow200: shadow200 ?? this.shadow200,
       shadow300: shadow300 ?? this.shadow300,
+      textDecorationNone: textDecorationNone ?? this.textDecorationNone,
       textDecorationUnderline:
           textDecorationUnderline ?? this.textDecorationUnderline,
     );
@@ -2557,6 +2595,56 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           Color.lerp(textStaticSecondary, other.textStaticSecondary, t)!,
       textStaticTertiary:
           Color.lerp(textStaticTertiary, other.textStaticTertiary, t)!,
+      visualAssetsAccent:
+          Color.lerp(visualAssetsAccent, other.visualAssetsAccent, t)!,
+      visualAssetsNeutralBold:
+          Color.lerp(
+            visualAssetsNeutralBold,
+            other.visualAssetsNeutralBold,
+            t,
+          )!,
+      visualAssetsNeutralBold0:
+          Color.lerp(
+            visualAssetsNeutralBold0,
+            other.visualAssetsNeutralBold0,
+            t,
+          )!,
+      visualAssetsNeutralSubtle:
+          Color.lerp(
+            visualAssetsNeutralSubtle,
+            other.visualAssetsNeutralSubtle,
+            t,
+          )!,
+      visualAssetsNeutralSubtle0:
+          Color.lerp(
+            visualAssetsNeutralSubtle0,
+            other.visualAssetsNeutralSubtle0,
+            t,
+          )!,
+      visualAssetsSemanticDanger:
+          Color.lerp(
+            visualAssetsSemanticDanger,
+            other.visualAssetsSemanticDanger,
+            t,
+          )!,
+      visualAssetsSemanticInfo:
+          Color.lerp(
+            visualAssetsSemanticInfo,
+            other.visualAssetsSemanticInfo,
+            t,
+          )!,
+      visualAssetsSemanticSuccess:
+          Color.lerp(
+            visualAssetsSemanticSuccess,
+            other.visualAssetsSemanticSuccess,
+            t,
+          )!,
+      visualAssetsSemanticWarning:
+          Color.lerp(
+            visualAssetsSemanticWarning,
+            other.visualAssetsSemanticWarning,
+            t,
+          )!,
       bodyExtraSmall: TextStyle.lerp(bodyExtraSmall, other.bodyExtraSmall, t)!,
       bodyExtraSmallStrong:
           TextStyle.lerp(bodyExtraSmallStrong, other.bodyExtraSmallStrong, t)!,
@@ -2669,6 +2757,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       shadow100: t < 0.5 ? shadow100 : other.shadow100,
       shadow200: t < 0.5 ? shadow200 : other.shadow200,
       shadow300: t < 0.5 ? shadow300 : other.shadow300,
+      textDecorationNone:
+          t < 0.5 ? textDecorationNone : other.textDecorationNone,
       textDecorationUnderline:
           t < 0.5 ? textDecorationUnderline : other.textDecorationUnderline,
     );
@@ -3896,6 +3986,42 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.textStaticTertiary,
             ) &&
             const DeepCollectionEquality().equals(
+              visualAssetsAccent,
+              other.visualAssetsAccent,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsNeutralBold,
+              other.visualAssetsNeutralBold,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsNeutralBold0,
+              other.visualAssetsNeutralBold0,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsNeutralSubtle,
+              other.visualAssetsNeutralSubtle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsNeutralSubtle0,
+              other.visualAssetsNeutralSubtle0,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsSemanticDanger,
+              other.visualAssetsSemanticDanger,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsSemanticInfo,
+              other.visualAssetsSemanticInfo,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsSemanticSuccess,
+              other.visualAssetsSemanticSuccess,
+            ) &&
+            const DeepCollectionEquality().equals(
+              visualAssetsSemanticWarning,
+              other.visualAssetsSemanticWarning,
+            ) &&
+            const DeepCollectionEquality().equals(
               bodyExtraSmall,
               other.bodyExtraSmall,
             ) &&
@@ -4241,6 +4367,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(shadow200, other.shadow200) &&
             const DeepCollectionEquality().equals(shadow300, other.shadow300) &&
             const DeepCollectionEquality().equals(
+              textDecorationNone,
+              other.textDecorationNone,
+            ) &&
+            const DeepCollectionEquality().equals(
               textDecorationUnderline,
               other.textDecorationUnderline,
             ));
@@ -4568,6 +4698,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(textStaticPrimary),
       const DeepCollectionEquality().hash(textStaticSecondary),
       const DeepCollectionEquality().hash(textStaticTertiary),
+      const DeepCollectionEquality().hash(visualAssetsAccent),
+      const DeepCollectionEquality().hash(visualAssetsNeutralBold),
+      const DeepCollectionEquality().hash(visualAssetsNeutralBold0),
+      const DeepCollectionEquality().hash(visualAssetsNeutralSubtle),
+      const DeepCollectionEquality().hash(visualAssetsNeutralSubtle0),
+      const DeepCollectionEquality().hash(visualAssetsSemanticDanger),
+      const DeepCollectionEquality().hash(visualAssetsSemanticInfo),
+      const DeepCollectionEquality().hash(visualAssetsSemanticSuccess),
+      const DeepCollectionEquality().hash(visualAssetsSemanticWarning),
       const DeepCollectionEquality().hash(bodyExtraSmall),
       const DeepCollectionEquality().hash(bodyExtraSmallStrong),
       const DeepCollectionEquality().hash(bodyLarge),
@@ -4670,6 +4809,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(shadow100),
       const DeepCollectionEquality().hash(shadow200),
       const DeepCollectionEquality().hash(shadow300),
+      const DeepCollectionEquality().hash(textDecorationNone),
       const DeepCollectionEquality().hash(textDecorationUnderline),
     ]);
   }

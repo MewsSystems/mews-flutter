@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Thu, 22 May 2025 11:46:04 GMT
+// Generated on Fri, 11 Jul 2025 08:18:52 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -50,13 +50,13 @@ abstract final class DesignTokensLight {
   static const Color backgroundInteractiveNeutralDefault = Color(0xFFEFEFF5);
   static const Color backgroundInteractiveNeutralHover = Color(0xFFDFDFEA);
   static const Color backgroundInteractiveNeutralSubtleActive = Color(
-    0xFFEFEFF5,
+    0x298D8DAC,
   );
   static const Color backgroundInteractiveNeutralSubtleDefault = Color(
     0xFFFFFFFF,
   );
   static const Color backgroundInteractiveNeutralSubtleHover = Color(
-    0xFFF7F7FA,
+    0x148D8DAC,
   );
   static const Color backgroundInteractivePrimaryActive = Color(0xFF0A08AD);
   static const Color backgroundInteractivePrimaryDefault = Color(0xFF3B37F2);
@@ -85,7 +85,7 @@ abstract final class DesignTokensLight {
   static const Color borderInteractiveBoldActive = Color(0xFF313143);
   static const Color borderInteractiveBoldDefault = Color(0xFF52526D);
   static const Color borderInteractiveBoldHover = Color(0xFF414158);
-  static const Color borderInteractiveFocus = Color(0xFF1613D7);
+  static const Color borderInteractiveFocus = Color(0xFF5653F7);
   static const Color borderInteractivePrimaryActive = Color(0xFF0A08AD);
   static const Color borderInteractivePrimaryDefault = Color(0xFF3B37F2);
   static const Color borderInteractivePrimaryHover = Color(0xFF1613D7);
@@ -208,7 +208,7 @@ abstract final class DesignTokensLight {
   static const Color paletteBrandGrey400 = Color(0xFFA0A0A0);
   static const Color paletteBrandGrey50 = Color(0xFFF3F3F3);
   static const Color paletteBrandGrey500 = Color(0xFF888888);
-  static const Color paletteBrandGrey600 = Color(0xFF717171);
+  static const Color paletteBrandGrey600 = Color(0xFF737373);
   static const Color paletteBrandGrey700 = Color(0xFF595959);
   static const Color paletteBrandGrey800 = Color(0xFF414141);
   static const Color paletteBrandGrey900 = Color(0xFF2A2A2A);
@@ -323,6 +323,15 @@ abstract final class DesignTokensLight {
   static const Color textStaticPrimary = Color(0xFF21212E);
   static const Color textStaticSecondary = Color(0xFF52526D);
   static const Color textStaticTertiary = Color(0xFF646482);
+  static const Color visualAssetsAccent = Color(0xFF7876FB);
+  static const Color visualAssetsNeutralBold = Color(0xFF595959);
+  static const Color visualAssetsNeutralBold0 = Color(0x00595959);
+  static const Color visualAssetsNeutralSubtle = Color(0xFFF7F7FA);
+  static const Color visualAssetsNeutralSubtle0 = Color(0x00F7F7FA);
+  static const Color visualAssetsSemanticDanger = Color(0xFFEF2D2D);
+  static const Color visualAssetsSemanticInfo = Color(0xFF2272E9);
+  static const Color visualAssetsSemanticSuccess = Color(0xFF72D75D);
+  static const Color visualAssetsSemanticWarning = Color(0xFFE9A504);
 
   static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: 'Inter',
@@ -596,6 +605,7 @@ abstract final class DesignTokensLight {
     ),
   ];
 
+  static const TextDecoration textDecorationNone = TextDecoration.none;
   static const TextDecoration textDecorationUnderline =
       TextDecoration.underline;
 
