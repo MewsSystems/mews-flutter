@@ -105,8 +105,7 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
                 CustomPaint(
                   size: Size.square(widget.size.getSize(tokens)),
                   painter: CirclePainter(
-                    indicatorColor:
-                        tokens.backgroundInteractiveNeutralBoldDefault,
+                    indicatorColor: tokens.backgroundInteractiveNeutralDefault,
                     strokeWidth: widget.size.strokeWidth,
                     progress: _thirdProgressAnimation.value,
                     baseAngle: _thirdBaseAnimation.value,
