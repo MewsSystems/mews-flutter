@@ -55,7 +55,7 @@ class BaseBadge extends StatelessWidget {
               textAlign: TextAlign.center,
               style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
             )
-            : SizedBox.square(dimension: tokens.sizing50);
+            : SizedBox.square(dimension: tokens.sizing150);
 
     return Semantics(
       label: text,
