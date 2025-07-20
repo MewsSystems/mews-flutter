@@ -65,7 +65,7 @@ class _Date extends StatelessWidget {
   Widget build(BuildContext context) {
     final horizontalLine = Container(
       height: 1,
-      color: OptimusTheme.of(context).colors.neutral50,
+      color: context.tokens.borderStaticSecondary,
     );
     final tokens = context.tokens;
 

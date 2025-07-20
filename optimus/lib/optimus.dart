@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 
 export 'package:intl/intl.dart' show DateFormat;
@@ -25,9 +24,7 @@ export 'src/checkbox/checkbox.dart';
 export 'src/checkbox/checkbox_group.dart';
 export 'src/checkbox/nested_checkbox.dart';
 export 'src/chip.dart';
-export 'src/colors/brand_colors.dart';
 export 'src/colors/color_options.dart';
-export 'src/colors/colors.dart';
 export 'src/common/content.dart';
 export 'src/common/field_wrapper.dart';
 export 'src/common/group_item.dart';
@@ -114,7 +111,7 @@ ThemeData createOptimusMaterialTheme(Brightness brightness) {
 
   return ThemeData(
     brightness: brightness,
-    scaffoldBackgroundColor: OptimusColors(brightness).background,
+    scaffoldBackgroundColor: tokensTheme.backgroundStaticFlat,
     primarySwatch: Colors.blue,
     fontFamily: tokensTheme.fontFamilyUi,
     package: 'optimus',

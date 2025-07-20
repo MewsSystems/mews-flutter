@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:optimus/src/colors/colors.dart';
 import 'package:optimus/src/theme/optimus_tokens.dart';
 import 'package:optimus/src/theme/theme_data.dart';
 
@@ -67,15 +66,10 @@ final _defaultLightTheme = _createTheme(Brightness.light);
 final _defaultDarkTheme = _createTheme(Brightness.dark);
 
 OptimusThemeData _createTheme(Brightness brightness) {
-  final colors = OptimusColors(brightness);
   final tokens =
       brightness == Brightness.dark ? OptimusTokens.dark : OptimusTokens.light;
 
-  return OptimusThemeData(
-    brightness: brightness,
-    colors: colors,
-    tokens: tokens,
-  );
+  return OptimusThemeData(brightness: brightness, tokens: tokens);
 }
 
 extension ThemeTokens on BuildContext {
