@@ -8,6 +8,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final text = k.string(label: 'Divider Text', initialValue: 'Divider Text');
+  final usePadding = k.boolean(label: 'Use Padding', initialValue: true);
+  final sizeVariant = k.list(
+    label: 'Size Variant',
+    initialOption: OptimusDividerThicknessVariant.thin,
+    options: OptimusDividerThicknessVariant.values,
+    labelBuilder: enumLabelBuilder,
+  );
   final direction = k.list(
     label: 'Direction',
     initialOption: Axis.horizontal,
@@ -23,6 +30,8 @@ Widget createDefaultStyle(BuildContext context) {
         const OptimusLabel(child: Text('Text before divider')),
         OptimusDivider(
           direction: direction,
+          usePadding: usePadding,
+          thickness: sizeVariant,
           child: text.isNotEmpty ? Text(text) : null,
         ),
         const OptimusLabel(child: Text('Text after divider')),
