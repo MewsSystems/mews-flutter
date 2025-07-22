@@ -88,33 +88,28 @@ class _Bubble extends StatelessWidget {
 
   final OptimusMessage message;
 
-  Color _getBackgroundColor(OptimusThemeData theme) => switch (message.color) {
-    MessageColor.neutral => theme.colors.neutral25,
-    MessageColor.dark => theme.colors.primary,
-    MessageColor.light => theme.colors.primary500t16,
+  Color _getBackgroundColor(OptimusTokens tokens) => switch (message.color) {
+    MessageColor.received => tokens.backgroundStaticFlat,
+    MessageColor.user => tokens.backgroundAlertInfoSecondary,
+    MessageColor.success => tokens.backgroundAlertSuccessSecondary,
   };
 
-  Color _getTextColor(OptimusThemeData theme) => switch (message.color) {
-    MessageColor.neutral => theme.colors.neutral1000,
-    MessageColor.light =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
-    MessageColor.dark => theme.colors.neutral0,
+  Color _getTextColor(OptimusTokens tokens) => switch (message.color) {
+    MessageColor.user || MessageColor.received => tokens.textStaticPrimary,
+    MessageColor.success => tokens.textAlertSuccess,
   };
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return Semantics(
       liveRegion: true,
       child: Container(
-        constraints: const BoxConstraints(
-          maxWidth: 480,
-        ), // TODO(witwash): replace with tokens
+        constraints: const BoxConstraints(maxWidth: 480),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(tokens.borderRadius100),
-          color: _getBackgroundColor(theme), // TODO(witwash): check with design
+          color: _getBackgroundColor(tokens),
         ),
         padding: EdgeInsets.only(
           left: tokens.spacing100,
@@ -124,7 +119,7 @@ class _Bubble extends StatelessWidget {
         ),
         child: Text(
           message.message,
-          style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(theme)),
+          style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(tokens)),
         ),
       ),
     );

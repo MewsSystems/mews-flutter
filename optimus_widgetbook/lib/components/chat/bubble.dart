@@ -29,7 +29,7 @@ Widget createDefaultStyle(BuildContext context) {
     state: MessageState.sent,
     color: k.list(
       label: 'Color',
-      initialOption: MessageColor.dark,
+      initialOption: MessageColor.user,
       options: MessageColor.values,
       labelBuilder: enumLabelBuilder,
     ),

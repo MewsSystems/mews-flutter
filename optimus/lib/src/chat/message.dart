@@ -5,7 +5,7 @@ part 'message.freezed.dart';
 
 enum MessageAlignment { left, right }
 
-enum MessageColor { neutral, light, dark }
+enum MessageColor { user, received, success }
 
 enum MessageState { sending, sent, error }
 
