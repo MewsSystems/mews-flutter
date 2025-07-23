@@ -349,7 +349,7 @@ class _Bubble extends StatelessWidget {
 
     return OptimusStack(
       direction: Axis.horizontal,
-      crossAxisAlignment: OptimusStackAlignment.end,
+      crossAxisAlignment: OptimusStackAlignment.start,
       mainAxisAlignment: alignment.stackAlignment,
       children: alignment.isStart ? children : children.reversed.toList(),
     );
