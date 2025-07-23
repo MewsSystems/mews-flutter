@@ -36,6 +36,7 @@ class OptimusChatBubble extends StatelessWidget {
         if (isDateVisible) ...[
           SizedBox(height: tokens.spacing200).excludeSemantics(),
           OptimusDivider(
+            usePadding: false,
             child: OptimusCaption(child: Text(formatDate(message.time))),
           ),
           SizedBox(height: tokens.spacing200).excludeSemantics(),
