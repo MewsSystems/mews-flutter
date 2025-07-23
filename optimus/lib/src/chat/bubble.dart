@@ -35,7 +35,9 @@ class OptimusChatBubble extends StatelessWidget {
       children: [
         if (isDateVisible) ...[
           SizedBox(height: tokens.spacing200).excludeSemantics(),
-          _Date(date: formatDate(message.time)),
+          OptimusDivider(
+            child: OptimusCaption(child: Text(formatDate(message.time))),
+          ),
           SizedBox(height: tokens.spacing200).excludeSemantics(),
         ],
         SizedBox(height: tokens.spacing100).excludeSemantics(),
@@ -50,33 +52,6 @@ class OptimusChatBubble extends StatelessWidget {
           padding: message.alignment.getHorizontalPadding(tokens),
           child: _Bubble(message: message),
         ),
-      ],
-    );
-  }
-}
-
-class _Date extends StatelessWidget {
-  const _Date({required this.date});
-
-  final String date;
-
-  @override
-  Widget build(BuildContext context) {
-    final horizontalLine = Container(
-      height: 1,
-      color: OptimusTheme.of(context).colors.neutral50,
-    );
-    final tokens = context.tokens;
-
-    return OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      children: [
-        // ignore: avoid-flexible-outside-flex, it is wrapped in Flex latter
-        Expanded(child: horizontalLine),
-        Text(date, style: tokens.bodySmallStrong),
-        // ignore: avoid-flexible-outside-flex, it is wrapped in Flex latter
-        Expanded(child: horizontalLine),
       ],
     );
   }

@@ -347,6 +347,7 @@ class _Bubble extends StatelessWidget {
       ),
     ];
 
+    // TODO(witwash): fix avatar alignment when the date is visible
     return OptimusStack(
       direction: Axis.horizontal,
       crossAxisAlignment: OptimusStackAlignment.start,
