@@ -8,6 +8,8 @@ class OptimusDivider extends StatelessWidget {
     super.key,
     this.child,
     this.direction = Axis.horizontal,
+    this.usePadding = true,
+    this.thickness = OptimusDividerThicknessVariant.thin,
   });
 
   /// The text to display in the middle of the divider. If null, the divider
@@ -17,6 +19,12 @@ class OptimusDivider extends StatelessWidget {
   /// The direction of the divider.
   final Axis direction;
 
+  /// Whether to use padding for the divider.
+  final bool usePadding;
+
+  /// The thickness of the divider.
+  final OptimusDividerThicknessVariant thickness;
+
   double _getVerticalPadding(OptimusTokens tokens) =>
       direction == Axis.horizontal ? tokens.spacing100 : tokens.spacing150;
 
@@ -25,15 +33,27 @@ class OptimusDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
     final child = this.child;
-    final color = theme.tokens.borderStaticSecondary;
 
     final divider =
         direction == Axis.horizontal
-            ? Divider(color: color, thickness: 1)
-            : VerticalDivider(color: color, thickness: 1);
+            ? Divider(
+              color: context.dividerColor,
+              thickness: thickness.getLineThickness(tokens),
+              height:
+                  usePadding
+                      ? _getHorizontalPadding(tokens)
+                      : thickness.getLineThickness(tokens),
+            )
+            : VerticalDivider(
+              color: context.dividerColor,
+              thickness: thickness.getLineThickness(tokens),
+              width:
+                  usePadding
+                      ? _getVerticalPadding(tokens)
+                      : thickness.getLineThickness(tokens),
+            );
     final animatedDivider = AnimatedContainer(
       duration: themeChangeAnimationDuration,
       child: divider,
@@ -53,7 +73,7 @@ class OptimusDivider extends StatelessWidget {
               duration: themeChangeAnimationDuration,
               child: DefaultTextStyle.merge(
                 style: tokens.bodySmallStrong.copyWith(
-                  color: theme.tokens.textStaticSecondary,
+                  color: context.textColor,
                 ),
                 child: child,
               ),
@@ -64,4 +84,18 @@ class OptimusDivider extends StatelessWidget {
       ],
     );
   }
+}
+
+enum OptimusDividerThicknessVariant { thin, thick }
+
+extension on OptimusDividerThicknessVariant {
+  double getLineThickness(OptimusTokens tokens) => switch (this) {
+    OptimusDividerThicknessVariant.thin => tokens.borderWidth150,
+    OptimusDividerThicknessVariant.thick => tokens.borderWidth800,
+  };
+}
+
+extension on BuildContext {
+  Color get textColor => tokens.borderStaticSecondary;
+  Color get dividerColor => tokens.borderStaticSecondary;
 }
