@@ -331,6 +331,7 @@ class _Bubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final children = [
       if (hasAvatars) avatar,
       Flexible(
@@ -347,12 +348,23 @@ class _Bubble extends StatelessWidget {
       ),
     ];
 
-    // TODO(witwash): fix avatar alignment when the date is visible
-    return OptimusStack(
-      direction: Axis.horizontal,
-      crossAxisAlignment: OptimusStackAlignment.start,
-      mainAxisAlignment: alignment.stackAlignment,
-      children: alignment.isStart ? children : children.reversed.toList(),
+    return Column(
+      children: [
+        if (isDateVisible) ...[
+          SizedBox(height: tokens.spacing200).excludeSemantics(),
+          OptimusDivider(
+            usePadding: false,
+            child: OptimusCaption(child: Text(formatDate(message.time))),
+          ),
+          SizedBox(height: tokens.spacing200).excludeSemantics(),
+        ],
+        OptimusStack(
+          direction: Axis.horizontal,
+          crossAxisAlignment: OptimusStackAlignment.start,
+          mainAxisAlignment: alignment.stackAlignment,
+          children: alignment.isStart ? children : children.reversed.toList(),
+        ),
+      ],
     );
   }
 }

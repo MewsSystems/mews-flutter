@@ -33,14 +33,6 @@ class OptimusChatBubble extends StatelessWidget {
     return Column(
       crossAxisAlignment: message.alignment.crossAxisAlignment,
       children: [
-        if (isDateVisible) ...[
-          SizedBox(height: tokens.spacing200).excludeSemantics(),
-          OptimusDivider(
-            usePadding: false,
-            child: OptimusCaption(child: Text(formatDate(message.time))),
-          ),
-          SizedBox(height: tokens.spacing200).excludeSemantics(),
-        ],
         SizedBox(height: tokens.spacing100).excludeSemantics(),
         if (isUserNameVisible) ...[
           Padding(
