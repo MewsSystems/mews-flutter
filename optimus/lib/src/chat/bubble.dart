@@ -99,6 +99,12 @@ class _Bubble extends StatelessWidget {
     MessageColor.success => tokens.textAlertSuccess,
   };
 
+  Color _getBorderColor(OptimusTokens tokens) => switch (message.color) {
+    MessageColor.user => Colors.transparent,
+    MessageColor.received => tokens.borderStaticTertiary,
+    MessageColor.success => tokens.borderAlertSuccess,
+  };
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -108,8 +114,24 @@ class _Bubble extends StatelessWidget {
       child: Container(
         constraints: const BoxConstraints(maxWidth: 480),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(tokens.borderRadius100),
+          borderRadius: BorderRadius.only(
+            topLeft:
+                message.alignment == MessageAlignment.left
+                    ? tokens.borderRadius0
+                    : context.bubbleRadius,
+
+            topRight:
+                message.alignment == MessageAlignment.right
+                    ? tokens.borderRadius0
+                    : context.bubbleRadius,
+            bottomRight: context.bubbleRadius,
+            bottomLeft: context.bubbleRadius,
+          ),
           color: _getBackgroundColor(tokens),
+          border: Border.all(
+            color: _getBorderColor(tokens),
+            width: tokens.borderWidth100,
+          ),
         ),
         padding: EdgeInsets.only(
           left: tokens.spacing100,
@@ -143,4 +165,12 @@ extension on MessageAlignment {
     MessageAlignment.left => CrossAxisAlignment.start,
     MessageAlignment.right => CrossAxisAlignment.end,
   };
+}
+
+extension on MessageColor {
+  bool get isUser => this == MessageColor.user;
+}
+
+extension on BuildContext {
+  Radius get bubbleRadius => tokens.borderRadius200;
 }
