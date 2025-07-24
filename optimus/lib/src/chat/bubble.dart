@@ -9,7 +9,6 @@ class OptimusChatBubble extends StatelessWidget {
     super.key,
     required this.message,
     required this.isUserNameVisible,
-    required this.isDateVisible,
     required this.formatTime,
     required this.formatDate,
     required this.sending,
@@ -19,7 +18,6 @@ class OptimusChatBubble extends StatelessWidget {
 
   final OptimusMessage message;
   final bool isUserNameVisible;
-  final bool isDateVisible;
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget sending;

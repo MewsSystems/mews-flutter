@@ -38,7 +38,6 @@ Widget createDefaultStyle(BuildContext context) {
   return OptimusChatBubble(
     message: message,
     isUserNameVisible: k.boolean(label: 'Show user name', initialValue: true),
-    isDateVisible: k.boolean(label: 'Show date', initialValue: true),
     formatTime:
         (DateTime input) =>
             '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
