@@ -41,7 +41,7 @@ class OptimusChat extends StatelessWidget {
       index - 1 >= 0 &&
       _messages[index - 1].author.id == _messages[index].author.id;
 
-  bool _showAvatar(int index) =>
+  bool _isAvatarVisible(int index) =>
       _isLastMessageOfDay(index) ||
       _isMoreThanOneMinuteDifferenceForward(index) ||
       _isLatestMessage(index) ||
@@ -136,7 +136,7 @@ class OptimusChat extends StatelessWidget {
                         hasAvatars: hasAvatars,
                         avatar: _Avatar(
                           avatarWidth: avatarWidth,
-                          isAvatarVisible: _showAvatar(index),
+                          isAvatarVisible: _isAvatarVisible(index),
                           avatar: _messages[index].author.avatar,
                         ),
                         message: _messages[index],
@@ -359,7 +359,10 @@ class _Bubble extends StatelessWidget {
         ],
         OptimusStack(
           direction: Axis.horizontal,
-          crossAxisAlignment: OptimusStackAlignment.start,
+          crossAxisAlignment:
+              isUserNameVisible
+                  ? OptimusStackAlignment.start
+                  : OptimusStackAlignment.end,
           mainAxisAlignment: alignment.stackAlignment,
           children: alignment.isStart ? children : children.reversed.toList(),
         ),
