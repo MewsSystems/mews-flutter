@@ -108,9 +108,53 @@ class _Bubble extends StatelessWidget {
           top: tokens.spacing50,
           bottom: tokens.spacing100,
         ),
-        child: Text(
-          message.message,
-          style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(tokens)),
+        child:
+            message.state == MessageState.typing
+                ? const _TypingBubble()
+                : Text(
+                  message.message,
+                  style: tokens.bodyMediumStrong.copyWith(
+                    color: _getTextColor(tokens),
+                  ),
+                ),
+      ),
+    );
+  }
+}
+
+class _TypingBubble extends StatelessWidget {
+  const _TypingBubble();
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Container(
+      width: tokens.spacing500,
+      height: tokens.spacing400,
+      alignment: Alignment.center,
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: '.',
+              style: tokens.bodyLarge.copyWith(
+                color: tokens.paletteBrandIndigo300,
+              ),
+            ),
+            TextSpan(
+              text: '.',
+              style: tokens.bodyLarge.copyWith(
+                color: tokens.paletteBrandIndigo200,
+              ),
+            ),
+            TextSpan(
+              text: '.',
+              style: tokens.bodyLarge.copyWith(
+                color: tokens.paletteBrandIndigo100,
+              ),
+            ),
+          ],
         ),
       ),
     );
