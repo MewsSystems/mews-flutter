@@ -338,7 +338,6 @@ class _Bubble extends StatelessWidget {
         child: OptimusChatBubble(
           message: message,
           isUserNameVisible: isUserNameVisible,
-          isDateVisible: isDateVisible,
           formatTime: formatTime,
           formatDate: formatDate,
           sending: sending,
@@ -396,8 +395,8 @@ class _StatusCircle extends StatelessWidget {
     final tokens = context.tokens;
 
     return Container(
-      width: 13,
-      height: 13,
+      width: tokens.spacing200,
+      height: tokens.spacing200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(tokens.borderRadius100),
         border: Border.all(
