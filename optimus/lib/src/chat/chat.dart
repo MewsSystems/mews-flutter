@@ -50,7 +50,7 @@ class OptimusChat extends StatelessWidget {
   bool _showStatus(int index) =>
       _isLastMessageOfDay(index) ||
       _isMoreThanOneMinuteDifferenceForward(index) ||
-      _messages[index].state != MessageState.sent ||
+      _messages[index].deliveryStatus != MessageDeliveryStatus.sent ||
       _isLatestMessage(index) ||
       !_isPreviousMessageFromSameUser(index);
 
@@ -147,7 +147,7 @@ class OptimusChat extends StatelessWidget {
                         sending: sending,
                         sent: sent,
                         error: error,
-                        alignment: _messages[index].alignment,
+                        owner: _messages[index].owner,
                       ),
                       if (_showStatus(index))
                         _StatusEnd(
@@ -161,7 +161,7 @@ class OptimusChat extends StatelessWidget {
                             _messages[index],
                           ),
                           isLatestMessage: _isLatestMessage(index),
-                          alignment: _messages[index].alignment,
+                          owner: _messages[index].owner,
                         ),
                     ],
                   ),
@@ -184,7 +184,7 @@ class _StatusEnd extends StatelessWidget {
     required this.error,
     required this.isFromCurrentUser,
     required this.isLatestMessage,
-    required this.alignment,
+    required this.owner,
   });
 
   final double avatarWidth;
@@ -195,7 +195,7 @@ class _StatusEnd extends StatelessWidget {
   final Widget error;
   final bool isFromCurrentUser;
   final bool isLatestMessage;
-  final MessageAlignment alignment;
+  final MessageOwner owner;
 
   @override
   Widget build(BuildContext context) {
@@ -205,9 +205,9 @@ class _StatusEnd extends StatelessWidget {
       children: [
         SizedBox(height: tokens.spacing50).excludeSemantics(),
         Row(
-          mainAxisAlignment: alignment.mainAxisAlignment,
+          mainAxisAlignment: owner.mainAxisAlignment,
           children: [
-            if (alignment.isStart)
+            if (owner.isAssistant)
               SizedBox(
                 width: tokens.spacing100 + avatarWidth,
               ).excludeSemantics(),
@@ -219,7 +219,7 @@ class _StatusEnd extends StatelessWidget {
               error: error,
               isFromCurrentUser: isFromCurrentUser,
             ),
-            if (alignment.isEnd)
+            if (owner.isUser)
               SizedBox(
                 height: isLatestMessage ? tokens.spacing0 : tokens.spacing100,
               ).excludeSemantics(),
@@ -268,16 +268,16 @@ class _StatusText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-    mainAxisAlignment: message.alignment.stackAlignment,
+    mainAxisAlignment: message.owner.stackAlignment,
     direction: Axis.horizontal,
     spacing: OptimusStackSpacing.spacing50,
-    children: switch (message.state) {
-      MessageState.sending => [
+    children: switch (message.deliveryStatus) {
+      MessageDeliveryStatus.sending => [
         _Status(child: Text(formatTime(message.time))),
         _Status(child: sending),
         const _StatusCircle(),
       ],
-      MessageState.sent => [
+      MessageDeliveryStatus.sent => [
         _Status(child: Text(formatTime(message.time))),
         if (isFromCurrentUser) ...[
           _Status(child: sent),
@@ -290,7 +290,7 @@ class _StatusText extends StatelessWidget {
           ),
         ],
       ],
-      MessageState.error => [
+      MessageDeliveryStatus.error => [
         _Status(child: error),
         const OptimusIcon(
           iconData: OptimusIcons.disable,
@@ -314,7 +314,7 @@ class _Bubble extends StatelessWidget {
     required this.sending,
     required this.sent,
     required this.error,
-    required this.alignment,
+    required this.owner,
   });
 
   final bool hasAvatars;
@@ -327,7 +327,7 @@ class _Bubble extends StatelessWidget {
   final Widget sending;
   final Widget sent;
   final Widget error;
-  final MessageAlignment alignment;
+  final MessageOwner owner;
 
   @override
   Widget build(BuildContext context) {
@@ -363,8 +363,8 @@ class _Bubble extends StatelessWidget {
               isUserNameVisible
                   ? OptimusStackAlignment.start
                   : OptimusStackAlignment.end,
-          mainAxisAlignment: alignment.stackAlignment,
-          children: alignment.isStart ? children : children.reversed.toList(),
+          mainAxisAlignment: owner.stackAlignment,
+          children: owner.isAssistant ? children : children.reversed.toList(),
         ),
       ],
     );
@@ -411,17 +411,17 @@ class _StatusCircle extends StatelessWidget {
   }
 }
 
-extension on MessageAlignment {
+extension on MessageOwner {
   OptimusStackAlignment get stackAlignment => switch (this) {
-    MessageAlignment.left => OptimusStackAlignment.start,
-    MessageAlignment.right => OptimusStackAlignment.end,
+    MessageOwner.assistant => OptimusStackAlignment.start,
+    MessageOwner.user => OptimusStackAlignment.end,
   };
 
   MainAxisAlignment get mainAxisAlignment => switch (this) {
-    MessageAlignment.left => MainAxisAlignment.start,
-    MessageAlignment.right => MainAxisAlignment.end,
+    MessageOwner.assistant => MainAxisAlignment.start,
+    MessageOwner.user => MainAxisAlignment.end,
   };
 
-  bool get isStart => this == MessageAlignment.left;
-  bool get isEnd => this == MessageAlignment.right;
+  bool get isAssistant => this == MessageOwner.assistant;
+  bool get isUser => this == MessageOwner.user;
 }

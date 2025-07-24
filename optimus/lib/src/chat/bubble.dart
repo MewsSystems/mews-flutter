@@ -29,18 +29,18 @@ class OptimusChatBubble extends StatelessWidget {
     final tokens = context.tokens;
 
     return Column(
-      crossAxisAlignment: message.alignment.crossAxisAlignment,
+      crossAxisAlignment: message.owner.crossAxisAlignment,
       children: [
         SizedBox(height: tokens.spacing100).excludeSemantics(),
         if (isUserNameVisible) ...[
           Padding(
-            padding: message.alignment.getHorizontalPadding(tokens),
+            padding: message.owner.getHorizontalPadding(tokens),
             child: Text(message.author.username, style: tokens.bodySmallStrong),
           ),
           SizedBox(height: tokens.spacing50).excludeSemantics(),
         ],
         Padding(
-          padding: message.alignment.getHorizontalPadding(tokens),
+          padding: message.owner.getHorizontalPadding(tokens),
           child: _Bubble(message: message),
         ),
       ],
@@ -53,22 +53,26 @@ class _Bubble extends StatelessWidget {
 
   final OptimusMessage message;
 
-  Color _getBackgroundColor(OptimusTokens tokens) => switch (message.color) {
-    MessageColor.received => tokens.backgroundStaticFlat,
-    MessageColor.user => tokens.backgroundAlertInfoSecondary,
-    MessageColor.success => tokens.backgroundAlertSuccessSecondary,
-  };
+  Color _getBackgroundColor(OptimusTokens tokens) =>
+      message.state == MessageState.success
+          ? tokens.backgroundAlertSuccessSecondary
+          : switch (message.owner) {
+            MessageOwner.assistant => tokens.backgroundStaticFlat,
+            MessageOwner.user => tokens.backgroundAlertInfoSecondary,
+          };
 
-  Color _getTextColor(OptimusTokens tokens) => switch (message.color) {
-    MessageColor.user || MessageColor.received => tokens.textStaticPrimary,
-    MessageColor.success => tokens.textAlertSuccess,
-  };
+  Color _getTextColor(OptimusTokens tokens) =>
+      message.state == MessageState.success
+          ? tokens.textAlertSuccess
+          : tokens.textStaticPrimary;
 
-  Color _getBorderColor(OptimusTokens tokens) => switch (message.color) {
-    MessageColor.user => Colors.transparent,
-    MessageColor.received => tokens.borderStaticTertiary,
-    MessageColor.success => tokens.borderAlertSuccess,
-  };
+  Color _getBorderColor(OptimusTokens tokens) =>
+      message.state == MessageState.success
+          ? tokens.borderAlertSuccess
+          : switch (message.owner) {
+            MessageOwner.assistant => tokens.borderStaticTertiary,
+            MessageOwner.user => Colors.transparent,
+          };
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +85,12 @@ class _Bubble extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft:
-                message.alignment == MessageAlignment.left
+                message.owner == MessageOwner.assistant
                     ? tokens.borderRadius0
                     : context.bubbleRadius,
 
             topRight:
-                message.alignment == MessageAlignment.right
+                message.owner == MessageOwner.user
                     ? tokens.borderRadius0
                     : context.bubbleRadius,
             bottomRight: context.bubbleRadius,
@@ -113,22 +117,22 @@ class _Bubble extends StatelessWidget {
   }
 }
 
-extension on MessageAlignment {
+extension on MessageOwner {
   EdgeInsetsGeometry getHorizontalPadding(OptimusTokens tokens) =>
       switch (this) {
-        MessageAlignment.left => EdgeInsets.only(
+        MessageOwner.assistant => EdgeInsets.only(
           left: tokens.spacing100,
           right: tokens.spacing0,
         ),
-        MessageAlignment.right => EdgeInsets.only(
+        MessageOwner.user => EdgeInsets.only(
           left: tokens.spacing0,
           right: tokens.spacing100,
         ),
       };
 
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
-    MessageAlignment.left => CrossAxisAlignment.start,
-    MessageAlignment.right => CrossAxisAlignment.end,
+    MessageOwner.assistant => CrossAxisAlignment.start,
+    MessageOwner.user => CrossAxisAlignment.end,
   };
 }
 
