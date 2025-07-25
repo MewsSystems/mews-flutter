@@ -35,7 +35,12 @@ class OptimusChatBubble extends StatelessWidget {
         if (isUserNameVisible) ...[
           Padding(
             padding: message.owner.getHorizontalPadding(tokens),
-            child: Text(message.author.username, style: tokens.bodySmallStrong),
+            child: Text(
+              message.author.username,
+              style: tokens.bodySmallStrong.copyWith(
+                color: tokens.textStaticTertiary,
+              ),
+            ),
           ),
           SizedBox(height: tokens.spacing50).excludeSemantics(),
         ],
