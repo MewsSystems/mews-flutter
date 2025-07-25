@@ -172,6 +172,20 @@ final messages = <OptimusMessage>[
     time: stubDate.subtract(const Duration(seconds: 12)),
     deliveryStatus: MessageDeliveryStatus.error,
   ),
+  OptimusMessage(
+    author: _user1,
+    message: 'Done',
+    owner: MessageOwner.assistant,
+    state: MessageState.success,
+    time: stubDate.subtract(const Duration(seconds: 10)),
+  ),
+  OptimusMessage(
+    author: _user1,
+    message: 'Typing...',
+    owner: MessageOwner.assistant,
+    state: MessageState.typing,
+    time: stubDate.subtract(const Duration(seconds: 9)),
+  ),
 ];
 
 const _you = OptimusMessageAuthor(id: 'you', username: 'You', avatar: avatar2);

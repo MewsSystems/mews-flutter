@@ -107,12 +107,7 @@ class _Bubble extends StatelessWidget {
             width: tokens.borderWidth100,
           ),
         ),
-        padding: EdgeInsets.only(
-          left: tokens.spacing100,
-          right: tokens.spacing100,
-          top: tokens.spacing50,
-          bottom: tokens.spacing100,
-        ),
+        padding: EdgeInsets.all(tokens.spacing100),
         child:
             message.state == MessageState.typing
                 ? const _TypingBubble()
@@ -135,8 +130,8 @@ class _TypingBubble extends StatelessWidget {
     final tokens = context.tokens;
 
     return Container(
-      width: tokens.spacing500,
-      height: tokens.spacing400,
+      width: tokens.spacing400,
+      height: tokens.spacing300,
       alignment: Alignment.center,
       child: Text.rich(
         TextSpan(
@@ -171,7 +166,7 @@ extension on MessageOwner {
       switch (this) {
         MessageOwner.assistant => EdgeInsets.only(
           left: tokens.spacing100,
-          right: tokens.spacing0,
+          right: tokens.spacing100,
         ),
         MessageOwner.user => EdgeInsets.only(
           left: tokens.spacing0,
