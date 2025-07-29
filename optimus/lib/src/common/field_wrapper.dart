@@ -154,7 +154,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                         borderRadius: BorderRadius.all(tokens.borderRadius100),
                         border: Border.all(
                           color: _borderColor,
-                          width: tokens.borderWidth150,
+                          width: tokens.borderWidth200,
                         ),
                       )
                       : null,
