@@ -21,7 +21,9 @@ mixin _$OptimusThemeData {
   OptimusColors get colors => throw _privateConstructorUsedError;
   OptimusTokens get tokens => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OptimusThemeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OptimusThemeDataCopyWith<OptimusThemeData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +52,8 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OptimusThemeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,6 +109,8 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
     $Res Function(_$OptimusThemeDataImpl) _then,
   ) : super(_value, _then);
 
+  /// Create a copy of OptimusThemeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,7 +175,9 @@ class _$OptimusThemeDataImpl extends _OptimusThemeData {
   @override
   int get hashCode => Object.hash(runtimeType, brightness, colors, tokens);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OptimusThemeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OptimusThemeDataImplCopyWith<_$OptimusThemeDataImpl> get copyWith =>
@@ -193,8 +201,11 @@ abstract class _OptimusThemeData extends OptimusThemeData {
   OptimusColors get colors;
   @override
   OptimusTokens get tokens;
+
+  /// Create a copy of OptimusThemeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OptimusThemeDataImplCopyWith<_$OptimusThemeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

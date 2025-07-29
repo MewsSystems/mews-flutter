@@ -20,17 +20,17 @@ Widget createDefaultStyle(BuildContext context) {
           'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.',
     ),
     time: stubDate,
-    alignment: k.list(
-      label: 'Alignment',
-      initialOption: MessageAlignment.left,
-      options: MessageAlignment.values,
+    owner: k.list(
+      label: 'Owner',
+      initialOption: MessageOwner.user,
+      options: MessageOwner.values,
       labelBuilder: enumLabelBuilder,
     ),
-    state: MessageState.sent,
-    color: k.list(
-      label: 'Color',
-      initialOption: MessageColor.dark,
-      options: MessageColor.values,
+    deliveryStatus: MessageDeliveryStatus.sent,
+    state: k.list(
+      label: 'State',
+      initialOption: MessageState.basic,
+      options: MessageState.values,
       labelBuilder: enumLabelBuilder,
     ),
   );
@@ -38,7 +38,6 @@ Widget createDefaultStyle(BuildContext context) {
   return OptimusChatBubble(
     message: message,
     isUserNameVisible: k.boolean(label: 'Show user name', initialValue: true),
-    isDateVisible: k.boolean(label: 'Show date', initialValue: true),
     formatTime:
         (DateTime input) =>
             '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
