@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/semantics.dart';
 
@@ -10,7 +9,6 @@ class OptimusChatBubble extends StatelessWidget {
     super.key,
     required this.message,
     required this.isUserNameVisible,
-    required this.isDateVisible,
     required this.formatTime,
     required this.formatDate,
     required this.sending,
@@ -20,7 +18,6 @@ class OptimusChatBubble extends StatelessWidget {
 
   final OptimusMessage message;
   final bool isUserNameVisible;
-  final bool isDateVisible;
   final FormatTime formatTime;
   final FormatDate formatDate;
   final Widget sending;
@@ -32,23 +29,23 @@ class OptimusChatBubble extends StatelessWidget {
     final tokens = context.tokens;
 
     return Column(
-      crossAxisAlignment: message.alignment.crossAxisAlignment,
+      crossAxisAlignment: message.owner.crossAxisAlignment,
       children: [
-        if (isDateVisible) ...[
-          SizedBox(height: tokens.spacing200).excludeSemantics(),
-          _Date(date: formatDate(message.time)),
-          SizedBox(height: tokens.spacing200).excludeSemantics(),
-        ],
         SizedBox(height: tokens.spacing100).excludeSemantics(),
         if (isUserNameVisible) ...[
           Padding(
-            padding: message.alignment.getHorizontalPadding(tokens),
-            child: Text(message.author.username, style: tokens.bodySmallStrong),
+            padding: message.owner.getHorizontalPadding(tokens),
+            child: Text(
+              message.author.username,
+              style: tokens.bodySmallStrong.copyWith(
+                color: tokens.textStaticTertiary,
+              ),
+            ),
           ),
           SizedBox(height: tokens.spacing50).excludeSemantics(),
         ],
         Padding(
-          padding: message.alignment.getHorizontalPadding(tokens),
+          padding: message.owner.getHorizontalPadding(tokens),
           child: _Bubble(message: message),
         ),
       ],
@@ -88,64 +85,128 @@ class _Bubble extends StatelessWidget {
 
   final OptimusMessage message;
 
-  Color _getBackgroundColor(OptimusThemeData theme) => switch (message.color) {
-    MessageColor.neutral => theme.colors.neutral25,
-    MessageColor.dark => theme.colors.primary,
-    MessageColor.light => theme.colors.primary500t16,
-  };
+  Color _getBackgroundColor(OptimusTokens tokens) =>
+      message.state == MessageState.success
+          ? tokens.backgroundAlertSuccessSecondary
+          : switch (message.owner) {
+            MessageOwner.assistant => tokens.backgroundStaticFlat,
+            MessageOwner.user => tokens.backgroundAlertInfoSecondary,
+          };
 
-  Color _getTextColor(OptimusThemeData theme) => switch (message.color) {
-    MessageColor.neutral => theme.colors.neutral1000,
-    MessageColor.light =>
-      theme.isDark ? theme.colors.neutral0 : theme.colors.neutral1000,
-    MessageColor.dark => theme.colors.neutral0,
-  };
+  Color _getTextColor(OptimusTokens tokens) =>
+      message.state == MessageState.success
+          ? tokens.textAlertSuccess
+          : tokens.textStaticPrimary;
+
+  Color _getBorderColor(OptimusTokens tokens) =>
+      message.state == MessageState.success
+          ? tokens.borderAlertSuccess
+          : switch (message.owner) {
+            MessageOwner.assistant => tokens.borderStaticTertiary,
+            MessageOwner.user => Colors.transparent,
+          };
 
   @override
   Widget build(BuildContext context) {
-    final theme = OptimusTheme.of(context);
     final tokens = context.tokens;
 
     return Semantics(
       liveRegion: true,
       child: Container(
-        constraints: const BoxConstraints(
-          maxWidth: 480,
-        ), // TODO(witwash): replace with tokens
+        constraints: const BoxConstraints(maxWidth: 480),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(tokens.borderRadius100),
-          color: _getBackgroundColor(theme), // TODO(witwash): check with design
+          borderRadius: BorderRadius.only(
+            topLeft:
+                message.owner == MessageOwner.assistant
+                    ? tokens.borderRadius0
+                    : context.bubbleRadius,
+
+            topRight:
+                message.owner == MessageOwner.user
+                    ? tokens.borderRadius0
+                    : context.bubbleRadius,
+            bottomRight: context.bubbleRadius,
+            bottomLeft: context.bubbleRadius,
+          ),
+          color: _getBackgroundColor(tokens),
+          border: Border.all(
+            color: _getBorderColor(tokens),
+            width: tokens.borderWidth100,
+          ),
         ),
-        padding: EdgeInsets.only(
-          left: tokens.spacing100,
-          right: tokens.spacing100,
-          top: tokens.spacing50,
-          bottom: tokens.spacing100,
-        ),
-        child: Text(
-          message.message,
-          style: tokens.bodyMediumStrong.copyWith(color: _getTextColor(theme)),
+        padding: EdgeInsets.all(tokens.spacing100),
+        child:
+            message.state == MessageState.typing
+                ? const _TypingBubble()
+                : Text(
+                  message.message,
+                  style: tokens.bodyMediumStrong.copyWith(
+                    color: _getTextColor(tokens),
+                  ),
+                ),
+      ),
+    );
+  }
+}
+
+class _TypingBubble extends StatelessWidget {
+  const _TypingBubble();
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+
+    return Container(
+      width: tokens.spacing400,
+      height: tokens.spacing300,
+      alignment: Alignment.center,
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: '.',
+              style: tokens.bodyLarge.copyWith(
+                color: tokens.paletteBrandIndigo300,
+              ),
+            ),
+            TextSpan(
+              text: '.',
+              style: tokens.bodyLarge.copyWith(
+                color: tokens.paletteBrandIndigo200,
+              ),
+            ),
+            TextSpan(
+              text: '.',
+              style: tokens.bodyLarge.copyWith(
+                color: tokens.paletteBrandIndigo100,
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-extension on MessageAlignment {
+extension on MessageOwner {
   EdgeInsetsGeometry getHorizontalPadding(OptimusTokens tokens) =>
       switch (this) {
-        MessageAlignment.left => EdgeInsets.only(
+        MessageOwner.assistant => EdgeInsets.only(
           left: tokens.spacing100,
-          right: tokens.spacing0,
+          right: tokens.spacing100,
         ),
-        MessageAlignment.right => EdgeInsets.only(
+        MessageOwner.user => EdgeInsets.only(
           left: tokens.spacing0,
           right: tokens.spacing100,
         ),
       };
 
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
-    MessageAlignment.left => CrossAxisAlignment.start,
-    MessageAlignment.right => CrossAxisAlignment.end,
+    MessageOwner.assistant => CrossAxisAlignment.start,
+    MessageOwner.user => CrossAxisAlignment.end,
   };
+}
+
+extension on BuildContext {
+  Radius get bubbleRadius => tokens.borderRadius200;
 }

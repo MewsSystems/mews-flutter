@@ -19,10 +19,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$OptimusMessage {
   OptimusMessageAuthor get author => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  MessageAlignment get alignment => throw _privateConstructorUsedError;
-  MessageColor get color => throw _privateConstructorUsedError;
-  DateTime get time => throw _privateConstructorUsedError;
+  MessageOwner get owner => throw _privateConstructorUsedError;
   MessageState get state => throw _privateConstructorUsedError;
+  DateTime get time => throw _privateConstructorUsedError;
+  MessageDeliveryStatus get deliveryStatus =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of OptimusMessage
   /// with the given fields replaced by the non-null parameter values.
@@ -41,10 +42,10 @@ abstract class $OptimusMessageCopyWith<$Res> {
   $Res call({
     OptimusMessageAuthor author,
     String message,
-    MessageAlignment alignment,
-    MessageColor color,
-    DateTime time,
+    MessageOwner owner,
     MessageState state,
+    DateTime time,
+    MessageDeliveryStatus deliveryStatus,
   });
 
   $OptimusMessageAuthorCopyWith<$Res> get author;
@@ -67,10 +68,10 @@ class _$OptimusMessageCopyWithImpl<$Res, $Val extends OptimusMessage>
   $Res call({
     Object? author = null,
     Object? message = null,
-    Object? alignment = null,
-    Object? color = null,
-    Object? time = null,
+    Object? owner = null,
     Object? state = null,
+    Object? time = null,
+    Object? deliveryStatus = null,
   }) {
     return _then(
       _value.copyWith(
@@ -84,26 +85,26 @@ class _$OptimusMessageCopyWithImpl<$Res, $Val extends OptimusMessage>
                     ? _value.message
                     : message // ignore: cast_nullable_to_non_nullable
                         as String,
-            alignment:
-                null == alignment
-                    ? _value.alignment
-                    : alignment // ignore: cast_nullable_to_non_nullable
-                        as MessageAlignment,
-            color:
-                null == color
-                    ? _value.color
-                    : color // ignore: cast_nullable_to_non_nullable
-                        as MessageColor,
-            time:
-                null == time
-                    ? _value.time
-                    : time // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
+            owner:
+                null == owner
+                    ? _value.owner
+                    : owner // ignore: cast_nullable_to_non_nullable
+                        as MessageOwner,
             state:
                 null == state
                     ? _value.state
                     : state // ignore: cast_nullable_to_non_nullable
                         as MessageState,
+            time:
+                null == time
+                    ? _value.time
+                    : time // ignore: cast_nullable_to_non_nullable
+                        as DateTime,
+            deliveryStatus:
+                null == deliveryStatus
+                    ? _value.deliveryStatus
+                    : deliveryStatus // ignore: cast_nullable_to_non_nullable
+                        as MessageDeliveryStatus,
           )
           as $Val,
     );
@@ -132,10 +133,10 @@ abstract class _$$MessageImplCopyWith<$Res>
   $Res call({
     OptimusMessageAuthor author,
     String message,
-    MessageAlignment alignment,
-    MessageColor color,
-    DateTime time,
+    MessageOwner owner,
     MessageState state,
+    DateTime time,
+    MessageDeliveryStatus deliveryStatus,
   });
 
   @override
@@ -158,10 +159,10 @@ class __$$MessageImplCopyWithImpl<$Res>
   $Res call({
     Object? author = null,
     Object? message = null,
-    Object? alignment = null,
-    Object? color = null,
-    Object? time = null,
+    Object? owner = null,
     Object? state = null,
+    Object? time = null,
+    Object? deliveryStatus = null,
   }) {
     return _then(
       _$MessageImpl(
@@ -175,26 +176,26 @@ class __$$MessageImplCopyWithImpl<$Res>
                 ? _value.message
                 : message // ignore: cast_nullable_to_non_nullable
                     as String,
-        alignment:
-            null == alignment
-                ? _value.alignment
-                : alignment // ignore: cast_nullable_to_non_nullable
-                    as MessageAlignment,
-        color:
-            null == color
-                ? _value.color
-                : color // ignore: cast_nullable_to_non_nullable
-                    as MessageColor,
-        time:
-            null == time
-                ? _value.time
-                : time // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
+        owner:
+            null == owner
+                ? _value.owner
+                : owner // ignore: cast_nullable_to_non_nullable
+                    as MessageOwner,
         state:
             null == state
                 ? _value.state
                 : state // ignore: cast_nullable_to_non_nullable
                     as MessageState,
+        time:
+            null == time
+                ? _value.time
+                : time // ignore: cast_nullable_to_non_nullable
+                    as DateTime,
+        deliveryStatus:
+            null == deliveryStatus
+                ? _value.deliveryStatus
+                : deliveryStatus // ignore: cast_nullable_to_non_nullable
+                    as MessageDeliveryStatus,
       ),
     );
   }
@@ -206,10 +207,10 @@ class _$MessageImpl implements _Message {
   const _$MessageImpl({
     required this.author,
     required this.message,
-    required this.alignment,
-    required this.color,
+    required this.owner,
+    this.state = MessageState.basic,
     required this.time,
-    required this.state,
+    this.deliveryStatus = MessageDeliveryStatus.sent,
   });
 
   @override
@@ -217,17 +218,19 @@ class _$MessageImpl implements _Message {
   @override
   final String message;
   @override
-  final MessageAlignment alignment;
+  final MessageOwner owner;
   @override
-  final MessageColor color;
+  @JsonKey()
+  final MessageState state;
   @override
   final DateTime time;
   @override
-  final MessageState state;
+  @JsonKey()
+  final MessageDeliveryStatus deliveryStatus;
 
   @override
   String toString() {
-    return 'OptimusMessage(author: $author, message: $message, alignment: $alignment, color: $color, time: $time, state: $state)';
+    return 'OptimusMessage(author: $author, message: $message, owner: $owner, state: $state, time: $time, deliveryStatus: $deliveryStatus)';
   }
 
   @override
@@ -237,16 +240,23 @@ class _$MessageImpl implements _Message {
             other is _$MessageImpl &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.alignment, alignment) ||
-                other.alignment == alignment) &&
-            (identical(other.color, color) || other.color == color) &&
+            (identical(other.owner, owner) || other.owner == owner) &&
+            (identical(other.state, state) || other.state == state) &&
             (identical(other.time, time) || other.time == time) &&
-            (identical(other.state, state) || other.state == state));
+            (identical(other.deliveryStatus, deliveryStatus) ||
+                other.deliveryStatus == deliveryStatus));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, author, message, alignment, color, time, state);
+  int get hashCode => Object.hash(
+    runtimeType,
+    author,
+    message,
+    owner,
+    state,
+    time,
+    deliveryStatus,
+  );
 
   /// Create a copy of OptimusMessage
   /// with the given fields replaced by the non-null parameter values.
@@ -261,10 +271,10 @@ abstract class _Message implements OptimusMessage {
   const factory _Message({
     required final OptimusMessageAuthor author,
     required final String message,
-    required final MessageAlignment alignment,
-    required final MessageColor color,
+    required final MessageOwner owner,
+    final MessageState state,
     required final DateTime time,
-    required final MessageState state,
+    final MessageDeliveryStatus deliveryStatus,
   }) = _$MessageImpl;
 
   @override
@@ -272,13 +282,13 @@ abstract class _Message implements OptimusMessage {
   @override
   String get message;
   @override
-  MessageAlignment get alignment;
+  MessageOwner get owner;
   @override
-  MessageColor get color;
+  MessageState get state;
   @override
   DateTime get time;
   @override
-  MessageState get state;
+  MessageDeliveryStatus get deliveryStatus;
 
   /// Create a copy of OptimusMessage
   /// with the given fields replaced by the non-null parameter values.
