@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OptimusThemeData {
   Brightness get brightness => throw _privateConstructorUsedError;
-  OptimusColors get colors => throw _privateConstructorUsedError;
   OptimusTokens get tokens => throw _privateConstructorUsedError;
 
   /// Create a copy of OptimusThemeData
@@ -35,11 +34,7 @@ abstract class $OptimusThemeDataCopyWith<$Res> {
     $Res Function(OptimusThemeData) then,
   ) = _$OptimusThemeDataCopyWithImpl<$Res, OptimusThemeData>;
   @useResult
-  $Res call({
-    Brightness brightness,
-    OptimusColors colors,
-    OptimusTokens tokens,
-  });
+  $Res call({Brightness brightness, OptimusTokens tokens});
 }
 
 /// @nodoc
@@ -56,11 +51,7 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? brightness = null,
-    Object? colors = null,
-    Object? tokens = null,
-  }) {
+  $Res call({Object? brightness = null, Object? tokens = null}) {
     return _then(
       _value.copyWith(
             brightness:
@@ -68,11 +59,6 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
                     ? _value.brightness
                     : brightness // ignore: cast_nullable_to_non_nullable
                         as Brightness,
-            colors:
-                null == colors
-                    ? _value.colors
-                    : colors // ignore: cast_nullable_to_non_nullable
-                        as OptimusColors,
             tokens:
                 null == tokens
                     ? _value.tokens
@@ -93,11 +79,7 @@ abstract class _$$OptimusThemeDataImplCopyWith<$Res>
   ) = __$$OptimusThemeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    Brightness brightness,
-    OptimusColors colors,
-    OptimusTokens tokens,
-  });
+  $Res call({Brightness brightness, OptimusTokens tokens});
 }
 
 /// @nodoc
@@ -113,11 +95,7 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? brightness = null,
-    Object? colors = null,
-    Object? tokens = null,
-  }) {
+  $Res call({Object? brightness = null, Object? tokens = null}) {
     return _then(
       _$OptimusThemeDataImpl(
         brightness:
@@ -125,11 +103,6 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
                 ? _value.brightness
                 : brightness // ignore: cast_nullable_to_non_nullable
                     as Brightness,
-        colors:
-            null == colors
-                ? _value.colors
-                : colors // ignore: cast_nullable_to_non_nullable
-                    as OptimusColors,
         tokens:
             null == tokens
                 ? _value.tokens
@@ -143,22 +116,17 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OptimusThemeDataImpl extends _OptimusThemeData {
-  const _$OptimusThemeDataImpl({
-    required this.brightness,
-    required this.colors,
-    required this.tokens,
-  }) : super._();
+  const _$OptimusThemeDataImpl({required this.brightness, required this.tokens})
+    : super._();
 
   @override
   final Brightness brightness;
-  @override
-  final OptimusColors colors;
   @override
   final OptimusTokens tokens;
 
   @override
   String toString() {
-    return 'OptimusThemeData(brightness: $brightness, colors: $colors, tokens: $tokens)';
+    return 'OptimusThemeData(brightness: $brightness, tokens: $tokens)';
   }
 
   @override
@@ -168,12 +136,11 @@ class _$OptimusThemeDataImpl extends _OptimusThemeData {
             other is _$OptimusThemeDataImpl &&
             (identical(other.brightness, brightness) ||
                 other.brightness == brightness) &&
-            (identical(other.colors, colors) || other.colors == colors) &&
             (identical(other.tokens, tokens) || other.tokens == tokens));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, brightness, colors, tokens);
+  int get hashCode => Object.hash(runtimeType, brightness, tokens);
 
   /// Create a copy of OptimusThemeData
   /// with the given fields replaced by the non-null parameter values.
@@ -190,15 +157,12 @@ class _$OptimusThemeDataImpl extends _OptimusThemeData {
 abstract class _OptimusThemeData extends OptimusThemeData {
   const factory _OptimusThemeData({
     required final Brightness brightness,
-    required final OptimusColors colors,
     required final OptimusTokens tokens,
   }) = _$OptimusThemeDataImpl;
   const _OptimusThemeData._() : super._();
 
   @override
   Brightness get brightness;
-  @override
-  OptimusColors get colors;
   @override
   OptimusTokens get tokens;
 

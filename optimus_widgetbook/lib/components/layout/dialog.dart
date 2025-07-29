@@ -260,16 +260,15 @@ Future<void> _handleShowCustomContentDialog({
   required OptimusDialogType type,
   required String title,
 }) {
-  final theme = OptimusTheme.of(context);
+  final tokens = context.tokens;
 
   return showOptimusDialog(
     context: context,
     isDismissible: isDismissible,
     title: Text(title),
     content: Container(
-      color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
-      // TODO(witwash): tokens
-      padding: const EdgeInsets.all(8),
+      color: tokens.backgroundStaticFlat,
+      padding: EdgeInsets.all(tokens.spacing100),
       child: const Column(
         children: [
           Center(child: Text('Custom content without paddings')),
@@ -286,12 +285,12 @@ Future<void> _handleShowCustomContentDialog({
 }
 
 Widget _content(BuildContext context) {
-  final theme = OptimusTheme.of(context);
+  final tokens = context.tokens;
 
   return Container(
     height: 200,
     width: double.infinity,
-    color: theme.isDark ? theme.colors.neutral400 : theme.colors.neutral100,
+    color: tokens.backgroundStaticFlat,
     child: const Center(child: Text('Content')),
   );
 }
