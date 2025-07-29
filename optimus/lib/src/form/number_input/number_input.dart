@@ -109,11 +109,11 @@ class OptimusNumberInput extends StatefulWidget {
   final ValueChanged<String>? onSubmitted;
 
   /// Semantic label for marking the button as a decrease function button.
-  /// This will have enrish component for the screen reader.
+  /// This will enrich component for the screen reader.
   final String? decreaseSemanticLabel;
 
   /// Semantic label for marking the button as an increase function button.
-  /// This will have enrish component for the screen reader.
+  /// This will enrich component for the screen reader.
   final String? increaseSemanticLabel;
 
   @override

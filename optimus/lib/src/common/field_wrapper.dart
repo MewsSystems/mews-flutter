@@ -115,8 +115,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   Color get _borderColor {
     if (!widget.isEnabled) return tokens.borderDisabled;
-    if (widget.hasError) return tokens.borderAlertDanger;
     if (_isFocused) return tokens.borderInteractiveFocus;
+    if (widget.hasError) return tokens.borderAlertDanger;
     if (_isHovered) return tokens.borderInteractiveSecondaryHover;
 
     return tokens.borderInteractiveSecondaryDefault;
