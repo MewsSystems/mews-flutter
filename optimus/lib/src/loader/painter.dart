@@ -35,21 +35,19 @@ class CirclePainter extends CustomPainter {
     final center = Offset(radius, radius);
 
     if (trackColor case final trackColor?) {
-      final trackCircle =
-          Paint()
-            ..strokeWidth = strokeWidth
-            ..color = trackColor
-            ..style = PaintingStyle.stroke;
+      final trackCircle = Paint()
+        ..strokeWidth = strokeWidth
+        ..color = trackColor
+        ..style = PaintingStyle.stroke;
 
       canvas.drawCircle(center, radius, trackCircle);
     }
 
-    final indicatorArc =
-        Paint()
-          ..strokeWidth = strokeWidth
-          ..color = indicatorColor
-          ..style = PaintingStyle.stroke
-          ..strokeCap = strokeCap;
+    final indicatorArc = Paint()
+      ..strokeWidth = strokeWidth
+      ..color = indicatorColor
+      ..style = PaintingStyle.stroke
+      ..strokeCap = strokeCap;
 
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),

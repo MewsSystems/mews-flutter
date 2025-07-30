@@ -103,8 +103,9 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final foregroundColor =
-        widget.isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
+    final foregroundColor = widget.isEnabled
+        ? tokens.textStaticPrimary
+        : tokens.textDisabled;
     final iconTheme = IconThemeData(color: foregroundColor);
     final contentPadding = EdgeInsets.only(right: tokens.spacing200);
 
@@ -123,10 +124,9 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
               onTap: widget.onTap,
               content: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal:
-                      widget.useHorizontalPadding
-                          ? tokens.spacing200
-                          : tokens.spacing0,
+                  horizontal: widget.useHorizontalPadding
+                      ? tokens.spacing200
+                      : tokens.spacing0,
                 ),
                 child: Row(
                   children: [
@@ -148,10 +148,9 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
                         child: DefaultTextStyle.merge(
                           child: widget.label,
                           style: tokens.bodyLarge.copyWith(
-                            color:
-                                widget.isEnabled
-                                    ? tokens.textStaticPrimary
-                                    : tokens.textDisabled,
+                            color: widget.isEnabled
+                                ? tokens.textStaticPrimary
+                                : tokens.textDisabled,
                           ),
                         ),
                       ),
@@ -168,8 +167,9 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
                       Padding(
                         padding: contentPadding,
                         child: OptimusToggle(
-                          onChanged:
-                              widget.isEnabled ? widget.onTogglePressed : null,
+                          onChanged: widget.isEnabled
+                              ? widget.onTogglePressed
+                              : null,
                           isChecked: widget.isToggled,
                         ),
                       ),

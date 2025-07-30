@@ -49,10 +49,9 @@ class TooltipOverlay extends StatefulWidget {
   /// [OptimusTooltipPosition.bottom].
   final OptimusTooltipPosition? position;
 
-  static TooltipOverlayController? of(BuildContext context) =>
-      context
-          .dependOnInheritedWidgetOfExactType<TooltipOverlayData>()
-          ?.controller;
+  static TooltipOverlayController? of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<TooltipOverlayData>()
+      ?.controller;
 
   @override
   State<TooltipOverlay> createState() => TooltipOverlayState();
@@ -125,8 +124,8 @@ class TooltipOverlayState extends State<TooltipOverlay>
 
     return position != null
         ? _isOverflowing(position)
-            ? _fallbackPosition
-            : position
+              ? _fallbackPosition
+              : position
         : _fallbackPosition;
   }
 
@@ -142,8 +141,8 @@ class TooltipOverlayState extends State<TooltipOverlay>
   double get _leftOffset => switch (alignment) {
     TooltipAlignment.leftTop ||
     TooltipAlignment.leftCenter ||
-    TooltipAlignment
-        .leftBottom => _savedRect.left - _tooltipRect.width - _sideAlignOffset,
+    TooltipAlignment.leftBottom =>
+      _savedRect.left - _tooltipRect.width - _sideAlignOffset,
     TooltipAlignment.rightTop ||
     TooltipAlignment.rightCenter ||
     TooltipAlignment.rightBottom => _savedRect.right + _widgetPadding,
@@ -163,8 +162,8 @@ class TooltipOverlayState extends State<TooltipOverlay>
       _savedRect.top + (_savedRect.height / 2 - _tooltipRect.height / 2),
     TooltipAlignment.topCenter ||
     TooltipAlignment.topLeft ||
-    TooltipAlignment
-        .topRight => _savedRect.top - _tooltipRect.height - _widgetPadding,
+    TooltipAlignment.topRight =>
+      _savedRect.top - _tooltipRect.height - _widgetPadding,
     TooltipAlignment.bottomLeft ||
     TooltipAlignment.bottomCenter ||
     TooltipAlignment.bottomRight => _savedRect.bottom + _widgetPadding,
@@ -218,11 +217,11 @@ class TooltipOverlayState extends State<TooltipOverlay>
     TooltipAlignment end,
   ) =>
       _horizontalCenterLeft < _screenPadding ||
-              _horizontalCenterRight > _overlayWidth - _screenPadding
-          ? _spaceLeft > _spaceRight
-              ? start
-              : end
-          : center;
+          _horizontalCenterRight > _overlayWidth - _screenPadding
+      ? _spaceLeft > _spaceRight
+            ? start
+            : end
+      : center;
 
   TooltipAlignment _calculateVerticalAlignment(
     TooltipAlignment start,
@@ -230,11 +229,11 @@ class TooltipOverlayState extends State<TooltipOverlay>
     TooltipAlignment end,
   ) =>
       _verticalCenterTop < _screenPadding ||
-              _verticalCenterBottom > _overlayHeight - _screenPadding
-          ? _spaceTop > _spaceBottom
-              ? start
-              : end
-          : center;
+          _verticalCenterBottom > _overlayHeight - _screenPadding
+      ? _spaceTop > _spaceBottom
+            ? start
+            : end
+      : center;
 
   void _afterInitialLayoutCallback() {
     _updateRect();
@@ -275,11 +274,10 @@ class TooltipOverlayState extends State<TooltipOverlay>
   }
 
   RenderBox? _getOverlay() {
-    final renderObject =
-        Overlay.of(
-          context,
-          rootOverlay: widget.useRootOverlay,
-        ).context.findRenderObject();
+    final renderObject = Overlay.of(
+      context,
+      rootOverlay: widget.useRootOverlay,
+    ).context.findRenderObject();
     if (renderObject is RenderBox) return renderObject;
   }
 
@@ -289,18 +287,17 @@ class TooltipOverlayState extends State<TooltipOverlay>
   Widget build(BuildContext context) => TooltipOverlayData(
     controller: this,
     child: Builder(
-      builder:
-          (_) => Positioned(
-            left: _leftOffset,
-            top: _topOffset,
-            bottom: _bottomOffset,
-            child: AnimatedOpacity(
-              opacity: _opacity,
-              curve: Curves.easeIn,
-              duration: _animationDuration,
-              child: widget.tooltip,
-            ),
-          ),
+      builder: (_) => Positioned(
+        left: _leftOffset,
+        top: _topOffset,
+        bottom: _bottomOffset,
+        child: AnimatedOpacity(
+          opacity: _opacity,
+          curve: Curves.easeIn,
+          duration: _animationDuration,
+          child: widget.tooltip,
+        ),
+      ),
     ),
   );
 }

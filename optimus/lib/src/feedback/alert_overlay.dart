@@ -98,49 +98,41 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
         Breakpoint.medium.index;
 
     return Builder(
-      builder:
-          (context) => _OptimusAlertData(
-            this,
-            child: Stack(
-              children: [
-                widget.child,
-                Positioned(
-                  left: widget.position.left(
-                    tokens: tokens,
-                    isCompact: isCompact,
-                  ),
-                  top: widget.position.top(
-                    tokens: tokens,
-                    isCompact: isCompact,
-                  ),
-                  right: widget.position.right(
-                    tokens: tokens,
-                    isCompact: isCompact,
-                  ),
-                  bottom: widget.position.bottom(
-                    tokens: tokens,
-                    isCompact: isCompact,
-                  ),
-                  child: SafeArea(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: _maxWidth),
-                      child: AnimatedList(
-                        key: _listKey,
-                        shrinkWrap: true,
-                        reverse: widget.position.isReversed,
-                        itemBuilder:
-                            (context, index, animation) => _AnimatedAlert(
-                              animation: animation,
-                              alert: _alerts[index],
-                              slideTween: widget.position.slideTween,
-                            ),
-                      ),
+      builder: (context) => _OptimusAlertData(
+        this,
+        child: Stack(
+          children: [
+            widget.child,
+            Positioned(
+              left: widget.position.left(tokens: tokens, isCompact: isCompact),
+              top: widget.position.top(tokens: tokens, isCompact: isCompact),
+              right: widget.position.right(
+                tokens: tokens,
+                isCompact: isCompact,
+              ),
+              bottom: widget.position.bottom(
+                tokens: tokens,
+                isCompact: isCompact,
+              ),
+              child: SafeArea(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: _maxWidth),
+                  child: AnimatedList(
+                    key: _listKey,
+                    shrinkWrap: true,
+                    reverse: widget.position.isReversed,
+                    itemBuilder: (context, index, animation) => _AnimatedAlert(
+                      animation: animation,
+                      alert: _alerts[index],
+                      slideTween: widget.position.slideTween,
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -229,14 +221,13 @@ extension on OptimusAlertPosition {
           isCompact ? tokens.spacing100 : null,
       };
 
-  double? top({
-    required OptimusTokens tokens,
-    required bool isCompact,
-  }) => switch (this) {
-    OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight =>
-      isCompact ? tokens.spacing100 : tokens.spacing200,
-    OptimusAlertPosition.bottomRight || OptimusAlertPosition.bottomLeft => null,
-  };
+  double? top({required OptimusTokens tokens, required bool isCompact}) =>
+      switch (this) {
+        OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight =>
+          isCompact ? tokens.spacing100 : tokens.spacing200,
+        OptimusAlertPosition.bottomRight ||
+        OptimusAlertPosition.bottomLeft => null,
+      };
 
   double? right({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {

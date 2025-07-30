@@ -51,30 +51,30 @@ class BaseDropdownTile extends StatelessWidget {
           vertical: size.getVerticalPadding(tokens),
         ),
         decoration: BoxDecoration(
-          color:
-              isSelected ? tokens.backgroundInteractiveSecondaryDefault : null,
+          color: isSelected
+              ? tokens.backgroundInteractiveSecondaryDefault
+              : null,
           borderRadius: BorderRadius.all(tokens.borderRadius100),
         ),
-        child:
-            hasCheckbox
-                ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IgnorePointer(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: tokens.spacing200),
-                        child: CheckboxTick(
-                          isEnabled: true,
-                          onChanged: ignore,
-                          onTap: ignore,
-                          isChecked: isSelected,
-                        ),
+        child: hasCheckbox
+            ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IgnorePointer(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: tokens.spacing200),
+                      child: CheckboxTick(
+                        isEnabled: true,
+                        onChanged: ignore,
+                        onTap: ignore,
+                        isChecked: isSelected,
                       ),
                     ),
-                    Flexible(fit: FlexFit.loose, child: tile),
-                  ],
-                )
-                : tile,
+                  ),
+                  Flexible(fit: FlexFit.loose, child: tile),
+                ],
+              )
+            : tile,
       ),
     );
   }

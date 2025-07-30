@@ -1500,1176 +1500,1584 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   OptimusTokens lerp(covariant ThemeExtension<OptimusTokens>? other, double t) {
     if (other is! OptimusTokens) return this as OptimusTokens;
     return OptimusTokens(
-      backgroundAccentBrand:
-          Color.lerp(backgroundAccentBrand, other.backgroundAccentBrand, t)!,
-      backgroundAccentDanger:
-          Color.lerp(backgroundAccentDanger, other.backgroundAccentDanger, t)!,
-      backgroundAccentGradient:
-          Color.lerp(
-            backgroundAccentGradient,
-            other.backgroundAccentGradient,
-            t,
-          )!,
-      backgroundAccentInfo:
-          Color.lerp(backgroundAccentInfo, other.backgroundAccentInfo, t)!,
-      backgroundAccentPrimary:
-          Color.lerp(
-            backgroundAccentPrimary,
-            other.backgroundAccentPrimary,
-            t,
-          )!,
-      backgroundAccentSecondary:
-          Color.lerp(
-            backgroundAccentSecondary,
-            other.backgroundAccentSecondary,
-            t,
-          )!,
-      backgroundAccentSuccess:
-          Color.lerp(
-            backgroundAccentSuccess,
-            other.backgroundAccentSuccess,
-            t,
-          )!,
-      backgroundAccentWarning:
-          Color.lerp(
-            backgroundAccentWarning,
-            other.backgroundAccentWarning,
-            t,
-          )!,
-      backgroundAlertBasicPrimary:
-          Color.lerp(
-            backgroundAlertBasicPrimary,
-            other.backgroundAlertBasicPrimary,
-            t,
-          )!,
-      backgroundAlertBasicSecondary:
-          Color.lerp(
-            backgroundAlertBasicSecondary,
-            other.backgroundAlertBasicSecondary,
-            t,
-          )!,
-      backgroundAlertDangerPrimary:
-          Color.lerp(
-            backgroundAlertDangerPrimary,
-            other.backgroundAlertDangerPrimary,
-            t,
-          )!,
-      backgroundAlertDangerSecondary:
-          Color.lerp(
-            backgroundAlertDangerSecondary,
-            other.backgroundAlertDangerSecondary,
-            t,
-          )!,
-      backgroundAlertInfoPrimary:
-          Color.lerp(
-            backgroundAlertInfoPrimary,
-            other.backgroundAlertInfoPrimary,
-            t,
-          )!,
-      backgroundAlertInfoSecondary:
-          Color.lerp(
-            backgroundAlertInfoSecondary,
-            other.backgroundAlertInfoSecondary,
-            t,
-          )!,
-      backgroundAlertSuccessPrimary:
-          Color.lerp(
-            backgroundAlertSuccessPrimary,
-            other.backgroundAlertSuccessPrimary,
-            t,
-          )!,
-      backgroundAlertSuccessSecondary:
-          Color.lerp(
-            backgroundAlertSuccessSecondary,
-            other.backgroundAlertSuccessSecondary,
-            t,
-          )!,
-      backgroundAlertWarningPrimary:
-          Color.lerp(
-            backgroundAlertWarningPrimary,
-            other.backgroundAlertWarningPrimary,
-            t,
-          )!,
-      backgroundAlertWarningSecondary:
-          Color.lerp(
-            backgroundAlertWarningSecondary,
-            other.backgroundAlertWarningSecondary,
-            t,
-          )!,
-      backgroundBackdrop:
-          Color.lerp(backgroundBackdrop, other.backgroundBackdrop, t)!,
+      backgroundAccentBrand: Color.lerp(
+        backgroundAccentBrand,
+        other.backgroundAccentBrand,
+        t,
+      )!,
+      backgroundAccentDanger: Color.lerp(
+        backgroundAccentDanger,
+        other.backgroundAccentDanger,
+        t,
+      )!,
+      backgroundAccentGradient: Color.lerp(
+        backgroundAccentGradient,
+        other.backgroundAccentGradient,
+        t,
+      )!,
+      backgroundAccentInfo: Color.lerp(
+        backgroundAccentInfo,
+        other.backgroundAccentInfo,
+        t,
+      )!,
+      backgroundAccentPrimary: Color.lerp(
+        backgroundAccentPrimary,
+        other.backgroundAccentPrimary,
+        t,
+      )!,
+      backgroundAccentSecondary: Color.lerp(
+        backgroundAccentSecondary,
+        other.backgroundAccentSecondary,
+        t,
+      )!,
+      backgroundAccentSuccess: Color.lerp(
+        backgroundAccentSuccess,
+        other.backgroundAccentSuccess,
+        t,
+      )!,
+      backgroundAccentWarning: Color.lerp(
+        backgroundAccentWarning,
+        other.backgroundAccentWarning,
+        t,
+      )!,
+      backgroundAlertBasicPrimary: Color.lerp(
+        backgroundAlertBasicPrimary,
+        other.backgroundAlertBasicPrimary,
+        t,
+      )!,
+      backgroundAlertBasicSecondary: Color.lerp(
+        backgroundAlertBasicSecondary,
+        other.backgroundAlertBasicSecondary,
+        t,
+      )!,
+      backgroundAlertDangerPrimary: Color.lerp(
+        backgroundAlertDangerPrimary,
+        other.backgroundAlertDangerPrimary,
+        t,
+      )!,
+      backgroundAlertDangerSecondary: Color.lerp(
+        backgroundAlertDangerSecondary,
+        other.backgroundAlertDangerSecondary,
+        t,
+      )!,
+      backgroundAlertInfoPrimary: Color.lerp(
+        backgroundAlertInfoPrimary,
+        other.backgroundAlertInfoPrimary,
+        t,
+      )!,
+      backgroundAlertInfoSecondary: Color.lerp(
+        backgroundAlertInfoSecondary,
+        other.backgroundAlertInfoSecondary,
+        t,
+      )!,
+      backgroundAlertSuccessPrimary: Color.lerp(
+        backgroundAlertSuccessPrimary,
+        other.backgroundAlertSuccessPrimary,
+        t,
+      )!,
+      backgroundAlertSuccessSecondary: Color.lerp(
+        backgroundAlertSuccessSecondary,
+        other.backgroundAlertSuccessSecondary,
+        t,
+      )!,
+      backgroundAlertWarningPrimary: Color.lerp(
+        backgroundAlertWarningPrimary,
+        other.backgroundAlertWarningPrimary,
+        t,
+      )!,
+      backgroundAlertWarningSecondary: Color.lerp(
+        backgroundAlertWarningSecondary,
+        other.backgroundAlertWarningSecondary,
+        t,
+      )!,
+      backgroundBackdrop: Color.lerp(
+        backgroundBackdrop,
+        other.backgroundBackdrop,
+        t,
+      )!,
       backgroundBrand: Color.lerp(backgroundBrand, other.backgroundBrand, t)!,
-      backgroundDatavizBlue:
-          Color.lerp(backgroundDatavizBlue, other.backgroundDatavizBlue, t)!,
-      backgroundDatavizGreen:
-          Color.lerp(backgroundDatavizGreen, other.backgroundDatavizGreen, t)!,
-      backgroundDatavizOrange:
-          Color.lerp(
-            backgroundDatavizOrange,
-            other.backgroundDatavizOrange,
-            t,
-          )!,
-      backgroundDatavizPink:
-          Color.lerp(backgroundDatavizPink, other.backgroundDatavizPink, t)!,
-      backgroundDatavizPurple:
-          Color.lerp(
-            backgroundDatavizPurple,
-            other.backgroundDatavizPurple,
-            t,
-          )!,
-      backgroundDatavizRed:
-          Color.lerp(backgroundDatavizRed, other.backgroundDatavizRed, t)!,
-      backgroundDisabled:
-          Color.lerp(backgroundDisabled, other.backgroundDisabled, t)!,
-      backgroundInteractiveDangerActive:
-          Color.lerp(
-            backgroundInteractiveDangerActive,
-            other.backgroundInteractiveDangerActive,
-            t,
-          )!,
-      backgroundInteractiveDangerDefault:
-          Color.lerp(
-            backgroundInteractiveDangerDefault,
-            other.backgroundInteractiveDangerDefault,
-            t,
-          )!,
-      backgroundInteractiveDangerHover:
-          Color.lerp(
-            backgroundInteractiveDangerHover,
-            other.backgroundInteractiveDangerHover,
-            t,
-          )!,
-      backgroundInteractiveNeutralActive:
-          Color.lerp(
-            backgroundInteractiveNeutralActive,
-            other.backgroundInteractiveNeutralActive,
-            t,
-          )!,
-      backgroundInteractiveNeutralBoldActive:
-          Color.lerp(
-            backgroundInteractiveNeutralBoldActive,
-            other.backgroundInteractiveNeutralBoldActive,
-            t,
-          )!,
-      backgroundInteractiveNeutralBoldDefault:
-          Color.lerp(
-            backgroundInteractiveNeutralBoldDefault,
-            other.backgroundInteractiveNeutralBoldDefault,
-            t,
-          )!,
-      backgroundInteractiveNeutralBoldHover:
-          Color.lerp(
-            backgroundInteractiveNeutralBoldHover,
-            other.backgroundInteractiveNeutralBoldHover,
-            t,
-          )!,
-      backgroundInteractiveNeutralDefault:
-          Color.lerp(
-            backgroundInteractiveNeutralDefault,
-            other.backgroundInteractiveNeutralDefault,
-            t,
-          )!,
-      backgroundInteractiveNeutralHover:
-          Color.lerp(
-            backgroundInteractiveNeutralHover,
-            other.backgroundInteractiveNeutralHover,
-            t,
-          )!,
-      backgroundInteractiveNeutralSubtleActive:
-          Color.lerp(
-            backgroundInteractiveNeutralSubtleActive,
-            other.backgroundInteractiveNeutralSubtleActive,
-            t,
-          )!,
-      backgroundInteractiveNeutralSubtleDefault:
-          Color.lerp(
-            backgroundInteractiveNeutralSubtleDefault,
-            other.backgroundInteractiveNeutralSubtleDefault,
-            t,
-          )!,
-      backgroundInteractiveNeutralSubtleHover:
-          Color.lerp(
-            backgroundInteractiveNeutralSubtleHover,
-            other.backgroundInteractiveNeutralSubtleHover,
-            t,
-          )!,
-      backgroundInteractivePrimaryActive:
-          Color.lerp(
-            backgroundInteractivePrimaryActive,
-            other.backgroundInteractivePrimaryActive,
-            t,
-          )!,
-      backgroundInteractivePrimaryDefault:
-          Color.lerp(
-            backgroundInteractivePrimaryDefault,
-            other.backgroundInteractivePrimaryDefault,
-            t,
-          )!,
-      backgroundInteractivePrimaryHover:
-          Color.lerp(
-            backgroundInteractivePrimaryHover,
-            other.backgroundInteractivePrimaryHover,
-            t,
-          )!,
-      backgroundInteractiveSecondaryActive:
-          Color.lerp(
-            backgroundInteractiveSecondaryActive,
-            other.backgroundInteractiveSecondaryActive,
-            t,
-          )!,
-      backgroundInteractiveSecondaryDefault:
-          Color.lerp(
-            backgroundInteractiveSecondaryDefault,
-            other.backgroundInteractiveSecondaryDefault,
-            t,
-          )!,
-      backgroundInteractiveSecondaryHover:
-          Color.lerp(
-            backgroundInteractiveSecondaryHover,
-            other.backgroundInteractiveSecondaryHover,
-            t,
-          )!,
-      backgroundInteractiveSuccessActive:
-          Color.lerp(
-            backgroundInteractiveSuccessActive,
-            other.backgroundInteractiveSuccessActive,
-            t,
-          )!,
-      backgroundInteractiveSuccessDefault:
-          Color.lerp(
-            backgroundInteractiveSuccessDefault,
-            other.backgroundInteractiveSuccessDefault,
-            t,
-          )!,
-      backgroundInteractiveSuccessHover:
-          Color.lerp(
-            backgroundInteractiveSuccessHover,
-            other.backgroundInteractiveSuccessHover,
-            t,
-          )!,
-      backgroundStaticFlat:
-          Color.lerp(backgroundStaticFlat, other.backgroundStaticFlat, t)!,
-      backgroundStaticFloating:
-          Color.lerp(
-            backgroundStaticFloating,
-            other.backgroundStaticFloating,
-            t,
-          )!,
-      backgroundStaticInverse:
-          Color.lerp(
-            backgroundStaticInverse,
-            other.backgroundStaticInverse,
-            t,
-          )!,
-      backgroundStaticInverseOnColor:
-          Color.lerp(
-            backgroundStaticInverseOnColor,
-            other.backgroundStaticInverseOnColor,
-            t,
-          )!,
-      backgroundStaticOnColor:
-          Color.lerp(
-            backgroundStaticOnColor,
-            other.backgroundStaticOnColor,
-            t,
-          )!,
-      backgroundStaticRaised:
-          Color.lerp(backgroundStaticRaised, other.backgroundStaticRaised, t)!,
-      backgroundStaticSunken:
-          Color.lerp(backgroundStaticSunken, other.backgroundStaticSunken, t)!,
+      backgroundDatavizBlue: Color.lerp(
+        backgroundDatavizBlue,
+        other.backgroundDatavizBlue,
+        t,
+      )!,
+      backgroundDatavizGreen: Color.lerp(
+        backgroundDatavizGreen,
+        other.backgroundDatavizGreen,
+        t,
+      )!,
+      backgroundDatavizOrange: Color.lerp(
+        backgroundDatavizOrange,
+        other.backgroundDatavizOrange,
+        t,
+      )!,
+      backgroundDatavizPink: Color.lerp(
+        backgroundDatavizPink,
+        other.backgroundDatavizPink,
+        t,
+      )!,
+      backgroundDatavizPurple: Color.lerp(
+        backgroundDatavizPurple,
+        other.backgroundDatavizPurple,
+        t,
+      )!,
+      backgroundDatavizRed: Color.lerp(
+        backgroundDatavizRed,
+        other.backgroundDatavizRed,
+        t,
+      )!,
+      backgroundDisabled: Color.lerp(
+        backgroundDisabled,
+        other.backgroundDisabled,
+        t,
+      )!,
+      backgroundInteractiveDangerActive: Color.lerp(
+        backgroundInteractiveDangerActive,
+        other.backgroundInteractiveDangerActive,
+        t,
+      )!,
+      backgroundInteractiveDangerDefault: Color.lerp(
+        backgroundInteractiveDangerDefault,
+        other.backgroundInteractiveDangerDefault,
+        t,
+      )!,
+      backgroundInteractiveDangerHover: Color.lerp(
+        backgroundInteractiveDangerHover,
+        other.backgroundInteractiveDangerHover,
+        t,
+      )!,
+      backgroundInteractiveNeutralActive: Color.lerp(
+        backgroundInteractiveNeutralActive,
+        other.backgroundInteractiveNeutralActive,
+        t,
+      )!,
+      backgroundInteractiveNeutralBoldActive: Color.lerp(
+        backgroundInteractiveNeutralBoldActive,
+        other.backgroundInteractiveNeutralBoldActive,
+        t,
+      )!,
+      backgroundInteractiveNeutralBoldDefault: Color.lerp(
+        backgroundInteractiveNeutralBoldDefault,
+        other.backgroundInteractiveNeutralBoldDefault,
+        t,
+      )!,
+      backgroundInteractiveNeutralBoldHover: Color.lerp(
+        backgroundInteractiveNeutralBoldHover,
+        other.backgroundInteractiveNeutralBoldHover,
+        t,
+      )!,
+      backgroundInteractiveNeutralDefault: Color.lerp(
+        backgroundInteractiveNeutralDefault,
+        other.backgroundInteractiveNeutralDefault,
+        t,
+      )!,
+      backgroundInteractiveNeutralHover: Color.lerp(
+        backgroundInteractiveNeutralHover,
+        other.backgroundInteractiveNeutralHover,
+        t,
+      )!,
+      backgroundInteractiveNeutralSubtleActive: Color.lerp(
+        backgroundInteractiveNeutralSubtleActive,
+        other.backgroundInteractiveNeutralSubtleActive,
+        t,
+      )!,
+      backgroundInteractiveNeutralSubtleDefault: Color.lerp(
+        backgroundInteractiveNeutralSubtleDefault,
+        other.backgroundInteractiveNeutralSubtleDefault,
+        t,
+      )!,
+      backgroundInteractiveNeutralSubtleHover: Color.lerp(
+        backgroundInteractiveNeutralSubtleHover,
+        other.backgroundInteractiveNeutralSubtleHover,
+        t,
+      )!,
+      backgroundInteractivePrimaryActive: Color.lerp(
+        backgroundInteractivePrimaryActive,
+        other.backgroundInteractivePrimaryActive,
+        t,
+      )!,
+      backgroundInteractivePrimaryDefault: Color.lerp(
+        backgroundInteractivePrimaryDefault,
+        other.backgroundInteractivePrimaryDefault,
+        t,
+      )!,
+      backgroundInteractivePrimaryHover: Color.lerp(
+        backgroundInteractivePrimaryHover,
+        other.backgroundInteractivePrimaryHover,
+        t,
+      )!,
+      backgroundInteractiveSecondaryActive: Color.lerp(
+        backgroundInteractiveSecondaryActive,
+        other.backgroundInteractiveSecondaryActive,
+        t,
+      )!,
+      backgroundInteractiveSecondaryDefault: Color.lerp(
+        backgroundInteractiveSecondaryDefault,
+        other.backgroundInteractiveSecondaryDefault,
+        t,
+      )!,
+      backgroundInteractiveSecondaryHover: Color.lerp(
+        backgroundInteractiveSecondaryHover,
+        other.backgroundInteractiveSecondaryHover,
+        t,
+      )!,
+      backgroundInteractiveSuccessActive: Color.lerp(
+        backgroundInteractiveSuccessActive,
+        other.backgroundInteractiveSuccessActive,
+        t,
+      )!,
+      backgroundInteractiveSuccessDefault: Color.lerp(
+        backgroundInteractiveSuccessDefault,
+        other.backgroundInteractiveSuccessDefault,
+        t,
+      )!,
+      backgroundInteractiveSuccessHover: Color.lerp(
+        backgroundInteractiveSuccessHover,
+        other.backgroundInteractiveSuccessHover,
+        t,
+      )!,
+      backgroundStaticFlat: Color.lerp(
+        backgroundStaticFlat,
+        other.backgroundStaticFlat,
+        t,
+      )!,
+      backgroundStaticFloating: Color.lerp(
+        backgroundStaticFloating,
+        other.backgroundStaticFloating,
+        t,
+      )!,
+      backgroundStaticInverse: Color.lerp(
+        backgroundStaticInverse,
+        other.backgroundStaticInverse,
+        t,
+      )!,
+      backgroundStaticInverseOnColor: Color.lerp(
+        backgroundStaticInverseOnColor,
+        other.backgroundStaticInverseOnColor,
+        t,
+      )!,
+      backgroundStaticOnColor: Color.lerp(
+        backgroundStaticOnColor,
+        other.backgroundStaticOnColor,
+        t,
+      )!,
+      backgroundStaticRaised: Color.lerp(
+        backgroundStaticRaised,
+        other.backgroundStaticRaised,
+        t,
+      )!,
+      backgroundStaticSunken: Color.lerp(
+        backgroundStaticSunken,
+        other.backgroundStaticSunken,
+        t,
+      )!,
       borderAccent: Color.lerp(borderAccent, other.borderAccent, t)!,
-      borderAlertBasic:
-          Color.lerp(borderAlertBasic, other.borderAlertBasic, t)!,
-      borderAlertDanger:
-          Color.lerp(borderAlertDanger, other.borderAlertDanger, t)!,
+      borderAlertBasic: Color.lerp(
+        borderAlertBasic,
+        other.borderAlertBasic,
+        t,
+      )!,
+      borderAlertDanger: Color.lerp(
+        borderAlertDanger,
+        other.borderAlertDanger,
+        t,
+      )!,
       borderAlertInfo: Color.lerp(borderAlertInfo, other.borderAlertInfo, t)!,
-      borderAlertSuccess:
-          Color.lerp(borderAlertSuccess, other.borderAlertSuccess, t)!,
-      borderAlertWarning:
-          Color.lerp(borderAlertWarning, other.borderAlertWarning, t)!,
+      borderAlertSuccess: Color.lerp(
+        borderAlertSuccess,
+        other.borderAlertSuccess,
+        t,
+      )!,
+      borderAlertWarning: Color.lerp(
+        borderAlertWarning,
+        other.borderAlertWarning,
+        t,
+      )!,
       borderBrand: Color.lerp(borderBrand, other.borderBrand, t)!,
       borderDisabled: Color.lerp(borderDisabled, other.borderDisabled, t)!,
-      borderInteractiveBoldActive:
-          Color.lerp(
-            borderInteractiveBoldActive,
-            other.borderInteractiveBoldActive,
-            t,
-          )!,
-      borderInteractiveBoldDefault:
-          Color.lerp(
-            borderInteractiveBoldDefault,
-            other.borderInteractiveBoldDefault,
-            t,
-          )!,
-      borderInteractiveBoldHover:
-          Color.lerp(
-            borderInteractiveBoldHover,
-            other.borderInteractiveBoldHover,
-            t,
-          )!,
-      borderInteractiveFocus:
-          Color.lerp(borderInteractiveFocus, other.borderInteractiveFocus, t)!,
-      borderInteractivePrimaryActive:
-          Color.lerp(
-            borderInteractivePrimaryActive,
-            other.borderInteractivePrimaryActive,
-            t,
-          )!,
-      borderInteractivePrimaryDefault:
-          Color.lerp(
-            borderInteractivePrimaryDefault,
-            other.borderInteractivePrimaryDefault,
-            t,
-          )!,
-      borderInteractivePrimaryHover:
-          Color.lerp(
-            borderInteractivePrimaryHover,
-            other.borderInteractivePrimaryHover,
-            t,
-          )!,
-      borderInteractiveSecondaryActive:
-          Color.lerp(
-            borderInteractiveSecondaryActive,
-            other.borderInteractiveSecondaryActive,
-            t,
-          )!,
-      borderInteractiveSecondaryDefault:
-          Color.lerp(
-            borderInteractiveSecondaryDefault,
-            other.borderInteractiveSecondaryDefault,
-            t,
-          )!,
-      borderInteractiveSecondaryHover:
-          Color.lerp(
-            borderInteractiveSecondaryHover,
-            other.borderInteractiveSecondaryHover,
-            t,
-          )!,
-      borderStaticInverse:
-          Color.lerp(borderStaticInverse, other.borderStaticInverse, t)!,
-      borderStaticOnColor:
-          Color.lerp(borderStaticOnColor, other.borderStaticOnColor, t)!,
-      borderStaticPrimary:
-          Color.lerp(borderStaticPrimary, other.borderStaticPrimary, t)!,
-      borderStaticSecondary:
-          Color.lerp(borderStaticSecondary, other.borderStaticSecondary, t)!,
-      borderStaticTertiary:
-          Color.lerp(borderStaticTertiary, other.borderStaticTertiary, t)!,
-      legacyDatavizDenim100:
-          Color.lerp(legacyDatavizDenim100, other.legacyDatavizDenim100, t)!,
-      legacyDatavizDenim200:
-          Color.lerp(legacyDatavizDenim200, other.legacyDatavizDenim200, t)!,
-      legacyDatavizDenim300:
-          Color.lerp(legacyDatavizDenim300, other.legacyDatavizDenim300, t)!,
-      legacyDatavizDenim400:
-          Color.lerp(legacyDatavizDenim400, other.legacyDatavizDenim400, t)!,
-      legacyDatavizDenim50:
-          Color.lerp(legacyDatavizDenim50, other.legacyDatavizDenim50, t)!,
-      legacyDatavizDenim500:
-          Color.lerp(legacyDatavizDenim500, other.legacyDatavizDenim500, t)!,
-      legacyDatavizDenim600:
-          Color.lerp(legacyDatavizDenim600, other.legacyDatavizDenim600, t)!,
-      legacyDatavizDenim700:
-          Color.lerp(legacyDatavizDenim700, other.legacyDatavizDenim700, t)!,
-      legacyDatavizDenim800:
-          Color.lerp(legacyDatavizDenim800, other.legacyDatavizDenim800, t)!,
-      legacyDatavizDenim900:
-          Color.lerp(legacyDatavizDenim900, other.legacyDatavizDenim900, t)!,
-      legacyDatavizLavender100:
-          Color.lerp(
-            legacyDatavizLavender100,
-            other.legacyDatavizLavender100,
-            t,
-          )!,
-      legacyDatavizLavender200:
-          Color.lerp(
-            legacyDatavizLavender200,
-            other.legacyDatavizLavender200,
-            t,
-          )!,
-      legacyDatavizLavender300:
-          Color.lerp(
-            legacyDatavizLavender300,
-            other.legacyDatavizLavender300,
-            t,
-          )!,
-      legacyDatavizLavender400:
-          Color.lerp(
-            legacyDatavizLavender400,
-            other.legacyDatavizLavender400,
-            t,
-          )!,
-      legacyDatavizLavender50:
-          Color.lerp(
-            legacyDatavizLavender50,
-            other.legacyDatavizLavender50,
-            t,
-          )!,
-      legacyDatavizLavender500:
-          Color.lerp(
-            legacyDatavizLavender500,
-            other.legacyDatavizLavender500,
-            t,
-          )!,
-      legacyDatavizLavender600:
-          Color.lerp(
-            legacyDatavizLavender600,
-            other.legacyDatavizLavender600,
-            t,
-          )!,
-      legacyDatavizLavender700:
-          Color.lerp(
-            legacyDatavizLavender700,
-            other.legacyDatavizLavender700,
-            t,
-          )!,
-      legacyDatavizLavender800:
-          Color.lerp(
-            legacyDatavizLavender800,
-            other.legacyDatavizLavender800,
-            t,
-          )!,
-      legacyDatavizLavender900:
-          Color.lerp(
-            legacyDatavizLavender900,
-            other.legacyDatavizLavender900,
-            t,
-          )!,
-      legacyDatavizLime100:
-          Color.lerp(legacyDatavizLime100, other.legacyDatavizLime100, t)!,
-      legacyDatavizLime200:
-          Color.lerp(legacyDatavizLime200, other.legacyDatavizLime200, t)!,
-      legacyDatavizLime300:
-          Color.lerp(legacyDatavizLime300, other.legacyDatavizLime300, t)!,
-      legacyDatavizLime400:
-          Color.lerp(legacyDatavizLime400, other.legacyDatavizLime400, t)!,
-      legacyDatavizLime50:
-          Color.lerp(legacyDatavizLime50, other.legacyDatavizLime50, t)!,
-      legacyDatavizLime500:
-          Color.lerp(legacyDatavizLime500, other.legacyDatavizLime500, t)!,
-      legacyDatavizLime600:
-          Color.lerp(legacyDatavizLime600, other.legacyDatavizLime600, t)!,
-      legacyDatavizLime700:
-          Color.lerp(legacyDatavizLime700, other.legacyDatavizLime700, t)!,
-      legacyDatavizLime800:
-          Color.lerp(legacyDatavizLime800, other.legacyDatavizLime800, t)!,
-      legacyDatavizLime900:
-          Color.lerp(legacyDatavizLime900, other.legacyDatavizLime900, t)!,
-      legacyDatavizMustard100:
-          Color.lerp(
-            legacyDatavizMustard100,
-            other.legacyDatavizMustard100,
-            t,
-          )!,
-      legacyDatavizMustard200:
-          Color.lerp(
-            legacyDatavizMustard200,
-            other.legacyDatavizMustard200,
-            t,
-          )!,
-      legacyDatavizMustard300:
-          Color.lerp(
-            legacyDatavizMustard300,
-            other.legacyDatavizMustard300,
-            t,
-          )!,
-      legacyDatavizMustard400:
-          Color.lerp(
-            legacyDatavizMustard400,
-            other.legacyDatavizMustard400,
-            t,
-          )!,
-      legacyDatavizMustard50:
-          Color.lerp(legacyDatavizMustard50, other.legacyDatavizMustard50, t)!,
-      legacyDatavizMustard500:
-          Color.lerp(
-            legacyDatavizMustard500,
-            other.legacyDatavizMustard500,
-            t,
-          )!,
-      legacyDatavizMustard600:
-          Color.lerp(
-            legacyDatavizMustard600,
-            other.legacyDatavizMustard600,
-            t,
-          )!,
-      legacyDatavizMustard700:
-          Color.lerp(
-            legacyDatavizMustard700,
-            other.legacyDatavizMustard700,
-            t,
-          )!,
-      legacyDatavizMustard800:
-          Color.lerp(
-            legacyDatavizMustard800,
-            other.legacyDatavizMustard800,
-            t,
-          )!,
-      legacyDatavizMustard900:
-          Color.lerp(
-            legacyDatavizMustard900,
-            other.legacyDatavizMustard900,
-            t,
-          )!,
-      legacyDatavizRuby100:
-          Color.lerp(legacyDatavizRuby100, other.legacyDatavizRuby100, t)!,
-      legacyDatavizRuby200:
-          Color.lerp(legacyDatavizRuby200, other.legacyDatavizRuby200, t)!,
-      legacyDatavizRuby300:
-          Color.lerp(legacyDatavizRuby300, other.legacyDatavizRuby300, t)!,
-      legacyDatavizRuby400:
-          Color.lerp(legacyDatavizRuby400, other.legacyDatavizRuby400, t)!,
-      legacyDatavizRuby50:
-          Color.lerp(legacyDatavizRuby50, other.legacyDatavizRuby50, t)!,
-      legacyDatavizRuby500:
-          Color.lerp(legacyDatavizRuby500, other.legacyDatavizRuby500, t)!,
-      legacyDatavizRuby600:
-          Color.lerp(legacyDatavizRuby600, other.legacyDatavizRuby600, t)!,
-      legacyDatavizRuby700:
-          Color.lerp(legacyDatavizRuby700, other.legacyDatavizRuby700, t)!,
-      legacyDatavizRuby800:
-          Color.lerp(legacyDatavizRuby800, other.legacyDatavizRuby800, t)!,
-      legacyDatavizRuby900:
-          Color.lerp(legacyDatavizRuby900, other.legacyDatavizRuby900, t)!,
-      legacyDatavizTangerine100:
-          Color.lerp(
-            legacyDatavizTangerine100,
-            other.legacyDatavizTangerine100,
-            t,
-          )!,
-      legacyDatavizTangerine200:
-          Color.lerp(
-            legacyDatavizTangerine200,
-            other.legacyDatavizTangerine200,
-            t,
-          )!,
-      legacyDatavizTangerine300:
-          Color.lerp(
-            legacyDatavizTangerine300,
-            other.legacyDatavizTangerine300,
-            t,
-          )!,
-      legacyDatavizTangerine400:
-          Color.lerp(
-            legacyDatavizTangerine400,
-            other.legacyDatavizTangerine400,
-            t,
-          )!,
-      legacyDatavizTangerine50:
-          Color.lerp(
-            legacyDatavizTangerine50,
-            other.legacyDatavizTangerine50,
-            t,
-          )!,
-      legacyDatavizTangerine500:
-          Color.lerp(
-            legacyDatavizTangerine500,
-            other.legacyDatavizTangerine500,
-            t,
-          )!,
-      legacyDatavizTangerine600:
-          Color.lerp(
-            legacyDatavizTangerine600,
-            other.legacyDatavizTangerine600,
-            t,
-          )!,
-      legacyDatavizTangerine700:
-          Color.lerp(
-            legacyDatavizTangerine700,
-            other.legacyDatavizTangerine700,
-            t,
-          )!,
-      legacyDatavizTangerine800:
-          Color.lerp(
-            legacyDatavizTangerine800,
-            other.legacyDatavizTangerine800,
-            t,
-          )!,
-      legacyDatavizTangerine900:
-          Color.lerp(
-            legacyDatavizTangerine900,
-            other.legacyDatavizTangerine900,
-            t,
-          )!,
-      legacyTagBackgroundBasicBold:
-          Color.lerp(
-            legacyTagBackgroundBasicBold,
-            other.legacyTagBackgroundBasicBold,
-            t,
-          )!,
-      legacyTagBackgroundDenim:
-          Color.lerp(
-            legacyTagBackgroundDenim,
-            other.legacyTagBackgroundDenim,
-            t,
-          )!,
-      legacyTagBackgroundLavender:
-          Color.lerp(
-            legacyTagBackgroundLavender,
-            other.legacyTagBackgroundLavender,
-            t,
-          )!,
-      legacyTagBackgroundLime:
-          Color.lerp(
-            legacyTagBackgroundLime,
-            other.legacyTagBackgroundLime,
-            t,
-          )!,
-      legacyTagBackgroundMustard:
-          Color.lerp(
-            legacyTagBackgroundMustard,
-            other.legacyTagBackgroundMustard,
-            t,
-          )!,
-      legacyTagBackgroundPrimary:
-          Color.lerp(
-            legacyTagBackgroundPrimary,
-            other.legacyTagBackgroundPrimary,
-            t,
-          )!,
-      legacyTagBackgroundRuby:
-          Color.lerp(
-            legacyTagBackgroundRuby,
-            other.legacyTagBackgroundRuby,
-            t,
-          )!,
-      legacyTagBackgroundTangerine:
-          Color.lerp(
-            legacyTagBackgroundTangerine,
-            other.legacyTagBackgroundTangerine,
-            t,
-          )!,
-      legacyTagBorderBasicBold:
-          Color.lerp(
-            legacyTagBorderBasicBold,
-            other.legacyTagBorderBasicBold,
-            t,
-          )!,
-      legacyTagBorderDenim:
-          Color.lerp(legacyTagBorderDenim, other.legacyTagBorderDenim, t)!,
-      legacyTagBorderLavender:
-          Color.lerp(
-            legacyTagBorderLavender,
-            other.legacyTagBorderLavender,
-            t,
-          )!,
-      legacyTagBorderLime:
-          Color.lerp(legacyTagBorderLime, other.legacyTagBorderLime, t)!,
-      legacyTagBorderMustard:
-          Color.lerp(legacyTagBorderMustard, other.legacyTagBorderMustard, t)!,
-      legacyTagBorderPrimary:
-          Color.lerp(legacyTagBorderPrimary, other.legacyTagBorderPrimary, t)!,
-      legacyTagBorderRuby:
-          Color.lerp(legacyTagBorderRuby, other.legacyTagBorderRuby, t)!,
-      legacyTagBorderTangerine:
-          Color.lerp(
-            legacyTagBorderTangerine,
-            other.legacyTagBorderTangerine,
-            t,
-          )!,
-      legacyTagTextBasicBold:
-          Color.lerp(legacyTagTextBasicBold, other.legacyTagTextBasicBold, t)!,
-      legacyTagTextDenim:
-          Color.lerp(legacyTagTextDenim, other.legacyTagTextDenim, t)!,
-      legacyTagTextLavender:
-          Color.lerp(legacyTagTextLavender, other.legacyTagTextLavender, t)!,
-      legacyTagTextLime:
-          Color.lerp(legacyTagTextLime, other.legacyTagTextLime, t)!,
-      legacyTagTextMustard:
-          Color.lerp(legacyTagTextMustard, other.legacyTagTextMustard, t)!,
-      legacyTagTextPrimary:
-          Color.lerp(legacyTagTextPrimary, other.legacyTagTextPrimary, t)!,
-      legacyTagTextRuby:
-          Color.lerp(legacyTagTextRuby, other.legacyTagTextRuby, t)!,
-      legacyTagTextTangerine:
-          Color.lerp(legacyTagTextTangerine, other.legacyTagTextTangerine, t)!,
-      paletteBasicsBlack:
-          Color.lerp(paletteBasicsBlack, other.paletteBasicsBlack, t)!,
-      paletteBasicsWhite:
-          Color.lerp(paletteBasicsWhite, other.paletteBasicsWhite, t)!,
-      paletteBasicsWhite64:
-          Color.lerp(paletteBasicsWhite64, other.paletteBasicsWhite64, t)!,
-      paletteBrandCoral0:
-          Color.lerp(paletteBrandCoral0, other.paletteBrandCoral0, t)!,
-      paletteBrandCoral100:
-          Color.lerp(paletteBrandCoral100, other.paletteBrandCoral100, t)!,
-      paletteBrandCoral1000:
-          Color.lerp(paletteBrandCoral1000, other.paletteBrandCoral1000, t)!,
-      paletteBrandCoral150:
-          Color.lerp(paletteBrandCoral150, other.paletteBrandCoral150, t)!,
-      paletteBrandCoral200:
-          Color.lerp(paletteBrandCoral200, other.paletteBrandCoral200, t)!,
-      paletteBrandCoral25:
-          Color.lerp(paletteBrandCoral25, other.paletteBrandCoral25, t)!,
-      paletteBrandCoral300:
-          Color.lerp(paletteBrandCoral300, other.paletteBrandCoral300, t)!,
-      paletteBrandCoral400:
-          Color.lerp(paletteBrandCoral400, other.paletteBrandCoral400, t)!,
-      paletteBrandCoral50:
-          Color.lerp(paletteBrandCoral50, other.paletteBrandCoral50, t)!,
-      paletteBrandCoral500:
-          Color.lerp(paletteBrandCoral500, other.paletteBrandCoral500, t)!,
-      paletteBrandCoral600:
-          Color.lerp(paletteBrandCoral600, other.paletteBrandCoral600, t)!,
-      paletteBrandCoral700:
-          Color.lerp(paletteBrandCoral700, other.paletteBrandCoral700, t)!,
-      paletteBrandCoral800:
-          Color.lerp(paletteBrandCoral800, other.paletteBrandCoral800, t)!,
-      paletteBrandCoral900:
-          Color.lerp(paletteBrandCoral900, other.paletteBrandCoral900, t)!,
-      paletteBrandGrey0:
-          Color.lerp(paletteBrandGrey0, other.paletteBrandGrey0, t)!,
-      paletteBrandGrey100:
-          Color.lerp(paletteBrandGrey100, other.paletteBrandGrey100, t)!,
-      paletteBrandGrey1000:
-          Color.lerp(paletteBrandGrey1000, other.paletteBrandGrey1000, t)!,
-      paletteBrandGrey150:
-          Color.lerp(paletteBrandGrey150, other.paletteBrandGrey150, t)!,
-      paletteBrandGrey200:
-          Color.lerp(paletteBrandGrey200, other.paletteBrandGrey200, t)!,
-      paletteBrandGrey25:
-          Color.lerp(paletteBrandGrey25, other.paletteBrandGrey25, t)!,
-      paletteBrandGrey300:
-          Color.lerp(paletteBrandGrey300, other.paletteBrandGrey300, t)!,
-      paletteBrandGrey400:
-          Color.lerp(paletteBrandGrey400, other.paletteBrandGrey400, t)!,
-      paletteBrandGrey50:
-          Color.lerp(paletteBrandGrey50, other.paletteBrandGrey50, t)!,
-      paletteBrandGrey500:
-          Color.lerp(paletteBrandGrey500, other.paletteBrandGrey500, t)!,
-      paletteBrandGrey600:
-          Color.lerp(paletteBrandGrey600, other.paletteBrandGrey600, t)!,
-      paletteBrandGrey700:
-          Color.lerp(paletteBrandGrey700, other.paletteBrandGrey700, t)!,
-      paletteBrandGrey800:
-          Color.lerp(paletteBrandGrey800, other.paletteBrandGrey800, t)!,
-      paletteBrandGrey900:
-          Color.lerp(paletteBrandGrey900, other.paletteBrandGrey900, t)!,
-      paletteBrandIndigo0:
-          Color.lerp(paletteBrandIndigo0, other.paletteBrandIndigo0, t)!,
-      paletteBrandIndigo100:
-          Color.lerp(paletteBrandIndigo100, other.paletteBrandIndigo100, t)!,
-      paletteBrandIndigo1000:
-          Color.lerp(paletteBrandIndigo1000, other.paletteBrandIndigo1000, t)!,
-      paletteBrandIndigo150:
-          Color.lerp(paletteBrandIndigo150, other.paletteBrandIndigo150, t)!,
-      paletteBrandIndigo200:
-          Color.lerp(paletteBrandIndigo200, other.paletteBrandIndigo200, t)!,
-      paletteBrandIndigo25:
-          Color.lerp(paletteBrandIndigo25, other.paletteBrandIndigo25, t)!,
-      paletteBrandIndigo300:
-          Color.lerp(paletteBrandIndigo300, other.paletteBrandIndigo300, t)!,
-      paletteBrandIndigo400:
-          Color.lerp(paletteBrandIndigo400, other.paletteBrandIndigo400, t)!,
-      paletteBrandIndigo50:
-          Color.lerp(paletteBrandIndigo50, other.paletteBrandIndigo50, t)!,
-      paletteBrandIndigo500:
-          Color.lerp(paletteBrandIndigo500, other.paletteBrandIndigo500, t)!,
-      paletteBrandIndigo600:
-          Color.lerp(paletteBrandIndigo600, other.paletteBrandIndigo600, t)!,
-      paletteBrandIndigo700:
-          Color.lerp(paletteBrandIndigo700, other.paletteBrandIndigo700, t)!,
-      paletteBrandIndigo800:
-          Color.lerp(paletteBrandIndigo800, other.paletteBrandIndigo800, t)!,
-      paletteBrandIndigo900:
-          Color.lerp(paletteBrandIndigo900, other.paletteBrandIndigo900, t)!,
-      paletteBrandNight0:
-          Color.lerp(paletteBrandNight0, other.paletteBrandNight0, t)!,
-      paletteBrandNight064:
-          Color.lerp(paletteBrandNight064, other.paletteBrandNight064, t)!,
-      paletteBrandNight100:
-          Color.lerp(paletteBrandNight100, other.paletteBrandNight100, t)!,
-      paletteBrandNight1000:
-          Color.lerp(paletteBrandNight1000, other.paletteBrandNight1000, t)!,
-      paletteBrandNight100012:
-          Color.lerp(
-            paletteBrandNight100012,
-            other.paletteBrandNight100012,
-            t,
-          )!,
-      paletteBrandNight100016:
-          Color.lerp(
-            paletteBrandNight100016,
-            other.paletteBrandNight100016,
-            t,
-          )!,
-      paletteBrandNight10008:
-          Color.lerp(paletteBrandNight10008, other.paletteBrandNight10008, t)!,
-      paletteBrandNight150:
-          Color.lerp(paletteBrandNight150, other.paletteBrandNight150, t)!,
-      paletteBrandNight200:
-          Color.lerp(paletteBrandNight200, other.paletteBrandNight200, t)!,
-      paletteBrandNight25:
-          Color.lerp(paletteBrandNight25, other.paletteBrandNight25, t)!,
-      paletteBrandNight300:
-          Color.lerp(paletteBrandNight300, other.paletteBrandNight300, t)!,
-      paletteBrandNight400:
-          Color.lerp(paletteBrandNight400, other.paletteBrandNight400, t)!,
-      paletteBrandNight50:
-          Color.lerp(paletteBrandNight50, other.paletteBrandNight50, t)!,
-      paletteBrandNight500:
-          Color.lerp(paletteBrandNight500, other.paletteBrandNight500, t)!,
-      paletteBrandNight600:
-          Color.lerp(paletteBrandNight600, other.paletteBrandNight600, t)!,
-      paletteBrandNight700:
-          Color.lerp(paletteBrandNight700, other.paletteBrandNight700, t)!,
-      paletteBrandNight800:
-          Color.lerp(paletteBrandNight800, other.paletteBrandNight800, t)!,
-      paletteBrandNight900:
-          Color.lerp(paletteBrandNight900, other.paletteBrandNight900, t)!,
-      paletteDatavizBlue:
-          Color.lerp(paletteDatavizBlue, other.paletteDatavizBlue, t)!,
-      paletteDatavizGreen:
-          Color.lerp(paletteDatavizGreen, other.paletteDatavizGreen, t)!,
-      paletteDatavizOrange:
-          Color.lerp(paletteDatavizOrange, other.paletteDatavizOrange, t)!,
-      paletteDatavizPink:
-          Color.lerp(paletteDatavizPink, other.paletteDatavizPink, t)!,
-      paletteDatavizPurple:
-          Color.lerp(paletteDatavizPurple, other.paletteDatavizPurple, t)!,
-      paletteDatavizRed:
-          Color.lerp(paletteDatavizRed, other.paletteDatavizRed, t)!,
-      paletteSemanticBlue0:
-          Color.lerp(paletteSemanticBlue0, other.paletteSemanticBlue0, t)!,
-      paletteSemanticBlue100:
-          Color.lerp(paletteSemanticBlue100, other.paletteSemanticBlue100, t)!,
-      paletteSemanticBlue1000:
-          Color.lerp(
-            paletteSemanticBlue1000,
-            other.paletteSemanticBlue1000,
-            t,
-          )!,
-      paletteSemanticBlue150:
-          Color.lerp(paletteSemanticBlue150, other.paletteSemanticBlue150, t)!,
-      paletteSemanticBlue200:
-          Color.lerp(paletteSemanticBlue200, other.paletteSemanticBlue200, t)!,
-      paletteSemanticBlue25:
-          Color.lerp(paletteSemanticBlue25, other.paletteSemanticBlue25, t)!,
-      paletteSemanticBlue300:
-          Color.lerp(paletteSemanticBlue300, other.paletteSemanticBlue300, t)!,
-      paletteSemanticBlue400:
-          Color.lerp(paletteSemanticBlue400, other.paletteSemanticBlue400, t)!,
-      paletteSemanticBlue50:
-          Color.lerp(paletteSemanticBlue50, other.paletteSemanticBlue50, t)!,
-      paletteSemanticBlue500:
-          Color.lerp(paletteSemanticBlue500, other.paletteSemanticBlue500, t)!,
-      paletteSemanticBlue600:
-          Color.lerp(paletteSemanticBlue600, other.paletteSemanticBlue600, t)!,
-      paletteSemanticBlue700:
-          Color.lerp(paletteSemanticBlue700, other.paletteSemanticBlue700, t)!,
-      paletteSemanticBlue800:
-          Color.lerp(paletteSemanticBlue800, other.paletteSemanticBlue800, t)!,
-      paletteSemanticBlue900:
-          Color.lerp(paletteSemanticBlue900, other.paletteSemanticBlue900, t)!,
-      paletteSemanticGreen0:
-          Color.lerp(paletteSemanticGreen0, other.paletteSemanticGreen0, t)!,
-      paletteSemanticGreen100:
-          Color.lerp(
-            paletteSemanticGreen100,
-            other.paletteSemanticGreen100,
-            t,
-          )!,
-      paletteSemanticGreen1000:
-          Color.lerp(
-            paletteSemanticGreen1000,
-            other.paletteSemanticGreen1000,
-            t,
-          )!,
-      paletteSemanticGreen150:
-          Color.lerp(
-            paletteSemanticGreen150,
-            other.paletteSemanticGreen150,
-            t,
-          )!,
-      paletteSemanticGreen200:
-          Color.lerp(
-            paletteSemanticGreen200,
-            other.paletteSemanticGreen200,
-            t,
-          )!,
-      paletteSemanticGreen25:
-          Color.lerp(paletteSemanticGreen25, other.paletteSemanticGreen25, t)!,
-      paletteSemanticGreen300:
-          Color.lerp(
-            paletteSemanticGreen300,
-            other.paletteSemanticGreen300,
-            t,
-          )!,
-      paletteSemanticGreen400:
-          Color.lerp(
-            paletteSemanticGreen400,
-            other.paletteSemanticGreen400,
-            t,
-          )!,
-      paletteSemanticGreen50:
-          Color.lerp(paletteSemanticGreen50, other.paletteSemanticGreen50, t)!,
-      paletteSemanticGreen500:
-          Color.lerp(
-            paletteSemanticGreen500,
-            other.paletteSemanticGreen500,
-            t,
-          )!,
-      paletteSemanticGreen600:
-          Color.lerp(
-            paletteSemanticGreen600,
-            other.paletteSemanticGreen600,
-            t,
-          )!,
-      paletteSemanticGreen700:
-          Color.lerp(
-            paletteSemanticGreen700,
-            other.paletteSemanticGreen700,
-            t,
-          )!,
-      paletteSemanticGreen800:
-          Color.lerp(
-            paletteSemanticGreen800,
-            other.paletteSemanticGreen800,
-            t,
-          )!,
-      paletteSemanticGreen900:
-          Color.lerp(
-            paletteSemanticGreen900,
-            other.paletteSemanticGreen900,
-            t,
-          )!,
-      paletteSemanticOrange0:
-          Color.lerp(paletteSemanticOrange0, other.paletteSemanticOrange0, t)!,
-      paletteSemanticOrange100:
-          Color.lerp(
-            paletteSemanticOrange100,
-            other.paletteSemanticOrange100,
-            t,
-          )!,
-      paletteSemanticOrange1000:
-          Color.lerp(
-            paletteSemanticOrange1000,
-            other.paletteSemanticOrange1000,
-            t,
-          )!,
-      paletteSemanticOrange150:
-          Color.lerp(
-            paletteSemanticOrange150,
-            other.paletteSemanticOrange150,
-            t,
-          )!,
-      paletteSemanticOrange200:
-          Color.lerp(
-            paletteSemanticOrange200,
-            other.paletteSemanticOrange200,
-            t,
-          )!,
-      paletteSemanticOrange25:
-          Color.lerp(
-            paletteSemanticOrange25,
-            other.paletteSemanticOrange25,
-            t,
-          )!,
-      paletteSemanticOrange300:
-          Color.lerp(
-            paletteSemanticOrange300,
-            other.paletteSemanticOrange300,
-            t,
-          )!,
-      paletteSemanticOrange400:
-          Color.lerp(
-            paletteSemanticOrange400,
-            other.paletteSemanticOrange400,
-            t,
-          )!,
-      paletteSemanticOrange50:
-          Color.lerp(
-            paletteSemanticOrange50,
-            other.paletteSemanticOrange50,
-            t,
-          )!,
-      paletteSemanticOrange500:
-          Color.lerp(
-            paletteSemanticOrange500,
-            other.paletteSemanticOrange500,
-            t,
-          )!,
-      paletteSemanticOrange600:
-          Color.lerp(
-            paletteSemanticOrange600,
-            other.paletteSemanticOrange600,
-            t,
-          )!,
-      paletteSemanticOrange700:
-          Color.lerp(
-            paletteSemanticOrange700,
-            other.paletteSemanticOrange700,
-            t,
-          )!,
-      paletteSemanticOrange800:
-          Color.lerp(
-            paletteSemanticOrange800,
-            other.paletteSemanticOrange800,
-            t,
-          )!,
-      paletteSemanticOrange900:
-          Color.lerp(
-            paletteSemanticOrange900,
-            other.paletteSemanticOrange900,
-            t,
-          )!,
-      paletteSemanticRed0:
-          Color.lerp(paletteSemanticRed0, other.paletteSemanticRed0, t)!,
-      paletteSemanticRed100:
-          Color.lerp(paletteSemanticRed100, other.paletteSemanticRed100, t)!,
-      paletteSemanticRed1000:
-          Color.lerp(paletteSemanticRed1000, other.paletteSemanticRed1000, t)!,
-      paletteSemanticRed150:
-          Color.lerp(paletteSemanticRed150, other.paletteSemanticRed150, t)!,
-      paletteSemanticRed200:
-          Color.lerp(paletteSemanticRed200, other.paletteSemanticRed200, t)!,
-      paletteSemanticRed25:
-          Color.lerp(paletteSemanticRed25, other.paletteSemanticRed25, t)!,
-      paletteSemanticRed300:
-          Color.lerp(paletteSemanticRed300, other.paletteSemanticRed300, t)!,
-      paletteSemanticRed400:
-          Color.lerp(paletteSemanticRed400, other.paletteSemanticRed400, t)!,
-      paletteSemanticRed50:
-          Color.lerp(paletteSemanticRed50, other.paletteSemanticRed50, t)!,
-      paletteSemanticRed500:
-          Color.lerp(paletteSemanticRed500, other.paletteSemanticRed500, t)!,
-      paletteSemanticRed600:
-          Color.lerp(paletteSemanticRed600, other.paletteSemanticRed600, t)!,
-      paletteSemanticRed700:
-          Color.lerp(paletteSemanticRed700, other.paletteSemanticRed700, t)!,
-      paletteSemanticRed800:
-          Color.lerp(paletteSemanticRed800, other.paletteSemanticRed800, t)!,
-      paletteSemanticRed900:
-          Color.lerp(paletteSemanticRed900, other.paletteSemanticRed900, t)!,
+      borderInteractiveBoldActive: Color.lerp(
+        borderInteractiveBoldActive,
+        other.borderInteractiveBoldActive,
+        t,
+      )!,
+      borderInteractiveBoldDefault: Color.lerp(
+        borderInteractiveBoldDefault,
+        other.borderInteractiveBoldDefault,
+        t,
+      )!,
+      borderInteractiveBoldHover: Color.lerp(
+        borderInteractiveBoldHover,
+        other.borderInteractiveBoldHover,
+        t,
+      )!,
+      borderInteractiveFocus: Color.lerp(
+        borderInteractiveFocus,
+        other.borderInteractiveFocus,
+        t,
+      )!,
+      borderInteractivePrimaryActive: Color.lerp(
+        borderInteractivePrimaryActive,
+        other.borderInteractivePrimaryActive,
+        t,
+      )!,
+      borderInteractivePrimaryDefault: Color.lerp(
+        borderInteractivePrimaryDefault,
+        other.borderInteractivePrimaryDefault,
+        t,
+      )!,
+      borderInteractivePrimaryHover: Color.lerp(
+        borderInteractivePrimaryHover,
+        other.borderInteractivePrimaryHover,
+        t,
+      )!,
+      borderInteractiveSecondaryActive: Color.lerp(
+        borderInteractiveSecondaryActive,
+        other.borderInteractiveSecondaryActive,
+        t,
+      )!,
+      borderInteractiveSecondaryDefault: Color.lerp(
+        borderInteractiveSecondaryDefault,
+        other.borderInteractiveSecondaryDefault,
+        t,
+      )!,
+      borderInteractiveSecondaryHover: Color.lerp(
+        borderInteractiveSecondaryHover,
+        other.borderInteractiveSecondaryHover,
+        t,
+      )!,
+      borderStaticInverse: Color.lerp(
+        borderStaticInverse,
+        other.borderStaticInverse,
+        t,
+      )!,
+      borderStaticOnColor: Color.lerp(
+        borderStaticOnColor,
+        other.borderStaticOnColor,
+        t,
+      )!,
+      borderStaticPrimary: Color.lerp(
+        borderStaticPrimary,
+        other.borderStaticPrimary,
+        t,
+      )!,
+      borderStaticSecondary: Color.lerp(
+        borderStaticSecondary,
+        other.borderStaticSecondary,
+        t,
+      )!,
+      borderStaticTertiary: Color.lerp(
+        borderStaticTertiary,
+        other.borderStaticTertiary,
+        t,
+      )!,
+      legacyDatavizDenim100: Color.lerp(
+        legacyDatavizDenim100,
+        other.legacyDatavizDenim100,
+        t,
+      )!,
+      legacyDatavizDenim200: Color.lerp(
+        legacyDatavizDenim200,
+        other.legacyDatavizDenim200,
+        t,
+      )!,
+      legacyDatavizDenim300: Color.lerp(
+        legacyDatavizDenim300,
+        other.legacyDatavizDenim300,
+        t,
+      )!,
+      legacyDatavizDenim400: Color.lerp(
+        legacyDatavizDenim400,
+        other.legacyDatavizDenim400,
+        t,
+      )!,
+      legacyDatavizDenim50: Color.lerp(
+        legacyDatavizDenim50,
+        other.legacyDatavizDenim50,
+        t,
+      )!,
+      legacyDatavizDenim500: Color.lerp(
+        legacyDatavizDenim500,
+        other.legacyDatavizDenim500,
+        t,
+      )!,
+      legacyDatavizDenim600: Color.lerp(
+        legacyDatavizDenim600,
+        other.legacyDatavizDenim600,
+        t,
+      )!,
+      legacyDatavizDenim700: Color.lerp(
+        legacyDatavizDenim700,
+        other.legacyDatavizDenim700,
+        t,
+      )!,
+      legacyDatavizDenim800: Color.lerp(
+        legacyDatavizDenim800,
+        other.legacyDatavizDenim800,
+        t,
+      )!,
+      legacyDatavizDenim900: Color.lerp(
+        legacyDatavizDenim900,
+        other.legacyDatavizDenim900,
+        t,
+      )!,
+      legacyDatavizLavender100: Color.lerp(
+        legacyDatavizLavender100,
+        other.legacyDatavizLavender100,
+        t,
+      )!,
+      legacyDatavizLavender200: Color.lerp(
+        legacyDatavizLavender200,
+        other.legacyDatavizLavender200,
+        t,
+      )!,
+      legacyDatavizLavender300: Color.lerp(
+        legacyDatavizLavender300,
+        other.legacyDatavizLavender300,
+        t,
+      )!,
+      legacyDatavizLavender400: Color.lerp(
+        legacyDatavizLavender400,
+        other.legacyDatavizLavender400,
+        t,
+      )!,
+      legacyDatavizLavender50: Color.lerp(
+        legacyDatavizLavender50,
+        other.legacyDatavizLavender50,
+        t,
+      )!,
+      legacyDatavizLavender500: Color.lerp(
+        legacyDatavizLavender500,
+        other.legacyDatavizLavender500,
+        t,
+      )!,
+      legacyDatavizLavender600: Color.lerp(
+        legacyDatavizLavender600,
+        other.legacyDatavizLavender600,
+        t,
+      )!,
+      legacyDatavizLavender700: Color.lerp(
+        legacyDatavizLavender700,
+        other.legacyDatavizLavender700,
+        t,
+      )!,
+      legacyDatavizLavender800: Color.lerp(
+        legacyDatavizLavender800,
+        other.legacyDatavizLavender800,
+        t,
+      )!,
+      legacyDatavizLavender900: Color.lerp(
+        legacyDatavizLavender900,
+        other.legacyDatavizLavender900,
+        t,
+      )!,
+      legacyDatavizLime100: Color.lerp(
+        legacyDatavizLime100,
+        other.legacyDatavizLime100,
+        t,
+      )!,
+      legacyDatavizLime200: Color.lerp(
+        legacyDatavizLime200,
+        other.legacyDatavizLime200,
+        t,
+      )!,
+      legacyDatavizLime300: Color.lerp(
+        legacyDatavizLime300,
+        other.legacyDatavizLime300,
+        t,
+      )!,
+      legacyDatavizLime400: Color.lerp(
+        legacyDatavizLime400,
+        other.legacyDatavizLime400,
+        t,
+      )!,
+      legacyDatavizLime50: Color.lerp(
+        legacyDatavizLime50,
+        other.legacyDatavizLime50,
+        t,
+      )!,
+      legacyDatavizLime500: Color.lerp(
+        legacyDatavizLime500,
+        other.legacyDatavizLime500,
+        t,
+      )!,
+      legacyDatavizLime600: Color.lerp(
+        legacyDatavizLime600,
+        other.legacyDatavizLime600,
+        t,
+      )!,
+      legacyDatavizLime700: Color.lerp(
+        legacyDatavizLime700,
+        other.legacyDatavizLime700,
+        t,
+      )!,
+      legacyDatavizLime800: Color.lerp(
+        legacyDatavizLime800,
+        other.legacyDatavizLime800,
+        t,
+      )!,
+      legacyDatavizLime900: Color.lerp(
+        legacyDatavizLime900,
+        other.legacyDatavizLime900,
+        t,
+      )!,
+      legacyDatavizMustard100: Color.lerp(
+        legacyDatavizMustard100,
+        other.legacyDatavizMustard100,
+        t,
+      )!,
+      legacyDatavizMustard200: Color.lerp(
+        legacyDatavizMustard200,
+        other.legacyDatavizMustard200,
+        t,
+      )!,
+      legacyDatavizMustard300: Color.lerp(
+        legacyDatavizMustard300,
+        other.legacyDatavizMustard300,
+        t,
+      )!,
+      legacyDatavizMustard400: Color.lerp(
+        legacyDatavizMustard400,
+        other.legacyDatavizMustard400,
+        t,
+      )!,
+      legacyDatavizMustard50: Color.lerp(
+        legacyDatavizMustard50,
+        other.legacyDatavizMustard50,
+        t,
+      )!,
+      legacyDatavizMustard500: Color.lerp(
+        legacyDatavizMustard500,
+        other.legacyDatavizMustard500,
+        t,
+      )!,
+      legacyDatavizMustard600: Color.lerp(
+        legacyDatavizMustard600,
+        other.legacyDatavizMustard600,
+        t,
+      )!,
+      legacyDatavizMustard700: Color.lerp(
+        legacyDatavizMustard700,
+        other.legacyDatavizMustard700,
+        t,
+      )!,
+      legacyDatavizMustard800: Color.lerp(
+        legacyDatavizMustard800,
+        other.legacyDatavizMustard800,
+        t,
+      )!,
+      legacyDatavizMustard900: Color.lerp(
+        legacyDatavizMustard900,
+        other.legacyDatavizMustard900,
+        t,
+      )!,
+      legacyDatavizRuby100: Color.lerp(
+        legacyDatavizRuby100,
+        other.legacyDatavizRuby100,
+        t,
+      )!,
+      legacyDatavizRuby200: Color.lerp(
+        legacyDatavizRuby200,
+        other.legacyDatavizRuby200,
+        t,
+      )!,
+      legacyDatavizRuby300: Color.lerp(
+        legacyDatavizRuby300,
+        other.legacyDatavizRuby300,
+        t,
+      )!,
+      legacyDatavizRuby400: Color.lerp(
+        legacyDatavizRuby400,
+        other.legacyDatavizRuby400,
+        t,
+      )!,
+      legacyDatavizRuby50: Color.lerp(
+        legacyDatavizRuby50,
+        other.legacyDatavizRuby50,
+        t,
+      )!,
+      legacyDatavizRuby500: Color.lerp(
+        legacyDatavizRuby500,
+        other.legacyDatavizRuby500,
+        t,
+      )!,
+      legacyDatavizRuby600: Color.lerp(
+        legacyDatavizRuby600,
+        other.legacyDatavizRuby600,
+        t,
+      )!,
+      legacyDatavizRuby700: Color.lerp(
+        legacyDatavizRuby700,
+        other.legacyDatavizRuby700,
+        t,
+      )!,
+      legacyDatavizRuby800: Color.lerp(
+        legacyDatavizRuby800,
+        other.legacyDatavizRuby800,
+        t,
+      )!,
+      legacyDatavizRuby900: Color.lerp(
+        legacyDatavizRuby900,
+        other.legacyDatavizRuby900,
+        t,
+      )!,
+      legacyDatavizTangerine100: Color.lerp(
+        legacyDatavizTangerine100,
+        other.legacyDatavizTangerine100,
+        t,
+      )!,
+      legacyDatavizTangerine200: Color.lerp(
+        legacyDatavizTangerine200,
+        other.legacyDatavizTangerine200,
+        t,
+      )!,
+      legacyDatavizTangerine300: Color.lerp(
+        legacyDatavizTangerine300,
+        other.legacyDatavizTangerine300,
+        t,
+      )!,
+      legacyDatavizTangerine400: Color.lerp(
+        legacyDatavizTangerine400,
+        other.legacyDatavizTangerine400,
+        t,
+      )!,
+      legacyDatavizTangerine50: Color.lerp(
+        legacyDatavizTangerine50,
+        other.legacyDatavizTangerine50,
+        t,
+      )!,
+      legacyDatavizTangerine500: Color.lerp(
+        legacyDatavizTangerine500,
+        other.legacyDatavizTangerine500,
+        t,
+      )!,
+      legacyDatavizTangerine600: Color.lerp(
+        legacyDatavizTangerine600,
+        other.legacyDatavizTangerine600,
+        t,
+      )!,
+      legacyDatavizTangerine700: Color.lerp(
+        legacyDatavizTangerine700,
+        other.legacyDatavizTangerine700,
+        t,
+      )!,
+      legacyDatavizTangerine800: Color.lerp(
+        legacyDatavizTangerine800,
+        other.legacyDatavizTangerine800,
+        t,
+      )!,
+      legacyDatavizTangerine900: Color.lerp(
+        legacyDatavizTangerine900,
+        other.legacyDatavizTangerine900,
+        t,
+      )!,
+      legacyTagBackgroundBasicBold: Color.lerp(
+        legacyTagBackgroundBasicBold,
+        other.legacyTagBackgroundBasicBold,
+        t,
+      )!,
+      legacyTagBackgroundDenim: Color.lerp(
+        legacyTagBackgroundDenim,
+        other.legacyTagBackgroundDenim,
+        t,
+      )!,
+      legacyTagBackgroundLavender: Color.lerp(
+        legacyTagBackgroundLavender,
+        other.legacyTagBackgroundLavender,
+        t,
+      )!,
+      legacyTagBackgroundLime: Color.lerp(
+        legacyTagBackgroundLime,
+        other.legacyTagBackgroundLime,
+        t,
+      )!,
+      legacyTagBackgroundMustard: Color.lerp(
+        legacyTagBackgroundMustard,
+        other.legacyTagBackgroundMustard,
+        t,
+      )!,
+      legacyTagBackgroundPrimary: Color.lerp(
+        legacyTagBackgroundPrimary,
+        other.legacyTagBackgroundPrimary,
+        t,
+      )!,
+      legacyTagBackgroundRuby: Color.lerp(
+        legacyTagBackgroundRuby,
+        other.legacyTagBackgroundRuby,
+        t,
+      )!,
+      legacyTagBackgroundTangerine: Color.lerp(
+        legacyTagBackgroundTangerine,
+        other.legacyTagBackgroundTangerine,
+        t,
+      )!,
+      legacyTagBorderBasicBold: Color.lerp(
+        legacyTagBorderBasicBold,
+        other.legacyTagBorderBasicBold,
+        t,
+      )!,
+      legacyTagBorderDenim: Color.lerp(
+        legacyTagBorderDenim,
+        other.legacyTagBorderDenim,
+        t,
+      )!,
+      legacyTagBorderLavender: Color.lerp(
+        legacyTagBorderLavender,
+        other.legacyTagBorderLavender,
+        t,
+      )!,
+      legacyTagBorderLime: Color.lerp(
+        legacyTagBorderLime,
+        other.legacyTagBorderLime,
+        t,
+      )!,
+      legacyTagBorderMustard: Color.lerp(
+        legacyTagBorderMustard,
+        other.legacyTagBorderMustard,
+        t,
+      )!,
+      legacyTagBorderPrimary: Color.lerp(
+        legacyTagBorderPrimary,
+        other.legacyTagBorderPrimary,
+        t,
+      )!,
+      legacyTagBorderRuby: Color.lerp(
+        legacyTagBorderRuby,
+        other.legacyTagBorderRuby,
+        t,
+      )!,
+      legacyTagBorderTangerine: Color.lerp(
+        legacyTagBorderTangerine,
+        other.legacyTagBorderTangerine,
+        t,
+      )!,
+      legacyTagTextBasicBold: Color.lerp(
+        legacyTagTextBasicBold,
+        other.legacyTagTextBasicBold,
+        t,
+      )!,
+      legacyTagTextDenim: Color.lerp(
+        legacyTagTextDenim,
+        other.legacyTagTextDenim,
+        t,
+      )!,
+      legacyTagTextLavender: Color.lerp(
+        legacyTagTextLavender,
+        other.legacyTagTextLavender,
+        t,
+      )!,
+      legacyTagTextLime: Color.lerp(
+        legacyTagTextLime,
+        other.legacyTagTextLime,
+        t,
+      )!,
+      legacyTagTextMustard: Color.lerp(
+        legacyTagTextMustard,
+        other.legacyTagTextMustard,
+        t,
+      )!,
+      legacyTagTextPrimary: Color.lerp(
+        legacyTagTextPrimary,
+        other.legacyTagTextPrimary,
+        t,
+      )!,
+      legacyTagTextRuby: Color.lerp(
+        legacyTagTextRuby,
+        other.legacyTagTextRuby,
+        t,
+      )!,
+      legacyTagTextTangerine: Color.lerp(
+        legacyTagTextTangerine,
+        other.legacyTagTextTangerine,
+        t,
+      )!,
+      paletteBasicsBlack: Color.lerp(
+        paletteBasicsBlack,
+        other.paletteBasicsBlack,
+        t,
+      )!,
+      paletteBasicsWhite: Color.lerp(
+        paletteBasicsWhite,
+        other.paletteBasicsWhite,
+        t,
+      )!,
+      paletteBasicsWhite64: Color.lerp(
+        paletteBasicsWhite64,
+        other.paletteBasicsWhite64,
+        t,
+      )!,
+      paletteBrandCoral0: Color.lerp(
+        paletteBrandCoral0,
+        other.paletteBrandCoral0,
+        t,
+      )!,
+      paletteBrandCoral100: Color.lerp(
+        paletteBrandCoral100,
+        other.paletteBrandCoral100,
+        t,
+      )!,
+      paletteBrandCoral1000: Color.lerp(
+        paletteBrandCoral1000,
+        other.paletteBrandCoral1000,
+        t,
+      )!,
+      paletteBrandCoral150: Color.lerp(
+        paletteBrandCoral150,
+        other.paletteBrandCoral150,
+        t,
+      )!,
+      paletteBrandCoral200: Color.lerp(
+        paletteBrandCoral200,
+        other.paletteBrandCoral200,
+        t,
+      )!,
+      paletteBrandCoral25: Color.lerp(
+        paletteBrandCoral25,
+        other.paletteBrandCoral25,
+        t,
+      )!,
+      paletteBrandCoral300: Color.lerp(
+        paletteBrandCoral300,
+        other.paletteBrandCoral300,
+        t,
+      )!,
+      paletteBrandCoral400: Color.lerp(
+        paletteBrandCoral400,
+        other.paletteBrandCoral400,
+        t,
+      )!,
+      paletteBrandCoral50: Color.lerp(
+        paletteBrandCoral50,
+        other.paletteBrandCoral50,
+        t,
+      )!,
+      paletteBrandCoral500: Color.lerp(
+        paletteBrandCoral500,
+        other.paletteBrandCoral500,
+        t,
+      )!,
+      paletteBrandCoral600: Color.lerp(
+        paletteBrandCoral600,
+        other.paletteBrandCoral600,
+        t,
+      )!,
+      paletteBrandCoral700: Color.lerp(
+        paletteBrandCoral700,
+        other.paletteBrandCoral700,
+        t,
+      )!,
+      paletteBrandCoral800: Color.lerp(
+        paletteBrandCoral800,
+        other.paletteBrandCoral800,
+        t,
+      )!,
+      paletteBrandCoral900: Color.lerp(
+        paletteBrandCoral900,
+        other.paletteBrandCoral900,
+        t,
+      )!,
+      paletteBrandGrey0: Color.lerp(
+        paletteBrandGrey0,
+        other.paletteBrandGrey0,
+        t,
+      )!,
+      paletteBrandGrey100: Color.lerp(
+        paletteBrandGrey100,
+        other.paletteBrandGrey100,
+        t,
+      )!,
+      paletteBrandGrey1000: Color.lerp(
+        paletteBrandGrey1000,
+        other.paletteBrandGrey1000,
+        t,
+      )!,
+      paletteBrandGrey150: Color.lerp(
+        paletteBrandGrey150,
+        other.paletteBrandGrey150,
+        t,
+      )!,
+      paletteBrandGrey200: Color.lerp(
+        paletteBrandGrey200,
+        other.paletteBrandGrey200,
+        t,
+      )!,
+      paletteBrandGrey25: Color.lerp(
+        paletteBrandGrey25,
+        other.paletteBrandGrey25,
+        t,
+      )!,
+      paletteBrandGrey300: Color.lerp(
+        paletteBrandGrey300,
+        other.paletteBrandGrey300,
+        t,
+      )!,
+      paletteBrandGrey400: Color.lerp(
+        paletteBrandGrey400,
+        other.paletteBrandGrey400,
+        t,
+      )!,
+      paletteBrandGrey50: Color.lerp(
+        paletteBrandGrey50,
+        other.paletteBrandGrey50,
+        t,
+      )!,
+      paletteBrandGrey500: Color.lerp(
+        paletteBrandGrey500,
+        other.paletteBrandGrey500,
+        t,
+      )!,
+      paletteBrandGrey600: Color.lerp(
+        paletteBrandGrey600,
+        other.paletteBrandGrey600,
+        t,
+      )!,
+      paletteBrandGrey700: Color.lerp(
+        paletteBrandGrey700,
+        other.paletteBrandGrey700,
+        t,
+      )!,
+      paletteBrandGrey800: Color.lerp(
+        paletteBrandGrey800,
+        other.paletteBrandGrey800,
+        t,
+      )!,
+      paletteBrandGrey900: Color.lerp(
+        paletteBrandGrey900,
+        other.paletteBrandGrey900,
+        t,
+      )!,
+      paletteBrandIndigo0: Color.lerp(
+        paletteBrandIndigo0,
+        other.paletteBrandIndigo0,
+        t,
+      )!,
+      paletteBrandIndigo100: Color.lerp(
+        paletteBrandIndigo100,
+        other.paletteBrandIndigo100,
+        t,
+      )!,
+      paletteBrandIndigo1000: Color.lerp(
+        paletteBrandIndigo1000,
+        other.paletteBrandIndigo1000,
+        t,
+      )!,
+      paletteBrandIndigo150: Color.lerp(
+        paletteBrandIndigo150,
+        other.paletteBrandIndigo150,
+        t,
+      )!,
+      paletteBrandIndigo200: Color.lerp(
+        paletteBrandIndigo200,
+        other.paletteBrandIndigo200,
+        t,
+      )!,
+      paletteBrandIndigo25: Color.lerp(
+        paletteBrandIndigo25,
+        other.paletteBrandIndigo25,
+        t,
+      )!,
+      paletteBrandIndigo300: Color.lerp(
+        paletteBrandIndigo300,
+        other.paletteBrandIndigo300,
+        t,
+      )!,
+      paletteBrandIndigo400: Color.lerp(
+        paletteBrandIndigo400,
+        other.paletteBrandIndigo400,
+        t,
+      )!,
+      paletteBrandIndigo50: Color.lerp(
+        paletteBrandIndigo50,
+        other.paletteBrandIndigo50,
+        t,
+      )!,
+      paletteBrandIndigo500: Color.lerp(
+        paletteBrandIndigo500,
+        other.paletteBrandIndigo500,
+        t,
+      )!,
+      paletteBrandIndigo600: Color.lerp(
+        paletteBrandIndigo600,
+        other.paletteBrandIndigo600,
+        t,
+      )!,
+      paletteBrandIndigo700: Color.lerp(
+        paletteBrandIndigo700,
+        other.paletteBrandIndigo700,
+        t,
+      )!,
+      paletteBrandIndigo800: Color.lerp(
+        paletteBrandIndigo800,
+        other.paletteBrandIndigo800,
+        t,
+      )!,
+      paletteBrandIndigo900: Color.lerp(
+        paletteBrandIndigo900,
+        other.paletteBrandIndigo900,
+        t,
+      )!,
+      paletteBrandNight0: Color.lerp(
+        paletteBrandNight0,
+        other.paletteBrandNight0,
+        t,
+      )!,
+      paletteBrandNight064: Color.lerp(
+        paletteBrandNight064,
+        other.paletteBrandNight064,
+        t,
+      )!,
+      paletteBrandNight100: Color.lerp(
+        paletteBrandNight100,
+        other.paletteBrandNight100,
+        t,
+      )!,
+      paletteBrandNight1000: Color.lerp(
+        paletteBrandNight1000,
+        other.paletteBrandNight1000,
+        t,
+      )!,
+      paletteBrandNight100012: Color.lerp(
+        paletteBrandNight100012,
+        other.paletteBrandNight100012,
+        t,
+      )!,
+      paletteBrandNight100016: Color.lerp(
+        paletteBrandNight100016,
+        other.paletteBrandNight100016,
+        t,
+      )!,
+      paletteBrandNight10008: Color.lerp(
+        paletteBrandNight10008,
+        other.paletteBrandNight10008,
+        t,
+      )!,
+      paletteBrandNight150: Color.lerp(
+        paletteBrandNight150,
+        other.paletteBrandNight150,
+        t,
+      )!,
+      paletteBrandNight200: Color.lerp(
+        paletteBrandNight200,
+        other.paletteBrandNight200,
+        t,
+      )!,
+      paletteBrandNight25: Color.lerp(
+        paletteBrandNight25,
+        other.paletteBrandNight25,
+        t,
+      )!,
+      paletteBrandNight300: Color.lerp(
+        paletteBrandNight300,
+        other.paletteBrandNight300,
+        t,
+      )!,
+      paletteBrandNight400: Color.lerp(
+        paletteBrandNight400,
+        other.paletteBrandNight400,
+        t,
+      )!,
+      paletteBrandNight50: Color.lerp(
+        paletteBrandNight50,
+        other.paletteBrandNight50,
+        t,
+      )!,
+      paletteBrandNight500: Color.lerp(
+        paletteBrandNight500,
+        other.paletteBrandNight500,
+        t,
+      )!,
+      paletteBrandNight600: Color.lerp(
+        paletteBrandNight600,
+        other.paletteBrandNight600,
+        t,
+      )!,
+      paletteBrandNight700: Color.lerp(
+        paletteBrandNight700,
+        other.paletteBrandNight700,
+        t,
+      )!,
+      paletteBrandNight800: Color.lerp(
+        paletteBrandNight800,
+        other.paletteBrandNight800,
+        t,
+      )!,
+      paletteBrandNight900: Color.lerp(
+        paletteBrandNight900,
+        other.paletteBrandNight900,
+        t,
+      )!,
+      paletteDatavizBlue: Color.lerp(
+        paletteDatavizBlue,
+        other.paletteDatavizBlue,
+        t,
+      )!,
+      paletteDatavizGreen: Color.lerp(
+        paletteDatavizGreen,
+        other.paletteDatavizGreen,
+        t,
+      )!,
+      paletteDatavizOrange: Color.lerp(
+        paletteDatavizOrange,
+        other.paletteDatavizOrange,
+        t,
+      )!,
+      paletteDatavizPink: Color.lerp(
+        paletteDatavizPink,
+        other.paletteDatavizPink,
+        t,
+      )!,
+      paletteDatavizPurple: Color.lerp(
+        paletteDatavizPurple,
+        other.paletteDatavizPurple,
+        t,
+      )!,
+      paletteDatavizRed: Color.lerp(
+        paletteDatavizRed,
+        other.paletteDatavizRed,
+        t,
+      )!,
+      paletteSemanticBlue0: Color.lerp(
+        paletteSemanticBlue0,
+        other.paletteSemanticBlue0,
+        t,
+      )!,
+      paletteSemanticBlue100: Color.lerp(
+        paletteSemanticBlue100,
+        other.paletteSemanticBlue100,
+        t,
+      )!,
+      paletteSemanticBlue1000: Color.lerp(
+        paletteSemanticBlue1000,
+        other.paletteSemanticBlue1000,
+        t,
+      )!,
+      paletteSemanticBlue150: Color.lerp(
+        paletteSemanticBlue150,
+        other.paletteSemanticBlue150,
+        t,
+      )!,
+      paletteSemanticBlue200: Color.lerp(
+        paletteSemanticBlue200,
+        other.paletteSemanticBlue200,
+        t,
+      )!,
+      paletteSemanticBlue25: Color.lerp(
+        paletteSemanticBlue25,
+        other.paletteSemanticBlue25,
+        t,
+      )!,
+      paletteSemanticBlue300: Color.lerp(
+        paletteSemanticBlue300,
+        other.paletteSemanticBlue300,
+        t,
+      )!,
+      paletteSemanticBlue400: Color.lerp(
+        paletteSemanticBlue400,
+        other.paletteSemanticBlue400,
+        t,
+      )!,
+      paletteSemanticBlue50: Color.lerp(
+        paletteSemanticBlue50,
+        other.paletteSemanticBlue50,
+        t,
+      )!,
+      paletteSemanticBlue500: Color.lerp(
+        paletteSemanticBlue500,
+        other.paletteSemanticBlue500,
+        t,
+      )!,
+      paletteSemanticBlue600: Color.lerp(
+        paletteSemanticBlue600,
+        other.paletteSemanticBlue600,
+        t,
+      )!,
+      paletteSemanticBlue700: Color.lerp(
+        paletteSemanticBlue700,
+        other.paletteSemanticBlue700,
+        t,
+      )!,
+      paletteSemanticBlue800: Color.lerp(
+        paletteSemanticBlue800,
+        other.paletteSemanticBlue800,
+        t,
+      )!,
+      paletteSemanticBlue900: Color.lerp(
+        paletteSemanticBlue900,
+        other.paletteSemanticBlue900,
+        t,
+      )!,
+      paletteSemanticGreen0: Color.lerp(
+        paletteSemanticGreen0,
+        other.paletteSemanticGreen0,
+        t,
+      )!,
+      paletteSemanticGreen100: Color.lerp(
+        paletteSemanticGreen100,
+        other.paletteSemanticGreen100,
+        t,
+      )!,
+      paletteSemanticGreen1000: Color.lerp(
+        paletteSemanticGreen1000,
+        other.paletteSemanticGreen1000,
+        t,
+      )!,
+      paletteSemanticGreen150: Color.lerp(
+        paletteSemanticGreen150,
+        other.paletteSemanticGreen150,
+        t,
+      )!,
+      paletteSemanticGreen200: Color.lerp(
+        paletteSemanticGreen200,
+        other.paletteSemanticGreen200,
+        t,
+      )!,
+      paletteSemanticGreen25: Color.lerp(
+        paletteSemanticGreen25,
+        other.paletteSemanticGreen25,
+        t,
+      )!,
+      paletteSemanticGreen300: Color.lerp(
+        paletteSemanticGreen300,
+        other.paletteSemanticGreen300,
+        t,
+      )!,
+      paletteSemanticGreen400: Color.lerp(
+        paletteSemanticGreen400,
+        other.paletteSemanticGreen400,
+        t,
+      )!,
+      paletteSemanticGreen50: Color.lerp(
+        paletteSemanticGreen50,
+        other.paletteSemanticGreen50,
+        t,
+      )!,
+      paletteSemanticGreen500: Color.lerp(
+        paletteSemanticGreen500,
+        other.paletteSemanticGreen500,
+        t,
+      )!,
+      paletteSemanticGreen600: Color.lerp(
+        paletteSemanticGreen600,
+        other.paletteSemanticGreen600,
+        t,
+      )!,
+      paletteSemanticGreen700: Color.lerp(
+        paletteSemanticGreen700,
+        other.paletteSemanticGreen700,
+        t,
+      )!,
+      paletteSemanticGreen800: Color.lerp(
+        paletteSemanticGreen800,
+        other.paletteSemanticGreen800,
+        t,
+      )!,
+      paletteSemanticGreen900: Color.lerp(
+        paletteSemanticGreen900,
+        other.paletteSemanticGreen900,
+        t,
+      )!,
+      paletteSemanticOrange0: Color.lerp(
+        paletteSemanticOrange0,
+        other.paletteSemanticOrange0,
+        t,
+      )!,
+      paletteSemanticOrange100: Color.lerp(
+        paletteSemanticOrange100,
+        other.paletteSemanticOrange100,
+        t,
+      )!,
+      paletteSemanticOrange1000: Color.lerp(
+        paletteSemanticOrange1000,
+        other.paletteSemanticOrange1000,
+        t,
+      )!,
+      paletteSemanticOrange150: Color.lerp(
+        paletteSemanticOrange150,
+        other.paletteSemanticOrange150,
+        t,
+      )!,
+      paletteSemanticOrange200: Color.lerp(
+        paletteSemanticOrange200,
+        other.paletteSemanticOrange200,
+        t,
+      )!,
+      paletteSemanticOrange25: Color.lerp(
+        paletteSemanticOrange25,
+        other.paletteSemanticOrange25,
+        t,
+      )!,
+      paletteSemanticOrange300: Color.lerp(
+        paletteSemanticOrange300,
+        other.paletteSemanticOrange300,
+        t,
+      )!,
+      paletteSemanticOrange400: Color.lerp(
+        paletteSemanticOrange400,
+        other.paletteSemanticOrange400,
+        t,
+      )!,
+      paletteSemanticOrange50: Color.lerp(
+        paletteSemanticOrange50,
+        other.paletteSemanticOrange50,
+        t,
+      )!,
+      paletteSemanticOrange500: Color.lerp(
+        paletteSemanticOrange500,
+        other.paletteSemanticOrange500,
+        t,
+      )!,
+      paletteSemanticOrange600: Color.lerp(
+        paletteSemanticOrange600,
+        other.paletteSemanticOrange600,
+        t,
+      )!,
+      paletteSemanticOrange700: Color.lerp(
+        paletteSemanticOrange700,
+        other.paletteSemanticOrange700,
+        t,
+      )!,
+      paletteSemanticOrange800: Color.lerp(
+        paletteSemanticOrange800,
+        other.paletteSemanticOrange800,
+        t,
+      )!,
+      paletteSemanticOrange900: Color.lerp(
+        paletteSemanticOrange900,
+        other.paletteSemanticOrange900,
+        t,
+      )!,
+      paletteSemanticRed0: Color.lerp(
+        paletteSemanticRed0,
+        other.paletteSemanticRed0,
+        t,
+      )!,
+      paletteSemanticRed100: Color.lerp(
+        paletteSemanticRed100,
+        other.paletteSemanticRed100,
+        t,
+      )!,
+      paletteSemanticRed1000: Color.lerp(
+        paletteSemanticRed1000,
+        other.paletteSemanticRed1000,
+        t,
+      )!,
+      paletteSemanticRed150: Color.lerp(
+        paletteSemanticRed150,
+        other.paletteSemanticRed150,
+        t,
+      )!,
+      paletteSemanticRed200: Color.lerp(
+        paletteSemanticRed200,
+        other.paletteSemanticRed200,
+        t,
+      )!,
+      paletteSemanticRed25: Color.lerp(
+        paletteSemanticRed25,
+        other.paletteSemanticRed25,
+        t,
+      )!,
+      paletteSemanticRed300: Color.lerp(
+        paletteSemanticRed300,
+        other.paletteSemanticRed300,
+        t,
+      )!,
+      paletteSemanticRed400: Color.lerp(
+        paletteSemanticRed400,
+        other.paletteSemanticRed400,
+        t,
+      )!,
+      paletteSemanticRed50: Color.lerp(
+        paletteSemanticRed50,
+        other.paletteSemanticRed50,
+        t,
+      )!,
+      paletteSemanticRed500: Color.lerp(
+        paletteSemanticRed500,
+        other.paletteSemanticRed500,
+        t,
+      )!,
+      paletteSemanticRed600: Color.lerp(
+        paletteSemanticRed600,
+        other.paletteSemanticRed600,
+        t,
+      )!,
+      paletteSemanticRed700: Color.lerp(
+        paletteSemanticRed700,
+        other.paletteSemanticRed700,
+        t,
+      )!,
+      paletteSemanticRed800: Color.lerp(
+        paletteSemanticRed800,
+        other.paletteSemanticRed800,
+        t,
+      )!,
+      paletteSemanticRed900: Color.lerp(
+        paletteSemanticRed900,
+        other.paletteSemanticRed900,
+        t,
+      )!,
       textAlertBasic: Color.lerp(textAlertBasic, other.textAlertBasic, t)!,
       textAlertDanger: Color.lerp(textAlertDanger, other.textAlertDanger, t)!,
       textAlertInfo: Color.lerp(textAlertInfo, other.textAlertInfo, t)!,
-      textAlertSuccess:
-          Color.lerp(textAlertSuccess, other.textAlertSuccess, t)!,
-      textAlertWarning:
-          Color.lerp(textAlertWarning, other.textAlertWarning, t)!,
+      textAlertSuccess: Color.lerp(
+        textAlertSuccess,
+        other.textAlertSuccess,
+        t,
+      )!,
+      textAlertWarning: Color.lerp(
+        textAlertWarning,
+        other.textAlertWarning,
+        t,
+      )!,
       textDisabled: Color.lerp(textDisabled, other.textDisabled, t)!,
-      textInteractivePrimaryActive:
-          Color.lerp(
-            textInteractivePrimaryActive,
-            other.textInteractivePrimaryActive,
-            t,
-          )!,
-      textInteractivePrimaryDefault:
-          Color.lerp(
-            textInteractivePrimaryDefault,
-            other.textInteractivePrimaryDefault,
-            t,
-          )!,
-      textInteractivePrimaryHover:
-          Color.lerp(
-            textInteractivePrimaryHover,
-            other.textInteractivePrimaryHover,
-            t,
-          )!,
-      textInteractiveSecondaryActive:
-          Color.lerp(
-            textInteractiveSecondaryActive,
-            other.textInteractiveSecondaryActive,
-            t,
-          )!,
-      textInteractiveSecondaryDefault:
-          Color.lerp(
-            textInteractiveSecondaryDefault,
-            other.textInteractiveSecondaryDefault,
-            t,
-          )!,
-      textInteractiveSecondaryHover:
-          Color.lerp(
-            textInteractiveSecondaryHover,
-            other.textInteractiveSecondaryHover,
-            t,
-          )!,
-      textStaticInverse:
-          Color.lerp(textStaticInverse, other.textStaticInverse, t)!,
-      textStaticOnColor:
-          Color.lerp(textStaticOnColor, other.textStaticOnColor, t)!,
-      textStaticPrimary:
-          Color.lerp(textStaticPrimary, other.textStaticPrimary, t)!,
-      textStaticSecondary:
-          Color.lerp(textStaticSecondary, other.textStaticSecondary, t)!,
-      textStaticTertiary:
-          Color.lerp(textStaticTertiary, other.textStaticTertiary, t)!,
-      visualAssetsAccent:
-          Color.lerp(visualAssetsAccent, other.visualAssetsAccent, t)!,
-      visualAssetsNeutralBold:
-          Color.lerp(
-            visualAssetsNeutralBold,
-            other.visualAssetsNeutralBold,
-            t,
-          )!,
-      visualAssetsNeutralBold0:
-          Color.lerp(
-            visualAssetsNeutralBold0,
-            other.visualAssetsNeutralBold0,
-            t,
-          )!,
-      visualAssetsNeutralSubtle:
-          Color.lerp(
-            visualAssetsNeutralSubtle,
-            other.visualAssetsNeutralSubtle,
-            t,
-          )!,
-      visualAssetsNeutralSubtle0:
-          Color.lerp(
-            visualAssetsNeutralSubtle0,
-            other.visualAssetsNeutralSubtle0,
-            t,
-          )!,
-      visualAssetsSemanticDanger:
-          Color.lerp(
-            visualAssetsSemanticDanger,
-            other.visualAssetsSemanticDanger,
-            t,
-          )!,
-      visualAssetsSemanticInfo:
-          Color.lerp(
-            visualAssetsSemanticInfo,
-            other.visualAssetsSemanticInfo,
-            t,
-          )!,
-      visualAssetsSemanticSuccess:
-          Color.lerp(
-            visualAssetsSemanticSuccess,
-            other.visualAssetsSemanticSuccess,
-            t,
-          )!,
-      visualAssetsSemanticWarning:
-          Color.lerp(
-            visualAssetsSemanticWarning,
-            other.visualAssetsSemanticWarning,
-            t,
-          )!,
+      textInteractivePrimaryActive: Color.lerp(
+        textInteractivePrimaryActive,
+        other.textInteractivePrimaryActive,
+        t,
+      )!,
+      textInteractivePrimaryDefault: Color.lerp(
+        textInteractivePrimaryDefault,
+        other.textInteractivePrimaryDefault,
+        t,
+      )!,
+      textInteractivePrimaryHover: Color.lerp(
+        textInteractivePrimaryHover,
+        other.textInteractivePrimaryHover,
+        t,
+      )!,
+      textInteractiveSecondaryActive: Color.lerp(
+        textInteractiveSecondaryActive,
+        other.textInteractiveSecondaryActive,
+        t,
+      )!,
+      textInteractiveSecondaryDefault: Color.lerp(
+        textInteractiveSecondaryDefault,
+        other.textInteractiveSecondaryDefault,
+        t,
+      )!,
+      textInteractiveSecondaryHover: Color.lerp(
+        textInteractiveSecondaryHover,
+        other.textInteractiveSecondaryHover,
+        t,
+      )!,
+      textStaticInverse: Color.lerp(
+        textStaticInverse,
+        other.textStaticInverse,
+        t,
+      )!,
+      textStaticOnColor: Color.lerp(
+        textStaticOnColor,
+        other.textStaticOnColor,
+        t,
+      )!,
+      textStaticPrimary: Color.lerp(
+        textStaticPrimary,
+        other.textStaticPrimary,
+        t,
+      )!,
+      textStaticSecondary: Color.lerp(
+        textStaticSecondary,
+        other.textStaticSecondary,
+        t,
+      )!,
+      textStaticTertiary: Color.lerp(
+        textStaticTertiary,
+        other.textStaticTertiary,
+        t,
+      )!,
+      visualAssetsAccent: Color.lerp(
+        visualAssetsAccent,
+        other.visualAssetsAccent,
+        t,
+      )!,
+      visualAssetsNeutralBold: Color.lerp(
+        visualAssetsNeutralBold,
+        other.visualAssetsNeutralBold,
+        t,
+      )!,
+      visualAssetsNeutralBold0: Color.lerp(
+        visualAssetsNeutralBold0,
+        other.visualAssetsNeutralBold0,
+        t,
+      )!,
+      visualAssetsNeutralSubtle: Color.lerp(
+        visualAssetsNeutralSubtle,
+        other.visualAssetsNeutralSubtle,
+        t,
+      )!,
+      visualAssetsNeutralSubtle0: Color.lerp(
+        visualAssetsNeutralSubtle0,
+        other.visualAssetsNeutralSubtle0,
+        t,
+      )!,
+      visualAssetsSemanticDanger: Color.lerp(
+        visualAssetsSemanticDanger,
+        other.visualAssetsSemanticDanger,
+        t,
+      )!,
+      visualAssetsSemanticInfo: Color.lerp(
+        visualAssetsSemanticInfo,
+        other.visualAssetsSemanticInfo,
+        t,
+      )!,
+      visualAssetsSemanticSuccess: Color.lerp(
+        visualAssetsSemanticSuccess,
+        other.visualAssetsSemanticSuccess,
+        t,
+      )!,
+      visualAssetsSemanticWarning: Color.lerp(
+        visualAssetsSemanticWarning,
+        other.visualAssetsSemanticWarning,
+        t,
+      )!,
       bodyExtraSmall: TextStyle.lerp(bodyExtraSmall, other.bodyExtraSmall, t)!,
-      bodyExtraSmallStrong:
-          TextStyle.lerp(bodyExtraSmallStrong, other.bodyExtraSmallStrong, t)!,
+      bodyExtraSmallStrong: TextStyle.lerp(
+        bodyExtraSmallStrong,
+        other.bodyExtraSmallStrong,
+        t,
+      )!,
       bodyLarge: TextStyle.lerp(bodyLarge, other.bodyLarge, t)!,
-      bodyLargeStrong:
-          TextStyle.lerp(bodyLargeStrong, other.bodyLargeStrong, t)!,
+      bodyLargeStrong: TextStyle.lerp(
+        bodyLargeStrong,
+        other.bodyLargeStrong,
+        t,
+      )!,
       bodyMedium: TextStyle.lerp(bodyMedium, other.bodyMedium, t)!,
-      bodyMediumStrong:
-          TextStyle.lerp(bodyMediumStrong, other.bodyMediumStrong, t)!,
+      bodyMediumStrong: TextStyle.lerp(
+        bodyMediumStrong,
+        other.bodyMediumStrong,
+        t,
+      )!,
       bodySmall: TextStyle.lerp(bodySmall, other.bodySmall, t)!,
-      bodySmallStrong:
-          TextStyle.lerp(bodySmallStrong, other.bodySmallStrong, t)!,
+      bodySmallStrong: TextStyle.lerp(
+        bodySmallStrong,
+        other.bodySmallStrong,
+        t,
+      )!,
       highlightLarge: TextStyle.lerp(highlightLarge, other.highlightLarge, t)!,
-      highlightMedium:
-          TextStyle.lerp(highlightMedium, other.highlightMedium, t)!,
+      highlightMedium: TextStyle.lerp(
+        highlightMedium,
+        other.highlightMedium,
+        t,
+      )!,
       highlightSmall: TextStyle.lerp(highlightSmall, other.highlightSmall, t)!,
       titleLarge: TextStyle.lerp(titleLarge, other.titleLarge, t)!,
-      titleLargeStrong:
-          TextStyle.lerp(titleLargeStrong, other.titleLargeStrong, t)!,
+      titleLargeStrong: TextStyle.lerp(
+        titleLargeStrong,
+        other.titleLargeStrong,
+        t,
+      )!,
       titleMedium: TextStyle.lerp(titleMedium, other.titleMedium, t)!,
-      titleMediumStrong:
-          TextStyle.lerp(titleMediumStrong, other.titleMediumStrong, t)!,
+      titleMediumStrong: TextStyle.lerp(
+        titleMediumStrong,
+        other.titleMediumStrong,
+        t,
+      )!,
       titleSmall: TextStyle.lerp(titleSmall, other.titleSmall, t)!,
-      titleSmallStrong:
-          TextStyle.lerp(titleSmallStrong, other.titleSmallStrong, t)!,
+      titleSmallStrong: TextStyle.lerp(
+        titleSmallStrong,
+        other.titleSmallStrong,
+        t,
+      )!,
       borderRadius0: t < 0.5 ? borderRadius0 : other.borderRadius0,
       borderRadius100: t < 0.5 ? borderRadius100 : other.borderRadius100,
       borderRadius150: t < 0.5 ? borderRadius150 : other.borderRadius150,
@@ -2699,10 +3107,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       fontSize900: t < 0.5 ? fontSize900 : other.fontSize900,
       fontSizeBase: t < 0.5 ? fontSizeBase : other.fontSizeBase,
       fontSizeRatio: t < 0.5 ? fontSizeRatio : other.fontSizeRatio,
-      letterSpacingCondensed:
-          t < 0.5 ? letterSpacingCondensed : other.letterSpacingCondensed,
-      letterSpacingDefault:
-          t < 0.5 ? letterSpacingDefault : other.letterSpacingDefault,
+      letterSpacingCondensed: t < 0.5
+          ? letterSpacingCondensed
+          : other.letterSpacingCondensed,
+      letterSpacingDefault: t < 0.5
+          ? letterSpacingDefault
+          : other.letterSpacingDefault,
       letterSpacingWide: t < 0.5 ? letterSpacingWide : other.letterSpacingWide,
       lineHeight100: t < 0.5 ? lineHeight100 : other.lineHeight100,
       lineHeight200: t < 0.5 ? lineHeight200 : other.lineHeight200,
@@ -2757,10 +3167,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       shadow100: t < 0.5 ? shadow100 : other.shadow100,
       shadow200: t < 0.5 ? shadow200 : other.shadow200,
       shadow300: t < 0.5 ? shadow300 : other.shadow300,
-      textDecorationNone:
-          t < 0.5 ? textDecorationNone : other.textDecorationNone,
-      textDecorationUnderline:
-          t < 0.5 ? textDecorationUnderline : other.textDecorationUnderline,
+      textDecorationNone: t < 0.5
+          ? textDecorationNone
+          : other.textDecorationNone,
+      textDecorationUnderline: t < 0.5
+          ? textDecorationUnderline
+          : other.textDecorationUnderline,
     );
   }
 

@@ -36,17 +36,17 @@ class OptimusToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final contentPadding =
-        label != null
-            ? EdgeInsets.symmetric(
-              vertical: size.getLabelVerticalPadding(tokens),
-              horizontal: tokens.spacing100,
-            )
-            : EdgeInsets.all(size.getCompactPadding(tokens));
+    final contentPadding = label != null
+        ? EdgeInsets.symmetric(
+            vertical: size.getLabelVerticalPadding(tokens),
+            horizontal: tokens.spacing100,
+          )
+        : EdgeInsets.all(size.getCompactPadding(tokens));
 
     return BaseButton(
-      variant:
-          isToggled ? BaseButtonVariant.success : BaseButtonVariant.tertiary,
+      variant: isToggled
+          ? BaseButtonVariant.success
+          : BaseButtonVariant.tertiary,
       size: size.toWidgetSize(),
       isLoading: isLoading,
       onPressed: onPressed,

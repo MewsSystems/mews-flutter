@@ -45,6 +45,7 @@ class OptimusCheckbox extends StatelessWidget {
   /// {@template optimus.checkbox.isChecked}
   /// Whether this checkbox is checked.
   /// {@endtemplate}
+  // ignore: avoid-unnecessary-nullable-fields, has to be nullable for tristate
   final bool? isChecked;
 
   /// {@template optimus.checkbox.tristate}
@@ -123,8 +124,9 @@ class OptimusCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final topPadding =
-        size == OptimusCheckboxSize.large ? tokens.spacing50 : tokens.spacing25;
+    final topPadding = size == OptimusCheckboxSize.large
+        ? tokens.spacing50
+        : tokens.spacing25;
 
     return IgnorePointer(
       ignoring: !isEnabled,

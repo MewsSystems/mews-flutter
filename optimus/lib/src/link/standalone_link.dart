@@ -75,13 +75,12 @@ class OptimusStandaloneLink extends StatelessWidget {
     shouldInherit: shouldInherit,
     onPressed: onPressed,
     overflow: overflow,
-    icon:
-        isExternal
-            ? Icon(
-              OptimusIcons.external_link,
-              size: size?.getFontSize(context.tokens),
-            )
-            : null,
+    icon: isExternal
+        ? Icon(
+            OptimusIcons.external_link,
+            size: size?.getFontSize(context.tokens),
+          )
+        : null,
     variant: variant,
     useStrong: useStrong,
     semanticLabel: semanticLabel,

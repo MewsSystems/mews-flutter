@@ -36,24 +36,21 @@ class OptimusDivider extends StatelessWidget {
     final tokens = context.tokens;
     final child = this.child;
 
-    final divider =
-        direction == Axis.horizontal
-            ? Divider(
-              color: context.dividerColor,
-              thickness: thickness.getLineThickness(tokens),
-              height:
-                  usePadding
-                      ? _getHorizontalPadding(tokens)
-                      : thickness.getLineThickness(tokens),
-            )
-            : VerticalDivider(
-              color: context.dividerColor,
-              thickness: thickness.getLineThickness(tokens),
-              width:
-                  usePadding
-                      ? _getVerticalPadding(tokens)
-                      : thickness.getLineThickness(tokens),
-            );
+    final divider = direction == Axis.horizontal
+        ? Divider(
+            color: context.dividerColor,
+            thickness: thickness.getLineThickness(tokens),
+            height: usePadding
+                ? _getHorizontalPadding(tokens)
+                : thickness.getLineThickness(tokens),
+          )
+        : VerticalDivider(
+            color: context.dividerColor,
+            thickness: thickness.getLineThickness(tokens),
+            width: usePadding
+                ? _getVerticalPadding(tokens)
+                : thickness.getLineThickness(tokens),
+          );
     final animatedDivider = AnimatedContainer(
       duration: themeChangeAnimationDuration,
       child: divider,

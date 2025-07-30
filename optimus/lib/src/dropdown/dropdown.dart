@@ -149,24 +149,22 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
-      final listMaxHeight =
-          widget.embeddedSearch != null
-              ? controller.maxHeight - _embeddedSearchHeight
-              : controller.maxHeight;
+      final listMaxHeight = widget.embeddedSearch != null
+          ? controller.maxHeight - _embeddedSearchHeight
+          : controller.maxHeight;
 
-      final content =
-          widget.items.isNotEmpty
-              ? Container(
-                constraints: BoxConstraints(
-                  maxHeight: listMaxHeight,
-                  maxWidth: controller.width,
-                ),
-                child: OptimusScrollConfiguration(
-                  child: _buildList(isOnTop, listMaxHeight),
-                ),
-              )
-              : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
-                  .excludeSemantics();
+      final content = widget.items.isNotEmpty
+          ? Container(
+              constraints: BoxConstraints(
+                maxHeight: listMaxHeight,
+                maxWidth: controller.width,
+              ),
+              child: OptimusScrollConfiguration(
+                child: _buildList(isOnTop, listMaxHeight),
+              ),
+            )
+          : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
+                .excludeSemantics();
       final children = [
         Material(color: Colors.transparent, child: content),
         if (widget.embeddedSearch case final embeddedSearch?)
@@ -174,12 +172,12 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
       ];
       final decoration =
           widget.items.isNotEmpty || widget.emptyResultPlaceholder != null
-              ? BoxDecoration(
-                borderRadius: BorderRadius.all(tokens.borderRadius100),
-                color: tokens.backgroundStaticFloating,
-                boxShadow: tokens.shadow200,
-              )
-              : null;
+          ? BoxDecoration(
+              borderRadius: BorderRadius.all(tokens.borderRadius100),
+              color: tokens.backgroundStaticFloating,
+              boxShadow: tokens.shadow200,
+            )
+          : null;
 
       return FadeTransition(
         opacity: _fadeAnimation,
@@ -228,9 +226,8 @@ class _DropdownListView<T> extends StatelessWidget {
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: items.length,
-        itemBuilder:
-            (context, index) =>
-                _DropdownItem(onChanged: onChanged, child: items[index]),
+        itemBuilder: (context, index) =>
+            _DropdownItem(onChanged: onChanged, child: items[index]),
       ),
     );
   }
@@ -287,21 +284,22 @@ class _GroupedDropdownListViewState<T>
   List<OptimusDropdownTile<T>> _sortItems() {
     int groupsCount = 1;
 
-    final sorted = [...widget.items]..sort((e1, e2) {
-      final value1 = e1.value;
-      final value2 = e2.value;
+    final sorted = [...widget.items]
+      ..sort((e1, e2) {
+        final value1 = e1.value;
+        final value2 = e2.value;
 
-      int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
-      if (result == 0) {
-        if (value1 is Comparable && value2 is Comparable) {
-          result = value1.compareTo(value2);
+        int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
+        if (result == 0) {
+          if (value1 is Comparable && value2 is Comparable) {
+            result = value1.compareTo(value2);
+          }
+        } else {
+          groupsCount++;
         }
-      } else {
-        groupsCount++;
-      }
 
-      return result;
-    });
+        return result;
+      });
     _groupsCount = groupsCount;
 
     return sorted;
@@ -347,13 +345,13 @@ class _GroupedDropdownListViewState<T>
 
           return _isSameGroup(current, previous)
               ? Padding(
-                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-                child: child,
-              )
+                  padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                  child: child,
+                )
               : _GroupWrapper(
-                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-                child: child,
-              );
+                  group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                  child: child,
+                );
         },
       ),
     );
@@ -382,16 +380,15 @@ class _GroupWrapper extends StatelessWidget {
       children: [
         Container(
           width: AnchoredOverlay.of(context)?.width,
-          decoration:
-              useBorder
-                  ? BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: context.tokens.borderStaticSecondary,
-                      ),
+          decoration: useBorder
+              ? BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: context.tokens.borderStaticSecondary,
                     ),
-                  )
-                  : null,
+                  ),
+                )
+              : null,
           child: group,
         ),
         child,

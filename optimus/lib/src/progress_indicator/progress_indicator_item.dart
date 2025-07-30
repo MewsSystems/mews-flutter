@@ -84,23 +84,22 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
 
   @override
   Widget build(BuildContext context) {
-    final indicator =
-        widget.state.isEnabled
-            ? _EnabledIndicatorItem(
-              text: widget.index,
-              isCompleted: widget.state.isCompleted,
-              foregroundColor: widget.state.getForegroundColor(
-                tokens: tokens,
-                isHovered: _isHovered,
-                isPressed: _isPressed,
-              ),
-              backgroundColor: widget.state.getBackgroundColor(
-                tokens: tokens,
-                isHovered: _isHovered,
-                isPressed: _isPressed,
-              ),
-            )
-            : const _DisabledIndicatorItem();
+    final indicator = widget.state.isEnabled
+        ? _EnabledIndicatorItem(
+            text: widget.index,
+            isCompleted: widget.state.isCompleted,
+            foregroundColor: widget.state.getForegroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+            backgroundColor: widget.state.getBackgroundColor(
+              tokens: tokens,
+              isHovered: _isHovered,
+              isPressed: _isPressed,
+            ),
+          )
+        : const _DisabledIndicatorItem();
     final itemsCount = widget.itemsCount;
 
     return GestureWrapper(
@@ -118,13 +117,12 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
           label: widget.text,
           state: widget.state,
           description: widget.description,
-          trailing:
-              itemsCount != null && widget.state.isActive
-                  ? OptimusCaption(
-                    variation: Variation.variationSecondary,
-                    child: Text('${widget.index}/${itemsCount + 1}'),
-                  )
-                  : null,
+          trailing: itemsCount != null && widget.state.isActive
+              ? OptimusCaption(
+                  variation: Variation.variationSecondary,
+                  child: Text('${widget.index}/${itemsCount + 1}'),
+                )
+              : null,
         ),
       },
     );
@@ -201,7 +199,7 @@ class _VerticalItem extends StatelessWidget {
             state: state,
           ),
           const Spacer(),
-          if (trailing case final trailing?) trailing,
+          ?trailing,
         ],
       ),
     );
@@ -225,10 +223,9 @@ class _EnabledIndicatorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = context.indicatorWidth;
 
-    final child =
-        isCompleted
-            ? _DoneIndicator(foregroundColor: foregroundColor)
-            : _TextIndicator(text: text, foregroundColor: foregroundColor);
+    final child = isCompleted
+        ? _DoneIndicator(foregroundColor: foregroundColor)
+        : _TextIndicator(text: text, foregroundColor: foregroundColor);
 
     return Container(
       width: size,
@@ -311,19 +308,17 @@ class ProgressIndicatorSpacer extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final isEnabled = nextItemState.isAccessible;
-    final color =
-        isEnabled
-            ? tokens.borderInteractivePrimaryDefault
-            : tokens.borderStaticPrimary;
+    final color = isEnabled
+        ? tokens.borderInteractivePrimaryDefault
+        : tokens.borderStaticPrimary;
 
     return switch (layout) {
       Axis.horizontal => Padding(
         padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
-        child:
-            SizedBox(
-              height: tokens.borderWidth150,
-              child: ColoredBox(color: color),
-            ).excludeSemantics(),
+        child: SizedBox(
+          height: tokens.borderWidth150,
+          child: ColoredBox(color: color),
+        ).excludeSemantics(),
       ),
       Axis.vertical => Padding(
         padding: EdgeInsets.only(
@@ -331,12 +326,11 @@ class ProgressIndicatorSpacer extends StatelessWidget {
           bottom: tokens.spacing100,
           top: tokens.spacing100,
         ),
-        child:
-            SizedBox(
-              height: tokens.sizing200,
-              width: tokens.borderWidth150,
-              child: Container(color: color),
-            ).excludeSemantics(),
+        child: SizedBox(
+          height: tokens.sizing200,
+          width: tokens.borderWidth150,
+          child: Container(color: color),
+        ).excludeSemantics(),
       ),
     };
   }
@@ -366,10 +360,9 @@ class _ProgressIndicatorDescription extends StatelessWidget {
           child: DefaultTextStyle.merge(
             style: tokens.bodyMediumStrong.copyWith(
               overflow: TextOverflow.ellipsis,
-              color:
-                  state.isEnabled
-                      ? tokens.textStaticPrimary
-                      : tokens.textStaticTertiary,
+              color: state.isEnabled
+                  ? tokens.textStaticPrimary
+                  : tokens.textStaticTertiary,
             ),
             textAlign: TextAlign.center,
             maxLines: 1,
@@ -381,10 +374,8 @@ class _ProgressIndicatorDescription extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(top: tokens.spacing25),
               child: OptimusTypography(
-                resolveStyle:
-                    (_) => tokens.bodySmall.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                resolveStyle: (_) =>
+                    tokens.bodySmall.copyWith(overflow: TextOverflow.ellipsis),
                 align: TextAlign.center,
                 color: OptimusTypographyColor.secondary,
                 maxLines: 2,

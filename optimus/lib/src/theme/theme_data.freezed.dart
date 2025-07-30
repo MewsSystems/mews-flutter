@@ -63,21 +63,18 @@ class _$OptimusThemeDataCopyWithImpl<$Res, $Val extends OptimusThemeData>
   }) {
     return _then(
       _value.copyWith(
-            brightness:
-                null == brightness
-                    ? _value.brightness
-                    : brightness // ignore: cast_nullable_to_non_nullable
-                        as Brightness,
-            colors:
-                null == colors
-                    ? _value.colors
-                    : colors // ignore: cast_nullable_to_non_nullable
-                        as OptimusColors,
-            tokens:
-                null == tokens
-                    ? _value.tokens
-                    : tokens // ignore: cast_nullable_to_non_nullable
-                        as OptimusTokens,
+            brightness: null == brightness
+                ? _value.brightness
+                : brightness // ignore: cast_nullable_to_non_nullable
+                      as Brightness,
+            colors: null == colors
+                ? _value.colors
+                : colors // ignore: cast_nullable_to_non_nullable
+                      as OptimusColors,
+            tokens: null == tokens
+                ? _value.tokens
+                : tokens // ignore: cast_nullable_to_non_nullable
+                      as OptimusTokens,
           )
           as $Val,
     );
@@ -120,21 +117,18 @@ class __$$OptimusThemeDataImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$OptimusThemeDataImpl(
-        brightness:
-            null == brightness
-                ? _value.brightness
-                : brightness // ignore: cast_nullable_to_non_nullable
-                    as Brightness,
-        colors:
-            null == colors
-                ? _value.colors
-                : colors // ignore: cast_nullable_to_non_nullable
-                    as OptimusColors,
-        tokens:
-            null == tokens
-                ? _value.tokens
-                : tokens // ignore: cast_nullable_to_non_nullable
-                    as OptimusTokens,
+        brightness: null == brightness
+            ? _value.brightness
+            : brightness // ignore: cast_nullable_to_non_nullable
+                  as Brightness,
+        colors: null == colors
+            ? _value.colors
+            : colors // ignore: cast_nullable_to_non_nullable
+                  as OptimusColors,
+        tokens: null == tokens
+            ? _value.tokens
+            : tokens // ignore: cast_nullable_to_non_nullable
+                  as OptimusTokens,
       ),
     );
   }

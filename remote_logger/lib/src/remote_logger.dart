@@ -62,7 +62,6 @@ class RemoteLogger {
   final GetHeaders _getHeaders;
   Duration _currentTimeout = _initialTimeout;
 
-  // ignore: dispose-class-fields, we don't want to dispose a user-provided client.
   final Client? _client;
   Client? _internalClient;
 

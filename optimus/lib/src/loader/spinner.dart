@@ -34,15 +34,20 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
     _controller = AnimationController(duration: _duration, vsync: this)
       ..repeat();
 
-    _firstProgressAnimation = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
-      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
-    ]).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(_firstStart, _firstEnd, curve: _animationCurve),
-      ),
-    );
+    _firstProgressAnimation =
+        TweenSequence<double>([
+          TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
+          TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
+        ]).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(
+              _firstStart,
+              _firstEnd,
+              curve: _animationCurve,
+            ),
+          ),
+        );
     _firstBaseAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
@@ -50,15 +55,20 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
       ),
     );
 
-    _secondProgressAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
-      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
-    ]).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(_secondStart, _secondEnd, curve: _animationCurve),
-      ),
-    );
+    _secondProgressAnimation =
+        TweenSequence([
+          TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
+          TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
+        ]).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(
+              _secondStart,
+              _secondEnd,
+              curve: _animationCurve,
+            ),
+          ),
+        );
     _secondBaseAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
@@ -66,15 +76,20 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
       ),
     );
 
-    _thirdProgressAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
-      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
-    ]).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(_thirdStart, _thirdEnd, curve: _animationCurve),
-      ),
-    );
+    _thirdProgressAnimation =
+        TweenSequence([
+          TweenSequenceItem(tween: Tween<double>(begin: 0, end: 50), weight: 1),
+          TweenSequenceItem(tween: Tween<double>(begin: 50, end: 0), weight: 1),
+        ]).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(
+              _thirdStart,
+              _thirdEnd,
+              curve: _animationCurve,
+            ),
+          ),
+        );
     _thirdBaseAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
@@ -96,39 +111,38 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
       dimension: widget.size.getSize(tokens),
       child: AnimatedBuilder(
         animation: _controller,
-        builder:
-            (context, child) => Stack(
-              alignment: Alignment.center,
-              children: [
-                CustomPaint(
-                  size: Size.square(widget.size.getSize(tokens)),
-                  painter: CirclePainter(
-                    indicatorColor: tokens.backgroundInteractiveNeutralDefault,
-                    strokeWidth: widget.size.strokeWidth,
-                    progress: _thirdProgressAnimation.value,
-                    baseAngle: _thirdBaseAnimation.value,
-                    strokeCap: StrokeCap.round,
-                  ),
-                  foregroundPainter: CirclePainter(
-                    indicatorColor: tokens.backgroundAccentSecondary,
-                    strokeWidth: widget.size.strokeWidth,
-                    progress: _secondProgressAnimation.value,
-                    baseAngle: _secondBaseAnimation.value,
-                    strokeCap: StrokeCap.round,
-                  ),
-                ),
-                CustomPaint(
-                  size: Size.square(widget.size.getSize(tokens)),
-                  painter: CirclePainter(
-                    indicatorColor: tokens.backgroundAccentPrimary,
-                    strokeWidth: widget.size.strokeWidth,
-                    progress: _firstProgressAnimation.value,
-                    baseAngle: _firstBaseAnimation.value,
-                    strokeCap: StrokeCap.round,
-                  ),
-                ),
-              ],
+        builder: (context, child) => Stack(
+          alignment: Alignment.center,
+          children: [
+            CustomPaint(
+              size: Size.square(widget.size.getSize(tokens)),
+              painter: CirclePainter(
+                indicatorColor: tokens.backgroundInteractiveNeutralDefault,
+                strokeWidth: widget.size.strokeWidth,
+                progress: _thirdProgressAnimation.value,
+                baseAngle: _thirdBaseAnimation.value,
+                strokeCap: StrokeCap.round,
+              ),
+              foregroundPainter: CirclePainter(
+                indicatorColor: tokens.backgroundAccentSecondary,
+                strokeWidth: widget.size.strokeWidth,
+                progress: _secondProgressAnimation.value,
+                baseAngle: _secondBaseAnimation.value,
+                strokeCap: StrokeCap.round,
+              ),
             ),
+            CustomPaint(
+              size: Size.square(widget.size.getSize(tokens)),
+              painter: CirclePainter(
+                indicatorColor: tokens.backgroundAccentPrimary,
+                strokeWidth: widget.size.strokeWidth,
+                progress: _firstProgressAnimation.value,
+                baseAngle: _firstBaseAnimation.value,
+                strokeCap: StrokeCap.round,
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

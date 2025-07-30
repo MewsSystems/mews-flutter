@@ -78,34 +78,28 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
 
   WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
     WidgetState.disabled: tokens.backgroundStaticFlat,
-    WidgetState.pressed:
-        widget.isSelected
-            ? tokens.backgroundInteractiveSecondaryActive
-            : tokens.backgroundStaticFlat,
-    WidgetState.hovered:
-        widget.isSelected
-            ? tokens.backgroundInteractiveSecondaryHover
-            : tokens.backgroundStaticFlat,
-    WidgetState.any:
-        widget.isSelected
-            ? tokens.backgroundInteractiveSecondaryDefault
-            : tokens.backgroundStaticFlat,
+    WidgetState.pressed: widget.isSelected
+        ? tokens.backgroundInteractiveSecondaryActive
+        : tokens.backgroundStaticFlat,
+    WidgetState.hovered: widget.isSelected
+        ? tokens.backgroundInteractiveSecondaryHover
+        : tokens.backgroundStaticFlat,
+    WidgetState.any: widget.isSelected
+        ? tokens.backgroundInteractiveSecondaryDefault
+        : tokens.backgroundStaticFlat,
   });
 
   WidgetStateColor get _borderColor => WidgetStateColor.fromMap({
     WidgetState.disabled: tokens.borderDisabled,
-    WidgetState.pressed:
-        widget.isSelected
-            ? tokens.borderInteractivePrimaryActive
-            : tokens.borderInteractiveSecondaryActive,
-    WidgetState.hovered:
-        widget.isSelected
-            ? tokens.borderInteractivePrimaryHover
-            : tokens.borderInteractiveSecondaryHover,
-    WidgetState.any:
-        widget.isSelected
-            ? tokens.borderInteractivePrimaryDefault
-            : tokens.borderInteractiveSecondaryDefault,
+    WidgetState.pressed: widget.isSelected
+        ? tokens.borderInteractivePrimaryActive
+        : tokens.borderInteractiveSecondaryActive,
+    WidgetState.hovered: widget.isSelected
+        ? tokens.borderInteractivePrimaryHover
+        : tokens.borderInteractiveSecondaryHover,
+    WidgetState.any: widget.isSelected
+        ? tokens.borderInteractivePrimaryDefault
+        : tokens.borderInteractiveSecondaryDefault,
   });
 
   WidgetStateColor get _titleColor => WidgetStateColor.fromMap({
@@ -139,22 +133,20 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
           final titleColor = _titleColor.resolve(_controller.value);
           final descriptionColor = _descriptionColor.resolve(_controller.value);
 
-          final selector =
-              widget.isSelectorVisible
-                  ? switch (widget.selectionVariant) {
-                    OptimusSelectionCardSelectionVariant.radio => RadioCircle(
-                      controller: _controller,
-                      isSelected: widget.isSelected,
-                    ),
-                    OptimusSelectionCardSelectionVariant.checkbox =>
-                      CheckboxTick(
-                        isEnabled: widget.isEnabled,
-                        isChecked: widget.isSelected,
-                        onChanged: (_) {},
-                        onTap: () {},
-                      ),
-                  }
-                  : null;
+          final selector = widget.isSelectorVisible
+              ? switch (widget.selectionVariant) {
+                  OptimusSelectionCardSelectionVariant.radio => RadioCircle(
+                    controller: _controller,
+                    isSelected: widget.isSelected,
+                  ),
+                  OptimusSelectionCardSelectionVariant.checkbox => CheckboxTick(
+                    isEnabled: widget.isEnabled,
+                    isChecked: widget.isSelected,
+                    onChanged: (_) {},
+                    onTap: () {},
+                  ),
+                }
+              : null;
 
           final title = DefaultTextStyle.merge(
             child: widget.title,
@@ -176,12 +168,10 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
           );
 
           return GestureWrapper(
-            onHoverChanged:
-                (isHovered) =>
-                    _controller.update(WidgetState.hovered, isHovered),
-            onPressedChanged:
-                (isPressed) =>
-                    _controller.update(WidgetState.pressed, isPressed),
+            onHoverChanged: (isHovered) =>
+                _controller.update(WidgetState.hovered, isHovered),
+            onPressedChanged: (isPressed) =>
+                _controller.update(WidgetState.pressed, isPressed),
             onTap: widget.onPressed,
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -245,7 +235,7 @@ class _HorizontalCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (selector case final selector?) selector,
+            ?selector,
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
@@ -261,7 +251,7 @@ class _HorizontalCard extends StatelessWidget {
                 ),
               ),
             ),
-            if (trailing case final trailing?) trailing,
+            ?trailing,
           ],
         ),
       ),
@@ -304,7 +294,7 @@ class _VerticalCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (trailing case final trailing?) trailing,
+              ?trailing,
               SizedBox(
                 height: context.tokens.spacing200,
                 width: context.tokens.sizing1300,
