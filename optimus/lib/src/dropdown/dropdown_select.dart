@@ -280,7 +280,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
       widget.leading != null || widget.leadingImplicit != null;
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-    builder: (context) {
+    builder: (builderContext) {
       void handleTapDown(TapDownDetails details) {
         bool didHit(RenderBox box) => box.hitTest(
           BoxHitTestResult(),
@@ -289,7 +289,8 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
 
         final RenderObject? inputFieldRenderObject =
             _fieldBoxKey.currentContext?.findRenderObject();
-        final RenderObject? dropdownRenderObject = context.findRenderObject();
+        final RenderObject? dropdownRenderObject =
+            builderContext.findRenderObject();
         if (dropdownRenderObject is RenderBox && didHit(dropdownRenderObject)) {
           // Touch on dropdown shouldn't close overlay
         } else if (inputFieldRenderObject is RenderBox &&
@@ -300,21 +301,24 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
         }
       }
 
-      return AllowMultipleRawGestureDetector(
-        key: const Key('OptimusDropdownOverlay'),
-        behavior: HitTestBehavior.translucent,
-        onTapDown: handleTapDown,
-        child: DropdownTapInterceptor(
-          onTap: widget.allowMultipleSelection ? () {} : _handleClose,
-          child: OptimusDropdown(
-            items: widget.items,
-            size: widget.size,
-            anchorKey: _fieldBoxKey,
-            onChanged: widget.onChanged,
-            embeddedSearch: widget.embeddedSearch,
-            emptyResultPlaceholder: widget.emptyResultPlaceholder,
-            groupBy: widget.groupBy,
-            groupBuilder: widget.groupBuilder,
+      return MediaQuery(
+        data: MediaQuery.of(context),
+        child: AllowMultipleRawGestureDetector(
+          key: const Key('OptimusDropdownOverlay'),
+          behavior: HitTestBehavior.translucent,
+          onTapDown: handleTapDown,
+          child: DropdownTapInterceptor(
+            onTap: widget.allowMultipleSelection ? () {} : _handleClose,
+            child: OptimusDropdown(
+              items: widget.items,
+              size: widget.size,
+              anchorKey: _fieldBoxKey,
+              onChanged: widget.onChanged,
+              embeddedSearch: widget.embeddedSearch,
+              emptyResultPlaceholder: widget.emptyResultPlaceholder,
+              groupBy: widget.groupBy,
+              groupBuilder: widget.groupBuilder,
+            ),
           ),
         ),
       );

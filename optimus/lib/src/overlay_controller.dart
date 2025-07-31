@@ -77,25 +77,27 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
     builder:
-        (context) => Stack(
-          key: const Key('OptimusSelectOverlay'),
-          children: <Widget>[
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapDown: (_) => widget.focusNode.unfocus(),
-              excludeFromSemantics: true,
-            ),
-            DropdownTapInterceptor(
-              onTap: widget.focusNode.unfocus,
-              child: OptimusDropdown<T>(
-                items: widget.items,
-                size: widget.size,
-                anchorKey: widget.anchorKey,
-                onChanged: widget.onItemSelected,
-                width: widget.width,
+        (_) => MediaQuery(
+          data: MediaQuery.of(context),
+          child: Stack(
+            key: const Key('OptimusSelectOverlay'),
+            children: <Widget>[
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTapDown: (_) => widget.focusNode.unfocus(),
               ),
-            ),
-          ],
+              DropdownTapInterceptor(
+                onTap: widget.focusNode.unfocus,
+                child: OptimusDropdown<T>(
+                  items: widget.items,
+                  size: widget.size,
+                  anchorKey: widget.anchorKey,
+                  onChanged: widget.onItemSelected,
+                  width: widget.width,
+                ),
+              ),
+            ],
+          ),
         ),
   );
 
