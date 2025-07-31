@@ -76,13 +76,12 @@ class OptimusCard extends StatelessWidget {
   /// Controls the radius of the card.
   final OptimusCardCornerRadius radius;
 
-  Border? _border(BuildContext context) =>
-      isOutlined
-          ? Border.all(
-            width: context.tokens.borderWidth150,
-            color: context.tokens.borderStaticPrimary,
-          )
-          : null;
+  Border? _border(BuildContext context) => isOutlined
+      ? Border.all(
+          width: context.tokens.borderWidth150,
+          color: context.tokens.borderStaticPrimary,
+        )
+      : null;
 
   List<BoxShadow> _getShadows(OptimusTokens tokens) => switch (variant) {
     OptimusBasicCardVariant.normal => tokens.shadow100,
@@ -156,13 +155,12 @@ class OptimusNestedCard extends StatelessWidget {
     OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
   };
 
-  Border? _border(BuildContext context) =>
-      isOutlined
-          ? Border.all(
-            width: context.tokens.borderWidth150,
-            color: context.tokens.borderStaticPrimary,
-          )
-          : null;
+  Border? _border(BuildContext context) => isOutlined
+      ? Border.all(
+          width: context.tokens.borderWidth150,
+          color: context.tokens.borderStaticPrimary,
+        )
+      : null;
 
   Color _color(BuildContext context) => switch (variant) {
     OptimusNestedCardVariant.emphasized =>
@@ -228,10 +226,9 @@ class _Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contentWrapperBuilder = this.contentWrapperBuilder;
-    final wrappedChild =
-        contentWrapperBuilder == null
-            ? OptimusCardChildPadding(spacing: spacing, child: child)
-            : contentWrapperBuilder(context, child);
+    final wrappedChild = contentWrapperBuilder == null
+        ? OptimusCardChildPadding(spacing: spacing, child: child)
+        : contentWrapperBuilder(context, child);
 
     return Container(
       clipBehavior: Clip.antiAlias,

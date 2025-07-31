@@ -60,24 +60,24 @@ class _Bubble extends StatelessWidget {
 
   Color _getBackgroundColor(OptimusTokens tokens) =>
       message.state == MessageState.success
-          ? tokens.backgroundAlertSuccessSecondary
-          : switch (message.owner) {
-            MessageOwner.assistant => tokens.backgroundStaticFlat,
-            MessageOwner.user => tokens.backgroundAlertInfoSecondary,
-          };
+      ? tokens.backgroundAlertSuccessSecondary
+      : switch (message.owner) {
+          MessageOwner.assistant => tokens.backgroundStaticFlat,
+          MessageOwner.user => tokens.backgroundAlertInfoSecondary,
+        };
 
   Color _getTextColor(OptimusTokens tokens) =>
       message.state == MessageState.success
-          ? tokens.textAlertSuccess
-          : tokens.textStaticPrimary;
+      ? tokens.textAlertSuccess
+      : tokens.textStaticPrimary;
 
   Color _getBorderColor(OptimusTokens tokens) =>
       message.state == MessageState.success
-          ? tokens.borderAlertSuccess
-          : switch (message.owner) {
-            MessageOwner.assistant => tokens.borderStaticTertiary,
-            MessageOwner.user => Colors.transparent,
-          };
+      ? tokens.borderAlertSuccess
+      : switch (message.owner) {
+          MessageOwner.assistant => tokens.borderStaticTertiary,
+          MessageOwner.user => Colors.transparent,
+        };
 
   @override
   Widget build(BuildContext context) {
@@ -89,15 +89,13 @@ class _Bubble extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 480),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft:
-                message.owner == MessageOwner.assistant
-                    ? tokens.borderRadius0
-                    : context.bubbleRadius,
+            topLeft: message.owner == MessageOwner.assistant
+                ? tokens.borderRadius0
+                : context.bubbleRadius,
 
-            topRight:
-                message.owner == MessageOwner.user
-                    ? tokens.borderRadius0
-                    : context.bubbleRadius,
+            topRight: message.owner == MessageOwner.user
+                ? tokens.borderRadius0
+                : context.bubbleRadius,
             bottomRight: context.bubbleRadius,
             bottomLeft: context.bubbleRadius,
           ),
@@ -108,15 +106,14 @@ class _Bubble extends StatelessWidget {
           ),
         ),
         padding: EdgeInsets.all(tokens.spacing100),
-        child:
-            message.state == MessageState.typing
-                ? const _TypingBubble()
-                : Text(
-                  message.message,
-                  style: tokens.bodyMediumStrong.copyWith(
-                    color: _getTextColor(tokens),
-                  ),
+        child: message.state == MessageState.typing
+            ? const _TypingBubble()
+            : Text(
+                message.message,
+                style: tokens.bodyMediumStrong.copyWith(
+                  color: _getTextColor(tokens),
                 ),
+              ),
       ),
     );
   }

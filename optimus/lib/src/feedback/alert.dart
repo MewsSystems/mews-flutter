@@ -141,15 +141,14 @@ class _AlertContent extends StatelessWidget {
 
   bool get _isExpanded => description != null || linkText != null;
 
-  EdgeInsets _getContentPadding(OptimusTokens tokens) =>
-      isDismissible
-          ? EdgeInsets.fromLTRB(
-            tokens.spacing200,
-            tokens.spacing200,
-            tokens.spacing400,
-            tokens.spacing200,
-          )
-          : EdgeInsets.all(tokens.spacing200);
+  EdgeInsets _getContentPadding(OptimusTokens tokens) => isDismissible
+      ? EdgeInsets.fromLTRB(
+          tokens.spacing200,
+          tokens.spacing200,
+          tokens.spacing400,
+          tokens.spacing200,
+        )
+      : EdgeInsets.all(tokens.spacing200);
 
   @override
   Widget build(BuildContext context) {

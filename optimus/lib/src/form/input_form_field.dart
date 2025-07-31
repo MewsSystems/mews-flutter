@@ -50,8 +50,9 @@ class OptimusInputFormField extends FormField<String> {
          'Provide either initial value or controller',
        ),
        super(
-         initialValue:
-             controller != null ? controller.text : (initialValue ?? ''),
+         initialValue: controller != null
+             ? controller.text
+             : (initialValue ?? ''),
          enabled: isEnabled,
          builder: (FormFieldState<String> field) {
            // ignore: avoid-type-casts, can't be anything else. No need to check

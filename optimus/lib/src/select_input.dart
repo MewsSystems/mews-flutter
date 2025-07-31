@@ -191,16 +191,16 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
     ),
     OptimusWidgetSize.medium ||
     OptimusWidgetSize.large ||
-    OptimusWidgetSize
-        .extraLarge => tokens.bodyLargeStrong.copyWith(color: _textColor),
+    OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong.copyWith(
+      color: _textColor,
+    ),
   };
 
-  Color get _textColor =>
-      widget.isEnabled
-          ? _value == null
-              ? tokens.textStaticSecondary
-              : tokens.textStaticPrimary
-          : tokens.textDisabled;
+  Color get _textColor => widget.isEnabled
+      ? _value == null
+            ? tokens.textStaticSecondary
+            : tokens.textStaticPrimary
+      : tokens.textDisabled;
 
   T? get _value => widget.allowMultipleSelection ? null : widget.value;
 
@@ -234,10 +234,12 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
         !widget.allowMultipleSelection || !_isUsingInlineSearch,
     emptyResultPlaceholder: widget.emptyResultPlaceholder,
     embeddedSearch: _isUsingEmbeddedSearch ? widget.embeddedSearch : null,
-    onDropdownShow:
-        _isUsingEmbeddedSearch ? _animationController.forward : null,
-    onDropdownHide:
-        _isUsingEmbeddedSearch ? _animationController.reverse : null,
+    onDropdownShow: _isUsingEmbeddedSearch
+        ? _animationController.forward
+        : null,
+    onDropdownHide: _isUsingEmbeddedSearch
+        ? _animationController.reverse
+        : null,
     groupBy: widget.groupBy,
     groupBuilder: widget.groupBuilder,
     allowMultipleSelection: widget.allowMultipleSelection,

@@ -47,21 +47,20 @@ class _TooltipControllerState extends State<TooltipController> {
   OverlayEntry? _entry;
 
   OverlayEntry _createEntry() => OverlayEntry(
-    builder:
-        (context) => GestureDetector(
-          onTapDown: (_) => _handleHide(),
-          child: Stack(
-            alignment: AlignmentDirectional.topCenter,
-            children: <Widget>[
-              TooltipOverlay(
-                anchorKey: widget.anchorKey,
-                tooltipKey: widget.tooltipKey,
-                position: widget.tooltipPosition,
-                tooltip: widget.tooltip,
-              ),
-            ],
+    builder: (context) => GestureDetector(
+      onTapDown: (_) => _handleHide(),
+      child: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: <Widget>[
+          TooltipOverlay(
+            anchorKey: widget.anchorKey,
+            tooltipKey: widget.tooltipKey,
+            position: widget.tooltipPosition,
+            tooltip: widget.tooltip,
           ),
-        ),
+        ],
+      ),
+    ),
   );
 
   void _handleShow({bool enableAutoHide = true}) {

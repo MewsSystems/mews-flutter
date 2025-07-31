@@ -112,10 +112,12 @@ class OptimusStack extends StatelessWidget {
   ) {
     final direction = _direction(context);
     final spacer = SizedBox(
-      width:
-          direction == Axis.vertical ? null : spacing.getSize(context.tokens),
-      height:
-          direction == Axis.vertical ? spacing.getSize(context.tokens) : null,
+      width: direction == Axis.vertical
+          ? null
+          : spacing.getSize(context.tokens),
+      height: direction == Axis.vertical
+          ? spacing.getSize(context.tokens)
+          : null,
     );
 
     return children.intersperse(spacer).toList();

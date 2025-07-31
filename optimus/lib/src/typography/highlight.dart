@@ -22,11 +22,9 @@ class OptimusHighlightLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-    resolveStyle:
-        (_) =>
-            context
-                .tokens
-                .highlightLarge, // TODO(witwash): mobile typography with breakpoints
+    resolveStyle: (_) => context
+        .tokens
+        .highlightLarge, // TODO(witwash): mobile typography with breakpoints
     align: align,
     child: child,
   );
@@ -47,11 +45,9 @@ class OptimusHighlightMedium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-    resolveStyle:
-        (_) =>
-            context
-                .tokens
-                .highlightMedium, // TODO(witwash): mobile typography with breakpoints
+    resolveStyle: (_) => context
+        .tokens
+        .highlightMedium, // TODO(witwash): mobile typography with breakpoints
     align: align,
     child: child,
   );
@@ -72,11 +68,9 @@ class OptimusHighlightSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-    resolveStyle:
-        (_) =>
-            context
-                .tokens
-                .highlightSmall, // TODO(witwash): mobile typography with breakpoints
+    resolveStyle: (_) => context
+        .tokens
+        .highlightSmall, // TODO(witwash): mobile typography with breakpoints
     align: align,
     child: child,
   );

@@ -31,13 +31,13 @@ class Suffix extends StatelessWidget {
     spacing: OptimusStackSpacing.spacing100,
     mainAxisSize: MainAxisSize.min,
     children: [
-      if (counter case final counter?) counter,
-      if (suffix case final suffix?) suffix,
-      if (clearAllButton case final clearAllButton?) clearAllButton,
+      ?counter,
+      ?suffix,
+      ?clearAllButton,
       if (showLoader) const OptimusSpinner(size: OptimusSpinnerSize.small),
-      if (passwordButton case final passwordButton?) passwordButton,
-      if (trailing case final trailing?) trailing,
-      if (inlineError case final inlineError?) inlineError,
+      ?passwordButton,
+      ?trailing,
+      ?inlineError,
     ],
   );
 }
@@ -53,10 +53,7 @@ class Prefix extends StatelessWidget {
     direction: Axis.horizontal,
     spacing: OptimusStackSpacing.spacing100,
     mainAxisSize: MainAxisSize.min,
-    children: [
-      if (leading case final leading?) leading,
-      if (prefix case final prefix?) prefix,
-    ],
+    children: [?leading, ?prefix],
   );
 }
 

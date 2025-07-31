@@ -143,7 +143,7 @@ class OptimusListTile extends StatelessWidget {
                               )
                             else
                               const Spacer(),
-                            if (infoWidget case final infoWidget?) infoWidget,
+                            ?infoWidget,
                           ],
                         ),
                       ],
@@ -220,10 +220,9 @@ class _Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-    resolveStyle:
-        (_) => context.tokens.bodySmallStrong.copyWith(
-          overflow: TextOverflow.ellipsis,
-        ),
+    resolveStyle: (_) => context.tokens.bodySmallStrong.copyWith(
+      overflow: TextOverflow.ellipsis,
+    ),
     color: OptimusTypographyColor.secondary,
     child: info,
   );

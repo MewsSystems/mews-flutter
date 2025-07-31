@@ -16,10 +16,10 @@ class NumberInputFilteringTextInputFormatter extends TextInputFormatter {
     return RegExp(
       precision > 0
           ? r'^-?\d*(' +
-              decimalSeparator +
-              r'\d{0,' +
-              precision.toString() +
-              r'})?$'
+                decimalSeparator +
+                r'\d{0,' +
+                precision.toString() +
+                r'})?$'
           : r'^-?\d*$',
     );
   }
