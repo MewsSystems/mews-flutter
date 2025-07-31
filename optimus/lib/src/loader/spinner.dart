@@ -1,4 +1,3 @@
-import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/loader/painter.dart';
@@ -92,7 +91,6 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
 
   @override
   Widget build(BuildContext context) => Semantics(
-    role: SemanticsRole.loadingSpinner,
     liveRegion: true,
     child: SizedBox.square(
       dimension: widget.size.getSize(tokens),
@@ -105,8 +103,7 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
                 CustomPaint(
                   size: Size.square(widget.size.getSize(tokens)),
                   painter: CirclePainter(
-                    indicatorColor:
-                        tokens.backgroundInteractiveNeutralBoldDefault,
+                    indicatorColor: tokens.backgroundInteractiveNeutralDefault,
                     strokeWidth: widget.size.strokeWidth,
                     progress: _thirdProgressAnimation.value,
                     baseAngle: _thirdBaseAnimation.value,

@@ -109,11 +109,11 @@ class OptimusNumberInput extends StatefulWidget {
   final ValueChanged<String>? onSubmitted;
 
   /// Semantic label for marking the button as a decrease function button.
-  /// This will have enrish component for the screen reader.
+  /// This will enrich component for the screen reader.
   final String? decreaseSemanticLabel;
 
   /// Semantic label for marking the button as an increase function button.
-  /// This will have enrish component for the screen reader.
+  /// This will enrich component for the screen reader.
   final String? increaseSemanticLabel;
 
   @override
@@ -317,7 +317,7 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SizedBox(
     height: context.tokens.sizing200,
-    width: context.tokens.borderWidth150,
+    width: context.tokens.borderWidth200,
     child:
         isEnabled
             ? ColoredBox(color: context.tokens.borderStaticSecondary)

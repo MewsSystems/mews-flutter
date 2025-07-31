@@ -94,8 +94,12 @@ class _SlidingGradientTransform extends GradientTransform {
 
 extension on BuildContext {
   LinearGradient get linearGradient => LinearGradient(
-    // ignore: avoid-duplicate-collection-elements, gradient colors
-    colors: [backgroundColor, tokens.backgroundStaticFlat, backgroundColor],
+    colors: [
+      backgroundColor,
+      tokens.backgroundInteractiveNeutralBoldDefault,
+      // ignore: avoid-duplicate-collection-elements, gradient colors
+      backgroundColor,
+    ],
     stops: const [0.1, 0.3, 0.4],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,

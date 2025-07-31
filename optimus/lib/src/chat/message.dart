@@ -3,24 +3,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'message.freezed.dart';
 
-enum MessageAlignment { left, right }
+enum MessageOwner { assistant, user }
 
-enum MessageColor { neutral, light, dark }
+enum MessageState { basic, typing, success }
 
-enum MessageState { sending, sent, error }
+enum MessageDeliveryStatus { sending, sent, error }
 
 typedef TryAgainCallback =
-    Future<MessageState> Function(OptimusMessage message);
+    Future<MessageDeliveryStatus> Function(OptimusMessage message);
 
 @freezed
 class OptimusMessage with _$OptimusMessage {
   const factory OptimusMessage({
     required OptimusMessageAuthor author,
     required String message,
-    required MessageAlignment alignment,
-    required MessageColor color,
+    required MessageOwner owner,
+    @Default(MessageState.basic) MessageState state,
     required DateTime time,
-    required MessageState state,
+    @Default(MessageDeliveryStatus.sent) MessageDeliveryStatus deliveryStatus,
   }) = _Message;
 }
 
