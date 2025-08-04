@@ -1,10 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/anchored_overlay.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/dropdown/common.dart';
 import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 
@@ -40,7 +39,7 @@ class OptimusDropdown<T> extends StatelessWidget {
     size: size,
     child: Stack(
       alignment: AlignmentDirectional.topCenter,
-      children: <Widget>[
+      children: [
         AnchoredOverlay(
           anchorKey: anchorKey,
           width: width,
@@ -149,20 +148,16 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     final controller = AnchoredOverlay.of(context);
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
-      final listMaxHeight =
-          widget.embeddedSearch != null
-              ? controller.maxHeight - _embeddedSearchHeight
-              : controller.maxHeight;
 
       final content =
           widget.items.isNotEmpty
               ? Container(
                 constraints: BoxConstraints(
-                  maxHeight: listMaxHeight,
+                  maxHeight: controller.maxHeight,
                   maxWidth: controller.width,
                 ),
                 child: OptimusScrollConfiguration(
-                  child: _buildList(isOnTop, listMaxHeight),
+                  child: _buildList(isOnTop, controller.maxHeight),
                 ),
               )
               : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
@@ -183,16 +178,18 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
 
       return FadeTransition(
         opacity: _fadeAnimation,
-        child: Container(
-          constraints: BoxConstraints(maxHeight: controller.maxHeight),
-          width: controller.width,
-          decoration: decoration,
-          child: SizeTransition(
-            sizeFactor: _sizeAnimation,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: tokens.spacing50,
-              children: isOnTop ? children : children.reversed.toList(),
+        child: SafeArea(
+          child: Container(
+            constraints: BoxConstraints(maxHeight: controller.maxHeight),
+            width: controller.width,
+            decoration: decoration,
+            child: SizeTransition(
+              sizeFactor: _sizeAnimation,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: tokens.spacing50,
+                children: isOnTop ? children : children.reversed.toList(),
+              ),
             ),
           ),
         ),
@@ -220,10 +217,13 @@ class _DropdownListView<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final minHeight = items.length * _itemMinHeight + tokens.spacing100 * 2;
+
+    final itemHeight = context.dropdownItemHeight;
+    final totalHeight = (items.length * itemHeight) + (tokens.spacing100 * 2);
+    final listHeight = totalHeight.clamp(0.0, maxHeight);
 
     return SizedBox(
-      height: min(minHeight, maxHeight),
+      height: listHeight,
       child: ListView.builder(
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
@@ -263,7 +263,6 @@ class _GroupedDropdownListViewState<T>
     extends State<_GroupedDropdownListView<T>>
     with ThemeGetter {
   late List<OptimusDropdownTile<T>> _sortedItems;
-  late int _groupsCount;
 
   @override
   void initState() {
@@ -284,28 +283,20 @@ class _GroupedDropdownListViewState<T>
       (value) =>
           OptimusDropdownGroupSeparator(child: Text(value.toUpperCase()));
 
-  List<OptimusDropdownTile<T>> _sortItems() {
-    int groupsCount = 1;
+  List<OptimusDropdownTile<T>> _sortItems() =>
+      [...widget.items]..sort((e1, e2) {
+        final value1 = e1.value;
+        final value2 = e2.value;
 
-    final sorted = [...widget.items]..sort((e1, e2) {
-      final value1 = e1.value;
-      final value2 = e2.value;
-
-      int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
-      if (result == 0) {
-        if (value1 is Comparable && value2 is Comparable) {
-          result = value1.compareTo(value2);
+        int? result = widget.groupBy(value1).compareTo(widget.groupBy(value2));
+        if (result == 0) {
+          if (value1 is Comparable && value2 is Comparable) {
+            result = value1.compareTo(value2);
+          }
         }
-      } else {
-        groupsCount++;
-      }
 
-      return result;
-    });
-    _groupsCount = groupsCount;
-
-    return sorted;
-  }
+        return result;
+      });
 
   int get _leadingIndex => widget.isReversed ? _sortedItems.length - 1 : 0;
 
@@ -317,17 +308,18 @@ class _GroupedDropdownListViewState<T>
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final minListHeight =
-        _groupsCount * _groupMinHeight +
-        widget.items.length * _itemMinHeight +
-        tokens.spacing100 * 2;
+    final listHeight = _calculateGroupedListHeight(tokens);
 
     return SizedBox(
-      height: min(minListHeight, widget.maxHeight),
+      height: listHeight,
       child: ListView.builder(
         reverse: widget.isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: widget.items.length,
+        prototypeItem:
+            widget.items.isNotEmpty
+                ? _buildPrototypeItem(widget.items.first)
+                : null,
         itemBuilder: (context, index) {
           final current = _sortedItems[index];
           final child = _DropdownItem(
@@ -356,6 +348,49 @@ class _GroupedDropdownListViewState<T>
               );
         },
       ),
+    );
+  }
+
+  double _calculateGroupedListHeight(OptimusTokens tokens) {
+    final itemHeight = context.dropdownItemHeight;
+    final groupSeparatorHeight = context.dropdownGroupSeparatorHeight;
+    final spacingBetweenItems = tokens.spacing50;
+
+    double totalHeight = tokens.spacing100 * 2; // Padding
+
+    String? currentGroup;
+    for (final item in _sortedItems) {
+      final itemGroup = widget.groupBy(item.value);
+
+      // Add group separator if it's a new group
+      if (currentGroup != itemGroup) {
+        if (currentGroup != null) {
+          totalHeight += groupSeparatorHeight;
+        }
+        currentGroup = itemGroup;
+      }
+
+      totalHeight += itemHeight;
+
+      // Add spacing between items in the same group
+      if (_sortedItems.indexOf(item) < _sortedItems.length - 1) {
+        final nextItem = _sortedItems[_sortedItems.indexOf(item) + 1];
+        if (widget.groupBy(nextItem.value) == itemGroup) {
+          totalHeight += spacingBetweenItems;
+        }
+      }
+    }
+
+    return totalHeight.clamp(0.0, widget.maxHeight);
+  }
+
+  Widget _buildPrototypeItem(OptimusDropdownTile<T> item) {
+    final child = _DropdownItem(onChanged: widget.onChanged, child: item);
+
+    return _GroupWrapper(
+      useBorder: false,
+      group: _effectiveGroupBuilder(widget.groupBy(item.value)),
+      child: child,
     );
   }
 }
@@ -423,7 +458,6 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   @override
   Widget build(BuildContext context) => SizedBox(
     width: AnchoredOverlay.of(context)?.width,
-    height: _itemMinHeight,
     child: InkWell(
       borderRadius: BorderRadius.all(tokens.borderRadius100),
       onTap: _handleItemTap,
@@ -470,8 +504,3 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
     );
   }
 }
-
-const _embeddedSearchHeight =
-    61.0; // TODO(witwash): calculate to avoid problems with tokens
-const _groupMinHeight = 28.0;
-const _itemMinHeight = 69.0;
