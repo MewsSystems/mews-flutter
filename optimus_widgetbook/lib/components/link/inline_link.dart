@@ -1,5 +1,5 @@
 import 'package:dfunc/dfunc.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -67,7 +67,7 @@ Widget createDefaultStyle(BuildContext context) {
 
 const _colors = [
   (label: 'none', value: null),
-  (label: 'black', value: OptimusLightColors.neutral1000),
-  (label: 'green', value: OptimusLightColors.success),
-  (label: 'red', value: OptimusLightColors.danger),
+  (label: 'black', value: Colors.black),
+  (label: 'green', value: Colors.green),
+  (label: 'red', value: Colors.red),
 ];

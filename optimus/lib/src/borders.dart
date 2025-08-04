@@ -23,7 +23,7 @@ class TileBorders extends StatelessWidget {
           top: 0,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              border: Border.all(color: theme.borderColor),
+              border: Border.all(color: theme.tokens.borderStaticSecondary),
             ),
           ),
         ),
