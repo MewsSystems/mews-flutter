@@ -15,15 +15,13 @@ class WidgetbookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Widgetbook.material(
     addons: <WidgetbookAddon>[
-      DeviceFrameAddon(
-        devices: [
-          Devices.ios.iPhone13Mini,
-          Devices.ios.iPhone13,
-          Devices.ios.iPhone13ProMax,
-          Devices.ios.iPadAir4,
-          Devices.ios.iPad12InchesGen4,
-        ],
-      ),
+      ViewportAddon([
+        IosViewports.iPhone13Mini,
+        IosViewports.iPhone13,
+        IosViewports.iPhone13ProMax,
+        IosViewports.iPadAir4,
+        IosViewports.iPad12InchesGen4,
+      ]),
       InspectorAddon(),
       ThemeAddon<OptimusThemeData>(
         themes: [
