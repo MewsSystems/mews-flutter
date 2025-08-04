@@ -6,7 +6,7 @@ class OptimusSlidable extends StatefulWidget {
   const OptimusSlidable({
     super.key,
     required this.child,
-    this.actions = const <Widget>[],
+    this.actions,
     this.isEnabled = true,
     this.hasBorders = true,
     this.actionsWidth = 0,

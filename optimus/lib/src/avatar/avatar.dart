@@ -74,6 +74,7 @@ class OptimusAvatar extends StatelessWidget {
           children: <Widget>[
             _CircleImage(
               imageUrl: imageUrl,
+              semanticLabel: semanticLabel,
               decoration: decoration,
               diameter: size.getSize(tokens),
               fallbackWidget: _FallbackText(title: title, size: size),
@@ -103,12 +104,14 @@ class _CircleImage extends StatelessWidget {
     required this.imageUrl,
     required this.fallbackWidget,
     this.decoration,
+    this.semanticLabel,
   });
 
   final double diameter;
   final String? imageUrl;
   final BoxDecoration? decoration;
   final Widget fallbackWidget;
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +138,7 @@ class _CircleImage extends StatelessWidget {
                       height: diameter,
                       placeholder: _transparentImage,
                       image: imageUrl,
+                      imageSemanticLabel: semanticLabel,
                       fit: BoxFit.cover,
                       imageErrorBuilder:
                           (_, _, _) => Container(

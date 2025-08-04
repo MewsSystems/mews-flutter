@@ -29,7 +29,7 @@ class OptimusTooltipWrapper extends StatefulWidget {
   /// the tooltip will be positioned automatically. Defaults to
   /// [OptimusTooltipPosition.top] or [OptimusTooltipPosition.bottom], whichever
   /// has more space available.
-  final OptimusTooltipPosition? tooltipPosition;
+  final OptimusTooltipPosition tooltipPosition;
 
   /// Duration for which the tooltip will be shown.
   final Duration autoHideDuration;

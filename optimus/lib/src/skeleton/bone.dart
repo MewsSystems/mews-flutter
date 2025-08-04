@@ -57,13 +57,13 @@ class OptimusBone extends StatelessWidget {
   final OptimusBoneRadiusVariant? radiusVariant;
   final BoxShape boxShape;
   final Widget? child;
-  final bool? isLoading;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) => Semantics(
     liveRegion: true,
     child: _Bone(
-      isLoading: isLoading ?? true,
+      isLoading: isLoading,
       child:
           child ??
           SizedBox(

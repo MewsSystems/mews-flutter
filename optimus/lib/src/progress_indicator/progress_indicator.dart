@@ -216,15 +216,15 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
       if (_isExpanded) {
         _animationController.forward();
       } else {
-        _animationController.reverse().then<void>((_) {
-          if (!mounted) {
-            return;
-          }
-          setState(() {
-            // Rebuild without children.
-          });
-        });
+        _animationController.reverse().then<void>((_) => _handleReverse());
       }
+    });
+  }
+
+  void _handleReverse() {
+    if (!mounted) return;
+    setState(() {
+      // Rebuild without children.
     });
   }
 

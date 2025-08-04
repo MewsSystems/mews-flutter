@@ -19,7 +19,7 @@ class OptimusInputField extends StatefulWidget {
     this.focusNode,
     this.label,
     this.caption,
-    this.captionIcon = OptimusIcons.info,
+    this.captionIcon,
     this.helperMessage,
     this.maxLines = 1,
     this.minLines,
