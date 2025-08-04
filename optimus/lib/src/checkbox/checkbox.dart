@@ -45,6 +45,7 @@ class OptimusCheckbox extends StatelessWidget {
   /// {@template optimus.checkbox.isChecked}
   /// Whether this checkbox is checked.
   /// {@endtemplate}
+  // ignore: avoid-unnecessary-nullable-fields, required for the tristate
   final bool? isChecked;
 
   /// {@template optimus.checkbox.tristate}

@@ -55,7 +55,7 @@ class OptimusTextArea extends StatelessWidget {
 
   /// {@macro flutter.widgets.editableText.keyboardType}
   /// Defaults to [TextInputType.multiline].
-  final TextInputType? keyboardType;
+  final TextInputType keyboardType;
 
   /// Controls whether the field is enabled.
   final bool isEnabled;

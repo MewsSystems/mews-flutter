@@ -257,11 +257,13 @@ dart_code_metrics:
     - avoid-assignments-as-conditions
     # - avoid-async-call-in-sync-function
     # - avoid-banned-annotations
+    # - avoid-banned-exports
     # - avoid-banned-file-names
     # - avoid-banned-imports
     # - avoid-banned-names
     # - avoid-banned-types
     - avoid-barrel-files
+    - avoid-bitwise-operators-with-booleans
     - avoid-bottom-type-in-patterns
     - avoid-bottom-type-in-records
     - avoid-cascade-after-if-null
@@ -278,6 +280,8 @@ dart_code_metrics:
     # - avoid-continue
     - avoid-contradictory-expressions
     # - avoid-declaring-call-method
+    # - avoid-default-tostring
+    # - avoid-deprecated-usage
     - avoid-double-slash-imports
     - avoid-duplicate-cascades
     - avoid-duplicate-collection-elements
@@ -320,8 +324,8 @@ dart_code_metrics:
     - avoid-late-final-reassignment
     # - avoid-late-keyword
     # - avoid-local-functions
-    # - avoid-long-functions
     # - avoid-long-files
+    # - avoid-long-functions
     # - avoid-long-parameter-list
     # - avoid-long-records
     - avoid-map-keys-contains
@@ -330,8 +334,8 @@ dart_code_metrics:
     # - avoid-missing-enum-constant-in-map
     - avoid-missing-interpolation
     # - avoid-missing-test-files
-    - avoid-misused-test-matchers
     - avoid-misused-set-literals
+    - avoid-misused-test-matchers
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     - avoid-multi-assignment
@@ -379,7 +383,9 @@ dart_code_metrics:
     # - avoid-similar-names
     # - avoid-single-field-destructuring
     # - avoid-slow-collection-methods
+    - avoid-stream-tostring
     # - avoid-substring
+    - avoid-suspicious-global-reference
     - avoid-suspicious-super-overrides
     # - avoid-throw-in-catch-block
     # - avoid-throw-objects-without-tostring
@@ -404,16 +410,21 @@ dart_code_metrics:
     - avoid-unnecessary-futures
     - avoid-unnecessary-getter
     - avoid-unnecessary-if
+    - avoid-unnecessary-length-check
     - avoid-unnecessary-local-late
     - avoid-unnecessary-negations
+    # - avoid-unnecessary-null-aware-elements
+    - avoid-unnecessary-nullable-fields
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-overrides
     - avoid-unnecessary-patterns
     - avoid-unnecessary-reassignment
     - avoid-unnecessary-return
+    - avoid-unnecessary-statements
     - avoid-unnecessary-super
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
+    - avoid-unreachable-for-loop
     - avoid-unrelated-type-assertions
     - avoid-unrelated-type-casts
     # - avoid-unsafe-collection-methods
@@ -441,6 +452,7 @@ dart_code_metrics:
     - match-getter-setter-field-names
     - match-lib-folder-structure
     # - match-positional-field-names-on-assignment
+    # - max-imports
     # - member-ordering
     # - missing-test-assertion
     - missing-use-result-annotation:
@@ -464,6 +476,7 @@ dart_code_metrics:
     # - no-magic-string
     - no-object-declaration
     # - parameters-ordering
+    - pass-correct-accepted-type
     # - pattern-fields-ordering
     - prefer-abstract-final-static-class
     - prefer-add-all
@@ -478,6 +491,7 @@ dart_code_metrics:
     # - prefer-class-destructuring
     - prefer-commenting-analyzer-ignores
     # - prefer-commenting-future-delayed
+    - prefer-compound-assignment-operators
     # - prefer-conditional-expressions
     - prefer-contains
     # - prefer-correct-callback-field-name
@@ -518,12 +532,14 @@ dart_code_metrics:
     # - prefer-named-imports
     - prefer-named-parameters:
         max-number: 2
+    # - prefer-null-aware-elements
     - prefer-null-aware-spread
     - prefer-overriding-parent-equality
     - prefer-parentheses-with-if-null
     # - prefer-prefixed-global-constants
     # - prefer-private-extension-type-field
     - prefer-public-exception-classes
+    - prefer-pushing-conditional-expressions
     - prefer-redirecting-superclass-constructor
     - prefer-return-await
     - prefer-returning-conditional-expressions
@@ -531,6 +547,7 @@ dart_code_metrics:
     - prefer-simpler-patterns-null-check
     # - prefer-single-declaration-per-file
     - prefer-specific-cases-first
+    - prefer-specifying-future-value-type
     # - prefer-static-class
     - prefer-static-method:
         ignore-private: true
@@ -565,7 +582,8 @@ dart_code_metrics:
     # - avoid-inherited-widget-in-initstate
     - avoid-late-context
     - avoid-missing-controller
-    # - avoid-missing-image-alt
+    - avoid-missing-image-alt
+    - avoid-mounted-in-setstate
     - avoid-recursive-widget-calls
     # - avoid-returning-widgets
     - avoid-shrink-wrap-in-lists
@@ -595,6 +613,7 @@ dart_code_metrics:
     # - prefer-extracting-callbacks
     # - prefer-for-loop-in-children
     - prefer-padding-over-container
+    - prefer-single-setstate
     # - prefer-single-widget-per-file
     - prefer-sized-box-square
     - prefer-sliver-prefix
@@ -614,7 +633,9 @@ dart_code_metrics:
     - avoid-read-inside-build
     # - avoid-watch-outside-build
     - dispose-providers
+    - prefer-immutable-selector-value
     - prefer-multi-provider
+    # - prefer-nullable-provider-types
     - prefer-provider-extensions
 
     # Bloc
@@ -649,6 +670,7 @@ dart_code_metrics:
         banned:
           - get
   #    - prefer-caret-version-syntax
+    - prefer-commenting-pubspec-ignores
   #    - prefer-correct-package-name
   #    - prefer-correct-screenshots
   #    - prefer-pinned-version-syntax

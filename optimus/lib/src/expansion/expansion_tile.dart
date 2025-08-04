@@ -123,16 +123,18 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
       if (_isExpanded) {
         _controller.forward();
       } else {
-        _controller.reverse().then<void>((void value) {
-          if (!mounted) return;
-          setState(() {
-            // Rebuild without widget.children.
-          });
-        });
+        _controller.reverse().then<void>((_) => _handleReverse());
       }
       PageStorage.of(context).writeState(context, _isExpanded);
     });
     widget.onExpansionChanged?.call(_isExpanded);
+  }
+
+  void _handleReverse() {
+    if (!mounted) return;
+    setState(() {
+      // Rebuild without widget.children.
+    });
   }
 
   @override

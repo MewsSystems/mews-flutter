@@ -11,7 +11,7 @@ class MultiSelectInputField extends StatefulWidget {
     this.focusNode,
     this.label,
     this.caption,
-    this.captionIcon = OptimusIcons.info,
+    this.captionIcon,
     this.helperMessage,
     this.error,
     this.errorVariant = OptimusInputErrorVariant.bottomHint,
