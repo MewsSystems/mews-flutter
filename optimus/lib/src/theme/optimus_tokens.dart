@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Fri, 11 Jul 2025 08:18:52 GMT
+// Generated on Tue, 05 Aug 2025 13:33:15 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -85,6 +85,9 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderInteractiveBoldDefault,
     required this.borderInteractiveBoldHover,
     required this.borderInteractiveFocus,
+    required this.borderInteractiveInputActive,
+    required this.borderInteractiveInputDefault,
+    required this.borderInteractiveInputHover,
     required this.borderInteractivePrimaryActive,
     required this.borderInteractivePrimaryDefault,
     required this.borderInteractivePrimaryHover,
@@ -578,6 +581,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderInteractiveBoldHover;
   @override
   final Color borderInteractiveFocus;
+  @override
+  final Color borderInteractiveInputActive;
+  @override
+  final Color borderInteractiveInputDefault;
+  @override
+  final Color borderInteractiveInputHover;
   @override
   final Color borderInteractivePrimaryActive;
   @override
@@ -1385,6 +1394,11 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         DesignTokensLight.borderInteractiveBoldDefault,
     borderInteractiveBoldHover: DesignTokensLight.borderInteractiveBoldHover,
     borderInteractiveFocus: DesignTokensLight.borderInteractiveFocus,
+    borderInteractiveInputActive:
+        DesignTokensLight.borderInteractiveInputActive,
+    borderInteractiveInputDefault:
+        DesignTokensLight.borderInteractiveInputDefault,
+    borderInteractiveInputHover: DesignTokensLight.borderInteractiveInputHover,
     borderInteractivePrimaryActive:
         DesignTokensLight.borderInteractivePrimaryActive,
     borderInteractivePrimaryDefault:
@@ -1853,6 +1867,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderInteractiveBoldDefault: DesignTokensDark.borderInteractiveBoldDefault,
     borderInteractiveBoldHover: DesignTokensDark.borderInteractiveBoldHover,
     borderInteractiveFocus: DesignTokensDark.borderInteractiveFocus,
+    borderInteractiveInputActive: DesignTokensDark.borderInteractiveInputActive,
+    borderInteractiveInputDefault:
+        DesignTokensDark.borderInteractiveInputDefault,
+    borderInteractiveInputHover: DesignTokensDark.borderInteractiveInputHover,
     borderInteractivePrimaryActive:
         DesignTokensDark.borderInteractivePrimaryActive,
     borderInteractivePrimaryDefault:
