@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Fri, 11 Jul 2025 08:18:52 GMT
+// Generated on Tue, 05 Aug 2025 13:33:15 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -86,6 +86,9 @@ abstract final class DesignTokensLight {
   static const Color borderInteractiveBoldDefault = Color(0xFF52526D);
   static const Color borderInteractiveBoldHover = Color(0xFF414158);
   static const Color borderInteractiveFocus = Color(0xFF5653F7);
+  static const Color borderInteractiveInputActive = Color(0xFF646482);
+  static const Color borderInteractiveInputDefault = Color(0xFF8D8DAC);
+  static const Color borderInteractiveInputHover = Color(0xFF777797);
   static const Color borderInteractivePrimaryActive = Color(0xFF0A08AD);
   static const Color borderInteractivePrimaryDefault = Color(0xFF3B37F2);
   static const Color borderInteractivePrimaryHover = Color(0xFF1613D7);
