@@ -16,6 +16,7 @@ class WidgetbookApp extends StatelessWidget {
   Widget build(BuildContext context) => Widgetbook.material(
     addons: <WidgetbookAddon>[
       ViewportAddon([
+        Viewports.none,
         IosViewports.iPhone13Mini,
         IosViewports.iPhone13,
         IosViewports.iPhone13ProMax,
