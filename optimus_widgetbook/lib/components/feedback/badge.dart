@@ -12,7 +12,7 @@ Widget createDefaultStyle(BuildContext context) {
     initialValue: true,
   );
   final isOutlined = knobs.boolean(label: 'Outline', initialValue: true);
-  final variant = knobs.list(
+  final variant = knobs.object.dropdown(
     label: 'Variant',
     initialOption: OptimusBadgeVariant.values.first,
     options: OptimusBadgeVariant.values,

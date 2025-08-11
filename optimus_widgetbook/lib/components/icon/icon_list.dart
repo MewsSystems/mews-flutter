@@ -10,11 +10,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createDefaultStyle(BuildContext context) => OptimusIconList(
   items: _items,
-  listSize: context.knobs.listOrNull(
+  listSize: context.knobs.objectOrNull.dropdown(
     label: 'Size',
     initialOption: null,
     options: OptimusIconListSize.values,
-    labelBuilder: (value) => value?.name ?? 'Not set',
+    labelBuilder: (value) => value.name,
   ),
 );
 

@@ -13,7 +13,7 @@ Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
   final isClearEnabled = k.boolean(label: 'Clear all', initialValue: false);
-  final String format = k.list(
+  final String format = k.object.dropdown(
     label: 'Format',
     options: _formats,
     initialOption: _formats.first,

@@ -22,19 +22,19 @@ Widget createDefaultStyle(BuildContext context) {
   final suffix = k.optimusIconOrNullKnob(label: 'Suffix Icon');
   final info = k.string(label: 'Info', initialValue: 'Info');
   final infoWidget = k.optimusIconOrNullKnob(label: 'Info Icon');
-  final fontVariant = k.list(
+  final fontVariant = k.object.dropdown(
     label: 'Font variant',
     initialOption: FontVariant.normal,
     options: FontVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final prefixSize = k.list(
+  final prefixSize = k.object.dropdown(
     label: 'Prefix Size',
     options: OptimusPrefixSize.values,
     initialOption: OptimusPrefixSize.medium,
     labelBuilder: enumLabelBuilder,
   );
-  final prefixAlignment = k.listOrNull(
+  final prefixAlignment = k.objectOrNull.dropdown(
     label: 'Prefix Alignment',
     options: OptimusPrefixVerticalAlignment.values,
     labelBuilder: enumOrNullLabelBuilder,

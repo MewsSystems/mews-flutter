@@ -18,7 +18,7 @@ class AlertStory extends StatelessWidget {
     final description = k.stringOrNull(label: 'Description', initialValue: '');
     final link = k.stringOrNull(label: 'Action', initialValue: '');
     final isDismissible = k.boolean(label: 'Dismissible');
-    final position = k.list(
+    final position = k.object.dropdown(
       label: 'Position',
       initialOption: OptimusAlertPosition.topRight,
       options: OptimusAlertPosition.values,

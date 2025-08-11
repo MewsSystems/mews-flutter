@@ -12,7 +12,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final isEnabled = k.isEnabledKnob;
-  final size = k.list(
+  final size = k.object.dropdown(
     label: 'Size',
     labelBuilder: enumLabelBuilder,
     initialOption: OptimusToggleButtonSizeVariant.large,

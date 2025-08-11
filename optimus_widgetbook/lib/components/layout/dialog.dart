@@ -16,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
   final content = k.boolean(label: 'Scrollable', initialValue: false)
       ? _scrollableContent
       : _content(context);
-  final type = k.list(
+  final type = k.object.dropdown(
     label: 'Type',
     initialOption: OptimusDialogType.common,
     options: OptimusDialogType.values,

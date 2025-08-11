@@ -20,14 +20,14 @@ Widget createDefaultStyle(BuildContext context) {
           'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.',
     ),
     time: stubDate,
-    owner: k.list(
+    owner: k.object.dropdown(
       label: 'Owner',
       initialOption: MessageOwner.user,
       options: MessageOwner.values,
       labelBuilder: enumLabelBuilder,
     ),
     deliveryStatus: MessageDeliveryStatus.sent,
-    state: k.list(
+    state: k.object.dropdown(
       label: 'State',
       initialOption: MessageState.basic,
       options: MessageState.values,

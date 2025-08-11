@@ -20,7 +20,7 @@ Widget createDefaultStyle(BuildContext context) {
     max: 20,
   );
   final allowInherit = k.boolean(label: 'Inherit', initialValue: false);
-  final color = k.listOrNull(
+  final color = k.objectOrNull.dropdown(
     label: 'Colors',
     initialOption: null,
     options: _colors,
@@ -52,7 +52,7 @@ Widget createDefaultStyle(BuildContext context) {
             onPressed: onPressed,
             useStrong: k.boolean(label: 'Strong', initialValue: false),
             textStyle: allowInherit ? style : null,
-            variant: k.list(
+            variant: k.object.dropdown(
               label: 'Variant',
               initialOption: OptimusLinkVariant.primary,
               options: OptimusLinkVariant.values,

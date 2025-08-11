@@ -35,7 +35,7 @@ class _DateFieldExampleState extends State<_DateFieldExample> {
 
     final error = k.string(label: 'Error');
     final isClearEnabled = k.boolean(label: 'Clear all', initialValue: false);
-    final String format = k.list(
+    final String format = k.object.dropdown(
       label: 'Format',
       options: _formats,
       initialOption: _formats.first,

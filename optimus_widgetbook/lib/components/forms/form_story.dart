@@ -27,7 +27,7 @@ class _ContentState extends State<_Content> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final error = k.string(label: 'Error', initialValue: 'Required');
-    final AutovalidateMode autovalidateMode = k.list(
+    final AutovalidateMode autovalidateMode = k.object.dropdown(
       label: 'autovalidateMode',
       initialOption: AutovalidateMode.onUserInteraction,
       options: AutovalidateMode.values,

@@ -30,7 +30,7 @@ Widget createDefaultStyle(BuildContext context) {
                 size: size,
                 isExternal: k.boolean(label: 'External', initialValue: false),
                 useStrong: k.boolean(label: 'Strong', initialValue: false),
-                variant: k.list(
+                variant: k.object.dropdown(
                   label: 'Variant',
                   initialOption: OptimusLinkVariant.primary,
                   options: OptimusLinkVariant.values,
