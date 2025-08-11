@@ -11,10 +11,9 @@ class MewsHeader extends StatelessWidget {
       sizeVariant: OptimusMewsLogoSizeVariant.medium,
       alignVariant: OptimusMewsLogoAlignVariant.center,
       useMargin: false,
-      colorVariant:
-          OptimusTheme.of(context).isDark
-              ? OptimusMewsLogoColorVariant.white
-              : OptimusMewsLogoColorVariant.black,
+      colorVariant: OptimusTheme.of(context).isDark
+          ? OptimusMewsLogoColorVariant.white
+          : OptimusMewsLogoColorVariant.black,
     ),
   );
 }

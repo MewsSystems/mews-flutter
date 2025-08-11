@@ -75,36 +75,30 @@ class _$OptimusMessageCopyWithImpl<$Res, $Val extends OptimusMessage>
   }) {
     return _then(
       _value.copyWith(
-            author:
-                null == author
-                    ? _value.author
-                    : author // ignore: cast_nullable_to_non_nullable
-                        as OptimusMessageAuthor,
-            message:
-                null == message
-                    ? _value.message
-                    : message // ignore: cast_nullable_to_non_nullable
-                        as String,
-            owner:
-                null == owner
-                    ? _value.owner
-                    : owner // ignore: cast_nullable_to_non_nullable
-                        as MessageOwner,
-            state:
-                null == state
-                    ? _value.state
-                    : state // ignore: cast_nullable_to_non_nullable
-                        as MessageState,
-            time:
-                null == time
-                    ? _value.time
-                    : time // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
-            deliveryStatus:
-                null == deliveryStatus
-                    ? _value.deliveryStatus
-                    : deliveryStatus // ignore: cast_nullable_to_non_nullable
-                        as MessageDeliveryStatus,
+            author: null == author
+                ? _value.author
+                : author // ignore: cast_nullable_to_non_nullable
+                      as OptimusMessageAuthor,
+            message: null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                      as String,
+            owner: null == owner
+                ? _value.owner
+                : owner // ignore: cast_nullable_to_non_nullable
+                      as MessageOwner,
+            state: null == state
+                ? _value.state
+                : state // ignore: cast_nullable_to_non_nullable
+                      as MessageState,
+            time: null == time
+                ? _value.time
+                : time // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+            deliveryStatus: null == deliveryStatus
+                ? _value.deliveryStatus
+                : deliveryStatus // ignore: cast_nullable_to_non_nullable
+                      as MessageDeliveryStatus,
           )
           as $Val,
     );
@@ -166,36 +160,30 @@ class __$$MessageImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$MessageImpl(
-        author:
-            null == author
-                ? _value.author
-                : author // ignore: cast_nullable_to_non_nullable
-                    as OptimusMessageAuthor,
-        message:
-            null == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                    as String,
-        owner:
-            null == owner
-                ? _value.owner
-                : owner // ignore: cast_nullable_to_non_nullable
-                    as MessageOwner,
-        state:
-            null == state
-                ? _value.state
-                : state // ignore: cast_nullable_to_non_nullable
-                    as MessageState,
-        time:
-            null == time
-                ? _value.time
-                : time // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
-        deliveryStatus:
-            null == deliveryStatus
-                ? _value.deliveryStatus
-                : deliveryStatus // ignore: cast_nullable_to_non_nullable
-                    as MessageDeliveryStatus,
+        author: null == author
+            ? _value.author
+            : author // ignore: cast_nullable_to_non_nullable
+                  as OptimusMessageAuthor,
+        message: null == message
+            ? _value.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        owner: null == owner
+            ? _value.owner
+            : owner // ignore: cast_nullable_to_non_nullable
+                  as MessageOwner,
+        state: null == state
+            ? _value.state
+            : state // ignore: cast_nullable_to_non_nullable
+                  as MessageState,
+        time: null == time
+            ? _value.time
+            : time // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+        deliveryStatus: null == deliveryStatus
+            ? _value.deliveryStatus
+            : deliveryStatus // ignore: cast_nullable_to_non_nullable
+                  as MessageDeliveryStatus,
       ),
     );
   }
@@ -345,21 +333,18 @@ class _$OptimusMessageAuthorCopyWithImpl<
   }) {
     return _then(
       _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            username:
-                null == username
-                    ? _value.username
-                    : username // ignore: cast_nullable_to_non_nullable
-                        as String,
-            avatar:
-                freezed == avatar
-                    ? _value.avatar
-                    : avatar // ignore: cast_nullable_to_non_nullable
-                        as Widget?,
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            username: null == username
+                ? _value.username
+                : username // ignore: cast_nullable_to_non_nullable
+                      as String,
+            avatar: freezed == avatar
+                ? _value.avatar
+                : avatar // ignore: cast_nullable_to_non_nullable
+                      as Widget?,
           )
           as $Val,
     );
@@ -398,21 +383,18 @@ class __$$OptimusMessageAuthorImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$OptimusMessageAuthorImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        username:
-            null == username
-                ? _value.username
-                : username // ignore: cast_nullable_to_non_nullable
-                    as String,
-        avatar:
-            freezed == avatar
-                ? _value.avatar
-                : avatar // ignore: cast_nullable_to_non_nullable
-                    as Widget?,
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        username: null == username
+            ? _value.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String,
+        avatar: freezed == avatar
+            ? _value.avatar
+            : avatar // ignore: cast_nullable_to_non_nullable
+                  as Widget?,
       ),
     );
   }

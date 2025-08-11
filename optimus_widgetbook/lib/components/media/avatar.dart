@@ -32,12 +32,11 @@ Widget createDefaultStyle(BuildContext context) {
 
   return OptimusAvatar(
     title: title,
-    imageUrl:
-        useImage
-            ? isErrorLoading
-                ? _badUrl
-                : _avatarUrl
-            : null,
+    imageUrl: useImage
+        ? isErrorLoading
+              ? _badUrl
+              : _avatarUrl
+        : null,
     isIndicatorVisible: hasIndicator,
     size: size,
     badgeUrl: useBadge ? _badgeUrl : null,

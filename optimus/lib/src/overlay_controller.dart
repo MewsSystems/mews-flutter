@@ -45,10 +45,9 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
     widget.focusNode.addListener(_onFocusChanged);
   }
 
-  void _onFocusChanged() =>
-      widget.focusNode.hasFocus
-          ? setState(_showOverlay)
-          : setState(_removeOverlay);
+  void _onFocusChanged() => widget.focusNode.hasFocus
+      ? setState(_showOverlay)
+      : setState(_removeOverlay);
 
   @override
   void didUpdateWidget(OverlayController<T> oldWidget) {
@@ -76,29 +75,28 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-    builder:
-        (_) => MediaQuery(
-          data: MediaQuery.of(context),
-          child: Stack(
-            key: const Key('OptimusSelectOverlay'),
-            children: <Widget>[
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTapDown: (_) => widget.focusNode.unfocus(),
-              ),
-              DropdownTapInterceptor(
-                onTap: widget.focusNode.unfocus,
-                child: OptimusDropdown<T>(
-                  items: widget.items,
-                  size: widget.size,
-                  anchorKey: widget.anchorKey,
-                  onChanged: widget.onItemSelected,
-                  width: widget.width,
-                ),
-              ),
-            ],
+    builder: (_) => MediaQuery(
+      data: MediaQuery.of(context),
+      child: Stack(
+        key: const Key('OptimusSelectOverlay'),
+        children: <Widget>[
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapDown: (_) => widget.focusNode.unfocus(),
           ),
-        ),
+          DropdownTapInterceptor(
+            onTap: widget.focusNode.unfocus,
+            child: OptimusDropdown<T>(
+              items: widget.items,
+              size: widget.size,
+              anchorKey: widget.anchorKey,
+              onChanged: widget.onItemSelected,
+              width: widget.width,
+            ),
+          ),
+        ],
+      ),
+    ),
   );
 
   @override

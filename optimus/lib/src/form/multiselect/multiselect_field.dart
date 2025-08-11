@@ -90,26 +90,24 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
   @override
   Widget build(BuildContext context) {
     final error = widget.error;
-    final inlineError =
-        _isUsingInlineError && error != null && error.isNotEmpty
-            ? InlineErrorTooltip(error: error)
-            : null;
+    final inlineError = _isUsingInlineError && error != null && error.isNotEmpty
+        ? InlineErrorTooltip(error: error)
+        : null;
     final suffix =
         widget.suffix != null ||
-                widget.trailing != null ||
-                widget.showLoader ||
-                inlineError != null
-            ? Suffix(
-              suffix: widget.suffix,
-              trailing: widget.trailing,
-              showLoader: widget.showLoader,
-              inlineError: inlineError,
-            )
-            : null;
-    final prefix =
-        widget.leading != null || widget.prefix != null
-            ? Prefix(prefix: widget.prefix, leading: widget.leading)
-            : null;
+            widget.trailing != null ||
+            widget.showLoader ||
+            inlineError != null
+        ? Suffix(
+            suffix: widget.suffix,
+            trailing: widget.trailing,
+            showLoader: widget.showLoader,
+            inlineError: inlineError,
+          )
+        : null;
+    final prefix = widget.leading != null || widget.prefix != null
+        ? Prefix(prefix: widget.prefix, leading: widget.leading)
+        : null;
 
     return IgnorePointer(
       ignoring: !widget.isEnabled,

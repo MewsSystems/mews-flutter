@@ -83,10 +83,9 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
                 isPressed: _statesController.value.isPressed,
                 isHovered: _statesController.value.isHovered,
               );
-              final side =
-                  color != null
-                      ? BorderSide(color: color, width: tokens.borderWidth150)
-                      : BorderSide.none;
+              final side = color != null
+                  ? BorderSide(color: color, width: tokens.borderWidth150)
+                  : BorderSide.none;
 
               return widget.shapeBuilder?.let(
                     (builder) => builder(borderRadius, side),
@@ -163,15 +162,13 @@ class _ButtonContent extends StatefulWidget {
 }
 
 class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
-  TextStyle get _textStyle =>
-      widget.size == OptimusWidgetSize.small
-          ? tokens.bodyMediumStrong
-          : tokens.bodyLargeStrong;
+  TextStyle get _textStyle => widget.size == OptimusWidgetSize.small
+      ? tokens.bodyMediumStrong
+      : tokens.bodyLargeStrong;
 
-  double get _iconSize =>
-      widget.size == OptimusWidgetSize.small
-          ? tokens.sizing200
-          : tokens.sizing300;
+  double get _iconSize => widget.size == OptimusWidgetSize.small
+      ? tokens.sizing200
+      : tokens.sizing300;
 
   @override
   void initState() {
@@ -220,10 +217,9 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
           children: <Widget>[
             if (widget.leadingIcon case final leadingIcon?)
               Padding(
-                padding:
-                    widget.child != null
-                        ? EdgeInsets.only(right: insideHorizontalPadding)
-                        : EdgeInsets.zero,
+                padding: widget.child != null
+                    ? EdgeInsets.only(right: insideHorizontalPadding)
+                    : EdgeInsets.zero,
                 child: Icon(
                   leadingIcon,
                   size: _iconSize,

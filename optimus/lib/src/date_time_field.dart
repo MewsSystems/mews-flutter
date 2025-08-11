@@ -69,13 +69,12 @@ class _OptimusDateTimeFieldState extends State<OptimusDateTimeField>
     FocusScope.of(context).requestFocus(FocusNode());
     showModalBottomSheet<void>(
       context: context,
-      builder:
-          (context) => CupertinoDatePicker(
-            onDateTimeChanged: widget.onChanged,
-            initialDateTime: widget.value,
-            minimumDate: widget.minDate,
-            maximumDate: widget.maxDate,
-          ),
+      builder: (_) => CupertinoDatePicker(
+        onDateTimeChanged: widget.onChanged,
+        initialDateTime: widget.value,
+        minimumDate: widget.minDate,
+        maximumDate: widget.maxDate,
+      ),
     );
   }
 

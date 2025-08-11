@@ -36,10 +36,9 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
     if (renderObject is! RenderBox || !renderObject.hasSize) return;
 
     final size = renderObject.size;
-    final ratio =
-        widget.actionsWidth > 0
-            ? widget.actionsWidth / size.width
-            : size.height / size.width;
+    final ratio = widget.actionsWidth > 0
+        ? widget.actionsWidth / size.width
+        : size.height / size.width;
     if (_extentRatio != ratio) {
       setState(() => _extentRatio = ratio);
     }
@@ -56,8 +55,9 @@ class _OptimusSlidableState extends State<OptimusSlidable> {
         children: widget.actions ?? [],
       ),
       enabled: widget.isEnabled,
-      child:
-          widget.hasBorders ? TileBorders(child: widget.child) : widget.child,
+      child: widget.hasBorders
+          ? TileBorders(child: widget.child)
+          : widget.child,
     );
   }
 }

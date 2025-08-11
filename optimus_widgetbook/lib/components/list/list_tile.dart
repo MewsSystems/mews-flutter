@@ -42,26 +42,24 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          Iterable<int>.generate(10)
-              .map(
-                (i) => OptimusListTile(
-                  title: Text(title),
-                  subtitle:
-                      subtitle.isNotEmpty
-                          ? Text(useLongSubtitle ? longText : subtitle)
-                          : null,
-                  info: info.isNotEmpty ? Text(info) : null,
-                  fontVariant: fontVariant,
-                  prefix: prefix?.toWidget(),
-                  suffix: suffix?.toWidget(),
-                  infoWidget: infoWidget?.toWidget(),
-                  onTap: ignore,
-                  prefixSize: prefixSize,
-                  prefixVerticalAlignment: prefixAlignment,
-                ),
-              )
-              .toList(),
+      children: Iterable<int>.generate(10)
+          .map(
+            (i) => OptimusListTile(
+              title: Text(title),
+              subtitle: subtitle.isNotEmpty
+                  ? Text(useLongSubtitle ? longText : subtitle)
+                  : null,
+              info: info.isNotEmpty ? Text(info) : null,
+              fontVariant: fontVariant,
+              prefix: prefix?.toWidget(),
+              suffix: suffix?.toWidget(),
+              infoWidget: infoWidget?.toWidget(),
+              onTap: ignore,
+              prefixSize: prefixSize,
+              prefixVerticalAlignment: prefixAlignment,
+            ),
+          )
+          .toList(),
     ),
   );
 }

@@ -100,10 +100,9 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     isEnabled: _isEnabled,
   );
 
-  TextStyle get _labelStyle =>
-      widget.size == OptimusWidgetSize.small
-          ? tokens.bodyMediumStrong.copyWith(color: _textColor)
-          : tokens.bodyLargeStrong.copyWith(color: _textColor);
+  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
+      ? tokens.bodyMediumStrong.copyWith(color: _textColor)
+      : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
   Color? get _color => _variant.getBackgroundColor(
     tokens,
@@ -119,11 +118,10 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     final borderRadius =
         widget.borderRadius ?? BorderRadius.all(tokens.borderRadius100);
 
-    final border =
-        borderColor != null
-            ? (widget.borderBuilder?.let((it) => it(borderColor)) ??
-                Border.all(color: borderColor, width: context.borderWidth))
-            : null;
+    final border = borderColor != null
+        ? (widget.borderBuilder?.let((it) => it(borderColor)) ??
+              Border.all(color: borderColor, width: context.borderWidth))
+        : null;
 
     return OverlayController(
       items: widget.items,

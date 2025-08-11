@@ -16,40 +16,38 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          OptimusSplitButtonVariant.values
-              .map(
-                (v) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: OptimusSplitButton<int>(
-                    size: k.list(
-                      label: 'Size',
-                      initialOption: OptimusWidgetSize.large,
-                      options: OptimusWidgetSize.values,
-                      labelBuilder: enumLabelBuilder,
-                    ),
-                    items:
-                        Iterable<int>.generate(10)
-                            .map(
-                              (i) => ListDropdownTile<int>(
-                                value: i,
-                                title: Text('Dropdown tile #$i'),
-                                subtitle: Text('Subtitle #$i'),
-                              ),
-                            )
-                            .toList(),
-                    onPressed: isEnabled ? ignore : null,
-                    onItemSelected: isEnabled ? ignore : null,
-                    variant: v,
-                    semanticLabel: 'Split Button: Primary',
-                    dropdownSemanticLabel: 'Split Button: Dropdown',
-                    child: Text(
-                      k.string(label: 'Label', initialValue: 'Split button'),
-                    ),
-                  ),
+      children: OptimusSplitButtonVariant.values
+          .map(
+            (v) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: OptimusSplitButton<int>(
+                size: k.list(
+                  label: 'Size',
+                  initialOption: OptimusWidgetSize.large,
+                  options: OptimusWidgetSize.values,
+                  labelBuilder: enumLabelBuilder,
                 ),
-              )
-              .toList(),
+                items: Iterable<int>.generate(10)
+                    .map(
+                      (i) => ListDropdownTile<int>(
+                        value: i,
+                        title: Text('Dropdown tile #$i'),
+                        subtitle: Text('Subtitle #$i'),
+                      ),
+                    )
+                    .toList(),
+                onPressed: isEnabled ? ignore : null,
+                onItemSelected: isEnabled ? ignore : null,
+                variant: v,
+                semanticLabel: 'Split Button: Primary',
+                dropdownSemanticLabel: 'Split Button: Dropdown',
+                child: Text(
+                  k.string(label: 'Label', initialValue: 'Split button'),
+                ),
+              ),
+            ),
+          )
+          .toList(),
     ),
   );
 }

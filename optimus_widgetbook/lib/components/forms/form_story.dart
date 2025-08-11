@@ -54,17 +54,16 @@ class _ContentState extends State<_Content> {
             placeholder: 'Please select the item',
             initialValue: null,
             builder: (value) => value ?? '',
-            items:
-                _selectorItems
-                    .map(
-                      (e) => ListDropdownTile<String>(
-                        value: e,
-                        title: Text(e),
-                        isSelected: _values.contains(e),
-                        hasCheckbox: allowMultipleSelection,
-                      ),
-                    )
-                    .toList(),
+            items: _selectorItems
+                .map(
+                  (e) => ListDropdownTile<String>(
+                    value: e,
+                    title: Text(e),
+                    isSelected: _values.contains(e),
+                    hasCheckbox: allowMultipleSelection,
+                  ),
+                )
+                .toList(),
             onChanged: (v) {
               if (_values.contains(v)) {
                 setState(() => _values.remove(v));

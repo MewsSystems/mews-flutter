@@ -37,27 +37,25 @@ Future<T?> showOptimusDialog<T>({
   bool useRootNavigator = true,
 }) => showGeneralDialog<T>(
   context: context,
-  pageBuilder:
-      (buildContext, animation, secondaryAnimation) => MediaQuery(
-        data: MediaQuery.of(context),
-        child: OptimusDialog.modal(
-          title: title,
-          content: content,
-          contentWrapperBuilder: contentWrapperBuilder,
-          actions: actions,
-          size: size,
-          type: type,
-        ),
-      ),
+  pageBuilder: (buildContext, animation, secondaryAnimation) => MediaQuery(
+    data: MediaQuery.of(context),
+    child: OptimusDialog.modal(
+      title: title,
+      content: content,
+      contentWrapperBuilder: contentWrapperBuilder,
+      actions: actions,
+      size: size,
+      type: type,
+    ),
+  ),
   barrierDismissible: isDismissible,
   barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
   barrierColor: context.tokens.borderStaticPrimary,
   transitionDuration: const Duration(milliseconds: 150),
-  transitionBuilder:
-      (_, animation, _, child) => FadeTransition(
-        opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
-        child: child,
-      ),
+  transitionBuilder: (_, animation, _, child) => FadeTransition(
+    opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+    child: child,
+  ),
   useRootNavigator: useRootNavigator,
 );
 
@@ -112,8 +110,9 @@ class OptimusDialog extends StatelessWidget {
          content: content,
          contentWrapperBuilder: contentWrapperBuilder,
          actions: actions,
-         size:
-             size == OptimusDialogSize.large ? OptimusDialogSize.regular : size,
+         size: size == OptimusDialogSize.large
+             ? OptimusDialogSize.regular
+             : size,
          isDismissible: isDismissible,
          close: close,
          position: OptimusDialogPosition.corner,
@@ -166,14 +165,13 @@ class OptimusDialog extends StatelessWidget {
         Breakpoint.medium || Breakpoint.large || Breakpoint.extraLarge => size,
       };
 
-  Alignment _alignment(BuildContext context) => switch (MediaQuery.sizeOf(
-    context,
-  ).screenBreakpoint) {
-    Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
-    Breakpoint.medium ||
-    Breakpoint.large ||
-    Breakpoint.extraLarge => _largeScreenAlignment,
-  };
+  Alignment _alignment(BuildContext context) =>
+      switch (MediaQuery.sizeOf(context).screenBreakpoint) {
+        Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
+        Breakpoint.medium ||
+        Breakpoint.large ||
+        Breakpoint.extraLarge => _largeScreenAlignment,
+      };
 
   Alignment get _smallScreenAlignment => switch (position) {
     OptimusDialogPosition.center => Alignment.center,

@@ -41,22 +41,19 @@ class WidgetbookApp extends StatelessWidget {
             ),
           ),
         ],
-        themeBuilder:
-            (context, theme, child) => OptimusTheme(
-              themeMode:
-                  theme.brightness == Brightness.light
-                      ? ThemeMode.light
-                      : ThemeMode.dark,
-              child: child,
-            ),
+        themeBuilder: (context, theme, child) => OptimusTheme(
+          themeMode: theme.brightness == Brightness.light
+              ? ThemeMode.light
+              : ThemeMode.dark,
+          child: child,
+        ),
       ),
       BuilderAddon(
         name: 'Background builder',
-        builder:
-            (BuildContext context, Widget widget) => ColoredBox(
-              color: context.tokens.backgroundStaticFlat,
-              child: SafeArea(child: widget),
-            ),
+        builder: (BuildContext context, Widget widget) => ColoredBox(
+          color: context.tokens.backgroundStaticFlat,
+          child: SafeArea(child: widget),
+        ),
       ),
       TextScaleAddon(),
       AlignmentAddon(),

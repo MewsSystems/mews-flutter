@@ -77,10 +77,9 @@ class OptimusBanner extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(tokens.spacing200),
                 child: Row(
-                  crossAxisAlignment:
-                      _isExpanded
-                          ? CrossAxisAlignment.start
-                          : CrossAxisAlignment.center,
+                  crossAxisAlignment: _isExpanded
+                      ? CrossAxisAlignment.start
+                      : CrossAxisAlignment.center,
                   children: [
                     if (hasIcon)
                       Padding(
@@ -92,10 +91,9 @@ class OptimusBanner extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                isDismissible
-                                    ? EdgeInsets.only(right: tokens.spacing200)
-                                    : EdgeInsets.zero,
+                            padding: isDismissible
+                                ? EdgeInsets.only(right: tokens.spacing200)
+                                : EdgeInsets.zero,
                             child: FeedbackTitle(title: title),
                           ),
                           if (description case final description?)

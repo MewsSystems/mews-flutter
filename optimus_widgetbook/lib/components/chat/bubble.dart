@@ -38,11 +38,10 @@ Widget createDefaultStyle(BuildContext context) {
   return OptimusChatBubble(
     message: message,
     isUserNameVisible: k.boolean(label: 'Show user name', initialValue: true),
-    formatTime:
-        (DateTime input) =>
-            '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
-    formatDate:
-        (DateTime input) => '${input.day}. ${input.month}. ${input.year}',
+    formatTime: (DateTime input) =>
+        '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
+    formatDate: (DateTime input) =>
+        '${input.day}. ${input.month}. ${input.year}',
     sending: const Text('Sending...'),
     sent: const Text('Sent'),
     error: const Text('Error, try sending again'),

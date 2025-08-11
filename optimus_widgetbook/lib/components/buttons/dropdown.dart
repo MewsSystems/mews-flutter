@@ -16,32 +16,30 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          OptimusDropdownButtonVariant.values
-              .map(
-                (v) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: OptimusDropDownButton<int>(
-                    size: k.widgetSizeKnob,
-                    items:
-                        Iterable<int>.generate(10)
-                            .map(
-                              (i) => ListDropdownTile<int>(
-                                value: i,
-                                title: Text('Dropdown tile #$i'),
-                                subtitle: Text('Subtitle #$i'),
-                              ),
-                            )
-                            .toList(),
-                    onItemSelected: isEnabled ? ignore : null,
-                    variant: v,
-                    child: Text(
-                      k.string(label: 'Label', initialValue: 'Dropdown button'),
-                    ),
-                  ),
+      children: OptimusDropdownButtonVariant.values
+          .map(
+            (v) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: OptimusDropDownButton<int>(
+                size: k.widgetSizeKnob,
+                items: Iterable<int>.generate(10)
+                    .map(
+                      (i) => ListDropdownTile<int>(
+                        value: i,
+                        title: Text('Dropdown tile #$i'),
+                        subtitle: Text('Subtitle #$i'),
+                      ),
+                    )
+                    .toList(),
+                onItemSelected: isEnabled ? ignore : null,
+                variant: v,
+                child: Text(
+                  k.string(label: 'Label', initialValue: 'Dropdown button'),
                 ),
-              )
-              .toList(),
+              ),
+            ),
+          )
+          .toList(),
     ),
   );
 }

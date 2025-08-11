@@ -131,24 +131,22 @@ class _CircleImage extends StatelessWidget {
             data: MediaQuery.of(
               context,
             ).copyWith(textScaler: TextScaler.noScaling),
-            child:
-                imageUrl != null
-                    ? FadeInImage.memoryNetwork(
-                      width: diameter,
-                      height: diameter,
-                      placeholder: _transparentImage,
-                      image: imageUrl,
-                      imageSemanticLabel: semanticLabel,
-                      fit: BoxFit.cover,
-                      imageErrorBuilder:
-                          (_, _, _) => Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            decoration: decoration,
-                            child: Center(child: fallbackWidget),
-                          ),
-                    )
-                    : fallbackWidget,
+            child: imageUrl != null
+                ? FadeInImage.memoryNetwork(
+                    width: diameter,
+                    height: diameter,
+                    placeholder: _transparentImage,
+                    image: imageUrl,
+                    imageSemanticLabel: semanticLabel,
+                    fit: BoxFit.cover,
+                    imageErrorBuilder: (_, _, _) => Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: decoration,
+                      child: Center(child: fallbackWidget),
+                    ),
+                  )
+                : fallbackWidget,
           ),
         ),
       ),

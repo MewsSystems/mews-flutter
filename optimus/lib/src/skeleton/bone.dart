@@ -120,15 +120,14 @@ class _BoneState extends State<_Bone> {
 
         return ShaderMask(
           blendMode: BlendMode.srcATop,
-          shaderCallback:
-              (_) => gradient.createShader(
-                Rect.fromLTWH(
-                  -offset.dx,
-                  -offset.dy,
-                  shimmerSize.width,
-                  shimmerSize.height,
-                ),
-              ),
+          shaderCallback: (_) => gradient.createShader(
+            Rect.fromLTWH(
+              -offset.dx,
+              -offset.dy,
+              shimmerSize.width,
+              shimmerSize.height,
+            ),
+          ),
           child: widget.child,
         );
       }

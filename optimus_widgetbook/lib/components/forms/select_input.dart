@@ -70,12 +70,12 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           value: _selectedValue,
           isEnabled: k.isEnabledKnob,
           isRequired: k.boolean(label: 'Required'),
-          leading:
-              k.boolean(label: 'Leading Icon')
-                  ? const Icon(OptimusIcons.search)
-                  : null,
-          onTextChanged:
-              k.boolean(label: 'Searchable') ? _handleTextChanged : null,
+          leading: k.boolean(label: 'Leading Icon')
+              ? const Icon(OptimusIcons.search)
+              : null,
+          onTextChanged: k.boolean(label: 'Searchable')
+              ? _handleTextChanged
+              : null,
           prefix: prefix.maybeToWidget(),
           suffix: suffix.maybeToWidget(),
           trailing: trailing?.toWidget(),
@@ -90,22 +90,20 @@ class _SelectInputStoryState extends State<SelectInputStory> {
             k.string(label: 'Secondary caption', initialValue: ''),
           ),
           error: k.string(label: 'Error', initialValue: ''),
-          items:
-              _characters
-                  .where((e) => e.toLowerCase().contains(_searchToken))
-                  .map(
-                    (e) => ListDropdownTile<String>(
-                      value: e,
-                      title: Text(e),
-                      subtitle: Text(e.toUpperCase()),
-                      isSelected:
-                          allowMultipleSelection
-                              ? _selectedValues.contains(e)
-                              : e == _selectedValue,
-                      hasCheckbox: allowMultipleSelection,
-                    ),
-                  )
-                  .toList(),
+          items: _characters
+              .where((e) => e.toLowerCase().contains(_searchToken))
+              .map(
+                (e) => ListDropdownTile<String>(
+                  value: e,
+                  title: Text(e),
+                  subtitle: Text(e.toUpperCase()),
+                  isSelected: allowMultipleSelection
+                      ? _selectedValues.contains(e)
+                      : e == _selectedValue,
+                  hasCheckbox: allowMultipleSelection,
+                ),
+              )
+              .toList(),
           builder: (option) => option,
           emptyResultPlaceholder: const Padding(
             padding: EdgeInsets.all(8),
@@ -113,18 +111,16 @@ class _SelectInputStoryState extends State<SelectInputStory> {
           ),
           allowMultipleSelection: allowMultipleSelection,
           selectedValues: allowMultipleSelection ? _selectedValues : null,
-          embeddedSearch:
-              isSearchEmbedded
-                  ? OptimusDropdownEmbeddedSearch(
-                    initialValue: _searchToken,
-                    onTextChanged: _handleTextChanged,
-                    placeholder: 'Search',
-                  )
-                  : null,
-          groupBy:
-              enableGrouping
-                  ? (item) => item.split(' ')[1][0].toLowerCase()
-                  : null,
+          embeddedSearch: isSearchEmbedded
+              ? OptimusDropdownEmbeddedSearch(
+                  initialValue: _searchToken,
+                  onTextChanged: _handleTextChanged,
+                  placeholder: 'Search',
+                )
+              : null,
+          groupBy: enableGrouping
+              ? (item) => item.split(' ')[1][0].toLowerCase()
+              : null,
         ),
       ),
     );

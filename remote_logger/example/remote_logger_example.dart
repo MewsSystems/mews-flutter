@@ -12,14 +12,15 @@ void main() {
   final remoteLogger = RemoteLogger(
     url: Uri.parse('http://example.com'),
     // Optionally, override the body of the request.
-    getBody:
-        (record, body) => <String, dynamic>{
-          ...body,
-          'level': record.level.toString(),
-        },
+    getBody: (record, body) => <String, dynamic>{
+      ...body,
+      'level': record.level.toString(),
+    },
     // Optionally, provide additional headers.
-    getHeaders:
-        (headers) => <String, String>{...headers, 'X-License-Key': 'TEST_KEY'},
+    getHeaders: (headers) => <String, String>{
+      ...headers,
+      'X-License-Key': 'TEST_KEY',
+    },
   );
 
   // Set remoteLogger as a listener.

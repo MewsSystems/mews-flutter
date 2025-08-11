@@ -48,20 +48,19 @@ class _RadioExampleState extends State<RadioExample> {
         width: 400,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children:
-              _options
-                  .map(
-                    (i) => OptimusRadio<String>(
-                      isEnabled: widget.isEnabled,
-                      label: Text(i),
-                      size: widget.size,
-                      value: i,
-                      groupValue: _groupValue,
-                      onChanged: _handleChanged,
-                      error: widget.error,
-                    ),
-                  )
-                  .toList(),
+          children: _options
+              .map(
+                (i) => OptimusRadio<String>(
+                  isEnabled: widget.isEnabled,
+                  label: Text(i),
+                  size: widget.size,
+                  value: i,
+                  groupValue: _groupValue,
+                  onChanged: _handleChanged,
+                  error: widget.error,
+                ),
+              )
+              .toList(),
         ),
       ),
     ),
@@ -126,10 +125,9 @@ class _RadioGroupExampleState extends State<_RadioGroupExample> {
         error: widget.error,
         isEnabled: widget.isEnabled,
         onChanged: _handleChanged,
-        items:
-            _options
-                .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
-                .toList(),
+        items: _options
+            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
+            .toList(),
       ),
     ),
   );

@@ -8,11 +8,10 @@ class NestedWrapper extends StatelessWidget {
   Route<dynamic> _handleGenerateRoute(RouteSettings settings) {
     late WidgetBuilder builder;
     if (settings.name case 'initialRoute') {
-      builder =
-          (context) => ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 400),
-            child: contentBuilder(context),
-          );
+      builder = (context) => ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: contentBuilder(context),
+      );
     }
 
     return MaterialPageRoute<dynamic>(

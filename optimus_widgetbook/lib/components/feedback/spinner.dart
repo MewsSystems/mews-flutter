@@ -15,8 +15,8 @@ Widget createDefaultStyle(BuildContext context) {
   return Center(
     child:
         context
-                .isInWidgetbookCloud // a workaround for WidgetbookCloud diff generator
-            ? SizedBox.square(dimension: context.tokens.sizing300)
-            : OptimusSpinner(size: size),
+            .isInWidgetbookCloud // a workaround for WidgetbookCloud diff generator
+        ? SizedBox.square(dimension: context.tokens.sizing300)
+        : OptimusSpinner(size: size),
   );
 }

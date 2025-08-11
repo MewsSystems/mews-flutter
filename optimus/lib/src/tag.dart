@@ -150,14 +150,13 @@ class _Tag extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: isOutlined ? tokens.backgroundStaticFlat : backgroundColor,
-        border:
-            isOutlined
-                ? Border.all(
-                  color: borderColor,
-                  width: tokens.borderWidth150,
-                  style: BorderStyle.solid,
-                )
-                : null,
+        border: isOutlined
+            ? Border.all(
+                color: borderColor,
+                width: tokens.borderWidth150,
+                style: BorderStyle.solid,
+              )
+            : null,
         borderRadius: BorderRadius.all(tokens.borderRadius50),
       ),
       padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),

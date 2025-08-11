@@ -25,8 +25,9 @@ Widget createDefaultStyle(BuildContext context) {
     initialOption: null,
     options: _colors,
   );
-  final onPressed =
-      k.boolean(label: 'Enabled', initialValue: true) ? ignore : null;
+  final onPressed = k.boolean(label: 'Enabled', initialValue: true)
+      ? ignore
+      : null;
 
   final TextStyle style = TextStyle(
     fontSize: size.toDouble(),
