@@ -9,13 +9,13 @@ Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final text = k.string(label: 'Divider Text', initialValue: 'Divider Text');
   final usePadding = k.boolean(label: 'Use Padding', initialValue: true);
-  final sizeVariant = k.list(
+  final sizeVariant = k.object.dropdown(
     label: 'Size Variant',
     initialOption: OptimusDividerThicknessVariant.thin,
     options: OptimusDividerThicknessVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final direction = k.list(
+  final direction = k.object.dropdown(
     label: 'Direction',
     initialOption: Axis.horizontal,
     options: Axis.values,

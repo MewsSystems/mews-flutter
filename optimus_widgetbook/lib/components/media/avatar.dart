@@ -13,7 +13,7 @@ Widget createDefaultStyle(BuildContext context) {
   final isErrorLoading = k.boolean(label: 'Error loading', initialValue: false);
   final title = k.string(label: 'Title', initialValue: 'User');
   final useBadge = k.boolean(label: 'Use badge', initialValue: false);
-  final alignment = k.list(
+  final alignment = k.object.dropdown(
     label: 'Alignment',
     initialOption: AlignmentDirectional.center,
     options: [
@@ -32,12 +32,11 @@ Widget createDefaultStyle(BuildContext context) {
 
   return OptimusAvatar(
     title: title,
-    imageUrl:
-        useImage
-            ? isErrorLoading
-                ? _badUrl
-                : _avatarUrl
-            : null,
+    imageUrl: useImage
+        ? isErrorLoading
+              ? _badUrl
+              : _avatarUrl
+        : null,
     isIndicatorVisible: hasIndicator,
     size: size,
     badgeUrl: useBadge ? _badgeUrl : null,

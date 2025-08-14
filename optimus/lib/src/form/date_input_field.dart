@@ -138,10 +138,9 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
 
   String _handleChanged(String value) {
     if (_previousValue != value || value.isEmpty) {
-      final result =
-          _controller.isInputComplete
-              ? _getDateTime(widget.format, value)
-              : null;
+      final result = _controller.isInputComplete
+          ? _getDateTime(widget.format, value)
+          : null;
       widget.onChanged?.call(result);
       _previousValue = value;
     }

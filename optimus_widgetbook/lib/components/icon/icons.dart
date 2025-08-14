@@ -8,14 +8,13 @@ Widget createDefaultStyle(BuildContext _) => GridView.builder(
   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 5,
   ),
-  itemBuilder:
-      (context, index) => Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            OptimusIcon(iconData: optimusIcons[index].data),
-            Text(optimusIcons[index].name, overflow: TextOverflow.ellipsis),
-          ],
-        ),
-      ),
+  itemBuilder: (context, index) => Padding(
+    padding: const EdgeInsets.all(8),
+    child: Column(
+      children: [
+        OptimusIcon(iconData: optimusIcons[index].data),
+        Text(optimusIcons[index].name, overflow: TextOverflow.ellipsis),
+      ],
+    ),
+  ),
 );

@@ -53,7 +53,7 @@ class NumberUseCaseState extends State<NumberUserCase> {
     final showLoader = k.boolean(label: 'Show Loader');
     final precision = k.int.slider(label: 'Precision', initialValue: 2);
     final isRequired = k.boolean(label: 'Required');
-    final separatorVariant = k.list(
+    final separatorVariant = k.object.dropdown(
       label: 'Separator Variant',
       options: OptimusNumberSeparatorVariant.values,
       labelBuilder: enumLabelBuilder,

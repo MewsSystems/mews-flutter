@@ -11,14 +11,14 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 )
 Widget createLabel(BuildContext context) {
   final k = context.knobs;
-  final variation = k.list(
+  final variation = k.object.dropdown(
     label: 'Variation',
     initialOption: Variation.variationNormal,
     options: Variation.values,
     labelBuilder: enumLabelBuilder,
   );
 
-  final align = k.listOrNull(
+  final align = k.objectOrNull.dropdown(
     label: 'Align',
     options: TextAlign.values,
     labelBuilder: enumOrNullLabelBuilder,
@@ -35,14 +35,14 @@ Widget createLabel(BuildContext context) {
 )
 Widget createSmallLabel(BuildContext context) {
   final k = context.knobs;
-  final variation = k.list(
+  final variation = k.object.dropdown(
     label: 'Variation',
     initialOption: Variation.variationNormal,
     options: Variation.values,
     labelBuilder: enumLabelBuilder,
   );
 
-  final align = k.listOrNull(
+  final align = k.objectOrNull.dropdown(
     label: 'Align',
     options: TextAlign.values,
     labelBuilder: enumOrNullLabelBuilder,

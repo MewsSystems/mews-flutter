@@ -231,29 +231,29 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
 
     return widget.isCompact && selectedValues.length > 2
         ? [
-          for (final element in selectedValues.take(2))
-            MultiselectChip(
-              onRemoved: () => widget.onChanged(element),
-              onTap: _handleChipTap,
-              isEnabled: widget.isEnabled,
-              text: builder(element),
-            ),
-          MultiselectChip(
-            text: '+${selectedValues.length - 2}',
-            onTap: _handleChipTap,
-            isEnabled: widget.isEnabled,
-          ),
-        ]
-        : selectedValues
-            .map(
-              (element) => MultiselectChip(
+            for (final element in selectedValues.take(2))
+              MultiselectChip(
                 onRemoved: () => widget.onChanged(element),
                 onTap: _handleChipTap,
                 isEnabled: widget.isEnabled,
                 text: builder(element),
               ),
-            )
-            .toList();
+            MultiselectChip(
+              text: '+${selectedValues.length - 2}',
+              onTap: _handleChipTap,
+              isEnabled: widget.isEnabled,
+            ),
+          ]
+        : selectedValues
+              .map(
+                (element) => MultiselectChip(
+                  onRemoved: () => widget.onChanged(element),
+                  onTap: _handleChipTap,
+                  isEnabled: widget.isEnabled,
+                  text: builder(element),
+                ),
+              )
+              .toList();
   }
 
   bool? get _isFocused =>
@@ -287,10 +287,10 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
           position: box.globalToLocal(details.globalPosition),
         );
 
-        final RenderObject? inputFieldRenderObject =
-            _fieldBoxKey.currentContext?.findRenderObject();
-        final RenderObject? dropdownRenderObject =
-            builderContext.findRenderObject();
+        final RenderObject? inputFieldRenderObject = _fieldBoxKey.currentContext
+            ?.findRenderObject();
+        final RenderObject? dropdownRenderObject = builderContext
+            .findRenderObject();
         if (dropdownRenderObject is RenderBox && didHit(dropdownRenderObject)) {
           // Touch on dropdown shouldn't close overlay
         } else if (inputFieldRenderObject is RenderBox &&
@@ -327,76 +327,72 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
 
   @override
   Widget build(BuildContext context) {
-    final clearAll =
-        _isClearAllButtonVisible
-            ? _ClearAllButton(onTap: _handleClearAllTap)
-            : null;
-    final trailing =
-        _hasTrailing
-            ? _Trailing(
-              focusNode: _effectiveFocusNode,
-              clearAllButton: clearAll,
-              trailing: widget.trailing,
-              trailingImplicit: widget.trailingImplicit,
-              isUpdating: widget.isUpdating,
-            )
-            : null;
-    final leading =
-        _hasLeading
-            ? _Leading(
-              leading: widget.leading,
-              leadingImplicit: widget.leadingImplicit,
-              focusNode: _effectiveFocusNode,
-            )
-            : null;
+    final clearAll = _isClearAllButtonVisible
+        ? _ClearAllButton(onTap: _handleClearAllTap)
+        : null;
+    final trailing = _hasTrailing
+        ? _Trailing(
+            focusNode: _effectiveFocusNode,
+            clearAllButton: clearAll,
+            trailing: widget.trailing,
+            trailingImplicit: widget.trailingImplicit,
+            isUpdating: widget.isUpdating,
+          )
+        : null;
+    final leading = _hasLeading
+        ? _Leading(
+            leading: widget.leading,
+            leadingImplicit: widget.leadingImplicit,
+            focusNode: _effectiveFocusNode,
+          )
+        : null;
 
     return PopScope(
       canPop: _canPop,
       onPopInvokedWithResult: _handleOnBackPressed,
-      child:
-          widget.allowMultipleSelection && _hasValues
-              ? MultiSelectInputField(
-                values: _values ?? [],
-                leading: leading,
-                prefix: widget.prefix,
-                isRequired: widget.isRequired,
-                label: widget.label,
-                focusNode: _effectiveFocusNode,
-                isFocused: _isFocused,
-                fieldBoxKey: _fieldBoxKey,
-                suffix: widget.suffix,
-                trailing: trailing,
-                isEnabled: widget.isEnabled,
-                caption: widget.caption,
-                helperMessage: widget.helperMessage,
-                error: widget.error,
-                size: widget.size,
-                showLoader: widget.showLoader,
-              )
-              : OptimusInputField(
-                leading: leading,
-                prefix: widget.prefix,
-                controller: _effectiveController,
-                onChanged: widget.onTextChanged,
-                isRequired: widget.isRequired,
-                label: widget.label,
-                placeholder: widget.placeholder,
-                placeholderStyle: widget.placeholderStyle,
-                focusNode: _effectiveFocusNode,
-                isFocused: _isFocused,
-                onTap: _onTap,
-                fieldBoxKey: _fieldBoxKey,
-                suffix: widget.suffix,
-                trailing: trailing,
-                isEnabled: widget.isEnabled,
-                caption: widget.caption,
-                helperMessage: widget.helperMessage,
-                error: widget.error,
-                size: widget.size,
-                isReadOnly: widget.isReadOnly,
-                showCursor: widget.showCursor,
-                showLoader: widget.showLoader,
-              ),
+      child: widget.allowMultipleSelection && _hasValues
+          ? MultiSelectInputField(
+              values: _values ?? [],
+              leading: leading,
+              prefix: widget.prefix,
+              isRequired: widget.isRequired,
+              label: widget.label,
+              focusNode: _effectiveFocusNode,
+              isFocused: _isFocused,
+              fieldBoxKey: _fieldBoxKey,
+              suffix: widget.suffix,
+              trailing: trailing,
+              isEnabled: widget.isEnabled,
+              caption: widget.caption,
+              helperMessage: widget.helperMessage,
+              error: widget.error,
+              size: widget.size,
+              showLoader: widget.showLoader,
+            )
+          : OptimusInputField(
+              leading: leading,
+              prefix: widget.prefix,
+              controller: _effectiveController,
+              onChanged: widget.onTextChanged,
+              isRequired: widget.isRequired,
+              label: widget.label,
+              placeholder: widget.placeholder,
+              placeholderStyle: widget.placeholderStyle,
+              focusNode: _effectiveFocusNode,
+              isFocused: _isFocused,
+              onTap: _onTap,
+              fieldBoxKey: _fieldBoxKey,
+              suffix: widget.suffix,
+              trailing: trailing,
+              isEnabled: widget.isEnabled,
+              caption: widget.caption,
+              helperMessage: widget.helperMessage,
+              error: widget.error,
+              size: widget.size,
+              isReadOnly: widget.isReadOnly,
+              showCursor: widget.showCursor,
+              showLoader: widget.showLoader,
+            ),
     );
   }
 }
@@ -415,10 +411,7 @@ class _Leading extends StatelessWidget {
       direction: Axis.horizontal,
       spacing: OptimusStackSpacing.spacing100,
       mainAxisSize: MainAxisSize.min,
-      children: [
-        if (leadingImplicit case final leadingImplicit?) leadingImplicit,
-        if (leading case final leading?) leading,
-      ],
+      children: [?leadingImplicit, ?leading],
     ),
   );
 }
@@ -440,14 +433,9 @@ class _Trailing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final children =
-        isUpdating
-            ? [const OptimusSpinner(size: OptimusSpinnerSize.small)]
-            : [
-              if (trailing case final trailing?) trailing,
-              if (trailingImplicit case final trailingImplicit?)
-                trailingImplicit,
-            ];
+    final children = isUpdating
+        ? [const OptimusSpinner(size: OptimusSpinnerSize.small)]
+        : [?trailing, ?trailingImplicit];
 
     return GestureDetector(
       onTapDown: (_) => focusNode.requestFocus(),
@@ -455,10 +443,7 @@ class _Trailing extends StatelessWidget {
         direction: Axis.horizontal,
         spacing: OptimusStackSpacing.spacing100,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          if (clearAllButton case final clearAllButton?) clearAllButton,
-          ...children,
-        ],
+        children: [?clearAllButton, ...children],
       ),
     );
   }

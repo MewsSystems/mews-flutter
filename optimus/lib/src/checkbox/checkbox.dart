@@ -124,8 +124,9 @@ class OptimusCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final topPadding =
-        size == OptimusCheckboxSize.large ? tokens.spacing50 : tokens.spacing25;
+    final topPadding = size == OptimusCheckboxSize.large
+        ? tokens.spacing50
+        : tokens.spacing25;
 
     return IgnorePointer(
       ignoring: !isEnabled,

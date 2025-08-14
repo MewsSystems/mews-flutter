@@ -108,10 +108,9 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
 
   bool get _hasFooterError => _normalizedError.isNotEmpty && _isUsingBottomHint;
 
-  double get _verticalPadding =>
-      widget.hasMultipleLines
-          ? widget.size.getVerticalPadding(tokens)
-          : tokens.spacing0;
+  double get _verticalPadding => widget.hasMultipleLines
+      ? widget.size.getVerticalPadding(tokens)
+      : tokens.spacing0;
 
   Color get _borderColor {
     if (!widget.isEnabled) return tokens.borderDisabled;
@@ -147,17 +146,16 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
             // ignore: use_decorated_box
             Container(
               key: widget.fieldBoxKey,
-              decoration:
-                  widget.hasBorders
-                      ? BoxDecoration(
-                        color: _background,
-                        borderRadius: BorderRadius.all(tokens.borderRadius100),
-                        border: Border.all(
-                          color: _borderColor,
-                          width: tokens.borderWidth200,
-                        ),
-                      )
-                      : null,
+              decoration: widget.hasBorders
+                  ? BoxDecoration(
+                      color: _background,
+                      borderRadius: BorderRadius.all(tokens.borderRadius100),
+                      border: Border.all(
+                        color: _borderColor,
+                        width: tokens.borderWidth200,
+                      ),
+                    )
+                  : null,
               child: MouseRegion(
                 onEnter: (_) => _handleHoverChanged(true),
                 onExit: (_) => _handleHoverChanged(false),
@@ -181,8 +179,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                               child: prefix,
                             ),
                           ),
-                        if (widget.placeholder case final placeholder?)
-                          placeholder,
+                        ?widget.placeholder,
                         ...widget.children,
                         if (widget.suffix case final suffix?)
                           Padding(
@@ -206,14 +203,13 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                 isEnabled: widget.isEnabled,
                 inputCounter: widget.inputCounter,
                 helperMessage: widget.helperMessage,
-                error:
-                    _hasFooterError
-                        ? _InputError(
-                          error: _normalizedError,
-                          isEnabled: widget.isEnabled,
-                          size: widget.size,
-                        )
-                        : null,
+                error: _hasFooterError
+                    ? _InputError(
+                        error: _normalizedError,
+                        isEnabled: widget.isEnabled,
+                        size: widget.size,
+                      )
+                    : null,
               ),
           ],
         ),
@@ -312,25 +308,19 @@ class _InputFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final leading =
-        _hasMessage
-            ? Expanded(
-              child: _FooterMessage(
-                helperMessage: helperMessage,
-                errorMessage: error,
-                isEnabled: isEnabled,
-              ),
-            )
-            : const Spacer();
+    final leading = _hasMessage
+        ? Expanded(
+            child: _FooterMessage(
+              helperMessage: helperMessage,
+              errorMessage: error,
+              isEnabled: isEnabled,
+            ),
+          )
+        : const Spacer();
 
     return Padding(
       padding: size.getHelperPadding(tokens),
-      child: Row(
-        children: [
-          leading,
-          if (inputCounter case final inputCounter?) inputCounter,
-        ],
-      ),
+      child: Row(children: [leading, ?inputCounter]),
     );
   }
 }
@@ -352,7 +342,7 @@ class _FooterMessage extends StatelessWidget {
     children: [
       if (helperMessage case final helperMessage?)
         _HelperMessage(helperMessage: helperMessage, isEnabled: isEnabled),
-      if (errorMessage case final errorMessage?) errorMessage,
+      ?errorMessage,
     ],
   );
 }
@@ -366,8 +356,9 @@ class _HelperMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final captionColor =
-        isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
+    final captionColor = isEnabled
+        ? tokens.textStaticSecondary
+        : tokens.textDisabled;
 
     return OptimusCaption(
       child: DefaultTextStyle.merge(
@@ -395,10 +386,12 @@ class _InputCaption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final iconColor =
-        isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
-    final captionColor =
-        isEnabled ? tokens.textStaticSecondary : tokens.textDisabled;
+    final iconColor = isEnabled
+        ? tokens.textStaticPrimary
+        : tokens.textDisabled;
+    final captionColor = isEnabled
+        ? tokens.textStaticSecondary
+        : tokens.textDisabled;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -432,10 +425,12 @@ class _Styled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final textColor =
-        isEnabled ? tokens.textStaticTertiary : tokens.textDisabled;
-    final iconColor =
-        !isEnabled ? tokens.textDisabled : tokens.textStaticPrimary;
+    final textColor = isEnabled
+        ? tokens.textStaticTertiary
+        : tokens.textDisabled;
+    final iconColor = !isEnabled
+        ? tokens.textDisabled
+        : tokens.textStaticPrimary;
 
     return DefaultTextStyle.merge(
       style: tokens.bodyMedium.copyWith(color: textColor),
@@ -502,12 +497,11 @@ class _ColoredTransitionState extends State<_ColoredTransition> {
     widthFactor: widget.state.progress,
     curve: Curves.fastOutSlowIn,
     child: ColoredBox(
-      color:
-          widget.state == OptimusStatusBarState.empty
-              ? _previousState
-                  .getStatusBarColor(context.tokens)
-                  .withValues(alpha: 0.5)
-              : widget.state.getStatusBarColor(context.tokens),
+      color: widget.state == OptimusStatusBarState.empty
+          ? _previousState
+                .getStatusBarColor(context.tokens)
+                .withValues(alpha: 0.5)
+          : widget.state.getStatusBarColor(context.tokens),
     ),
   );
 }

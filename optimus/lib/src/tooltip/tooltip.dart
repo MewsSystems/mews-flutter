@@ -85,10 +85,9 @@ class _TooltipPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint =
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.fill;
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
 
     final width = size.width;
     final height = size.height;

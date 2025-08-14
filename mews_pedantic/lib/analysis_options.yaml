@@ -413,7 +413,7 @@ dart_code_metrics:
     - avoid-unnecessary-length-check
     - avoid-unnecessary-local-late
     - avoid-unnecessary-negations
-    # - avoid-unnecessary-null-aware-elements
+    - avoid-unnecessary-null-aware-elements
     - avoid-unnecessary-nullable-fields
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-overrides
@@ -532,7 +532,7 @@ dart_code_metrics:
     # - prefer-named-imports
     - prefer-named-parameters:
         max-number: 2
-    # - prefer-null-aware-elements
+    - prefer-null-aware-elements
     - prefer-null-aware-spread
     - prefer-overriding-parent-equality
     - prefer-parentheses-with-if-null

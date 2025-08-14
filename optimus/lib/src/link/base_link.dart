@@ -76,22 +76,21 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
       child: widget.text,
     );
 
-    final child =
-        icon != null
-            ? Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                text,
-                Padding(
-                  padding: EdgeInsets.only(left: tokens.spacing100),
-                  child: IconTheme.merge(
-                    data: IconThemeData(color: _effectiveColor),
-                    child: icon,
-                  ),
+    final child = icon != null
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              text,
+              Padding(
+                padding: EdgeInsets.only(left: tokens.spacing100),
+                child: IconTheme.merge(
+                  data: IconThemeData(color: _effectiveColor),
+                  child: icon,
                 ),
-              ],
-            )
-            : text;
+              ),
+            ],
+          )
+        : text;
 
     return Semantics(
       link: true,

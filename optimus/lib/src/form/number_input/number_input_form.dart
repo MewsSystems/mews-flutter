@@ -38,20 +38,19 @@ class OptimusNumberInputFormField extends FormField<String> {
          'Provide either initial value or controller',
        ),
        super(
-         initialValue:
-             controller != null
-                 ? controller.text.format(
-                   precision: precision,
-                   separatorVariant: separatorVariant,
-                 )
-                 : (initialValue?.toString().format(
-                       precision: precision,
-                       separatorVariant: separatorVariant,
-                     ) ??
-                     min.toString().format(
-                       precision: precision,
-                       separatorVariant: separatorVariant,
-                     )),
+         initialValue: controller != null
+             ? controller.text.format(
+                 precision: precision,
+                 separatorVariant: separatorVariant,
+               )
+             : (initialValue?.toString().format(
+                     precision: precision,
+                     separatorVariant: separatorVariant,
+                   ) ??
+                   min.toString().format(
+                     precision: precision,
+                     separatorVariant: separatorVariant,
+                   )),
          enabled: isEnabled,
          builder: (FormFieldState<String> field) {
            // ignore: avoid-type-casts, can't be anything else. No need to check

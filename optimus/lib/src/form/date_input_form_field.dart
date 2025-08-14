@@ -21,22 +21,21 @@ class OptimusDateInputFormField extends FormField<DateTime?> {
   }) : super(
          enabled: isEnabled,
          initialValue: value,
-         builder:
-             (FormFieldState<DateTime?> field) => OptimusDateInputField(
-               onChanged: field.didChange,
-               isEnabled: isEnabled,
-               isClearAllEnabled: isClearAllEnabled,
-               onSubmitted: onSubmitted,
-               value: value,
-               format: format,
-               focusNode: focusNode,
-               label: label,
-               error: field.errorText,
-               isRequired: isRequired,
-               onTap: onTap,
-               caption: caption,
-               helperMessage: helperMessage,
-             ),
+         builder: (FormFieldState<DateTime?> field) => OptimusDateInputField(
+           onChanged: field.didChange,
+           isEnabled: isEnabled,
+           isClearAllEnabled: isClearAllEnabled,
+           onSubmitted: onSubmitted,
+           value: value,
+           format: format,
+           focusNode: focusNode,
+           label: label,
+           error: field.errorText,
+           isRequired: isRequired,
+           onTap: onTap,
+           caption: caption,
+           helperMessage: helperMessage,
+         ),
        );
 
   @override

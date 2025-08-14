@@ -146,13 +146,12 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
 
   void _handleDecrease() => _updateCurrentValue(_decreasedValue);
 
-  double get _currentValue =>
-      _effectiveController.text.isEmpty
-          ? widget.min
-          : _effectiveController.text.toDouble(
-            widget.separatorVariant,
-            widget.precision,
-          );
+  double get _currentValue => _effectiveController.text.isEmpty
+      ? widget.min
+      : _effectiveController.text.toDouble(
+          widget.separatorVariant,
+          widget.precision,
+        );
 
   double get _increasedValue =>
       (_currentValue - widget.step).clamp(widget.min, widget.max);
@@ -183,13 +182,12 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
     } else if (oldWidget.precision != widget.precision ||
         oldWidget.separatorVariant != widget.separatorVariant ||
         (oldWidget.allowNegate != widget.allowNegate)) {
-      final doubleValue =
-          formattedValue.isNotEmpty
-              ? formattedValue.toDouble(
-                oldWidget.separatorVariant,
-                oldWidget.precision,
-              )
-              : widget.min;
+      final doubleValue = formattedValue.isNotEmpty
+          ? formattedValue.toDouble(
+              oldWidget.separatorVariant,
+              oldWidget.precision,
+            )
+          : widget.min;
       formattedValue = doubleValue.toFormattedString(
         precision: widget.precision,
         separatorVariant: widget.separatorVariant,
@@ -318,10 +316,9 @@ class _Divider extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
     height: context.tokens.sizing200,
     width: context.tokens.borderWidth200,
-    child:
-        isEnabled
-            ? ColoredBox(color: context.tokens.borderStaticSecondary)
-            : null,
+    child: isEnabled
+        ? ColoredBox(color: context.tokens.borderStaticSecondary)
+        : null,
   );
 }
 

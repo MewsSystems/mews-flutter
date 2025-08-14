@@ -29,9 +29,8 @@ class OptimusIconList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: items.length,
       itemBuilder: (_, index) => _ListTile(item: items[index], size: size),
-      separatorBuilder:
-          (context, index) =>
-              SizedBox(height: context.tokens.spacing200).excludeSemantics(),
+      separatorBuilder: (context, _) =>
+          SizedBox(height: context.tokens.spacing200).excludeSemantics(),
     );
   }
 

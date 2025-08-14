@@ -60,19 +60,17 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
               semanticLabel: groupLabel,
               error: k.string(label: 'Error'),
               isEnabled: isEnabled,
-              children:
-                  _values
-                      .mapIndexed(
-                        (int index, bool isChecked) => OptimusNestedCheckbox(
-                          isChecked: isChecked,
-                          label: Text('Checkbox $index'),
-                          semanticLabel: 'Checkbox $index',
-                          onChanged:
-                              (bool isChecked) =>
-                                  _handleChanged(index, isChecked),
-                        ),
-                      )
-                      .toList(),
+              children: _values
+                  .mapIndexed(
+                    (int index, bool isChecked) => OptimusNestedCheckbox(
+                      isChecked: isChecked,
+                      label: Text('Checkbox $index'),
+                      semanticLabel: 'Checkbox $index',
+                      onChanged: (bool isChecked) =>
+                          _handleChanged(index, isChecked),
+                    ),
+                  )
+                  .toList(),
             ),
           ],
         ),

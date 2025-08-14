@@ -10,12 +10,12 @@ Widget createDefaultStyle(BuildContext context) {
 
   return Center(
     child: OptimusPictogram(
-      variant: k.list(
+      variant: k.object.dropdown(
         label: 'Variant',
         options: OptimusPictogramVariant.values,
         labelBuilder: enumLabelBuilder,
       ),
-      size: k.list(
+      size: k.object.dropdown(
         label: 'Size',
         options: OptimusPictogramSize.values,
         initialOption: OptimusPictogramSize.medium,

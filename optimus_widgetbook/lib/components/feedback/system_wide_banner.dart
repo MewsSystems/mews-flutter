@@ -21,27 +21,25 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          OptimusFeedbackVariant.values
-              .map(
-                (v) => Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: OptimusSystemWideBanner(
-                    title: Text(title),
-                    description: description.maybeToWidget(),
-                    link:
-                        link.isNotEmpty
-                            ? OptimusFeedbackLink(
-                              text: Text(link),
-                              onPressed: ignore,
-                              semanticUri: exampleUri,
-                            )
-                            : null,
-                    variant: v,
-                  ),
-                ),
-              )
-              .toList(),
+      children: OptimusFeedbackVariant.values
+          .map(
+            (v) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: OptimusSystemWideBanner(
+                title: Text(title),
+                description: description.maybeToWidget(),
+                link: link.isNotEmpty
+                    ? OptimusFeedbackLink(
+                        text: Text(link),
+                        onPressed: ignore,
+                        semanticUri: exampleUri,
+                      )
+                    : null,
+                variant: v,
+              ),
+            ),
+          )
+          .toList(),
     ),
   );
 }

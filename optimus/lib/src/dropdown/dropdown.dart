@@ -149,19 +149,18 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
     if (controller != null) {
       final isOnTop = controller.top > controller.bottom;
 
-      final content =
-          widget.items.isNotEmpty
-              ? Container(
-                constraints: BoxConstraints(
-                  maxHeight: controller.maxHeight,
-                  maxWidth: controller.width,
-                ),
-                child: OptimusScrollConfiguration(
-                  child: _buildList(isOnTop, controller.maxHeight),
-                ),
-              )
-              : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
-                  .excludeSemantics();
+      final content = widget.items.isNotEmpty
+          ? Container(
+              constraints: BoxConstraints(
+                maxHeight: controller.maxHeight,
+                maxWidth: controller.width,
+              ),
+              child: OptimusScrollConfiguration(
+                child: _buildList(isOnTop, controller.maxHeight),
+              ),
+            )
+          : (widget.emptyResultPlaceholder ?? const SizedBox.shrink())
+                .excludeSemantics();
       final children = [
         Material(color: Colors.transparent, child: content),
         if (widget.embeddedSearch case final embeddedSearch?)
@@ -169,12 +168,12 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
       ];
       final decoration =
           widget.items.isNotEmpty || widget.emptyResultPlaceholder != null
-              ? BoxDecoration(
-                borderRadius: BorderRadius.all(tokens.borderRadius100),
-                color: tokens.backgroundStaticFloating,
-                boxShadow: tokens.shadow200,
-              )
-              : null;
+          ? BoxDecoration(
+              borderRadius: BorderRadius.all(tokens.borderRadius100),
+              color: tokens.backgroundStaticFloating,
+              boxShadow: tokens.shadow200,
+            )
+          : null;
 
       return FadeTransition(
         opacity: _fadeAnimation,
@@ -228,9 +227,8 @@ class _DropdownListView<T> extends StatelessWidget {
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: items.length,
-        itemBuilder:
-            (context, index) =>
-                _DropdownItem(onChanged: onChanged, child: items[index]),
+        itemBuilder: (context, index) =>
+            _DropdownItem(onChanged: onChanged, child: items[index]),
       ),
     );
   }
@@ -316,10 +314,9 @@ class _GroupedDropdownListViewState<T>
         reverse: widget.isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: widget.items.length,
-        prototypeItem:
-            widget.items.isNotEmpty
-                ? _buildPrototypeItem(widget.items.first)
-                : null,
+        prototypeItem: widget.items.isNotEmpty
+            ? _buildPrototypeItem(widget.items.first)
+            : null,
         itemBuilder: (context, index) {
           final current = _sortedItems[index];
           final child = _DropdownItem(
@@ -339,13 +336,13 @@ class _GroupedDropdownListViewState<T>
 
           return _isSameGroup(current, previous)
               ? Padding(
-                padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-                child: child,
-              )
+                  padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                  child: child,
+                )
               : _GroupWrapper(
-                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-                child: child,
-              );
+                  group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                  child: child,
+                );
         },
       ),
     );
@@ -417,16 +414,15 @@ class _GroupWrapper extends StatelessWidget {
       children: [
         Container(
           width: AnchoredOverlay.of(context)?.width,
-          decoration:
-              useBorder
-                  ? BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: context.tokens.borderStaticSecondary,
-                      ),
+          decoration: useBorder
+              ? BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: context.tokens.borderStaticSecondary,
                     ),
-                  )
-                  : null,
+                  ),
+                )
+              : null,
           child: group,
         ),
         child,

@@ -9,25 +9,25 @@ Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
   return OptimusCard(
-    padding: k.list(
+    padding: k.object.dropdown(
       label: 'Padding',
       initialOption: OptimusCardSpacing.spacing200,
       options: _paddings,
       labelBuilder: enumLabelBuilder,
     ),
-    variant: k.list(
+    variant: k.object.dropdown(
       label: 'Variant',
       initialOption: OptimusBasicCardVariant.normal,
       options: _basicCardVariants,
       labelBuilder: enumLabelBuilder,
     ),
-    attachment: k.list(
+    attachment: k.object.dropdown(
       label: 'Attachment',
       initialOption: OptimusCardAttachment.none,
       options: _attachments,
       labelBuilder: enumLabelBuilder,
     ),
-    radius: k.list(
+    radius: k.object.dropdown(
       label: 'Radius',
       initialOption: OptimusCardCornerRadius.medium,
       options: OptimusCardCornerRadius.values,
@@ -47,25 +47,25 @@ Widget createNestedCard(BuildContext context) {
   final k = context.knobs;
 
   return OptimusNestedCard(
-    padding: k.list(
+    padding: k.object.dropdown(
       label: 'Padding',
       initialOption: OptimusCardSpacing.spacing200,
       options: _paddings,
       labelBuilder: enumLabelBuilder,
     ),
-    variant: k.list(
+    variant: k.object.dropdown(
       label: 'Variant',
       initialOption: OptimusNestedCardVariant.normal,
       options: _nestedCardVariants,
       labelBuilder: enumLabelBuilder,
     ),
-    attachment: k.list(
+    attachment: k.object.dropdown(
       label: 'Attachment',
       initialOption: OptimusCardAttachment.none,
       options: _attachments,
       labelBuilder: enumLabelBuilder,
     ),
-    radius: k.list(
+    radius: k.object.dropdown(
       label: 'Radius',
       initialOption: OptimusCardCornerRadius.medium,
       options: OptimusCardCornerRadius.values,

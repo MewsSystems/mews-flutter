@@ -29,33 +29,30 @@ class BaseBadge extends StatelessWidget {
     final textColor = this.textColor ?? tokens.textStaticInverse;
     final outlineColor = this.outlineColor ?? tokens.borderStaticInverse;
     final outlineSize = tokens.borderWidth200;
-    final padding =
-        hasText
-            ? EdgeInsets.symmetric(
-              horizontal: tokens.spacing50.toScaled(context),
-              vertical: tokens.spacing25.toScaled(context),
-            )
-            : EdgeInsets.all(tokens.spacing25);
+    final padding = hasText
+        ? EdgeInsets.symmetric(
+            horizontal: tokens.spacing50.toScaled(context),
+            vertical: tokens.spacing25.toScaled(context),
+          )
+        : EdgeInsets.all(tokens.spacing25);
 
     final decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(50)),
       color: backgroundColor,
-      border:
-          isOutlined
-              ? Border.all(width: outlineSize, color: outlineColor)
-              : null,
+      border: isOutlined
+          ? Border.all(width: outlineSize, color: outlineColor)
+          : null,
     );
 
-    final child =
-        hasText
-            ? Text(
-              text,
-              maxLines: 1,
-              overflow: overflow,
-              textAlign: TextAlign.center,
-              style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
-            )
-            : SizedBox.square(dimension: tokens.sizing150);
+    final child = hasText
+        ? Text(
+            text,
+            maxLines: 1,
+            overflow: overflow,
+            textAlign: TextAlign.center,
+            style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
+          )
+        : SizedBox.square(dimension: tokens.sizing150);
 
     return Semantics(
       label: text,

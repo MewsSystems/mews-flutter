@@ -52,8 +52,9 @@ class _HomeState extends State<_Home> {
     stream: _currentMode,
     builder: (context, snapshot) {
       final mode = snapshot.data;
-      final message =
-          mode == null ? 'Can\'t determine the mode' : 'Current mode: $mode';
+      final message = mode == null
+          ? 'Can\'t determine the mode'
+          : 'Current mode: $mode';
 
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -73,17 +74,15 @@ class _HomeState extends State<_Home> {
             child: const Text('Stop Kiosk Mode'),
           ),
           MaterialButton(
-            onPressed:
-                () => isManagedKiosk()
-                    .then((isManaged) => 'Kiosk is managed: $isManaged')
-                    .then(_showSnackBar),
+            onPressed: () => isManagedKiosk()
+                .then((isManaged) => 'Kiosk is managed: $isManaged')
+                .then(_showSnackBar),
             child: const Text('Check if managed'),
           ),
           MaterialButton(
-            onPressed:
-                () => getKioskMode()
-                    .then((mode) => 'Kiosk mode: $mode')
-                    .then(_showSnackBar),
+            onPressed: () => getKioskMode()
+                .then((mode) => 'Kiosk mode: $mode')
+                .then(_showSnackBar),
             child: const Text('Check mode'),
           ),
           Text(message),

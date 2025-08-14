@@ -129,42 +129,39 @@ class OptimusChat extends StatelessWidget {
             child: ListView.builder(
               itemCount: _messages.length,
               reverse: true,
-              itemBuilder:
-                  (_, index) => Column(
-                    children: [
-                      _Bubble(
-                        hasAvatars: hasAvatars,
-                        avatar: _Avatar(
-                          avatarWidth: avatarWidth,
-                          isAvatarVisible: _isAvatarVisible(index),
-                          avatar: _messages[index].author.avatar,
-                        ),
-                        message: _messages[index],
-                        isUserNameVisible: _showUserName(index),
-                        isDateVisible: _showDate(index),
-                        formatTime: formatDate,
-                        formatDate: formatTime,
-                        sending: sending,
-                        sent: sent,
-                        error: error,
-                        owner: _messages[index].owner,
-                      ),
-                      if (_showStatus(index))
-                        _StatusEnd(
-                          avatarWidth: avatarWidth,
-                          error: error,
-                          formatTime: formatTime,
-                          message: _messages[index],
-                          sending: sending,
-                          sent: sent,
-                          isFromCurrentUser: isFromCurrentUser(
-                            _messages[index],
-                          ),
-                          isLatestMessage: _isLatestMessage(index),
-                          owner: _messages[index].owner,
-                        ),
-                    ],
+              itemBuilder: (_, index) => Column(
+                children: [
+                  _Bubble(
+                    hasAvatars: hasAvatars,
+                    avatar: _Avatar(
+                      avatarWidth: avatarWidth,
+                      isAvatarVisible: _isAvatarVisible(index),
+                      avatar: _messages[index].author.avatar,
+                    ),
+                    message: _messages[index],
+                    isUserNameVisible: _showUserName(index),
+                    isDateVisible: _showDate(index),
+                    formatTime: formatDate,
+                    formatDate: formatTime,
+                    sending: sending,
+                    sent: sent,
+                    error: error,
+                    owner: _messages[index].owner,
                   ),
+                  if (_showStatus(index))
+                    _StatusEnd(
+                      avatarWidth: avatarWidth,
+                      error: error,
+                      formatTime: formatTime,
+                      message: _messages[index],
+                      sending: sending,
+                      sent: sent,
+                      isFromCurrentUser: isFromCurrentUser(_messages[index]),
+                      isLatestMessage: _isLatestMessage(index),
+                      owner: _messages[index].owner,
+                    ),
+                ],
+              ),
             ),
           ),
           OptimusChatInput(onSendPressed: onSendPressed),
@@ -359,10 +356,9 @@ class _Bubble extends StatelessWidget {
         ],
         OptimusStack(
           direction: Axis.horizontal,
-          crossAxisAlignment:
-              isUserNameVisible
-                  ? OptimusStackAlignment.start
-                  : OptimusStackAlignment.end,
+          crossAxisAlignment: isUserNameVisible
+              ? OptimusStackAlignment.start
+              : OptimusStackAlignment.end,
           mainAxisAlignment: owner.stackAlignment,
           children: owner.isAssistant ? children : children.reversed.toList(),
         ),

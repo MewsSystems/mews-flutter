@@ -7,25 +7,25 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(name: 'Logo', type: OptimusMewsLogo, path: '[Media]')
 Widget createDefaultStyle(BuildContext context) {
   final knobs = context.knobs;
-  final variant = knobs.list(
+  final variant = knobs.object.dropdown(
     label: 'Variant',
     initialOption: OptimusMewsLogoVariant.wordmark,
     options: OptimusMewsLogoVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final size = knobs.list(
+  final size = knobs.object.dropdown(
     label: 'Size',
     initialOption: OptimusMewsLogoSizeVariant.medium,
     options: OptimusMewsLogoSizeVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final color = knobs.listOrNull(
+  final color = knobs.objectOrNull.dropdown(
     label: 'Color',
     initialOption: OptimusMewsLogoColorVariant.black,
     options: OptimusMewsLogoColorVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final align = knobs.list(
+  final align = knobs.object.dropdown(
     label: 'Align',
     initialOption: OptimusMewsLogoAlignVariant.topCenter,
     options: OptimusMewsLogoAlignVariant.values,

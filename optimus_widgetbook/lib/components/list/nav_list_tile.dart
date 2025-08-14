@@ -40,25 +40,25 @@ class _NavListExampleState extends State<_NavListExample> {
     return SingleChildScrollView(
       child: Center(
         child: Column(
-          children:
-              Iterable<int>.generate(10)
-                  .map(
-                    (i) => OptimusNavListTile(
-                      label: Text(label),
-                      semanticLabel: label,
-                      rightDetail:
-                          rightDetail != null ? Icon(rightDetail.data) : null,
-                      isChevronVisible: isChevronVisible,
-                      isToggleVisible: isToggleVisible,
-                      onTogglePressed: _handleToggle,
-                      isToggled: _isToggled,
-                      isEnabled: isEnabled,
-                      leading: leading != null ? Icon(leading.data) : null,
-                      useHorizontalPadding: useHorizontalPadding,
-                      onTap: () {},
-                    ),
-                  )
-                  .toList(),
+          children: Iterable<int>.generate(10)
+              .map(
+                (i) => OptimusNavListTile(
+                  label: Text(label),
+                  semanticLabel: label,
+                  rightDetail: rightDetail != null
+                      ? Icon(rightDetail.data)
+                      : null,
+                  isChevronVisible: isChevronVisible,
+                  isToggleVisible: isToggleVisible,
+                  onTogglePressed: _handleToggle,
+                  isToggled: _isToggled,
+                  isEnabled: isEnabled,
+                  leading: leading != null ? Icon(leading.data) : null,
+                  useHorizontalPadding: useHorizontalPadding,
+                  onTap: () {},
+                ),
+              )
+              .toList(),
         ),
       ),
     );

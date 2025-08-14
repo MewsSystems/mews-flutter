@@ -12,12 +12,12 @@ Widget createDefaultStyle(BuildContext context) {
   final knobs = context.knobs;
 
   final text = knobs.string(label: 'Label text:', initialValue: 'Tooltip text');
-  final position = knobs.list(
+  final position = knobs.object.dropdown(
     label: 'Position',
     initialOption: OptimusTooltipPosition.top,
     options: OptimusTooltipPosition.values,
   );
-  final size = knobs.list(
+  final size = knobs.object.dropdown(
     label: 'Size',
     initialOption: OptimusToolTipSize.small,
     options: OptimusToolTipSize.values,

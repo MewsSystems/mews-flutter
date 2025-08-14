@@ -32,19 +32,19 @@ class _SelectionCardExampleState extends State<_SelectionCardExample> {
       initialValue: 'Description',
     );
     final trailing = k.optimusIconOrNullKnob(label: 'Trailing Icon');
-    final variant = k.list(
+    final variant = k.object.dropdown(
       label: 'Variant',
       initialOption: OptimusSelectionCardVariant.vertical,
       options: OptimusSelectionCardVariant.values,
       labelBuilder: enumLabelBuilder,
     );
-    final borderRadius = k.list(
+    final borderRadius = k.object.dropdown(
       label: 'Border radius',
       initialOption: OptimusSelectionCardBorderRadius.medium,
       options: OptimusSelectionCardBorderRadius.values,
       labelBuilder: enumLabelBuilder,
     );
-    final selectorVariant = k.list(
+    final selectorVariant = k.object.dropdown(
       label: 'Selector variant',
       initialOption: OptimusSelectionCardSelectionVariant.radio,
       options: OptimusSelectionCardSelectionVariant.values,
