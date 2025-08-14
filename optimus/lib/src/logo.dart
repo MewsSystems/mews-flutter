@@ -248,10 +248,9 @@ extension on OptimusMewsLogoColorVariant {
 }
 
 extension on BuildContext {
-  OptimusMewsLogoColorVariant get fallbackColor =>
-      theme.isDark
-          ? OptimusMewsLogoColorVariant.white
-          : OptimusMewsLogoColorVariant.black;
+  OptimusMewsLogoColorVariant get fallbackColor => theme.isDark
+      ? OptimusMewsLogoColorVariant.white
+      : OptimusMewsLogoColorVariant.black;
 }
 
 extension on OptimusMewsLogoSizeVariant {
