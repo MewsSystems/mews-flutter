@@ -50,7 +50,7 @@ class OptimusMewsLogo extends StatelessWidget {
     super.key,
     this.logoVariant = OptimusMewsLogoVariant.logomark,
     this.sizeVariant = OptimusMewsLogoSizeVariant.medium,
-    this.colorVariant = OptimusMewsLogoColorVariant.black,
+    this.colorVariant,
     this.alignVariant = OptimusMewsLogoAlignVariant.topCenter,
     this.semanticsLabel,
     this.productName,
@@ -63,8 +63,9 @@ class OptimusMewsLogo extends StatelessWidget {
   /// The size of the logo to be displayed.
   final OptimusMewsLogoSizeVariant sizeVariant;
 
-  /// The color variant of the logo.
-  final OptimusMewsLogoColorVariant colorVariant;
+  /// The color variant of the logo. If null, will use an appropriate color
+  /// based on the system color.
+  final OptimusMewsLogoColorVariant? colorVariant;
 
   /// The alignment of the logo.
   final OptimusMewsLogoAlignVariant alignVariant;
@@ -113,6 +114,7 @@ class OptimusMewsLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final productName = this.productName;
+    final colorVariant = this.colorVariant ?? context.fallbackColor;
 
     final logo = switch (logoVariant) {
       OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
@@ -247,6 +249,13 @@ extension on OptimusMewsLogoColorVariant {
     OptimusMewsLogoColorVariant.black => tokens.backgroundBrand,
     OptimusMewsLogoColorVariant.white => Colors.white,
   };
+}
+
+extension on BuildContext {
+  OptimusMewsLogoColorVariant get fallbackColor =>
+      theme.isDark
+          ? OptimusMewsLogoColorVariant.white
+          : OptimusMewsLogoColorVariant.black;
 }
 
 extension on OptimusMewsLogoSizeVariant {

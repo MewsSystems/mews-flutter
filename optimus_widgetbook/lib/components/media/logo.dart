@@ -19,7 +19,7 @@ Widget createDefaultStyle(BuildContext context) {
     options: OptimusMewsLogoSizeVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final color = knobs.list(
+  final color = knobs.listOrNull(
     label: 'Color',
     initialOption: OptimusMewsLogoColorVariant.black,
     options: OptimusMewsLogoColorVariant.values,
