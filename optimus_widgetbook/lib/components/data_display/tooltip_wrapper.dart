@@ -16,13 +16,13 @@ Widget createDefaultStyle(BuildContext context) {
     label: 'Label text:',
     initialValue: 'Some helpful, but not essential, information',
   );
-  final position = knobs.list(
+  final position = knobs.object.dropdown(
     label: 'Position',
     initialOption: OptimusTooltipPosition.top,
     options: OptimusTooltipPosition.values,
     labelBuilder: (value) => value.name,
   );
-  final size = knobs.list(
+  final size = knobs.object.dropdown(
     label: 'Size',
     initialOption: OptimusToolTipSize.small,
     options: OptimusToolTipSize.values,

@@ -69,10 +69,9 @@ class DateFormatter extends TextInputFormatter {
       while (newInputPosition < cleanInput.length) {
         if (resultIndex >= placeholder.length) break;
         if (!_isDesignatedSpace(resultIndex)) {
-          final post =
-              resultIndex >= selectionEnd
-                  ? newValue.substring(resultIndex, newValue.length - 1)
-                  : newValue.substring(resultIndex + 1);
+          final post = resultIndex >= selectionEnd
+              ? newValue.substring(resultIndex, newValue.length - 1)
+              : newValue.substring(resultIndex + 1);
           newValue =
               newValue.substring(0, resultIndex) +
               cleanInput[newInputPosition] +
@@ -170,14 +169,12 @@ class DateFormatter extends TextInputFormatter {
       }
     } else if (newText.length < oldText.length) {
       if (_isValidDigit(oldText[newSelectionStart])) {
-        final start =
-            oldSelectionStart == oldSelection.end
-                ? newSelectionStart
-                : oldSelectionStart;
-        final end =
-            oldSelectionStart == oldSelection.end
-                ? newSelectionStart + 1
-                : oldSelection.end;
+        final start = oldSelectionStart == oldSelection.end
+            ? newSelectionStart
+            : oldSelectionStart;
+        final end = oldSelectionStart == oldSelection.end
+            ? newSelectionStart + 1
+            : oldSelection.end;
 
         int selectionPosition = _getPreviousInputIndex(start);
 

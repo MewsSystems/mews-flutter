@@ -12,7 +12,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
-  final layout = k.list(
+  final layout = k.object.dropdown(
     label: 'Layout',
     initialOption: Axis.vertical,
     options: Axis.values,

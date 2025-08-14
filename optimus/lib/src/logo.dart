@@ -137,24 +137,20 @@ class OptimusMewsLogo extends StatelessWidget {
     return MergeSemantics(
       child: Padding(
         padding: useMargin ? _getMargin(tokens) : EdgeInsetsGeometry.zero,
-        child:
-            productName != null
-                ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Semantics(
-                      label: semanticsLabel ?? 'Mews Logo',
-                      child: logo,
-                    ),
-                    SizedBox(width: sizeVariant.getProductPadding(tokens)),
-                    _ProductBadge(
-                      name: productName,
-                      colorVariant: colorVariant,
-                      sizeVariant: sizeVariant,
-                    ),
-                  ],
-                )
-                : logo,
+        child: productName != null
+            ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Semantics(label: semanticsLabel ?? 'Mews Logo', child: logo),
+                  SizedBox(width: sizeVariant.getProductPadding(tokens)),
+                  _ProductBadge(
+                    name: productName,
+                    colorVariant: colorVariant,
+                    sizeVariant: sizeVariant,
+                  ),
+                ],
+              )
+            : logo,
       ),
     );
   }
@@ -178,42 +174,42 @@ class _ProductBadge extends StatelessWidget {
 
     return name.isNotEmpty
         ? SizedBox(
-          height: sizeVariant.getHeight(tokens),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: sizeVariant.getBorderWidth(tokens),
-                color: colorVariant.getColor(tokens),
-              ),
-              borderRadius: BorderRadius.all(tokens.borderRadius150),
-            ),
-
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                sizeVariant.getHorizontalPadding(tokens),
-                sizeVariant.getVerticalPadding(tokens),
-                sizeVariant.getHorizontalPadding(tokens),
-                0,
-              ),
-              child: DefaultTextStyle.merge(
-                style: TextStyle(
-                  fontSize: sizeVariant.fontSize,
-                  leadingDistribution: TextLeadingDistribution.even,
-                  textBaseline: TextBaseline.alphabetic,
-                  fontWeight: FontWeight.w600,
-
-                  height: 1,
+            height: sizeVariant.getHeight(tokens),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: sizeVariant.getBorderWidth(tokens),
                   color: colorVariant.getColor(tokens),
                 ),
-                child: Text(
-                  name.toUpperCase(),
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
+                borderRadius: BorderRadius.all(tokens.borderRadius150),
+              ),
+
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  sizeVariant.getHorizontalPadding(tokens),
+                  sizeVariant.getVerticalPadding(tokens),
+                  sizeVariant.getHorizontalPadding(tokens),
+                  0,
+                ),
+                child: DefaultTextStyle.merge(
+                  style: TextStyle(
+                    fontSize: sizeVariant.fontSize,
+                    leadingDistribution: TextLeadingDistribution.even,
+                    textBaseline: TextBaseline.alphabetic,
+                    fontWeight: FontWeight.w600,
+
+                    height: 1,
+                    color: colorVariant.getColor(tokens),
+                  ),
+                  child: Text(
+                    name.toUpperCase(),
+                    maxLines: 1,
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
               ),
             ),
-          ),
-        )
+          )
         : const SizedBox.shrink();
   }
 }

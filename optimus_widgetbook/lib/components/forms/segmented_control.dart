@@ -13,7 +13,7 @@ Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
   final label = k.string(label: 'Label', initialValue: '');
   final error = k.string(label: 'Error', initialValue: '');
-  final direction = k.list(
+  final direction = k.object.dropdown(
     label: 'Direction',
     initialOption: Axis.horizontal,
     options: Axis.values,
@@ -145,10 +145,9 @@ class _SegmentedControlExampleState extends State<_SegmentedControlExample> {
     isEnabled: widget.isEnabled,
     direction: widget.direction,
     onItemSelected: _handleItemSelected,
-    items:
-        widget.options
-            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
-            .toList(),
+    items: widget.options
+        .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
+        .toList(),
   );
 }
 

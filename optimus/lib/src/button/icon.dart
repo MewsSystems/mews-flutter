@@ -93,13 +93,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
                   isPressed: _isPressed,
                   isHovered: _isHovered,
                 ),
-                border:
-                    borderColor != null
-                        ? Border.all(
-                          color: borderColor,
-                          width: tokens.borderWidth150,
-                        )
-                        : null,
+                border: borderColor != null
+                    ? Border.all(
+                        color: borderColor,
+                        width: tokens.borderWidth150,
+                      )
+                    : null,
                 borderRadius: BorderRadius.all(tokens.borderRadius100),
               ),
               duration: buttonAnimationDuration,

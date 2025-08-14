@@ -24,21 +24,20 @@ Widget createDefaultStyle(BuildContext context) {
       constraints: BoxConstraints(maxWidth: width),
       child: SingleChildScrollView(
         child: Column(
-          children:
-              OptimusFeedbackVariant.values
-                  .map(
-                    (v) => Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: OptimusBanner(
-                        title: Text(title),
-                        description: description.maybeToWidget(),
-                        hasIcon: k.boolean(label: 'Show icon'),
-                        isDismissible: k.boolean(label: 'Dismissible'),
-                        variant: v,
-                      ),
-                    ),
-                  )
-                  .toList(),
+          children: OptimusFeedbackVariant.values
+              .map(
+                (v) => Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: OptimusBanner(
+                    title: Text(title),
+                    description: description.maybeToWidget(),
+                    hasIcon: k.boolean(label: 'Show icon'),
+                    isDismissible: k.boolean(label: 'Dismissible'),
+                    variant: v,
+                  ),
+                ),
+              )
+              .toList(),
         ),
       ),
     ),

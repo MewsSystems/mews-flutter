@@ -61,16 +61,15 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
             state: _state,
             isError: widget.isError,
           ),
-          border:
-              _state.isUnchecked
-                  ? Border.all(
-                    color: _interactionState.borderColor(
-                      tokens: tokens,
-                      isError: widget.isError,
-                    ),
-                    width: tokens.borderWidth150,
-                  )
-                  : null,
+          border: _state.isUnchecked
+              ? Border.all(
+                  color: _interactionState.borderColor(
+                    tokens: tokens,
+                    isError: widget.isError,
+                  ),
+                  width: tokens.borderWidth150,
+                )
+              : null,
           borderRadius: BorderRadius.all(tokens.borderRadius25),
         ),
         width: size,
@@ -97,19 +96,17 @@ class _CheckboxIcon extends StatelessWidget {
   final bool isError;
 
   @override
-  Widget build(BuildContext context) =>
-      icon == null
-          ? const SizedBox.shrink()
-          : Center(
-            child: Icon(
-              icon,
-              size: context.tokens.sizing100.toScaled(context),
-              color:
-                  isEnabled
-                      ? context.tokens.textStaticInverse
-                      : context.tokens.textDisabled,
-            ),
-          );
+  Widget build(BuildContext context) => icon == null
+      ? const SizedBox.shrink()
+      : Center(
+          child: Icon(
+            icon,
+            size: context.tokens.sizing100.toScaled(context),
+            color: isEnabled
+                ? context.tokens.textStaticInverse
+                : context.tokens.textDisabled,
+          ),
+        );
 }
 
 enum _TickState { checked, unchecked, undetermined }
@@ -156,13 +153,13 @@ extension on _InteractionState {
 
   Color borderColor({required OptimusTokens tokens, required bool isError}) =>
       (isError && this != _InteractionState.disabled)
-          ? tokens.borderAlertDanger
-          : switch (this) {
-            _InteractionState.basic => tokens.borderInteractiveSecondaryDefault,
-            _InteractionState.hover => tokens.borderInteractiveSecondaryHover,
-            _InteractionState.active => tokens.borderInteractiveSecondaryActive,
-            _InteractionState.disabled => tokens.borderDisabled,
-          };
+      ? tokens.borderAlertDanger
+      : switch (this) {
+          _InteractionState.basic => tokens.borderInteractiveSecondaryDefault,
+          _InteractionState.hover => tokens.borderInteractiveSecondaryHover,
+          _InteractionState.active => tokens.borderInteractiveSecondaryActive,
+          _InteractionState.disabled => tokens.borderDisabled,
+        };
 }
 
 extension on bool? {

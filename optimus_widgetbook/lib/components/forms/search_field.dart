@@ -47,19 +47,18 @@ class _SearchStoryState extends State<_SearchStory> {
 
     return OptimusSearch<String>(
       controller: _controller,
-      items:
-          _characters
-              .where(
-                (c) => c.toLowerCase().contains(_controller.text.toLowerCase()),
-              )
-              .map(
-                (c) => ListDropdownTile(
-                  value: c,
-                  title: Text(c),
-                  subtitle: Text('Subtitle #$c'),
-                ),
-              )
-              .toList(),
+      items: _characters
+          .where(
+            (c) => c.toLowerCase().contains(_controller.text.toLowerCase()),
+          )
+          .map(
+            (c) => ListDropdownTile(
+              value: c,
+              title: Text(c),
+              subtitle: Text('Subtitle #$c'),
+            ),
+          )
+          .toList(),
       onChanged: (_) {},
       label: k.string(label: 'Label', initialValue: 'Search field'),
       placeholder: k.string(
@@ -76,10 +75,9 @@ class _SearchStoryState extends State<_SearchStory> {
       isUpdating: k.boolean(label: 'Updating', initialValue: false),
       isClearEnabled: k.boolean(label: 'Clear enabled', initialValue: false),
       error: k.string(label: 'Error', initialValue: ''),
-      groupBy:
-          k.boolean(label: 'Grouped', initialValue: false)
-              ? (item) => item.split(' ')[1][0].toLowerCase()
-              : null,
+      groupBy: k.boolean(label: 'Grouped', initialValue: false)
+          ? (item) => item.split(' ')[1][0].toLowerCase()
+          : null,
     );
   }
 }

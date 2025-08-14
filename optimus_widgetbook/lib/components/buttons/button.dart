@@ -25,29 +25,25 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          OptimusButtonVariant.values
-              .map(
-                (v) => Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: OptimusButton(
-                    onPressed:
-                        k.boolean(label: 'Enabled', initialValue: true)
-                            ? () {}
-                            : null,
-                    size: k.widgetSizeKnob,
-                    isLoading: k.boolean(label: 'Loading', initialValue: false),
-                    variant: v,
-                    leadingIcon: leadingIcon?.data,
-                    trailingIcon: trailingIcon?.data,
-                    counter: showBadge ? counter : null,
-                    child: Text(
-                      k.string(label: 'Text', initialValue: 'Button'),
-                    ),
-                  ),
-                ),
-              )
-              .toList(),
+      children: OptimusButtonVariant.values
+          .map(
+            (v) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: OptimusButton(
+                onPressed: k.boolean(label: 'Enabled', initialValue: true)
+                    ? () {}
+                    : null,
+                size: k.widgetSizeKnob,
+                isLoading: k.boolean(label: 'Loading', initialValue: false),
+                variant: v,
+                leadingIcon: leadingIcon?.data,
+                trailingIcon: trailingIcon?.data,
+                counter: showBadge ? counter : null,
+                child: Text(k.string(label: 'Text', initialValue: 'Button')),
+              ),
+            ),
+          )
+          .toList(),
     ),
   );
 }

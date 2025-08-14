@@ -93,12 +93,11 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
                 bottomLeft: borderRadius,
               ),
               size: widget.size,
-              shapeBuilder:
-                  (borderRadius, borderSide) => CustomOutlinedBorder(
-                    borderRadius: borderRadius,
-                    borderSide: borderSide,
-                    hasRight: false,
-                  ),
+              shapeBuilder: (borderRadius, borderSide) => CustomOutlinedBorder(
+                borderRadius: borderRadius,
+                borderSide: borderSide,
+                hasRight: false,
+              ),
               child: widget.child,
             ),
             Container(
@@ -114,15 +113,11 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
                 topRight: borderRadius,
                 bottomRight: borderRadius,
               ),
-              borderBuilder:
-                  (color) => Border(
-                    top: BorderSide(color: color, width: context.borderWidth),
-                    right: BorderSide(color: color, width: context.borderWidth),
-                    bottom: BorderSide(
-                      color: color,
-                      width: context.borderWidth,
-                    ),
-                  ),
+              borderBuilder: (color) => Border(
+                top: BorderSide(color: color, width: context.borderWidth),
+                right: BorderSide(color: color, width: context.borderWidth),
+                bottom: BorderSide(color: color, width: context.borderWidth),
+              ),
               size: widget.size,
             ),
           ],

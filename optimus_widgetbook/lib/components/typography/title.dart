@@ -12,7 +12,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget createLabel(BuildContext context) {
   final k = context.knobs;
 
-  final align = k.listOrNull(
+  final align = k.objectOrNull.dropdown(
     label: 'Align',
     options: TextAlign.values,
     labelBuilder: enumOrNullLabelBuilder,
@@ -30,7 +30,7 @@ Widget createLabel(BuildContext context) {
 Widget createTitleLarge(BuildContext context) {
   final k = context.knobs;
 
-  final align = k.listOrNull(
+  final align = k.objectOrNull.dropdown(
     label: 'Align',
     options: TextAlign.values,
     labelBuilder: enumOrNullLabelBuilder,
@@ -48,7 +48,7 @@ Widget createTitleLarge(BuildContext context) {
 Widget createTitleMedium(BuildContext context) {
   final k = context.knobs;
 
-  final align = k.listOrNull(
+  final align = k.objectOrNull.dropdown(
     label: 'Align',
     options: TextAlign.values,
     labelBuilder: enumOrNullLabelBuilder,
@@ -66,7 +66,7 @@ Widget createTitleMedium(BuildContext context) {
 Widget createTitleSmall(BuildContext context) {
   final k = context.knobs;
 
-  final align = k.listOrNull(
+  final align = k.objectOrNull.dropdown(
     label: 'Align',
     options: TextAlign.values,
     labelBuilder: enumOrNullLabelBuilder,

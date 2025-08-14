@@ -22,27 +22,21 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          Iterable<int>.generate(10)
-              .map(
-                (i) => OptimusExpansionTile(
-                  title: Text(title),
-                  subtitle:
-                      subtitle.isNotEmpty
-                          ? Text(useLongSubtitle ? longText : subtitle)
-                          : null,
-                  trailing: trailing != null ? Icon(trailing.data) : null,
-                  leading: leading != null ? Icon(leading.data) : null,
-                  children:
-                      Iterable<int>.generate(3)
-                          .map(
-                            (e) =>
-                                OptimusListTile(title: Text('Children of $i')),
-                          )
-                          .toList(),
-                ),
-              )
-              .toList(),
+      children: Iterable<int>.generate(10)
+          .map(
+            (i) => OptimusExpansionTile(
+              title: Text(title),
+              subtitle: subtitle.isNotEmpty
+                  ? Text(useLongSubtitle ? longText : subtitle)
+                  : null,
+              trailing: trailing != null ? Icon(trailing.data) : null,
+              leading: leading != null ? Icon(leading.data) : null,
+              children: Iterable<int>.generate(3)
+                  .map((e) => OptimusListTile(title: Text('Children of $i')))
+                  .toList(),
+            ),
+          )
+          .toList(),
     ),
   );
 }

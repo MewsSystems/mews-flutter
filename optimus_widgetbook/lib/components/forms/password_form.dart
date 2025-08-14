@@ -22,7 +22,7 @@ Widget createDefaultStyle(BuildContext context) {
     initialValue: 'Help message',
   );
   final caption = k.string(label: 'Caption', initialValue: 'Caption');
-  final statusBarState = k.list(
+  final statusBarState = k.object.dropdown(
     label: 'Status bar state',
     initialOption: OptimusStatusBarState.empty,
     labelBuilder: enumLabelBuilder,

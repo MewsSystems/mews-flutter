@@ -34,30 +34,27 @@ class OptimusStepperFormField extends FormField<int> {
        ),
        super(
          initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
-         validator:
-             (value) =>
-                 value != null && (value >= min && value <= max)
-                     ? null
-                     : validationError,
-         builder:
-             (FormFieldState<int> field) => _Stepper(
-               label: label,
-               semanticLabel: semanticLabel,
-               initialValue: initialValue,
-               min: min,
-               max: max,
-               increaseSemanticLabel: increaseSemanticLabel,
-               decreaseSemanticLabel: decreaseSemanticLabel,
-               onChanged: (value) {
-                 field.didChange(value);
-                 onChanged?.call(value);
-               },
-               isEnabled: enabled,
-               error: field.errorText,
-               focusNode: focusNode,
-               controller: controller,
-               size: size,
-             ),
+         validator: (value) => value != null && (value >= min && value <= max)
+             ? null
+             : validationError,
+         builder: (FormFieldState<int> field) => _Stepper(
+           label: label,
+           semanticLabel: semanticLabel,
+           initialValue: initialValue,
+           min: min,
+           max: max,
+           increaseSemanticLabel: increaseSemanticLabel,
+           decreaseSemanticLabel: decreaseSemanticLabel,
+           onChanged: (value) {
+             field.didChange(value);
+             onChanged?.call(value);
+           },
+           isEnabled: enabled,
+           error: field.errorText,
+           focusNode: focusNode,
+           controller: controller,
+           size: size,
+         ),
        );
 }
 
@@ -185,22 +182,20 @@ class _StepperState extends State<_Stepper> {
           leading: _StepperButton(
             iconData: OptimusIcons.minus_simple,
             semanticLabel: widget.decreaseSemanticLabel,
-            onPressed:
-                widget.isEnabled
-                    ? value == null || value > widget.min
-                        ? _handleMinusTap
-                        : null
-                    : null,
+            onPressed: widget.isEnabled
+                ? value == null || value > widget.min
+                      ? _handleMinusTap
+                      : null
+                : null,
           ),
           trailing: _StepperButton(
             iconData: OptimusIcons.plus_simple,
             semanticLabel: widget.increaseSemanticLabel,
-            onPressed:
-                widget.isEnabled
-                    ? value == null || value < widget.max
-                        ? _handlePlusTap
-                        : null
-                    : null,
+            onPressed: widget.isEnabled
+                ? value == null || value < widget.max
+                      ? _handlePlusTap
+                      : null
+                : null,
           ),
           focusNode: _effectiveFocusNode,
           inputFormatters: [

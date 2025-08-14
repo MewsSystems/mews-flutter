@@ -15,7 +15,7 @@ Widget createDefaultStyle(BuildContext context) {
   final captionIcon = k.optimusIconOrNullKnob(label: 'Caption Icon');
   final helperMessage = k.string(label: 'Helper Message', initialValue: '');
   final error = k.string(label: 'Error', initialValue: '');
-  final errorVariant = k.list(
+  final errorVariant = k.object.dropdown(
     label: 'Error variant',
     initialOption: OptimusInputErrorVariant.bottomHint,
     options: OptimusInputErrorVariant.values,
@@ -40,7 +40,7 @@ Widget createDefaultStyle(BuildContext context) {
     min: 1,
     max: 10,
   );
-  final keyboardType = k.listOrNull(
+  final keyboardType = k.objectOrNull.dropdown(
     label: 'Keyboard Type:',
     options: KeyboardType.values,
     labelBuilder: enumOrNullLabelBuilder,
@@ -51,7 +51,7 @@ Widget createDefaultStyle(BuildContext context) {
     initialValue: true,
   );
 
-  final statusBar = k.listOrNull(
+  final statusBar = k.objectOrNull.dropdown(
     label: 'Status Bar',
     options: OptimusStatusBarState.values,
     labelBuilder: enumOrNullLabelBuilder,

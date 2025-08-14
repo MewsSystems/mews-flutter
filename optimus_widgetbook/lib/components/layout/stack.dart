@@ -9,37 +9,37 @@ Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
   return OptimusStack(
-    direction: k.list(
+    direction: k.object.dropdown(
       label: 'Direction',
       initialOption: Axis.vertical,
       options: Axis.values,
       labelBuilder: enumLabelBuilder,
     ),
-    mainAxisAlignment: k.list(
+    mainAxisAlignment: k.object.dropdown(
       label: 'Main axis',
       initialOption: OptimusStackAlignment.center,
       options: OptimusStackAlignment.values,
       labelBuilder: enumLabelBuilder,
     ),
-    crossAxisAlignment: k.list(
+    crossAxisAlignment: k.object.dropdown(
       label: 'Cross axis',
       initialOption: OptimusStackAlignment.center,
       options: OptimusStackAlignment.values,
       labelBuilder: enumLabelBuilder,
     ),
-    distribution: k.list(
+    distribution: k.object.dropdown(
       label: 'Distribution',
       initialOption: OptimusStackDistribution.basic,
       options: OptimusStackDistribution.values,
       labelBuilder: enumLabelBuilder,
     ),
-    breakpoint: k.listOrNull(
+    breakpoint: k.objectOrNull.dropdown(
       label: 'Breakpoint',
       initialOption: null,
       options: Breakpoint.values,
       labelBuilder: enumOrNullLabelBuilder,
     ),
-    spacing: k.list(
+    spacing: k.object.dropdown(
       label: 'Spacing',
       initialOption: OptimusStackSpacing.spacing100,
       options: OptimusStackSpacing.values,

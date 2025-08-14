@@ -22,19 +22,19 @@ Widget createDefaultStyle(BuildContext context) {
   final suffix = k.optimusIconOrNullKnob(label: 'Suffix Icon');
   final info = k.string(label: 'Info', initialValue: 'Info');
   final infoWidget = k.optimusIconOrNullKnob(label: 'Info Icon');
-  final fontVariant = k.list(
+  final fontVariant = k.object.dropdown(
     label: 'Font variant',
     initialOption: FontVariant.normal,
     options: FontVariant.values,
     labelBuilder: enumLabelBuilder,
   );
-  final prefixSize = k.list(
+  final prefixSize = k.object.dropdown(
     label: 'Prefix Size',
     options: OptimusPrefixSize.values,
     initialOption: OptimusPrefixSize.medium,
     labelBuilder: enumLabelBuilder,
   );
-  final prefixAlignment = k.listOrNull(
+  final prefixAlignment = k.objectOrNull.dropdown(
     label: 'Prefix Alignment',
     options: OptimusPrefixVerticalAlignment.values,
     labelBuilder: enumOrNullLabelBuilder,
@@ -42,26 +42,24 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      children:
-          Iterable<int>.generate(10)
-              .map(
-                (i) => OptimusListTile(
-                  title: Text(title),
-                  subtitle:
-                      subtitle.isNotEmpty
-                          ? Text(useLongSubtitle ? longText : subtitle)
-                          : null,
-                  info: info.isNotEmpty ? Text(info) : null,
-                  fontVariant: fontVariant,
-                  prefix: prefix?.toWidget(),
-                  suffix: suffix?.toWidget(),
-                  infoWidget: infoWidget?.toWidget(),
-                  onTap: ignore,
-                  prefixSize: prefixSize,
-                  prefixVerticalAlignment: prefixAlignment,
-                ),
-              )
-              .toList(),
+      children: Iterable<int>.generate(10)
+          .map(
+            (i) => OptimusListTile(
+              title: Text(title),
+              subtitle: subtitle.isNotEmpty
+                  ? Text(useLongSubtitle ? longText : subtitle)
+                  : null,
+              info: info.isNotEmpty ? Text(info) : null,
+              fontVariant: fontVariant,
+              prefix: prefix?.toWidget(),
+              suffix: suffix?.toWidget(),
+              infoWidget: infoWidget?.toWidget(),
+              onTap: ignore,
+              prefixSize: prefixSize,
+              prefixVerticalAlignment: prefixAlignment,
+            ),
+          )
+          .toList(),
     ),
   );
 }

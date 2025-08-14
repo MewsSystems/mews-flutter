@@ -20,14 +20,14 @@ Widget createDefaultStyle(BuildContext context) {
           'Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm.',
     ),
     time: stubDate,
-    owner: k.list(
+    owner: k.object.dropdown(
       label: 'Owner',
       initialOption: MessageOwner.user,
       options: MessageOwner.values,
       labelBuilder: enumLabelBuilder,
     ),
     deliveryStatus: MessageDeliveryStatus.sent,
-    state: k.list(
+    state: k.object.dropdown(
       label: 'State',
       initialOption: MessageState.basic,
       options: MessageState.values,
@@ -38,11 +38,10 @@ Widget createDefaultStyle(BuildContext context) {
   return OptimusChatBubble(
     message: message,
     isUserNameVisible: k.boolean(label: 'Show user name', initialValue: true),
-    formatTime:
-        (DateTime input) =>
-            '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
-    formatDate:
-        (DateTime input) => '${input.day}. ${input.month}. ${input.year}',
+    formatTime: (DateTime input) =>
+        '${input.hour}:${input.minute.toString().padLeft(2, '0')}',
+    formatDate: (DateTime input) =>
+        '${input.day}. ${input.month}. ${input.year}',
     sending: const Text('Sending...'),
     sent: const Text('Sent'),
     error: const Text('Error, try sending again'),

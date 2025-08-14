@@ -37,7 +37,7 @@ class CheckboxStoryState extends State<CheckboxStory> {
           semanticLabel: label,
           error: k.stringOrNull(label: 'Error'),
           isEnabled: k.isEnabledKnob,
-          size: k.list(
+          size: k.object.dropdown(
             label: 'Size',
             options: OptimusCheckboxSize.values,
             labelBuilder: enumLabelBuilder,

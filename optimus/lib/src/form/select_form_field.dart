@@ -17,16 +17,15 @@ class OptimusSelectFormField<T> extends FormField<T> {
     required CurrentValueBuilder<T> builder,
     required List<OptimusDropdownTile<T>> items,
   }) : super(
-         builder:
-             (FormFieldState<T> field) => OptimusSelect<T>(
-               label: label,
-               placeholder: placeholder,
-               value: field.value,
-               error: field.errorText,
-               builder: builder,
-               items: items,
-               isEnabled: enabled,
-               onItemSelected: field.didChange,
-             ),
+         builder: (FormFieldState<T> field) => OptimusSelect<T>(
+           label: label,
+           placeholder: placeholder,
+           value: field.value,
+           error: field.errorText,
+           builder: builder,
+           items: items,
+           isEnabled: enabled,
+           onItemSelected: field.didChange,
+         ),
        );
 }

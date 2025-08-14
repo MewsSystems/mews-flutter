@@ -305,14 +305,13 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   Widget build(BuildContext context) {
     final error = widget.error;
     final maxCharacters = widget.maxCharacters;
-    final counter =
-        maxCharacters != null
-            ? _CharacterCounter(
-              current: _effectiveController.text.length,
-              max: maxCharacters,
-              isEnabled: widget.isEnabled,
-            )
-            : null;
+    final counter = maxCharacters != null
+        ? _CharacterCounter(
+            current: _effectiveController.text.length,
+            max: maxCharacters,
+            isEnabled: widget.isEnabled,
+          )
+        : null;
 
     return FieldWrapper(
       focusNode: _effectiveFocusNode,
@@ -330,37 +329,32 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       hasMultipleLines: widget.minLines != null,
       inputCounter: widget.isInlined ? null : counter,
       statusBarState: widget.statusBarState,
-      prefix:
-          _shouldShowPrefix
-              ? Prefix(prefix: widget.prefix, leading: widget.leading)
-              : null,
-      suffix:
-          _shouldShowSuffix
-              ? Suffix(
-                suffix: widget.suffix,
-                trailing: widget.trailing,
-                counter: widget.isInlined ? counter : null,
-                passwordButton:
-                    _isPasswordToggleVisible
-                        ? _PasswordButton(
-                          onTap: _handlePasswordTap,
-                          isEnabled: _isShowPasswordEnabled,
-                        )
-                        : null,
-                showLoader: widget.isEnabled ? widget.showLoader : false,
-                clearAllButton:
-                    _shouldShowClearAllButton
-                        ? _ClearAllButton(
-                          onTap: _handleClearAllTap,
-                          isEnabled: widget.isEnabled,
-                        )
-                        : null,
-                inlineError:
-                    _shouldShowInlineError && error != null
-                        ? InlineErrorTooltip(error: error)
-                        : null,
-              )
-              : null,
+      prefix: _shouldShowPrefix
+          ? Prefix(prefix: widget.prefix, leading: widget.leading)
+          : null,
+      suffix: _shouldShowSuffix
+          ? Suffix(
+              suffix: widget.suffix,
+              trailing: widget.trailing,
+              counter: widget.isInlined ? counter : null,
+              passwordButton: _isPasswordToggleVisible
+                  ? _PasswordButton(
+                      onTap: _handlePasswordTap,
+                      isEnabled: _isShowPasswordEnabled,
+                    )
+                  : null,
+              showLoader: widget.isEnabled ? widget.showLoader : false,
+              clearAllButton: _shouldShowClearAllButton
+                  ? _ClearAllButton(
+                      onTap: _handleClearAllTap,
+                      isEnabled: widget.isEnabled,
+                    )
+                  : null,
+              inlineError: _shouldShowInlineError && error != null
+                  ? InlineErrorTooltip(error: error)
+                  : null,
+            )
+          : null,
       fieldBoxKey: widget.fieldBoxKey,
       size: widget.size,
       placeholder: _placeholder,
@@ -445,10 +439,9 @@ class _ClearAllButton extends StatelessWidget {
     child: Icon(
       OptimusIcons.cross_close,
       size: context.tokens.sizing200,
-      color:
-          isEnabled
-              ? context.tokens.textStaticPrimary
-              : context.tokens.textDisabled,
+      color: isEnabled
+          ? context.tokens.textStaticPrimary
+          : context.tokens.textDisabled,
     ),
   );
 }
@@ -467,12 +460,11 @@ class _CharacterCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final color =
-        isEnabled
-            ? max < current
-                ? tokens.textAlertDanger
-                : tokens.textStaticSecondary
-            : tokens.textDisabled;
+    final color = isEnabled
+        ? max < current
+              ? tokens.textAlertDanger
+              : tokens.textStaticSecondary
+        : tokens.textDisabled;
 
     final child = Text(
       '$current/$max',
@@ -481,22 +473,22 @@ class _CharacterCounter extends StatelessWidget {
 
     return current > max
         ? Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: tokens.spacing200,
-                right: tokens.spacing25,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  left: tokens.spacing200,
+                  right: tokens.spacing25,
+                ),
+                child: const OptimusIcon(
+                  iconData: OptimusIcons.error_circle,
+                  iconSize: OptimusIconSize.small,
+                  colorOption: OptimusIconColorOption.danger,
+                ),
               ),
-              child: const OptimusIcon(
-                iconData: OptimusIcons.error_circle,
-                iconSize: OptimusIconSize.small,
-                colorOption: OptimusIconColorOption.danger,
-              ),
-            ),
-            child,
-          ],
-        )
+              child,
+            ],
+          )
         : child;
   }
 }

@@ -49,8 +49,9 @@ class StyledInputController extends TextEditingController {
       } else if (_maskRegExp.hasMatch(textParts[i])) {
         children.add(TextSpan(style: _placeholderStyle, text: textParts[i]));
       } else {
-        final style =
-            children.isEmpty ? _placeholderStyle : children.last.style;
+        final style = children.isEmpty
+            ? _placeholderStyle
+            : children.last.style;
         children.add(TextSpan(style: style, text: textParts[i]));
       }
     }

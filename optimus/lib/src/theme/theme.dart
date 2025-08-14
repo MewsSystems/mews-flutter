@@ -31,10 +31,9 @@ class OptimusTheme extends StatelessWidget {
     final bool isDark =
         themeMode == ThemeMode.dark ||
         (themeMode == ThemeMode.system && brightness == Brightness.dark);
-    final theme =
-        isDark
-            ? (darkTheme ?? _defaultDarkTheme)
-            : (lightTheme ?? _defaultLightTheme);
+    final theme = isDark
+        ? (darkTheme ?? _defaultDarkTheme)
+        : (lightTheme ?? _defaultLightTheme);
 
     final child = MediaQuery(
       data: MediaQuery.of(context).copyWith(
@@ -66,8 +65,9 @@ final _defaultLightTheme = _createTheme(Brightness.light);
 final _defaultDarkTheme = _createTheme(Brightness.dark);
 
 OptimusThemeData _createTheme(Brightness brightness) {
-  final tokens =
-      brightness == Brightness.dark ? OptimusTokens.dark : OptimusTokens.light;
+  final tokens = brightness == Brightness.dark
+      ? OptimusTokens.dark
+      : OptimusTokens.light;
 
   return OptimusThemeData(brightness: brightness, tokens: tokens);
 }

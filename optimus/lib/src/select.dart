@@ -63,9 +63,9 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
     return value == null
         ? Text(widget.placeholder, style: _textStyle)
         : DefaultTextStyle.merge(
-          style: tokens.bodyLargeStrong,
-          child: widget.builder(context, value),
-        );
+            style: tokens.bodyLargeStrong,
+            child: widget.builder(context, value),
+          );
   }
 
   Icon get _icon => Icon(
@@ -75,19 +75,19 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
   );
 
   TextStyle get _textStyle {
-    final color =
-        widget.isEnabled
-            ? widget.value == null
-                ? tokens.textStaticSecondary
-                : tokens.textStaticPrimary
-            : tokens.textDisabled;
+    final color = widget.isEnabled
+        ? widget.value == null
+              ? tokens.textStaticSecondary
+              : tokens.textStaticPrimary
+        : tokens.textDisabled;
 
     return switch (widget.size) {
       OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(color: color),
       OptimusWidgetSize.medium ||
       OptimusWidgetSize.large ||
-      OptimusWidgetSize
-          .extraLarge => tokens.bodyLargeStrong.copyWith(color: color),
+      OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong.copyWith(
+        color: color,
+      ),
     };
   }
 

@@ -27,7 +27,7 @@ class _ContentState extends State<_Content> {
   Widget build(BuildContext context) {
     final k = context.knobs;
     final error = k.string(label: 'Error', initialValue: 'Required');
-    final AutovalidateMode autovalidateMode = k.list(
+    final AutovalidateMode autovalidateMode = k.object.dropdown(
       label: 'autovalidateMode',
       initialOption: AutovalidateMode.onUserInteraction,
       options: AutovalidateMode.values,
@@ -54,17 +54,16 @@ class _ContentState extends State<_Content> {
             placeholder: 'Please select the item',
             initialValue: null,
             builder: (value) => value ?? '',
-            items:
-                _selectorItems
-                    .map(
-                      (e) => ListDropdownTile<String>(
-                        value: e,
-                        title: Text(e),
-                        isSelected: _values.contains(e),
-                        hasCheckbox: allowMultipleSelection,
-                      ),
-                    )
-                    .toList(),
+            items: _selectorItems
+                .map(
+                  (e) => ListDropdownTile<String>(
+                    value: e,
+                    title: Text(e),
+                    isSelected: _values.contains(e),
+                    hasCheckbox: allowMultipleSelection,
+                  ),
+                )
+                .toList(),
             onChanged: (v) {
               if (_values.contains(v)) {
                 setState(() => _values.remove(v));
