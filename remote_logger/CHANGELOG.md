@@ -1,3 +1,8 @@
+## 0.4.0+2
+
+ - **REFACTOR**: Fix linter issues. Apply new formatting.
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.4.0+1
 
  - **REFACTOR**: Fix linter issues.
