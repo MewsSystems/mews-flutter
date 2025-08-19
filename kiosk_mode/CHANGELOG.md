@@ -1,3 +1,7 @@
+## 0.7.0+1
+
+ - **REFACTOR**: Fix linter issues. Apply new formatting.
+
 ## 0.7.0
 
 > Note: This release has breaking changes.
