@@ -29,7 +29,7 @@ class BaseDropdownTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
+      children: [
         OptimusTypography(
           resolveStyle: (_) => tokens.bodyMediumStrong,
           child: title,
