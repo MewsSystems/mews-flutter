@@ -314,10 +314,7 @@ class _GroupedDropdownListViewState<T>
         reverse: widget.isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
         itemCount: widget.items.length,
-        prototypeItem: widget.items.isNotEmpty
-            ? _buildPrototypeItem(widget.items.first)
-            : null,
-        itemBuilder: (context, index) {
+        itemBuilder: (_, index) {
           final current = _sortedItems[index];
           final child = _DropdownItem(
             onChanged: widget.onChanged,
@@ -379,16 +376,6 @@ class _GroupedDropdownListViewState<T>
     }
 
     return totalHeight.clamp(0.0, widget.maxHeight);
-  }
-
-  Widget _buildPrototypeItem(OptimusDropdownTile<T> item) {
-    final child = _DropdownItem(onChanged: widget.onChanged, child: item);
-
-    return _GroupWrapper(
-      useBorder: false,
-      group: _effectiveGroupBuilder(widget.groupBy(item.value)),
-      child: child,
-    );
   }
 }
 
