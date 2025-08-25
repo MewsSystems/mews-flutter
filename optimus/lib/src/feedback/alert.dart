@@ -20,6 +20,7 @@ class OptimusAlert extends StatelessWidget {
     this.isDismissible = false,
     this.onPressed,
     this.variant = OptimusFeedbackVariant.info,
+    this.maxWidth = 360,
   }) : assert(
          title != null || description != null,
          'At least one of title or description must be provided.',
@@ -52,6 +53,9 @@ class OptimusAlert extends StatelessWidget {
   /// An optional callback to be called when the alert is pressed.
   final VoidCallback? onPressed;
 
+  /// The maximum width of the alert.
+  final double maxWidth;
+
   bool get _isExpanded => description != null || action != null;
 
   double _getHorizontalPadding(BuildContext context) =>
@@ -68,7 +72,7 @@ class OptimusAlert extends StatelessWidget {
     final horizontalPadding = _getHorizontalPadding(context);
     final double alertWidth = min(
       MediaQuery.sizeOf(context).width - horizontalPadding * 2,
-      _maxWidth,
+      maxWidth,
     );
 
     return Semantics(
@@ -231,5 +235,3 @@ extension on BuildContext {
   double get leadingIconSize => tokens.sizing300;
   double get leadingIconHorizontalPadding => tokens.sizing100;
 }
-
-const double _maxWidth = 360;

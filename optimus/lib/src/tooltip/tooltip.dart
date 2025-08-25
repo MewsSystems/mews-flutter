@@ -12,8 +12,8 @@ class OptimusTooltip extends StatelessWidget {
   const OptimusTooltip({
     super.key,
     required this.content,
-    this.size = OptimusToolTipSize.small,
-    this.tooltipPosition,
+    this.size = OptimusToolTipSize.medium,
+    this.tooltipPosition = OptimusTooltipPosition.top,
   });
 
   /// The content of the tooltip. Typically a [Text] widget.
@@ -27,17 +27,14 @@ class OptimusTooltip extends StatelessWidget {
   /// The position of the tooltip. Defaults to [OptimusTooltipPosition.top].
   /// If wrapped with [OptimusTooltipWrapper], the position will be set
   /// by the wrapper.
-  final OptimusTooltipPosition? tooltipPosition;
-
-  OptimusTooltipPosition get _fallbackPosition =>
-      tooltipPosition ?? OptimusTooltipPosition.top;
+  final OptimusTooltipPosition tooltipPosition;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final alignment =
         TooltipOverlay.of(context)?.alignment ??
-        _fallbackPosition.toTooltipAlignment();
+        tooltipPosition.toTooltipAlignment();
     final foregroundColor = tokens.textStaticInverse;
     final backgroundColor = tokens.backgroundStaticInverse;
 
