@@ -18,6 +18,24 @@ Widget createDefaultStyle(BuildContext context) {
     max: 800,
     min: 200,
   );
+  final titleMaxLines = k.int.slider(
+    label: 'Title Max Lines',
+    initialValue: 1,
+    min: 1,
+    max: 5,
+  );
+  final descriptionMaxLines = k.int.slider(
+    label: 'Description Max Lines',
+    initialValue: 5,
+    min: 1,
+    max: 10,
+  );
+  final overflow = k.object.dropdown(
+    label: 'Overflow Style',
+    initialOption: TextOverflow.ellipsis,
+    options: TextOverflow.values,
+    labelBuilder: (overflow) => overflow.name,
+  );
 
   return Center(
     child: ConstrainedBox(
@@ -34,6 +52,9 @@ Widget createDefaultStyle(BuildContext context) {
                     hasIcon: k.boolean(label: 'Show icon'),
                     isDismissible: k.boolean(label: 'Dismissible'),
                     variant: v,
+                    titleMaxLines: titleMaxLines,
+                    descriptionMaxLines: descriptionMaxLines,
+                    overflow: overflow,
                   ),
                 ),
               )

@@ -20,6 +20,11 @@ class OptimusAlert extends StatelessWidget {
     this.isDismissible = false,
     this.onPressed,
     this.variant = OptimusFeedbackVariant.info,
+    this.maxWidth = 360,
+    this.titleMaxLines,
+    this.descriptionMaxLines = 5,
+    this.linkMaxLines = 1,
+    this.overflow = TextOverflow.ellipsis,
   }) : assert(
          title != null || description != null,
          'At least one of title or description must be provided.',
@@ -52,6 +57,21 @@ class OptimusAlert extends StatelessWidget {
   /// An optional callback to be called when the alert is pressed.
   final VoidCallback? onPressed;
 
+  /// The maximum width of the alert.
+  final double maxWidth;
+
+  /// The maximum number of lines for the title. If null, no limit is applied.
+  final int? titleMaxLines;
+
+  /// The maximum number of lines for the description. Default is 5.
+  final int descriptionMaxLines;
+
+  /// The maximum number of lines for the link text. Default is 1.
+  final int linkMaxLines;
+
+  /// The overflow style for all text in the alert. Default is [TextOverflow.ellipsis].
+  final TextOverflow overflow;
+
   bool get _isExpanded => description != null || action != null;
 
   double _getHorizontalPadding(BuildContext context) =>
@@ -68,7 +88,7 @@ class OptimusAlert extends StatelessWidget {
     final horizontalPadding = _getHorizontalPadding(context);
     final double alertWidth = min(
       MediaQuery.sizeOf(context).width - horizontalPadding * 2,
-      _maxWidth,
+      maxWidth,
     );
 
     return Semantics(
@@ -96,6 +116,10 @@ class OptimusAlert extends StatelessWidget {
                   },
                   isDismissible: isDismissible,
                   semanticLinkUri: action?.semanticUri,
+                  titleMaxLines: titleMaxLines,
+                  descriptionMaxLines: descriptionMaxLines,
+                  linkMaxLines: linkMaxLines,
+                  overflow: overflow,
                 ),
                 if (isDismissible)
                   Positioned(
@@ -128,6 +152,10 @@ class _AlertContent extends StatelessWidget {
     this.onLinkPressed,
     this.linkText,
     this.semanticLinkUri,
+    this.titleMaxLines,
+    this.descriptionMaxLines = 5,
+    this.linkMaxLines = 1,
+    this.overflow = TextOverflow.ellipsis,
   });
 
   final IconData? icon;
@@ -138,6 +166,10 @@ class _AlertContent extends StatelessWidget {
   final VoidCallback? onLinkPressed;
   final bool isDismissible;
   final Uri? semanticLinkUri;
+  final int? titleMaxLines;
+  final int descriptionMaxLines;
+  final int linkMaxLines;
+  final TextOverflow overflow;
 
   bool get _isExpanded => description != null || linkText != null;
 
@@ -206,14 +238,25 @@ class _AlertContent extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     spacing: tokens.spacing50,
                     children: [
-                      if (title case final title?) FeedbackTitle(title: title),
+                      if (title case final title?)
+                        FeedbackTitle(
+                          title: title,
+                          maxLines: titleMaxLines,
+                          overflow: overflow,
+                        ),
                       if (description case final description?)
-                        FeedbackDescription(description: description),
+                        FeedbackDescription(
+                          description: description,
+                          maxLines: descriptionMaxLines,
+                          overflow: overflow,
+                        ),
                       if (linkText != null && onLinkPressed != null)
                         FeedbackLink(
                           text: linkText,
                           onPressed: onLinkPressed,
                           semanticLinkUri: semanticLinkUri,
+                          maxLines: linkMaxLines,
+                          overflow: overflow,
                         ),
                     ],
                   ),
@@ -231,5 +274,3 @@ extension on BuildContext {
   double get leadingIconSize => tokens.sizing300;
   double get leadingIconHorizontalPadding => tokens.sizing100;
 }
-
-const double _maxWidth = 360;

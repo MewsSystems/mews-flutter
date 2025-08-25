@@ -25,6 +25,10 @@ class OptimusSystemWideBanner extends StatelessWidget {
     this.description,
     this.variant = OptimusFeedbackVariant.info,
     this.onPressed,
+    this.titleMaxLines,
+    this.descriptionMaxLines = 5,
+    this.linkMaxLines = 1,
+    this.overflow = TextOverflow.ellipsis,
   });
 
   /// Content of the banner.
@@ -45,6 +49,18 @@ class OptimusSystemWideBanner extends StatelessWidget {
 
   /// An optional callback to be called when the banner is pressed.
   final VoidCallback? onPressed;
+
+  /// The maximum number of lines for the title. If null, no limit is applied.
+  final int? titleMaxLines;
+
+  /// The maximum number of lines for the description. Default is 5.
+  final int descriptionMaxLines;
+
+  /// The maximum number of lines for the link text. Default is 1.
+  final int linkMaxLines;
+
+  /// The overflow style for all text in the banner. Default is [TextOverflow.ellipsis].
+  final TextOverflow overflow;
 
   bool get _isExpanded => description != null || link != null;
 
@@ -73,11 +89,19 @@ class OptimusSystemWideBanner extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FeedbackTitle(title: title),
+                      FeedbackTitle(
+                        title: title,
+                        maxLines: titleMaxLines,
+                        overflow: overflow,
+                      ),
                       if (description case final description?)
                         Padding(
                           padding: EdgeInsets.only(top: tokens.spacing50),
-                          child: FeedbackDescription(description: description),
+                          child: FeedbackDescription(
+                            description: description,
+                            maxLines: descriptionMaxLines,
+                            overflow: overflow,
+                          ),
                         ),
                       if (link case final link?)
                         Padding(
@@ -86,6 +110,8 @@ class OptimusSystemWideBanner extends StatelessWidget {
                             text: link.text,
                             onPressed: link.onPressed,
                             semanticLinkUri: link.semanticUri,
+                            maxLines: linkMaxLines,
+                            overflow: overflow,
                           ),
                         ),
                     ],

@@ -14,6 +14,7 @@ class OptimusChatBubble extends StatelessWidget {
     required this.sending,
     required this.sent,
     required this.error,
+    this.maxWidth = 480,
   });
 
   final OptimusMessage message;
@@ -23,6 +24,7 @@ class OptimusChatBubble extends StatelessWidget {
   final Widget sending;
   final Widget sent;
   final Widget error;
+  final double maxWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class OptimusChatBubble extends StatelessWidget {
         ],
         Padding(
           padding: message.owner.getHorizontalPadding(tokens),
-          child: _Bubble(message: message),
+          child: _Bubble(message: message, maxWidth: maxWidth),
         ),
       ],
     );
@@ -54,9 +56,10 @@ class OptimusChatBubble extends StatelessWidget {
 }
 
 class _Bubble extends StatelessWidget {
-  const _Bubble({required this.message});
+  const _Bubble({required this.message, required this.maxWidth});
 
   final OptimusMessage message;
+  final double maxWidth;
 
   Color _getBackgroundColor(OptimusTokens tokens) =>
       message.state == MessageState.success
@@ -86,7 +89,7 @@ class _Bubble extends StatelessWidget {
     return Semantics(
       liveRegion: true,
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 480),
+        constraints: BoxConstraints(maxWidth: maxWidth),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: message.owner == MessageOwner.assistant
