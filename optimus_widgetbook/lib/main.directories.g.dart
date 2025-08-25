@@ -130,8 +130,6 @@ import 'package:optimus_widgetbook/components/tab/tabs.dart'
     as _optimus_widgetbook_components_tab_tabs;
 import 'package:optimus_widgetbook/components/theming/button_theme_override.dart'
     as _optimus_widgetbook_components_theming_button_theme_override;
-import 'package:optimus_widgetbook/components/theming/button_theme_override_advanced.dart'
-    as _optimus_widgetbook_components_theming_button_theme_override_advanced;
 import 'package:optimus_widgetbook/components/typography/caption.dart'
     as _optimus_widgetbook_components_typography_caption;
 import 'package:optimus_widgetbook/components/typography/highlight.dart'
@@ -145,6 +143,19 @@ import 'package:optimus_widgetbook/components/typography/title.dart'
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 
 final directories = <_widgetbook.WidgetbookNode>[
+  _widgetbook.WidgetbookFolder(
+    name: 'Theming',
+    children: [
+      _widgetbook.WidgetbookLeafComponent(
+        name: 'OptimusButton',
+        useCase: _widgetbook.WidgetbookUseCase(
+          name: 'Theming',
+          builder: _optimus_widgetbook_components_theming_button_theme_override
+              .createThemeOverrideDemo,
+        ),
+      ),
+    ],
+  ),
   _widgetbook.WidgetbookCategory(
     name: 'Buttons',
     children: [
@@ -845,28 +856,6 @@ final directories = <_widgetbook.WidgetbookNode>[
               builder: _optimus_widgetbook_components_typography_title
                   .createTitleSmall,
             ),
-          ),
-        ],
-      ),
-    ],
-  ),
-  _widgetbook.WidgetbookFolder(
-    name: 'button',
-    children: [
-      _widgetbook.WidgetbookComponent(
-        name: 'OptimusButton',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Advanced Override',
-            builder:
-                _optimus_widgetbook_components_theming_button_theme_override_advanced
-                    .createAdvancedThemeOverrideDemo,
-          ),
-          _widgetbook.WidgetbookUseCase(
-            name: 'Basic Override',
-            builder:
-                _optimus_widgetbook_components_theming_button_theme_override
-                    .createThemeOverrideDemo,
           ),
         ],
       ),

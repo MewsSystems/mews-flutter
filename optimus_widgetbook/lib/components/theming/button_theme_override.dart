@@ -1,39 +1,49 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
-import 'package:optimus_widgetbook/components/theming/common.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Basic Override', type: OptimusButton)
-Widget createThemeOverrideDemo(BuildContext _) => const _ThemeOverrideDemo();
+@widgetbook.UseCase(name: 'Theming', path: 'Theming', type: OptimusButton)
+Widget createThemeOverrideDemo(BuildContext _) =>
+    const _AdvancedThemeOverrideDemo();
 
-class _ThemeOverrideDemo extends StatelessWidget {
-  const _ThemeOverrideDemo();
+class _AdvancedThemeOverrideDemo extends StatelessWidget {
+  const _AdvancedThemeOverrideDemo();
 
   @override
   Widget build(BuildContext context) {
     final k = context.knobs;
     final tokens = context.tokens;
 
-    // Token override knobs
     final primaryColor = k.color(
-      label: 'Primary Background Color',
+      label: 'Primary Background',
       initialValue: tokens.backgroundInteractivePrimaryDefault,
     );
 
-    final primaryHoverColor = k.color(
-      label: 'Primary Hover Color',
-      initialValue: tokens.backgroundInteractivePrimaryHover,
+    final secondaryColor = k.color(
+      label: 'Secondary Background',
+      initialValue: tokens.backgroundInteractiveSecondaryDefault,
     );
 
-    final primaryActiveColor = k.color(
-      label: 'Primary Active Color',
-      initialValue: tokens.backgroundInteractivePrimaryActive,
+    final dangerColor = k.color(
+      label: 'Danger Background',
+      initialValue: tokens.backgroundInteractiveDangerDefault,
+    );
+
+    final successColor = k.color(
+      label: 'Success Background',
+      initialValue: tokens.backgroundInteractiveSuccessDefault,
     );
 
     final textColor = k.color(
       label: 'Text Color',
       initialValue: tokens.textStaticInverse,
+    );
+
+    final secondaryTextColor = k.color(
+      label: 'Secondary Text Color',
+      initialValue: tokens.textStaticSecondary,
     );
 
     final disabledColor = k.color(
@@ -55,20 +65,7 @@ class _ThemeOverrideDemo extends StatelessWidget {
       max: 32.0,
     );
 
-    // Button configuration knobs
-    final buttonText = k.string(
-      label: 'Button Text',
-      initialValue: 'Theme Override Demo',
-    );
-
-    final variant = k.object.dropdown<OptimusButtonVariant>(
-      label: 'Button Variant',
-      options: OptimusButtonVariant.values,
-      initialOption: OptimusButtonVariant.primary,
-      labelBuilder: (value) => value.name,
-    );
-
-    final size = k.object.dropdown<OptimusWidgetSize>(
+    final size = k.object.dropdown(
       label: 'Button Size',
       options: OptimusWidgetSize.values,
       initialOption: OptimusWidgetSize.large,
@@ -76,52 +73,99 @@ class _ThemeOverrideDemo extends StatelessWidget {
     );
 
     final isEnabled = k.boolean(label: 'Enabled', initialValue: true);
-
     final isLoading = k.boolean(label: 'Loading', initialValue: false);
 
     final customTokens = tokens.copyWith(
       backgroundInteractivePrimaryDefault: primaryColor,
-      backgroundInteractivePrimaryHover: primaryHoverColor,
-      backgroundInteractivePrimaryActive: primaryActiveColor,
+      backgroundInteractiveSecondaryDefault: secondaryColor,
+      backgroundInteractiveDangerDefault: dangerColor,
+      backgroundInteractiveSuccessDefault: successColor,
       textStaticInverse: textColor,
+      textStaticSecondary: secondaryTextColor,
       backgroundDisabled: disabledColor,
       borderRadius100: Radius.circular(borderRadius),
       spacing100: padding,
     );
 
-    final customTheme = OptimusThemeData(
+    final customThemeData = OptimusThemeData(
       brightness: Theme.of(context).brightness,
       tokens: customTokens,
     );
 
     return OptimusTheme(
-      lightTheme: customTheme,
-      darkTheme: customTheme,
+      lightTheme: customThemeData,
+      darkTheme: customThemeData,
       child: Scaffold(
         backgroundColor: customTokens.backgroundStaticFlat,
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(tokens.spacing200),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Theme Override Demo', style: tokens.titleLargeStrong),
-              const SizedBox(height: 16.0),
               Text(
-                'This demo shows how to override Optimus design tokens using OptimusTheme. Adjust the knobs above to see how the button appearance changes.',
-                style: tokens.bodyMedium,
+                'Advanced Theme Override Demo',
+                style: customTokens.titleLargeStrong,
               ),
-              const SizedBox(height: 24.0),
-              OptimusButton(
-                onPressed: isEnabled ? () {} : null,
-                variant: variant,
-                size: size,
-                isLoading: isLoading,
-                child: Text(buttonText),
+              SizedBox(height: tokens.spacing200),
+              Text(
+                'This demo shows comprehensive theme overrides for all button variants. Adjust the knobs above to see how different button variants change.',
+                style: customTokens.bodyMedium,
               ),
-              const SizedBox(height: 32.0),
+              SizedBox(height: tokens.spacing300),
+              Container(
+                padding: EdgeInsets.all(tokens.spacing200),
+                decoration: BoxDecoration(
+                  color: customTokens.backgroundAlertWarningSecondary,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(tokens.borderRadius100.x),
+                  ),
+                  border: Border.all(color: customTokens.borderAlertWarning),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const OptimusIcon(
+                          iconData: OptimusIcons.alert_circle_24,
+                        ),
+                        SizedBox(width: tokens.spacing100),
+                        Text(
+                          'Warning: Breaking Changes',
+                          style: customTokens.titleSmallStrong,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: tokens.spacing100),
+                    Text(
+                      'Overriding design tokens may break the visual consistency of your application. Use this feature carefully and test thoroughly across all components. Alternatively, use the smaller scope for the override.',
+                      style: customTokens.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: tokens.spacing300),
+              Text('Button Variants', style: customTokens.titleMediumStrong),
+              SizedBox(height: tokens.spacing200),
+              Wrap(
+                spacing: tokens.spacing100,
+                runSpacing: tokens.spacing100,
+                children: OptimusButtonVariant.values
+                    .map(
+                      (variant) => OptimusButton(
+                        onPressed: isEnabled ? ignore : null,
+                        variant: variant,
+                        size: size,
+                        isLoading: isLoading,
+                        child: Text('${variant.name} Button'),
+                      ),
+                    )
+                    .toList(),
+              ),
+              SizedBox(height: tokens.spacing300),
               _TokenDisplay(
                 title: 'Applied Token Values',
-                overriddenTokens: customTokens,
+                originalTokens: tokens,
               ),
             ],
           ),
@@ -132,10 +176,10 @@ class _ThemeOverrideDemo extends StatelessWidget {
 }
 
 class _TokenDisplay extends StatelessWidget {
-  const _TokenDisplay({required this.title, required this.overriddenTokens});
+  const _TokenDisplay({required this.title, required this.originalTokens});
 
   final String title;
-  final OptimusTokens overriddenTokens;
+  final OptimusTokens originalTokens;
 
   @override
   Widget build(BuildContext context) {
@@ -157,54 +201,62 @@ class _TokenDisplay extends StatelessWidget {
             children: [
               TokenDiff(
                 label: 'Primary Background',
-                originalValue: ColorBlock(
-                  tokens.backgroundInteractivePrimaryDefault,
-                ),
-                value: ColorBlock(
-                  overriddenTokens.backgroundInteractivePrimaryDefault,
+                value: _ColorBlock(tokens.backgroundInteractivePrimaryDefault),
+                originalValue: _ColorBlock(
+                  originalTokens.backgroundInteractivePrimaryDefault,
                 ),
               ),
               TokenDiff(
-                label: 'Primary Hover',
-                originalValue: ColorBlock(
-                  tokens.backgroundInteractivePrimaryHover,
+                label: 'Secondary Background',
+                value: _ColorBlock(
+                  tokens.backgroundInteractiveSecondaryDefault,
                 ),
-                value: ColorBlock(
-                  overriddenTokens.backgroundInteractivePrimaryHover,
+                originalValue: _ColorBlock(
+                  originalTokens.backgroundInteractiveSecondaryDefault,
                 ),
               ),
               TokenDiff(
-                label: 'Primary Active',
-                originalValue: ColorBlock(
-                  tokens.backgroundInteractivePrimaryActive,
+                label: 'Danger Background',
+                value: _ColorBlock(tokens.backgroundInteractiveDangerDefault),
+                originalValue: _ColorBlock(
+                  originalTokens.backgroundInteractiveDangerDefault,
                 ),
-                value: ColorBlock(
-                  overriddenTokens.backgroundInteractivePrimaryActive,
+              ),
+              TokenDiff(
+                label: 'Success Background',
+                value: _ColorBlock(tokens.backgroundInteractiveSuccessDefault),
+                originalValue: _ColorBlock(
+                  originalTokens.backgroundInteractiveSuccessDefault,
                 ),
               ),
               TokenDiff(
                 label: 'Text Color',
-                originalValue: ColorBlock(tokens.textStaticInverse),
-                value: ColorBlock(overriddenTokens.textStaticInverse),
+                value: _ColorBlock(tokens.textStaticInverse),
+                originalValue: _ColorBlock(originalTokens.textStaticInverse),
+              ),
+              TokenDiff(
+                label: 'Secondary Text',
+                value: _ColorBlock(tokens.textStaticSecondary),
+                originalValue: _ColorBlock(originalTokens.textStaticSecondary),
               ),
               TokenDiff(
                 label: 'Disabled Color',
-                originalValue: ColorBlock(tokens.backgroundDisabled),
-                value: ColorBlock(overriddenTokens.backgroundDisabled),
+                value: _ColorBlock(tokens.backgroundDisabled),
+                originalValue: _ColorBlock(originalTokens.backgroundDisabled),
               ),
               TokenDiff(
                 label: 'Border Radius',
-                originalValue: TextBlock(
+                value: _TextBlock(
                   '${tokens.borderRadius100.x.toStringAsFixed(1)}px',
                 ),
-                value: TextBlock(
-                  '${overriddenTokens.borderRadius100.x.toStringAsFixed(1)}px',
+                originalValue: _TextBlock(
+                  '${originalTokens.borderRadius100.x.toStringAsFixed(1)}px',
                 ),
               ),
               TokenDiff(
                 label: 'Padding',
-                originalValue: TextBlock('${tokens.spacing100}px'),
-                value: TextBlock('${overriddenTokens.spacing100}px'),
+                value: _TextBlock('${tokens.spacing100}px'),
+                originalValue: _TextBlock('${originalTokens.spacing100}px'),
               ),
             ],
           ),
@@ -212,4 +264,60 @@ class _TokenDisplay extends StatelessWidget {
       ],
     );
   }
+}
+
+class _ColorBlock extends StatelessWidget {
+  const _ColorBlock(this.value);
+
+  final Color value;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: 20,
+    height: 20,
+    decoration: BoxDecoration(
+      color: value,
+      border: Border.all(color: Colors.grey),
+      borderRadius: const BorderRadius.all(Radius.circular(2)),
+    ),
+  );
+}
+
+class _TextBlock extends StatelessWidget {
+  const _TextBlock(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) =>
+      Text(text, style: context.tokens.bodySmall);
+}
+
+class TokenDiff extends StatelessWidget {
+  const TokenDiff({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.originalValue,
+  });
+
+  final String label;
+  final Widget value;
+  final Widget originalValue;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 2.0),
+    child: Row(
+      children: [
+        _TextBlock(label),
+        const SizedBox(width: 8.0),
+        originalValue,
+        const SizedBox(width: 8.0),
+        Text('→', style: context.tokens.bodySmall),
+        const SizedBox(width: 8.0),
+        value,
+      ],
+    ),
+  );
 }
