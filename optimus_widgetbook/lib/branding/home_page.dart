@@ -143,7 +143,7 @@ enum _CardImageVariant {
 }
 
 extension on _CardImageVariant {
-  String get path => 'svg/$fileName.svg';
+  String get path => 'assets/svg/$fileName.svg';
 }
 
 class _CardImage extends StatelessWidget {
