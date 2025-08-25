@@ -12,7 +12,7 @@ class OptimusTooltip extends StatelessWidget {
   const OptimusTooltip({
     super.key,
     required this.content,
-    this.size = OptimusToolTipSize.medium,
+    this.size = OptimusToolTipSize.small,
     this.tooltipPosition = OptimusTooltipPosition.top,
   });
 
