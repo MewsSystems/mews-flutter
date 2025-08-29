@@ -24,6 +24,7 @@ class OptimusStepperFormField extends FormField<int> {
     OptimusWidgetSize size = OptimusWidgetSize.large,
     String? increaseSemanticLabel,
     String? decreaseSemanticLabel,
+    double maxWidth = 200,
   }) : assert(
          initialValue == null || controller == null,
          'initialValue or controller must be null',
@@ -54,6 +55,7 @@ class OptimusStepperFormField extends FormField<int> {
            focusNode: focusNode,
            controller: controller,
            size: size,
+           maxWidth: maxWidth,
          ),
        );
 }
@@ -73,6 +75,7 @@ class _Stepper extends StatefulWidget {
     this.size = OptimusWidgetSize.large,
     this.decreaseSemanticLabel,
     this.increaseSemanticLabel,
+    this.maxWidth = 200,
   });
 
   final String? label;
@@ -88,6 +91,7 @@ class _Stepper extends StatefulWidget {
   final OptimusWidgetSize size;
   final String? increaseSemanticLabel;
   final String? decreaseSemanticLabel;
+  final double maxWidth;
 
   @override
   _StepperState createState() => _StepperState();
@@ -164,7 +168,7 @@ class _StepperState extends State<_Stepper> {
     final value = _value;
 
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 200),
+      constraints: BoxConstraints(maxWidth: widget.maxWidth),
       child: Semantics(
         value: value?.toString(),
         increasedValue: _increasedValue.toString(),

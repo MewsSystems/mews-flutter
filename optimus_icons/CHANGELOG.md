@@ -1,3 +1,8 @@
+## 0.2.1
+
+ - **REFACTOR**: Fix linter issues. Apply new formatting.
+ - **FEAT**: [DX-7133] Add new icons (#810).
+
 ## 0.2.0
 
 > Note: This release has breaking changes.

@@ -1,3 +1,12 @@
+## 0.39.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter issues. Apply new formatting.
+ - **FEAT**: Update ruleset.
+ - **BREAKING** **FEAT**: [DX-7493] Upgrade to DCM 1.30.
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.29.1 (#800).
+
 ## 0.38.0
 
 > Note: This release has breaking changes.

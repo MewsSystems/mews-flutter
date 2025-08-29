@@ -1,6 +1,6 @@
 name: optimus_icons
 description: "A set of icons used for optimus."
-version: 0.2.0
+version: 0.2.1
 repository: https://github.com/MewsSystems/mews-flutter
 
 environment:
@@ -14,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mews_pedantic: ^0.38.0
+  mews_pedantic: ^0.39.0
   path: ^1.9.0
 
 flutter:

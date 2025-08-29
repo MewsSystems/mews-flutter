@@ -1,3 +1,37 @@
+## 0.41.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter issues. Apply new formatting.
+ - **REFACTOR**: Fix linter issues.
+ - **FIX**: [DX-7375] Fix dropdown overflow (#816).
+ - **FIX**: [DX-7292] Fix SemanticRoles (#813).
+ - **FEAT**: [DX-7738] Add a fallback color to logo (#832).
+ - **FEAT**: [DX-1645] Add text scaling to dropdown menus (#818).
+ - **FEAT**: [DX-7500] Update input focus border (#828).
+ - **FEAT**: [DX-7430] Update input border width (#827).
+ - **FEAT**: [DX-7527] Update Skeleton colors (#826).
+ - **FEAT**: [DX-7454] Update Divider component (#824).
+ - **FEAT**: [DX-7335] Update empty badge design (#821).
+ - **FEAT**: [DX-7442] Update Spinner design (#820).
+ - **FEAT**: Design Tokens Update 8.0.4 (#819).
+ - **FEAT**: [DX-7111] Improve scaled text support (#809).
+ - **FEAT**: [DX-6924] Mark live regions (#808).
+ - **FEAT**: [DX-6886] Update badge component (#803).
+ - **FEAT**: [DX-6111] Update OptimusTag component (#804).
+ - **FEAT**: [DX-6901] Add semantics to links (#806).
+ - **FEAT**: [DX-6897] Add semantic hints for components that could be tapped (#807).
+ - **FEAT**: [DX-6821] Merge semantics for bounded elements (#798).
+ - **FEAT**: [DX-6926] Update Logo component (#805).
+ - **FEAT**: [DX-6855] Add Semantic roles (#795).
+ - **FEAT**: [DX-6822] Exclude semantics for layout and decoration (#797).
+ - **FEAT**: [DX-1685] Add OptimusSkeleton component (#770).
+ - **FEAT**: Design Tokens Update 8.0.2 (#794).
+ - **BREAKING** **REFACTOR**: [DX-7373] Remove OptimusColors (#823).
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.30.1 (#822).
+ - **BREAKING** **FEAT**: [DX-7543] Update OptimusChat (#825).
+ - **BREAKING** **FEAT**: [DX-7237] Preserve text scale inside dialogs (#817).
+
 ## 0.40.1
 
  - **FEAT**: [DX-6580] Add semantics to inputs (#787).

@@ -44,9 +44,16 @@ class FeedbackDismissButton extends StatelessWidget {
 }
 
 class FeedbackTitle extends StatelessWidget {
-  const FeedbackTitle({super.key, required this.title});
+  const FeedbackTitle({
+    super.key,
+    required this.title,
+    this.maxLines,
+    this.overflow = TextOverflow.ellipsis,
+  });
 
   final Widget title;
+  final int? maxLines;
+  final TextOverflow overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +61,24 @@ class FeedbackTitle extends StatelessWidget {
 
     return DefaultTextStyle.merge(
       child: title,
+      maxLines: maxLines,
+      overflow: maxLines != null ? overflow : null,
       style: tokens.bodyMediumStrong.copyWith(color: tokens.textStaticPrimary),
     );
   }
 }
 
 class FeedbackDescription extends StatelessWidget {
-  const FeedbackDescription({super.key, required this.description});
+  const FeedbackDescription({
+    super.key,
+    required this.description,
+    this.maxLines = 5,
+    this.overflow = TextOverflow.ellipsis,
+  });
 
   final Widget description;
+  final int maxLines;
+  final TextOverflow overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +86,8 @@ class FeedbackDescription extends StatelessWidget {
 
     return DefaultTextStyle.merge(
       child: description,
-      maxLines: _maxLinesDescription,
-      overflow: overflowStyle,
+      maxLines: maxLines,
+      overflow: overflow,
       style: tokens.bodyMedium.copyWith(color: tokens.textStaticPrimary),
     );
   }
@@ -83,11 +99,15 @@ class FeedbackLink extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.semanticLinkUri,
+    this.maxLines = 1,
+    this.overflow = TextOverflow.ellipsis,
   });
 
   final Widget text;
   final VoidCallback onPressed;
   final Uri? semanticLinkUri;
+  final int maxLines;
+  final TextOverflow overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +120,8 @@ class FeedbackLink extends StatelessWidget {
         onTap: onPressed,
         child: DefaultTextStyle.merge(
           child: text,
-          maxLines: _maxLinesLink,
-          overflow: overflowStyle,
+          maxLines: maxLines,
+          overflow: overflow,
           style: tokens.bodyMediumStrong.copyWith(
             color: tokens.textStaticSecondary,
             decoration: TextDecoration.underline,
@@ -111,7 +131,3 @@ class FeedbackLink extends StatelessWidget {
     );
   }
 }
-
-const int _maxLinesDescription = 5;
-const int _maxLinesLink = 1;
-const TextOverflow overflowStyle = TextOverflow.ellipsis;

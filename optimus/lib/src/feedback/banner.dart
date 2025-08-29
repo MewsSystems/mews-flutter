@@ -25,6 +25,9 @@ class OptimusBanner extends StatelessWidget {
     this.onPressed,
     this.isDismissible = false,
     this.onDismiss,
+    this.titleMaxLines,
+    this.descriptionMaxLines = 5,
+    this.overflow = TextOverflow.ellipsis,
   });
 
   /// The title of the banner.
@@ -56,6 +59,15 @@ class OptimusBanner extends StatelessWidget {
 
   /// An optional callback when the banner is pressed.
   final VoidCallback? onPressed;
+
+  /// The maximum number of lines for the title. If null, no limit is applied.
+  final int? titleMaxLines;
+
+  /// The maximum number of lines for the description. Default is 5.
+  final int descriptionMaxLines;
+
+  /// The overflow style for all text in the banner. Default is [TextOverflow.ellipsis].
+  final TextOverflow overflow;
 
   bool get _isExpanded => description != null;
 
@@ -94,13 +106,19 @@ class OptimusBanner extends StatelessWidget {
                             padding: isDismissible
                                 ? EdgeInsets.only(right: tokens.spacing200)
                                 : EdgeInsets.zero,
-                            child: FeedbackTitle(title: title),
+                            child: FeedbackTitle(
+                              title: title,
+                              maxLines: titleMaxLines,
+                              overflow: overflow,
+                            ),
                           ),
                           if (description case final description?)
                             Padding(
                               padding: EdgeInsets.only(top: tokens.spacing50),
                               child: FeedbackDescription(
                                 description: description,
+                                maxLines: descriptionMaxLines,
+                                overflow: overflow,
                               ),
                             ),
                         ],
