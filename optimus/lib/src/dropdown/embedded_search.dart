@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 
 /// An embedded search that is designed to be used inside the dropdown menu.
