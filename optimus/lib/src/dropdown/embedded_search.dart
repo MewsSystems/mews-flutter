@@ -53,16 +53,13 @@ class _OptimusDropdownEmbeddedSearchState
   }
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    role: SemanticsRole.searchBox,
-    child: OptimusInputField(
-      controller: _controller,
-      onChanged: widget.onTextChanged,
-      focusNode: _focusNode,
-      placeholder: widget.placeholder,
-      leading: const Icon(OptimusIcons.search),
-      isClearEnabled: widget.isClearEnabled,
-      hasBorders: false,
-    ),
+  Widget build(BuildContext context) => OptimusInputField(
+    controller: _controller,
+    onChanged: widget.onTextChanged,
+    focusNode: _focusNode,
+    placeholder: widget.placeholder,
+    leading: const Icon(OptimusIcons.search),
+    isClearEnabled: widget.isClearEnabled,
+    hasBorders: false,
   );
 }
