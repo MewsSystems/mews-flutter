@@ -280,7 +280,8 @@ dart_code_metrics:
     # - avoid-continue
     - avoid-contradictory-expressions
     # - avoid-declaring-call-method
-    # - avoid-default-tostring
+    - avoid-default-tostring:
+        ignore-enums: true
     # - avoid-deprecated-usage
     - avoid-double-slash-imports
     - avoid-duplicate-cascades
@@ -351,6 +352,7 @@ dart_code_metrics:
     # - avoid-nested-switch-expressions
     - avoid-nested-switches
     - avoid-nested-try-statements
+    - avoid-never-passed-parameters
     # - avoid-non-ascii-symbols
     # - avoid-non-empty-constructor-bodies
     - avoid-non-final-exception-class-fields
@@ -410,11 +412,14 @@ dart_code_metrics:
     - avoid-unnecessary-futures
     - avoid-unnecessary-getter
     - avoid-unnecessary-if
+    - avoid-unnecessary-late-fields
     - avoid-unnecessary-length-check
     - avoid-unnecessary-local-late
+    - avoid-unnecessary-local-variable
     - avoid-unnecessary-negations
     - avoid-unnecessary-null-aware-elements
     - avoid-unnecessary-nullable-fields
+    - avoid-unnecessary-nullable-parameters
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-overrides
     - avoid-unnecessary-patterns
@@ -436,6 +441,7 @@ dart_code_metrics:
     - avoid-unused-parameters
     - avoid-weak-cryptographic-algorithms
     - avoid-wildcard-cases-with-enums
+    - avoid-wildcard-cases-with-sealed-classes
     # - ban-name
     # - banned-usage
     # - binary-expression-operand-order
@@ -484,6 +490,7 @@ dart_code_metrics:
     - prefer-any-or-every
     # - prefer-assigning-await-expressions
     # - prefer-async-await
+    - prefer-returning-condition
     - prefer-boolean-prefixes:
         prefixes: [ is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable ]
     - prefer-both-inlining-annotations
@@ -603,9 +610,11 @@ dart_code_metrics:
     - pass-existing-stream-to-stream-builder
     # - prefer-action-button-tooltip
     - prefer-align-over-container
+    - prefer-async-callback
     - prefer-center-over-align
     - prefer-compute-over-isolate-run
     - prefer-const-border-radius
+    - prefer-constrained-box-over-container
     - prefer-container
     - prefer-correct-edge-insets-constructor
     - prefer-dedicated-media-query-methods
@@ -621,6 +630,7 @@ dart_code_metrics:
     - prefer-text-rich
     - prefer-transform-over-container
     # - prefer-using-list-view
+    - prefer-void-callback
     - prefer-widget-private-members:
         ignore-static: true
     - proper-super-calls
