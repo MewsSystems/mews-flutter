@@ -150,7 +150,7 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
       final isOnTop = controller.top > controller.bottom;
 
       final content = widget.items.isNotEmpty
-          ? Container(
+          ? ConstrainedBox(
               constraints: BoxConstraints(
                 maxHeight: controller.maxHeight,
                 maxWidth: controller.width,
