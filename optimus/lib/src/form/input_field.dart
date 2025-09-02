@@ -293,6 +293,8 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         onTap: _effectiveFocusNode.requestFocus,
         child: Text(
           placeholder,
+          overflow: TextOverflow.ellipsis,
+          maxLines: widget.maxLines,
           style:
               widget.placeholderStyle ??
               theme.getTextInputStyle(isEnabled: widget.isEnabled),
