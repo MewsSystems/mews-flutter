@@ -129,26 +129,23 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
           fieldBoxKey: widget.fieldBoxKey,
           size: widget.size,
           children: [
-            // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
-            Flexible(
-              child: Focus(
-                focusNode: _effectiveFocusNode,
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: widget.size.getVerticalPadding(tokens),
-                  ),
-                  constraints: BoxConstraints(
-                    minHeight: widget.size.getMinHeight(tokens),
-                  ),
-                  width: double.infinity,
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: tokens.spacing50,
-                    runSpacing: tokens.spacing50,
-                    clipBehavior: Clip.antiAlias,
-                    children: widget.values,
-                  ),
+            Focus(
+              focusNode: _effectiveFocusNode,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: widget.size.getVerticalPadding(tokens),
+                ),
+                constraints: BoxConstraints(
+                  minHeight: widget.size.getMinHeight(tokens),
+                ),
+                width: double.infinity,
+                child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: WrapAlignment.center,
+                  spacing: tokens.spacing50,
+                  runSpacing: tokens.spacing50,
+                  clipBehavior: Clip.antiAlias,
+                  children: widget.values,
                 ),
               ),
             ),

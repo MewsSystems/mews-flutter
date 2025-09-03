@@ -362,54 +362,40 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       placeholder: _placeholder,
       // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
       children: [
-        // ignore: avoid-flexible-outside-flex, it is wrapped in Row later
-        Expanded(
-          child: MergeSemantics(
-            child: Semantics(
-              textField: true,
-              enabled: widget.isEnabled,
-              readOnly: widget.isReadOnly,
-              label:
-                  widget.semanticsLabel ?? widget.label ?? widget.placeholder,
-              child: CupertinoTextField(
-                key: widget.inputKey,
-                textAlign: widget.textAlign,
-                enableIMEPersonalizedLearning:
-                    widget.enableIMEPersonalizedLearning,
-                enableSuggestions: widget.enableSuggestions,
-                textCapitalization: widget.textCapitalization,
-                cursorColor: theme.tokens.textStaticSecondary,
-                autocorrect: widget.enableAutoCorrect,
-                autofocus: widget.enableAutoFocus,
-                enableInteractiveSelection: widget.enableInteractiveSelection,
-                controller: _effectiveController,
-                maxLines: _maxLines,
-                minLines: _minLines,
-                onSubmitted: widget.onSubmitted,
-                textInputAction: widget.textInputAction,
-                focusNode: _effectiveFocusNode,
-                enabled: widget.isEnabled,
-                padding: EdgeInsets.zero,
-                style: theme.getTextInputStyle(isEnabled: widget.isEnabled),
-                // [CupertinoTextField] will try to resolve colors to its own theme,
-                // this will ensure the visible [BoxDecoration] is from the
-                // [FieldWrapper] above.
-                decoration: const BoxDecoration(
-                  color: Color(0x00000000),
-                  backgroundBlendMode: BlendMode.dst,
-                ),
-                onChanged: widget.onChanged,
-                keyboardType: widget.keyboardType,
-                obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
-                onTap: widget.onTap,
-                readOnly: widget.isReadOnly,
-                showCursor: widget.showCursor,
-                inputFormatters: widget.inputFormatters,
-                keyboardAppearance:
-                    widget.keyboardAppearance ?? theme.brightness,
-              ),
-            ),
+        CupertinoTextField(
+          key: widget.inputKey,
+          textAlign: widget.textAlign,
+          enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+          enableSuggestions: widget.enableSuggestions,
+          textCapitalization: widget.textCapitalization,
+          cursorColor: theme.tokens.textStaticSecondary,
+          autocorrect: widget.enableAutoCorrect,
+          autofocus: widget.enableAutoFocus,
+          enableInteractiveSelection: widget.enableInteractiveSelection,
+          controller: _effectiveController,
+          maxLines: _maxLines,
+          minLines: _minLines,
+          onSubmitted: widget.onSubmitted,
+          textInputAction: widget.textInputAction,
+          focusNode: _effectiveFocusNode,
+          enabled: widget.isEnabled,
+          padding: EdgeInsets.zero,
+          style: theme.getTextInputStyle(isEnabled: widget.isEnabled),
+          // [CupertinoTextField] will try to resolve colors to its own theme,
+          // this will ensure the visible [BoxDecoration] is from the
+          // [FieldWrapper] above.
+          decoration: const BoxDecoration(
+            color: Color(0x00000000),
+            backgroundBlendMode: BlendMode.dst,
           ),
+          onChanged: widget.onChanged,
+          keyboardType: widget.keyboardType,
+          obscureText: widget.isPasswordField && !_isShowPasswordEnabled,
+          onTap: widget.onTap,
+          readOnly: widget.isReadOnly,
+          showCursor: widget.showCursor,
+          inputFormatters: widget.inputFormatters,
+          keyboardAppearance: widget.keyboardAppearance ?? theme.brightness,
         ),
       ],
     );
