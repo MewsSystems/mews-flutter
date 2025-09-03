@@ -1,3 +1,10 @@
+## 0.41.1
+
+ - **REFACTOR**: [DX-7952] Remove unsupported semantic roles (#840).
+ - **FIX**: [DX-7924] Fix placeholder overflow (#841).
+ - **FIX**: [DX-7835] Fix DropdownListTile overflow (#835).
+ - **FEAT**: [DX-7771] Move constraints up for better customization (#836).
+
 ## 0.41.0
 
 > Note: This release has breaking changes.
