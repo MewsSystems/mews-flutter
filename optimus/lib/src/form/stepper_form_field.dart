@@ -154,8 +154,8 @@ class _StepperState extends State<_Stepper> {
     _value = value;
   }
 
-  void _updateController(int? value) {
-    final newValue = value?.toString() ?? '';
+  void _updateController(int value) {
+    final newValue = value.toString();
     _effectiveController
       ..text = newValue
       ..selection = TextSelection.fromPosition(

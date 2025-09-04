@@ -62,9 +62,9 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     }
   }
 
-  void _addAlert(Widget alert, {int index = 0}) {
-    _alerts.insert(index, alert);
-    _listKey.currentState?.insertItem(index, duration: _animationDuration);
+  void _addAlert(Widget alert) {
+    _alerts.insert(0, alert);
+    _listKey.currentState?.insertItem(0, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
       if (_alerts.contains(alert)) {
         remove(alert);
