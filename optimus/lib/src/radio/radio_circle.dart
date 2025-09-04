@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 
 class RadioCircle extends StatelessWidget {
   const RadioCircle({
@@ -41,8 +42,9 @@ class RadioCircle extends StatelessWidget {
     final tokens = context.tokens;
 
     final size = tokens.sizing200;
-    final scaledSize = MediaQuery.textScalerOf(context).scale(size);
+    final scaledSize = size.toScaled(context);
     final borderWidth = tokens.borderWidth150;
+    final selectedBorderWidth = _selectedBorderWidth.toScaled(context);
 
     return AnimatedContainer(
       duration: _duration,
@@ -51,7 +53,7 @@ class RadioCircle extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          width: isSelected ? borderWidth / 2 : borderWidth,
+          width: isSelected ? selectedBorderWidth : borderWidth,
           color: _getBorderColor(tokens).resolve(controller.value),
         ),
         color: _getFillColor(tokens).resolve(controller.value),
@@ -61,3 +63,4 @@ class RadioCircle extends StatelessWidget {
 }
 
 const _duration = Duration(milliseconds: 100);
+const _selectedBorderWidth = 6.0;
