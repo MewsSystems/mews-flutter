@@ -143,16 +143,14 @@ class _SelectedValue extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: tokens.spacing200,
-          right: tokens.spacing100,
-        ),
-        child: SizedBox(
-          height: size.getWidgetHeight(tokens),
-          child: DefaultTextStyle(style: textStyle, child: child),
-        ),
+    return Padding(
+      padding: EdgeInsets.only(
+        left: tokens.spacing200,
+        right: tokens.spacing100,
+      ),
+      child: SizedBox(
+        height: size.getWidgetHeight(tokens),
+        child: DefaultTextStyle(style: textStyle, child: child),
       ),
     );
   }
