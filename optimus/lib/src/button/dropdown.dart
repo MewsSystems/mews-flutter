@@ -16,6 +16,7 @@ class OptimusDropDownButton<T> extends StatelessWidget {
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.tertiary,
+    this.dropdownWidth = 280,
   });
 
   /// Typically the button's label.
@@ -26,12 +27,18 @@ class OptimusDropDownButton<T> extends StatelessWidget {
   final OptimusWidgetSize size;
   final OptimusDropdownButtonVariant variant;
 
+  /// The width of the dropdown menu. If null, the dropdown menu will be the
+  /// same width as the button.
+  // ignore: avoid-unnecessary-nullable-fields, null is valid for this field
+  final double? dropdownWidth;
+
   @override
   Widget build(BuildContext context) => BaseDropDownButton(
     items: items,
     onItemSelected: onItemSelected,
     size: size,
     variant: variant,
+    dropdownWidth: dropdownWidth,
     child: child,
   );
 }
