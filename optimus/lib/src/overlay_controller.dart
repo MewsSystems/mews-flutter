@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/src/dropdown/dropdown.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/dropdown/dropdown_tile.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/widget_size.dart';
 
 class OverlayController<T> extends StatefulWidget {
@@ -75,26 +76,29 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-    builder: (_) => MediaQuery(
-      data: MediaQuery.of(context),
-      child: Stack(
-        key: const Key('OptimusSelectOverlay'),
-        children: <Widget>[
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTapDown: (_) => widget.focusNode.unfocus(),
-          ),
-          DropdownTapInterceptor(
-            onTap: widget.focusNode.unfocus,
-            child: OptimusDropdown<T>(
-              items: widget.items,
-              size: widget.size,
-              anchorKey: widget.anchorKey,
-              onChanged: widget.onItemSelected,
-              width: widget.width,
+    builder: (_) => OptimusTheme(
+      themeMode: context.theme.themeMode,
+      child: MediaQuery(
+        data: MediaQuery.of(context),
+        child: Stack(
+          key: const Key('OptimusSelectOverlay'),
+          children: <Widget>[
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTapDown: (_) => widget.focusNode.unfocus(),
             ),
-          ),
-        ],
+            DropdownTapInterceptor(
+              onTap: widget.focusNode.unfocus,
+              child: OptimusDropdown<T>(
+                items: widget.items,
+                size: widget.size,
+                anchorKey: widget.anchorKey,
+                onChanged: widget.onItemSelected,
+                width: widget.width,
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

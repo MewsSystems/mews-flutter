@@ -68,15 +68,18 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-      builder: (_) => MediaQuery(
-        data: MediaQuery.of(context),
-        child: OptimusDialog.nonModal(
-          title: title,
-          content: content,
-          close: _handleClose,
-          isDismissible: isDismissible,
-          actions: actions,
-          size: size,
+      builder: (_) => OptimusTheme(
+        themeMode: context.theme.themeMode,
+        child: MediaQuery(
+          data: MediaQuery.of(context),
+          child: OptimusDialog.nonModal(
+            title: title,
+            content: content,
+            close: _handleClose,
+            isDismissible: isDismissible,
+            actions: actions,
+            size: size,
+          ),
         ),
       ),
     );
@@ -94,23 +97,26 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-      builder: (_) => MediaQuery(
-        data: MediaQuery.of(context),
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: _handleClose,
-            ),
-            OptimusInlineDialog(
-              content: content,
-              close: _handleClose,
-              actions: actions,
-              anchorKey: anchorKey,
-              size: size,
-            ),
-          ],
+      builder: (_) => OptimusTheme(
+        themeMode: context.theme.themeMode,
+        child: MediaQuery(
+          data: MediaQuery.of(context),
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _handleClose,
+              ),
+              OptimusInlineDialog(
+                content: content,
+                close: _handleClose,
+                actions: actions,
+                anchorKey: anchorKey,
+                size: size,
+              ),
+            ],
+          ),
         ),
       ),
     );
