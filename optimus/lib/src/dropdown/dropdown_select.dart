@@ -301,23 +301,28 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
         }
       }
 
-      return MediaQuery(
-        data: MediaQuery.of(context),
-        child: AllowMultipleRawGestureDetector(
-          key: const Key('OptimusDropdownOverlay'),
-          behavior: HitTestBehavior.translucent,
-          onTapDown: handleTapDown,
-          child: DropdownTapInterceptor(
-            onTap: widget.allowMultipleSelection ? () {} : _handleClose,
-            child: OptimusDropdown(
-              items: widget.items,
-              size: widget.size,
-              anchorKey: _fieldBoxKey,
-              onChanged: widget.onChanged,
-              embeddedSearch: widget.embeddedSearch,
-              emptyResultPlaceholder: widget.emptyResultPlaceholder,
-              groupBy: widget.groupBy,
-              groupBuilder: widget.groupBuilder,
+      return OptimusTheme(
+        themeMode: context.theme.brightness == Brightness.dark
+            ? ThemeMode.dark
+            : ThemeMode.light,
+        child: MediaQuery(
+          data: MediaQuery.of(context),
+          child: AllowMultipleRawGestureDetector(
+            key: const Key('OptimusDropdownOverlay'),
+            behavior: HitTestBehavior.translucent,
+            onTapDown: handleTapDown,
+            child: DropdownTapInterceptor(
+              onTap: widget.allowMultipleSelection ? () {} : _handleClose,
+              child: OptimusDropdown(
+                items: widget.items,
+                size: widget.size,
+                anchorKey: _fieldBoxKey,
+                onChanged: widget.onChanged,
+                embeddedSearch: widget.embeddedSearch,
+                emptyResultPlaceholder: widget.emptyResultPlaceholder,
+                groupBy: widget.groupBy,
+                groupBuilder: widget.groupBuilder,
+              ),
             ),
           ),
         ),
