@@ -82,7 +82,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
         data: MediaQuery.of(context),
         child: Stack(
           key: const Key('OptimusSelectOverlay'),
-          children: <Widget>[
+          children: [
             GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTapDown: (_) => widget.focusNode.unfocus(),

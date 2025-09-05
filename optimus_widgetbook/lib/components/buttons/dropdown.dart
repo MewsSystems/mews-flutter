@@ -22,7 +22,7 @@ Widget createDefaultStyle(BuildContext context) {
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: OptimusDropDownButton<int>(
                 size: k.widgetSizeKnob,
-                items: Iterable<int>.generate(10)
+                items: Iterable<int>.generate(5)
                     .map(
                       (i) => ListDropdownTile<int>(
                         value: i,

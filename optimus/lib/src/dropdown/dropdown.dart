@@ -185,7 +185,10 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
             child: SizeTransition(
               sizeFactor: _sizeAnimation,
               child: Padding(
-                padding: EdgeInsets.all(tokens.spacing100),
+                padding: EdgeInsets.symmetric(
+                  horizontal: tokens.spacing100,
+                  // vertical: tokens.spacing50,
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   spacing: tokens.spacing50,
@@ -224,8 +227,8 @@ class _DropdownListView<T> extends StatelessWidget {
     final totalHeight = (items.length * itemHeight) + (tokens.spacing100 * 2);
     final listHeight = totalHeight.clamp(0.0, maxHeight);
 
-    return SizedBox(
-      height: listHeight,
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: listHeight),
       child: ListView.builder(
         reverse: isReversed,
         padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
@@ -311,8 +314,8 @@ class _GroupedDropdownListViewState<T>
     final tokens = context.tokens;
     final listHeight = _calculateGroupedListHeight(tokens);
 
-    return SizedBox(
-      height: listHeight,
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: listHeight),
       child: Padding(
         padding: EdgeInsets.all(tokens.spacing100),
         child: ListView.builder(
