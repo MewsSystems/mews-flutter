@@ -56,25 +56,26 @@ class BaseDropdownTile extends StatelessWidget {
               : null,
           borderRadius: BorderRadius.all(tokens.borderRadius100),
         ),
-        child: hasCheckbox
-            ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IgnorePointer(
-                    child: Padding(
-                      padding: EdgeInsets.only(right: tokens.spacing200),
-                      child: CheckboxTick(
-                        isEnabled: true,
-                        onChanged: ignore,
-                        onTap: ignore,
-                        isChecked: isSelected,
-                      ),
-                    ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (hasCheckbox)
+              IgnorePointer(
+                child: Padding(
+                  padding: EdgeInsets.only(right: tokens.spacing200),
+                  child: CheckboxTick(
+                    isEnabled: true,
+                    onChanged: ignore,
+                    onTap: ignore,
+                    isChecked: isSelected,
                   ),
-                  Flexible(fit: FlexFit.loose, child: tile),
-                ],
-              )
-            : tile,
+                ),
+              ),
+            Expanded(child: tile),
+            if (isSelected && !hasCheckbox)
+              const OptimusIcon(iconData: OptimusIcons.done),
+          ],
+        ),
       ),
     );
   }

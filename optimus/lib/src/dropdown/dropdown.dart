@@ -184,10 +184,13 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
             decoration: decoration,
             child: SizeTransition(
               sizeFactor: _sizeAnimation,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                spacing: tokens.spacing50,
-                children: isOnTop ? children : children.reversed.toList(),
+              child: Padding(
+                padding: EdgeInsets.all(tokens.spacing100),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: tokens.spacing50,
+                  children: isOnTop ? children : children.reversed.toList(),
+                ),
               ),
             ),
           ),
@@ -310,37 +313,42 @@ class _GroupedDropdownListViewState<T>
 
     return SizedBox(
       height: listHeight,
-      child: ListView.builder(
-        reverse: widget.isReversed,
-        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
-        itemCount: widget.items.length,
-        itemBuilder: (_, index) {
-          final current = _sortedItems[index];
-          final child = _DropdownItem(
-            onChanged: widget.onChanged,
-            child: current,
-          );
-
-          if (index == _leadingIndex) {
-            return _GroupWrapper(
-              useBorder: false,
-              group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-              child: child,
+      child: Padding(
+        padding: EdgeInsets.all(tokens.spacing100),
+        child: ListView.builder(
+          reverse: widget.isReversed,
+          padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+          itemCount: widget.items.length,
+          itemBuilder: (_, index) {
+            final current = _sortedItems[index];
+            final child = _DropdownItem(
+              onChanged: widget.onChanged,
+              child: current,
             );
-          }
 
-          final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+            if (index == _leadingIndex) {
+              return _GroupWrapper(
+                useBorder: false,
+                group: _effectiveGroupBuilder(widget.groupBy(current.value)),
+                child: child,
+              );
+            }
 
-          return _isSameGroup(current, previous)
-              ? Padding(
-                  padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
-                  child: child,
-                )
-              : _GroupWrapper(
-                  group: _effectiveGroupBuilder(widget.groupBy(current.value)),
-                  child: child,
-                );
-        },
+            final previous = _sortedItems[index + (widget.isReversed ? 1 : -1)];
+
+            return _isSameGroup(current, previous)
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                    child: child,
+                  )
+                : _GroupWrapper(
+                    group: _effectiveGroupBuilder(
+                      widget.groupBy(current.value),
+                    ),
+                    child: child,
+                  );
+          },
+        ),
       ),
     );
   }
@@ -443,6 +451,8 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
     width: AnchoredOverlay.of(context)?.width,
     child: InkWell(
       borderRadius: BorderRadius.all(tokens.borderRadius100),
+      hoverColor: tokens.backgroundInteractiveNeutralHover,
+      highlightColor: tokens.backgroundInteractiveNeutralActive,
       onTap: _handleItemTap,
       child: widget.child,
     ),
