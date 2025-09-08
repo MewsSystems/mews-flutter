@@ -31,11 +31,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get backgroundBackdrop;
   Color get backgroundBrand;
   Color get backgroundDatavizBlue;
+  Color get backgroundDatavizDanger;
   Color get backgroundDatavizGreen;
+  Color get backgroundDatavizInfo;
   Color get backgroundDatavizOrange;
   Color get backgroundDatavizPink;
   Color get backgroundDatavizPurple;
   Color get backgroundDatavizRed;
+  Color get backgroundDatavizSuccess;
+  Color get backgroundDatavizWarning;
   Color get backgroundDisabled;
   Color get backgroundInteractiveDangerActive;
   Color get backgroundInteractiveDangerDefault;
@@ -77,6 +81,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get borderInteractiveBoldDefault;
   Color get borderInteractiveBoldHover;
   Color get borderInteractiveFocus;
+  Color get borderInteractiveInputActive;
+  Color get borderInteractiveInputDefault;
+  Color get borderInteractiveInputError;
+  Color get borderInteractiveInputHover;
   Color get borderInteractivePrimaryActive;
   Color get borderInteractivePrimaryDefault;
   Color get borderInteractivePrimaryHover;
@@ -351,9 +359,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Radius get borderRadiusRound;
   double get borderWidth0;
   double get borderWidth100;
-  double get borderWidth150;
   double get borderWidth200;
-  double get borderWidth250;
   double get borderWidth300;
   double get borderWidth800;
   double get fontSize100;
@@ -451,11 +457,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? backgroundBackdrop,
     Color? backgroundBrand,
     Color? backgroundDatavizBlue,
+    Color? backgroundDatavizDanger,
     Color? backgroundDatavizGreen,
+    Color? backgroundDatavizInfo,
     Color? backgroundDatavizOrange,
     Color? backgroundDatavizPink,
     Color? backgroundDatavizPurple,
     Color? backgroundDatavizRed,
+    Color? backgroundDatavizSuccess,
+    Color? backgroundDatavizWarning,
     Color? backgroundDisabled,
     Color? backgroundInteractiveDangerActive,
     Color? backgroundInteractiveDangerDefault,
@@ -497,6 +507,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? borderInteractiveBoldDefault,
     Color? borderInteractiveBoldHover,
     Color? borderInteractiveFocus,
+    Color? borderInteractiveInputActive,
+    Color? borderInteractiveInputDefault,
+    Color? borderInteractiveInputError,
+    Color? borderInteractiveInputHover,
     Color? borderInteractivePrimaryActive,
     Color? borderInteractivePrimaryDefault,
     Color? borderInteractivePrimaryHover,
@@ -771,9 +785,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Radius? borderRadiusRound,
     double? borderWidth0,
     double? borderWidth100,
-    double? borderWidth150,
     double? borderWidth200,
-    double? borderWidth250,
     double? borderWidth300,
     double? borderWidth800,
     double? fontSize100,
@@ -890,8 +902,12 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       backgroundBrand: backgroundBrand ?? this.backgroundBrand,
       backgroundDatavizBlue:
           backgroundDatavizBlue ?? this.backgroundDatavizBlue,
+      backgroundDatavizDanger:
+          backgroundDatavizDanger ?? this.backgroundDatavizDanger,
       backgroundDatavizGreen:
           backgroundDatavizGreen ?? this.backgroundDatavizGreen,
+      backgroundDatavizInfo:
+          backgroundDatavizInfo ?? this.backgroundDatavizInfo,
       backgroundDatavizOrange:
           backgroundDatavizOrange ?? this.backgroundDatavizOrange,
       backgroundDatavizPink:
@@ -899,6 +915,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       backgroundDatavizPurple:
           backgroundDatavizPurple ?? this.backgroundDatavizPurple,
       backgroundDatavizRed: backgroundDatavizRed ?? this.backgroundDatavizRed,
+      backgroundDatavizSuccess:
+          backgroundDatavizSuccess ?? this.backgroundDatavizSuccess,
+      backgroundDatavizWarning:
+          backgroundDatavizWarning ?? this.backgroundDatavizWarning,
       backgroundDisabled: backgroundDisabled ?? this.backgroundDisabled,
       backgroundInteractiveDangerActive:
           backgroundInteractiveDangerActive ??
@@ -992,6 +1012,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           borderInteractiveBoldHover ?? this.borderInteractiveBoldHover,
       borderInteractiveFocus:
           borderInteractiveFocus ?? this.borderInteractiveFocus,
+      borderInteractiveInputActive:
+          borderInteractiveInputActive ?? this.borderInteractiveInputActive,
+      borderInteractiveInputDefault:
+          borderInteractiveInputDefault ?? this.borderInteractiveInputDefault,
+      borderInteractiveInputError:
+          borderInteractiveInputError ?? this.borderInteractiveInputError,
+      borderInteractiveInputHover:
+          borderInteractiveInputHover ?? this.borderInteractiveInputHover,
       borderInteractivePrimaryActive:
           borderInteractivePrimaryActive ?? this.borderInteractivePrimaryActive,
       borderInteractivePrimaryDefault:
@@ -1415,9 +1443,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       borderRadiusRound: borderRadiusRound ?? this.borderRadiusRound,
       borderWidth0: borderWidth0 ?? this.borderWidth0,
       borderWidth100: borderWidth100 ?? this.borderWidth100,
-      borderWidth150: borderWidth150 ?? this.borderWidth150,
       borderWidth200: borderWidth200 ?? this.borderWidth200,
-      borderWidth250: borderWidth250 ?? this.borderWidth250,
       borderWidth300: borderWidth300 ?? this.borderWidth300,
       borderWidth800: borderWidth800 ?? this.borderWidth800,
       fontSize100: fontSize100 ?? this.fontSize100,
@@ -1601,9 +1627,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundDatavizBlue,
         t,
       )!,
+      backgroundDatavizDanger: Color.lerp(
+        backgroundDatavizDanger,
+        other.backgroundDatavizDanger,
+        t,
+      )!,
       backgroundDatavizGreen: Color.lerp(
         backgroundDatavizGreen,
         other.backgroundDatavizGreen,
+        t,
+      )!,
+      backgroundDatavizInfo: Color.lerp(
+        backgroundDatavizInfo,
+        other.backgroundDatavizInfo,
         t,
       )!,
       backgroundDatavizOrange: Color.lerp(
@@ -1624,6 +1660,16 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       backgroundDatavizRed: Color.lerp(
         backgroundDatavizRed,
         other.backgroundDatavizRed,
+        t,
+      )!,
+      backgroundDatavizSuccess: Color.lerp(
+        backgroundDatavizSuccess,
+        other.backgroundDatavizSuccess,
+        t,
+      )!,
+      backgroundDatavizWarning: Color.lerp(
+        backgroundDatavizWarning,
+        other.backgroundDatavizWarning,
         t,
       )!,
       backgroundDisabled: Color.lerp(
@@ -1813,6 +1859,26 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       borderInteractiveFocus: Color.lerp(
         borderInteractiveFocus,
         other.borderInteractiveFocus,
+        t,
+      )!,
+      borderInteractiveInputActive: Color.lerp(
+        borderInteractiveInputActive,
+        other.borderInteractiveInputActive,
+        t,
+      )!,
+      borderInteractiveInputDefault: Color.lerp(
+        borderInteractiveInputDefault,
+        other.borderInteractiveInputDefault,
+        t,
+      )!,
+      borderInteractiveInputError: Color.lerp(
+        borderInteractiveInputError,
+        other.borderInteractiveInputError,
+        t,
+      )!,
+      borderInteractiveInputHover: Color.lerp(
+        borderInteractiveInputHover,
+        other.borderInteractiveInputHover,
         t,
       )!,
       borderInteractivePrimaryActive: Color.lerp(
@@ -3089,9 +3155,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       borderRadiusRound: t < 0.5 ? borderRadiusRound : other.borderRadiusRound,
       borderWidth0: t < 0.5 ? borderWidth0 : other.borderWidth0,
       borderWidth100: t < 0.5 ? borderWidth100 : other.borderWidth100,
-      borderWidth150: t < 0.5 ? borderWidth150 : other.borderWidth150,
       borderWidth200: t < 0.5 ? borderWidth200 : other.borderWidth200,
-      borderWidth250: t < 0.5 ? borderWidth250 : other.borderWidth250,
       borderWidth300: t < 0.5 ? borderWidth300 : other.borderWidth300,
       borderWidth800: t < 0.5 ? borderWidth800 : other.borderWidth800,
       fontSize100: t < 0.5 ? fontSize100 : other.fontSize100,
@@ -3266,8 +3330,16 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.backgroundDatavizBlue,
             ) &&
             const DeepCollectionEquality().equals(
+              backgroundDatavizDanger,
+              other.backgroundDatavizDanger,
+            ) &&
+            const DeepCollectionEquality().equals(
               backgroundDatavizGreen,
               other.backgroundDatavizGreen,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizInfo,
+              other.backgroundDatavizInfo,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundDatavizOrange,
@@ -3284,6 +3356,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(
               backgroundDatavizRed,
               other.backgroundDatavizRed,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizSuccess,
+              other.backgroundDatavizSuccess,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizWarning,
+              other.backgroundDatavizWarning,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundDisabled,
@@ -3448,6 +3528,22 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(
               borderInteractiveFocus,
               other.borderInteractiveFocus,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveInputActive,
+              other.borderInteractiveInputActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveInputDefault,
+              other.borderInteractiveInputDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveInputError,
+              other.borderInteractiveInputError,
+            ) &&
+            const DeepCollectionEquality().equals(
+              borderInteractiveInputHover,
+              other.borderInteractiveInputHover,
             ) &&
             const DeepCollectionEquality().equals(
               borderInteractivePrimaryActive,
@@ -4540,16 +4636,8 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.borderWidth100,
             ) &&
             const DeepCollectionEquality().equals(
-              borderWidth150,
-              other.borderWidth150,
-            ) &&
-            const DeepCollectionEquality().equals(
               borderWidth200,
               other.borderWidth200,
-            ) &&
-            const DeepCollectionEquality().equals(
-              borderWidth250,
-              other.borderWidth250,
             ) &&
             const DeepCollectionEquality().equals(
               borderWidth300,
@@ -4813,11 +4901,15 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(backgroundBackdrop),
       const DeepCollectionEquality().hash(backgroundBrand),
       const DeepCollectionEquality().hash(backgroundDatavizBlue),
+      const DeepCollectionEquality().hash(backgroundDatavizDanger),
       const DeepCollectionEquality().hash(backgroundDatavizGreen),
+      const DeepCollectionEquality().hash(backgroundDatavizInfo),
       const DeepCollectionEquality().hash(backgroundDatavizOrange),
       const DeepCollectionEquality().hash(backgroundDatavizPink),
       const DeepCollectionEquality().hash(backgroundDatavizPurple),
       const DeepCollectionEquality().hash(backgroundDatavizRed),
+      const DeepCollectionEquality().hash(backgroundDatavizSuccess),
+      const DeepCollectionEquality().hash(backgroundDatavizWarning),
       const DeepCollectionEquality().hash(backgroundDisabled),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerActive),
       const DeepCollectionEquality().hash(backgroundInteractiveDangerDefault),
@@ -4873,6 +4965,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(borderInteractiveBoldDefault),
       const DeepCollectionEquality().hash(borderInteractiveBoldHover),
       const DeepCollectionEquality().hash(borderInteractiveFocus),
+      const DeepCollectionEquality().hash(borderInteractiveInputActive),
+      const DeepCollectionEquality().hash(borderInteractiveInputDefault),
+      const DeepCollectionEquality().hash(borderInteractiveInputError),
+      const DeepCollectionEquality().hash(borderInteractiveInputHover),
       const DeepCollectionEquality().hash(borderInteractivePrimaryActive),
       const DeepCollectionEquality().hash(borderInteractivePrimaryDefault),
       const DeepCollectionEquality().hash(borderInteractivePrimaryHover),
@@ -5147,9 +5243,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(borderRadiusRound),
       const DeepCollectionEquality().hash(borderWidth0),
       const DeepCollectionEquality().hash(borderWidth100),
-      const DeepCollectionEquality().hash(borderWidth150),
       const DeepCollectionEquality().hash(borderWidth200),
-      const DeepCollectionEquality().hash(borderWidth250),
       const DeepCollectionEquality().hash(borderWidth300),
       const DeepCollectionEquality().hash(borderWidth800),
       const DeepCollectionEquality().hash(fontSize100),
