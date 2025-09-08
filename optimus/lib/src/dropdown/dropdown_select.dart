@@ -1,7 +1,6 @@
 import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_detector.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
@@ -98,7 +97,7 @@ class DropdownSelect<T> extends StatefulWidget {
 }
 
 class _DropdownSelectState<T> extends State<DropdownSelect<T>>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, ThemeGetter {
   final _fieldBoxKey = GlobalKey();
 
   FocusNode? _focusNode;
@@ -280,7 +279,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
       widget.leading != null || widget.leadingImplicit != null;
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-    builder: (builderContext) {
+    builder: (BuildContext builderContext) {
       void handleTapDown(TapDownDetails details) {
         bool didHit(RenderBox box) => box.hitTest(
           BoxHitTestResult(),
@@ -301,23 +300,32 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
         }
       }
 
-      return MediaQuery(
-        data: MediaQuery.of(context),
-        child: AllowMultipleRawGestureDetector(
-          key: const Key('OptimusDropdownOverlay'),
-          behavior: HitTestBehavior.translucent,
-          onTapDown: handleTapDown,
-          child: DropdownTapInterceptor(
-            onTap: widget.allowMultipleSelection ? () {} : _handleClose,
-            child: OptimusDropdown(
-              items: widget.items,
-              size: widget.size,
-              anchorKey: _fieldBoxKey,
-              onChanged: widget.onChanged,
-              embeddedSearch: widget.embeddedSearch,
-              emptyResultPlaceholder: widget.emptyResultPlaceholder,
-              groupBy: widget.groupBy,
-              groupBuilder: widget.groupBuilder,
+      return OptimusTheme(
+        themeMode: theme.themeMode,
+        darkTheme: theme.isDark
+            ? OptimusThemeData(brightness: Brightness.dark, tokens: tokens)
+            : null,
+        lightTheme: theme.isDark
+            ? null
+            : OptimusThemeData(brightness: Brightness.light, tokens: tokens),
+        child: MediaQuery(
+          data: MediaQuery.of(context),
+          child: AllowMultipleRawGestureDetector(
+            key: const Key('OptimusDropdownOverlay'),
+            behavior: HitTestBehavior.translucent,
+            onTapDown: handleTapDown,
+            child: DropdownTapInterceptor(
+              onTap: widget.allowMultipleSelection ? ignore : _handleClose,
+              child: OptimusDropdown(
+                items: widget.items,
+                size: widget.size,
+                anchorKey: _fieldBoxKey,
+                onChanged: widget.onChanged,
+                embeddedSearch: widget.embeddedSearch,
+                emptyResultPlaceholder: widget.emptyResultPlaceholder,
+                groupBy: widget.groupBy,
+                groupBuilder: widget.groupBuilder,
+              ),
             ),
           ),
         ),

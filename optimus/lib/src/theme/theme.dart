@@ -75,11 +75,22 @@ OptimusThemeData _createTheme(Brightness brightness) {
 extension ThemeTokens on BuildContext {
   OptimusTokens get tokens => OptimusTheme.of(this).tokens;
   OptimusThemeData get theme => OptimusTheme.of(this);
+  OptimusThemeData? get effectiveDarkTokens => theme.isDark
+      ? OptimusThemeData(brightness: Brightness.dark, tokens: tokens)
+      : null;
+  OptimusThemeData? get effectiveLightTokens => theme.isDark
+      ? null
+      : OptimusThemeData(brightness: Brightness.light, tokens: tokens);
 }
 
 mixin ThemeGetter<T extends StatefulWidget> on State<T> {
   OptimusThemeData get theme => OptimusTheme.of(context);
   OptimusTokens get tokens => OptimusTheme.of(context).tokens;
+}
+
+extension ThemeModeExtension on OptimusThemeData {
+  ThemeMode get themeMode =>
+      brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
 }
 
 /// Extension to add derived tokens to the OptimusTokens class.
