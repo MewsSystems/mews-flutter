@@ -153,7 +153,7 @@ class _Tag extends StatelessWidget {
         border: isOutlined
             ? Border.all(
                 color: borderColor,
-                width: tokens.borderWidth150,
+                width: tokens.borderWidth100,
                 style: BorderStyle.solid,
               )
             : null,

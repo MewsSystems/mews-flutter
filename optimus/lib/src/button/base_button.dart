@@ -84,7 +84,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
                 isHovered: _statesController.value.isHovered,
               );
               final side = color != null
-                  ? BorderSide(color: color, width: tokens.borderWidth150)
+                  ? BorderSide(color: color, width: tokens.borderWidth100)
                   : BorderSide.none;
 
               return widget.shapeBuilder?.let(

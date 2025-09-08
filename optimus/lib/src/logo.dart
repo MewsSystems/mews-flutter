@@ -280,8 +280,8 @@ extension on OptimusMewsLogoSizeVariant {
   };
 
   double getBorderWidth(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoSizeVariant.large => tokens.borderWidth250,
-    OptimusMewsLogoSizeVariant.medium => tokens.borderWidth150,
+    OptimusMewsLogoSizeVariant.large => tokens.borderWidth200,
+    OptimusMewsLogoSizeVariant.medium ||
     OptimusMewsLogoSizeVariant.small => tokens.borderWidth100,
   };
 
