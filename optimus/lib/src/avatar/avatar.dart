@@ -61,7 +61,7 @@ class OptimusAvatar extends StatelessWidget {
       shape: BoxShape.circle,
       border: Border.all(
         color: tokens.borderStaticPrimary,
-        width: tokens.borderWidth150,
+        width: tokens.borderWidth100,
       ),
     );
 

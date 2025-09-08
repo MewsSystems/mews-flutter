@@ -67,7 +67,7 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
                     tokens: tokens,
                     isError: widget.isError,
                   ),
-                  width: tokens.borderWidth150,
+                  width: tokens.borderWidth100,
                 )
               : null,
           borderRadius: BorderRadius.all(tokens.borderRadius25),

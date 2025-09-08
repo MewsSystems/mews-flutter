@@ -87,7 +87,7 @@ enum OptimusDividerThicknessVariant { thin, thick }
 
 extension on OptimusDividerThicknessVariant {
   double getLineThickness(OptimusTokens tokens) => switch (this) {
-    OptimusDividerThicknessVariant.thin => tokens.borderWidth150,
+    OptimusDividerThicknessVariant.thin => tokens.borderWidth100,
     OptimusDividerThicknessVariant.thick => tokens.borderWidth800,
   };
 }

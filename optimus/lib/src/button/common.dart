@@ -30,5 +30,5 @@ extension ButtonStyleExt on OptimusWidgetSize {
 }
 
 extension ButtonDimensionExt on BuildContext {
-  double get borderWidth => tokens.borderWidth150;
+  double get borderWidth => tokens.borderWidth100;
 }

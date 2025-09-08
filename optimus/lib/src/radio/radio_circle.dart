@@ -43,7 +43,7 @@ class RadioCircle extends StatelessWidget {
 
     final size = tokens.sizing200;
     final scaledSize = size.toScaled(context);
-    final borderWidth = tokens.borderWidth150;
+    final borderWidth = tokens.borderWidth100;
     final selectedBorderWidth = _selectedBorderWidth.toScaled(context);
 
     return AnimatedContainer(

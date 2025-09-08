@@ -93,7 +93,7 @@ class OptimusTabBar extends StatelessWidget {
   Decoration _buildIndicator(OptimusTokens tokens) => UnderlineTabIndicator(
     borderSide: BorderSide(
       color: tokens.borderInteractivePrimaryDefault,
-      width: tokens.borderWidth250,
+      width: tokens.borderWidth200,
     ),
     insets: const EdgeInsets.only(bottom: -1),
   );
@@ -117,7 +117,7 @@ class OptimusTabBar extends StatelessWidget {
               border: Border(
                 bottom: BorderSide(
                   color: tokens.borderStaticSecondary,
-                  width: tokens.borderWidth150,
+                  width: tokens.borderWidth100,
                 ),
               ),
             ),
