@@ -39,13 +39,18 @@ Future<T?> showOptimusDialog<T>({
   context: context,
   pageBuilder: (buildContext, animation, secondaryAnimation) => MediaQuery(
     data: MediaQuery.of(context),
-    child: OptimusDialog.modal(
-      title: title,
-      content: content,
-      contentWrapperBuilder: contentWrapperBuilder,
-      actions: actions,
-      size: size,
-      type: type,
+    child: OptimusTheme(
+      themeMode: context.theme.themeMode,
+      darkTheme: context.effectiveDarkTokens,
+      lightTheme: context.effectiveLightTokens,
+      child: OptimusDialog.modal(
+        title: title,
+        content: content,
+        contentWrapperBuilder: contentWrapperBuilder,
+        actions: actions,
+        size: size,
+        type: type,
+      ),
     ),
   ),
   barrierDismissible: isDismissible,

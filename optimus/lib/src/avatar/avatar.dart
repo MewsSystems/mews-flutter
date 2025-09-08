@@ -127,10 +127,7 @@ class _CircleImage extends StatelessWidget {
         ),
         decoration: imageUrl == null ? decoration : null,
         child: Center(
-          child: MediaQuery(
-            data: MediaQuery.of(
-              context,
-            ).copyWith(textScaler: TextScaler.noScaling),
+          child: MediaQuery.withNoTextScaling(
             child: imageUrl != null
                 ? FadeInImage.memoryNetwork(
                     width: diameter,
