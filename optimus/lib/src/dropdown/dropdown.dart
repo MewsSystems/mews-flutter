@@ -217,7 +217,7 @@ class _DropdownListView<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
-    final itemHeight = context.dropdownItemHeight;
+    final itemHeight = tokens.sizing400;
     final totalHeight = (items.length * itemHeight) + (tokens.spacing100 * 2);
     final listHeight = totalHeight.clamp(0.0, maxHeight);
 
@@ -346,7 +346,7 @@ class _GroupedDropdownListViewState<T>
   }
 
   double _calculateGroupedListHeight(OptimusTokens tokens) {
-    final itemHeight = context.dropdownItemHeight;
+    final itemHeight = tokens.sizing400;
     final groupSeparatorHeight = context.dropdownGroupSeparatorHeight;
     final spacingBetweenItems = tokens.spacing50;
 
@@ -472,12 +472,7 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
   @override
   Widget build(BuildContext context) {
     final children = [
-      if (widget.showDivider)
-        Divider(
-          thickness: 1,
-          height: 1,
-          color: context.tokens.borderStaticPrimary,
-        ),
+      if (widget.showDivider) const OptimusDivider(),
       KeyedSubtree(key: _searchKey, child: widget.child),
     ];
 

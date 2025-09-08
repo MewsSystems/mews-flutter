@@ -47,24 +47,43 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   final _layerLink = LayerLink();
   final _overlayController = OverlayPortalController();
 
-  void _handleToggleDropdown() {
-    if (_overlayController.isShowing) {
-      _hideDropdown();
-    } else {
-      _showDropdown();
-    }
+  late final AnimationController _animationController;
+  late final Animation<double> _iconTurns;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 350),
+      vsync: this,
+    );
+    _iconTurns = _animationController.drive(
+      Tween<double>(
+        begin: 0,
+        end: 0.5,
+      ).chain(CurveTween(curve: Curves.fastOutSlowIn)),
+    );
   }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _handleToggleDropdown() =>
+      _overlayController.isShowing ? _hideDropdown() : _showDropdown();
 
   void _showDropdown() {
     if (_overlayController.isShowing) return;
-
     _overlayController.show();
+    _animationController.forward();
   }
 
   void _hideDropdown() {
     if (!_overlayController.isShowing) return;
-
     _overlayController.hide();
+    _animationController.reverse();
   }
 
   void _handleCloseDropdown() => _hideDropdown();
@@ -77,141 +96,142 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   @override
   Widget build(BuildContext context) => DropdownSizeData(
     size: widget.size,
-    child: OverlayPortal(
-      controller: _overlayController,
-      overlayChildBuilder: (context) {
-        final renderObject = context.findRenderObject();
-        if (renderObject is! RenderBox) {
-          return const SizedBox.shrink();
-        }
-        final renderBox = renderObject;
+    child: CompositedTransformTarget(
+      link: _layerLink,
+      child: OverlayPortal.overlayChildLayoutBuilder(
+        controller: _overlayController,
+        overlayChildBuilder: (context, childLayoutInfo) {
+          final buttonSize = childLayoutInfo.childSize;
+          final buttonPosition = Offset(
+            childLayoutInfo.childPaintTransform.getTranslation().x,
+            childLayoutInfo.childPaintTransform.getTranslation().y,
+          );
+          final screenSize = MediaQuery.sizeOf(context);
+          final screenPadding = MediaQuery.paddingOf(context);
 
-        final buttonPosition = renderBox.localToGlobal(Offset.zero);
-        final buttonSize = renderBox.size;
-        final screenSize = MediaQuery.sizeOf(context);
-        final screenPadding = MediaQuery.paddingOf(context);
+          final width = widget.dropdownWidth ?? buttonSize.width;
 
-        final width = widget.dropdownWidth ?? buttonSize.width;
+          final spaceBelow =
+              screenSize.height -
+              buttonPosition.dy -
+              buttonSize.height -
+              screenPadding.bottom;
+          final spaceAbove = buttonPosition.dy - screenPadding.top;
 
-        final spaceBelow =
-            screenSize.height -
-            buttonPosition.dy -
-            buttonSize.height -
-            screenPadding.bottom;
-        final spaceAbove = buttonPosition.dy - screenPadding.top;
+          final isOnTop =
+              spaceBelow < widget.maxDropdownHeight && spaceAbove > spaceBelow;
 
-        final isOnTop =
-            spaceBelow < widget.maxDropdownHeight && spaceAbove > spaceBelow;
+          final spaceRight =
+              screenSize.width - buttonPosition.dx - screenPadding.right;
+          final spaceLeft = buttonPosition.dx - screenPadding.left;
 
-        final spaceRight =
-            screenSize.width - buttonPosition.dx - screenPadding.right;
-        final spaceLeft = buttonPosition.dx - screenPadding.left;
+          final shouldAlignRight = spaceRight < width && spaceLeft >= width;
 
-        final shouldAlignRight = spaceRight < width && spaceLeft >= width;
+          final offset = Offset(
+            0,
+            isOnTop ? -context.menuOffset : context.menuOffset,
+          );
 
-        final offset = Offset(
-          0,
-          isOnTop ? -context.menuOffset : context.menuOffset,
-        );
+          final targetAnchor = isOnTop
+              ? (shouldAlignRight ? Alignment.topRight : Alignment.topLeft)
+              : (shouldAlignRight
+                    ? Alignment.bottomRight
+                    : Alignment.bottomLeft);
+          final followerAnchor = isOnTop
+              ? (shouldAlignRight
+                    ? Alignment.bottomRight
+                    : Alignment.bottomLeft)
+              : (shouldAlignRight ? Alignment.topRight : Alignment.topLeft);
 
-        final targetAnchor = isOnTop
-            ? (shouldAlignRight ? Alignment.topRight : Alignment.topLeft)
-            : (shouldAlignRight ? Alignment.bottomRight : Alignment.bottomLeft);
-        final followerAnchor = isOnTop
-            ? (shouldAlignRight ? Alignment.bottomRight : Alignment.bottomLeft)
-            : (shouldAlignRight ? Alignment.topRight : Alignment.topLeft);
+          final maxHeight = isOnTop
+              ? spaceAbove.clamp(100.0, widget.maxDropdownHeight)
+              : spaceBelow.clamp(100.0, widget.maxDropdownHeight);
 
-        final maxHeight = isOnTop
-            ? spaceAbove.clamp(100.0, widget.maxDropdownHeight)
-            : spaceBelow.clamp(100.0, widget.maxDropdownHeight);
-
-        return Stack(
-          children: [
-            Positioned.fill(
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: _handleCloseDropdown,
-                child: Container(color: Colors.transparent),
+          return Stack(
+            children: [
+              Positioned.fill(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: _handleCloseDropdown,
+                  child: Container(color: Colors.transparent),
+                ),
               ),
-            ),
-            CompositedTransformFollower(
-              link: _layerLink,
-              showWhenUnlinked: false,
-              offset: offset,
-              targetAnchor: targetAnchor,
-              followerAnchor: followerAnchor,
-              child: Material(
-                color: Colors.transparent,
-                child: Container(
-                  width: width,
-                  constraints: BoxConstraints(maxHeight: maxHeight),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(tokens.borderRadius100),
-                    color: tokens.backgroundStaticFloating,
-                    boxShadow: tokens.shadow200,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: context.listHorizontalPadding,
+              CompositedTransformFollower(
+                link: _layerLink,
+                showWhenUnlinked: false,
+                offset: offset,
+                targetAnchor: targetAnchor,
+                followerAnchor: followerAnchor,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Container(
+                    width: width,
+                    constraints: BoxConstraints(maxHeight: maxHeight),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(tokens.borderRadius100),
+                      color: tokens.backgroundStaticFloating,
+                      boxShadow: tokens.shadow200,
                     ),
-                    // ignore: avoid-single-child-column-or-row, we want to shrink the view without using shrinkWrap
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (widget.items.isEmpty)
-                          widget.emptyList ?? const SizedBox.shrink()
-                        else
-                          Flexible(
-                            child: OptimusScrollConfiguration(
-                              child: ListView.builder(
-                                reverse: isOnTop,
-                                itemCount: widget.items.length,
-                                itemBuilder: (context, index) {
-                                  final item = widget.items[index];
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.listHorizontalPadding,
+                      ),
+                      // ignore: avoid-single-child-column-or-row, we want to shrink the view without using shrinkWrap
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (widget.items.isEmpty)
+                            widget.emptyList ?? const SizedBox.shrink()
+                          else
+                            Flexible(
+                              child: OptimusScrollConfiguration(
+                                child: ListView.builder(
+                                  reverse: isOnTop,
+                                  itemCount: widget.items.length,
+                                  itemBuilder: (context, index) {
+                                    final item = widget.items[index];
 
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: context.verticalSpacing,
-                                    ),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.all(
-                                          tokens.borderRadius100,
-                                        ),
-                                        hoverColor: tokens
-                                            .backgroundInteractiveNeutralHover,
-                                        splashColor: tokens
-                                            .backgroundInteractiveNeutralActive,
-                                        highlightColor: tokens
-                                            .backgroundInteractiveNeutralActive,
-                                        onTap: () =>
-                                            _handleItemSelected(item.value),
-                                        child: Container(
-                                          width: double.infinity,
-                                          padding: EdgeInsets.all(
-                                            tokens.spacing50,
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: context.verticalSpacing,
+                                      ),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          borderRadius: BorderRadius.all(
+                                            tokens.borderRadius100,
                                           ),
-                                          child: item,
+                                          hoverColor: tokens
+                                              .backgroundInteractiveNeutralHover,
+                                          splashColor: tokens
+                                              .backgroundInteractiveNeutralActive,
+                                          highlightColor: tokens
+                                              .backgroundInteractiveNeutralActive,
+                                          onTap: () =>
+                                              _handleItemSelected(item.value),
+                                          child: Container(
+                                            width: double.infinity,
+                                            padding: EdgeInsets.all(
+                                              tokens.spacing50,
+                                            ),
+                                            child: item,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
-        );
-      },
-      child: CompositedTransformTarget(
-        link: _layerLink,
+            ],
+          );
+        },
         child: _DropdownButton(
           isEnabled: widget.onItemSelected != null,
           semanticLabel: widget.semanticLabel,
@@ -226,6 +246,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
             isPressed: false,
             isHovered: false,
           ),
+          iconTurns: _iconTurns,
           child: widget.child,
         ),
       ),
@@ -244,6 +265,7 @@ class _DropdownButton extends StatefulWidget {
     this.child,
     this.onTap,
     this.color,
+    required this.iconTurns,
   });
 
   final bool isEnabled;
@@ -255,43 +277,15 @@ class _DropdownButton extends StatefulWidget {
   final Widget? child;
   final VoidCallback? onTap;
   final Color? color;
+  final Animation<double> iconTurns;
 
   @override
   State<_DropdownButton> createState() => _DropdownButtonState();
 }
 
-class _DropdownButtonState extends State<_DropdownButton>
-    with ThemeGetter, SingleTickerProviderStateMixin {
+class _DropdownButtonState extends State<_DropdownButton> with ThemeGetter {
   bool _isHovered = false;
   bool _isPressed = false;
-  bool _isTurned = false;
-
-  late final AnimationController _controller;
-  late final Animation<double> _iconTurns;
-
-  static final Animatable<double> _easeInTween = CurveTween(
-    curve: Curves.fastOutSlowIn,
-  );
-  static final Animatable<double> _halfTween = Tween<double>(
-    begin: 0,
-    end: 0.5,
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 350),
-      vsync: this,
-    );
-    _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   bool get _isEnabled => widget.onTap != null;
 
@@ -373,7 +367,7 @@ class _DropdownButtonState extends State<_DropdownButton>
                     ),
                   ),
                 RotationTransition(
-                  turns: _iconTurns,
+                  turns: widget.iconTurns,
                   child: Icon(
                     OptimusIcons.chevron_down,
                     size: widget.size.getIconSize(tokens),
