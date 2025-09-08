@@ -4,6 +4,7 @@ import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
 import 'package:optimus/src/common/semantics.dart';
+import 'package:optimus/src/common/text_scaling.dart';
 import 'package:optimus/src/radio/radio_circle.dart';
 
 /// The radio component is available in two size variants to accommodate
@@ -127,7 +128,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
 
   @override
   Widget build(BuildContext context) {
-    final leadingSize = tokens.spacing400;
+    final leadingSize = tokens.spacing400.toScaled(context);
 
     return ListenableBuilder(
       listenable: _stateController,
@@ -159,9 +160,9 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                         alignment: Alignment.topLeft,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            top: tokens.spacing100,
-                            bottom: tokens.spacing100,
-                            right: tokens.spacing200,
+                            top: tokens.spacing100.toScaled(context),
+                            bottom: tokens.spacing100.toScaled(context),
+                            right: tokens.spacing200.toScaled(context),
                           ),
                           child: RadioCircle(
                             isSelected: _isSelected,

@@ -179,8 +179,11 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                               child: prefix,
                             ),
                           ),
-                        ?widget.placeholder,
-                        ...widget.children,
+                        Flexible(
+                          child: Stack(
+                            children: [?widget.placeholder, ...widget.children],
+                          ),
+                        ),
                         if (widget.suffix case final suffix?)
                           Padding(
                             padding: EdgeInsets.only(left: tokens.spacing50),

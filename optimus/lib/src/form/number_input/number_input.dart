@@ -154,10 +154,10 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
         );
 
   double get _increasedValue =>
-      (_currentValue - widget.step).clamp(widget.min, widget.max);
+      (_currentValue + widget.step).clamp(widget.min, widget.max);
 
   double get _decreasedValue =>
-      (_currentValue + widget.step).clamp(widget.min, widget.max);
+      (_currentValue - widget.step).clamp(widget.min, widget.max);
 
   void _updateCurrentValue(double value) {
     _effectiveController.text = value.toFormattedString(

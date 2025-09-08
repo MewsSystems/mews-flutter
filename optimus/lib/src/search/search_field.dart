@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/dropdown/dropdown_select.dart';
@@ -120,38 +119,32 @@ class OptimusSearch<T> extends StatelessWidget {
   final GroupBuilder? groupBuilder;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    role: SemanticsRole.searchBox,
-    child: DropdownSelect<T>(
-      label: label,
-      placeholder: placeholder,
-      placeholderStyle: placeholderStyle,
-      controller: controller,
-      onTextChanged: onTextChanged,
-      items: items,
-      isUpdating: isUpdating,
-      isEnabled: isEnabled,
-      isRequired: isRequired,
-      onChanged: onChanged,
-      leading: leading,
-      leadingImplicit: Icon(
-        OptimusIcons.search,
-        size: context.tokens.sizing200,
-      ),
-      trailing: trailing,
-      caption: caption,
-      helperMessage: helperMessage,
-      error: error,
-      size: size,
-      isReadOnly: isReadOnly,
-      showCursor: showCursor,
-      prefix: prefix,
-      suffix: suffix,
-      focusNode: focusNode,
-      shouldCloseOnInputTap: shouldCloseOnInputTap,
-      isClearEnabled: isClearEnabled,
-      groupBy: groupBy,
-      groupBuilder: groupBuilder,
-    ),
+  Widget build(BuildContext context) => DropdownSelect<T>(
+    label: label,
+    placeholder: placeholder,
+    placeholderStyle: placeholderStyle,
+    controller: controller,
+    onTextChanged: onTextChanged,
+    items: items,
+    isUpdating: isUpdating,
+    isEnabled: isEnabled,
+    isRequired: isRequired,
+    onChanged: onChanged,
+    leading: leading,
+    leadingImplicit: Icon(OptimusIcons.search, size: context.tokens.sizing200),
+    trailing: trailing,
+    caption: caption,
+    helperMessage: helperMessage,
+    error: error,
+    size: size,
+    isReadOnly: isReadOnly,
+    showCursor: showCursor,
+    prefix: prefix,
+    suffix: suffix,
+    focusNode: focusNode,
+    shouldCloseOnInputTap: shouldCloseOnInputTap,
+    isClearEnabled: isClearEnabled,
+    groupBy: groupBy,
+    groupBuilder: groupBuilder,
   );
 }

@@ -24,6 +24,30 @@ class AlertStory extends StatelessWidget {
       options: OptimusAlertPosition.values,
       labelBuilder: enumLabelBuilder,
     );
+    final titleMaxLines = k.int.slider(
+      label: 'Title Max Lines',
+      initialValue: 1,
+      min: 1,
+      max: 5,
+    );
+    final descriptionMaxLines = k.int.slider(
+      label: 'Description Max Lines',
+      initialValue: 5,
+      min: 1,
+      max: 10,
+    );
+    final linkMaxLines = k.int.slider(
+      label: 'Link Max Lines',
+      initialValue: 1,
+      min: 1,
+      max: 3,
+    );
+    final overflow = k.object.dropdown(
+      label: 'Overflow Style',
+      initialOption: TextOverflow.ellipsis,
+      options: TextOverflow.values,
+      labelBuilder: (overflow) => overflow.name,
+    );
 
     return OptimusAlertOverlay(
       position: position,
@@ -32,6 +56,10 @@ class AlertStory extends StatelessWidget {
         description: description,
         link: link,
         isDismissible: isDismissible,
+        titleMaxLines: titleMaxLines,
+        descriptionMaxLines: descriptionMaxLines,
+        linkMaxLines: linkMaxLines,
+        overflow: overflow,
       ),
     );
   }
@@ -43,12 +71,20 @@ class _AlertStoryContent extends StatelessWidget {
     required this.description,
     required this.link,
     required this.isDismissible,
+    required this.titleMaxLines,
+    required this.descriptionMaxLines,
+    required this.linkMaxLines,
+    required this.overflow,
   });
 
   final String? title;
   final String? description;
   final String? link;
   final bool isDismissible;
+  final int titleMaxLines;
+  final int descriptionMaxLines;
+  final int linkMaxLines;
+  final TextOverflow overflow;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -71,6 +107,10 @@ class _AlertStoryContent extends StatelessWidget {
                 }
               }),
               isDismissible: isDismissible,
+              titleMaxLines: titleMaxLines,
+              descriptionMaxLines: descriptionMaxLines,
+              linkMaxLines: linkMaxLines,
+              overflow: overflow,
             ),
           ),
           OptimusButton(
@@ -88,6 +128,10 @@ class _AlertStoryContent extends StatelessWidget {
                     }
                   }),
                   isDismissible: isDismissible,
+                  titleMaxLines: titleMaxLines,
+                  descriptionMaxLines: descriptionMaxLines,
+                  linkMaxLines: linkMaxLines,
+                  overflow: overflow,
                 ),
               );
             },

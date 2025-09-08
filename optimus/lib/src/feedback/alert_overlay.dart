@@ -16,13 +16,15 @@ class OptimusAlertOverlay extends StatefulWidget {
   const OptimusAlertOverlay({
     super.key,
     required this.child,
-    this.maxVisible = _defaultMaxVisibleCount,
+    this.maxWidth = 360,
+    this.maxVisible = 3,
     this.position = OptimusAlertPosition.topRight,
   });
 
   final OptimusAlertPosition position;
   final Widget child;
   final int maxVisible;
+  final double maxWidth;
 
   static OptimusAlertManager? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_OptimusAlertData>()?.manager;
@@ -60,9 +62,9 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
     }
   }
 
-  void _addAlert(Widget alert, {int index = 0}) {
-    _alerts.insert(index, alert);
-    _listKey.currentState?.insertItem(index, duration: _animationDuration);
+  void _addAlert(Widget alert) {
+    _alerts.insert(0, alert);
+    _listKey.currentState?.insertItem(0, duration: _animationDuration);
     Future<void>.delayed(_autoDismissDuration, () {
       if (_alerts.contains(alert)) {
         remove(alert);
@@ -116,7 +118,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
               ),
               child: SafeArea(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: _maxWidth),
+                  constraints: BoxConstraints(maxWidth: widget.maxWidth),
                   child: AnimatedList(
                     key: _listKey,
                     shrinkWrap: true,
@@ -260,5 +262,3 @@ extension on OptimusAlertPosition {
 const Duration _animationDuration = Duration(milliseconds: 300);
 const Duration _leavingAnimationDuration = Duration(milliseconds: 200);
 const Duration _autoDismissDuration = Duration(seconds: 8);
-const int _defaultMaxVisibleCount = 3;
-const double _maxWidth = 360;
