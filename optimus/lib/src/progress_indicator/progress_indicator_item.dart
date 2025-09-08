@@ -284,7 +284,7 @@ class _DisabledIndicatorItem extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              width: tokens.borderWidth150,
+              width: tokens.borderWidth100,
               color: tokens.borderStaticPrimary,
             ),
           ),
@@ -316,7 +316,7 @@ class ProgressIndicatorSpacer extends StatelessWidget {
       Axis.horizontal => Padding(
         padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
         child: SizedBox(
-          height: tokens.borderWidth150,
+          height: tokens.borderWidth100,
           child: ColoredBox(color: color),
         ).excludeSemantics(),
       ),
@@ -328,7 +328,7 @@ class ProgressIndicatorSpacer extends StatelessWidget {
         ),
         child: SizedBox(
           height: tokens.sizing200,
-          width: tokens.borderWidth150,
+          width: tokens.borderWidth100,
           child: Container(color: color),
         ).excludeSemantics(),
       ),
