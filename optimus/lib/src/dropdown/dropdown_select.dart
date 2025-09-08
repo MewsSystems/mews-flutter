@@ -280,7 +280,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
       widget.leading != null || widget.leadingImplicit != null;
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-    builder: (BuildContext context) {
+    builder: (BuildContext builderContext) {
       void handleTapDown(TapDownDetails details) {
         bool didHit(RenderBox box) => box.hitTest(
           BoxHitTestResult(),
@@ -289,7 +289,8 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
 
         final RenderObject? inputFieldRenderObject = _fieldBoxKey.currentContext
             ?.findRenderObject();
-        final RenderObject? dropdownRenderObject = context.findRenderObject();
+        final RenderObject? dropdownRenderObject = builderContext
+            .findRenderObject();
         if (dropdownRenderObject is RenderBox && didHit(dropdownRenderObject)) {
           // Touch on dropdown shouldn't close overlay
         } else if (inputFieldRenderObject is RenderBox &&
