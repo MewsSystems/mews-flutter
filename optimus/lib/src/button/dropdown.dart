@@ -16,21 +16,35 @@ class OptimusDropDownButton<T> extends StatelessWidget {
     this.onItemSelected,
     this.size = OptimusWidgetSize.large,
     this.variant = OptimusDropdownButtonVariant.tertiary,
-    this.dropdownWidth = 280,
+    this.emptyList,
+    this.dropdownWidth,
+    this.maxDropdownHeight = 300.0,
   });
 
   /// Typically the button's label.
   final Widget child;
 
+  /// List of items in dropdown section.
   final List<OptimusDropdownTile<T>> items;
+
+  /// Called when dropdown item is selected.
   final ValueSetter<T>? onItemSelected;
+
+  /// The size of the button.
   final OptimusWidgetSize size;
+
+  /// The variant of the button.
   final OptimusDropdownButtonVariant variant;
 
-  /// The width of the dropdown menu. If null, the dropdown menu will be the
-  /// same width as the button.
-  // ignore: avoid-unnecessary-nullable-fields, null is valid for this field
+  /// The empty list widget to display when there are no items in the dropdown.
+  final Widget? emptyList;
+
+  /// The width of the dropdown. If null, the width of the button will be used.
   final double? dropdownWidth;
+
+  /// The maximum height of the dropdown. Will be clamped to the available
+  /// space.
+  final double maxDropdownHeight;
 
   @override
   Widget build(BuildContext context) => BaseDropDownButton(
@@ -38,7 +52,9 @@ class OptimusDropDownButton<T> extends StatelessWidget {
     onItemSelected: onItemSelected,
     size: size,
     variant: variant,
+    emptyList: emptyList,
     dropdownWidth: dropdownWidth,
+    maxDropdownHeight: maxDropdownHeight,
     child: child,
   );
 }
