@@ -4,7 +4,6 @@ import 'package:optimus/src/dropdown/dropdown.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/dropdown/dropdown_tile.dart';
 import 'package:optimus/src/theme/theme.dart';
-import 'package:optimus/src/theme/theme_data.dart';
 import 'package:optimus/src/widget_size.dart';
 
 class OverlayController<T> extends StatefulWidget {
