@@ -1,3 +1,14 @@
+## 0.41.2
+
+ - **REFACTOR**: Fix linter issues.
+ - **FIX**: [DX-7991] Fix overlays not following theme change (#847).
+ - **FIX**: [DX-7983] Fix input buttons action (#845).
+ - **FIX**: [DX-7963] Fix radio circle selected state (#843).
+ - **FIX**: [DX-7962] Fix inputs suffix position and touch triggers (#844).
+ - **FEAT**: Design Tokens Update 9.0.1 (#849).
+ - **FEAT**: [DX-7744] Update default border width.
+ - **FEAT**: [DX-7984] Add custom dropdown width support (#846).
+
 ## 0.41.1
 
  - **REFACTOR**: [DX-7952] Remove unsupported semantic roles (#840).
