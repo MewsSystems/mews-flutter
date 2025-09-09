@@ -155,9 +155,9 @@ extension on _InteractionState {
       (isError && this != _InteractionState.disabled)
       ? tokens.borderAlertDanger
       : switch (this) {
-          _InteractionState.basic => tokens.borderInteractiveSecondaryDefault,
-          _InteractionState.hover => tokens.borderInteractiveSecondaryHover,
-          _InteractionState.active => tokens.borderInteractiveSecondaryActive,
+          _InteractionState.basic => tokens.borderInteractiveInputDefault,
+          _InteractionState.hover => tokens.borderInteractiveInputHover,
+          _InteractionState.active => tokens.borderInteractiveInputActive,
           _InteractionState.disabled => tokens.borderDisabled,
         };
 }
