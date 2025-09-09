@@ -4,11 +4,11 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-final _key = GlobalKey();
+final _radioKey = GlobalKey();
 final _radioGroupKey = GlobalKey();
 
 @widgetbook.UseCase(name: 'Radio', type: OptimusRadio, path: '[Forms]')
-Widget createDefaultStyle(BuildContext _) => RadioExample(key: _key);
+Widget createDefaultStyle(BuildContext _) => RadioExample(key: _radioKey);
 
 class RadioExample extends StatefulWidget {
   const RadioExample({super.key});
