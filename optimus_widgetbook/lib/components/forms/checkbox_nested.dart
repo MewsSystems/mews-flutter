@@ -58,7 +58,7 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
               parent: const Text('Parent'),
               label: groupLabel,
               semanticLabel: groupLabel,
-              error: k.string(label: 'Error'),
+              error: k.stringOrNull(label: 'Group Error'),
               isEnabled: isEnabled,
               children: _values
                   .mapIndexed(
@@ -66,6 +66,9 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
                       isChecked: isChecked,
                       label: Text('Checkbox $index'),
                       semanticLabel: 'Checkbox $index',
+                      error: index == 2
+                          ? k.stringOrNull(label: 'Error Inside')
+                          : null,
                       onChanged: (bool isChecked) =>
                           _handleChanged(index, isChecked),
                     ),
