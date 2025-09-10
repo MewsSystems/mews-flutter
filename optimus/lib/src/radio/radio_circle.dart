@@ -20,13 +20,13 @@ class RadioCircle extends StatelessWidget {
             : tokens.borderDisabled,
         WidgetState.pressed: isSelected
             ? tokens.backgroundInteractivePrimaryActive
-            : tokens.borderInteractiveSecondaryActive,
+            : tokens.borderInteractiveInputActive,
         WidgetState.hovered: isSelected
             ? tokens.backgroundInteractivePrimaryHover
-            : tokens.borderInteractiveSecondaryHover,
+            : tokens.borderInteractiveInputHover,
         WidgetState.any: isSelected
             ? tokens.backgroundInteractivePrimaryDefault
-            : tokens.borderInteractiveSecondaryDefault,
+            : tokens.borderInteractiveInputDefault,
       });
 
   WidgetStateColor _getFillColor(OptimusTokens tokens) =>

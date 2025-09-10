@@ -111,14 +111,6 @@ class OptimusCheckbox extends StatelessWidget {
     };
   }
 
-  bool get _isError {
-    if (error case final error?) {
-      return error.isNotEmpty;
-    }
-
-    return false;
-  }
-
   void _handleTap() => onChanged(!(isChecked ?? false));
 
   @override
@@ -147,7 +139,7 @@ class OptimusCheckbox extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: topPadding),
                     child: CheckboxTick(
-                      isError: _isError,
+                      isError: error != null,
                       isChecked: isChecked,
                       isEnabled: isEnabled,
                       onChanged: onChanged,

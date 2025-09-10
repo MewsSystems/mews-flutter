@@ -48,6 +48,8 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
         : null;
   }
 
+  bool get _hasErrorInside => children.any((child) => child.error != null);
+
   @override
   Widget build(BuildContext context) => Semantics(
     label: semanticLabel,
@@ -68,6 +70,7 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
                 isEnabled: isEnabled,
                 isChecked: _isParentChecked,
                 label: parent,
+                error: _hasErrorInside ? '' : null,
                 onChanged: (bool isChecked) {
                   for (final child in children) {
                     child.onChanged(isChecked);
@@ -100,6 +103,7 @@ class OptimusNestedCheckbox extends StatelessWidget {
     this.isChecked,
     this.size = OptimusCheckboxSize.large,
     this.isEnabled = true,
+    this.error,
     required this.onChanged,
     this.semanticLabel,
   });
@@ -120,6 +124,9 @@ class OptimusNestedCheckbox extends StatelessWidget {
   /// The value will be overridden by the parent of the checkbox group.
   final bool isEnabled;
 
+  /// {@macro optimus.checkbox.error}
+  final String? error;
+
   /// The semantic label for the screen reader.
   final String? semanticLabel;
 
@@ -135,6 +142,7 @@ class OptimusNestedCheckbox extends StatelessWidget {
       isTristate: false,
       isEnabled: isEnabled,
       isChecked: isChecked,
+      error: error,
       onChanged: onChanged,
     );
   }
@@ -143,11 +151,13 @@ class OptimusNestedCheckbox extends StatelessWidget {
 class NestedCheckboxData extends InheritedWidget {
   const NestedCheckboxData({
     super.key,
-    required this.isEnabled,
+    this.isEnabled = true,
+    this.hasError = false,
     required super.child,
   });
 
   final bool isEnabled;
+  final bool hasError;
 
   static NestedCheckboxData? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<NestedCheckboxData>();
