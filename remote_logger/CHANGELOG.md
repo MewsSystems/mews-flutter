@@ -1,3 +1,7 @@
+## 0.4.1
+
+ - **FEAT**: Design Tokens Update 9.0.1 (#849).
+
 ## 0.4.0+2
 
  - **REFACTOR**: Fix linter issues. Apply new formatting.
