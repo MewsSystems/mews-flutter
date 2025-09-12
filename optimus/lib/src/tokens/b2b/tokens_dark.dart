@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Fri, 22 Aug 2025 10:33:27 GMT
+// Generated on Tue, 09 Sep 2025 08:57:28 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -92,7 +92,7 @@ abstract final class DesignTokensDark {
   static const Color borderInteractiveFocus = Color(0xFF6562F4);
   static const Color borderInteractiveInputActive = Color(0xFF8D8DAC);
   static const Color borderInteractiveInputDefault = Color(0xFF656582);
-  static const Color borderInteractiveInputError = Color(0xFFEF3C38);
+  static const Color borderInteractiveInputError = Color(0xFFF75B58);
   static const Color borderInteractiveInputHover = Color(0xFF787897);
   static const Color borderInteractivePrimaryActive = Color(0xFFF4F4FF);
   static const Color borderInteractivePrimaryDefault = Color(0xFFAEACFA);
@@ -105,90 +105,6 @@ abstract final class DesignTokensDark {
   static const Color borderStaticPrimary = Color(0xFF424258);
   static const Color borderStaticSecondary = Color(0xFF323243);
   static const Color borderStaticTertiary = Color(0xFF53536D);
-  static const Color legacyDatavizDenim100 = Color(0xFF1D5E99);
-  static const Color legacyDatavizDenim200 = Color(0xFF2368A2);
-  static const Color legacyDatavizDenim300 = Color(0xFF2973AB);
-  static const Color legacyDatavizDenim400 = Color(0xFF2E7BB2);
-  static const Color legacyDatavizDenim50 = Color(0xFF124B8A);
-  static const Color legacyDatavizDenim500 = Color(0xFF4D8FBE);
-  static const Color legacyDatavizDenim600 = Color(0xFF6DA3C9);
-  static const Color legacyDatavizDenim700 = Color(0xFF97BDD9);
-  static const Color legacyDatavizDenim800 = Color(0xFFC0D7E8);
-  static const Color legacyDatavizDenim900 = Color(0xFFE6EFF6);
-  static const Color legacyDatavizLavender100 = Color(0xFF614DA3);
-  static const Color legacyDatavizLavender200 = Color(0xFF6B57AB);
-  static const Color legacyDatavizLavender300 = Color(0xFF7662B3);
-  static const Color legacyDatavizLavender400 = Color(0xFF7E6ABA);
-  static const Color legacyDatavizLavender50 = Color(0xFF4E3C94);
-  static const Color legacyDatavizLavender500 = Color(0xFF9180C4);
-  static const Color legacyDatavizLavender600 = Color(0xFFA597CF);
-  static const Color legacyDatavizLavender700 = Color(0xFFBFB5DD);
-  static const Color legacyDatavizLavender800 = Color(0xFFD8D2EA);
-  static const Color legacyDatavizLavender900 = Color(0xFFF0EDF7);
-  static const Color legacyDatavizLime100 = Color(0xFF196A1F);
-  static const Color legacyDatavizLime200 = Color(0xFF1F7426);
-  static const Color legacyDatavizLime300 = Color(0xFF257F2D);
-  static const Color legacyDatavizLime400 = Color(0xFF2A8732);
-  static const Color legacyDatavizLime50 = Color(0xFF0F5713);
-  static const Color legacyDatavizLime500 = Color(0xFF4A9951);
-  static const Color legacyDatavizLime600 = Color(0xFF6AAB70);
-  static const Color legacyDatavizLime700 = Color(0xFF95C399);
-  static const Color legacyDatavizLime800 = Color(0xFFBFDBC2);
-  static const Color legacyDatavizLime900 = Color(0xFFE5F1E6);
-  static const Color legacyDatavizMustard100 = Color(0xFFE19F12);
-  static const Color legacyDatavizMustard200 = Color(0xFFE4A717);
-  static const Color legacyDatavizMustard300 = Color(0xFFE7B01B);
-  static const Color legacyDatavizMustard400 = Color(0xFFEAB71F);
-  static const Color legacyDatavizMustard50 = Color(0xFFDB900A);
-  static const Color legacyDatavizMustard500 = Color(0xFFEDC241);
-  static const Color legacyDatavizMustard600 = Color(0xFFF0CD62);
-  static const Color legacyDatavizMustard700 = Color(0xFFF5DB8F);
-  static const Color legacyDatavizMustard800 = Color(0xFFF9E9BC);
-  static const Color legacyDatavizMustard900 = Color(0xFFFCF6E4);
-  static const Color legacyDatavizRuby100 = Color(0xFFC6273C);
-  static const Color legacyDatavizRuby200 = Color(0xFFCC2E45);
-  static const Color legacyDatavizRuby300 = Color(0xFFD1364F);
-  static const Color legacyDatavizRuby400 = Color(0xFFD63C56);
-  static const Color legacyDatavizRuby50 = Color(0xFFBC1A2B);
-  static const Color legacyDatavizRuby500 = Color(0xFFDC596F);
-  static const Color legacyDatavizRuby600 = Color(0xFFE27789);
-  static const Color legacyDatavizRuby700 = Color(0xFFEB9EAB);
-  static const Color legacyDatavizRuby800 = Color(0xFFF3C5CC);
-  static const Color legacyDatavizRuby900 = Color(0xFFFAE8EB);
-  static const Color legacyDatavizTangerine100 = Color(0xFFE16434);
-  static const Color legacyDatavizTangerine200 = Color(0xFFE46E3D);
-  static const Color legacyDatavizTangerine300 = Color(0xFFE77946);
-  static const Color legacyDatavizTangerine400 = Color(0xFFEA814D);
-  static const Color legacyDatavizTangerine50 = Color(0xFFDB5125);
-  static const Color legacyDatavizTangerine500 = Color(0xFFF0A782);
-  static const Color legacyDatavizTangerine600 = Color(0xFFF0A782);
-  static const Color legacyDatavizTangerine700 = Color(0xFFF5C0A6);
-  static const Color legacyDatavizTangerine800 = Color(0xFFF9D9CA);
-  static const Color legacyDatavizTangerine900 = Color(0xFFFCF0EA);
-  static const Color legacyTagBackgroundBasicBold = Color(0xFF424258);
-  static const Color legacyTagBackgroundDenim = Color(0xFF124B8A);
-  static const Color legacyTagBackgroundLavender = Color(0xFF4E3C94);
-  static const Color legacyTagBackgroundLime = Color(0xFF0F5713);
-  static const Color legacyTagBackgroundMustard = Color(0xFFDB900A);
-  static const Color legacyTagBackgroundPrimary = Color(0xFF080680);
-  static const Color legacyTagBackgroundRuby = Color(0xFFBC1A2B);
-  static const Color legacyTagBackgroundTangerine = Color(0xFFDB5125);
-  static const Color legacyTagBorderBasicBold = Color(0xFF8D8DAC);
-  static const Color legacyTagBorderDenim = Color(0xFF4D8FBE);
-  static const Color legacyTagBorderLavender = Color(0xFF9180C4);
-  static const Color legacyTagBorderLime = Color(0xFF4A9951);
-  static const Color legacyTagBorderMustard = Color(0xFFEDC241);
-  static const Color legacyTagBorderPrimary = Color(0xFF6562F4);
-  static const Color legacyTagBorderRuby = Color(0xFFDC596F);
-  static const Color legacyTagBorderTangerine = Color(0xFFF0A782);
-  static const Color legacyTagTextBasicBold = Color(0xFFC4C4D5);
-  static const Color legacyTagTextDenim = Color(0xFFE6EFF6);
-  static const Color legacyTagTextLavender = Color(0xFFF0EDF7);
-  static const Color legacyTagTextLime = Color(0xFFE5F1E6);
-  static const Color legacyTagTextMustard = Color(0xFFFFFFFF);
-  static const Color legacyTagTextPrimary = Color(0xFFAEACFA);
-  static const Color legacyTagTextRuby = Color(0xFFFAE8EB);
-  static const Color legacyTagTextTangerine = Color(0xFFFFFFFF);
   static const Color paletteBasicsBlack = Color(0xFF000000);
   static const Color paletteBasicsWhite = Color(0xFFFFFFFF);
   static const Color paletteBasicsWhite64 = Color(0xA3FFFFFF);
@@ -573,13 +489,13 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 2),
       blurRadius: 6,
       spreadRadius: -1,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
     BoxShadow(
       offset: Offset(0, -1),
       blurRadius: 4,
       spreadRadius: -2,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
   ];
   static const List<BoxShadow> shadow200 = [
@@ -587,13 +503,13 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 8),
       blurRadius: 24,
       spreadRadius: -4,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
     BoxShadow(
       offset: Offset(0, 6),
       blurRadius: 12,
       spreadRadius: -6,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
   ];
   static const List<BoxShadow> shadow300 = [
