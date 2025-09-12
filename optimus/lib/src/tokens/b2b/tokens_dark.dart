@@ -4,7 +4,7 @@
 // ignore_for_file: avoid-duplicate-constant-values
 
 // Do not edit directly
-// Generated on Fri, 22 Aug 2025 10:33:27 GMT
+// Generated on Fri, 12 Sep 2025 10:23:28 GMT
 
 import 'package:flutter/widgets.dart';
 
@@ -92,7 +92,7 @@ abstract final class DesignTokensDark {
   static const Color borderInteractiveFocus = Color(0xFF6562F4);
   static const Color borderInteractiveInputActive = Color(0xFF8D8DAC);
   static const Color borderInteractiveInputDefault = Color(0xFF656582);
-  static const Color borderInteractiveInputError = Color(0xFFEF3C38);
+  static const Color borderInteractiveInputError = Color(0xFFF75B58);
   static const Color borderInteractiveInputHover = Color(0xFF787897);
   static const Color borderInteractivePrimaryActive = Color(0xFFF4F4FF);
   static const Color borderInteractivePrimaryDefault = Color(0xFFAEACFA);
@@ -573,13 +573,13 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 2),
       blurRadius: 6,
       spreadRadius: -1,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
     BoxShadow(
       offset: Offset(0, -1),
       blurRadius: 4,
       spreadRadius: -2,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
   ];
   static const List<BoxShadow> shadow200 = [
@@ -587,13 +587,13 @@ abstract final class DesignTokensDark {
       offset: Offset(0, 8),
       blurRadius: 24,
       spreadRadius: -4,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
     BoxShadow(
       offset: Offset(0, 6),
       blurRadius: 12,
       spreadRadius: -6,
-      color: Color(0x14FFFFFF),
+      color: Color(0x1412121A),
     ),
   ];
   static const List<BoxShadow> shadow300 = [
