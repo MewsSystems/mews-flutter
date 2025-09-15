@@ -9,8 +9,8 @@ scripts:
     run: melos exec --scope="optimus_icons" -- "dart utils/gen_icons.dart $MELOS_ROOT_PATH/optimus_icons/lib/fonts/config/ lib/src && dart format lib/src/icons_list.dart"
     description: Generate the list of all icons
   gen_theme:
-    run: melos exec --depends-on=build_runner -- "dart run build_runner build -d"
-    description: Build all generated files
+    run: melos exec --scope="optimus" --depends-on=build_runner -- "dart run build_runner build -d"
+    description: Rebuild theme generated files
 
 packages:
   - "**"
