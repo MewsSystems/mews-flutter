@@ -108,7 +108,6 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
   @override
   void didUpdateWidget(covariant OptimusRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-
     if (widget.isEnabled != oldWidget.isEnabled) {
       _stateController.update(WidgetState.disabled, !widget.isEnabled);
     }
