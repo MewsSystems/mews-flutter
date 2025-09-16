@@ -171,7 +171,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                     constraints: BoxConstraints(maxHeight: maxHeight),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(tokens.borderRadius100),
-                      color: Colors.red,
+                      color: context.tokens.backgroundStaticFloating,
                       boxShadow: tokens.shadow200,
                     ),
                     child: widget.items.isEmpty
@@ -190,6 +190,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                                     return Padding(
                                       padding: EdgeInsets.symmetric(
                                         vertical: context.verticalSpacing,
+                                        horizontal:
+                                            context.menuItemHorizontalPadding,
                                       ),
                                       child: Material(
                                         color: Colors.transparent,
@@ -382,6 +384,7 @@ const _dropdownMinHeight = 100.0;
 extension on BuildContext {
   double get menuOffset => tokens.spacing50;
   double get menuEdgesPadding => tokens.spacing100;
+  double get menuItemHorizontalPadding => tokens.spacing100;
 }
 
 extension on OptimusWidgetSize {
