@@ -144,8 +144,8 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
               : (shouldAlignRight ? Alignment.topRight : Alignment.topLeft);
 
           final maxHeight = isOnTop
-              ? spaceAbove.clamp(100.0, widget.maxDropdownHeight)
-              : spaceBelow.clamp(100.0, widget.maxDropdownHeight);
+              ? spaceAbove.clamp(_dropdownMinHeight, widget.maxDropdownHeight)
+              : spaceBelow.clamp(_dropdownMinHeight, widget.maxDropdownHeight);
 
           return Stack(
             children: [
@@ -176,62 +176,52 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                       padding: EdgeInsets.symmetric(
                         horizontal: context.listHorizontalPadding,
                       ),
-                      // ignore: avoid-single-child-column-or-row, we want to shrink the view without using shrinkWrap
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (widget.items.isEmpty)
-                            widget.emptyList ?? const SizedBox.shrink()
-                          else
-                            Flexible(
-                              child: OptimusScrollConfiguration(
-                                child: CustomScrollView(
-                                  reverse: isOnTop,
-                                  slivers: [
-                                    SliverList(
-                                      delegate: SliverChildBuilderDelegate((
-                                        context,
-                                        index,
-                                      ) {
-                                        final item = widget.items[index];
+                      child: widget.items.isEmpty
+                          ? (widget.emptyList ?? const SizedBox.shrink())
+                          : OptimusScrollConfiguration(
+                              child: CustomScrollView(
+                                reverse: isOnTop,
+                                slivers: [
+                                  SliverList(
+                                    delegate: SliverChildBuilderDelegate((
+                                      context,
+                                      index,
+                                    ) {
+                                      final item = widget.items[index];
 
-                                        return Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: context.verticalSpacing,
-                                          ),
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              borderRadius: BorderRadius.all(
-                                                tokens.borderRadius100,
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: context.verticalSpacing,
+                                        ),
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                            borderRadius: BorderRadius.all(
+                                              tokens.borderRadius100,
+                                            ),
+                                            hoverColor: tokens
+                                                .backgroundInteractiveNeutralHover,
+                                            splashColor: tokens
+                                                .backgroundInteractiveNeutralActive,
+                                            highlightColor: tokens
+                                                .backgroundInteractiveNeutralActive,
+                                            onTap: () =>
+                                                _handleItemSelected(item.value),
+                                            child: Container(
+                                              width: double.infinity,
+                                              padding: EdgeInsets.all(
+                                                tokens.spacing50,
                                               ),
-                                              hoverColor: tokens
-                                                  .backgroundInteractiveNeutralHover,
-                                              splashColor: tokens
-                                                  .backgroundInteractiveNeutralActive,
-                                              highlightColor: tokens
-                                                  .backgroundInteractiveNeutralActive,
-                                              onTap: () => _handleItemSelected(
-                                                item.value,
-                                              ),
-                                              child: Container(
-                                                width: double.infinity,
-                                                padding: EdgeInsets.all(
-                                                  tokens.spacing50,
-                                                ),
-                                                child: item,
-                                              ),
+                                              child: item,
                                             ),
                                           ),
-                                        );
-                                      }, childCount: widget.items.length),
-                                    ),
-                                  ],
-                                ),
+                                        ),
+                                      );
+                                    }, childCount: widget.items.length),
+                                  ),
+                                ],
                               ),
                             ),
-                        ],
-                      ),
                     ),
                   ),
                 ),
@@ -389,6 +379,8 @@ class _DropdownButtonState extends State<_DropdownButton> with ThemeGetter {
     );
   }
 }
+
+const _dropdownMinHeight = 100.0;
 
 extension on BuildContext {
   double get menuOffset => tokens.spacing50;

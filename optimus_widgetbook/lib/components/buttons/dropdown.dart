@@ -28,6 +28,12 @@ Widget createDefaultStyle(BuildContext context) {
                   min: 200,
                   max: 400,
                 ),
+                maxDropdownHeight: k.double.slider(
+                  label: 'Max Dropdown Height',
+                  initialValue: 300,
+                  min: 100,
+                  max: 600,
+                ),
                 items: Iterable<int>.generate(10)
                     .map(
                       (i) => ListDropdownTile<int>(
