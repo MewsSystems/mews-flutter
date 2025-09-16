@@ -10,7 +10,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 //
 
 // Do not edit directly
-// Generated on Fri, 11 Jul 2025 08:18:52 GMT
+// Generated on Fri, 12 Sep 2025 10:23:29 GMT
 
 part 'optimus_tokens.tailor.dart';
 
@@ -39,11 +39,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundBackdrop,
     required this.backgroundBrand,
     required this.backgroundDatavizBlue,
+    required this.backgroundDatavizDanger,
     required this.backgroundDatavizGreen,
+    required this.backgroundDatavizInfo,
     required this.backgroundDatavizOrange,
     required this.backgroundDatavizPink,
     required this.backgroundDatavizPurple,
     required this.backgroundDatavizRed,
+    required this.backgroundDatavizSuccess,
+    required this.backgroundDatavizWarning,
     required this.backgroundDisabled,
     required this.backgroundInteractiveDangerActive,
     required this.backgroundInteractiveDangerDefault,
@@ -85,6 +89,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.borderInteractiveBoldDefault,
     required this.borderInteractiveBoldHover,
     required this.borderInteractiveFocus,
+    required this.borderInteractiveInputActive,
+    required this.borderInteractiveInputDefault,
+    required this.borderInteractiveInputError,
+    required this.borderInteractiveInputHover,
     required this.borderInteractivePrimaryActive,
     required this.borderInteractivePrimaryDefault,
     required this.borderInteractivePrimaryHover,
@@ -362,9 +370,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
 
     required this.borderWidth0,
     required this.borderWidth100,
-    required this.borderWidth150,
     required this.borderWidth200,
-    required this.borderWidth250,
     required this.borderWidth300,
     required this.borderWidth800,
     required this.fontSize100,
@@ -487,7 +493,11 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final Color backgroundDatavizBlue;
   @override
+  final Color backgroundDatavizDanger;
+  @override
   final Color backgroundDatavizGreen;
+  @override
+  final Color backgroundDatavizInfo;
   @override
   final Color backgroundDatavizOrange;
   @override
@@ -496,6 +506,10 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color backgroundDatavizPurple;
   @override
   final Color backgroundDatavizRed;
+  @override
+  final Color backgroundDatavizSuccess;
+  @override
+  final Color backgroundDatavizWarning;
   @override
   final Color backgroundDisabled;
   @override
@@ -578,6 +592,14 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   final Color borderInteractiveBoldHover;
   @override
   final Color borderInteractiveFocus;
+  @override
+  final Color borderInteractiveInputActive;
+  @override
+  final Color borderInteractiveInputDefault;
+  @override
+  final Color borderInteractiveInputError;
+  @override
+  final Color borderInteractiveInputHover;
   @override
   final Color borderInteractivePrimaryActive;
   @override
@@ -1130,11 +1152,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final double borderWidth100;
   @override
-  final double borderWidth150;
-  @override
   final double borderWidth200;
-  @override
-  final double borderWidth250;
   @override
   final double borderWidth300;
   @override
@@ -1316,11 +1334,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundBackdrop: DesignTokensLight.backgroundBackdrop,
     backgroundBrand: DesignTokensLight.backgroundBrand,
     backgroundDatavizBlue: DesignTokensLight.backgroundDatavizBlue,
+    backgroundDatavizDanger: DesignTokensLight.backgroundDatavizDanger,
     backgroundDatavizGreen: DesignTokensLight.backgroundDatavizGreen,
+    backgroundDatavizInfo: DesignTokensLight.backgroundDatavizInfo,
     backgroundDatavizOrange: DesignTokensLight.backgroundDatavizOrange,
     backgroundDatavizPink: DesignTokensLight.backgroundDatavizPink,
     backgroundDatavizPurple: DesignTokensLight.backgroundDatavizPurple,
     backgroundDatavizRed: DesignTokensLight.backgroundDatavizRed,
+    backgroundDatavizSuccess: DesignTokensLight.backgroundDatavizSuccess,
+    backgroundDatavizWarning: DesignTokensLight.backgroundDatavizWarning,
     backgroundDisabled: DesignTokensLight.backgroundDisabled,
     backgroundInteractiveDangerActive:
         DesignTokensLight.backgroundInteractiveDangerActive,
@@ -1385,6 +1407,12 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         DesignTokensLight.borderInteractiveBoldDefault,
     borderInteractiveBoldHover: DesignTokensLight.borderInteractiveBoldHover,
     borderInteractiveFocus: DesignTokensLight.borderInteractiveFocus,
+    borderInteractiveInputActive:
+        DesignTokensLight.borderInteractiveInputActive,
+    borderInteractiveInputDefault:
+        DesignTokensLight.borderInteractiveInputDefault,
+    borderInteractiveInputError: DesignTokensLight.borderInteractiveInputError,
+    borderInteractiveInputHover: DesignTokensLight.borderInteractiveInputHover,
     borderInteractivePrimaryActive:
         DesignTokensLight.borderInteractivePrimaryActive,
     borderInteractivePrimaryDefault:
@@ -1675,9 +1703,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
 
     borderWidth0: DesignTokensLight.borderWidth0,
     borderWidth100: DesignTokensLight.borderWidth100,
-    borderWidth150: DesignTokensLight.borderWidth150,
     borderWidth200: DesignTokensLight.borderWidth200,
-    borderWidth250: DesignTokensLight.borderWidth250,
     borderWidth300: DesignTokensLight.borderWidth300,
     borderWidth800: DesignTokensLight.borderWidth800,
     fontSize100: DesignTokensLight.fontSize100,
@@ -1785,11 +1811,15 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundBackdrop: DesignTokensDark.backgroundBackdrop,
     backgroundBrand: DesignTokensDark.backgroundBrand,
     backgroundDatavizBlue: DesignTokensDark.backgroundDatavizBlue,
+    backgroundDatavizDanger: DesignTokensDark.backgroundDatavizDanger,
     backgroundDatavizGreen: DesignTokensDark.backgroundDatavizGreen,
+    backgroundDatavizInfo: DesignTokensDark.backgroundDatavizInfo,
     backgroundDatavizOrange: DesignTokensDark.backgroundDatavizOrange,
     backgroundDatavizPink: DesignTokensDark.backgroundDatavizPink,
     backgroundDatavizPurple: DesignTokensDark.backgroundDatavizPurple,
     backgroundDatavizRed: DesignTokensDark.backgroundDatavizRed,
+    backgroundDatavizSuccess: DesignTokensDark.backgroundDatavizSuccess,
+    backgroundDatavizWarning: DesignTokensDark.backgroundDatavizWarning,
     backgroundDisabled: DesignTokensDark.backgroundDisabled,
     backgroundInteractiveDangerActive:
         DesignTokensDark.backgroundInteractiveDangerActive,
@@ -1853,6 +1883,11 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     borderInteractiveBoldDefault: DesignTokensDark.borderInteractiveBoldDefault,
     borderInteractiveBoldHover: DesignTokensDark.borderInteractiveBoldHover,
     borderInteractiveFocus: DesignTokensDark.borderInteractiveFocus,
+    borderInteractiveInputActive: DesignTokensDark.borderInteractiveInputActive,
+    borderInteractiveInputDefault:
+        DesignTokensDark.borderInteractiveInputDefault,
+    borderInteractiveInputError: DesignTokensDark.borderInteractiveInputError,
+    borderInteractiveInputHover: DesignTokensDark.borderInteractiveInputHover,
     borderInteractivePrimaryActive:
         DesignTokensDark.borderInteractivePrimaryActive,
     borderInteractivePrimaryDefault:
@@ -2140,9 +2175,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
 
     borderWidth0: DesignTokensDark.borderWidth0,
     borderWidth100: DesignTokensDark.borderWidth100,
-    borderWidth150: DesignTokensDark.borderWidth150,
     borderWidth200: DesignTokensDark.borderWidth200,
-    borderWidth250: DesignTokensDark.borderWidth250,
     borderWidth300: DesignTokensDark.borderWidth300,
     borderWidth800: DesignTokensDark.borderWidth800,
     fontSize100: DesignTokensDark.fontSize100,

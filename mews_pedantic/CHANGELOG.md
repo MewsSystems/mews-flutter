@@ -1,3 +1,9 @@
+## 0.40.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [DX-7827] Upgrade to DCM 1.31.4.
+
 ## 0.39.0
 
 > Note: This release has breaking changes.

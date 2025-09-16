@@ -78,7 +78,7 @@ class OptimusCard extends StatelessWidget {
 
   Border? _border(BuildContext context) => isOutlined
       ? Border.all(
-          width: context.tokens.borderWidth150,
+          width: context.tokens.borderWidth100,
           color: context.tokens.borderStaticPrimary,
         )
       : null;
@@ -157,7 +157,7 @@ class OptimusNestedCard extends StatelessWidget {
 
   Border? _border(BuildContext context) => isOutlined
       ? Border.all(
-          width: context.tokens.borderWidth150,
+          width: context.tokens.borderWidth100,
           color: context.tokens.borderStaticPrimary,
         )
       : null;

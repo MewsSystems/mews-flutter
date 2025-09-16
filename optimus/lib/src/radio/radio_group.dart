@@ -2,7 +2,6 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/common/group_item.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
-import 'package:optimus/src/enabled.dart';
 import 'package:optimus/src/radio/radio.dart';
 
 class OptimusRadioGroup<T> extends StatelessWidget {
@@ -17,6 +16,7 @@ class OptimusRadioGroup<T> extends StatelessWidget {
     this.isEnabled = true,
   });
 
+  /// List of radio items.
   final List<OptimusGroupItem<T>> items;
 
   /// Controls the currently selected value for a group of radio buttons.
@@ -67,21 +67,20 @@ class OptimusRadioGroup<T> extends StatelessWidget {
       label: label,
       error: error,
       isEnabled: isEnabled,
-      child: OptimusEnabled(
-        isEnabled: isEnabled,
-        child: Column(
-          children: items
-              .map(
-                (i) => OptimusRadio<T>(
-                  label: i.label,
-                  value: i.value,
-                  groupValue: value,
-                  onChanged: onChanged,
-                  size: size,
-                ),
-              )
-              .toList(),
-        ),
+      child: Column(
+        children: items
+            .map(
+              (i) => OptimusRadio<T>(
+                label: i.label,
+                isEnabled: isEnabled,
+                semanticLabel: i.semanticLabel,
+                value: i.value,
+                groupValue: value,
+                onChanged: onChanged,
+                size: size,
+              ),
+            )
+            .toList(),
       ),
     ),
   );

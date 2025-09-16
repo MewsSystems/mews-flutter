@@ -61,7 +61,7 @@ class OptimusAvatar extends StatelessWidget {
       shape: BoxShape.circle,
       border: Border.all(
         color: tokens.borderStaticPrimary,
-        width: tokens.borderWidth150,
+        width: tokens.borderWidth100,
       ),
     );
 
@@ -127,10 +127,7 @@ class _CircleImage extends StatelessWidget {
         ),
         decoration: imageUrl == null ? decoration : null,
         child: Center(
-          child: MediaQuery(
-            data: MediaQuery.of(
-              context,
-            ).copyWith(textScaler: TextScaler.noScaling),
+          child: MediaQuery.withNoTextScaling(
             child: imageUrl != null
                 ? FadeInImage.memoryNetwork(
                     width: diameter,

@@ -181,7 +181,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
                 ),
                 border: Border.all(
                   color: borderColor,
-                  width: tokens.borderWidth150,
+                  width: tokens.borderWidth100,
                 ),
               ),
               child: switch (widget.variant) {

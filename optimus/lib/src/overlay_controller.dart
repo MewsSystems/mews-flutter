@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:optimus/src/dropdown/dropdown.dart';
 import 'package:optimus/src/dropdown/dropdown_tap_interceptor.dart';
 import 'package:optimus/src/dropdown/dropdown_tile.dart';
+import 'package:optimus/src/theme/theme.dart';
 import 'package:optimus/src/widget_size.dart';
 
 class OverlayController<T> extends StatefulWidget {
@@ -36,7 +37,8 @@ class OverlayController<T> extends StatefulWidget {
   State<OverlayController<T>> createState() => _OverlayControllerState<T>();
 }
 
-class _OverlayControllerState<T> extends State<OverlayController<T>> {
+class _OverlayControllerState<T> extends State<OverlayController<T>>
+    with ThemeGetter {
   OverlayEntry? _overlayEntry;
 
   @override
@@ -75,26 +77,34 @@ class _OverlayControllerState<T> extends State<OverlayController<T>> {
   }
 
   OverlayEntry _createOverlayEntry() => OverlayEntry(
-    builder: (_) => MediaQuery(
+    builder: (BuildContext builderContext) => MediaQuery(
       data: MediaQuery.of(context),
-      child: Stack(
-        key: const Key('OptimusSelectOverlay'),
-        children: <Widget>[
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTapDown: (_) => widget.focusNode.unfocus(),
-          ),
-          DropdownTapInterceptor(
-            onTap: widget.focusNode.unfocus,
-            child: OptimusDropdown<T>(
-              items: widget.items,
-              size: widget.size,
-              anchorKey: widget.anchorKey,
-              onChanged: widget.onItemSelected,
-              width: widget.width,
+      // We need to wrap the overlay in an OptimusTheme to ensure that the
+      // dropdown is rendered in the correct theme. Context tokens are passed
+      // to preserve any theme overrides.
+      child: OptimusTheme(
+        themeMode: theme.themeMode,
+        darkTheme: context.effectiveDarkTokens,
+        lightTheme: context.effectiveLightTokens,
+        child: Stack(
+          key: const Key('OptimusSelectOverlay'),
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTapDown: (_) => widget.focusNode.unfocus(),
             ),
-          ),
-        ],
+            DropdownTapInterceptor(
+              onTap: widget.focusNode.unfocus,
+              child: OptimusDropdown<T>(
+                items: widget.items,
+                size: widget.size,
+                anchorKey: widget.anchorKey,
+                onChanged: widget.onItemSelected,
+                width: widget.width,
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

@@ -4,32 +4,14 @@ import 'package:optimus_widgetbook/utils.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Radio', type: OptimusRadio, path: '[Forms]')
-Widget createDefaultStyle(BuildContext context) {
-  final k = context.knobs;
-  final size = k.object.dropdown(
-    label: 'Size',
-    initialOption: OptimusRadioSize.large,
-    options: OptimusRadioSize.values,
-    labelBuilder: enumLabelBuilder,
-  );
-  final error = k.string(label: 'Error', initialValue: '');
-  final isEnabled = k.isEnabledKnob;
+final _radioKey = GlobalKey();
+final _radioGroupKey = GlobalKey();
 
-  return RadioExample(size: size, error: error, isEnabled: isEnabled);
-}
+@widgetbook.UseCase(name: 'Radio', type: OptimusRadio, path: '[Forms]')
+Widget createDefaultStyle(BuildContext _) => RadioExample(key: _radioKey);
 
 class RadioExample extends StatefulWidget {
-  const RadioExample({
-    super.key,
-    required this.size,
-    required this.error,
-    required this.isEnabled,
-  });
-
-  final OptimusRadioSize size;
-  final String error;
-  final bool isEnabled;
+  const RadioExample({super.key});
 
   @override
   State<RadioExample> createState() => _RadioExampleState();
@@ -42,29 +24,42 @@ class _RadioExampleState extends State<RadioExample> {
       setState(() => _groupValue = newValue);
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-    child: Center(
-      child: SizedBox(
-        width: 400,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: _options
-              .map(
-                (i) => OptimusRadio<String>(
-                  isEnabled: widget.isEnabled,
-                  label: Text(i),
-                  size: widget.size,
-                  value: i,
-                  groupValue: _groupValue,
-                  onChanged: _handleChanged,
-                  error: widget.error,
-                ),
-              )
-              .toList(),
+  Widget build(BuildContext context) {
+    final k = context.knobs;
+    final size = k.object.dropdown(
+      label: 'Size',
+      initialOption: OptimusRadioSize.large,
+      options: OptimusRadioSize.values,
+      labelBuilder: enumLabelBuilder,
+    );
+    final error = k.string(label: 'Error', initialValue: '');
+    final isEnabled = k.isEnabledKnob;
+
+    return SingleChildScrollView(
+      child: Center(
+        child: SizedBox(
+          width: 400,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: _options
+                .map(
+                  (i) => OptimusRadio<String>(
+                    key: ValueKey(i),
+                    isEnabled: isEnabled,
+                    label: Text(i),
+                    size: size,
+                    value: i,
+                    groupValue: _groupValue,
+                    onChanged: _handleChanged,
+                    error: error,
+                  ),
+                )
+                .toList(),
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 @widgetbook.UseCase(
@@ -72,38 +67,11 @@ class _RadioExampleState extends State<RadioExample> {
   type: OptimusRadioGroup,
   path: '[Forms]',
 )
-Widget createRadioGroup(BuildContext context) {
-  final k = context.knobs;
-  final size = k.object.dropdown(
-    label: 'Size',
-    initialOption: OptimusRadioSize.large,
-    options: OptimusRadioSize.values,
-    labelBuilder: enumLabelBuilder,
-  );
-  final label = k.string(label: 'Label', initialValue: '');
-  final error = k.string(label: 'Error', initialValue: '');
-  final isEnabled = k.isEnabledKnob;
-
-  return _RadioGroupExample(
-    size: size,
-    label: label,
-    error: error,
-    isEnabled: isEnabled,
-  );
-}
+Widget createRadioGroup(BuildContext _) =>
+    _RadioGroupExample(key: _radioGroupKey);
 
 class _RadioGroupExample extends StatefulWidget {
-  const _RadioGroupExample({
-    required this.size,
-    required this.label,
-    required this.error,
-    required this.isEnabled,
-  });
-
-  final OptimusRadioSize size;
-  final String label;
-  final String error;
-  final bool isEnabled;
+  const _RadioGroupExample({super.key});
 
   @override
   _RadioGroupExampleState createState() => _RadioGroupExampleState();
@@ -115,22 +83,35 @@ class _RadioGroupExampleState extends State<_RadioGroupExample> {
   void _handleChanged(String value) => setState(() => _groupValue = value);
 
   @override
-  Widget build(BuildContext context) => Center(
-    child: SizedBox(
-      width: 400,
-      child: OptimusRadioGroup<String>(
-        size: widget.size,
-        value: _groupValue,
-        label: widget.label,
-        error: widget.error,
-        isEnabled: widget.isEnabled,
-        onChanged: _handleChanged,
-        items: _options
-            .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
-            .toList(),
+  Widget build(BuildContext context) {
+    final k = context.knobs;
+    final size = k.object.dropdown(
+      label: 'Size',
+      initialOption: OptimusRadioSize.large,
+      options: OptimusRadioSize.values,
+      labelBuilder: enumLabelBuilder,
+    );
+    final label = k.string(label: 'Label', initialValue: '');
+    final error = k.string(label: 'Error', initialValue: '');
+    final isEnabled = k.isEnabledKnob;
+
+    return Center(
+      child: SizedBox(
+        width: 400,
+        child: OptimusRadioGroup<String>(
+          size: size,
+          value: _groupValue,
+          label: label,
+          error: error,
+          isEnabled: isEnabled,
+          onChanged: _handleChanged,
+          items: _options
+              .map((i) => OptimusGroupItem<String>(label: Text(i), value: i))
+              .toList(),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 const _options = [

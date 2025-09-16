@@ -38,6 +38,7 @@ class OptimusDialogWrapper extends StatefulWidget {
 }
 
 class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
+    with ThemeGetter
     implements DialogController {
   OverlayEntry? _entry;
 
@@ -68,15 +69,23 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-      builder: (_) => MediaQuery(
+      builder: (BuildContext builderContext) => MediaQuery(
         data: MediaQuery.of(context),
-        child: OptimusDialog.nonModal(
-          title: title,
-          content: content,
-          close: _handleClose,
-          isDismissible: isDismissible,
-          actions: actions,
-          size: size,
+        // We need to wrap the overlay in an OptimusTheme to ensure that the
+        // dropdown is rendered in the correct theme. Context tokens are passed
+        // to preserve any theme overrides.
+        child: OptimusTheme(
+          themeMode: theme.themeMode,
+          darkTheme: context.effectiveDarkTokens,
+          lightTheme: context.effectiveLightTokens,
+          child: OptimusDialog.nonModal(
+            title: title,
+            content: content,
+            close: _handleClose,
+            isDismissible: isDismissible,
+            actions: actions,
+            size: size,
+          ),
         ),
       ),
     );
@@ -94,23 +103,28 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
   }) {
     hide();
     final entry = OverlayEntry(
-      builder: (_) => MediaQuery(
+      builder: (BuildContext builderContext) => MediaQuery(
         data: MediaQuery.of(context),
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: _handleClose,
-            ),
-            OptimusInlineDialog(
-              content: content,
-              close: _handleClose,
-              actions: actions,
-              anchorKey: anchorKey,
-              size: size,
-            ),
-          ],
+        child: OptimusTheme(
+          themeMode: theme.themeMode,
+          darkTheme: context.effectiveDarkTokens,
+          lightTheme: context.effectiveLightTokens,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _handleClose,
+              ),
+              OptimusInlineDialog(
+                content: content,
+                close: _handleClose,
+                actions: actions,
+                anchorKey: anchorKey,
+                size: size,
+              ),
+            ],
+          ),
         ),
       ),
     );

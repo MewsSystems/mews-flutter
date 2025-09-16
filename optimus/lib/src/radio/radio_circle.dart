@@ -20,13 +20,13 @@ class RadioCircle extends StatelessWidget {
             : tokens.borderDisabled,
         WidgetState.pressed: isSelected
             ? tokens.backgroundInteractivePrimaryActive
-            : tokens.borderInteractiveSecondaryActive,
+            : tokens.borderInteractiveInputActive,
         WidgetState.hovered: isSelected
             ? tokens.backgroundInteractivePrimaryHover
-            : tokens.borderInteractiveSecondaryHover,
+            : tokens.borderInteractiveInputHover,
         WidgetState.any: isSelected
             ? tokens.backgroundInteractivePrimaryDefault
-            : tokens.borderInteractiveSecondaryDefault,
+            : tokens.borderInteractiveInputDefault,
       });
 
   WidgetStateColor _getFillColor(OptimusTokens tokens) =>
@@ -43,7 +43,7 @@ class RadioCircle extends StatelessWidget {
 
     final size = tokens.sizing200;
     final scaledSize = size.toScaled(context);
-    final borderWidth = tokens.borderWidth150;
+    final borderWidth = tokens.borderWidth100;
     final selectedBorderWidth = _selectedBorderWidth.toScaled(context);
 
     return AnimatedContainer(
