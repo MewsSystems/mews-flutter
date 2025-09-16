@@ -185,41 +185,48 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                           else
                             Flexible(
                               child: OptimusScrollConfiguration(
-                                child: ListView.builder(
+                                child: CustomScrollView(
                                   reverse: isOnTop,
-                                  itemCount: widget.items.length,
-                                  itemBuilder: (context, index) {
-                                    final item = widget.items[index];
+                                  slivers: [
+                                    SliverList(
+                                      delegate: SliverChildBuilderDelegate((
+                                        context,
+                                        index,
+                                      ) {
+                                        final item = widget.items[index];
 
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: context.verticalSpacing,
-                                      ),
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: InkWell(
-                                          borderRadius: BorderRadius.all(
-                                            tokens.borderRadius100,
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: context.verticalSpacing,
                                           ),
-                                          hoverColor: tokens
-                                              .backgroundInteractiveNeutralHover,
-                                          splashColor: tokens
-                                              .backgroundInteractiveNeutralActive,
-                                          highlightColor: tokens
-                                              .backgroundInteractiveNeutralActive,
-                                          onTap: () =>
-                                              _handleItemSelected(item.value),
-                                          child: Container(
-                                            width: double.infinity,
-                                            padding: EdgeInsets.all(
-                                              tokens.spacing50,
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
+                                              borderRadius: BorderRadius.all(
+                                                tokens.borderRadius100,
+                                              ),
+                                              hoverColor: tokens
+                                                  .backgroundInteractiveNeutralHover,
+                                              splashColor: tokens
+                                                  .backgroundInteractiveNeutralActive,
+                                              highlightColor: tokens
+                                                  .backgroundInteractiveNeutralActive,
+                                              onTap: () => _handleItemSelected(
+                                                item.value,
+                                              ),
+                                              child: Container(
+                                                width: double.infinity,
+                                                padding: EdgeInsets.all(
+                                                  tokens.spacing50,
+                                                ),
+                                                child: item,
+                                              ),
                                             ),
-                                            child: item,
                                           ),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                        );
+                                      }, childCount: widget.items.length),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
