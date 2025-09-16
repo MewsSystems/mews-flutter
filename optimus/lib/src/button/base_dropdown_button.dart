@@ -116,9 +116,9 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
               buttonPosition.dy -
               buttonSize.height -
               screenPadding.bottom -
-              context.menuPadding;
+              context.menuEdgesPadding;
           final spaceAbove =
-              buttonPosition.dy - screenPadding.top - context.menuPadding;
+              buttonPosition.dy - screenPadding.top - context.menuEdgesPadding;
 
           final isOnTop =
               spaceBelow < widget.maxDropdownHeight && spaceAbove > spaceBelow;
@@ -381,7 +381,7 @@ const _dropdownMinHeight = 100.0;
 
 extension on BuildContext {
   double get menuOffset => tokens.spacing50;
-  double get menuPadding => tokens.spacing50;
+  double get menuEdgesPadding => tokens.spacing100;
 }
 
 extension on OptimusWidgetSize {
