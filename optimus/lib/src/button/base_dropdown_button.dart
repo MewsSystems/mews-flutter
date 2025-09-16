@@ -115,8 +115,10 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
               screenSize.height -
               buttonPosition.dy -
               buttonSize.height -
-              screenPadding.bottom;
-          final spaceAbove = buttonPosition.dy - screenPadding.top;
+              screenPadding.bottom -
+              context.menuPadding;
+          final spaceAbove =
+              buttonPosition.dy - screenPadding.top - context.menuPadding;
 
           final isOnTop =
               spaceBelow < widget.maxDropdownHeight && spaceAbove > spaceBelow;
@@ -169,60 +171,55 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                     constraints: BoxConstraints(maxHeight: maxHeight),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(tokens.borderRadius100),
-                      color: tokens.backgroundStaticFloating,
+                      color: Colors.red,
                       boxShadow: tokens.shadow200,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: context.listHorizontalPadding,
-                      ),
-                      child: widget.items.isEmpty
-                          ? (widget.emptyList ?? const SizedBox.shrink())
-                          : OptimusScrollConfiguration(
-                              child: CustomScrollView(
-                                reverse: isOnTop,
-                                slivers: [
-                                  SliverList(
-                                    delegate: SliverChildBuilderDelegate((
-                                      context,
-                                      index,
-                                    ) {
-                                      final item = widget.items[index];
+                    child: widget.items.isEmpty
+                        ? (widget.emptyList ?? const SizedBox.shrink())
+                        : OptimusScrollConfiguration(
+                            child: CustomScrollView(
+                              reverse: isOnTop,
+                              slivers: [
+                                SliverList(
+                                  delegate: SliverChildBuilderDelegate((
+                                    context,
+                                    index,
+                                  ) {
+                                    final item = widget.items[index];
 
-                                      return Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: context.verticalSpacing,
-                                        ),
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          child: InkWell(
-                                            borderRadius: BorderRadius.all(
-                                              tokens.borderRadius100,
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: context.verticalSpacing,
+                                      ),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          borderRadius: BorderRadius.all(
+                                            tokens.borderRadius100,
+                                          ),
+                                          hoverColor: tokens
+                                              .backgroundInteractiveNeutralHover,
+                                          splashColor: tokens
+                                              .backgroundInteractiveNeutralActive,
+                                          highlightColor: tokens
+                                              .backgroundInteractiveNeutralActive,
+                                          onTap: () =>
+                                              _handleItemSelected(item.value),
+                                          child: Container(
+                                            width: double.infinity,
+                                            padding: EdgeInsets.all(
+                                              tokens.spacing50,
                                             ),
-                                            hoverColor: tokens
-                                                .backgroundInteractiveNeutralHover,
-                                            splashColor: tokens
-                                                .backgroundInteractiveNeutralActive,
-                                            highlightColor: tokens
-                                                .backgroundInteractiveNeutralActive,
-                                            onTap: () =>
-                                                _handleItemSelected(item.value),
-                                            child: Container(
-                                              width: double.infinity,
-                                              padding: EdgeInsets.all(
-                                                tokens.spacing50,
-                                              ),
-                                              child: item,
-                                            ),
+                                            child: item,
                                           ),
                                         ),
-                                      );
-                                    }, childCount: widget.items.length),
-                                  ),
-                                ],
-                              ),
+                                      ),
+                                    );
+                                  }, childCount: widget.items.length),
+                                ),
+                              ],
                             ),
-                    ),
+                          ),
                   ),
                 ),
               ),
@@ -384,6 +381,7 @@ const _dropdownMinHeight = 100.0;
 
 extension on BuildContext {
   double get menuOffset => tokens.spacing50;
+  double get menuPadding => tokens.spacing50;
 }
 
 extension on OptimusWidgetSize {
