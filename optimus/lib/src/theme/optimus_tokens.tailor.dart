@@ -30,14 +30,20 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get backgroundAlertWarningSecondary;
   Color get backgroundBackdrop;
   Color get backgroundBrand;
-  Color get backgroundDatavizBlue;
+  Color get backgroundDatavizBluePrimary;
+  Color get backgroundDatavizBlueSecondary;
   Color get backgroundDatavizDanger;
-  Color get backgroundDatavizGreen;
+  Color get backgroundDatavizGreenPrimary;
+  Color get backgroundDatavizGreenSecondary;
   Color get backgroundDatavizInfo;
-  Color get backgroundDatavizOrange;
-  Color get backgroundDatavizPink;
-  Color get backgroundDatavizPurple;
-  Color get backgroundDatavizRed;
+  Color get backgroundDatavizOrangePrimary;
+  Color get backgroundDatavizOrangeSecondary;
+  Color get backgroundDatavizPinkPrimary;
+  Color get backgroundDatavizPinkSecondary;
+  Color get backgroundDatavizPurplePrimary;
+  Color get backgroundDatavizPurpleSecondary;
+  Color get backgroundDatavizRedPrimary;
+  Color get backgroundDatavizRedSecondary;
   Color get backgroundDatavizSuccess;
   Color get backgroundDatavizWarning;
   Color get backgroundDisabled;
@@ -243,12 +249,18 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get paletteBrandNight700;
   Color get paletteBrandNight800;
   Color get paletteBrandNight900;
-  Color get paletteDatavizBlue;
-  Color get paletteDatavizGreen;
-  Color get paletteDatavizOrange;
-  Color get paletteDatavizPink;
-  Color get paletteDatavizPurple;
-  Color get paletteDatavizRed;
+  Color get paletteDatavizBlue50;
+  Color get paletteDatavizBlue500;
+  Color get paletteDatavizGreen50;
+  Color get paletteDatavizGreen500;
+  Color get paletteDatavizOrange50;
+  Color get paletteDatavizOrange500;
+  Color get paletteDatavizPink50;
+  Color get paletteDatavizPink500;
+  Color get paletteDatavizPurple50;
+  Color get paletteDatavizPurple500;
+  Color get paletteDatavizRed50;
+  Color get paletteDatavizRed500;
   Color get paletteSemanticBlue0;
   Color get paletteSemanticBlue100;
   Color get paletteSemanticBlue1000;
@@ -401,6 +413,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   double get sizing550;
   double get sizing600;
   double get sizing700;
+  double get sizing75;
   double get sizing800;
   double get sizing900;
   double get sizingBase;
@@ -456,14 +469,20 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? backgroundAlertWarningSecondary,
     Color? backgroundBackdrop,
     Color? backgroundBrand,
-    Color? backgroundDatavizBlue,
+    Color? backgroundDatavizBluePrimary,
+    Color? backgroundDatavizBlueSecondary,
     Color? backgroundDatavizDanger,
-    Color? backgroundDatavizGreen,
+    Color? backgroundDatavizGreenPrimary,
+    Color? backgroundDatavizGreenSecondary,
     Color? backgroundDatavizInfo,
-    Color? backgroundDatavizOrange,
-    Color? backgroundDatavizPink,
-    Color? backgroundDatavizPurple,
-    Color? backgroundDatavizRed,
+    Color? backgroundDatavizOrangePrimary,
+    Color? backgroundDatavizOrangeSecondary,
+    Color? backgroundDatavizPinkPrimary,
+    Color? backgroundDatavizPinkSecondary,
+    Color? backgroundDatavizPurplePrimary,
+    Color? backgroundDatavizPurpleSecondary,
+    Color? backgroundDatavizRedPrimary,
+    Color? backgroundDatavizRedSecondary,
     Color? backgroundDatavizSuccess,
     Color? backgroundDatavizWarning,
     Color? backgroundDisabled,
@@ -669,12 +688,18 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? paletteBrandNight700,
     Color? paletteBrandNight800,
     Color? paletteBrandNight900,
-    Color? paletteDatavizBlue,
-    Color? paletteDatavizGreen,
-    Color? paletteDatavizOrange,
-    Color? paletteDatavizPink,
-    Color? paletteDatavizPurple,
-    Color? paletteDatavizRed,
+    Color? paletteDatavizBlue50,
+    Color? paletteDatavizBlue500,
+    Color? paletteDatavizGreen50,
+    Color? paletteDatavizGreen500,
+    Color? paletteDatavizOrange50,
+    Color? paletteDatavizOrange500,
+    Color? paletteDatavizPink50,
+    Color? paletteDatavizPink500,
+    Color? paletteDatavizPurple50,
+    Color? paletteDatavizPurple500,
+    Color? paletteDatavizRed50,
+    Color? paletteDatavizRed500,
     Color? paletteSemanticBlue0,
     Color? paletteSemanticBlue100,
     Color? paletteSemanticBlue1000,
@@ -827,6 +852,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     double? sizing550,
     double? sizing600,
     double? sizing700,
+    double? sizing75,
     double? sizing800,
     double? sizing900,
     double? sizingBase,
@@ -900,21 +926,37 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           this.backgroundAlertWarningSecondary,
       backgroundBackdrop: backgroundBackdrop ?? this.backgroundBackdrop,
       backgroundBrand: backgroundBrand ?? this.backgroundBrand,
-      backgroundDatavizBlue:
-          backgroundDatavizBlue ?? this.backgroundDatavizBlue,
+      backgroundDatavizBluePrimary:
+          backgroundDatavizBluePrimary ?? this.backgroundDatavizBluePrimary,
+      backgroundDatavizBlueSecondary:
+          backgroundDatavizBlueSecondary ?? this.backgroundDatavizBlueSecondary,
       backgroundDatavizDanger:
           backgroundDatavizDanger ?? this.backgroundDatavizDanger,
-      backgroundDatavizGreen:
-          backgroundDatavizGreen ?? this.backgroundDatavizGreen,
+      backgroundDatavizGreenPrimary:
+          backgroundDatavizGreenPrimary ?? this.backgroundDatavizGreenPrimary,
+      backgroundDatavizGreenSecondary:
+          backgroundDatavizGreenSecondary ??
+          this.backgroundDatavizGreenSecondary,
       backgroundDatavizInfo:
           backgroundDatavizInfo ?? this.backgroundDatavizInfo,
-      backgroundDatavizOrange:
-          backgroundDatavizOrange ?? this.backgroundDatavizOrange,
-      backgroundDatavizPink:
-          backgroundDatavizPink ?? this.backgroundDatavizPink,
-      backgroundDatavizPurple:
-          backgroundDatavizPurple ?? this.backgroundDatavizPurple,
-      backgroundDatavizRed: backgroundDatavizRed ?? this.backgroundDatavizRed,
+      backgroundDatavizOrangePrimary:
+          backgroundDatavizOrangePrimary ?? this.backgroundDatavizOrangePrimary,
+      backgroundDatavizOrangeSecondary:
+          backgroundDatavizOrangeSecondary ??
+          this.backgroundDatavizOrangeSecondary,
+      backgroundDatavizPinkPrimary:
+          backgroundDatavizPinkPrimary ?? this.backgroundDatavizPinkPrimary,
+      backgroundDatavizPinkSecondary:
+          backgroundDatavizPinkSecondary ?? this.backgroundDatavizPinkSecondary,
+      backgroundDatavizPurplePrimary:
+          backgroundDatavizPurplePrimary ?? this.backgroundDatavizPurplePrimary,
+      backgroundDatavizPurpleSecondary:
+          backgroundDatavizPurpleSecondary ??
+          this.backgroundDatavizPurpleSecondary,
+      backgroundDatavizRedPrimary:
+          backgroundDatavizRedPrimary ?? this.backgroundDatavizRedPrimary,
+      backgroundDatavizRedSecondary:
+          backgroundDatavizRedSecondary ?? this.backgroundDatavizRedSecondary,
       backgroundDatavizSuccess:
           backgroundDatavizSuccess ?? this.backgroundDatavizSuccess,
       backgroundDatavizWarning:
@@ -1260,12 +1302,26 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       paletteBrandNight700: paletteBrandNight700 ?? this.paletteBrandNight700,
       paletteBrandNight800: paletteBrandNight800 ?? this.paletteBrandNight800,
       paletteBrandNight900: paletteBrandNight900 ?? this.paletteBrandNight900,
-      paletteDatavizBlue: paletteDatavizBlue ?? this.paletteDatavizBlue,
-      paletteDatavizGreen: paletteDatavizGreen ?? this.paletteDatavizGreen,
-      paletteDatavizOrange: paletteDatavizOrange ?? this.paletteDatavizOrange,
-      paletteDatavizPink: paletteDatavizPink ?? this.paletteDatavizPink,
-      paletteDatavizPurple: paletteDatavizPurple ?? this.paletteDatavizPurple,
-      paletteDatavizRed: paletteDatavizRed ?? this.paletteDatavizRed,
+      paletteDatavizBlue50: paletteDatavizBlue50 ?? this.paletteDatavizBlue50,
+      paletteDatavizBlue500:
+          paletteDatavizBlue500 ?? this.paletteDatavizBlue500,
+      paletteDatavizGreen50:
+          paletteDatavizGreen50 ?? this.paletteDatavizGreen50,
+      paletteDatavizGreen500:
+          paletteDatavizGreen500 ?? this.paletteDatavizGreen500,
+      paletteDatavizOrange50:
+          paletteDatavizOrange50 ?? this.paletteDatavizOrange50,
+      paletteDatavizOrange500:
+          paletteDatavizOrange500 ?? this.paletteDatavizOrange500,
+      paletteDatavizPink50: paletteDatavizPink50 ?? this.paletteDatavizPink50,
+      paletteDatavizPink500:
+          paletteDatavizPink500 ?? this.paletteDatavizPink500,
+      paletteDatavizPurple50:
+          paletteDatavizPurple50 ?? this.paletteDatavizPurple50,
+      paletteDatavizPurple500:
+          paletteDatavizPurple500 ?? this.paletteDatavizPurple500,
+      paletteDatavizRed50: paletteDatavizRed50 ?? this.paletteDatavizRed50,
+      paletteDatavizRed500: paletteDatavizRed500 ?? this.paletteDatavizRed500,
       paletteSemanticBlue0: paletteSemanticBlue0 ?? this.paletteSemanticBlue0,
       paletteSemanticBlue100:
           paletteSemanticBlue100 ?? this.paletteSemanticBlue100,
@@ -1486,6 +1542,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       sizing550: sizing550 ?? this.sizing550,
       sizing600: sizing600 ?? this.sizing600,
       sizing700: sizing700 ?? this.sizing700,
+      sizing75: sizing75 ?? this.sizing75,
       sizing800: sizing800 ?? this.sizing800,
       sizing900: sizing900 ?? this.sizing900,
       sizingBase: sizingBase ?? this.sizingBase,
@@ -1622,9 +1679,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         t,
       )!,
       backgroundBrand: Color.lerp(backgroundBrand, other.backgroundBrand, t)!,
-      backgroundDatavizBlue: Color.lerp(
-        backgroundDatavizBlue,
-        other.backgroundDatavizBlue,
+      backgroundDatavizBluePrimary: Color.lerp(
+        backgroundDatavizBluePrimary,
+        other.backgroundDatavizBluePrimary,
+        t,
+      )!,
+      backgroundDatavizBlueSecondary: Color.lerp(
+        backgroundDatavizBlueSecondary,
+        other.backgroundDatavizBlueSecondary,
         t,
       )!,
       backgroundDatavizDanger: Color.lerp(
@@ -1632,9 +1694,14 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundDatavizDanger,
         t,
       )!,
-      backgroundDatavizGreen: Color.lerp(
-        backgroundDatavizGreen,
-        other.backgroundDatavizGreen,
+      backgroundDatavizGreenPrimary: Color.lerp(
+        backgroundDatavizGreenPrimary,
+        other.backgroundDatavizGreenPrimary,
+        t,
+      )!,
+      backgroundDatavizGreenSecondary: Color.lerp(
+        backgroundDatavizGreenSecondary,
+        other.backgroundDatavizGreenSecondary,
         t,
       )!,
       backgroundDatavizInfo: Color.lerp(
@@ -1642,24 +1709,44 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundDatavizInfo,
         t,
       )!,
-      backgroundDatavizOrange: Color.lerp(
-        backgroundDatavizOrange,
-        other.backgroundDatavizOrange,
+      backgroundDatavizOrangePrimary: Color.lerp(
+        backgroundDatavizOrangePrimary,
+        other.backgroundDatavizOrangePrimary,
         t,
       )!,
-      backgroundDatavizPink: Color.lerp(
-        backgroundDatavizPink,
-        other.backgroundDatavizPink,
+      backgroundDatavizOrangeSecondary: Color.lerp(
+        backgroundDatavizOrangeSecondary,
+        other.backgroundDatavizOrangeSecondary,
         t,
       )!,
-      backgroundDatavizPurple: Color.lerp(
-        backgroundDatavizPurple,
-        other.backgroundDatavizPurple,
+      backgroundDatavizPinkPrimary: Color.lerp(
+        backgroundDatavizPinkPrimary,
+        other.backgroundDatavizPinkPrimary,
         t,
       )!,
-      backgroundDatavizRed: Color.lerp(
-        backgroundDatavizRed,
-        other.backgroundDatavizRed,
+      backgroundDatavizPinkSecondary: Color.lerp(
+        backgroundDatavizPinkSecondary,
+        other.backgroundDatavizPinkSecondary,
+        t,
+      )!,
+      backgroundDatavizPurplePrimary: Color.lerp(
+        backgroundDatavizPurplePrimary,
+        other.backgroundDatavizPurplePrimary,
+        t,
+      )!,
+      backgroundDatavizPurpleSecondary: Color.lerp(
+        backgroundDatavizPurpleSecondary,
+        other.backgroundDatavizPurpleSecondary,
+        t,
+      )!,
+      backgroundDatavizRedPrimary: Color.lerp(
+        backgroundDatavizRedPrimary,
+        other.backgroundDatavizRedPrimary,
+        t,
+      )!,
+      backgroundDatavizRedSecondary: Color.lerp(
+        backgroundDatavizRedSecondary,
+        other.backgroundDatavizRedSecondary,
         t,
       )!,
       backgroundDatavizSuccess: Color.lerp(
@@ -2671,34 +2758,64 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.paletteBrandNight900,
         t,
       )!,
-      paletteDatavizBlue: Color.lerp(
-        paletteDatavizBlue,
-        other.paletteDatavizBlue,
+      paletteDatavizBlue50: Color.lerp(
+        paletteDatavizBlue50,
+        other.paletteDatavizBlue50,
         t,
       )!,
-      paletteDatavizGreen: Color.lerp(
-        paletteDatavizGreen,
-        other.paletteDatavizGreen,
+      paletteDatavizBlue500: Color.lerp(
+        paletteDatavizBlue500,
+        other.paletteDatavizBlue500,
         t,
       )!,
-      paletteDatavizOrange: Color.lerp(
-        paletteDatavizOrange,
-        other.paletteDatavizOrange,
+      paletteDatavizGreen50: Color.lerp(
+        paletteDatavizGreen50,
+        other.paletteDatavizGreen50,
         t,
       )!,
-      paletteDatavizPink: Color.lerp(
-        paletteDatavizPink,
-        other.paletteDatavizPink,
+      paletteDatavizGreen500: Color.lerp(
+        paletteDatavizGreen500,
+        other.paletteDatavizGreen500,
         t,
       )!,
-      paletteDatavizPurple: Color.lerp(
-        paletteDatavizPurple,
-        other.paletteDatavizPurple,
+      paletteDatavizOrange50: Color.lerp(
+        paletteDatavizOrange50,
+        other.paletteDatavizOrange50,
         t,
       )!,
-      paletteDatavizRed: Color.lerp(
-        paletteDatavizRed,
-        other.paletteDatavizRed,
+      paletteDatavizOrange500: Color.lerp(
+        paletteDatavizOrange500,
+        other.paletteDatavizOrange500,
+        t,
+      )!,
+      paletteDatavizPink50: Color.lerp(
+        paletteDatavizPink50,
+        other.paletteDatavizPink50,
+        t,
+      )!,
+      paletteDatavizPink500: Color.lerp(
+        paletteDatavizPink500,
+        other.paletteDatavizPink500,
+        t,
+      )!,
+      paletteDatavizPurple50: Color.lerp(
+        paletteDatavizPurple50,
+        other.paletteDatavizPurple50,
+        t,
+      )!,
+      paletteDatavizPurple500: Color.lerp(
+        paletteDatavizPurple500,
+        other.paletteDatavizPurple500,
+        t,
+      )!,
+      paletteDatavizRed50: Color.lerp(
+        paletteDatavizRed50,
+        other.paletteDatavizRed50,
+        t,
+      )!,
+      paletteDatavizRed500: Color.lerp(
+        paletteDatavizRed500,
+        other.paletteDatavizRed500,
         t,
       )!,
       paletteSemanticBlue0: Color.lerp(
@@ -3201,6 +3318,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       sizing550: t < 0.5 ? sizing550 : other.sizing550,
       sizing600: t < 0.5 ? sizing600 : other.sizing600,
       sizing700: t < 0.5 ? sizing700 : other.sizing700,
+      sizing75: t < 0.5 ? sizing75 : other.sizing75,
       sizing800: t < 0.5 ? sizing800 : other.sizing800,
       sizing900: t < 0.5 ? sizing900 : other.sizing900,
       sizingBase: t < 0.5 ? sizingBase : other.sizingBase,
@@ -3326,36 +3444,60 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.backgroundBrand,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundDatavizBlue,
-              other.backgroundDatavizBlue,
+              backgroundDatavizBluePrimary,
+              other.backgroundDatavizBluePrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizBlueSecondary,
+              other.backgroundDatavizBlueSecondary,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundDatavizDanger,
               other.backgroundDatavizDanger,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundDatavizGreen,
-              other.backgroundDatavizGreen,
+              backgroundDatavizGreenPrimary,
+              other.backgroundDatavizGreenPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizGreenSecondary,
+              other.backgroundDatavizGreenSecondary,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundDatavizInfo,
               other.backgroundDatavizInfo,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundDatavizOrange,
-              other.backgroundDatavizOrange,
+              backgroundDatavizOrangePrimary,
+              other.backgroundDatavizOrangePrimary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundDatavizPink,
-              other.backgroundDatavizPink,
+              backgroundDatavizOrangeSecondary,
+              other.backgroundDatavizOrangeSecondary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundDatavizPurple,
-              other.backgroundDatavizPurple,
+              backgroundDatavizPinkPrimary,
+              other.backgroundDatavizPinkPrimary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundDatavizRed,
-              other.backgroundDatavizRed,
+              backgroundDatavizPinkSecondary,
+              other.backgroundDatavizPinkSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizPurplePrimary,
+              other.backgroundDatavizPurplePrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizPurpleSecondary,
+              other.backgroundDatavizPurpleSecondary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizRedPrimary,
+              other.backgroundDatavizRedPrimary,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizRedSecondary,
+              other.backgroundDatavizRedSecondary,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundDatavizSuccess,
@@ -4178,28 +4320,52 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.paletteBrandNight900,
             ) &&
             const DeepCollectionEquality().equals(
-              paletteDatavizBlue,
-              other.paletteDatavizBlue,
+              paletteDatavizBlue50,
+              other.paletteDatavizBlue50,
             ) &&
             const DeepCollectionEquality().equals(
-              paletteDatavizGreen,
-              other.paletteDatavizGreen,
+              paletteDatavizBlue500,
+              other.paletteDatavizBlue500,
             ) &&
             const DeepCollectionEquality().equals(
-              paletteDatavizOrange,
-              other.paletteDatavizOrange,
+              paletteDatavizGreen50,
+              other.paletteDatavizGreen50,
             ) &&
             const DeepCollectionEquality().equals(
-              paletteDatavizPink,
-              other.paletteDatavizPink,
+              paletteDatavizGreen500,
+              other.paletteDatavizGreen500,
             ) &&
             const DeepCollectionEquality().equals(
-              paletteDatavizPurple,
-              other.paletteDatavizPurple,
+              paletteDatavizOrange50,
+              other.paletteDatavizOrange50,
             ) &&
             const DeepCollectionEquality().equals(
-              paletteDatavizRed,
-              other.paletteDatavizRed,
+              paletteDatavizOrange500,
+              other.paletteDatavizOrange500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizPink50,
+              other.paletteDatavizPink50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizPink500,
+              other.paletteDatavizPink500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizPurple50,
+              other.paletteDatavizPurple50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizPurple500,
+              other.paletteDatavizPurple500,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizRed50,
+              other.paletteDatavizRed50,
+            ) &&
+            const DeepCollectionEquality().equals(
+              paletteDatavizRed500,
+              other.paletteDatavizRed500,
             ) &&
             const DeepCollectionEquality().equals(
               paletteSemanticBlue0,
@@ -4773,6 +4939,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(sizing550, other.sizing550) &&
             const DeepCollectionEquality().equals(sizing600, other.sizing600) &&
             const DeepCollectionEquality().equals(sizing700, other.sizing700) &&
+            const DeepCollectionEquality().equals(sizing75, other.sizing75) &&
             const DeepCollectionEquality().equals(sizing800, other.sizing800) &&
             const DeepCollectionEquality().equals(sizing900, other.sizing900) &&
             const DeepCollectionEquality().equals(
@@ -4900,14 +5067,20 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(backgroundAlertWarningSecondary),
       const DeepCollectionEquality().hash(backgroundBackdrop),
       const DeepCollectionEquality().hash(backgroundBrand),
-      const DeepCollectionEquality().hash(backgroundDatavizBlue),
+      const DeepCollectionEquality().hash(backgroundDatavizBluePrimary),
+      const DeepCollectionEquality().hash(backgroundDatavizBlueSecondary),
       const DeepCollectionEquality().hash(backgroundDatavizDanger),
-      const DeepCollectionEquality().hash(backgroundDatavizGreen),
+      const DeepCollectionEquality().hash(backgroundDatavizGreenPrimary),
+      const DeepCollectionEquality().hash(backgroundDatavizGreenSecondary),
       const DeepCollectionEquality().hash(backgroundDatavizInfo),
-      const DeepCollectionEquality().hash(backgroundDatavizOrange),
-      const DeepCollectionEquality().hash(backgroundDatavizPink),
-      const DeepCollectionEquality().hash(backgroundDatavizPurple),
-      const DeepCollectionEquality().hash(backgroundDatavizRed),
+      const DeepCollectionEquality().hash(backgroundDatavizOrangePrimary),
+      const DeepCollectionEquality().hash(backgroundDatavizOrangeSecondary),
+      const DeepCollectionEquality().hash(backgroundDatavizPinkPrimary),
+      const DeepCollectionEquality().hash(backgroundDatavizPinkSecondary),
+      const DeepCollectionEquality().hash(backgroundDatavizPurplePrimary),
+      const DeepCollectionEquality().hash(backgroundDatavizPurpleSecondary),
+      const DeepCollectionEquality().hash(backgroundDatavizRedPrimary),
+      const DeepCollectionEquality().hash(backgroundDatavizRedSecondary),
       const DeepCollectionEquality().hash(backgroundDatavizSuccess),
       const DeepCollectionEquality().hash(backgroundDatavizWarning),
       const DeepCollectionEquality().hash(backgroundDisabled),
@@ -5127,12 +5300,18 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(paletteBrandNight700),
       const DeepCollectionEquality().hash(paletteBrandNight800),
       const DeepCollectionEquality().hash(paletteBrandNight900),
-      const DeepCollectionEquality().hash(paletteDatavizBlue),
-      const DeepCollectionEquality().hash(paletteDatavizGreen),
-      const DeepCollectionEquality().hash(paletteDatavizOrange),
-      const DeepCollectionEquality().hash(paletteDatavizPink),
-      const DeepCollectionEquality().hash(paletteDatavizPurple),
-      const DeepCollectionEquality().hash(paletteDatavizRed),
+      const DeepCollectionEquality().hash(paletteDatavizBlue50),
+      const DeepCollectionEquality().hash(paletteDatavizBlue500),
+      const DeepCollectionEquality().hash(paletteDatavizGreen50),
+      const DeepCollectionEquality().hash(paletteDatavizGreen500),
+      const DeepCollectionEquality().hash(paletteDatavizOrange50),
+      const DeepCollectionEquality().hash(paletteDatavizOrange500),
+      const DeepCollectionEquality().hash(paletteDatavizPink50),
+      const DeepCollectionEquality().hash(paletteDatavizPink500),
+      const DeepCollectionEquality().hash(paletteDatavizPurple50),
+      const DeepCollectionEquality().hash(paletteDatavizPurple500),
+      const DeepCollectionEquality().hash(paletteDatavizRed50),
+      const DeepCollectionEquality().hash(paletteDatavizRed500),
       const DeepCollectionEquality().hash(paletteSemanticBlue0),
       const DeepCollectionEquality().hash(paletteSemanticBlue100),
       const DeepCollectionEquality().hash(paletteSemanticBlue1000),
@@ -5285,6 +5464,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(sizing550),
       const DeepCollectionEquality().hash(sizing600),
       const DeepCollectionEquality().hash(sizing700),
+      const DeepCollectionEquality().hash(sizing75),
       const DeepCollectionEquality().hash(sizing800),
       const DeepCollectionEquality().hash(sizing900),
       const DeepCollectionEquality().hash(sizingBase),
