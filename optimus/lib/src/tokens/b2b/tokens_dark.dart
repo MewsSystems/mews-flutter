@@ -3,8 +3,7 @@
 //
 // ignore_for_file: avoid-duplicate-constant-values
 
-// Do not edit directly
-// Generated on Fri, 12 Sep 2025 10:23:28 GMT
+// Do not edit directly, this file was auto-generated.
 
 import 'package:flutter/widgets.dart';
 
@@ -31,14 +30,20 @@ abstract final class DesignTokensDark {
   static const Color backgroundAlertWarningSecondary = Color(0xFF402F00);
   static const Color backgroundBackdrop = Color(0xA312121A);
   static const Color backgroundBrand = Color(0xFFFFFFFF);
-  static const Color backgroundDatavizBlue = Color(0xFF5A8CD6);
+  static const Color backgroundDatavizBluePrimary = Color(0xFF5A8CD6);
+  static const Color backgroundDatavizBlueSecondary = Color(0xFF243149);
   static const Color backgroundDatavizDanger = Color(0xFFEF3C38);
-  static const Color backgroundDatavizGreen = Color(0xFF27C4CE);
+  static const Color backgroundDatavizGreenPrimary = Color(0xFF27C4CE);
+  static const Color backgroundDatavizGreenSecondary = Color(0xFF173F47);
   static const Color backgroundDatavizInfo = Color(0xFF2C7DF4);
-  static const Color backgroundDatavizOrange = Color(0xFFFFA776);
-  static const Color backgroundDatavizPink = Color(0xFFFFAFF0);
-  static const Color backgroundDatavizPurple = Color(0xFF894EEE);
-  static const Color backgroundDatavizRed = Color(0xFFFF5A65);
+  static const Color backgroundDatavizOrangePrimary = Color(0xFFFFA776);
+  static const Color backgroundDatavizOrangeSecondary = Color(0xFF4D3731);
+  static const Color backgroundDatavizPinkPrimary = Color(0xFFFFAFF0);
+  static const Color backgroundDatavizPinkSecondary = Color(0xFF4D3950);
+  static const Color backgroundDatavizPurplePrimary = Color(0xFF894EEE);
+  static const Color backgroundDatavizPurpleSecondary = Color(0xFF30214F);
+  static const Color backgroundDatavizRedPrimary = Color(0xFFFF5A65);
+  static const Color backgroundDatavizRedSecondary = Color(0xFF4D242D);
   static const Color backgroundDatavizSuccess = Color(0xFF4D993F);
   static const Color backgroundDatavizWarning = Color(0xFFEE940B);
   static const Color backgroundDisabled = Color(0xFF323243);
@@ -252,12 +257,18 @@ abstract final class DesignTokensDark {
   static const Color paletteBrandNight700 = Color(0xFFA8A8C0);
   static const Color paletteBrandNight800 = Color(0xFFC4C4D5);
   static const Color paletteBrandNight900 = Color(0xFFE1E1EA);
-  static const Color paletteDatavizBlue = Color(0xFF5A8CD6);
-  static const Color paletteDatavizGreen = Color(0xFF27C4CE);
-  static const Color paletteDatavizOrange = Color(0xFFFFA776);
-  static const Color paletteDatavizPink = Color(0xFFFFAFF0);
-  static const Color paletteDatavizPurple = Color(0xFF894EEE);
-  static const Color paletteDatavizRed = Color(0xFFFF5A65);
+  static const Color paletteDatavizBlue50 = Color(0xFF243149);
+  static const Color paletteDatavizBlue500 = Color(0xFF5A8CD6);
+  static const Color paletteDatavizGreen50 = Color(0xFF173F47);
+  static const Color paletteDatavizGreen500 = Color(0xFF27C4CE);
+  static const Color paletteDatavizOrange50 = Color(0xFF4D3731);
+  static const Color paletteDatavizOrange500 = Color(0xFFFFA776);
+  static const Color paletteDatavizPink50 = Color(0xFF4D3950);
+  static const Color paletteDatavizPink500 = Color(0xFFFFAFF0);
+  static const Color paletteDatavizPurple50 = Color(0xFF30214F);
+  static const Color paletteDatavizPurple500 = Color(0xFF894EEE);
+  static const Color paletteDatavizRed50 = Color(0xFF4D242D);
+  static const Color paletteDatavizRed500 = Color(0xFFFF5A65);
   static const Color paletteSemanticBlue0 = Color(0xFF0F1B33);
   static const Color paletteSemanticBlue100 = Color(0xFF1A4186);
   static const Color paletteSemanticBlue1000 = Color(0xFFFCFEFF);
@@ -536,6 +547,7 @@ abstract final class DesignTokensDark {
   static const double sizing550 = 44;
   static const double sizing600 = 48;
   static const double sizing700 = 56;
+  static const double sizing75 = 6;
   static const double sizing800 = 64;
   static const double sizing900 = 72;
   static const double sizingBase = 8;
