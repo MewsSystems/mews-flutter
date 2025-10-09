@@ -9,8 +9,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 // optimus_tokens.dart
 //
 
-// Do not edit directly
-// Generated on Fri, 12 Sep 2025 10:23:29 GMT
+// Do not edit directly, this file was auto-generated.
 
 part 'optimus_tokens.tailor.dart';
 
@@ -38,14 +37,20 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundAlertWarningSecondary,
     required this.backgroundBackdrop,
     required this.backgroundBrand,
-    required this.backgroundDatavizBlue,
+    required this.backgroundDatavizBluePrimary,
+    required this.backgroundDatavizBlueSecondary,
     required this.backgroundDatavizDanger,
-    required this.backgroundDatavizGreen,
+    required this.backgroundDatavizGreenPrimary,
+    required this.backgroundDatavizGreenSecondary,
     required this.backgroundDatavizInfo,
-    required this.backgroundDatavizOrange,
-    required this.backgroundDatavizPink,
-    required this.backgroundDatavizPurple,
-    required this.backgroundDatavizRed,
+    required this.backgroundDatavizOrangePrimary,
+    required this.backgroundDatavizOrangeSecondary,
+    required this.backgroundDatavizPinkPrimary,
+    required this.backgroundDatavizPinkSecondary,
+    required this.backgroundDatavizPurplePrimary,
+    required this.backgroundDatavizPurpleSecondary,
+    required this.backgroundDatavizRedPrimary,
+    required this.backgroundDatavizRedSecondary,
     required this.backgroundDatavizSuccess,
     required this.backgroundDatavizWarning,
     required this.backgroundDisabled,
@@ -251,12 +256,18 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.paletteBrandNight700,
     required this.paletteBrandNight800,
     required this.paletteBrandNight900,
-    required this.paletteDatavizBlue,
-    required this.paletteDatavizGreen,
-    required this.paletteDatavizOrange,
-    required this.paletteDatavizPink,
-    required this.paletteDatavizPurple,
-    required this.paletteDatavizRed,
+    required this.paletteDatavizBlue50,
+    required this.paletteDatavizBlue500,
+    required this.paletteDatavizGreen50,
+    required this.paletteDatavizGreen500,
+    required this.paletteDatavizOrange50,
+    required this.paletteDatavizOrange500,
+    required this.paletteDatavizPink50,
+    required this.paletteDatavizPink500,
+    required this.paletteDatavizPurple50,
+    required this.paletteDatavizPurple500,
+    required this.paletteDatavizRed50,
+    required this.paletteDatavizRed500,
     required this.paletteSemanticBlue0,
     required this.paletteSemanticBlue100,
     required this.paletteSemanticBlue1000,
@@ -412,6 +423,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.sizing550,
     required this.sizing600,
     required this.sizing700,
+    required this.sizing75,
     required this.sizing800,
     required this.sizing900,
     required this.sizingBase,
@@ -491,21 +503,33 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final Color backgroundBrand;
   @override
-  final Color backgroundDatavizBlue;
+  final Color backgroundDatavizBluePrimary;
+  @override
+  final Color backgroundDatavizBlueSecondary;
   @override
   final Color backgroundDatavizDanger;
   @override
-  final Color backgroundDatavizGreen;
+  final Color backgroundDatavizGreenPrimary;
+  @override
+  final Color backgroundDatavizGreenSecondary;
   @override
   final Color backgroundDatavizInfo;
   @override
-  final Color backgroundDatavizOrange;
+  final Color backgroundDatavizOrangePrimary;
   @override
-  final Color backgroundDatavizPink;
+  final Color backgroundDatavizOrangeSecondary;
   @override
-  final Color backgroundDatavizPurple;
+  final Color backgroundDatavizPinkPrimary;
   @override
-  final Color backgroundDatavizRed;
+  final Color backgroundDatavizPinkSecondary;
+  @override
+  final Color backgroundDatavizPurplePrimary;
+  @override
+  final Color backgroundDatavizPurpleSecondary;
+  @override
+  final Color backgroundDatavizRedPrimary;
+  @override
+  final Color backgroundDatavizRedSecondary;
   @override
   final Color backgroundDatavizSuccess;
   @override
@@ -917,17 +941,29 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final Color paletteBrandNight900;
   @override
-  final Color paletteDatavizBlue;
+  final Color paletteDatavizBlue50;
   @override
-  final Color paletteDatavizGreen;
+  final Color paletteDatavizBlue500;
   @override
-  final Color paletteDatavizOrange;
+  final Color paletteDatavizGreen50;
   @override
-  final Color paletteDatavizPink;
+  final Color paletteDatavizGreen500;
   @override
-  final Color paletteDatavizPurple;
+  final Color paletteDatavizOrange50;
   @override
-  final Color paletteDatavizRed;
+  final Color paletteDatavizOrange500;
+  @override
+  final Color paletteDatavizPink50;
+  @override
+  final Color paletteDatavizPink500;
+  @override
+  final Color paletteDatavizPurple50;
+  @override
+  final Color paletteDatavizPurple500;
+  @override
+  final Color paletteDatavizRed50;
+  @override
+  final Color paletteDatavizRed500;
   @override
   final Color paletteSemanticBlue0;
   @override
@@ -1236,6 +1272,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final double sizing700;
   @override
+  final double sizing75;
+  @override
   final double sizing800;
   @override
   final double sizing900;
@@ -1333,14 +1371,31 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         DesignTokensLight.backgroundAlertWarningSecondary,
     backgroundBackdrop: DesignTokensLight.backgroundBackdrop,
     backgroundBrand: DesignTokensLight.backgroundBrand,
-    backgroundDatavizBlue: DesignTokensLight.backgroundDatavizBlue,
+    backgroundDatavizBluePrimary:
+        DesignTokensLight.backgroundDatavizBluePrimary,
+    backgroundDatavizBlueSecondary:
+        DesignTokensLight.backgroundDatavizBlueSecondary,
     backgroundDatavizDanger: DesignTokensLight.backgroundDatavizDanger,
-    backgroundDatavizGreen: DesignTokensLight.backgroundDatavizGreen,
+    backgroundDatavizGreenPrimary:
+        DesignTokensLight.backgroundDatavizGreenPrimary,
+    backgroundDatavizGreenSecondary:
+        DesignTokensLight.backgroundDatavizGreenSecondary,
     backgroundDatavizInfo: DesignTokensLight.backgroundDatavizInfo,
-    backgroundDatavizOrange: DesignTokensLight.backgroundDatavizOrange,
-    backgroundDatavizPink: DesignTokensLight.backgroundDatavizPink,
-    backgroundDatavizPurple: DesignTokensLight.backgroundDatavizPurple,
-    backgroundDatavizRed: DesignTokensLight.backgroundDatavizRed,
+    backgroundDatavizOrangePrimary:
+        DesignTokensLight.backgroundDatavizOrangePrimary,
+    backgroundDatavizOrangeSecondary:
+        DesignTokensLight.backgroundDatavizOrangeSecondary,
+    backgroundDatavizPinkPrimary:
+        DesignTokensLight.backgroundDatavizPinkPrimary,
+    backgroundDatavizPinkSecondary:
+        DesignTokensLight.backgroundDatavizPinkSecondary,
+    backgroundDatavizPurplePrimary:
+        DesignTokensLight.backgroundDatavizPurplePrimary,
+    backgroundDatavizPurpleSecondary:
+        DesignTokensLight.backgroundDatavizPurpleSecondary,
+    backgroundDatavizRedPrimary: DesignTokensLight.backgroundDatavizRedPrimary,
+    backgroundDatavizRedSecondary:
+        DesignTokensLight.backgroundDatavizRedSecondary,
     backgroundDatavizSuccess: DesignTokensLight.backgroundDatavizSuccess,
     backgroundDatavizWarning: DesignTokensLight.backgroundDatavizWarning,
     backgroundDisabled: DesignTokensLight.backgroundDisabled,
@@ -1579,12 +1634,18 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandNight700: DesignTokensLight.paletteBrandNight700,
     paletteBrandNight800: DesignTokensLight.paletteBrandNight800,
     paletteBrandNight900: DesignTokensLight.paletteBrandNight900,
-    paletteDatavizBlue: DesignTokensLight.paletteDatavizBlue,
-    paletteDatavizGreen: DesignTokensLight.paletteDatavizGreen,
-    paletteDatavizOrange: DesignTokensLight.paletteDatavizOrange,
-    paletteDatavizPink: DesignTokensLight.paletteDatavizPink,
-    paletteDatavizPurple: DesignTokensLight.paletteDatavizPurple,
-    paletteDatavizRed: DesignTokensLight.paletteDatavizRed,
+    paletteDatavizBlue50: DesignTokensLight.paletteDatavizBlue50,
+    paletteDatavizBlue500: DesignTokensLight.paletteDatavizBlue500,
+    paletteDatavizGreen50: DesignTokensLight.paletteDatavizGreen50,
+    paletteDatavizGreen500: DesignTokensLight.paletteDatavizGreen500,
+    paletteDatavizOrange50: DesignTokensLight.paletteDatavizOrange50,
+    paletteDatavizOrange500: DesignTokensLight.paletteDatavizOrange500,
+    paletteDatavizPink50: DesignTokensLight.paletteDatavizPink50,
+    paletteDatavizPink500: DesignTokensLight.paletteDatavizPink500,
+    paletteDatavizPurple50: DesignTokensLight.paletteDatavizPurple50,
+    paletteDatavizPurple500: DesignTokensLight.paletteDatavizPurple500,
+    paletteDatavizRed50: DesignTokensLight.paletteDatavizRed50,
+    paletteDatavizRed500: DesignTokensLight.paletteDatavizRed500,
     paletteSemanticBlue0: DesignTokensLight.paletteSemanticBlue0,
     paletteSemanticBlue100: DesignTokensLight.paletteSemanticBlue100,
     paletteSemanticBlue1000: DesignTokensLight.paletteSemanticBlue1000,
@@ -1745,6 +1806,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     sizing550: DesignTokensLight.sizing550,
     sizing600: DesignTokensLight.sizing600,
     sizing700: DesignTokensLight.sizing700,
+    sizing75: DesignTokensLight.sizing75,
     sizing800: DesignTokensLight.sizing800,
     sizing900: DesignTokensLight.sizing900,
     sizingBase: DesignTokensLight.sizingBase,
@@ -1810,14 +1872,29 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
         DesignTokensDark.backgroundAlertWarningSecondary,
     backgroundBackdrop: DesignTokensDark.backgroundBackdrop,
     backgroundBrand: DesignTokensDark.backgroundBrand,
-    backgroundDatavizBlue: DesignTokensDark.backgroundDatavizBlue,
+    backgroundDatavizBluePrimary: DesignTokensDark.backgroundDatavizBluePrimary,
+    backgroundDatavizBlueSecondary:
+        DesignTokensDark.backgroundDatavizBlueSecondary,
     backgroundDatavizDanger: DesignTokensDark.backgroundDatavizDanger,
-    backgroundDatavizGreen: DesignTokensDark.backgroundDatavizGreen,
+    backgroundDatavizGreenPrimary:
+        DesignTokensDark.backgroundDatavizGreenPrimary,
+    backgroundDatavizGreenSecondary:
+        DesignTokensDark.backgroundDatavizGreenSecondary,
     backgroundDatavizInfo: DesignTokensDark.backgroundDatavizInfo,
-    backgroundDatavizOrange: DesignTokensDark.backgroundDatavizOrange,
-    backgroundDatavizPink: DesignTokensDark.backgroundDatavizPink,
-    backgroundDatavizPurple: DesignTokensDark.backgroundDatavizPurple,
-    backgroundDatavizRed: DesignTokensDark.backgroundDatavizRed,
+    backgroundDatavizOrangePrimary:
+        DesignTokensDark.backgroundDatavizOrangePrimary,
+    backgroundDatavizOrangeSecondary:
+        DesignTokensDark.backgroundDatavizOrangeSecondary,
+    backgroundDatavizPinkPrimary: DesignTokensDark.backgroundDatavizPinkPrimary,
+    backgroundDatavizPinkSecondary:
+        DesignTokensDark.backgroundDatavizPinkSecondary,
+    backgroundDatavizPurplePrimary:
+        DesignTokensDark.backgroundDatavizPurplePrimary,
+    backgroundDatavizPurpleSecondary:
+        DesignTokensDark.backgroundDatavizPurpleSecondary,
+    backgroundDatavizRedPrimary: DesignTokensDark.backgroundDatavizRedPrimary,
+    backgroundDatavizRedSecondary:
+        DesignTokensDark.backgroundDatavizRedSecondary,
     backgroundDatavizSuccess: DesignTokensDark.backgroundDatavizSuccess,
     backgroundDatavizWarning: DesignTokensDark.backgroundDatavizWarning,
     backgroundDisabled: DesignTokensDark.backgroundDisabled,
@@ -2052,12 +2129,18 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     paletteBrandNight700: DesignTokensDark.paletteBrandNight700,
     paletteBrandNight800: DesignTokensDark.paletteBrandNight800,
     paletteBrandNight900: DesignTokensDark.paletteBrandNight900,
-    paletteDatavizBlue: DesignTokensDark.paletteDatavizBlue,
-    paletteDatavizGreen: DesignTokensDark.paletteDatavizGreen,
-    paletteDatavizOrange: DesignTokensDark.paletteDatavizOrange,
-    paletteDatavizPink: DesignTokensDark.paletteDatavizPink,
-    paletteDatavizPurple: DesignTokensDark.paletteDatavizPurple,
-    paletteDatavizRed: DesignTokensDark.paletteDatavizRed,
+    paletteDatavizBlue50: DesignTokensDark.paletteDatavizBlue50,
+    paletteDatavizBlue500: DesignTokensDark.paletteDatavizBlue500,
+    paletteDatavizGreen50: DesignTokensDark.paletteDatavizGreen50,
+    paletteDatavizGreen500: DesignTokensDark.paletteDatavizGreen500,
+    paletteDatavizOrange50: DesignTokensDark.paletteDatavizOrange50,
+    paletteDatavizOrange500: DesignTokensDark.paletteDatavizOrange500,
+    paletteDatavizPink50: DesignTokensDark.paletteDatavizPink50,
+    paletteDatavizPink500: DesignTokensDark.paletteDatavizPink500,
+    paletteDatavizPurple50: DesignTokensDark.paletteDatavizPurple50,
+    paletteDatavizPurple500: DesignTokensDark.paletteDatavizPurple500,
+    paletteDatavizRed50: DesignTokensDark.paletteDatavizRed50,
+    paletteDatavizRed500: DesignTokensDark.paletteDatavizRed500,
     paletteSemanticBlue0: DesignTokensDark.paletteSemanticBlue0,
     paletteSemanticBlue100: DesignTokensDark.paletteSemanticBlue100,
     paletteSemanticBlue1000: DesignTokensDark.paletteSemanticBlue1000,
@@ -2217,6 +2300,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     sizing550: DesignTokensDark.sizing550,
     sizing600: DesignTokensDark.sizing600,
     sizing700: DesignTokensDark.sizing700,
+    sizing75: DesignTokensDark.sizing75,
     sizing800: DesignTokensDark.sizing800,
     sizing900: DesignTokensDark.sizing900,
     sizingBase: DesignTokensDark.sizingBase,
