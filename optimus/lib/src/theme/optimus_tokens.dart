@@ -9,8 +9,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 // optimus_tokens.dart
 //
 
-// Do not edit directly
-// Generated on Tue, 30 Sep 2025 08:34:58 GMT
+// Do not edit directly, this file was auto-generated.
 
 part 'optimus_tokens.tailor.dart';
 

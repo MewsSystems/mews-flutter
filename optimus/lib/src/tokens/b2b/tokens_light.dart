@@ -3,8 +3,7 @@
 //
 // ignore_for_file: avoid-duplicate-constant-values
 
-// Do not edit directly
-// Generated on Tue, 30 Sep 2025 08:34:57 GMT
+// Do not edit directly, this file was auto-generated.
 
 import 'package:flutter/widgets.dart';
 
