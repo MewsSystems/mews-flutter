@@ -1,3 +1,12 @@
+## 0.42.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: Design Tokens Update 10.1.0 (#857).
+ - **FEAT**: [DX-7439] Update border colors (#852).
+ - **FEAT**: Design Tokens Update 9.0.3 (#855).
+ - **BREAKING** **FEAT**: Design Tokens Update 10.0.0 (#856).
+
 ## 0.41.2
 
  - **REFACTOR**: Fix linter issues.
