@@ -18,18 +18,29 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   Color get backgroundAccentSecondary;
   Color get backgroundAccentSuccess;
   Color get backgroundAccentWarning;
-  Color get backgroundAlertBasicPrimary;
+  Color get backgroundAlertBasicActive;
+  Color get backgroundAlertBasicDefault;
+  Color get backgroundAlertBasicHover;
   Color get backgroundAlertBasicSecondary;
-  Color get backgroundAlertDangerPrimary;
+  Color get backgroundAlertDangerActive;
+  Color get backgroundAlertDangerDefault;
+  Color get backgroundAlertDangerHover;
   Color get backgroundAlertDangerSecondary;
-  Color get backgroundAlertInfoPrimary;
+  Color get backgroundAlertInfoActive;
+  Color get backgroundAlertInfoDefault;
+  Color get backgroundAlertInfoHover;
   Color get backgroundAlertInfoSecondary;
-  Color get backgroundAlertSuccessPrimary;
+  Color get backgroundAlertSuccessActive;
+  Color get backgroundAlertSuccessDefault;
+  Color get backgroundAlertSuccessHover;
   Color get backgroundAlertSuccessSecondary;
-  Color get backgroundAlertWarningPrimary;
+  Color get backgroundAlertWarningActive;
+  Color get backgroundAlertWarningDefault;
+  Color get backgroundAlertWarningHover;
   Color get backgroundAlertWarningSecondary;
   Color get backgroundBackdrop;
   Color get backgroundBrand;
+  Color get backgroundDatavizBasic;
   Color get backgroundDatavizBluePrimary;
   Color get backgroundDatavizBlueSecondary;
   Color get backgroundDatavizDanger;
@@ -457,18 +468,29 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     Color? backgroundAccentSecondary,
     Color? backgroundAccentSuccess,
     Color? backgroundAccentWarning,
-    Color? backgroundAlertBasicPrimary,
+    Color? backgroundAlertBasicActive,
+    Color? backgroundAlertBasicDefault,
+    Color? backgroundAlertBasicHover,
     Color? backgroundAlertBasicSecondary,
-    Color? backgroundAlertDangerPrimary,
+    Color? backgroundAlertDangerActive,
+    Color? backgroundAlertDangerDefault,
+    Color? backgroundAlertDangerHover,
     Color? backgroundAlertDangerSecondary,
-    Color? backgroundAlertInfoPrimary,
+    Color? backgroundAlertInfoActive,
+    Color? backgroundAlertInfoDefault,
+    Color? backgroundAlertInfoHover,
     Color? backgroundAlertInfoSecondary,
-    Color? backgroundAlertSuccessPrimary,
+    Color? backgroundAlertSuccessActive,
+    Color? backgroundAlertSuccessDefault,
+    Color? backgroundAlertSuccessHover,
     Color? backgroundAlertSuccessSecondary,
-    Color? backgroundAlertWarningPrimary,
+    Color? backgroundAlertWarningActive,
+    Color? backgroundAlertWarningDefault,
+    Color? backgroundAlertWarningHover,
     Color? backgroundAlertWarningSecondary,
     Color? backgroundBackdrop,
     Color? backgroundBrand,
+    Color? backgroundDatavizBasic,
     Color? backgroundDatavizBluePrimary,
     Color? backgroundDatavizBlueSecondary,
     Color? backgroundDatavizDanger,
@@ -902,30 +924,52 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
           backgroundAccentSuccess ?? this.backgroundAccentSuccess,
       backgroundAccentWarning:
           backgroundAccentWarning ?? this.backgroundAccentWarning,
-      backgroundAlertBasicPrimary:
-          backgroundAlertBasicPrimary ?? this.backgroundAlertBasicPrimary,
+      backgroundAlertBasicActive:
+          backgroundAlertBasicActive ?? this.backgroundAlertBasicActive,
+      backgroundAlertBasicDefault:
+          backgroundAlertBasicDefault ?? this.backgroundAlertBasicDefault,
+      backgroundAlertBasicHover:
+          backgroundAlertBasicHover ?? this.backgroundAlertBasicHover,
       backgroundAlertBasicSecondary:
           backgroundAlertBasicSecondary ?? this.backgroundAlertBasicSecondary,
-      backgroundAlertDangerPrimary:
-          backgroundAlertDangerPrimary ?? this.backgroundAlertDangerPrimary,
+      backgroundAlertDangerActive:
+          backgroundAlertDangerActive ?? this.backgroundAlertDangerActive,
+      backgroundAlertDangerDefault:
+          backgroundAlertDangerDefault ?? this.backgroundAlertDangerDefault,
+      backgroundAlertDangerHover:
+          backgroundAlertDangerHover ?? this.backgroundAlertDangerHover,
       backgroundAlertDangerSecondary:
           backgroundAlertDangerSecondary ?? this.backgroundAlertDangerSecondary,
-      backgroundAlertInfoPrimary:
-          backgroundAlertInfoPrimary ?? this.backgroundAlertInfoPrimary,
+      backgroundAlertInfoActive:
+          backgroundAlertInfoActive ?? this.backgroundAlertInfoActive,
+      backgroundAlertInfoDefault:
+          backgroundAlertInfoDefault ?? this.backgroundAlertInfoDefault,
+      backgroundAlertInfoHover:
+          backgroundAlertInfoHover ?? this.backgroundAlertInfoHover,
       backgroundAlertInfoSecondary:
           backgroundAlertInfoSecondary ?? this.backgroundAlertInfoSecondary,
-      backgroundAlertSuccessPrimary:
-          backgroundAlertSuccessPrimary ?? this.backgroundAlertSuccessPrimary,
+      backgroundAlertSuccessActive:
+          backgroundAlertSuccessActive ?? this.backgroundAlertSuccessActive,
+      backgroundAlertSuccessDefault:
+          backgroundAlertSuccessDefault ?? this.backgroundAlertSuccessDefault,
+      backgroundAlertSuccessHover:
+          backgroundAlertSuccessHover ?? this.backgroundAlertSuccessHover,
       backgroundAlertSuccessSecondary:
           backgroundAlertSuccessSecondary ??
           this.backgroundAlertSuccessSecondary,
-      backgroundAlertWarningPrimary:
-          backgroundAlertWarningPrimary ?? this.backgroundAlertWarningPrimary,
+      backgroundAlertWarningActive:
+          backgroundAlertWarningActive ?? this.backgroundAlertWarningActive,
+      backgroundAlertWarningDefault:
+          backgroundAlertWarningDefault ?? this.backgroundAlertWarningDefault,
+      backgroundAlertWarningHover:
+          backgroundAlertWarningHover ?? this.backgroundAlertWarningHover,
       backgroundAlertWarningSecondary:
           backgroundAlertWarningSecondary ??
           this.backgroundAlertWarningSecondary,
       backgroundBackdrop: backgroundBackdrop ?? this.backgroundBackdrop,
       backgroundBrand: backgroundBrand ?? this.backgroundBrand,
+      backgroundDatavizBasic:
+          backgroundDatavizBasic ?? this.backgroundDatavizBasic,
       backgroundDatavizBluePrimary:
           backgroundDatavizBluePrimary ?? this.backgroundDatavizBluePrimary,
       backgroundDatavizBlueSecondary:
@@ -1623,9 +1667,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundAccentWarning,
         t,
       )!,
-      backgroundAlertBasicPrimary: Color.lerp(
-        backgroundAlertBasicPrimary,
-        other.backgroundAlertBasicPrimary,
+      backgroundAlertBasicActive: Color.lerp(
+        backgroundAlertBasicActive,
+        other.backgroundAlertBasicActive,
+        t,
+      )!,
+      backgroundAlertBasicDefault: Color.lerp(
+        backgroundAlertBasicDefault,
+        other.backgroundAlertBasicDefault,
+        t,
+      )!,
+      backgroundAlertBasicHover: Color.lerp(
+        backgroundAlertBasicHover,
+        other.backgroundAlertBasicHover,
         t,
       )!,
       backgroundAlertBasicSecondary: Color.lerp(
@@ -1633,9 +1687,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundAlertBasicSecondary,
         t,
       )!,
-      backgroundAlertDangerPrimary: Color.lerp(
-        backgroundAlertDangerPrimary,
-        other.backgroundAlertDangerPrimary,
+      backgroundAlertDangerActive: Color.lerp(
+        backgroundAlertDangerActive,
+        other.backgroundAlertDangerActive,
+        t,
+      )!,
+      backgroundAlertDangerDefault: Color.lerp(
+        backgroundAlertDangerDefault,
+        other.backgroundAlertDangerDefault,
+        t,
+      )!,
+      backgroundAlertDangerHover: Color.lerp(
+        backgroundAlertDangerHover,
+        other.backgroundAlertDangerHover,
         t,
       )!,
       backgroundAlertDangerSecondary: Color.lerp(
@@ -1643,9 +1707,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundAlertDangerSecondary,
         t,
       )!,
-      backgroundAlertInfoPrimary: Color.lerp(
-        backgroundAlertInfoPrimary,
-        other.backgroundAlertInfoPrimary,
+      backgroundAlertInfoActive: Color.lerp(
+        backgroundAlertInfoActive,
+        other.backgroundAlertInfoActive,
+        t,
+      )!,
+      backgroundAlertInfoDefault: Color.lerp(
+        backgroundAlertInfoDefault,
+        other.backgroundAlertInfoDefault,
+        t,
+      )!,
+      backgroundAlertInfoHover: Color.lerp(
+        backgroundAlertInfoHover,
+        other.backgroundAlertInfoHover,
         t,
       )!,
       backgroundAlertInfoSecondary: Color.lerp(
@@ -1653,9 +1727,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundAlertInfoSecondary,
         t,
       )!,
-      backgroundAlertSuccessPrimary: Color.lerp(
-        backgroundAlertSuccessPrimary,
-        other.backgroundAlertSuccessPrimary,
+      backgroundAlertSuccessActive: Color.lerp(
+        backgroundAlertSuccessActive,
+        other.backgroundAlertSuccessActive,
+        t,
+      )!,
+      backgroundAlertSuccessDefault: Color.lerp(
+        backgroundAlertSuccessDefault,
+        other.backgroundAlertSuccessDefault,
+        t,
+      )!,
+      backgroundAlertSuccessHover: Color.lerp(
+        backgroundAlertSuccessHover,
+        other.backgroundAlertSuccessHover,
         t,
       )!,
       backgroundAlertSuccessSecondary: Color.lerp(
@@ -1663,9 +1747,19 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         other.backgroundAlertSuccessSecondary,
         t,
       )!,
-      backgroundAlertWarningPrimary: Color.lerp(
-        backgroundAlertWarningPrimary,
-        other.backgroundAlertWarningPrimary,
+      backgroundAlertWarningActive: Color.lerp(
+        backgroundAlertWarningActive,
+        other.backgroundAlertWarningActive,
+        t,
+      )!,
+      backgroundAlertWarningDefault: Color.lerp(
+        backgroundAlertWarningDefault,
+        other.backgroundAlertWarningDefault,
+        t,
+      )!,
+      backgroundAlertWarningHover: Color.lerp(
+        backgroundAlertWarningHover,
+        other.backgroundAlertWarningHover,
         t,
       )!,
       backgroundAlertWarningSecondary: Color.lerp(
@@ -1679,6 +1773,11 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
         t,
       )!,
       backgroundBrand: Color.lerp(backgroundBrand, other.backgroundBrand, t)!,
+      backgroundDatavizBasic: Color.lerp(
+        backgroundDatavizBasic,
+        other.backgroundDatavizBasic,
+        t,
+      )!,
       backgroundDatavizBluePrimary: Color.lerp(
         backgroundDatavizBluePrimary,
         other.backgroundDatavizBluePrimary,
@@ -3396,40 +3495,80 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               other.backgroundAccentWarning,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundAlertBasicPrimary,
-              other.backgroundAlertBasicPrimary,
+              backgroundAlertBasicActive,
+              other.backgroundAlertBasicActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertBasicDefault,
+              other.backgroundAlertBasicDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertBasicHover,
+              other.backgroundAlertBasicHover,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundAlertBasicSecondary,
               other.backgroundAlertBasicSecondary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundAlertDangerPrimary,
-              other.backgroundAlertDangerPrimary,
+              backgroundAlertDangerActive,
+              other.backgroundAlertDangerActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertDangerDefault,
+              other.backgroundAlertDangerDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertDangerHover,
+              other.backgroundAlertDangerHover,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundAlertDangerSecondary,
               other.backgroundAlertDangerSecondary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundAlertInfoPrimary,
-              other.backgroundAlertInfoPrimary,
+              backgroundAlertInfoActive,
+              other.backgroundAlertInfoActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertInfoDefault,
+              other.backgroundAlertInfoDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertInfoHover,
+              other.backgroundAlertInfoHover,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundAlertInfoSecondary,
               other.backgroundAlertInfoSecondary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundAlertSuccessPrimary,
-              other.backgroundAlertSuccessPrimary,
+              backgroundAlertSuccessActive,
+              other.backgroundAlertSuccessActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertSuccessDefault,
+              other.backgroundAlertSuccessDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertSuccessHover,
+              other.backgroundAlertSuccessHover,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundAlertSuccessSecondary,
               other.backgroundAlertSuccessSecondary,
             ) &&
             const DeepCollectionEquality().equals(
-              backgroundAlertWarningPrimary,
-              other.backgroundAlertWarningPrimary,
+              backgroundAlertWarningActive,
+              other.backgroundAlertWarningActive,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertWarningDefault,
+              other.backgroundAlertWarningDefault,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundAlertWarningHover,
+              other.backgroundAlertWarningHover,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundAlertWarningSecondary,
@@ -3442,6 +3581,10 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
             const DeepCollectionEquality().equals(
               backgroundBrand,
               other.backgroundBrand,
+            ) &&
+            const DeepCollectionEquality().equals(
+              backgroundDatavizBasic,
+              other.backgroundDatavizBasic,
             ) &&
             const DeepCollectionEquality().equals(
               backgroundDatavizBluePrimary,
@@ -5055,18 +5198,29 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(backgroundAccentSecondary),
       const DeepCollectionEquality().hash(backgroundAccentSuccess),
       const DeepCollectionEquality().hash(backgroundAccentWarning),
-      const DeepCollectionEquality().hash(backgroundAlertBasicPrimary),
+      const DeepCollectionEquality().hash(backgroundAlertBasicActive),
+      const DeepCollectionEquality().hash(backgroundAlertBasicDefault),
+      const DeepCollectionEquality().hash(backgroundAlertBasicHover),
       const DeepCollectionEquality().hash(backgroundAlertBasicSecondary),
-      const DeepCollectionEquality().hash(backgroundAlertDangerPrimary),
+      const DeepCollectionEquality().hash(backgroundAlertDangerActive),
+      const DeepCollectionEquality().hash(backgroundAlertDangerDefault),
+      const DeepCollectionEquality().hash(backgroundAlertDangerHover),
       const DeepCollectionEquality().hash(backgroundAlertDangerSecondary),
-      const DeepCollectionEquality().hash(backgroundAlertInfoPrimary),
+      const DeepCollectionEquality().hash(backgroundAlertInfoActive),
+      const DeepCollectionEquality().hash(backgroundAlertInfoDefault),
+      const DeepCollectionEquality().hash(backgroundAlertInfoHover),
       const DeepCollectionEquality().hash(backgroundAlertInfoSecondary),
-      const DeepCollectionEquality().hash(backgroundAlertSuccessPrimary),
+      const DeepCollectionEquality().hash(backgroundAlertSuccessActive),
+      const DeepCollectionEquality().hash(backgroundAlertSuccessDefault),
+      const DeepCollectionEquality().hash(backgroundAlertSuccessHover),
       const DeepCollectionEquality().hash(backgroundAlertSuccessSecondary),
-      const DeepCollectionEquality().hash(backgroundAlertWarningPrimary),
+      const DeepCollectionEquality().hash(backgroundAlertWarningActive),
+      const DeepCollectionEquality().hash(backgroundAlertWarningDefault),
+      const DeepCollectionEquality().hash(backgroundAlertWarningHover),
       const DeepCollectionEquality().hash(backgroundAlertWarningSecondary),
       const DeepCollectionEquality().hash(backgroundBackdrop),
       const DeepCollectionEquality().hash(backgroundBrand),
+      const DeepCollectionEquality().hash(backgroundDatavizBasic),
       const DeepCollectionEquality().hash(backgroundDatavizBluePrimary),
       const DeepCollectionEquality().hash(backgroundDatavizBlueSecondary),
       const DeepCollectionEquality().hash(backgroundDatavizDanger),
