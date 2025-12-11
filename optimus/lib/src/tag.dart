@@ -218,8 +218,6 @@ extension on OptimusColorOption {
     OptimusColorOption.plain => tokens.backgroundAlertBasicSecondary,
     OptimusColorOption.primary => tokens.legacyTagBackgroundPrimary,
     OptimusColorOption.success => tokens.backgroundAlertSuccessSecondary,
-
-
     OptimusColorOption.info => tokens.backgroundAlertInfoSecondary,
     OptimusColorOption.warning => tokens.backgroundAlertWarningSecondary,
     OptimusColorOption.danger => tokens.backgroundAlertDangerSecondary,
@@ -259,12 +257,12 @@ extension on OptimusCategoricalColorOption {
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
     OptimusCategoricalColorOption.denim => tokens.legacyTagBackgroundDenim,
     OptimusCategoricalColorOption.lavender =>
-    tokens.legacyTagBackgroundLavender,
+      tokens.legacyTagBackgroundLavender,
     OptimusCategoricalColorOption.lime => tokens.legacyTagBackgroundLime,
     OptimusCategoricalColorOption.mustard => tokens.legacyTagBackgroundMustard,
     OptimusCategoricalColorOption.ruby => tokens.legacyTagBackgroundRuby,
     OptimusCategoricalColorOption.tangerine =>
-    tokens.legacyTagBackgroundTangerine,
+      tokens.legacyTagBackgroundTangerine,
   };
 
   Color foregroundColor(OptimusTokens tokens) => switch (this) {
