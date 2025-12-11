@@ -89,14 +89,15 @@ enum OptimusCategoricalColorOption {
 /// Color option does not carry any semantic meaning. Color could be swapped
 /// without causing any effect on the tag's meaning.
 class OptimusCategoricalTag extends StatelessWidget {
-  const OptimusCategoricalTag(
-      {super.key,
-      required this.text,
-      required this.colorOption,
-      this.leadingIcon,
-      this.trailingIcon,
-      this.isOutlined = false,
-      this.maxWidth});
+  const OptimusCategoricalTag({
+    super.key,
+    required this.text,
+    required this.colorOption,
+    this.leadingIcon,
+    this.trailingIcon,
+    this.isOutlined = false,
+    this.maxWidth,
+  });
 
   /// Text of the tag.
   final String text;
