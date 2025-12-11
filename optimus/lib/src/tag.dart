@@ -188,8 +188,9 @@ class _Tag extends StatelessWidget {
             ),
           ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: maxWidth?.toScaled(context) ??
-                tokens.sizing1300.toScaled(context),
+              maxWidth:
+                  maxWidth?.toScaled(context) ??
+                  tokens.sizing1300.toScaled(context),
             ),
             child: Text(
               text,
