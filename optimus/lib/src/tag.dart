@@ -115,7 +115,7 @@ class OptimusCategoricalTag extends StatelessWidget {
   final bool isOutlined;
 
   /// Optional max width of the tag,
-  /// if not provided the sizing will be `sizing1300`
+  /// if not provided `maxWidth` will be `sizing1300`
   final double? maxWidth;
 
   @override
