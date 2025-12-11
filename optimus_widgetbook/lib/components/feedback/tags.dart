@@ -12,6 +12,12 @@ Widget createDefaultStyle(BuildContext context) {
   final leadingIcon = k.optimusIconOrNullKnob(label: 'Leading Icon');
   final trailingIcon = k.optimusIconOrNullKnob(label: 'Trailing Icon');
   final text = k.string(label: 'Text', initialValue: 'Label');
+  final maxWidth = k.doubleOrNull.slider(
+    label: 'Max width',
+    initialValue: 50,
+    min: 0,
+    max: 300,
+  );
 
   return Column(
     mainAxisSize: MainAxisSize.min,
@@ -28,6 +34,7 @@ Widget createDefaultStyle(BuildContext context) {
                   trailingIcon: trailingIcon?.data,
                   colorOption: c,
                   isOutlined: isOutlined,
+                  maxWidth: maxWidth,
                 ),
               ),
             )
@@ -46,6 +53,7 @@ Widget createDefaultStyle(BuildContext context) {
                   trailingIcon: trailingIcon?.data,
                   colorOption: c,
                   isOutlined: isOutlined,
+                  maxWidth: maxWidth,
                 ),
               ),
             )
