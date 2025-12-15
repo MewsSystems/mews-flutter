@@ -21,6 +21,7 @@ class OptimusTag extends StatelessWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.isOutlined = false,
+    this.maxWidth,
   });
 
   /// The text to display in the tag.
@@ -46,6 +47,9 @@ class OptimusTag extends StatelessWidget {
   /// Optional trailing icon of the tag.
   final IconData? trailingIcon;
 
+  /// Optional max width of the tag.
+  final double? maxWidth;
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -58,6 +62,7 @@ class OptimusTag extends StatelessWidget {
       leadingIcon: leadingIcon,
       trailingIcon: trailingIcon,
       isOutlined: isOutlined,
+      maxWidth: maxWidth,
     );
   }
 }
@@ -91,6 +96,7 @@ class OptimusCategoricalTag extends StatelessWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.isOutlined = false,
+    this.maxWidth,
   });
 
   /// Text of the tag.
@@ -108,6 +114,10 @@ class OptimusCategoricalTag extends StatelessWidget {
   /// Whether to use outlined tag style.
   final bool isOutlined;
 
+  /// Optional max width of the tag,
+  /// if not provided `maxWidth` will be `sizing1300`
+  final double? maxWidth;
+
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
@@ -120,6 +130,7 @@ class OptimusCategoricalTag extends StatelessWidget {
       leadingIcon: leadingIcon,
       trailingIcon: trailingIcon,
       isOutlined: isOutlined,
+      maxWidth: maxWidth,
     );
   }
 }
@@ -133,6 +144,7 @@ class _Tag extends StatelessWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.isOutlined = false,
+    this.maxWidth,
   });
 
   final String text;
@@ -142,6 +154,7 @@ class _Tag extends StatelessWidget {
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final bool isOutlined;
+  final double? maxWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +189,9 @@ class _Tag extends StatelessWidget {
             ),
           ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: tokens.sizing1300.toScaled(context),
+              maxWidth:
+                  maxWidth?.toScaled(context) ??
+                  tokens.sizing1300.toScaled(context),
             ),
             child: Text(
               text,

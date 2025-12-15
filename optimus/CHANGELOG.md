@@ -1,3 +1,7 @@
+## 0.42.1
+
+ - **FEAT**: Add optional `maxWidth` to `Tag` (#862).
+
 ## 0.42.0
 
 > Note: This release has breaking changes.
