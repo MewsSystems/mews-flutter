@@ -512,9 +512,9 @@ class _ColoredTransitionState extends State<_ColoredTransition> {
 extension on OptimusStatusBarState {
   Color getStatusBarColor(OptimusTokens tokens) => switch (this) {
     OptimusStatusBarState.empty ||
-    OptimusStatusBarState.danger => tokens.backgroundAlertDangerPrimary,
-    OptimusStatusBarState.medium => tokens.backgroundAlertWarningPrimary,
-    OptimusStatusBarState.strong => tokens.backgroundAlertSuccessPrimary,
+    OptimusStatusBarState.danger => tokens.backgroundAlertDangerDefault,
+    OptimusStatusBarState.medium => tokens.backgroundAlertWarningDefault,
+    OptimusStatusBarState.strong => tokens.backgroundAlertSuccessDefault,
   };
 
   double get progress => switch (this) {
