@@ -25,18 +25,29 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.backgroundAccentSecondary,
     required this.backgroundAccentSuccess,
     required this.backgroundAccentWarning,
-    required this.backgroundAlertBasicPrimary,
+    required this.backgroundAlertBasicActive,
+    required this.backgroundAlertBasicDefault,
+    required this.backgroundAlertBasicHover,
     required this.backgroundAlertBasicSecondary,
-    required this.backgroundAlertDangerPrimary,
+    required this.backgroundAlertDangerActive,
+    required this.backgroundAlertDangerDefault,
+    required this.backgroundAlertDangerHover,
     required this.backgroundAlertDangerSecondary,
-    required this.backgroundAlertInfoPrimary,
+    required this.backgroundAlertInfoActive,
+    required this.backgroundAlertInfoDefault,
+    required this.backgroundAlertInfoHover,
     required this.backgroundAlertInfoSecondary,
-    required this.backgroundAlertSuccessPrimary,
+    required this.backgroundAlertSuccessActive,
+    required this.backgroundAlertSuccessDefault,
+    required this.backgroundAlertSuccessHover,
     required this.backgroundAlertSuccessSecondary,
-    required this.backgroundAlertWarningPrimary,
+    required this.backgroundAlertWarningActive,
+    required this.backgroundAlertWarningDefault,
+    required this.backgroundAlertWarningHover,
     required this.backgroundAlertWarningSecondary,
     required this.backgroundBackdrop,
     required this.backgroundBrand,
+    required this.backgroundDatavizBasic,
     required this.backgroundDatavizBluePrimary,
     required this.backgroundDatavizBlueSecondary,
     required this.backgroundDatavizDanger,
@@ -479,29 +490,51 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final Color backgroundAccentWarning;
   @override
-  final Color backgroundAlertBasicPrimary;
+  final Color backgroundAlertBasicActive;
+  @override
+  final Color backgroundAlertBasicDefault;
+  @override
+  final Color backgroundAlertBasicHover;
   @override
   final Color backgroundAlertBasicSecondary;
   @override
-  final Color backgroundAlertDangerPrimary;
+  final Color backgroundAlertDangerActive;
+  @override
+  final Color backgroundAlertDangerDefault;
+  @override
+  final Color backgroundAlertDangerHover;
   @override
   final Color backgroundAlertDangerSecondary;
   @override
-  final Color backgroundAlertInfoPrimary;
+  final Color backgroundAlertInfoActive;
+  @override
+  final Color backgroundAlertInfoDefault;
+  @override
+  final Color backgroundAlertInfoHover;
   @override
   final Color backgroundAlertInfoSecondary;
   @override
-  final Color backgroundAlertSuccessPrimary;
+  final Color backgroundAlertSuccessActive;
+  @override
+  final Color backgroundAlertSuccessDefault;
+  @override
+  final Color backgroundAlertSuccessHover;
   @override
   final Color backgroundAlertSuccessSecondary;
   @override
-  final Color backgroundAlertWarningPrimary;
+  final Color backgroundAlertWarningActive;
+  @override
+  final Color backgroundAlertWarningDefault;
+  @override
+  final Color backgroundAlertWarningHover;
   @override
   final Color backgroundAlertWarningSecondary;
   @override
   final Color backgroundBackdrop;
   @override
   final Color backgroundBrand;
+  @override
+  final Color backgroundDatavizBasic;
   @override
   final Color backgroundDatavizBluePrimary;
   @override
@@ -1351,26 +1384,39 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundAccentSecondary: DesignTokensLight.backgroundAccentSecondary,
     backgroundAccentSuccess: DesignTokensLight.backgroundAccentSuccess,
     backgroundAccentWarning: DesignTokensLight.backgroundAccentWarning,
-    backgroundAlertBasicPrimary: DesignTokensLight.backgroundAlertBasicPrimary,
+    backgroundAlertBasicActive: DesignTokensLight.backgroundAlertBasicActive,
+    backgroundAlertBasicDefault: DesignTokensLight.backgroundAlertBasicDefault,
+    backgroundAlertBasicHover: DesignTokensLight.backgroundAlertBasicHover,
     backgroundAlertBasicSecondary:
         DesignTokensLight.backgroundAlertBasicSecondary,
-    backgroundAlertDangerPrimary:
-        DesignTokensLight.backgroundAlertDangerPrimary,
+    backgroundAlertDangerActive: DesignTokensLight.backgroundAlertDangerActive,
+    backgroundAlertDangerDefault:
+        DesignTokensLight.backgroundAlertDangerDefault,
+    backgroundAlertDangerHover: DesignTokensLight.backgroundAlertDangerHover,
     backgroundAlertDangerSecondary:
         DesignTokensLight.backgroundAlertDangerSecondary,
-    backgroundAlertInfoPrimary: DesignTokensLight.backgroundAlertInfoPrimary,
+    backgroundAlertInfoActive: DesignTokensLight.backgroundAlertInfoActive,
+    backgroundAlertInfoDefault: DesignTokensLight.backgroundAlertInfoDefault,
+    backgroundAlertInfoHover: DesignTokensLight.backgroundAlertInfoHover,
     backgroundAlertInfoSecondary:
         DesignTokensLight.backgroundAlertInfoSecondary,
-    backgroundAlertSuccessPrimary:
-        DesignTokensLight.backgroundAlertSuccessPrimary,
+    backgroundAlertSuccessActive:
+        DesignTokensLight.backgroundAlertSuccessActive,
+    backgroundAlertSuccessDefault:
+        DesignTokensLight.backgroundAlertSuccessDefault,
+    backgroundAlertSuccessHover: DesignTokensLight.backgroundAlertSuccessHover,
     backgroundAlertSuccessSecondary:
         DesignTokensLight.backgroundAlertSuccessSecondary,
-    backgroundAlertWarningPrimary:
-        DesignTokensLight.backgroundAlertWarningPrimary,
+    backgroundAlertWarningActive:
+        DesignTokensLight.backgroundAlertWarningActive,
+    backgroundAlertWarningDefault:
+        DesignTokensLight.backgroundAlertWarningDefault,
+    backgroundAlertWarningHover: DesignTokensLight.backgroundAlertWarningHover,
     backgroundAlertWarningSecondary:
         DesignTokensLight.backgroundAlertWarningSecondary,
     backgroundBackdrop: DesignTokensLight.backgroundBackdrop,
     backgroundBrand: DesignTokensLight.backgroundBrand,
+    backgroundDatavizBasic: DesignTokensLight.backgroundDatavizBasic,
     backgroundDatavizBluePrimary:
         DesignTokensLight.backgroundDatavizBluePrimary,
     backgroundDatavizBlueSecondary:
@@ -1854,24 +1900,35 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     backgroundAccentSecondary: DesignTokensDark.backgroundAccentSecondary,
     backgroundAccentSuccess: DesignTokensDark.backgroundAccentSuccess,
     backgroundAccentWarning: DesignTokensDark.backgroundAccentWarning,
-    backgroundAlertBasicPrimary: DesignTokensDark.backgroundAlertBasicPrimary,
+    backgroundAlertBasicActive: DesignTokensDark.backgroundAlertBasicActive,
+    backgroundAlertBasicDefault: DesignTokensDark.backgroundAlertBasicDefault,
+    backgroundAlertBasicHover: DesignTokensDark.backgroundAlertBasicHover,
     backgroundAlertBasicSecondary:
         DesignTokensDark.backgroundAlertBasicSecondary,
-    backgroundAlertDangerPrimary: DesignTokensDark.backgroundAlertDangerPrimary,
+    backgroundAlertDangerActive: DesignTokensDark.backgroundAlertDangerActive,
+    backgroundAlertDangerDefault: DesignTokensDark.backgroundAlertDangerDefault,
+    backgroundAlertDangerHover: DesignTokensDark.backgroundAlertDangerHover,
     backgroundAlertDangerSecondary:
         DesignTokensDark.backgroundAlertDangerSecondary,
-    backgroundAlertInfoPrimary: DesignTokensDark.backgroundAlertInfoPrimary,
+    backgroundAlertInfoActive: DesignTokensDark.backgroundAlertInfoActive,
+    backgroundAlertInfoDefault: DesignTokensDark.backgroundAlertInfoDefault,
+    backgroundAlertInfoHover: DesignTokensDark.backgroundAlertInfoHover,
     backgroundAlertInfoSecondary: DesignTokensDark.backgroundAlertInfoSecondary,
-    backgroundAlertSuccessPrimary:
-        DesignTokensDark.backgroundAlertSuccessPrimary,
+    backgroundAlertSuccessActive: DesignTokensDark.backgroundAlertSuccessActive,
+    backgroundAlertSuccessDefault:
+        DesignTokensDark.backgroundAlertSuccessDefault,
+    backgroundAlertSuccessHover: DesignTokensDark.backgroundAlertSuccessHover,
     backgroundAlertSuccessSecondary:
         DesignTokensDark.backgroundAlertSuccessSecondary,
-    backgroundAlertWarningPrimary:
-        DesignTokensDark.backgroundAlertWarningPrimary,
+    backgroundAlertWarningActive: DesignTokensDark.backgroundAlertWarningActive,
+    backgroundAlertWarningDefault:
+        DesignTokensDark.backgroundAlertWarningDefault,
+    backgroundAlertWarningHover: DesignTokensDark.backgroundAlertWarningHover,
     backgroundAlertWarningSecondary:
         DesignTokensDark.backgroundAlertWarningSecondary,
     backgroundBackdrop: DesignTokensDark.backgroundBackdrop,
     backgroundBrand: DesignTokensDark.backgroundBrand,
+    backgroundDatavizBasic: DesignTokensDark.backgroundDatavizBasic,
     backgroundDatavizBluePrimary: DesignTokensDark.backgroundDatavizBluePrimary,
     backgroundDatavizBlueSecondary:
         DesignTokensDark.backgroundDatavizBlueSecondary,
