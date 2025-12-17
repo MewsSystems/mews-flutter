@@ -31,9 +31,9 @@ extension Theming on OptimusFeedbackVariant {
   };
 
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
-    OptimusFeedbackVariant.info => tokens.backgroundAlertInfoSecondary,
-    OptimusFeedbackVariant.success => tokens.backgroundAlertSuccessSecondary,
-    OptimusFeedbackVariant.warning => tokens.backgroundAlertWarningSecondary,
-    OptimusFeedbackVariant.danger => tokens.backgroundAlertDangerSecondary,
+    OptimusFeedbackVariant.info => tokens.backgroundAlertInfoDefault,
+    OptimusFeedbackVariant.success => tokens.backgroundAlertSuccessDefault,
+    OptimusFeedbackVariant.warning => tokens.backgroundAlertWarningDefault,
+    OptimusFeedbackVariant.danger => tokens.backgroundAlertDangerDefault,
   };
 }
