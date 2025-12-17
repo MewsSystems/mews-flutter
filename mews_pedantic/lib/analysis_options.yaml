@@ -253,6 +253,7 @@ dart_code_metrics:
     - avoid-accessing-collections-by-constant-index
     # - avoid-accessing-other-classes-private-members
     - avoid-adjacent-strings
+    - avoid-always-null-parameters
     # - avoid-assigning-to-static-field
     - avoid-assignments-as-conditions
     # - avoid-async-call-in-sync-function
@@ -274,9 +275,12 @@ dart_code_metrics:
     # - avoid-collection-mutating-methods
     - avoid-commented-out-code
     # - avoid-complex-arithmetic-expressions
+    # - avoid-complex-conditions
     - avoid-complex-loop-conditions
     - avoid-conditions-with-boolean-literals
     - avoid-constant-assert-conditions
+    - avoid-constant-conditions
+    - avoid-constant-switches
     # - avoid-continue
     - avoid-contradictory-expressions
     # - avoid-declaring-call-method
@@ -309,12 +313,13 @@ dart_code_metrics:
     - avoid-future-tostring
     - avoid-generics-shadowing
     - avoid-getter-prefix:
-        prefix: '^get'
+        prefix: "^get"
     - avoid-global-state
     # - avoid-high-cyclomatic-complexity
     # - avoid-identical-exception-handling-blocks
     # - avoid-if-with-many-branches
     # - avoid-ignoring-return-values
+    # - avoid-immediately-invoked-functions
     - avoid-implicitly-nullable-extension-types
     # - avoid-importing-entrypoint-exports
     - avoid-inconsistent-digit-separators
@@ -348,6 +353,7 @@ dart_code_metrics:
     - avoid-nested-extension-types
     - avoid-nested-futures
     - avoid-nested-records
+    - avoid-nested-shorthands
     - avoid-nested-streams-and-futures
     # - avoid-nested-switch-expressions
     - avoid-nested-switches
@@ -393,6 +399,7 @@ dart_code_metrics:
     # - avoid-throw-objects-without-tostring
     # - avoid-top-level-members-in-tests
     - avoid-type-casts
+    - avoid-unassigned-fields
     - avoid-unassigned-late-fields
     - avoid-unassigned-stream-subscriptions
     - avoid-uncaught-future-errors
@@ -432,12 +439,14 @@ dart_code_metrics:
     - avoid-unreachable-for-loop
     - avoid-unrelated-type-assertions
     - avoid-unrelated-type-casts
+    - avoid-unremovable-callbacks-in-listeners
     # - avoid-unsafe-collection-methods
     - avoid-unsafe-reduce
     - avoid-unused-after-null-check
     - avoid-unused-assignment
     - avoid-unused-generics
     # - avoid-unused-instances
+    - avoid-unused-local-variable
     - avoid-unused-parameters
     - avoid-weak-cryptographic-algorithms
     - avoid-wildcard-cases-with-enums
@@ -454,6 +463,7 @@ dart_code_metrics:
     - function-always-returns-same-value
     # - handle-throwing-invocations
     # - map-keys-ordering
+    - match-base-class-default-value
     # - match-class-name-pattern
     - match-getter-setter-field-names
     - match-lib-folder-structure
@@ -467,6 +477,7 @@ dart_code_metrics:
     - move-variable-closer-to-its-usage
     - move-variable-outside-iteration
     # - newline-before-case
+    # - newline-before-constructor
     - newline-before-method
     - newline-before-return
     - no-boolean-literal-compare
@@ -483,6 +494,7 @@ dart_code_metrics:
     - no-object-declaration
     # - parameters-ordering
     - pass-correct-accepted-type
+    # - pass-optional-argument
     # - pattern-fields-ordering
     - prefer-abstract-final-static-class
     - prefer-add-all
@@ -492,7 +504,28 @@ dart_code_metrics:
     # - prefer-async-await
     - prefer-returning-condition
     - prefer-boolean-prefixes:
-        prefixes: [ is, are, was, were, has, have, had, can, should, will, do, does, did, allow, show, use, hide, only, enable ]
+        prefixes:
+          [
+            is,
+            are,
+            was,
+            were,
+            has,
+            have,
+            had,
+            can,
+            should,
+            will,
+            do,
+            does,
+            did,
+            allow,
+            show,
+            use,
+            hide,
+            only,
+            enable,
+          ]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
     # - prefer-class-destructuring
@@ -512,7 +545,7 @@ dart_code_metrics:
     - prefer-correct-stream-return-type
     # - prefer-correct-switch-length
     - prefer-correct-test-file-name:
-        exclude: [ "lib/**", "bin/**" ]
+        exclude: ["lib/**", "bin/**"]
     # - prefer-correct-throws
     # - prefer-correct-type-name
     - prefer-declaring-const-constructor:
@@ -550,6 +583,10 @@ dart_code_metrics:
     - prefer-redirecting-superclass-constructor
     - prefer-return-await
     - prefer-returning-conditional-expressions
+    - prefer-returning-shorthands
+    - prefer-shorthands-with-constructors
+    - prefer-shorthands-with-enums
+    - prefer-shorthands-with-static-fields
     - prefer-simpler-boolean-expressions
     - prefer-simpler-patterns-null-check
     # - prefer-single-declaration-per-file
@@ -562,6 +599,7 @@ dart_code_metrics:
     - prefer-switch-with-enums
     - prefer-switch-with-sealed-classes
     # - prefer-test-matchers
+    # - prefer-test-structure
     # - prefer-trailing-comma
     - prefer-type-over-var
     - prefer-typedefs-for-callbacks:
@@ -679,7 +717,7 @@ dart_code_metrics:
     - banned-dependencies:
         banned:
           - get
-  #    - prefer-caret-version-syntax
+    #    - prefer-caret-version-syntax
     - prefer-commenting-pubspec-ignores
   #    - prefer-correct-package-name
   #    - prefer-correct-screenshots
