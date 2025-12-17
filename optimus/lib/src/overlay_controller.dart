@@ -47,9 +47,8 @@ class _OverlayControllerState<T> extends State<OverlayController<T>>
     widget.focusNode.addListener(_onFocusChanged);
   }
 
-  void _onFocusChanged() => widget.focusNode.hasFocus
-      ? setState(_showOverlay)
-      : setState(_removeOverlay);
+  void _onFocusChanged() =>
+      setState(widget.focusNode.hasFocus ? _showOverlay : _removeOverlay);
 
   @override
   void didUpdateWidget(OverlayController<T> oldWidget) {

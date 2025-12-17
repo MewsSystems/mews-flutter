@@ -114,7 +114,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
   @override
   Widget build(BuildContext context) {
     final child = widget.child;
-    final borderColor = this._borderColor;
+    final borderColor = _borderColor;
     final borderRadius =
         widget.borderRadius ?? BorderRadius.all(tokens.borderRadius100);
 
