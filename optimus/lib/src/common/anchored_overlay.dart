@@ -123,12 +123,11 @@ class AnchoredOverlayState extends State<AnchoredOverlay>
 
   Rect _calculateRect() {
     final renderObject = widget.anchorKey.currentContext?.findRenderObject();
-    if (renderObject is! RenderBox || !renderObject.hasSize) return Rect.zero;
+    if (renderObject is! RenderBox || !renderObject.hasSize) return .zero;
 
     final size = renderObject.size;
 
-    return renderObject.localToGlobal(Offset.zero, ancestor: _getOverlay()) &
-        size;
+    return renderObject.localToGlobal(.zero, ancestor: _getOverlay()) & size;
   }
 
   RenderBox? _getOverlay() {

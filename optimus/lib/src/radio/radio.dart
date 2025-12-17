@@ -97,19 +97,15 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
       : theme.tokens.textDisabled;
 
   TextStyle get _labelStyle => switch (widget.size) {
-    OptimusRadioSize.small => tokens.bodyMediumStrong.copyWith(
-      color: _textColor,
-    ),
-    OptimusRadioSize.large => tokens.bodyLargeStrong.copyWith(
-      color: _textColor,
-    ),
+    .small => tokens.bodyMediumStrong.copyWith(color: _textColor),
+    .large => tokens.bodyLargeStrong.copyWith(color: _textColor),
   };
 
   @override
   void didUpdateWidget(covariant OptimusRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.isEnabled != oldWidget.isEnabled) {
-      _stateController.update(WidgetState.disabled, !widget.isEnabled);
+      _stateController.update(.disabled, !widget.isEnabled);
     }
   }
 
@@ -144,9 +140,9 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
               ignoring: !widget.isEnabled,
               child: GestureWrapper(
                 onHoverChanged: (isHovered) =>
-                    _stateController.update(WidgetState.hovered, isHovered),
+                    _stateController.update(.hovered, isHovered),
                 onPressedChanged: (isPressed) =>
-                    _stateController.update(WidgetState.pressed, isPressed),
+                    _stateController.update(.pressed, isPressed),
                 onTap: _handleChanged,
                 child: Stack(
                   children: [
@@ -158,7 +154,7 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                          padding: EdgeInsets.only(
+                          padding: .only(
                             top: tokens.spacing100.toScaled(context),
                             bottom: tokens.spacing100.toScaled(context),
                             right: tokens.spacing200.toScaled(context),
@@ -173,14 +169,12 @@ class _OptimusRadioState<T> extends State<OptimusRadio<T>> with ThemeGetter {
                     ConstrainedBox(
                       constraints: BoxConstraints(minHeight: leadingSize),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: .center,
                         children: [
                           SizedBox(width: leadingSize).excludeSemantics(),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: tokens.spacing25,
-                              ),
+                              padding: .symmetric(vertical: tokens.spacing25),
                               child: DefaultTextStyle.merge(
                                 style: _labelStyle,
                                 child: widget.label,

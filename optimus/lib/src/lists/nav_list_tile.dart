@@ -81,11 +81,11 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
   void didUpdateWidget(OptimusNavListTile oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.isEnabled != oldWidget.isEnabled) {
-      _controller.update(WidgetState.disabled, !widget.isEnabled);
+      _controller.update(.disabled, !widget.isEnabled);
     }
   }
 
-  WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
+  WidgetStateColor get _backgroundColor => .fromMap({
     WidgetState.disabled: Colors.transparent,
     WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
     WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
@@ -93,11 +93,11 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
   });
 
   void _handleHoverChanged(bool isHovered) {
-    setState(() => _controller.update(WidgetState.hovered, isHovered));
+    setState(() => _controller.update(.hovered, isHovered));
   }
 
   void _handlePressedChanged(bool isPressed) {
-    setState(() => _controller.update(WidgetState.pressed, isPressed));
+    setState(() => _controller.update(.pressed, isPressed));
   }
 
   @override
@@ -123,7 +123,7 @@ class _OptimusNavListTileState extends State<OptimusNavListTile>
             child: BaseListTile(
               onTap: widget.onTap,
               content: Padding(
-                padding: EdgeInsets.symmetric(
+                padding: .symmetric(
                   horizontal: widget.useHorizontalPadding
                       ? tokens.spacing200
                       : tokens.spacing0,

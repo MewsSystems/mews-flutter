@@ -57,19 +57,19 @@ class _HomeState extends State<_Home> {
           : 'Current mode: $mode';
 
       return Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
           MaterialButton(
             onPressed: switch (mode) {
-              null || KioskMode.enabled => null,
-              KioskMode.disabled => () => startKioskMode().then(_handleStart),
+              null || .enabled => null,
+              .disabled => () => startKioskMode().then(_handleStart),
             },
             child: const Text('Start Kiosk Mode'),
           ),
           MaterialButton(
             onPressed: switch (mode) {
-              null || KioskMode.disabled => null,
-              KioskMode.enabled => () => stopKioskMode().then(_handleStop),
+              null || .disabled => null,
+              .enabled => () => stopKioskMode().then(_handleStop),
             },
             child: const Text('Stop Kiosk Mode'),
           ),

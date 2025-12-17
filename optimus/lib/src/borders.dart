@@ -14,7 +14,7 @@ class TileBorders extends StatelessWidget {
     final theme = OptimusTheme.of(context);
 
     return Stack(
-      clipBehavior: Clip.none,
+      clipBehavior: .none,
       children: <Widget>[
         Positioned(
           bottom: -1,
@@ -23,7 +23,7 @@ class TileBorders extends StatelessWidget {
           top: 0,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              border: Border.all(color: theme.tokens.borderStaticSecondary),
+              border: .all(color: theme.tokens.borderStaticSecondary),
             ),
           ),
         ),

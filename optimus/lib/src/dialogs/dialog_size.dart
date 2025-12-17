@@ -30,8 +30,8 @@ enum OptimusDialogType {
 
 extension DialogSize on OptimusDialogSize {
   double get width => switch (this) {
-    OptimusDialogSize.small => 320,
-    OptimusDialogSize.regular => 576,
-    OptimusDialogSize.large => 896, // TODO(witwash): replace with tokens
+    .small => 320,
+    .regular => 576,
+    .large => 896, // TODO(witwash): replace with tokens
   };
 }

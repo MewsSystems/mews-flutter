@@ -70,19 +70,19 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
       style: _textStyle.copyWith(
         color: _effectiveColor,
         overflow: widget.overflow,
-        fontWeight: widget.useStrong ? FontWeight.w500 : FontWeight.w400,
-        decoration: _isHovering ? null : TextDecoration.underline,
+        fontWeight: widget.useStrong ? .w500 : .w400,
+        decoration: _isHovering ? null : .underline,
       ),
       child: widget.text,
     );
 
     final child = icon != null
         ? Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               text,
               Padding(
-                padding: EdgeInsets.only(left: tokens.spacing100),
+                padding: .only(left: tokens.spacing100),
                 child: IconTheme.merge(
                   data: IconThemeData(color: _effectiveColor),
                   child: icon,
@@ -112,18 +112,18 @@ class _BaseLinkState extends State<BaseLink> with ThemeGetter {
 
 extension on OptimusLinkVariant {
   Color getDefaultColor(OptimusTokens tokens) => switch (this) {
-    OptimusLinkVariant.primary => tokens.textInteractivePrimaryDefault,
-    OptimusLinkVariant.basic => tokens.textStaticPrimary,
+    .primary => tokens.textInteractivePrimaryDefault,
+    .basic => tokens.textStaticPrimary,
   };
 
   Color getHoveredColor(OptimusTokens tokens) => switch (this) {
-    OptimusLinkVariant.primary => tokens.textInteractivePrimaryHover,
-    OptimusLinkVariant.basic => tokens.textStaticTertiary,
+    .primary => tokens.textInteractivePrimaryHover,
+    .basic => tokens.textStaticTertiary,
   };
 
   Color getTappedColor(OptimusTokens tokens) => switch (this) {
-    OptimusLinkVariant.primary => tokens.textInteractivePrimaryActive,
-    OptimusLinkVariant.basic => tokens.textStaticPrimary,
+    .primary => tokens.textInteractivePrimaryActive,
+    .basic => tokens.textStaticPrimary,
   };
 
   Color getDisabledColor(OptimusTokens tokens) => tokens.textDisabled;

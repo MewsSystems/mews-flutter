@@ -36,10 +36,8 @@ class OptimusIconList extends StatelessWidget {
 
   OptimusIconListSize _getListSize(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.extraSmall || Breakpoint.small => OptimusIconListSize.small,
-        Breakpoint.medium ||
-        Breakpoint.large ||
-        Breakpoint.extraLarge => OptimusIconListSize.large,
+        .extraSmall || .small => .small,
+        .medium || .large || .extraLarge => .large,
       };
 }
 
@@ -92,13 +90,13 @@ class _ListTile extends StatelessWidget {
   final OptimusIconListSize size;
 
   TextStyle _getLabelStyle(OptimusTokens tokens) => switch (size) {
-    OptimusIconListSize.large => tokens.bodyLargeStrong,
-    OptimusIconListSize.small => tokens.bodyMediumStrong,
+    .large => tokens.bodyLargeStrong,
+    .small => tokens.bodyMediumStrong,
   };
 
   TextStyle _getDescriptionStyle(OptimusTokens tokens) => switch (size) {
-    OptimusIconListSize.large => tokens.bodyMediumStrong,
-    OptimusIconListSize.small => tokens.bodySmallStrong,
+    .large => tokens.bodyMediumStrong,
+    .small => tokens.bodySmallStrong,
   };
 
   @override
@@ -110,9 +108,9 @@ class _ListTile extends StatelessWidget {
       children: [
         OptimusIcon(iconData: item.iconData, colorOption: item.colorOption),
         Padding(
-          padding: EdgeInsets.only(left: tokens.spacing200),
+          padding: .only(left: tokens.spacing200),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: [
               Text(item.label.capitalize(), style: _getLabelStyle(tokens)),
               if (description != null && description.isNotEmpty)

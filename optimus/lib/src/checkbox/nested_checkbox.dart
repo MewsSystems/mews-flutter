@@ -62,8 +62,8 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
         child: NestedCheckboxData(
           isEnabled: isEnabled,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
             children: [
               OptimusCheckbox(
                 isTristate: true,
@@ -78,10 +78,10 @@ class OptimusNestedCheckboxGroup extends StatelessWidget {
                 },
               ),
               Padding(
-                padding: EdgeInsets.only(left: context.tokens.spacing200),
+                padding: .only(left: context.tokens.spacing200),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: .start,
+                  mainAxisSize: .min,
                   children: children,
                 ),
               ),

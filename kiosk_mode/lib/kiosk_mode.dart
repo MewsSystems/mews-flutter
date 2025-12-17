@@ -79,9 +79,8 @@ Future<bool> isManagedKiosk() => _channel
 /// a mode is queried every time with a period of [androidQueryPeriod].
 Stream<KioskMode> watchKioskMode({
   Duration androidQueryPeriod = const Duration(seconds: 5),
-}) => Stream.fromFuture(
-  getKioskMode(),
-).merge(_getKioskModeStream(androidQueryPeriod));
+}) =>
+    .fromFuture(getKioskMode()).merge(_getKioskModeStream(androidQueryPeriod));
 
 Stream<KioskMode> _getKioskModeStream(Duration androidQueryPeriod) =>
     _eventChannel

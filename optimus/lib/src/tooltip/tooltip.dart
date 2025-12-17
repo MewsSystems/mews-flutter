@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/tooltip/tooltip_alignment.dart';
 import 'package:optimus/src/tooltip/tooltip_overlay.dart';
@@ -39,9 +38,9 @@ class OptimusTooltip extends StatelessWidget {
     final backgroundColor = tokens.backgroundStaticInverse;
 
     return Semantics(
-      role: SemanticsRole.tooltip,
+      role: .tooltip,
       child: Padding(
-        padding: const EdgeInsets.all(_arrowHeight),
+        padding: const .all(_arrowHeight),
         child: CustomPaint(
           painter: _TooltipPainter(
             color: backgroundColor,
@@ -50,7 +49,7 @@ class OptimusTooltip extends StatelessWidget {
           ),
           child: Container(
             width: size.maxWidth,
-            padding: EdgeInsets.symmetric(
+            padding: .symmetric(
               vertical: tokens.spacing50,
               horizontal: tokens.spacing150,
             ),
@@ -58,7 +57,7 @@ class OptimusTooltip extends StatelessWidget {
               color: backgroundColor,
               child: DefaultTextStyle.merge(
                 style: tokens.bodySmallStrong.copyWith(color: foregroundColor),
-                textAlign: TextAlign.center,
+                textAlign: .center,
                 child: content,
               ),
             ),
@@ -84,7 +83,7 @@ class _TooltipPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = color
-      ..style = PaintingStyle.fill;
+      ..style = .fill;
 
     final width = size.width;
     final height = size.height;
@@ -92,62 +91,62 @@ class _TooltipPainter extends CustomPainter {
     final Path tooltipPath = Path();
 
     switch (alignment) {
-      case TooltipAlignment.leftBottom:
+      case .leftBottom:
         tooltipPath.moveTo(width, _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(width + _arrowHeight, _arrowOffset);
         tooltipPath.lineTo(width, _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(width, _arrowOffset - _arrowWidth / 2);
-      case TooltipAlignment.leftCenter:
+      case .leftCenter:
         tooltipPath.moveTo(width, height / 2 - _arrowWidth / 2);
         tooltipPath.lineTo(width + _arrowHeight, height / 2);
         tooltipPath.lineTo(width, height / 2 + _arrowWidth / 2);
         tooltipPath.lineTo(width, height / 2 - _arrowWidth / 2);
-      case TooltipAlignment.leftTop:
+      case .leftTop:
         tooltipPath.moveTo(width, height - _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(width + _arrowHeight, height - _arrowOffset);
         tooltipPath.lineTo(width, height - _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(width, height - _arrowOffset - _arrowWidth / 2);
-      case TooltipAlignment.topLeft:
+      case .topLeft:
         tooltipPath.moveTo(width - _arrowOffset - _arrowWidth / 2, height);
         tooltipPath.lineTo(width - _arrowOffset, height + _arrowHeight);
         tooltipPath.lineTo(width - _arrowOffset + _arrowWidth / 2, height);
         tooltipPath.lineTo(width - _arrowOffset - _arrowWidth / 2, height);
-      case TooltipAlignment.topCenter:
+      case .topCenter:
         tooltipPath.moveTo(width / 2 - _arrowWidth / 2, height);
         tooltipPath.lineTo(width / 2, _arrowHeight + height);
         tooltipPath.lineTo(width / 2 + _arrowWidth / 2, height);
         tooltipPath.lineTo(width / 2 - _arrowWidth / 2, height);
-      case TooltipAlignment.topRight:
+      case .topRight:
         tooltipPath.moveTo(_arrowOffset - _arrowWidth / 2, height);
         tooltipPath.lineTo(_arrowOffset, height + _arrowHeight);
         tooltipPath.lineTo(_arrowOffset + _arrowWidth / 2, height);
         tooltipPath.lineTo(_arrowOffset - _arrowWidth / 2, height);
-      case TooltipAlignment.rightTop:
+      case .rightTop:
         tooltipPath.moveTo(0, height - _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(-_arrowHeight, height - _arrowOffset);
         tooltipPath.lineTo(0, height - _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(0, height - _arrowOffset - _arrowWidth / 2);
-      case TooltipAlignment.rightCenter:
+      case .rightCenter:
         tooltipPath.moveTo(0, height / 2 - _arrowWidth / 2);
         tooltipPath.lineTo(-_arrowHeight, height / 2);
         tooltipPath.lineTo(0, height / 2 + _arrowWidth / 2);
         tooltipPath.lineTo(0, height / 2 - _arrowWidth / 2);
-      case TooltipAlignment.rightBottom:
+      case .rightBottom:
         tooltipPath.moveTo(0, _arrowOffset - _arrowWidth / 2);
         tooltipPath.lineTo(-_arrowHeight, _arrowOffset);
         tooltipPath.lineTo(0, _arrowOffset + _arrowWidth / 2);
         tooltipPath.lineTo(0, _arrowOffset - _arrowWidth / 2);
-      case TooltipAlignment.bottomRight:
+      case .bottomRight:
         tooltipPath.moveTo(_arrowOffset - _arrowWidth / 2, 0);
         tooltipPath.lineTo(_arrowOffset, -_arrowHeight);
         tooltipPath.lineTo(_arrowOffset + _arrowWidth / 2, 0);
         tooltipPath.lineTo(_arrowOffset - _arrowWidth / 2, 0);
-      case TooltipAlignment.bottomCenter:
+      case .bottomCenter:
         tooltipPath.moveTo(width / 2 - _arrowWidth / 2, 0);
         tooltipPath.lineTo(width / 2, -_arrowHeight);
         tooltipPath.lineTo(width / 2 + _arrowWidth / 2, 0);
         tooltipPath.lineTo(width / 2 - _arrowWidth / 2, 0);
-      case TooltipAlignment.bottomLeft:
+      case .bottomLeft:
         tooltipPath.moveTo(width - _arrowOffset - _arrowWidth / 2, 0);
         tooltipPath.lineTo(width - _arrowOffset, -_arrowHeight);
         tooltipPath.lineTo(width - _arrowOffset + _arrowWidth / 2, 0);
@@ -169,18 +168,18 @@ enum OptimusTooltipPosition { top, bottom, left, right }
 
 extension on OptimusToolTipSize {
   double get maxWidth => switch (this) {
-    OptimusToolTipSize.small => 100,
-    OptimusToolTipSize.medium => 200,
-    OptimusToolTipSize.large => 300,
+    .small => 100,
+    .medium => 200,
+    .large => 300,
   };
 }
 
 extension on OptimusTooltipPosition {
   TooltipAlignment toTooltipAlignment() => switch (this) {
-    OptimusTooltipPosition.left => TooltipAlignment.leftCenter,
-    OptimusTooltipPosition.top => TooltipAlignment.topCenter,
-    OptimusTooltipPosition.right => TooltipAlignment.rightCenter,
-    OptimusTooltipPosition.bottom => TooltipAlignment.bottomCenter,
+    .left => .leftCenter,
+    .top => .topCenter,
+    .right => .rightCenter,
+    .bottom => .bottomCenter,
   };
 }
 

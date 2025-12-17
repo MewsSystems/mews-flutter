@@ -40,7 +40,7 @@ class _RadioExampleState extends State<RadioExample> {
         child: SizedBox(
           width: 400,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: _options
                 .map(
                   (i) => OptimusRadio<String>(
@@ -74,7 +74,7 @@ class _RadioGroupExample extends StatefulWidget {
   const _RadioGroupExample({super.key});
 
   @override
-  _RadioGroupExampleState createState() => _RadioGroupExampleState();
+  _RadioGroupExampleState createState() => .new();
 }
 
 class _RadioGroupExampleState extends State<_RadioGroupExample> {

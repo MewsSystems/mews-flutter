@@ -9,14 +9,14 @@ abstract class DialogController {
     required Widget content,
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
-    OptimusDialogSize size = OptimusDialogSize.regular,
+    OptimusDialogSize size = .regular,
     bool useRootOverlay = false,
   });
 
   void showInline({
     required GlobalKey anchorKey,
     required Widget content,
-    OptimusDialogSize size = OptimusDialogSize.small,
+    OptimusDialogSize size = .small,
     List<OptimusDialogAction> actions = const [],
     bool useRootOverlay = false,
   });
@@ -64,7 +64,7 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
     required Widget content,
     bool isDismissible = true,
     List<OptimusDialogAction> actions = const [],
-    OptimusDialogSize size = OptimusDialogSize.regular,
+    OptimusDialogSize size = .regular,
     bool useRootOverlay = false,
   }) {
     hide();
@@ -98,7 +98,7 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
     required GlobalKey anchorKey,
     required Widget content,
     List<OptimusDialogAction> actions = const [],
-    OptimusDialogSize size = OptimusDialogSize.small,
+    OptimusDialogSize size = .small,
     bool useRootOverlay = false,
   }) {
     hide();
@@ -112,10 +112,7 @@ class OptimusDialogWrapperState extends State<OptimusDialogWrapper>
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: _handleClose,
-              ),
+              GestureDetector(behavior: .opaque, onTap: _handleClose),
               OptimusInlineDialog(
                 content: content,
                 close: _handleClose,

@@ -24,8 +24,8 @@ Widget createDefaultStyle(BuildContext context) {
 
   return Center(
     child: Flex(
-      direction: direction == Axis.horizontal ? Axis.vertical : Axis.horizontal,
-      mainAxisAlignment: MainAxisAlignment.center,
+      direction: direction == .horizontal ? .vertical : .horizontal,
+      mainAxisAlignment: .center,
       children: [
         const OptimusLabel(child: Text('Text before divider')),
         OptimusDivider(

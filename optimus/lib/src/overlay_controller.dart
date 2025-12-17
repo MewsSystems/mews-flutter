@@ -75,7 +75,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>>
     widget.onHidden?.call();
   }
 
-  OverlayEntry _createOverlayEntry() => OverlayEntry(
+  OverlayEntry _createOverlayEntry() => .new(
     builder: (BuildContext builderContext) => MediaQuery(
       data: MediaQuery.of(context),
       // We need to wrap the overlay in an OptimusTheme to ensure that the
@@ -89,7 +89,7 @@ class _OverlayControllerState<T> extends State<OverlayController<T>>
           key: const Key('OptimusSelectOverlay'),
           children: [
             GestureDetector(
-              behavior: HitTestBehavior.opaque,
+              behavior: .opaque,
               onTapDown: (_) => widget.focusNode.unfocus(),
             ),
             DropdownTapInterceptor(

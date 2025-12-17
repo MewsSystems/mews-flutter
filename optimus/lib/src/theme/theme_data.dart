@@ -13,5 +13,5 @@ class OptimusThemeData with _$OptimusThemeData {
 
   const OptimusThemeData._();
 
-  bool get isDark => brightness == Brightness.dark;
+  bool get isDark => brightness == .dark;
 }

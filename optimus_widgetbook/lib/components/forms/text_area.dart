@@ -30,7 +30,7 @@ Widget createDefaultStyle(BuildContext context) {
   );
 
   return Padding(
-    padding: EdgeInsets.all(context.tokens.spacing100),
+    padding: .all(context.tokens.spacing100),
     child: OptimusTextArea(
       label: label,
       placeholder: placeholder,

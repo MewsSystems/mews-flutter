@@ -29,18 +29,18 @@ Widget createDefaultStyle(BuildContext context) {
       child: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 24, bottom: 16),
+            padding: .only(top: 24, bottom: 16),
             child: OptimusTitleMedium(child: Text('Small dialog')),
           ),
           Wrap(
             spacing: 8,
             children: [
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowOneActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
+                  size: .small,
                   content: content,
                   type: type,
                   title: title,
@@ -48,11 +48,11 @@ Widget createDefaultStyle(BuildContext context) {
                 child: const Text('1 button'),
               ),
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowTwoActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
+                  size: .small,
                   content: content,
                   type: type,
                   title: title,
@@ -60,11 +60,11 @@ Widget createDefaultStyle(BuildContext context) {
                 child: const Text('2 buttons'),
               ),
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowThreeActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.small,
+                  size: .small,
                   content: content,
                   type: type,
                   title: title,
@@ -74,18 +74,18 @@ Widget createDefaultStyle(BuildContext context) {
             ],
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 24, bottom: 16),
+            padding: .only(top: 24, bottom: 16),
             child: OptimusTitleMedium(child: Text('Regular dialog')),
           ),
           Wrap(
             spacing: 8,
             children: [
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowOneActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
+                  size: .regular,
                   content: content,
                   type: type,
                   title: title,
@@ -93,11 +93,11 @@ Widget createDefaultStyle(BuildContext context) {
                 child: const Text('1 button'),
               ),
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowTwoActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
+                  size: .regular,
                   content: content,
                   type: type,
                   title: title,
@@ -105,11 +105,11 @@ Widget createDefaultStyle(BuildContext context) {
                 child: const Text('2 buttons'),
               ),
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowThreeActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.regular,
+                  size: .regular,
                   content: content,
                   type: type,
                   title: title,
@@ -119,18 +119,18 @@ Widget createDefaultStyle(BuildContext context) {
             ],
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 24, bottom: 16),
+            padding: .only(top: 24, bottom: 16),
             child: OptimusTitleMedium(child: Text('Large dialog')),
           ),
           Wrap(
             spacing: 8,
             children: [
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowOneActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
+                  size: .large,
                   content: content,
                   type: type,
                   title: title,
@@ -138,11 +138,11 @@ Widget createDefaultStyle(BuildContext context) {
                 child: const Text('1 button'),
               ),
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowTwoActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
+                  size: .large,
                   content: content,
                   type: type,
                   title: title,
@@ -150,11 +150,11 @@ Widget createDefaultStyle(BuildContext context) {
                 child: const Text('2 buttons'),
               ),
               OptimusButton(
-                variant: OptimusButtonVariant.primary,
+                variant: .primary,
                 onPressed: () => _handleShowThreeActionDialog(
                   context: context,
                   isDismissible: isDismissible,
-                  size: OptimusDialogSize.large,
+                  size: .large,
                   content: content,
                   type: type,
                   title: title,
@@ -164,15 +164,15 @@ Widget createDefaultStyle(BuildContext context) {
             ],
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 24, bottom: 16),
+            padding: .only(top: 24, bottom: 16),
             child: OptimusTitleMedium(child: Text('Custom content')),
           ),
           OptimusButton(
-            variant: OptimusButtonVariant.primary,
+            variant: .primary,
             onPressed: () => _handleShowCustomContentDialog(
               context: context,
               isDismissible: isDismissible,
-              size: OptimusDialogSize.large,
+              size: .large,
               type: type,
               title: title,
             ),
@@ -257,7 +257,7 @@ Future<void> _handleShowCustomContentDialog({
     title: Text(title),
     content: Container(
       color: tokens.backgroundStaticFlat,
-      padding: EdgeInsets.all(tokens.spacing100),
+      padding: .all(tokens.spacing100),
       child: const Column(
         children: [
           Center(child: Text('Custom content without paddings')),
@@ -278,14 +278,14 @@ Widget _content(BuildContext context) {
 
   return Container(
     height: 200,
-    width: double.infinity,
+    width: .infinity,
     color: tokens.backgroundStaticFlat,
     child: const Center(child: Text('Content')),
   );
 }
 
 Widget get _scrollableContent => Column(
-  crossAxisAlignment: CrossAxisAlignment.stretch,
+  crossAxisAlignment: .stretch,
   children: _iterable
       .map((i) => ListTile(title: Text('List tile #$i')))
       .toList(),

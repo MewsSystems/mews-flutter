@@ -99,7 +99,7 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
                         width: tokens.borderWidth100,
                       )
                     : null,
-                borderRadius: BorderRadius.all(tokens.borderRadius100),
+                borderRadius: .all(tokens.borderRadius100),
               ),
               duration: buttonAnimationDuration,
               child: IconTheme.merge(
@@ -124,12 +124,12 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
 
 extension on BuildContext {
   double getContainerSize(OptimusWidgetSize size) => switch (size) {
-    OptimusWidgetSize.small => tokens.sizing400,
-    OptimusWidgetSize.medium => tokens.sizing500,
-    OptimusWidgetSize.large => tokens.sizing600,
-    OptimusWidgetSize.extraLarge => tokens.sizing700,
+    .small => tokens.sizing400,
+    .medium => tokens.sizing500,
+    .large => tokens.sizing600,
+    .extraLarge => tokens.sizing700,
   }.toScaled(this);
 
   double getIconSize(OptimusWidgetSize size) =>
-      size == OptimusWidgetSize.small ? tokens.sizing200 : tokens.sizing300;
+      size == .small ? tokens.sizing200 : tokens.sizing300;
 }

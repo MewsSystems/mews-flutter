@@ -18,7 +18,7 @@ class CheckboxGroupExample extends StatefulWidget {
   const CheckboxGroupExample({super.key});
 
   @override
-  CheckboxGroupExampleState createState() => CheckboxGroupExampleState();
+  CheckboxGroupExampleState createState() => .new();
 }
 
 class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
@@ -43,9 +43,9 @@ class CheckboxGroupExampleState extends State<CheckboxGroupExample> {
         width: 400,
         height: 500,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: .min,
+          crossAxisAlignment: .center,
+          mainAxisAlignment: .center,
           children: [
             OptimusCheckbox(
               label: const Text('Outside Checkbox'),

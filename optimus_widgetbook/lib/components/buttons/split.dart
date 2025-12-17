@@ -19,7 +19,7 @@ Widget createDefaultStyle(BuildContext context) {
       children: OptimusSplitButtonVariant.values
           .map(
             (v) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .symmetric(vertical: 8),
               child: OptimusSplitButton<int>(
                 size: k.object.dropdown(
                   label: 'Size',

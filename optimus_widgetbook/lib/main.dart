@@ -28,23 +28,15 @@ class WidgetbookApp extends StatelessWidget {
         themes: [
           const WidgetbookTheme(
             name: 'Light',
-            data: OptimusThemeData(
-              brightness: Brightness.light,
-              tokens: OptimusTokens.light,
-            ),
+            data: OptimusThemeData(brightness: .light, tokens: .light),
           ),
           const WidgetbookTheme(
             name: 'Dark',
-            data: OptimusThemeData(
-              brightness: Brightness.dark,
-              tokens: OptimusTokens.dark,
-            ),
+            data: OptimusThemeData(brightness: .dark, tokens: .dark),
           ),
         ],
         themeBuilder: (context, theme, child) => OptimusTheme(
-          themeMode: theme.brightness == Brightness.light
-              ? ThemeMode.light
-              : ThemeMode.dark,
+          themeMode: theme.brightness == .light ? .light : .dark,
           child: child,
         ),
       ),

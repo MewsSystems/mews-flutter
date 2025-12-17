@@ -31,18 +31,18 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
   void initState() {
     super.initState();
     _controller = WidgetStatesController()
-      ..update(WidgetState.disabled, !widget.isEnabled)
-      ..update(WidgetState.error, widget.isError);
+      ..update(.disabled, !widget.isEnabled)
+      ..update(.error, widget.isError);
   }
 
   @override
   void didUpdateWidget(CheckboxTick oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isEnabled != widget.isEnabled) {
-      _controller.update(WidgetState.disabled, !widget.isEnabled);
+      _controller.update(.disabled, !widget.isEnabled);
     }
     if (oldWidget.isError != widget.isError) {
-      _controller.update(WidgetState.error, widget.isError);
+      _controller.update(.error, widget.isError);
     }
   }
 
@@ -57,18 +57,20 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
   WidgetStateColor get _fillColor =>
       _state.isUnchecked ? _fillColorUnchecked : _fillColorChecked;
 
-  WidgetStateColor get _fillColorUnchecked => WidgetStateColor.fromMap({
+  WidgetStateColor get _fillColorUnchecked => .fromMap({
     WidgetState.disabled: Colors.transparent,
     WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
     WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
     ~WidgetState.disabled: Colors.transparent,
   });
 
-  WidgetStateColor get _fillColorChecked => WidgetStateColor.fromMap({
+  WidgetStateColor get _fillColorChecked => .fromMap({
     WidgetState.disabled: tokens.backgroundDisabled,
+    // ignore: prefer-shorthands-with-enums, false positive, compiler wont let us use shorthands here
     WidgetState.pressed & WidgetState.error:
         tokens.backgroundInteractiveDangerActive,
     WidgetState.pressed: tokens.backgroundInteractivePrimaryActive,
+    // ignore: prefer-shorthands-with-enums, false positive, compiler wont let us use shorthands here
     WidgetState.hovered & WidgetState.error:
         tokens.backgroundInteractiveDangerHover,
     WidgetState.hovered: tokens.backgroundInteractivePrimaryHover,
@@ -76,7 +78,7 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
     ~WidgetState.disabled: tokens.backgroundInteractivePrimaryDefault,
   });
 
-  WidgetStateColor get _borderColor => WidgetStateColor.fromMap({
+  WidgetStateColor get _borderColor => .fromMap({
     WidgetState.disabled: tokens.borderDisabled,
     WidgetState.error: tokens.borderAlertDanger,
     WidgetState.pressed: tokens.borderInteractiveInputActive,
@@ -91,10 +93,9 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
     return ListenableBuilder(
       listenable: _controller,
       builder: (context, child) => GestureWrapper(
-        onHoverChanged: (isHovered) =>
-            _controller.update(WidgetState.hovered, isHovered),
+        onHoverChanged: (isHovered) => _controller.update(.hovered, isHovered),
         onPressedChanged: (isPressed) =>
-            _controller.update(WidgetState.pressed, isPressed),
+            _controller.update(.pressed, isPressed),
         onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 100),
@@ -106,7 +107,7 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
                     width: tokens.borderWidth100,
                   )
                 : null,
-            borderRadius: BorderRadius.all(tokens.borderRadius25),
+            borderRadius: .all(tokens.borderRadius25),
           ),
           width: size,
           height: size,
@@ -150,18 +151,18 @@ enum _TickState { checked, unchecked, undetermined }
 
 extension on _TickState {
   IconData? get icon => switch (this) {
-    _TickState.checked => OptimusIcons.done,
-    _TickState.unchecked => null,
-    _TickState.undetermined => OptimusIcons.minus_simple,
+    .checked => OptimusIcons.done,
+    .unchecked => null,
+    .undetermined => OptimusIcons.minus_simple,
   };
 
-  bool get isUnchecked => this == _TickState.unchecked;
+  bool get isUnchecked => this == .unchecked;
 }
 
 extension on bool? {
   _TickState toState() => switch (this) {
-    true => _TickState.checked,
-    false => _TickState.unchecked,
-    null => _TickState.undetermined,
+    true => .checked,
+    false => .unchecked,
+    null => .undetermined,
   };
 }

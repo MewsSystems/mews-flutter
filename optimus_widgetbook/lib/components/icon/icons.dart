@@ -9,11 +9,11 @@ Widget createDefaultStyle(BuildContext _) => GridView.builder(
     crossAxisCount: 5,
   ),
   itemBuilder: (context, index) => Padding(
-    padding: const EdgeInsets.all(8),
+    padding: const .all(8),
     child: Column(
       children: [
         OptimusIcon(iconData: optimusIcons[index].data),
-        Text(optimusIcons[index].name, overflow: TextOverflow.ellipsis),
+        Text(optimusIcons[index].name, overflow: .ellipsis),
       ],
     ),
   ),

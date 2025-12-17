@@ -20,7 +20,7 @@ Widget createDefaultStyle(BuildContext context) {
       children: OptimusButtonVariant.values
           .map(
             (v) => Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const .all(8),
               child: OptimusIconButton(
                 onPressed: k.isEnabledKnob ? ignore : null,
                 icon: Icon(icon.data),

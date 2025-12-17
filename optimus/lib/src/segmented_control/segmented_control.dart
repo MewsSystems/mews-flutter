@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/common/gesture_wrapper.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
@@ -56,22 +55,20 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
   /// the [Axis.horizontal] this will be set to 1.
   final int? maxLines;
 
-  int? get _maxLines => direction == Axis.horizontal ? 1 : maxLines;
+  int? get _maxLines => direction == .horizontal ? 1 : maxLines;
 
-  OptimusStackDistribution get _distribution => direction == Axis.horizontal
-      ? OptimusStackDistribution.stretch
-      : OptimusStackDistribution.basic;
+  OptimusStackDistribution get _distribution =>
+      direction == .horizontal ? .stretch : .basic;
 
-  OptimusStackSpacing get _spacing => direction == Axis.horizontal
-      ? OptimusStackSpacing.spacing0
-      : OptimusStackSpacing.spacing50;
+  OptimusStackSpacing get _spacing =>
+      direction == .horizontal ? .spacing0 : .spacing50;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
 
     return Semantics(
-      role: SemanticsRole.radioGroup,
+      role: .radioGroup,
       child: GroupWrapper(
         label: label,
         error: error,
@@ -80,10 +77,10 @@ class OptimusSegmentedControl<T> extends StatelessWidget {
         child: OptimusEnabled(
           isEnabled: isEnabled,
           child: DecoratedBox(
-            decoration: direction == Axis.horizontal
+            decoration: direction == .horizontal
                 ? BoxDecoration(
                     color: tokens.backgroundInteractiveNeutralDefault,
-                    borderRadius: BorderRadius.all(tokens.borderRadius100),
+                    borderRadius: .all(tokens.borderRadius100),
                   )
                 : const BoxDecoration(),
             child: OptimusStack(
@@ -186,28 +183,28 @@ class _OptimusSegmentedControlItemState<T>
           onHoverChanged: _handleHoverChanged,
           onPressedChanged: _handlePressedChanged,
           child: Padding(
-            padding: EdgeInsets.all(tokens.spacing25),
+            padding: .all(tokens.spacing25),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 100),
               curve: Curves.easeOut,
               constraints: BoxConstraints(
                 minHeight: widget.size.getWidgetHeight(tokens),
               ),
-              padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+              padding: .symmetric(vertical: tokens.spacing50),
               decoration: BoxDecoration(
                 color: _color(tokens),
-                borderRadius: BorderRadius.all(tokens.borderRadius100),
+                borderRadius: .all(tokens.borderRadius100),
               ),
               alignment: Alignment.center,
               child: DefaultTextStyle.merge(
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
+                overflow: .ellipsis,
+                textAlign: .center,
                 maxLines: widget.maxLines,
                 style: tokens.bodyMediumStrong.copyWith(
                   color: _foregroundColor(tokens),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: .symmetric(
                     horizontal: constrains.getAdaptivePadding(tokens),
                   ),
                   child: widget.child,

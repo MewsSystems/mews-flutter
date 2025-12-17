@@ -90,7 +90,7 @@ class _AlertStoryContent extends StatelessWidget {
   Widget build(BuildContext context) => Center(
     child: SingleChildScrollView(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
           ...OptimusFeedbackVariant.values.map(
             (variant) => OptimusAlert(

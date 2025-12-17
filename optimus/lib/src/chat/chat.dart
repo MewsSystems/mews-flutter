@@ -50,7 +50,7 @@ class OptimusChat extends StatelessWidget {
   bool _showStatus(int index) =>
       _isLastMessageOfDay(index) ||
       _isMoreThanOneMinuteDifferenceForward(index) ||
-      _messages[index].deliveryStatus != MessageDeliveryStatus.sent ||
+      _messages[index].deliveryStatus != .sent ||
       _isLatestMessage(index) ||
       !_isPreviousMessageFromSameUser(index);
 
@@ -116,13 +116,13 @@ class OptimusChat extends StatelessWidget {
     final avatarWidth = hasAvatars ? tokens.spacing500 : tokens.spacing0;
 
     return Padding(
-      padding: EdgeInsets.only(
+      padding: .only(
         left: tokens.spacing200,
         right: tokens.spacing200,
         bottom: tokens.spacing200,
       ),
       child: OptimusStack(
-        spacing: OptimusStackSpacing.spacing200,
+        spacing: .spacing200,
         children: [
           // ignore: avoid-flexible-outside-flex, it is wrapped in Flex later
           Expanded(
@@ -266,15 +266,15 @@ class _StatusText extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusStack(
     mainAxisAlignment: message.owner.stackAlignment,
-    direction: Axis.horizontal,
-    spacing: OptimusStackSpacing.spacing50,
+    direction: .horizontal,
+    spacing: .spacing50,
     children: switch (message.deliveryStatus) {
-      MessageDeliveryStatus.sending => [
+      .sending => [
         _Status(child: Text(formatTime(message.time))),
         _Status(child: sending),
         const _StatusCircle(),
       ],
-      MessageDeliveryStatus.sent => [
+      .sent => [
         _Status(child: Text(formatTime(message.time))),
         if (isFromCurrentUser) ...[
           _Status(child: sent),
@@ -282,17 +282,17 @@ class _StatusText extends StatelessWidget {
             opacity: 0.6,
             child: OptimusIcon(
               iconData: OptimusIcons.done_circle,
-              iconSize: OptimusIconSize.small,
+              iconSize: .small,
             ),
           ),
         ],
       ],
-      MessageDeliveryStatus.error => [
+      .error => [
         _Status(child: error),
         const OptimusIcon(
           iconData: OptimusIcons.disable,
-          iconSize: OptimusIconSize.small,
-          colorOption: OptimusIconColorOption.danger,
+          iconSize: .small,
+          colorOption: .danger,
         ),
       ],
     },
@@ -355,10 +355,8 @@ class _Bubble extends StatelessWidget {
           SizedBox(height: tokens.spacing200).excludeSemantics(),
         ],
         OptimusStack(
-          direction: Axis.horizontal,
-          crossAxisAlignment: isUserNameVisible
-              ? OptimusStackAlignment.start
-              : OptimusStackAlignment.end,
+          direction: .horizontal,
+          crossAxisAlignment: isUserNameVisible ? .start : .end,
           mainAxisAlignment: owner.stackAlignment,
           children: owner.isAssistant ? children : children.reversed.toList(),
         ),
@@ -379,7 +377,7 @@ class _Status extends StatelessWidget {
     return DefaultTextStyle.merge(
       style: tokens.bodySmall.copyWith(
         color: tokens.textStaticTertiary,
-        fontWeight: FontWeight.w600,
+        fontWeight: .w600,
       ),
       child: child,
     );
@@ -397,8 +395,8 @@ class _StatusCircle extends StatelessWidget {
       width: tokens.spacing200,
       height: tokens.spacing200,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(tokens.borderRadius100),
-        border: Border.all(
+        borderRadius: .all(tokens.borderRadius100),
+        border: .all(
           width: tokens.borderWidth100,
           color: tokens.textStaticTertiary,
         ),
@@ -409,15 +407,15 @@ class _StatusCircle extends StatelessWidget {
 
 extension on MessageOwner {
   OptimusStackAlignment get stackAlignment => switch (this) {
-    MessageOwner.assistant => OptimusStackAlignment.start,
-    MessageOwner.user => OptimusStackAlignment.end,
+    .assistant => .start,
+    .user => .end,
   };
 
   MainAxisAlignment get mainAxisAlignment => switch (this) {
-    MessageOwner.assistant => MainAxisAlignment.start,
-    MessageOwner.user => MainAxisAlignment.end,
+    .assistant => .start,
+    .user => .end,
   };
 
-  bool get isAssistant => this == MessageOwner.assistant;
-  bool get isUser => this == MessageOwner.user;
+  bool get isAssistant => this == .assistant;
+  bool get isUser => this == .user;
 }

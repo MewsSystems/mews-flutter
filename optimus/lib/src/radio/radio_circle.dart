@@ -13,29 +13,27 @@ class RadioCircle extends StatelessWidget {
   final bool isSelected;
   final WidgetStatesController controller;
 
-  WidgetStateColor _getBorderColor(OptimusTokens tokens) =>
-      WidgetStateColor.fromMap({
-        WidgetState.disabled: isSelected
-            ? tokens.backgroundDisabled
-            : tokens.borderDisabled,
-        WidgetState.pressed: isSelected
-            ? tokens.backgroundInteractivePrimaryActive
-            : tokens.borderInteractiveInputActive,
-        WidgetState.hovered: isSelected
-            ? tokens.backgroundInteractivePrimaryHover
-            : tokens.borderInteractiveInputHover,
-        WidgetState.any: isSelected
-            ? tokens.backgroundInteractivePrimaryDefault
-            : tokens.borderInteractiveInputDefault,
-      });
+  WidgetStateColor _getBorderColor(OptimusTokens tokens) => .fromMap({
+    WidgetState.disabled: isSelected
+        ? tokens.backgroundDisabled
+        : tokens.borderDisabled,
+    WidgetState.pressed: isSelected
+        ? tokens.backgroundInteractivePrimaryActive
+        : tokens.borderInteractiveInputActive,
+    WidgetState.hovered: isSelected
+        ? tokens.backgroundInteractivePrimaryHover
+        : tokens.borderInteractiveInputHover,
+    WidgetState.any: isSelected
+        ? tokens.backgroundInteractivePrimaryDefault
+        : tokens.borderInteractiveInputDefault,
+  });
 
-  WidgetStateColor _getFillColor(OptimusTokens tokens) =>
-      WidgetStateColor.fromMap({
-        WidgetState.disabled: tokens.backgroundInteractiveNeutralSubtleDefault,
-        WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
-        WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
-        WidgetState.any: tokens.backgroundInteractiveNeutralSubtleDefault,
-      });
+  WidgetStateColor _getFillColor(OptimusTokens tokens) => .fromMap({
+    WidgetState.disabled: tokens.backgroundInteractiveNeutralSubtleDefault,
+    WidgetState.pressed: tokens.backgroundInteractiveNeutralSubtleActive,
+    WidgetState.hovered: tokens.backgroundInteractiveNeutralSubtleHover,
+    WidgetState.any: tokens.backgroundInteractiveNeutralSubtleDefault,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +49,8 @@ class RadioCircle extends StatelessWidget {
       width: scaledSize,
       height: scaledSize,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
+        shape: .circle,
+        border: .all(
           width: isSelected ? selectedBorderWidth : borderWidth,
           color: _getBorderColor(tokens).resolve(controller.value),
         ),

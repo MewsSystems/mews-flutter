@@ -61,25 +61,22 @@ class _Bubble extends StatelessWidget {
   final OptimusMessage message;
   final double maxWidth;
 
-  Color _getBackgroundColor(OptimusTokens tokens) =>
-      message.state == MessageState.success
+  Color _getBackgroundColor(OptimusTokens tokens) => message.state == .success
       ? tokens.backgroundAlertSuccessSecondary
       : switch (message.owner) {
-          MessageOwner.assistant => tokens.backgroundStaticFlat,
-          MessageOwner.user => tokens.backgroundAlertInfoSecondary,
+          .assistant => tokens.backgroundStaticFlat,
+          .user => tokens.backgroundAlertInfoSecondary,
         };
 
-  Color _getTextColor(OptimusTokens tokens) =>
-      message.state == MessageState.success
+  Color _getTextColor(OptimusTokens tokens) => message.state == .success
       ? tokens.textAlertSuccess
       : tokens.textStaticPrimary;
 
-  Color _getBorderColor(OptimusTokens tokens) =>
-      message.state == MessageState.success
+  Color _getBorderColor(OptimusTokens tokens) => message.state == .success
       ? tokens.borderAlertSuccess
       : switch (message.owner) {
-          MessageOwner.assistant => tokens.borderStaticTertiary,
-          MessageOwner.user => Colors.transparent,
+          .assistant => tokens.borderStaticTertiary,
+          .user => Colors.transparent,
         };
 
   @override
@@ -91,25 +88,25 @@ class _Bubble extends StatelessWidget {
       child: Container(
         constraints: BoxConstraints(maxWidth: maxWidth),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: message.owner == MessageOwner.assistant
+          borderRadius: .only(
+            topLeft: message.owner == .assistant
                 ? tokens.borderRadius0
                 : context.bubbleRadius,
 
-            topRight: message.owner == MessageOwner.user
+            topRight: message.owner == .user
                 ? tokens.borderRadius0
                 : context.bubbleRadius,
             bottomRight: context.bubbleRadius,
             bottomLeft: context.bubbleRadius,
           ),
           color: _getBackgroundColor(tokens),
-          border: Border.all(
+          border: .all(
             color: _getBorderColor(tokens),
             width: tokens.borderWidth100,
           ),
         ),
-        padding: EdgeInsets.all(tokens.spacing100),
-        child: message.state == MessageState.typing
+        padding: .all(tokens.spacing100),
+        child: message.state == .typing
             ? const _TypingBubble()
             : Text(
                 message.message,
@@ -164,19 +161,19 @@ class _TypingBubble extends StatelessWidget {
 extension on MessageOwner {
   EdgeInsetsGeometry getHorizontalPadding(OptimusTokens tokens) =>
       switch (this) {
-        MessageOwner.assistant => EdgeInsets.only(
+        .assistant => EdgeInsets.only(
           left: tokens.spacing100,
           right: tokens.spacing100,
         ),
-        MessageOwner.user => EdgeInsets.only(
+        .user => EdgeInsets.only(
           left: tokens.spacing0,
           right: tokens.spacing100,
         ),
       };
 
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
-    MessageOwner.assistant => CrossAxisAlignment.start,
-    MessageOwner.user => CrossAxisAlignment.end,
+    .assistant => .start,
+    .user => .end,
   };
 }
 

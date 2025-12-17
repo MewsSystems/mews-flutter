@@ -7,13 +7,11 @@ class MewsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) => OptimusTheme(
     child: OptimusMewsLogo(
-      logoVariant: OptimusMewsLogoVariant.wordmark,
-      sizeVariant: OptimusMewsLogoSizeVariant.medium,
-      alignVariant: OptimusMewsLogoAlignVariant.center,
+      logoVariant: .wordmark,
+      sizeVariant: .medium,
+      alignVariant: .center,
       useMargin: false,
-      colorVariant: OptimusTheme.of(context).isDark
-          ? OptimusMewsLogoColorVariant.white
-          : OptimusMewsLogoColorVariant.black,
+      colorVariant: OptimusTheme.of(context).isDark ? .white : .black,
     ),
   );
 }

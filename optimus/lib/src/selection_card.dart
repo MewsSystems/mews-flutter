@@ -1,5 +1,4 @@
 import 'package:dfunc/dfunc.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/checkbox/checkbox_tick.dart';
@@ -76,7 +75,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
     super.dispose();
   }
 
-  WidgetStateColor get _backgroundColor => WidgetStateColor.fromMap({
+  WidgetStateColor get _backgroundColor => .fromMap({
     WidgetState.disabled: tokens.backgroundStaticFlat,
     WidgetState.pressed: widget.isSelected
         ? tokens.backgroundInteractiveSecondaryActive
@@ -89,7 +88,7 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
         : tokens.backgroundStaticFlat,
   });
 
-  WidgetStateColor get _borderColor => WidgetStateColor.fromMap({
+  WidgetStateColor get _borderColor => .fromMap({
     WidgetState.disabled: tokens.borderDisabled,
     WidgetState.pressed: widget.isSelected
         ? tokens.borderInteractivePrimaryActive
@@ -102,12 +101,12 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
         : tokens.borderInteractiveSecondaryDefault,
   });
 
-  WidgetStateColor get _titleColor => WidgetStateColor.fromMap({
+  WidgetStateColor get _titleColor => .fromMap({
     WidgetState.disabled: tokens.textDisabled,
     WidgetState.any: tokens.textStaticPrimary,
   });
 
-  WidgetStateColor get _descriptionColor => WidgetStateColor.fromMap({
+  WidgetStateColor get _descriptionColor => .fromMap({
     WidgetState.disabled: tokens.textDisabled,
     WidgetState.any: tokens.textStaticTertiary,
   });
@@ -116,13 +115,13 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
   void didUpdateWidget(covariant OptimusSelectionCard oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.isEnabled != oldWidget.isEnabled) {
-      _controller.update(WidgetState.disabled, !widget.isEnabled);
+      _controller.update(.disabled, !widget.isEnabled);
     }
   }
 
   @override
   Widget build(BuildContext context) => Semantics(
-    role: SemanticsRole.radioGroup,
+    role: .radioGroup,
     child: IgnorePointer(
       ignoring: !widget.isEnabled,
       child: ListenableBuilder(
@@ -135,11 +134,11 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
 
           final selector = widget.isSelectorVisible
               ? switch (widget.selectionVariant) {
-                  OptimusSelectionCardSelectionVariant.radio => RadioCircle(
+                  .radio => RadioCircle(
                     controller: _controller,
                     isSelected: widget.isSelected,
                   ),
-                  OptimusSelectionCardSelectionVariant.checkbox => CheckboxTick(
+                  .checkbox => CheckboxTick(
                     isEnabled: widget.isEnabled,
                     isChecked: widget.isSelected,
                     onChanged: (_) {},
@@ -169,30 +168,25 @@ class _OptimusSelectionCardState extends State<OptimusSelectionCard>
 
           return GestureWrapper(
             onHoverChanged: (isHovered) =>
-                _controller.update(WidgetState.hovered, isHovered),
+                _controller.update(.hovered, isHovered),
             onPressedChanged: (isPressed) =>
-                _controller.update(WidgetState.pressed, isPressed),
+                _controller.update(.pressed, isPressed),
             onTap: widget.onPressed,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: backgroundColor,
-                borderRadius: BorderRadius.all(
-                  widget.borderRadius.getBorderRadius(tokens),
-                ),
-                border: Border.all(
-                  color: borderColor,
-                  width: tokens.borderWidth100,
-                ),
+                borderRadius: .all(widget.borderRadius.getBorderRadius(tokens)),
+                border: .all(color: borderColor, width: tokens.borderWidth100),
               ),
               child: switch (widget.variant) {
-                OptimusSelectionCardVariant.horizontal => _HorizontalCard(
+                .horizontal => _HorizontalCard(
                   title: title,
                   description: description,
                   trailing: trailing,
                   isSelected: widget.isSelected,
                   selector: selector,
                 ),
-                OptimusSelectionCardVariant.vertical => _VerticalCard(
+                .vertical => _VerticalCard(
                   title: title,
                   description: description,
                   trailing: trailing,
@@ -230,18 +224,18 @@ class _HorizontalCard extends StatelessWidget {
     return Semantics(
       inMutuallyExclusiveGroup: true,
       child: Padding(
-        padding: EdgeInsets.all(tokens.spacing200),
+        padding: .all(tokens.spacing200),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: .start,
+          mainAxisSize: .min,
           children: [
             ?selector,
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: tokens.spacing200),
+                padding: .symmetric(horizontal: tokens.spacing200),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .start,
                   children: [
                     Flexible(child: title),
                     SizedBox(height: tokens.spacing25).excludeSemantics(),
@@ -287,12 +281,12 @@ class _VerticalCard extends StatelessWidget {
             child: selector,
           ),
         Padding(
-          padding: EdgeInsets.symmetric(
+          padding: .symmetric(
             horizontal: context.tokens.spacing200,
             vertical: context.tokens.spacing400,
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               ?trailing,
               SizedBox(
@@ -313,7 +307,7 @@ class _VerticalCard extends StatelessWidget {
 
 extension on OptimusSelectionCardBorderRadius {
   Radius getBorderRadius(OptimusTokens tokens) => switch (this) {
-    OptimusSelectionCardBorderRadius.small => tokens.borderRadius100,
-    OptimusSelectionCardBorderRadius.medium => tokens.borderRadius200,
+    .small => tokens.borderRadius100,
+    .medium => tokens.borderRadius200,
   };
 }

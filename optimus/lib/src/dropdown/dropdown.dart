@@ -169,7 +169,7 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
       final decoration =
           widget.items.isNotEmpty || widget.emptyResultPlaceholder != null
           ? BoxDecoration(
-              borderRadius: BorderRadius.all(tokens.borderRadius100),
+              borderRadius: .all(tokens.borderRadius100),
               color: tokens.backgroundStaticFloating,
               boxShadow: tokens.shadow200,
             )
@@ -185,7 +185,7 @@ class _DropdownContentState<T> extends State<_DropdownContent<T>>
             child: SizeTransition(
               sizeFactor: _sizeAnimation,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 spacing: tokens.spacing50,
                 children: isOnTop ? children : children.reversed.toList(),
               ),
@@ -225,7 +225,7 @@ class _DropdownListView<T> extends StatelessWidget {
       height: listHeight,
       child: ListView.builder(
         reverse: isReversed,
-        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+        padding: .symmetric(vertical: tokens.spacing100),
         itemCount: items.length,
         itemBuilder: (context, index) =>
             _DropdownItem(onChanged: onChanged, child: items[index]),
@@ -312,7 +312,7 @@ class _GroupedDropdownListViewState<T>
       height: listHeight,
       child: ListView.builder(
         reverse: widget.isReversed,
-        padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+        padding: .symmetric(vertical: tokens.spacing100),
         itemCount: widget.items.length,
         itemBuilder: (_, index) {
           final current = _sortedItems[index];
@@ -333,7 +333,7 @@ class _GroupedDropdownListViewState<T>
 
           return _isSameGroup(current, previous)
               ? Padding(
-                  padding: EdgeInsets.symmetric(vertical: tokens.spacing50),
+                  padding: .symmetric(vertical: tokens.spacing50),
                   child: child,
                 )
               : _GroupWrapper(
@@ -392,18 +392,18 @@ class _GroupWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: EdgeInsets.only(
+    padding: .only(
       top: useBorder ? context.tokens.spacing50 : context.tokens.spacing0,
     ),
     child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
       children: [
         Container(
           width: AnchoredOverlay.of(context)?.width,
           decoration: useBorder
               ? BoxDecoration(
-                  border: Border(
+                  border: .fromLTRB(
                     top: BorderSide(
                       color: context.tokens.borderStaticSecondary,
                     ),
@@ -429,7 +429,7 @@ class _DropdownItem<T> extends StatefulWidget {
   final ValueSetter<T> onChanged;
 
   @override
-  _DropdownItemState<T> createState() => _DropdownItemState();
+  _DropdownItemState<T> createState() => .new();
 }
 
 class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
@@ -442,7 +442,7 @@ class _DropdownItemState<T> extends State<_DropdownItem<T>> with ThemeGetter {
   Widget build(BuildContext context) => SizedBox(
     width: AnchoredOverlay.of(context)?.width,
     child: InkWell(
-      borderRadius: BorderRadius.all(tokens.borderRadius100),
+      borderRadius: .all(tokens.borderRadius100),
       onTap: _handleItemTap,
       child: widget.child,
     ),
@@ -482,7 +482,7 @@ class _SearchWrapperState extends State<_SearchWrapper> with ThemeGetter {
     ];
 
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: widget.isOnTop ? children : children.reversed.toList(),
     );
   }

@@ -73,21 +73,19 @@ class OptimusSystemWideBanner extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(color: variant.backgroundColor(tokens)),
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: .symmetric(
             horizontal: tokens.spacing100,
             vertical: tokens.spacing200,
           ),
           child: Row(
-            crossAxisAlignment: _isExpanded
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.center,
+            crossAxisAlignment: _isExpanded ? .start : .center,
             children: [
               FeedbackIcon(variant: variant),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: tokens.spacing150),
+                  padding: .only(left: tokens.spacing150),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: .start,
                     children: [
                       FeedbackTitle(
                         title: title,
@@ -96,7 +94,7 @@ class OptimusSystemWideBanner extends StatelessWidget {
                       ),
                       if (description case final description?)
                         Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
+                          padding: .only(top: tokens.spacing50),
                           child: FeedbackDescription(
                             description: description,
                             maxLines: descriptionMaxLines,
@@ -105,7 +103,7 @@ class OptimusSystemWideBanner extends StatelessWidget {
                         ),
                       if (link case final link?)
                         Padding(
-                          padding: EdgeInsets.only(top: tokens.spacing50),
+                          padding: .only(top: tokens.spacing50),
                           child: FeedbackLink(
                             text: link.text,
                             onPressed: link.onPressed,

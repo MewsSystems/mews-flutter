@@ -26,17 +26,17 @@ class OptimusDivider extends StatelessWidget {
   final OptimusDividerThicknessVariant thickness;
 
   double _getVerticalPadding(OptimusTokens tokens) =>
-      direction == Axis.horizontal ? tokens.spacing100 : tokens.spacing150;
+      direction == .horizontal ? tokens.spacing100 : tokens.spacing150;
 
   double _getHorizontalPadding(OptimusTokens tokens) =>
-      direction == Axis.horizontal ? tokens.spacing200 : tokens.spacing150;
+      direction == .horizontal ? tokens.spacing200 : tokens.spacing150;
 
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
     final child = this.child;
 
-    final divider = direction == Axis.horizontal
+    final divider = direction == .horizontal
         ? Divider(
             color: context.dividerColor,
             thickness: thickness.getLineThickness(tokens),
@@ -87,8 +87,8 @@ enum OptimusDividerThicknessVariant { thin, thick }
 
 extension on OptimusDividerThicknessVariant {
   double getLineThickness(OptimusTokens tokens) => switch (this) {
-    OptimusDividerThicknessVariant.thin => tokens.borderWidth100,
-    OptimusDividerThicknessVariant.thick => tokens.borderWidth800,
+    .thin => tokens.borderWidth100,
+    .thick => tokens.borderWidth800,
   };
 }
 

@@ -24,8 +24,8 @@ class GroupWrapper extends StatelessWidget {
     final error = this.error;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: .start,
+      mainAxisSize: .min,
       children: [
         if (label != null && label.isNotEmpty)
           OptimusFieldLabel(

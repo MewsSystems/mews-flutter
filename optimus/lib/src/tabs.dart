@@ -36,19 +36,19 @@ class OptimusTab extends StatelessWidget {
 
     return Container(
       height: tokens.sizing600,
-      constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+      constraints: BoxConstraints(maxWidth: maxWidth ?? .infinity),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
           if (icon != null)
             Padding(
-              padding: EdgeInsets.only(right: tokens.spacing50),
+              padding: .only(right: tokens.spacing50),
               child: Icon(icon, size: tokens.sizing200),
             ),
-          Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
+          Flexible(child: Text(label, overflow: .ellipsis)),
           if (badge case final badge?)
             Padding(
-              padding: EdgeInsets.only(left: tokens.spacing50),
+              padding: .only(left: tokens.spacing50),
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: tokens.sizing400),
                 child: BaseBadge(
@@ -95,10 +95,10 @@ class OptimusTabBar extends StatelessWidget {
       color: tokens.borderInteractivePrimaryDefault,
       width: tokens.borderWidth200,
     ),
-    insets: const EdgeInsets.only(bottom: -1),
+    insets: const .only(bottom: -1),
   );
 
-  TabAlignment? get _tabAlignment => isScrollable ? null : TabAlignment.fill;
+  TabAlignment? get _tabAlignment => isScrollable ? null : .fill;
 
   EdgeInsets _getLabelPadding(OptimusTokens tokens) =>
       tabPadding ?? EdgeInsets.symmetric(horizontal: tokens.spacing150);
@@ -114,7 +114,7 @@ class OptimusTabBar extends StatelessWidget {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              border: Border(
+              border: .fromLTRB(
                 bottom: BorderSide(
                   color: tokens.borderStaticSecondary,
                   width: tokens.borderWidth100,

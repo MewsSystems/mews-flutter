@@ -17,11 +17,11 @@ Widget createDefaultStyle(BuildContext context) {
 
   return SingleChildScrollView(
     child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: .center,
       children: OptimusStandaloneLinkSize.values
           .map(
             (size) => Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const .all(8),
               child: OptimusStandaloneLink(
                 onPressed: k.isEnabledKnob ? ignore : null,
                 text: Text(linkText),

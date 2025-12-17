@@ -68,7 +68,7 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
           );
   }
 
-  Icon get _icon => Icon(
+  Icon get _icon => .new(
     _isOpened ? OptimusIcons.chevron_up : OptimusIcons.chevron_down,
     size: tokens.sizing300,
     color: tokens.textStaticPrimary,
@@ -82,12 +82,10 @@ class _OptimusSelectState<T> extends State<OptimusSelect<T>> with ThemeGetter {
         : tokens.textDisabled;
 
     return switch (widget.size) {
-      OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(color: color),
-      OptimusWidgetSize.medium ||
-      OptimusWidgetSize.large ||
-      OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong.copyWith(
-        color: color,
-      ),
+      .small => tokens.bodyMediumStrong.copyWith(color: color),
+      .medium ||
+      .large ||
+      .extraLarge => tokens.bodyLargeStrong.copyWith(color: color),
     };
   }
 
@@ -144,10 +142,7 @@ class _SelectedValue extends StatelessWidget {
     final tokens = context.tokens;
 
     return Padding(
-      padding: EdgeInsets.only(
-        left: tokens.spacing200,
-        right: tokens.spacing100,
-      ),
+      padding: .only(left: tokens.spacing200, right: tokens.spacing100),
       child: SizedBox(
         height: size.getWidgetHeight(tokens),
         child: DefaultTextStyle(style: textStyle, child: child),

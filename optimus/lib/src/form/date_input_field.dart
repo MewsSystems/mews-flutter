@@ -192,7 +192,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   /// Retrieve the format of the pattern that was generated for the placeholder.
   ///
   /// Fof example, the pattern "DD/MM/YYYY" will be transformed to "dd/MM/yyyy".
-  DateFormat get _placeholderFormat => DateFormat(
+  DateFormat get _placeholderFormat => .new(
     _replaceSupported(
       widget.format.pattern,
       (symbol) => symbol.pattern,
@@ -220,7 +220,7 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
     error: widget.error,
     onSubmitted: _handleSubmitted,
     onChanged: _handleChanged,
-    keyboardType: TextInputType.number,
+    keyboardType: .number,
     isRequired: widget.isRequired,
     onTap: widget.onTap,
     focusNode: widget.focusNode,
@@ -232,29 +232,29 @@ enum _SupportedSymbol { day, month, year, hour, minute, second }
 
 extension on _SupportedSymbol {
   String get pattern => switch (this) {
-    _SupportedSymbol.day => 'd',
-    _SupportedSymbol.month => 'M',
-    _SupportedSymbol.year => 'y',
-    _SupportedSymbol.hour => 'H',
-    _SupportedSymbol.minute => 'm',
-    _SupportedSymbol.second => 's',
+    .day => 'd',
+    .month => 'M',
+    .year => 'y',
+    .hour => 'H',
+    .minute => 'm',
+    .second => 's',
   };
 
   String get format => switch (this) {
-    _SupportedSymbol.day => 'dd',
-    _SupportedSymbol.month => 'MM',
-    _SupportedSymbol.year => 'yyyy',
-    _SupportedSymbol.hour => 'HH',
-    _SupportedSymbol.minute => 'mm',
-    _SupportedSymbol.second => 'ss',
+    .day => 'dd',
+    .month => 'MM',
+    .year => 'yyyy',
+    .hour => 'HH',
+    .minute => 'mm',
+    .second => 'ss',
   };
 
   String get placeholder => switch (this) {
-    _SupportedSymbol.day => 'DD',
-    _SupportedSymbol.month => 'MM',
-    _SupportedSymbol.year => 'YYYY',
-    _SupportedSymbol.hour => 'HH',
-    _SupportedSymbol.minute => 'mm',
-    _SupportedSymbol.second => 'ss',
+    .day => 'DD',
+    .month => 'MM',
+    .year => 'YYYY',
+    .hour => 'HH',
+    .minute => 'mm',
+    .second => 'ss',
   };
 }

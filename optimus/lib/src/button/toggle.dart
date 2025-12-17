@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button.dart';
-import 'package:optimus/src/button/base_button_variant.dart';
 
 enum OptimusToggleButtonSizeVariant { small, medium, large }
 
@@ -44,9 +43,7 @@ class OptimusToggleButton extends StatelessWidget {
         : EdgeInsets.all(size.getCompactPadding(tokens));
 
     return BaseButton(
-      variant: isToggled
-          ? BaseButtonVariant.success
-          : BaseButtonVariant.tertiary,
+      variant: isToggled ? .success : .tertiary,
       size: size.toWidgetSize(),
       isLoading: isLoading,
       onPressed: onPressed,
@@ -56,9 +53,7 @@ class OptimusToggleButton extends StatelessWidget {
           Icon(OptimusIcons.checkbox_plus, size: tokens.sizing200),
           if (label case final label?)
             Padding(
-              padding: EdgeInsets.only(
-                left: size.getPaddingInsidePadding(tokens),
-              ),
+              padding: .only(left: size.getPaddingInsidePadding(tokens)),
               child: label,
             ),
         ],
@@ -69,26 +64,25 @@ class OptimusToggleButton extends StatelessWidget {
 
 extension on OptimusToggleButtonSizeVariant {
   OptimusWidgetSize toWidgetSize() => switch (this) {
-    OptimusToggleButtonSizeVariant.small => OptimusWidgetSize.small,
-    OptimusToggleButtonSizeVariant.medium => OptimusWidgetSize.medium,
-    OptimusToggleButtonSizeVariant.large => OptimusWidgetSize.large,
+    .small => .small,
+    .medium => .medium,
+    .large => .large,
   };
 
   double getLabelVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusToggleButtonSizeVariant.small => tokens.spacing50,
-    OptimusToggleButtonSizeVariant.medium => tokens.spacing100,
-    OptimusToggleButtonSizeVariant.large => tokens.spacing150,
+    .small => tokens.spacing50,
+    .medium => tokens.spacing100,
+    .large => tokens.spacing150,
   };
 
   double getPaddingInsidePadding(OptimusTokens tokens) => switch (this) {
-    OptimusToggleButtonSizeVariant.small => tokens.spacing100,
-    OptimusToggleButtonSizeVariant.medium ||
-    OptimusToggleButtonSizeVariant.large => tokens.spacing150,
+    .small => tokens.spacing100,
+    .medium || .large => tokens.spacing150,
   };
 
   double getCompactPadding(OptimusTokens tokens) => switch (this) {
-    OptimusToggleButtonSizeVariant.small => tokens.spacing100,
-    OptimusToggleButtonSizeVariant.medium => tokens.spacing150,
-    OptimusToggleButtonSizeVariant.large => tokens.spacing200,
+    .small => tokens.spacing100,
+    .medium => tokens.spacing150,
+    .large => tokens.spacing200,
   };
 }

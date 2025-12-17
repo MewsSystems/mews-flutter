@@ -16,12 +16,12 @@ class OptimusStepperFormField extends FormField<int> {
     int max = 100,
     super.onSaved,
     ValueChanged<int?>? onChanged,
-    AutovalidateMode super.autovalidateMode = AutovalidateMode.always,
+    AutovalidateMode super.autovalidateMode = .always,
     String? validationError,
     super.enabled,
     FocusNode? focusNode,
     TextEditingController? controller,
-    OptimusWidgetSize size = OptimusWidgetSize.large,
+    OptimusWidgetSize size = .large,
     String? increaseSemanticLabel,
     String? decreaseSemanticLabel,
     double maxWidth = 200,
@@ -94,7 +94,7 @@ class _Stepper extends StatefulWidget {
   final double maxWidth;
 
   @override
-  _StepperState createState() => _StepperState();
+  _StepperState createState() => .new();
 }
 
 class _StepperState extends State<_Stepper> {
@@ -179,7 +179,7 @@ class _StepperState extends State<_Stepper> {
           label: widget.label,
           semanticsLabel: widget.semanticLabel,
           size: widget.size,
-          textAlign: TextAlign.center,
+          textAlign: .center,
           error: widget.error,
           isEnabled: widget.isEnabled,
           controller: _effectiveController,

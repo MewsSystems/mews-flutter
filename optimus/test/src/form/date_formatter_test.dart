@@ -435,7 +435,7 @@ void main() {
 
     testFormat(
       description: 'Pasting valid value into the empty filed',
-      oldValue: TextEditingValue.empty,
+      oldValue: .empty,
       newValue: const TextEditingValue(
         text: '31-01-2023',
         selection: TextSelection.collapsed(offset: 10),
@@ -448,7 +448,7 @@ void main() {
 
     testFormat(
       description: 'Pasting value with more chars than expected. Empty field',
-      oldValue: TextEditingValue.empty,
+      oldValue: .empty,
       newValue: const TextEditingValue(
         text: '31-01-20231234',
         selection: TextSelection.collapsed(offset: 14),
@@ -461,7 +461,7 @@ void main() {
 
     testFormat(
       description: 'Pasting value with less chars than expected. Empty field.',
-      oldValue: TextEditingValue.empty,
+      oldValue: .empty,
       newValue: const TextEditingValue(
         text: '31-01-20',
         selection: TextSelection.collapsed(offset: 8),

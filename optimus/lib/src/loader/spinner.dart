@@ -121,14 +121,14 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
                 strokeWidth: widget.size.strokeWidth,
                 progress: _thirdProgressAnimation.value,
                 baseAngle: _thirdBaseAnimation.value,
-                strokeCap: StrokeCap.round,
+                strokeCap: .round,
               ),
               foregroundPainter: CirclePainter(
                 indicatorColor: tokens.backgroundAccentSecondary,
                 strokeWidth: widget.size.strokeWidth,
                 progress: _secondProgressAnimation.value,
                 baseAngle: _secondBaseAnimation.value,
-                strokeCap: StrokeCap.round,
+                strokeCap: .round,
               ),
             ),
             CustomPaint(
@@ -138,7 +138,7 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
                 strokeWidth: widget.size.strokeWidth,
                 progress: _firstProgressAnimation.value,
                 baseAngle: _firstBaseAnimation.value,
-                strokeCap: StrokeCap.round,
+                strokeCap: .round,
               ),
             ),
           ],
@@ -150,14 +150,14 @@ class _OptimusSpinnerState extends State<OptimusSpinner>
 
 extension on OptimusSpinnerSize {
   double getSize(OptimusTokens tokens) => switch (this) {
-    OptimusSpinnerSize.small => tokens.sizing300,
-    OptimusSpinnerSize.medium => tokens.sizing500,
-    OptimusSpinnerSize.large => tokens.sizing700,
+    .small => tokens.sizing300,
+    .medium => tokens.sizing500,
+    .large => tokens.sizing700,
   };
 
   double get strokeWidth => switch (this) {
-    OptimusSpinnerSize.small => 2,
-    OptimusSpinnerSize.medium || OptimusSpinnerSize.large => 4,
+    .small => 2,
+    .medium || .large => 4,
   };
 }
 

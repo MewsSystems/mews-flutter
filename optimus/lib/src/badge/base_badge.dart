@@ -37,7 +37,7 @@ class BaseBadge extends StatelessWidget {
         : EdgeInsets.all(tokens.spacing25);
 
     final decoration = BoxDecoration(
-      borderRadius: const BorderRadius.all(Radius.circular(50)),
+      borderRadius: const .all(.circular(50)),
       color: backgroundColor,
       border: isOutlined
           ? Border.all(width: outlineSize, color: outlineColor)
@@ -49,7 +49,7 @@ class BaseBadge extends StatelessWidget {
             text,
             maxLines: 1,
             overflow: overflow,
-            textAlign: TextAlign.center,
+            textAlign: .center,
             style: tokens.bodyExtraSmallStrong.copyWith(color: textColor),
           )
         : SizedBox.square(dimension: tokens.sizing150);

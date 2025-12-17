@@ -10,7 +10,7 @@ Widget createDefaultStyle(BuildContext context) {
 
   return OptimusSkeleton(
     child: Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       spacing: context.tokens.spacing200,
       children: [
         OptimusBone(

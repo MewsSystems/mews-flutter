@@ -100,7 +100,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
     isEnabled: _isEnabled,
   );
 
-  TextStyle get _labelStyle => widget.size == OptimusWidgetSize.small
+  TextStyle get _labelStyle => widget.size == .small
       ? tokens.bodyMediumStrong.copyWith(color: _textColor)
       : tokens.bodyLargeStrong.copyWith(color: _textColor);
 
@@ -144,7 +144,7 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
             child: Focus(
               focusNode: _node,
               child: AnimatedContainer(
-                padding: EdgeInsets.symmetric(
+                padding: .symmetric(
                   horizontal: widget.size.getHorizontalPadding(tokens),
                   vertical: widget.size.getVerticalPadding(tokens),
                 ),
@@ -158,11 +158,11 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
                 duration: buttonAnimationDuration,
                 curve: buttonAnimationCurve,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     if (child != null)
                       Padding(
-                        padding: EdgeInsets.only(right: tokens.spacing150),
+                        padding: .only(right: tokens.spacing150),
                         child: DefaultTextStyle.merge(
                           style: _labelStyle,
                           child: child,
@@ -189,5 +189,5 @@ class _BaseDropDownButtonState<T> extends State<BaseDropDownButton<T>>
 
 extension on OptimusWidgetSize {
   double getIconSize(OptimusTokens tokens) =>
-      this == OptimusWidgetSize.small ? tokens.sizing200 : tokens.sizing300;
+      this == .small ? tokens.sizing200 : tokens.sizing300;
 }

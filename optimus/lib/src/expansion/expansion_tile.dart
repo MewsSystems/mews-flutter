@@ -166,7 +166,7 @@ class _OptimusExpansionTileState extends State<OptimusExpansionTile>
         );
 
         return Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: <Widget>[
             if (widget.slidableActions.isEmpty)
               listTile

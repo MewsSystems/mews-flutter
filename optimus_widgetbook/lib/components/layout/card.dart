@@ -81,7 +81,7 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+    padding: const .symmetric(vertical: 16, horizontal: 8),
     color: context.tokens.paletteSemanticGreen500,
     child: const Text('Content'),
   );

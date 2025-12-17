@@ -4,9 +4,9 @@ enum OptimusWidgetSize { small, medium, large, extraLarge }
 
 extension Value on OptimusWidgetSize {
   double getWidgetHeight(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.sizing400,
-    OptimusWidgetSize.medium => tokens.sizing500,
-    OptimusWidgetSize.large => tokens.sizing600,
-    OptimusWidgetSize.extraLarge => tokens.sizing700,
+    .small => tokens.sizing400,
+    .medium => tokens.sizing500,
+    .large => tokens.sizing600,
+    .extraLarge => tokens.sizing700,
   };
 }

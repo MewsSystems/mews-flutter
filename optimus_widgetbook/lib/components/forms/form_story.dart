@@ -15,7 +15,7 @@ class _Content extends StatefulWidget {
   const _Content();
 
   @override
-  _ContentState createState() => _ContentState();
+  _ContentState createState() => .new();
 }
 
 class _ContentState extends State<_Content> {
@@ -41,8 +41,8 @@ class _ContentState extends State<_Content> {
     return Form(
       key: _formKey,
       child: OptimusStack(
-        mainAxisSize: MainAxisSize.min,
-        spacing: OptimusStackSpacing.spacing300,
+        mainAxisSize: .min,
+        spacing: .spacing300,
         children: [
           OptimusCheckBoxFormField(
             label: const Text('Checkbox form field'),

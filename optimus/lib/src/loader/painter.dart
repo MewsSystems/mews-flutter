@@ -38,7 +38,7 @@ class CirclePainter extends CustomPainter {
       final trackCircle = Paint()
         ..strokeWidth = strokeWidth
         ..color = trackColor
-        ..style = PaintingStyle.stroke;
+        ..style = .stroke;
 
       canvas.drawCircle(center, radius, trackCircle);
     }
@@ -46,7 +46,7 @@ class CirclePainter extends CustomPainter {
     final indicatorArc = Paint()
       ..strokeWidth = strokeWidth
       ..color = indicatorColor
-      ..style = PaintingStyle.stroke
+      ..style = .stroke
       ..strokeCap = strokeCap;
 
     canvas.drawArc(

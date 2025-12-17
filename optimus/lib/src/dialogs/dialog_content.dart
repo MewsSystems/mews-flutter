@@ -44,18 +44,18 @@ class DialogContent extends StatelessWidget {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
       child: Padding(
-        padding: EdgeInsets.all(spacing ?? tokens.spacing0),
+        padding: .all(spacing ?? tokens.spacing0),
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxWidth),
           child: OptimusCard(
-            variant: OptimusBasicCardVariant.overlay,
-            padding: OptimusCardSpacing.spacing0,
+            variant: .overlay,
+            padding: .spacing0,
             isOutlined: false,
             child: Material(
               color: tokens.backgroundStaticFloating,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: .start,
+                mainAxisSize: .min,
                 children: <Widget>[
                   if (title != null)
                     _Title(
@@ -107,7 +107,7 @@ class _Content extends StatelessWidget {
           )
         : contentWrapperBuilder(context, content);
 
-    return Flexible(fit: FlexFit.loose, child: wrappedContent);
+    return Flexible(fit: .loose, child: wrappedContent);
   }
 }
 
@@ -127,24 +127,21 @@ class _Title extends StatelessWidget {
     final tokens = context.tokens;
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(tokens.spacing200),
+            padding: .all(tokens.spacing200),
             child: OptimusTitleSmall(child: title),
           ),
         ),
         if (isDismissible)
           Padding(
-            padding: EdgeInsets.only(
-              top: tokens.spacing200,
-              right: tokens.spacing200,
-            ),
+            padding: .only(top: tokens.spacing200, right: tokens.spacing200),
             child: OptimusIconButton(
               icon: const OptimusIcon(iconData: OptimusIcons.cross_close),
-              size: OptimusWidgetSize.small,
-              variant: OptimusButtonVariant.tertiary,
+              size: .small,
+              variant: .tertiary,
               onPressed: close,
             ),
           ),
@@ -166,16 +163,16 @@ class _Actions extends StatelessWidget {
   final OptimusDialogType type;
   final VoidCallback close;
 
-  bool get _isVertical => dialogSize == OptimusDialogSize.small;
+  bool get _isVertical => dialogSize == .small;
 
   OptimusButtonVariant _getVariant(int i) {
-    if (type == OptimusDialogType.destructive && i == 0) {
-      return OptimusButtonVariant.danger;
+    if (type == .destructive && i == 0) {
+      return .danger;
     }
-    if (i == 0) return OptimusButtonVariant.primary;
-    if (i == 1) return OptimusButtonVariant.tertiary;
+    if (i == 0) return .primary;
+    if (i == 1) return .tertiary;
 
-    return OptimusButtonVariant.ghost;
+    return .ghost;
   }
 
   @override
@@ -184,13 +181,13 @@ class _Actions extends StatelessWidget {
     final children = actions
         .mapIndexed<Widget>(
           (i, e) => Padding(
-            padding: EdgeInsets.only(
+            padding: .only(
               bottom: _isVertical ? tokens.spacing200 : tokens.spacing0,
               left: _isVertical ? tokens.spacing0 : tokens.spacing200,
             ),
             child: OptimusButton(
               onPressed: e.onPressed ?? close,
-              minWidth: _isVertical ? double.infinity : null,
+              minWidth: _isVertical ? .infinity : null,
               variant: _getVariant(i),
               key: e.key,
               child: e.title,
@@ -203,15 +200,15 @@ class _Actions extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.only(
+      padding: .only(
         left: _isVertical ? tokens.spacing200 : tokens.spacing0,
         right: tokens.spacing200,
         top: tokens.spacing200,
         bottom: _isVertical ? tokens.spacing0 : tokens.spacing200,
       ),
       child: Flex(
-        mainAxisAlignment: MainAxisAlignment.end,
-        direction: _isVertical ? Axis.vertical : Axis.horizontal,
+        mainAxisAlignment: .end,
+        direction: _isVertical ? .vertical : .horizontal,
         children: children.reversed.toList(),
       ),
     );

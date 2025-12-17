@@ -6,12 +6,12 @@ enum OptimusBadgeVariant { primary, subtle }
 
 extension Style on OptimusBadgeVariant {
   Color getBackgroundColor(OptimusTokens tokens) => switch (this) {
-    OptimusBadgeVariant.primary => tokens.backgroundAccentPrimary,
-    OptimusBadgeVariant.subtle => tokens.legacyTagBackgroundPrimary,
+    .primary => tokens.backgroundAccentPrimary,
+    .subtle => tokens.legacyTagBackgroundPrimary,
   };
 
   Color getTextColor(OptimusTokens tokens) => switch (this) {
-    OptimusBadgeVariant.primary => tokens.textStaticInverse,
-    OptimusBadgeVariant.subtle => tokens.legacyTagTextPrimary,
+    .primary => tokens.textStaticInverse,
+    .subtle => tokens.legacyTagTextPrimary,
   };
 }

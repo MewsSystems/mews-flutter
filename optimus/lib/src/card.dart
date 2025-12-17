@@ -77,20 +77,20 @@ class OptimusCard extends StatelessWidget {
   final OptimusCardCornerRadius radius;
 
   Border? _border(BuildContext context) => isOutlined
-      ? Border.all(
+      ? .all(
           width: context.tokens.borderWidth100,
           color: context.tokens.borderStaticPrimary,
         )
       : null;
 
   List<BoxShadow> _getShadows(OptimusTokens tokens) => switch (variant) {
-    OptimusBasicCardVariant.normal => tokens.shadow100,
-    OptimusBasicCardVariant.overlay => tokens.shadow300,
+    .normal => tokens.shadow100,
+    .overlay => tokens.shadow300,
   };
 
   Radius _radius(BuildContext context) => switch (radius) {
-    OptimusCardCornerRadius.small => context.tokens.borderRadius100,
-    OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
+    .small => context.tokens.borderRadius100,
+    .medium => context.tokens.borderRadius200,
   };
 
   @override
@@ -151,23 +151,21 @@ class OptimusNestedCard extends StatelessWidget {
   final OptimusCardCornerRadius radius;
 
   Radius _radius(BuildContext context) => switch (radius) {
-    OptimusCardCornerRadius.small => context.tokens.borderRadius100,
-    OptimusCardCornerRadius.medium => context.tokens.borderRadius200,
+    .small => context.tokens.borderRadius100,
+    .medium => context.tokens.borderRadius200,
   };
 
   Border? _border(BuildContext context) => isOutlined
-      ? Border.all(
+      ? .all(
           width: context.tokens.borderWidth100,
           color: context.tokens.borderStaticPrimary,
         )
       : null;
 
   Color _color(BuildContext context) => switch (variant) {
-    OptimusNestedCardVariant.emphasized =>
-      context.tokens.backgroundInteractiveNeutralDefault,
-    OptimusNestedCardVariant.highlighted =>
-      context.tokens.backgroundInteractiveSecondaryDefault,
-    OptimusNestedCardVariant.normal => context.tokens.backgroundStaticFlat,
+    .emphasized => context.tokens.backgroundInteractiveNeutralDefault,
+    .highlighted => context.tokens.backgroundInteractiveSecondaryDefault,
+    .normal => context.tokens.backgroundStaticFlat,
   };
 
   @override
@@ -204,23 +202,11 @@ class _Card extends StatelessWidget {
   final Radius radius;
 
   BorderRadius get _borderRadius => switch (attachment) {
-    OptimusCardAttachment.none => BorderRadius.all(radius),
-    OptimusCardAttachment.left => BorderRadius.only(
-      topRight: radius,
-      bottomRight: radius,
-    ),
-    OptimusCardAttachment.right => BorderRadius.only(
-      topLeft: radius,
-      bottomLeft: radius,
-    ),
-    OptimusCardAttachment.top => BorderRadius.only(
-      bottomLeft: radius,
-      bottomRight: radius,
-    ),
-    OptimusCardAttachment.bottom => BorderRadius.only(
-      topLeft: radius,
-      topRight: radius,
-    ),
+    .none => .all(radius),
+    .left => .only(topRight: radius, bottomRight: radius),
+    .right => .only(topLeft: radius, bottomLeft: radius),
+    .top => .only(bottomLeft: radius, bottomRight: radius),
+    .bottom => .only(topLeft: radius, topRight: radius),
   };
 
   @override
@@ -231,7 +217,7 @@ class _Card extends StatelessWidget {
         : contentWrapperBuilder(context, child);
 
     return Container(
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: .antiAlias,
       decoration: BoxDecoration(
         borderRadius: _borderRadius,
         border: border,
@@ -254,11 +240,11 @@ class OptimusCardChildPadding extends StatelessWidget {
   final OptimusCardSpacing spacing;
 
   EdgeInsets _getPadding(OptimusTokens tokens) => switch (spacing) {
-    OptimusCardSpacing.spacing0 => EdgeInsets.zero,
-    OptimusCardSpacing.spacing100 => EdgeInsets.all(tokens.spacing100),
-    OptimusCardSpacing.spacing200 => EdgeInsets.all(tokens.spacing200),
-    OptimusCardSpacing.spacing300 => EdgeInsets.all(tokens.spacing300),
-    OptimusCardSpacing.spacing400 => EdgeInsets.all(tokens.spacing400),
+    .spacing0 => .zero,
+    .spacing100 => .all(tokens.spacing100),
+    .spacing200 => .all(tokens.spacing200),
+    .spacing300 => .all(tokens.spacing300),
+    .spacing400 => .all(tokens.spacing400),
   };
 
   @override

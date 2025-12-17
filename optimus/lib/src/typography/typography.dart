@@ -22,8 +22,8 @@ class OptimusTypography extends StatelessWidget {
   final TextAlign? align;
 
   Color _color(OptimusTokens tokens) => switch (color) {
-    OptimusTypographyColor.primary => tokens.textStaticPrimary,
-    OptimusTypographyColor.secondary => tokens.textStaticSecondary,
+    .primary => tokens.textStaticPrimary,
+    .secondary => tokens.textStaticSecondary,
   };
 
   @override

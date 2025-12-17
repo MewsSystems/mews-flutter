@@ -20,9 +20,6 @@ class MultiselectChip extends StatelessWidget {
     onRemoved: onRemoved,
     onTap: onTap,
     isEnabled: isEnabled,
-    child: Text(
-      text,
-      style: const TextStyle(decoration: TextDecoration.underline),
-    ),
+    child: Text(text, style: const TextStyle(decoration: .underline)),
   );
 }

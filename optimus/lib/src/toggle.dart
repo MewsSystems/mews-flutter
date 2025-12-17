@@ -100,12 +100,12 @@ class _OptimusToggleState extends State<OptimusToggle> with ThemeGetter {
           width: tokens.sizing550.toScaled(context),
           height: tokens.sizing300.toScaled(context),
           duration: _animationDuration,
-          padding: EdgeInsets.all(tokens.spacing50.toScaled(context)),
+          padding: .all(tokens.spacing50.toScaled(context)),
           decoration: ShapeDecoration(
             color: _color,
             shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(56),
+              borderRadius: .all(
+                .circular(56),
               ), // TODO(witwash): replace with tokens
             ),
           ),

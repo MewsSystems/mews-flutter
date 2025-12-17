@@ -14,7 +14,7 @@ class OptimusSkeleton extends StatefulWidget {
   final Widget? child;
 
   @override
-  OptimusSkeletonState createState() => OptimusSkeletonState();
+  OptimusSkeletonState createState() => .new();
 }
 
 class OptimusSkeletonState extends State<OptimusSkeleton>
@@ -36,7 +36,7 @@ class OptimusSkeletonState extends State<OptimusSkeleton>
   }
 
   // ignore: prefer-widget-private-members, required for the sync
-  LinearGradient get gradient => LinearGradient(
+  LinearGradient get gradient => .new(
     colors: context.linearGradient.colors,
     stops: context.linearGradient.stops,
     begin: context.linearGradient.begin,
@@ -65,7 +65,7 @@ class OptimusSkeletonState extends State<OptimusSkeleton>
   // ignore: prefer-widget-private-members, required for the sync
   Offset getDescendantOffset({
     required RenderBox descendant,
-    Offset offset = Offset.zero,
+    Offset offset = .zero,
   }) {
     final shimmerBox = context.findRenderObject();
 
@@ -89,11 +89,11 @@ class _SlidingGradientTransform extends GradientTransform {
 
   @override
   Matrix4 transform(Rect bounds, {TextDirection? textDirection}) =>
-      Matrix4.translationValues(bounds.width * slidePercent, 0.0, 0.0);
+      .translationValues(bounds.width * slidePercent, 0.0, 0.0);
 }
 
 extension on BuildContext {
-  LinearGradient get linearGradient => LinearGradient(
+  LinearGradient get linearGradient => .new(
     colors: [
       backgroundColor,
       tokens.backgroundInteractiveNeutralBoldDefault,
@@ -103,7 +103,7 @@ extension on BuildContext {
     stops: const [0.1, 0.3, 0.4],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
-    tileMode: TileMode.clamp,
+    tileMode: .clamp,
   );
 
   Color get backgroundColor => tokens.backgroundInteractiveNeutralDefault;

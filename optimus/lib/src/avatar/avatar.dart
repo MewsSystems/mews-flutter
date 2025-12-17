@@ -48,8 +48,7 @@ class OptimusAvatar extends StatelessWidget {
   /// suggest using a localized string for better accessibility.
   final String? semanticLabel;
 
-  bool get _isVisibleForSize =>
-      size == OptimusWidgetSize.medium || size == OptimusWidgetSize.large;
+  bool get _isVisibleForSize => size == .medium || size == .large;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +57,8 @@ class OptimusAvatar extends StatelessWidget {
     final badgeUrl = this.badgeUrl;
     final decoration = BoxDecoration(
       color: tokens.backgroundAlertBasicSecondary,
-      shape: BoxShape.circle,
-      border: Border.all(
+      shape: .circle,
+      border: .all(
         color: tokens.borderStaticPrimary,
         width: tokens.borderWidth100,
       ),
@@ -69,7 +68,7 @@ class OptimusAvatar extends StatelessWidget {
       child: Semantics(
         label: semanticLabel ?? 'Avatar: $title',
         child: Stack(
-          clipBehavior: Clip.none,
+          clipBehavior: .none,
           alignment: alignment,
           children: <Widget>[
             _CircleImage(
@@ -135,10 +134,10 @@ class _CircleImage extends StatelessWidget {
                     placeholder: _transparentImage,
                     image: imageUrl,
                     imageSemanticLabel: semanticLabel,
-                    fit: BoxFit.cover,
+                    fit: .cover,
                     imageErrorBuilder: (_, _, _) => Container(
-                      width: double.infinity,
-                      height: double.infinity,
+                      width: .infinity,
+                      height: .infinity,
                       decoration: decoration,
                       child: Center(child: fallbackWidget),
                     ),
@@ -164,9 +163,9 @@ class _Indicator extends StatelessWidget {
     final url = this.url;
 
     final decoration = BoxDecoration(
-      borderRadius: const BorderRadius.all(Radius.circular(50)),
+      borderRadius: const .all(.circular(50)),
       color: url == null ? tokens.backgroundAccentPrimary : null,
-      border: Border.all(width: outlineSize, color: tokens.borderStaticInverse),
+      border: .all(width: outlineSize, color: tokens.borderStaticInverse),
     );
 
     return Container(
@@ -211,17 +210,17 @@ class _FallbackText extends StatelessWidget {
 
 extension on OptimusWidgetSize {
   double getSize(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.sizing400,
-    OptimusWidgetSize.medium => tokens.sizing500,
-    OptimusWidgetSize.large => tokens.sizing700,
-    OptimusWidgetSize.extraLarge => tokens.sizing1300,
+    .small => tokens.sizing400,
+    .medium => tokens.sizing500,
+    .large => tokens.sizing700,
+    .extraLarge => tokens.sizing1300,
   };
 
   TextStyle getTextStyle(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.bodyExtraSmallStrong,
-    OptimusWidgetSize.medium => tokens.bodySmallStrong,
-    OptimusWidgetSize.large => tokens.bodyMediumStrong,
-    OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong,
+    .small => tokens.bodyExtraSmallStrong,
+    .medium => tokens.bodySmallStrong,
+    .large => tokens.bodyMediumStrong,
+    .extraLarge => tokens.bodyLargeStrong,
   };
 }
 

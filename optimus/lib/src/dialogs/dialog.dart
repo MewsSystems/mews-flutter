@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/dialogs/dialog_content.dart';
 
@@ -31,8 +30,8 @@ Future<T?> showOptimusDialog<T>({
   Widget? content,
   ContentWrapperBuilder? contentWrapperBuilder,
   List<OptimusDialogAction> actions = const [],
-  OptimusDialogSize size = OptimusDialogSize.regular,
-  OptimusDialogType type = OptimusDialogType.common,
+  OptimusDialogSize size = .regular,
+  OptimusDialogType type = .common,
   bool isDismissible = true,
   bool useRootNavigator = true,
 }) => showGeneralDialog<T>(
@@ -86,8 +85,8 @@ class OptimusDialog extends StatelessWidget {
     Widget? content,
     ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
-    OptimusDialogSize size = OptimusDialogSize.regular,
-    OptimusDialogType type = OptimusDialogType.common,
+    OptimusDialogSize size = .regular,
+    OptimusDialogType type = .common,
     bool? isDismissible,
   }) : this._(
          key: key,
@@ -106,7 +105,7 @@ class OptimusDialog extends StatelessWidget {
     Widget? content,
     ContentWrapperBuilder? contentWrapperBuilder,
     List<OptimusDialogAction> actions = const [],
-    OptimusDialogSize size = OptimusDialogSize.regular,
+    OptimusDialogSize size = .regular,
     bool? isDismissible,
     required VoidCallback close,
   }) : this._(
@@ -115,12 +114,10 @@ class OptimusDialog extends StatelessWidget {
          content: content,
          contentWrapperBuilder: contentWrapperBuilder,
          actions: actions,
-         size: size == OptimusDialogSize.large
-             ? OptimusDialogSize.regular
-             : size,
+         size: size == .large ? .regular : size,
          isDismissible: isDismissible,
          close: close,
-         position: OptimusDialogPosition.corner,
+         position: .corner,
        );
 
   final VoidCallback? close;
@@ -166,26 +163,24 @@ class OptimusDialog extends StatelessWidget {
 
   OptimusDialogSize _autoSize(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.extraSmall || Breakpoint.small => OptimusDialogSize.small,
-        Breakpoint.medium || Breakpoint.large || Breakpoint.extraLarge => size,
+        .extraSmall || .small => .small,
+        .medium || .large || .extraLarge => size,
       };
 
   Alignment _alignment(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.extraSmall || Breakpoint.small => _smallScreenAlignment,
-        Breakpoint.medium ||
-        Breakpoint.large ||
-        Breakpoint.extraLarge => _largeScreenAlignment,
+        .extraSmall || .small => _smallScreenAlignment,
+        .medium || .large || .extraLarge => _largeScreenAlignment,
       };
 
   Alignment get _smallScreenAlignment => switch (position) {
-    OptimusDialogPosition.center => Alignment.center,
-    OptimusDialogPosition.corner => Alignment.topCenter,
+    .center => .center,
+    .corner => .topCenter,
   };
 
   Alignment get _largeScreenAlignment => switch (position) {
-    OptimusDialogPosition.center => Alignment.center,
-    OptimusDialogPosition.corner => Alignment.bottomRight,
+    .center => .center,
+    .corner => .bottomRight,
   };
 
   @override
@@ -194,7 +189,7 @@ class OptimusDialog extends StatelessWidget {
     final tokens = context.tokens;
 
     return Semantics(
-      role: SemanticsRole.dialog,
+      role: .dialog,
       child: Align(
         alignment: _alignment(context),
         child: DialogContent(
@@ -222,5 +217,5 @@ class OptimusDialogContentPadding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Padding(padding: EdgeInsets.all(context.tokens.spacing200), child: child);
+      Padding(padding: .all(context.tokens.spacing200), child: child);
 }

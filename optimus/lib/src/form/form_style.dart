@@ -10,6 +10,6 @@ extension TextInputStyle on OptimusThemeData {
   TextStyle getPlaceholderStyle({bool isEnabled = true}) =>
       tokens.bodyMedium.copyWith(
         color: isEnabled ? tokens.textStaticTertiary : tokens.textDisabled,
-        overflow: TextOverflow.ellipsis,
+        overflow: .ellipsis,
       );
 }

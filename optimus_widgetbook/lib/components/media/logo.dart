@@ -36,7 +36,7 @@ Widget createDefaultStyle(BuildContext context) {
 
   return Container(
     alignment: Alignment.center,
-    color: color == OptimusMewsLogoColorVariant.white ? Colors.black : null,
+    color: color == .white ? Colors.black : null,
     child: OptimusMewsLogo(
       logoVariant: variant,
       sizeVariant: size,
