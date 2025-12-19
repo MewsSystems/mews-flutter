@@ -1,3 +1,12 @@
+## 0.43.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter issues.
+ - **FIX**: Fix feedback colors (#865).
+ - **FEAT**: Design Tokens Update 11.0.2 (#860).
+ - **BREAKING** **FEAT**: Migrate to Flutter 3.38 (#864).
+
 ## 0.42.1
 
  - **FEAT**: Add optional `maxWidth` to `Tag` (#862).

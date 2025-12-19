@@ -1,3 +1,10 @@
+## 0.41.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.34.
+ - **BREAKING** **FEAT**: Migrate to Flutter 3.38 (#864).
+
 ## 0.40.0
 
 > Note: This release has breaking changes.

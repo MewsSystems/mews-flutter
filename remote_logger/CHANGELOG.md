@@ -1,3 +1,10 @@
+## 0.5.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: Fix linter issues.
+ - **BREAKING** **FEAT**: Migrate to Flutter 3.38 (#864).
+
 ## 0.4.1
 
  - **FEAT**: Design Tokens Update 9.0.1 (#849).
