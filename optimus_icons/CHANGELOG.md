@@ -1,3 +1,9 @@
+## 0.3.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Migrate to Flutter 3.38 (#864).
+
 ## 0.2.1
 
  - **REFACTOR**: Fix linter issues. Apply new formatting.
