@@ -80,7 +80,7 @@ class _OptimusAlertOverlayState extends State<OptimusAlertOverlay>
 
   _AnimatedAlert _buildRemovedAlert(Animation<double> animation, Widget alert) {
     animation.addStatusListener((status) {
-      if (status == AnimationStatus.dismissed) {
+      if (status == .dismissed) {
         _handleAlertDismiss();
       }
     });
@@ -217,45 +217,46 @@ enum OptimusAlertPosition { topLeft, topRight, bottomRight, bottomLeft }
 extension on OptimusAlertPosition {
   double? left({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusAlertPosition.bottomLeft || OptimusAlertPosition.topLeft =>
-          isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusAlertPosition.topRight || OptimusAlertPosition.bottomRight =>
-          isCompact ? tokens.spacing100 : null,
+        .bottomLeft ||
+        .topLeft => isCompact ? tokens.spacing100 : tokens.spacing200,
+        .topRight || .bottomRight => isCompact ? tokens.spacing100 : null,
       };
 
   double? top({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight =>
-          isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusAlertPosition.bottomRight ||
-        OptimusAlertPosition.bottomLeft => null,
+        .topLeft ||
+        .topRight => isCompact ? tokens.spacing100 : tokens.spacing200,
+        .bottomRight || .bottomLeft => null,
       };
 
   double? right({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusAlertPosition.bottomRight || OptimusAlertPosition.topRight =>
-          isCompact ? tokens.spacing100 : tokens.spacing200,
-        OptimusAlertPosition.topLeft ||
-        OptimusAlertPosition.bottomLeft => isCompact ? tokens.spacing100 : null,
+        .bottomRight ||
+        .topRight => isCompact ? tokens.spacing100 : tokens.spacing200,
+        .topLeft || .bottomLeft => isCompact ? tokens.spacing100 : null,
       };
 
   double? bottom({required OptimusTokens tokens, required bool isCompact}) =>
       switch (this) {
-        OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => null,
-        OptimusAlertPosition.bottomRight || OptimusAlertPosition.bottomLeft =>
-          isCompact ? tokens.spacing100 : tokens.spacing200,
+        .topLeft || .topRight => null,
+        .bottomRight ||
+        .bottomLeft => isCompact ? tokens.spacing100 : tokens.spacing200,
       };
 
   Tween<Offset> get slideTween => switch (this) {
-    OptimusAlertPosition.topLeft || OptimusAlertPosition.bottomLeft =>
-      Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero),
-    OptimusAlertPosition.topRight || OptimusAlertPosition.bottomRight =>
-      Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero),
+    .topLeft || .bottomLeft => Tween<Offset>(
+      begin: const Offset(-1.0, 0.0),
+      end: Offset.zero,
+    ),
+    .topRight || .bottomRight => Tween<Offset>(
+      begin: const Offset(1.0, 0.0),
+      end: Offset.zero,
+    ),
   };
 
   bool get isReversed => switch (this) {
-    OptimusAlertPosition.topLeft || OptimusAlertPosition.topRight => false,
-    OptimusAlertPosition.bottomLeft || OptimusAlertPosition.bottomRight => true,
+    .topLeft || .topRight => false,
+    .bottomLeft || .bottomRight => true,
   };
 }
 

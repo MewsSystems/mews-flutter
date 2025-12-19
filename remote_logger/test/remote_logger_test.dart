@@ -9,7 +9,7 @@ import 'remote_logger_test.mocks.dart';
 
 @GenerateMocks([Client])
 void main() {
-  Logger.root.level = Level.ALL;
+  Logger.root.level = .ALL;
 
   final logger = Logger('test');
   final client = MockClient();

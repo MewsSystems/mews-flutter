@@ -82,25 +82,23 @@ class OptimusBanner extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: variant.backgroundColor(tokens),
-            borderRadius: BorderRadius.all(tokens.borderRadius100),
+            borderRadius: .all(tokens.borderRadius100),
           ),
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.all(tokens.spacing200),
+                padding: .all(tokens.spacing200),
                 child: Row(
-                  crossAxisAlignment: _isExpanded
-                      ? CrossAxisAlignment.start
-                      : CrossAxisAlignment.center,
+                  crossAxisAlignment: _isExpanded ? .start : .center,
                   children: [
                     if (hasIcon)
                       Padding(
-                        padding: EdgeInsets.only(right: tokens.spacing200),
+                        padding: .only(right: tokens.spacing200),
                         child: FeedbackIcon(variant: variant),
                       ),
                     Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: .start,
                         children: [
                           Padding(
                             padding: isDismissible
@@ -114,7 +112,7 @@ class OptimusBanner extends StatelessWidget {
                           ),
                           if (description case final description?)
                             Padding(
-                              padding: EdgeInsets.only(top: tokens.spacing50),
+                              padding: .only(top: tokens.spacing50),
                               child: FeedbackDescription(
                                 description: description,
                                 maxLines: descriptionMaxLines,

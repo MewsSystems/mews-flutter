@@ -97,7 +97,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
             }),
             animationDuration: buttonAnimationDuration,
             elevation: WidgetStateProperty.all<double>(0),
-            visualDensity: VisualDensity.standard,
+            visualDensity: .standard,
             splashFactory: NoSplash.splashFactory,
             backgroundColor: WidgetStateProperty.resolveWith(
               (states) => widget.variant.getBackgroundColor(
@@ -162,13 +162,11 @@ class _ButtonContent extends StatefulWidget {
 }
 
 class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
-  TextStyle get _textStyle => widget.size == OptimusWidgetSize.small
-      ? tokens.bodyMediumStrong
-      : tokens.bodyLargeStrong;
+  TextStyle get _textStyle =>
+      widget.size == .small ? tokens.bodyMediumStrong : tokens.bodyLargeStrong;
 
-  double get _iconSize => widget.size == OptimusWidgetSize.small
-      ? tokens.sizing200
-      : tokens.sizing300;
+  double get _iconSize =>
+      widget.size == .small ? tokens.sizing200 : tokens.sizing300;
 
   @override
   void initState() {
@@ -212,8 +210,8 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
         duration: buttonAnimationDuration,
         curve: buttonAnimationCurve,
         child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: .min,
+          mainAxisAlignment: .center,
           children: <Widget>[
             if (widget.leadingIcon case final leadingIcon?)
               Padding(
@@ -236,7 +234,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
               ),
             if (badgeLabel != null && badgeLabel.isNotEmpty)
               Padding(
-                padding: EdgeInsets.only(left: insideHorizontalPadding),
+                padding: .only(left: insideHorizontalPadding),
                 child: _Badge(
                   label: badgeLabel,
                   color: widget.variant.getBadgeColor(
@@ -255,7 +253,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
               ),
             if (widget.trailingIcon case final trailingIcon?)
               Padding(
-                padding: EdgeInsets.only(left: insideHorizontalPadding),
+                padding: .only(left: insideHorizontalPadding),
                 child: Icon(
                   trailingIcon,
                   size: _iconSize,
@@ -287,11 +285,11 @@ class _Badge extends StatelessWidget {
     return SizedBox(
       height: tokens.sizing200,
       child: ClipRRect(
-        borderRadius: BorderRadius.all(tokens.borderRadius200),
+        borderRadius: .all(tokens.borderRadius200),
         child: ColoredBox(
           color: color,
           child: Padding(
-            padding: const EdgeInsets.symmetric(
+            padding: const .symmetric(
               horizontal: _horizontalPadding,
               vertical: _verticalPadding,
             ), // TODO(witwash): check with design
@@ -299,7 +297,7 @@ class _Badge extends StatelessWidget {
               label,
               style: tokens.bodyExtraSmallStrong.copyWith(
                 color: textColor,
-                leadingDistribution: TextLeadingDistribution.proportional,
+                leadingDistribution: .proportional,
               ),
             ),
           ),

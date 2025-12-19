@@ -63,7 +63,7 @@ class _OptimusChatInputState extends State<OptimusChatInput> {
         onTap: _handleTap,
         child: const OptimusIcon(
           iconData: OptimusIcons.send_message,
-          colorOption: OptimusIconColorOption.basic,
+          colorOption: .basic,
         ),
       ),
     ),

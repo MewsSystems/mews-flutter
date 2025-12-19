@@ -34,9 +34,9 @@ class _InlineDialogStoryState extends State<InlineDialogStory> {
         key: _anchor,
         onPressed: () => OptimusDialogWrapper.of(context)?.showInline(
           anchorKey: _anchor,
-          size: OptimusDialogSize.regular,
+          size: .regular,
           content: const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: .all(8.0),
             child: _InlineContentExample(),
           ),
           actions: hasActions
@@ -70,18 +70,18 @@ class _NumberRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const .all(8.0),
     child: Row(
       children: [
         Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             _Title(title: title),
             _Description(description: description),
           ],
         ),
         const Spacer(),
-        OptimusStepperFormField(initialValue: 8, size: OptimusWidgetSize.small),
+        OptimusStepperFormField(initialValue: 8, size: .small),
       ],
     ),
   );

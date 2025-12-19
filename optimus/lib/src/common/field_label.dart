@@ -20,9 +20,9 @@ class OptimusFieldLabel extends StatelessWidget {
     final color = isEnabled ? tokens.textStaticPrimary : tokens.textDisabled;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: tokens.spacing25),
+      padding: .only(bottom: tokens.spacing25),
       child: OptimusLabel(
-        variation: Variation.variationSecondary,
+        variation: .variationSecondary,
         child: Text(
           isRequired ? '$label *' : label,
           style: TextStyle(color: color),

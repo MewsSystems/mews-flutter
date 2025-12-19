@@ -17,23 +17,23 @@ enum OptimusFeedbackVariant { info, success, warning, danger }
 
 extension Theming on OptimusFeedbackVariant {
   IconData get icon => switch (this) {
-    OptimusFeedbackVariant.info => OptimusIcons.info_24,
-    OptimusFeedbackVariant.success => OptimusIcons.done_circle_24,
-    OptimusFeedbackVariant.warning => OptimusIcons.problematic_24,
-    OptimusFeedbackVariant.danger => OptimusIcons.alert_circle_24,
+    .info => OptimusIcons.info_24,
+    .success => OptimusIcons.done_circle_24,
+    .warning => OptimusIcons.problematic_24,
+    .danger => OptimusIcons.alert_circle_24,
   };
 
   Color getIconColor(OptimusTokens tokens) => switch (this) {
-    OptimusFeedbackVariant.info => tokens.textAlertInfo,
-    OptimusFeedbackVariant.success => tokens.textAlertSuccess,
-    OptimusFeedbackVariant.warning => tokens.textAlertWarning,
-    OptimusFeedbackVariant.danger => tokens.textAlertDanger,
+    .info => tokens.textAlertInfo,
+    .success => tokens.textAlertSuccess,
+    .warning => tokens.textAlertWarning,
+    .danger => tokens.textAlertDanger,
   };
 
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
-    OptimusFeedbackVariant.info => tokens.backgroundAlertInfoDefault,
-    OptimusFeedbackVariant.success => tokens.backgroundAlertSuccessDefault,
-    OptimusFeedbackVariant.warning => tokens.backgroundAlertWarningDefault,
-    OptimusFeedbackVariant.danger => tokens.backgroundAlertDangerDefault,
+    .info => tokens.backgroundAlertInfoDefault,
+    .success => tokens.backgroundAlertSuccessDefault,
+    .warning => tokens.backgroundAlertWarningDefault,
+    .danger => tokens.backgroundAlertDangerDefault,
   };
 }

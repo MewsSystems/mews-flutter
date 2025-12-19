@@ -60,9 +60,9 @@ class OptimusIcon extends StatelessWidget {
   final OptimusIconColorOption? colorOption;
 
   double _getIconSize(OptimusTokens tokens) => switch (iconSize) {
-    OptimusIconSize.small => tokens.sizing200,
-    OptimusIconSize.medium => tokens.sizing300,
-    OptimusIconSize.large => tokens.sizing400,
+    .small => tokens.sizing200,
+    .medium => tokens.sizing300,
+    .large => tokens.sizing400,
   };
 
   @override
@@ -81,12 +81,12 @@ class OptimusIcon extends StatelessWidget {
 
 extension on OptimusIconColorOption {
   Color toIconColor(OptimusTokens tokens) => switch (this) {
-    OptimusIconColorOption.basic => tokens.textStaticPrimary,
-    OptimusIconColorOption.primary => tokens.textInteractivePrimaryDefault,
-    OptimusIconColorOption.success => tokens.textAlertSuccess,
-    OptimusIconColorOption.info => tokens.textAlertInfo,
-    OptimusIconColorOption.warning => tokens.textAlertWarning,
-    OptimusIconColorOption.danger => tokens.textAlertDanger,
-    OptimusIconColorOption.inverse => tokens.textStaticInverse,
+    .basic => tokens.textStaticPrimary,
+    .primary => tokens.textInteractivePrimaryDefault,
+    .success => tokens.textAlertSuccess,
+    .info => tokens.textAlertInfo,
+    .warning => tokens.textAlertWarning,
+    .danger => tokens.textAlertDanger,
+    .inverse => tokens.textStaticInverse,
   };
 }

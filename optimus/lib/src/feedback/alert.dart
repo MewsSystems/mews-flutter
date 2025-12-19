@@ -76,10 +76,8 @@ class OptimusAlert extends StatelessWidget {
 
   double _getHorizontalPadding(BuildContext context) =>
       switch (MediaQuery.sizeOf(context).screenBreakpoint) {
-        Breakpoint.small || Breakpoint.extraSmall => context.tokens.spacing100,
-        Breakpoint.medium ||
-        Breakpoint.large ||
-        Breakpoint.extraLarge => context.tokens.spacing200,
+        .small || .extraSmall => context.tokens.spacing100,
+        .medium || .large || .extraLarge => context.tokens.spacing200,
       };
 
   @override
@@ -94,7 +92,7 @@ class OptimusAlert extends StatelessWidget {
     return Semantics(
       liveRegion: true,
       child: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: .symmetric(
           horizontal: horizontalPadding,
           vertical: tokens.spacing50,
         ),
@@ -174,13 +172,13 @@ class _AlertContent extends StatelessWidget {
   bool get _isExpanded => description != null || linkText != null;
 
   EdgeInsets _getContentPadding(OptimusTokens tokens) => isDismissible
-      ? EdgeInsets.fromLTRB(
+      ? .fromLTRB(
           tokens.spacing200,
           tokens.spacing200,
           tokens.spacing400,
           tokens.spacing200,
         )
-      : EdgeInsets.all(tokens.spacing200);
+      : .all(tokens.spacing200);
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +190,7 @@ class _AlertContent extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(tokens.borderRadius100),
+        borderRadius: .all(tokens.borderRadius100),
         boxShadow: tokens.shadow300,
       ),
       child: Stack(
@@ -205,9 +203,7 @@ class _AlertContent extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: variant.backgroundColor(tokens),
-                borderRadius: BorderRadius.horizontal(
-                  left: tokens.borderRadius100,
-                ),
+                borderRadius: .horizontal(left: tokens.borderRadius100),
               ),
             ),
           ),
@@ -215,7 +211,7 @@ class _AlertContent extends StatelessWidget {
             top: _isExpanded ? tokens.spacing200 : tokens.spacing0,
             bottom: _isExpanded ? null : tokens.spacing0,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+              padding: .symmetric(horizontal: tokens.spacing100),
               child: FeedbackIcon(icon: icon, variant: variant),
             ),
           ),
@@ -229,13 +225,11 @@ class _AlertContent extends StatelessWidget {
                   padding: _getContentPadding(tokens),
                   decoration: BoxDecoration(
                     color: tokens.backgroundStaticFlat,
-                    borderRadius: BorderRadius.horizontal(
-                      right: tokens.borderRadius100,
-                    ),
+                    borderRadius: .horizontal(right: tokens.borderRadius100),
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: .start,
+                    mainAxisSize: .min,
                     spacing: tokens.spacing50,
                     children: [
                       if (title case final title?)

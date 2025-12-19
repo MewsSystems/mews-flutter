@@ -18,10 +18,10 @@ class OptimusFieldError extends StatelessWidget {
     final color = isEnabled ? tokens.textAlertDanger : tokens.textDisabled;
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         Padding(
-          padding: EdgeInsets.only(right: tokens.spacing150),
+          padding: .only(right: tokens.spacing150),
           child: Icon(
             OptimusIcons.error_circle,
             size: tokens.sizing200,

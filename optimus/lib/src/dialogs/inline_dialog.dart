@@ -40,7 +40,7 @@ class OptimusInlineDialog extends StatelessWidget {
     child: DialogContent(
       content: content,
       actions: actions,
-      type: OptimusDialogType.common,
+      type: .common,
       size: size,
       maxWidth: size.width,
       contentWrapperBuilder: contentWrapperBuilder,

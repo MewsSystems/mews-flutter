@@ -23,7 +23,7 @@ class NestedWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-    mainAxisAlignment: MainAxisAlignment.start,
+    mainAxisAlignment: .start,
     children: [
       const _Bar(),
       Expanded(
@@ -45,7 +45,7 @@ class _Bar extends StatelessWidget {
     height: 100,
     color: Colors.lightBlue,
     child: const Center(
-      child: Text('Widget outside of Navigator', textAlign: TextAlign.center),
+      child: Text('Widget outside of Navigator', textAlign: .center),
     ),
   );
 }

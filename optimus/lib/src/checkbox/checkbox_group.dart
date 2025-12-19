@@ -69,7 +69,7 @@ class OptimusCheckboxGroup<T> extends StatelessWidget {
       child: IgnorePointer(
         ignoring: !isEnabled,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: _items
               .mapIndexed(
                 (i, v) => OptimusCheckbox(

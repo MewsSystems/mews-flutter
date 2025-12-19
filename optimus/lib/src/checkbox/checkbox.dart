@@ -102,12 +102,8 @@ class OptimusCheckbox extends StatelessWidget {
     final color = _labelColor(tokens);
 
     return switch (size) {
-      OptimusCheckboxSize.large => tokens.bodyLargeStrong.copyWith(
-        color: color,
-      ),
-      OptimusCheckboxSize.small => tokens.bodyMediumStrong.copyWith(
-        color: color,
-      ),
+      .large => tokens.bodyLargeStrong.copyWith(color: color),
+      .small => tokens.bodyMediumStrong.copyWith(color: color),
     };
   }
 
@@ -116,9 +112,7 @@ class OptimusCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final topPadding = size == OptimusCheckboxSize.large
-        ? tokens.spacing50
-        : tokens.spacing25;
+    final topPadding = size == .large ? tokens.spacing50 : tokens.spacing25;
 
     return IgnorePointer(
       ignoring: !isEnabled,
@@ -133,11 +127,11 @@ class OptimusCheckbox extends StatelessWidget {
               checked: isChecked ?? false,
               mixed: isTristate ? isChecked == null : null,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: .start,
+                mainAxisSize: .min,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: topPadding),
+                    padding: .only(top: topPadding),
                     child: CheckboxTick(
                       isError: error != null,
                       isChecked: isChecked,
@@ -148,7 +142,7 @@ class OptimusCheckbox extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(
+                      padding: .only(
                         left: tokens.spacing150,
                         bottom: tokens.spacing50,
                       ),

@@ -4,7 +4,7 @@ import 'package:logging/logging.dart';
 import 'package:remote_logger/remote_logger.dart';
 
 void main() {
-  Logger.root.level = Level.ALL;
+  Logger.root.level = .ALL;
 
   final logger = Logger('TestLogger');
 

@@ -31,7 +31,7 @@ class _Content extends StatelessWidget {
           semanticLabel: 'Delete',
           child: OptimusIcon(
             iconData: OptimusIcons.delete,
-            colorOption: OptimusIconColorOption.inverse,
+            colorOption: .inverse,
           ),
         ),
       ],

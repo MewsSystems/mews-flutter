@@ -15,7 +15,7 @@ class _Content extends StatefulWidget {
   const _Content();
 
   @override
-  _ContentState createState() => _ContentState();
+  _ContentState createState() => .new();
 }
 
 class _ContentState extends State<_Content> {

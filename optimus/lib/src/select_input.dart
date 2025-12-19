@@ -186,14 +186,10 @@ class _OptimusSelectInput<T> extends State<OptimusSelectInput<T>>
       widget.embeddedSearch != null && !_isUsingInlineSearch;
 
   TextStyle get _textStyle => switch (widget.size) {
-    OptimusWidgetSize.small => tokens.bodyMediumStrong.copyWith(
-      color: _textColor,
-    ),
-    OptimusWidgetSize.medium ||
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.bodyLargeStrong.copyWith(
-      color: _textColor,
-    ),
+    .small => tokens.bodyMediumStrong.copyWith(color: _textColor),
+    .medium ||
+    .large ||
+    .extraLarge => tokens.bodyLargeStrong.copyWith(color: _textColor),
   };
 
   Color get _textColor => widget.isEnabled

@@ -81,7 +81,7 @@ class OptimusSubtitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusTypography(
-    color: OptimusTypographyColor.secondary,
+    color: .secondary,
     resolveStyle: (_) => context.tokens.titleSmallStrong,
     align: align,
     child: child,

@@ -240,8 +240,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
   }
 
   bool get _shouldShowInlineError =>
-      (widget.errorVariant == OptimusInputErrorVariant.inlineTooltip ||
-          widget.isInlined) &&
+      (widget.errorVariant == .inlineTooltip || widget.isInlined) &&
       widget.hasError;
 
   void _handleClearAllTap() {
@@ -293,7 +292,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
         onTap: _effectiveFocusNode.requestFocus,
         child: Text(
           placeholder,
-          overflow: TextOverflow.ellipsis,
+          overflow: .ellipsis,
           maxLines: widget.maxLines,
           style:
               widget.placeholderStyle ??
@@ -386,7 +385,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
           // [FieldWrapper] above.
           decoration: const BoxDecoration(
             color: Color(0x00000000),
-            backgroundBlendMode: BlendMode.dst,
+            backgroundBlendMode: .dst,
           ),
           onChanged: widget.onChanged,
           keyboardType: widget.keyboardType,
@@ -461,17 +460,17 @@ class _CharacterCounter extends StatelessWidget {
 
     return current > max
         ? Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               Padding(
-                padding: EdgeInsets.only(
+                padding: .only(
                   left: tokens.spacing200,
                   right: tokens.spacing25,
                 ),
                 child: const OptimusIcon(
                   iconData: OptimusIcons.error_circle,
-                  iconSize: OptimusIconSize.small,
-                  colorOption: OptimusIconColorOption.danger,
+                  iconSize: .small,
+                  colorOption: .danger,
                 ),
               ),
               child,

@@ -11,7 +11,7 @@ class OptimusDropdownGroupSeparator extends StatelessWidget {
     final tokens = context.tokens;
 
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: .symmetric(
         vertical: tokens.spacing25,
         horizontal: tokens.spacing200,
       ),

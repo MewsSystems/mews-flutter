@@ -134,12 +134,12 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     switch (state) {
-      case AppLifecycleState.paused:
-      case AppLifecycleState.detached:
+      case .paused:
+      case .detached:
         _removeOverlay();
-      case AppLifecycleState.resumed:
-      case AppLifecycleState.inactive:
-      case AppLifecycleState.hidden:
+      case .resumed:
+      case .inactive:
+      case .hidden:
     }
   }
 
@@ -278,7 +278,7 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
   bool get _hasLeading =>
       widget.leading != null || widget.leadingImplicit != null;
 
-  OverlayEntry _createOverlayEntry() => OverlayEntry(
+  OverlayEntry _createOverlayEntry() => .new(
     builder: (BuildContext builderContext) {
       void handleTapDown(TapDownDetails details) {
         bool didHit(RenderBox box) => box.hitTest(
@@ -303,16 +303,16 @@ class _DropdownSelectState<T> extends State<DropdownSelect<T>>
       return OptimusTheme(
         themeMode: theme.themeMode,
         darkTheme: theme.isDark
-            ? OptimusThemeData(brightness: Brightness.dark, tokens: tokens)
+            ? OptimusThemeData(brightness: .dark, tokens: tokens)
             : null,
         lightTheme: theme.isDark
             ? null
-            : OptimusThemeData(brightness: Brightness.light, tokens: tokens),
+            : OptimusThemeData(brightness: .light, tokens: tokens),
         child: MediaQuery(
           data: MediaQuery.of(context),
           child: AllowMultipleRawGestureDetector(
             key: const Key('OptimusDropdownOverlay'),
-            behavior: HitTestBehavior.translucent,
+            behavior: .translucent,
             onTapDown: handleTapDown,
             child: DropdownTapInterceptor(
               onTap: widget.allowMultipleSelection ? ignore : _handleClose,
@@ -416,9 +416,9 @@ class _Leading extends StatelessWidget {
   Widget build(BuildContext context) => GestureDetector(
     onTapDown: (_) => focusNode.requestFocus(),
     child: OptimusStack(
-      direction: Axis.horizontal,
-      spacing: OptimusStackSpacing.spacing100,
-      mainAxisSize: MainAxisSize.min,
+      direction: .horizontal,
+      spacing: .spacing100,
+      mainAxisSize: .min,
       children: [?leadingImplicit, ?leading],
     ),
   );
@@ -442,15 +442,15 @@ class _Trailing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final children = isUpdating
-        ? [const OptimusSpinner(size: OptimusSpinnerSize.small)]
+        ? [const OptimusSpinner(size: .small)]
         : [?trailing, ?trailingImplicit];
 
     return GestureDetector(
       onTapDown: (_) => focusNode.requestFocus(),
       child: OptimusStack(
-        direction: Axis.horizontal,
-        spacing: OptimusStackSpacing.spacing100,
-        mainAxisSize: MainAxisSize.min,
+        direction: .horizontal,
+        spacing: .spacing100,
+        mainAxisSize: .min,
         children: [?clearAllButton, ...children],
       ),
     );

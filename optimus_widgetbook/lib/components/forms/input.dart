@@ -95,13 +95,13 @@ Widget createDefaultStyle(BuildContext context) {
 }
 
 enum KeyboardType {
-  text(TextInputType.text),
-  multiline(TextInputType.multiline),
-  number(TextInputType.number),
-  phone(TextInputType.phone),
-  datetime(TextInputType.datetime),
-  emailAddress(TextInputType.emailAddress),
-  url(TextInputType.url);
+  text(.text),
+  multiline(.multiline),
+  number(.number),
+  phone(.phone),
+  datetime(.datetime),
+  emailAddress(.emailAddress),
+  url(.url);
 
   const KeyboardType(this.inputType);
 

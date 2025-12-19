@@ -82,8 +82,7 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
     super.dispose();
   }
 
-  bool get _isUsingInlineError =>
-      widget.errorVariant == OptimusInputErrorVariant.inlineTooltip;
+  bool get _isUsingInlineError => widget.errorVariant == .inlineTooltip;
 
   void _handleStateUpdate() => setState(() {});
 
@@ -132,19 +131,19 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
             Focus(
               focusNode: _effectiveFocusNode,
               child: Container(
-                padding: EdgeInsets.symmetric(
+                padding: .symmetric(
                   vertical: widget.size.getVerticalPadding(tokens),
                 ),
                 constraints: BoxConstraints(
                   minHeight: widget.size.getMinHeight(tokens),
                 ),
-                width: double.infinity,
+                width: .infinity,
                 child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.center,
+                  crossAxisAlignment: .center,
+                  runAlignment: .center,
                   spacing: tokens.spacing50,
                   runSpacing: tokens.spacing50,
-                  clipBehavior: Clip.antiAlias,
+                  clipBehavior: .antiAlias,
                   children: widget.values,
                 ),
               ),
@@ -158,16 +157,15 @@ class _OptimusMultiSelectInputFieldState extends State<MultiSelectInputField>
 
 extension on OptimusWidgetSize {
   double getMinHeight(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.sizing400,
-    OptimusWidgetSize.medium => tokens.sizing500,
-    OptimusWidgetSize.large => tokens.sizing600,
-    OptimusWidgetSize.extraLarge => tokens.sizing700,
+    .small => tokens.sizing400,
+    .medium => tokens.sizing500,
+    .large => tokens.sizing600,
+    .extraLarge => tokens.sizing700,
   };
 
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing50,
-    OptimusWidgetSize.medium => tokens.spacing100,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
+    .small => tokens.spacing50,
+    .medium => tokens.spacing100,
+    .large || .extraLarge => tokens.spacing150,
   };
 }

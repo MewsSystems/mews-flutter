@@ -106,7 +106,7 @@ class _SelectInputStoryState extends State<SelectInputStory> {
               .toList(),
           builder: (option) => option,
           emptyResultPlaceholder: const Padding(
-            padding: EdgeInsets.all(8),
+            padding: .all(8),
             child: OptimusLabel(child: Text('No results found')),
           ),
           allowMultipleSelection: allowMultipleSelection,

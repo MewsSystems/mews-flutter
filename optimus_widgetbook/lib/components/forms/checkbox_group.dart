@@ -15,7 +15,7 @@ class CheckboxGroupUseCase extends StatefulWidget {
   const CheckboxGroupUseCase({super.key});
 
   @override
-  CheckboxGroupUseCaseState createState() => CheckboxGroupUseCaseState();
+  CheckboxGroupUseCaseState createState() => .new();
 }
 
 class CheckboxGroupUseCaseState extends State<CheckboxGroupUseCase> {

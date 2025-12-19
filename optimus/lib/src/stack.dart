@@ -84,23 +84,19 @@ class OptimusStack extends StatelessWidget {
   Axis _direction(BuildContext context) {
     final breakpoint = this.breakpoint;
 
-    // ignore: prefer-switch-with-enums, is a null check
-    if (breakpoint == null || direction == Axis.vertical) {
+    if (breakpoint == null || direction == .vertical) {
       return direction;
     }
 
     final screenSize = MediaQuery.sizeOf(context).screenBreakpoint;
 
-    return screenSize.index <= breakpoint.index
-        ? Axis.vertical
-        : Axis.horizontal;
+    return screenSize.index <= breakpoint.index ? .vertical : .horizontal;
   }
 
   List<Widget> _children(BuildContext context) => switch (distribution) {
-    OptimusStackDistribution.basic => _childrenWithSpacing(context, children),
-    OptimusStackDistribution.spaceBetween =>
-      children.intersperse(const Spacer()).toList(),
-    OptimusStackDistribution.stretch => _childrenWithSpacing(
+    .basic => _childrenWithSpacing(context, children),
+    .spaceBetween => children.intersperse(const Spacer()).toList(),
+    .stretch => _childrenWithSpacing(
       context,
       children.map((c) => Expanded(child: c)).toList(),
     ),
@@ -112,12 +108,8 @@ class OptimusStack extends StatelessWidget {
   ) {
     final direction = _direction(context);
     final spacer = SizedBox(
-      width: direction == Axis.vertical
-          ? null
-          : spacing.getSize(context.tokens),
-      height: direction == Axis.vertical
-          ? spacing.getSize(context.tokens)
-          : null,
+      width: direction == .vertical ? null : spacing.getSize(context.tokens),
+      height: direction == .vertical ? spacing.getSize(context.tokens) : null,
     );
 
     return children.intersperse(spacer).toList();
@@ -135,27 +127,27 @@ class OptimusStack extends StatelessWidget {
 
 extension on OptimusStackSpacing {
   double getSize(OptimusTokens tokens) => switch (this) {
-    OptimusStackSpacing.spacing0 => tokens.spacing0,
-    OptimusStackSpacing.spacing25 => tokens.spacing25,
-    OptimusStackSpacing.spacing50 => tokens.spacing50,
-    OptimusStackSpacing.spacing100 => tokens.spacing100,
-    OptimusStackSpacing.spacing200 => tokens.spacing200,
-    OptimusStackSpacing.spacing300 => tokens.spacing300,
-    OptimusStackSpacing.spacing400 => tokens.spacing400,
-    OptimusStackSpacing.spacing500 => tokens.spacing500,
+    .spacing0 => tokens.spacing0,
+    .spacing25 => tokens.spacing25,
+    .spacing50 => tokens.spacing50,
+    .spacing100 => tokens.spacing100,
+    .spacing200 => tokens.spacing200,
+    .spacing300 => tokens.spacing300,
+    .spacing400 => tokens.spacing400,
+    .spacing500 => tokens.spacing500,
   };
 }
 
 extension on OptimusStackAlignment {
   CrossAxisAlignment get crossAxisAlignment => switch (this) {
-    OptimusStackAlignment.start => CrossAxisAlignment.start,
-    OptimusStackAlignment.center => CrossAxisAlignment.center,
-    OptimusStackAlignment.end => CrossAxisAlignment.end,
+    .start => .start,
+    .center => .center,
+    .end => .end,
   };
 
   MainAxisAlignment get mainAxisAlignment => switch (this) {
-    OptimusStackAlignment.start => MainAxisAlignment.start,
-    OptimusStackAlignment.center => MainAxisAlignment.center,
-    OptimusStackAlignment.end => MainAxisAlignment.end,
+    .start => .start,
+    .center => .center,
+    .end => .end,
   };
 }

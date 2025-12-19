@@ -90,7 +90,7 @@ class OptimusStandaloneLink extends StatelessWidget {
 
 extension on OptimusStandaloneLinkSize {
   double getFontSize(OptimusTokens tokens) => switch (this) {
-    OptimusStandaloneLinkSize.medium => tokens.fontSize100,
-    OptimusStandaloneLinkSize.large => tokens.fontSize200,
+    .medium => tokens.fontSize100,
+    .large => tokens.fontSize200,
   };
 }

@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
             return SingleChildScrollView(
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.all(tokens.spacing200),
+                  padding: .all(tokens.spacing200),
                   child: Column(
                     children: [
                       const OptimusTitleLarge(
@@ -47,12 +47,12 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: tokens.spacing400),
                       const Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: .center,
+                        alignment: .center,
                         children: [
                           _Card(
                             link: _documentation,
-                            image: _CardImage(variant: _CardImageVariant.docs),
+                            image: _CardImage(variant: .docs),
                             title: Text('Documentation'),
                             description: Text(
                               'The main source of truth for our Design System',
@@ -60,9 +60,7 @@ class HomePage extends StatelessWidget {
                           ),
                           _Card(
                             link: _github,
-                            image: _CardImage(
-                              variant: _CardImageVariant.github,
-                            ),
+                            image: _CardImage(variant: .github),
                             title: Text('GitHub'),
                             description: Text(
                               'The repository with the source code of our Flutter components',
@@ -70,9 +68,7 @@ class HomePage extends StatelessWidget {
                           ),
                           _Card(
                             link: _storybook,
-                            image: _CardImage(
-                              variant: _CardImageVariant.storybook,
-                            ),
+                            image: _CardImage(variant: .storybook),
                             title: Text('Web Components'),
                             description: Text('Storybook with web components'),
                           ),
@@ -110,7 +106,7 @@ class _Card extends StatelessWidget {
     final tokens = context.tokens;
 
     return Padding(
-      padding: EdgeInsets.all(tokens.spacing100),
+      padding: .all(tokens.spacing100),
       child: GestureDetector(
         onTap: _handleTap,
         child: SizedBox(
@@ -120,9 +116,9 @@ class _Card extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox.square(dimension: tokens.sizing1000, child: image),
-                OptimusTitleMedium(align: TextAlign.center, child: title),
+                OptimusTitleMedium(align: .center, child: title),
                 if (description case final description?)
-                  OptimusCaption(align: TextAlign.center, child: description),
+                  OptimusCaption(align: .center, child: description),
               ],
             ),
           ),

@@ -42,10 +42,10 @@ Widget createDefaultStyle(BuildContext context) {
       constraints: BoxConstraints(maxWidth: width),
       child: SingleChildScrollView(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .symmetric(vertical: 8),
               child: _SegmentedControlExample(
                 label: label,
                 error: error,
@@ -58,7 +58,7 @@ Widget createDefaultStyle(BuildContext context) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .symmetric(vertical: 8),
               child: _SegmentedControlExample(
                 label: label,
                 error: error,
@@ -71,7 +71,7 @@ Widget createDefaultStyle(BuildContext context) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .symmetric(vertical: 8),
               child: _SegmentedControlExample(
                 label: label,
                 error: error,
@@ -84,7 +84,7 @@ Widget createDefaultStyle(BuildContext context) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .symmetric(vertical: 8),
               child: _SegmentedControlExample(
                 label: label,
                 error: error,
@@ -125,8 +125,7 @@ class _SegmentedControlExample extends StatefulWidget {
   final int maxLines;
 
   @override
-  _SegmentedControlExampleState createState() =>
-      _SegmentedControlExampleState();
+  _SegmentedControlExampleState createState() => .new();
 }
 
 class _SegmentedControlExampleState extends State<_SegmentedControlExample> {

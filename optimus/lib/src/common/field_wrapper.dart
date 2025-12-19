@@ -76,8 +76,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
     super.dispose();
   }
 
-  bool get _isUsingBottomHint =>
-      widget.errorVariant == OptimusInputErrorVariant.bottomHint;
+  bool get _isUsingBottomHint => widget.errorVariant == .bottomHint;
 
   String get _normalizedError {
     final error = widget.error;
@@ -130,8 +129,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
       child: GestureDetector(
         onTap: widget.focusNode.requestFocus,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: .start,
+          mainAxisSize: .min,
           children: [
             if (_hasHeader)
               _InputHeader(
@@ -149,8 +148,8 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
               decoration: widget.hasBorders
                   ? BoxDecoration(
                       color: _background,
-                      borderRadius: BorderRadius.all(tokens.borderRadius100),
-                      border: Border.all(
+                      borderRadius: .all(tokens.borderRadius100),
+                      border: .all(
                         color: _borderColor,
                         width: tokens.borderWidth200,
                       ),
@@ -165,7 +164,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                     minHeight: widget.size.getHeight(tokens),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: .symmetric(
                       horizontal: widget.size.getContentPadding(tokens),
                       vertical: _verticalPadding,
                     ),
@@ -173,7 +172,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                       children: [
                         if (widget.prefix case final prefix?)
                           Padding(
-                            padding: EdgeInsets.only(right: tokens.spacing100),
+                            padding: .only(right: tokens.spacing100),
                             child: _Styled(
                               isEnabled: widget.isEnabled,
                               child: prefix,
@@ -186,7 +185,7 @@ class _FieldWrapper extends State<FieldWrapper> with ThemeGetter {
                         ),
                         if (widget.suffix case final suffix?)
                           Padding(
-                            padding: EdgeInsets.only(left: tokens.spacing50),
+                            padding: .only(left: tokens.spacing50),
                             child: _Styled(
                               isEnabled: widget.isEnabled,
                               child: suffix,
@@ -245,8 +244,8 @@ class _InputHeader extends StatelessWidget {
     return Padding(
       padding: size.getLabelPadding(tokens),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: .spaceBetween,
+        crossAxisAlignment: .end,
         children: [
           if (label case final label?)
             Flexible(
@@ -259,7 +258,7 @@ class _InputHeader extends StatelessWidget {
           if (caption case final caption?)
             Flexible(
               child: Padding(
-                padding: EdgeInsets.only(left: tokens.spacing100),
+                padding: .only(left: tokens.spacing100),
                 child: _InputCaption(
                   caption: caption,
                   captionIcon: captionIcon,
@@ -341,7 +340,7 @@ class _FooterMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: .start,
     children: [
       if (helperMessage case final helperMessage?)
         _HelperMessage(helperMessage: helperMessage, isEnabled: isEnabled),
@@ -367,7 +366,7 @@ class _HelperMessage extends StatelessWidget {
       child: DefaultTextStyle.merge(
         softWrap: true,
         maxLines: 2,
-        overflow: TextOverflow.fade,
+        overflow: .fade,
         style: TextStyle(color: captionColor),
         child: helperMessage,
       ),
@@ -397,16 +396,16 @@ class _InputCaption extends StatelessWidget {
         : tokens.textDisabled;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: .end,
       children: [
         Flexible(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: tokens.spacing50),
+            padding: .symmetric(horizontal: tokens.spacing50),
             child: OptimusCaption(
-              variation: Variation.variationSecondary,
+              variation: .variationSecondary,
               child: DefaultTextStyle.merge(
                 style: TextStyle(color: captionColor),
-                textAlign: TextAlign.end,
+                textAlign: .end,
                 child: caption,
               ),
             ),
@@ -457,7 +456,7 @@ class _StatusBar extends StatelessWidget {
     final tokens = context.tokens;
 
     return Padding(
-      padding: EdgeInsets.only(top: tokens.spacing50),
+      padding: .only(top: tokens.spacing50),
       child: SizedBox(
         height: tokens.sizing50,
         child: _ColoredTransition(state),
@@ -500,7 +499,7 @@ class _ColoredTransitionState extends State<_ColoredTransition> {
     widthFactor: widget.state.progress,
     curve: Curves.fastOutSlowIn,
     child: ColoredBox(
-      color: widget.state == OptimusStatusBarState.empty
+      color: widget.state == .empty
           ? _previousState
                 .getStatusBarColor(context.tokens)
                 .withValues(alpha: 0.5)
@@ -511,57 +510,50 @@ class _ColoredTransitionState extends State<_ColoredTransition> {
 
 extension on OptimusStatusBarState {
   Color getStatusBarColor(OptimusTokens tokens) => switch (this) {
-    OptimusStatusBarState.empty ||
-    OptimusStatusBarState.danger => tokens.backgroundAlertDangerDefault,
-    OptimusStatusBarState.medium => tokens.backgroundAlertWarningDefault,
-    OptimusStatusBarState.strong => tokens.backgroundAlertSuccessDefault,
+    .empty || .danger => tokens.backgroundAlertDangerDefault,
+    .medium => tokens.backgroundAlertWarningDefault,
+    .strong => tokens.backgroundAlertSuccessDefault,
   };
 
   double get progress => switch (this) {
-    OptimusStatusBarState.empty => 0,
-    OptimusStatusBarState.danger => 0.33,
-    OptimusStatusBarState.medium => 0.66,
-    OptimusStatusBarState.strong => 1,
+    .empty => 0,
+    .danger => 0.33,
+    .medium => 0.66,
+    .strong => 1,
   };
 }
 
 extension on OptimusWidgetSize {
   EdgeInsets getLabelPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small ||
-    OptimusWidgetSize.medium => EdgeInsets.only(bottom: tokens.spacing50),
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => EdgeInsets.only(bottom: tokens.spacing100),
+    .small || .medium => .only(bottom: tokens.spacing50),
+    .large || .extraLarge => .only(bottom: tokens.spacing100),
   };
 
   EdgeInsets getHelperPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small ||
-    OptimusWidgetSize.medium => EdgeInsets.only(top: tokens.spacing50),
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => EdgeInsets.only(top: tokens.spacing100),
+    .small || .medium => .only(top: tokens.spacing50),
+    .large || .extraLarge => .only(top: tokens.spacing100),
   };
 
   EdgeInsets getErrorPadding(OptimusTokens tokens) =>
-      EdgeInsets.only(top: tokens.spacing50);
+      .only(top: tokens.spacing50);
 
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small || OptimusWidgetSize.medium => tokens.spacing100,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
+    .small || .medium => tokens.spacing100,
+    .large || .extraLarge => tokens.spacing150,
   };
 
   double getContentPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing150,
-    OptimusWidgetSize.medium => tokens.spacing200,
-    OptimusWidgetSize.large => tokens.spacing250,
-    OptimusWidgetSize.extraLarge =>
-      tokens.spacing300, // TODO(witwash): check with design
+    .small => tokens.spacing150,
+    .medium => tokens.spacing200,
+    .large => tokens.spacing250,
+    .extraLarge => tokens.spacing300, // TODO(witwash): check with design
   };
 
   double getHeight(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.sizing400,
-    OptimusWidgetSize.medium => tokens.sizing500,
-    OptimusWidgetSize.large => tokens.sizing600,
-    OptimusWidgetSize.extraLarge => tokens.sizing700,
+    .small => tokens.sizing400,
+    .medium => tokens.sizing500,
+    .large => tokens.sizing600,
+    .extraLarge => tokens.sizing700,
   };
 }
 

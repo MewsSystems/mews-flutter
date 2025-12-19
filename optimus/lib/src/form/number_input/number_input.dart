@@ -270,32 +270,32 @@ class _OptimusNumberInputState extends State<OptimusNumberInput> {
           children: [
             if (widget.suffix case final suffix?)
               Padding(
-                padding: EdgeInsets.only(right: tokens.spacing150),
+                padding: .only(right: tokens.spacing150),
                 child: suffix,
               ),
             Padding(
-              padding: EdgeInsets.only(right: tokens.spacing100),
+              padding: .only(right: tokens.spacing100),
               child: Semantics(
                 label: widget.decreaseSemanticLabel,
                 child: GestureDetector(
                   onTap: _handleDecrease,
                   child: const OptimusIcon(
                     iconData: OptimusIcons.minus_simple,
-                    colorOption: OptimusIconColorOption.basic,
+                    colorOption: .basic,
                   ),
                 ),
               ),
             ),
             _Divider(isEnabled: widget.isEnabled),
             Padding(
-              padding: EdgeInsets.only(left: tokens.spacing100),
+              padding: .only(left: tokens.spacing100),
               child: Semantics(
                 label: widget.increaseSemanticLabel,
                 child: GestureDetector(
                   onTap: _handleIncrease,
                   child: const OptimusIcon(
                     iconData: OptimusIcons.plus_simple,
-                    colorOption: OptimusIconColorOption.basic,
+                    colorOption: .basic,
                   ),
                 ),
               ),

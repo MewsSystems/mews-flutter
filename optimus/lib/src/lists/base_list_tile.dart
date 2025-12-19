@@ -13,14 +13,16 @@ class BaseListTile extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: tokens.borderStaticSecondary)),
+        border: .fromLTRB(
+          bottom: BorderSide(color: tokens.borderStaticSecondary),
+        ),
       ),
       constraints: BoxConstraints(minHeight: tokens.spacing700),
       child: InkWell(
         highlightColor: tokens.backgroundInteractiveNeutralSubtleActive,
         hoverColor: tokens.backgroundInteractiveNeutralSubtleHover,
         onTap: onTap,
-        borderRadius: BorderRadius.all(tokens.borderRadius100),
+        borderRadius: .all(tokens.borderRadius100),
         splashColor: Colors.transparent,
         child: content,
       ),

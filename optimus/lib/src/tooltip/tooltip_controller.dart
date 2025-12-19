@@ -46,7 +46,7 @@ class TooltipController extends StatefulWidget {
 class _TooltipControllerState extends State<TooltipController> {
   OverlayEntry? _entry;
 
-  OverlayEntry _createEntry() => OverlayEntry(
+  OverlayEntry _createEntry() => .new(
     builder: (context) => GestureDetector(
       onTapDown: (_) => _handleHide(),
       child: Stack(

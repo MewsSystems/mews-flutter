@@ -82,13 +82,13 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
       onPressedChanged: (isPressed) => setState(() => _isPressed = isPressed),
       child: IntrinsicHeight(
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: [
             BaseButton(
               onPressed: widget.onPressed,
               semanticLabel: widget.semanticLabel,
               variant: widget.variant.toButtonVariant(),
-              borderRadius: BorderRadius.only(
+              borderRadius: .only(
                 topLeft: borderRadius,
                 bottomLeft: borderRadius,
               ),
@@ -109,7 +109,7 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
               onItemSelected: widget.onItemSelected,
               variant: widget.variant.toDropdownButtonVariant(),
               semanticLabel: widget.dropdownSemanticLabel,
-              borderRadius: BorderRadius.only(
+              borderRadius: .only(
                 topRight: borderRadius,
                 bottomRight: borderRadius,
               ),
@@ -129,15 +129,14 @@ class _OptimusSplitButtonState<T> extends State<OptimusSplitButton<T>> {
 
 extension on OptimusSplitButtonVariant {
   BaseButtonVariant toButtonVariant() => switch (this) {
-    OptimusSplitButtonVariant.primary => BaseButtonVariant.primary,
-    OptimusSplitButtonVariant.secondary => BaseButtonVariant.secondary,
-    OptimusSplitButtonVariant.tertiary => BaseButtonVariant.tertiary,
+    .primary => .primary,
+    .secondary => .secondary,
+    .tertiary => .tertiary,
   };
 
   OptimusDropdownButtonVariant toDropdownButtonVariant() => switch (this) {
-    OptimusSplitButtonVariant.primary => OptimusDropdownButtonVariant.primary,
-    OptimusSplitButtonVariant.secondary =>
-      OptimusDropdownButtonVariant.secondary,
-    OptimusSplitButtonVariant.tertiary => OptimusDropdownButtonVariant.tertiary,
+    .primary => .primary,
+    .secondary => .secondary,
+    .tertiary => .tertiary,
   };
 }

@@ -17,10 +17,10 @@ final organizationAvatar = Stack(
         width: 16,
         height: 16,
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: .all(.circular(8)),
           image: DecorationImage(
             image: NetworkImage(_organizationAvatarUrl),
-            fit: BoxFit.cover,
+            fit: .cover,
           ),
         ),
       ),

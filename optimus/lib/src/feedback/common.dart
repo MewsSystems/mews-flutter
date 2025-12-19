@@ -124,7 +124,7 @@ class FeedbackLink extends StatelessWidget {
           overflow: overflow,
           style: tokens.bodyMediumStrong.copyWith(
             color: tokens.textStaticSecondary,
-            decoration: TextDecoration.underline,
+            decoration: .underline,
           ),
         ),
       ),

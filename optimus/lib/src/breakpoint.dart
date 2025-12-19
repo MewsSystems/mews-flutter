@@ -6,15 +6,15 @@ extension MediaQueryDataScreenBreakpoint on Size {
   Breakpoint get screenBreakpoint {
     final width = this.width;
     if (width < 360) {
-      return Breakpoint.extraSmall;
+      return .extraSmall;
     } else if (width < 600) {
-      return Breakpoint.small;
+      return .small;
     } else if (width < 1024) {
-      return Breakpoint.medium;
+      return .medium;
     } else if (width < 1400) {
-      return Breakpoint.large;
+      return .large;
     }
 
-    return Breakpoint.extraLarge;
+    return .extraLarge;
   }
 }

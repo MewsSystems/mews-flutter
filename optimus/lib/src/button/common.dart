@@ -8,24 +8,20 @@ const buttonAnimationCurve = Curves.fastOutSlowIn;
 
 extension ButtonStyleExt on OptimusWidgetSize {
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing50,
-    OptimusWidgetSize.medium => tokens.spacing100,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
+    .small => tokens.spacing50,
+    .medium => tokens.spacing100,
+    .large || .extraLarge => tokens.spacing150,
   };
 
   double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing150,
-    OptimusWidgetSize.medium => tokens.spacing200,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing300,
+    .small => tokens.spacing150,
+    .medium => tokens.spacing200,
+    .large || .extraLarge => tokens.spacing300,
   };
 
   double getInsideHorizontalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing100,
-    OptimusWidgetSize.medium ||
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
+    .small => tokens.spacing100,
+    .medium || .large || .extraLarge => tokens.spacing150,
   };
 }
 

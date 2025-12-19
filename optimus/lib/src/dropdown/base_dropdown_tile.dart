@@ -24,11 +24,11 @@ class BaseDropdownTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokens = context.tokens;
-    final size = DropdownSizeData.of(context)?.size ?? OptimusWidgetSize.large;
+    final size = DropdownSizeData.of(context)?.size ?? .large;
     final tile = Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: .center,
+      crossAxisAlignment: .start,
+      mainAxisSize: .min,
       children: [
         OptimusTypography(
           resolveStyle: (_) => tokens.bodyMediumStrong,
@@ -37,7 +37,7 @@ class BaseDropdownTile extends StatelessWidget {
         if (subtitle case final subtitle?)
           OptimusTypography(
             resolveStyle: (_) => tokens.bodySmall,
-            color: OptimusTypographyColor.secondary,
+            color: .secondary,
             child: subtitle,
           ),
       ],
@@ -46,7 +46,7 @@ class BaseDropdownTile extends StatelessWidget {
     return Semantics(
       checked: hasCheckbox ? isSelected : null,
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: .symmetric(
           horizontal: tokens.spacing200,
           vertical: size.getVerticalPadding(tokens),
         ),
@@ -54,15 +54,15 @@ class BaseDropdownTile extends StatelessWidget {
           color: isSelected
               ? tokens.backgroundInteractiveSecondaryDefault
               : null,
-          borderRadius: BorderRadius.all(tokens.borderRadius100),
+          borderRadius: .all(tokens.borderRadius100),
         ),
         child: hasCheckbox
             ? Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   IgnorePointer(
                     child: Padding(
-                      padding: EdgeInsets.only(right: tokens.spacing200),
+                      padding: .only(right: tokens.spacing200),
                       child: CheckboxTick(
                         isEnabled: true,
                         onChanged: ignore,
@@ -71,7 +71,7 @@ class BaseDropdownTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Flexible(fit: FlexFit.loose, child: tile),
+                  Flexible(fit: .loose, child: tile),
                 ],
               )
             : tile,
@@ -82,9 +82,8 @@ class BaseDropdownTile extends StatelessWidget {
 
 extension on OptimusWidgetSize {
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusWidgetSize.small => tokens.spacing75,
-    OptimusWidgetSize.medium => tokens.spacing100,
-    OptimusWidgetSize.large ||
-    OptimusWidgetSize.extraLarge => tokens.spacing150,
+    .small => tokens.spacing75,
+    .medium => tokens.spacing100,
+    .large || .extraLarge => tokens.spacing150,
   };
 }

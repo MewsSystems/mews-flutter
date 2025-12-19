@@ -15,26 +15,16 @@ class OptimusBone extends StatelessWidget {
     Key? key,
     required double width,
     required double height,
-  }) : this._(
-         key: key,
-         width: width,
-         height: height,
-         radiusVariant: OptimusBoneRadiusVariant.square,
-       );
+  }) : this._(key: key, width: width, height: height, radiusVariant: .square);
 
   const OptimusBone.circle({Key? key, required double diameter})
-    : this._(
-        key: key,
-        width: diameter,
-        height: diameter,
-        boxShape: BoxShape.circle,
-      );
+    : this._(key: key, width: diameter, height: diameter, boxShape: .circle);
 
   const OptimusBone.text({
     Key? key,
     required double width,
     required double fontSize,
-    OptimusBoneRadiusVariant radiusVariant = OptimusBoneRadiusVariant.rounded,
+    OptimusBoneRadiusVariant radiusVariant = .rounded,
   }) : this._(
          key: key,
          width: width,
@@ -119,7 +109,7 @@ class _BoneState extends State<_Bone> {
         final gradient = shimmer.gradient;
 
         return ShaderMask(
-          blendMode: BlendMode.srcATop,
+          blendMode: .srcATop,
           shaderCallback: (_) => gradient.createShader(
             Rect.fromLTWH(
               -offset.dx,
@@ -163,7 +153,7 @@ class _BoneState extends State<_Bone> {
 
 extension on OptimusBoneRadiusVariant {
   Radius toRadius(BuildContext context) => switch (this) {
-    OptimusBoneRadiusVariant.square => context.tokens.borderRadius150,
-    OptimusBoneRadiusVariant.rounded => context.tokens.borderRadius300,
+    .square => context.tokens.borderRadius150,
+    .rounded => context.tokens.borderRadius300,
   };
 }

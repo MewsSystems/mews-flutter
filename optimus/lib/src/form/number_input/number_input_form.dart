@@ -24,7 +24,7 @@ class OptimusNumberInputFormField extends FormField<String> {
     Widget? prefix,
     bool readOnly = false,
     Widget? helperMessage,
-    OptimusWidgetSize size = OptimusWidgetSize.large,
+    OptimusWidgetSize size = .large,
     bool showLoader = false,
     this.precision = 2,
     this.separatorVariant = OptimusNumberSeparatorVariant.commaAndStop,

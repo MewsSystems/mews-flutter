@@ -81,32 +81,24 @@ class OptimusMewsLogo extends StatelessWidget {
   final bool useMargin;
 
   double _getSize(OptimusTokens tokens) => switch (sizeVariant) {
-    OptimusMewsLogoSizeVariant.large => tokens.sizing300,
-    OptimusMewsLogoSizeVariant.medium => tokens.sizing200,
-    OptimusMewsLogoSizeVariant.small => tokens.sizing100,
+    .large => tokens.sizing300,
+    .medium => tokens.sizing200,
+    .small => tokens.sizing100,
   };
 
   double _getPadding(OptimusTokens tokens) => switch (sizeVariant) {
-    OptimusMewsLogoSizeVariant.large => tokens.spacing300,
-    OptimusMewsLogoSizeVariant.medium => tokens.spacing200,
-    OptimusMewsLogoSizeVariant.small => tokens.spacing100,
+    .large => tokens.spacing300,
+    .medium => tokens.spacing200,
+    .small => tokens.spacing100,
   };
 
   EdgeInsets _getMargin(OptimusTokens tokens) {
     final padding = _getPadding(tokens);
 
     return switch (alignVariant) {
-      OptimusMewsLogoAlignVariant.topLeft => EdgeInsets.only(
-        bottom: padding,
-        right: padding,
-      ),
-      OptimusMewsLogoAlignVariant.topCenter => EdgeInsets.fromLTRB(
-        padding,
-        0,
-        padding,
-        padding,
-      ),
-      OptimusMewsLogoAlignVariant.center => EdgeInsets.all(padding),
+      .topLeft => EdgeInsets.only(bottom: padding, right: padding),
+      .topCenter => EdgeInsets.fromLTRB(padding, 0, padding, padding),
+      .center => EdgeInsets.all(padding),
     };
   }
 
@@ -117,31 +109,28 @@ class OptimusMewsLogo extends StatelessWidget {
     final colorVariant = this.colorVariant ?? context.fallbackColor;
 
     final logo = switch (logoVariant) {
-      OptimusMewsLogoVariant.logomark => _NonSquaredIcon(
+      .logomark => _NonSquaredIcon(
         OptimusIcons.mews_logo,
         size: _getSize(tokens),
         color: colorVariant.getColor(tokens),
       ),
-      OptimusMewsLogoVariant.wordmark => SizedBox(
+      .wordmark => SizedBox(
         width: _getSize(tokens) * _logoAspectRatio,
         height: _getSize(tokens),
         child: SvgPicture.asset(
           _logoPath,
           package: _packageName,
-          colorFilter: ColorFilter.mode(
-            colorVariant.getColor(tokens),
-            BlendMode.srcIn,
-          ),
+          colorFilter: ColorFilter.mode(colorVariant.getColor(tokens), .srcIn),
         ),
       ),
     };
 
     return MergeSemantics(
       child: Padding(
-        padding: useMargin ? _getMargin(tokens) : EdgeInsetsGeometry.zero,
+        padding: useMargin ? _getMargin(tokens) : .zero,
         child: productName != null
             ? Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   Semantics(label: semanticsLabel ?? 'Mews Logo', child: logo),
                   SizedBox(width: sizeVariant.getProductPadding(tokens)),
@@ -179,15 +168,15 @@ class _ProductBadge extends StatelessWidget {
             height: sizeVariant.getHeight(tokens),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                border: Border.all(
+                border: .all(
                   width: sizeVariant.getBorderWidth(tokens),
                   color: colorVariant.getColor(tokens),
                 ),
-                borderRadius: BorderRadius.all(tokens.borderRadius150),
+                borderRadius: .all(tokens.borderRadius150),
               ),
 
               child: Padding(
-                padding: EdgeInsets.fromLTRB(
+                padding: .fromLTRB(
                   sizeVariant.getHorizontalPadding(tokens),
                   sizeVariant.getVerticalPadding(tokens),
                   sizeVariant.getHorizontalPadding(tokens),
@@ -196,18 +185,14 @@ class _ProductBadge extends StatelessWidget {
                 child: DefaultTextStyle.merge(
                   style: TextStyle(
                     fontSize: sizeVariant.fontSize,
-                    leadingDistribution: TextLeadingDistribution.even,
-                    textBaseline: TextBaseline.alphabetic,
-                    fontWeight: FontWeight.w600,
+                    leadingDistribution: .even,
+                    textBaseline: .alphabetic,
+                    fontWeight: .w600,
 
                     height: 1,
                     color: colorVariant.getColor(tokens),
                   ),
-                  child: Text(
-                    name.toUpperCase(),
-                    maxLines: 1,
-                    overflow: TextOverflow.clip,
-                  ),
+                  child: Text(name.toUpperCase(), maxLines: 1, overflow: .clip),
                 ),
               ),
             ),
@@ -226,7 +211,7 @@ class _NonSquaredIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text.rich(
-    overflow: TextOverflow.visible,
+    overflow: .visible,
     TextSpan(
       text: String.fromCharCode(icon.codePoint),
       style: TextStyle(
@@ -242,53 +227,49 @@ class _NonSquaredIcon extends StatelessWidget {
 
 extension on OptimusMewsLogoColorVariant {
   Color getColor(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoColorVariant.black => tokens.backgroundBrand,
-    OptimusMewsLogoColorVariant.white => Colors.white,
+    .black => tokens.backgroundBrand,
+    .white => Colors.white,
   };
 }
 
 extension on BuildContext {
-  OptimusMewsLogoColorVariant get fallbackColor => theme.isDark
-      ? OptimusMewsLogoColorVariant.white
-      : OptimusMewsLogoColorVariant.black;
+  OptimusMewsLogoColorVariant get fallbackColor =>
+      theme.isDark ? .white : .black;
 }
 
 extension on OptimusMewsLogoSizeVariant {
   double getHeight(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoSizeVariant.large => tokens.sizing400,
-    OptimusMewsLogoSizeVariant.medium =>
-      20, // TODO(witwash): replace with tokens
-    OptimusMewsLogoSizeVariant.small => tokens.sizing150,
+    .large => tokens.sizing400,
+    .medium => 20, // TODO(witwash): replace with tokens
+    .small => tokens.sizing150,
   };
 
   double getVerticalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoSizeVariant.large => tokens.spacing100,
-    OptimusMewsLogoSizeVariant.medium ||
-    OptimusMewsLogoSizeVariant.small => tokens.spacing25,
+    .large => tokens.spacing100,
+    .medium || .small => tokens.spacing25,
   };
 
   double getHorizontalPadding(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoSizeVariant.large => tokens.spacing150,
-    OptimusMewsLogoSizeVariant.medium => tokens.spacing100,
-    OptimusMewsLogoSizeVariant.small => tokens.spacing50,
+    .large => tokens.spacing150,
+    .medium => tokens.spacing100,
+    .small => tokens.spacing50,
   };
 
   double get fontSize => switch (this) {
-    OptimusMewsLogoSizeVariant.large => 18, // TODO(witwash): add tokens
-    OptimusMewsLogoSizeVariant.medium => 14,
-    OptimusMewsLogoSizeVariant.small => 10,
+    .large => 18, // TODO(witwash): add tokens
+    .medium => 14,
+    .small => 10,
   };
 
   double getBorderWidth(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoSizeVariant.large => tokens.borderWidth200,
-    OptimusMewsLogoSizeVariant.medium ||
-    OptimusMewsLogoSizeVariant.small => tokens.borderWidth100,
+    .large => tokens.borderWidth200,
+    .medium || .small => tokens.borderWidth100,
   };
 
   double getProductPadding(OptimusTokens tokens) => switch (this) {
-    OptimusMewsLogoSizeVariant.large => tokens.spacing150,
-    OptimusMewsLogoSizeVariant.medium => tokens.spacing100,
-    OptimusMewsLogoSizeVariant.small => tokens.spacing50,
+    .large => tokens.spacing150,
+    .medium => tokens.spacing100,
+    .small => tokens.spacing50,
   };
 }
 

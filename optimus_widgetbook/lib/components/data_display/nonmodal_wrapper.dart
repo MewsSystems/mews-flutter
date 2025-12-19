@@ -30,7 +30,7 @@ class NonModalDialogStory extends StatelessWidget {
         actions: hasActions
             ? [const OptimusDialogAction(title: Text('OK'))]
             : [],
-        size: OptimusDialogSize.small,
+        size: .small,
       ),
       child: const Text('show'),
     );

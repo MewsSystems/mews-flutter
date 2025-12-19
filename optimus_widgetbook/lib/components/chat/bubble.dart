@@ -26,7 +26,7 @@ Widget createDefaultStyle(BuildContext context) {
       options: MessageOwner.values,
       labelBuilder: enumLabelBuilder,
     ),
-    deliveryStatus: MessageDeliveryStatus.sent,
+    deliveryStatus: .sent,
     state: k.object.dropdown(
       label: 'State',
       initialOption: MessageState.basic,

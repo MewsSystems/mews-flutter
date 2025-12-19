@@ -106,20 +106,20 @@ class _ProgressIndicatorItemState extends State<ProgressIndicatorItem>
       onHoverChanged: _handleHoverChange,
       onPressedChanged: _handlePressChange,
       child: switch (widget.axis) {
-        Axis.horizontal => _HorizontalItem(
+        .horizontal => _HorizontalItem(
           indicator: indicator,
           text: widget.text,
           state: widget.state,
           description: widget.description,
         ),
-        Axis.vertical => _VerticalItem(
+        .vertical => _VerticalItem(
           indicator: indicator,
           label: widget.text,
           state: widget.state,
           description: widget.description,
           trailing: itemsCount != null && widget.state.isActive
               ? OptimusCaption(
-                  variation: Variation.variationSecondary,
+                  variation: .variationSecondary,
                   child: Text('${widget.index}/${itemsCount + 1}'),
                 )
               : null,
@@ -147,13 +147,13 @@ class _HorizontalItem extends StatelessWidget {
     final tokens = context.tokens;
 
     return Padding(
-      padding: EdgeInsets.only(top: tokens.spacing50),
+      padding: .only(top: tokens.spacing50),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: .start,
         children: [
           indicator,
           Padding(
-            padding: EdgeInsets.only(top: tokens.spacing100),
+            padding: .only(top: tokens.spacing100),
             child: _ProgressIndicatorDescription(
               text: text,
               description: description,
@@ -186,10 +186,10 @@ class _VerticalItem extends StatelessWidget {
     final tokens = context.tokens;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: tokens.spacing100),
+      padding: .symmetric(vertical: tokens.spacing100),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: .start,
+        crossAxisAlignment: .center,
         children: [
           indicator,
           SizedBox(width: tokens.spacing200).excludeSemantics(),
@@ -230,7 +230,7 @@ class _EnabledIndicatorItem extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: backgroundColor),
+      decoration: BoxDecoration(shape: .circle, color: backgroundColor),
       child: Center(child: child),
     );
   }
@@ -282,8 +282,8 @@ class _DisabledIndicatorItem extends StatelessWidget {
             maxWidth: circleSize,
           ),
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
+            shape: .circle,
+            border: .all(
               width: tokens.borderWidth100,
               color: tokens.borderStaticPrimary,
             ),
@@ -313,15 +313,15 @@ class ProgressIndicatorSpacer extends StatelessWidget {
         : tokens.borderStaticPrimary;
 
     return switch (layout) {
-      Axis.horizontal => Padding(
-        padding: EdgeInsets.symmetric(horizontal: tokens.spacing100),
+      .horizontal => Padding(
+        padding: .symmetric(horizontal: tokens.spacing100),
         child: SizedBox(
           height: tokens.borderWidth100,
           child: ColoredBox(color: color),
         ).excludeSemantics(),
       ),
-      Axis.vertical => Padding(
-        padding: EdgeInsets.only(
+      .vertical => Padding(
+        padding: .only(
           left: tokens.spacing150.toScaled(context),
           bottom: tokens.spacing100,
           top: tokens.spacing100,
@@ -352,19 +352,19 @@ class _ProgressIndicatorDescription extends StatelessWidget {
     final tokens = context.tokens;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: .center,
+      mainAxisAlignment: .start,
+      mainAxisSize: .min,
       children: [
         Flexible(
           child: DefaultTextStyle.merge(
             style: tokens.bodyMediumStrong.copyWith(
-              overflow: TextOverflow.ellipsis,
+              overflow: .ellipsis,
               color: state.isEnabled
                   ? tokens.textStaticPrimary
                   : tokens.textStaticTertiary,
             ),
-            textAlign: TextAlign.center,
+            textAlign: .center,
             maxLines: 1,
             child: text,
           ),
@@ -372,12 +372,12 @@ class _ProgressIndicatorDescription extends StatelessWidget {
         if (description case final description?)
           Flexible(
             child: Padding(
-              padding: EdgeInsets.only(top: tokens.spacing25),
+              padding: .only(top: tokens.spacing25),
               child: OptimusTypography(
                 resolveStyle: (_) =>
-                    tokens.bodySmall.copyWith(overflow: TextOverflow.ellipsis),
-                align: TextAlign.center,
-                color: OptimusTypographyColor.secondary,
+                    tokens.bodySmall.copyWith(overflow: .ellipsis),
+                align: .center,
+                color: .secondary,
                 maxLines: 2,
                 child: description,
               ),
@@ -395,19 +395,19 @@ extension on OptimusProgressIndicatorItemState {
     required bool isPressed,
   }) {
     switch (this) {
-      case OptimusProgressIndicatorItemState.completed:
+      case .completed:
         if (isPressed) return tokens.backgroundInteractiveSecondaryActive;
         if (isHovered) return tokens.backgroundInteractiveSecondaryHover;
 
         return tokens.backgroundInteractiveSecondaryDefault;
-      case OptimusProgressIndicatorItemState.active:
+      case .active:
         return tokens.backgroundInteractivePrimaryDefault;
-      case OptimusProgressIndicatorItemState.enabled:
+      case .enabled:
         if (isPressed) return tokens.backgroundInteractiveNeutralActive;
         if (isHovered) return tokens.backgroundInteractiveNeutralHover;
 
         return tokens.backgroundInteractiveNeutralDefault;
-      case OptimusProgressIndicatorItemState.disabled:
+      case .disabled:
         return null;
     }
   }
@@ -418,27 +418,25 @@ extension on OptimusProgressIndicatorItemState {
     required bool isPressed,
   }) {
     switch (this) {
-      case OptimusProgressIndicatorItemState.completed:
+      case .completed:
         if (isHovered) return tokens.textInteractivePrimaryHover;
         if (isPressed) return tokens.textInteractivePrimaryActive;
 
         return tokens.textInteractivePrimaryDefault;
-      case OptimusProgressIndicatorItemState.active:
+      case .active:
         return tokens.textStaticInverse;
-      case OptimusProgressIndicatorItemState.enabled:
+      case .enabled:
         return tokens.textStaticPrimary;
-      case OptimusProgressIndicatorItemState.disabled:
+      case .disabled:
         return Colors.transparent;
     }
   }
 
-  bool get isEnabled => this != OptimusProgressIndicatorItemState.disabled;
+  bool get isEnabled => this != .disabled;
 
-  bool get isCompleted => this == OptimusProgressIndicatorItemState.completed;
+  bool get isCompleted => this == .completed;
 
-  bool get isActive => this == OptimusProgressIndicatorItemState.active;
+  bool get isActive => this == .active;
 
-  bool get isAccessible =>
-      this == OptimusProgressIndicatorItemState.completed ||
-      this == OptimusProgressIndicatorItemState.active;
+  bool get isAccessible => this == .completed || this == .active;
 }

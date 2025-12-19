@@ -42,8 +42,8 @@ class OptimusPictogram extends StatelessWidget {
 
 extension on OptimusPictogramSize {
   double getSize(OptimusTokens tokens) => switch (this) {
-    OptimusPictogramSize.small => tokens.sizing600,
-    OptimusPictogramSize.medium => tokens.sizing800,
-    OptimusPictogramSize.large => tokens.sizing1000,
+    .small => tokens.sizing600,
+    .medium => tokens.sizing800,
+    .large => tokens.sizing1000,
   };
 }

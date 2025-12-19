@@ -19,7 +19,7 @@ Widget createDefaultStyle(BuildContext context) {
       children: OptimusDropdownButtonVariant.values
           .map(
             (v) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const .symmetric(vertical: 8),
               child: OptimusDropDownButton<int>(
                 size: k.widgetSizeKnob,
                 dropdownWidth: k.doubleOrNull.slider(

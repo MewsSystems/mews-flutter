@@ -1,4 +1,3 @@
-import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:optimus/src/common/group_item.dart';
 import 'package:optimus/src/common/group_wrapper.dart';
@@ -61,7 +60,7 @@ class OptimusRadioGroup<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-    role: SemanticsRole.radioGroup,
+    role: .radioGroup,
     enabled: isEnabled,
     child: GroupWrapper(
       label: label,

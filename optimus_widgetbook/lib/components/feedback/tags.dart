@@ -20,14 +20,14 @@ Widget createDefaultStyle(BuildContext context) {
   );
 
   return Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: .min,
     children: [
       const OptimusTitleMedium(child: Text('Semantic')),
       Wrap(
         children: OptimusColorOption.values
             .map(
               (c) => Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const .all(8),
                 child: OptimusTag(
                   text: text.isEmpty ? c.name : text,
                   leadingIcon: leadingIcon?.data,
@@ -46,7 +46,7 @@ Widget createDefaultStyle(BuildContext context) {
         children: OptimusCategoricalColorOption.values
             .map(
               (c) => Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const .all(8),
                 child: OptimusCategoricalTag(
                   text: text.isEmpty ? c.name : text,
                   leadingIcon: leadingIcon?.data,

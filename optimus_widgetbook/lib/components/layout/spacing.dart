@@ -29,7 +29,7 @@ Widget createDefaultStyle(BuildContext context) {
 
 Widget _buildSpacing(OptimusTokens tokens, double spacing, String label) =>
     Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      padding: const .symmetric(horizontal: 24, vertical: 12),
       child: Row(
         children: [
           SizedBox.square(
@@ -37,8 +37,8 @@ Widget _buildSpacing(OptimusTokens tokens, double spacing, String label) =>
             child: Container(color: Colors.black),
           ),
           Padding(
-            padding: EdgeInsets.only(left: _getPadding(tokens, spacing)),
-            child: Text(label, textAlign: TextAlign.left),
+            padding: .only(left: _getPadding(tokens, spacing)),
+            child: Text(label, textAlign: .left),
           ),
         ],
       ),

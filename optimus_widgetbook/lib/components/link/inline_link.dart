@@ -37,11 +37,11 @@ Widget createDefaultStyle(BuildContext context) {
   final linkText = k.string(label: 'Link name', initialValue: 'Link');
 
   return Padding(
-    padding: const EdgeInsets.all(20.0),
+    padding: const .all(20.0),
     child: SingleChildScrollView(
       child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: .min,
+        mainAxisAlignment: .center,
         children: [
           Text('Some text before inline link. Inline ', style: style),
           OptimusInlineLink(

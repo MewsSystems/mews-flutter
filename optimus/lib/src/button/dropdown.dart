@@ -45,9 +45,9 @@ class OptimusDropDownButton<T> extends StatelessWidget {
 
 extension BaseButtonVariantResolve on OptimusDropdownButtonVariant {
   BaseButtonVariant toBaseVariant() => switch (this) {
-    OptimusDropdownButtonVariant.tertiary => BaseButtonVariant.tertiary,
-    OptimusDropdownButtonVariant.primary => BaseButtonVariant.primary,
-    OptimusDropdownButtonVariant.secondary => BaseButtonVariant.secondary,
-    OptimusDropdownButtonVariant.text => BaseButtonVariant.ghost,
+    .tertiary => .tertiary,
+    .primary => .primary,
+    .secondary => .secondary,
+    .text => .ghost,
   };
 }

@@ -4,13 +4,12 @@ import 'package:optimus/src/dropdown/dropdown_size_data.dart';
 
 extension DropdownSpacing on BuildContext {
   double get dropdownItemVerticalPadding {
-    final size = DropdownSizeData.of(this)?.size ?? OptimusWidgetSize.large;
+    final size = DropdownSizeData.of(this)?.size ?? .large;
 
     return switch (size) {
-      OptimusWidgetSize.small => tokens.spacing75,
-      OptimusWidgetSize.medium => tokens.spacing100,
-      OptimusWidgetSize.large ||
-      OptimusWidgetSize.extraLarge => tokens.spacing150,
+      .small => tokens.spacing75,
+      .medium => tokens.spacing100,
+      .large || .extraLarge => tokens.spacing150,
     };
   }
 

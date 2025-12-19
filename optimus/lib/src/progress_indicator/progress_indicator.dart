@@ -48,12 +48,12 @@ class OptimusProgressIndicator extends StatelessWidget {
         : Axis.vertical;
 
     return switch (effectiveLayout) {
-      Axis.horizontal => _HorizontalProgressIndicator(
+      .horizontal => _HorizontalProgressIndicator(
         items: items,
         currentItem: currentItem,
         maxItem: maxItem,
       ),
-      Axis.vertical => _VerticalProgressIndicator(
+      .vertical => _VerticalProgressIndicator(
         items: items,
         currentItem: currentItem,
         maxItem: maxItem,
@@ -101,7 +101,7 @@ class _HorizontalProgressIndicator extends StatelessWidget {
                           SizedBox(width: indicatorWidth).excludeSemantics(),
                       separatorBuilder: (_, nextItem) => Expanded(
                         child: ProgressIndicatorSpacer(
-                          layout: Axis.horizontal,
+                          layout: .horizontal,
                           nextItemState: items.getIndicatorState(
                             item: nextItem,
                             currentItem: currentItem,
@@ -152,13 +152,10 @@ class _SpacerLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+    padding: .symmetric(horizontal: horizontalPadding),
     child: SizedBox(
       height: itemHeight,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: children,
-      ),
+      child: Row(crossAxisAlignment: .center, children: children),
     ),
   );
 }
@@ -245,7 +242,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
       child: AllowMultipleRawGestureDetector(
         onTap: _handleTap,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: items
               .intersperseWith(
                 itemBuilder: (item) => ProgressIndicatorItem(
@@ -254,11 +251,11 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
                   text: item.text,
                   description: item.description,
                   itemsCount: _itemsCount,
-                  axis: Axis.vertical,
+                  axis: .vertical,
                 ),
                 separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
                   nextItemState: _getIndicatorState(nextItem),
-                  layout: Axis.vertical,
+                  layout: .vertical,
                 ),
               )
               .skip(1) // the first one is already in the header
@@ -270,9 +267,9 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
     return AnimatedBuilder(
       animation: _animationController.view,
       builder: (_, child) => Container(
-        clipBehavior: Clip.none,
+        clipBehavior: .none,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: .min,
           children: <Widget>[
             AllowMultipleRawGestureDetector(
               onTap: _handleTap,
@@ -282,7 +279,7 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
                 text: headerItem.text,
                 description: headerItem.description,
                 itemsCount: _itemsCount,
-                axis: Axis.vertical,
+                axis: .vertical,
               ),
             ),
             ClipRect(
@@ -311,14 +308,12 @@ extension on List<OptimusProgressIndicatorItem> {
   }) {
     final position = indexOf(item);
     if (position == currentItem) {
-      return OptimusProgressIndicatorItemState.active;
+      return .active;
     }
     if (position < currentItem) {
-      return OptimusProgressIndicatorItemState.completed;
+      return .completed;
     }
 
-    return maxItem == null || position <= maxItem
-        ? OptimusProgressIndicatorItemState.enabled
-        : OptimusProgressIndicatorItemState.disabled;
+    return maxItem == null || position <= maxItem ? .enabled : .disabled;
   }
 }

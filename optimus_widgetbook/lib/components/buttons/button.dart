@@ -28,7 +28,7 @@ Widget createDefaultStyle(BuildContext context) {
       children: OptimusButtonVariant.values
           .map(
             (v) => Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const .all(8),
               child: OptimusButton(
                 onPressed: k.boolean(label: 'Enabled', initialValue: true)
                     ? () {}

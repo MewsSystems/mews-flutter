@@ -83,7 +83,7 @@ class _AdvancedThemeOverrideDemo extends StatelessWidget {
       textStaticInverse: textColor,
       textStaticSecondary: secondaryTextColor,
       backgroundDisabled: disabledColor,
-      borderRadius100: Radius.circular(borderRadius),
+      borderRadius100: .circular(borderRadius),
       spacing100: padding,
     );
 
@@ -98,9 +98,9 @@ class _AdvancedThemeOverrideDemo extends StatelessWidget {
       child: Scaffold(
         backgroundColor: customTokens.backgroundStaticFlat,
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(tokens.spacing200),
+          padding: .all(tokens.spacing200),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: [
               Text(
                 'Advanced Theme Override Demo',
@@ -113,16 +113,14 @@ class _AdvancedThemeOverrideDemo extends StatelessWidget {
               ),
               SizedBox(height: tokens.spacing300),
               Container(
-                padding: EdgeInsets.all(tokens.spacing200),
+                padding: .all(tokens.spacing200),
                 decoration: BoxDecoration(
                   color: customTokens.backgroundAlertWarningSecondary,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(tokens.borderRadius100.x),
-                  ),
-                  border: Border.all(color: customTokens.borderAlertWarning),
+                  borderRadius: .all(.circular(tokens.borderRadius100.x)),
+                  border: .all(color: customTokens.borderAlertWarning),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: .start,
                   children: [
                     Row(
                       children: [
@@ -186,18 +184,18 @@ class _TokenDisplay extends StatelessWidget {
     final tokens = context.tokens;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         Text(title, style: tokens.titleMediumStrong),
         const SizedBox(height: 8.0),
         Container(
-          padding: const EdgeInsets.all(12.0),
+          padding: const .all(12.0),
           decoration: BoxDecoration(
             color: tokens.backgroundStaticRaised,
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            borderRadius: const .all(.circular(4)),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: [
               TokenDiff(
                 label: 'Primary Background',
@@ -277,8 +275,8 @@ class _ColorBlock extends StatelessWidget {
     height: 20,
     decoration: BoxDecoration(
       color: value,
-      border: Border.all(color: Colors.grey),
-      borderRadius: const BorderRadius.all(Radius.circular(2)),
+      border: .all(color: Colors.grey),
+      borderRadius: const .all(.circular(2)),
     ),
   );
 }
@@ -307,7 +305,7 @@ class TokenDiff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 2.0),
+    padding: const .symmetric(vertical: 2.0),
     child: Row(
       children: [
         _TextBlock(label),

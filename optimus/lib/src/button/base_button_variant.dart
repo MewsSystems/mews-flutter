@@ -12,32 +12,32 @@ extension ColorScheme on BaseButtonVariant {
     required bool isHovered,
   }) {
     switch (this) {
-      case BaseButtonVariant.primary:
+      case .primary:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed) return tokens.backgroundInteractivePrimaryActive;
         if (isHovered) return tokens.backgroundInteractivePrimaryHover;
 
         return tokens.backgroundInteractivePrimaryDefault;
-      case BaseButtonVariant.secondary:
+      case .secondary:
         if (!isEnabled) return null;
         if (isPressed) return tokens.backgroundInteractivePrimaryActive;
         if (isHovered) return tokens.backgroundInteractivePrimaryHover;
 
         return null;
-      case BaseButtonVariant.tertiary:
-      case BaseButtonVariant.ghost:
+      case .tertiary:
+      case .ghost:
         if (!isEnabled) return null;
         if (isPressed) return tokens.backgroundInteractiveNeutralSubtleActive;
         if (isHovered) return tokens.backgroundInteractiveNeutralSubtleHover;
 
         return null;
-      case BaseButtonVariant.danger:
+      case .danger:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed) return tokens.backgroundInteractiveDangerActive;
         if (isHovered) return tokens.backgroundInteractiveDangerHover;
 
         return tokens.backgroundInteractiveDangerDefault;
-      case BaseButtonVariant.success:
+      case .success:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed) return tokens.backgroundInteractiveSuccessActive;
         if (isHovered) return tokens.backgroundInteractiveSuccessHover;
@@ -53,24 +53,24 @@ extension ColorScheme on BaseButtonVariant {
     required bool isHovered,
   }) {
     switch (this) {
-      case BaseButtonVariant.primary:
-      case BaseButtonVariant.danger:
-      case BaseButtonVariant.success:
+      case .primary:
+      case .danger:
+      case .success:
         if (!isEnabled) return tokens.textDisabled;
 
         return tokens.textStaticInverse;
-      case BaseButtonVariant.secondary:
+      case .secondary:
         if (!isEnabled) return tokens.textDisabled;
         if (isPressed || isHovered) {
           return tokens.textStaticInverse;
         }
 
         return tokens.textInteractivePrimaryDefault;
-      case BaseButtonVariant.tertiary:
+      case .tertiary:
         if (!isEnabled) return tokens.textDisabled;
 
         return tokens.textStaticSecondary;
-      case BaseButtonVariant.ghost:
+      case .ghost:
         if (!isEnabled) return tokens.textDisabled;
 
         return tokens.textStaticPrimary;
@@ -84,22 +84,22 @@ extension ColorScheme on BaseButtonVariant {
     required bool isHovered,
   }) {
     switch (this) {
-      case BaseButtonVariant.primary:
-      case BaseButtonVariant.danger:
-      case BaseButtonVariant.success:
+      case .primary:
+      case .danger:
+      case .success:
         if (!isEnabled) return tokens.textDisabled;
 
         return tokens.textStaticInverse;
-      case BaseButtonVariant.secondary:
+      case .secondary:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed || isHovered) return tokens.backgroundStaticFlat;
 
         return tokens.textInteractivePrimaryDefault;
-      case BaseButtonVariant.tertiary:
+      case .tertiary:
         if (!isEnabled) return tokens.backgroundDisabled;
 
         return tokens.textStaticSecondary;
-      case BaseButtonVariant.ghost:
+      case .ghost:
         if (!isEnabled) return tokens.backgroundDisabled;
 
         return tokens.textStaticPrimary;
@@ -114,37 +114,37 @@ extension ColorScheme on BaseButtonVariant {
     required bool isHovered,
   }) {
     switch (this) {
-      case BaseButtonVariant.primary:
+      case .primary:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed) return tokens.backgroundInteractivePrimaryActive;
         if (isHovered) return tokens.backgroundInteractivePrimaryHover;
 
         return tokens.backgroundInteractivePrimaryDefault;
-      case BaseButtonVariant.secondary:
+      case .secondary:
         if (!isEnabled) return tokens.textDisabled;
         if (isPressed) return tokens.backgroundInteractivePrimaryActive;
         if (isHovered) return tokens.backgroundInteractivePrimaryHover;
 
         return tokens.textStaticInverse;
-      case BaseButtonVariant.tertiary:
+      case .tertiary:
         if (!isEnabled) return tokens.textDisabled;
         if (isPressed) return tokens.backgroundInteractiveNeutralSubtleActive;
         if (isHovered) return tokens.backgroundInteractiveNeutralSubtleHover;
 
         return tokens.backgroundStaticFlat;
-      case BaseButtonVariant.ghost:
+      case .ghost:
         if (!isEnabled) return tokens.textDisabled;
         if (isPressed) return tokens.backgroundInteractiveNeutralSubtleActive;
         if (isHovered) return tokens.backgroundInteractiveNeutralSubtleHover;
 
         return tokens.textStaticInverse;
-      case BaseButtonVariant.danger:
+      case .danger:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed) return tokens.backgroundInteractiveDangerActive;
         if (isHovered) return tokens.backgroundInteractiveDangerHover;
 
         return tokens.backgroundInteractiveDangerDefault;
-      case BaseButtonVariant.success:
+      case .success:
         if (!isEnabled) return tokens.backgroundDisabled;
         if (isPressed) return tokens.backgroundInteractiveSuccessActive;
         if (isHovered) return tokens.backgroundInteractiveSuccessHover;
@@ -160,18 +160,18 @@ extension ColorScheme on BaseButtonVariant {
     required bool isHovered,
   }) {
     switch (this) {
-      case BaseButtonVariant.primary:
-      case BaseButtonVariant.ghost:
-      case BaseButtonVariant.danger:
-      case BaseButtonVariant.success:
+      case .primary:
+      case .ghost:
+      case .danger:
+      case .success:
         return null;
-      case BaseButtonVariant.secondary:
+      case .secondary:
         if (!isEnabled) return tokens.borderDisabled;
         if (isPressed) return tokens.borderInteractivePrimaryActive;
         if (isHovered) return tokens.borderInteractivePrimaryHover;
 
         return tokens.borderInteractivePrimaryDefault;
-      case BaseButtonVariant.tertiary:
+      case .tertiary:
         if (!isEnabled) return tokens.borderDisabled;
         if (isPressed) return tokens.borderInteractiveSecondaryActive;
         if (isHovered) return tokens.borderInteractiveSecondaryHover;

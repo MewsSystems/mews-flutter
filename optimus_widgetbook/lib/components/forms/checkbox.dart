@@ -9,13 +9,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   type: OptimusCheckbox,
   path: '[Forms]/Checkbox',
 )
-CheckboxStory defaultStyle(BuildContext _) => const CheckboxStory();
+CheckboxStory defaultStyle(BuildContext _) => const .new();
 
 class CheckboxStory extends StatefulWidget {
   const CheckboxStory({super.key});
 
   @override
-  CheckboxStoryState createState() => CheckboxStoryState();
+  CheckboxStoryState createState() => .new();
 }
 
 class CheckboxStoryState extends State<CheckboxStory> {

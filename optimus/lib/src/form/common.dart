@@ -27,14 +27,14 @@ class Suffix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-    direction: Axis.horizontal,
-    spacing: OptimusStackSpacing.spacing100,
-    mainAxisSize: MainAxisSize.min,
+    direction: .horizontal,
+    spacing: .spacing100,
+    mainAxisSize: .min,
     children: [
       ?counter,
       ?suffix,
       ?clearAllButton,
-      if (showLoader) const OptimusSpinner(size: OptimusSpinnerSize.small),
+      if (showLoader) const OptimusSpinner(size: .small),
       ?passwordButton,
       ?trailing,
       ?inlineError,
@@ -50,9 +50,9 @@ class Prefix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => OptimusStack(
-    direction: Axis.horizontal,
-    spacing: OptimusStackSpacing.spacing100,
-    mainAxisSize: MainAxisSize.min,
+    direction: .horizontal,
+    spacing: .spacing100,
+    mainAxisSize: .min,
     children: [?leading, ?prefix],
   );
 }
