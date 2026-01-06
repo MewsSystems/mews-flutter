@@ -36,13 +36,11 @@ class CustomOutlinedBorder extends OutlinedBorder {
     final RRect borderRect = borderRadius.resolve(textDirection).toRRect(rect);
     final RRect adjustedRect = borderRect.deflate(borderSide.width / 2);
 
-    // ignore: avoid-returning-cascades, no other way to do it (would trigger other lints)
     return Path()..addRRect(adjustedRect);
   }
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
-      // ignore: avoid-returning-cascades, no other way to do it (would trigger other lints)
       Path()..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
 
   @override
