@@ -569,6 +569,7 @@ dart_code_metrics:
     # - prefer-moving-to-variable
     - prefer-named-boolean-parameters:
         ignore-single: true
+        ignore-single-boolean: true
     # - prefer-named-imports
     - prefer-named-parameters:
         max-number: 2
