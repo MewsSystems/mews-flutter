@@ -1,3 +1,9 @@
+## 0.42.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Update rules configutation.
+
 ## 0.41.0
 
 > Note: This release has breaking changes.
