@@ -382,7 +382,7 @@ dart_code_metrics:
     # - avoid-referencing-discarded-variables
     - avoid-referencing-subclasses
     # - avoid-renaming-representation-getters
-    - avoid-returning-cascades
+    # - avoid-returning-cascades
     - avoid-returning-void
     - avoid-self-assignment
     - avoid-self-compare
