@@ -1,3 +1,7 @@
+## 0.42.1
+
+ - **FEAT**: Update rules (#872).
+
 ## 0.42.0
 
 > Note: This release has breaking changes.
