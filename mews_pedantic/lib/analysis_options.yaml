@@ -348,7 +348,8 @@ dart_code_metrics:
     # - avoid-mutating-parameters
     # - avoid-negated-conditions
     - avoid-negations-in-equality-checks
-    - avoid-nested-assignments
+    - avoid-nested-assignments:
+        ignore-null-aware-assignments: true
     # - avoid-nested-conditional-expressions
     - avoid-nested-extension-types
     - avoid-nested-futures
