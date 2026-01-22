@@ -530,6 +530,9 @@ dart_code_metrics:
             equals,
             matches,
             collides,
+            include,
+            exclude,
+            skip,
           ]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
