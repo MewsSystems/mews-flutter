@@ -533,6 +533,8 @@ dart_code_metrics:
             include,
             exclude,
             skip,
+            open,
+            close,
           ]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
