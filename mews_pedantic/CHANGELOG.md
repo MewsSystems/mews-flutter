@@ -1,3 +1,8 @@
+## 0.42.3
+
+ - **FEAT**: Update rules config  (#879).
+ - **FEAT**: Update rules config (#878).
+
 ## 0.42.2
 
  - **FEAT**: Disable avoid_positional_boolean_parameters.
