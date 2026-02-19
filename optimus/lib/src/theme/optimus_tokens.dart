@@ -13,7 +13,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 part 'optimus_tokens.tailor.dart';
 
-@TailorMixin(themeGetter: .none)
+@TailorMixin(themeGetter: ThemeGetter.none)
 class OptimusTokens extends ThemeExtension<OptimusTokens>
     with _$OptimusTokensTailorMixin {
   const OptimusTokens({
@@ -426,6 +426,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     required this.sizing1000,
     required this.sizing1200,
     required this.sizing1300,
+    required this.sizing150,
     required this.sizing200,
     required this.sizing300,
     required this.sizing400,
@@ -1289,6 +1290,8 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
   @override
   final double sizing1300;
   @override
+  final double sizing150;
+  @override
   final double sizing200;
   @override
   final double sizing300;
@@ -1844,6 +1847,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     sizing1000: DesignTokensLight.sizing1000,
     sizing1200: DesignTokensLight.sizing1200,
     sizing1300: DesignTokensLight.sizing1300,
+    sizing150: DesignTokensLight.sizing150,
     sizing200: DesignTokensLight.sizing200,
     sizing300: DesignTokensLight.sizing300,
     sizing400: DesignTokensLight.sizing400,
@@ -2349,6 +2353,7 @@ class OptimusTokens extends ThemeExtension<OptimusTokens>
     sizing1000: DesignTokensDark.sizing1000,
     sizing1200: DesignTokensDark.sizing1200,
     sizing1300: DesignTokensDark.sizing1300,
+    sizing150: DesignTokensDark.sizing150,
     sizing200: DesignTokensDark.sizing200,
     sizing300: DesignTokensDark.sizing300,
     sizing400: DesignTokensDark.sizing400,

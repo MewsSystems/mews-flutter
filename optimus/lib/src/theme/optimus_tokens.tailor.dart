@@ -416,6 +416,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
   double get sizing1000;
   double get sizing1200;
   double get sizing1300;
+  double get sizing150;
   double get sizing200;
   double get sizing300;
   double get sizing400;
@@ -866,6 +867,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
     double? sizing1000,
     double? sizing1200,
     double? sizing1300,
+    double? sizing150,
     double? sizing200,
     double? sizing300,
     double? sizing400,
@@ -1578,6 +1580,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       sizing1000: sizing1000 ?? this.sizing1000,
       sizing1200: sizing1200 ?? this.sizing1200,
       sizing1300: sizing1300 ?? this.sizing1300,
+      sizing150: sizing150 ?? this.sizing150,
       sizing200: sizing200 ?? this.sizing200,
       sizing300: sizing300 ?? this.sizing300,
       sizing400: sizing400 ?? this.sizing400,
@@ -3409,6 +3412,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       sizing1000: t < 0.5 ? sizing1000 : other.sizing1000,
       sizing1200: t < 0.5 ? sizing1200 : other.sizing1200,
       sizing1300: t < 0.5 ? sizing1300 : other.sizing1300,
+      sizing150: t < 0.5 ? sizing150 : other.sizing150,
       sizing200: t < 0.5 ? sizing200 : other.sizing200,
       sizing300: t < 0.5 ? sizing300 : other.sizing300,
       sizing400: t < 0.5 ? sizing400 : other.sizing400,
@@ -5074,6 +5078,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
               sizing1300,
               other.sizing1300,
             ) &&
+            const DeepCollectionEquality().equals(sizing150, other.sizing150) &&
             const DeepCollectionEquality().equals(sizing200, other.sizing200) &&
             const DeepCollectionEquality().equals(sizing300, other.sizing300) &&
             const DeepCollectionEquality().equals(sizing400, other.sizing400) &&
@@ -5610,6 +5615,7 @@ mixin _$OptimusTokensTailorMixin on ThemeExtension<OptimusTokens> {
       const DeepCollectionEquality().hash(sizing1000),
       const DeepCollectionEquality().hash(sizing1200),
       const DeepCollectionEquality().hash(sizing1300),
+      const DeepCollectionEquality().hash(sizing150),
       const DeepCollectionEquality().hash(sizing200),
       const DeepCollectionEquality().hash(sizing300),
       const DeepCollectionEquality().hash(sizing400),
