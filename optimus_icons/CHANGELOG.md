@@ -1,3 +1,9 @@
+## 0.4.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Update icons library (#883).
+
 ## 0.3.0
 
 > Note: This release has breaking changes.
