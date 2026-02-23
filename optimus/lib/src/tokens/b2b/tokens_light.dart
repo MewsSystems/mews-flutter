@@ -366,7 +366,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1,
     fontSize: 11,
     letterSpacing: 0.2,
@@ -375,7 +375,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodyExtraSmallStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1,
     fontSize: 11,
     letterSpacing: 0.2,
@@ -384,7 +384,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodyLarge = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1.5,
     fontSize: 16,
     fontFeatures: fontFeatures,
@@ -392,7 +392,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodyLargeStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1.5,
     fontSize: 16,
     fontFeatures: fontFeatures,
@@ -400,7 +400,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1.5,
     fontSize: 14,
     fontFeatures: fontFeatures,
@@ -408,7 +408,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodyMediumStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1.5,
     fontSize: 14,
     fontFeatures: fontFeatures,
@@ -416,7 +416,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodySmall = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1.5,
     fontSize: 12,
     fontFeatures: fontFeatures,
@@ -424,7 +424,7 @@ abstract final class DesignTokensLight {
   static const TextStyle bodySmallStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1.5,
     fontSize: 12,
     fontFeatures: fontFeatures,
@@ -432,7 +432,7 @@ abstract final class DesignTokensLight {
   static const TextStyle highlightLarge = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1.3,
     fontSize: 36,
     letterSpacing: -0.2,
@@ -441,7 +441,7 @@ abstract final class DesignTokensLight {
   static const TextStyle highlightMedium = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1.3,
     fontSize: 25,
     letterSpacing: -0.2,
@@ -450,7 +450,7 @@ abstract final class DesignTokensLight {
   static const TextStyle highlightSmall = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w500,
+    fontWeight: .w500,
     height: 1.3,
     fontSize: 18,
     fontFeatures: fontFeatures,
@@ -458,7 +458,7 @@ abstract final class DesignTokensLight {
   static const TextStyle titleLarge = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1.5,
     fontSize: 22,
     fontFeatures: fontFeatures,
@@ -466,7 +466,7 @@ abstract final class DesignTokensLight {
   static const TextStyle titleLargeStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w600,
+    fontWeight: .w600,
     height: 1.5,
     fontSize: 22,
     fontFeatures: fontFeatures,
@@ -474,7 +474,7 @@ abstract final class DesignTokensLight {
   static const TextStyle titleMedium = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1.5,
     fontSize: 20,
     fontFeatures: fontFeatures,
@@ -482,7 +482,7 @@ abstract final class DesignTokensLight {
   static const TextStyle titleMediumStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w600,
+    fontWeight: .w600,
     height: 1.5,
     fontSize: 20,
     fontFeatures: fontFeatures,
@@ -490,7 +490,7 @@ abstract final class DesignTokensLight {
   static const TextStyle titleSmall = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w400,
+    fontWeight: .w400,
     height: 1.3,
     fontSize: 18,
     fontFeatures: fontFeatures,
@@ -498,13 +498,13 @@ abstract final class DesignTokensLight {
   static const TextStyle titleSmallStrong = TextStyle(
     fontFamily: 'Inter',
     package: fontPackage,
-    fontWeight: FontWeight.w600,
+    fontWeight: .w600,
     height: 1.3,
     fontSize: 18,
     fontFeatures: fontFeatures,
   );
 
-  static const Radius borderRadius0 = Radius.zero;
+  static const Radius borderRadius0 = .zero;
   static const Radius borderRadius100 = Radius.circular(8);
   static const Radius borderRadius150 = Radius.circular(12);
   static const Radius borderRadius200 = Radius.circular(16);
@@ -584,13 +584,13 @@ abstract final class DesignTokensLight {
 
   static const String fontFamilyUi = 'Inter';
 
-  static const FontWeight fontWeight300 = FontWeight.w300;
-  static const FontWeight fontWeight400 = FontWeight.w400;
-  static const FontWeight fontWeight500 = FontWeight.w500;
-  static const FontWeight fontWeight600 = FontWeight.w600;
+  static const FontWeight fontWeight300 = .w300;
+  static const FontWeight fontWeight400 = .w400;
+  static const FontWeight fontWeight500 = .w500;
+  static const FontWeight fontWeight600 = .w600;
 
   static const List<BoxShadow> shadow0 = [
-    BoxShadow(offset: Offset.zero, color: Color(0xFF000000)),
+    BoxShadow(offset: .zero, color: Color(0xFF000000)),
   ];
   static const List<BoxShadow> shadow100 = [
     BoxShadow(
@@ -635,9 +635,8 @@ abstract final class DesignTokensLight {
     ),
   ];
 
-  static const TextDecoration textDecorationNone = TextDecoration.none;
-  static const TextDecoration textDecorationUnderline =
-      TextDecoration.underline;
+  static const TextDecoration textDecorationNone = .none;
+  static const TextDecoration textDecorationUnderline = .underline;
 
   static const List<FontFeature> fontFeatures = [
     FontFeature('calt'),

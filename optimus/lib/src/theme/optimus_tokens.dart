@@ -13,7 +13,7 @@ import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
 
 part 'optimus_tokens.tailor.dart';
 
-@TailorMixin(themeGetter: ThemeGetter.none)
+@TailorMixin(themeGetter: .none)
 class OptimusTokens extends ThemeExtension<OptimusTokens>
     with _$OptimusTokensTailorMixin {
   const OptimusTokens({
