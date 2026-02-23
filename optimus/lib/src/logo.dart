@@ -10,7 +10,11 @@ import 'package:optimus/optimus.dart';
 ///   It is recommended to use it as the default whenever possible.
 /// - [OptimusMewsLogoVariant.logomark] - The compact, shortened version of the
 ///   logo, used whenever available space is limited.
-enum OptimusMewsLogoVariant { wordmark, logomark }
+/// - [OptimusMewsLogoVariant.icon] - The icon version, used whenever available
+///   space is limited.
+/// - [OptimusMewsLogoVariant.favicon] - The favicon version, used whenever
+///   available space is limited.
+enum OptimusMewsLogoVariant { wordmark, logomark, icon, favicon }
 
 /// Mews logo size.
 ///
@@ -122,6 +126,16 @@ class OptimusMewsLogo extends StatelessWidget {
           package: _packageName,
           colorFilter: ColorFilter.mode(colorVariant.getColor(tokens), .srcIn),
         ),
+      ),
+      .icon => _NonSquaredIcon(
+        OptimusIcons.mews_icon,
+        size: _getSize(tokens),
+        color: colorVariant.getColor(tokens),
+      ),
+      .favicon => _NonSquaredIcon(
+        OptimusIcons.mews_favicon,
+        size: _getSize(tokens),
+        color: colorVariant.getColor(tokens),
       ),
     };
 

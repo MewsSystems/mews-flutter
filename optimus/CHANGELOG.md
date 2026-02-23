@@ -1,3 +1,11 @@
+## 0.43.1
+
+ - **FEAT**: [GX-24419] Update logo component (#885).
+
+## 0.43.0+2
+
+ - Update a dependency to the latest release.
+
 ## 0.43.0+1
 
  - **REFACTOR**: Fix linter issues.
