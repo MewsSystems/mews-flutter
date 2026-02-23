@@ -37,6 +37,7 @@ class _ContentState extends State<_Content> {
       label: 'Multiselect',
       initialValue: false,
     );
+    final size = k.widgetSizeKnob;
 
     return Form(
       key: _formKey,
@@ -54,6 +55,7 @@ class _ContentState extends State<_Content> {
             placeholder: 'Please select the item',
             initialValue: null,
             builder: (value) => value ?? '',
+            size: size,
             items: _selectorItems
                 .map(
                   (e) => ListDropdownTile<String>(
