@@ -1,3 +1,7 @@
+## 0.43.2
+
+ - **FEAT**: Design Tokens Update 11.1.0 (#881).
+
 ## 0.43.1
 
  - **FEAT**: [GX-24419] Update logo component (#885).

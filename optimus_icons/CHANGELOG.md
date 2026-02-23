@@ -1,3 +1,7 @@
+## 0.4.0+1
+
+ - **FIX**: Update icon font (#887).
+
 ## 0.4.0
 
 > Note: This release has breaking changes.
