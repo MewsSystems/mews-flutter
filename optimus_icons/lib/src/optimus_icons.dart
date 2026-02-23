@@ -13,7 +13,7 @@
 ///
 ///
 ///
-// ignore_for_file: constant_identifier_names, icons export
+// ignore_for_file: constant_identifier_names
 
 import 'package:flutter/widgets.dart';
 
@@ -23,47 +23,47 @@ abstract final class OptimusIcons {
   static const _kFontFam = 'OptimusIcons';
   static const String _kFontPkg = 'optimus_icons';
 
-  static const IconData accounting_ledger_24 = IconData(
+  static const IconData accounting_ledger = IconData(
     0xe800,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData accounting_ledger = IconData(
+  static const IconData accounting_ledger_24 = IconData(
     0xe801,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData accounting_report_24 = IconData(
+  static const IconData accounting_report = IconData(
     0xe802,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData accounting_report = IconData(
+  static const IconData accounting_report_24 = IconData(
     0xe803,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData action_log_24 = IconData(
+  static const IconData action_log = IconData(
     0xe804,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData action_log = IconData(
+  static const IconData action_log_24 = IconData(
     0xe805,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData activity_report_24 = IconData(
+  static const IconData activity_report = IconData(
     0xe806,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData activity_report = IconData(
+  static const IconData activity_report_24 = IconData(
     0xe807,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData add_customer_24 = IconData(
+  static const IconData add = IconData(
     0xe808,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -73,42 +73,42 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData add_photo = IconData(
+  static const IconData add_customer_24 = IconData(
     0xe80a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData add = IconData(
+  static const IconData add_photo = IconData(
     0xe80b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData ai_24 = IconData(
+  static const IconData ai = IconData(
     0xe80c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData ai = IconData(
+  static const IconData ai_24 = IconData(
     0xe80d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData alert_circle_24 = IconData(
+  static const IconData alert_circle = IconData(
     0xe80e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData alert_circle = IconData(
+  static const IconData alert_circle_24 = IconData(
     0xe80f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData analytics_24 = IconData(
+  static const IconData analytics = IconData(
     0xe810,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData analytics = IconData(
+  static const IconData analytics_24 = IconData(
     0xe811,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -118,87 +118,87 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrivals_24 = IconData(
+  static const IconData arrivals = IconData(
     0xe813,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrivals = IconData(
+  static const IconData arrivals_24 = IconData(
     0xe814,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_down_24 = IconData(
+  static const IconData arrow_down = IconData(
     0xe815,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_down = IconData(
+  static const IconData arrow_down_24 = IconData(
     0xe816,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_joined_24 = IconData(
+  static const IconData arrow_joined = IconData(
     0xe817,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_joined = IconData(
+  static const IconData arrow_joined_24 = IconData(
     0xe818,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_left_24 = IconData(
+  static const IconData arrow_left = IconData(
     0xe819,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_left = IconData(
+  static const IconData arrow_left_24 = IconData(
     0xe81a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_right = IconData(
+  static const IconData arrow_right_24 = IconData(
     0xe81b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_trend_down_24_24 = IconData(
+  static const IconData arrow_right = IconData(
     0xe81c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_right_24 = IconData(
+  static const IconData arrow_trend_down_24_24 = IconData(
     0xe81d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_up_24 = IconData(
+  static const IconData arrow_trend_up_24_24 = IconData(
     0xe81e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_trend_up_24_24 = IconData(
+  static const IconData arrow_up = IconData(
     0xe81f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_1_16 = IconData(
+  static const IconData arrow_up_24 = IconData(
     0xe820,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_up = IconData(
+  static const IconData arrow_counter_clockwise_1_16 = IconData(
     0xe821,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_3_16 = IconData(
+  static const IconData arrow_counter_clockwise_2_16 = IconData(
     0xe822,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_2_16 = IconData(
+  static const IconData arrow_counter_clockwise_3_16 = IconData(
     0xe823,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -208,42 +208,42 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_6_16 = IconData(
+  static const IconData arrow_counter_clockwise_5_16 = IconData(
     0xe825,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_7_16 = IconData(
+  static const IconData arrow_counter_clockwise_6_16 = IconData(
     0xe826,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_9_16 = IconData(
+  static const IconData arrow_counter_clockwise_7_16 = IconData(
     0xe827,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_5_16 = IconData(
+  static const IconData arrow_counter_clockwise_8_16 = IconData(
     0xe828,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_9_plus_16 = IconData(
+  static const IconData arrow_counter_clockwise_9_16 = IconData(
     0xe829,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData arrow_counter_clockwise_8_16 = IconData(
+  static const IconData arrow_counter_clockwise_9_plus_16 = IconData(
     0xe82a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData at_mention_24 = IconData(
+  static const IconData assign = IconData(
     0xe82b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData autosize_24 = IconData(
+  static const IconData at_mention_24 = IconData(
     0xe82c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -253,57 +253,57 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData assign = IconData(
+  static const IconData autosize_24 = IconData(
     0xe82e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData availability_24 = IconData(
+  static const IconData availability = IconData(
     0xe82f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData baby_cot_24 = IconData(
+  static const IconData availability_24 = IconData(
     0xe830,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData backward_24 = IconData(
+  static const IconData available_dates = IconData(
     0xe831,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData backward_more_24 = IconData(
+  static const IconData available_dates_24 = IconData(
     0xe832,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData backward_more = IconData(
+  static const IconData baby_cot = IconData(
     0xe833,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData available_dates = IconData(
+  static const IconData baby_cot_24 = IconData(
     0xe834,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData available_dates_24 = IconData(
+  static const IconData backward = IconData(
     0xe835,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData availability = IconData(
+  static const IconData backward_24 = IconData(
     0xe836,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bathroom_24 = IconData(
+  static const IconData backward_more = IconData(
     0xe837,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData backward = IconData(
+  static const IconData backward_more_24 = IconData(
     0xe838,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -313,47 +313,47 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bills_invoices = IconData(
+  static const IconData bathroom_24 = IconData(
     0xe83a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bills_invoices_24 = IconData(
+  static const IconData bi_24 = IconData(
     0xe83b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData briefcase_24 = IconData(
+  static const IconData bike = IconData(
     0xe83c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData baby_cot = IconData(
+  static const IconData bike_24 = IconData(
     0xe83d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData birthday = IconData(
+  static const IconData bills_invoices = IconData(
     0xe83e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData blacklist = IconData(
+  static const IconData bills_invoices_24 = IconData(
     0xe83f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData birthday_24 = IconData(
+  static const IconData birthday = IconData(
     0xe840,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData building_plus_24 = IconData(
+  static const IconData birthday_24 = IconData(
     0xe841,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bold_24 = IconData(
+  static const IconData blacklist = IconData(
     0xe842,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -363,197 +363,197 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bus_24 = IconData(
+  static const IconData bold_24 = IconData(
     0xe844,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData camera = IconData(
+  static const IconData briefcase = IconData(
     0xe845,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bike = IconData(
+  static const IconData briefcase_24 = IconData(
     0xe846,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData briefcase = IconData(
+  static const IconData broom = IconData(
     0xe847,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData broom = IconData(
+  static const IconData broom_24 = IconData(
     0xe848,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bulb_stars = IconData(
+  static const IconData building_plus = IconData(
     0xe849,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bulk_edit = IconData(
+  static const IconData building_plus_24 = IconData(
     0xe84a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bulb_stars_24 = IconData(
+  static const IconData bulb_stars = IconData(
     0xe84b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData building_plus = IconData(
+  static const IconData bulb_stars_24 = IconData(
     0xe84c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bike_24 = IconData(
+  static const IconData bulk_edit = IconData(
     0xe84d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bi_24 = IconData(
+  static const IconData bus = IconData(
     0xe84e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData camping_pitch = IconData(
+  static const IconData bus_24 = IconData(
     0xe84f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData bus = IconData(
+  static const IconData calendar = IconData(
     0xe850,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData campervan = IconData(
+  static const IconData calendar_stars = IconData(
     0xe851,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData camping_pitch_24 = IconData(
+  static const IconData calendar_stars_24 = IconData(
     0xe852,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData caravan_24 = IconData(
+  static const IconData camera = IconData(
     0xe853,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData calendar = IconData(
+  static const IconData campervan = IconData(
     0xe854,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData card_keys = IconData(
+  static const IconData campervan_24 = IconData(
     0xe855,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cancel_square = IconData(
+  static const IconData camping_pitch = IconData(
     0xe856,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData card_check = IconData(
+  static const IconData camping_pitch_24 = IconData(
     0xe857,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData campervan_24 = IconData(
+  static const IconData cancel_square = IconData(
     0xe858,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData calendar_stars_24 = IconData(
+  static const IconData caravan = IconData(
     0xe859,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData calendar_stars = IconData(
+  static const IconData caravan_24 = IconData(
     0xe85a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData card_check_24 = IconData(
+  static const IconData card_check = IconData(
     0xe85b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData broom_24 = IconData(
+  static const IconData card_check_24 = IconData(
     0xe85c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData card_nfc = IconData(
+  static const IconData card_keys = IconData(
     0xe85d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData caravan = IconData(
+  static const IconData card_keys_24 = IconData(
     0xe85e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData card_keys_24 = IconData(
+  static const IconData card_nfc = IconData(
     0xe85f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData caret_filled_down_24 = IconData(
+  static const IconData card_nfc_24 = IconData(
     0xe860,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData caret_filled_up_24 = IconData(
+  static const IconData caret_filled_down = IconData(
     0xe861,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData card_nfc_24 = IconData(
+  static const IconData caret_filled_down_24 = IconData(
     0xe862,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData caret_filled_down = IconData(
+  static const IconData caret_filled_up = IconData(
     0xe863,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData caret_filled_up = IconData(
+  static const IconData caret_filled_up_24 = IconData(
     0xe864,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cash_payment_24 = IconData(
+  static const IconData cash_payment = IconData(
     0xe865,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cash_payment = IconData(
+  static const IconData cash_payment_24 = IconData(
     0xe866,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cashier_24 = IconData(
+  static const IconData cashier = IconData(
     0xe867,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cashier = IconData(
+  static const IconData cashier_24 = IconData(
     0xe868,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cashlist_24 = IconData(
+  static const IconData cashlist = IconData(
     0xe869,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cashlist = IconData(
+  static const IconData cashlist_24 = IconData(
     0xe86a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -563,12 +563,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData charge_24 = IconData(
+  static const IconData charge = IconData(
     0xe86c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData charge = IconData(
+  static const IconData charge_24 = IconData(
     0xe86d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -583,22 +583,22 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chargeback_24 = IconData(
+  static const IconData chargeback = IconData(
     0xe870,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chargeback = IconData(
+  static const IconData chargeback_24 = IconData(
     0xe871,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkbox_empty_24 = IconData(
+  static const IconData checkbox_empty = IconData(
     0xe872,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkbox_empty = IconData(
+  static const IconData checkbox_empty_24 = IconData(
     0xe873,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -613,112 +613,112 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkbox_tick_24 = IconData(
+  static const IconData checkbox_tick = IconData(
     0xe876,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkbox_tick = IconData(
+  static const IconData checkbox_tick_24 = IconData(
     0xe877,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checked_in_24 = IconData(
+  static const IconData checked_in = IconData(
     0xe878,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checked_in = IconData(
+  static const IconData checked_in_24 = IconData(
     0xe879,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checked_out_24 = IconData(
+  static const IconData checked_out = IconData(
     0xe87a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checked_out = IconData(
+  static const IconData checked_out_24 = IconData(
     0xe87b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkin_24 = IconData(
+  static const IconData checkin = IconData(
     0xe87c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkin = IconData(
+  static const IconData checkin_24 = IconData(
     0xe87d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkout_24 = IconData(
+  static const IconData checkout = IconData(
     0xe87e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData checkout = IconData(
+  static const IconData checkout_24 = IconData(
     0xe87f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_down_24 = IconData(
+  static const IconData chevron_down = IconData(
     0xe880,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_down = IconData(
+  static const IconData chevron_down_24 = IconData(
     0xe881,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_left_24 = IconData(
+  static const IconData chevron_left = IconData(
     0xe882,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_left = IconData(
+  static const IconData chevron_left_24 = IconData(
     0xe883,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_right_24 = IconData(
+  static const IconData chevron_right = IconData(
     0xe884,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_right = IconData(
+  static const IconData chevron_right_24 = IconData(
     0xe885,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_up_24 = IconData(
+  static const IconData chevron_up = IconData(
     0xe886,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData chevron_up = IconData(
+  static const IconData chevron_up_24 = IconData(
     0xe887,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData child_head_24 = IconData(
+  static const IconData child_head = IconData(
     0xe888,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData child_head = IconData(
+  static const IconData child_head_24 = IconData(
     0xe889,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData city_24 = IconData(
+  static const IconData city = IconData(
     0xe88a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData city = IconData(
+  static const IconData city_24 = IconData(
     0xe88b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -728,12 +728,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData collapse_24 = IconData(
+  static const IconData collapse = IconData(
     0xe88d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData collapse_all_24 = IconData(
+  static const IconData collapse_24 = IconData(
     0xe88e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -743,7 +743,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData collapse = IconData(
+  static const IconData collapse_all_24 = IconData(
     0xe890,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -753,32 +753,32 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData complaint_24 = IconData(
+  static const IconData complaint = IconData(
     0xe892,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData complaint = IconData(
+  static const IconData complaint_24 = IconData(
     0xe893,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData configuration_24 = IconData(
+  static const IconData configuration = IconData(
     0xe894,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData configuration = IconData(
+  static const IconData configuration_24 = IconData(
     0xe895,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData connect_24 = IconData(
+  static const IconData connect = IconData(
     0xe896,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData connect = IconData(
+  static const IconData connect_24 = IconData(
     0xe897,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -798,52 +798,52 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData countries_24 = IconData(
+  static const IconData countries = IconData(
     0xe89b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData countries = IconData(
+  static const IconData countries_24 = IconData(
     0xe89c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData covid_protection_24 = IconData(
+  static const IconData covid_protection = IconData(
     0xe89d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData covid_protection = IconData(
+  static const IconData covid_protection_24 = IconData(
     0xe89e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData credit_card_file_24 = IconData(
+  static const IconData credit_card_file = IconData(
     0xe89f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData credit_card_file = IconData(
+  static const IconData credit_card_file_24 = IconData(
     0xe8a0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData credit_card_report_24 = IconData(
+  static const IconData credit_card_report = IconData(
     0xe8a1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData credit_card_report = IconData(
+  static const IconData credit_card_report_24 = IconData(
     0xe8a2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData crib_24 = IconData(
+  static const IconData crib = IconData(
     0xe8a3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData crib = IconData(
+  static const IconData crib_24 = IconData(
     0xe8a4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -853,52 +853,52 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cultures_24 = IconData(
+  static const IconData cultures = IconData(
     0xe8a6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData cultures = IconData(
+  static const IconData cultures_24 = IconData(
     0xe8a7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData currency_switch_24 = IconData(
+  static const IconData currency_switch = IconData(
     0xe8a8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData currency_switch = IconData(
+  static const IconData currency_switch_24 = IconData(
     0xe8a9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData custom_link_item = IconData(
+  static const IconData custom_link = IconData(
     0xe8aa,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData custom_link = IconData(
+  static const IconData custom_link_item = IconData(
     0xe8ab,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData customer_profiles_24 = IconData(
+  static const IconData customer_profiles = IconData(
     0xe8ac,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData customer_profiles = IconData(
+  static const IconData customer_profiles_24 = IconData(
     0xe8ad,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData customer_success_24 = IconData(
+  static const IconData customer_success = IconData(
     0xe8ae,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData customer_success = IconData(
+  static const IconData customer_success_24 = IconData(
     0xe8af,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -918,82 +918,82 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData departures_24 = IconData(
+  static const IconData departures = IconData(
     0xe8b3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData departures = IconData(
+  static const IconData departures_24 = IconData(
     0xe8b4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData deployments_24 = IconData(
+  static const IconData deployments = IconData(
     0xe8b5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData deployments = IconData(
+  static const IconData deployments_24 = IconData(
     0xe8b6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData desk_24 = IconData(
+  static const IconData desk = IconData(
     0xe8b7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData desk = IconData(
+  static const IconData desk_24 = IconData(
     0xe8b8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData device_command_24 = IconData(
+  static const IconData device_command = IconData(
     0xe8b9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData device_command = IconData(
+  static const IconData device_command_24 = IconData(
     0xe8ba,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData disability_24 = IconData(
+  static const IconData disability = IconData(
     0xe8bb,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData disability = IconData(
+  static const IconData disability_24 = IconData(
     0xe8bc,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData disable_24 = IconData(
+  static const IconData disable = IconData(
     0xe8bd,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData disable = IconData(
+  static const IconData disable_24 = IconData(
     0xe8be,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData dollar_arrow_down_24 = IconData(
+  static const IconData dollar_arrow_down = IconData(
     0xe8bf,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData dollar_arrow_down = IconData(
+  static const IconData dollar_arrow_down_24 = IconData(
     0xe8c0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData done_24 = IconData(
+  static const IconData done = IconData(
     0xe8c1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData done_circle_24 = IconData(
+  static const IconData done_24 = IconData(
     0xe8c2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1003,37 +1003,37 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData done = IconData(
+  static const IconData done_circle_24 = IconData(
     0xe8c4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData door_hanger_24 = IconData(
+  static const IconData door_hanger = IconData(
     0xe8c5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData door_hanger = IconData(
+  static const IconData door_hanger_24 = IconData(
     0xe8c6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData dot_filled_24 = IconData(
+  static const IconData dot_filled = IconData(
     0xe8c7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData dot_filled = IconData(
+  static const IconData dot_filled_24 = IconData(
     0xe8c8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData double_bed_24 = IconData(
+  static const IconData double_bed = IconData(
     0xe8c9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData double_bed = IconData(
+  static const IconData double_bed_24 = IconData(
     0xe8ca,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1043,22 +1043,22 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData draggable_24 = IconData(
+  static const IconData draggable = IconData(
     0xe8cc,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData draggable = IconData(
+  static const IconData draggable_24 = IconData(
     0xe8cd,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData driving_licence_24 = IconData(
+  static const IconData driving_licence = IconData(
     0xe8ce,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData driving_licence = IconData(
+  static const IconData driving_licence_24 = IconData(
     0xe8cf,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1068,42 +1068,42 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData education_24 = IconData(
+  static const IconData education = IconData(
     0xe8d1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData education = IconData(
+  static const IconData education_24 = IconData(
     0xe8d2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData email_queue_24 = IconData(
+  static const IconData email_queue = IconData(
     0xe8d3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData email_queue = IconData(
+  static const IconData email_queue_24 = IconData(
     0xe8d4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData email_queues_24 = IconData(
+  static const IconData email_queues = IconData(
     0xe8d5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData email_queues = IconData(
+  static const IconData email_queues_24 = IconData(
     0xe8d6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData employees_24 = IconData(
+  static const IconData employees = IconData(
     0xe8d7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData employees = IconData(
+  static const IconData employees_24 = IconData(
     0xe8d8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1113,22 +1113,22 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData error_circle_24 = IconData(
+  static const IconData error_circle = IconData(
     0xe8da,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData error_circle = IconData(
+  static const IconData error_circle_24 = IconData(
     0xe8db,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData execute_24 = IconData(
+  static const IconData execute = IconData(
     0xe8dc,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData execute_merchant_24 = IconData(
+  static const IconData execute_24 = IconData(
     0xe8dd,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1138,12 +1138,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData execute = IconData(
+  static const IconData execute_merchant_24 = IconData(
     0xe8df,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData expand_all_24 = IconData(
+  static const IconData expand = IconData(
     0xe8e0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1153,17 +1153,17 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData expand = IconData(
+  static const IconData expand_all_24 = IconData(
     0xe8e2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData experiences_24 = IconData(
+  static const IconData experiences = IconData(
     0xe8e3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData experiences = IconData(
+  static const IconData experiences_24 = IconData(
     0xe8e4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1178,42 +1178,42 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData external_link_24 = IconData(
+  static const IconData external_link = IconData(
     0xe8e7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData external_link = IconData(
+  static const IconData external_link_24 = IconData(
     0xe8e8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData external_payment_24 = IconData(
+  static const IconData external_payment = IconData(
     0xe8e9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData external_payment = IconData(
+  static const IconData external_payment_24 = IconData(
     0xe8ea,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData extrabed_24 = IconData(
+  static const IconData extrabed = IconData(
     0xe8eb,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData extrabed = IconData(
+  static const IconData extrabed_24 = IconData(
     0xe8ec,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData face_happy_24 = IconData(
+  static const IconData face_happy = IconData(
     0xe8ed,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData face_happy = IconData(
+  static const IconData face_happy_24 = IconData(
     0xe8ee,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1223,62 +1223,62 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData face_sad_24 = IconData(
+  static const IconData face_sad = IconData(
     0xe8f0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData face_sad = IconData(
+  static const IconData face_sad_24 = IconData(
     0xe8f1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData facebook_24 = IconData(
+  static const IconData facebook = IconData(
     0xe8f2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData facebook = IconData(
+  static const IconData facebook_24 = IconData(
     0xe8f3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData fast_backward_simple_24 = IconData(
+  static const IconData fast_backward_simple = IconData(
     0xe8f4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData fast_backward_simple = IconData(
+  static const IconData fast_backward_simple_24 = IconData(
     0xe8f5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData fast_forward_simple_24 = IconData(
+  static const IconData fast_forward_simple = IconData(
     0xe8f6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData fast_forward_simple = IconData(
+  static const IconData fast_forward_simple_24 = IconData(
     0xe8f7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData features_24 = IconData(
+  static const IconData features = IconData(
     0xe8f8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData features = IconData(
+  static const IconData features_24 = IconData(
     0xe8f9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData female_24 = IconData(
+  static const IconData female = IconData(
     0xe8fa,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData female = IconData(
+  static const IconData female_24 = IconData(
     0xe8fb,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1293,22 +1293,22 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData finance_24 = IconData(
+  static const IconData finance = IconData(
     0xe8fe,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData finance = IconData(
+  static const IconData finance_24 = IconData(
     0xe8ff,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData fiscal_report_24 = IconData(
+  static const IconData fiscal_report = IconData(
     0xe900,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData fiscal_report = IconData(
+  static const IconData fiscal_report_24 = IconData(
     0xe901,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1318,52 +1318,52 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData folder_closed_24 = IconData(
+  static const IconData folder_closed = IconData(
     0xe903,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData folder_closed = IconData(
+  static const IconData folder_closed_24 = IconData(
     0xe904,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData folder_opened_24 = IconData(
+  static const IconData folder_opened = IconData(
     0xe905,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData folder_opened = IconData(
+  static const IconData folder_opened_24 = IconData(
     0xe906,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData food_24 = IconData(
+  static const IconData food = IconData(
     0xe907,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData food = IconData(
+  static const IconData food_24 = IconData(
     0xe908,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData forum_outline_24 = IconData(
+  static const IconData forum_outline = IconData(
     0xe909,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData forum_outline = IconData(
+  static const IconData forum_outline_24 = IconData(
     0xe90a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData forward_24 = IconData(
+  static const IconData forward = IconData(
     0xe90b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData forward_more_24 = IconData(
+  static const IconData forward_24 = IconData(
     0xe90c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1373,87 +1373,87 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData forward = IconData(
+  static const IconData forward_more_24 = IconData(
     0xe90e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData free_24 = IconData(
+  static const IconData free = IconData(
     0xe90f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData free = IconData(
+  static const IconData free_24 = IconData(
     0xe910,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData friend_family_24 = IconData(
+  static const IconData friend_family = IconData(
     0xe911,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData friend_family = IconData(
+  static const IconData friend_family_24 = IconData(
     0xe912,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData ftp_24 = IconData(
+  static const IconData ftp = IconData(
     0xe913,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData ftp = IconData(
+  static const IconData ftp_24 = IconData(
     0xe914,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData gateway_payments_24 = IconData(
+  static const IconData gateway_payments = IconData(
     0xe915,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData gateway_payments = IconData(
+  static const IconData gateway_payments_24 = IconData(
     0xe916,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData gift_24 = IconData(
+  static const IconData gift = IconData(
     0xe917,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData gift = IconData(
+  static const IconData gift_24 = IconData(
     0xe918,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData guest_in_house_24 = IconData(
+  static const IconData guest_in_house = IconData(
     0xe919,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData guest_in_house = IconData(
+  static const IconData guest_in_house_24 = IconData(
     0xe91a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData guides_24 = IconData(
+  static const IconData guides = IconData(
     0xe91b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData guides = IconData(
+  static const IconData guides_24 = IconData(
     0xe91c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData help_24 = IconData(
+  static const IconData help = IconData(
     0xe91d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData help_center_24 = IconData(
+  static const IconData help_24 = IconData(
     0xe91e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1463,7 +1463,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData help = IconData(
+  static const IconData help_center_24 = IconData(
     0xe920,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1473,12 +1473,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData home_24 = IconData(
+  static const IconData home = IconData(
     0xe922,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData home_empty_24 = IconData(
+  static const IconData home_24 = IconData(
     0xe923,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1488,27 +1488,27 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData home = IconData(
+  static const IconData home_empty_24 = IconData(
     0xe925,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData hourglass_24 = IconData(
+  static const IconData hourglass = IconData(
     0xe926,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData hourglass = IconData(
+  static const IconData hourglass_24 = IconData(
     0xe927,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData house_use_24 = IconData(
+  static const IconData house_use = IconData(
     0xe928,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData house_use = IconData(
+  static const IconData house_use_24 = IconData(
     0xe929,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1518,32 +1518,27 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData id_card_24 = IconData(
-    0xe92b,
-    fontFamily: _kFontFam,
-    fontPackage: _kFontPkg,
-  );
   static const IconData id_card = IconData(
     0xe92c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData import_customers_24 = IconData(
+  static const IconData id_card_24 = IconData(
     0xe92d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData import_customers = IconData(
+  static const IconData import_icon = IconData(
     0xe92e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData import_icon = IconData(
+  static const IconData import_customers = IconData(
     0xe92f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData important_24 = IconData(
+  static const IconData import_customers_24 = IconData(
     0xe930,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1553,12 +1548,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData imports = IconData(
+  static const IconData important_24 = IconData(
     0xe932,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData improvement_24 = IconData(
+  static const IconData imports = IconData(
     0xe933,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1568,7 +1563,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData info_24 = IconData(
+  static const IconData improvement_24 = IconData(
     0xe935,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1578,7 +1573,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData installations_24 = IconData(
+  static const IconData info_24 = IconData(
     0xe937,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1588,7 +1583,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData integration_partners_24 = IconData(
+  static const IconData installations_24 = IconData(
     0xe939,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1598,7 +1593,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData integrations_24 = IconData(
+  static const IconData integration_partners_24 = IconData(
     0xe93b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1608,7 +1603,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData inventory_updates_24 = IconData(
+  static const IconData integrations_24 = IconData(
     0xe93d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1618,12 +1613,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData italic_24 = IconData(
+  static const IconData inventory_updates_24 = IconData(
     0xe93f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData items_24 = IconData(
+  static const IconData italic_24 = IconData(
     0xe940,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1633,7 +1628,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData jobs_24 = IconData(
+  static const IconData items_24 = IconData(
     0xe942,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1643,7 +1638,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData key_24 = IconData(
+  static const IconData jobs_24 = IconData(
     0xe944,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1653,7 +1648,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData language_switch_24 = IconData(
+  static const IconData key_24 = IconData(
     0xe946,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1663,7 +1658,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData languages_24 = IconData(
+  static const IconData language_switch_24 = IconData(
     0xe948,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1673,12 +1668,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData layout_grid = IconData(
+  static const IconData languages_24 = IconData(
     0xe94a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData legal_environments_24 = IconData(
+  static const IconData layout_grid = IconData(
     0xe94b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1688,7 +1683,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData lightning_bolt_24 = IconData(
+  static const IconData legal_environments_24 = IconData(
     0xe94d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1698,7 +1693,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData linkedin_24 = IconData(
+  static const IconData lightning_bolt_24 = IconData(
     0xe94f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1708,12 +1703,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData list_ordered_24 = IconData(
+  static const IconData linkedin_24 = IconData(
     0xe951,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData location_24 = IconData(
+  static const IconData list_ordered_24 = IconData(
     0xe952,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1723,7 +1718,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData lock_24 = IconData(
+  static const IconData location_24 = IconData(
     0xe954,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1733,12 +1728,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData logout = IconData(
+  static const IconData lock_24 = IconData(
     0xe956,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData loyalty_24 = IconData(
+  static const IconData logout = IconData(
     0xe957,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1748,7 +1743,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData luggage_24 = IconData(
+  static const IconData loyalty_24 = IconData(
     0xe959,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1758,7 +1753,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData magic_24 = IconData(
+  static const IconData luggage_24 = IconData(
     0xe95b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1768,7 +1763,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData mails_24 = IconData(
+  static const IconData magic_24 = IconData(
     0xe95d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1778,7 +1773,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData make_default_24 = IconData(
+  static const IconData mails_24 = IconData(
     0xe95f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1788,7 +1783,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData male_24 = IconData(
+  static const IconData make_default_24 = IconData(
     0xe961,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1798,7 +1793,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData manager_report_24 = IconData(
+  static const IconData male_24 = IconData(
     0xe963,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1808,7 +1803,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData mark_as_read_24 = IconData(
+  static const IconData manager_report_24 = IconData(
     0xe965,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1818,7 +1813,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData marketplace_24 = IconData(
+  static const IconData mark_as_read_24 = IconData(
     0xe967,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1828,37 +1823,37 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData media_24 = IconData(
+  static const IconData marketplace_24 = IconData(
     0xe969,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData media_playback_pause_24 = IconData(
+  static const IconData media = IconData(
     0xe96a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData media_playback_pause = IconData(
+  static const IconData media_24 = IconData(
     0xe96b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData media_playback_play_24 = IconData(
+  static const IconData media_playback_pause = IconData(
     0xe96c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData media_playback_play = IconData(
+  static const IconData media_playback_pause_24 = IconData(
     0xe96d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData media = IconData(
+  static const IconData media_playback_play = IconData(
     0xe96e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData megaphone_24 = IconData(
+  static const IconData media_playback_play_24 = IconData(
     0xe96f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1868,37 +1863,37 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData menu_24 = IconData(
+  static const IconData megaphone_24 = IconData(
     0xe971,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData menu_arrow_left_24 = IconData(
+  static const IconData menu = IconData(
     0xe972,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData menu_arrow_left = IconData(
+  static const IconData menu_24 = IconData(
     0xe973,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData menu_arrow_right_24 = IconData(
+  static const IconData menu_arrow_left = IconData(
     0xe974,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData menu_arrow_right = IconData(
+  static const IconData menu_arrow_left_24 = IconData(
     0xe975,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData menu = IconData(
+  static const IconData menu_arrow_right = IconData(
     0xe976,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData merchant_24 = IconData(
+  static const IconData menu_arrow_right_24 = IconData(
     0xe977,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1908,7 +1903,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData message_24 = IconData(
+  static const IconData merchant_24 = IconData(
     0xe979,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1918,7 +1913,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData messages_plural_24 = IconData(
+  static const IconData message_24 = IconData(
     0xe97b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -1928,257 +1923,267 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData mews_logo_24 = IconData(
+  static const IconData messages_plural_24 = IconData(
     0xe97d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData mews_logo = IconData(
+  static const IconData mews_favicon = IconData(
     0xe97e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData microphone_24 = IconData(
+  static const IconData mews_icon = IconData(
     0xe97f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData microphone = IconData(
+  static const IconData mews_logo = IconData(
     0xe980,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData military_24 = IconData(
+  static const IconData mews_logo_24 = IconData(
     0xe981,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData military = IconData(
+  static const IconData microphone = IconData(
     0xe982,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData minus_simple = IconData(
+  static const IconData microphone_24 = IconData(
     0xe983,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData minus = IconData(
+  static const IconData military = IconData(
     0xe984,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData month = IconData(
+  static const IconData military_24 = IconData(
     0xe985,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData more_24 = IconData(
+  static const IconData minus = IconData(
     0xe986,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData more = IconData(
+  static const IconData minus_simple = IconData(
     0xe987,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData move_payment_horizontal = IconData(
+  static const IconData month = IconData(
     0xe988,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData move_payment = IconData(
+  static const IconData more = IconData(
     0xe989,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData move = IconData(
+  static const IconData more_24 = IconData(
     0xe98a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData nonbreaking_space_24 = IconData(
+  static const IconData move = IconData(
     0xe98b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData nonbreaking_space = IconData(
+  static const IconData move_payment = IconData(
     0xe98c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData notes_24 = IconData(
+  static const IconData move_payment_horizontal = IconData(
     0xe98d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData notes = IconData(
+  static const IconData nonbreaking_space = IconData(
     0xe98e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData notifications = IconData(
+  static const IconData nonbreaking_space_24 = IconData(
     0xe98f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData occupancy_24 = IconData(
+  static const IconData notes = IconData(
     0xe990,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData occupancy = IconData(
+  static const IconData notes_24 = IconData(
     0xe991,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData operations_24 = IconData(
+  static const IconData notifications = IconData(
     0xe992,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData operations = IconData(
+  static const IconData occupancy = IconData(
     0xe993,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData out_of_order_24 = IconData(
+  static const IconData occupancy_24 = IconData(
     0xe994,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData out_of_order = IconData(
+  static const IconData operations = IconData(
     0xe995,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData paperclip_24 = IconData(
+  static const IconData operations_24 = IconData(
     0xe996,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData passport_24 = IconData(
+  static const IconData out_of_order = IconData(
     0xe997,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData passport = IconData(
+  static const IconData out_of_order_24 = IconData(
     0xe998,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData past_shifts = IconData(
+  static const IconData paperclip_24 = IconData(
     0xe999,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData paymaster_24 = IconData(
+  static const IconData passport = IconData(
     0xe99a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData paymaster = IconData(
+  static const IconData passport_24 = IconData(
     0xe99b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_attempts_24 = IconData(
+  static const IconData past_shifts = IconData(
     0xe99c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_attempts = IconData(
+  static const IconData paymaster = IconData(
     0xe99d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_card_24 = IconData(
+  static const IconData paymaster_24 = IconData(
     0xe99e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_card = IconData(
+  static const IconData payment_attempts = IconData(
     0xe99f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_report_24 = IconData(
+  static const IconData payment_attempts_24 = IconData(
     0xe9a0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_report = IconData(
+  static const IconData payment_card = IconData(
     0xe9a1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_request_24 = IconData(
+  static const IconData payment_card_24 = IconData(
     0xe9a2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payment_request = IconData(
+  static const IconData payment_report = IconData(
     0xe9a3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payments_24 = IconData(
+  static const IconData payment_report_24 = IconData(
     0xe9a4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData payments = IconData(
+  static const IconData payment_request = IconData(
     0xe9a5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData phone_24 = IconData(
+  static const IconData payment_request_24 = IconData(
     0xe9a6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData phone = IconData(
+  static const IconData payments = IconData(
     0xe9a7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData photo_expand = IconData(
+  static const IconData payments_24 = IconData(
     0xe9a8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData pin_24 = IconData(
+  static const IconData phone = IconData(
     0xe9a9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData pin = IconData(
+  static const IconData phone_24 = IconData(
     0xe9aa,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData places_24 = IconData(
+  static const IconData photo_expand = IconData(
+    0xe9ab,
+    fontFamily: _kFontFam,
+    fontPackage: _kFontPkg,
+  );
+  static const IconData pin = IconData(
+    0xe9ac,
+    fontFamily: _kFontFam,
+    fontPackage: _kFontPkg,
+  );
+  static const IconData pin_24 = IconData(
     0xe9ad,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData places_pin_24 = IconData(
+  static const IconData places = IconData(
     0xe9ae,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData places_pin = IconData(
+  static const IconData places_24 = IconData(
     0xe9af,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData places = IconData(
+  static const IconData places_pin = IconData(
     0xe9b0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData plane_24 = IconData(
+  static const IconData places_pin_24 = IconData(
     0xe9b1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2188,7 +2193,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData platform_migrations_24 = IconData(
+  static const IconData plane_24 = IconData(
     0xe9b3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2198,7 +2203,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData plus_simple = IconData(
+  static const IconData platform_migrations_24 = IconData(
     0xe9b5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2208,7 +2213,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData posting_journal_24 = IconData(
+  static const IconData plus_simple = IconData(
     0xe9b7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2218,12 +2223,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData power_bi = IconData(
+  static const IconData posting_journal_24 = IconData(
     0xe9b9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData preauthorization_24 = IconData(
+  static const IconData power_bi = IconData(
     0xe9ba,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2233,7 +2238,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData pricing_24 = IconData(
+  static const IconData preauthorization_24 = IconData(
     0xe9bc,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2243,22 +2248,22 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData print_pdf_24 = IconData(
+  static const IconData pricing_24 = IconData(
     0xe9be,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData print_pdf = IconData(
+  static const IconData print = IconData(
     0xe9bf,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData print = IconData(
+  static const IconData print_pdf = IconData(
     0xe9c0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData problematic_24 = IconData(
+  static const IconData print_pdf_24 = IconData(
     0xe9c1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2268,12 +2273,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData product_24 = IconData(
+  static const IconData problematic_24 = IconData(
     0xe9c3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData product_report_24 = IconData(
+  static const IconData product_24 = IconData(
     0xe9c4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2283,7 +2288,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData profile_24 = IconData(
+  static const IconData product_report_24 = IconData(
     0xe9c6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2293,7 +2298,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData profiles_24 = IconData(
+  static const IconData profile_24 = IconData(
     0xe9c8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2303,7 +2308,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData property_24 = IconData(
+  static const IconData profiles_24 = IconData(
     0xe9ca,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2313,7 +2318,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData queues_24 = IconData(
+  static const IconData property_24 = IconData(
     0xe9cc,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2323,12 +2328,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData quote_24 = IconData(
+  static const IconData queues_24 = IconData(
     0xe9ce,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData radio_empty_24 = IconData(
+  static const IconData quote_24 = IconData(
     0xe9cf,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2338,12 +2343,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData radio_selected_24 = IconData(
+  static const IconData radio_empty_24 = IconData(
     0xe9d1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData rate_management_24 = IconData(
+  static const IconData radio_selected_24 = IconData(
     0xe9d2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2353,17 +2358,17 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData rebate = IconData(
+  static const IconData rate_management_24 = IconData(
     0xe9d4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData refresh = IconData(
+  static const IconData rebate = IconData(
     0xe9d5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData refund_24 = IconData(
+  static const IconData refresh = IconData(
     0xe9d6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2373,7 +2378,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData report_bug_24 = IconData(
+  static const IconData refund_24 = IconData(
     0xe9d8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2383,7 +2388,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reservation_group_24 = IconData(
+  static const IconData report_bug_24 = IconData(
     0xe9da,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2393,7 +2398,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reservation_overview_24 = IconData(
+  static const IconData reservation_group_24 = IconData(
     0xe9dc,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2403,7 +2408,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reservation_preview_24 = IconData(
+  static const IconData reservation_overview_24 = IconData(
     0xe9de,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2413,7 +2418,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reservation_properties_24 = IconData(
+  static const IconData reservation_preview_24 = IconData(
     0xe9e0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2423,7 +2428,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reservation_report_24 = IconData(
+  static const IconData reservation_properties_24 = IconData(
     0xe9e2,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2433,7 +2438,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reservations_24 = IconData(
+  static const IconData reservation_report_24 = IconData(
     0xe9e4,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2443,17 +2448,17 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData reset = IconData(
+  static const IconData reservations_24 = IconData(
     0xe9e6,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData restore = IconData(
+  static const IconData reset = IconData(
     0xe9e7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData restriction_24 = IconData(
+  static const IconData restore = IconData(
     0xe9e8,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2463,12 +2468,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData return_icon = IconData(
+  static const IconData restriction_24 = IconData(
     0xe9ea,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData returning_24 = IconData(
+  static const IconData return_icon = IconData(
     0xe9eb,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2478,7 +2483,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData room_24 = IconData(
+  static const IconData returning_24 = IconData(
     0xe9ed,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2488,17 +2493,17 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData scan_id = IconData(
+  static const IconData room_24 = IconData(
     0xe9ef,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData scan_qr = IconData(
+  static const IconData scan_id = IconData(
     0xe9f0,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData scanner_24 = IconData(
+  static const IconData scan_qr = IconData(
     0xe9f1,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2508,7 +2513,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData schedules_24 = IconData(
+  static const IconData scanner_24 = IconData(
     0xe9f3,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2518,7 +2523,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData search_24 = IconData(
+  static const IconData schedules_24 = IconData(
     0xe9f5,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2528,7 +2533,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData security_24 = IconData(
+  static const IconData search_24 = IconData(
     0xe9f7,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2538,17 +2543,17 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData send_message = IconData(
+  static const IconData security_24 = IconData(
     0xe9f9,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData service_order = IconData(
+  static const IconData send_message = IconData(
     0xe9fa,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData services_24 = IconData(
+  static const IconData service_order = IconData(
     0xe9fb,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2558,37 +2563,37 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData settings_24 = IconData(
+  static const IconData services_24 = IconData(
     0xe9fd,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData settings_user_24 = IconData(
+  static const IconData settings = IconData(
     0xe9fe,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData settings_user = IconData(
+  static const IconData settings_24 = IconData(
     0xe9ff,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData settings = IconData(
+  static const IconData settings_user = IconData(
     0xea00,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData share = IconData(
+  static const IconData settings_user_24 = IconData(
     0xea01,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData shared_data = IconData(
+  static const IconData share = IconData(
     0xea02,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData show_24 = IconData(
+  static const IconData shared_data = IconData(
     0xea03,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2598,12 +2603,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData shrink = IconData(
+  static const IconData show_24 = IconData(
     0xea05,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData space_status_24 = IconData(
+  static const IconData shrink = IconData(
     0xea06,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2613,7 +2618,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData special_character_24 = IconData(
+  static const IconData space_status_24 = IconData(
     0xea08,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2623,7 +2628,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData spent_nights_24 = IconData(
+  static const IconData special_character_24 = IconData(
     0xea0a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2633,7 +2638,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData spinner_24 = IconData(
+  static const IconData spent_nights_24 = IconData(
     0xea0c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2643,7 +2648,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData split_24 = IconData(
+  static const IconData spinner_24 = IconData(
     0xea0e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2653,7 +2658,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData staff_24 = IconData(
+  static const IconData split_24 = IconData(
     0xea10,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2663,7 +2668,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData star_filled_24 = IconData(
+  static const IconData staff_24 = IconData(
     0xea12,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2673,7 +2678,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData stars_24 = IconData(
+  static const IconData star_filled_24 = IconData(
     0xea14,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2683,7 +2688,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData statistics_24 = IconData(
+  static const IconData stars_24 = IconData(
     0xea16,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2693,7 +2698,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData stayovers_24 = IconData(
+  static const IconData statistics_24 = IconData(
     0xea18,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2703,12 +2708,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData strikethrough_24 = IconData(
+  static const IconData stayovers_24 = IconData(
     0xea1a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData subscription_24 = IconData(
+  static const IconData strikethrough_24 = IconData(
     0xea1b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2718,42 +2723,42 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData summary_24 = IconData(
+  static const IconData subscription_24 = IconData(
     0xea1d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData summary_order_24 = IconData(
+  static const IconData summary = IconData(
     0xea1e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData summary_order = IconData(
+  static const IconData summary_24 = IconData(
     0xea1f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData summary = IconData(
+  static const IconData summary_order = IconData(
     0xea20,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData switch_video = IconData(
+  static const IconData summary_order_24 = IconData(
     0xea21,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData targets = IconData(
+  static const IconData switch_video = IconData(
     0xea22,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData task = IconData(
+  static const IconData targets = IconData(
     0xea23,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData tax_environment_24 = IconData(
+  static const IconData task = IconData(
     0xea24,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2763,7 +2768,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData team_area_24 = IconData(
+  static const IconData tax_environment_24 = IconData(
     0xea26,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2773,7 +2778,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData tent_24 = IconData(
+  static const IconData team_area_24 = IconData(
     0xea28,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2783,47 +2788,47 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData terminal_24 = IconData(
+  static const IconData tent_24 = IconData(
     0xea2a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData terminal_payment_24 = IconData(
+  static const IconData terminal = IconData(
     0xea2b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData terminal_payment = IconData(
+  static const IconData terminal_24 = IconData(
     0xea2c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData terminal = IconData(
+  static const IconData terminal_payment = IconData(
     0xea2d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData text_align_center_24 = IconData(
+  static const IconData terminal_payment_24 = IconData(
     0xea2e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData text_align_justify_24 = IconData(
+  static const IconData text_align_center_24 = IconData(
     0xea2f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData text_align_left_24 = IconData(
+  static const IconData text_align_justify_24 = IconData(
     0xea30,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData text_align_right_24 = IconData(
+  static const IconData text_align_left_24 = IconData(
     0xea31,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData text_line_height_24 = IconData(
+  static const IconData text_align_right_24 = IconData(
     0xea32,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2833,7 +2838,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData thumbs_down_24 = IconData(
+  static const IconData text_line_height_24 = IconData(
     0xea34,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2843,7 +2848,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData thumbs_up_24 = IconData(
+  static const IconData thumbs_down_24 = IconData(
     0xea36,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2853,7 +2858,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData time_24 = IconData(
+  static const IconData thumbs_up_24 = IconData(
     0xea38,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2863,37 +2868,37 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData timeline_compact = IconData(
+  static const IconData time_24 = IconData(
     0xea3a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData timeline_dense = IconData(
+  static const IconData timeline = IconData(
     0xea3b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData timeline_spacious = IconData(
+  static const IconData timeline_compact = IconData(
     0xea3c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData timeline = IconData(
+  static const IconData timeline_dense = IconData(
     0xea3d,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData toggle_left = IconData(
+  static const IconData timeline_spacious = IconData(
     0xea3e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData toggle_right = IconData(
+  static const IconData toggle_left = IconData(
     0xea3f,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData top_management_24 = IconData(
+  static const IconData toggle_right = IconData(
     0xea40,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2903,7 +2908,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData train_24 = IconData(
+  static const IconData top_management_24 = IconData(
     0xea42,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2913,7 +2918,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData travel_agency_24 = IconData(
+  static const IconData train_24 = IconData(
     0xea44,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2923,7 +2928,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData travel_club_24 = IconData(
+  static const IconData travel_agency_24 = IconData(
     0xea46,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2933,7 +2938,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData travel_visa_24 = IconData(
+  static const IconData travel_club_24 = IconData(
     0xea48,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2943,17 +2948,17 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData trend_down = IconData(
+  static const IconData travel_visa_24 = IconData(
     0xea4a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData trend_up = IconData(
+  static const IconData trend_down = IconData(
     0xea4b,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData tripadvisor_24 = IconData(
+  static const IconData trend_up = IconData(
     0xea4c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2963,7 +2968,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData twitter_24 = IconData(
+  static const IconData tripadvisor_24 = IconData(
     0xea4e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2973,12 +2978,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData underline_24 = IconData(
+  static const IconData twitter_24 = IconData(
     0xea50,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData unlock_24 = IconData(
+  static const IconData underline_24 = IconData(
     0xea51,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2988,7 +2993,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData unpin_24 = IconData(
+  static const IconData unlock_24 = IconData(
     0xea53,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -2998,7 +3003,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData upgraded_24 = IconData(
+  static const IconData unpin_24 = IconData(
     0xea55,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3008,12 +3013,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData upload = IconData(
+  static const IconData upgraded_24 = IconData(
     0xea57,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData user_card_stack_24 = IconData(
+  static const IconData upload = IconData(
     0xea58,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3023,7 +3028,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData user_clock_24 = IconData(
+  static const IconData user_card_stack_24 = IconData(
     0xea5a,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3033,7 +3038,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData user_refresh_24 = IconData(
+  static const IconData user_clock_24 = IconData(
     0xea5c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3043,7 +3048,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData very_important_24 = IconData(
+  static const IconData user_refresh_24 = IconData(
     0xea5e,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3053,7 +3058,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData view_off_24 = IconData(
+  static const IconData very_important_24 = IconData(
     0xea60,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3063,7 +3068,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData view_report_24 = IconData(
+  static const IconData view_off_24 = IconData(
     0xea62,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3073,7 +3078,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData website_24 = IconData(
+  static const IconData view_report_24 = IconData(
     0xea64,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3083,12 +3088,12 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData week = IconData(
+  static const IconData website_24 = IconData(
     0xea66,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData wellness_24 = IconData(
+  static const IconData week = IconData(
     0xea67,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3098,7 +3103,7 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData window_24 = IconData(
+  static const IconData wellness_24 = IconData(
     0xea69,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
@@ -3108,13 +3113,8 @@ abstract final class OptimusIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-  static const IconData mews_icon = IconData(
+  static const IconData window_24 = IconData(
     0xea6b,
-    fontFamily: _kFontFam,
-    fontPackage: _kFontPkg,
-  );
-  static const IconData mews_favicon = IconData(
-    0xea6c,
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
