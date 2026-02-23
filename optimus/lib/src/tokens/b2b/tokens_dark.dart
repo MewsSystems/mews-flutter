@@ -550,6 +550,7 @@ abstract final class DesignTokensDark {
   static const double sizing1000 = 80;
   static const double sizing1200 = 96;
   static const double sizing1300 = 104;
+  static const double sizing150 = 12;
   static const double sizing200 = 16;
   static const double sizing300 = 24;
   static const double sizing400 = 32;

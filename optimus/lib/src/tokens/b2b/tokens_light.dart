@@ -39,7 +39,7 @@ abstract final class DesignTokensLight {
   static const Color backgroundAlertWarningHover = Color(0xFFFCEDCA);
   static const Color backgroundAlertWarningSecondary = Color(0xFFF3A01F);
   static const Color backgroundBackdrop = Color(0x14121219);
-  static const Color backgroundBrand = Color(0xFF21212E);
+  static const Color backgroundBrand = Color(0xFF000000);
   static const Color backgroundDatavizBasic = Color(0xFF52526D);
   static const Color backgroundDatavizBluePrimary = Color(0xFF297AF2);
   static const Color backgroundDatavizBlueSecondary = Color(0xFFC9DEFC);
@@ -550,6 +550,7 @@ abstract final class DesignTokensLight {
   static const double sizing1000 = 80;
   static const double sizing1200 = 96;
   static const double sizing1300 = 104;
+  static const double sizing150 = 12;
   static const double sizing200 = 16;
   static const double sizing300 = 24;
   static const double sizing400 = 32;
