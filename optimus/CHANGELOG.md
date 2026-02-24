@@ -1,3 +1,7 @@
+## 0.43.2+1
+
+ - **FIX**: Fix dropdown styling (#889).
+
 ## 0.43.2
 
  - **FEAT**: Design Tokens Update 11.1.0 (#881).
