@@ -1,3 +1,7 @@
+## 0.4.1
+
+ - **FEAT**: Update icons library (#891).
+
 ## 0.4.0+1
 
  - **FIX**: Update icon font (#887).
