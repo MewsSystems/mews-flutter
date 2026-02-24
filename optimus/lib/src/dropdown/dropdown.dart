@@ -218,17 +218,25 @@ class _DropdownListView<T> extends StatelessWidget {
     final tokens = context.tokens;
 
     final itemHeight = context.dropdownItemHeight;
-    final totalHeight = (items.length * itemHeight) + (tokens.spacing100 * 2);
+    final gapCount = items.length > 1 ? items.length - 1 : 0;
+    final totalHeight = (items.length * itemHeight) +
+        (gapCount * tokens.spacing25) +
+        (tokens.spacing100 * 2);
     final listHeight = totalHeight.clamp(0.0, maxHeight);
 
     return SizedBox(
       height: listHeight,
       child: ListView.builder(
         reverse: isReversed,
-        padding: .symmetric(vertical: tokens.spacing100),
+        padding: .symmetric(
+          vertical: tokens.spacing100,
+          horizontal: tokens.spacing25,
+        ),
         itemCount: items.length,
-        itemBuilder: (context, index) =>
-            _DropdownItem(onChanged: onChanged, child: items[index]),
+        itemBuilder: (context, index) => Padding(
+          padding: .symmetric(vertical: tokens.spacing25 / 2),
+          child: _DropdownItem(onChanged: onChanged, child: items[index]),
+        ),
       ),
     );
   }
@@ -312,7 +320,10 @@ class _GroupedDropdownListViewState<T>
       height: listHeight,
       child: ListView.builder(
         reverse: widget.isReversed,
-        padding: .symmetric(vertical: tokens.spacing100),
+        padding: .symmetric(
+          vertical: tokens.spacing100,
+          horizontal: tokens.spacing25,
+        ),
         itemCount: widget.items.length,
         itemBuilder: (_, index) {
           final current = _sortedItems[index];
@@ -333,7 +344,7 @@ class _GroupedDropdownListViewState<T>
 
           return _isSameGroup(current, previous)
               ? Padding(
-                  padding: .symmetric(vertical: tokens.spacing50),
+                  padding: .symmetric(vertical: tokens.spacing25 / 2),
                   child: child,
                 )
               : _GroupWrapper(
@@ -348,7 +359,7 @@ class _GroupedDropdownListViewState<T>
   double _calculateGroupedListHeight(OptimusTokens tokens) {
     final itemHeight = context.dropdownItemHeight;
     final groupSeparatorHeight = context.dropdownGroupSeparatorHeight;
-    final spacingBetweenItems = tokens.spacing50;
+    final spacingBetweenItems = tokens.spacing25;
 
     double totalHeight = tokens.spacing100 * 2; // Padding
 
