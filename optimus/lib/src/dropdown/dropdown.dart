@@ -219,7 +219,8 @@ class _DropdownListView<T> extends StatelessWidget {
 
     final itemHeight = context.dropdownItemHeight;
     final gapCount = items.length > 1 ? items.length - 1 : 0;
-    final totalHeight = (items.length * itemHeight) +
+    final totalHeight =
+        (items.length * itemHeight) +
         (gapCount * tokens.spacing25) +
         (tokens.spacing100 * 2);
     final listHeight = totalHeight.clamp(0.0, maxHeight);
