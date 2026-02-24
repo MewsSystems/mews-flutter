@@ -18,6 +18,7 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
     Grouper<T>? grouper,
     GroupBuilder? groupBuilder,
     List<T>? values,
+    OptimusWidgetSize size = .large,
   }) : super(
          builder: (FormFieldState<T> field) => OptimusSelectInput<T>(
            label: label,
@@ -31,6 +32,7 @@ class OptimusSelectInputFormField<T> extends FormField<T> {
              field.didChange(v);
              onChanged?.call(v);
            },
+           size: size,
            allowMultipleSelection: allowMultipleSelection,
            selectedValues: allowMultipleSelection ? values : null,
            groupBy: grouper,
