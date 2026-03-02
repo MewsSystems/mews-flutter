@@ -217,12 +217,12 @@ class _Tag extends StatelessWidget {
 extension on OptimusColorOption {
   Color backgroundColor(OptimusTokens tokens) => switch (this) {
     .basic => tokens.legacyTagBackgroundBasicBold,
-    .plain => tokens.backgroundAlertBasicSecondary,
+    .plain => tokens.backgroundAlertBasicDefault,
     .primary => tokens.legacyTagBackgroundPrimary,
-    .success => tokens.backgroundAlertSuccessSecondary,
-    .info => tokens.backgroundAlertInfoSecondary,
-    .warning => tokens.backgroundAlertWarningSecondary,
-    .danger => tokens.backgroundAlertDangerSecondary,
+    .success => tokens.backgroundAlertSuccessDefault,
+    .info => tokens.backgroundAlertInfoDefault,
+    .warning => tokens.backgroundAlertWarningDefault,
+    .danger => tokens.backgroundAlertDangerDefault,
   };
 
   Color borderColor(OptimusTokens tokens) => switch (this) {
