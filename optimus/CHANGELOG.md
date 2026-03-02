@@ -1,3 +1,7 @@
+## 0.43.3
+
+ - **FIX**: Fixed tag colors (#893).
+
 ## 0.43.2+2
 
  - Update a dependency to the latest release.
