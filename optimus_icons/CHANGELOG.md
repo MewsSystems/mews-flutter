@@ -1,3 +1,7 @@
+## 0.4.2
+
+ - **FEAT**: Update icons library (#895).
+
 ## 0.4.1
 
  - **FEAT**: Update icons library (#891).
