@@ -16,7 +16,7 @@ Widget createDefaultStyle(BuildContext context) {
     initialValue: true,
   );
 
-  final badgeText = (badge.isEmpty && !enableEmptyBadge) ? null : badge;
+  final badgeText = badge.isEmpty && !enableEmptyBadge ? null : badge;
 
   return OptimusTab(icon: leadingIcon?.data, label: label, badge: badgeText);
 }
