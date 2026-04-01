@@ -59,7 +59,7 @@ class _OptimusChipState extends State<OptimusChip> with ThemeGetter {
     (true, true, _, _) => tokens.backgroundAlertDangerSecondary,
     (true, false, true, _) => theme.tokens.backgroundInteractiveNeutralActive,
     (true, false, false, true) => tokens.backgroundInteractiveNeutralHover,
-    (_) => tokens.backgroundInteractiveNeutralDefault,
+    _ => tokens.backgroundInteractiveNeutralDefault,
   };
 
   Color get _foregroundColor => switch ((widget.isEnabled, widget.hasError)) {

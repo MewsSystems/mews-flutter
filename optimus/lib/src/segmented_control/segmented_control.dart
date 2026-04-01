@@ -166,7 +166,7 @@ class _OptimusSegmentedControlItemState<T>
   Color _foregroundColor(OptimusTokens tokens) {
     if (!widget.isEnabled) return tokens.textDisabled;
 
-    return (_isSelected || _isHovering || _isPressed)
+    return _isSelected || _isHovering || _isPressed
         ? tokens.textStaticPrimary
         : tokens.textStaticTertiary;
   }
