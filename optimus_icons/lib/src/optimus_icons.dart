@@ -17,6 +17,7 @@
 ///
 import 'package:flutter/widgets.dart';
 
+@staticIconProvider
 abstract final class OptimusIcons {
   const OptimusIcons._();
 
