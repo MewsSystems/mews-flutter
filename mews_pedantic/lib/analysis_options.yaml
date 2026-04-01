@@ -398,10 +398,12 @@ dart_code_metrics:
     - avoid-suspicious-super-overrides
     # - avoid-throw-in-catch-block
     # - avoid-throw-objects-without-tostring
+    # - avoid-throw
     # - avoid-top-level-members-in-tests
     - avoid-type-casts
     - avoid-unassigned-fields
     - avoid-unassigned-late-fields
+    - avoid-unassigned-local-variable
     - avoid-unassigned-stream-subscriptions
     - avoid-uncaught-future-errors
     - avoid-unconditional-break
@@ -430,6 +432,7 @@ dart_code_metrics:
     - avoid-unnecessary-nullable-parameters
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-overrides
+    - avoid-unnecessary-parentheses
     - avoid-unnecessary-patterns
     - avoid-unnecessary-reassignment
     - avoid-unnecessary-return
@@ -588,6 +591,7 @@ dart_code_metrics:
     # - prefer-named-imports
     - prefer-named-parameters:
         max-number: 2
+    - prefer-non-nulls
     - prefer-null-aware-elements
     - prefer-null-aware-spread
     - prefer-overriding-parent-equality
@@ -635,6 +639,7 @@ dart_code_metrics:
     # - add-copy-with
     # - always-remove-listener
     # - avoid-border-all
+    # - avoid-disposing-late-fields
     # - avoid-empty-setstate
     - avoid-expanded-as-spacer
     - avoid-flexible-outside-flex
@@ -671,6 +676,7 @@ dart_code_metrics:
     - prefer-constrained-box-over-container
     - prefer-container
     - prefer-correct-edge-insets-constructor
+    - prefer-correct-static-icon-provider
     - prefer-dedicated-media-query-methods
     - prefer-define-hero-tag
     # - prefer-extracting-callbacks
