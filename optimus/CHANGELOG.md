@@ -1,3 +1,7 @@
+## 0.43.3+2
+
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.43.3+1
 
  - Update a dependency to the latest release.
