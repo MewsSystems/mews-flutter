@@ -1,3 +1,9 @@
+## 0.43.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [GX-26200] Upgrade to DCM 1.36.
+
 ## 0.42.3
 
  - **FEAT**: Update rules config  (#879).
