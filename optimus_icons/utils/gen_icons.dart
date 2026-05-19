@@ -87,6 +87,7 @@ String convertGlyphName(String name) {
   for (final r in dartReserved) {
     if (out == r) {
       out = '${out}_icon';
+
       break;
     }
   }
