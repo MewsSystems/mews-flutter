@@ -327,6 +327,7 @@ dart_code_metrics:
     # - avoid-inferrable-type-arguments
     - avoid-inverted-boolean-checks
     - avoid-keywords-in-wildcard-pattern
+    - avoid-labels
     - avoid-late-final-reassignment
     # - avoid-late-keyword
     # - avoid-local-functions
@@ -466,6 +467,7 @@ dart_code_metrics:
     - function-always-returns-null
     - function-always-returns-same-value
     # - handle-throwing-invocations
+    # - initializers-ordering
     # - map-keys-ordering
     - match-base-class-default-value
     # - match-class-name-pattern
@@ -473,6 +475,7 @@ dart_code_metrics:
     - match-lib-folder-structure
     # - match-positional-field-names-on-assignment
     # - max-imports
+    # - max-statements
     # - member-ordering
     # - missing-test-assertion
     - missing-use-result-annotation:
@@ -480,10 +483,13 @@ dart_code_metrics:
     - move-records-to-typedefs
     - move-variable-closer-to-its-usage
     - move-variable-outside-iteration
+    - newline-before-break
     # - newline-before-case
     # - newline-before-constructor
+    - newline-before-continue
     - newline-before-method
     - newline-before-return
+    - newline-before-throw
     - no-boolean-literal-compare
     # - no-empty-block
     # - no-empty-string
@@ -504,6 +510,7 @@ dart_code_metrics:
     - prefer-add-all
     # - prefer-addition-subtraction-assignments
     - prefer-any-or-every
+    - prefer-assert-initializers-first
     # - prefer-assigning-await-expressions
     # - prefer-async-await
     - prefer-returning-condition
@@ -629,6 +636,7 @@ dart_code_metrics:
     # - prefer-visible-for-testing-on-members
     - prefer-wildcard-pattern
     # - record-fields-ordering
+    - require-atomic-async-updates
     # - tag-name
     # - unnecessary-trailing-comma
     - use-existing-destructuring
@@ -637,6 +645,7 @@ dart_code_metrics:
     # Flutter
 
     # - add-copy-with
+    - always-pass-global-key
     # - always-remove-listener
     # - avoid-border-all
     # - avoid-disposing-late-fields
@@ -665,6 +674,7 @@ dart_code_metrics:
     - check-for-equals-in-render-object-setters
     - consistent-update-render-object
     - dispose-fields
+    - keep-state-below-its-widget
     - pass-existing-future-to-future-builder
     - pass-existing-stream-to-stream-builder
     # - prefer-action-button-tooltip
