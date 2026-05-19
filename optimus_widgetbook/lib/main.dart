@@ -49,7 +49,6 @@ class WidgetbookApp extends StatelessWidget {
       ),
       TextScaleAddon(),
       AlignmentAddon(),
-      SemanticsAddon(),
     ],
     directories: directories,
     header: const MewsHeader(),
