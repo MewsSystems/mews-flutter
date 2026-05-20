@@ -1,3 +1,7 @@
+## 0.4.2+1
+
+ - **REFACTOR**: Fix linter issues.
+
 ## 0.4.2
 
  - **FEAT**: Update icons library (#895).

@@ -1,3 +1,9 @@
+## 0.44.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: [GX-28571] Upgrade to DCM 1.37.
+
 ## 0.43.0
 
 > Note: This release has breaking changes.
