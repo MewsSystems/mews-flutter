@@ -515,6 +515,14 @@ dart_code_metrics:
     # - prefer-async-await
     - prefer-returning-condition
     - prefer-boolean-prefixes:
+        ignore-methods: true
+        ignored-names:
+          [
+          matches,
+          update,
+          enable, # Flutter conventional name
+          readOnly, # Flutter conventional name
+          ]
         prefixes:
           [
             is,
@@ -550,6 +558,17 @@ dart_code_metrics:
             wants,
             accepts,
             supports,
+            bundle,
+            replace,
+            flip,
+            offer,
+            update,
+            get,
+            handles,
+            follow,
+            clear,
+            reverse,
+            display,
           ]
     - prefer-both-inlining-annotations
     # - prefer-bytes-builder
