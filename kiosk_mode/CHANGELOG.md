@@ -1,3 +1,7 @@
+## 0.8.0+1
+
+ - **REFACTOR**: Fix linter warnings.
+
 ## 0.8.0
 
 > Note: This release has breaking changes.
