@@ -1,3 +1,7 @@
+## 0.44.1
+
+ - **CHORE**: Update list of valid prefixes.
+
 ## 0.44.0
 
 > Note: This release has breaking changes.
