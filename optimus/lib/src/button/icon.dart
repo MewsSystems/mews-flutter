@@ -1,3 +1,4 @@
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:optimus/optimus.dart';
 import 'package:optimus/src/button/base_button_variant.dart';
@@ -93,12 +94,9 @@ class _OptimusIconButtonState extends State<OptimusIconButton>
                   isPressed: _isPressed,
                   isHovered: _isHovered,
                 ),
-                border: borderColor != null
-                    ? Border.all(
-                        color: borderColor,
-                        width: tokens.borderWidth100,
-                      )
-                    : null,
+                border: borderColor?.let(
+                  (it) => Border.all(color: it, width: tokens.borderWidth100),
+                ),
                 borderRadius: .all(tokens.borderRadius100),
               ),
               duration: buttonAnimationDuration,
