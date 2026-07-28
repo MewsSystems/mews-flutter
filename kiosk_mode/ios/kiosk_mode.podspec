@@ -5,19 +5,18 @@
 Pod::Spec.new do |s|
   s.name             = 'kiosk_mode'
   s.version          = '0.0.1'
-  s.summary          = 'Kiosk mode plugin.'
+  s.summary          = 'Plugin for working with Lock Task / Guided Access modes.'
   s.description      = <<-DESC
-Kiosk mode plugin.
+Plugin for working with Lock Task / Guided Access modes.
                        DESC
-  s.homepage         = 'http://example.com'
-  s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.homepage         = 'https://github.com/MewsSystems/mews-flutter'
+  s.license          = { :type => 'BSD-3-Clause', :file => '../LICENSE' }
+  s.author           = { 'Mews' => 'developers@mews.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'kiosk_mode/Sources/kiosk_mode/**/*.swift'
   s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '13.0'
 
-  # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end
