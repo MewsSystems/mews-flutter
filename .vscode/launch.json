@@ -10,6 +10,12 @@
             "request": "launch",
             "type": "dart"
         },
-     
+        {
+            "name": "kiosk_mode_example_app",
+            "cwd": "kiosk_mode/example",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        }
     ]
 }
