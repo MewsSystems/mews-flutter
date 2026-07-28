@@ -1,3 +1,9 @@
+## 0.44.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.38 (#903).
+
 ## 0.43.3+3
 
  - Update a dependency to the latest release.
