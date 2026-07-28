@@ -1,3 +1,9 @@
+## 0.45.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Upgrade to DCM 1.38 (#903).
+
 ## 0.44.1
 
  - **CHORE**: Update list of valid prefixes.
