@@ -102,7 +102,7 @@ class OptimusBanner extends StatelessWidget {
                         children: [
                           Padding(
                             padding: isDismissible
-                                ? EdgeInsets.only(right: tokens.spacing200)
+                                ? .only(right: tokens.spacing200)
                                 : EdgeInsets.zero,
                             child: FeedbackTitle(
                               title: title,

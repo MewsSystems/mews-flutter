@@ -164,7 +164,7 @@ class _Tag extends StatelessWidget {
       decoration: BoxDecoration(
         color: isOutlined ? tokens.backgroundStaticFlat : backgroundColor,
         border: isOutlined
-            ? Border.all(
+            ? .all(
                 color: borderColor,
                 width: tokens.borderWidth100,
                 style: .solid,

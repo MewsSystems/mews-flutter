@@ -216,7 +216,7 @@ class _ButtonContentState extends State<_ButtonContent> with ThemeGetter {
             if (widget.leadingIcon case final leadingIcon?)
               Padding(
                 padding: widget.child != null
-                    ? EdgeInsets.only(right: insideHorizontalPadding)
+                    ? .only(right: insideHorizontalPadding)
                     : EdgeInsets.zero,
                 child: Icon(
                   leadingIcon,

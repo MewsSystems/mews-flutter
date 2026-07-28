@@ -102,7 +102,7 @@ class _CheckboxTickState extends State<CheckboxTick> with ThemeGetter {
           decoration: BoxDecoration(
             color: _fillColor.resolve(_controller.value),
             border: _state.isUnchecked
-                ? Border.all(
+                ? .all(
                     color: _borderColor.resolve(_controller.value),
                     width: tokens.borderWidth100,
                   )
