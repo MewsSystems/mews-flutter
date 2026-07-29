@@ -1,3 +1,9 @@
+## 0.9.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: Support SPM for kiosk_mode (#905).
+
 ## 0.8.0+1
 
  - **REFACTOR**: Fix linter warnings.
