@@ -9,5 +9,11 @@
     "custom.regex",
     "pub"
   ],
-  "mode": "full"
+  "mode": "full",
+  "ignorePaths": [
+    "kiosk_mode/example/**",
+    "optimus/example/**",
+    "optimus_icons/**",
+    "pubspec.yaml"
+  ]
 }
