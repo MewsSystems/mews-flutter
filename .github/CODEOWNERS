@@ -1,2 +1,2 @@
-*               @MewsSystems/tech-mo-platform
-/kiosk_mode/    @MewsSystems/tech-mo-kiosk
+*               @MewsSystems/tech-mo-platform @MewsSystems/rnd-platform-cloudenablement
+/kiosk_mode/    @MewsSystems/tech-mo-kiosk @MewsSystems/rnd-platform-cloudenablement
