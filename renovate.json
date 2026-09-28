@@ -15,5 +15,9 @@
     "optimus/example/**",
     "optimus_icons/**",
     "pubspec.yaml"
+  ],
+  "gitIgnoredAuthors": [
+    "terraform-lockfile-automation",
+    "tech.account@mewssystems.com"
   ]
 }

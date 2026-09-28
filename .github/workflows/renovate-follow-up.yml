@@ -1,11 +1,11 @@
-name: Update .lock files on dependabot PR
+name: Update .lock files on renovate PR
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
 jobs:
-  dependabot_folow_up:
-    if: github.actor == 'dependabot[bot]'
+  renovate_follow_up:
+    if: github.actor == 'renovate[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
