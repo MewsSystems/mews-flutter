@@ -1,2 +1,6 @@
-*               @MewsSystems/tech-mo-platform @MewsSystems/rnd-platform-cloudenablement
-/kiosk_mode/    @MewsSystems/tech-mo-kiosk @MewsSystems/rnd-platform-cloudenablement
+*               @MewsSystems/tech-mo-platform
+/.github/       @MewsSystems/tech-mo-platform @MewsSystems/rnd-platform-cloudenablement
+renovate.json   @MewsSystems/tech-mo-platform @MewsSystems/rnd-platform-cloudenablement
+pubspec.yaml    @MewsSystems/tech-mo-platform @MewsSystems/rnd-platform-cloudenablement
+pubspec.lock    @MewsSystems/tech-mo-platform @MewsSystems/rnd-platform-cloudenablement
+/kiosk_mode/    @MewsSystems/tech-mo-kiosk
