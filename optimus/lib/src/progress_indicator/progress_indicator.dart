@@ -239,27 +239,30 @@ class _VerticalProgressIndicatorState extends State<_VerticalProgressIndicator>
 
     final Widget result = Offstage(
       offstage: isClosed,
-      child: AllowMultipleRawGestureDetector(
-        onTap: _handleTap,
-        child: Column(
-          crossAxisAlignment: .start,
-          children: items
-              .intersperseWith(
-                itemBuilder: (item) => ProgressIndicatorItem(
-                  state: _getIndicatorState(item),
-                  index: items.getIndex(item),
-                  text: item.text,
-                  description: item.description,
-                  itemsCount: _itemsCount,
-                  axis: .vertical,
-                ),
-                separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
-                  nextItemState: _getIndicatorState(nextItem),
-                  layout: .vertical,
-                ),
-              )
-              .skip(1) // the first one is already in the header
-              .toList(),
+      child: ExcludeFocus(
+        excluding: isClosed,
+        child: AllowMultipleRawGestureDetector(
+          onTap: _handleTap,
+          child: Column(
+            crossAxisAlignment: .start,
+            children: items
+                .intersperseWith(
+                  itemBuilder: (item) => ProgressIndicatorItem(
+                    state: _getIndicatorState(item),
+                    index: items.getIndex(item),
+                    text: item.text,
+                    description: item.description,
+                    itemsCount: _itemsCount,
+                    axis: .vertical,
+                  ),
+                  separatorBuilder: (_, nextItem) => ProgressIndicatorSpacer(
+                    nextItemState: _getIndicatorState(nextItem),
+                    layout: .vertical,
+                  ),
+                )
+                .skip(1) // the first one is already in the header
+                .toList(),
+          ),
         ),
       ),
     );

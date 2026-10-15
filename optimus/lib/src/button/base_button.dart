@@ -56,7 +56,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
 
   EdgeInsets get _padding =>
       widget.padding ??
-      EdgeInsets.symmetric(
+      .symmetric(
         vertical: widget.size.getVerticalPadding(tokens),
         horizontal: widget.size.getHorizontalPadding(tokens),
       );
@@ -68,6 +68,7 @@ class _BaseButtonState extends State<BaseButton> with ThemeGetter {
 
     return IgnorePointer(
       ignoring: widget.isLoading,
+      // ignore: avoid-redundant-semantics-wrapper, adds the custom semanticLabel TextButton can't take
       child: Semantics(
         label: widget.semanticLabel,
         child: TextButton(

@@ -101,7 +101,7 @@ class OptimusTabBar extends StatelessWidget {
   TabAlignment? get _tabAlignment => isScrollable ? null : .fill;
 
   EdgeInsets _getLabelPadding(OptimusTokens tokens) =>
-      tabPadding ?? EdgeInsets.symmetric(horizontal: tokens.spacing150);
+      tabPadding ?? .symmetric(horizontal: tokens.spacing150);
 
   @override
   Widget build(BuildContext context) {

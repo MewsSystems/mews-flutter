@@ -70,12 +70,11 @@ class _OptimusDateInputFieldState extends State<OptimusDateInputField>
   StyledInputController? _styleController;
   String _previousValue = '';
 
-  StyledInputController get _controller =>
-      _styleController ??= StyledInputController(
-        text: _formatValue(widget.value),
-        inputStyle: _inputStyle,
-        placeholderStyle: _placeholderStyle,
-      );
+  StyledInputController get _controller => _styleController ??= .new(
+    text: _formatValue(widget.value),
+    inputStyle: _inputStyle,
+    placeholderStyle: _placeholderStyle,
+  );
 
   TextStyle get _placeholderStyle =>
       theme.getPlaceholderStyle(isEnabled: widget.isEnabled);

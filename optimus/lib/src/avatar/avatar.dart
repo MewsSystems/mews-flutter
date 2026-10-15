@@ -66,6 +66,7 @@ class OptimusAvatar extends StatelessWidget {
 
     return MergeSemantics(
       child: Semantics(
+        // ignore: prefer-localized-semantic-labels, fallback only, consumers pass a localized semanticLabel
         label: semanticLabel ?? 'Avatar: $title',
         child: Stack(
           clipBehavior: .none,
