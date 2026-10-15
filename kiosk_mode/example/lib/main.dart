@@ -13,7 +13,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
     home: Scaffold(
-      appBar: AppBar(title: const Text('Plugin example app')),
+      appBar: AppBar(
+        title: Semantics(header: true, child: const Text('Plugin example app')),
+      ),
       body: const Center(child: _Home()),
     ),
   );

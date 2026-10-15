@@ -85,7 +85,7 @@ class OptimusAlert extends StatelessWidget {
     final tokens = context.tokens;
     final horizontalPadding = _getHorizontalPadding(context);
     final double alertWidth = min(
-      MediaQuery.sizeOf(context).width - horizontalPadding * 2,
+      MediaQuery.widthOf(context) - horizontalPadding * 2,
       maxWidth,
     );
 

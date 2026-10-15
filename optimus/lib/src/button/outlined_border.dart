@@ -41,7 +41,7 @@ class CustomOutlinedBorder extends OutlinedBorder {
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
-      Path()..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
+      .new()..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
 
   @override
   void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {

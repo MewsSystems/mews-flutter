@@ -146,6 +146,7 @@ class OptimusMewsLogo extends StatelessWidget {
             ? Row(
                 mainAxisSize: .min,
                 children: [
+                  // ignore: prefer-localized-semantic-labels, brand name, not translated
                   Semantics(label: semanticsLabel ?? 'Mews Logo', child: logo),
                   SizedBox(width: sizeVariant.getProductPadding(tokens)),
                   _ProductBadge(

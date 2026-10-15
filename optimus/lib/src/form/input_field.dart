@@ -361,6 +361,7 @@ class _OptimusInputFieldState extends State<OptimusInputField>
       placeholder: _placeholder,
       // TODO(witwash): rework when https://github.com/flutter/flutter/issues/138794 is fixed
       children: [
+        // ignore: provide-input-field-label, the label is rendered by FieldWrapper
         CupertinoTextField(
           key: widget.inputKey,
           textAlign: widget.textAlign,

@@ -249,11 +249,13 @@ dart_code_metrics:
   rules:
     # Common
 
+    - add-static-field
     # - arguments-ordering
     - avoid-accessing-collections-by-constant-index
     # - avoid-accessing-other-classes-private-members
     - avoid-adjacent-strings
     - avoid-always-null-parameters
+    - avoid-always-null-variables
     # - avoid-assigning-to-static-field
     - avoid-assignments-as-conditions
     # - avoid-async-call-in-sync-function
@@ -293,6 +295,7 @@ dart_code_metrics:
     - avoid-duplicate-constant-values
     - avoid-duplicate-exports
     - avoid-duplicate-factories
+    - avoid-duplicate-field-initializers
     - avoid-duplicate-initializers
     - avoid-duplicate-map-keys
     - avoid-duplicate-mixins
@@ -347,6 +350,7 @@ dart_code_metrics:
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     - avoid-multi-assignment
+    - avoid-mutating-constant-collections
     # - avoid-mutating-parameters
     # - avoid-negated-conditions
     - avoid-negations-in-equality-checks
@@ -366,6 +370,7 @@ dart_code_metrics:
     # - avoid-non-empty-constructor-bodies
     - avoid-non-final-exception-class-fields
     - avoid-non-null-assertion
+    - avoid-not-assignable-collection-types
     - avoid-not-encodable-in-to-json
     - avoid-nullable-interpolation
     - avoid-nullable-parameters-with-default-values
@@ -437,7 +442,7 @@ dart_code_metrics:
     - avoid-unnecessary-nullable-parameters
     - avoid-unnecessary-nullable-return-type
     - avoid-unnecessary-overrides
-    - avoid-unnecessary-parentheses
+    # - avoid-unnecessary-parentheses
     - avoid-unnecessary-patterns
     - avoid-unnecessary-reassignment
     - avoid-unnecessary-return
@@ -517,6 +522,7 @@ dart_code_metrics:
     - prefer-assert-initializers-first
     # - prefer-assigning-await-expressions
     # - prefer-async-await
+    - prefer-correct-mutated
     - prefer-returning-condition
     - prefer-boolean-prefixes:
         ignore-methods: true
@@ -658,11 +664,13 @@ dart_code_metrics:
     - prefer-typedefs-for-callbacks:
         ignore-parameters: true
     - prefer-unique-test-names
+    - prefer-unmodifiable-of
     # - prefer-unwrapping-future-or
     # - prefer-visible-for-testing-on-members
     - prefer-wildcard-pattern
     # - record-fields-ordering
     - require-atomic-async-updates
+    - specify-unknown-enum-value
     # - tag-name
     # - unnecessary-trailing-comma
     - use-existing-destructuring
@@ -678,14 +686,17 @@ dart_code_metrics:
     # - avoid-empty-setstate
     - avoid-expanded-as-spacer
     - avoid-flexible-outside-flex
+    - avoid-focusable-offstage
     # - avoid-incomplete-copy-with
     - avoid-incorrect-image-opacity
     # - avoid-inherited-widget-in-initstate
     - avoid-late-context
+    - avoid-merge-semantics-list-tile
     - avoid-missing-controller
-    - avoid-missing-image-alt
     - avoid-mounted-in-setstate
+    - avoid-nested-interactive-semantics
     - avoid-recursive-widget-calls
+    - avoid-redundant-semantics-wrapper
     # - avoid-returning-widgets
     - avoid-shrink-wrap-in-lists
     - avoid-single-child-column-or-row
@@ -719,7 +730,11 @@ dart_code_metrics:
     - prefer-define-hero-tag
     # - prefer-extracting-callbacks
     # - prefer-for-loop-in-children
+    # - prefer-haptic-feedback-on-interaction
+    - prefer-icon-button-tooltip
+    - prefer-localized-semantic-labels
     - prefer-padding-over-container
+    - prefer-semantics-header
     - prefer-single-setstate
     # - prefer-single-widget-per-file
     - prefer-sized-box-square
@@ -732,7 +747,14 @@ dart_code_metrics:
     - prefer-widget-private-members:
         ignore-static: true
     - proper-super-calls
+    # - provide-autofill-hints
+    # - provide-icon-semantic-label
+    - provide-image-semantic-label
+    - provide-input-field-label
+    - provide-progress-indicator-semantics
+    - provide-slider-semantic-formatter
     - use-closest-build-context
+    - use-existing-widget
     - use-setstate-synchronously
 
     # Provider

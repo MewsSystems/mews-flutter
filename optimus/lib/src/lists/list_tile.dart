@@ -77,17 +77,11 @@ class OptimusListTile extends StatelessWidget {
   final EdgeInsets? contentPadding;
 
   OptimusPrefixVerticalAlignment get _prefixVerticalAlignment =>
-      prefixVerticalAlignment ??
-      (subtitle != null
-          ? OptimusPrefixVerticalAlignment.start
-          : OptimusPrefixVerticalAlignment.center);
+      prefixVerticalAlignment ?? (subtitle != null ? .start : .center);
 
   EdgeInsets _getContentPadding(OptimusTokens tokens) =>
       contentPadding ??
-      EdgeInsets.symmetric(
-        vertical: tokens.spacing300,
-        horizontal: tokens.spacing200,
-      );
+      .symmetric(vertical: tokens.spacing300, horizontal: tokens.spacing200);
 
   @override
   Widget build(BuildContext context) {
