@@ -267,6 +267,7 @@ dart_code_metrics:
     # - avoid-banned-types
     - avoid-barrel-files
     - avoid-bitwise-operators-with-booleans
+    # - avoid-block-in-switch-case
     - avoid-bottom-type-in-patterns
     - avoid-bottom-type-in-records
     - avoid-cascade-after-if-null
@@ -319,6 +320,7 @@ dart_code_metrics:
     - avoid-getter-prefix:
         prefix: "^get"
     - avoid-global-state
+    # - avoid-hardcoded-numbers
     # - avoid-high-cyclomatic-complexity
     # - avoid-identical-exception-handling-blocks
     # - avoid-if-with-many-branches
@@ -334,6 +336,7 @@ dart_code_metrics:
     - avoid-labels
     - avoid-late-final-reassignment
     # - avoid-late-keyword
+    - avoid-legacy-web-import-conditions
     # - avoid-local-functions
     # - avoid-long-files
     # - avoid-long-functions
@@ -350,6 +353,7 @@ dart_code_metrics:
     - avoid-misused-wildcard-pattern
     - avoid-mixing-named-and-positional-fields
     - avoid-multi-assignment
+    - avoid-multiple-blocks-in-switch-case
     - avoid-mutating-constant-collections
     # - avoid-mutating-parameters
     # - avoid-negated-conditions
@@ -399,11 +403,14 @@ dart_code_metrics:
     # - avoid-shadowing
     # - avoid-similar-names
     # - avoid-single-field-destructuring
+    - avoid-skipping-tests
     # - avoid-slow-collection-methods
     - avoid-stream-tostring
     # - avoid-substring
     - avoid-suspicious-global-reference
     - avoid-suspicious-super-overrides
+    - avoid-test-in-test-invocation
+    - avoid-test-on
     # - avoid-throw-in-catch-block
     # - avoid-throw-objects-without-tostring
     # - avoid-throw
@@ -424,6 +431,7 @@ dart_code_metrics:
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-constructor
     - avoid-unnecessary-continue
+    - avoid-unnecessary-declaring-parameters
     - avoid-unnecessary-digit-separators
     - avoid-unnecessary-enum-arguments
     - avoid-unnecessary-enum-prefix
@@ -522,7 +530,10 @@ dart_code_metrics:
     - prefer-assert-initializers-first
     # - prefer-assigning-await-expressions
     # - prefer-async-await
+    # - prefer-block-in-switch-case
     - prefer-correct-mutated
+    - prefer-initializing-in-declaration
+    # - prefer-primary-constructors
     - prefer-returning-condition
     - prefer-boolean-prefixes:
         ignore-methods: true
@@ -657,7 +668,9 @@ dart_code_metrics:
     - prefer-switch-expression
     - prefer-switch-with-enums
     - prefer-switch-with-sealed-classes
+    # - prefer-test-body-last
     # - prefer-test-matchers
+    - prefer-test-name-first
     # - prefer-test-structure
     # - prefer-trailing-comma
     - prefer-type-over-var
@@ -668,6 +681,7 @@ dart_code_metrics:
     # - prefer-unwrapping-future-or
     # - prefer-visible-for-testing-on-members
     - prefer-wildcard-pattern
+    # - primary-parameters-ordering
     # - record-fields-ordering
     - require-atomic-async-updates
     - specify-unknown-enum-value
@@ -730,9 +744,11 @@ dart_code_metrics:
     - prefer-define-hero-tag
     # - prefer-extracting-callbacks
     # - prefer-for-loop-in-children
+    # - prefer-gestures-semantics-role
     # - prefer-haptic-feedback-on-interaction
     - prefer-icon-button-tooltip
     - prefer-localized-semantic-labels
+    # - prefer-merge-semantics-composite
     - prefer-padding-over-container
     - prefer-semantics-header
     - prefer-single-setstate
